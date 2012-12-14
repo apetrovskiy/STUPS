@@ -24,6 +24,7 @@ using System.Runtime.CompilerServices;
 [assembly: ComVisible(false)]
 
 [assembly: InternalsVisibleTo("SePSXUnitTests")]
+[assembly: InternalsVisibleTo("SePSX_Factory")]
 
 // The assembly version has following format :
 //

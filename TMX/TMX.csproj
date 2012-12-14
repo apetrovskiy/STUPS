@@ -1,0 +1,287 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectGuid>{DFFF7F28-CFA4-4EE5-84F0-4A12A415BC0C}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <OutputType>Library</OutputType>
+    <RootNamespace>TMX</RootNamespace>
+    <AssemblyName>TMX</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <NoStdLib>False</NoStdLib>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <SourceAnalysisOverrideSettingsFile>C:\Users\apetrov1\AppData\Roaming\ICSharpCode/SharpDevelop4\Settings.SourceAnalysis</SourceAnalysisOverrideSettingsFile>
+    <SignAssembly>False</SignAssembly>
+    <DelaySign>False</DelaySign>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <RunCodeAnalysis>False</RunCodeAnalysis>
+    <RunSourceAnalysis>False</RunSourceAnalysis>
+    <AssemblyOriginatorKeyFile>..\..\..\..\1\petrovskiy.alexander%40gmail.com.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyMode>File</AssemblyOriginatorKeyMode>
+    <DebugType>None</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <ApplicationManifest>..\UIAutomationSpy\app.manifest</ApplicationManifest>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>None</DebugType>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release35' ">
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>None</DebugType>
+    <StartAction>Project</StartAction>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'Release35' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'Release40' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release40' ">
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|Release35'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|Release40'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|Release35'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|Release40'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release35|x86'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release35|Release35'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release35|Release40'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release40|x86'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release40|Release35'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release40|Release40'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="SQLite.Designer">
+      <HintPath>..\binaries\sqlite\35\64\SQLite.Designer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite">
+      <HintPath>..\binaries\sqlite\35\64\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq">
+      <HintPath>..\binaries\sqlite\35\64\System.Data.SQLite.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Management.Automation" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Commands\Conditions\InvokeTmxIfConditionCommand.cs" />
+    <Compile Include="Commands\Configuration\ExportTMXTestSettingsCommand.cs" />
+    <Compile Include="Commands\Configuration\ImportTMXTestSettingsCommand.cs" />
+    <Compile Include="Commands\Database\CloseTMXTestDBCommand.cs" />
+    <Compile Include="Commands\Database\NewTMXTestDBCommand.cs" />
+    <Compile Include="Commands\Database\OpenTMXTestDBCommand.cs" />
+    <Compile Include="Commands\Experimental\GetTestResultsFromCollectionsCommand.cs" />
+    <Compile Include="Commands\Experimental\GetTestResultsFromSearchCommand.cs" />
+    <Compile Include="Commands\Experimental\GetTestResultsViaDataSetCommand.cs" />
+    <Compile Include="Commands\NUnit\AssertNUnitAreEqualCommand.cs" />
+    <Compile Include="Commands\NUnit\AssertNUnitAreNotEqualCommand.cs" />
+    <Compile Include="Commands\NUnit\AssertNUnitAreNotSameCommand.cs" />
+    <Compile Include="Commands\NUnit\AssertNUnitAreSameCommand.cs" />
+    <Compile Include="Commands\NUnit\AssertNUnitContainsCommand.cs" />
+    <Compile Include="Commands\NUnit\AssertNUnitGreaterCommand.cs" />
+    <Compile Include="Commands\NUnit\AssertNUnitGreaterOrEqualCommand.cs" />
+    <Compile Include="Commands\NUnit\AssertNUnitIsEmptyCommand.cs" />
+    <Compile Include="Commands\NUnit\AssertNUnitIsFalseCommand.cs" />
+    <Compile Include="Commands\NUnit\AssertNUnitIsNotEmptyCommand.cs" />
+    <Compile Include="Commands\NUnit\AssertNUnitIsNotNullCommand.cs" />
+    <Compile Include="Commands\NUnit\AssertNUnitIsNullCommand.cs" />
+    <Compile Include="Commands\NUnit\AssertNUnitIsTrueCommand.cs" />
+    <Compile Include="Commands\NUnit\AssertNUnitLessCommand.cs" />
+    <Compile Include="Commands\NUnit\AssertNUnitLessrOrEqualCommand.cs" />
+    <Compile Include="Commands\Repository\AddTMXTestBucketCommand.cs" />
+    <Compile Include="Commands\Repository\AddTMXTestConstantCommand.cs" />
+    <Compile Include="Commands\Repository\GetTMXTestBucketCommand.cs" />
+    <Compile Include="Commands\Repository\GetTMXTestConstantValueCommand.cs" />
+    <Compile Include="Commands\Repository\RemoveTMXTestBucketCommand.cs" />
+    <Compile Include="Commands\Repository\RemoveTMXTestConstantCommand.cs" />
+    <Compile Include="Commands\Repository\SetTMXTestBucketCommand.cs" />
+    <Compile Include="Commands\Repository\SetTMXTestConstantValueCommand.cs" />
+    <Compile Include="Commands\TestResults\BackupTMXTestResultsCommand.cs" />
+    <Compile Include="Commands\TestResults\ExportTMXTestLogCommand.cs" />
+    <Compile Include="Commands\TestResults\ExportTMXTestResultsCommand.cs" />
+    <Compile Include="Commands\TestResults\ExportTMXTestSummaryCommand.cs" />
+    <Compile Include="Commands\TestResults\RestoreTMXTestResultsCommand.cs" />
+    <Compile Include="Commands\TestResults\SaveTMXTestScreenshotCommand.cs" />
+    <Compile Include="Commands\TestResults\SearchTMXTestResultCommand.cs" />
+    <Compile Include="Commands\TestResults\SearchTMXTestScenarioCommand.cs" />
+    <Compile Include="Commands\TestResults\SearchTMXTestSuiteCommand.cs" />
+    <Compile Include="Commands\TestStructure\AddTMXTestCaseCommand.cs" />
+    <Compile Include="Commands\TestStructure\GetTMXTestCaseCommand.cs" />
+    <Compile Include="Commands\TestStructure\RemoveTMXTestCaseCommand.cs" />
+    <Compile Include="Commands\TestStructure\SetTMXTestCaseCommand.cs" />
+    <Compile Include="Commands\TestStructure\AddTMXTestResultDetailCommand.cs" />
+    <Compile Include="Commands\TestStructure\AddTMXTestScenarioCommand.cs" />
+    <Compile Include="Commands\TestStructure\CloseTMXTestResultCommand.cs" />
+    <Compile Include="Commands\TestStructure\NewTMXTestSuiteCommand.cs" />
+    <Compile Include="Commands\TestStructure\OpenTMXTestScenarioCommand.cs" />
+    <Compile Include="Commands\TestStructure\OpenTMXTestSuiteCommand.cs" />
+    <Compile Include="ExternalUse\Import.cs" />
+    <Compile Include="Helpers\garbage\Enum.cs" />
+    <Compile Include="Helpers\garbage\TMXPluginManager.cs" />
+    <Compile Include="Helpers\Inheritance\AddScenarioCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\AssertionsCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\CommonCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\ConditionsCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\Database\DatabaseCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\Database\DatabaseFileCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\Database\DatabaseFileOpenCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\Database\TestBucketCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\Database\TestCaseCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\Database\TestConstantCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\Database\TestResultsCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\Database\TestStructureCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\ImportExportCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\OpenScenarioCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\OpenSuiteCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\OpenTestCaseCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\ScenarioCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\NewSuiteCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\SearchCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\SettingsCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\TestResultCmdletBase.cs" />
+    <Compile Include="Helpers\UnderlyingCode\GatherTestResultsCollections.cs" />
+    <Compile Include="Helpers\UnderlyingCode\IXMLElementsStruct.cs" />
+    <Compile Include="Helpers\UnderlyingCode\SQLiteHelper.cs" />
+    <Compile Include="Helpers\UnderlyingCode\TMXHelper.cs" />
+    <Compile Include="Helpers\UnderlyingCode\XMLElementsJUnitStruct.cs" />
+    <Compile Include="Helpers\UnderlyingCode\XMLElementsNativeStruct.cs" />
+    <Compile Include="Helpers\UserSettings\Preferences.cs" />
+    <Compile Include="Interface\Enumerations.cs" />
+    <Compile Include="Interface\IDatabase.cs" />
+    <Compile Include="Interface\ITestBucket.cs" />
+    <Compile Include="Interface\ITestCase.cs" />
+    <Compile Include="Interface\ITestConstant.cs" />
+    <Compile Include="Interface\ITestResult.cs" />
+    <Compile Include="Interface\ITestResultDetail.cs" />
+    <Compile Include="Interface\ITestScenario.cs" />
+    <Compile Include="Interface\ITestSuite.cs" />
+    <Compile Include="Interface\ITestSuitesCollection.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Provider\TMXProvider.cs" />
+    <Compile Include="SQLiteData\SQLiteData.cs" />
+    <Compile Include="TestData\TestData.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Commands\Database" />
+    <Folder Include="Commands\Experimental" />
+    <Folder Include="Commands\Configuration" />
+    <Folder Include="Commands\TestResults" />
+    <Folder Include="Commands\Repository" />
+    <Folder Include="Helpers\Inheritance\Database" />
+    <Folder Include="ExternalUse" />
+    <Folder Include="Helpers\garbage" />
+    <Folder Include="Helpers\UnderlyingCode" />
+    <Folder Include="SQLiteData" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PSTestLibrary\PSTestLibrary.csproj">
+      <Project>{E4499004-DAE5-4700-B212-4CDEA3080BC5}</Project>
+      <Name>PSTestLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+</Project>

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestLinkFixtureConfiguration>
+  <url value="http://localhost/testlink/lib/api/xmlrpc.php" override="yes" />
+  <ProjectName  value="TestLinkApi"  override="yes" />
+  <UserId value="admin"  override="yes" />
+  <TestPlan value="Automatic Testing" />
+  <PlatformName value="OS/2" />
+  <DevKey value="fb37eb345a5b4f05659d5c35bb3465fd" override="yes" />
+
+</TestLinkFixtureConfiguration>

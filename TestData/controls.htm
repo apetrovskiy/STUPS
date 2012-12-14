@@ -1,0 +1,328 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
+<head>
+<title>
+Controls
+</title>
+<style type="text/css">
+UL                   { cursor: hand; }
+UL LI                { display: none;font: 18pt;list-style: square; }
+UL.showList LI       { display: block; }
+.defaultStyles UL    { color: gold; }
+UL.defaultStyles LI  { display: none; }
+</style>
+
+<style type="text/css">
+#global            { 
+                      font-size: x-small;
+                      border: 1px solid gray;
+                     }
+</style>
+
+<style type="text/css">
+a.link                 { color: blue; }
+</style>
+
+<style type="text/css">
+#overallstat         { 
+                      position: relative;
+                      left: 20px;
+                      top: auto;
+                      width: auto;
+                      border: 1px solid gray;
+                     }
+</style>
+
+<style type="text/css">
+#suite               { 
+                      position: relative;
+                      left: 20px;
+                      top: auto;
+                      width: auto;
+                      border: 1px solid gray;
+                      margin: 0px 0px 0px 0px;
+                     }
+</style>
+
+<style type="text/css">
+#suitestat           { 
+                      position: relative;
+                      left: 40px;
+                      top: 0px;
+                      width: auto;
+                      border: 1px solid gray;
+                     }
+</style>
+
+<style type="text/css">
+#suitedescription    { 
+                      position: relative;
+                      left: 0px;
+                      top: 0px;
+                      width: auto;
+                      border: 1px solid gray;
+                     }
+</style>
+
+<style type="text/css">
+#scenario            { 
+                      position: relative;
+                      left: 20px;
+                      top: auto;
+                      width: auto;
+                      border: 1px solid gray;
+                      margin: 0px 0px 0px 0px;
+                     }
+</style>
+
+<style type="text/css">
+#scenariostat        { 
+                      position: relative;
+                      left: 20px;
+                      top: 0px;
+                      width: auto;
+                      border: 1px solid gray;
+                     }
+</style>
+
+<style type="text/css">
+#scenariodescription { 
+                      position: relative;
+                      left: 0px;
+                      top: 0px;
+                      width: auto;
+                      border: 1px solid gray;
+                     }
+</style>
+
+<style type="text/css">
+#testresult          { 
+                      position: relative;
+                      left: 20px;
+                      top: auto;
+                      width: auto;
+                      border: 1px solid gray;
+                      margin: 0px 0px 0px 0px;
+                     }
+</style>
+
+<style type="text/css">
+#testresultstat      { 
+                      position: relative;
+                      left: 20px;
+                      top: 0px;
+                      width: auto;
+                      border: 1px solid gray;
+                     }
+</style>
+
+<style type="text/css">
+#testresultdescription{ 
+                      position: relative;
+                      left: 0px;
+                      top: 0px;
+                      width: auto;
+                      border: 1px solid gray;
+                     }
+</style>
+
+<style type="text/css">
+#testresultdetail    { 
+                      position: relative;
+                      left: 20px;
+                      top: auto;
+                      width: auto;
+                      border: 1px solid gray;
+                      margin: 0px 0px 0px 0px;
+                     }
+</style>
+
+<style type="text/css">
+.passed             { 
+                      color: green;
+                     }
+</style>
+
+<style type="text/css">
+.failed             { 
+                      color: red;
+                     }
+</style>
+
+<style type="text/css">
+.knownissue          { 
+                      color: olive;
+                     }
+</style>
+
+<style type="text/css">
+.nottested          { 
+                      color: gray;
+                     }
+</style>
+
+</head>
+<body>
+<h1>Test results 26.07.2012 16:16</h1>
+<div id="selects">
+	<div id="select sample 01">
+		<select>
+			<option value="val1">Value1</option>
+			<option value="val2">Value 2</option>
+			<option value="val3">Value \3</option>
+			<option value="val4">Value /4</option>
+		</select>
+	</div>
+	<div id="select sample 02">
+		<select class="select02class" dir="ltr" id="select02" lang="" style="select01style" tabindex="3" title="select02title" xml:lang="409">
+			<option value="val1">Value1</option>
+			<option value="val2">Value 2</option>
+			<option value="val3">Value \3</option>
+			<option value="val4">Value /4</option>
+		</select>
+	</div>
+	<div id="select sample 03">
+		<select disabled="disabled">
+			<option value="val1">Value1</option>
+			<option value="val2">Value 2</option>
+			<option value="val3">Value \3</option>
+			<option value="val4">Value /4</option>
+		</select>	
+	</div>
+	<div id="select sample 04">
+		<select multiple="multiple">
+			<option value="val1">Value1</option>
+			<option value="val2">Value 2</option>
+			<option value="val3">Value \3</option>
+			<option value="val4">Value /4</option>
+		</select>
+	</div>
+	<div id="select sample 05">
+		<select name="select with name">
+			<option value="val1">Value1</option>
+			<option value="val2">Value 2</option>
+			<option value="val3">Value \3</option>
+			<option value="val4">Value /4</option>
+		</select>
+	</div>
+	<div id="select sample 06">
+		<select size="2" class="select02class">
+			<option value="val1">Value1</option>
+			<option value="val2">Value 2</option>
+			<option value="val3">Value \3</option>
+			<option value="val4">Value /4</option>
+		</select>
+	</div>
+</div>
+
+<div id="links">
+	<div id="link sample 01">
+		<a href="containers.htm">Link 01</a>
+	</div>
+	<div id="link sample 02">
+		<a href="result1.htm">Link 02</a>
+	</div>
+	<div id="link sample 03">
+		<a href="summary1.htm" target='top' id="l1">Link 03</a>
+	</div>
+	<div id="link sample 04">
+		<a href="test_result.htm" target='top' id="l1">Link 04</a>
+	</div>
+	<div id="link sample 05">
+		<a href="test_result.htm" target='top' id="l2">Link 04</a>
+	</div>
+</div>
+
+<div id="inputs">
+	<div id="input sample 01">
+		<input id="input 01">Input here</input>
+	</div>
+	<div id="input sample 02">
+		<input id="input 02">Input har</input>
+	</div>
+</div>
+
+<div id="texts">
+	<div id="text sample 01">
+		<text id="text 01">Text 01</text>
+	</div>
+	<div id="text sample 02">
+		<text id="text 02" class="text02class" name="text02">Text 02</text>
+	</div>
+</div>
+
+
+<div id="buttons">
+	<div id="button sample 01">
+		<button id="button 01" type="button" onclick="button1click()">Button 01</button>
+	</div>
+	<script type="text/javascript">
+		<!--
+		function button1click()
+		{
+			//document.getElementById("text 01").name="button clicked 1";
+			//document.getElementById("text 01").value="button clicked 2";
+			//document.getElementById("text 01").type="button clicked 3";
+			document.getElementById("text 01").innerHTML="button clicked";
+		}
+		//-->
+	</script>
+
+	<!--
+			<button type="button" onclick="myFunction()">Try it</button>
+
+			<script type="text/javascript">
+			function myFunction()		
+			{
+				document.getElementById("demo").innerHTML="My First JavaScript Function";
+			}
+			</script>
+	-->
+
+	<div id="button sample 02">
+		<button id="button 02" class="btn">Button 02</button>
+	</div>
+
+	<div id="button sample 03">
+		<button id="button 03" class="btn">Button 03</button>
+	</div>
+</div>
+
+
+<div id="tables">
+	<div id="table sample 01">
+		<table id="table 01">Table 01
+			<tr id="tr1">
+				<td id="td01">Cell 01</td>
+				<td id="td02">Cell 02</td>
+				<td id="td03">Cell 03</td>
+				</tr>
+			<tr id="tr2">
+				<td id="td04">Cell 04</td>
+				<td id="td05">Cell 05</td>
+				<td id="td06">Cell 06</td>
+			</tr>
+		</table>
+	</div>
+
+
+</div>
+
+<div id="overallstat">Suites:1  Passed:0  Failed:1  Not tested:0<br />Scenarios:2  Passed:0  Failed:2  Not tested:0<br />Test cases:21  Passed:11  Failed:7  Not tested:3  Time spent:6 seconds<br />4 cases of non-critical issues are counted as Passed</div><div id="global">
+
+<div id="suite" class="suite failed"><li><h2>111 suite1 FAILED</h2><div id="suitestat">Scenarios:2  Passed:0  Failed:2  Not tested:0<br />Test cases:21  Passed:11  Failed:7  Not tested:3  Time spent:6 seconds</div>
+            <ul onclick = "this.className = 'showList';" ondblclick = "this.className = 'defaultStyles';" onmouseover = "this.style.color = 'blue';" onselectstart = "event.returnValue = false;">description description description description description description description description description description</a>
+                <div id="scenario" class="scenario failed"><li><h3>1111 sc1 FAILED</h3><div id="scenariostat">Test cases:7  Passed:2  Failed:3  Not tested:2  Time spent:6 seconds</div>
+                    <ul onclick = "this.className = 'showList';" ondblclick = "this.className = 'defaultStyles';" onmouseover = "this.style.color = 'blue';" onselectstart = "event.returnValue = false;">Expand</a>
+                    </ul>
+                </li></div>
+                <div id="scenario" class="scenario failed"><li><h3>1112 sc2 FAILED</h3><div id="scenariostat">Test cases:14  Passed:9  Failed:4  Not tested:1  Time spent:0 seconds</div>
+                    <ul onclick = "this.className = 'showList';" ondblclick = "this.className = 'defaultStyles';" onmouseover = "this.style.color = 'blue';" onselectstart = "event.returnValue = false;">Expand</a>
+                    </ul>
+                </li></div>
+            </ul>
+</li></div>
+</div>
+</body>
+</html>

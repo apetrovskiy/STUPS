@@ -1,0 +1,387 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectGuid>{A0B50771-4889-46F4-8999-D2830DC9E486}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <OutputType>Library</OutputType>
+    <RootNamespace>SePSX</RootNamespace>
+    <AssemblyName>SePSX</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <NoStdLib>False</NoStdLib>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release35' ">
+    <OutputPath>bin\Release35\</OutputPath>
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>None</DebugType>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release40' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'Release35' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'Release40' ">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|Release35'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|Release40'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|Release35'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|Release40'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release35|x86'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release35|Release35'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release35|Release40'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release40|x86'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release40|Release35'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release40|Release40'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\binaries\autofac\35\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core">
+      <HintPath>..\binaries\selenium-dotnet\net35\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\binaries\selenium-dotnet\net35\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\binaries\selenium-dotnet\net35\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Selenium.WebDriverBackedSelenium">
+      <HintPath>..\binaries\selenium-dotnet\net35\Selenium.WebDriverBackedSelenium.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management.Automation" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="ThoughtWorks.Selenium.Core">
+      <HintPath>..\binaries\selenium-dotnet\net35\ThoughtWorks.Selenium.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="UIAutomationClient">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="UIAutomationTypes">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WebDriver">
+      <HintPath>..\binaries\selenium-dotnet\net35\WebDriver.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver.Support">
+      <HintPath>..\binaries\selenium-dotnet\net35\WebDriver.Support.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Commands\Actions\InvokeSeWebElementClickCommand.cs" />
+    <Compile Include="Commands\Actions\InvokeSeWebElementDragAndDropCommand.cs" />
+    <Compile Include="Commands\Actions\MoveSeCursorToWebElementCommand.cs" />
+    <Compile Include="Commands\Alert\InvokeSeAlertAcceptCommand.cs" />
+    <Compile Include="Commands\Alert\InvokeSeAlertDismissCommand.cs" />
+    <Compile Include="Commands\Alert\Read-SeAlertTextCommand.cs" />
+    <Compile Include="Commands\Alert\SetSeAlertKeysCommand.cs" />
+    <Compile Include="Commands\Common\SaveSeScreenshotCommand.cs" />
+    <Compile Include="Commands\Convert\ConvertToSeAutomationElementCommand.cs" />
+    <Compile Include="Commands\Driver\ChromeOptions\AddSeChromeExtensionCommand.cs" />
+    <Compile Include="Commands\Driver\CloseSeWebDriverCurrentBrowserWindowCommand.cs" />
+    <Compile Include="Commands\Driver\FirefoxProfile\AddSeFirefoxExtensionCommand.cs" />
+    <Compile Include="Commands\Driver\FirefoxProfile\NewSeFirefoxProfileCommand.cs" />
+    <Compile Include="Commands\Driver\GetSeWebDriverCookiesCommand.cs" />
+    <Compile Include="Commands\Driver\GetSeWebDriverWindowCommand.cs" />
+    <Compile Include="Commands\Driver\ChromeOptions\AddSeChromeArgumentCommand.cs" />
+    <Compile Include="Commands\Driver\ChromeOptions\NewSeChromeOptionsCommand.cs" />
+    <Compile Include="Commands\Driver\ChromeOptions\SetSeChromeBinaryCommand.cs" />
+    <Compile Include="Commands\Driver\IEOptions\NewSeInternetExplorerOptionsCommand.cs" />
+    <Compile Include="Commands\Driver\IEOptions\SetSeInternetExplorerOptionCommand.cs" />
+    <Compile Include="Commands\Driver\ReadSeWebDriverNativeWindowHandleCommand.cs" />
+    <Compile Include="Commands\Driver\ReadSeWebDriverPageSourceCommand.cs" />
+    <Compile Include="Commands\Driver\ReadSeWebDriverTitleCommand.cs" />
+    <Compile Include="Commands\Driver\ReadSeWebDriverUrlCommand.cs" />
+    <Compile Include="Commands\Driver\SelectSeWebDriverCommand.cs" />
+    <Compile Include="Commands\Driver\SetSeWebDriverTimeoutCommand.cs" />
+    <Compile Include="Commands\Driver\StartSeWebDriverCommand.cs" />
+    <Compile Include="Commands\Driver\StopSeWebDriverCommand.cs" />
+    <Compile Include="Commands\Element\ClearSeWebElementCommand.cs" />
+    <Compile Include="Commands\Element\Convert\ConvertFromSeTableCommand.cs" />
+    <Compile Include="Commands\Element\GetSeElementByTypeCommand.cs" />
+    <Compile Include="Commands\Element\ReadSeWebElementAttributeCommand.cs" />
+    <Compile Include="Commands\Element\ReadSeWebElementCssValueCommand.cs" />
+    <Compile Include="Commands\Element\ReadSeWebElementTextCommand.cs" />
+    <Compile Include="Commands\Element\InvokeSeWebElementClickCommand.cs" />
+    <Compile Include="Commands\Element\ReadSeWebElementDisplayedCommand.cs" />
+    <Compile Include="Commands\Element\ReadSeWebElementEnabledCommand.cs" />
+    <Compile Include="Commands\Element\ReadSeWebElementLocationCommand.cs" />
+    <Compile Include="Commands\Element\ReadSeWebElementSelectedCommand.cs" />
+    <Compile Include="Commands\Element\ReadSeWebElementSizeCommand.cs" />
+    <Compile Include="Commands\Element\ReadSeWebElementTagNameCommand.cs" />
+    <Compile Include="Commands\Element\SetSeWebElementKeysCommand.cs" />
+    <Compile Include="Commands\Element\SubmitSeWebElementCommand.cs" />
+    <Compile Include="Commands\JSExecutor\InvokeSeJSExecutorCommand.cs" />
+    <Compile Include="Commands\Module\ResetSeTestDataCommand.cs" />
+    <Compile Include="Commands\Navigation\EnterSeURLCommand.cs" />
+    <Compile Include="Commands\Element\GetSeWebElementCommand.cs" />
+    <Compile Include="Commands\Navigation\InvokeSeNavigateBackCommand.cs" />
+    <Compile Include="Commands\Navigation\InvokeSeNavigateForwardCommand.cs" />
+    <Compile Include="Commands\Navigation\InvokeSePageRefreshCommand.cs" />
+    <Compile Include="Commands\Navigation\SwitchSeToActiveElementCommand.cs" />
+    <Compile Include="Commands\Navigation\SwitchSeToAlertCommand.cs" />
+    <Compile Include="Commands\Navigation\SwitchSeToDefaultContentCommand.cs" />
+    <Compile Include="Commands\Navigation\SwitchSeToFrameCommand.cs" />
+    <Compile Include="Commands\Navigation\SwitchSeToWindowCommand.cs" />
+    <Compile Include="Commands\PageObject\NewSePageObjectCommand.cs" />
+    <Compile Include="Commands\Relatives\GetSeWebElementAncestorsCommand.cs" />
+    <Compile Include="Commands\Relatives\GetSeWebElementParentCommand.cs" />
+    <Compile Include="Commands\Rendered\InvokeSeDragAndDropCommand.cs" />
+    <Compile Include="Commands\Rendered\InvokeSeHoverCommand.cs" />
+    <Compile Include="Commands\Select\GetSeSelectionCommand.cs" />
+    <Compile Include="Commands\Select\SetSeSelectionCommand.cs" />
+    <Compile Include="Commands\Transcript\StartSeTranscriptCommand.cs" />
+    <Compile Include="Helpers\Inheritance\ActionsCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\AlertCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\CommonCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\ConvertCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\Driver\ChromeOptions\ChromeOptionsCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\Driver\ChromeOptions\EditChromeOptionsCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\Driver\DriverCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\Driver\FirefoxProfile\EditFirefoxProfileCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\Driver\FirefoxProfile\FirefoxProfileCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\Driver\IEOptions\EditIEOptionsCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\Driver\IEOptions\IEOptionsCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\Driver\StartDriverCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\GetElementByTypeCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\GetSelectionCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\HasWebDriverInputCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\HasWebElementInputCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\JSExecutorCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\NavigationCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\GetCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\RenderedCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\SetSelectionCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\SwitchToCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\SwitchToFrameCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\TranscriptCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\WebElementCmdletBase.cs" />
+    <Compile Include="Helpers\Recording\CSLanguage.cs" />
+    <Compile Include="Helpers\Recording\IJSRecorder.cs" />
+    <Compile Include="Helpers\Recording\JavaLanguage.cs" />
+    <Compile Include="Helpers\Recording\PSLanguage.cs" />
+    <Compile Include="Helpers\Recording\RecordedAction.cs" />
+    <Compile Include="Helpers\Recording\RecordedCodeSequence.cs" />
+    <Compile Include="Helpers\Recording\RecordedData.cs" />
+    <Compile Include="Helpers\Recording\RecordedWebElement.cs" />
+    <Compile Include="Helpers\Recording\Recorder.cs" />
+    <Compile Include="Helpers\Recording\JSRecorder.cs" />
+    <Compile Include="Helpers\UnderlyingCode\CapabilitiesFactory.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Autofac\WebDriverModule.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Common\SeSaveScreenshotCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Decorators\ISearchHistory.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Decorators\SearchHistory.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Decorators\WebElementDecorator.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Driver\ChromeOptions\SeAddChromeArgumentCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Driver\ChromeOptions\SeAddChromeExtensionCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Driver\ChromeOptions\SeNewChromeOptionsCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Driver\ChromeOptions\SeSetChromeBinaryCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Driver\FirefoxProfile\SeAddFirefoxExtensionCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Driver\FirefoxProfile\SeNewFirefoxProfileCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Driver\IEOptions\SeNewIEOptionsCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Driver\IEOptions\SeSetIEOptionCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Driver\SeCloseWebDriverCurrentBrowserWindowCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Driver\SeGetWebDriverCookiesCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Driver\SeGetWebDriverWindowCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Driver\SeReadWebDriverNativeWindowHandleCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Driver\SeReadWebDriverPageSourceCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Driver\SeReadWebDriverTitleCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Driver\SeReadWebDriverUrlCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Driver\SeSelectWebDriverCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Driver\SeSetWebDriverTimeoutCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Driver\SeStartChromeCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Driver\SeStartFirefoxCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Driver\SeStartInternetExplorer32Command.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Driver\SeStartInternetExplorer64Command.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Driver\SeStartOperaCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Driver\SeStartSafariCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Driver\SeStartWebDriverCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Driver\SeStopWebDriverCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Driver\SeWebDriverCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Element\Convert\SeConvertFromTableCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Element\SeClearWebElementCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Element\SeGetElementByTypeCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Element\SeGetWebElementCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Element\SeInvokeWebElementClickCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Element\SeReadWebElementAttributeCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Element\SeReadWebElementCssValueCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Element\SeReadWebElementDisplayedCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Element\SeReadWebElementEnabledCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Element\SeReadWebElementLocationCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Element\SeReadWebElementSelectedCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Element\SeReadWebElementSizeCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Element\SeReadWebElementTagNameCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Element\SeReadWebElementTextCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Element\SeSetWebElementKeysCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Element\SeSubmitWebElementCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Element\SeWebElementCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Navigation\SeEnterURLCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Navigation\SeInvokeNavigateBackCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Navigation\SeInvokeNavigateForwardCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Navigation\SeNavigationCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\SeCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Enums.cs" />
+    <Compile Include="Helpers\UnderlyingCode\SeHelper.cs" />
+    <Compile Include="Helpers\UnderlyingCode\WebDriverFactory.cs" />
+    <Compile Include="Helpers\UserSettings\CurrentData.cs" />
+    <Compile Include="Helpers\UserSettings\Preferences.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Commands\Actions" />
+    <Folder Include="Commands\Driver\ChromeOptions" />
+    <Folder Include="Commands\Driver\IEOptions" />
+    <Folder Include="Commands\Driver\FirefoxProfile" />
+    <Folder Include="Commands\Element\Convert" />
+    <Folder Include="Commands\JSExecutor" />
+    <Folder Include="Commands\Module" />
+    <Folder Include="Commands\Alert" />
+    <Folder Include="Commands\Common" />
+    <Folder Include="Commands\Transcript" />
+    <Folder Include="Commands\PageObject" />
+    <Folder Include="Helpers\Inheritance\Driver" />
+    <Folder Include="Helpers\Inheritance\Driver\ChromeOptions" />
+    <Folder Include="Helpers\Inheritance\Driver\IEOptions" />
+    <Folder Include="Helpers\Inheritance\Driver\FirefoxProfile" />
+    <Folder Include="Helpers\Recording" />
+    <Folder Include="Helpers\UnderlyingCode\Commands" />
+    <Folder Include="Helpers\UnderlyingCode\Commands\Driver" />
+    <Folder Include="Helpers\UnderlyingCode\Autofac" />
+    <Folder Include="Helpers\UnderlyingCode\Commands\Driver\ChromeOptions" />
+    <Folder Include="Helpers\UnderlyingCode\Commands\Driver\IEOptions" />
+    <Folder Include="Helpers\UnderlyingCode\Commands\Driver\FirefoxProfile" />
+    <Folder Include="Helpers\UnderlyingCode\Commands\Element\Convert" />
+    <Folder Include="Helpers\UnderlyingCode\Commands\Navigation" />
+    <Folder Include="Helpers\UnderlyingCode\Commands\Element" />
+    <Folder Include="Helpers\UnderlyingCode\Decorators" />
+    <Folder Include="Helpers\UnderlyingCode\Commands\Common" />
+    <Folder Include="SDK" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PSTestLibrary\PSTestLibrary.csproj">
+      <Project>{E4499004-DAE5-4700-B212-4CDEA3080BC5}</Project>
+      <Name>PSTestLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TMX\TMX.csproj">
+      <Project>{DFFF7F28-CFA4-4EE5-84F0-4A12A415BC0C}</Project>
+      <Name>TMX</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UIAutomation\UIAutomation.csproj">
+      <Project>{BF63F595-4A58-49E8-97F2-7701F51F0CD1}</Project>
+      <Name>UIAutomation</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+</Project>

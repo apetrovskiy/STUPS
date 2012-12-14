@@ -1,0 +1,425 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+<link rel="shortcut icon" type="image/x-icon" href="/common/images/favicon.ico?v=259030117">
+<link rel="icon" type="image/vnd.microsoft.icon" href="/common/images/favicon.ico?v=259030117">
+<input type="hidden" id="AntiForgeryToken" value="13D11F68050166D7D03AE077161BB8BB76F0C2BA">
+<input type="hidden" id="TokenLifespan" value="60">
+
+
+<script type='text/javascript' language='javascript'>
+   document.write('<style>.hideOnJSEnabled{display:none;}<\/style>');
+</script>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8" >
+<meta http-equiv="Pragma" content="no-cache">
+
+<link rel="stylesheet" type="text/css" href="/common/css/edmzStyles.css?v=259030117">
+<link rel="Stylesheet" type="text/css" href="/common/css/tpamStyles.css?v=259030117" />
+<link rel="Stylesheet" type="text/css" href="/common/css/tpam-popup.css?v=259030117" /> 
+<!-- The following special style sheet only gets included for IE 7 or greater. -->
+<!-- It can be used to override some styles (menus and tables come to mind)    -->
+<!-- which need to be changed or tweaked.                                      -->
+<!--[if gte IE 7]>
+<link rel="stylesheet" type="text/css" href="/common/css/edmzStyles_ie.css?v=259030117">
+<![endif]-->
+
+
+	<!-- The tabber.js will be included only in pages that use tabbing. -->
+	<!-- Remember that tabber must have 'manualStartup':true setBEFORE -->
+	<!-- including tabber.js -->
+		 
+	<TITLE>Quest Software TPAM</TITLE>
+<script type="text/javascript" src="/common/js/utilRoutines.js?v=259030117"></script>
+<script type="text/javascript" src="/common/js/json2.js?v=259030117"></script>
+<script type="text/javascript" src="/common/js/prototype_1.7.0.0.js?v=259030117"></script>
+<script type="text/javascript" language="JavaScript">
+   window.IsMobileDevice = 'N';
+   if ('N' === 'N' ) {
+      windowCheck('0','768','1024','Quest Software TPAM&copy; 2004-2012 Quest Software, Inc. All Rights Reserved.');
+   }
+   window.ifID ='0';
+   window.IsFEA = (1 > 0)? true : false;
+   window.IsISA = (2 > 0)? true : false;
+   window.IsApr = (2 > 0)? true : false;
+   window.IsReq = (1 > 0)? true : false;
+   window.IsRev = (2 > 0)? true : false;
+   window.IsAud = (0 > 0)? true : false;
+   window.IsParIsa = (1 > 0)? true : false;
+   window.IsParApr = (1 > 0)? true : false;
+   window.IsParReq = (1 > 0)? true : false;
+   window.IsParRev = (1 > 0)? true : false;
+   window.IsEgpIsa = (1 > 0)? true : false;
+   window.IsEgpApr = (1 > 0)? true : false;
+   window.IsEgpReq = (0 > 0)? true : false;
+   window.IsEgpRev = (1 > 0)? true : false;
+   window.IsUAdmin = (0 > 0)? true : false;
+   window.AddSystemFl = (1 > 0)? true : false;
+   window.IsManagedLocalAcct = (0 > 0)? true : false;
+	BannerText = "";
+	if (BannerText.length > 0)
+		alert(BannerText.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"'));
+   window.IsPriv = (0 > 0)? true : false;
+   window.IsParPriv = (0 > 0)? true : false;
+   window.IsEgpPriv = (0 > 0)? true : false;
+   window.IsEGP = ('EGP' == 'EGP') ? true : false;
+   window.IsFailedOverReplica = ('0' === '1');
+
+   // lastRefresh = the last time the user did something
+   // nextDBCheck = the next time I want to check with the database
+   // about logon hours, session remaining, etc.
+   window.lastRefresh = getServerTime().now;
+   //window.nextDBCheck = getServerTime();
+   window.nextDBCheck = window.lastRefresh;
+   window.nextDBCheck.setTime( window.lastRefresh.getTime() + 5*60*1000 );
+   
+   // sessRemain = number of minutes remaining in the user's session.  This reflects
+   //              either the GlobalSettings inactivity timeout or the amount of
+   //              time remaining in the secondary authentication window.
+   window.sessRemain = ('2880' === '' ? 480 : parseInt('2880',10) );
+   //window.SessionExpiresDt = getServerTime();
+   //window.SessionExpiresDt.setTime( window.lastRefresh.getTime() + window.sessRemain*60*1000 );
+   window.SessionExpiresDt = "12/08/2012 17:50:49";
+   window.nEAT = "0";
+   window.sEAI = "ParAdmin";
+   window.sSWC = "";
+   window.sSWA = "";
+   
+   // usrLogonHrs[0] = 'N' - no restrictions
+   //                  'A' - times listed are allowed logon times
+   //                  'P' - times listed are prohibited logon times
+   // usrLogonHrs[1] = array of objects with "lo" and "hi" properties that list logon
+   //                  hours as minutes, i.e., 06:00-18:00 is listed as lo:360, hi:1080
+   // usrLogonHrs[2] = bit mask of days of the week affected.
+   //                  Sun=1, Mon=2, Tue=4, Wed=8, Thu=16, Fri=32, Sat=64
+   // These values are used when checking session timeouts and will kick the user off
+   // when they go outside of their proscribed logon hours.
+   window.usrLogonHrs = "N||127".split('|');
+   var tRanges = [];
+   if ( window.usrLogonHrs[1] )
+   {
+      tRanges = window.usrLogonHrs[1].split(';');
+   }
+   window.usrLogonHrs[1] = [];
+   var range = [], lo, hi;
+   for ( var i = 0; i<tRanges.length; i++ )
+   {
+      if ( tRanges[i] !== '' )
+      {
+         range = tRanges[i].split('-');
+         lo = ( parseInt(range[0].split(':')[0],10) * 60 ) +
+               parseInt(range[0].split(':')[1],10);
+         hi = ( parseInt(range[1].split(':')[0],10) * 60 ) +
+               parseInt(range[1].split(':')[1],10);
+         window.usrLogonHrs[1].push({"lo":lo,"hi":hi});
+      }
+   }
+   // If no hours were specified, just add an "all day" entry.
+   if ( window.usrLogonHrs[1].length === 0 )
+   {
+      window.usrLogonHrs[1].push( {"lo":0,"hi":1440} );
+   }
+</script>
+<script type="text/javascript" src="/common/js/menuBuilder.js?v=259030117"></script>
+<script type='text/javascript'>
+   // Update the server time section of the footer every 30 seconds
+   // In addition the updateFooterTime function will do a CheckSessionTimeout
+   // call and boot the user when they sit still for too long or go
+   // outside their logon window.
+   if ( typeof footerInterval != "undefined" && footerInterval )
+   {
+      window.clearInterval(footerInterval);
+   }
+  footerInterval = window.setInterval(updateFooterTime, 30000);
+  initAfToken();
+</script>
+
+
+<script type="text/javascript" src="/common/js/tpam-popup.js?v=259030117"></script>
+<script type="text/javascript">
+	/*
+	 * Documents pull down menu
+	 */
+	/*
+	 * nFEA = int
+	 * AppType = String
+	 * ParIsa = int
+	 * EgpIsa = int
+	 * ParApr = int
+	 * EgpApr = int
+	 * ParReq = int
+	 * EgpReq = int
+	 * ParRev = int
+	 * nAud = int
+	 * EgpRev = int
+	 * 
+	 * 
+	 */
+	
+	function insureInt(val){
+		var out;
+		try{
+			out = parseInt(val,10);
+			return out;	
+		} catch(err) {
+			out = 0;
+			return out;
+		}
+	}
+	
+	var servInfo = {
+		nFEA: insureInt("1"),
+		AppType: "EGP",
+		ParIsa: insureInt("1"),
+		EgpIsa: insureInt("1"),
+		ParApr: insureInt("1"),
+		EgpApr: insureInt("1"),
+		ParReq: insureInt("1"),
+		EgpReq: insureInt("0"),
+		ParRev: insureInt("1"),
+		nAud: insureInt("0"),
+		EgpRev: insureInt("1"),
+		nUAdmin:  insureInt("0")
+		
+	};
+	
+	var docItems = [];
+	
+	if (servInfo.nFEA > 0){
+		docItems.push({url: "/docs/TPAM_Admin_Guide.pdf", target: "_blank", title: "Administrator Manual"});
+	}
+
+//   if (servInfo.ParIsa > 0 || servInfo.EgpIsa > 0) {
+//		docItems.push({url: "/docs/TPAMISAManual.pdf", target: "_blank", title: "ISA Manual"});
+//	}
+
+//   if (servInfo.ParApr > 0 || servInfo.EgpApr > 0) {
+//		docItems.push({url: "/docs/TPAMApproverManual.pdf", target: "_blank", title: "Approver Manual"});
+//	}
+		
+//	if (servInfo.ParReq > 0 || servInfo.EgpReq > 0){
+//		docItems.push({url: "/docs/TPAMRequestorManual.pdf", target: "_blank", title: "Requestor Manual"});
+//	}
+	
+//	if (servInfo.ParRev > 0 || servInfo.EgpRev > 0){
+//		docItems.push({url: "/docs/TPAMReviewerManual.pdf", target: "_blank", title: "Reviewer Manual"});
+//	}
+	
+//	if (servInfo.nAud > 0){
+//		docItems.push({url: "/docs/TPAMAuditorManual.pdf", target: "_blank", title: "Auditor Manual"});
+//	}
+		
+//	if (servInfo.nUAdmin > 0) {
+//		docItems.push({url: "/docs/TPAMUserAdministratorManual.pdf", target: "_blank", title: "User Administrator Manual"});
+//	}	
+</script>
+</head>
+
+<body onload='if(typeof bodyOnLoad==="function"){bodyOnLoad();} mkPopupMenus({"Change Password":!window.IsManagedLocalAcct,"User Details":true,"About TPAM":true,"Logout":true});'>
+
+   <div id='disablingDiv'></div>
+<!-- The wrapper div tag covers the complete page other than the footer div. -->
+	<div class="wrapper">
+
+
+<div id='noJavaScript' class='hideOnJSEnabled'>
+<p>Your browser does not have Javascript enabled.</p>
+<p>TPAM requires JavaScript in order to operate.</p>
+</div>
+	
+<!--Start header-->
+<div id="header" class="qui_app_header">
+
+    
+    <a href="main.asp" tabindex="-1" target="" id="A1" title="Total Privileged Access Management">
+       <div class="qui_product_logo">
+       </div>
+    </a>
+
+    <div id="bs-quest-logo-panel">
+        <div class="qui_quest_logo"></div>
+    </div>
+    <div id="qui-mgmt">
+        <a title="Documentation" onclick="showMenu('doc_menu', this); return false;">
+            <img src="../common/css/images/help_small.png" width="16" height="16" alt="Documentation" />
+        </a>
+    </div>
+    <div id="qui-user"><div onclick="showMenu('user_menu', this); return false;"><a>
+        <div class="icon-user"></div>
+        ParAdmin</a><div class="icon-user-dropdown"></div></div></div>
+</div>
+<!--#End header-->
+<div id="tpam-shade"></div>
+<div class="tpam-about-box foreplicactrlexceptions" id="tpam-about-box">
+        <div class="ab-header">
+            <p style="font-weight:bold;">About Quest One TPAM</p>
+            <div class="ab-content">
+                <div class="ab-logo">
+                    <img src="../common/images/TPAMlogo.jpg" />
+                    <p>User: ParAdmin</p>
+                    <p>Server Time: <span id='footerServerTime'>5:50 PM (UTC)</span></p>
+                    <p >Server: 10.30.44.209</p>
+                </div>
+
+                <div class="ab-legal">
+                    <h4>TPAM</h4>
+                    <p>© 2012 Quest Software<br />ALL RIGHTS RESERVED</p>
+                    <p>Quest, Quest Software, the Quest Software Logo, and Simplicity at Work are trademarks and registered trademarks of Quest Software.  For a complete list of our trademarks, please see <a href="http://www.quest.com/legal/trademarks.html">www.quest.com/legal/trademarks</a>. All other trademarks are property of their respective owners.</p>
+            </div>
+            </div>
+            </div>
+        <div class="ab-footer-container">
+            <div class="ab-footer">
+                <div><p style="margin:0; float:left;">Version: 2.5.903.0117</p></div>
+                <button style="right: 10px;" onclick="showAboutBox(false);">Close</button>
+            </div>
+        </div>
+    </div> 
+<!--
+    Need to put this stuff from the footer somewhere.  Ideally in the about box.
+    <div id="southDiv" class="edmzFooter">
+		<table width="100%" border="0">
+			<tr>
+				<td>
+					<div id="footerLeftSide">
+						<ul id="LeftSideList">
+							<li id="CopyRightInfo">&copy; 2004-2012 Quest Software, Inc. All Rights Reserved.</li>
+							<li id="ServerTimeInfo">Server Time: <span id='footerServerTime'>5:50 PM (UTC)</span></li>
+						</ul>
+					</div>
+				</td>
+				<td>
+				<div id="footerCenter">
+					<ul id="CenterList">
+						<li id="UserInfo">User: ParAdmin</li>
+						<li id="ServerNameInfo" >Server: 10.30.44.209</li>		
+					</ul>
+				</div>
+				</td>
+				<td>		
+				<div id="footerRightSide">
+					<ul id="RightSideList">	
+						<li id="AppNameInfo">TPAM</li>
+						<li id="DispVersionInfo">Version: 2.5.903.0117</li>
+					</ul>
+				</div>
+				</td>
+			</tr>
+		</table>
+	</div>		
+
+
+    -->
+
+
+<script type="text/javascript" src="js/Main.js?v=259020061"></script>
+<script src="/common/js/tabber.js?v=259020061" type="text/javascript"></script>
+<script type="text/javascript" src="js/parMenu.js?v=259020061"></script>
+<form id='Form1'>
+<div class="formDiv">
+			<div class="tabber" id="tabs">
+				<div class="tabbertab" id="MotdTab" style="height: 410px; min-height: 410px;">
+					<h2>
+						Message of the Day
+					</h2>
+
+	<table border="0" cellpadding="0" cellspacing="0" id="formTable">
+	<col width="30%"><col width="70%">
+		<tr>
+
+			<td bgcolor="#f2f2f2" align=left valign=middle>
+	
+				<a href="PwdRequestFilter.asp?StartPage=NewRequest">Add Password Request</a><br><br>
+				<a href="FileRequestFilter.asp?StartPage=NewRequest">Add File Request</a><br><br>
+	
+				<a href="PwdRequestApproverFilter.asp?StartPage=Pending">Password Requests Pending Approval</a><br><br>
+				<a href="FileRequestApproverFilter.asp?StartPage=Pending">File Requests Pending Approval</a><br><br>
+	
+				<a href="SessionRequestApproverFilter.asp?StartPage=Pending">Session Requests Pending Approval</a><br><br>
+	
+   </td>
+
+		<td colspan=2 bgcolor="#f2f2f2" align=center valign=top>
+		</td>
+
+		</tr>
+
+		<tr>
+			<td colspan=2>
+				<b><font size="5" face="Verdana">The Privileged Appliance and Modules</font>
+				</b>
+			</td>
+		</tr>
+
+		<tr>
+			<td colspan=2>
+				<font size="2" face="Verdana">TPAM provides a secure audited method into your controlled environment. Only predefined access is allowed and the session is recorded for post implementation review. Access methods from TPAM include VNC, RDP (Terminal Services), SSH, Telnet, and x5250 (AS400).</font>
+			</td>
+		</tr>
+	</table>
+				</div>
+				<div class="tabbertab" id="ActivitiyTab" style="height: 410px; min-height: 410px;">
+					<h2>
+						Recent Activity
+					</h2>
+				</div>
+
+				<div class="tabbertab" id="ApprovalsTab" style="height: 410px; min-height: 410px;">
+					<h2>
+						Approvals
+					</h2>
+				</div>
+
+				<div class="tabbertab" id="ReviewsTab" style="height: 410px; min-height: 410px;">
+					<h2>
+						Pending Reviews
+					</h2>
+				</div>
+
+				<div class="tabbertab" id="RequestsTab" style="height: 410px; min-height: 410px;">
+					<h2>
+						Current Requests
+					</h2>
+				</div>
+			</div>
+</div>
+<script type="text/javascript">
+/* Since we specified manualStartup=true, tabber will not run after
+   the onload event. Instead let's run it now, to prevent any delay
+   while images load.
+*/	
+CheckSessionTimeout();
+tabberAutomatic(tabberOptions); 
+
+</script>
+</form>
+
+<script type="text/javascript">
+if (top != self) {
+   top.location = self.location;
+}
+</script>
+<script type='text/javascript' src='/common/js/ajax-tooltip.js?v=259020061'></script>
+
+<!-- To push the footer -->
+<!-- End of Wrapper Div -->
+</div>	
+
+
+</body>
+</html>
+
+<script type='text/javascript'>
+if (window.IsFailedOverReplica && typeof window.disableFoReplicaCtrls === 'function') {
+    disableFoReplicaCtrls();
+}
+
+// Anti cross site request forgery token form element
+if (document.forms.length > 0) {
+    var form = $(document.forms[0]);
+    var tokenElem = form['AntiForgeryToken'];
+    if (typeof tokenElem === 'undefined') {
+        form.insert({ bottom: new Element('input', { 'type': 'hidden', 'name': 'AntiForgeryToken', 'value': '13D11F68050166D7D03AE077161BB8BB76F0C2BA' }) });
+    }
+}
+</script>

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?> 
+<Window
+    x:Class="UIAutomation.Commands.Window1" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="UIAutomation.Commands"
+    Height="300"
+    Width="300" > 
+    <Grid > 
+        <!--<Button
+            Content="Button"
+            Grid.Column="0"
+            Grid.Row="0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Margin="41,41.5,0,0"
+            Width="75"
+            Height="23"
+            Name="button1"
+            Click="button1_Click" />--> 
+    </Grid > 
+</Window > 

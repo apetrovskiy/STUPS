@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestLinkFixtureConfiguration>
+  <url value="http://localhost/testlink/lib/api/xmlrpc.php" override="yes" />
+  <ProjectName  value="FMFS" />
+  <UserId value="admin" />
+  <TestPlan value="Automatic Testing" />
+  <TestSuite value="nunitAddOnSampleTests" />
+  <PlatformName value="OS/2" />
+  <DevKey value="fb37eb345a5b4f05659d5c35bb3465fd" override="yes" />
+
+</TestLinkFixtureConfiguration>

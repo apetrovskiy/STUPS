@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+# SharpDevelop 4.2.1.8805
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PSTestLibrary", "PSTestLibrary.csproj", "{E4499004-DAE5-4700-B212-4CDEA3080BC5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Release35 = Debug|Release35
+		Debug|x86 = Debug|x86
+		Release|Release35 = Release|Release35
+		Release|x86 = Release|x86
+		Release35|Release35 = Release35|Release35
+		Release35|x86 = Release35|x86
+		Debug|Release35 = Debug|Release35
+		Debug|x86 = Debug|x86
+		Release|Release35 = Release|Release35
+		Release|x86 = Release|x86
+		Release35|Release35 = Release35|Release35
+		Release35|x86 = Release35|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E4499004-DAE5-4700-B212-4CDEA3080BC5}.Debug|Release35.Build.0 = Debug|Release35
+		{E4499004-DAE5-4700-B212-4CDEA3080BC5}.Debug|Release35.ActiveCfg = Debug|Release35
+		{E4499004-DAE5-4700-B212-4CDEA3080BC5}.Debug|x86.Build.0 = Debug|x86
+		{E4499004-DAE5-4700-B212-4CDEA3080BC5}.Debug|x86.ActiveCfg = Debug|x86
+		{E4499004-DAE5-4700-B212-4CDEA3080BC5}.Release|Release35.Build.0 = Release|Release35
+		{E4499004-DAE5-4700-B212-4CDEA3080BC5}.Release|Release35.ActiveCfg = Release|Release35
+		{E4499004-DAE5-4700-B212-4CDEA3080BC5}.Release|x86.Build.0 = Release|x86
+		{E4499004-DAE5-4700-B212-4CDEA3080BC5}.Release|x86.ActiveCfg = Release|x86
+		{E4499004-DAE5-4700-B212-4CDEA3080BC5}.Release35|Release35.Build.0 = Release35|Release35
+		{E4499004-DAE5-4700-B212-4CDEA3080BC5}.Release35|Release35.ActiveCfg = Release35|Release35
+		{E4499004-DAE5-4700-B212-4CDEA3080BC5}.Release35|x86.Build.0 = Release35|x86
+		{E4499004-DAE5-4700-B212-4CDEA3080BC5}.Release35|x86.ActiveCfg = Release35|x86
+	EndGlobalSection
+EndGlobal

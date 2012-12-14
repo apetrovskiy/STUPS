@@ -1,0 +1,412 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectGuid>{BF63F595-4A58-49E8-97F2-7701F51F0CD1}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <OutputType>Library</OutputType>
+    <RootNamespace>UIAutomation</RootNamespace>
+    <AssemblyName>UIAutomation</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <OutputPath>bin\Release35\</OutputPath>
+    <SourceAnalysisOverrideSettingsFile>C:\Documents and Settings\Administrator\Application Data\ICSharpCode/SharpDevelop4\Settings.SourceAnalysis</SourceAnalysisOverrideSettingsFile>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <NoStdLib>False</NoStdLib>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <SignAssembly>False</SignAssembly>
+    <DelaySign>False</DelaySign>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <RunCodeAnalysis>False</RunCodeAnalysis>
+    <RunSourceAnalysis>False</RunSourceAnalysis>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <AssemblyOriginatorKeyFile>c:\1\petrovskiy.alexander@gmail.com.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyMode>File</AssemblyOriginatorKeyMode>
+    <DebugType>None</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <ApplicationManifest>..\UIAutomationSpy\app.manifest</ApplicationManifest>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <StartAction>Program</StartAction>
+    <StartProgram>c:\windows\system32\windowspowershell\v1.0\powershell.exe</StartProgram>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>None</DebugType>
+    <StartAction>Program</StartAction>
+    <StartProgram>c:\windows\system32\windowspowershell\v1.0\powershell.exe</StartProgram>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release40|x86'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release40|AnyCPU'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release40|Release35'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release40|Release40'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management.Automation" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Presentation">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationClient">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="UIAutomationTypes">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+      <Aliases>global</Aliases>
+    </Reference>
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Commands\Cache\StartUIACacheRequestCommand.cs" />
+    <Compile Include="Commands\Cache\StopUIACacheRequestCommand.cs" />
+    <Compile Include="Commands\Common\GetUIAActiveWindowCommand.cs" />
+    <Compile Include="Commands\Common\GetUIAFocusCommand.cs" />
+    <Compile Include="Commands\Common\InvokeUIAControlContextMenuCommand.cs" />
+    <Compile Include="Commands\Common\SaveUIAScreenshotCommand.cs" />
+    <Compile Include="Commands\Common\InvokeUIAControlClickCommand.cs" />
+    <Compile Include="Commands\Common\InvokeUIAScriptCommand.cs" />
+    <Compile Include="Commands\Common\MoveUIACursorCommand.cs" />
+    <Compile Include="Commands\Common\SetUIAControlKeysCommand.cs" />
+    <Compile Include="Commands\Common\SetUIAControlTextCommand.cs" />
+    <Compile Include="Commands\Common\SetUIAFocusCommand.cs" />
+    <Compile Include="Commands\Common\ShowUIADesktopCommand.cs" />
+    <Compile Include="Commands\Convert\ConvertFromUIADataGridCommand.cs" />
+    <Compile Include="Commands\Convert\ConvertFromUIAListCommand.cs" />
+    <Compile Include="Commands\Convert\ConvertFromUIATableCommand.cs" />
+    <Compile Include="Commands\Convert\ConvertToUIAHashtableCommand.cs" />
+    <Compile Include="Commands\Discovery\GetUIAControlFromHandleCommand.cs" />
+    <Compile Include="Commands\Discovery\GetUIAControlFromPointCommand.cs" />
+    <Compile Include="Commands\Discovery\GetUIACurrentPatternCommand.cs" />
+    <Compile Include="Commands\Discovery\GetUIACurrentPatternFromPointCommand.cs" />
+    <Compile Include="Commands\Event\RegisterUIAFocusChangedEventCommand.cs" />
+    <Compile Include="Commands\Event\RegisterUIAInvokedEventCommand.cs" />
+    <Compile Include="Commands\Event\RegisterUIAMenuClosedEventCommand.cs" />
+    <Compile Include="Commands\Event\RegisterUIAMenuOpenedEventCommand.cs" />
+    <Compile Include="Commands\Event\RegisterUIAPropertyChangedEventCommand.cs" />
+    <Compile Include="Commands\Event\RegisterUIAStructureChangedEventCommand.cs" />
+    <Compile Include="Commands\Event\RegisterUIATextChangedEventCommand.cs" />
+    <Compile Include="Commands\Event\RegisterUIATextSelectionChangedEventCommand.cs" />
+    <Compile Include="Commands\Event\RegisterUIAToolTipClosedEventCommand.cs" />
+    <Compile Include="Commands\Event\RegisterUIAToolTipOpenedEventCommand.cs" />
+    <Compile Include="Commands\Event\RegisterUIAWindowClosedEventCommand.cs" />
+    <Compile Include="Commands\Event\RegisterUIAWindowOpenedEventCommand.cs" />
+    <Compile Include="Commands\Event\UnregisterUIAEventCommand.cs" />
+    <Compile Include="Commands\ExecutionPlan\HideUIAExecutionPlanCommand.cs" />
+    <Compile Include="Commands\ExecutionPlan\ShowUIAExecutionPlanCommand.cs" />
+    <Compile Include="Commands\Get\GetUIADesktopCommand.cs" />
+    <Compile Include="Commands\Get\TestUIAControlStateCommand.cs" />
+    <Compile Include="Commands\Get\GetUIAControlRelativesCommand.cs" />
+    <Compile Include="Commands\Hotkey\InvokeUIAHotKeyCommand.cs" />
+    <Compile Include="Commands\Hotkey\ShowUIAContextMenuCommand.cs" />
+    <Compile Include="Commands\Hotkey\ShowUIADesktopCommand.cs" />
+    <Compile Include="Commands\Hotkey\ShowUIAMetroCharmCommand.cs" />
+    <Compile Include="Commands\Hotkey\ShowUIAMetroMenuCommand.cs" />
+    <Compile Include="Commands\Hotkey\ShowUIAMetroStartScreenCommand.cs" />
+    <Compile Include="Commands\Hotkey\ShowUIAStartRunCommand.cs" />
+    <Compile Include="Commands\Hotkey\ShowUIATaskManagerCommand.cs" />
+    <Compile Include="Commands\Pattern\InvokeUIAScrollItemPatternCommand.cs" />
+    <Compile Include="Commands\Pattern\InvokeUIAScrollPatternCommand.cs" />
+    <Compile Include="Commands\Pattern\InvokeUIASelectionItemStateCommand.cs" />
+    <Compile Include="Commands\Pattern\InvokeUIATextPatternSetCommand.cs" />
+    <Compile Include="Commands\Pattern\InvokeUIAToggleStateCommand.cs" />
+    <Compile Include="Commands\Pattern\InvokeUIAInvokePatternCommand.cs" />
+    <Compile Include="Commands\Pattern\InvokeUIARangeValuePatternGetCommand.cs" />
+    <Compile Include="Commands\Pattern\InvokeUIARangeValuePatternSetCommand.cs" />
+    <Compile Include="Commands\Pattern\InvokeUIASelectionPatternCommand.cs" />
+    <Compile Include="Commands\Pattern\InvokeUIATextPatternGetCommand.cs" />
+    <Compile Include="Commands\Pattern\InvokeUIATogglePatternCommand.cs" />
+    <Compile Include="Commands\Pattern\InvokeUIACollapsePatternCommand.cs" />
+    <Compile Include="Commands\Pattern\InvokeUIAExpandPatternCommand.cs" />
+    <Compile Include="Commands\Pattern\InvokeUIATransformPatternMoveCommand.cs" />
+    <Compile Include="Commands\Pattern\InvokeUIATransformPatternResizeCommand.cs" />
+    <Compile Include="Commands\Pattern\InvokeUIATransformPatternRotateCommand.cs" />
+    <Compile Include="Commands\Pattern\InvokeUIAValuePatternGetCommand.cs" />
+    <Compile Include="Commands\Pattern\InvokeUIAValuePatternSetCommand.cs" />
+    <Compile Include="Commands\Pattern\InvokeUIASelectionItemPatternCommand.cs" />
+    <Compile Include="Commands\Pattern\InvokeUIAWindowPatternCommand.cs" />
+    <Compile Include="Commands\Get\GetUIAControlCommand.cs" />
+    <Compile Include="Commands\Get\GetUIAWindowCommand.cs" />
+    <Compile Include="Commands\Profile\GetUIATestProfileCommand.cs" />
+    <Compile Include="Commands\Profile\NewUIATestProfileCommand.cs" />
+    <Compile Include="Commands\Profile\SetUIACurrentTestProfileCommand.cs" />
+    <Compile Include="Commands\Search\SearchUIAControlCommand.cs" />
+    <Compile Include="Commands\Search\SearchUIAWindowCommand.cs" />
+    <Compile Include="Commands\Settings\SetUIAHighligherSettingsCommand.cs" />
+    <Compile Include="Commands\Settings\SetUIALoggingSettingsCommand.cs" />
+    <Compile Include="Commands\Settings\SetUIAModuleSettingsCommand.cs" />
+    <Compile Include="Commands\Settings\SetUIAOnErrorActionSettingsCommand.cs" />
+    <Compile Include="Commands\Settings\SetUIAOnSleepActionSettingsCommand.cs" />
+    <Compile Include="Commands\Settings\SetUIAOnSuccessActionSettingsCommand.cs" />
+    <Compile Include="Commands\Settings\SetUIAScreenshotSettingsCommand.cs" />
+    <Compile Include="Commands\Settings\ShowUIACurrentDataCommand.cs" />
+    <Compile Include="Commands\Settings\ShowUIAModuleSettingsCommand.cs" />
+    <Compile Include="Commands\Sheridan\GetUIAshTreeItemCommand.cs" />
+    <Compile Include="Commands\Sheridan\InvokeUIAshTreeItemClickCommand.cs" />
+    <Compile Include="Commands\Transcript\RecorderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Transcript\RecorderForm.Designer.cs">
+      <DependentUpon>RecorderForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commands\Transcript\RecorderFrom.xaml.cs">
+      <DependentUpon>RecorderFrom.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Commands\Transcript\StartUIATranscriptCommand.cs" />
+    <Compile Include="Commands\Transcript\StopUIATranscriptCommand.cs" />
+    <Compile Include="Commands\Transcript\Window1.xaml.cs">
+      <DependentUpon>Window1.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Commands\UltraGrid\GetUIAifUltraGridRowCommand.cs" />
+    <Compile Include="Commands\UltraGrid\GetUIAifUltraGridSelectionCommand.cs" />
+    <Compile Include="Commands\UltraGrid\InvokeUIAifULtraGridSelectItemByNameCommand.cs" />
+    <Compile Include="Commands\UsingStatements.cs" />
+    <Compile Include="Commands\Wait\WaitUIAControlIsEnabledCommand.cs" />
+    <Compile Include="Commands\Wait\WaitUIAControlIsVisibleCommand.cs" />
+    <Compile Include="Commands\Wait\WaitUIAControlStateCommand.cs" />
+    <Compile Include="Commands\Wait\WaitUIAEventRaisedCommand.cs" />
+    <Compile Include="Commands\Wizard\AddUIAWizardStepCommand.cs" />
+    <Compile Include="Commands\Wizard\GetUIAWizardCommand.cs" />
+    <Compile Include="Commands\Wizard\InvokeUIAWizardCommand.cs" />
+    <Compile Include="Commands\Wizard\NewUIAWizardCommand.cs" />
+    <Compile Include="Commands\Wizard\RemoveUIAWizardStepCommand.cs" />
+    <Compile Include="Commands\Wizard\SetUIAWizardCommand.cs" />
+    <Compile Include="Commands\Wizard\StepUIAWizardCommand.cs" />
+    <Compile Include="Commands\Wizard\WaitUIAWizardStepCommand.cs" />
+    <Compile Include="Commands\Wizard\WizardCollection.cs" />
+    <Compile Include="Helpers\Inheritance\CacheRequestCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\CommonCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\ConvertToCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\DiscoveryCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\EventCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\ExecutionPlanCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\Get\GetCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\Get\GetControlCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\Get\GetControlCollectionCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\Get\GetControlStateCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\Get\GetRelativesCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\Get\GetWindowCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\HasControlInputCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\HasScriptBlockCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\HasTimeoutCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\HotkeyCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\ProfileCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\ProfileInputCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\ReadAndConvertCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\ReadCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\PatternCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\SearchCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\Settings\ModuleSettingsActionCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\Settings\ModuleSettingsCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\SheridanCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\TranscriptCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\ULtraGridCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\WaitCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\Wizard\WizardCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\Wizard\WizardConstructionCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\Wizard\WizardContainerCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\Wizard\WizardRunCmdletBase.cs" />
+    <Compile Include="Helpers\UnderlyingCode\ExecutionPlan.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Global.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Highligher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Helpers\UnderlyingCode\JavaHelper.cs" />
+    <Compile Include="Helpers\UnderlyingCode\NativeMethods.cs" />
+    <Compile Include="Helpers\UnderlyingCode\UIAHelper.cs" />
+    <Compile Include="Helpers\UserSettings\CurrentData.cs" />
+    <Compile Include="Helpers\UserSettings\Preferences.cs" />
+    <Compile Include="Helpers\UserSettings\Profile.cs" />
+    <Compile Include="Helpers\UserSettings\Testing.cs" />
+    <Compile Include="Helpers\UserSettings\UserData.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Provider\UIAProvider.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="UIAutomation.cd" />
+    <Content Include="UIAutomation.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Commands\Transcript\RecorderFrom.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Commands\Transcript\Window1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PSTestLibrary\PSTestLibrary.csproj">
+      <Project>{E4499004-DAE5-4700-B212-4CDEA3080BC5}</Project>
+      <Name>PSTestLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TMX\TMX.csproj">
+      <Project>{DFFF7F28-CFA4-4EE5-84F0-4A12A415BC0C}</Project>
+      <Name>TMX</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Commands\ExecutionPlan" />
+    <Folder Include="Commands\Sheridan" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+  <PropertyGroup>
+    <PostBuildEvent>rem C:\Distrib\UIAutomation\UIAutomation\copyLibrary.cmd
+rem C:\Distrib\UIAutomation\UIAutomation\copyDebugLibrary.cmd</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release35' ">
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>None</DebugType>
+    <StartAction>Program</StartAction>
+    <StartProgram>c:\windows\system32\windowspowershell\v1.0\powershell.exe</StartProgram>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <OutputPath>bin\Release35\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release35|x86' ">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release35|AnyCPU' ">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'Release35' ">
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|Release35' ">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|Release35' ">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release35|Release35' ">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'Release40' ">
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|Release40' ">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|Release40' ">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release35|Release40' ">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release40' ">
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <OutputPath>bin\Release40\</OutputPath>
+  </PropertyGroup>
+</Project>

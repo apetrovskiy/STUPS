@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<testProject xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.gallio.org/">
+  <testPackage shadowCopy="false" debug="false">
+    <files>
+      <file>SePSXUnitTests\bin\Release35\SePSXUnitTests.dll</file>
+      <file>SePSXTest\bin\Release35\SePSXTest.dll</file>
+      <file>TMXTest\bin\Release35\TMXTest.dll</file>
+      <file>UIAutomationTest\bin\Release35\UIAutomationTest.dll</file>
+      <file>TLAddinUnitTests\bin\Release35\TLAddinUnitTests.dll</file>
+    </files>
+    <hintDirectories />
+    <excludedFrameworkIds />
+    <properties />
+  </testPackage>
+  <testFilters>
+    <testFilter filterName="LastRun" filterExpr="((Namespace: SePSXUnitTests.Commands.Driver or Namespace: SePSXUnitTests.Commands.Driver.ChromeOptions or (Id: 35600c7a7a690358 or Id: 6c1e2b2c6caaeb95) or Namespace: SePSXUnitTests.Commands.Driver.InternetExplorerOptions or Namespace: SePSXUnitTests.Commands.Element or Namespace: SePSXUnitTests.Commands.Element.Convert or Namespace: SePSXUnitTests.Commands.Navigation or Namespace: SePSXUnitTests.Commands.Select or Namespace: SePSXUnitTests.Recording) or Namespace: SePSXTest.CheckParameters)" />
+    <testFilter filterName="AutoSave" filterExpr="((Namespace: SePSXUnitTests.Commands.Driver or Namespace: SePSXUnitTests.Commands.Driver.ChromeOptions or (Id: 35600c7a7a690358 or Id: 6c1e2b2c6caaeb95) or Namespace: SePSXUnitTests.Commands.Driver.InternetExplorerOptions or Namespace: SePSXUnitTests.Commands.Element or Namespace: SePSXUnitTests.Commands.Element.Convert or Namespace: SePSXUnitTests.Commands.Navigation or Namespace: SePSXUnitTests.Commands.Select or Namespace: SePSXUnitTests.Recording) or Namespace: SePSXTest.CheckParameters)" />
+  </testFilters>
+  <extensionSpecifications />
+  <reportDirectory>..\..\..\Users\Alexander\AppData\Roaming\Gallio\Icarus\Reports</reportDirectory>
+  <reportNameFormat>test-report-{0}-{1}</reportNameFormat>
+</testProject>

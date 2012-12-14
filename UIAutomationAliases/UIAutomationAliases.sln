@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+# SharpDevelop 4.2.1.8805
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UIAutomationAliases", "UIAutomationAliases.csproj", "{B04D766F-3377-433F-B4A2-6DB8E060B954}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Release35 = Debug|Release35
+		Debug|Release40 = Debug|Release40
+		Debug|x86 = Debug|x86
+		Release|Release35 = Release|Release35
+		Release|Release40 = Release|Release40
+		Release|x86 = Release|x86
+		Release35|Release35 = Release35|Release35
+		Release35|Release40 = Release35|Release40
+		Release35|x86 = Release35|x86
+		Release40|Release35 = Release40|Release35
+		Release40|Release40 = Release40|Release40
+		Release40|x86 = Release40|x86
+		Debug|Release35 = Debug|Release35
+		Debug|Release40 = Debug|Release40
+		Debug|x86 = Debug|x86
+		Release|Release35 = Release|Release35
+		Release|Release40 = Release|Release40
+		Release|x86 = Release|x86
+		Release35|Release35 = Release35|Release35
+		Release35|Release40 = Release35|Release40
+		Release35|x86 = Release35|x86
+		Release40|Release35 = Release40|Release35
+		Release40|Release40 = Release40|Release40
+		Release40|x86 = Release40|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B04D766F-3377-433F-B4A2-6DB8E060B954}.Debug|Release35.Build.0 = Debug|Release35
+		{B04D766F-3377-433F-B4A2-6DB8E060B954}.Debug|Release35.ActiveCfg = Debug|Release35
+		{B04D766F-3377-433F-B4A2-6DB8E060B954}.Debug|Release40.Build.0 = Debug|Release40
+		{B04D766F-3377-433F-B4A2-6DB8E060B954}.Debug|Release40.ActiveCfg = Debug|Release40
+		{B04D766F-3377-433F-B4A2-6DB8E060B954}.Debug|x86.Build.0 = Debug|x86
+		{B04D766F-3377-433F-B4A2-6DB8E060B954}.Debug|x86.ActiveCfg = Debug|x86
+		{B04D766F-3377-433F-B4A2-6DB8E060B954}.Release|Release35.Build.0 = Release|Release35
+		{B04D766F-3377-433F-B4A2-6DB8E060B954}.Release|Release35.ActiveCfg = Release|Release35
+		{B04D766F-3377-433F-B4A2-6DB8E060B954}.Release|Release40.Build.0 = Release|Release40
+		{B04D766F-3377-433F-B4A2-6DB8E060B954}.Release|Release40.ActiveCfg = Release|Release40
+		{B04D766F-3377-433F-B4A2-6DB8E060B954}.Release|x86.Build.0 = Release|x86
+		{B04D766F-3377-433F-B4A2-6DB8E060B954}.Release|x86.ActiveCfg = Release|x86
+		{B04D766F-3377-433F-B4A2-6DB8E060B954}.Release35|Release35.Build.0 = Release35|Release35
+		{B04D766F-3377-433F-B4A2-6DB8E060B954}.Release35|Release35.ActiveCfg = Release35|Release35
+		{B04D766F-3377-433F-B4A2-6DB8E060B954}.Release35|Release40.Build.0 = Release35|Release40
+		{B04D766F-3377-433F-B4A2-6DB8E060B954}.Release35|Release40.ActiveCfg = Release35|Release40
+		{B04D766F-3377-433F-B4A2-6DB8E060B954}.Release35|x86.Build.0 = Release35|x86
+		{B04D766F-3377-433F-B4A2-6DB8E060B954}.Release35|x86.ActiveCfg = Release35|x86
+		{B04D766F-3377-433F-B4A2-6DB8E060B954}.Release40|Release35.Build.0 = Release40|Release35
+		{B04D766F-3377-433F-B4A2-6DB8E060B954}.Release40|Release35.ActiveCfg = Release40|Release35
+		{B04D766F-3377-433F-B4A2-6DB8E060B954}.Release40|Release40.Build.0 = Release40|Release40
+		{B04D766F-3377-433F-B4A2-6DB8E060B954}.Release40|Release40.ActiveCfg = Release40|Release40
+		{B04D766F-3377-433F-B4A2-6DB8E060B954}.Release40|x86.Build.0 = Release40|x86
+		{B04D766F-3377-433F-B4A2-6DB8E060B954}.Release40|x86.ActiveCfg = Release40|x86
+	EndGlobalSection
+EndGlobal

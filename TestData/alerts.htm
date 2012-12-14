@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<title>
+Alerts
+</title>
+<body>
+
+<div id="buttons">
+	<div id="button sample 01">
+		<button id="button 01" type="button" onclick="button1click()">Button 01</button>
+	</div>
+	<script type="text/javascript">
+		<!--
+		function button1click()
+		{
+			window.alert('button 01');
+			document.getElementById("text sample 01").innerHTML="button 01 clicked";
+		}
+		//-->
+	</script>
+
+	<!--
+			<button type="button" onclick="myFunction()">Try it</button>
+
+			<script type="text/javascript">
+			function myFunction()		
+			{
+				document.getElementById("demo").innerHTML="My First JavaScript Function";
+			}
+			</script>
+	-->
+
+	<div id="button sample 02">
+		<button id="button 02" class="btn" onclick="button2click()">Button 02</button>
+	</div>
+
+	<script type="text/javascript">
+		<!--
+		function button2click()
+		{
+			var bResult = window.confirm('button 02');
+			document.getElementById("text sample 01").innerHTML="button 02 clicked";
+		}
+		//-->
+	</script>
+
+	<div id="button sample 03">
+		<button id="button 03" class="btn" onclick="button3click()">Button 03</button>
+	</div>
+
+	<script type="text/javascript">
+		<!--
+		function button3click()
+		{
+			//var strResult = window.prompt('button 03', 'button 03');
+			window.prompt('button 03', 'button 03');
+			//document.getElementById("text sample 01").innerHTML="button 03 clicked";
+		}
+		//-->
+	</script>
+</div>
+
+<div id="texts">
+	<div id="text sample 01">
+		<text id="text 01">Text 01</text>
+	</div>
+</div>
+
+
+
+</body>
+</frameset>
+</html>

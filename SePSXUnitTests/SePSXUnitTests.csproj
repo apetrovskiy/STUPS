@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectGuid>{EFA4EAD8-8135-48D4-8576-3C4D67E80695}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <OutputType>Library</OutputType>
+    <RootNamespace>SePSXUnitTests</RootNamespace>
+    <AssemblyName>SePSXUnitTests</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <NoStdLib>False</NoStdLib>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <OutputPath>bin\Release35</OutputPath>
+    <DebugType>None</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Release35\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release35\</OutputPath>
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>None</DebugType>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <IntermediateOutputPath>obj\Release35</IntermediateOutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release35' ">
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'Release35' ">
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\binaries\autofac\35\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core">
+      <HintPath>..\binaries\selenium-dotnet\net35\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Gallio">
+      <HintPath>..\..\..\..\Program Files\Gallio\bin\Gallio.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\binaries\selenium-dotnet\net35\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="MbUnit">
+      <HintPath>..\..\..\..\Program Files\Gallio\bin\MbUnit.dll</HintPath>
+    </Reference>
+    <Reference Include="Moq">
+      <HintPath>..\binaries\Moq\NET35\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\binaries\selenium-dotnet\net35\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Selenium.WebDriverBackedSelenium">
+      <HintPath>..\binaries\selenium-dotnet\net35\Selenium.WebDriverBackedSelenium.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management.Automation" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="ThoughtWorks.Selenium.Core">
+      <HintPath>..\binaries\selenium-dotnet\net35\ThoughtWorks.Selenium.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="UIAutomationClient">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="UIAutomationTypes">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WebDriver">
+      <HintPath>..\binaries\selenium-dotnet\net35\WebDriver.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver.Support">
+      <HintPath>..\binaries\selenium-dotnet\net35\WebDriver.Support.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\SePSX\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Commands\Common\SaveSeScreenshotCommandTestFixture.cs" />
+    <Compile Include="Commands\Driver\ChromeOptions\AddSeChromeArgumentCommandTestFixture.cs" />
+    <Compile Include="Commands\Driver\ChromeOptions\AddSeChromeExtensionCommandTestFixture.cs" />
+    <Compile Include="Commands\Driver\ChromeOptions\NewSeChromeOptionsCommandTestFixture.cs" />
+    <Compile Include="Commands\Driver\ChromeOptions\SetSeChromeBinaryCommandTestFixture.cs" />
+    <Compile Include="Commands\Driver\CloseSeWebDriverCurrentBrowserWindowCommandTestFixture.cs" />
+    <Compile Include="Commands\Driver\FirefoxProfile\AddSeFirefoxExtensionCommandTestFixture.cs" />
+    <Compile Include="Commands\Driver\FirefoxProfile\NewSeFirefoxProfileCommandTestFixture.cs" />
+    <Compile Include="Commands\Driver\GetSeWebDriverCookiesCommandTestFixture.cs" />
+    <Compile Include="Commands\Driver\GetSeWebDriverWinodwCommandTestFixture.cs" />
+    <Compile Include="Commands\Driver\IEOptions\NewSeInternetExplorerOptionsCommandTestFixture.cs" />
+    <Compile Include="Commands\Driver\IEOptions\SetSeInternetExplorerOptionCommandTestFixture.cs" />
+    <Compile Include="Commands\Driver\ReadSeWebDriverNativeWindowHandleCommandTestFixture.cs" />
+    <Compile Include="Commands\Driver\ReadSeWebDriverPageSourceCommandTestFixture.cs" />
+    <Compile Include="Commands\Driver\ReadSeWebDriverTitleCommandTestFixture.cs" />
+    <Compile Include="Commands\Driver\ReadSeWebDriverUrlCommandTestFixture.cs" />
+    <Compile Include="Commands\Driver\SelectSeWebDriverCommandTestFixture.cs" />
+    <Compile Include="Commands\Driver\SetSeWebDriverTimeoutCommandTestFixture.cs" />
+    <Compile Include="Commands\Driver\StartSeChromeCommandTestFixture.cs" />
+    <Compile Include="Commands\Driver\StartSeInternetExplorer32CommandTestFixture.cs" />
+    <Compile Include="Commands\Driver\StartSeWebDriverCommandTestFixture.cs" />
+    <Compile Include="Commands\Driver\StopSeWebDriverCommandTestFixture.cs" />
+    <Compile Include="Commands\Element\ClearSeWebElementCommandTestFixture.cs" />
+    <Compile Include="Commands\Element\Convert\ConvertFromSeTableCommandTestFixture.cs" />
+    <Compile Include="Commands\Element\GetSeElementByTypeCommandTestFixture.cs" />
+    <Compile Include="Commands\Element\GetSeWebElementCommandTestFixture.cs" />
+    <Compile Include="Commands\Element\InvokeSeWebElementClickCommandTestFixture.cs" />
+    <Compile Include="Commands\Element\ReadSeWebElementAttributeCommandTestFixture.cs" />
+    <Compile Include="Commands\Element\ReadSeWebElementCssValueCommandTestFixture.cs" />
+    <Compile Include="Commands\Element\ReadSeWebElementDisplayedCommandTestFixture.cs" />
+    <Compile Include="Commands\Element\ReadSeWebElementEnabledCommandTestFixture.cs" />
+    <Compile Include="Commands\Element\ReadSeWebElementLocationCommandTestFixture.cs" />
+    <Compile Include="Commands\Element\ReadSeWebElementSelectedCommandTestFixture.cs" />
+    <Compile Include="Commands\Element\ReadSeWebElementSizeCommandTestFixture.cs" />
+    <Compile Include="Commands\Element\ReadSeWebElementTagNameCommandTestFixture.cs" />
+    <Compile Include="Commands\Element\ReadSeWebElementTextCommandTestFixture.cs" />
+    <Compile Include="Commands\Element\SetSeWebElementKeysCommandTestFixture.cs" />
+    <Compile Include="Commands\Element\SubmitSeWebElementCommandTestFixture.cs" />
+    <Compile Include="Commands\Navigation\InvokeSeNavigateBackCommandTestFixture.cs" />
+    <Compile Include="Commands\Navigation\InvokeSeNavigateForwardCommandTestFixture.cs" />
+    <Compile Include="Commands\Select\GetSeSelectionCommandTestFixture.cs" />
+    <Compile Include="Commands\Select\SetSeSelectionCommandTestFixture.cs" />
+    <Compile Include="Helpers\Recording\CheckCodeSequenceNoveltyTestFixture.cs" />
+    <Compile Include="Helpers\Recording\CleanRecordedDuringSleepTestFixture.cs" />
+    <Compile Include="Helpers\Recording\ConvertCodeSequenceToCodeTestFixture.cs" />
+    <Compile Include="Helpers\Recording\ExitRecordingTestFixtrure.cs" />
+    <Compile Include="Helpers\Recording\isNotFakeWebElementTestFixture.cs" />
+    <Compile Include="Helpers\Recording\JSRecorderTestFixture.cs" />
+    <Compile Include="Helpers\Recording\MakeJSInjectionTestFixture.cs" />
+    <Compile Include="Helpers\Recording\NotifyCodeGatheredTestFixture.cs" />
+    <Compile Include="Helpers\Recording\RecordActionItemTestFixture.cs" />
+    <Compile Include="Helpers\Recording\RecordActionsTestFixture.cs" />
+    <Compile Include="Helpers\Recording\RecordCodeSequencyTestFixture.cs" />
+    <Compile Include="Helpers\Recording\RecordDataItemTestFixture.cs" />
+    <Compile Include="Helpers\Recording\RecorderComponentsTestFixture.cs" />
+    <Compile Include="Helpers\Recording\RecordWebItemTestFixture.cs" />
+    <Compile Include="Helpers\Recording\StoreCodeSequenceInCollectionTestFixture.cs" />
+    <Compile Include="Helpers\Recording\WriteRecordingsToFileTestFixture.cs" />
+    <Compile Include="Helpers\UnitTestingHelper.cs" />
+    <Compile Include="UnitTests\Asserts\AssertCheckRecordings.cs" />
+    <Compile Include="UnitTests\Autofac\FakeWebDriverModule.cs" />
+    <Compile Include="UnitTests\Containers\Module2.cs" />
+    <Compile Include="UnitTests\Containers\SimpleContainer.cs" />
+    <Compile Include="UnitTests\Containers\SimpleModule.cs" />
+    <Compile Include="UnitTests\Factories\FakeWebDriverFactory.cs" />
+    <Compile Include="UnitTests\Fakes\Empty1.cs" />
+    <Compile Include="UnitTests\Fakes\FakeAlert.cs" />
+    <Compile Include="UnitTests\Fakes\FakeBy.cs" />
+    <Compile Include="UnitTests\Fakes\FakeCapabilities.cs" />
+    <Compile Include="UnitTests\Fakes\FakeChromeDriver.cs" />
+    <Compile Include="UnitTests\Fakes\FakeChromeOptions.cs" />
+    <Compile Include="UnitTests\Fakes\FakeCoordinates.cs" />
+    <Compile Include="UnitTests\Fakes\FakeDriverService.cs" />
+    <Compile Include="UnitTests\Fakes\FakeFileSystemFactory.cs" />
+    <Compile Include="UnitTests\Fakes\FakeFirefoxProfile.cs" />
+    <Compile Include="UnitTests\Fakes\FakeIEDriver.cs" />
+    <Compile Include="UnitTests\Fakes\FakeWebElementDecorator.cs" />
+    <Compile Include="UnitTests\Fakes\TestMethods.cs" />
+    <Compile Include="UnitTests\Fakes\_FakeChromeDriver.cs" />
+    <Compile Include="UnitTests\Fakes\FakeCookieJar.cs" />
+    <Compile Include="UnitTests\Fakes\FakeHasCapabilities.cs" />
+    <Compile Include="UnitTests\Fakes\FakeHasInputDevices.cs" />
+    <Compile Include="UnitTests\Fakes\FakeJavaScriptExecutor.cs" />
+    <Compile Include="UnitTests\Fakes\FakeJSGenerator.cs" />
+    <Compile Include="UnitTests\Fakes\FakeKeyboard.cs" />
+    <Compile Include="UnitTests\Fakes\FakeLocatable.cs" />
+    <Compile Include="UnitTests\Fakes\FakeMouse.cs" />
+    <Compile Include="UnitTests\Fakes\FakeNavigation.cs" />
+    <Compile Include="UnitTests\Fakes\FakeOptions.cs" />
+    <Compile Include="UnitTests\Fakes\FakeRotatable.cs" />
+    <Compile Include="UnitTests\Fakes\FakeSearchContext.cs" />
+    <Compile Include="UnitTests\Fakes\FakeSelectElement.cs" />
+    <Compile Include="UnitTests\Fakes\FakeTakesScreenshot.cs" />
+    <Compile Include="UnitTests\Fakes\FakeTargetLocator.cs" />
+    <Compile Include="UnitTests\Fakes\FakeTimeouts.cs" />
+    <Compile Include="UnitTests\Fakes\FakeWebDriver.cs" />
+    <Compile Include="UnitTests\Fakes\FakeWindow.cs" />
+    <Compile Include="UnitTests\Fakes\ISelectElement.cs" />
+    <Compile Include="UnitTests\Fakes\FakeWebElement.cs" />
+    <Compile Include="UnitTests\Settings.cs" />
+    <Compile Include="UnitTests\UnderlyingCode\UnitTestFactory.cs" />
+    <Compile Include="UnitTests\UnderlyingCode\UnitTestModule.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Commands" />
+    <Folder Include="Commands\Alert" />
+    <Folder Include="Commands\Common" />
+    <Folder Include="Commands\Driver\ChromeOptions" />
+    <Folder Include="Commands\Driver\IEOptions" />
+    <Folder Include="Commands\Driver\FirefoxProfile" />
+    <Folder Include="Commands\Element\Convert" />
+    <Folder Include="Commands\JSExecutor" />
+    <Folder Include="Commands\Module" />
+    <Folder Include="Commands\Driver" />
+    <Folder Include="Commands\Navigation" />
+    <Folder Include="Commands\Element" />
+    <Folder Include="Commands\Select" />
+    <Folder Include="Commands\PageObject" />
+    <Folder Include="Commands\Transcript" />
+    <Folder Include="Helpers" />
+    <Folder Include="Helpers\Recording" />
+    <Folder Include="UnitTests" />
+    <Folder Include="Properties" />
+    <Folder Include="UnitTests\Fakes" />
+    <Folder Include="UnitTests\Asserts" />
+    <Folder Include="UnitTests\Containers" />
+    <Folder Include="UnitTests\Factories" />
+    <Folder Include="UnitTests\Autofac" />
+    <Folder Include="UnitTests\UnderlyingCode" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PSTestLibrary\PSTestLibrary.csproj">
+      <Project>{E4499004-DAE5-4700-B212-4CDEA3080BC5}</Project>
+      <Name>PSTestLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SePSX\SePSX.csproj">
+      <Project>{A0B50771-4889-46F4-8999-D2830DC9E486}</Project>
+      <Name>SePSX</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TMX\TMX.csproj">
+      <Project>{DFFF7F28-CFA4-4EE5-84F0-4A12A415BC0C}</Project>
+      <Name>TMX</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UIAutomation\UIAutomation.csproj">
+      <Project>{BF63F595-4A58-49E8-97F2-7701F51F0CD1}</Project>
+      <Name>UIAutomation</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+</Project>

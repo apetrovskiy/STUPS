@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+# SharpDevelop 4.2.1.8805
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CmdletUnit", "CmdletUnit.csproj", "{36F73FA0-C636-48CF-BB7A-FE10FE52C391}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Release35 = Debug|Release35
+		Debug|Release40 = Debug|Release40
+		Debug|x86 = Debug|x86
+		Release|Release35 = Release|Release35
+		Release|Release40 = Release|Release40
+		Release|x86 = Release|x86
+		Release35|Release35 = Release35|Release35
+		Release35|Release40 = Release35|Release40
+		Release35|x86 = Release35|x86
+		Release40|Release35 = Release40|Release35
+		Release40|Release40 = Release40|Release40
+		Release40|x86 = Release40|x86
+		Debug|Release35 = Debug|Release35
+		Debug|Release40 = Debug|Release40
+		Debug|x86 = Debug|x86
+		Release|Release35 = Release|Release35
+		Release|Release40 = Release|Release40
+		Release|x86 = Release|x86
+		Release35|Release35 = Release35|Release35
+		Release35|Release40 = Release35|Release40
+		Release35|x86 = Release35|x86
+		Release40|Release35 = Release40|Release35
+		Release40|Release40 = Release40|Release40
+		Release40|x86 = Release40|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{36F73FA0-C636-48CF-BB7A-FE10FE52C391}.Debug|Release35.Build.0 = Debug|Release35
+		{36F73FA0-C636-48CF-BB7A-FE10FE52C391}.Debug|Release35.ActiveCfg = Debug|Release35
+		{36F73FA0-C636-48CF-BB7A-FE10FE52C391}.Debug|Release40.Build.0 = Debug|Release40
+		{36F73FA0-C636-48CF-BB7A-FE10FE52C391}.Debug|Release40.ActiveCfg = Debug|Release40
+		{36F73FA0-C636-48CF-BB7A-FE10FE52C391}.Debug|x86.Build.0 = Debug|x86
+		{36F73FA0-C636-48CF-BB7A-FE10FE52C391}.Debug|x86.ActiveCfg = Debug|x86
+		{36F73FA0-C636-48CF-BB7A-FE10FE52C391}.Release|Release35.Build.0 = Release|Release35
+		{36F73FA0-C636-48CF-BB7A-FE10FE52C391}.Release|Release35.ActiveCfg = Release|Release35
+		{36F73FA0-C636-48CF-BB7A-FE10FE52C391}.Release|Release40.Build.0 = Release|Release40
+		{36F73FA0-C636-48CF-BB7A-FE10FE52C391}.Release|Release40.ActiveCfg = Release|Release40
+		{36F73FA0-C636-48CF-BB7A-FE10FE52C391}.Release|x86.Build.0 = Release|x86
+		{36F73FA0-C636-48CF-BB7A-FE10FE52C391}.Release|x86.ActiveCfg = Release|x86
+		{36F73FA0-C636-48CF-BB7A-FE10FE52C391}.Release35|Release35.Build.0 = Release35|Release35
+		{36F73FA0-C636-48CF-BB7A-FE10FE52C391}.Release35|Release35.ActiveCfg = Release35|Release35
+		{36F73FA0-C636-48CF-BB7A-FE10FE52C391}.Release35|Release40.Build.0 = Release35|Release40
+		{36F73FA0-C636-48CF-BB7A-FE10FE52C391}.Release35|Release40.ActiveCfg = Release35|Release40
+		{36F73FA0-C636-48CF-BB7A-FE10FE52C391}.Release35|x86.Build.0 = Release35|x86
+		{36F73FA0-C636-48CF-BB7A-FE10FE52C391}.Release35|x86.ActiveCfg = Release35|x86
+		{36F73FA0-C636-48CF-BB7A-FE10FE52C391}.Release40|Release35.Build.0 = Release40|Release35
+		{36F73FA0-C636-48CF-BB7A-FE10FE52C391}.Release40|Release35.ActiveCfg = Release40|Release35
+		{36F73FA0-C636-48CF-BB7A-FE10FE52C391}.Release40|Release40.Build.0 = Release40|Release40
+		{36F73FA0-C636-48CF-BB7A-FE10FE52C391}.Release40|Release40.ActiveCfg = Release40|Release40
+		{36F73FA0-C636-48CF-BB7A-FE10FE52C391}.Release40|x86.Build.0 = Release40|x86
+		{36F73FA0-C636-48CF-BB7A-FE10FE52C391}.Release40|x86.ActiveCfg = Release40|x86
+	EndGlobalSection
+EndGlobal

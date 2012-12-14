@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectGuid>{83AA5A96-56A5-4F10-AA26-5382D3DB64C0}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <OutputType>Library</OutputType>
+    <RootNamespace>TLAddinUnitTests</RootNamespace>
+    <AssemblyName>TLAddinUnitTests</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <OutputPath>bin\Release35\</OutputPath>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <NoStdLib>False</NoStdLib>
+    <DebugType>None</DebugType>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release35' ">
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'Release35' ">
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\binaries\autofac\35\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="CookComputing.XmlRpcV2">
+      <HintPath>..\binaries\TestLink\CookComputing.XmlRpcV2.dll</HintPath>
+    </Reference>
+    <Reference Include="Gallio">
+      <HintPath>..\..\..\..\Program Files\Gallio\bin\Gallio.dll</HintPath>
+    </Reference>
+    <Reference Include="Gallio">
+      <HintPath>..\..\..\..\Program Files\Gallio\bin\Gallio.dll</HintPath>
+    </Reference>
+    <Reference Include="MbUnit">
+      <HintPath>..\..\..\..\Program Files\Gallio\bin\MbUnit.dll</HintPath>
+    </Reference>
+    <Reference Include="Moq">
+      <HintPath>..\binaries\Moq\NET35\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Management.Automation" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CmdletUnit\CmdletUnit.csproj">
+      <Project>{36F73FA0-C636-48CF-BB7A-FE10FE52C391}</Project>
+      <Name>CmdletUnit</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PSTestLibrary\PSTestLibrary.csproj">
+      <Project>{E4499004-DAE5-4700-B212-4CDEA3080BC5}</Project>
+      <Name>PSTestLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestLink\TestLinkAPI\TestLinkAPI.csproj">
+      <Project>{743BC178-7039-4D01-B3AF-83099B8411BA}</Project>
+      <Name>TestLinkAPI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestLink\TestLinkAPI\TestLinkAPI.csproj">
+      <Project>{743BC178-7039-4D01-B3AF-83099B8411BA}</Project>
+      <Name>TestLinkAPI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TLAddin\TLAddin.csproj">
+      <Project>{9857AD05-4F29-421F-B441-89360A2D4127}</Project>
+      <Name>TLAddin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TMX\TMX.csproj">
+      <Project>{DFFF7F28-CFA4-4EE5-84F0-4A12A415BC0C}</Project>
+      <Name>TMX</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Helpers\UnderlyingCode\Builds\AddBuildTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Builds\GetBuildTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Connect\TLSrvConnectCommandTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\ConnectTestLinkTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\ConnectTLServerTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\TestCases\AddTestCaseTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\TestCases\GetTestCaseTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\TestPlans\GetTestPlansTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\TestPlans\GetTestPlanTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\TestProjects\OpenProjectCollectionTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\TestProjects\OpenProjectTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\TestSuites\AddTestSubSuiteTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\TestSuites\AddTestSuiteTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\TestSuites\GetTestSubSuiteTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\TestSuites\GetTestSuiteFromProjectTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\TestSuites\GetTestSuiteFromTestPlanTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\TestSuites\GetTestSuiteFromTestSuiteTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\TestSuites\GetTestSuiteTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\UnitTestingHelper.cs" />
+    <Compile Include="ParamChecks\MiddleLevelCode.cs" />
+    <Compile Include="ParamChecks\Settings.cs" />
+    <Compile Include="ParamChecks\TL\AddTLBuildCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\TL\AddTLTestCaseCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\TL\AddTLTestSubSuiteCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\TL\AddTLTestSuiteCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\TL\ConnectTLServerCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\TL\GetTLBuildCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\TL\GetTLProjectCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\TL\GetTLTestCaseCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\TL\GetTLTestPlanCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\TL\GetTLTestSuiteCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\TL\NewTLTestPlanCommandTestFixture.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="UnitTests\Containers\TopLevelModule.cs" />
+    <Compile Include="UnitTests\Fakes\FakeTestLink.cs" />
+    <Compile Include="UnitTests\Fakes\FakeTestLinkFactory.cs" />
+    <Compile Include="UnitTests\Fakes\garbage\FakeCommonCmdletBase.cs" />
+    <Compile Include="UnitTests\Fakes\garbage\FakeTestPlan.cs" />
+    <Compile Include="UnitTests\Fakes\garbage\FakeTestProject.cs" />
+    <Compile Include="UnitTests\Fakes\garbage\FakeXmlRpcStruct.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Commands" />
+    <Folder Include="Commands\TL" />
+    <Folder Include="Helpers" />
+    <Folder Include="Helpers\Inheritance" />
+    <Folder Include="Helpers\UnderlyingCode\Builds" />
+    <Folder Include="Helpers\UnderlyingCode\TestProjects" />
+    <Folder Include="Helpers\UnderlyingCode\TestCases" />
+    <Folder Include="Helpers\UnderlyingCode\TestPlans" />
+    <Folder Include="Helpers\UnderlyingCode\TestSuites" />
+    <Folder Include="Helpers\UserSettings" />
+    <Folder Include="Helpers\UnderlyingCode" />
+    <Folder Include="Helpers\UnderlyingCode\Connect" />
+    <Folder Include="ParamChecks" />
+    <Folder Include="ParamChecks\TL" />
+    <Folder Include="UnitTests" />
+    <Folder Include="UnitTests\Fakes" />
+    <Folder Include="UnitTests\Containers" />
+    <Folder Include="UnitTests\Fakes\garbage" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+</Project>

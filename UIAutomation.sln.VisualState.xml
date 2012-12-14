@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="false">
+  <TopNode>[0-1000]C:\Projects\PS\UIAutomation.Old\UIAutomation.sln</TopNode>
+  <SelectedNode>[0-1000]C:\Projects\PS\UIAutomation.Old\UIAutomation.sln</SelectedNode>
+  <ExcludeCategories>false</ExcludeCategories>
+  <Nodes>
+    <Node UniqueName="[0-1000]C:\Projects\PS\UIAutomation.Old\UIAutomation.sln" Expanded="true" />
+    <Node UniqueName="[0-1238]C:\Projects\PS\UIAutomation.Old\UIAutomationTest\bin\Debug\UIAutomationTest.dll" Expanded="true" />
+    <Node UniqueName="[0-1239]UIAutomationTest" Expanded="true" />
+    <Node UniqueName="[0-1240]UIAutomationTest.Commands" Expanded="true" />
+    <Node UniqueName="[0-1241]UIAutomationTest.Commands.Common" Expanded="true" />
+    <Node UniqueName="[0-1242]UIAutomationTest.Commands.Convert" Expanded="true" />
+    <Node UniqueName="[0-1243]UIAutomationTest.Commands.Discovery" Expanded="true" />
+    <Node UniqueName="[0-1244]UIAutomationTest.Commands.Get" Expanded="true" />
+    <Node UniqueName="[0-1245]UIAutomationTest.Commands.Pattern" Expanded="true" />
+    <Node UniqueName="[0-1248]UIAutomationTest.Commands.Select" Expanded="true" />
+    <Node UniqueName="[0-1246]UIAutomationTest.Commands.Transcript" Expanded="true" />
+    <Node UniqueName="[0-1247]UIAutomationTest.Commands.Wait" Expanded="true" />
+  </Nodes>
+</VisualState>

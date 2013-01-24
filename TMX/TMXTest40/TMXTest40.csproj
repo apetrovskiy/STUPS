@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectGuid>{0B68CA00-7905-494E-BE54-BDF7E2D6F1BE}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <OutputType>Library</OutputType>
+    <RootNamespace>TMXTest40</RootNamespace>
+    <AssemblyName>TMXTest40</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <OutputPath>bin\Release35\</OutputPath>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <NoStdLib>False</NoStdLib>
+    <DebugType>None</DebugType>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>false</DebugSymbols>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release35' ">
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'Release35' ">
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|Release35'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|Release35'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release35|Release35'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release35|x86'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Gallio">
+      <HintPath>..\..\..\..\Program Files\Gallio\bin\Gallio.dll</HintPath>
+    </Reference>
+    <Reference Include="MbUnit">
+      <HintPath>..\..\..\..\Program Files\Gallio\bin\MbUnit.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Management.Automation" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\PS\CmdletUnit\CmdletUnit.csproj">
+      <Project>{36F73FA0-C636-48CF-BB7A-FE10FE52C391}</Project>
+      <Name>CmdletUnit</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TMX\TMX.csproj">
+      <Project>{DFFF7F28-CFA4-4EE5-84F0-4A12A415BC0C}</Project>
+      <Name>TMX</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\TMXTest\Commands\Configuration\ExportTMXTestSettingsCommandTestFixture.cs">
+      <Link>Commands\Configuration\ExportTMXTestSettingsCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\TMXTest\Commands\Configuration\ImportTMXTestSettingsCommandTestFixture.cs">
+      <Link>Commands\Configuration\ImportTMXTestSettingsCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\TMXTest\Commands\Database\CloseTMXTestDBCommandTestFixture.cs">
+      <Link>Commands\Database\CloseTMXTestDBCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\TMXTest\Commands\Database\NewTMXTestDBCommandTestFixture.cs">
+      <Link>Commands\Database\NewTMXTestDBCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\TMXTest\Commands\Database\OpenTMXTestDBCommandTestFixture.cs">
+      <Link>Commands\Database\OpenTMXTestDBCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\TMXTest\Commands\Repository\AddTMXTestBucketCommandTestFixture.cs">
+      <Link>Commands\Repository\AddTMXTestBucketCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\TMXTest\Commands\Repository\AddTMXTestConstantCommandTestFixture.cs">
+      <Link>Commands\Repository\AddTMXTestConstantCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\TMXTest\Commands\Repository\GetTMXTestBucketCommandTestFixture.cs">
+      <Link>Commands\Repository\GetTMXTestBucketCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\TMXTest\Commands\Repository\GetTMXTestConstantValueCommandTestFixture.cs">
+      <Link>Commands\Repository\GetTMXTestConstantValueCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\TMXTest\Commands\Repository\RemoveTMXTestBucketCommandTestFixture.cs">
+      <Link>Commands\Repository\RemoveTMXTestBucketCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\TMXTest\Commands\Repository\RemoveTMXTestConstantCommandTestFixture.cs">
+      <Link>Commands\Repository\RemoveTMXTestConstantCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\TMXTest\Commands\Repository\SetTMXTestBucketCommandTestFixture.cs">
+      <Link>Commands\Repository\SetTMXTestBucketCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\TMXTest\Commands\Repository\SetTMXTestConstantValueCommandTestFixture.cs">
+      <Link>Commands\Repository\SetTMXTestConstantValueCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\TMXTest\Commands\TestResults\BackupTMXTestResultsCommandTestFixture.cs">
+      <Link>Commands\TestResults\BackupTMXTestResultsCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\TMXTest\Commands\TestResults\RestoreTMXTestResultsCommandTestFixture.cs">
+      <Link>Commands\TestResults\RestoreTMXTestResultsCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\TMXTest\Commands\TestResults\SaveTMXTestScreenshotCommandTestFixture.cs">
+      <Link>Commands\TestResults\SaveTMXTestScreenshotCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\TMXTest\Commands\TestResults\SearchTMXTestResultCommandTestFixture.cs">
+      <Link>Commands\TestResults\SearchTMXTestResultCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\TMXTest\Commands\TestResults\SearchTMXTestScenarioCommandTestFixture.cs">
+      <Link>Commands\TestResults\SearchTMXTestScenarioCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\TMXTest\Commands\TestResults\SearchTMXTestSuiteCommandTestFixture.cs">
+      <Link>Commands\TestResults\SearchTMXTestSuiteCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\TMXTest\Commands\TestStructure\AddTMXTestCaseCommandTestFixture.cs">
+      <Link>Commands\TestStructure\AddTMXTestCaseCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\TMXTest\Commands\TestStructure\AddTMXTestResultDetailCommandTestFixture.cs">
+      <Link>Commands\TestStructure\AddTMXTestResultDetailCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\TMXTest\Commands\TestStructure\AddTMXTestScenarioCommandTestFixture.cs">
+      <Link>Commands\TestStructure\AddTMXTestScenarioCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\TMXTest\Commands\TestStructure\CloseTMXTestResultCommandTestFixture.cs">
+      <Link>Commands\TestStructure\CloseTMXTestResultCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\TMXTest\Commands\TestStructure\GetTMXTestCaseCommandTestFixture.cs">
+      <Link>Commands\TestStructure\GetTMXTestCaseCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\TMXTest\Commands\TestStructure\NewTMXTestSuiteCommandTestFixture.cs">
+      <Link>Commands\TestStructure\NewTMXTestSuiteCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\TMXTest\Commands\TestStructure\OpenTMXTestScenarioCommandTestFixture.cs">
+      <Link>Commands\TestStructure\OpenTMXTestScenarioCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\TMXTest\Commands\TestStructure\OpenTMXTestSuiteCommandTestFixture.cs">
+      <Link>Commands\TestStructure\OpenTMXTestSuiteCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\TMXTest\Commands\TestStructure\RemoveTMXTestCaseCommandTestFixture.cs">
+      <Link>Commands\TestStructure\RemoveTMXTestCaseCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\TMXTest\Commands\TestStructure\SetTMXTestCaseCommandTestFixture.cs">
+      <Link>Commands\TestStructure\SetTMXTestCaseCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\TMXTest\MiddleLevelCode.cs">
+      <Link>MiddleLevelCode.cs</Link>
+    </Compile>
+    <Compile Include="..\TMXTest\Provider\TMXProviderTestFixture.cs">
+      <Link>Provider\TMXProviderTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\TMXTest\Settings.cs">
+      <Link>Settings.cs</Link>
+    </Compile>
+    <Compile Include="..\TMXTest\TestData\TMXEventsTestFixture.cs">
+      <Link>TestData\TMXEventsTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Commands\Database" />
+    <Folder Include="Commands\Configuration" />
+    <Folder Include="Commands\Status" />
+    <Folder Include="Commands\TestStructure" />
+    <Folder Include="Commands\TestResults" />
+    <Folder Include="Commands\Repository" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+</Project>

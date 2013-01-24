@@ -1,0 +1,475 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectGuid>{74256228-DBD0-4FA2-84BB-B7157B416C67}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <OutputType>Library</OutputType>
+    <RootNamespace>TMX</RootNamespace>
+    <AssemblyName>TMX</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <ApplicationManifest>..\..\UIA\UIAutomationSpy\app.manifest</ApplicationManifest>
+    <SignAssembly>False</SignAssembly>
+    <DelaySign>False</DelaySign>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <OutputPath>bin\Release35\</OutputPath>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <NoStdLib>False</NoStdLib>
+    <DebugType>None</DebugType>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>false</DebugSymbols>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release35' ">
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'Release35' ">
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|Release35'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|Release35'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release35|Release35'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release35|x86'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="SQLite.Designer">
+      <HintPath>..\..\binaries\sqlite\40\64\SQLite.Designer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <!--<Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>-->
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite">
+      <HintPath>..\..\binaries\sqlite\40\64\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq">
+      <HintPath>..\..\binaries\sqlite\40\64\System.Data.SQLite.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Management.Automation" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\TMX\Commands\Conditions\InvokeTmxIfConditionCommand.cs">
+      <Link>Commands\Conditions\InvokeTmxIfConditionCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\Configuration\ExportTMXTestSettingsCommand.cs">
+      <Link>Commands\Configuration\ExportTMXTestSettingsCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\Configuration\ImportTMXTestSettingsCommand.cs">
+      <Link>Commands\Configuration\ImportTMXTestSettingsCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\Database\CloseTMXTestDBCommand.cs">
+      <Link>Commands\Database\CloseTMXTestDBCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\Database\NewTMXTestDBCommand.cs">
+      <Link>Commands\Database\NewTMXTestDBCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\Database\OpenTMXTestDBCommand.cs">
+      <Link>Commands\Database\OpenTMXTestDBCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\NUnit\AssertNUnitAreEqualCommand.cs">
+      <Link>Commands\NUnit\AssertNUnitAreEqualCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\NUnit\AssertNUnitAreNotEqualCommand.cs">
+      <Link>Commands\NUnit\AssertNUnitAreNotEqualCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\NUnit\AssertNUnitAreNotSameCommand.cs">
+      <Link>Commands\NUnit\AssertNUnitAreNotSameCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\NUnit\AssertNUnitAreSameCommand.cs">
+      <Link>Commands\NUnit\AssertNUnitAreSameCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\NUnit\AssertNUnitContainsCommand.cs">
+      <Link>Commands\NUnit\AssertNUnitContainsCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\NUnit\AssertNUnitGreaterCommand.cs">
+      <Link>Commands\NUnit\AssertNUnitGreaterCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\NUnit\AssertNUnitGreaterOrEqualCommand.cs">
+      <Link>Commands\NUnit\AssertNUnitGreaterOrEqualCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\NUnit\AssertNUnitIsEmptyCommand.cs">
+      <Link>Commands\NUnit\AssertNUnitIsEmptyCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\NUnit\AssertNUnitIsFalseCommand.cs">
+      <Link>Commands\NUnit\AssertNUnitIsFalseCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\NUnit\AssertNUnitIsNotEmptyCommand.cs">
+      <Link>Commands\NUnit\AssertNUnitIsNotEmptyCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\NUnit\AssertNUnitIsNotNullCommand.cs">
+      <Link>Commands\NUnit\AssertNUnitIsNotNullCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\NUnit\AssertNUnitIsNullCommand.cs">
+      <Link>Commands\NUnit\AssertNUnitIsNullCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\NUnit\AssertNUnitIsTrueCommand.cs">
+      <Link>Commands\NUnit\AssertNUnitIsTrueCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\NUnit\AssertNUnitLessCommand.cs">
+      <Link>Commands\NUnit\AssertNUnitLessCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\NUnit\AssertNUnitLessrOrEqualCommand.cs">
+      <Link>Commands\NUnit\AssertNUnitLessrOrEqualCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\Repository\AddTMXTestBucketCommand.cs">
+      <Link>Commands\Repository\AddTMXTestBucketCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\Repository\AddTMXTestConstantCommand.cs">
+      <Link>Commands\Repository\AddTMXTestConstantCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\Repository\GetTMXTestBucketCommand.cs">
+      <Link>Commands\Repository\GetTMXTestBucketCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\Repository\GetTMXTestConstantValueCommand.cs">
+      <Link>Commands\Repository\GetTMXTestConstantValueCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\Repository\RemoveTMXTestBucketCommand.cs">
+      <Link>Commands\Repository\RemoveTMXTestBucketCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\Repository\RemoveTMXTestConstantCommand.cs">
+      <Link>Commands\Repository\RemoveTMXTestConstantCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\Repository\SetTMXTestBucketCommand.cs">
+      <Link>Commands\Repository\SetTMXTestBucketCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\Repository\SetTMXTestConstantValueCommand.cs">
+      <Link>Commands\Repository\SetTMXTestConstantValueCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\Status\GetTMXTestScenarioStatusCommand.cs">
+      <Link>Commands\Status\GetTMXTestScenarioStatusCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\Status\GetTMXTestSuiteStatusCommand.cs">
+      <Link>Commands\Status\GetTMXTestSuiteStatusCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\TestResults\BackupTMXTestResultsCommand.cs">
+      <Link>Commands\TestResults\BackupTMXTestResultsCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\TestResults\ExportTMXTestLogCommand.cs">
+      <Link>Commands\TestResults\ExportTMXTestLogCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\TestResults\ExportTMXTestResultsCommand.cs">
+      <Link>Commands\TestResults\ExportTMXTestResultsCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\TestResults\ExportTMXTestSummaryCommand.cs">
+      <Link>Commands\TestResults\ExportTMXTestSummaryCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\TestResults\RestoreTMXTestResultsCommand.cs">
+      <Link>Commands\TestResults\RestoreTMXTestResultsCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\TestResults\SaveTMXTestScreenshotCommand.cs">
+      <Link>Commands\TestResults\SaveTMXTestScreenshotCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\TestResults\SearchTMXTestResultCommand.cs">
+      <Link>Commands\TestResults\SearchTMXTestResultCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\TestResults\SearchTMXTestScenarioCommand.cs">
+      <Link>Commands\TestResults\SearchTMXTestScenarioCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\TestResults\SearchTMXTestSuiteCommand.cs">
+      <Link>Commands\TestResults\SearchTMXTestSuiteCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\TestStructure\AddTMXTestCaseCommand.cs">
+      <Link>Commands\TestStructure\AddTMXTestCaseCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\TestStructure\AddTMXTestResultDetailCommand.cs">
+      <Link>Commands\TestStructure\AddTMXTestResultDetailCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\TestStructure\AddTMXTestScenarioCommand.cs">
+      <Link>Commands\TestStructure\AddTMXTestScenarioCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\TestStructure\CloseTMXTestResultCommand.cs">
+      <Link>Commands\TestStructure\CloseTMXTestResultCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\TestStructure\GetTMXTestCaseCommand.cs">
+      <Link>Commands\TestStructure\GetTMXTestCaseCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\TestStructure\NewTMXTestSuiteCommand.cs">
+      <Link>Commands\TestStructure\NewTMXTestSuiteCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\TestStructure\OpenTMXTestScenarioCommand.cs">
+      <Link>Commands\TestStructure\OpenTMXTestScenarioCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\TestStructure\OpenTMXTestSuiteCommand.cs">
+      <Link>Commands\TestStructure\OpenTMXTestSuiteCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\TestStructure\RemoveTMXTestCaseCommand.cs">
+      <Link>Commands\TestStructure\RemoveTMXTestCaseCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\TestStructure\SetTMXTestCaseCommand.cs">
+      <Link>Commands\TestStructure\SetTMXTestCaseCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\Inheritance\AddScenarioCmdletBase.cs">
+      <Link>Helpers\Inheritance\AddScenarioCmdletBase.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\Inheritance\AssertionsCmdletBase.cs">
+      <Link>Helpers\Inheritance\AssertionsCmdletBase.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\Inheritance\CommonCmdletBase.cs">
+      <Link>Helpers\Inheritance\CommonCmdletBase.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\Inheritance\ConditionsCmdletBase.cs">
+      <Link>Helpers\Inheritance\ConditionsCmdletBase.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\Inheritance\Database\DatabaseCmdletBase.cs">
+      <Link>Helpers\Inheritance\Database\DatabaseCmdletBase.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\Inheritance\Database\DatabaseFileCmdletBase.cs">
+      <Link>Helpers\Inheritance\Database\DatabaseFileCmdletBase.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\Inheritance\Database\DatabaseFileOpenCmdletBase.cs">
+      <Link>Helpers\Inheritance\Database\DatabaseFileOpenCmdletBase.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\Inheritance\Database\TestBucketCmdletBase.cs">
+      <Link>Helpers\Inheritance\Database\TestBucketCmdletBase.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\Inheritance\Database\TestCaseCmdletBase.cs">
+      <Link>Helpers\Inheritance\Database\TestCaseCmdletBase.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\Inheritance\Database\TestConstantCmdletBase.cs">
+      <Link>Helpers\Inheritance\Database\TestConstantCmdletBase.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\Inheritance\Database\TestResultsCmdletBase.cs">
+      <Link>Helpers\Inheritance\Database\TestResultsCmdletBase.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\Inheritance\Database\TestStructureCmdletBase.cs">
+      <Link>Helpers\Inheritance\Database\TestStructureCmdletBase.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\Inheritance\ImportExportCmdletBase.cs">
+      <Link>Helpers\Inheritance\ImportExportCmdletBase.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\Inheritance\NewSuiteCmdletBase.cs">
+      <Link>Helpers\Inheritance\NewSuiteCmdletBase.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\Inheritance\OpenScenarioCmdletBase.cs">
+      <Link>Helpers\Inheritance\OpenScenarioCmdletBase.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\Inheritance\OpenSuiteCmdletBase.cs">
+      <Link>Helpers\Inheritance\OpenSuiteCmdletBase.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\Inheritance\OpenTestCaseCmdletBase.cs">
+      <Link>Helpers\Inheritance\OpenTestCaseCmdletBase.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\Inheritance\ScenarioCmdletBase.cs">
+      <Link>Helpers\Inheritance\ScenarioCmdletBase.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\Inheritance\SearchCmdletBase.cs">
+      <Link>Helpers\Inheritance\SearchCmdletBase.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\Inheritance\SettingsCmdletBase.cs">
+      <Link>Helpers\SettingsCmdletBase.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\Inheritance\SuiteCmdletBase.cs">
+      <Link>Helpers\Inheritance\SuiteCmdletBase.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\Inheritance\TestResultCmdletBase.cs">
+      <Link>Helpers\Inheritance\TestResultCmdletBase.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\Status\TMXGetTestScenarioStatusCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\Status\TMXGetTestScenarioStatusCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\Status\TMXGetTestSuiteStatusCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\Status\TMXGetTestSuiteStatusCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TestStructure\TMXAddTestScenarioCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\TestStructure\TMXAddTestScenarioCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TestStructure\TMXCloseTestResultCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\TestStructure\TMXCloseTestResultCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TestStructure\TMXNewTestSuiteCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\TestStructure\TMXNewTestSuiteCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TestStructure\TMXOpenTestScenarioCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\TestStructure\TMXOpenTestScenarioCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TestStructure\TMXOpenTestSuiteCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\TestStructure\TMXOpenTestSuiteCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TMXCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\TMXCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\GatherTestResultsCollections.cs">
+      <Link>Helpers\UnderlyingCode\GatherTestResultsCollections.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\IXMLElementsStruct.cs">
+      <Link>Helpers\UnderlyingCode\IXMLElementsStruct.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\SQLiteHelper.cs">
+      <Link>Helpers\UnderlyingCode\SQLiteHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\TMXHelper.cs">
+      <Link>Helpers\UnderlyingCode\TMXHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Types\TestResult.cs">
+      <Link>Helpers\UnderlyingCode\Types\TestResult.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Types\TestResultDetail.cs">
+      <Link>Helpers\UnderlyingCode\Types\TestResultDetail.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Types\TestScenario.cs">
+      <Link>Helpers\UnderlyingCode\Types\TestScenario.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Types\TestStat.cs">
+      <Link>Helpers\UnderlyingCode\Types\TestStat.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Types\TestSuite.cs">
+      <Link>Helpers\UnderlyingCode\Types\TestSuite.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\XMLElementsJUnitStruct.cs">
+      <Link>Helpers\UnderlyingCode\XMLElementsJUnitStruct.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\XMLElementsNativeStruct.cs">
+      <Link>Helpers\UnderlyingCode\XMLElementsNativeStruct.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\UserSettings\Preferences.cs">
+      <Link>Helpers\UserSettings\Preferences.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Interface\Enumerations.cs">
+      <Link>Interface\Enumerations.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Interface\IDatabase.cs">
+      <Link>Interface\IDatabase.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Interface\ITestBucket.cs">
+      <Link>Interface\ITestBucket.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Interface\ITestCase.cs">
+      <Link>Interface\ITestCase.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Interface\ITestConstant.cs">
+      <Link>Interface\ITestConstant.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Interface\ITestResult.cs">
+      <Link>Interface\ITestResult.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Interface\ITestResultDetail.cs">
+      <Link>Interface\ITestResultDetail.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Interface\ITestScenario.cs">
+      <Link>Interface\ITestScenario.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Interface\ITestSuite.cs">
+      <Link>Interface\ITestSuite.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Interface\ITestSuitesCollection.cs">
+      <Link>Interface\ITestSuitesCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Provider\TMXProvider.cs">
+      <Link>Provider\TMXProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\SQLiteData\SQLiteData.cs">
+      <Link>SQLiteData\SQLiteData.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\TestData\TestData.cs">
+      <Link>TestData\TestData.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">
+      <Project>{E4499004-DAE5-4700-B212-4CDEA3080BC5}</Project>
+      <Name>PSTestLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Commands\Database" />
+    <Folder Include="Commands\Configuration" />
+    <Folder Include="Commands\Status" />
+    <Folder Include="Commands\TestStructure" />
+    <Folder Include="Commands\TestResults" />
+    <Folder Include="Commands\Repository" />
+    <Folder Include="Helpers\Inheritance\Database" />
+    <Folder Include="ExternalUse" />
+    <Folder Include="Helpers\UnderlyingCode" />
+    <Folder Include="Helpers\UnderlyingCode\Commands" />
+    <Folder Include="Helpers\UnderlyingCode\Commands\TestStructure" />
+    <Folder Include="Helpers\UnderlyingCode\Commands\Status" />
+    <Folder Include="Helpers\UnderlyingCode\Types" />
+    <Folder Include="SQLiteData" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+</Project>

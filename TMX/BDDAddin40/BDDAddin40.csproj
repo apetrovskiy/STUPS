@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectGuid>{BAC29E14-390B-47C9-B5FA-064A7AC60CAA}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <OutputType>Library</OutputType>
+    <RootNamespace>TMX</RootNamespace>
+    <AssemblyName>BDDAddin40</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <OutputPath>bin\Release35\</OutputPath>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <NoStdLib>False</NoStdLib>
+    <DebugType>None</DebugType>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release35' ">
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'Release35' ">
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="GurkBurk">
+      <HintPath>..\..\packages\nbehave.0.6.0\lib\net40\GurkBurk.dll</HintPath>
+    </Reference>
+    <Reference Include="NBehave.Fluent.Framework">
+      <HintPath>..\..\packages\nbehave.fluent.mbunit.0.6.0\lib\net40\NBehave.Fluent.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="NBehave.Gherkin">
+      <HintPath>..\..\packages\nbehave.0.6.0\lib\net40\NBehave.Gherkin.dll</HintPath>
+    </Reference>
+    <Reference Include="NBehave.Narrator.Framework">
+      <HintPath>..\..\packages\nbehave.0.6.0\lib\net40\NBehave.Narrator.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Management.Automation" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\BDDAddin\Commands\BDD\AddBDDScenarioCommand.cs">
+      <Link>Commands\BDD\AddBDDScenarioCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\BDDAddin\Commands\BDD\NewBDDFeatureCommand.cs">
+      <Link>Commands\BDD\NewBDDFeatureCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\BDDAddin\Commands\FeatureContext\GetBDDCurrentFeatureDataCommand.cs">
+      <Link>Commands\FeatureContext\GetBDDCurrentFeatureDataCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\BDDAddin\Commands\FeatureContext\GetBDDCurrentFeatureTagsCommand.cs">
+      <Link>Commands\FeatureContext\GetBDDCurrentFeatureTagsCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\BDDAddin\Commands\FeatureContext\GetBDDCurrentFeatureTitleCommand.cs">
+      <Link>Commands\FeatureContext\GetBDDCurrentFeatureTitleCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\BDDAddin\Commands\FeatureContext\SetBDDCurrentFeatureDataCommand.cs">
+      <Link>Commands\FeatureContext\SetBDDCurrentFeatureDataCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\BDDAddin\Commands\ScenarioContext\GetBDDCurrentScenarioDataCommand.cs">
+      <Link>Commands\ScenarioContext\GetBDDCurrentScenarioDataCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\BDDAddin\Commands\ScenarioContext\GetBDDCurrentScenarioTagsCommand.cs">
+      <Link>Commands\ScenarioContext\GetBDDCurrentScenarioTagsCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\BDDAddin\Commands\ScenarioContext\GetBDDCurrentScenarioTitleCommand.cs">
+      <Link>Commands\ScenarioContext\GetBDDCurrentScenarioTitleCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\BDDAddin\Commands\ScenarioContext\SetBDDCurrentScenarioDataCommand.cs">
+      <Link>Commands\ScenarioContext\SetBDDCurrentScenarioDataCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\BDDAddin\Helpers\Inheritance\BDDCmdletBase.cs">
+      <Link>Helpers\Inheritance\BDDCmdletBase.cs</Link>
+    </Compile>
+    <Compile Include="..\BDDAddin\Helpers\Inheritance\BDDFeatureCmdletBase.cs">
+      <Link>Helpers\Inheritance\BDDFeatureCmdletBase.cs</Link>
+    </Compile>
+    <Compile Include="..\BDDAddin\Helpers\Inheritance\BDDScenarioCmdletBase.cs">
+      <Link>Helpers\Inheritance\BDDScenarioCmdletBase.cs</Link>
+    </Compile>
+    <Compile Include="..\BDDAddin\Helpers\Inheritance\BDDStepCmdletBase.cs">
+      <Link>Helpers\Inheritance\BDDStepCmdletBase.cs</Link>
+    </Compile>
+    <Compile Include="..\BDDAddin\Helpers\UnderlyingCode\BDDHelper.cs">
+      <Link>Helpers\UnderlyingCode\BDDHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\BDDAddin\Helpers\UnderlyingCode\Commands\BDDCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\BDDCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\BDDAddin\Helpers\UnderlyingCode\Commands\BDD\BDDAddScenarioCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\BDD\BDDAddScenarioCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\BDDAddin\Helpers\UnderlyingCode\Commands\BDD\BDDNewFeatureCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\BDD\BDDNewFeatureCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\BDDAddin\Helpers\UnderlyingCode\Commands\FeatureContext\BDDGetCurrentFeatureDataCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\FeatureContext\BDDGetCurrentFeatureDataCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\BDDAddin\Helpers\UnderlyingCode\Commands\FeatureContext\BDDGetCurrentFeatureTagsCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\FeatureContext\BDDGetCurrentFeatureTagsCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\BDDAddin\Helpers\UnderlyingCode\Commands\FeatureContext\BDDGetCurrentFeatureTitleCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\FeatureContext\BDDGetCurrentFeatureTitleCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\BDDAddin\Helpers\UnderlyingCode\Commands\FeatureContext\BDDSetCurrentFeatureDataCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\FeatureContext\BDDSetCurrentFeatureDataCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\BDDAddin\Helpers\UnderlyingCode\Commands\ScenarioContext\BDDGetCurrentScenarioDataCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\ScenarioContext\BDDGetCurrentScenarioDataCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\BDDAddin\Helpers\UnderlyingCode\Commands\ScenarioContext\BDDGetCurrentScenarioTagsCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\ScenarioContext\BDDGetCurrentScenarioTagsCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\BDDAddin\Helpers\UnderlyingCode\Commands\ScenarioContext\BDDGetCurrentScenarioTitleCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\ScenarioContext\BDDGetCurrentScenarioTitleCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\BDDAddin\Helpers\UnderlyingCode\Commands\ScenarioContext\BDDSetCurrentScenarioDataCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\ScenarioContext\BDDSetCurrentScenarioDataCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\BDDAddin\Helpers\UnderlyingCode\ScenarioProcessingClass.cs">
+      <Link>Helpers\UnderlyingCode\ScenarioProcessingClass.cs</Link>
+    </Compile>
+    <Compile Include="..\BDDAddin\Interface\IBDDFeature.cs">
+      <Link>Interface\IBDDFeature.cs</Link>
+    </Compile>
+    <Compile Include="..\BDDAddin\Interface\IBDDScenario.cs">
+      <Link>Interface\IBDDScenario.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="MyClass.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Commands" />
+    <Folder Include="Commands\BDD" />
+    <Folder Include="Commands\FeatureContext" />
+    <Folder Include="Commands\ScenarioContext" />
+    <Folder Include="Helpers\Inheritance" />
+    <Folder Include="Helpers\UnderlyingCode" />
+    <Folder Include="Helpers\UnderlyingCode\Commands" />
+    <Folder Include="Helpers\UnderlyingCode\Commands\FeatureContext" />
+    <Folder Include="Helpers\UnderlyingCode\Commands\BDD" />
+    <Folder Include="Helpers\UnderlyingCode\Commands\ScenarioContext" />
+    <Folder Include="Helpers\UnderlyingCode\Types" />
+    <Folder Include="Helpers\UserSettings" />
+    <Folder Include="Interface" />
+    <Folder Include="Helpers" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">
+      <Project>{E4499004-DAE5-4700-B212-4CDEA3080BC5}</Project>
+      <Name>PSTestLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TMX\TMX.csproj">
+      <Project>{DFFF7F28-CFA4-4EE5-84F0-4A12A415BC0C}</Project>
+      <Name>TMX</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+</Project>

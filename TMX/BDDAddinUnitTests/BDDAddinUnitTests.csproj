@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectGuid>{B048DC79-39DE-437B-9216-F9EAD1076766}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <OutputType>Library</OutputType>
+    <RootNamespace>BDDAddinUnitTests</RootNamespace>
+    <AssemblyName>BDDAddinUnitTests</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <NoStdLib>False</NoStdLib>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <OutputPath>bin\Release35\</OutputPath>
+    <DebugType>None</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>None</DebugType>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release35' ">
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'Release35' ">
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Gallio">
+      <HintPath>..\..\..\..\..\Program Files\Gallio\bin\Gallio.dll</HintPath>
+    </Reference>
+    <Reference Include="GurkBurk">
+      <HintPath>..\..\packages\nbehave.0.6.0\lib\net35\GurkBurk.dll</HintPath>
+    </Reference>
+    <Reference Include="MbUnit">
+      <HintPath>..\..\..\..\..\Program Files\Gallio\bin\MbUnit.dll</HintPath>
+    </Reference>
+    <Reference Include="NBehave.Fluent.Framework">
+      <HintPath>..\..\packages\nbehave.fluent.mbunit.0.6.0\lib\net35\NBehave.Fluent.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="NBehave.Gherkin">
+      <HintPath>..\..\packages\nbehave.0.6.0\lib\net35\NBehave.Gherkin.dll</HintPath>
+    </Reference>
+    <Reference Include="NBehave.Narrator.Framework">
+      <HintPath>..\..\packages\nbehave.0.6.0\lib\net35\NBehave.Narrator.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Management.Automation" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">
+      <Project>{E4499004-DAE5-4700-B212-4CDEA3080BC5}</Project>
+      <Name>PSTestLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\PS\CmdletUnit\CmdletUnit.csproj">
+      <Project>{36F73FA0-C636-48CF-BB7A-FE10FE52C391}</Project>
+      <Name>CmdletUnit</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BDDAddin\BDDAddin.csproj">
+      <Project>{7B0501F7-6030-4EC7-94E9-7496C85EC3F2}</Project>
+      <Name>BDDAddin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TMX\TMX.csproj">
+      <Project>{DFFF7F28-CFA4-4EE5-84F0-4A12A415BC0C}</Project>
+      <Name>TMX</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Commands" />
+    <Folder Include="Commands\BDD" />
+    <Folder Include="Commands\FeatureContext" />
+    <Folder Include="Commands\ScenarioContext" />
+    <Folder Include="Helpers" />
+    <Folder Include="Helpers\Inheritance" />
+    <Folder Include="Helpers\UnderlyingCode" />
+    <Folder Include="ParamChecks" />
+    <Folder Include="ParamChecks\BDD" />
+    <Folder Include="ParamChecks\FeatureContext" />
+    <Folder Include="ParamChecks\ScenarioContext" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\TMX\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Commands\BDD\AddBDDScenarioCommandTestFixture.cs" />
+    <Compile Include="Commands\BDD\NewBDDFeatureCommandTestFixture.cs" />
+    <Compile Include="Commands\FeatureContext\GetBDDCurrentFeatureDataCommandTestFixture.cs" />
+    <Compile Include="Commands\FeatureContext\GetBDDCurrentFeatureTagsCommandTestFixture.cs" />
+    <Compile Include="Commands\FeatureContext\GetBDDCurrentFeatureTitleCommandTestFixture.cs" />
+    <Compile Include="Commands\FeatureContext\SetBDDCurrentFeatureDataCommandTestFixture.cs" />
+    <Compile Include="Commands\ScenarioContext\GetBDDCurrentScenarioDataCommandTestFixture.cs" />
+    <Compile Include="Commands\ScenarioContext\GetBDDCurrentScenarioTagsCommandTestFixture.cs" />
+    <Compile Include="Commands\ScenarioContext\GetBDDCurrentScenarioTitleCommandTestFixture.cs" />
+    <Compile Include="Commands\ScenarioContext\SetBDDCurrentScenarioDataCommandTestFixture.cs" />
+    <Compile Include="Helpers\BDDHelper.cs" />
+    <Compile Include="Helpers\UnderlyingCode\UnitTestingHelper.cs" />
+    <Compile Include="ParamChecks\BDD\AddBDDScenarioCommand_ParamCheck.cs" />
+    <Compile Include="ParamChecks\BDD\NewBDDFeatureCommand_ParamCheck.cs" />
+    <Compile Include="ParamChecks\FeatureContext\GetBDDCurrentFeatureDataCommand_ParamCheck.cs" />
+    <Compile Include="ParamChecks\FeatureContext\GetBDDCurrentFeatureTagsCommand_ParamCheck.cs" />
+    <Compile Include="ParamChecks\FeatureContext\GetBDDCurrentFeatureTitleCommand_ParamCheck.cs" />
+    <Compile Include="ParamChecks\FeatureContext\SetBDDCurrentFeatureDataCommand_ParamCheck.cs" />
+    <Compile Include="ParamChecks\MiddleLevelCode.cs" />
+    <Compile Include="ParamChecks\ScenarioContext\GetBDDCurrentScenarioDataCommand_ParamCheck.cs" />
+    <Compile Include="ParamChecks\ScenarioContext\GetBDDCurrentScenarioTagsCommand_ParamCheck.cs" />
+    <Compile Include="ParamChecks\ScenarioContext\GetBDDCurrentScenarioTitleCommand_ParamCheck.cs" />
+    <Compile Include="ParamChecks\ScenarioContext\SetBDDCurrentScenarioDataCommand_ParamCheck.cs" />
+    <Compile Include="ParamChecks\Settings.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+</Project>

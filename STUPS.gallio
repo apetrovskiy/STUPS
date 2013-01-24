@@ -2,19 +2,21 @@
 <testProject xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.gallio.org/">
   <testPackage shadowCopy="false" debug="false">
     <files>
-      <file>SePSXUnitTests\bin\Release35\SePSXUnitTests.dll</file>
-      <file>SePSXTest\bin\Release35\SePSXTest.dll</file>
-      <file>TMXTest\bin\Release35\TMXTest.dll</file>
-      <file>UIAutomationTest\bin\Release35\UIAutomationTest.dll</file>
-      <file>TLAddinUnitTests\bin\Release35\TLAddinUnitTests.dll</file>
+      <file>TMX\TLAddinUnitTests\bin\Release35\TLAddinUnitTests.dll</file>
+      <file>TMX\TMXTest\bin\Release35\TMXTest.dll</file>
+      <file>UIA\UIAutomationTest\bin\Release35\UIAutomationTest.dll</file>
+      <file>TMX\TMXUnitTests\bin\Release35\TMXUnitTests.dll</file>
+      <file>TMX\BDDAddinUnitTests\bin\Release35\BDDAddinUnitTests.dll</file>
+      <file>SePSX\SePSXTest\bin\Release35\SePSXTest.dll</file>
+      <file>SePSX\SePSXUnitTests\bin\Release35\SePSXUnitTests.dll</file>
     </files>
     <hintDirectories />
     <excludedFrameworkIds />
     <properties />
   </testPackage>
   <testFilters>
-    <testFilter filterName="LastRun" filterExpr="((Namespace: SePSXUnitTests.Commands.Driver or Namespace: SePSXUnitTests.Commands.Driver.ChromeOptions or (Id: 35600c7a7a690358 or Id: 6c1e2b2c6caaeb95) or Namespace: SePSXUnitTests.Commands.Driver.InternetExplorerOptions or Namespace: SePSXUnitTests.Commands.Element or Namespace: SePSXUnitTests.Commands.Element.Convert or Namespace: SePSXUnitTests.Commands.Navigation or Namespace: SePSXUnitTests.Commands.Select or Namespace: SePSXUnitTests.Recording) or Namespace: SePSXTest.CheckParameters)" />
-    <testFilter filterName="AutoSave" filterExpr="((Namespace: SePSXUnitTests.Commands.Driver or Namespace: SePSXUnitTests.Commands.Driver.ChromeOptions or (Id: 35600c7a7a690358 or Id: 6c1e2b2c6caaeb95) or Namespace: SePSXUnitTests.Commands.Driver.InternetExplorerOptions or Namespace: SePSXUnitTests.Commands.Element or Namespace: SePSXUnitTests.Commands.Element.Convert or Namespace: SePSXUnitTests.Commands.Navigation or Namespace: SePSXUnitTests.Commands.Select or Namespace: SePSXUnitTests.Recording) or Namespace: SePSXTest.CheckParameters)" />
+    <testFilter filterName="LastRun" filterExpr="((Namespace: TLAddinUnitTests or Namespace: TLAddinUnitTests.TestCases or (Id: 9757cdc3385f97e6 or Id: b0d399f9f546bc62) or Namespace: TLAddinUnitTests.TestProjects or Namespace: TLAddinUnitTests.TestSuites or Namespace: TLAddinUnitTests.CheckCmdletParameters) or Id: 47bab07e4e9a4067 or (Id: 78596b5a3a5e09cf or Id: fe71f0f5a8aa343a or Id: 330533f1d6439770 or Id: e6c2243ff7abadd5 or Id: 8bb40654f20517ca or (Id: e4d544b10c5a6d60 or Id: 48a7f7de9ce0a475 or Id: 8e433c259a63c4b2 or Id: 4866cb1c189defb6) or Id: 57831e5a0d0b245a or Id: 484a70426bbebd9c or Id: b2a63484f3cee52c or Id: 8be177e86c2d768c or Id: 55045bef774fbf9a or Id: d2e1cc74c1c6cb8c) or Id: ad6a0056aa8f3a17 or (Namespace: SePSXUnitTests.Commands.Driver or Namespace: SePSXUnitTests.Commands.Driver.ChromeOptions or (Id: 35600c7a7a690358 or Id: 6c1e2b2c6caaeb95) or Namespace: SePSXUnitTests.Commands.Driver.InternetExplorerOptions or Namespace: SePSXUnitTests.Commands.Element or Namespace: SePSXUnitTests.Commands.Element.Convert or Namespace: SePSXUnitTests.Commands.Navigation or Namespace: SePSXUnitTests.Commands.Select or Namespace: SePSXUnitTests.Recording or Namespace: SePSXUnitTests.CheckCmdletParameters))" />
+    <testFilter filterName="AutoSave" filterExpr="((Namespace: TLAddinUnitTests or Namespace: TLAddinUnitTests.TestCases or (Id: 9757cdc3385f97e6 or Id: b0d399f9f546bc62) or Namespace: TLAddinUnitTests.TestProjects or Namespace: TLAddinUnitTests.TestSuites or Namespace: TLAddinUnitTests.CheckCmdletParameters) or Id: 47bab07e4e9a4067 or (Id: 78596b5a3a5e09cf or Id: fe71f0f5a8aa343a or Id: 330533f1d6439770 or Id: e6c2243ff7abadd5 or Id: 8bb40654f20517ca or (Id: e4d544b10c5a6d60 or Id: 48a7f7de9ce0a475 or Id: 8e433c259a63c4b2 or Id: 4866cb1c189defb6) or Id: 57831e5a0d0b245a or Id: 484a70426bbebd9c or Id: b2a63484f3cee52c or Id: 8be177e86c2d768c or Id: 55045bef774fbf9a or Id: d2e1cc74c1c6cb8c) or Id: ad6a0056aa8f3a17 or (Namespace: SePSXUnitTests.Commands.Driver or Namespace: SePSXUnitTests.Commands.Driver.ChromeOptions or (Id: 35600c7a7a690358 or Id: 6c1e2b2c6caaeb95) or Namespace: SePSXUnitTests.Commands.Driver.InternetExplorerOptions or Namespace: SePSXUnitTests.Commands.Element or Namespace: SePSXUnitTests.Commands.Element.Convert or Namespace: SePSXUnitTests.Commands.Navigation or Namespace: SePSXUnitTests.Commands.Select or Namespace: SePSXUnitTests.Recording or Namespace: SePSXUnitTests.CheckCmdletParameters))" />
   </testFilters>
   <extensionSpecifications />
   <reportDirectory>..\..\..\Users\Alexander\AppData\Roaming\Gallio\Icarus\Reports</reportDirectory>

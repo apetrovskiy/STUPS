@@ -1,0 +1,347 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectGuid>{8B184431-8DBD-431D-A22C-69514A4AE442}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <OutputType>Library</OutputType>
+    <RootNamespace>SePSXTest64</RootNamespace>
+    <AssemblyName>SePSXTest40</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <OutputPath>bin\Release35\</OutputPath>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <NoStdLib>False</NoStdLib>
+    <DebugType>None</DebugType>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>false</DebugSymbols>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release35' ">
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release40' ">
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'Release35' ">
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'Release40' ">
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|Release35'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|Release40'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|Release35'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|Release40'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release35|Release35'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release35|Release40'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release35|x86'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release40|Release35'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release40|Release40'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release40|x86'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Gallio">
+      <HintPath>..\..\..\..\Program Files\Gallio\bin\Gallio.dll</HintPath>
+    </Reference>
+    <Reference Include="MbUnit">
+      <HintPath>..\..\..\..\Program Files\Gallio\bin\MbUnit.dll</HintPath>
+    </Reference>
+    <Reference Include="Moq">
+      <HintPath>..\..\binaries\Moq\NET40\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management.Automation" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WebDriver">
+      <HintPath>..\..\binaries\selenium-dotnet\net40\WebDriver.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\SePSXTest\Commands\Alert\InvokeSeAlertAcceptCommandTestFixture.cs">
+      <Link>Commands\Alert\InvokeSeAlertAcceptCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Commands\Alert\InvokeSeAlertDismissCommandTestFixture.cs">
+      <Link>Commands\Alert\InvokeSeAlertDismissCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Commands\Alert\Read-SeAlertTextCommandTestFixture.cs">
+      <Link>Commands\Alert\Read-SeAlertTextCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Commands\Alert\SetSeAlertKeysCommandTestFixture.cs">
+      <Link>Commands\Alert\SetSeAlertKeysCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Commands\Common\SaveSeScreenshotCommandTestFixture.cs">
+      <Link>Commands\Common\SaveSeScreenshotCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Commands\Driver\CloseSeWebDriverCurrentBrowserWindowCommandTestFixture.cs">
+      <Link>Commands\Driver\CloseSeWebDriverCurrentBrowserWindowCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Commands\Driver\GetSeWebDriverCookiesCommandTestFixture.cs">
+      <Link>Commands\Driver\GetSeWebDriverCookiesCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Commands\Driver\GetSeWebDriverWindowCommandTestFixture.cs">
+      <Link>Commands\Driver\GetSeWebDriverWindowCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Commands\Driver\ReadSeWebDriverNativeWindowHandleCommandTestFixture.cs">
+      <Link>Commands\Driver\ReadSeWebDriverNativeWindowHandleCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Commands\Driver\ReadSeWebDriverPageSourceCommandTestFixture.cs">
+      <Link>Commands\Driver\ReadSeWebDriverPageSourceCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Commands\Driver\ReadSeWebDriverTitleCommandTestFixture.cs">
+      <Link>Commands\Driver\ReadSeWebDriverTitleCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Commands\Driver\ReadSeWebDriverUrlCommandTestFixture.cs">
+      <Link>Commands\Driver\ReadSeWebDriverUrlCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Commands\Driver\SelectSeWebDriverCommandTestFixture.cs">
+      <Link>Commands\Driver\SelectSeWebDriverCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Commands\Driver\SetSeWebDriverTimeoutCommandTestFixture.cs">
+      <Link>Commands\Driver\SetSeWebDriverTimeoutCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Commands\Driver\StartSeWebDriverCommandTestFixture.cs">
+      <Link>Commands\Driver\StartSeWebDriverCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Commands\Driver\StopSeWebDriverCommandTestFixture.cs">
+      <Link>Commands\Driver\StopSeWebDriverCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Commands\Element\ClearSeWebElementCommandTestFixture.cs">
+      <Link>Commands\Element\ClearSeWebElementCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Commands\Element\GetSeWebElementCollectionCommandTestFixture.cs">
+      <Link>Commands\Element\GetSeWebElementCollectionCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Commands\Element\GetSeWebElementCommandTestFixture.cs">
+      <Link>Commands\Element\GetSeWebElementCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Commands\Element\InvokeSeWebElementClickCommandTestFixture.cs">
+      <Link>Commands\Element\InvokeSeWebElementClickCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Commands\Element\ReadSeWebElementAttributeCommandTestFixture.cs">
+      <Link>Commands\Element\ReadSeWebElementAttributeCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Commands\Element\ReadSeWebElementCssValueCommandTestFixture.cs">
+      <Link>Commands\Element\ReadSeWebElementCssValueCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Commands\Element\ReadSeWebElementDisplayedCommandTestFixture.cs">
+      <Link>Commands\Element\ReadSeWebElementDisplayedCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Commands\Element\ReadSeWebElementEnabledCommandTestFixture.cs">
+      <Link>Commands\Element\ReadSeWebElementEnabledCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Commands\Element\ReadSeWebElementLocationCommandTestFixture.cs">
+      <Link>Commands\Element\ReadSeWebElementLocationCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Commands\Element\ReadSeWebElementSelectedCommandTestFixture.cs">
+      <Link>Commands\Element\ReadSeWebElementSelectedCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Commands\Element\ReadSeWebElementSizeCommandTestFixture.cs">
+      <Link>Commands\Element\ReadSeWebElementSizeCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Commands\Element\ReadSeWebElementTagNameCommandTestFixture.cs">
+      <Link>Commands\Element\ReadSeWebElementTagNameCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Commands\Element\ReadSeWebElementTextCommandTestFixture.cs">
+      <Link>Commands\Element\ReadSeWebElementTextCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Commands\Element\SetSeWebElementKeysCommandTestFixture.cs">
+      <Link>Commands\Element\SetSeWebElementKeysCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Commands\Element\SubmitSeWebElementCommandTestFixture.cs">
+      <Link>Commands\Element\SubmitSeWebElementCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Commands\JSExecutor\InvokeSeJSExecutorCommandTestFixture.cs">
+      <Link>Commands\JSExecutor\InvokeSeJSExecutorCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Commands\Module\ResetSeTestDataCommandTestFixture.cs">
+      <Link>Commands\Module\ResetSeTestDataCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Commands\Navigation\EnterSeURLCommandTestFixture.cs">
+      <Link>Commands\Navigation\EnterSeURLCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Commands\Navigation\InvokeSeNavigateBackCommandTestFixture.cs">
+      <Link>Commands\Navigation\InvokeSeNavigateBackCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Commands\Navigation\InvokeSeNavigateForwardCommandTestFixture.cs">
+      <Link>Commands\Navigation\InvokeSeNavigateForwardCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Commands\Navigation\InvokeSePageRefreshCommandTestFixture.cs">
+      <Link>Commands\Navigation\InvokeSePageRefreshCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Commands\Navigation\SwitchSeToActiveElementCommandTestFixture.cs">
+      <Link>Commands\Navigation\SwitchSeToActiveElementCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Commands\Navigation\SwitchSeToAlertCommandTestFixture.cs">
+      <Link>Commands\Navigation\SwitchSeToAlertCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Commands\Navigation\SwitchSeToDefaultContentCommandTestFixture.cs">
+      <Link>Commands\Navigation\SwitchSeToDefaultContentCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Commands\Navigation\SwitchSeToFrameCommandTestFixture.cs">
+      <Link>Commands\Navigation\SwitchSeToFrameCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Commands\Navigation\SwitchSeToWindowCommandTestFixture.cs">
+      <Link>Commands\Navigation\SwitchSeToWindowCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Commands\PageObject\NewSePageObjectCommandTestFixture.cs">
+      <Link>Commands\PageObject\NewSePageObjectCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Commands\Relatives\GetSeWebElementAncestorsCommandTestFixture.cs">
+      <Link>Commands\Relatives\GetSeWebElementAncestorsCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Commands\Relatives\GetSeWebElementParentCommandTestFixture.cs">
+      <Link>Commands\Relatives\GetSeWebElementParentCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Commands\Rendered\InvokeSeDragAndDropCommandTestFixture.cs">
+      <Link>Commands\Rendered\InvokeSeDragAndDropCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Commands\Rendered\InvokeSeHoverCommandTestFixture.cs">
+      <Link>Commands\Rendered\InvokeSeHoverCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Commands\Select\GetSeSelectionCommandTestFixture.cs">
+      <Link>Commands\Select\GetSeSelectionCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Commands\Select\SetSeSelectionCommandTestFixture.cs">
+      <Link>Commands\Select\SetSeSelectionCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Commands\Transcript\StartSeTranscriptCommandTestFixture.cs">
+      <Link>Commands\Transcript\StartSeTranscriptCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\MiddleLevelCode.cs">
+      <Link>MiddleLevelCode.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSXTest\Settings.cs">
+      <Link>Settings.cs</Link>
+    </Compile>
+    <Compile Include="..\SePSX\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Commands\Actions" />
+    <Folder Include="Commands\JSExecutor" />
+    <Folder Include="Commands\Module" />
+    <Folder Include="Commands\Alert" />
+    <Folder Include="Commands\Common" />
+    <Folder Include="Commands\Transcript" />
+    <Folder Include="Commands\PageObject" />
+    <Folder Include="Helpers\Inheritance\" />
+    <Folder Include="Helpers\UnderlyingCode\" />
+    <Folder Include="Helpers\UserSettings\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">
+      <Project>{E4499004-DAE5-4700-B212-4CDEA3080BC5}</Project>
+      <Name>PSTestLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\PS\CmdletUnit\CmdletUnit.csproj">
+      <Project>{36F73FA0-C636-48CF-BB7A-FE10FE52C391}</Project>
+      <Name>CmdletUnit</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SePSX\SePSX.csproj">
+      <Project>{A0B50771-4889-46F4-8999-D2830DC9E486}</Project>
+      <Name>SePSX</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+</Project>

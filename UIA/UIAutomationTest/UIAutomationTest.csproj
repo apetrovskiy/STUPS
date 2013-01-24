@@ -1,0 +1,284 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectGuid>{526AD0F0-8A14-417F-816B-7FA9543561C4}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <OutputType>Library</OutputType>
+    <RootNamespace>UIAutomationTest</RootNamespace>
+    <AssemblyName>UIAutomationTest</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <NoStdLib>False</NoStdLib>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <StartAction>Program</StartAction>
+    <StartProgram>C:\Program Files\NUnit 2.5.10\bin\net-2.0\nunit-x86.exe</StartProgram>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>None</DebugType>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE</DefineConstants>
+    <StartAction>Program</StartAction>
+    <StartProgram>C:\Program Files\NUnit 2.5.10\bin\net-2.0\nunit-x86.exe</StartProgram>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release40|x86'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release40|Release35'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release40|Release40'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Gallio">
+      <HintPath>..\..\..\..\Program Files\Gallio\bin\Gallio.dll</HintPath>
+    </Reference>
+    <Reference Include="MbUnit">
+      <HintPath>..\..\..\..\Program Files\Gallio\bin\MbUnit.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\..\..\..\Program Files %28x86%29\NUnit 2.6.2\bin\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management.Automation" />
+    <Reference Include="System.Windows.Presentation">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationClient">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="UIAutomationTypes">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\UIAutomation\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Commands\Cache\StartUIACacheRequestCommandTestFixture.cs" />
+    <Compile Include="Commands\Cache\StopUIACacheRequestCommandTestFixture.cs" />
+    <Compile Include="Commands\Common\InvokeUIAControlClickCommandTestFixture.cs" />
+    <Compile Include="Commands\Common\MoveUIACursorCommandTestFixture.cs" />
+    <Compile Include="Commands\Common\ReadUIAControlAutomationIdCommandTextFixture.cs" />
+    <Compile Include="Commands\Common\ReadUIAControlClassCommandTestFixture.cs" />
+    <Compile Include="Commands\Common\ReadUIAControlNameCommandTestFixture.cs" />
+    <Compile Include="Commands\Common\SaveUIAScreenshotCommandTestFixture.cs" />
+    <Compile Include="Commands\Common\SetUIAFocusCommandTextFixture.cs" />
+    <Compile Include="Commands\Convert\ConvertFromUIADataGridCommandTestFixture.cs" />
+    <Compile Include="Commands\Convert\ConvertFromUIAListCommandTestFixture.cs" />
+    <Compile Include="Commands\Convert\ConvertFromUIATableCommandTestFixture.cs" />
+    <Compile Include="Commands\Convert\ConvertToUIAHashtableCommandTestFixture.cs" />
+    <Compile Include="Commands\Discovery\GetUIAControlFromPointCommandTestFixture.cs" />
+    <Compile Include="Commands\Discovery\GetUIACurrentPatternCommandTestFixture.cs" />
+    <Compile Include="Commands\Discovery\GetUIACurrentPatternFromPointCommandTestFixture.cs" />
+    <Compile Include="Commands\Event\RegisterUIAInvokedEventCommandTestFixture.cs" />
+    <Compile Include="Commands\Event\RegisterUIAMenuClosedEventCommandTestFixture.cs" />
+    <Compile Include="Commands\Event\RegisterUIAMenuOpenedEventCommandTestFixture.cs" />
+    <Compile Include="Commands\ExecutionPlan\HideUIAExecutionPlanCommandTestFixture.cs" />
+    <Compile Include="Commands\ExecutionPlan\ShowUIAExecutionPlanCommandTestFixture.cs" />
+    <Compile Include="Commands\Get\GetUIADesktopCommandTestFixture.cs" />
+    <Compile Include="Commands\Get\NamedCommands\GetUIACalendarCommandTestFixture.cs" />
+    <Compile Include="Commands\Get\NamedCommands\GetUIACheckBoxCommandTestFixture.cs" />
+    <Compile Include="Commands\Get\NamedCommands\GetUIAComboBoxCommandTestFixture.cs" />
+    <Compile Include="Commands\Get\NamedCommands\GetUIADocumentCommandTestFixture.cs" />
+    <Compile Include="Commands\Get\NamedCommands\GetUIAGroupBoxCommandTestFixture.cs" />
+    <Compile Include="Commands\Get\NamedCommands\GetUIALabelCommandTestFixture.cs" />
+    <Compile Include="Commands\Get\NamedCommands\GetUIAListBoxCommandTestFixture.cs" />
+    <Compile Include="Commands\Get\NamedCommands\GetUIAListViewCommandTestFixture.cs" />
+    <Compile Include="Commands\Get\NamedCommands\GetUIAMenuBarCommandTestFixture.cs" />
+    <Compile Include="Commands\Get\NamedCommands\GetUIAProgressBarCommandTestFixture.cs" />
+    <Compile Include="Commands\Get\NamedCommands\GetUIAPropertyGridCommandTestFixture.cs" />
+    <Compile Include="Commands\Get\NamedCommands\GetUIARadioButtonCommandTestFixture.cs" />
+    <Compile Include="Commands\Get\NamedCommands\GetUIAStatusBarCommandTestFixture.cs" />
+    <Compile Include="Commands\Get\NamedCommands\GetUIATextBoxCommandTestFixture.cs" />
+    <Compile Include="Commands\Get\NamedCommands\GetUIATreeViewCommandTestFixture.cs" />
+    <Compile Include="Commands\Get\Relatives\GetUIAControlRelativesTestFixture.cs" />
+    <Compile Include="Commands\Pattern\InvokeUIACollapsePatternCommandTestFixture.cs" />
+    <Compile Include="Commands\Pattern\InvokeUIAExpandPatternCommandTestFixture.cs" />
+    <Compile Include="Commands\Pattern\InvokeUIAInvokePatternCommandTestFixture.cs" />
+    <Compile Include="Commands\Pattern\InvokeUIAScrollItemPatternCommandTestFixture.cs" />
+    <Compile Include="Commands\Pattern\InvokeUIAScrollPatternCommandTestFixture.cs" />
+    <Compile Include="Commands\Pattern\InvokeUIASelectionItemPatternCommandTestFixture.cs" />
+    <Compile Include="Commands\Pattern\InvokeUIASelectionItemStateCommandTestFixture.cs" />
+    <Compile Include="Commands\Pattern\InvokeUIATogglePatternCommandTestFixture.cs" />
+    <Compile Include="Commands\Pattern\InvokeUIAToggleStateCommandTestFixture.cs" />
+    <Compile Include="Commands\Pattern\InvokeUIATransformPatternMoveCommandTestFixture.cs" />
+    <Compile Include="Commands\Pattern\InvokeUIATransformPatternResizeCommandTestFixture.cs" />
+    <Compile Include="Commands\Pattern\InvokeUIATransformPatternRotateCommandTestFixture.cs" />
+    <Compile Include="Commands\Pattern\InvokeUIAValuePatternGetCommandTestFixture.cs" />
+    <Compile Include="Commands\Pattern\InvokeUIAValuePatternSetCommandTestFixture.cs" />
+    <Compile Include="Commands\Pattern\InvokeUIAWindowPatternCommandTestFixture.cs" />
+    <Compile Include="Commands\Get\GetUIAControlCommandTestFixture.cs" />
+    <Compile Include="Commands\Get\GetUIAWindowCommandTestFixture.cs" />
+    <Compile Include="Commands\Profile\GetUIATestProfileCommandTestFixture.cs" />
+    <Compile Include="Commands\Profile\NewUIATestProfileCommandTestFixture.cs" />
+    <Compile Include="Commands\Profile\SetUIACurrentTestProfileCommandTestFixture.cs" />
+    <Compile Include="Commands\Search\SearchUIAControlCommandTestFixture.cs" />
+    <Compile Include="Commands\Search\SearchUIAWindowCommandTestFixture.cs" />
+    <Compile Include="Commands\Settings\SetUIAHighligherSettingsCommandTestFixture.cs" />
+    <Compile Include="Commands\Settings\SetUIALoggingSettingsCommandTestFixture.cs" />
+    <Compile Include="Commands\Settings\SetUIAModuleSettingsCommandTestFixture.cs" />
+    <Compile Include="Commands\Settings\SetUIAOnErrorActionSettingsCommandTestFixture.cs" />
+    <Compile Include="Commands\Settings\SetUIAOnSleepActionSettingsCommandTestFixture.cs" />
+    <Compile Include="Commands\Settings\SetUIAOnSuccessActionSettingsCommandTestFixture.cs" />
+    <Compile Include="Commands\Settings\SetUIAScreenshotSettingsCommandTestFixture.cs" />
+    <Compile Include="Commands\Settings\ShowUIACurrentDataCommandTestFixture.cs" />
+    <Compile Include="Commands\Sheridan\GetUIAshTreeItemCommandTestFixture.cs" />
+    <Compile Include="Commands\Sheridan\InvokeUIAshTreeItemClickCommandTestFixture.cs" />
+    <Compile Include="Commands\Transcript\StartUIATranscriptCommandTestFixture.cs" />
+    <Compile Include="Commands\Transcript\StopUIATranscriptCommandTestFixture.cs" />
+    <Compile Include="Commands\Wait\WaitUIAControlIsEnabledCommandTestFixture.cs" />
+    <Compile Include="Commands\Wait\WaitUIAControlIsVisibleCommandTestFixture.cs" />
+    <Compile Include="Commands\Wizard\AddUIAWizardStepCommandTestFixture.cs" />
+    <Compile Include="Commands\Wizard\NewUIAWizardCommandTestFixture.cs" />
+    <Compile Include="Enumerations.cs" />
+    <Compile Include="Helpers\CommonCmdletBaseTestFixture.cs" />
+    <Compile Include="Helpers\PreferencesTestFixture.cs" />
+    <Compile Include="Helpers\TestResultsTestFixture.cs" />
+    <Compile Include="MiddleLevelCode.cs" />
+    <Compile Include="Provider\UIAProviderTestFixture.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="StartUp.cs" />
+    <Compile Include="TestClasses.cs" />
+    <Compile Include="TestRunspace.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Commands\ExecutionPlan" />
+    <Folder Include="Commands\Sheridan" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">
+      <Project>{E4499004-DAE5-4700-B212-4CDEA3080BC5}</Project>
+      <Name>PSTestLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\PS\CmdletUnit\CmdletUnit.csproj">
+      <Project>{36F73FA0-C636-48CF-BB7A-FE10FE52C391}</Project>
+      <Name>CmdletUnit</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UIAutomationTestForms\UIAutomationTestForms.csproj">
+      <Project>{93D529FA-32F9-41AA-BCF9-6271572503CA}</Project>
+      <Name>UIAutomationTestForms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UIAutomation\UIAutomation.csproj">
+      <Project>{BF63F595-4A58-49E8-97F2-7701F51F0CD1}</Project>
+      <Name>UIAutomation</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+  <PropertyGroup>
+    <PostBuildEvent>rem D:\_test_\testproject.cmd</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release35' ">
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>None</DebugType>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE</DefineConstants>
+    <StartAction>Program</StartAction>
+    <StartProgram>C:\Program Files\NUnit 2.5.10\bin\net-2.0\nunit-x86.exe</StartProgram>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release35|x86' ">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'Release35' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|Release35' ">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|Release35' ">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release35|Release35' ">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'Release40' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|Release40' ">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|Release40' ">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release35|Release40' ">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+</Project>

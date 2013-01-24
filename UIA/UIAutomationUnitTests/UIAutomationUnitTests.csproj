@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectGuid>{4270678E-76B2-4B90-8D00-ABE4726B4589}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <OutputType>Library</OutputType>
+    <RootNamespace>UIAutomationUnitTests</RootNamespace>
+    <AssemblyName>UIAutomationUnitTests</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <OutputPath>bin\Release35\</OutputPath>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <NoStdLib>False</NoStdLib>
+    <DebugType>None</DebugType>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release35' ">
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'Release35' ">
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Gallio">
+      <HintPath>..\..\..\..\..\Program Files\Gallio\bin\Gallio.dll</HintPath>
+    </Reference>
+    <Reference Include="GurkBurk">
+      <HintPath>..\..\binaries\nbehave\35\GurkBurk.dll</HintPath>
+    </Reference>
+    <Reference Include="MbUnit">
+      <HintPath>..\..\..\..\..\Program Files\Gallio\bin\MbUnit.dll</HintPath>
+    </Reference>
+    <Reference Include="Moq">
+      <HintPath>..\..\binaries\Moq\NET35\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="NBehave.Fluent.Framework">
+      <HintPath>..\..\binaries\nbehave\35\NBehave.Fluent.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="NBehave.Gherkin">
+      <HintPath>..\..\binaries\nbehave\35\NBehave.Gherkin.dll</HintPath>
+    </Reference>
+    <Reference Include="NBehave.Narrator.Framework">
+      <HintPath>..\..\binaries\nbehave\35\NBehave.Narrator.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UIAutomation\UIAutomation.csproj">
+      <Project>{BF63F595-4A58-49E8-97F2-7701F51F0CD1}</Project>
+      <Name>UIAutomation</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Commands" />
+    <Folder Include="Commands\Cache" />
+    <Folder Include="Commands\Common" />
+    <Folder Include="Commands\Convert" />
+    <Folder Include="Commands\Discovery" />
+    <Folder Include="Commands\Event" />
+    <Folder Include="Commands\ExecutionPlan" />
+    <Folder Include="Commands\Get" />
+    <Folder Include="Commands\Hotkey" />
+    <Folder Include="Helpers" />
+    <Folder Include="Helpers\UnderlyingCode" />
+    <Folder Include="ParamChecks" />
+    <Folder Include="ParamChecks\Cache" />
+    <Folder Include="ParamChecks\Common" />
+    <Folder Include="ParamChecks\Convert" />
+    <Folder Include="ParamChecks\Discovery" />
+    <Folder Include="ParamChecks\Event" />
+    <Folder Include="ParamChecks\ExecutionPlan" />
+    <Folder Include="ParamChecks\Get" />
+    <Folder Include="ParamChecks\Hotkey" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+</Project>

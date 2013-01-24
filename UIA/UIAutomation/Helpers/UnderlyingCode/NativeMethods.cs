@@ -11,6 +11,8 @@ namespace UIAutomation
 {
     using System;
     using System.Runtime.InteropServices;
+    // http://msdn.microsoft.com/ru-ru/library/windows/desktop/aa379560(v=vs.85).aspx
+    using DWORD = System.UInt32; // Optional alias, used below.
     
     /// <summary>
     /// Description of NativeMethods.
@@ -108,19 +110,27 @@ namespace UIAutomation
         #endregion Highlighter
         
         #region remoting
-        [DllImport("advapi32.dll", CharSet=CharSet.Auto, SetLastError=true)]
-        internal static extern bool CreateProcessAsUser(
-            SafeHandle hToken,
-            string lpApplicationName,
-            string lpCommandLine,
-            SECURITY_ATTRIBUTES lpProcessAttributes,
-            SECURITY_ATTRIBUTES lpThreadAttributes,
-            bool bInheritHandles,
-            int dwCreationFlags,
-            HandleRef lpEnvironment,
-            string lpCurrentDirectory,
-            STARTUPINFO lpStartupInfo,
-            PROCESS_INFORMATION lpProcessInformation);
+//        [StructLayout(LayoutKind.Sequential)]
+//        public struct SECURITY_ATTRIBUTES
+//        {
+//            public DWORD nLength;
+//            public IntPtr lpSecurityDescriptor;
+//            public bool bInheritHandle;
+//        }
+//        
+//        [DllImport("advapi32.dll", CharSet=CharSet.Auto, SetLastError=true)]
+//        internal static extern bool CreateProcessAsUser(
+//            SafeHandle hToken,
+//            string lpApplicationName,
+//            string lpCommandLine,
+//            SECURITY_ATTRIBUTES lpProcessAttributes,
+//            SECURITY_ATTRIBUTES lpThreadAttributes,
+//            bool bInheritHandles,
+//            int dwCreationFlags,
+//            HandleRef lpEnvironment,
+//            string lpCurrentDirectory,
+//            STARTUPINFO lpStartupInfo,
+//            PROCESS_INFORMATION lpProcessInformation);
         #endregion remoting
         
         #region the click

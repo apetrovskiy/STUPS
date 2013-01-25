@@ -502,6 +502,17 @@ namespace UIAutomation
             //AutomationElementCollection resultCollection = null;
             ArrayList resultCollection = new ArrayList();
             
+            // 20130125 // ??
+            if (null == name) {
+                name = string.Empty;
+            }
+            if (null == automationId) {
+                automationId = string.Empty;
+            }
+            if (null == className) {
+                className = string.Empty;
+            }
+            
             if ((controlType != null && 
                 controlType.Length > 0 && 
                 elementOfPossibleControlType(
@@ -523,7 +534,9 @@ namespace UIAutomation
                 if (0 == name.Length && 0 == automationId.Length && 0 == className.Length) {
                     name = "*";
                 }
-                
+//Console.WriteLine("name = " + name);
+//Console.WriteLine("automationId = " + automationId);
+//Console.WriteLine("className = " + className);
                 WildcardPattern wildcardName = 
                     new WildcardPattern(name,options);
                 
@@ -533,7 +546,10 @@ namespace UIAutomation
                 WildcardPattern wildcardClass = 
                     new WildcardPattern(className,options);
                 
+                // 20130125
+                // there's a bug 20130125
                 bool matched = false;
+                
                 if (this.FromCache && CurrentData.CacheRequest != null) {
                     if (name.Length > 0 && wildcardName.IsMatch(element.Cached.Name)) {
                         matched = true;

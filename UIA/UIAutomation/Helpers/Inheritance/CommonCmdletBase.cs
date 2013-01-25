@@ -1251,7 +1251,9 @@ namespace UIAutomation
         {
             System.Collections.Generic.List<AndCondition >  conditions = 
                 new System.Collections.Generic.List<AndCondition > ();
-            if (cmdlet.ControlType != null && cmdlet.ControlType.Length > 0) {
+            // 20130125
+            //if (cmdlet.ControlType != null && cmdlet.ControlType.Length > 0) {
+            if (null != cmdlet.ControlType && 0 < cmdlet.ControlType.Length) {
                 for (int i = 0; i < cmdlet.ControlType.Length; i++) {
                     WriteVerbose(this, "control type: " + cmdlet.ControlType[i]);
                     conditions.Add(getControlConditions(((GetControlCmdletBase)cmdlet), cmdlet.ControlType[i]));

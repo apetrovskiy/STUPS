@@ -58,30 +58,6 @@ namespace UIAutomation.Commands
             
             if (null == returnCollection || 0 == returnCollection.Count) {
                 
-                // 20120927
-//                ErrorRecord err = 
-//                    new ErrorRecord(
-//                        new Exception(),
-//                        "ControlIsNull",
-//                        ErrorCategory.OperationTimeout,
-//                        aeCtrl);
-//                
-//                err.ErrorDetails =
-//                    new ErrorDetails(
-//                        CmdletSignature(this) + "timeout expired for class: ' + " +
-//                        this.Class + 
-//                        ", control type: " + 
-//                        this.ControlType + 
-//                        ", title: " +
-//                        this.Name);
-//                        // cmdlet.Title);
-//
-//                // 20120921
-//                //UIAHelper.GetDesktopScreenshot(this, "Get-UIAControl_ControlEqNull", true, 0, 0, 0, 0, Preferences.ScreenShotFolder); //string.Empty);
-//                UIAHelper.GetScreenshotOfAutomationElement(this, "Get-UIAControl_ControlEqNull", true, 0, 0, 0, 0, string.Empty, System.Drawing.Imaging.ImageFormat.Jpeg);
-//
-//                this.WriteError(this, err, true);
-                
                 this.WriteError(
                     this,
                     CmdletSignature(this) + "timeout expired for class: ' + " +
@@ -108,57 +84,14 @@ namespace UIAutomation.Commands
                 // 20120917
                 this.WriteObject(this, returnCollection);
                 
-#region commented
-                // 20120828
-//                ArrayList filteredElements = 
-//                    new ArrayList();
-//                if (null != this.SearchCriteria && this.SearchCriteria.Length > 0) {
-//                    filteredElements = 
-//                        getFiltredElementsCollection(this, returnCollection);
-//                    this.WriteObject(this, filteredElements);
-//                } else {
-//                    this.WriteObject(this, returnCollection);
-//                }
-#endregion commented
             } else {
                 // 20120830
                 //WriteObject(this, (object)null);
                 
             }
         }
-        
-#region commented
-//        protected override void EndProcessing()
-//        {
-//            aeCtrl = null;
-//            //_window = null;
-//            rootElement = null;
-//        }
-        
-//        protected override void StopProcessing()
-//        {
-//            // 20120620
-//            WriteVerbose(this, "User interrupted");
-//            this.Wait = false;
-//        }
-#endregion commented
     }
     
-#region commented
-//    /// <summary>
-//    /// Description of GetUIAButton.
-//    /// </summary>
-//    //[Cmdlet(VerbsCommon.Get, "UIAControlFilter")]
-//    [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
-//    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-//    public class GetUIAControlFilterCommand : GetUIAControlCommand
-//    { public GetUIAControlFilterCommand() {} // ControlType = "Button"; }
-////        [Parameter(Mandatory = false,
-////                   ParameterSetName = "UIAuto")]
-////        internal string ControlType { get; set; }
-//    }
-#endregion commented
-
     /// <summary>
     /// Description of GetUIAButton.
     /// </summary>

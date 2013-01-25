@@ -1590,8 +1590,10 @@ namespace UIAutomation
                                     // 20120917
                                     if (null == cmdlet.SearchCriteria || 0 == cmdlet.SearchCriteria.Length) {
 
+                                        // // 20130125
                                         aeCtrl.Add(tempElement2);
 
+                                        // // 20130125
                                         cmdlet.WriteVerbose(cmdlet, "WildCardSearch: element added to the result collection (no SearchCriteria)");
 
                                     } else {
@@ -1662,8 +1664,10 @@ namespace UIAutomation
 #region Win32 search
                         if (0 == aeCtrl.Count) { // && cmdlet.Name.Length > 0) { // 20120918
                             
+                            // // 20130125
                             if (!Preferences.DisableWin32Search || cmdlet.Win32) {
-                              
+                            //if ((!Preferences.DisableWin32Search || cmdlet.Win32) && null == cmdlet.Class && null == cmdlet.AutomationId) {
+                            //if (!Preferences.DisableWin32Search && cmdlet.Win32) {
                                 
                                 // using API
                                 this.WriteVerbose(cmdlet, "[getting the control] using FindWindowEx");

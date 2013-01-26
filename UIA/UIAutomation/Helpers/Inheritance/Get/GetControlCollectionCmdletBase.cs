@@ -117,6 +117,8 @@ namespace UIAutomation
         //internal AutomationElementCollection GetAutomationElementsViaWildcards_FindAll(
         internal ArrayList GetAutomationElementsViaWildcards_FindAll(
             GetControlCollectionCmdletBase cmdlet,
+            // 20130126
+            AutomationElement inputObject,
             AndCondition conditions,
             bool caseSensitive,
             bool onlyOneResult,
@@ -128,7 +130,8 @@ namespace UIAutomation
             ArrayList resultCollection = new ArrayList();
             
             // 20120824
-            foreach (AutomationElement inputObject in this.InputObject) {
+            // 20130126
+            //foreach (AutomationElement inputObject in this.InputObject) {
             
             resultCollection =
                 getAutomationElementsWithFindAll(
@@ -172,7 +175,8 @@ namespace UIAutomation
 
             }
             
-            } // 20120824
+            // 20130126
+            //} // 20120824
             
             // 20120824
             //return result;

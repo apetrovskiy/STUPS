@@ -1579,7 +1579,9 @@ namespace UIAutomation
                                 
                                 ArrayList tempList =
                                     cmdlet1.GetAutomationElementsViaWildcards_FindAll(
-                                        cmdlet1, 
+                                        cmdlet1,
+                                        // 20130126
+                                        inputObject,
                                         conditionsForWildCards,
                                         cmdlet1.CaseSensitive,
                                         // 20120824

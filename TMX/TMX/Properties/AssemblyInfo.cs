@@ -27,6 +27,8 @@ using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("TLAddinUnitTests")]
 [assembly: InternalsVisibleTo("TFAddinUnitTests")]
 [assembly: InternalsVisibleTo("BDDAddinUnitTests")]
+[assembly: InternalsVisibleTo("BZAddinUnitTests")]
+[assembly: InternalsVisibleTo("RMAddinUnitTests")]
 
 // 20130111
 //[assembly: InternalsVisibleTo("testninject")]

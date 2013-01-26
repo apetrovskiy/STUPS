@@ -622,11 +622,21 @@ namespace UIAutomation
             return resultCollection;
         }
         
-        private bool elementOfPossibleControlType(
+        // 20130126
+        //private bool elementOfPossibleControlType(
+        internal bool elementOfPossibleControlType(
             string[] controlType, 
             string elementControlType)
         {
             bool result = false;
+            
+            // 20130126
+            if (null == controlType || 0 == controlType.Length) {
+                return result;
+            }
+            if (null == elementControlType || string.Empty == elementControlType) {
+                return result;
+            }
 
             // if all the item are empty strings
             string tempString = string.Empty;

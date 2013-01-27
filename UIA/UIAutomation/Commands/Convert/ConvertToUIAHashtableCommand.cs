@@ -261,12 +261,13 @@ namespace UIAutomation.Commands
             if (this.Full) {
                 AutomationPattern[] supportedPatterns =
                     currentInputObject.GetSupportedPatterns();
-                
-                foreach (AutomationPattern pattern in supportedPatterns) {
-                    result += ";";
-                    result +=
-                        pattern.ProgrammaticName.Substring(0, pattern.ProgrammaticName.Length - 19);
-                    result += "=$true";
+                if (null != supportedPatterns && 0 < supportedPatterns.Length) {
+                    foreach (AutomationPattern pattern in supportedPatterns) {
+                        result += ";Has";
+                        result +=
+                            pattern.ProgrammaticName.Substring(0, pattern.ProgrammaticName.Length - 19);
+                        result += "=$true";
+                    }
                 }
             }
             return result;

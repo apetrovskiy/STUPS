@@ -1298,6 +1298,9 @@ namespace UIAutomation
             }
             System.Windows.Automation.PropertyCondition ctrlTypeCondition = null,
                 classCondition = null, titleCondition = null, autoIdCondition = null;
+            // 20130127
+            System.Windows.Automation.PropertyCondition valueCondition = null;
+            
             //WriteVerbose(cmdlet, "ctrlType = " + ctrlType.ProgrammaticName);
             int conditionsCounter = 0;
             if (ctrlType != null) {
@@ -1355,6 +1358,21 @@ namespace UIAutomation
                              cmdlet.Name + "' is used");
                 conditionsCounter++;
             }
+            // 20130127
+            if (cmdlet.Value != null && cmdlet.Value != "")
+            {
+                valueCondition =
+                    new System.Windows.Automation.PropertyCondition(
+                                System.Windows.Automation.ValuePattern.ValueProperty,
+                                cmdlet.Value,
+                                // 20130121
+                                //PropertyConditionFlags.IgnoreCase);
+                                // 20130127
+                                flags);
+                WriteVerbose(cmdlet, "ValueProperty '" + 
+                             cmdlet.Value + "' is used");
+                conditionsCounter++;
+            }
 
             if (conditionsCounter > 1)
             {
@@ -1364,6 +1382,8 @@ namespace UIAutomation
                     if (ctrlTypeCondition != null)l.Add(ctrlTypeCondition);
                     if (titleCondition != null)l.Add(titleCondition);
                     if (autoIdCondition != null)l.Add(autoIdCondition);
+                    // 20130127
+                    if (null != valueCondition)l.Add(valueCondition);
                     System.Type t = typeof(System.Windows.Automation.Condition);
                     System.Windows.Automation.Condition[] conds = 
                         ((System.Windows.Automation.Condition[])l.ToArray(t));
@@ -1373,7 +1393,9 @@ namespace UIAutomation
                              "ClassName = '" + classCondition.Value + "', " + 
                              "ControlType = '" + ctrlTypeCondition.Value + "', " + 
                              "Name = '" + titleCondition.Value + "', " + 
-                             "AutomationId = '" + autoIdCondition.Value + "'");
+                             "AutomationId = '" + autoIdCondition.Value + "', " +  //"'");
+                             // 20130127
+                             "Value = '" + valueCondition.Value + "'");
                 } catch (Exception eConditions) {
                     WriteDebug(cmdlet, "conditions related exception " +
                                 eConditions.Message);
@@ -1384,6 +1406,8 @@ namespace UIAutomation
                 else if (ctrlTypeCondition != null) { condition = ctrlTypeCondition; }
                 else if (titleCondition != null) { condition = titleCondition; }
                 else if (autoIdCondition != null) { condition = autoIdCondition; }
+                // 20130127
+                else if (null != valueCondition) { condition = valueCondition; }
                 WriteVerbose(cmdlet, "condition " + 
                              condition.GetType().Name + " '" + 
                              condition.Value + "' is used");

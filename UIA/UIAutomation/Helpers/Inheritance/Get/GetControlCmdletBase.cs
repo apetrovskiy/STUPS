@@ -80,6 +80,10 @@ namespace UIAutomation
         public string AutomationId { get; set; }
         
         [Parameter(Mandatory = false,
+                   ParameterSetName = "UIAuto")]
+        public string Value { get; set; }
+        
+        [Parameter(Mandatory = false,
                    ParameterSetName = "Win32")]
         public SwitchParameter Win32 { get; set; }
         

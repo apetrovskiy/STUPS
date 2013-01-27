@@ -52,7 +52,9 @@ namespace UIAutomationUnitTests
                 new UIAutomation.CommonCmdletBase();
             
             this.ResultCondition =
-                common.getControlConditions(cmdlet, controlType);
+                // 20130127
+                //common.getControlConditions(cmdlet, controlType);
+                common.getControlConditions(cmdlet, controlType, cmdlet.CaseSensitive);
         }
         
         [Test]

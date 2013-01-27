@@ -20,8 +20,8 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         {
         }
         
-        public static string RunspaceCommand = 
-                        @"Import-Module '.\UIAutomation.dll' -Force;";
+        public static string RunspaceCommand =
+            @"Import-Module '.\UIAutomation.dll' -Force;";
 
 		
     }

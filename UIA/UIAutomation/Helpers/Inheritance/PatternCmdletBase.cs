@@ -271,6 +271,19 @@ namespace UIAutomation
             try {
                 WindowPattern windowPattern = _control.GetCurrentPattern(WindowPattern.Pattern) as WindowPattern;
                 if (windowPattern != null) {
+
+                    // Close windowPattern.Close
+                    // get windowPattern.Current.CanMaximize
+                    // get windowPattern.Current.CanMinimize
+                    // get windowPattern.Current.IsModal
+                    // get windowPattern.Current.IsTopmost
+                    // get windowPattern.Current.WindowInteractionState
+                    // get windowPattern.Current.WindowVisualState
+                    // set windowPattern.SetWindowVisualState(WindowVisualState.Maximized
+                    // set windowPattern.SetWindowVisualState(WindowVisualState.Mini
+                    // set windowPattern.SetWindowVisualState(WindowVisualState.Normal
+                    // invoke windowPattern.WaitForInputIdle(int ms)
+                    
                     windowPattern.SetWindowVisualState(WindowVisualState.Minimized);
                     System.Threading.Thread.Sleep(1000);
                     windowPattern.SetWindowVisualState(WindowVisualState.Normal);

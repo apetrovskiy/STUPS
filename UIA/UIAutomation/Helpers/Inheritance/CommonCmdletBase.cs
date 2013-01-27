@@ -1256,22 +1256,33 @@ namespace UIAutomation
             if (null != cmdlet.ControlType && 0 < cmdlet.ControlType.Length) {
                 for (int i = 0; i < cmdlet.ControlType.Length; i++) {
                     WriteVerbose(this, "control type: " + cmdlet.ControlType[i]);
-                    conditions.Add(getControlConditions(((GetControlCmdletBase)cmdlet), cmdlet.ControlType[i]));
+                    // 20130127
+                    //conditions.Add(getControlConditions(((GetControlCmdletBase)cmdlet), cmdlet.ControlType[i]));
+                    conditions.Add(getControlConditions(((GetControlCmdletBase)cmdlet), cmdlet.ControlType[i], cmdlet.CaseSensitive));
                 }
             } else{
                 WriteVerbose(this, "without control type");
-                conditions.Add(getControlConditions(((GetControlCmdletBase)cmdlet), ""));
+                // 20130127
+                //conditions.Add(getControlConditions(((GetControlCmdletBase)cmdlet), ""));
+                conditions.Add(getControlConditions(((GetControlCmdletBase)cmdlet), "", cmdlet.CaseSensitive));
             }
             return conditions.ToArray();
         }
         
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "get")]
         //public AndCondition getControlConditions(GetControlCmdletBase cmdlet, string controlType)
-        public AndCondition getControlConditions(HasControlInputCmdletBase cmdlet1, string controlType)
+        // 20130127
+        //public AndCondition getControlConditions(HasControlInputCmdletBase cmdlet1, string controlType)
+        public AndCondition getControlConditions(HasControlInputCmdletBase cmdlet1, string controlType, bool caseSensitive)
         {
             System.Windows.Automation.ControlType ctrlType = null;
             System.Windows.Automation.AndCondition conditions = null;
             System.Windows.Automation.PropertyCondition condition = null;
+            // 20130127
+            PropertyConditionFlags flags = PropertyConditionFlags.None;
+            if (!caseSensitive) {
+                flags = PropertyConditionFlags.IgnoreCase;
+            }
             
             GetControlCmdletBase cmdlet = 
                 (GetControlCmdletBase)cmdlet1;
@@ -1293,7 +1304,9 @@ namespace UIAutomation
                 ctrlTypeCondition =
                     new System.Windows.Automation.PropertyCondition(
                                 System.Windows.Automation.AutomationElement.ControlTypeProperty,
-                                ctrlType);
+                                ctrlType); //,
+                                // // 20130127
+                                // flags);
                 WriteVerbose(cmdlet, "ControlTypeProperty '" +
                              ctrlType.ProgrammaticName + "' is used");
                 conditionsCounter++;
@@ -1307,7 +1320,9 @@ namespace UIAutomation
                                 System.Windows.Automation.AutomationElement.ClassNameProperty,
                                 cmdlet.Class,
                                 // 20130121
-                                PropertyConditionFlags.IgnoreCase);
+                                //PropertyConditionFlags.IgnoreCase);
+                                // 20130127
+                                flags);
                 WriteVerbose(cmdlet, "ClassNameProperty '" + 
                              cmdlet.Class + "' is used");
                 conditionsCounter++;
@@ -1319,7 +1334,9 @@ namespace UIAutomation
                                 System.Windows.Automation.AutomationElement.AutomationIdProperty,
                                 cmdlet.AutomationId,
                                 // 20130121
-                                PropertyConditionFlags.IgnoreCase);
+                                //PropertyConditionFlags.IgnoreCase);
+                                // 20130127
+                                flags);
                 WriteVerbose(cmdlet, "AutomationIdProperty '" + 
                              cmdlet.AutomationId + "' is used");
                 conditionsCounter++;
@@ -1331,7 +1348,9 @@ namespace UIAutomation
                                 System.Windows.Automation.AutomationElement.NameProperty,
                                 cmdlet.Name,
                                 // 20130121
-                                PropertyConditionFlags.IgnoreCase);
+                                //PropertyConditionFlags.IgnoreCase);
+                                // 20130127
+                                flags);
                 WriteVerbose(cmdlet, "NameProperty '" + 
                              cmdlet.Name + "' is used");
                 conditionsCounter++;
@@ -1435,7 +1454,9 @@ namespace UIAutomation
                 aeCtrl = new ArrayList();
                 System.Windows.Automation.AndCondition conditions = null;
                 
-                conditions = this.getControlConditions(cmdlet, cmdlet.ControlType);
+                // 20130127
+                //conditions = this.getControlConditions(cmdlet, cmdlet.ControlType);
+                conditions = this.getControlConditions(cmdlet, cmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive);
                 
                 // display conditions for a regular search
                 this.WriteVerbose(cmdlet, "these conditions are used for an exact search:");
@@ -1454,7 +1475,9 @@ namespace UIAutomation
                 tempCmdlet.ControlType = cmdlet.ControlType;
                 System.Windows.Automation.AndCondition conditionsForWildCards = 
                 //conditionsForWildCards =
-                    this.getControlConditions(tempCmdlet, tempCmdlet.ControlType);
+                    // 20130127
+                    //this.getControlConditions(tempCmdlet, tempCmdlet.ControlType);
+                    this.getControlConditions(tempCmdlet, tempCmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive);
                 
                 // display conditions for a wildcarded search
                 this.WriteVerbose(cmdlet, "these conditions are used for a wildcard search:");

@@ -76,8 +76,9 @@ namespace UIAutomation
         [Parameter(Mandatory = false)]
         internal new SwitchParameter PassThru { get; set; }
         
-        [Parameter(Mandatory = false)]
-        public SwitchParameter CaseSensitive { get; set; }
+        // 20130127
+//        [Parameter(Mandatory = false)]
+//        public SwitchParameter CaseSensitive { get; set; }
         #endregion Parameters
 
         

@@ -43,6 +43,8 @@ namespace UIAutomation.Commands
 
             System.Collections.Hashtable hashtable = 
                 new System.Collections.Hashtable();
+            
+#region commented
 //            hashtable.Add("Name", this.InputObject.Current.Name);
 //            hashtable.Add("AutomationId", this.InputObject.Current.AutomationId);
 //            hashtable.Add("ControlType", this.InputObject.Current.ControlType.ProgrammaticName);
@@ -67,7 +69,8 @@ namespace UIAutomation.Commands
 //            hashtable.Add("NativeWindowHandle", this.InputObject.Current.NativeWindowHandle.ToString());
 //            hashtable.Add("Orientation", this.InputObject.Current.Orientation.ToString());
 //            hashtable.Add("ProcessId", this.InputObject.Current.ProcessId.ToString());
-            
+#endregion commented
+
             // 20120823
             hashtable.Add("Name", inputObject.Current.Name);
             hashtable.Add("AutomationId", inputObject.Current.AutomationId);
@@ -125,7 +128,7 @@ namespace UIAutomation.Commands
             this.Include = (string[])defaultIncludeList.ToArray(typeof(string));
             this.Full = false;
             
-            
+#region commented
 //            result += "Name=" + this.propertyToString(this.InputObject.Current.Name);
 //            result += ";AutomationId=" + this.propertyToString(this.InputObject.Current.AutomationId);
 //            result += ";ControlType=" + this.propertyToString(this.InputObject.Current.ControlType.ProgrammaticName.Substring(12));
@@ -150,7 +153,8 @@ namespace UIAutomation.Commands
 //            result += ";NativeWindowHandle=" + this.propertyToString(this.InputObject.Current.NativeWindowHandle.ToString());
 //            result += ";Orientation=" + this.propertyToString(this.InputObject.Current.Orientation.ToString());
 //            result += ";ProcessId=" + this.propertyToString(this.InputObject.Current.ProcessId.ToString());
-            
+#endregion commented
+
         }
         
         #region Parameters
@@ -188,6 +192,8 @@ namespace UIAutomation.Commands
             }
 
             string result = "@{";
+            
+#region commented
 //            result += "Name=" + this.propertyToString(this.InputObject.Current.Name);
 //            result += ";AutomationId=" + this.propertyToString(this.InputObject.Current.AutomationId);
 //            result += ";ControlType=" + this.propertyToString(this.InputObject.Current.ControlType.ProgrammaticName.Substring(12));
@@ -212,6 +218,7 @@ namespace UIAutomation.Commands
 //            result += ";NativeWindowHandle=" + this.propertyToString(this.InputObject.Current.NativeWindowHandle.ToString());
 //            result += ";Orientation=" + this.propertyToString(this.InputObject.Current.Orientation.ToString());
 //            result += ";ProcessId=" + this.propertyToString(this.InputObject.Current.ProcessId.ToString());
+#endregion commented
 
             result += getPropertyCompleteString(result, "Name");
             result += getPropertyCompleteString(result, "AutomationId");
@@ -237,13 +244,32 @@ namespace UIAutomation.Commands
             result += getPropertyCompleteString(result, "NativeWindowHandle");
             result += getPropertyCompleteString(result, "Orientation");
             result += getPropertyCompleteString(result, "ProcessId");
-
+            // 20130127
+            result += getPatternStrings();
 
             result += "}";
             WriteObject(this, result);
             
             } // 20120823
             
+        }
+        
+        private string getPatternStrings()
+        {
+            string result = string.Empty;
+            
+            if (this.Full) {
+                AutomationPattern[] supportedPatterns =
+                    currentInputObject.GetSupportedPatterns();
+                
+                foreach (AutomationPattern pattern in supportedPatterns) {
+                    result += ";";
+                    result +=
+                        pattern.ProgrammaticName.Substring(0, pattern.ProgrammaticName.Length - 19);
+                    result += "=$true";
+                }
+            }
+            return result;
         }
         
         private string propertyToString(object property)
@@ -280,6 +306,8 @@ namespace UIAutomation.Commands
                  !IsExcluded(propertyName))) {
                 result = propertyName;
                 result += "=";
+                
+#region commented
 //                switch (propertyName) {
 //                    case "Name":
 //                        result += this.propertyToString(this.InputObject.Current.Name);
@@ -354,6 +382,7 @@ namespace UIAutomation.Commands
 //                        result += this.propertyToString(this.InputObject.Current.ProcessId.ToString());
 //                        break;
 //                }
+#endregion commented
 
                 switch (propertyName) {
                     case "Name":

@@ -90,6 +90,10 @@ namespace UIAutomation
         //[Parameter(Mandatory = false,
         //           ParameterSetName = "First")]
         //public SwitchParameter First { get; set; }
+        
+        // 20130127
+        [Parameter(Mandatory = false)]
+        public SwitchParameter CaseSensitive { get; set; }
         #endregion Parameters
 
     }

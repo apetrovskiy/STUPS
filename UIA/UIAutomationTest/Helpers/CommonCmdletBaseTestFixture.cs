@@ -13,6 +13,7 @@ namespace UIAutomationTest.Commands.Select
     using System.Diagnostics;
     using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
     using System.Windows.Automation;
+    using UIAutomation;
     
     /// <summary>
     /// Description of CommonCmdletBase.
@@ -37,8 +38,10 @@ namespace UIAutomationTest.Commands.Select
                 new UIAutomation.Commands.GetUIAControlCommand();
             cmdletBase = 
                 new UIAutomation.CommonCmdletBase();
-            AndCondition condition =  
-                cmdlet.getControlConditions(cmdlet, controlType);
+            AndCondition condition =
+                // 20130127
+                //cmdlet.getControlConditions(cmdlet, controlType);
+                cmdlet.getControlConditions(cmdlet, controlType, ((GetControlCmdletBase)cmdlet).CaseSensitive);
             conditions = condition.GetConditions();
             foreach (Condition cond in conditions) {
                 if ((cond as PropertyCondition) != null) {

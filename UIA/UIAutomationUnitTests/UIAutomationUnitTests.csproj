@@ -99,11 +99,18 @@
     <Compile Include="Helpers\UnderlyingCode\elementOfPossibleControlTypeTestFixture.cs" />
     <Compile Include="Helpers\UnderlyingCode\getControlConditionsTestFixture.cs" />
     <Compile Include="Helpers\UnitTestingHelper.cs" />
+    <Compile Include="ParamChecks\Get\GetUIAControlCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\MiddleLevelCode.cs" />
+    <Compile Include="ParamChecks\Settings.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">
       <Project>{E4499004-DAE5-4700-B212-4CDEA3080BC5}</Project>
       <Name>PSTestLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\PS\CmdletUnit\CmdletUnit.csproj">
+      <Project>{36F73FA0-C636-48CF-BB7A-FE10FE52C391}</Project>
+      <Name>CmdletUnit</Name>
     </ProjectReference>
     <ProjectReference Include="..\UIAutomation\UIAutomation.csproj">
       <Project>{BF63F595-4A58-49E8-97F2-7701F51F0CD1}</Project>
@@ -131,6 +138,13 @@
     <Folder Include="ParamChecks\ExecutionPlan" />
     <Folder Include="ParamChecks\Get" />
     <Folder Include="ParamChecks\Hotkey" />
+    <Folder Include="ParamChecks\Wizard" />
+    <Folder Include="ParamChecks\Wait" />
+    <Folder Include="ParamChecks\UltraGrid" />
+    <Folder Include="ParamChecks\Transcript" />
+    <Folder Include="ParamChecks\Search" />
+    <Folder Include="ParamChecks\Profile" />
+    <Folder Include="ParamChecks\Pattern" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>

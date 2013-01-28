@@ -1258,13 +1258,19 @@ namespace UIAutomation
                     WriteVerbose(this, "control type: " + cmdlet.ControlType[i]);
                     // 20130127
                     //conditions.Add(getControlConditions(((GetControlCmdletBase)cmdlet), cmdlet.ControlType[i]));
-                    conditions.Add(getControlConditions(((GetControlCmdletBase)cmdlet), cmdlet.ControlType[i], cmdlet.CaseSensitive));
+                    // 20130128
+                    //conditions.Add(getControlConditions(((GetControlCmdletBase)cmdlet), cmdlet.ControlType[i], cmdlet.CaseSensitive));
+                    //conditions.Add(getControlConditions(((GetControlCmdletBase)cmdlet), cmdlet.ControlType[i], cmdlet.CaseSensitive, true));
+                    conditions.Add(getControlConditions(((GetControlCmdletBase)cmdlet), cmdlet.ControlType[i], cmdlet.CaseSensitive, true) as AndCondition);
                 }
             } else{
                 WriteVerbose(this, "without control type");
                 // 20130127
                 //conditions.Add(getControlConditions(((GetControlCmdletBase)cmdlet), ""));
-                conditions.Add(getControlConditions(((GetControlCmdletBase)cmdlet), "", cmdlet.CaseSensitive));
+                // 20130128
+                //conditions.Add(getControlConditions(((GetControlCmdletBase)cmdlet), "", cmdlet.CaseSensitive));
+                //conditions.Add(getControlConditions(((GetControlCmdletBase)cmdlet), "", cmdlet.CaseSensitive, true));
+                conditions.Add(getControlConditions(((GetControlCmdletBase)cmdlet), "", cmdlet.CaseSensitive, true) as AndCondition);
             }
             return conditions.ToArray();
         }
@@ -1273,11 +1279,19 @@ namespace UIAutomation
         //public AndCondition getControlConditions(GetControlCmdletBase cmdlet, string controlType)
         // 20130127
         //public AndCondition getControlConditions(HasControlInputCmdletBase cmdlet1, string controlType)
-        public AndCondition getControlConditions(HasControlInputCmdletBase cmdlet1, string controlType, bool caseSensitive)
+        // 20130128
+        //public AndCondition getControlConditions(HasControlInputCmdletBase cmdlet1, string controlType, bool caseSensitive, bool AndVsOr)
+        public object getControlConditions(HasControlInputCmdletBase cmdlet1, string controlType, bool caseSensitive, bool AndVsOr)
         {
             System.Windows.Automation.ControlType ctrlType = null;
-            System.Windows.Automation.AndCondition conditions = null;
+            System.Windows.Automation.AndCondition andConditions = null;
+            // 20130128
+            System.Windows.Automation.OrCondition orConditions = null;
             System.Windows.Automation.PropertyCondition condition = null;
+            // 20130128
+            System.Windows.Automation.AndCondition allConditions = null;
+            // 20130128
+            object conditionsToReturn = null;
             // 20130127
             PropertyConditionFlags flags = PropertyConditionFlags.None;
             if (!caseSensitive) {
@@ -1289,6 +1303,7 @@ namespace UIAutomation
             
             //if (cmdlet.ControlType != null && cmdlet.ControlType.Length > 0) {
             if (controlType != null && controlType.Length > 0) {
+
                 WriteVerbose(this, 
                              "getting control with control type = " + 
                              controlType);
@@ -1304,6 +1319,7 @@ namespace UIAutomation
             //WriteVerbose(cmdlet, "ctrlType = " + ctrlType.ProgrammaticName);
             int conditionsCounter = 0;
             if (ctrlType != null) {
+
                 ctrlTypeCondition =
                     new System.Windows.Automation.PropertyCondition(
                                 System.Windows.Automation.AutomationElement.ControlTypeProperty,
@@ -1312,12 +1328,14 @@ namespace UIAutomation
                                 // flags);
                 WriteVerbose(cmdlet, "ControlTypeProperty '" +
                              ctrlType.ProgrammaticName + "' is used");
-                conditionsCounter++;
+                // 20130128
+                //conditionsCounter++;
             }
             // 20120828
             if (cmdlet.Class != null && cmdlet.Class != "")
             //if (null != cmdlet.Class && cmdlet.Class.Length > 0) {
             {
+
                 classCondition =
                     new System.Windows.Automation.PropertyCondition(
                                 System.Windows.Automation.AutomationElement.ClassNameProperty,
@@ -1332,6 +1350,7 @@ namespace UIAutomation
             }
             if (cmdlet.AutomationId != null && cmdlet.AutomationId != "")
             {
+
                 autoIdCondition =
                     new System.Windows.Automation.PropertyCondition(
                                 System.Windows.Automation.AutomationElement.AutomationIdProperty,
@@ -1346,6 +1365,7 @@ namespace UIAutomation
             }
             if (cmdlet.Name != null && cmdlet.Name != "") // allow empty name
             {
+
                 titleCondition =
                     new System.Windows.Automation.PropertyCondition(
                                 System.Windows.Automation.AutomationElement.NameProperty,
@@ -1361,6 +1381,7 @@ namespace UIAutomation
             // 20130127
             if (cmdlet.Value != null && cmdlet.Value != "")
             {
+
                 valueCondition =
                     new System.Windows.Automation.PropertyCondition(
                                 System.Windows.Automation.ValuePattern.ValueProperty,
@@ -1374,12 +1395,17 @@ namespace UIAutomation
                 conditionsCounter++;
             }
 
-            if (conditionsCounter > 1)
+            // 20130128
+            //if (conditionsCounter > 1)
+            // if there is more than one condition excepting ctrlTypeCondition
+            if (1 < conditionsCounter)
             {
+
                 try {
                     System.Collections.ArrayList l = new System.Collections.ArrayList();
                     if (classCondition != null)l.Add(classCondition);
-                    if (ctrlTypeCondition != null)l.Add(ctrlTypeCondition);
+                    // 20130128
+                    //if (ctrlTypeCondition != null)l.Add(ctrlTypeCondition);
                     if (titleCondition != null)l.Add(titleCondition);
                     if (autoIdCondition != null)l.Add(autoIdCondition);
                     // 20130127
@@ -1387,8 +1413,40 @@ namespace UIAutomation
                     System.Type t = typeof(System.Windows.Automation.Condition);
                     System.Windows.Automation.Condition[] conds = 
                         ((System.Windows.Automation.Condition[])l.ToArray(t));
-                conditions =
-                    new System.Windows.Automation.AndCondition(conds);
+                    // 20130128
+                    if (AndVsOr) {
+
+                        andConditions =
+                            new System.Windows.Automation.AndCondition(conds);
+                    } else {
+
+                        orConditions =
+                            new System.Windows.Automation.OrCondition(conds);
+                    }
+                    // 20130128
+                    if (null != ctrlTypeCondition) {
+
+                        if (null != andConditions) {
+
+                            allConditions =
+                                new System.Windows.Automation.AndCondition(
+                                    ctrlTypeCondition,
+                                    andConditions);
+
+                        }
+                        if (null != orConditions) {
+
+                            allConditions =
+                                new System.Windows.Automation.AndCondition(
+                                    ctrlTypeCondition,
+                                    orConditions);
+
+                        }
+                    }
+                // 20130128
+                //conditions =
+                //    new System.Windows.Automation.AndCondition(conds);
+
                 WriteVerbose(cmdlet, "used conditions " + 
                              "ClassName = '" + classCondition.Value + "', " + 
                              "ControlType = '" + ctrlTypeCondition.Value + "', " + 
@@ -1396,12 +1454,29 @@ namespace UIAutomation
                              "AutomationId = '" + autoIdCondition.Value + "', " +  //"'");
                              // 20130127
                              "Value = '" + valueCondition.Value + "'");
+
                 } catch (Exception eConditions) {
                     WriteDebug(cmdlet, "conditions related exception " +
                                 eConditions.Message);
                 }
-            } else if (conditionsCounter == 1)
+            // 20130128
+            //} else if (conditionsCounter == 1)
+            //} else if ((1 == conditionsCounter) || (0 == conditionsCounter && null != ctrlTypeCondition))
+            // 20130128
+            } else if (1 == conditionsCounter && null != ctrlTypeCondition)
             {
+
+                if (classCondition != null) { allConditions = new AndCondition(classCondition, ctrlTypeCondition); }
+                else if (titleCondition != null) { allConditions = new AndCondition(titleCondition, ctrlTypeCondition); }
+                else if (autoIdCondition != null) { allConditions = new AndCondition(autoIdCondition, ctrlTypeCondition); }
+                else if (null != valueCondition) { allConditions = new AndCondition(valueCondition, ctrlTypeCondition); }
+                WriteVerbose(cmdlet, "conditions: ctrlTypeCondition + a condition");
+                
+            // 20130128
+            } else if ((0 == conditionsCounter && null != ctrlTypeCondition) ||
+                       (1 == conditionsCounter && null == ctrlTypeCondition))
+            {
+
                 if (classCondition != null) { condition = classCondition; }
                 else if (ctrlTypeCondition != null) { condition = ctrlTypeCondition; }
                 else if (titleCondition != null) { condition = titleCondition; }
@@ -1412,8 +1487,11 @@ namespace UIAutomation
                              condition.GetType().Name + " '" + 
                              condition.Value + "' is used");
             }
-            else if (conditionsCounter == 0)
+            // 20130128
+            //else if (conditionsCounter == 0)
+            else if (0 == conditionsCounter && null == ctrlTypeCondition)
             {
+
                 WriteVerbose(cmdlet, "neither ControlType nor Class nor Name are present");
                 //WriteObject(null); //# produce the output
                 //return null;
@@ -1424,27 +1502,67 @@ namespace UIAutomation
                                          Condition.TrueCondition));
             }
             try {
-                if (conditions != null) {
-                    Condition[] tempConditions = conditions.GetConditions();
-                    for (int i = 0; i < tempConditions.Length; i++) {
-                        WriteVerbose(cmdlet, "condition: " + tempConditions[i].ToString());
-                    }
+                // 20130128
+                Condition[] tempConditions = null;
+                if (null != allConditions) {
+
+                    tempConditions = allConditions.GetConditions();
+                    conditionsToReturn = allConditions;
+
+                }
+                // 20130128
+                //if (andConditions != null) {
+                else if (null != andConditions) {
+
+                    // 20130128
+                    //Condition[] tempConditions = andConditions.GetConditions();
+                    tempConditions = andConditions.GetConditions();
+                    // 20130128
+                    //for (int i = 0; i < tempConditions.Length; i++) {
+                    //    WriteVerbose(cmdlet, "condition: " + tempConditions[i].ToString());
+                    //}
+                    // 20130128
+                    conditionsToReturn = andConditions;
+
                     //WriteVerbose(cmdlet, "conditions: " +
                     // conditions.GetConditions());
+                // 20130128
+                } else if (null != orConditions) {
+
+                    tempConditions = orConditions.GetConditions();
+                    conditionsToReturn = orConditions;
+
                 } else if (condition != null) {
+
                     WriteVerbose(cmdlet, "conditions (only one): " +
                                  condition.Property.ProgrammaticName + 
                                  " = " + 
                                  condition.Value.ToString());
-                    conditions = 
+                    // 20130128
+                    //andConditions = 
+                    allConditions =
                         new AndCondition(condition,
                                          Condition.TrueCondition);
+                    // 20130128
+                    conditionsToReturn = allConditions;
+
                 }
-                return conditions;
+                // 20130128
+                if (null != tempConditions) {
+                    for (int i = 0; i < tempConditions.Length; i++) {
+                        WriteVerbose(cmdlet, "condition: " + tempConditions[i].ToString());
+                    }
+                }
+
+                // 20130128
+                //return andConditions;
+                return conditionsToReturn;
             } catch {
                 WriteVerbose(cmdlet, "conditions or condition are null");
                 //return null;
-                return conditions;
+                // 20130128
+                //return andConditions;
+                return conditionsToReturn;
             }
         }
         
@@ -1480,7 +1598,10 @@ namespace UIAutomation
                 
                 // 20130127
                 //conditions = this.getControlConditions(cmdlet, cmdlet.ControlType);
-                conditions = this.getControlConditions(cmdlet, cmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive);
+                // 20130128
+                //conditions = this.getControlConditions(cmdlet, cmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive);
+                //conditions = this.getControlConditions(cmdlet, cmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive, true);
+                conditions = this.getControlConditions(cmdlet, cmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive, true) as AndCondition;
                 
                 // display conditions for a regular search
                 this.WriteVerbose(cmdlet, "these conditions are used for an exact search:");
@@ -1501,7 +1622,10 @@ namespace UIAutomation
                 //conditionsForWildCards =
                     // 20130127
                     //this.getControlConditions(tempCmdlet, tempCmdlet.ControlType);
-                    this.getControlConditions(tempCmdlet, tempCmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive);
+                    // 20130128
+                    //this.getControlConditions(tempCmdlet, tempCmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive);
+                    //this.getControlConditions(tempCmdlet, tempCmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive, true);
+                    this.getControlConditions(tempCmdlet, tempCmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive, true) as AndCondition;
                 
                 // display conditions for a wildcarded search
                 this.WriteVerbose(cmdlet, "these conditions are used for a wildcard search:");

@@ -99,7 +99,20 @@ namespace UIAutomation.Commands
             //this.WaitIfCondition(_control, true);
             // 20120823
             //this.WaitIfCondition(this.InputObject, true);
-            this.WaitIfCondition(inputObject, true);
+            // 20130128
+            //this.WaitIfCondition(inputObject, true);
+            try {
+                this.WaitIfCondition(inputObject, true);
+            }
+            catch (Exception eWaitIfCondition) {
+                this.WriteError(
+                    this,
+                    "Failed to get enabled control. " +
+                    eWaitIfCondition.Message,
+                    "FailedToGetEnabledControl",
+                    ErrorCategory.InvalidOperation,
+                    true);
+            }
 
             // 20120823
             //WriteObject(this, this.InputObject);

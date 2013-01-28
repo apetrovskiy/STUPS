@@ -19,7 +19,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIAControl.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAControl", DefaultParameterSetName = "UIAuto")]
+    [Cmdlet(VerbsCommon.Get, "UIAControl", DefaultParameterSetName = "UIAWildCard")]
     // 20120828
     //[OutputType(typeof(object))]
     [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
@@ -95,7 +95,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIAButton.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAButton", DefaultParameterSetName = "UIAuto")]
+    [Cmdlet(VerbsCommon.Get, "UIAButton", DefaultParameterSetName = "UIAWildCard")]
     [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIAButtonCommand : GetUIAControlCommand
@@ -104,7 +104,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIACalendar.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIACalendar", DefaultParameterSetName = "UIAuto")]
+    [Cmdlet(VerbsCommon.Get, "UIACalendar", DefaultParameterSetName = "UIAWildCard")]
     [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIACalendarCommand : GetUIAControlCommand
@@ -113,7 +113,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIACheckBox.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIACheckBox", DefaultParameterSetName = "UIAuto")]
+    [Cmdlet(VerbsCommon.Get, "UIACheckBox", DefaultParameterSetName = "UIAWildCard")]
     [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIACheckBoxCommand : GetUIAControlCommand
@@ -122,7 +122,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIAComboBox.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAComboBox", DefaultParameterSetName = "UIAuto")]
+    [Cmdlet(VerbsCommon.Get, "UIAComboBox", DefaultParameterSetName = "UIAWildCard")]
     [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIAComboBoxCommand : GetUIAControlCommand
@@ -131,7 +131,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIACustom.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIACustom", DefaultParameterSetName = "UIAuto")]
+    [Cmdlet(VerbsCommon.Get, "UIACustom", DefaultParameterSetName = "UIAWildCard")]
     [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIACustomCommand : GetUIAControlCommand
@@ -140,7 +140,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIADataGrid.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIADataGrid", DefaultParameterSetName = "UIAuto")]
+    [Cmdlet(VerbsCommon.Get, "UIADataGrid", DefaultParameterSetName = "UIAWildCard")]
     [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIADataGridCommand : GetUIAControlCommand
@@ -149,7 +149,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIADataItem.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIADataItem", DefaultParameterSetName = "UIAuto")]
+    [Cmdlet(VerbsCommon.Get, "UIADataItem", DefaultParameterSetName = "UIAWildCard")]
     [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIADataItemCommand : GetUIAControlCommand
@@ -158,7 +158,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIADocument.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIADocument", DefaultParameterSetName = "UIAuto")]
+    [Cmdlet(VerbsCommon.Get, "UIADocument", DefaultParameterSetName = "UIAWildCard")]
     [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIADocumentCommand : GetUIAControlCommand
@@ -167,7 +167,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIAEdit.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAEdit", DefaultParameterSetName = "UIAuto")]
+    [Cmdlet(VerbsCommon.Get, "UIAEdit", DefaultParameterSetName = "UIAWildCard")]
     [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIAEditCommand : GetUIAControlCommand
@@ -176,7 +176,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIATextBox.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIATextBox", DefaultParameterSetName = "UIAuto")]
+    [Cmdlet(VerbsCommon.Get, "UIATextBox", DefaultParameterSetName = "UIAWildCard")]
     [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIATextBoxCommand : GetUIAEditCommand
@@ -185,7 +185,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIAGroup.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAGroup", DefaultParameterSetName = "UIAuto")]
+    [Cmdlet(VerbsCommon.Get, "UIAGroup", DefaultParameterSetName = "UIAWildCard")]
     [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIAGroupCommand : GetUIAControlCommand
@@ -194,7 +194,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIAGroupBox.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAGroupBox", DefaultParameterSetName = "UIAuto")]
+    [Cmdlet(VerbsCommon.Get, "UIAGroupBox", DefaultParameterSetName = "UIAWildCard")]
     [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIAGroupBoxCommand : GetUIAGroupCommand
@@ -203,7 +203,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIAHeader.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAHeader", DefaultParameterSetName = "UIAuto")]
+    [Cmdlet(VerbsCommon.Get, "UIAHeader", DefaultParameterSetName = "UIAWildCard")]
     [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIAHeaderCommand : GetUIAControlCommand
@@ -212,7 +212,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIAHeaderItem.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAHeaderItem", DefaultParameterSetName = "UIAuto")]
+    [Cmdlet(VerbsCommon.Get, "UIAHeaderItem", DefaultParameterSetName = "UIAWildCard")]
     [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIAHeaderItemCommand : GetUIAControlCommand
@@ -221,7 +221,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIAHyperlink.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAHyperlink", DefaultParameterSetName = "UIAuto")]
+    [Cmdlet(VerbsCommon.Get, "UIAHyperlink", DefaultParameterSetName = "UIAWildCard")]
     [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIAHyperlinkCommand : GetUIAControlCommand
@@ -230,7 +230,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIALinkLabel.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIALinkLabel", DefaultParameterSetName = "UIAuto")]
+    [Cmdlet(VerbsCommon.Get, "UIALinkLabel", DefaultParameterSetName = "UIAWildCard")]
     [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIALinkLabelCommand : GetUIAHyperlinkCommand
@@ -239,7 +239,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIAImage.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAImage", DefaultParameterSetName = "UIAuto")]
+    [Cmdlet(VerbsCommon.Get, "UIAImage", DefaultParameterSetName = "UIAWildCard")]
     [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIAImageCommand : GetUIAControlCommand
@@ -248,7 +248,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIAList.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAList", DefaultParameterSetName = "UIAuto")]
+    [Cmdlet(VerbsCommon.Get, "UIAList", DefaultParameterSetName = "UIAWildCard")]
     [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIAListCommand : GetUIAControlCommand
@@ -257,7 +257,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIAListItem.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAListItem", DefaultParameterSetName = "UIAuto")]
+    [Cmdlet(VerbsCommon.Get, "UIAListItem", DefaultParameterSetName = "UIAWildCard")]
     [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIAListItemCommand : GetUIAControlCommand
@@ -266,7 +266,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIAMenu.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAMenu", DefaultParameterSetName = "UIAuto")]
+    [Cmdlet(VerbsCommon.Get, "UIAMenu", DefaultParameterSetName = "UIAWildCard")]
     [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIAMenuCommand : GetUIAControlCommand
@@ -275,7 +275,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIAMenuBar.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAMenuBar", DefaultParameterSetName = "UIAuto")]
+    [Cmdlet(VerbsCommon.Get, "UIAMenuBar", DefaultParameterSetName = "UIAWildCard")]
     [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIAMenuBarCommand : GetUIAControlCommand
@@ -284,7 +284,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIAMenuItem.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAMenuItem", DefaultParameterSetName = "UIAuto")]
+    [Cmdlet(VerbsCommon.Get, "UIAMenuItem", DefaultParameterSetName = "UIAWildCard")]
     [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIAMenuItemCommand : GetUIAControlCommand
@@ -293,7 +293,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIAPane.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAPane", DefaultParameterSetName = "UIAuto")]
+    [Cmdlet(VerbsCommon.Get, "UIAPane", DefaultParameterSetName = "UIAWildCard")]
     [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIAPaneCommand : GetUIAControlCommand
@@ -302,7 +302,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIAProgressBar.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAProgressBar", DefaultParameterSetName = "UIAuto")]
+    [Cmdlet(VerbsCommon.Get, "UIAProgressBar", DefaultParameterSetName = "UIAWildCard")]
     [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIAProgressBarCommand : GetUIAControlCommand
@@ -311,7 +311,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIARadioButton.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIARadioButton", DefaultParameterSetName = "UIAuto")]
+    [Cmdlet(VerbsCommon.Get, "UIARadioButton", DefaultParameterSetName = "UIAWildCard")]
     [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIARadioButtonCommand : GetUIAControlCommand
@@ -320,7 +320,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIAScrollBar.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAScrollBar", DefaultParameterSetName = "UIAuto")]
+    [Cmdlet(VerbsCommon.Get, "UIAScrollBar", DefaultParameterSetName = "UIAWildCard")]
     [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIAScrollBarCommand : GetUIAControlCommand
@@ -329,7 +329,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIASeparator.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIASeparator", DefaultParameterSetName = "UIAuto")]
+    [Cmdlet(VerbsCommon.Get, "UIASeparator", DefaultParameterSetName = "UIAWildCard")]
     [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIASeparatorCommand : GetUIAControlCommand
@@ -338,7 +338,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIASlider.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIASlider", DefaultParameterSetName = "UIAuto")]
+    [Cmdlet(VerbsCommon.Get, "UIASlider", DefaultParameterSetName = "UIAWildCard")]
     [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIASliderCommand : GetUIAControlCommand
@@ -347,7 +347,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIASpinner.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIASpinner", DefaultParameterSetName = "UIAuto")]
+    [Cmdlet(VerbsCommon.Get, "UIASpinner", DefaultParameterSetName = "UIAWildCard")]
     [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIASpinnerCommand : GetUIAControlCommand
@@ -356,7 +356,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIASplitButton.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIASplitButton", DefaultParameterSetName = "UIAuto")]
+    [Cmdlet(VerbsCommon.Get, "UIASplitButton", DefaultParameterSetName = "UIAWildCard")]
     [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIASplitButtonCommand : GetUIAControlCommand
@@ -365,7 +365,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIAStatusBar.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAStatusBar", DefaultParameterSetName = "UIAuto")]
+    [Cmdlet(VerbsCommon.Get, "UIAStatusBar", DefaultParameterSetName = "UIAWildCard")]
     [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIAStatusBarCommand : GetUIAControlCommand
@@ -374,7 +374,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIATab.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIATab", DefaultParameterSetName = "UIAuto")]
+    [Cmdlet(VerbsCommon.Get, "UIATab", DefaultParameterSetName = "UIAWildCard")]
     [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIATabCommand : GetUIAControlCommand
@@ -383,7 +383,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIATabItem.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIATabItem", DefaultParameterSetName = "UIAuto")]
+    [Cmdlet(VerbsCommon.Get, "UIATabItem", DefaultParameterSetName = "UIAWildCard")]
     [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIATabItemCommand : GetUIAControlCommand
@@ -392,7 +392,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIATable.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIATable", DefaultParameterSetName = "UIAuto")]
+    [Cmdlet(VerbsCommon.Get, "UIATable", DefaultParameterSetName = "UIAWildCard")]
     [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIATableCommand : GetUIAControlCommand
@@ -401,7 +401,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIAText.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAText", DefaultParameterSetName = "UIAuto")]
+    [Cmdlet(VerbsCommon.Get, "UIAText", DefaultParameterSetName = "UIAWildCard")]
     [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIATextCommand : GetUIAControlCommand
@@ -410,7 +410,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIALabel.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIALabel", DefaultParameterSetName = "UIAuto")]
+    [Cmdlet(VerbsCommon.Get, "UIALabel", DefaultParameterSetName = "UIAWildCard")]
     [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIALabelCommand : GetUIATextCommand
@@ -419,7 +419,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIAThumb.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAThumb", DefaultParameterSetName = "UIAuto")]
+    [Cmdlet(VerbsCommon.Get, "UIAThumb", DefaultParameterSetName = "UIAWildCard")]
     [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIAThumbCommand : GetUIAControlCommand
@@ -428,7 +428,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIATitleBar.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIATitleBar", DefaultParameterSetName = "UIAuto")]
+    [Cmdlet(VerbsCommon.Get, "UIATitleBar", DefaultParameterSetName = "UIAWildCard")]
     [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIATitleBarCommand : GetUIAControlCommand
@@ -437,7 +437,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIAToolBar.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAToolBar", DefaultParameterSetName = "UIAuto")]
+    [Cmdlet(VerbsCommon.Get, "UIAToolBar", DefaultParameterSetName = "UIAWildCard")]
     [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIAToolBarCommand : GetUIAControlCommand
@@ -446,7 +446,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIAToolTip.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAToolTip", DefaultParameterSetName = "UIAuto")]
+    [Cmdlet(VerbsCommon.Get, "UIAToolTip", DefaultParameterSetName = "UIAWildCard")]
     [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIAToolTipCommand : GetUIAControlCommand
@@ -455,7 +455,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIATree.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIATree", DefaultParameterSetName = "UIAuto")]
+    [Cmdlet(VerbsCommon.Get, "UIATree", DefaultParameterSetName = "UIAWildCard")]
     [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIATreeCommand : GetUIAControlCommand
@@ -464,7 +464,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIATreeItem.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIATreeItem", DefaultParameterSetName = "UIAuto")]
+    [Cmdlet(VerbsCommon.Get, "UIATreeItem", DefaultParameterSetName = "UIAWildCard")]
     [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIATreeItemCommand : GetUIAControlCommand
@@ -473,7 +473,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIAChildWindow.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAChildWindow", DefaultParameterSetName = "UIAuto")]
+    [Cmdlet(VerbsCommon.Get, "UIAChildWindow", DefaultParameterSetName = "UIAWildCard")]
     [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIAChildWindowCommand : GetUIAControlCommand

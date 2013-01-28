@@ -16,7 +16,7 @@
 //    /// <summary>
 //    /// Description of SearchUIAWindowCommand.
 //    /// </summary>
-//    [Cmdlet(VerbsCommon.Search, "UIAWindow", DefaultParameterSetName = "UIAuto")]
+//    [Cmdlet(VerbsCommon.Search, "UIAWindow", DefaultParameterSetName = "UIAWildCard")]
 //    public class SearchUIAWindowCommand : SearchCmdletBase
 //    {
 //        public SearchUIAWindowCommand()

@@ -45,7 +45,20 @@ namespace UIAutomation.Commands
             
                 // 20120823
                 //InputObject.SetFocus();
-                inputObject.SetFocus();
+                // 20130128
+                //inputObject.SetFocus();
+                try {
+                    inputObject.SetFocus();
+                }
+                catch (Exception eSetFocus) {
+                    this.WriteError(
+                        this,
+                        "Could not set focus. " +
+                        eSetFocus.Message,
+                        "FailedToSetFocus",
+                        ErrorCategory.InvalidOperation,
+                        true);
+                }
                 if (this.PassThru) {
                     // 20130105
                     //this.WriteObject(this, this.InputObject);

@@ -16,7 +16,7 @@
 //    /// <summary>
 //    /// Description of SearchUIAControlCommand.
 //    /// </summary>
-//    [Cmdlet(VerbsCommon.Search, "UIAControl", DefaultParameterSetName = "UIAuto")]
+//    [Cmdlet(VerbsCommon.Search, "UIAControl", DefaultParameterSetName = "UIAWildCard")]
 //    public class SearchUIAControlCommand : SearchCmdletBase
 //    {
 //        public SearchUIAControlCommand()

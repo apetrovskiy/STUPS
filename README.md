@@ -4,7 +4,7 @@ PowerShell is not only a powerful environment but also its keyword-driven nature
 
 Frameworks:
 
-UIAutomation - automation of Win32, Windows Forms, WPF, PowerBuilder, Delphi applications
+UIAutomation - automation of Win32, Windows Forms, WPF, Metro UI (WinRT), PowerBuilder, Delphi applications
 
 SePSX - Selenium WebDriver for PowerShell
 

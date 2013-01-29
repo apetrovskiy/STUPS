@@ -1303,14 +1303,14 @@ namespace UIAutomation
             
             // 20130128
             // the TextSearch mode
-            if (null != cmdlet.ContainText &&
-                string.Empty != cmdlet.ContainText &&
+            if (null != cmdlet.ContainsText &&
+                string.Empty != cmdlet.ContainsText &&
                 !AndVsOr) {
                 cmdlet.Name =
                     cmdlet.AutomationId =
                     cmdlet.Class =
                     cmdlet.Value =
-                    cmdlet.ContainText;
+                    cmdlet.ContainsText;
             }
             
             //if (cmdlet.ControlType != null && cmdlet.ControlType.Length > 0) {
@@ -1636,8 +1636,8 @@ namespace UIAutomation
                 tempCmdlet.ControlType = cmdlet.ControlType;
                 // 20130128
                 bool notTextSearch = true;
-                if (null != cmdlet.ContainText && string.Empty != cmdlet.ContainText) {
-                    tempCmdlet.ContainText = cmdlet.ContainText;
+                if (null != cmdlet.ContainsText && string.Empty != cmdlet.ContainsText) {
+                    tempCmdlet.ContainsText = cmdlet.ContainsText;
                     notTextSearch = false;
                 }
                 System.Windows.Automation.AndCondition conditionsForWildCards = 
@@ -1685,7 +1685,7 @@ namespace UIAutomation
 #region text search
                         // 20130128
                         if (0 == aeCtrl.Count) {
-                            if (null != cmdlet.ContainText && string.Empty != cmdlet.ContainText) {
+                            if (null != cmdlet.ContainsText && string.Empty != cmdlet.ContainsText) {
                                 
                                 this.WriteVerbose(cmdlet, "Text search");
                                 AutomationElementCollection textSearchCollection =

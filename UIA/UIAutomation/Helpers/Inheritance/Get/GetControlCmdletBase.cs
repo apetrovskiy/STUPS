@@ -86,7 +86,7 @@ namespace UIAutomation
         [Parameter(Mandatory = false,
                    Position = 0,
                    ParameterSetName = "UIASearch")]
-        public string ContainText { get; set; }
+        public string ContainsText { get; set; }
         
         [Parameter(Mandatory = false,
                    ParameterSetName = "UIAWildCard")]

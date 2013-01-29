@@ -539,9 +539,7 @@ namespace UIAutomation
                 if (0 == name.Length && 0 == automationId.Length && 0 == className.Length) {
                     name = "*";
                 }
-//Console.WriteLine("name = " + name);
-//Console.WriteLine("automationId = " + automationId);
-//Console.WriteLine("className = " + className);
+
                 WildcardPattern wildcardName = 
                     new WildcardPattern(name,options);
                 

@@ -1301,6 +1301,18 @@ namespace UIAutomation
             GetControlCmdletBase cmdlet = 
                 (GetControlCmdletBase)cmdlet1;
             
+            // 20130128
+            // the TextSearch mode
+            if (null != cmdlet.ContainText &&
+                string.Empty != cmdlet.ContainText &&
+                !AndVsOr) {
+                cmdlet.Name =
+                    cmdlet.AutomationId =
+                    cmdlet.Class =
+                    cmdlet.Value =
+                    cmdlet.ContainText;
+            }
+            
             //if (cmdlet.ControlType != null && cmdlet.ControlType.Length > 0) {
             if (controlType != null && controlType.Length > 0) {
 
@@ -1424,25 +1436,29 @@ namespace UIAutomation
                             new System.Windows.Automation.OrCondition(conds);
                     }
                     // 20130128
-                    if (null != ctrlTypeCondition) {
+//                    if (null == ctrlTypeCondition) {
+//                        //var ctrlTypeCond =
+//                            //new Condi
+//                    } else {
+//                        //var ctrlTypeCond =
+//                    }
+                    if (null != andConditions) {
 
-                        if (null != andConditions) {
+                        allConditions =
+                            new System.Windows.Automation.AndCondition(
+                                null == ctrlTypeCondition ? Condition.TrueCondition : ctrlTypeCondition,
+                                andConditions);
 
-                            allConditions =
-                                new System.Windows.Automation.AndCondition(
-                                    ctrlTypeCondition,
-                                    andConditions);
-
-                        }
-                        if (null != orConditions) {
-
-                            allConditions =
-                                new System.Windows.Automation.AndCondition(
-                                    ctrlTypeCondition,
-                                    orConditions);
-
-                        }
                     }
+                    if (null != orConditions) {
+
+                        allConditions =
+                            new System.Windows.Automation.AndCondition(
+                                null == ctrlTypeCondition ? Condition.TrueCondition : ctrlTypeCondition,
+                                orConditions);
+
+                    }
+                    //}
                 // 20130128
                 //conditions =
                 //    new System.Windows.Automation.AndCondition(conds);
@@ -1618,6 +1634,12 @@ namespace UIAutomation
                 GetControlCmdletBase tempCmdlet = 
                     new GetControlCmdletBase();
                 tempCmdlet.ControlType = cmdlet.ControlType;
+                // 20130128
+                bool notTextSearch = true;
+                if (null != cmdlet.ContainText && string.Empty != cmdlet.ContainText) {
+                    tempCmdlet.ContainText = cmdlet.ContainText;
+                    notTextSearch = false;
+                }
                 System.Windows.Automation.AndCondition conditionsForWildCards = 
                 //conditionsForWildCards =
                     // 20130127
@@ -1626,6 +1648,14 @@ namespace UIAutomation
                     //this.getControlConditions(tempCmdlet, tempCmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive);
                     //this.getControlConditions(tempCmdlet, tempCmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive, true);
                     this.getControlConditions(tempCmdlet, tempCmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive, true) as AndCondition;
+                
+                System.Windows.Automation.AndCondition conditionsForTextSearch =
+                    this.getControlConditions(
+                        tempCmdlet,
+                        tempCmdlet.ControlType,
+                        //((GetControlCmdletBase)cmdlet).CaseSensitive,
+                        cmdlet.CaseSensitive,
+                        false) as AndCondition;
                 
                 // display conditions for a wildcarded search
                 this.WriteVerbose(cmdlet, "these conditions are used for a wildcard search:");
@@ -1652,24 +1682,49 @@ namespace UIAutomation
 
                         }
 
-#region exact search
-                        // 20120918
-                        //if ((! Preferences.DisableExactSearch && ! cmdlet.Win32) ) { //|| doExactSearch) {
-                        if (!Preferences.DisableExactSearch && !cmdlet.Win32 ) { //|| doExactSearch) {
-                            
-                            if (conditions != null) { // && condition == null) {
+#region text search
+                        // 20130128
+                        if (0 == aeCtrl.Count) {
+                            if (null != cmdlet.ContainText && string.Empty != cmdlet.ContainText) {
                                 
-                                // 20120823
-                                //if (cmdlet.InputObject != null &&
-                                if (inputObject != null &&
+                                this.WriteVerbose(cmdlet, "Text search");
+                                AutomationElementCollection textSearchCollection =
+                                    inputObject.FindAll(
+                                        TreeScope.Descendants,
+                                        conditionsForTextSearch);
+
+                                if (null != textSearchCollection && 0 < textSearchCollection.Count) {
+                                    
+                                    this.WriteVerbose(cmdlet, "There are " + textSearchCollection.Count.ToString() + " elements");
+                                    foreach (AutomationElement element in textSearchCollection) {
+                                        aeCtrl.Add(element);
+                                    }
+                                }
+                            }
+                        }
+#endregion text search
+
+#region exact search
+
+                        // 20130128
+                        if (0 == aeCtrl.Count && notTextSearch) {
+                            // 20120918
+                            //if ((! Preferences.DisableExactSearch && ! cmdlet.Win32) ) { //|| doExactSearch) {
+                            if (!Preferences.DisableExactSearch && !cmdlet.Win32 ) { //|| doExactSearch) {
+                                
+                                if (conditions != null) { // && condition == null) {
                                     
                                     // 20120823
-                                    //(int)cmdlet.InputObject.Current.ProcessId > 0) {
-                                    (int)inputObject.Current.ProcessId > 0) {
-
-                                    // 20120824
-                                    //aeCtrl = 
-                                    // 20120921
+                                    //if (cmdlet.InputObject != null &&
+                                    if (inputObject != null &&
+                                        
+                                        // 20120823
+                                        //(int)cmdlet.InputObject.Current.ProcessId > 0) {
+                                        (int)inputObject.Current.ProcessId > 0) {
+    
+                                        // 20120824
+                                        //aeCtrl = 
+                                        // 20120921
 #region -First
 //                                    if (cmdlet.First) {
 //                                        AutomationElement tempFirstElement = 
@@ -1690,42 +1745,46 @@ namespace UIAutomation
 //                                        }
 //                                    } else {
 #endregion -First
-                                        AutomationElementCollection tempCollection =
-                                            // 20120823
-                                        	//cmdlet.InputObject.FindFirst(System.Windows.Automation.TreeScope.Descendants,
-                                            inputObject.FindAll(
-                                                System.Windows.Automation.TreeScope.Descendants,
-                                                conditions);
-
-                                        // 20120824
-                                        foreach (AutomationElement tempElement in tempCollection) {
-                                            // 20120917
-                                            if (null == cmdlet.SearchCriteria || 0 == cmdlet.SearchCriteria.Length) {
-                                                aeCtrl.Add(tempElement);
-                                                cmdlet.WriteVerbose(cmdlet, "ExactSearch: element added to the result collection");
-                                            } else {
-                                                cmdlet.WriteVerbose(cmdlet, "ExactSearch: checking search criteria");
-                                                if (testControlWithAllSearchCriteria(
-                                                    cmdlet,
-                                                    cmdlet.SearchCriteria,
-                                                    tempElement)) {
-                                                    cmdlet.WriteVerbose(cmdlet, "ExactSearch: the control matches the search criteria");
+                                            AutomationElementCollection tempCollection =
+                                                // 20120823
+                                            	//cmdlet.InputObject.FindFirst(System.Windows.Automation.TreeScope.Descendants,
+                                                inputObject.FindAll(
+                                                    System.Windows.Automation.TreeScope.Descendants,
+                                                    conditions);
+    
+                                            // 20120824
+                                            foreach (AutomationElement tempElement in tempCollection) {
+                                                // 20120917
+                                                if (null == cmdlet.SearchCriteria || 0 == cmdlet.SearchCriteria.Length) {
                                                     aeCtrl.Add(tempElement);
                                                     cmdlet.WriteVerbose(cmdlet, "ExactSearch: element added to the result collection");
+                                                } else {
+                                                    cmdlet.WriteVerbose(cmdlet, "ExactSearch: checking search criteria");
+                                                    if (testControlWithAllSearchCriteria(
+                                                        cmdlet,
+                                                        cmdlet.SearchCriteria,
+                                                        tempElement)) {
+                                                        cmdlet.WriteVerbose(cmdlet, "ExactSearch: the control matches the search criteria");
+                                                        aeCtrl.Add(tempElement);
+                                                        cmdlet.WriteVerbose(cmdlet, "ExactSearch: element added to the result collection");
+                                                    }
                                                 }
                                             }
-                                        }
-#region -First
-//                                    }
-#endregion -First
-                                } //else if (UIAutomation.CurrentData.LastResult
+    #region -First
+    //                                    }
+    #endregion -First
+                                    } //else if (UIAutomation.CurrentData.LastResult
+                                }
+    
                             }
-
                         }
 
 #endregion exact search
 
 #region wildcard search
+
+                        // 20130128
+                        if (0 == aeCtrl.Count && notTextSearch) {
                             try {
                             if (!Preferences.DisableWildCardSearch && !cmdlet.Win32) {
     							this.WriteVerbose(cmdlet, "[getting the control] using WildCard search");
@@ -1834,10 +1893,11 @@ namespace UIAutomation
                                     ErrorCategory.ObjectNotFound,
                                     true);
                             }
+                        }
 #endregion wildcard search
 						
 #region Win32 search
-                        if (0 == aeCtrl.Count) { // && cmdlet.Name.Length > 0) { // 20120918
+                        if (0 == aeCtrl.Count && notTextSearch) { // && cmdlet.Name.Length > 0) { // 20120918
                             
                             // // 20130125
                             if (!Preferences.DisableWin32Search || cmdlet.Win32) {

@@ -1871,19 +1871,6 @@ namespace UIAutomation
 //						} // if (aeCtrl == null && cmdlet.Name.Length > 0) // WildCard
                             }
                             catch (Exception eWildCardSearch) {
-//                                string errrorDescription = 
-//                                    "The input control or window has been possibly lost." + 
-//                                    eWildCardSearch.Message;
-//                                ErrorRecord errUnexpected =
-//                                    new ErrorRecord(
-//                                        new Exception(errrorDescription),
-//                                        "UnexpectedError",
-//                                        ErrorCategory.ObjectNotFound,
-//                                        null);
-//                                errUnexpected.ErrorDetails = 
-//                                    new ErrorDetails(errrorDescription);
-//    
-//                                this.WriteError(this, errUnexpected, true);
                                 
                                 this.WriteError(
                                     cmdlet,
@@ -1922,17 +1909,10 @@ namespace UIAutomation
 
                                     if (null != cmdlet.ControlType &&
                                         0 < cmdlet.ControlType.Length) {
-//cmdlet.WriteVerbose(cmdlet, "cmdlet.ControlType.ToUpper() = " + cmdlet.ControlType.ToUpper());
-//cmdlet.WriteVerbose(cmdlet, "tempElement3.Current.ControlType.ProgrammaticName.ToUpper() = " + tempElement3.Current.ControlType.ProgrammaticName.ToUpper());
-                                        //bool resultControlType = false;
-                                        //foreach (string controlTypeName in cmdlet.ControlType) {
-//cmdlet.WriteVerbose(cmdlet, "tempElement3.Current.ControlType.ProgrammaticName.ToUpper().Substring(12) = " + tempElement3.Current.ControlType.ProgrammaticName.ToUpper().Substring(12));
-//cmdlet.WriteVerbose(cmdlet, "tempElement3.Current.ControlType.ProgrammaticName.ToUpper().Substring(12).Length = " + tempElement3.Current.ControlType.ProgrammaticName.ToUpper().Substring(12).Length.ToString());
-//cmdlet.WriteVerbose(cmdlet, "cmdlet.ControlType.ToUpper() = " + cmdlet.ControlType.ToUpper());
-//cmdlet.WriteVerbose(cmdlet, "cmdlet.ControlType.ToUpper().Length = " + cmdlet.ControlType.ToUpper().Length.ToString());
+
                                         if (!tempElement3.Current.ControlType.ProgrammaticName.ToUpper().Contains(cmdlet.ControlType.ToUpper()) ||
                                             !(tempElement3.Current.ControlType.ProgrammaticName.ToUpper().Substring(12).Length == cmdlet.ControlType.ToUpper().Length)) {
-//cmdlet.WriteVerbose(cmdlet, "continue");
+
                                             continue;
                                         }
                                         //}
@@ -2037,20 +2017,7 @@ namespace UIAutomation
                                     //inputObject = tempElement;
                                 } else {
 
-                                    // 20120830
-//                                    string errrorDescription0 = 
-//                                        "The input control or window has been lost";
-//                                    ErrorRecord errNull0 =
-//                                        new ErrorRecord(
-//                                            new Exception(errrorDescription0),
-//                                            "",
-//                                            ErrorCategory.ObjectNotFound,
-//                                            null);
-//                                    errNull0.ErrorDetails = 
-//                                        new ErrorDetails(errrorDescription0);
-//
-//                                    this.WriteError(this, errNull0, true);
-                                    
+                                    // 20120830 (the new style of writing errors)
                                     this.WriteError(
                                         cmdlet,
                                         "The input control or window has been lost",
@@ -2068,20 +2035,7 @@ namespace UIAutomation
                             this.WriteVerbose(cmdlet, "failed to get the process Id");
                             // 20120830
                             //return null;
-                            // 20120830
-//                            string errrorDescription = 
-//                                "The input control or window has been lost";
-//                            ErrorRecord errNull =
-//                                new ErrorRecord(
-//                                    new Exception(errrorDescription),
-//                                    "",
-//                                    ErrorCategory.ObjectNotFound,
-//                                    null);
-//                            errNull.ErrorDetails = 
-//                                new ErrorDetails(errrorDescription);
-//
-//                            this.WriteError(this, errNull, true);
-                            
+                            // 20120830 (the new style of writing errors)
                             this.WriteError(
                                 cmdlet,
                                 "The input control or window has been lost",
@@ -2413,16 +2367,6 @@ namespace UIAutomation
                         }
                         break;
                     default:
-//                        ErrorRecord err = 
-//                            new ErrorRecord(new Exception("Wrong AutomationElement parameter is provided: " + key),
-//                                            "WrongParameter",
-//                                            ErrorCategory.InvalidArgument,
-//                                            key);
-//                        err.ErrorDetails = 
-//                            new ErrorDetails(
-//                                "Wrong AutomationElement parameter is provided: " + key);
-//                        this.WriteError(this, err, true);
-//                        //ThrowTerminatingError(err);
                         this.WriteError(
                             this,
                             "Wrong AutomationElement parameter is provided: " + key,
@@ -2491,124 +2435,5 @@ namespace UIAutomation
             return result;
         }
         #endregion Get-UIAControl
-        
-        // 20120816
-//        #region Event delegate
-//        private void runSBEvent(ScriptBlock sb, 
-//                                AutomationElement src,
-//                                AutomationEventArgs e)
-//        {
-//            
-//            // inform the Wait-UIAEventRaised cmdlet
-//            try {
-//                CurrentData.LastEventSource = src; // as AutomationElement;
-//                CurrentData.LastEventArgs = e; // as AutomationEventArgs;
-//                CurrentData.LastEventType = e.EventId.ProgrammaticName;
-//                CurrentData.LastEventInfoAdded = true;
-//            }
-//            catch {
-//                //WriteVerbose(this, "failed to register an event in the collection");
-//            }
-//            
-//            // 20120206 Collection<PSObject >  psObjects = null;
-//            try {
-//                System.Management.Automation.Runspaces.Runspace.DefaultRunspace =
-//                    RunspaceFactory.CreateRunspace();
-//                try {
-//                    System.Management.Automation.Runspaces.Runspace.DefaultRunspace.Open();
-//                } catch (Exception e1) {
-//                    ErrorRecord err = 
-//                        new ErrorRecord(e1,
-//                                        "ErrorOnOpeningRunspace",
-//                                        ErrorCategory.InvalidOperation,
-//                                        sb);
-//                    err.ErrorDetails = 
-//                        new ErrorDetails(
-//                            "Unable to run a scriptblock:\r\n" + 
-//                            sb.ToString());
-//                    WriteError(this, err, false);
-//                }
-//                try {
-//                    System.Collections.Generic.List<object >  inputParams = 
-//                        new System.Collections.Generic.List<object > ();
-//                    inputParams.Add(src);
-//                    inputParams.Add(e);
-//                    object[] inputParamsArray = inputParams.ToArray();
-//                    // psObjects = 
-//                        sb.InvokeReturnAsIs(inputParamsArray);
-//                        // sb.Invoke(inputParamsArray);
-//                    
-//                } catch (Exception e2) {
-//                    ErrorRecord err = 
-//                        new ErrorRecord(e2,
-//                                        "ErrorInOpenedRunspace",
-//                                        ErrorCategory.InvalidOperation,
-//                                        sb);
-//                    err.ErrorDetails = 
-//                        new ErrorDetails("Unable to run a scriptblock");
-//                    WriteError(this, err, true);
-//                }
-//// psObjects =
-//// sb.Invoke();
-//            } catch (Exception eOuter) {
-//                ErrorRecord err = 
-//                    new ErrorRecord(eOuter,
-//                                    "ErrorInInvokingScriptBlock", //"ErrorinCreatingRunspace",
-//                                    ErrorCategory.InvalidOperation,
-//                                    System.Management.Automation.Runspaces.Runspace.DefaultRunspace);
-//                err.ErrorDetails = 
-//                    new ErrorDetails("Unable to issue the following command:\r\n" + 
-//                                     "System.Management.Automation.Runspaces.Runspace.DefaultRunspace = RunspaceFactory.CreateRunspace();" +
-//                                     "\r\nException raised is\r\n" +
-//                                     eOuter.Message);
-//            }
-//        }
-//        #endregion Event delegate
-        
-        // 20120816
-//        #region Action delegate
-//        private void runSBAction(ScriptBlock sb, 
-//                                 AutomationElement src,
-//                                 AutomationEventArgs e)
-//        {
-//            Collection<PSObject >  psObjects = null;
-//            try {
-//                psObjects =
-//                    sb.Invoke();
-//// int counter = 0;
-//// foreach (PSObject pso in psObjects) {
-////  //if pso.
-//// counter++;
-//// WriteVerbose("result " + counter.ToString() + ":");
-//// WriteVerbose(pso.ToString());
-////  //WriteObject(pso.TypeNames
-//// foreach ( string typeName in pso.TypeNames) {
-//// WriteVerbose(typeName);
-//// }
-//// }
-//            } catch (Exception eOuter) {
-//                ErrorRecord err = 
-//                    new ErrorRecord(eOuter,
-//                                    "ErrorInInvokingScriptBlock",
-//                                    ErrorCategory.InvalidOperation,
-//                                    System.Management.Automation.Runspaces.Runspace.DefaultRunspace);
-//                err.ErrorDetails = 
-//                    new ErrorDetails(
-//                        "Unable to issue the following command:\r\n" +
-//                        sb.ToString() + 
-//                        "\r\nThe exception raised is\r\n" + 
-//                        eOuter.Message);
-//                                     //"System.Management.Automation.Runspaces.Runspace.DefaultRunspace = RunspaceFactory.CreateRunspace();");
-//                WriteError(err);
-//            }
-//        }
-//        #endregion Action delegate
-    
     }
-    // 20120816
-//    #region Action delegate
-//    delegate void runScriptBlock(ScriptBlock sb, 
-//                                 AutomationElement src, 
-//                                 AutomationEventArgs e);
-//    #endregion Action delegate
 }

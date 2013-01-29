@@ -34,8 +34,6 @@ namespace UIAutomation.Commands
         #endregion Constructor
 
         #region Parameters
-//        [Parameter (Mandatory = false)]
-//        public SwitchParameter FromCache { get; set; }
         #endregion Parameters
 
         protected override void BeginProcessing() {

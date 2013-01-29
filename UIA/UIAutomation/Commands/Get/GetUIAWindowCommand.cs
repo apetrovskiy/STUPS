@@ -122,17 +122,6 @@ namespace UIAutomation.Commands
                 // 20120927
 //                UIAHelper.GetScreenshotOfAutomationElement(this, CmdletName(this) + "_BeginProcessing", true, 0, 0, 0, 0, string.Empty, System.Drawing.Imaging.ImageFormat.Jpeg);
 //                
-//                //return;
-//                ErrorRecord err = 
-//                    new ErrorRecord(
-//                        new Exception("Unknown exception"),
-//                        "UnknownInGetWindow",
-//                        ErrorCategory.InvalidResult,
-//                        this);
-//                err.ErrorDetails = 
-//                    new ErrorDetails(
-//                        "Unknown error in '" + CmdletName(this) + "' ProcessRecord"); //BeginProcessing");
-//                WriteError(this, err, true);
                 
                 this.WriteError(
                     this,

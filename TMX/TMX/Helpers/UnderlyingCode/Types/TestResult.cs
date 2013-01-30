@@ -25,8 +25,6 @@ namespace TMX
             this.Details = 
                 new List<ITestResultDetail > ();
             this.enStatus = TestResultStatuses.NotTested;
-            // 20120329
-            //TestData.CurrentTestResult = this;
             
             // scenarioId and suiteId
             this.ScenarioId = testScenarioId;
@@ -97,13 +95,6 @@ namespace TMX
         
         public string SuiteId { get; internal set; }
         public string ScenarioId { get; internal set; }
-        
-//        public string GlobalId
-//        {
-////            get { string id = 
-////                    this.
-////            }
-//        }
         
         public bool Generated { get; internal set; }
         public void SetGenerated()

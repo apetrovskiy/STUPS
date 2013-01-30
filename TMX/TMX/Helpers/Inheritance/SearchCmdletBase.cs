@@ -31,8 +31,6 @@ namespace TMX
         internal new string Id { get; set; }
         
         // Filter by parameters
-        //[Parameter(Mandatory = false,
-        //           ParameterSetName = "All")]
         [Parameter(Mandatory = false,
                    ParameterSetName = "Common",
                    Position = 0)]
@@ -114,9 +112,6 @@ namespace TMX
         [Parameter(Mandatory = false,
                    ParameterSetName = "Common")]
         public SwitchParameter Descending { get; set; }
-        
-//        [Parameter(Mandatory = false)]
-//        public int Count { get; set; }
         #endregion Parameters
         
         internal SwitchParameter FilterNone { get; set; }

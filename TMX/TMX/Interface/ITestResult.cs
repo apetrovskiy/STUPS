@@ -20,10 +20,9 @@ namespace TMX
     {
         string Name { get; set; }
         string Id { get; set; }
-        List<ITestResultDetail >  Details { get; } //set; }
+        List<ITestResultDetail >  Details { get; }
         string Status { get; }
         TestResultStatuses enStatus { get; set; }
-        //string Code { get; }
         
         string ScriptName { get; }
         void SetScriptName(string scriptName);
@@ -36,12 +35,7 @@ namespace TMX
         string Code { get; set; }
         
         string Description { get; set; }
-        List<object> Parameters { get; } //set; }
-        //DateTime TimeSpent { get; }
-        
-        
-        //string Source {get; }
-        //string SourceId {get; }
+        List<object> Parameters { get; }
         
         string ScenarioId { get; }
         string SuiteId { get; }

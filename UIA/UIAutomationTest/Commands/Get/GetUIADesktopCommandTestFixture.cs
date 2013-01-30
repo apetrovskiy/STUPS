@@ -30,7 +30,8 @@ namespace UIAutomationTest.Commands.Get
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("Get_UIADesktop")]
+        [Category("Slow")]
+        [Category("Get_UIADesktop")]
         public void GetDesktop_ClassName()
         {
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
@@ -39,7 +40,8 @@ namespace UIAutomationTest.Commands.Get
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("Get_UIADesktop")]
+        [Category("Slow")]
+        [Category("Get_UIADesktop")]
         public void GetDesktop_ControlType()
         {
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
@@ -48,7 +50,8 @@ namespace UIAutomationTest.Commands.Get
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("Get_UIADesktop")]
+        [Category("Slow")]
+        [Category("Get_UIADesktop")]
         public void GetDesktop_Stored_ClassName()
         {
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
@@ -58,7 +61,8 @@ namespace UIAutomationTest.Commands.Get
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("Get_UIADesktop")]
+        [Category("Slow")]
+        [Category("Get_UIADesktop")]
         public void GetDesktop_Stored_ControlType()
         {
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(

@@ -25,7 +25,6 @@ namespace TMX
         {
             TLHelper.AddTestSuite(
                 this.Cmdlet,
-                //this.Cmdlet.Name);
                 ((AddTLTestSuiteCommand)this.Cmdlet).Name);
         }
     }

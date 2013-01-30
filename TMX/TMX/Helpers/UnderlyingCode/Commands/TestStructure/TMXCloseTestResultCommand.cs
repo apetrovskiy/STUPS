@@ -25,36 +25,13 @@ namespace TMX
         {
             TMX.Commands.CloseTMXTestResultCommand cmdlet =
                 (TMX.Commands.CloseTMXTestResultCommand)this.Cmdlet;
-            
-//            this.WriteVerbose(this, 
-//                              this.Name + ", Id = " +
-//                              this.Id + ", Status = " +
-//                              this.TestPassed.ToString());
-//            if (this.Echo) {
-//                //WriteCommandDetail(this.TestResultDetail);
-//                WriteObject(this, this.Name + "\t" + this.TestPassed.ToString());
-//            }
-//            string code = string.Empty;
-////            if (this.TestLog){
-////                code = TMXHelper.GetInvocationInfo(this.MyInvocation);
-////            }
-//            TMXHelper.CloseTestResult(
-//                this.Name, 
-//                this.Id, 
-//                this.TestPassed, 
-//                this.KnownIssue,
-//                this.MyInvocation,
-//                null,
-//                this.Description,
-//                false);
-                
                 
             cmdlet.WriteVerbose(cmdlet, 
                               cmdlet.Name + ", Id = " +
                               cmdlet.Id + ", Status = " +
                               cmdlet.TestPassed.ToString());
             if (cmdlet.Echo) {
-                //WriteCommandDetail(cmdlet.TestResultDetail);
+
                 cmdlet.WriteObject(
                     cmdlet,
                     cmdlet.Name +
@@ -62,9 +39,6 @@ namespace TMX
                     cmdlet.TestPassed.ToString());
             }
             string code = string.Empty;
-//            if (cmdlet.TestLog){
-//                code = TMXHelper.GetInvocationInfo(cmdlet.MyInvocation);
-//            }
 
             // 20121223
             string testResultName = string.Empty;
@@ -86,7 +60,6 @@ namespace TMX
             
             TMXHelper.CloseTestResult(
                 // 20121223
-                //cmdlet.Name,
                 testResultName,
                 cmdlet.Id, 
                 cmdlet.TestPassed, 

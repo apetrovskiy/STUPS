@@ -27,7 +27,6 @@ namespace TMX
             
             Meyn.TestLink.TestProject[] testProjects = null;
             
-            //if (null == ((TLTestPlanCmdletBase)this.Cmdlet).TestPlanName) { // || string.Empty == this.Cmdlet.Name) {
             if (null == ((TLGetTestPlanCmdletBase)this.Cmdlet).InputObject) {
 cmdlet.WriteTrace(cmdlet, "null == ((TLTestPlanCmdletBase)this.Cmdlet).InputObject");
                 this.Cmdlet.WriteVerbose(this.Cmdlet, "there is no TestProject in the pipeline");
@@ -52,12 +51,6 @@ cmdlet.WriteTrace(cmdlet, "TLSrvGetTestPlanCommand: 0010");
                     this.Cmdlet.WriteVerbose(this.Cmdlet, "getting projects via the -TestProjectName parameter value");
                     testProjects =
                         TLHelper.GetProjectsByName(this.Cmdlet, ((TLGetTestPlanCmdletBase)this.Cmdlet).TestProjectName);
-//if (null == testProjects) {
-//    Console.WriteLine("null == testProjects");
-//} else {
-//    Console.WriteLine("null != testProjects");
-//    Console.WriteLine("length = " + testProjects.Length.ToString());
-//}
 cmdlet.WriteTrace(cmdlet, "TLSrvGetTestPlanCommand: 0011");
                 }
             } else {
@@ -68,18 +61,6 @@ cmdlet.WriteTrace(cmdlet, "TLSrvGetTestPlanCommand: 0020");
 cmdlet.WriteTrace(cmdlet, "TLSrvGetTestPlanCommand: 0031");
             if (null == ((TLGetTestPlanCmdletBase)this.Cmdlet).TestPlanName) {
 cmdlet.WriteTrace(cmdlet, "TLSrvGetTestPlanCommand: 0032a");
-//if (null == testProjects) {
-//    Console.WriteLine("null == testProjects");
-//} else {
-//    Console.WriteLine("null != testProjects");
-//    Console.WriteLine(testProjects.Length.ToString());
-//}
-//if (null == this.Cmdlet) {
-//    Console.WriteLine("null == this.Cmdlet");
-//} else {
-//    Console.WriteLine("null != this.Cmdlet");
-//    cmdlet.WriteTrace(cmdlet, ((GetTLTestPlanCommand)this.Cmdlet).TestProjectName);
-//}
                 TLHelper.GetTestPlans(this.Cmdlet, testProjects);
                 
                 
@@ -90,7 +71,6 @@ cmdlet.WriteTrace(cmdlet, "TLSrvGetTestPlanCommand: 0032a");
 cmdlet.WriteTrace(cmdlet, "TLSrvGetTestPlanCommand: 0033a");
             } else {
 cmdlet.WriteTrace(cmdlet, "TLSrvGetTestPlanCommand: 0032b");
-                //TLHelper.GetTestPlan(this.Cmdlet, testProjects, ((TLTestPlanCmdletBase)this.Cmdlet).TestPlanName);
                 TLHelper.GetTestPlan(
                     this.Cmdlet,
                     testProjects,

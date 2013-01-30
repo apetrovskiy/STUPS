@@ -17,17 +17,12 @@ namespace TMX
     /// </summary>
     public interface ITestScenario
     {
-        string Name { get; } //set; }
-        string Id { get; } //set; }
-        List<ITestResult >  TestResults { get; } //set; }
+        string Name { get; }
+        string Id { get; }
+        List<ITestResult >  TestResults { get; }
         string Description { get; set; }
         string Status { get; }
         
         string SuiteId { get; }
-        
-//        double TimeSpent { get; }
-        //TestScenarioStatuses enStatus { set; }
-        
-//        void SetTimeSpent(double timeSpent);
     }
 }

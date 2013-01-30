@@ -25,7 +25,6 @@ namespace TMX
         {
             TLHelper.NewTestPlan(
                 this.Cmdlet, 
-                //((NewTLTestPlanCommand)this.Cmdlet).Name,
                 ((NewTLTestPlanCommand)this.Cmdlet).TestPlanName,
                 ((NewTLTestPlanCommand)this.Cmdlet).Description, 
                 ((NewTLTestPlanCommand)this.Cmdlet).Active);

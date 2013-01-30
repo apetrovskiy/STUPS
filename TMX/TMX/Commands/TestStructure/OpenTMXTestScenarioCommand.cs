@@ -20,9 +20,6 @@ namespace TMX.Commands
     {
         public OpenTMXTestScenarioCommand()
         {
-//            if (TestData.CurrentTestSuite != null) {
-//                this.InputObject = TestData.CurrentTestSuite; // ?????????????
-//            }
         }
         
         #region Parameters
@@ -38,15 +35,23 @@ namespace TMX.Commands
             if (result) {
                 WriteObject(TestData.CurrentTestScenario);
             } else {
-                ErrorRecord err = 
-                    new ErrorRecord(new Exception("Couldn't open a test scenario"),
-                                    "GettingTestScenario",
-                                    ErrorCategory.InvalidOperation,
-                                    this.Name);
-                err.ErrorDetails = 
-                    new ErrorDetails(
-                        "Failed to open a test scenario");
-                ThrowTerminatingError(err);
+                // 20130130
+//                ErrorRecord err = 
+//                    new ErrorRecord(new Exception("Couldn't open a test scenario"),
+//                                    "GettingTestScenario",
+//                                    ErrorCategory.InvalidOperation,
+//                                    this.Name);
+//                err.ErrorDetails = 
+//                    new ErrorDetails(
+//                        "Failed to open a test scenario");
+//                ThrowTerminatingError(err);
+                
+                this.WriteError(
+                    this,
+                    "Couldn't open a test scenario",
+                    "GettingTestScenario",
+                    ErrorCategory.InvalidData,
+                    true);
             }
         }
     }

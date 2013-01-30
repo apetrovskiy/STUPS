@@ -20,8 +20,6 @@ namespace TMX.Commands
     {
         public AddTMXTestResultDetailCommand()
         {
-            // 20120926
-            //if (TestData.TestSuites.Count == 0) {
             if (null == TestData.TestSuites || 0 == TestData.TestSuites.Count) {
                 TestData.InitTestData();
             }
@@ -48,7 +46,7 @@ namespace TMX.Commands
             
             this.WriteVerbose(this, this.TestResultDetail);
             if (this.Echo) {
-                //WriteCommandDetail(this.TestResultDetail);
+
                 WriteObject(this.TestResultDetail);
             }
             TMX.TestData.AddTestResultTextDetail(this.TestResultDetail);

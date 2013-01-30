@@ -13,8 +13,6 @@ namespace TLAddinUnitTests.TestProjects
     using MbUnit.Framework;
     using PSTestLib;
     using Moq;
-    //using Autofac;
-    //using Autofac.Builder;
     using TMX;
     using Meyn.TestLink;
     using CookComputing.XmlRpc;
@@ -47,7 +45,6 @@ namespace TLAddinUnitTests.TestProjects
             bool makeFail)
         {
             TLProjectCmdletBase cmdlet = new TLProjectCmdletBase();
-            //cmdlet.UnitTestMode = true;
             cmdlet.Name = names;
             
             TLAddinData.CurrentTestLinkConnection =
@@ -56,28 +53,18 @@ namespace TLAddinUnitTests.TestProjects
             if (makeFail) {
                 TLAddinData.CurrentTestLinkConnection = null;
             }
-//Console.WriteLine("getProject 00001");
+//cmdlet.WriteTrace(cmdlet, "getProject 00001");
             TLSrvGetProjectCommand command =
                 new TLSrvGetProjectCommand(cmdlet);
             command.Execute();
-//Console.WriteLine("getProject 00002");
+//cmdlet.WriteTrace(cmdlet, "getProject 00002");
             System.Collections.Generic.List<TestProject> resultList =
                 new System.Collections.Generic.List<TestProject>();
-//Console.WriteLine("getProject 00003");
-//if (null == PSTestLib.UnitTestOutput.LastOutput) {
-//    Console.WriteLine("null == PSTestLib.UnitTestOutput.LastOutput");
-//    if (null != PSTestLib.UnitTestOutput.IsInitialized) {
-//        Console.WriteLine("PSTestLib.UnitTestOutput has not been initialized");
-//    }
-//} else {
-//    Console.WriteLine("null != PSTestLib.UnitTestOutput.LastOutput");
-//    Console.WriteLine(PSTestLib.UnitTestOutput.LastOutput.Count.ToString());
-//}
-            //foreach (object tpr in TMX.CommonCmdletBase.UnitTestOutput) {
+//cmdlet.WriteTrace(cmdlet, "getProject 00003");
             foreach (object tpr in PSTestLib.UnitTestOutput.LastOutput) {
-//Console.WriteLine("getProject 00004_1");
+//cmdlet.WriteTrace(cmdlet, "getProject 00004_1");
                 resultList.Add((Meyn.TestLink.TestProject)tpr);
-//Console.WriteLine("getProject 00004_2");
+//cmdlet.WriteTrace(cmdlet, "getProject 00004_2");
             }
 
             return resultList;
@@ -106,24 +93,6 @@ namespace TLAddinUnitTests.TestProjects
                 (new System.Collections.Generic.List<TestProject>()),
                 resultList);
         }
-        
-#region to delete
-//        [Test] //, Parallelizable]
-//        [Category("Fast")]
-//        public void No_projects_Null()
-//        {
-//            string projectName = "project";
-//            
-//            System.Collections.Generic.List<TestProject> list = null;
-//            
-//            System.Collections.Generic.List<TestProject> resultList =
-//                getProject(list, (new string[]{ projectName }), false);
-//            
-//            Assert.AreEqual<System.Collections.Generic.List<TestProject>>(
-//                list,
-//                resultList);
-//        }
-#endregion to delete
 
         [Test] //, Parallelizable]
         [Category("Fast")]
@@ -250,9 +219,7 @@ namespace TLAddinUnitTests.TestProjects
             list.RemoveAt(0);
             
             Assert.AreEqual<int>(
-                //list,
                 projectIds[0],
-                //resultList);
                 resultList[0].id);
         }
         
@@ -293,10 +260,6 @@ namespace TLAddinUnitTests.TestProjects
                 getProject(list, projectNames, false);
             
             list.RemoveAt(1);
-            
-//            Assert.AreEqual<System.Collections.Generic.List<TestProject>>(
-//                list,
-//                resultList);
             
             Assert.AreEqual<int>(
                 projectIds[0],

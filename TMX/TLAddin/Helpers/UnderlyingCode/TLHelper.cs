@@ -402,73 +402,7 @@ namespace TMX
         
         public static void AddTestSuite(TLSCmdletBase cmdlet, string[] name)
         {
-//            //throw new NotImplementedException();
-//            try {
-//                //CurrentData.CurrentProject.TestPlans.
-//                //ITestSuiteEntry testSuite =
-////                ITestSuiteBase testSuite =
-////                    new stat
-////                    CurrentData.CurrentTestPlan.RootSuite.Entries.Add("asdf");
-//
-////                string[] areas = full_area.Split('\\');
-////                string full_path = string.Empty;
-//                IStaticTestSuite suite =// null;
-//                    CurrentData.CurrentProject.TestSuites.CreateStatic();
-////                string current_area = string.Empty;
-//                
-//                suite.Title = name;
-//                //CurrentData.CurrentTestPlan.RootSuite.Entries.Add(suite);
-//                //ITestSuiteEntryCollection suites =
-//                //var suites =
-//                
-//                //CurrentData.CurrentTestPlan.RootSuite.Entries.Add(suite);
-//                
-//
-////                for (int i = 0; i < areas.Length; i++)
-////                {
-////                    if (!string.IsNullOrEmpty(areas[i]))
-////                    {
-////                        string area = areas[i].RemoveBadChars();
-////                        current_area += area;
-////
-////                        //The first item, find it and assigned to suite object.
-////                        if (i == 1)
-////                        {
-////                            ITestSuiteEntryCollection collection = CurrentData.CurrentTestPlan.RootSuite.Entries;
-////                            suite = TestHelper.FindSuite(collection, area);
-////                            if (suite.Id == 0)
-////                            {
-////                                suite.Title = area;
-////                                TestHelper.AddTests(suite, current_area);
-////                                CurrentData.CurrentTestPlan.RootSuite.Entries.Add(suite);
-////                            }
-////                        }
-////                        else
-////                        {
-////                            ITestSuiteEntryCollection collection = suite.Entries;
-////                            //* collection - Perform search only under the suite.Entries  - Duplicate items allowed. 
-////                            IStaticTestSuite subSuite = TestHelper.FindSuite(collection, area);
-////
-////                            if (subSuite.Id == 0)
-////                            {//Cannot find Test Suite
-////                                subSuite.Title = area;
-////                                suite.Entries.Add(subSuite);
-////                                //After creating the Test Suite - Add the related TestCases based on the Area Path.
-////                                TestHelper.AddTests(subSuite, current_area);
-////                            }
-////
-////                            suite = subSuite;
-////                        }
-////                        current_area += "\\";
-////                        CurrentData.CurrentTestPlan.Save();
-////                    }
-////                }
-//                CurrentData.CurrentTestPlan.Save();
-//                    
-//            }
-//            catch (Exception eAddTestSuite) {
-//                Console.WriteLine(eAddTestSuite.Message);
-//            }
+            //
         }
         
         //public static IStaticTestSuite OpenTesSuite(TLSCmdletBase cmdlet, string name)

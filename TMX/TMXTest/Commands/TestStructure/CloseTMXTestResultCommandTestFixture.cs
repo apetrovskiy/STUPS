@@ -29,7 +29,8 @@ namespace TMXTest.Commands.TestStructure
         }
         
         [Test] //[Test(Description="The -Name parameter test: simple string")]
-        [Category("Slow")][Category("TestResultLevel")]
+        [Category("Slow")]
+        [Category("TestResultLevel")]
         [Category("Close_TMXTestResult")]
         public void TestPrm_Name_Simple()
         {
@@ -43,7 +44,8 @@ namespace TMXTest.Commands.TestStructure
         }
         
         [Test] //[Test(Description="The -Name parameter test: complex string")]
-        [Category("Slow")][Category("TestResultLevel")]
+        [Category("Slow")]
+        [Category("TestResultLevel")]
         [Category("Close_TMXTestResult")]
         public void TestPrm_Name_Complex()
         {
@@ -57,7 +59,8 @@ namespace TMXTest.Commands.TestStructure
         }
         
         [Test] //[Test(Description="The -TestPassed parameter test: the Passed state 1 (-TestPassed)")]
-        [Category("Slow")][Category("TestResultLevel")]
+        [Category("Slow")]
+        [Category("TestResultLevel")]
         [Category("Close_TMXTestResult")]
         public void TestPrm_Name_TestPassed1()
         {
@@ -71,7 +74,8 @@ namespace TMXTest.Commands.TestStructure
         }
         
         [Test] //[Test(Description="The -TestPassed parameter test: the Passed state 2 (-TestPassed:$true)")]
-        [Category("Slow")][Category("TestResultLevel")]
+        [Category("Slow")]
+        [Category("TestResultLevel")]
         [Category("Close_TMXTestResult")]
         public void TestPrm_Name_TestPassed2()
         {
@@ -85,7 +89,8 @@ namespace TMXTest.Commands.TestStructure
         }
         
         [Test] //[Test(Description="The -TestPassed parameter test: the Failed state 1 (-TestPassed:$false)")]
-        [Category("Slow")][Category("TestResultLevel")]
+        [Category("Slow")]
+        [Category("TestResultLevel")]
         [Category("Close_TMXTestResult")]
         public void TestPrm_Name_TestFailed1()
         {
@@ -99,7 +104,8 @@ namespace TMXTest.Commands.TestStructure
         }
         
         [Test] //[Test(Description="The -TestPassed parameter test: the Failed state 2 (no -TestPassed)")]
-        [Category("Slow")][Category("TestResultLevel")]
+        [Category("Slow")]
+        [Category("TestResultLevel")]
         [Category("Close_TMXTestResult")]
         public void TestPrm_Name_TestFailed2()
         {
@@ -113,7 +119,8 @@ namespace TMXTest.Commands.TestStructure
         }
         
         [Test] //[Test(Description="The -TestPassed parameter test: the NotTested state")]
-        [Category("Slow")][Category("TestResultLevel")]
+        [Category("Slow")]
+        [Category("TestResultLevel")]
         [Category("Close_TMXTestResult")]
         public void TestPrm_Name_TestNotTested()
         {
@@ -127,7 +134,8 @@ namespace TMXTest.Commands.TestStructure
         }
         
         [Test] //[Test(Description="The -TestPassed & -KnownIssue parameters test: the KnownIssue state 1 (the bare case)")]
-        [Category("Slow")][Category("TestResultLevel")]
+        [Category("Slow")]
+        [Category("TestResultLevel")]
         [Category("Close_TMXTestResult")]
         public void TestPrm_Name_TestKnownIssue1()
         {
@@ -141,7 +149,8 @@ namespace TMXTest.Commands.TestStructure
         }
         
         [Test] //[Test(Description="The -TestPassed & -KnownIssue parameters test: the KnownIssue state 1t (the bare case)")]
-        [Category("Slow")][Category("TestResultLevel")]
+        [Category("Slow")]
+        [Category("TestResultLevel")]
         [Category("Close_TMXTestResult")]
         public void TestPrm_Name_TestKnownIssue1t()
         {
@@ -155,7 +164,8 @@ namespace TMXTest.Commands.TestStructure
         }
         
         [Test] //[Test(Description="The -TestPassed & -KnownIssue parameters test: the KnownIssue state 1f (the bare case)")]
-        [Category("Slow")][Category("TestResultLevel")]
+        [Category("Slow")]
+        [Category("TestResultLevel")]
         [Category("Close_TMXTestResult")]
         public void TestPrm_Name_TestKnownIssue1f()
         {
@@ -169,7 +179,8 @@ namespace TMXTest.Commands.TestStructure
         }
         
         [Test] //[Test(Description="The -TestPassed & -KnownIssue parameters test: the KnownIssue state 2 (known issue instead of failed)")]
-        [Category("Slow")][Category("TestResultLevel")]
+        [Category("Slow")]
+        [Category("TestResultLevel")]
         [Category("Close_TMXTestResult")]
         public void TestPrm_Name_TestKnownIssue2()
         {
@@ -184,7 +195,8 @@ namespace TMXTest.Commands.TestStructure
         }
         
         [Test] //[Test(Description="The -TestPassed & -KnownIssue parameters test: the KnownIssue state 2t (known issue instead of failed)")]
-        [Category("Slow")][Category("TestResultLevel")]
+        [Category("Slow")]
+        [Category("TestResultLevel")]
         [Category("Close_TMXTestResult")]
         public void TestPrm_Name_TestKnownIssue2t()
         {
@@ -199,7 +211,8 @@ namespace TMXTest.Commands.TestStructure
         }
         
         [Test] //[Test(Description="The -TestPassed & -KnownIssue parameters test: the KnownIssue state 2f (known issue instead of failed)")]
-        [Category("Slow")][Category("TestResultLevel")]
+        [Category("Slow")]
+        [Category("TestResultLevel")]
         [Category("Close_TMXTestResult")]
         public void TestPrm_Name_TestKnownIssue2f()
         {
@@ -214,7 +227,8 @@ namespace TMXTest.Commands.TestStructure
         }
         
         [Test] //[Test(Description="The -TestPassed & -KnownIssue parameters test: the KnownIssue state 3 (known issue hidden by passed)")]
-        [Category("Slow")][Category("TestResultLevel")]
+        [Category("Slow")]
+        [Category("TestResultLevel")]
         [Category("Close_TMXTestResult")]
         public void TestPrm_Name_TestKnownIssue3()
         {
@@ -231,7 +245,8 @@ namespace TMXTest.Commands.TestStructure
         }
         
         [Test] //[Test(Description="The -TestPassed & -KnownIssue parameters test: the KnownIssue state 3t (known issue hidden by passed)")]
-        [Category("Slow")][Category("TestResultLevel")]
+        [Category("Slow")]
+        [Category("TestResultLevel")]
         [Category("Close_TMXTestResult")]
         public void TestPrm_Name_TestKnownIssue3t()
         {
@@ -248,7 +263,8 @@ namespace TMXTest.Commands.TestStructure
         }
         
         [Test] //[Test(Description="The -TestPassed & -KnownIssue parameters test: the KnownIssue state 3f (known issue hidden by passed)")]
-        [Category("Slow")][Category("TestResultLevel")]
+        [Category("Slow")]
+        [Category("TestResultLevel")]
         [Category("Close_TMXTestResult")]
         public void TestPrm_Name_TestKnownIssue3f()
         {
@@ -263,7 +279,8 @@ namespace TMXTest.Commands.TestStructure
         }
         
         [Test] //[Test(Description="The -Description parameter test: from the suite")]
-        [Category("Slow")][Category("TestResultLevel")]
+        [Category("Slow")]
+        [Category("TestResultLevel")]
         [Category("Close_TMXTestResult")]
         public void TestPrm_Name_DescriptionSuite()
         {
@@ -280,7 +297,8 @@ namespace TMXTest.Commands.TestStructure
         }
         
         [Test] //[Test(Description="The -Description parameter test: from the scenario 1")]
-        [Category("Slow")][Category("TestResultLevel")]
+        [Category("Slow")]
+        [Category("TestResultLevel")]
         [Category("Close_TMXTestResult")]
         public void TestPrm_Name_DescriptionScenario1()
         {
@@ -297,7 +315,8 @@ namespace TMXTest.Commands.TestStructure
         }
         
         [Test] //[Test(Description="The -Description parameter test: from the scenario 2")]
-        [Category("Slow")][Category("TestResultLevel")]
+        [Category("Slow")]
+        [Category("TestResultLevel")]
         [Category("Close_TMXTestResult")]
         public void TestPrm_Name_DescriptionScenario2()
         {
@@ -314,7 +333,8 @@ namespace TMXTest.Commands.TestStructure
         }
         
         [Test] //[Test(Description="The -Description parameter test: from the test result 1")]
-        [Category("Slow")][Category("TestResultLevel")]
+        [Category("Slow")]
+        [Category("TestResultLevel")]
         [Category("Close_TMXTestResult")]
         public void TestPrm_Name_DescriptionTestResult1()
         {
@@ -333,7 +353,8 @@ namespace TMXTest.Commands.TestStructure
         }
         
         [Test] //[Test(Description="The -Description parameter test: from the test result 2")]
-        [Category("Slow")][Category("TestResultLevel")]
+        [Category("Slow")]
+        [Category("TestResultLevel")]
         [Category("Close_TMXTestResult")]
         public void TestPrm_Name_DescriptionTestResult2()
         {
@@ -351,7 +372,8 @@ namespace TMXTest.Commands.TestStructure
         }
         
         [Test] //[Test(Description="The cenarioId property")]
-        [Category("Slow")][Category("TestResultLevel")]
+        [Category("Slow")]
+        [Category("TestResultLevel")]
         [Category("Close_TMXTestResult")]
         public void TestProperty_ScenarioId()
         {
@@ -369,7 +391,8 @@ namespace TMXTest.Commands.TestStructure
         }
         
         [Test] //[Test(Description="The cenarioId property")]
-        [Category("Slow")][Category("TestResultLevel")]
+        [Category("Slow")]
+        [Category("TestResultLevel")]
         [Category("Close_TMXTestResult")]
         public void TestProperty_SuiteId()
         {

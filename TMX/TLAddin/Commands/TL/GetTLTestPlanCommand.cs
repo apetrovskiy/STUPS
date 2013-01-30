@@ -22,18 +22,8 @@ namespace TMX
         {
         }
         
-//        #region Parameters
-//        [Parameter(Mandatory = false,
-//                   Position = 0,
-//                   ParameterSetName = "PipelineInput")]
-//        [Parameter(Mandatory = false,
-//                   Position = 0,
-//                   ParameterSetName = "StringInput")]
-//        [Parameter(Mandatory = false,
-//                   Position = 0,
-//                   ParameterSetName = "FromStore")]
-//        public new string[] TestPlanName { get; set; }
-//        #endregion Parameters
+        #region Parameters
+        #endregion Parameters
         
         protected override void ProcessRecord()
         {

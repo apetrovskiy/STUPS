@@ -21,12 +21,7 @@ namespace TMX
         {
         }
         
-//        #region Parameters
-//        [Parameter(Mandatory = false,
-//                   Position = 0)]
-//        public new string[] Name { get; set; }
-//        [Parameter(Mandatory = false)]
-//        public new string Id { get; set; }
-//        #endregion Parameters
+        #region Parameters
+        #endregion Parameters
     }
 }

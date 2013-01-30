@@ -34,17 +34,18 @@ namespace UIAutomationTest.Commands.Event
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
-        [Category("Slow")][Category("Event")]
-        [Category("Slow")][Category("Register_UIAMenuClosedEvent")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
+        [Category("Event")]
+        [Category("Register_UIAMenuClosedEvent")]
         public void RegisterMenuClosedEvent()
         {
             //string name = "FileDropDown";
             string text = "File";
             string eventType = 
                 "AutomationElementIdentifiers.MenuClosedEvent";
-            //string controlType = "Menu";
+
             MiddleLevelCode.StartProcessWithForm(
                 UIAutomationTestForms.Forms.WinFormsFull, 
                 0);
@@ -62,9 +63,6 @@ namespace UIAutomationTest.Commands.Event
                 @"$null = Get-UIAWindow -n " +
                 MiddleLevelCode.TestFormNameFull +
                 @" | Get-UIAButton -Name b*; " +
-//                @"(Wait-UIAEventRaised -ControlType '" + 
-//                controlType +
-//                @"').Cached.Name;",
                 @"[UIAutomation.CurrentData]::LastEventType",
                 eventType);
         }

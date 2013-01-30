@@ -30,7 +30,8 @@ namespace UIAutomationTest.Commands.Convert
         }
         
         [Test] //[Test(Description="InputObject ProcessRecord test Null via pipeline")]
-        [Category("Slow")][Category("NoForms")]
+        [Category("Slow")]
+        [Category("NoForms")]
         public void TestPipelineInput()
         {
             string codeSnippet = 
@@ -41,7 +42,8 @@ namespace UIAutomationTest.Commands.Convert
         }
         
         [Test] //[Test(Description="ProcessRecord test Null via parameter")]
-        [Category("Slow")][Category("NoForms")]
+        [Category("Slow")]
+        [Category("NoForms")]
         public void TestParameterInputNull()
         {
 //            string codeSnippet = 
@@ -61,7 +63,8 @@ namespace UIAutomationTest.Commands.Convert
         }
         
         [Test] //[Test(Description="ProcessRecord test Is Not AutomationElement")]
-        [Category("Slow")][Category("NoForms")]
+        [Category("Slow")]
+        [Category("NoForms")]
         public void TestParameterInputOtherType()
         {
 //            string codeSnippet = 

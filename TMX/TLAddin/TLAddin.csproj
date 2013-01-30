@@ -90,14 +90,6 @@
     <Compile Include="Commands\TL\AddTLTestSubSuiteCommand.cs" />
     <Compile Include="Commands\TL\AddTLTestSuiteCommand.cs" />
     <Compile Include="Commands\TL\ConnectTLServerCommand.cs" />
-    <Compile Include="Commands\TL\garbage\GetTLCollectionCommand.cs" />
-    <Compile Include="Commands\TL\garbage\GetTLTestSubSuiteCommand.cs" />
-    <Compile Include="Commands\TL\garbage\OpenTLCollectionCommand.cs" />
-    <Compile Include="Commands\TL\garbage\OpenTLProjectCommand.cs" />
-    <Compile Include="Commands\TL\garbage\OpenTLTestCaseCommand.cs" />
-    <Compile Include="Commands\TL\garbage\OpenTLTestPlanCommand.cs" />
-    <Compile Include="Commands\TL\garbage\OpenTLTestSubSuiteCommand.cs" />
-    <Compile Include="Commands\TL\garbage\OpenTLTestSuiteCommand.cs" />
     <Compile Include="Commands\TL\GetTLBuildCommand.cs" />
     <Compile Include="Commands\TL\GetTLProjectCommand.cs" />
     <Compile Include="Commands\TL\GetTLTestCaseCommand.cs" />
@@ -118,15 +110,6 @@
     <Compile Include="Helpers\UnderlyingCode\Commands\Builds\TLSrvAddBuildCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Builds\TLSrvGetBuildCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Connect\TLSrvConnectCommand.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Commands\garbage\TLSrvAddTestSubSuiteCommand.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Commands\garbage\TLSrvGetCollectionCommand.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Commands\garbage\TLSrvGetTestSubSuiteCommand.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Commands\garbage\TLSrvOpenCollectionCommand.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Commands\garbage\TLSrvOpenProjectCommand.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Commands\garbage\TLSrvOpenTestCaseCommand.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Commands\garbage\TLSrvOpenTestPlanCommand.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Commands\garbage\TLSrvOpenTestSubSuiteCommand.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Commands\garbage\TLSrvOpenTestSuiteCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TestCases\TLSrvAddTestCaseCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TestCases\TLSrvGetTestCaseCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TestPlans\TLSrvGetTestPlanCommand.cs" />
@@ -143,11 +126,9 @@
   <ItemGroup>
     <Folder Include="Commands" />
     <Folder Include="Commands\TL" />
-    <Folder Include="Commands\TL\garbage" />
     <Folder Include="Helpers" />
     <Folder Include="Helpers\Inheritance" />
     <Folder Include="Helpers\UnderlyingCode\Commands\Connect" />
-    <Folder Include="Helpers\UnderlyingCode\Commands\garbage" />
     <Folder Include="Helpers\UnderlyingCode\Commands\Builds" />
     <Folder Include="Helpers\UnderlyingCode\Commands\TestSuites" />
     <Folder Include="Helpers\UnderlyingCode\Commands\TestProjects" />

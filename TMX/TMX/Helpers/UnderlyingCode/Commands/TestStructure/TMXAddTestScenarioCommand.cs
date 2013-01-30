@@ -27,25 +27,13 @@ namespace TMX
                 (AddScenarioCmdletBase)this.Cmdlet;
             
             bool result = 
-                //TMX.TMXHelper.AddTestScenario(this);
                 TMX.TMXHelper.AddTestScenario(cmdlet);
             if (result) {
                 
-                //WriteObject(TestData.CurrentTestScenario);
                 cmdlet.WriteObject(
                     cmdlet,
                     TestData.CurrentTestScenario);
             } else {
-//                ErrorRecord err = 
-//                    new ErrorRecord(new Exception("Couldn't add a test scenario"),
-//                                    "AddingTestScenario",
-//                                    ErrorCategory.InvalidData,
-//                                    this.Name);
-//                err.ErrorDetails =
-//                    new ErrorDetails(
-//                        "Failed to add a test scenario");
-//                ThrowTerminatingError(err);
-                
                 cmdlet.WriteError(
                     cmdlet,
                     "Couldn't add a test scenario",

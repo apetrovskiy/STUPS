@@ -33,9 +33,7 @@ namespace TMX
                    ParameterSetName = "FromStore")]
         [Alias("Name")]
         public string[] TestPlanName { get; set; }
-        
-        
-        //internal new string[] Name { get; set; }
+
         internal new string Name { get; set; }
         #endregion Parameters
     }

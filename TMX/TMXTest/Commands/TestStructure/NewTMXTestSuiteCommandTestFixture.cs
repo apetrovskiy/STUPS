@@ -213,11 +213,6 @@ namespace TMXTest.Commands.TestStructure
                 ").Name;",
                 name);
 
-//            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-//                @"[TMX.TestData]::TestSuites.Count;",
-//                "0");
-
-
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"(Open-TMXTestSuite -Name " + 
                 name + 

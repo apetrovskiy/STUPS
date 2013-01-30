@@ -29,7 +29,8 @@ namespace TMXTest.Commands.TestStructure
         }
         
         [Test] //[Test(Description="The -TestResultDetail parameter test: simple string")]
-        [Category("Slow")][Category("TestResultDetailLevel")]
+        [Category("Slow")]
+        [Category("TestResultDetailLevel")]
         [Category("Add_TMXTestResultDetail")]
         public void TestPrm_TestResultDetail_Simple()
         {
@@ -43,7 +44,8 @@ namespace TMXTest.Commands.TestStructure
         }
         
         [Test] //[Test(Description="The -TestResultDetail parameter test: complex string")]
-        [Category("Slow")][Category("TestResultDetailLevel")]
+        [Category("Slow")]
+        [Category("TestResultDetailLevel")]
         [Category("Add_TMXTestResultDetail")]
         public void TestPrm_TestResultDetail_Complex()
         {
@@ -57,7 +59,8 @@ namespace TMXTest.Commands.TestStructure
         }
         
         [Test] //[Test(Description="The -Echo parameter test: simple string")]
-        [Category("Slow")][Category("TestResultDetailLevel")]
+        [Category("Slow")]
+        [Category("TestResultDetailLevel")]
         [Category("Add_TMXTestResultDetail")]
         public void TestPrm_Echo_Simple()
         {
@@ -71,7 +74,8 @@ namespace TMXTest.Commands.TestStructure
         }
         
         [Test] //[Test(Description="The -Echo parameter test: complex string")]
-        [Category("Slow")][Category("TestResultDetailLevel")]
+        [Category("Slow")]
+        [Category("TestResultDetailLevel")]
         [Category("Add_TMXTestResultDetail")]
         public void TestPrm_Echo_Complex()
         {

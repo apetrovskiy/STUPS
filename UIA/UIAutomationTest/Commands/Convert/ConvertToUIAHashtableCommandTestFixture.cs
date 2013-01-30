@@ -32,9 +32,10 @@ namespace UIAutomationTest.Commands.Convert
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
-        [Category("Slow")][Category("ConvertTo_UIAHashtable")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
+        [Category("ConvertTo_UIAHashtable")]
         public void ConvertToHashtable_AutomationId()
         {
             string auId = "Button111";
@@ -58,9 +59,10 @@ namespace UIAutomationTest.Commands.Convert
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
-        [Category("Slow")][Category("ConvertTo_UIAHashtable")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
+        [Category("ConvertTo_UIAHashtable")]
         public void ConvertToHashtable_Name()
         {
             string auId = "Button111";
@@ -109,9 +111,10 @@ namespace UIAutomationTest.Commands.Convert
 //Orientation                    None
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
-        [Category("Slow")][Category("ConvertTo_UIAHashtable")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
+        [Category("ConvertTo_UIAHashtable")]
         public void ConvertToHashtable_IsEnabled()
         {
             string auId = "Button111";
@@ -137,9 +140,10 @@ namespace UIAutomationTest.Commands.Convert
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
-        [Category("Slow")][Category("ConvertTo_UIAHashtable")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
+        [Category("ConvertTo_UIAHashtable")]
         public void ConvertToHashtable_ControlType()
         {
             string auId = "Button111";
@@ -165,9 +169,10 @@ namespace UIAutomationTest.Commands.Convert
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
-        [Category("Slow")][Category("ConvertTo_UIAHashtable")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
+        [Category("ConvertTo_UIAHashtable")]
         public void ConvertToHashtable_ProcessId()
         {
             string auId = "Button111";
@@ -220,9 +225,10 @@ namespace UIAutomationTest.Commands.Convert
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
-        [Category("Slow")][Category("ConvertTo_UIASearchCriteria")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
+        [Category("ConvertTo_UIASearchCriteria")]
         public void ConvertToSearchCriteria_Default_AutomationId()
         {
             string auId = "Button111";
@@ -247,9 +253,10 @@ namespace UIAutomationTest.Commands.Convert
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
-        [Category("Slow")][Category("ConvertTo_UIASearchCriteria")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
+        [Category("ConvertTo_UIASearchCriteria")]
         public void ConvertToSearchCriteria_Default_Name()
         {
             string auId = "Button111";
@@ -275,9 +282,10 @@ namespace UIAutomationTest.Commands.Convert
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
-        [Category("Slow")][Category("ConvertTo_UIASearchCriteria")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
+        [Category("ConvertTo_UIASearchCriteria")]
         public void ConvertToSearchCriteria_Default_ControlType()
         {
             string auId = "Button111";
@@ -304,9 +312,10 @@ namespace UIAutomationTest.Commands.Convert
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
-        [Category("Slow")][Category("ConvertTo_UIASearchCriteria")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
+        [Category("ConvertTo_UIASearchCriteria")]
         public void ConvertToSearchCriteria_Include_IsEnabled()
         {
             string auId = "Button111";
@@ -333,15 +342,15 @@ namespace UIAutomationTest.Commands.Convert
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
-        [Category("Slow")][Category("ConvertTo_UIASearchCriteria")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
+        [Category("ConvertTo_UIASearchCriteria")]
         public void ConvertToSearchCriteria_Exclude_ControlType()
         {
             string auId = "Button111";
             string name = "aaa";
             string result = "False";
-            //string controlType = "ControlType.Button";
             string controlType = "Button";
             MiddleLevelCode.StartProcessWithFormAndControl(
                 UIAutomationTestForms.Forms.WinFormsEmpty, 
@@ -363,9 +372,10 @@ namespace UIAutomationTest.Commands.Convert
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
-        [Category("Slow")][Category("ConvertTo_UIASearchCriteria")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
+        [Category("ConvertTo_UIASearchCriteria")]
         public void ConvertToSearchCriteria_ProcessId()
         {
             string auId = "Button111";

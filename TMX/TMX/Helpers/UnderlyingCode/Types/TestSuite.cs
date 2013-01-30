@@ -61,13 +61,6 @@ namespace TMX
             }
         }
         
-//        public double TimeSpent { get; internal set; }
-        
         public TestStat Statistics { get; set; }
-        
-//        public void SetTimeSpent(double timeSpent)
-//        {
-//            this.TimeSpent = timeSpent;
-//        }
     }
 }

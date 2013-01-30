@@ -36,30 +36,14 @@ namespace TMX
                    ValueFromPipeline = true,
                    ParameterSetName = "TestSuiteInput")]
         public Meyn.TestLink.TestSuite[] InputObjectTestSuite { get; set; }
-        
-//        [Parameter(Mandatory = false,
-//                   ParameterSetName = "StringInput")]
-//        public string[] TestProjectName { get; set; }
 
         [Parameter(Mandatory = false,
                    ParameterSetName = "StringInput")]
         public string[] TestSuiteName { get; set; }
         
-//        [Parameter(Mandatory = false,
-//                   ParameterSetName = "TestProjectInput")]
-//        [Parameter(Mandatory = false,
-//                   ParameterSetName = "TestPlanInput")]
-//        [Parameter(Mandatory = false,
-//                   ParameterSetName = "TestSuiteInput")]
-//        [Parameter(Mandatory = false,
-//                   ParameterSetName = "StringInput")]
-//        [Parameter(Mandatory = false,
-//                   ParameterSetName = "WrongParameter")]
-        
         [Parameter(Mandatory = false,
                    ParameterSetName = "fake")]
         internal new string[] Name { get; set; }
-        //private new string Name { get; set; }
         #endregion Parameters
     }
 }

@@ -30,7 +30,8 @@ namespace TMXTest.Provider
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("Provider")]
+        [Category("Slow")]
+        [Category("Provider")]
         public void CheckProvider()
         {
             string name = "TMXProvider";
@@ -42,7 +43,8 @@ namespace TMXTest.Provider
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("Provider")]
+        [Category("Slow")]
+        [Category("Provider")]
         public void CheckDefaultDrive()
         {
             string name = "TMX";
@@ -54,7 +56,8 @@ namespace TMXTest.Provider
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("Provider")]
+        [Category("Slow")]
+        [Category("Provider")]
         public void CheckNewDriveByWindowName()
         {
             string driveName = "TMX1";
@@ -83,7 +86,8 @@ namespace TMXTest.Provider
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("Provider")]
+        [Category("Slow")]
+        [Category("Provider")]
         public void CheckNewDrivebyProcessName()
         {
             string driveName = "TMX2";
@@ -112,7 +116,8 @@ namespace TMXTest.Provider
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("Provider")]
+        [Category("Slow")]
+        [Category("Provider")]
         public void CheckNewDriveByProcessId()
         {
             string driveName = "TMX3";
@@ -141,7 +146,8 @@ namespace TMXTest.Provider
         }
 
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("Provider")]
+        [Category("Slow")]
+        [Category("Provider")]
         public void RemoveDefaultDrive()
         {
             string driveName = "TMX";

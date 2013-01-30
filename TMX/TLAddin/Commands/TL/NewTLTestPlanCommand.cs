@@ -24,20 +24,6 @@ namespace TMX
         }
         
         #region Parameters
-//        [Parameter(Mandatory = true,
-//                   Position = 0,
-//                   ParameterSetName = "PipelineInput")]
-//        [Parameter(Mandatory = true,
-//                   Position = 0,
-//                   ParameterSetName = "StringInput")]
-//        [Parameter(Mandatory = false,
-//                   Position = 0,
-//                   ParameterSetName = "FromStore")]
-//        [Parameter(Mandatory = false,
-//                   ParameterSetName = "fake")]
-//        //public new string Name { get; set; }
-//        internal new string Name { get; set; }
-        
         [Parameter(Mandatory = false,
                    ParameterSetName = "PipelineInput")]
         [Parameter(Mandatory = false,

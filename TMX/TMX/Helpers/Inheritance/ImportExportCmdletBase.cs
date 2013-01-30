@@ -17,7 +17,7 @@ namespace TMX
     /// <summary>
     /// Description of ImportExportCmdletBase.
     /// </summary>
-    public class ImportExportCmdletBase : SearchCmdletBase // CommonCmdletBase
+    public class ImportExportCmdletBase : SearchCmdletBase
     {
         public ImportExportCmdletBase()
         {
@@ -27,49 +27,19 @@ namespace TMX
         }
         
         #region Parameters
-        // 20121015
-        //[Parameter(Mandatory = true)]
         [Parameter(Mandatory = true,
-                   Position = 0)] //,
-//                   ParameterSetName = "Common")]
-//        [Parameter(Mandatory = true,
-//                   Position = 0,
-//                   ParameterSetName = "XML")]
+                   Position = 0)]
         public string As { get; set; }
         
-        // 20121015
-        //[Parameter(Mandatory = false)]
-        [Parameter(Mandatory = false)] //,
-//                   ParameterSetName = "Common")]
-//        [Parameter(Mandatory = false,
-//                   ParameterSetName = "XML")]
+        [Parameter(Mandatory = false)]
         public string Path { get; set; }
         
-        // 20121015
-        //[Parameter(Mandatory = false)]
-        [Parameter(Mandatory = false)] //,
-//                   ParameterSetName = "Common")]
-//        [Parameter(Mandatory = false,
-//                   ParameterSetName = "XML")]
+        [Parameter(Mandatory = false)]
         internal new string Name { get; set; }
         
-//        [Parameter(Mandatory = true,
-//                   ParameterSetName = "XML")]
-//        [AllowNull()]
-//        public IOrderedEnumerable<TestSuite> TestSuiteCollection { get; set; }
-//        
-//        [Parameter(Mandatory = true,
-//                   ParameterSetName = "XML")]
-//        [AllowNull()]
-//        public IOrderedEnumerable<TestScenario> TestScenarioCollection { get; set; }
-//        
-//        [Parameter(Mandatory = true,
-//                   ParameterSetName = "XML")]
-//        [AllowNull()]
-//        public IOrderedEnumerable<TestResult> TestResultCollection { get; set; }
+
         #endregion Parameters
         
-        //private const string ulOpenSimple = @"<ul>";
         private const string styleExpand = 
             @"<style type=""text/css"">" + "\r\n" +
             @"UL                   { cursor: hand; }" + "\r\n" +
@@ -77,11 +47,6 @@ namespace TMX
             @"UL.showList LI       { display: block; }" + "\r\n" +
             @".defaultStyles UL    { color: gold; }" + "\r\n" +
             @"UL.defaultStyles LI  { display: none; }" + "\r\n" +
-            
-//            //
-//            @"link                 { color: blue; }" + "\r\n" +
-//            //
-            
             @"</style>" + "\r\n";
             //
         private const string styleLink = 
@@ -122,33 +87,25 @@ namespace TMX
             @"#suitestat           { " + "\r\n" +
             @"                      position: relative;" + "\r\n" +
             @"                      left: 40px;" + "\r\n" +
-            //@"                      top: auto;" + "\r\n" +
             @"                      top: 0px;" + "\r\n" +
             @"                      width: auto;" + "\r\n" +
             @"                      border: 1px solid gray;" + "\r\n" +
-            //@"                      margin: 0px 0px 0px 0px;" + "\r\n" +
             @"                     }" + "\r\n" +
             @"</style>" + "\r\n";
         private const string styleSuiteDescription = 
             @"<style type=""text/css"">" + "\r\n" +
             @"#suitedescription    { " + "\r\n" +
             @"                      position: relative;" + "\r\n" +
-            //@"                      left: 40px;" + "\r\n" +
-            //@"                      left: 20px;" + "\r\n" +
-            //@"                      left: auto;" + "\r\n" +
             @"                      left: 0px;" + "\r\n" +
-            //@"                      top: auto;" + "\r\n" +
             @"                      top: 0px;" + "\r\n" +
             @"                      width: auto;" + "\r\n" +
             @"                      border: 1px solid gray;" + "\r\n" +
-            //@"                      margin: 0px 0px 0px 0px;" + "\r\n" +
             @"                     }" + "\r\n" +
             @"</style>" + "\r\n";
         private const string styleScenario = 
             @"<style type=""text/css"">" + "\r\n" +
             @"#scenario            { " + "\r\n" +
             @"                      position: relative;" + "\r\n" +
-            //@"                      left: 40px;" + "\r\n" +
             @"                      left: 20px;" + "\r\n" +
             @"                      top: auto;" + "\r\n" +
             @"                      width: auto;" + "\r\n" +
@@ -160,35 +117,26 @@ namespace TMX
             @"<style type=""text/css"">" + "\r\n" +
             @"#scenariostat        { " + "\r\n" +
             @"                      position: relative;" + "\r\n" +
-            //@"                      left: 60px;" + "\r\n" +
             @"                      left: 20px;" + "\r\n" +
-            //@"                      top: auto;" + "\r\n" +
             @"                      top: 0px;" + "\r\n" +
             @"                      width: auto;" + "\r\n" +
             @"                      border: 1px solid gray;" + "\r\n" +
-            //@"                      margin: 0px 0px 0px 0px;" + "\r\n" +
             @"                     }" + "\r\n" +
             @"</style>" + "\r\n";
         private const string styleScenarioDescription = 
             @"<style type=""text/css"">" + "\r\n" +
             @"#scenariodescription { " + "\r\n" +
             @"                      position: relative;" + "\r\n" +
-            //@"                      left: 60px;" + "\r\n" +
-            //@"                      left: 20px;" + "\r\n" +
-            //@"                      left: auto;" + "\r\n" +
             @"                      left: 0px;" + "\r\n" +
-            //@"                      top: auto;" + "\r\n" +
             @"                      top: 0px;" + "\r\n" +
             @"                      width: auto;" + "\r\n" +
             @"                      border: 1px solid gray;" + "\r\n" +
-            //@"                      margin: 0px 0px 0px 0px;" + "\r\n" +
             @"                     }" + "\r\n" +
             @"</style>" + "\r\n";
         private const string styleTestResult = 
             @"<style type=""text/css"">" + "\r\n" +
             @"#testresult          { " + "\r\n" +
             @"                      position: relative;" + "\r\n" +
-            //@"                      left: 60px;" + "\r\n" +
             @"                      left: 20px;" + "\r\n" +
             @"                      top: auto;" + "\r\n" +
             @"                      width: auto;" + "\r\n" +
@@ -200,35 +148,26 @@ namespace TMX
             @"<style type=""text/css"">" + "\r\n" +
             @"#testresultstat      { " + "\r\n" +
             @"                      position: relative;" + "\r\n" +
-            //@"                      left: 80px;" + "\r\n" +
             @"                      left: 20px;" + "\r\n" +
-            //@"                      top: auto;" + "\r\n" +
             @"                      top: 0px;" + "\r\n" +
             @"                      width: auto;" + "\r\n" +
             @"                      border: 1px solid gray;" + "\r\n" +
-            //@"                      margin: 0px 0px 0px 0px;" + "\r\n" +
             @"                     }" + "\r\n" +
             @"</style>" + "\r\n";
         private const string styleTestResultDescription = 
             @"<style type=""text/css"">" + "\r\n" +
             @"#testresultdescription{ " + "\r\n" +
             @"                      position: relative;" + "\r\n" +
-            //@"                      left: 80px;" + "\r\n" +
-            //@"                      left: 20px;" + "\r\n" +
-            //@"                      left: auto;" + "\r\n" +
             @"                      left: 0px;" + "\r\n" +
-            //@"                      top: auto;" + "\r\n" +
             @"                      top: 0px;" + "\r\n" +
             @"                      width: auto;" + "\r\n" +
             @"                      border: 1px solid gray;" + "\r\n" +
-            //@"                      margin: 0px 0px 0px 0px;" + "\r\n" +
             @"                     }" + "\r\n" +
             @"</style>" + "\r\n";
         private const string styleTestResultDetail = 
             @"<style type=""text/css"">" + "\r\n" +
             @"#testresultdetail    { " + "\r\n" +
             @"                      position: relative;" + "\r\n" +
-            //@"                      left: 80px;" + "\r\n" +
             @"                      left: 20px;" + "\r\n" +
             @"                      top: auto;" + "\r\n" +
             @"                      width: auto;" + "\r\n" +
@@ -263,13 +202,6 @@ namespace TMX
             @"</style>" + "\r\n";
         
         private const string ulOpen = @"<ul onclick = ""this.className = 'showList';"" ondblclick = ""this.className = 'defaultStyles';"" onmouseover = ""this.style.color = 'blue';"" onselectstart = ""event.returnValue = false;"">";
-        //private const string ulOpen0 = @"<style type=""text/css""> UL { cursor: hand; } UL LI { display: none;font: 18pt;list-style: square; } UL.showList";
-        //private const string ulOpen1 = @" LI { display: block; } .defaultStyles UL    { color: gold; } UL.defaultStyles LI  { display: none; }>";
-        //private const string ulOpen1 = @"<ul id="""; //";//';"" ondblclick = ""this.className = 'defaultStyles';"" onmouseover = ""this.style.color = 'blue';"" onselectstart = ""event.returnValue = false;"">";
-        //private const string ulOpen2 = @""" onclick = ""this.className = 'showList';"" ondblclick = ""this.className = 'defaultStyles';"" onmouseover = ""this.style.color = 'blue';"" onselectstart = ""event.returnValue = false;"">";
-        //private const string ulOpen2 = @"<ul id="""; //";//';"" ondblclick = ""this.className = 'defaultStyles';"" onmouseover = ""this.style.color = 'blue';"" onselectstart = ""event.returnValue = false;"">";
-        //private const string ulOpen3 = @""" onclick = ""this.className = 'showList';"" ondblclick = ""this.className = 'defaultStyles';"" onmouseover = ""this.style.color = 'blue';"" onselectstart = ""event.returnValue = false;""></style>";
-        //private const string ulOpen3 = @"';"" onmouseover = ""this.style.color = 'blue';"" onselectstart = ""event.returnValue = false;"">";
         private const string ulOpenAfterDescription = @"</a>";
         private const string ulClose = @"</ul>";
         private const string liOpen = @"<li>";
@@ -279,12 +211,6 @@ namespace TMX
         private const string aClose = @"</a>";
         private const string space = @" ";
         private const string newLineCS = "\r\n";
-        //private const string tab = "    ";
-//        private const string colorOpenGray = "<font color=\"grey\">";
-//        private const string colorOpenRed = "<font color=\"red\">";
-//        private const string colorOpenGreen = "<font color=\"green\">";
-//        private const string colorClose = "</font>";
-//        private const string pgfOpen = "<p>";
         private const string pgfClose = "</p>";
         
         private const string pgfSuiteOpenPassed = @"<p class=""suite passed"">";
@@ -306,8 +232,6 @@ namespace TMX
         private const string headerSuiteClose = @"</h2>";
         private const string headerScenarioOpen = @"<h3>";
         private const string headerScenarioClose = @"</h3>";
-        //private const string headerTestResultOpen = @"<div id=""testresult"">";
-        //private const string headerTestResultClose = @"</div>";
         
         private const string styleSuiteOpenPassed = @"<div id=""suite"" class=""suite passed"">";
         private const string styleSuiteOpenFailed = @"<div id=""suite"" class=""suite failed"">";
@@ -329,9 +253,6 @@ namespace TMX
         private const string styleScenarioDescriptionClose = @"</div>";
         private const string styleTestResultDescriptionOpen = @"<div id=""testresultdescription"">";
         private const string styleTestResultDescriptionClose = @"</div>";
-//        private const string docType = @"<!DOCTYPE HTML PUBLIC ""-//W3C//DTD HTML 4.01//EN""" +
-//            "\r\n\t" +
-//            @"""http://www.w3.org/TR/html4/strict.dtd"">";
         
         private const string docType = @"<!DOCTYPE html PUBLIC ""-//W3C//DTD XHTML 1.0 Transitional//EN"" ""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"">" +
             "\r\n\t" +
@@ -407,15 +328,6 @@ namespace TMX
                     newLineCS + 
                     tabTestSuite2 + 
                     ulOpen;
-//                    ulOpen0 + 
-//                    globalLinkId.ToString() +
-//                    ulOpen1 + 
-//                    ulOpen2 + 
-//                    globalLinkId.ToString() +
-//                    ulOpen3; // +
-                    //globalLinkId.ToString() +
-                    //ulOpen3;
-                    //ulOpenSimple;
 
                 // description
                 string descriptionSuite = "Expand";
@@ -427,19 +339,9 @@ namespace TMX
                 }
                 catch {}
                 resultHTML +=
-                    //liOpen +
-                    //pgfSuite +
-                    //styleSuiteDescriptionOpen + 
-                    descriptionSuite; // +
-                    //styleSuiteDescriptionClose + 
-                    //pgfClose;
-                    //liClose;
+                    descriptionSuite;
                 resultHTML += ulOpenAfterDescription;
                 
-//                resultHTML += 
-//                    newLineCS + 
-//                    tabTestSuite2 + 
-//                    ulOpen;
                 foreach (TestScenario tsc in ts.TestScenarios) {
                     WriteVerbose(this, "Test Scenario: " + tsc.Name);
                     string pgfScenario = pgfScenarioOpenNotTested;
@@ -455,7 +357,6 @@ namespace TMX
                     resultHTML +=
                         newLineCS +
                         tabTestScenario +
-                        //styleScenarioOpen +
                         styleScenario +
                         liOpen +
                         headerScenarioOpen +
@@ -468,24 +369,13 @@ namespace TMX
                     
                     // statistics
                     resultHTML +=
-                        //liOpen +
-                        //pgfScenario +
-                        getStatisticsStringScenario(tsc); // +
-                        //pgfClose;
+                        getStatisticsStringScenario(tsc);
                     
                     globalLinkId++;
                     resultHTML +=
                         newLineCS +
                         tabTestScenario2 +
                         ulOpen;
-//                        ulOpen0 + 
-//                        globalLinkId.ToString() +
-//                        ulOpen1 + 
-//                        ulOpen2 + 
-//                        globalLinkId.ToString() +
-//                        ulOpen3; // +
-                        //globalLinkId.ToString() +
-                        //ulOpen3;
                     
                     // description
                     string descriptionScenario = "Expand";
@@ -497,18 +387,9 @@ namespace TMX
                     }
                     catch {}
                     resultHTML +=
-                        //pgfOpen +
-                        //pgfScenario +
-                        //styleScenarioDescriptionOpen +
-                        descriptionScenario; // +
-                        //styleScenarioDescriptionClose +
-                        //pgfClose;
+                        descriptionScenario;
                     resultHTML += ulOpenAfterDescription;
                     
-//                    resultHTML +=
-//                        newLineCS +
-//                        tabTestScenario2 +
-//                        ulOpen;
                 if (fullReport) {
                     foreach (TestResult tr in tsc.TestResults) {
                         WriteVerbose(this, "Test Result: " + tr.Name);
@@ -529,7 +410,6 @@ namespace TMX
                         resultHTML +=
                             newLineCS +
                             tabTestResult +
-                            //styleTestResultOpen + 
                             styleTestResult +
                             liOpen +
                             tr.Id +
@@ -540,23 +420,13 @@ namespace TMX
 
                         // statistics
                         resultHTML +=
-                            //pgfTestResult +
-                            getStatisticsStringTestResult(tr); // +
-                            //pgfClose;
+                            getStatisticsStringTestResult(tr);
                         
                         globalLinkId++;
                         resultHTML +=
                             newLineCS +
                             tabTestResult2 +
                             ulOpen;
-//                            ulOpen0 + 
-//                            globalLinkId.ToString() +
-//                            ulOpen1 + 
-//                            ulOpen2 + 
-//                            globalLinkId.ToString() +
-//                            ulOpen3; // +
-                            //globalLinkId.ToString() +
-                            //ulOpen3;
                         
                         // description
                         string descriptionTestResult = "Expand";
@@ -568,18 +438,8 @@ namespace TMX
                         }
                         catch {}
                         resultHTML +=
-                            //pgfTestResult +
-                            //tr.Description +
-                            //styleTestResultDescriptionOpen +
-                            descriptionTestResult; // + 
-                            //styleTestResultDescriptionClose +
-                            //pgfClose;
+                            descriptionTestResult;
                         resultHTML += ulOpenAfterDescription;
-                        
-//                        resultHTML +=
-//                            newLineCS +
-//                            tabTestResult2 +
-//                            ulOpen;
                         
                         // test result detail collection
                         foreach (TestResultDetail td in tr.Details) {
@@ -596,13 +456,11 @@ namespace TMX
                             switch (td.DetailType) {
                                 case TestResultDetailTypes.Comment:
                                     resultHTML +=
-                                        td.TextDetail;// +
-                                        //liClose;
+                                        td.TextDetail;
                                     break;
                                 case TestResultDetailTypes.ErrorRecord:
                                     resultHTML +=
-                                        td.ErrorDetail.ErrorDetails;// +
-                                        //liClose;
+                                        td.ErrorDetail.ErrorDetails;
                                     break;
                                 case TestResultDetailTypes.Screenshot:
                                     string fileName = 
@@ -622,8 +480,6 @@ namespace TMX
                                     break;
                             }
                             resultHTML +=
-                                //newLineCS +
-                                //tabTestResultDetail +
                                 liClose;
                         }
                         
@@ -662,7 +518,6 @@ namespace TMX
                     resultHTML +=
                         newLineCS +
                         tabTestScenario +
-                        //liClose;
                         liClose +
                         styleScenarioClose;
                 }
@@ -672,7 +527,6 @@ namespace TMX
                     ulClose;
                 resultHTML += 
                     newLineCS +
-                    //liClose;
                     liClose +
                     styleSuiteClose;
             }
@@ -694,8 +548,6 @@ namespace TMX
             string reportFileName = string.Empty;
             string generatedFileName = string.Empty;
             WriteVerbose(this, "deciding on which path to use for the report");
-            //if (((Commands.ExportTMXTestResultsCommand)this).Path != string.Empty &&
-            //    System.IO.File.Exists(((Commands.ExportTMXTestResultsCommand)this).Path)){
             generatedFileName =
                 System.Environment.GetEnvironmentVariable(
                     "TEMP",
@@ -706,7 +558,6 @@ namespace TMX
             
             if (path != string.Empty) {
                 reportFileName = 
-                    //((Commands.ExportTMXTestResultsCommand)this).Path;
                     path;
                 WriteVerbose(this, reportFileName);
             } else {
@@ -769,69 +620,6 @@ namespace TMX
             }
         }
         
-//        protected internal void ExportResultsToXML(SearchCmdletBase cmdlet, string path)
-//        {
-//            try {
-//            //ExportToXML(path, true);
-//
-//                IOrderedEnumerable<TestSuite> suites =
-//                    TMXHelper.SearchForSuites(cmdlet);
-//
-//                IOrderedEnumerable<TestScenario> scenarios = 
-//                    TMXHelper.SearchForScenarios(cmdlet);
-//
-//                IOrderedEnumerable<TestResult> testResults = 
-//                    TMXHelper.SearchForTestResults(cmdlet);
-//            
-//                XElement suitesElement = 
-//                    TMXHelper.CreateSuitesXElement(suites, scenarios, testResults);
-//                
-//                System.Xml.Linq.XDocument document =
-//                    new System.Xml.Linq.XDocument();
-//                document.Add(suitesElement);
-//                document.Save(this.Path);
-//            }
-//            catch (Exception eCreateDocument) {
-//                this.WriteError(
-//                    this,
-//                    "Unable to save XML report to the file '" +
-//                    this.Path +
-//                    "'.",
-//                    "FailedToSaveReport",
-//                    ErrorCategory.InvalidOperation,
-//                    true);
-//            }
-//        }
-        
-#region commented
-//        protected void ExportToXML(string path, bool fullReport)
-//        {
-//            //throw new NotImplementedException();
-//            try {
-//                XElement resultXElement = 
-//                    TMXHelper.CreateSuitesXElement(
-//                        this.TestSuiteCollection,
-//                        this.TestScenarioCollection,
-//                        this.TestResultCollection);
-//                
-//                System.Xml.Linq.XDocument document =
-//                    new System.Xml.Linq.XDocument();
-//                document.Add(resultXElement);
-//                document.Save(this.Path);
-//            }
-//            catch (Exception eCreateDocument) {
-//                this.WriteError(
-//                    this,
-//                    "Unable to save XML report to the file '" +
-//                    this.Path +
-//                    "'.",
-//                    "FailedToSaveReport",
-//                    ErrorCategory.InvalidOperation,
-//                    true);
-//            }
-//        }
-#endregion commented
-        
         protected internal void ExportResultsToHTML(string path)
         {
             ExportToHTML(path, true);
@@ -874,7 +662,6 @@ namespace TMX
         
         protected internal void ExportLogToHTML(string path)
         {
-            //ExportToHTML(path, true);
             this.notImplementedCase();
         }
         
@@ -886,26 +673,6 @@ namespace TMX
         protected internal void ExportLogToTEXT(string path)
         {
             this.notImplementedCase();
-            
-//            System.Collections.SortedList testResults = 
-//                new System.Collections.SortedList();
-//            foreach (TestSuite suite in TestData.TestSuites) {
-//                foreach (TestScenario scenario in suite.TestScenarios) {
-//                    //WriteObject(scenario.TestResults, true);
-//                    foreach (TestResult testResult in scenario.TestResults) {
-//                        testResults.Add(testResult.Timestamp, testResult);
-//                    }
-//                }
-//            }
-//            System.IO.StreamWriter writer = new System.IO.StreamWriter(@"C:\1\testResults.txt");
-//            System.Collections.Generic.List<TestResult> list = 
-//                (System.Collections.Generic.List<TestResult>)testResults.GetValueList();
-//            for (int i = 0; i < list.Count; i++) {
-//                writer.WriteLine(list[i].Id + "\t" + list[i].Name + "\t" + list[i].Timestamp);
-//            }
-//            writer.Flush();
-//            writer.Close();
-            
         }
         
         protected internal void ExportLogToZIP(string path)
@@ -971,10 +738,6 @@ namespace TMX
             resultHTML += newLineCS;
             resultHTML += styleNotTested;
             resultHTML += newLineCS;
-//            resultHTML += styleExpand;
-//            resultHTML += newLineCS;
-//            resultHTML += styleExpand;
-//            resultHTML += newLineCS;
             
             // close the head
             resultHTML += headClose;
@@ -993,54 +756,6 @@ namespace TMX
             resultHTML += newLineCS;
             return resultHTML;
         }
-        
-//        private void notImplementedCase()
-//        {
-//            ErrorRecord err = 
-//                new ErrorRecord(
-//                    new Exception(),
-//                    "",
-//                    ErrorCategory.NotImplemented,
-//                    null);
-//            err.ErrorDetails = 
-//                new ErrorDetails("Not implemented");
-//            //WriteError(err);
-//            ThrowTerminatingError(err);
-//        }
-
-//        private TestStat getScenarioStatistics(TestScenario scenario)
-//        {
-//            TestStat ts = new TestStat();
-//            ts.All = scenario.TestResults.Count;
-//            foreach (TestResult tr in scenario.TestResults) {
-//                if (tr.enStatus == TestResultStatuses.Passed) {
-//                    ts.Passed++;
-//                }
-//                if (tr.enStatus == TestResultStatuses.Failed) {
-//                    ts.Failed++;
-//                }
-//            }
-//            ts.NotTested = 
-//                scenario.TestResults.Count - 
-//                ts.Passed -
-//                ts.Failed;
-//            ts.TimeSpent = scenario.TimeSpent;
-//            return ts;
-//        }
-//        
-//        private TestStat getSuiteStatistics(TestSuite suite)
-//        {
-//            TestStat ts = new TestStat();
-//            foreach (TestScenario tsc in suite.TestScenarios) {
-//                TestStat tscst = getScenarioStatistics(tsc);
-//                ts.All += tscst.All;
-//                ts.Passed += tscst.Passed;
-//                ts.Failed += tscst.Failed;
-//                ts.NotTested += tscst.NotTested;
-//                ts.TimeSpent += tscst.TimeSpent;
-//            }
-//            return ts;
-//        }
 
         private string getStatisticsStringTestResult(TestResult testResult)
         {
@@ -1209,7 +924,7 @@ namespace TMX
             result += ts.NotTested.ToString();
             result += "  Time spent:";
             result += Convert.ToInt32(ts.TimeSpent).ToString();
-            result += @" seconds"; //</div>";
+            result += @" seconds";
             
             if (ts.PassedButWithBadSmell > 0){
                 result += newLineHTML;

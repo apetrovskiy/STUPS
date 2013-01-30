@@ -17,11 +17,7 @@ namespace TMX
     /// </summary>
     public interface ITestResultDetail
     {
-        //TestResultDetailTypes DetailType { get; set; }
         System.DateTime Timestamp { get; }
-        //string TextDetail { get; set; }
-        //ErrorRecord ErrorDetail { get; set; }
-        //string ScreenshotDetail { get; set; }
         string Name { get; }
         void AddTestResultDetail(TestResultDetailTypes detailType, string detail);
         void AddTestResultDetail(TestResultDetailTypes detailType, ErrorRecord detail);

@@ -26,15 +26,11 @@ namespace TLAddinUnitTests
         {
             PSCmdletBase.UnitTestMode = true;
             
-            //if (null != TMX.CommonCmdletBase.UnitTestOutput && 0 < TMX.CommonCmdletBase.UnitTestOutput.Count) {
             if (0 < PSTestLib.UnitTestOutput.Count) {
-                //TMX.CommonCmdletBase.UnitTestOutput.Clear();
                 PSTestLib.UnitTestOutput.Clear();
             }
             
             TLAddinData.CurrentTestLinkConnection = null;
-            
-            
         }
     }
 }

@@ -28,13 +28,7 @@ namespace TMX
                    ParameterSetName = "ByName")]
         public new string Name { get; set; }
         
-        // ??
         [Parameter(Mandatory = false)]
-//        [Parameter(Mandatory = false,
-//                   ParameterSetName = "ByName")]
-//        [Parameter(Mandatory = false,
-//                   ParameterSetName = "ById")]
-        //public string[] Description { get; set; }
         public string Description { get; set; }
         
         internal new string Id { get; set; }

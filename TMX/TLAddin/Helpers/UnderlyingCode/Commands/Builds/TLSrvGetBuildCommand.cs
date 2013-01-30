@@ -25,15 +25,6 @@ namespace TMX
         {
             TLBuildCmdletBase cmdlet = (TLBuildCmdletBase)this.Cmdlet;
             
-//            if ((nu) || (null != cmdlet.Name && 0 < cmdlet.Name.Length)) {
-//            
-//                TLHelper.GetBuild(
-//                    this.Cmdlet, 
-//                    ((GetTLBuildCommand)this.Cmdlet).InputObject,
-//                    ((GetTLBuildCommand)this.Cmdlet).Name);
-//                
-//            }
-            
             if (null != cmdlet.Id && 0 < cmdlet.Id.Length) {
                 
                 cmdlet.WriteError(

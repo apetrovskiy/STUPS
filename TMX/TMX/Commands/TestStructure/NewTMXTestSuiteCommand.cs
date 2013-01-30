@@ -29,23 +29,6 @@ namespace TMX.Commands
         {
             this.CheckCmdletParameters();
             
-//            bool result = 
-//                TMX.TMXHelper.NewTestSuite(this.Name, this.Id, this.Description);
-//            if (result) {
-//                WriteObject(TestData.CurrentTestSuite);
-//            } else {
-//                ErrorRecord err = 
-//                    new ErrorRecord(new Exception("Couldn't create a test suite"),
-//                                    "CreatingTestSuite",
-//                                    ErrorCategory.InvalidOperation,
-//                                    this.Name);
-//                err.ErrorDetails = 
-//                    new ErrorDetails(
-//                        "Failed to create a test suite");
-//                ThrowTerminatingError(err);
-//            }
-            
-            
             TMXNewTestSuiteCommand command =
                 new TMXNewTestSuiteCommand(this);
             command.Execute();

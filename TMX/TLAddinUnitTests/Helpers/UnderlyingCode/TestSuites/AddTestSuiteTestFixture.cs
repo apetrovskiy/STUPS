@@ -13,8 +13,6 @@ namespace TLAddinUnitTests.TestSuites
     using MbUnit.Framework;
     using PSTestLib;
     using Moq;
-    //using Autofac;
-    //using Autofac.Builder;
     using TMX;
     using Meyn.TestLink;
     using CookComputing.XmlRpc;

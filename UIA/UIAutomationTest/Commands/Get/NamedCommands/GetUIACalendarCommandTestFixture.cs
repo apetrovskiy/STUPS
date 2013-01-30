@@ -30,8 +30,9 @@ namespace UIAutomationTest.Commands.Get
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
         public void GetCalendarByAutomationIDTimeoutDefault()
         {
             string auId = "Calendar111";
@@ -53,8 +54,9 @@ namespace UIAutomationTest.Commands.Get
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
         public void GetCalendarByAutomationIDTimeout2000()
         {
             string auId = "Calendar111";
@@ -76,8 +78,9 @@ namespace UIAutomationTest.Commands.Get
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
         public void GetCalendarByAutomationIDTimeout3000Delay500()
         {
             string auId = "Calendar111";
@@ -99,8 +102,9 @@ namespace UIAutomationTest.Commands.Get
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
         public void GetCalendarByAutomationIDTimeout2000Delay4000()
         {
             string auId = "Calendar111";
@@ -122,8 +126,9 @@ namespace UIAutomationTest.Commands.Get
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
         public void GetCalendarByTitleTimeoutDefault()
         {
             string name = "Calendar222";
@@ -144,8 +149,9 @@ namespace UIAutomationTest.Commands.Get
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
         public void GetCalendarByTitleTimeout2000()
         {
             string name = "Calendar222";
@@ -166,8 +172,9 @@ namespace UIAutomationTest.Commands.Get
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
         public void GetCalendarByTitleTimeout3000Delay500()
         {
             string name = "Calendar222";
@@ -188,8 +195,9 @@ namespace UIAutomationTest.Commands.Get
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
         public void GetCalendarByTitleTimeout2000Delay4000()
         {
             string name = "Calendar222";
@@ -210,8 +218,9 @@ namespace UIAutomationTest.Commands.Get
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
         public void GetCalendarByControlTypeTimeoutDefault()
         {
             MiddleLevelCode.StartProcessWithFormAndControl(
@@ -229,8 +238,9 @@ namespace UIAutomationTest.Commands.Get
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
         public void GetCalendarByControlTypeTimeout2000()
         {
             MiddleLevelCode.StartProcessWithFormAndControl(
@@ -248,8 +258,9 @@ namespace UIAutomationTest.Commands.Get
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
         public void GetCalendarByControlTypeTimeout3000Delay500()
         {
             MiddleLevelCode.StartProcessWithFormAndControl(
@@ -267,8 +278,9 @@ namespace UIAutomationTest.Commands.Get
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
         public void GetCalendarByControlTypeTimeout2000Delay4000()
         {
             MiddleLevelCode.StartProcessWithFormAndControl(

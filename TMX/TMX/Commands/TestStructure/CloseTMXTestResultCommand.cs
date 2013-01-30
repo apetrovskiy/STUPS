@@ -16,12 +16,10 @@ namespace TMX.Commands
     /// Description of CloseTMXTestResultCommand.
     /// </summary>
     [Cmdlet(VerbsCommon.Close, "TMXTestResult")]
-    public class CloseTMXTestResultCommand : TestResultCmdletBase //CmdletBase
+    public class CloseTMXTestResultCommand : TestResultCmdletBase
     {
         public CloseTMXTestResultCommand()
         {
-            // 20120926
-            //if (TestData.TestSuites.Count == 0) {
             if (null == TestData.TestSuites || 0 == TestData.TestSuites.Count) {
                 TestData.InitTestData();
             }
@@ -33,16 +31,16 @@ namespace TMX.Commands
         
         #region Parameters
         [Parameter(Mandatory = false)]
-        public SwitchParameter TestPassed { get; set; }
+        public new SwitchParameter TestPassed { get; set; }
         
         [Parameter(Mandatory = false)]
-        public SwitchParameter KnownIssue { get; set; }
+        public new SwitchParameter KnownIssue { get; set; }
         
         [Parameter(Mandatory = false)]
         public SwitchParameter Echo { get; set; }
         
         [Parameter(Mandatory = false)]
-        public SwitchParameter TestLog { get; set; }
+        public new SwitchParameter TestLog { get; set; }
         
         [Parameter(Mandatory = false)]
         [AllowNull]
@@ -52,7 +50,6 @@ namespace TMX.Commands
         [Parameter(Mandatory = false)]
         internal new string Name { get; set; }
         
-        // 20121223
         [Parameter(Mandatory = true,
                    Position = 0)]
         [ValidateNotNullOrEmpty]
@@ -63,28 +60,6 @@ namespace TMX.Commands
         protected override void BeginProcessing()
         {
             this.CheckCmdletParameters();
-            
-//            this.WriteVerbose(this, 
-//                              this.Name + ", Id = " +
-//                              this.Id + ", Status = " +
-//                              this.TestPassed.ToString());
-//            if (this.Echo) {
-//                //WriteCommandDetail(this.TestResultDetail);
-//                WriteObject(this, this.Name + "\t" + this.TestPassed.ToString());
-//            }
-//            string code = string.Empty;
-////            if (this.TestLog){
-////                code = TMXHelper.GetInvocationInfo(this.MyInvocation);
-////            }
-//            TMXHelper.CloseTestResult(
-//                this.Name, 
-//                this.Id, 
-//                this.TestPassed, 
-//                this.KnownIssue,
-//                this.MyInvocation,
-//                null,
-//                this.Description,
-//                false);
                 
             TMXCloseTestResultCommand command =
                 new TMXCloseTestResultCommand(this);

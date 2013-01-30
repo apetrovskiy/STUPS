@@ -47,10 +47,8 @@ namespace TLAddinUnitTests.TestPlans
             bool makeFail,
             bool inputNotSpecified)
         {
-            // 20130114
-            //TLTestPlanCmdletBase cmdlet = new TLTestPlanCmdletBase();
             TLGetTestPlanCmdletBase cmdlet = new TLGetTestPlanCmdletBase();
-            //cmdlet.UnitTestMode = true;
+
             if (inputNotSpecified) {
                 cmdlet.InputObject = null;
             } else {
@@ -77,7 +75,6 @@ namespace TLAddinUnitTests.TestPlans
             System.Collections.Generic.List<TestPlan> resultList =
                 new System.Collections.Generic.List<TestPlan>();
 
-            //foreach (object tpl in TMX.CommonCmdletBase.UnitTestOutput) {
             foreach (object tpl in PSTestLib.UnitTestOutput.LastOutput) {
 
                 resultList.Add((TestPlan)tpl);
@@ -115,7 +112,6 @@ namespace TLAddinUnitTests.TestPlans
                 getTestPlansFromProjectsInPipeline(listOfProjects, listOfTestPlans, true, false);
 
             Assert.AreEqual<System.Collections.Generic.List<TestPlan>>(
-            //Assert.AreEqual<Meyn.TestLink.TestPlan>(
                 (new System.Collections.Generic.List<TestPlan>()),
                 resultList);
         }
@@ -148,7 +144,6 @@ namespace TLAddinUnitTests.TestPlans
                 getTestPlansFromProjectsInPipeline(listOfProjects, listOfTestPlans, false, false);
 
             Assert.AreEqual<System.Collections.Generic.List<TestPlan>>(
-            //Assert.AreEqual<Meyn.TestLink.TestPlan>(
                 listOfTestPlans,
                 resultList);
         }
@@ -300,56 +295,48 @@ namespace TLAddinUnitTests.TestPlans
             bool makeFail,
             bool projectNamesNotSpecified)
         {
-            // 20130114
-            //TLTestPlanCmdletBase cmdlet = new TLTestPlanCmdletBase();
+
             TLGetTestPlanCmdletBase cmdlet = new TLGetTestPlanCmdletBase();
-            //cmdlet.UnitTestMode = true;
+
             if (projectNamesNotSpecified) {
                 cmdlet.TestProjectName = null;
             } else {
                 cmdlet.TestProjectName = testProjectNames;
             }
-//Console.WriteLine("getTestPlansByProjectName: 0001");
+//cmdlet.WriteTrace(cmdlet, "getTestPlansByProjectName: 0001");
             System.Collections.Generic.List<Meyn.TestLink.TestProject> testProjects =
                 new System.Collections.Generic.List<Meyn.TestLink.TestProject>();
             testProjects.Add(TLAddinData.CurrentTestProject);
-//Console.WriteLine("getTestPlansByProjectName: 0002");
+//cmdlet.WriteTrace(cmdlet, "getTestPlansByProjectName: 0002");
             
             TLAddinData.CurrentTestLinkConnection =
                 FakeTestLinkFactory.GetTestLinkWithTestPlans(testProjects, testPlans, null, null);
-//Console.WriteLine("getTestPlansByProjectName: 0003");
+//cmdlet.WriteTrace(cmdlet, "getTestPlansByProjectName: 0003");
             if (projectNamesNotSpecified) {
-//Console.WriteLine("getTestPlansByProjectName: 0004_1");
+//cmdlet.WriteTrace(cmdlet, "getTestPlansByProjectName: 0004_1");
                 TLAddinData.CurrentTestProject = currentTestProject;
-//Console.WriteLine("getTestPlansByProjectName: 0004_2");
+//cmdlet.WriteTrace(cmdlet, "getTestPlansByProjectName: 0004_2");
             }
             
             if (makeFail) {
-//Console.WriteLine("getTestPlansByProjectName: 0005_1");
+//cmdlet.WriteTrace(cmdlet, "getTestPlansByProjectName: 0005_1");
                 TLAddinData.CurrentTestLinkConnection = null;
-//Console.WriteLine("getTestPlansByProjectName: 0005_2");
+//cmdlet.WriteTrace(cmdlet, "getTestPlansByProjectName: 0005_2");
             }
             
             TLSrvGetTestPlanCommand command =
                 new TLSrvGetTestPlanCommand(cmdlet);
             command.Execute();
-//Console.WriteLine("getTestPlansByProjectName: 0006");
+//cmdlet.WriteTrace(cmdlet, "getTestPlansByProjectName: 0006");
             System.Collections.Generic.List<TestPlan> resultList =
                 new System.Collections.Generic.List<TestPlan>();
-//Console.WriteLine("getTestPlansByProjectName: 0007");
-//if (null == PSTestLib.UnitTestOutput.LastOutput) {
-//    Console.WriteLine("null == PSTestLib.UnitTestOutput.LastOutput");
-//} else {
-//    Console.WriteLine("null != PSTestLib.UnitTestOutput.LastOutput");
-//    Console.WriteLine(PSTestLib.UnitTestOutput.LastOutput.Count);
-//}
-            //foreach (object tpl in TMX.CommonCmdletBase.UnitTestOutput) {
+//cmdlet.WriteTrace(cmdlet, "getTestPlansByProjectName: 0007");
             foreach (object tpl in PSTestLib.UnitTestOutput.LastOutput) {
-//Console.WriteLine("getTestPlansByProjectName: 0008_1");
+//cmdlet.WriteTrace(cmdlet, "getTestPlansByProjectName: 0008_1");
                 resultList.Add((TestPlan)tpl);
-//Console.WriteLine("getTestPlansByProjectName: 0008_2");
+//cmdlet.WriteTrace(cmdlet, "getTestPlansByProjectName: 0008_2");
             }
-//Console.WriteLine("getTestPlansByProjectName: 0009");
+//cmdlet.WriteTrace(cmdlet, "getTestPlansByProjectName: 0009");
             return resultList;
             
         }
@@ -416,7 +403,7 @@ namespace TLAddinUnitTests.TestPlans
                     true, // is_public
                     true, // open
                     listOfProjects[0].id));
-//Console.WriteLine("TestProject_by_name: 0001");
+//cmdlet.WriteTrace(cmdlet, "TestProject_by_name: 0001");
             System.Collections.Generic.List<TestPlan> resultList =
                 getTestPlansByProjectName(
                     listOfProjects[0],
@@ -424,12 +411,12 @@ namespace TLAddinUnitTests.TestPlans
                     listOfTestPlans, 
                     false, 
                     false);
-//Console.WriteLine("TestProject_by_name: 0002");
+//cmdlet.WriteTrace(cmdlet, "TestProject_by_name: 0002");
             Assert.AreEqual<System.Collections.Generic.List<TestPlan>>(
             //Assert.AreEqual<Meyn.TestLink.TestPlan>(
                 (new System.Collections.Generic.List<TestPlan>()),
                 resultList);
-//Console.WriteLine("TestProject_by_name: 0003");
+//cmdlet.WriteTrace(cmdlet, "TestProject_by_name: 0003");
         }
         
         
@@ -501,7 +488,7 @@ namespace TLAddinUnitTests.TestPlans
             
             listOfTestPlans.RemoveAt(4);
             listOfTestPlans.RemoveAt(1);
-//Console.WriteLine("TestProjects_by_name: 0001");
+//cmdlet.WriteTrace(cmdlet, "TestProjects_by_name: 0001");
             System.Collections.Generic.List<TestPlan> resultList =
                 getTestPlansByProjectName(
                     listOfProjects[0],
@@ -509,12 +496,12 @@ namespace TLAddinUnitTests.TestPlans
                     listOfTestPlans, 
                     false, 
                     false);
-//Console.WriteLine("TestProjects_by_name: 0002");
+//cmdlet.WriteTrace(cmdlet, "TestProjects_by_name: 0002");
             Assert.AreEqual<System.Collections.Generic.List<TestPlan>>(
             //Assert.AreEqual<Meyn.TestLink.TestPlan>(
                 (new System.Collections.Generic.List<TestPlan>()),
                 resultList);
-//Console.WriteLine("TestProjects_by_name: 0003");
+//cmdlet.WriteTrace(cmdlet, "TestProjects_by_name: 0003");
         }
         
         // project from the store - the same as from the pipeline

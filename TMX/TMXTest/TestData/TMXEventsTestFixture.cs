@@ -34,7 +34,8 @@ namespace TMXTest.TestData
 
 
         [Test] //[Test(Description="The TMXNewTestSuiteCreated event")]
-        [Category("Slow")][Category("TMX_Events")]
+        [Category("Slow")]
+        [Category("TMX_Events")]
         public void TMXEvents_TMXNewTestSuiteCreated()
         {
             string name = "suite1";
@@ -48,16 +49,14 @@ namespace TMXTest.TestData
                 @"$null = New-TMXTestSuite -Name '" + 
                 name + 
                 "'; " + 
-                //@"Wait-UIAEventRaised -Name " + 
-                //eventName +
-                //@"; " +
                 @"sleep -Seconds 2; " + 
                 @"$global:name;",
                 name);
         }
         
         [Test] //[Test(Description="The TMXTestSuiteOpened event")]
-        [Category("Slow")][Category("TMX_Events")]
+        [Category("Slow")]
+        [Category("TMX_Events")]
         public void TMXEvents_TMXTestSuiteOpened()
         {
             string name = "suite1";
@@ -75,9 +74,6 @@ namespace TMXTest.TestData
                 @"$null = Open-TMXTestSuite -Name '" + 
                 name +
                 "'; " + 
-                //@"Wait-UIAEventRaised -Name " + 
-                //eventName +
-                //@"; " +
                 @"sleep -Seconds 2; " + 
                 @"$global:name;",
                 name);
@@ -87,7 +83,8 @@ namespace TMXTest.TestData
 //        public static event EventHandler TMXTestScenarioOpened;
 
         [Test] //[Test(Description="The TMXNewTestScenarioAdded event")]
-        [Category("Slow")][Category("TMX_Events")]
+        [Category("Slow")]
+        [Category("TMX_Events")]
         public void TMXEvents_TMXNewTestScenarioAdded()
         {
             string name = "scenario1";
@@ -102,16 +99,14 @@ namespace TMXTest.TestData
                 @"$null = Add-TMXTestScenario -Name '" +
                 name + 
                 @"'; " +
-                //@"Wait-UIAEventRaised -Name " + 
-                //eventName +
-                //@"; " +
                 @"sleep -Seconds 2; " + 
                 @"$global:name;",
                 name);
         }
         
         [Test] //[Test(Description="The TMXTestScenarioOpened event")]
-        [Category("Slow")][Category("TMX_Events")]
+        [Category("Slow")]
+        [Category("TMX_Events")]
         public void TMXEvents_TMXTestScenarioOpened()
         {
             string name = "scenario1";
@@ -130,9 +125,6 @@ namespace TMXTest.TestData
                 @"$null = Open-TMXTestScenario -Name '" + 
                 name + 
                 @"'; " +
-                //@"Wait-UIAEventRaised -Name " + 
-                //eventName +
-                //@"; " +
                 @"sleep -Seconds 2; " + 
                 @"$global:name;",
                 name);
@@ -143,7 +135,8 @@ namespace TMXTest.TestData
 
 
         [Test] //[Test(Description="The TMXNewTestResultDetailAdded event")]
-        [Category("Slow")][Category("TMX_Events")]
+        [Category("Slow")]
+        [Category("TMX_Events")]
         public void TMXEvents_TMXNewTestResultDetailAdded()
         {
             string name = "res1";
@@ -159,16 +152,14 @@ namespace TMXTest.TestData
                 @"$null = Add-TMXTestResultDetail -TestResultDetail '" + 
                 name +
                 @"'; " +
-                //@"Wait-UIAEventRaised -Name " + 
-                //eventName +
-                //@"; " +
                 @"sleep -Seconds 2; " + 
                 @"$global:name;",
                 name);
         }
         
         [Test] //[Test(Description="The TMXNewTestResultClosed event")]
-        [Category("Slow")][Category("TMX_Events")]
+        [Category("Slow")]
+        [Category("TMX_Events")]
         public void TMXEvents_TMXNewTestResultClosed()
         {
             string name = "res1";
@@ -185,9 +176,6 @@ namespace TMXTest.TestData
                 @"$null = Close-TMXTestResult -Name '" +
                 name +
                 @"' -TestPassed; " +
-                //@"Wait-UIAEventRaised -Name " + 
-                //eventName +
-                //@"; " +
                 @"sleep -Seconds 2; " + 
                 @"$global:name;",
                 name);

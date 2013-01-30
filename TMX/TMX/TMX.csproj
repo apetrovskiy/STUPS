@@ -205,8 +205,6 @@
     <Compile Include="Commands\TestStructure\OpenTMXTestScenarioCommand.cs" />
     <Compile Include="Commands\TestStructure\OpenTMXTestSuiteCommand.cs" />
     <Compile Include="ExternalUse\Import.cs" />
-    <Compile Include="Helpers\garbage\Enum.cs" />
-    <Compile Include="Helpers\garbage\TMXPluginManager.cs" />
     <Compile Include="Helpers\Inheritance\AddScenarioCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\AssertionsCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\CommonCmdletBase.cs" />
@@ -294,7 +292,6 @@
     <Folder Include="Commands\Repository" />
     <Folder Include="Helpers\Inheritance\Database" />
     <Folder Include="ExternalUse" />
-    <Folder Include="Helpers\garbage" />
     <Folder Include="Helpers\UnderlyingCode" />
     <Folder Include="Helpers\UnderlyingCode\Commands" />
     <Folder Include="Helpers\UnderlyingCode\Commands\TestStructure" />

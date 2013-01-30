@@ -29,7 +29,8 @@ namespace TMXTest.Commands.TestStructure
         }
         
         [Test] //[Test(Description="The -Name parameter test: simple name (New-TMXTestSuite)")]
-        [Category("Slow")][Category("ScenarioLevel")]
+        [Category("Slow")]
+        [Category("ScenarioLevel")]
         [Category("Add_TMXTestScenario")]
         public void TestPrm_Name_Simple_after_NewSuite()
         {
@@ -45,7 +46,8 @@ namespace TMXTest.Commands.TestStructure
         }
         
         [Test] //[Test(Description="The -Name parameter test: complex name (New-TMXTestSuite)")]
-        [Category("Slow")][Category("ScenarioLevel")]
+        [Category("Slow")]
+        [Category("ScenarioLevel")]
         [Category("Add_TMXTestScenario")]
         public void TestPrm_Name_Complex_after_NewSuite()
         {
@@ -61,7 +63,8 @@ namespace TMXTest.Commands.TestStructure
         }
         
         [Test] //[Test(Description="The -Name parameter test: simple name (Open-TMXTestSuite)")]
-        [Category("Slow")][Category("ScenarioLevel")]
+        [Category("Slow")]
+        [Category("ScenarioLevel")]
         [Category("Add_TMXTestScenario")]
         public void TestPrm_Name_Simple_after_OpenSuite()
         {
@@ -82,7 +85,8 @@ namespace TMXTest.Commands.TestStructure
         }
         
         [Test] //[Test(Description="The -Name parameter test: complex name (Open-TMXTestSuite)")]
-        [Category("Slow")][Category("ScenarioLevel")]
+        [Category("Slow")]
+        [Category("ScenarioLevel")]
         [Category("Add_TMXTestScenario")]
         public void TestPrm_Name_Complex_after_OpenSuite()
         {
@@ -103,7 +107,8 @@ namespace TMXTest.Commands.TestStructure
         }
         
         [Test] //[Test(Description="The -Name parameter test: simple name and simple suite name")]
-        [Category("Slow")][Category("ScenarioLevel")]
+        [Category("Slow")]
+        [Category("ScenarioLevel")]
         [Category("Add_TMXTestScenario")]
         public void TestPrm_Name_TestSuiteName_Simple()
         {
@@ -124,7 +129,8 @@ namespace TMXTest.Commands.TestStructure
         }
         
         [Test] //[Test(Description="The -Name parameter test: complex name and complex suite name")]
-        [Category("Slow")][Category("ScenarioLevel")]
+        [Category("Slow")]
+        [Category("ScenarioLevel")]
         [Category("Add_TMXTestScenario")]
         public void TestPrm_Name_TestSuiteName_Complex()
         {
@@ -145,7 +151,8 @@ namespace TMXTest.Commands.TestStructure
         }
         
         [Test] //[Test(Description="The -Name parameter test: simple name and simple suite id")]
-        [Category("Slow")][Category("ScenarioLevel")]
+        [Category("Slow")]
+        [Category("ScenarioLevel")]
         [Category("Add_TMXTestScenario")]
         public void TestPrm_Name_TestSuiteId_Simple()
         {
@@ -169,7 +176,8 @@ namespace TMXTest.Commands.TestStructure
         }
         
         [Test] //[Test(Description="The -Name parameter test: complex name and complex suite id")]
-        [Category("Slow")][Category("ScenarioLevel")]
+        [Category("Slow")]
+        [Category("ScenarioLevel")]
         [Category("Add_TMXTestScenario")]
         public void TestPrm_Name_TestSuiteId_Complex()
         {
@@ -193,7 +201,8 @@ namespace TMXTest.Commands.TestStructure
         }
         
         [Test] //[Test(Description="The -Name parameter test: simple name, simple suite name, and simple suite id")]
-        [Category("Slow")][Category("ScenarioLevel")]
+        [Category("Slow")]
+        [Category("ScenarioLevel")]
         [Category("Add_TMXTestScenario")]
         public void TestPrm_Name_TestSuiteName_TestSuiteId_Simple()
         {
@@ -219,7 +228,8 @@ namespace TMXTest.Commands.TestStructure
         }
         
         [Test] //[Test(Description="The -Name parameter test: complex name, complex suite name, and complex suite id")]
-        [Category("Slow")][Category("ScenarioLevel")]
+        [Category("Slow")]
+        [Category("ScenarioLevel")]
         [Category("Add_TMXTestScenario")]
         public void TestPrm_Name_TestSuiteName_TestSuiteId_Complex()
         {
@@ -245,7 +255,8 @@ namespace TMXTest.Commands.TestStructure
         }
 
         [Test] //[Test(Description="The -Description parameter test 1")]
-        [Category("Slow")][Category("ScenarioLevel")]
+        [Category("Slow")]
+        [Category("ScenarioLevel")]
         [Category("Add_TMXTestScenario")]
         public void TestPrm_Name_Description1()
         {
@@ -261,7 +272,8 @@ namespace TMXTest.Commands.TestStructure
         }
         
         [Test] //[Test(Description="The -Description parameter test 2")]
-        [Category("Slow")][Category("ScenarioLevel")]
+        [Category("Slow")]
+        [Category("ScenarioLevel")]
         [Category("Add_TMXTestScenario")]
         public void TestPrm_Name_Description2()
         {
@@ -276,7 +288,8 @@ namespace TMXTest.Commands.TestStructure
         }
         
         [Test] //[Test(Description="The -Description parameter test 3")]
-        [Category("Slow")][Category("ScenarioLevel")]
+        [Category("Slow")]
+        [Category("ScenarioLevel")]
         [Category("Add_TMXTestScenario")]
         public void TestPrm_Name_Description3()
         {
@@ -291,7 +304,8 @@ namespace TMXTest.Commands.TestStructure
         }
         
         [Test] //[Test(Description="The SuiteId assignment test")]
-        [Category("Slow")][Category("ScenarioLevel")]
+        [Category("Slow")]
+        [Category("ScenarioLevel")]
         [Category("Add_TMXTestScenario")]
         public void TestProperty_SuiteId()
         {

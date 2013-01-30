@@ -25,7 +25,6 @@ namespace TMX
         {
             TLHelper.AddTestCase(
                 this.Cmdlet, 
-                //this.Cmdlet.Name);
                 ((AddTLTestCaseCommand)this.Cmdlet).Name);
         }
     }

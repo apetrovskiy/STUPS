@@ -13,8 +13,6 @@ namespace TLAddinUnitTests.TestPlans
     using MbUnit.Framework;
     using PSTestLib;
     using Moq;
-    //using Autofac;
-    //using Autofac.Builder;
     using TMX;
     using Meyn.TestLink;
     using CookComputing.XmlRpc;
@@ -49,9 +47,8 @@ namespace TLAddinUnitTests.TestPlans
             bool inputNotSpecified)
         {
             
-            //TLTestPlanCmdletBase cmdlet = new TLTestPlanCmdletBase();
             GetTLTestPlanCommand cmdlet = new GetTLTestPlanCommand();
-            //cmdlet.UnitTestMode = true;
+
             if (inputNotSpecified) {
                 cmdlet.InputObject = null;
             } else {
@@ -79,7 +76,6 @@ namespace TLAddinUnitTests.TestPlans
             System.Collections.Generic.List<TestPlan> resultList =
                 new System.Collections.Generic.List<TestPlan>();
 
-            //foreach (object tpl in TMX.CommonCmdletBase.UnitTestOutput) {
             foreach (object tpl in PSTestLib.UnitTestOutput.LastOutput) {
 
                 resultList.Add((TestPlan)tpl);
@@ -133,7 +129,6 @@ namespace TLAddinUnitTests.TestPlans
                 getTestPlansFromProjectsInPipelineByName(listOfProjects, listOfTestPlans, (new string[]{ "testplan 02" }), true, false);
             
             Assert.AreEqual<System.Collections.Generic.List<TestPlan>>(
-            //Assert.AreEqual<Meyn.TestLink.TestPlan>(
                 (new System.Collections.Generic.List<Meyn.TestLink.TestPlan>()),
                 resultList);
         }
@@ -184,10 +179,6 @@ namespace TLAddinUnitTests.TestPlans
 
             listOfTestPlans.RemoveAt(2);
             listOfTestPlans.RemoveAt(0);
-            
-//            Assert.AreEqual<System.Collections.Generic.List<TestPlan>>(
-//                listOfTestPlans,
-//                resultList);
             
             Assert.AreElementsSameIgnoringOrder<Meyn.TestLink.TestPlan>(
                 listOfTestPlans,
@@ -253,22 +244,6 @@ namespace TLAddinUnitTests.TestPlans
                     true, // is_public
                     true, // open
                     listOfProjects[2].id));
-//            listOfTestPlans.Add(
-//                FakeTestLinkFactory.GetTestPlan(
-//                    "testplan 02",
-//                    "notes",
-//                    true, // active
-//                    true, // is_public
-//                    true, // open
-//                    listOfProjects[2].id));
-//            listOfTestPlans.Add(
-//                FakeTestLinkFactory.GetTestPlan(
-//                    "testplan 02",
-//                    "notes",
-//                    true, // active
-//                    true, // is_public
-//                    true, // open
-//                    listOfProjects[1].id));
             
             System.Collections.Generic.List<TestPlan> resultList =
                 getTestPlansFromProjectsInPipelineByName(listOfProjects, listOfTestPlans, (new string[]{ "testplan 02" }), false, false);

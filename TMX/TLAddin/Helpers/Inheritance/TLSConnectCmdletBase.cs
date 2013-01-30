@@ -39,12 +39,10 @@ namespace TMX
         [Parameter(Mandatory = false,
                    ParameterSetName = "fake")]
         internal new string Name { get; set; }
-        //private new string[] Name { get; set; }
         
         [Parameter(Mandatory = false,
                    ParameterSetName = "fake")]
         internal new string Id { get; set; }
-        //private new string Id { get; set; }
         #endregion Parameters
     }
 }

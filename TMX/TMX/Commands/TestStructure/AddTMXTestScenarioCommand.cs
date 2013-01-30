@@ -20,11 +20,6 @@ namespace TMX.Commands
     {
         public AddTMXTestScenarioCommand()
         {
-//            if (TestData.CurrentTestSuite != null) {
-//                this.InputObject = TestData.CurrentTestSuite; // ?????????????
-//            }
-            // 20120926
-            //if (TestData.TestSuites.Count == 0) {
             if (null == TestData.TestSuites || 0 == TestData.TestSuites.Count) {
                 TestData.InitTestData();
             }
@@ -38,22 +33,6 @@ namespace TMX.Commands
         /// </summary>
         protected override void ProcessRecord()
         {
-//            bool result = 
-//                TMX.TMXHelper.AddTestScenario(this);
-//            if (result) {
-//                WriteObject(TestData.CurrentTestScenario);
-//            } else {
-//                ErrorRecord err = 
-//                    new ErrorRecord(new Exception("Couldn't add a test scenario"),
-//                                    "AddingTestScenario",
-//                                    ErrorCategory.InvalidData,
-//                                    this.Name);
-//                err.ErrorDetails =
-//                    new ErrorDetails(
-//                        "Failed to add a test scenario");
-//                ThrowTerminatingError(err);
-//            }
-            
             TMXAddTestScenarioCommand command =
                 new TMXAddTestScenarioCommand(this);
             command.Execute();

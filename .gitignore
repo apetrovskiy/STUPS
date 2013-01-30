@@ -201,3 +201,5 @@ tltest
 UIACOM3
 UiaComWrapper
 UpgradeLog.XML
+RallyAddin
+RallyAddinUnitTests

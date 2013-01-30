@@ -93,11 +93,6 @@ namespace TMXTest.Commands.TestStructure
                 scenarioName + 
                 ").Name;",
                 scenarioName);
-//            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-//                @"(Open-TMXTestScenario -Name " + 
-//                scenarioName + 
-//                ").Id;",
-//                "2");
         }
         
         [Test] //[Test(Description="The -Name parameter test: complex name (from the selected suite)")]

@@ -26,7 +26,6 @@ namespace TMX
             TLHelper.AddBuild(
                 this.Cmdlet, 
                 ((AddTLBuildCommand)this.Cmdlet).InputObject,
-                //this.Cmdlet.Name,
                 ((AddTLBuildCommand)this.Cmdlet).Name,
                 ((AddTLBuildCommand)this.Cmdlet).Description);
         }

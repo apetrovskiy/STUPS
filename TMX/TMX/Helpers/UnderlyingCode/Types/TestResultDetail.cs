@@ -62,7 +62,7 @@ namespace TMX
                 TMXHelper.TestCaseStarted = System.DateTime.Now;
             }
             this.DetailType = detailType;
-            // 20121218
+
             switch (detailType) {
                 case TestResultDetailTypes.Screenshot:
                     this.ScreenshotDetail = detail;
@@ -82,12 +82,6 @@ namespace TMX
                 default:
                     throw new Exception("Invalid value for TestResultDetailTypes");
             }
-//            if (detailType == TestResultDetailTypes.Comment) {
-//                this.TextDetail = detail;
-//            }
-//            if (detailType == TestResultDetailTypes.Screenshot) {
-//                this.ScreenshotDetail = detail;
-//            }
         }
         public void AddTestResultDetail(
            TestResultDetailTypes detailType,

@@ -33,8 +33,6 @@ namespace TLAddinUnitTests.CheckCmdletParameters
             
             CmdletUnitTest.TestRunspace.IitializeRunspace(Settings.RunspaceCommand);
             CmdletUnitTest.TestRunspace.RunPSCode("[PSTestLib.PSCmdletBase]::SetCmdletParametersCheckingOn($true);");
-//            CmdletUnitTest.TestRunspace.RunPSCode(
-//                @"Add-Type -Path '.\SePSXTest.dll';");
         }
         
         public static void DisposeRunspace()

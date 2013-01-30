@@ -13,8 +13,6 @@ namespace TLAddinUnitTests.TestProjects
     using MbUnit.Framework;
     using PSTestLib;
     using Moq;
-    //using Autofac;
-    //using Autofac.Builder;
     using TMX;
     using Meyn.TestLink;
     using CookComputing.XmlRpc;
@@ -47,7 +45,6 @@ namespace TLAddinUnitTests.TestProjects
         {
             TLProjectCmdletBase cmdlet = new TLProjectCmdletBase();
             cmdlet.Name = null;
-            //cmdlet.UnitTestMode = true;
             
             TLAddinData.CurrentTestLinkConnection =
                 FakeTestLinkFactory.GetTestLinkWithProjects(listOfProjects);
@@ -55,25 +52,19 @@ namespace TLAddinUnitTests.TestProjects
             if (makeFail) {
                 TLAddinData.CurrentTestLinkConnection = null;
             }
-//Console.WriteLine("getProjectCollection: 003");
+//cmdlet.WriteTrace(cmdlet, "getProjectCollection: 003");
             TLSrvGetProjectCommand command =
                 new TLSrvGetProjectCommand(cmdlet);
             command.Execute();
-//Console.WriteLine("getProjectCollection: 004");
+//cmdlet.WriteTrace(cmdlet, "getProjectCollection: 004");
             System.Collections.Generic.List<TestProject> resultList =
                 new System.Collections.Generic.List<TestProject>();
-//Console.WriteLine("getProjectCollection: 005");
-//Console.WriteLine("IsInitialized: " + PSTestLib.UnitTestOutput.IsInitialized.ToString());
-//if (null == PSTestLib.UnitTestOutput.Pipelines) {
-//    Console.WriteLine("null == PSTestLib.UnitTestOutput.Pipelines");
-//} else {
-//    Console.WriteLine("null != PSTestLib.UnitTestOutput.Pipelines");
-//}
-            //foreach (object tpr in TMX.CommonCmdletBase.UnitTestOutput) {
+//cmdlet.WriteTrace(cmdlet, "getProjectCollection: 005");
+//cmdlet.WriteTrace(cmdlet, "IsInitialized: " + PSTestLib.UnitTestOutput.IsInitialized.ToString());
             foreach (object tpr in PSTestLib.UnitTestOutput.LastOutput) {
-//Console.WriteLine("getProjectCollection: 006");
+//cmdlet.WriteTrace(cmdlet, "getProjectCollection: 006");
                 resultList.Add((TestProject)tpr);
-//Console.WriteLine("getProjectCollection: 007");
+//cmdlet.WriteTrace(cmdlet, "getProjectCollection: 007");
             }
 
             return resultList;
@@ -100,31 +91,15 @@ namespace TLAddinUnitTests.TestProjects
                     "project3",
                     "prj3",
                     string.Empty));
-//Console.WriteLine("GetTLProject_broken_connection: 001");
+//cmdlet.WriteTrace(cmdlet, "GetTLProject_broken_connection: 001");
             System.Collections.Generic.List<TestProject> resultList =
                 getProjectCollection(list, true);
-//Console.WriteLine("GetTLProject_broken_connection: 002");
+//cmdlet.WriteTrace(cmdlet, "GetTLProject_broken_connection: 002");
             Assert.AreEqual<System.Collections.Generic.List<TestProject>>(
                 (new System.Collections.Generic.List<TestProject>()),
                 resultList);
         }
         
-#region to delete
-//        [Test] //, Parallelizable]
-//        [Category("Fast")]
-//        public void No_projects_Null()
-//        {
-//            System.Collections.Generic.List<TestProject> list = null;
-//            
-//            System.Collections.Generic.List<TestProject> resultList =
-//                getProjectCollection(list);
-//            
-//            Assert.AreEqual<System.Collections.Generic.List<TestProject>>(
-//                list,
-//                resultList);
-//        }
-#endregion to delete
-
         [Test] //, Parallelizable]
         [Category("Fast")]
         public void GetTLProject_no_projects()

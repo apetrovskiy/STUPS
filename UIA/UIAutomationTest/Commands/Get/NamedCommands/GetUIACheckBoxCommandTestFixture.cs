@@ -30,8 +30,9 @@ namespace UIAutomationTest.Commands.Get
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
         public void GetCheckBoxByAutomationIDTimeoutDefault()
         {
             string auId = "CheckBox111";
@@ -53,8 +54,9 @@ namespace UIAutomationTest.Commands.Get
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
         public void GetCheckBoxByAutomationIDTimeout2000()
         {
             string auId = "CheckBox111";
@@ -76,8 +78,9 @@ namespace UIAutomationTest.Commands.Get
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
         public void GetCheckBoxByAutomationIDTimeout3000Delay500()
         {
             string auId = "CheckBox111";

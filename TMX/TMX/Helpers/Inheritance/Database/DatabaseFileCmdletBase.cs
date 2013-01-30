@@ -22,10 +22,6 @@ namespace TMX
         }
         
         #region Parameters
-//        [Parameter(Mandatory = false,
-//                   ParameterSetName = "ConnString")]
-//        public string ConnectionString { get; set; }
-        
         [Parameter(Mandatory = true,
                    ParameterSetName = "File")]
         public string FileName { get; set; }

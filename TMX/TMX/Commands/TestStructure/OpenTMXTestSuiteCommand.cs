@@ -32,22 +32,6 @@ namespace TMX.Commands
             TMXOpenTestSuiteCommand command =
                 new TMXOpenTestSuiteCommand(this);
             command.Execute();
-            
-//            bool result = 
-//                TMX.TMXHelper.OpenTestSuite(this.Name, this.Id);
-//            if (result) {
-//                WriteObject(TestData.CurrentTestSuite);
-//            } else {
-//                ErrorRecord err = 
-//                    new ErrorRecord(new Exception("Couldn't get a test suite"),
-//                                    "GettingTestSuite",
-//                                    ErrorCategory.InvalidOperation,
-//                                    this.Name);
-//                err.ErrorDetails = 
-//                    new ErrorDetails(
-//                        "Failed to get a test suite");
-//                ThrowTerminatingError(err);
-//            }
         }
     }
 }

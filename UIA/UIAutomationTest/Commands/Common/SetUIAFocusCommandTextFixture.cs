@@ -30,7 +30,8 @@ namespace UIAutomationTest.Commands.Common
         }
         
         [Test] //[Test(Description="InputObject ProcessRecord test Null via pipeline")]
-        [Category("Slow")][Category("NoForms")]
+        [Category("Slow")]
+        [Category("NoForms")]
         public void TestPipelineInput()
         {
             CmdletUnitTest.TestRunspace.RunAndEvaluateIsTrue(
@@ -39,7 +40,8 @@ namespace UIAutomationTest.Commands.Common
         }
         
         [Test] //[Test(Description="ProcessRecord test Null via parameter")]
-        [Category("Slow")][Category("NoForms")]
+        [Category("Slow")]
+        [Category("NoForms")]
         public void TestParameterInputNull()
         {
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateIsNull(
@@ -56,7 +58,8 @@ namespace UIAutomationTest.Commands.Common
         }
         
         [Test] //[Test(Description="ProcessRecord test Is Not AutomationElement")]
-        [Category("Slow")][Category("NoForms")]
+        [Category("Slow")]
+        [Category("NoForms")]
         public void TestParameterInputOtherType()
         {
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateIsNull(

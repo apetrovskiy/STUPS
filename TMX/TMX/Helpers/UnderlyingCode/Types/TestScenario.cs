@@ -97,21 +97,31 @@ namespace TMX
         public string Id { get; internal set; }
         public System.Collections.Generic.List<ITestResult> TestResults {get; internal set; }
         public string Description { get; set; }
-        public string Status { get; internal set; }
+
+        private string status;
+        public string Status { get { return this.status; } }
         private TestScenarioStatuses _enStatus;
         internal TestScenarioStatuses enStatus
         { 
             get { return this._enStatus; }
             set{
                 this._enStatus = value;
-                if (value == TestScenarioStatuses.Failed) {
-                    this.Status = TMX.TestData.TestStateFailed;
-                }
-                if (value == TestScenarioStatuses.Passed) {
-                    this.Status = TMX.TestData.TestStatePassed;
-                }
-                if (value == TestScenarioStatuses.NotTested) {
-                    this.Status = TMX.TestData.TestStateNotTested;
+
+                switch (value) {
+                    case TestScenarioStatuses.Passed:
+                        this.status = TMX.TestData.TestStatePassed;
+                        break;
+                    case TestScenarioStatuses.Failed:
+                        this.status = TMX.TestData.TestStateFailed;
+                        break;
+                    case TestScenarioStatuses.NotTested:
+                        this.status = TMX.TestData.TestStateNotTested;
+                        break;
+                    case TestScenarioStatuses.KnownIssue:
+                        this.status = TMX.TestData.TestStateKnownIssue;
+                        break;
+                    default:
+                        throw new Exception("Invalid value for TestScenarioStatuses");
                 }
             }
         }

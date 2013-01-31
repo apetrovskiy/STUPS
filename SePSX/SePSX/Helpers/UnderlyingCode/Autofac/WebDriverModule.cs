@@ -181,12 +181,14 @@ namespace SePSX
 			
 			builder.RegisterType<ChromeDriver>()
 			    .As<IWebDriver>().UsingConstructor(new Type[] {
-			                                           typeof(DriverService),
+			                                           // 20130131
+			                                           // 2.29
+			                                           //typeof(DriverService),
+			                                           typeof(ChromeDriverService),
 			                                           typeof(ChromeOptions),
 			                                           typeof(TimeSpan)
 			                                       })
 			    .Named<IWebDriver>("chrome");
-
 
             #endregion ChromeDriver
             #region FirefoxDriver
@@ -301,7 +303,10 @@ namespace SePSX
 			
 			builder.RegisterType<InternetExplorerDriver>()
 			    .As<IWebDriver>().UsingConstructor(new Type[] {
-			                                           typeof(DriverService),
+			                                           // 20130131
+			                                           // 2.29
+			                                           //typeof(DriverService),
+			                                           typeof(InternetExplorerDriverService),
 			                                           typeof(InternetExplorerOptions),
 			                                           typeof(TimeSpan)
 			                                       })

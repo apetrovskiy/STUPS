@@ -41,74 +41,44 @@ namespace SePSXUnitTests.Commands.Navigation
         private void enterUrl(string firstUrl, string secondUrl)
         {
             StartSeChromeCommand cmdlet0 =
-                //new StartSeChromeCommandTestFixture();
                 WebDriverFactory.Container.Resolve<StartSeChromeCommand>();
             SeStartChromeCommand command0 =
                 new SeStartChromeCommand(cmdlet0);
             command0.Execute();
             
             EnterSeURLCommand cmdlet1 =
-                //new EnterSeURLCommandTestFixture();
                 WebDriverFactory.Container.Resolve<EnterSeURLCommand>();
             cmdlet1.InputObject =
-                //new FakeWebDriver[]{ (CommonCmdletBase.UnitTestOutput[0] as FakeWebDriver) };
                 new FakeWebDriver[]{ ((FakeWebDriver)(object)PSTestLib.UnitTestOutput.LastOutput[0]) };
             cmdlet1.URL = firstUrl;
             SeEnterURLCommand command1 =
                 new SeEnterURLCommand(cmdlet1);
             command1.Execute();
-Console.WriteLine("after the first EnterURL");
-//Console.WriteLine((CommonCmdletBase.UnitTestOutput[1] as FakeWebDriver).Url);
-Console.WriteLine(((FakeWebDriver)(object)PSTestLib.UnitTestOutput.LastOutput[0]).Url);
-Console.WriteLine("after the first EnterURL, saved");
-//Console.WriteLine((CommonCmdletBase.UnitTestOutput[1] as FakeWebDriver)._url);
-Console.WriteLine(((FakeWebDriver)(object)PSTestLib.UnitTestOutput.LastOutput[0])._url);
+
             EnterSeURLCommand cmdlet2 =
-                //new EnterSeURLCommandTestFixture();
                 WebDriverFactory.Container.Resolve<EnterSeURLCommand>();
             cmdlet2.InputObject =
-                //new FakeWebDriver[]{ (CommonCmdletBase.UnitTestOutput[1] as FakeWebDriver) };
                 new FakeWebDriver[]{ ((FakeWebDriver)(object)PSTestLib.UnitTestOutput.LastOutput[0]) };
             cmdlet2.URL = secondUrl;
             SeEnterURLCommand command2 =
                 new SeEnterURLCommand(cmdlet2);
             command2.Execute();
-Console.WriteLine("after the second EnterURL");
-//Console.WriteLine((CommonCmdletBase.UnitTestOutput[2] as FakeWebDriver).Url);
-Console.WriteLine(((FakeWebDriver)(object)PSTestLib.UnitTestOutput.LastOutput[0]).Url);
-Console.WriteLine("after the second EnterURL, saved");
-//Console.WriteLine((CommonCmdletBase.UnitTestOutput[2] as FakeWebDriver)._url);
-Console.WriteLine(((FakeWebDriver)(object)PSTestLib.UnitTestOutput.LastOutput[0])._url);
+
             InvokeSeNavigateBackCommand cmdlet3 =
-                //new InvokeSeNavigateBackCommandTestFixture();
                 WebDriverFactory.Container.Resolve<InvokeSeNavigateBackCommand>();
             cmdlet3.InputObject =
-                //new FakeWebDriver[]{ (CommonCmdletBase.UnitTestOutput[2] as FakeWebDriver) };
                 new FakeWebDriver[]{ ((FakeWebDriver)(object)PSTestLib.UnitTestOutput.LastOutput[0]) };
             SeInvokeNavigateBackCommand command3 =
                 new SeInvokeNavigateBackCommand(cmdlet3);
             command3.Execute();
-Console.WriteLine("after the third EnterURL");
-//Console.WriteLine((CommonCmdletBase.UnitTestOutput[3] as FakeWebDriver).Url);
-Console.WriteLine(((FakeWebDriver)(object)PSTestLib.UnitTestOutput.LastOutput[0]).Url);
-Console.WriteLine("after the third EnterURL, saved");
-//Console.WriteLine((CommonCmdletBase.UnitTestOutput[3] as FakeWebDriver)._url);
-Console.WriteLine(((FakeWebDriver)(object)PSTestLib.UnitTestOutput.LastOutput[0])._url);
+
             InvokeSeNavigateForwardCommand cmdlet4 =
-                //new InvokeSeNavigateForwardCommandTestFixture();
                 WebDriverFactory.Container.Resolve<InvokeSeNavigateForwardCommand>();
             cmdlet4.InputObject =
-                //new FakeWebDriver[]{ (CommonCmdletBase.UnitTestOutput[2] as FakeWebDriver) };
                 new FakeWebDriver[]{ ((FakeWebDriver)(object)PSTestLib.UnitTestOutput.LastOutput[0]) };
             SeInvokeNavigateForwardCommand command4 =
                 new SeInvokeNavigateForwardCommand(cmdlet4);
             command4.Execute();
-Console.WriteLine("after the fourth EnterURL");
-//Console.WriteLine((CommonCmdletBase.UnitTestOutput[3] as FakeWebDriver).Url);
-Console.WriteLine(((FakeWebDriver)(object)PSTestLib.UnitTestOutput.LastOutput[0]).Url);
-Console.WriteLine("after the fourth EnterURL, saved");
-//Console.WriteLine((CommonCmdletBase.UnitTestOutput[3] as FakeWebDriver)._url);
-Console.WriteLine(((FakeWebDriver)(object)PSTestLib.UnitTestOutput.LastOutput[0])._url);
         }
         
         [Test]
@@ -120,7 +90,6 @@ Console.WriteLine(((FakeWebDriver)(object)PSTestLib.UnitTestOutput.LastOutput[0]
             enterUrl(firstUrl, secondUrl);
             Assert.AreEqual(
                 secondUrl,
-                //((FakeWebDriver)CommonCmdletBase.UnitTestOutput[3]).Url);
                 ((string)(object)PSTestLib.UnitTestOutput.LastOutput[0]));
         }
         
@@ -133,7 +102,6 @@ Console.WriteLine(((FakeWebDriver)(object)PSTestLib.UnitTestOutput.LastOutput[0]
             enterUrl(firstUrl, secondUrl);
             Assert.AreEqual(
                 secondUrl,
-                //((FakeWebDriver)CommonCmdletBase.UnitTestOutput[3]).Url);
                 ((string)(object)PSTestLib.UnitTestOutput.LastOutput[0]));
         }
         
@@ -146,7 +114,6 @@ Console.WriteLine(((FakeWebDriver)(object)PSTestLib.UnitTestOutput.LastOutput[0]
             enterUrl(firstUrl, secondUrl);
             Assert.AreEqual(
                 secondUrl,
-                //((FakeWebDriver)CommonCmdletBase.UnitTestOutput[3]).Url);
                 ((string)(object)PSTestLib.UnitTestOutput.LastOutput[0]));
         }
         
@@ -159,7 +126,6 @@ Console.WriteLine(((FakeWebDriver)(object)PSTestLib.UnitTestOutput.LastOutput[0]
             enterUrl(firstUrl, secondUrl);
             Assert.AreEqual(
                 secondUrl,
-                //((FakeWebDriver)CommonCmdletBase.UnitTestOutput[3]).Url);
                 ((string)(object)PSTestLib.UnitTestOutput.LastOutput[0]));
         }
     }

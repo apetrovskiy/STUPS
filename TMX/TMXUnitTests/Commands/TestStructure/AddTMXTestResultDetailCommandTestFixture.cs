@@ -12,9 +12,6 @@ namespace TMXUnitTests.Commands.Status
     using System;
     using MbUnit.Framework;
     using PSTestLib;
-    //using Moq;
-    //using Autofac;
-    //using Autofac.Builder;
     using TMX;
     
     /// <summary>

@@ -40,26 +40,44 @@ namespace UIAutomationTest.Commands.Wait
             MiddleLevelCode.StartProcessWithForm(
                 UIAutomationTestForms.Forms.WinFormsFull, 
                 0);
+            // 20130130
+//            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+//                @"if (-not (Get-UIAWindow -pn " +
+//                MiddleLevelCode.TestFormProcess +
+//                @" | Get-UIA" +
+//                controlType +
+//                " -" + propertyName + " '" +
+//                name +
+//                @"').IsEnabled) { " + 
+//                @"$null = Get-UIAWindow -pn " +
+//                MiddleLevelCode.TestFormProcess +
+//                @" | Get-UIAButton -Name Button2 | Invoke-UIAButtonClick; " +
+//                @"Get-UIAWindow -pn " +
+//                MiddleLevelCode.TestFormProcess +
+//                @" | Get-UIA" + 
+//                controlType +
+//                " -" + propertyName + " '" +
+//                name + 
+//                @"' | Wait-UIA" + 
+//                controlType +
+//                @"IsEnabled | Read-UIAControlIsEnabled; } ",
+//                expectedResult);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"if (-not (Get-UIAWindow -pn " +
+                @"$null = Get-UIAWindow -pn " +
                 MiddleLevelCode.TestFormProcess +
-                @" | Get-UIA" +
+                "; " +
+                @"if (Test-UIAControlState -searchCriteria @{" +
+                propertyName +
+                @"=""" +
+                name +
+                @""";IsEnabled=$false}){ $null = Get-UIAButton -Name Button2 | Invoke-UIAButtonClick; " +
+                @"Get-UIA" +
                 controlType +
                 " -" + propertyName + " '" +
                 name +
-                @"').IsEnabled) { " + 
-                @"$null = Get-UIAWindow -pn " +
-                MiddleLevelCode.TestFormProcess +
-                @" | Get-UIAButton -Name Button2 | Invoke-UIAButtonClick; " +
-                @"Get-UIAWindow -pn " +
-                MiddleLevelCode.TestFormProcess +
-                @" | Get-UIA" + 
-                controlType +
-                " -" + propertyName + " '" +
-                name + 
                 @"' | Wait-UIA" + 
                 controlType +
-                @"IsEnabled | Read-UIAControlIsEnabled; } ",
+                @"IsEnabled | Read-UIAControlIsEnabled; }",
                 expectedResult);
         }
         

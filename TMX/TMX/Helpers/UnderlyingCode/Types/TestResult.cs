@@ -59,24 +59,31 @@ namespace TMX
         public string Code { get; set; }
         
         public List<object> Parameters { get; internal set; }
-        public string Status { get; internal set; }
+
+        private string status;
+        public string Status { get { return this.status; } }
         private TestResultStatuses _enStatus;
         public TestResultStatuses enStatus
         { 
             get { return this._enStatus; }
             set{
                 this._enStatus = value;
-                if (value == TestResultStatuses.Failed) {
-                    this.Status = TMX.TestData.TestStateFailed;
-                }
-                if (value == TestResultStatuses.KnownIssue) {
-                    this.Status = TMX.TestData.TestStateKnownIssue;
-                }
-                if (value == TestResultStatuses.Passed) {
-                    this.Status = TMX.TestData.TestStatePassed;
-                }
-                if (value == TestResultStatuses.NotTested) {
-                    this.Status = TMX.TestData.TestStateNotTested;
+
+                switch (value) {
+                    case TestResultStatuses.Passed:
+                        this.status = TMX.TestData.TestStatePassed;
+                        break;
+                    case TestResultStatuses.Failed:
+                        this.status = TMX.TestData.TestStateFailed;
+                        break;
+                    case TestResultStatuses.NotTested:
+                        this.status = TMX.TestData.TestStateNotTested;
+                        break;
+                    case TestResultStatuses.KnownIssue:
+                        this.status = TMX.TestData.TestStateKnownIssue;
+                        break;
+                    default:
+                        throw new Exception("Invalid value for TestResultStatuses");
                 }
             }
         }

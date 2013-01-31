@@ -265,10 +265,8 @@ namespace UIAutomationTestForms
                     break;
                 case Forms.WinFormsEmptyX2:
                     System.Windows.Forms.Application.Run(
-                        //new WinFormsEmpty(ctrlType, controlName, controlAutomationId, controlDelay));
                         new WinFormsEmpty(controls));
                     System.Windows.Forms.Application.Run(
-                        //new WinFormsEmpty(ctrlType, controlName, controlAutomationId, controlDelay));
                         new WinFormsEmpty(controls));
                     break;
                 case Forms.WinFormsAnonymous:

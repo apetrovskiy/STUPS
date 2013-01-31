@@ -488,19 +488,23 @@ namespace TMX
         internal static TestStat RefreshScenarioStatistics(TestScenario scenario)
         {
             TestStat ts = new TestStat();
-            ts.All = scenario.TestResults.Count;
-            foreach (TestResult tr in scenario.TestResults) {
-                if (tr.enStatus == TestResultStatuses.Passed ||
-                    tr.enStatus == TestResultStatuses.KnownIssue) {
-                    ts.Passed++;
-                    if (tr.enStatus == TestResultStatuses.KnownIssue){
-                        ts.PassedButWithBadSmell++;
+
+            if (null != scenario.TestResults && 0 < scenario.TestResults.Count) {
+                
+                ts.All = scenario.TestResults.Count;
+                foreach (TestResult tr in scenario.TestResults) {
+                    if (tr.enStatus == TestResultStatuses.Passed ||
+                        tr.enStatus == TestResultStatuses.KnownIssue) {
+                        ts.Passed++;
+                        if (tr.enStatus == TestResultStatuses.KnownIssue){
+                            ts.PassedButWithBadSmell++;
+                        }
                     }
+                    if (tr.enStatus == TestResultStatuses.Failed) {
+                        ts.Failed++;
+                    }
+                    ts.TimeSpent += tr.TimeSpent;
                 }
-                if (tr.enStatus == TestResultStatuses.Failed) {
-                    ts.Failed++;
-                }
-                ts.TimeSpent += tr.TimeSpent;
             }
             ts.NotTested = 
                 ts.All - 
@@ -528,41 +532,93 @@ namespace TMX
         
         internal static void SetScenarioStatus()
         {
-            if (TestData.CurrentTestScenario != null) {
+            if (null == TestData.CurrentTestScenario) {
+                TestData.InitCurrentTestScenario();
+            }
+
+            int counterPassedResults = 0;
+            int counterKnownIssueResults = 0;
+            
+            if (null != TestData.CurrentTestScenario &&
+                null != TestData.CurrentTestScenario.TestResults &&
+                0 < TestData.CurrentTestScenario.TestResults.Count) {
                 foreach (TestResult testResult in TestData.CurrentTestScenario.TestResults) {
-                    if (testResult.enStatus == TestResultStatuses.Failed) {
-                        TestData.CurrentTestScenario.enStatus = TestScenarioStatuses.Failed;
-                        return;
-                    }
-                    if (testResult.enStatus == TestResultStatuses.Passed ||
-                        testResult.enStatus == TestResultStatuses.KnownIssue){
-                        TestData.CurrentTestScenario.enStatus = TestScenarioStatuses.Passed;
+
+                    switch (testResult.enStatus) {
+                        case TestResultStatuses.Passed:
+                            counterPassedResults++;
+                            TestData.CurrentTestScenario.enStatus = TestScenarioStatuses.Passed;
+                            break;
+                        case TestResultStatuses.Failed:
+                            TestData.CurrentTestScenario.enStatus = TestScenarioStatuses.Failed;
+                            return;
+                            //break;
+                        case TestResultStatuses.NotTested:
+                            
+                            break;
+                        case TestResultStatuses.KnownIssue:
+                            counterKnownIssueResults++;
+                            TestData.CurrentTestScenario.enStatus = TestScenarioStatuses.Passed;
+                            break;
+                        default:
+                            throw new Exception("Invalid value for TestResultStatuses");
                     }
                 }
+                if (0 == counterPassedResults && 0 < counterKnownIssueResults) {
+                    TestData.CurrentTestScenario.enStatus = TestScenarioStatuses.KnownIssue;
+                }
+            
+                // set statistics
+                RefreshScenarioStatistics(TestData.CurrentTestScenario);
             }
-            
-            // set statistics
-            RefreshScenarioStatistics(TestData.CurrentTestScenario);
-            
         }
         
         internal static void SetSuiteStatus()
         {
-            if (TestData.CurrentTestSuite != null) {
+            if (null == TestData.CurrentTestSuite) {
+                TestData.InitCurrentTestScenario();
+            }
+
+            TestData.SetScenarioStatus();
+
+            int counterPassedResults = 0;
+            int counterKnownIssueResults = 0;
+            
+            if (TestData.CurrentTestSuite != null && 
+                0 < TestData.CurrentTestSuite.TestScenarios.Count) {
+
                 foreach (TestScenario scenario in TestData.CurrentTestSuite.TestScenarios) {
-                    if (scenario.enStatus == TestScenarioStatuses.Failed) {
-                        TestData.CurrentTestSuite.enStatus = TestSuiteStatuses.Failed;
-                        return;
-                    }
-                    if (scenario.enStatus == TestScenarioStatuses.Passed) {
-                        TestData.CurrentTestSuite.enStatus = TestSuiteStatuses.Passed;
+
+                    switch (scenario.enStatus) {
+                        case TestScenarioStatuses.Passed:
+                            counterPassedResults++;
+                            TestData.CurrentTestSuite.enStatus = TestSuiteStatuses.Passed;
+                            break;
+                        case TestScenarioStatuses.Failed:
+                            TestData.CurrentTestSuite.enStatus = TestSuiteStatuses.Failed;
+                            return;
+                            //break;
+                        case TestScenarioStatuses.NotTested:
+
+                            break;
+                        case TestScenarioStatuses.KnownIssue:
+                            counterKnownIssueResults++;
+                            TestData.CurrentTestSuite.enStatus = TestSuiteStatuses.Passed;
+                            break;
+                        default:
+                            throw new Exception("Invalid value for TestScenarioStatuses");
                     }
                 }
+
+                if (0 == counterPassedResults && 0 < counterKnownIssueResults) {
+
+                    TestData.CurrentTestSuite.enStatus = TestSuiteStatuses.KnownIssue;
+                }
+
+                // set statistics
+                RefreshSuiteStatistics(TestData.CurrentTestSuite);
+
             }
-            
-            // set statistics
-            RefreshSuiteStatistics(TestData.CurrentTestSuite);
-            
         }
         
         internal static string GetTestSuiteId()

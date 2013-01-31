@@ -15,9 +15,6 @@ namespace UIAutomationSpy
     using System.Windows.Forms;
     using System.Windows.Automation;
     using System.Windows;
-    
-//    using System;
-//    using System.Diagnostics;
     using System.Management.Automation;
     using System.Management.Automation.Runspaces;
     
@@ -30,8 +27,7 @@ namespace UIAutomationSpy
         private int tabooPID = 0;
         private string codeToRun = string.Empty;
         private static Runspace testRunSpace;
-        
-        // 20121003
+
         private SpyModes spyMode = SpyModes.uIAutomationSpy;
         
         private void runPowerShellCode()
@@ -82,7 +78,7 @@ namespace UIAutomationSpy
                 result = true;
             } 
             catch (Exception eInitRunspace) {
-                //Console.WriteLine(eInitRunspace.Message);
+
                 this.richResults.Text += eInitRunspace.Message;
                 this.richResults.Text += "\r\n";
                 result = false;
@@ -95,9 +91,7 @@ namespace UIAutomationSpy
             System.Collections.ObjectModel.Collection<PSObject> result = null;
             System.Collections.Generic.List<PSObject> resultList = 
                 new System.Collections.Generic.List<PSObject>();
-            //this.lvwResults.Items.Clear();
-            //this.lvwResults.Columns.Clear();
-            //this.lvwResults.Columns.Add("Results");
+
             this.richResults.Text = string.Empty;
             try {
                 this.pGridElement.SelectedObject = null;
@@ -108,14 +102,12 @@ namespace UIAutomationSpy
                 if (resultObject.Count > 0) {
                     if (resultObject.Count == 1) {
                         this.pGridElement.SelectedObject = resultObject[0];
-                        //this.lvwResults.Items.Add(new ListViewItem(resultObject[0].ToString()));
                         this.richResults.Text += resultObject[0].ToString();
                         this.richResults.Text += "\r\n";
                     }
                     if (resultObject.Count > 1) {
                         foreach (PSObject psObj in resultObject) {
                             resultList.Add(psObj);
-                            //this.lvwResults.Items.Add(new ListViewItem(psObj.ToString()));
                             this.richResults.Text += psObj.ToString();
                             this.richResults.Text += "\r\n";
                         }
@@ -126,17 +118,15 @@ namespace UIAutomationSpy
                 return resultObject;
             } 
             catch (Exception eRunspace) {
-                //Console.WriteLine(eRunspace.Message);
+
                 this.richResults.Text += eRunspace.Message;
                 this.richResults.Text += "\r\n";
                 throw(eRunspace);
-                //result = null;
             }
-            //return result; // 20121120
         }
         private void destroyRunspace()
         {
-            //bool result = false;
+
             try {
                 testRunSpace.Close();
                 testRunSpace.Dispose();
@@ -145,27 +135,7 @@ namespace UIAutomationSpy
             catch (Exception eee) {
                 this.txtFullCode.Text = eee.Message;
             }
-            //return result;
         }
-        
-        // 20121003
-//        public SpyForm()
-//        {
-//            //  // The InitializeComponent() call is required for Windows Forms designer support.
-//            // 
-//            
-//            InitializeComponent();
-//            
-//            try {
-//            this.tabooPID = 
-//                System.Diagnostics.Process.GetCurrentProcess().Id;
-//            } 
-//            catch (Exception eee) {
-//                this.txtFullCode.Text = eee.Message;
-//            }
-//            //  // TODO: Add constructor code after the InitializeComponent() call.
-//            // 
-//        }
 
         public SpyForm(SpyModes spyMode)
         {
@@ -211,43 +181,26 @@ namespace UIAutomationSpy
         
         void BtnRunAllClick(object sender, EventArgs e)
         {
-            // 20120925 menu
-            //this.btnRunAll.Enabled = false;
-            //this.btnRunSel.Enabled = false;
             this.menuAutomationState_RunScript();
             
-            //this.codeToRun = this.richScript.Text;
             this.codeToRun = this.txtScript.Text;
             this.runPowerShellCode();
-            
-            // 20120925 menu
-            //this.btnRunAll.Enabled = true;
-            //this.btnRunSel.Enabled = true;
+
             this.menuAutomationState_ReadyToAll();
         }
         
         void BtnRunSelClick(object sender, EventArgs e)
         {
-            // 20120925 menu
-            //this.btnRunAll.Enabled = false;
-            //this.btnRunSel.Enabled = false;
             this.menuAutomationState_RunScript();
-            
-            //this.codeToRun = this.richScript.SelectedText;
+
             this.codeToRun = this.txtScript.SelectedText;
             this.runPowerShellCode();
-            
-            // 20120925 menu
-            //this.btnRunAll.Enabled = true;
-            //this.btnRunSel.Enabled = true;
+
             this.menuAutomationState_ReadyToAll();
         }
         
         void BtnBreakPSClick(object sender, EventArgs e)
         {
-            // 20120925 menu
-            //this.btnRunAll.Enabled = true;
-            //this.btnRunSel.Enabled = true;
             this.menuAutomationState_ReadyToAll();
             
             try {
@@ -272,313 +225,6 @@ namespace UIAutomationSpy
                     startSpying_UIAutomation();
                     break;
             }
-            
-#region commented
-//            if (this.btnStart.Text == "Start") {
-//                this.stopNow = false;
-//                
-//                // 20120925 menu
-//                //this.btnStart.Enabled = false;
-//                //this.btnStop.Enabled = true;
-//                this.menuAutomationState_RunSpy();
-//
-//                // 20120618 UIACOMWrapper
-//                AutomationElement rootElement = 
-//                    System.Windows.Automation.AutomationElement.RootElement;
-//                
-//                UIAutomation.TranscriptCmdletBase cmdlet = null;
-//                System.Windows.Automation.AutomationElement element = null;
-//
-////				UIANET::System.Windows.Automation.AutomationElement rootElement =
-////                    UIANET::System.Windows.Automation.AutomationElement.RootElement;
-////                
-////                UIAutomation.TranscriptCmdletBase cmdlet = null;
-////                UIACOM::System.Windows.Automation.AutomationElement element = null;
-//
-//                do{
-//                    System.Windows.Forms.Application.DoEvents();
-//                    
-//                    try {
-//                        
-//                        element = 
-//                            this.getElementFromPoint();
-//                        
-////                        // use Windows forms mouse code instead of WPF
-////                        System.Drawing.Point mouse = System.Windows.Forms.Cursor.Position;
-////
-////                        // commented 20120618 to switch to UIACOMWrapper
-////                        element =
-////                            System.Windows.Automation.AutomationElement.FromPoint(
-////                                new System.Windows.Point(mouse.X, mouse.Y));
-////                        //element = 
-////                        //	//(UIANET::System.Windows.Automation.AutomationElement)
-////                        //	UIACOM3.UIACOMHelper.GetAutomationElementFromPoint();
-//                        
-//                        // 20120618 UIACOMWrapper
-//                        if (element != null && ((element as AutomationElement) != null)) { // && (int)element.Current.ProcessId > 0)
-//                        //if (element != null && ((element as UIACOM::System.Windows.Automation.AutomationElement) != null)) { // && (int)element.Current.ProcessId > 0)
-//                                cmdlet = 
-//                                    this.createTranscriptingCmdlet();
-////                                cmdlet =
-////                                    new UIAutomation.TranscriptCmdletBase();
-////                                cmdlet.NoClassInformation = false; // true; // 20120614
-////                                cmdlet.NoScriptHeader = true;
-////                                cmdlet.NoUI = true;
-////                                cmdlet.WriteCurrentPattern = true;
-////                                cmdlet.Timeout = 600000000;
-////                                cmdlet.Highlight = true;
-////                                cmdlet.HighlightParent = true;
-////                                cmdlet.PassThru = false;
-//                                //cmdlet.Seconds = 3;
-////                                
-////                                UIAutomation.Preferences.TranscriptInterval = 500; //1000; //500; //200;
-//                                try{
-//                                    bool res =
-//                                        UIAutomation.UIAHelper.ProcessingElement(
-//                                            cmdlet, 
-//                                            element); // as UIANET::System.Windows.Automation.AutomationElement);
-//                                    if (!res) {
-//                                        //this.richTextBox1.Text = "false";
-////                                        this.stopNow = false;
-////                                        element = null;
-////                                        System.Threading.Thread.Sleep(
-////                                            UIAutomation.Preferences.TranscriptInterval);
-////                                        continue;
-//                                    }
-//                                } 
-//                                catch (Exception eProcessingElement) {
-//                                    this.txtFullCode.Text = 
-//                                        "eProcessingElement element method:\r\n" + 
-//                                        eProcessingElement.Message;
-//                                    element = null;
-//                                    System.Threading.Thread.Sleep(
-//                                        UIAutomation.Preferences.TranscriptInterval);
-//                                    continue;
-//                                }
-//                                
-//                                
-//                            int elementPID = 0;
-//                            try {
-//                                elementPID = element.Current.ProcessId;
-//                            }
-//                            catch {
-////                                this.richTextBox1.Text += 
-////                                    "failed to get element.Current.ProcessId\r\n";
-//                                try {
-//                                    elementPID = element.Cached.ProcessId;
-//                                }
-//                                catch {
-////                                    this.richTextBox1.Text +=
-////                                        "failed to get  element.Cached.ProcessId\r\n";
-//                                }
-//                            }
-//                            
-//                            if (elementPID != this.tabooPID) { // ||
-//                                if (cmdlet.LastRecordedItem.Count > 0) {
-//                                    try {
-//                                        this.richControlCode.Text = cmdlet.WritingRecord(
-//                                            cmdlet.LastRecordedItem,
-//                                            null,
-//                                            null,
-//                                            null);
-//                                        if (this.chkClipboard.Checked) {
-//                                            System.Windows.Forms.Clipboard.SetDataObject(
-//                                                this.richControlCode.Text);
-//                                        }
-//                                        
-//                                        
-//                                        // 20120621
-////                                        UIAutomation.UIAHelper.CollectAncestors(
-////                                            cmdlet,
-////                                            element);
-////                                        this.richTextBox1.Text = string.Empty;
-////                                        for(int i = cmdlet.LastRecordedItem.Count - 1; i >= 0; i--) {
-////                                            string ancestorCode = 
-////                                                cmdlet.LastRecordedItem[i].ToString();
-////                                            if (ancestorCode != this.richControlCode.Text) {
-////                                                if (this.richTextBox1.Text.Length > 0) {
-////                                                    this.richTextBox1.Text += " | `\r\n";
-////                                                }
-////                                                this.richTextBox1.Text += 
-////                                                    ancestorCode;
-////                                            } else {
-////                                                break;
-////                                            }
-////                                        }
-//                                        //
-//                                    } 
-//                                    catch (Exception eCollectingElements) {
-//                                        // there is usually nothing to report
-//                                        this.txtFullCode.Text = 
-//                                            "Collecting:\r\n" + 
-//                                            eCollectingElements.Message;
-//                                        Exception eCollectingElements2 =
-//                                            new Exception(
-//                                                "Collecting (eCollectingElements):\r\n" + 
-//                                                eCollectingElements.Message);
-//                                        throw(eCollectingElements2);
-//                                    }
-////                                    if (this.richControlCode.Text.Length > 0) {
-////                                        this.scriptCurrentString = 
-////                                            this.richControlCode.Text;
-////                                        if (this.scriptPreviousString !=
-////                                            this.scriptCurrentString) {
-////                                            //this.richScript.Text += "\r\n";
-////                                            this.txtScript.Text += "\r\n";
-////                                            //this.richScript.Text += 
-////                                            this.txtScript.Text += 
-////                                                this.richControlCode.Text;
-////                                            this.scriptPreviousString =
-////                                                this.scriptCurrentString;
-////                                        }
-////                                    }
-//                                    
-//                                    // writing to the property grid control
-//                                    this.writingAutomaitonElementToPropertyGridControl(element);
-////                                    try {
-////                                        this.pGridElement.SelectedObject = 
-////                                            element.Current;
-////                                    }
-////                                    catch {
-////                                        try {
-////                                            this.pGridElement.SelectedObject = 
-////                                                element.Cached;
-////                                        }
-////                                        catch {
-////                                            
-////                                        }
-////                                    }
-//                                    
-//                                    // writing to the family tree and the code
-//                                    try {
-////                                        this.tvwHierarhy.Nodes.Clear();
-////                                        System.Collections.Generic.List<string> ancestorsNodesList = 
-////                                            new System.Collections.Generic.List<string>();
-////                                        System.Collections.Generic.List<string> ancestorsCodeList = 
-////                                            new System.Collections.Generic.List<string>();
-////
-////                                        ancestorsNodesList.Clear();
-////                                        ancestorsCodeList.Clear();
-//                                        
-//                                        //this.cleanAncestry();
-//                                        
-//                                        //try {
-//                                        this.collectAncestry(
-//                                            ref ancestorsNodesList, 
-//                                            ref ancestorsCodeList,
-//                                            element);
-//                                        //}
-//                                        //catch (Exception eCollectAncestry) {
-//                                        //    this.richTextBox1.Text = eCollectAncestry.Message;
-//                                        //}
-//                                        
-//                                        // the Hierarchy tree
-//                                        this.fillHierarchyTree();
-////                                        try {
-////                                        if (ancestorsNodesList.Count > 0) {
-////                                            TreeNode previousNode = null;
-////                                            for (int i = ancestorsNodesList.Count; i > 0; i--) {
-////                                                TreeNode node = new TreeNode(ancestorsNodesList[i - 1]);
-////                                                
-////                                                if (this.tvwHierarhy.Nodes.Count == 0) {
-////                                                    this.tvwHierarhy.Nodes.Add(node);
-////                                                } else {
-////                                                    previousNode.Nodes.Add(node);
-////                                                    previousNode.Expand();
-////                                                }
-////                                                previousNode = node;
-////                                            }
-////                                        }
-////                                        }
-////                                        catch (Exception eNodes) {
-////                                            this.txtFullCode.Text = eNodes.Message;
-////                                        }
-//                                        
-//                                        // the code generated
-//                                        this.writeCodeGenerated();
-////                                        this.txtFullCode.Text = string.Empty;
-////                                        if (ancestorsCodeList.Count > 0) {
-////                                            for (int i = ancestorsCodeList.Count; i > 0; i--) {
-////                                                if (this.txtFullCode.Text.Length == 0) {
-////                                                    this.txtFullCode.Text += ancestorsCodeList[i - 1];
-////                                                } else {
-////                                                    this.txtFullCode.Text += " | `\r\n";
-////                                                    this.txtFullCode.Text += ancestorsCodeList[i - 1];
-////                                                }
-////                                            }
-////                                            
-////                                            if (this.txtFullCode.Text.Length > 0) {
-////                                                this.scriptCurrentString = 
-////                                                    this.txtFullCode.Text;
-////                                                if (this.scriptPreviousString !=
-////                                                    this.scriptCurrentString) {
-////                                                    //this.richScript.Text += "\r\n";
-////                                                    this.txtScript.Text += "\r\n\r\n";
-////                                                    //this.richScript.Text += 
-////                                                    this.txtScript.Text += 
-////                                                        this.txtFullCode.Text;
-////                                                    this.scriptPreviousString =
-////                                                        this.scriptCurrentString;
-////                                                }
-////                                            }
-////                                        }
-//                                        
-//                                    }
-//                                    catch { //(Exception eAncestors) {
-//                                        //this.richTextBox1.Text += "eAncestors:\r\n";
-//                                        //this.richTextBox1.Text += eAncestors.Message;
-//                                    }
-//                                }
-//                                
-//                                writingAvailablePatterns(element);
-//                                
-////                                try {
-////                                    //this.richPatterns.Text = "trying to get patterns";
-////                                    this.richPatterns.Text = "available patterns";
-////                                    this.richPatterns.Text += "\r\n";
-////                                    
-////                                    // 20120618 UIACOMWrapper
-////                                    AutomationPattern[] supportedPatterns =
-////                                        element.GetSupportedPatterns();
-////                                    //UIACOM::System.Windows.Automation.AutomationPattern[] supportedPatterns =
-////                                    //    element.GetSupportedPatterns();                                    
-////                                    
-////                                    //element.GetSupportedPatterns  
-////                                    //this.richPatterns.Text += supportedPatterns.Length.ToString();
-////                                    //this.richPatterns.Text = string.Empty;
-////                                    if (supportedPatterns != null &&
-////                                        supportedPatterns.Length > 0) {
-////                                        for (int i = 0; i < supportedPatterns.Length; i++) {
-////                                            if (i > 0) {
-////                                                this.richPatterns.Text += "\r\n";
-////                                            }
-////                                            this.richPatterns.Text += 
-////                                                supportedPatterns[i].ProgrammaticName.Replace("Identifiers.Pattern", "");
-////                                        }
-////                                    }
-////                                }
-////                                catch {}
-//                                
-//                            } // end of if (elementPID != tabooPID)
-//                        } // end of if (element != null && ((element as AutomationElement) != null))
-//                        element = null;
-//                        System.Threading.Thread.Sleep(
-//                            UIAutomation.Preferences.TranscriptInterval);
-//                    } catch (Exception eUnknown) {
-//                        this.txtFullCode.Text += 
-//                            "External cycle (eUnknown):\r\n" + 
-//                            eUnknown.Message; // +
-//                        
-//                        element = null;
-//                            
-//                        System.Threading.Thread.Sleep(
-//                            UIAutomation.Preferences.TranscriptInterval);
-//                    }
-//                    
-//                } while (!this.stopNow);
-//                return;
-//            }
-#endregion commented
         }
         
         private string getNodeNameFromAutomationElement(AutomationElement element)
@@ -625,15 +271,8 @@ namespace UIAutomationSpy
             string result = string.Empty;
             
             string elementControlType = 
-                // getControlTypeNameOfAutomationElement(element, element);
-                // element.Current.ControlType.ProgrammaticName.Substring(
-                // element.Current.ControlType.ProgrammaticName.IndexOf('.') + 1);
-                //  // experimental
                 element.Current.ControlType.ProgrammaticName.Substring(
                     element.Current.ControlType.ProgrammaticName.IndexOf('.') + 1);
-                //  // if (elementControlType.Length == 0) {
-                // break;
-                //}
                 
             // in case this element is an upper-level Pane 
             // residing directrly under the RootElement
@@ -687,8 +326,6 @@ namespace UIAutomationSpy
                     System.Windows.Automation.Condition.TrueCondition);
             System.Windows.Automation.AutomationElement testparent;
             
-            //list.Add(getNodeNameFromAutomationElement(element));
-            
             try {
                 testparent = element;
                 //    walker.GetParent(element);
@@ -709,12 +346,7 @@ namespace UIAutomationSpy
                         }
                     }
                 }
-            } catch (Exception eNew)  { //(Exception eErrorInTheInnerCycle) {
-//                cmdlet.WriteDebug(cmdlet, eErrorInTheInnerCycle.Message);
-//                errorMessageInTheInnerCycle =
-//                    eErrorInTheInnerCycle.Message;
-//                errorInTheInnerCycle = true;
-
+            } catch (Exception eNew)  {
 
                 this.txtFullCode.Text = eNew.Message;
             }
@@ -731,22 +363,11 @@ namespace UIAutomationSpy
         {
             this.stopNow = true;
             
-            // 20120925 menu
-            //this.btnStop.Enabled = false;
-            //this.btnStart.Enabled = true;
             this.menuAutomationState_ReadyToAll();
         }
         
         void SpyFormResize(object sender, EventArgs e)
         {
-//            this.richResult.Width = this.Width - 60;
-//            /////////////////////this.richResult.Height = this.Height - 120;
-//            
-//            this.textBox1.Width = this.richResult.Width;            
-//            this.textBox1.Height = this.Height - 200;
-            
-            // 20120925 menu
-            //this.tabOuter.Height = this.Height - 60;
             this.tabOuter.Height = this.Height - 80;
             this.tabOuter.Width = this.Width - 40;
             
@@ -784,25 +405,22 @@ namespace UIAutomationSpy
         {
             UIAutomation.TranscriptCmdletBase cmdlet = 
                 new UIAutomation.TranscriptCmdletBase();
-            cmdlet.NoClassInformation = false; // true; // 20120614
+            cmdlet.NoClassInformation = false;
             cmdlet.NoScriptHeader = true;
             cmdlet.NoUI = true;
             cmdlet.WriteCurrentPattern = true;
             cmdlet.Timeout = 600000000;
             cmdlet.Highlight = true;
             cmdlet.HighlightParent = true;
-//            cmdlet.HighlightFirstChild = false; //true;
             cmdlet.PassThru = false;
-            //cmdlet.Seconds = 3;
             
-            UIAutomation.Preferences.TranscriptInterval = 500; //1000; //500; //200;
+            UIAutomation.Preferences.TranscriptInterval = 500;
             return cmdlet;
         }
         
         private void writingAvailablePatterns(AutomationElement element)
         {
             try {
-                //this.richPatterns.Text = "trying to get patterns";
                 this.richPatterns.Text = "available patterns";
                 this.richPatterns.Text += "\r\n";
                 
@@ -812,9 +430,6 @@ namespace UIAutomationSpy
                 //UIACOM::System.Windows.Automation.AutomationPattern[] supportedPatterns =
                 //    element.GetSupportedPatterns();                                    
                 
-                //element.GetSupportedPatterns  
-                //this.richPatterns.Text += supportedPatterns.Length.ToString();
-                //this.richPatterns.Text = string.Empty;
                 if (supportedPatterns != null &&
                     supportedPatterns.Length > 0) {
                     for (int i = 0; i < supportedPatterns.Length; i++) {
@@ -905,9 +520,7 @@ namespace UIAutomationSpy
                         this.txtFullCode.Text;
                     if (this.scriptPreviousString !=
                         this.scriptCurrentString) {
-                        //this.richScript.Text += "\r\n";
                         this.txtScript.Text += "\r\n\r\n";
-                        //this.richScript.Text += 
                         this.txtScript.Text += 
                             this.txtFullCode.Text;
                         this.scriptPreviousString =
@@ -946,10 +559,6 @@ namespace UIAutomationSpy
         {
             // change controls
             
-            
-            // 20121003
-            //this.seleniumToolStripMenuItem.Checked = false;
-            //this.Text = "UIAutomationSpy";
             switchToUIAutomationSpyMode();
             
             // code
@@ -960,10 +569,6 @@ namespace UIAutomationSpy
         {
             // change controls
             
-            
-            // 20121003
-            //this.uIAutomationToolStripMenuItem.Checked = false;
-            //this.Text = "SeleniumSpy";
             switchToSeleniumSpyMode();
             
             // code
@@ -972,37 +577,29 @@ namespace UIAutomationSpy
         
         void CodeGenerationToolStripMenuItemClick(object sender, EventArgs e)
         {
-            //this.tabOuter.SelectTab("Code");
             this.tabOuter.SelectTab((int)SpyTabs.outer_Code);
-            //this.tabInner.SelectTab("Control");
             this.tabInner.SelectTab((int)SpyTabs.inner_Control);
         }
         
         void AncestryTreeToolStripMenuItemClick(object sender, EventArgs e)
         {
-            //this.tabOuter.SelectTab("Code");
             this.tabOuter.SelectTab((int)SpyTabs.outer_Code);
-            //this.tabInner.SelectTab("Hierarchy");
             this.tabInner.SelectTab((int)SpyTabs.inner_Hierarchy);
         }
         
         void PropertiesToolStripMenuItemClick(object sender, EventArgs e)
         {
-            //this.tabOuter.SelectTab("Code");
             this.tabOuter.SelectTab((int)SpyTabs.outer_Code);
-            //this.tabInner.SelectTab("Properties");
             this.tabInner.SelectTab((int)SpyTabs.inner_Properties);
         }
         
         void ScriptToolStripMenuItemClick(object sender, EventArgs e)
         {
-            //this.tabOuter.SelectTab("Script");
             this.tabOuter.SelectTab((int)SpyTabs.outer_Script);
         }
         
         void ScriptResultsToolStripMenuItemClick(object sender, EventArgs e)
         {
-            //this.tabOuter.SelectTab("Results");
             this.tabOuter.SelectTab((int)SpyTabs.outer_Results);
         }
         
@@ -1088,12 +685,6 @@ namespace UIAutomationSpy
         {
             if (this.btnStart.Text == "Start") {
                 this.stopNow = false;
-                
-#region commented
-                // 20120925 menu
-                //this.btnStart.Enabled = false;
-                //this.btnStop.Enabled = true;
-#endregion commented
 
                 this.menuAutomationState_RunSpy();
 
@@ -1134,22 +725,6 @@ namespace UIAutomationSpy
                         //if (element != null && ((element as UIACOM::System.Windows.Automation.AutomationElement) != null)) { // && (int)element.Current.ProcessId > 0)
                                 cmdlet = 
                                     this.createTranscriptingCmdlet();
-                                
-#region commented
-//                                cmdlet =
-//                                    new UIAutomation.TranscriptCmdletBase();
-//                                cmdlet.NoClassInformation = false; // true; // 20120614
-//                                cmdlet.NoScriptHeader = true;
-//                                cmdlet.NoUI = true;
-//                                cmdlet.WriteCurrentPattern = true;
-//                                cmdlet.Timeout = 600000000;
-//                                cmdlet.Highlight = true;
-//                                cmdlet.HighlightParent = true;
-//                                cmdlet.PassThru = false;
-                                //cmdlet.Seconds = 3;
-//                                
-//                                UIAutomation.Preferences.TranscriptInterval = 500; //1000; //500; //200;
-#endregion commented
 
                                 try{
                                     bool res =
@@ -1157,14 +732,7 @@ namespace UIAutomationSpy
                                             cmdlet, 
                                             element); // as UIANET::System.Windows.Automation.AutomationElement);
                                     if (!res) {
-#region commented
-                                        //this.richTextBox1.Text = "false";
-//                                        this.stopNow = false;
-//                                        element = null;
-//                                        System.Threading.Thread.Sleep(
-//                                            UIAutomation.Preferences.TranscriptInterval);
-//                                        continue;
-#endregion commented
+// 
                                     }
                                 } 
                                 catch (Exception eProcessingElement) {
@@ -1207,28 +775,6 @@ namespace UIAutomationSpy
                                                 this.richControlCode.Text);
                                         }
                                         
-#region commented
-                                        // 20120621
-//                                        UIAutomation.UIAHelper.CollectAncestors(
-//                                            cmdlet,
-//                                            element);
-//                                        this.richTextBox1.Text = string.Empty;
-//                                        for(int i = cmdlet.LastRecordedItem.Count - 1; i >= 0; i--) {
-//                                            string ancestorCode = 
-//                                                cmdlet.LastRecordedItem[i].ToString();
-//                                            if (ancestorCode != this.richControlCode.Text) {
-//                                                if (this.richTextBox1.Text.Length > 0) {
-//                                                    this.richTextBox1.Text += " | `\r\n";
-//                                                }
-//                                                this.richTextBox1.Text += 
-//                                                    ancestorCode;
-//                                            } else {
-//                                                break;
-//                                            }
-//                                        }
-                                        //
-#endregion commented
-
                                     } 
                                     catch (Exception eCollectingElements) {
                                         // there is usually nothing to report
@@ -1241,57 +787,12 @@ namespace UIAutomationSpy
                                                 eCollectingElements.Message);
                                         throw(eCollectingElements2);
                                     }
-#region commented
-//                                    if (this.richControlCode.Text.Length > 0) {
-//                                        this.scriptCurrentString = 
-//                                            this.richControlCode.Text;
-//                                        if (this.scriptPreviousString !=
-//                                            this.scriptCurrentString) {
-//                                            //this.richScript.Text += "\r\n";
-//                                            this.txtScript.Text += "\r\n";
-//                                            //this.richScript.Text += 
-//                                            this.txtScript.Text += 
-//                                                this.richControlCode.Text;
-//                                            this.scriptPreviousString =
-//                                                this.scriptCurrentString;
-//                                        }
-//                                    }
-#endregion commented
                                     
                                     // writing to the property grid control
                                     this.writingAutomaitonElementToPropertyGridControl(element);
                                     
-#region commented
-//                                    try {
-//                                        this.pGridElement.SelectedObject = 
-//                                            element.Current;
-//                                    }
-//                                    catch {
-//                                        try {
-//                                            this.pGridElement.SelectedObject = 
-//                                                element.Cached;
-//                                        }
-//                                        catch {
-//                                            
-//                                        }
-//                                    }
-#endregion commented
-                                    
                                     // writing to the family tree and the code
                                     try {
-                                        
-#region commented
-//                                        this.tvwHierarhy.Nodes.Clear();
-//                                        System.Collections.Generic.List<string> ancestorsNodesList = 
-//                                            new System.Collections.Generic.List<string>();
-//                                        System.Collections.Generic.List<string> ancestorsCodeList = 
-//                                            new System.Collections.Generic.List<string>();
-//
-//                                        ancestorsNodesList.Clear();
-//                                        ancestorsCodeList.Clear();
-                                        
-                                        //this.cleanAncestry();
-#endregion commented
                                         
                                         //try {
                                         this.collectAncestry(
@@ -1305,98 +806,17 @@ namespace UIAutomationSpy
                                         
                                         // the Hierarchy tree
                                         this.fillHierarchyTree();
-                                        
-#region commented
-//                                        try {
-//                                        if (ancestorsNodesList.Count > 0) {
-//                                            TreeNode previousNode = null;
-//                                            for (int i = ancestorsNodesList.Count; i > 0; i--) {
-//                                                TreeNode node = new TreeNode(ancestorsNodesList[i - 1]);
-//                                                
-//                                                if (this.tvwHierarhy.Nodes.Count == 0) {
-//                                                    this.tvwHierarhy.Nodes.Add(node);
-//                                                } else {
-//                                                    previousNode.Nodes.Add(node);
-//                                                    previousNode.Expand();
-//                                                }
-//                                                previousNode = node;
-//                                            }
-//                                        }
-//                                        }
-//                                        catch (Exception eNodes) {
-//                                            this.txtFullCode.Text = eNodes.Message;
-//                                        }
-#endregion commented
-                                        
+
                                         // the code generated
                                         this.writeCodeGenerated();
-                                        
-#region commented
-//                                        this.txtFullCode.Text = string.Empty;
-//                                        if (ancestorsCodeList.Count > 0) {
-//                                            for (int i = ancestorsCodeList.Count; i > 0; i--) {
-//                                                if (this.txtFullCode.Text.Length == 0) {
-//                                                    this.txtFullCode.Text += ancestorsCodeList[i - 1];
-//                                                } else {
-//                                                    this.txtFullCode.Text += " | `\r\n";
-//                                                    this.txtFullCode.Text += ancestorsCodeList[i - 1];
-//                                                }
-//                                            }
-//                                            
-//                                            if (this.txtFullCode.Text.Length > 0) {
-//                                                this.scriptCurrentString = 
-//                                                    this.txtFullCode.Text;
-//                                                if (this.scriptPreviousString !=
-//                                                    this.scriptCurrentString) {
-//                                                    //this.richScript.Text += "\r\n";
-//                                                    this.txtScript.Text += "\r\n\r\n";
-//                                                    //this.richScript.Text += 
-//                                                    this.txtScript.Text += 
-//                                                        this.txtFullCode.Text;
-//                                                    this.scriptPreviousString =
-//                                                        this.scriptCurrentString;
-//                                                }
-//                                            }
-//                                        }
-#endregion commented
-                                        
+ 
                                     }
-                                    catch { //(Exception eAncestors) {
-                                        //this.richTextBox1.Text += "eAncestors:\r\n";
-                                        //this.richTextBox1.Text += eAncestors.Message;
+                                    catch {
+                                        // 
                                     }
                                 }
                                 
                                 writingAvailablePatterns(element);
-                                
-#region commented
-//                                try {
-//                                    //this.richPatterns.Text = "trying to get patterns";
-//                                    this.richPatterns.Text = "available patterns";
-//                                    this.richPatterns.Text += "\r\n";
-//                                    
-//                                    // 20120618 UIACOMWrapper
-//                                    AutomationPattern[] supportedPatterns =
-//                                        element.GetSupportedPatterns();
-//                                    //UIACOM::System.Windows.Automation.AutomationPattern[] supportedPatterns =
-//                                    //    element.GetSupportedPatterns();                                    
-//                                    
-//                                    //element.GetSupportedPatterns  
-//                                    //this.richPatterns.Text += supportedPatterns.Length.ToString();
-//                                    //this.richPatterns.Text = string.Empty;
-//                                    if (supportedPatterns != null &&
-//                                        supportedPatterns.Length > 0) {
-//                                        for (int i = 0; i < supportedPatterns.Length; i++) {
-//                                            if (i > 0) {
-//                                                this.richPatterns.Text += "\r\n";
-//                                            }
-//                                            this.richPatterns.Text += 
-//                                                supportedPatterns[i].ProgrammaticName.Replace("Identifiers.Pattern", "");
-//                                        }
-//                                    }
-//                                }
-//                                catch {}
-#endregion commented
                                 
                             } // end of if (elementPID != tabooPID)
                         } // end of if (element != null && ((element as AutomationElement) != null))
@@ -1418,13 +838,6 @@ namespace UIAutomationSpy
                 return;
             }
         }
-        
-//        private void startSpying_Selenium()
-//        {
-//            System.Windows.Forms.MessageBox.Show("Please download SeleniumSpy from http://SePSX.CodePlex.com");
-//        }
-        
-        
     }
     
     internal enum SpyTabs {

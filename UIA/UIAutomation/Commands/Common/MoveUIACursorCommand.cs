@@ -55,15 +55,9 @@ namespace UIAutomation.Commands
             else {
                 System.Windows.Forms.Cursor.Position = 
                     new System.Drawing.Point(
-                        // 20120823
-                        //((int)InputObject.Current.BoundingRectangle.Left + this.X),
                         ((int)inputObject.Current.BoundingRectangle.Left + this.X),
-                        // 20120823
-                        //((int)InputObject.Current.BoundingRectangle.Top + this.Y));
                         ((int)inputObject.Current.BoundingRectangle.Top + this.Y));
                 if (this.PassThru) {
-                    // 20130105
-                    //this.WriteObject(this, this.InputObject);
                     this.WriteObject(this, inputObject);
                 } else {
                     this.WriteObject(this, true);

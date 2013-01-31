@@ -29,7 +29,8 @@ namespace TMXTest.Commands.Database
         }
         
         [Test] //[Test(Description="The New-TMXTestDB test")]
-        [Category("Slow")][Category("New_TMXTestDB")]
+        [Category("Slow")]
+        //[Category("New_TMXTestDB")]
         public void OpenTestDB_Simple()
         {
             CmdletUnitTest.TestRunspace.RunPSCode(
@@ -37,7 +38,7 @@ namespace TMXTest.Commands.Database
                 Settings.FileName + 
                 @"' -Name " + 
                 Settings.DatabaseName +
-                @";");
+                @"-StructureDB -RepositoryDB -ResultsDB;");
             CmdletUnitTest.TestRunspace.RunPSCode(
                 @"Close-TMXTestDB -Name " +
                 Settings.DatabaseName +
@@ -49,6 +50,13 @@ namespace TMXTest.Commands.Database
                 Settings.DatabaseName +
                 @").Path;",
                 Settings.FileName);
+
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual1(
+                @"if ($null -ne [TMX.TestData]::CurrentRepositoryDB) { ""1""; }");
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual1(
+                @"if ($null -ne [TMX.TestData]::CurrentResultsDB) { ""1""; }");
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual1(
+                @"if ($null -ne [TMX.TestData]::CurrentStructureDB) { ""1""; }");
             CmdletUnitTest.TestRunspace.RunPSCode(
                 @"Close-TMXTestDB -Name " +
                 Settings.DatabaseName +

@@ -32,13 +32,20 @@ namespace UIAutomation
         internal new string ControlType { get; set; }
         [Parameter(Mandatory = false)]
         internal new string AutomationId { get; set; }
+        // 20130130
+        [Parameter(Mandatory = false)]
+        internal new string Value { get; set; }
+        [Parameter(Mandatory = false)]
+        internal new string ContainsText { get; set; }
         [Parameter(Mandatory = false)]
         internal new SwitchParameter Win32 { get; set; }
         
-        [Parameter(Mandatory = true)]
+        // 20130130
+        //[Parameter(Mandatory = true)]
+        [Parameter(Mandatory = true,
+                   Position = 0,
+                   ParameterSetName = "Search")]
         [ValidateNotNullOrEmpty]
-        // 20120917
-        //public System.Collections.Hashtable[] SearchCriteria { get; set; }
         public new Hashtable[] SearchCriteria { get; set; }
         #endregion Parameters
         

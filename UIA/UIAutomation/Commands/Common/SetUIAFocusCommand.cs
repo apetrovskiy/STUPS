@@ -42,11 +42,7 @@ namespace UIAutomation.Commands
             
             // 20120823
             foreach (AutomationElement inputObject in this.InputObject) {
-            
-                // 20120823
-                //InputObject.SetFocus();
-                // 20130128
-                //inputObject.SetFocus();
+
                 try {
                     inputObject.SetFocus();
                 }

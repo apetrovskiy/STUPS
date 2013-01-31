@@ -26,6 +26,8 @@ namespace CmdletUnitTest
         
         private static bool showCode = true;
 
+        // 20130130
+        [STAThread]
         public static bool IitializeRunspace(string command)
         {
             return PSRunner.Runner.IitializeRunspace(command);

@@ -17,14 +17,6 @@ namespace TMXUnitTests
     /// <summary>
     /// Description of UnitTestingHelper.
     /// </summary>
-//    public class UnitTestingHelper
-//    {
-//        public UnitTestingHelper()
-//        {
-//        }
-//    }
-    
-    
     public static class UnitTestingHelper
     {
         static UnitTestingHelper()
@@ -53,7 +45,7 @@ namespace TMXUnitTests
 
             NewSuiteCmdletBase cmdlet =
                 new NewSuiteCmdletBase();
-            //cmdlet.UnitTestMode = true;
+
             if (null != name && string.Empty != name) {
                 cmdlet.Name = name;
             }
@@ -68,7 +60,6 @@ namespace TMXUnitTests
                 new TMXNewTestSuiteCommand(cmdlet);
             command.Execute();
             
-            //return (ITestSuite)CommonCmdletBase.UnitTestOutput[CommonCmdletBase.UnitTestOutput.Count - 1];
             return (ITestSuite)(object)PSTestLib.UnitTestOutput.LastOutput[0];
         }
         
@@ -79,7 +70,7 @@ namespace TMXUnitTests
 
             OpenSuiteCmdletBase cmdlet =
                 new OpenSuiteCmdletBase();
-            //cmdlet.UnitTestMode = true;
+
             if (null != name && string.Empty != name) {
                 cmdlet.Name = name;
             }
@@ -91,22 +82,13 @@ namespace TMXUnitTests
                 new TMXOpenTestSuiteCommand(cmdlet);
             command.Execute();
             
-            //return (ITestSuite)CommonCmdletBase.UnitTestOutput[CommonCmdletBase.UnitTestOutput.Count - 1];
             return (ITestSuite)(object)PSTestLib.UnitTestOutput.LastOutput[0];
         }
         
         internal static string GetTestSuiteStatus()
         {
-            // 20121224
-            if (null == TestData.CurrentTestSuite) {
-                GetNewTestSuite("name", "id", "description");
-            }
-            
-            // 20121224
-            //TMXHelper.
-            //TMXHelper.GetCurrentTestSuiteStatus
-            TestData.RefreshSuiteStatistics(TMX.TestData.CurrentTestSuite);
-            
+            TestData.SetSuiteStatus();
+
             return TestData.CurrentTestSuite.Status;
         }
         #endregion TestSuite
@@ -121,7 +103,7 @@ namespace TMXUnitTests
         {
             AddTMXTestScenarioCommand cmdlet =
                 new AddTMXTestScenarioCommand();
-            //cmdlet.UnitTestMode = true;
+
             if (null != name && string.Empty != name) {
                 cmdlet.Name = name;
             }
@@ -187,7 +169,6 @@ namespace TMXUnitTests
 //                    cmdlet.KnownIssue = true;
 //                    break;
                 default:
-                    //throw new Exception("Invalid value for TestResultStatuses");
                     //nothing to do
                     break;
             }

@@ -42,21 +42,31 @@ namespace TMX
         public string Id { get; internal set; }
         public System.Collections.Generic.List<ITestScenario> TestScenarios { get; internal set; }
         public string Description { get; set; }
-        public string Status { get; internal set; }
+
+        private string status;
+        public string Status { get { return this.status; } }
         private TestSuiteStatuses _enStatus;
         internal TestSuiteStatuses enStatus 
         { 
             get { return this._enStatus; }
             set{
                 this._enStatus = value;
-                if (value == TestSuiteStatuses.Failed) {
-                    this.Status = TMX.TestData.TestStateFailed;
-                }
-                if (value == TestSuiteStatuses.Passed) {
-                    this.Status = TMX.TestData.TestStatePassed;
-                }
-                if (value == TestSuiteStatuses.NotTested) {
-                    this.Status = TMX.TestData.TestStateNotTested;
+
+                switch (value) {
+                    case TestSuiteStatuses.Passed:
+                        this.status = TMX.TestData.TestStatePassed;
+                        break;
+                    case TestSuiteStatuses.Failed:
+                        this.status = TMX.TestData.TestStateFailed;
+                        break;
+                    case TestSuiteStatuses.NotTested:
+                        this.status = TMX.TestData.TestStateNotTested;
+                        break;
+                    case TestSuiteStatuses.KnownIssue:
+                        this.status = TMX.TestData.TestStateKnownIssue;
+                        break;
+                    default:
+                        throw new Exception("Invalid value for TestSuiteStatuses");
                 }
             }
         }

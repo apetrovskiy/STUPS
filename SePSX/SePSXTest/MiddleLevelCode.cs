@@ -23,6 +23,8 @@ namespace SePSXTest
         {
         }
         
+        // 20130130
+        [STAThread]
         public static void PrepareRunspace()
         {
             CmdletUnitTest.TestRunspace.IitializeRunspace(Settings.RunspaceCommand);

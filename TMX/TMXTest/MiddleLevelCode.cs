@@ -23,7 +23,7 @@ namespace TMXTest
         {
         }
         
-        public static void PrepareRunspace() //string command)
+        public static void PrepareRunspace()
         {
             CmdletUnitTest.TestRunspace.IitializeRunspace(Settings.RunspaceCommand);
         }

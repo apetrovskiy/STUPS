@@ -29,7 +29,8 @@ namespace TMXTest.Commands.Database
         }
         
         [Test] //[Test(Description="The New-TMXTestDB test")]
-        [Category("Slow")][Category("New_TMXTestDB")]
+        [Category("Slow")]
+        [Category("New_TMXTestDB")]
         public void CreateTestDB_Simple()
         {
             string answer = @"True";

@@ -10,10 +10,7 @@
 namespace UIAutomationTest
 {
     using System;
-    // using NUnit;
     using System.Diagnostics;
-    //using System.Management.Automation;
-    //using UIAutomationTest;
     
     /// <summary>
     /// Description of MiddleLevelCode.
@@ -53,8 +50,6 @@ namespace UIAutomationTest
         public static string TestFormWPFNameMinimized { get { return @"WPFMinimized"; } }
         public static string TestFormWPFNameMaximized { get { return @"WPFMaximized"; } }
         public static string TestFormWPFNameCollapsed { get { return @"WPFCollapsed"; } }
-        // public static string TestFormNameNoTaskBar { get { return @"WinFormsNoTaskBar"; } }
-        // public static string TestFormNameRich { get { return @"WinFormsRich"; } }
         
         public static void StartProcessWithForm(UIAutomationTestForms.Forms formCode,
                                                 TimeoutsAndDelays formDelayEn)
@@ -65,13 +60,10 @@ namespace UIAutomationTest
             TestProcessStartInfo.CreateNoWindow = true;
             TestProcessStartInfo.UseShellExecute = false;
             
-            // always
-            //if (formDelay > 0)
-            //{
-                TestProcessStartInfo.Arguments += " ";
-                TestProcessStartInfo.Arguments +=
-                    formDelay.ToString();
-            //}
+            TestProcessStartInfo.Arguments += " ";
+            TestProcessStartInfo.Arguments +=
+                formDelay.ToString();
+
             Console.WriteLine(
                 TestFormPath +
                 " " +
@@ -107,7 +99,6 @@ namespace UIAutomationTest
         public static void StartProcessWithFormAndControl(
             UIAutomationTestForms.Forms formCode,
             TimeoutsAndDelays formDelayEn,
-            //ControlToForm[] controlToForm)
             object[] controlToForm)
         {
             int formDelay = (int)formDelayEn;
@@ -185,7 +176,7 @@ namespace UIAutomationTest
             CmdletUnitTest.TestRunspace.RunPSCode(
                 @"[void]([UIAutomation.CurrentData]::ResetData());");
             CmdletUnitTest.TestRunspace.CloseRunspace();
-            // TestProcess.CloseMainWindow();
+
             if (TestProcess != null)
             {
                 try { TestProcess.CloseMainWindow(); } 

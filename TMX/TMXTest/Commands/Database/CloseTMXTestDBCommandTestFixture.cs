@@ -29,7 +29,8 @@ namespace TMXTest.Commands.Database
         }
         
         [Test] //[Test(Description="The New-TMXTestDB test")]
-        [Category("Slow")][Category("New_TMXTestDB")]
+        [Category("Slow")]
+        [Category("Close_TMXTestDB")]
         public void CloseTestDB_Simple()
         {
             CmdletUnitTest.TestRunspace.RunPSCode(
@@ -37,15 +38,25 @@ namespace TMXTest.Commands.Database
                 Settings.FileName + 
                 @"' -Name '" + 
                 Settings.DatabaseName +
-                @"';");
+                // 20130130
+                //@"';");
+                @"' -StructureDB -RepositoryDB -ResultsDB;");
             CmdletUnitTest.TestRunspace.RunPSCode(
                 @"Close-TMXTestDB -Name '" +
                 Settings.DatabaseName +
                 @"';");
-            CmdletUnitTest.TestRunspace.RunAndEvaluateIsNull(
-                @"[TMX.TestData]::CurrentResultsDB;");
-            CmdletUnitTest.TestRunspace.RunAndEvaluateIsNull(
-                @"[TMX.TestData]::CurrentStructureDB;");
+            // 20130130
+//            CmdletUnitTest.TestRunspace.RunAndEvaluateIsNull(
+//                @"[TMX.TestData]::CurrentResultsDB;");
+//            CmdletUnitTest.TestRunspace.RunAndEvaluateIsNull(
+//                @"[TMX.TestData]::CurrentStructureDB;");
+            // 20130130
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual1(
+                @"if ($null -eq [TMX.TestData]::CurrentRepositoryDB) { ""1""; }");
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual1(
+                @"if ($null -eq [TMX.TestData]::CurrentResultsDB) { ""1""; }");
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual1(
+                @"if ($null -eq [TMX.TestData]::CurrentStructureDB) { ""1""; }");
             CmdletUnitTest.TestRunspace.RunPSCode(
                 @"Remove-Item '" + 
                 Settings.FileName +

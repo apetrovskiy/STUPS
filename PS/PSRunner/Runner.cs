@@ -127,6 +127,8 @@ namespace PSRunner
         
         // ------------------ Methods ----------------------------
 
+        // 20130130
+        [STAThread]
         public static bool IitializeRunspace(string command)
         {
             bool result = false;

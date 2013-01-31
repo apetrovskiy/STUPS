@@ -11,7 +11,7 @@ namespace UIAutomationTest.Commands.Get
 {
     using System;
     using System.Diagnostics;
-    using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
+    using MbUnit.Framework;
 
     /// <summary>
     /// Description of GetUIAWindowCommandTestFixture.
@@ -24,7 +24,6 @@ namespace UIAutomationTest.Commands.Get
         }
         
         public System.Diagnostics.Process process;
-        // 20120206 System.Diagnostics.ProcessStartInfo startInfo;
         
         [SetUp]
         public void PrepareRunspace()
@@ -387,11 +386,12 @@ namespace UIAutomationTest.Commands.Get
         [Category("Get_UIAWindow")]
         public void GetWindowByProcessStartedTimeoutDefault()
         {
-//            MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual1(
                 @"if ((Start-Process '" +
-                MiddleLevelCode.TestFormPath + 
-                "' -PassThru" +
+                MiddleLevelCode.TestFormPath +
+                // 20130130
+                //"' -PassThru" +
+                "'  -ArgumentList 1 -NoNewWindow -PassThru" +
                 " | Get-UIAWindow" +
                 ")) { 1; } else { 0; }");
         }

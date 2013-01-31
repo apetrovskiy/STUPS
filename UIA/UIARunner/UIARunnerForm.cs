@@ -98,95 +98,26 @@ namespace UIARunner
         
         void RunToolStripMenuItemClick(object sender, EventArgs e)
         {
-#region commented
-//            setToRunningState();
-//            this.dgvTestResults.Rows.Clear();
-//            TMX.TestData.ResetData();
-//            try {
-//                unregisterEvents();
-//            }
-//            catch {}
-//            
-////try{
-//            
-//            int index = 0;
-//            bool res = CPSRunner.InitScript();
-//            if (! res) {
-//                index = 
-//                    this.dgvTestResults.Rows.Add(
-//                        System.DateTime.Now.ToString(),
-//                        TMX.TestData.TestStateFailed,
-//                        "UIARunner.ps1");
-//                setRowStatus(index, TMX.TestData.TestStateFailed);
-//                setTestResultsCounters(TMX.TestData.TestStateFailed, 1);
-//                setToReadyToRunState();
-//                Application.DoEvents();
-//                return;
-//            }
-//            registerEvents();
-            
-            //(new RunScriptDelegate(OnRunScript)).Invoke(CPSRunner.ScriptPath);
-            
-//            res = CPSRunner.RunScript();
-//            if (! res) {
-//                index = 
-//                    this.dgvTestResults.Rows.Add(
-//                        System.DateTime.Now.ToString(),
-//                        TMX.TestData.TestStateFailed,
-//                        CPSRunner.ScriptPath);
-//                setRowStatus(index, TMX.TestData.TestStateFailed);
-//                setTestResultsCounters(TMX.TestData.TestStateFailed, 1);
-//                setToReadyToRunState();
-//                Application.DoEvents();
-//            }
-
-//            autoresizeColumns();
-//
-//            setToReadyToRunState();
-//            Application.DoEvents();
-            
-//} catch (Exception eeeeee) {System.Windows.Forms.MessageBox.Show(eeeeee.Message);}
-#endregion commented
         }
         
-        //internal void OnRunScript(string path) //object sender, EventArgs e)
         internal void OnRunScript(object sender, EventArgs e)
         {
-            //try {
             setToRunningState();
-            //System.Windows.Forms.MessageBox.Show("1");
-            //} catch (Exception e1) {System.Windows.Forms.MessageBox.Show(e1.Message);}
-            //try {
+
             this.dgvTestResults.Rows.Clear();
-            //System.Windows.Forms.MessageBox.Show("2");
-            //} catch (Exception e2) {System.Windows.Forms.MessageBox.Show(e2.Message);}
-            //try {
+
             TMX.TestData.ResetData();
-            //System.Windows.Forms.MessageBox.Show("3");
-            //} catch (Exception e3) {System.Windows.Forms.MessageBox.Show(e3.Message);}
+
             try {
                 unregisterEvents();
             }
             catch {}
             
-//try{
-            
             int index = 0;
             
-//            ThreadStart thStart = new ThreadStart(CPSRunner.InitScript2);
-//            System.Threading.Thread psThread = new Thread(thStart);
-//            psThread.Start();
-//            
-//            bool res = false;
-//            CPSRunner.InitScript2();
-//            
-//            psThread.Join();
-
             bool res = false;
-            //try {
-            //bool 
+
             try {
-                // 20120716
                 if (this.inputToolStripTextBox.Text.Length > 0) {
                     PSTestRunner.TestRunner.ScriptParameters =
                         this.inputToolStripTextBox.Text;
@@ -229,16 +160,9 @@ namespace UIARunner
                 Application.DoEvents();
                 return;
             }
-            //try {
+
             registerEvents();
 
-//            if (PSCodeRunning != null) {
-//                PSCodeRunning(msg);
-//            }
-
-//            bool res = false;
-//            int index = 0;
-            //try {
             try {
                 res = PSTestRunner.TestRunner.RunScriptCode();
                 if (!res) {
@@ -284,19 +208,6 @@ namespace UIARunner
         
         void NewTestResultClosed(object sender, EventArgs e)
         {
-//            DataGridViewRow row =
-//                new DataGridViewRow();
-//            row.Cells["colDateTime"].Value = 
-//                ((ITestResult)sender).Timestamp;
-//            row.Cells["colStatus"].Value = 
-//                ((ITestResult)sender).Status;
-//            row.Cells["colName"].Value = 
-//                ((ITestResult)sender).Name;
-//            row.Cells["colCode"].Value = 
-//                ((ITestResult)sender).Code;
-//            row.Cells["colScreenshot"].Value = 
-//                ((ITestResult)sender).Screenshot;
-//            this.dgvTestResults.Rows.Add(row);
             
             DataGridViewCellStyle cellStyle = 
                 new DataGridViewCellStyle();
@@ -330,7 +241,6 @@ namespace UIARunner
                     errorMessage,
                     screenShotPath);
             setRowStatus(index, ((ITestResult)sender).Status);
-            // // this.testResultsAll++;
             
             PSTestRunner.TestRunner.WriteTestResultToLog(((ITestResult)sender));
             
@@ -365,7 +275,6 @@ namespace UIARunner
         public void PSStateErrorThrown(string msg)
         {
             this.toolStripStatusLabelState.Text = "Error thrown";
-            //System.Windows.Forms.MessageBox.Show(msg);
             
             string timestamp = 
                 System.DateTime.Now.ToString();
@@ -380,19 +289,6 @@ namespace UIARunner
                     PSTestRunner.TestRunner.ScriptPath,
                     msg,
                     string.Empty);
-            
-//            int index = 
-//                this.dgvTestResults.Rows.Add(
-//                    ((ITestResult)sender).Timestamp,
-//                    ((ITestResult)sender).Status,
-//                    ((ITestResult)sender).Name,
-//                    ((ITestResult)sender).LineNumber.ToString(),
-//                    ((ITestResult)sender).Position.ToString(),
-//                    ((ITestResult)sender).ScriptName,
-//                    errorMessage,
-//                    screenShotPath);
-//            setRowStatus(index, ((ITestResult)sender).Status);
-            
             
             setRowStatus(index, TMX.TestData.TestStateFailed);
             setTestResultsCounters(TMX.TestData.TestStateFailed, 1);
@@ -429,7 +325,6 @@ namespace UIARunner
             
             setRowStatus(index, rowStateOutput);
             
-            //this.toolStripStatusLabelState.Text = "Error thrown";
             this.dgvTestResults.AutoResizeColumns();
             
             PSTestRunner.TestRunner.WriteTestResultToLog(
@@ -447,7 +342,6 @@ namespace UIARunner
         
         void PSErrorArrived(object data)
         {
-            //this.toolStripStatusLabelState.Text = "Error thrown";
             this.dgvTestResults.AutoResizeColumns();
             Application.DoEvents();
         }
@@ -457,7 +351,6 @@ namespace UIARunner
             TMX.TestData.TMXNewTestResultClosed += 
                 new TMX.TMXStructureChangedEventHandler(
                     NewTestResultClosed);
-            //TMX.TestData.TMXNewTestSuiteCreated +=
             
             // Runspace and Pipeline events
             PSRunner.Runner.PSCodeRunning +=
@@ -669,11 +562,6 @@ namespace UIARunner
             aboutForm.ShowDialog();
         }
         
-//        void ToolStripTextBoxINputParametersClick(object sender, EventArgs e)
-//        {
-//            
-//        }
-        
         void ToolStripTextBoxInputParametersModifiedChanged(object sender, EventArgs e)
         {
             this.toolStripTextBoxInput.Text =
@@ -687,6 +575,5 @@ namespace UIARunner
         }
     }
     
-    //delegate void RunScriptDelegate(string path);
     delegate void RunScriptDelegate(object sender, EventArgs e);
 }

@@ -12,9 +12,6 @@ namespace TMXUnitTests.Commands.Status
     using System;
     using MbUnit.Framework;
     using PSTestLib;
-    //using Moq;
-    //using Autofac;
-    //using Autofac.Builder;
     using TMX;
     
     /// <summary>
@@ -50,7 +47,6 @@ namespace TMXUnitTests.Commands.Status
             UnitTestingHelper.GetExistingTestSuite(expectedResultName, expectedResultId);
             Assert.AreEqual(
                 expectedResultName,
-                //((ITestSuite)CommonCmdletBase.UnitTestOutput[CommonCmdletBase.UnitTestOutput.Count - 1]).Name);
                 ((ITestSuite)(object)PSTestLib.UnitTestOutput.LastOutput[0]).Name);
         }
         
@@ -66,7 +62,6 @@ namespace TMXUnitTests.Commands.Status
             UnitTestingHelper.GetExistingTestSuite(expectedResultName, expectedResultId);
             Assert.AreNotEqual(
                 expectedResultName,
-                //((ITestSuite)CommonCmdletBase.UnitTestOutput[CommonCmdletBase.UnitTestOutput.Count - 1]).Name);
                 ((ITestSuite)(object)PSTestLib.UnitTestOutput.LastOutput[0]).Name);
         }
         
@@ -82,7 +77,6 @@ namespace TMXUnitTests.Commands.Status
             UnitTestingHelper.GetExistingTestSuite(expectedResultName, expectedResultId);
             Assert.AreEqual(
                 expectedResultId,
-                //((ITestSuite)CommonCmdletBase.UnitTestOutput[CommonCmdletBase.UnitTestOutput.Count - 1]).Id);
                 ((ITestSuite)(object)PSTestLib.UnitTestOutput.LastOutput[0]).Id);
         }
         
@@ -98,7 +92,6 @@ namespace TMXUnitTests.Commands.Status
             UnitTestingHelper.GetExistingTestSuite(expectedResultName, expectedResultId);
             Assert.AreNotEqual(
                 expectedResultId,
-                //((ITestSuite)CommonCmdletBase.UnitTestOutput[CommonCmdletBase.UnitTestOutput.Count - 1]).Id);
                 ((ITestSuite)(object)PSTestLib.UnitTestOutput.LastOutput[0]).Id);
         }
     }

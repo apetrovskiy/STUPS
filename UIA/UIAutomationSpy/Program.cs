@@ -42,8 +42,6 @@ namespace UIAutomationSpy
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             
-            // 20121003
-            //Application.Run(new SpyForm());
             Application.Run(new SpyForm(currentMode));
         }
         

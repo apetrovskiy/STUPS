@@ -12,9 +12,6 @@ namespace TMXUnitTests.Commands.Status
     using System;
     using MbUnit.Framework;
     using PSTestLib;
-    //using Moq;
-    //using Autofac;
-    //using Autofac.Builder;
     using TMX;
     
     /// <summary>
@@ -38,20 +35,6 @@ namespace TMXUnitTests.Commands.Status
         {
         }
         
-//        internal static string getTestSuiteStatus()
-//        {
-//            NewSuiteCmdletBase cmdlet =
-//                new NewSuiteCmdletBase();
-//            cmdlet.UnitTest = true; // here is optional
-//            cmdlet.Name = "suite";
-//            
-//            TMXNewTestSuiteCommand command =
-//                new TMXNewTestSuiteCommand(cmdlet);
-//            command.Execute();
-//            
-//            return TestData.CurrentTestSuite.Status;
-//        }
-        
         [Test]
         [Description("Get-TMXTestSuiteStatus")]
         [Category("Fast")]
@@ -69,7 +52,7 @@ namespace TMXUnitTests.Commands.Status
         public void GetTestSuite_Current_WithNotTested()
         {
             string expectedResult = TMX.TestData.TestStateNotTested;
-            //UnitTestingHelper.CloseTestResult(TestResultStatuses.NotTested);
+
             UnitTestingHelper.GetNewTestSuite("name", "id", "description");
             Assert.AreEqual(
                 expectedResult,
@@ -107,7 +90,10 @@ namespace TMXUnitTests.Commands.Status
         [Category("Fast")]
         public void GetTestSuite_Current_WithPassedKnownIssue()
         {
-            string expectedResult = TMX.TestData.TestStatePassed; //.TestStateKnownIssue;
+            // Passed -> KnownIssue
+            // 20130130
+            //string expectedResult = TMX.TestData.TestStatePassed;
+            string expectedResult = TMX.TestData.TestStateKnownIssue;
             UnitTestingHelper.CloseTestResult(TestResultStatuses.Passed, true);
             Assert.AreEqual(
                 expectedResult,
@@ -119,7 +105,11 @@ namespace TMXUnitTests.Commands.Status
         [Category("Fast")]
         public void GetTestSuite_Current_WithFailedKnownIssue()
         {
-            string expectedResult = TMX.TestData.TestStateFailed; //.TestStateKnownIssue;
+            //string expectedResult = TMX.TestData.TestStateFailed;
+            // KnownIssue supersedes the Failed status.
+            
+            string expectedResult = TMX.TestData.TestStateKnownIssue;
+            
             UnitTestingHelper.CloseTestResult(TestResultStatuses.Failed, true);
             Assert.AreEqual(
                 expectedResult,

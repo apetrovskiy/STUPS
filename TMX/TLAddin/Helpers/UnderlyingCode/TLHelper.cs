@@ -123,13 +123,20 @@ namespace TMX
         public static void GetProjectCollection(TLSCmdletBase cmdlet)
         {
             try {
-
+                
+                cmdlet.WriteVerbose(cmdlet, "getting list of projects");
                 System.Collections.Generic.List<TestProject> listProjects =
                     TLAddinData.CurrentTestLinkConnection.GetProjects();
+                
+                cmdlet.WriteVerbose(cmdlet, "outputting projects");
                 cmdlet.WriteObject(cmdlet, listProjects);
                 
-                TLAddinData.CurrentTestProject =
-                    listProjects[listProjects.Count -1];
+                // 20130131
+                if (null != listProjects && 0 < listProjects.Count) {
+                    cmdlet.WriteVerbose(cmdlet, "settiing the current test project");
+                    TLAddinData.CurrentTestProject =
+                        listProjects[listProjects.Count -1];
+                }
             }
             catch (Exception eProjectCollection) {
                 cmdlet.WriteError(

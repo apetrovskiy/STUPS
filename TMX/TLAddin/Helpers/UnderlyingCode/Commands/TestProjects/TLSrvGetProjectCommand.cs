@@ -27,23 +27,22 @@ namespace TMX
                 (TLProjectCmdletBase)this.Cmdlet;
             
             if (null == cmdlet.Name) {
-//cmdlet.WriteTrace(cmdlet, "null == cmdlet.Name");
+
                 if (null == cmdlet.Id) {
-//cmdlet.WriteTrace(cmdlet, "null == cmdlet.Id");
+
                     cmdlet.WriteVerbose(cmdlet, "getting all projects");
                     TLHelper.GetProjectCollection(cmdlet);
                 } else {
-//cmdlet.WriteTrace(cmdlet, "else 01");
+
                     cmdlet.WriteVerbose(cmdlet, "getting specific projects by id");
                     TLHelper.GetProjectById(
                         cmdlet,
                         cmdlet.Id);
                 }
             } else {
-//cmdlet.WriteTrace(cmdlet, "else 02 main");
+
                 cmdlet.WriteVerbose(cmdlet, "getting specific projects by name");
-//cmdlet.WriteTrace(cmdlet, cmdlet.Name);
-//cmdlet.WriteTrace(cmdlet, cmdlet.Name[0]);
+
                 TLHelper.GetProjectByName(
                     cmdlet,
                     cmdlet.Name);

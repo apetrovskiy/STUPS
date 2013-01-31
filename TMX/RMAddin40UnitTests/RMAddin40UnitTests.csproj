@@ -49,6 +49,15 @@
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Gallio">
+      <HintPath>..\..\..\..\..\Program Files\Gallio\bin\Gallio.dll</HintPath>
+    </Reference>
+    <Reference Include="MbUnit">
+      <HintPath>..\..\..\..\..\Program Files\Gallio\bin\MbUnit.dll</HintPath>
+    </Reference>
+    <Reference Include="Moq">
+      <HintPath>..\..\binaries\Moq\NET40\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="Redmine.Net.Api">
       <HintPath>..\..\binaries\RedMine\Redmine.Net.Api.dll</HintPath>
     </Reference>
@@ -66,6 +75,7 @@
     <Compile Include="..\TMX\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Helpers\UnderlyingCode\ConnectRmServerCommandTestFixture.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">
@@ -76,6 +86,16 @@
       <Project>{DFFF7F28-CFA4-4EE5-84F0-4A12A415BC0C}</Project>
       <Name>TMX</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Commands" />
+    <Folder Include="Commands\RM" />
+    <Folder Include="Helpers" />
+    <Folder Include="Helpers\Inheritance" />
+    <Folder Include="Helpers\UnderlyingCode" />
+    <Folder Include="Helpers\UnderlyingCode\Commands" />
+    <Folder Include="ParamChecks" />
+    <Folder Include="ParamChecks\RM" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>

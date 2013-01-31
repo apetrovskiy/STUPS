@@ -8,7 +8,8 @@
     <RootNamespace>TMX</RootNamespace>
     <AssemblyName>RMAddin</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <OutputPath>bin\Release35\</OutputPath>
     <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
@@ -66,6 +67,12 @@
     <Compile Include="..\TMX\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Commands\RM\ConnectRmServerCommand.cs" />
+    <Compile Include="Helpers\Inheritance\RMCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\RMConnectCmdletBase.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\RMConnectServerCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\RMSrvCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\RMHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">
@@ -76,6 +83,14 @@
       <Project>{DFFF7F28-CFA4-4EE5-84F0-4A12A415BC0C}</Project>
       <Name>TMX</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Commands" />
+    <Folder Include="Commands\RM" />
+    <Folder Include="Helpers" />
+    <Folder Include="Helpers\Inheritance" />
+    <Folder Include="Helpers\UnderlyingCode" />
+    <Folder Include="Helpers\UnderlyingCode\Commands" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>

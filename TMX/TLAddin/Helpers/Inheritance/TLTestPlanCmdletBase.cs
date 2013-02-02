@@ -39,9 +39,8 @@ namespace TMX
                    ParameterSetName = "fake")]
         internal SwitchParameter Fake { get; set; }
         
-        [Parameter(Mandatory = false,
-                   ParameterSetName = "fake")]
-        internal new string[] Name { get; set; }
+        internal new string Name { get; set; }
+        internal new string Id { get; set; }
         #endregion Parameters
     }
 }

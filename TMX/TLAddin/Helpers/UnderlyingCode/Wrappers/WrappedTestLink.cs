@@ -19,12 +19,6 @@ namespace TMX
     {
         public WrappedTestLink(string apiKey, string url) : base (apiKey, url)
         {
-//            Console.WriteLine("current class");
-//            Console.WriteLine(apiKey);
-//            Console.WriteLine(url);
-//            
-//            Console.WriteLine("base class");
-            //base(apiKey, url);
         }
     }
 }

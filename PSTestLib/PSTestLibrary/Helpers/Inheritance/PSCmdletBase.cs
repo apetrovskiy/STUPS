@@ -133,16 +133,20 @@ namespace PSTestLib
         
         public virtual void WriteObject(PSCmdletBase cmdlet, object[] outputObjectCollection)
         {
+Console.WriteLine("WriteObject 1");
+Console.WriteLine(outputObjectCollection.Length.ToString());
             if (PSCmdletBase.UnitTestMode) {
-                
+Console.WriteLine("WriteObject 2");
                 UnitTestOutput.CheckInitialized();
-
+Console.WriteLine("WriteObject 3");
                 UnitTestOutput.StartAddingOutput();
+Console.WriteLine("WriteObject 3.1");
             }
-
+Console.WriteLine("WriteObject 3.2");
             for (int i = 0; i < outputObjectCollection.Length; i++) {
-
+Console.WriteLine("WriteObject 4");
                 this.writeSingleObject(cmdlet, outputObjectCollection[i]);
+Console.WriteLine("WriteObject 5");
             }
         }
         
@@ -271,11 +275,13 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
                 try {
     
                     if (PSCmdletBase.UnitTestMode) {
-
+Console.WriteLine("writeSingleObject 1");
                         UnitTestOutput.Add(outputObject);
+Console.WriteLine("writeSingleObject 2");
                     } else {
-
+Console.WriteLine("writeSingleObject 3");
                         WriteObjectMethod060OutputResult(cmdlet, outputObject);
+Console.WriteLine("writeSingleObject 4");
                     }
                 }
                 catch {}

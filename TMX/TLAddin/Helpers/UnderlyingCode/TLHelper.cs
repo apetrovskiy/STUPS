@@ -187,10 +187,10 @@ namespace TMX
                     ErrorCategory.InvalidResult,
                     true);
             }
-//Console.WriteLine("result list count = " + resultList.Count.ToString());
+
             Meyn.TestLink.TestProject[] resultArray =
                 resultList.ToArray();
-//Console.WriteLine("result array length = " + resultArray.Length.ToString());
+
             return resultArray;
         }
         
@@ -198,23 +198,26 @@ namespace TMX
         {
             System.Collections.Generic.List<Meyn.TestLink.TestProject> resultList =
                 new System.Collections.Generic.List<Meyn.TestLink.TestProject>();
-            
+
             string projectIdNow = string.Empty;
             
             try {
-                
+
                 cmdlet.WriteVerbose(cmdlet, "collecting all projects");
                 System.Collections.Generic.List<Meyn.TestLink.TestProject> projectsList =
                     TLAddinData.CurrentTestLinkConnection.GetProjects();
-                
+
                 cmdlet.WriteVerbose(cmdlet, "iterating through the project colection");
                 foreach (Meyn.TestLink.TestProject testProject in projectsList) {
+
                     cmdlet.WriteVerbose(cmdlet, "iterating through the project ids colection");
                     foreach (string id in projectIds) {
+
                         if (Convert.ToInt32(id) == testProject.id) {
-                            
+
                             TLAddinData.CurrentTestProject = testProject;
                             cmdlet.WriteVerbose(cmdlet, "got the project '" + testProject.name + "'.");
+
                             resultList.Add(testProject);
                         }
                     }
@@ -230,10 +233,10 @@ namespace TMX
                     ErrorCategory.InvalidResult,
                     true);
             }
-            
+
             Meyn.TestLink.TestProject[] resultArray =
                 resultList.ToArray();
-            
+
             return resultArray;
         }
         
@@ -248,11 +251,13 @@ namespace TMX
         
         public static void GetProjectById(TLSCmdletBase cmdlet, string[] projectIds)
         {
+
             cmdlet.WriteObject(
                 cmdlet,
                 TLHelper.GetProjectsById(
                     cmdlet,
                     projectIds));
+
         }
         
         public static void NewTestPlan(
@@ -321,16 +326,15 @@ namespace TMX
                     System.Collections.Generic.List<TestPlan> listTestPlans =
                         TLAddinData.CurrentTestLinkConnection.GetProjectTestPlans(
                             testProjects[i].id);
-//Console.WriteLine("GetTestPlans: 0003: " + listTestPlans.Count.ToString());
+
                     foreach (TestPlan tplan in listTestPlans) {
-//Console.WriteLine("GetTestPlans: 0004");
+
                         TLAddinData.CurrentTestPlan =
                             tplan;
-//Console.WriteLine("GetTestPlans: 0005");
+
                     }
-//Console.WriteLine("GetTestPlans: 0006");
+
                     cmdlet.WriteObject(cmdlet, listTestPlans);
-//Console.WriteLine("GetTestPlans: 0007");
                 
                 }
                 

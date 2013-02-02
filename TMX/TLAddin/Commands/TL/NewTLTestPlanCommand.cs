@@ -16,7 +16,7 @@ namespace TMX
     /// Description of NewTLTestPlanCommand.
     /// </summary>
     [Cmdlet(VerbsCommon.New, "TLTestPlan", DefaultParameterSetName = "PipelineInput")]
-    public class NewTLTestPlanCommand : TLAddTestPlanCmdletBase //TLTestPlanCmdletBase
+    public class NewTLTestPlanCommand : TLAddTestPlanCmdletBase
     {
         public NewTLTestPlanCommand()
         {
@@ -24,21 +24,6 @@ namespace TMX
         }
         
         #region Parameters
-        [Parameter(Mandatory = false,
-                   ParameterSetName = "PipelineInput")]
-        [Parameter(Mandatory = false,
-                   ParameterSetName = "StringInput")]
-        [Parameter(Mandatory = false,
-                   ParameterSetName = "FromStore")]
-        public string Description { get; set; }
-        
-        [Parameter(Mandatory = false,
-                   ParameterSetName = "PipelineInput")]
-        [Parameter(Mandatory = false,
-                   ParameterSetName = "StringInput")]
-        [Parameter(Mandatory = false,
-                   ParameterSetName = "FromStore")]
-        public SwitchParameter Active { get; set; }
         #endregion Parameters
         
         protected override void ProcessRecord()

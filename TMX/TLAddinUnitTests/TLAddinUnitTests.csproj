@@ -133,13 +133,8 @@
     <Compile Include="ParamChecks\TL\GetTLTestPlanCommandTestFixture.cs" />
     <Compile Include="ParamChecks\TL\GetTLTestSuiteCommandTestFixture.cs" />
     <Compile Include="ParamChecks\TL\NewTLTestPlanCommandTestFixture.cs" />
-    <Compile Include="UnitTests\Containers\TopLevelModule.cs" />
     <Compile Include="UnitTests\Fakes\FakeTestLink.cs" />
     <Compile Include="UnitTests\Fakes\FakeTestLinkFactory.cs" />
-    <Compile Include="UnitTests\Fakes\garbage\FakeCommonCmdletBase.cs" />
-    <Compile Include="UnitTests\Fakes\garbage\FakeTestPlan.cs" />
-    <Compile Include="UnitTests\Fakes\garbage\FakeTestProject.cs" />
-    <Compile Include="UnitTests\Fakes\garbage\FakeXmlRpcStruct.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands" />
@@ -158,8 +153,6 @@
     <Folder Include="ParamChecks\TL" />
     <Folder Include="UnitTests" />
     <Folder Include="UnitTests\Fakes" />
-    <Folder Include="UnitTests\Containers" />
-    <Folder Include="UnitTests\Fakes\garbage" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>

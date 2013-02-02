@@ -128,6 +128,7 @@
     <Compile Include="Commands\C#\NewPSEnumCommand.cs" />
     <Compile Include="Helpers\Inheritance\PSCmdletBase.cs" />
     <Compile Include="Helpers\UnderlyingCode\Types\UnitTestOutput.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Util.cs" />
     <Compile Include="Interfaces\Commands\PSTestLibCommand.cs" />
     <Compile Include="Interfaces\Enum.cs" />
     <Compile Include="Interfaces\ICommonCmdletBase.cs" />

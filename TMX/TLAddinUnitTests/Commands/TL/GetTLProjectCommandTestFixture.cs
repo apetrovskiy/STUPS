@@ -40,10 +40,13 @@ namespace TLAddinUnitTests.Commands.TL
         
         private System.Collections.Generic.List<TestProject> getProjectCollection(
             System.Collections.Generic.List<TestProject> listOfProjects,
+            string[] names,
+            string[] ids,
             bool makeFail)
         {
             GetTLProjectCommand cmdlet = new GetTLProjectCommand();
-            cmdlet.Name = null;
+            cmdlet.Name = names;
+            cmdlet.Id = ids;
             
             TLAddinData.CurrentTestLinkConnection =
                 FakeTestLinkFactory.GetTestLinkWithProjects(listOfProjects);
@@ -71,13 +74,29 @@ namespace TLAddinUnitTests.Commands.TL
         [Test] //, Parallelizable]
         [Description("Get-TLProject")]
         [Category("Fast")]
+        public void GetTLProject_NoParameters_NoConnection()
+        {
+            System.Collections.Generic.List<TestProject> list =
+                new System.Collections.Generic.List<TestProject>();
+
+            System.Collections.Generic.List<TestProject> resultList =
+                getProjectCollection(list, null, null, true);
+            
+            Assert.AreEqual(
+                0,
+                PSTestLib.UnitTestOutput.LastOutput.Count);
+        }
+        
+        [Test] //, Parallelizable]
+        [Description("Get-TLProject")]
+        [Category("Fast")]
         public void GetTLProject_NoParameters_NoProjects()
         {
             System.Collections.Generic.List<TestProject> list =
                 new System.Collections.Generic.List<TestProject>();
 
             System.Collections.Generic.List<TestProject> resultList =
-                getProjectCollection(list, true);
+                getProjectCollection(list, null, null, false);
             
             Assert.AreEqual(
                 0,
@@ -98,11 +117,11 @@ namespace TLAddinUnitTests.Commands.TL
                     string.Empty));
 
             System.Collections.Generic.List<TestProject> resultList =
-                getProjectCollection(list, true);
+                getProjectCollection(list, null, null, false);
             
             Assert.AreEqual(
-                list[0],
-                (Meyn.TestLink.TestProject)PSTestLib.UnitTestOutput.LastOutput[0]);
+                list,
+                PSTestLib.UnitTestOutput.LastOutput.AsList<Meyn.TestLink.TestProject>());
         }
         
         [Test] //, Parallelizable]
@@ -129,31 +148,125 @@ namespace TLAddinUnitTests.Commands.TL
                     string.Empty));
 
             System.Collections.Generic.List<TestProject> resultList =
-                getProjectCollection(list, true);
-
+                getProjectCollection(list, null, null, false);
+            
             Assert.AreEqual(
-                list[0],
-                (Meyn.TestLink.TestProject)PSTestLib.UnitTestOutput.LastOutput[0]);
-                
-            Assert.AreEqual(
-                list[1],
-                (Meyn.TestLink.TestProject)PSTestLib.UnitTestOutput.LastOutput[1]);
-                
-            Assert.AreEqual(
-                list[2],
-                (Meyn.TestLink.TestProject)PSTestLib.UnitTestOutput.LastOutput[2]);
+                list,
+                PSTestLib.UnitTestOutput.LastOutput.AsList<Meyn.TestLink.TestProject>());
         }
         
-//        [Test]
-//        [Description("Get-TLProject")]
-//        [Category("Fast")]
-//        public void GetTLProject_NoParameters()
-//        {
-//            //string expectedResultName = "suite name";
-//            UnitTestingHelper.GetNewTestSuite(expectedResultName, string.Empty, string.Empty);
-//            Assert.AreEqual(
-//                expectedResultName,
-//                ((ITestSuite)(object)PSTestLib.UnitTestOutput.LastOutput[0]).Name);
-//        }
+        [Test] //, Parallelizable]
+        [Description("Get-TLProject -Name project1")]
+        [Category("Fast")]
+        public void GetTLProject_Name_OneProject()
+        {
+            string[] names = new string[]{ "project1" };
+            
+            System.Collections.Generic.List<TestProject> list =
+                new System.Collections.Generic.List<TestProject>();
+            list.Add(
+                FakeTestLinkFactory.GetTestProject(
+                    "project1",
+                    "prj1",
+                    string.Empty));
+
+            System.Collections.Generic.List<TestProject> resultList =
+                getProjectCollection(list, names, null, false);
+            
+            Assert.AreEqual(
+                list,
+                PSTestLib.UnitTestOutput.LastOutput.AsList<Meyn.TestLink.TestProject>());
+        }
+        
+        [Test] //, Parallelizable]
+        [Description("Get-TLProject -Name project1,project2,project3")]
+        [Category("Fast")]
+        public void GetTLProject_Name_ThreeProjects()
+        {
+            string[] names = new string[]{ "project1", "project2", "project3" };
+            
+            System.Collections.Generic.List<TestProject> list =
+                new System.Collections.Generic.List<TestProject>();
+            list.Add(
+                FakeTestLinkFactory.GetTestProject(
+                    "project1",
+                    "prj1",
+                    string.Empty));
+            list.Add(
+                FakeTestLinkFactory.GetTestProject(
+                    "project2",
+                    "prj2",
+                    string.Empty));
+            list.Add(
+                FakeTestLinkFactory.GetTestProject(
+                    "project3",
+                    "prj3",
+                    string.Empty));
+
+            System.Collections.Generic.List<TestProject> resultList =
+                getProjectCollection(list, names, null, false);
+            
+            Assert.AreEqual(
+                list,
+                PSTestLib.UnitTestOutput.LastOutput.AsList<Meyn.TestLink.TestProject>());
+        }
+        
+        [Test] //, Parallelizable]
+        [Ignore("Impossibly to run owing to absence of such a GetProject method")]
+        [Description("Get-TLProject -Id prj1")]
+        [Category("Fast")]
+        public void GetTLProject_Id_OneProject()
+        {
+            string[] ids = new string[]{ "prj1" };
+            
+            System.Collections.Generic.List<TestProject> list =
+                new System.Collections.Generic.List<TestProject>();
+            list.Add(
+                FakeTestLinkFactory.GetTestProject(
+                    "project1",
+                    "prj1",
+                    string.Empty));
+
+            System.Collections.Generic.List<TestProject> resultList =
+                getProjectCollection(list, null, ids, false);
+            
+            Assert.AreEqual(
+                list,
+                PSTestLib.UnitTestOutput.LastOutput.AsList<Meyn.TestLink.TestProject>());
+        }
+        
+        [Test] //, Parallelizable]
+        [Ignore("Impossibly to run owing to absence of such a GetProject method")]
+        [Description("Get-TLProject -Id prj1,prj2,prj3")]
+        [Category("Fast")]
+        public void GetTLProject_Id_ThreeProjects()
+        {
+            string[] ids = new string[]{ "prj1", "prj2", "prj3" };
+            
+            System.Collections.Generic.List<TestProject> list =
+                new System.Collections.Generic.List<TestProject>();
+            list.Add(
+                FakeTestLinkFactory.GetTestProject(
+                    "project1",
+                    "prj1",
+                    string.Empty));
+            list.Add(
+                FakeTestLinkFactory.GetTestProject(
+                    "project2",
+                    "prj2",
+                    string.Empty));
+            list.Add(
+                FakeTestLinkFactory.GetTestProject(
+                    "project3",
+                    "prj3",
+                    string.Empty));
+
+            System.Collections.Generic.List<TestProject> resultList =
+                getProjectCollection(list, null, ids, false);
+            
+            Assert.AreEqual(
+                list,
+                PSTestLib.UnitTestOutput.LastOutput.AsList<Meyn.TestLink.TestProject>());
+        }
     }
 }

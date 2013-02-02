@@ -185,6 +185,8 @@ namespace TLAddinUnitTests
             
             testLinkMock.Setup(t => t.GetProjects()).Returns(listOfProjects);
             testLinkMock.Setup(t => t.GetProject(It.IsAny<string>())).Returns((string s) => listOfProjects.Find(item => item.name == s));
+            // 20130202
+            // testLinkMock.Setup(t => t.GetProjects()).Returns((string id) => listOfProjects);
             
             return testLinkMock;
         }

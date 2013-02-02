@@ -172,6 +172,18 @@ namespace PSTestLib
             LastOutput.Add(outputObject);
         }
         
+//        public static System.Collections.Generic.List<T> AsList<T>(this System.Collections.ObjectModel.Collection<object> collection)
+//        {
+//            System.Collections.Generic.List<T> resultList =
+//                new System.Collections.Generic.List<T>();
+//            
+//            foreach (object element in collection) {
+//                resultList.Add((T)element);
+//            }
+//            
+//            return resultList;
+//        }
+        
 //        public static void Add(System.Collections.ObjectModel.Collection<PSObject> collection)
 //        {
 //            outputCollection.Add(collection);

@@ -32,6 +32,23 @@ namespace TMX
                    Position = 0,
                    ParameterSetName = "FromStore")]
         public string TestPlanName { get; set; }
+        
+        // 20130202
+        [Parameter(Mandatory = false,
+                   ParameterSetName = "PipelineInput")]
+        [Parameter(Mandatory = false,
+                   ParameterSetName = "StringInput")]
+        [Parameter(Mandatory = false,
+                   ParameterSetName = "FromStore")]
+        public string Description { get; set; }
+        
+        [Parameter(Mandatory = false,
+                   ParameterSetName = "PipelineInput")]
+        [Parameter(Mandatory = false,
+                   ParameterSetName = "StringInput")]
+        [Parameter(Mandatory = false,
+                   ParameterSetName = "FromStore")]
+        public SwitchParameter Active { get; set; }
         #endregion Parameters
     }
 }

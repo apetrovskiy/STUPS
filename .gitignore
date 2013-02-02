@@ -140,7 +140,7 @@ dist
 build
 eggs
 parts
-bin
+# bin
 var
 sdist
 develop-eggs
@@ -170,7 +170,8 @@ AWS
 AWSProbe
 AWSTest
 AWSUnitTests
-binaries
+#binaries
+bin_later
 certificate
 Maintenance
 MoqCmdlets
@@ -207,3 +208,4 @@ UiaComWrapper
 UpgradeLog.XML
 RallyAddin
 RallyAddinUnitTests
+obj

@@ -124,16 +124,16 @@ namespace TMX
         {
             try {
                 
-                cmdlet.WriteVerbose(cmdlet, "getting list of projects");
+                cmdlet.WriteVerbose(cmdlet, "GetProjectCollection: getting list of projects");
                 System.Collections.Generic.List<TestProject> listProjects =
                     TLAddinData.CurrentTestLinkConnection.GetProjects();
                 
-                cmdlet.WriteVerbose(cmdlet, "outputting projects");
+                cmdlet.WriteVerbose(cmdlet, "GetProjectCollection: outputting projects");
                 cmdlet.WriteObject(cmdlet, listProjects);
                 
                 // 20130131
                 if (null != listProjects && 0 < listProjects.Count) {
-                    cmdlet.WriteVerbose(cmdlet, "settiing the current test project");
+                    cmdlet.WriteVerbose(cmdlet, "GetProjectCollection: settiing the current test project");
                     TLAddinData.CurrentTestProject =
                         listProjects[listProjects.Count -1];
                 }
@@ -203,7 +203,7 @@ namespace TMX
             
             try {
                 
-                cmdlet.WriteVerbose(cmdlet, "getting all projects");
+                cmdlet.WriteVerbose(cmdlet, "collecting all projects");
                 System.Collections.Generic.List<Meyn.TestLink.TestProject> projectsList =
                     TLAddinData.CurrentTestLinkConnection.GetProjects();
                 

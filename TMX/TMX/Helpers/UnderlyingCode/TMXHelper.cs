@@ -467,32 +467,57 @@ namespace TMX
             // default result
             Func<TestSuite, bool> query = suite => true;
             
+            // 20130203
+//            System.Collections.Generic.List<Func<TestSuite, bool>> queriesList =
+//                new List<Func<TestSuite, bool>>();
+//            queriesList.Add(query);
+            
             if (cmdlet.FilterNameContains != null && cmdlet.FilterNameContains.Length > 0) {
+                // 20130203
                 query = suite => suite.Name.Contains(cmdlet.FilterNameContains);
+                //queriesList.Add((suite => suite.Name.Contains(cmdlet.FilterNameContains)));
                 cmdlet.FilterAll = false;
             } else if (cmdlet.FilterIdContains != null && cmdlet.FilterIdContains.Length > 0) {
+                // 20130203
                 query = suite => suite.Id.Contains(cmdlet.FilterIdContains);
+                //queriesList.Add((suite => suite.Id.Contains(cmdlet.FilterIdContains)));
                 cmdlet.FilterAll = false;
             } else if (cmdlet.FilterDescriptionContains != null && cmdlet.FilterDescriptionContains.Length > 0) {
-                query = suite => 
+                // 20130203
+                query = suite =>
                     {
                         if (suite.Description != null) {
                             return suite.Description.Contains(cmdlet.FilterDescriptionContains);
                         }
                         return false;
                     };
+//                queriesList.Add((suite =>
+//                    {
+//                        if (suite.Description != null) {
+//                            return suite.Description.Contains(cmdlet.FilterDescriptionContains);
+//                        }
+//                        return false;
+//                    }));
                 cmdlet.FilterAll = false;
             } else if (cmdlet.FilterPassed) {
+                // 20130203
                 query = suite => suite.enStatus == TestSuiteStatuses.Passed;
+                //queriesList.Add((suite => suite.enStatus == TestSuiteStatuses.Passed));
                 cmdlet.FilterAll = false;
             } else if (cmdlet.FilterFailed) {
+                // 20130203
                 query = suite => suite.enStatus == TestSuiteStatuses.Failed;
+                //queriesList.Add((suite => suite.enStatus == TestSuiteStatuses.Failed));
                 cmdlet.FilterAll = false;
             } else if (cmdlet.FilterNotTested) {
+                // 20130203
                 query = suite => suite.enStatus == TestSuiteStatuses.NotTested;
+                //queriesList.Add((suite => suite.enStatus == TestSuiteStatuses.NotTested));
                 cmdlet.FilterAll = false;
             } else if (cmdlet.FilterPassedWithBadSmell) {
+                // 20130203
                 query = suite => suite.enStatus == TestSuiteStatuses.KnownIssue;
+                //queriesList.Add((suite => suite.enStatus == TestSuiteStatuses.KnownIssue));
                 cmdlet.FilterAll = false;
             }
             if (cmdlet.FilterAll) {
@@ -501,6 +526,9 @@ namespace TMX
             // 20121006
             if (cmdlet.FilterNone) {
                 query = suite => false;
+                // 20130203
+                //queriesList.Clear();
+                //queriesList.Add(query);
             }
             
             // Ordering results
@@ -509,23 +537,23 @@ namespace TMX
             Func<TestSuite, object> ordering = suite => suite.Id;
             
             if (cmdlet.OrderByTimeSpent) {
-                ordering = suite => suite.Statistics.TimeSpent;
+                ordering += suite => suite.Statistics.TimeSpent;
             } 
             if (cmdlet.OrderByName) {
-                ordering = suite => suite.Name;
+                ordering += suite => suite.Name;
             } 
             if (cmdlet.OrderById) {
-                ordering = suite => suite.Id;
+                ordering += suite => suite.Id;
             } 
             if (cmdlet.OrderByPassRate) {
-                ordering = suite => 
+                ordering += suite => 
                     {
                         TMX.TestData.RefreshSuiteStatistics(suite);
                         return (suite.Statistics.Passed / suite.Statistics.All);
                     };
             } 
             if (cmdlet.OrderByFailRate) {
-                ordering = suite => 
+                ordering += suite => 
                     {
                         TMX.TestData.RefreshSuiteStatistics(suite);
                         return (suite.Statistics.Failed / suite.Statistics.All);
@@ -537,7 +565,9 @@ namespace TMX
             
             suites = 
                 TMX.TestData.SearchTestSuite(
+                    // 20130203
                     query,
+                    //Combine<TestSuite, bool>((x, y) => x && y, queriesList.ToArray()),
                     ordering,
                     cmdlet.Descending);
 
@@ -555,6 +585,18 @@ namespace TMX
                 cmdlet.WriteObject(null);
             }
         }
+        
+//        public static Func<TInput, bool> Combine<TInput, Tout>
+//            (Func<bool, bool, bool> aggregator,
+//            params Func<TInput, bool>[] delegates) {
+//
+//            // delegates[0] provides the initial value
+//            return t => delegates.Skip(1).Aggregate(delegates[0](t), aggregator);
+//        }
+//
+////        public static Func<T, bool> And<T>(params Func<T, bool>[] predicates) {
+////            return Combine<T, bool>((x, y) => x && y, predicates);
+////        }
         
         /// <summary>
         /// Performs parametrized search for Test Scenarios.

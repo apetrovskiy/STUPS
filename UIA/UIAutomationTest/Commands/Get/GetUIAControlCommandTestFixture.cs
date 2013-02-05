@@ -990,7 +990,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("WinForms")]
         [Category("Control")]
         [Category("Get_UIAControl")]
-        public void GetControlByValue_WildCard_Timeout2000()
+        public void GetControlByValue_WildCard_TimeoutDefault() //Timeout2000()
         {
             string auId1 = "Edit1";
             string expectedValue = "my text";
@@ -1011,7 +1011,8 @@ namespace UIAutomationTest.Commands.Get
                 expectedValue +
                 "'; Get-UIAEdit -Value '" +
                 expectedValue +
-                "' -timeout 2000 | Get-UIAEditText;",
+                //"' -timeout 2000 | Get-UIAEditText;",
+                "' | Get-UIAEditText;",
                 expectedValue);
         }
 

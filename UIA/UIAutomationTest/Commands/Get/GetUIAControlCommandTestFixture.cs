@@ -1007,7 +1007,8 @@ namespace UIAutomationTest.Commands.Get
                 " | Get-UIAControl -AutomationId " + 
                 auId1 + 
                 " | " +
-                "Set-UIAcontrolText -Text '" +
+                //"Set-UIAcontrolText -Text '" +
+                "Set-UIAEditText -Text '" +
                 expectedValue +
                 "'; Get-UIAEdit -Value '" +
                 expectedValue +

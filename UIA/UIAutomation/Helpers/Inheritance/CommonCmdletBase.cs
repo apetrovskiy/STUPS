@@ -19,9 +19,6 @@ namespace UIAutomation
     
     using PSTestLib;
     
-    
-    //using System.IO;
-    
     /// <summary>
     /// The CommonCmdletBase class in the top of cmdlet hierarchy.
     /// </summary>
@@ -53,25 +50,8 @@ namespace UIAutomation
         }
         #endregion Constructor
         
-        // 20120816
-//        #region Properties
-//        protected AutomationElement EventSource { get; set; }
-//        protected AutomationEventArgs EventArgs { get; set; }
-//        #endregion Properties
-
-//        protected override void BeginProcessing()
-//        {
-//            //WriteVerbose(this, "BeginProcessing()");
-//            
-//            WriteVerbose(this, Preferences.OnSleepDelay.ToString());
-//        }
-        
-        //protected internal override bool UnitTestMode { get; set; }
-        
         protected override void EndProcessing()
         {
-            //WriteVerbose(this, "EndProcessing()");
-            
             #region close the log
             try {
                 Global.CloseLogFile();
@@ -80,11 +60,9 @@ namespace UIAutomation
         }
         
         #region Write methods
-        //private void WriteLog(string record)
         protected override void WriteLog(string logRecord)
         {
             try {
-                //Global.WriteToLogFile(record);
                 Global.WriteToLogFile(logRecord);
             } catch (Exception e) {
                 WriteVerbose(this, "Unable to write to the log file: " +
@@ -92,58 +70,6 @@ namespace UIAutomation
                 WriteVerbose(this, e.Message);
             }
         }
-        
-#region commented
-//            #region Cmdlet Signature
-//        internal string CmdletName(CommonCmdletBase cmdlet)
-//        {
-//            string result = String.Empty;
-//            if (cmdlet == null) return result;
-//            result = 
-//                cmdlet.GetType().Name;
-//            result = 
-//                result.Replace("UIA", "-UIA").Replace("Command", "");
-//            return result;
-//        }
-//            
-//        private string CmdletSignature(CommonCmdletBase cmdlet)
-//        {
-//            string result = this.CmdletName(cmdlet);
-//            result += ": ";
-//            return result;
-//        }
-//            #endregion Cmdlet Signature
-        
-//        protected internal void WriteVerbose(CommonCmdletBase cmdlet, string text)
-//        {
-//            string reportString = string.Empty;
-//            reportString = 
-//                CmdletSignature(cmdlet) +  
-//                text;
-//            if (cmdlet != null) {
-//            	try { WriteVerbose(reportString); } 
-//            	catch { }
-//            } else {
-//            	
-//WriteVerbose(this, "NULL !!!!!!!!!!!!!!!!!!");
-//            	
-//            	
-//            }
-//            //try {WriteVerbose(reportString); } catch {}
-//            WriteLog(reportString);
-//        }
-//        
-//        protected internal void WriteVerbose(CommonCmdletBase cmdlet, object obj)
-//        {
-//            string reportString = string.Empty;
-//            reportString =
-//                CmdletSignature(cmdlet) +  
-//                obj.ToString();
-//            if (cmdlet != null) try { WriteVerbose(reportString); } catch { }
-//            //try {WriteVerbose(reportString); } catch {}
-//            WriteLog(reportString);
-//        }
-#endregion commented
         
         protected internal void WriteDebug(CommonCmdletBase cmdlet, string text)
         {
@@ -161,165 +87,42 @@ namespace UIAutomation
             WriteLog(reportString);
         }
         
-#region commented
-//        protected internal void WriteObject(CommonCmdletBase cmdlet, object obj)
-//        {
-//            try{
-//                AutomationElement element = null;
-//                if (cmdlet != null && !(cmdlet is WizardCmdletBase)) {
-//                    try {
-//                        element = obj as AutomationElement;
-//                        if (element is AutomationElement &&
-//                            (int)element.Current.ProcessId > 0) {
-//
-//                            WriteVerbose(this, "current cmdlet: " + this.GetType().Name);
-//                            WriteVerbose(this, "highlighting the following element:");
-//                            WriteVerbose(this, "Name = " + element.Current.Name);
-//                            WriteVerbose(this, "AutomationId = " + element.Current.AutomationId);
-//                            WriteVerbose(this, "ControlType = " + element.Current.ControlType.ProgrammaticName);
-//                            WriteVerbose(this, "X = " + element.Current.BoundingRectangle.X.ToString());
-//                            WriteVerbose(this, "Y = " + element.Current.BoundingRectangle.Y.ToString());
-//                            WriteVerbose(this, "Width = " + element.Current.BoundingRectangle.Width.ToString());
-//                            WriteVerbose(this, "Height = " + element.Current.BoundingRectangle.Height.ToString());
-//                        }
-//                    } catch { //(Exception eee) {
-//                        // nothing to do
-//                        // just failed to highlight
-//                    }
-//                //  // 
-//                if (element != null && element is AutomationElement &&
-//                        (int)element.Current.ProcessId > 0) {
-//                        WriteVerbose(this, "as it is an AutomationElement, it should be highlighted");
-//                        if (Preferences.Highlight || ((HasScriptBlockCmdletBase)cmdlet).Highlight) {
-//                            try {
-//                                WriteVerbose(this, "run Highlighter");
-//                                UIAHelper.Highlight(element);
-//                                WriteVerbose(this, "after running the Highlighter");
-//                            } catch (Exception ee) {
-//                                WriteVerbose(this, "unable to highlight: " + ee.Message);
-//                                WriteVerbose(this, obj.ToString());
-//                            }
-//                        }
-//                    }
-//                }
-//                
-//                WriteVerbose(this, "is going to run scriptblocks");
-//                if (cmdlet != null) {
-//                    // run scriptblocks
-//                    if (cmdlet is HasScriptBlockCmdletBase) {
-//                        WriteVerbose(this, "cmdlet is of the HasScriptBlockCmdletBase type");
-//                        if (obj == null) {
-//                            WriteVerbose(this, "run OnError script blocks (null)");
-//                            RunOnErrorScriptBlocks(((HasScriptBlockCmdletBase)cmdlet));
-//                        } else if (obj is bool && ((bool)obj) == false) {
-//                            WriteVerbose(this, "run OnError script blocks (false)");
-//                            RunOnErrorScriptBlocks(((HasScriptBlockCmdletBase)cmdlet));
-//                        } else if (obj != null) {
-//                            WriteVerbose(this, "run OnSuccess script blocks");
-//                            RunOnSuccessScriptBlocks(((HasScriptBlockCmdletBase)cmdlet));
-//                        }
-//                    }
-//                    try {
-//                        CurrentData.LastResult = obj;
-//                        string iInfo = string.Empty;
-//                        if (((HasScriptBlockCmdletBase)cmdlet).TestResultName != null &&
-//                            ((HasScriptBlockCmdletBase)cmdlet).TestResultName.Length > 0) {
-//
-//                            TMX.TMXHelper.CloseTestResult(((HasScriptBlockCmdletBase)cmdlet).TestResultName,
-//                                                          ((HasScriptBlockCmdletBase)cmdlet).TestResultId,
-//                                                          ((HasScriptBlockCmdletBase)cmdlet).TestPassed,
-//                                                          false, // isKnownIssue
-//                                                          this.MyInvocation,
-//                                                          null, // Error
-//                                                          string.Empty,
-//                                                          false);
-//                        } else {
-//                            if (Preferences.EveryCmdletAsTestResult) {
-//                                
-//                                ((HasScriptBlockCmdletBase)cmdlet).TestResultName = 
-//                                    getGeneratedTestResultNameByPosition(
-//                                        this.MyInvocation.Line,
-//                                        this.MyInvocation.PipelinePosition);
-//                                ((HasScriptBlockCmdletBase)cmdlet).TestResultId = string.Empty;
-//                                ((HasScriptBlockCmdletBase)cmdlet).TestPassed = true;
-//
-//                                TMX.TMXHelper.CloseTestResult(((HasScriptBlockCmdletBase)cmdlet).TestResultName,
-//                                                              string.Empty, //((HasScriptBlockCmdletBase)cmdlet).TestResultId, // empty, to be generated
-//                                                              ((HasScriptBlockCmdletBase)cmdlet).TestPassed,
-//                                                              false, // isKnownIssue
-//                                                              this.MyInvocation,
-//                                                              null, // Error
-//                                                              string.Empty,
-//                                                              true);
-//                            }
-//                        }
-//                    }
-//                    catch (Exception eeee) {
-//                        WriteVerbose(this, "for working with test results you need to import the TMX module");
-//                    }
-//
-//
-//                    // remove the Turbo timeout
-//                    if ((cmdlet as HasTimeoutCmdletBase) != null) {
-//                        
-//                        if ((CurrentData.CurrentWindow != null &&
-//                             CurrentData.LastResult != null) ||
-//                             (obj as AutomationElement) != null) {
-//                            if (Preferences.StoredDefaultTimeout != 0) {
-//                                if (! Preferences.TimeoutSetByCustomer) {
-//                                    Preferences.Timeout = Preferences.StoredDefaultTimeout;
-//                                    Preferences.StoredDefaultTimeout = 0;
-//                                }
-//                            }
-//                        }
-//                    }
-//
-//
-//                }
-//                WriteVerbose(this, "sleeping if sleep time is provided");
-//                System.Threading.Thread.Sleep(Preferences.OnSuccessDelay);
-//                WriteVerbose(this, "outputting the result object");
-//                if (cmdlet != null) {
-//                    try { 
-//                        element = obj as AutomationElement;
-//                        WriteVerbose("getting the element again to ensure that it still exists");
-//                        WriteVerbose((element as AutomationElement).ToString());
-//                        if (!(cmdlet is WizardCmdletBase) &&
-//                            (element is AutomationElement)){
-//                            WriteVerbose(this, "returning the object");
-//                            WriteObject(obj);
-//                        } else if ((cmdlet is WizardCmdletBase)) {
-//                            WriteVerbose(this, "returning the wizard or step");
-//                            WriteObject(obj);
-//                        } else {
-//                            WriteVerbose("returning true");
-//                            WriteObject(true);
-//                        }
-//                    } catch { // (Exception eeeee) {
-//                        // test
-//                        WriteVerbose(this, "failed to issue the result object of AutomationElement type");
-//                        WriteVerbose(this, "returning as is");
-//                        WriteObject(obj);
-//                    }
-//                }
-//                string reportString =
-//                    CmdletSignature(cmdlet) +  
-//                    obj.ToString();
-//                
-//                if (cmdlet != null && reportString != null && reportString != string.Empty) { //try { WriteVerbose(reportString);
-//                    WriteVerbose(reportString);
-//                } 
-//                WriteVerbose(this, "writing into the log");
-//                WriteLog(reportString);
-//                WriteVerbose(this, "the log record has been written");
-//            }
-//            catch {}
-//        }
-#endregion commented
+        protected override bool CheckSingleObject(PSCmdletBase cmdlet, object outputObject)
+        {
+            return WriteObjectMethod010CheckOutputObject(outputObject);
+        }
+        protected override void BeforeWriteCollection(PSCmdletBase cmdlet, object[] outputObjectCollection) {}
+        protected override void BeforeWriteCollection(PSCmdletBase cmdlet, System.Collections.Generic.List<object> outputObjectCollection) {}
+        protected override void BeforeWriteCollection(PSCmdletBase cmdlet, ArrayList outputObjectCollection) {}
+        protected override void BeforeWriteCollection(PSCmdletBase cmdlet, IList outputObjectCollection) {}
+        protected override void BeforeWriteCollection(PSCmdletBase cmdlet, IEnumerable outputObjectCollection) {}
+        protected override void BeforeWriteCollection(PSCmdletBase cmdlet, ICollection outputObjectCollection) {}
+        protected override void BeforeWriteCollection(PSCmdletBase cmdlet, Hashtable outputObjectCollection) {}
+        protected override void BeforeWriteSingleObject(PSCmdletBase cmdlet, object outputObject) {}
 
-        //protected override bool WriteObjectMethod010CheckOutputObject(object outputObject)
-        //public override bool WriteObjectMethod010CheckOutputObject(object outputObject)
-        protected override sealed bool WriteObjectMethod010CheckOutputObject(object outputObject)
+        protected override void WriteSingleObject(PSCmdletBase cmdlet, object outputObject)
+        {
+            WriteObjectMethod020Highlight(cmdlet, outputObject);
+            WriteObjectMethod030RunScriptBlocks(cmdlet, outputObject);
+            WriteObjectMethod040SetTestResult(cmdlet, outputObject);
+            WriteObjectMethod045OnSuccessScreenshot(cmdlet, outputObject);
+            WriteObjectMethod050OnSuccessDelay(cmdlet, outputObject);
+            WriteObjectMethod060OutputResult(cmdlet, outputObject);
+            WriteObjectMethod070Report(cmdlet, outputObject);
+        }
+        
+        protected override void AfterWriteSingleObject(PSCmdletBase cmdlet, object outputObject) {}
+        protected override void AfterWriteCollection(PSCmdletBase cmdlet, object[] outputObjectCollection) {}
+        protected override void AfterWriteCollection(PSCmdletBase cmdlet, System.Collections.Generic.List<object> outputObjectCollection) {}
+        protected override void AfterWriteCollection(PSCmdletBase cmdlet, ArrayList outputObjectCollection) {}
+        protected override void AfterWriteCollection(PSCmdletBase cmdlet, IList outputObjectCollection) {}
+        protected override void AfterWriteCollection(PSCmdletBase cmdlet, IEnumerable outputObjectCollection) {}
+        protected override void AfterWriteCollection(PSCmdletBase cmdlet, ICollection outputObjectCollection) {}
+        protected override void AfterWriteCollection(PSCmdletBase cmdlet, Hashtable outputObjectCollection) {}
+
+        // 20130204
+        //protected override sealed bool WriteObjectMethod010CheckOutputObject(object outputObject)
+        protected bool WriteObjectMethod010CheckOutputObject(object outputObject)
         //private override bool WriteObjectMethod010CheckOutputObject(object outputObject)
         {
             //WriteVerbose("OutputMethod010CheckOutputObject UIAutomation");
@@ -333,10 +136,12 @@ namespace UIAutomation
             }
             return result;
         }
-        
+
         //protected override void WriteObjectMethod020Highlight(PSCmdletBase cmdlet, object outputObject)
         //public override void WriteObjectMethod020Highlight(PSCmdletBase cmdlet, object outputObject)
-        protected override sealed void WriteObjectMethod020Highlight(PSCmdletBase cmdlet, object outputObject)
+        // 20130204
+        //protected override sealed void WriteObjectMethod020Highlight(PSCmdletBase cmdlet, object outputObject)
+        protected void WriteObjectMethod020Highlight(PSCmdletBase cmdlet, object outputObject)
         {
             //WriteVerbose("OutputMethod020Highlight UIAutomation");
             
@@ -392,7 +197,9 @@ namespace UIAutomation
         }
         
         //protected override void WriteObjectMethod030RunScriptBlocks(PSCmdletBase cmdlet, object outputObject)
-        protected override void WriteObjectMethod030RunScriptBlocks(PSCmdletBase cmdlet, object outputObject)
+        // 20130204
+        //protected override void WriteObjectMethod030RunScriptBlocks(PSCmdletBase cmdlet, object outputObject)
+        protected void WriteObjectMethod030RunScriptBlocks(PSCmdletBase cmdlet, object outputObject)
         {
             //WriteVerbose("OutputMethod030RunScriptBlocks UIAutomation");
             
@@ -416,7 +223,9 @@ namespace UIAutomation
         }
         
         //protected override void WriteObjectMethod040SetTestResult(PSCmdletBase cmdlet, object outputObject)
-        protected override void WriteObjectMethod040SetTestResult(PSCmdletBase cmdlet, object outputObject)
+        // 20130204
+        //protected override void WriteObjectMethod040SetTestResult(PSCmdletBase cmdlet, object outputObject)
+        protected void WriteObjectMethod040SetTestResult(PSCmdletBase cmdlet, object outputObject)
         {
             //WriteVerbose("OutputMethod040SetTestResult UIAutomation");
 
@@ -466,7 +275,9 @@ namespace UIAutomation
             }
         }
         
-        protected override void WriteObjectMethod045OnSuccessScreenshot(PSCmdletBase cmdlet, object outputObject)
+        // 20130204
+        //protected override void WriteObjectMethod045OnSuccessScreenshot(PSCmdletBase cmdlet, object outputObject)
+        protected void WriteObjectMethod045OnSuccessScreenshot(PSCmdletBase cmdlet, object outputObject)
         {
             WriteVerbose(this, "WriteObjectMethod045OnSuccessScreenshot UIAutomation");
 
@@ -492,7 +303,9 @@ namespace UIAutomation
         }
         
         //protected override void WriteObjectMethod050OnSuccessDelay(PSCmdletBase cmdlet, object outputObject)
-        protected override void WriteObjectMethod050OnSuccessDelay(PSCmdletBase cmdlet, object outputObject)
+        // 20130204
+        //protected override void WriteObjectMethod050OnSuccessDelay(PSCmdletBase cmdlet, object outputObject)
+        protected void WriteObjectMethod050OnSuccessDelay(PSCmdletBase cmdlet, object outputObject)
         {
             //WriteVerbose("OutputMethod050OnSuccessDelay UIAutomation");
             
@@ -534,7 +347,9 @@ namespace UIAutomation
         }
         
         //protected override void WriteObjectMethod060OutputResult(PSCmdletBase cmdlet, object outputObject)
-        protected override void WriteObjectMethod060OutputResult(PSCmdletBase cmdlet, object outputObject)
+        // 20130204
+        //protected override void WriteObjectMethod060OutputResult(PSCmdletBase cmdlet, object outputObject)
+        protected void WriteObjectMethod060OutputResult(PSCmdletBase cmdlet, object outputObject)
         {
             //WriteVerbose("OutputMethod060OutputResult UIAutomation");
             
@@ -566,7 +381,9 @@ namespace UIAutomation
         }
         
         //protected override void WriteObjectMethod070Report(PSCmdletBase cmdlet, object outputObject)
-        protected override void WriteObjectMethod070Report(PSCmdletBase cmdlet, object outputObject)
+        // 20130204
+        //protected override void WriteObjectMethod070Report(PSCmdletBase cmdlet, object outputObject)
+        protected void WriteObjectMethod070Report(PSCmdletBase cmdlet, object outputObject)
         {
             //WriteVerbose("OutputMethod070Report UIAutomation");
             
@@ -583,10 +400,10 @@ namespace UIAutomation
             this.WriteVerbose(this, "the log record has been written");
         }
         
-        protected override void WriteObjectMethod080ReportFailure()
-        {
-            WriteVerbose(" UIAutomation");
-        }
+//        protected override void WriteObjectMethod080ReportFailure()
+//        {
+//            WriteVerbose(" UIAutomation");
+//        }
         
         
         internal static int HighlighterGeneration = 0;
@@ -1681,6 +1498,8 @@ namespace UIAutomation
                                 
 
                         }
+// 20130204
+// don't change the order! (text->exact->wildcard->win32 to win32->text->exact->wildcard)
 
 #region text search
                         // 20130128
@@ -1797,7 +1616,11 @@ namespace UIAutomation
                                         //nameAsterisk,
                                         cmdlet.AutomationId,
                                         cmdlet.Class,
-                                        (string[])(new ArrayList()).ToArray(typeof(string)),
+                                        // 20130204
+                                        cmdlet.Value,
+                                        // 20130204
+                                        //(string[])(new ArrayList()).ToArray(typeof(string)),
+                                        (new string[]{}),
                                         this.caseSensitive);
 
                                 // 20120917
@@ -1884,7 +1707,10 @@ namespace UIAutomation
 #endregion wildcard search
 						
 #region Win32 search
-                        if (0 == aeCtrl.Count && notTextSearch) { // && cmdlet.Name.Length > 0) { // 20120918
+                        if (0 == aeCtrl.Count && notTextSearch &&
+                            (null == cmdlet.AutomationId || string.Empty == cmdlet.AutomationId) &&
+                            (null == cmdlet.Class || string.Empty == cmdlet.Class) &&
+                            (null == cmdlet.Value || string.Empty == cmdlet.Value)) { // && cmdlet.Name.Length > 0) { // 20120918
                             
                             // // 20130125
                             if (!Preferences.DisableWin32Search || cmdlet.Win32) {
@@ -1940,7 +1766,6 @@ namespace UIAutomation
                             } // if (! Preferences.DisableWin32Search)
                         } // FindWindowEx
 #endregion Win32 search
-
 
                     // 20120917
                     //cmdlet.WriteVerbose(cmdlet, "checking aeCtrl ^^^^^^^^^^^^^^");

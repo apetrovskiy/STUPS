@@ -12,6 +12,8 @@ namespace ExampleCustomTestReport
     using System;
     using System.Management.Automation;
     using PSTestLib;
+    using System.Collections.ObjectModel;
+    using System.Collections;
     
     /// <summary>
     /// Description of CommonCmdletBase.
@@ -22,50 +24,80 @@ namespace ExampleCustomTestReport
         {
         }
         
-        protected override void WriteObjectMethod080ReportFailure()
+#region commented
+//        protected override void WriteObjectMethod080ReportFailure()
+//        {
+//            throw new NotImplementedException();
+//        }
+//        
+//        protected override void WriteObjectMethod070Report(PSCmdletBase cmdlet, object outputObject)
+//        {
+//            throw new NotImplementedException();
+//        }
+//        
+//        protected override void WriteObjectMethod060OutputResult(PSCmdletBase cmdlet, object outputObject)
+//        {
+//            throw new NotImplementedException();
+//        }
+//        
+//        protected override void WriteObjectMethod050OnSuccessDelay(PSCmdletBase cmdlet, object outputObject)
+//        {
+//            throw new NotImplementedException();
+//        }
+//        
+//        protected override void WriteObjectMethod045OnSuccessScreenshot(PSCmdletBase cmdlet, object outputObject)
+//        {
+//            throw new NotImplementedException();
+//        }
+//        
+//        protected override void WriteObjectMethod040SetTestResult(PSCmdletBase cmdlet, object outputObject)
+//        {
+//            throw new NotImplementedException();
+//        }
+//        
+//        protected override void WriteObjectMethod030RunScriptBlocks(PSCmdletBase cmdlet, object outputObject)
+//        {
+//            throw new NotImplementedException();
+//        }
+//        
+//        protected override void WriteObjectMethod020Highlight(PSCmdletBase cmdlet, object outputObject)
+//        {
+//            throw new NotImplementedException();
+//        }
+//        
+//        protected override bool WriteObjectMethod010CheckOutputObject(object outputObject)
+//        {
+//            throw new NotImplementedException();
+//        }
+#endregion commented
+
+        protected override bool CheckSingleObject(PSCmdletBase cmdlet, object outputObject) { return true; }
+        protected override void BeforeWriteCollection(PSCmdletBase cmdlet, object[] outputObjectCollection) {}
+        protected override void BeforeWriteCollection(PSCmdletBase cmdlet, System.Collections.Generic.List<object> outputObjectCollection) {}
+        protected override void BeforeWriteCollection(PSCmdletBase cmdlet, ArrayList outputObjectCollection) {}
+        protected override void BeforeWriteCollection(PSCmdletBase cmdlet, IList outputObjectCollection) {}
+        protected override void BeforeWriteCollection(PSCmdletBase cmdlet, IEnumerable outputObjectCollection) {}
+        protected override void BeforeWriteCollection(PSCmdletBase cmdlet, ICollection outputObjectCollection) {}
+        protected override void BeforeWriteCollection(PSCmdletBase cmdlet, Hashtable outputObjectCollection) {}
+        protected override void BeforeWriteSingleObject(PSCmdletBase cmdlet, object outputObject) {}
+
+        protected override void WriteSingleObject(PSCmdletBase cmdlet, object outputObject)
         {
-            throw new NotImplementedException();
+            //WriteVerbose(this, " ExampleCustomTestReport");
+            try {
+                base.WriteObject(outputObject);
+            }
+            catch {}
         }
         
-        protected override void WriteObjectMethod070Report(PSCmdletBase cmdlet, object outputObject)
-        {
-            throw new NotImplementedException();
-        }
-        
-        protected override void WriteObjectMethod060OutputResult(PSCmdletBase cmdlet, object outputObject)
-        {
-            throw new NotImplementedException();
-        }
-        
-        protected override void WriteObjectMethod050OnSuccessDelay(PSCmdletBase cmdlet, object outputObject)
-        {
-            throw new NotImplementedException();
-        }
-        
-        protected override void WriteObjectMethod045OnSuccessScreenshot(PSCmdletBase cmdlet, object outputObject)
-        {
-            throw new NotImplementedException();
-        }
-        
-        protected override void WriteObjectMethod040SetTestResult(PSCmdletBase cmdlet, object outputObject)
-        {
-            throw new NotImplementedException();
-        }
-        
-        protected override void WriteObjectMethod030RunScriptBlocks(PSCmdletBase cmdlet, object outputObject)
-        {
-            throw new NotImplementedException();
-        }
-        
-        protected override void WriteObjectMethod020Highlight(PSCmdletBase cmdlet, object outputObject)
-        {
-            throw new NotImplementedException();
-        }
-        
-        protected override bool WriteObjectMethod010CheckOutputObject(object outputObject)
-        {
-            throw new NotImplementedException();
-        }
+        protected override void AfterWriteSingleObject(PSCmdletBase cmdlet, object outputObject) {}
+        protected override void AfterWriteCollection(PSCmdletBase cmdlet, object[] outputObjectCollection) {}
+        protected override void AfterWriteCollection(PSCmdletBase cmdlet, System.Collections.Generic.List<object> outputObjectCollection) {}
+        protected override void AfterWriteCollection(PSCmdletBase cmdlet, ArrayList outputObjectCollection) {}
+        protected override void AfterWriteCollection(PSCmdletBase cmdlet, IList outputObjectCollection) {}
+        protected override void AfterWriteCollection(PSCmdletBase cmdlet, IEnumerable outputObjectCollection) {}
+        protected override void AfterWriteCollection(PSCmdletBase cmdlet, ICollection outputObjectCollection) {}
+        protected override void AfterWriteCollection(PSCmdletBase cmdlet, Hashtable outputObjectCollection) {}
         
         protected override void WriteLog(string logRecord)
         {

@@ -134,21 +134,18 @@ namespace SePSX
         //private static int[] getWebElementCoordinates(RemoteWebElement element)
         private static int[] getWebElementCoordinates(WebElementDecorator element)
         {
-//Console.WriteLine("getWebElementCoordinates: 000001");
-            //double[] driverCoordinates = new double[2];
+
             int[] driverCoordinates = new int[2];
-            //int driverX = 0;
-            //int driverY = 0;
-            //UIAutomation.UIAHelper.GetAutomationElementFromPoint
+
             AutomationElement driverElement =
                 System.Windows.Automation.AutomationElement.RootElement.FindFirst(
                     TreeScope.Children,
                     new PropertyCondition(
                         AutomationElement.ProcessIdProperty,
                         CurrentData.CurrentWebDriverPID));
-//Console.WriteLine("getWebElementCoordinates: 000002");
+
             if (driverElement != null) {
-//Console.WriteLine("getWebElementCoordinates: 000003");
+
                 PropertyCondition internalPaneCondition = null;
                 
                 switch (SeHelper.DriverProcess.ProcessName) {
@@ -179,65 +176,19 @@ namespace SePSX
                         //                                        ControlType.Pane);
                         //                                break;
                 }
-//Console.WriteLine("getWebElementCoordinates: 000005");
+
                 AutomationElement internalPaneElement =
                     driverElement.FindFirst(
                         TreeScope.Descendants,
                         internalPaneCondition);
-//Console.WriteLine("getWebElementCoordinates: 000006");
-//try {
-//    Console.WriteLine("(int)internalPaneElement.Current.BoundingRectangle.X = " + ((int)internalPaneElement.Current.BoundingRectangle.X).ToString());
-//    if (null == element) {
-//        Console.WriteLine("null == element");
-//    } else {
-//        Console.WriteLine("null != element");
-//    }
-//    try {
-//    if (null == element.Coordinates) {
-//        Console.WriteLine("null == element.Coordinates");
-//    } else {
-//        Console.WriteLine("null != element.Coordinates");
-//    }
-//    } catch (Exception eee2) {
-//        Console.WriteLine(eee2.Message);
-//        Console.WriteLine(eee2.GetType().Name);
-//    }
-//    if (null == element.Coordinates.LocationOnScreen) {
-//        Console.WriteLine("null == element.Coordinates.LocationOnScreen");
-//    } else {
-//        Console.WriteLine("null != element.Coordinates.LocationOnScreen");
-//    }
-//    if (null == element.Coordinates.LocationOnScreen.X) {
-//        Console.WriteLine("null == element.Coordinates.LocationOnScreen.X");
-//    } else {
-//        Console.WriteLine("null != element.Coordinates.LocationOnScreen.X");
-//    }
-//    Console.WriteLine("((WebElementDecorator)element).Coordinates.LocationOnScreen.X = " + element.Coordinates.LocationOnScreen.X.ToString());
-                //                driverX =
-                //                    (int)internalPaneElement.Current.BoundingRectangle.X;
-                //                driverY =
-                //                    (int)internalPaneElement.Current.BoundingRectangle.Y;
+
                 driverCoordinates[0] =
                     (int)internalPaneElement.Current.BoundingRectangle.X +
-                    // 20121212
-                    //element.Coordinates.LocationOnScreen.X;
-                    //((RemoteWebElement)element).Coordinates.LocationOnScreen.X;
                     ((WebElementDecorator)element).Coordinates.LocationOnScreen.X;
-//    Console.WriteLine("(int)internalPaneElement.Current.BoundingRectangle.Y = " + ((int)internalPaneElement.Current.BoundingRectangle.Y).ToString());
-//    Console.WriteLine("((WebElementDecorator)element).Coordinates.LocationOnScreen.Y = " + element.Coordinates.LocationOnScreen.Y.ToString());
                 
                 driverCoordinates[1] =
                     (int)internalPaneElement.Current.BoundingRectangle.Y +
-                    // 20121212
-                    //element.Coordinates.LocationOnScreen.Y;
-                    //((RemoteWebElement)element).Coordinates.LocationOnScreen.Y;
                     ((WebElementDecorator)element).Coordinates.LocationOnScreen.Y;
-//}
-//catch (Exception e00001) {
-//    Console.WriteLine(e00001.Message);
-//    Console.WriteLine(e00001.GetType().Name);
-//}
-//Console.WriteLine("getWebElementCoordinates: 000008");
             }
             return driverCoordinates;
         }
@@ -247,11 +198,11 @@ namespace SePSX
             try { if (highlighter != null) { highlighter.Dispose(); } } catch {}
             try { if (highlighterParent != null) { highlighterParent.Dispose(); } } catch {}
             //try { if (highlighterFirstChild != null) { highlighterFirstChild.Dispose(); } } catch {}
-//Console.WriteLine("Highlight: 00001");
+
             if ((webElement as IWebElement) != null) {
 //                RemoteWebElement remoteElement =
 //                    webElement as RemoteWebElement;
-//Console.WriteLine("Highlight: 00002");
+
                 // 20121212
                 WebElementDecorator decoratedElement =
                     webElement as WebElementDecorator;
@@ -259,16 +210,16 @@ namespace SePSX
                 WebElementDecorator parentElement;
                 
                 
-//Console.WriteLine("Highlight: 00003");
+
                 // 20121212
                 //if (remoteElement != null) {
                 if (null != decoratedElement) {
-//Console.WriteLine("Highlight: 00004");
+
                     int[] absoluteCoordinates =
                         // 20121212
                         //getWebElementCoordinates(remoteElement);
                         getWebElementCoordinates(decoratedElement);
-//Console.WriteLine("Highlight: 00005");
+
                     try {
                         highlighter =
                             new UIAutomation.Highlighter(
@@ -284,17 +235,8 @@ namespace SePSX
                                 UIAutomation.Highlighters.Element);
                     }
                     catch {}
-//Console.WriteLine("Highlight: 00006");
-//try {
-//    if (Preferences.HighlightParent) {
-//        Console.WriteLine("Preferences.HighlightParent");
-//    }
-//} catch (Exception e0000) {
-//    Console.WriteLine(e0000.Message);
-//    Console.WriteLine(e0000.GetType().Name);
-//}
+
                     if (Preferences.HighlightParent) {
-//Console.WriteLine("Highlight: 00007");
 //try {
                         try {
                             // 20121212
@@ -305,14 +247,14 @@ namespace SePSX
                                 //(RemoteWebElement)SeHelper.GetParentWebElement(remoteElement);
                                 //(RemoteWebElement)SeHelper.GetParentWebElement(decoratedElement);
                                 (WebElementDecorator)SeHelper.GetParentWebElement(decoratedElement);
-//Console.WriteLine("Highlight: 00008");
+
                             // 20121212
                             //if ((parentElement as RemoteWebElement) != null) {
                             if ((parentElement as WebElementDecorator) != null) {
-//Console.WriteLine("Highlight: 00009");
+
                                 int[] parentAbsoluteCoordinates =
                                     getWebElementCoordinates(parentElement);
-//Console.WriteLine("Highlight: 00010");
+
                                 try {
                                     highlighterParent =
                                         new UIAutomation.Highlighter(
@@ -324,7 +266,7 @@ namespace SePSX
                                             UIAutomation.Highlighters.Parent);
                                 }
                                 catch {}
-//Console.WriteLine("Highlight: 00011");
+
                             }
                         }
                         catch {}

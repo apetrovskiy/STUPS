@@ -41,8 +41,7 @@ namespace UIAutomation
         //           ParameterSetName = "First")]
         public Hashtable[] SearchCriteria { get; set; }
         #endregion Parameters
-        
-        
+                
         // 20120828
         protected ArrayList getFiltredElementsCollection(GetCmdletBase cmdlet, ArrayList elementCollection)
         {

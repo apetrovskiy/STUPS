@@ -15,6 +15,9 @@ namespace UIAutomation
     using System.Windows.Automation;
     
     using System.Collections;
+    
+    using System.Linq;
+    using System.Linq.Expressions;
 
     /// <summary>
     /// Description of GetControlCollectionCmdletBase.
@@ -31,6 +34,8 @@ namespace UIAutomation
             string name,
             string automationId,
             string className,
+            // 20130204
+            string textValue,
             string[] controlType,
             bool caseSensitive)
         {
@@ -53,6 +58,8 @@ namespace UIAutomation
             this.Name = name;
             this.AutomationId = automationId;
             this.Class = className;
+            // 20130204
+            this.Value = textValue;
             this.ControlType = controlType;
             this.CaseSensitive = caseSensitive;
             
@@ -106,6 +113,8 @@ namespace UIAutomation
                 this.Name,
                 this.AutomationId,
                 this.Class,
+                // 20130204
+                this.Value,
                 this.ControlType,
                 conditions,
                 caseSensitive,
@@ -142,6 +151,8 @@ namespace UIAutomation
                     cmdlet.Name,
                     cmdlet.AutomationId,
                     cmdlet.Class,
+                    // 20130204
+                    cmdlet.Value,
                     cmdlet.ControlType,
                     conditions,
                     caseSensitive,
@@ -387,13 +398,13 @@ namespace UIAutomation
         }
         
         // 20120824
-        //private AutomationElement getAutomationElementsWithFindAll(
-        //private AutomationElementCollection getAutomationElementsWithFindAll(
         private ArrayList getAutomationElementsWithFindAll(
             AutomationElement element,
             string name,
             string automationId,
             string className,
+            // 20130204
+            string textValue,
             string[] controlType,
             AndCondition conditions,
             bool caseSensitive,
@@ -401,88 +412,152 @@ namespace UIAutomation
             bool onlyTopLevel)
         {
             ArrayList resultCollection = new ArrayList();
-            
+
             try {
                 
                 AutomationElementCollection results = 
                     element.FindAll(
                         TreeScope.Descendants,
                         conditions);
-                
-                foreach (AutomationElement oneMoreElement in results) {
-                    
-//                    if (this.FromCache && CurrentData.CacheRequest != null) {
-//                        
-//                        try{
-//                            WriteVerbose(
-//                                this, 
-//                                oneMoreElement.Cached.ControlType.ProgrammaticName +
-//                                "\t" +
-//                                oneMoreElement.Cached.Name + 
-//                                "\t" +
-//                                oneMoreElement.Cached.AutomationId);
-//                            
-//                        }
-//                        catch {}
-//                    } else {
-//                        
-//                        try{
-//                            WriteVerbose(
-//                                this, 
-//                                oneMoreElement.Current.ControlType.ProgrammaticName +
-//                                "\t" +
-//                                oneMoreElement.Current.Name + 
-//                                "\t" +
-//                                oneMoreElement.Current.AutomationId);
-//                        }
-//                        catch {}
-//                    }
+                this.WriteVerbose(
+                    this,
+                    "There are roughly " +
+                    results.Count.ToString() +
+                    " elements");
 
-                    
-                    // 20120824
-                    //result = processAutomationElement(
-                    //resultCollection = processAutomationElement(
-                    resultCollection.AddRange(processAutomationElement(
-                            oneMoreElement,
-                            name,
-                            automationId,
-                            className,
-                            controlType,
-                            caseSensitive,
-                            // 20120824
-                            //true, //onlyOneResult,
-                            false,
-                            true)); //onlyTopLevel);
-//                    if (null != resultCollection) {
-//                        WriteVerbose(this, resultCollection.Count.ToString());
-//                    } else {
-//                        WriteVerbose(this, "null == resultCollection");
-//                    }
-                    
-                    // 20120824
-                    //if ((onlyTopLevel || onlyOneResult) && (result != null)) {
-                    if ((onlyTopLevel || onlyOneResult) && (null != resultCollection) && (resultCollection.Count > 0)) {
-                        
-                        // 20120824
-                        //return result; // returns only one window or control
-                        //AutomationElementCollection shortCollection = resultCollection[0] as AutomationElementCollection;
-                        //return (resultCollection[0] as AutomationElementCollection);
-                        //return shortCollection;
-                        return resultCollection;
-                    // 20120824
-                    //} else if (result != null) {
-                    } else if (null != resultCollection) {
-                        
-                        // 20120824
-                        //WriteObject(this, result);
-                        // 20120824
-                        //WriteObject(this, resultCollection);
-                    }
-                    
+                WildcardOptions options;
+                if (caseSensitive) {
+                    options =
+                        WildcardOptions.Compiled;
+                } else {
+                    options =
+                        WildcardOptions.IgnoreCase |
+                        WildcardOptions.Compiled;
                 }
+
+                if (string.Empty == name || 0 == name.Length) { name = "*"; }
+                if (string.Empty == automationId || 0 == automationId.Length) { automationId = "*"; }
+                if (string.Empty == className || 0 == className.Length) { className = "*"; }
+                if (string.Empty == textValue || 0 == textValue.Length) { textValue = "*"; }
+
+                WildcardPattern wildcardName = 
+                    new WildcardPattern(name, options);
+                WildcardPattern wildcardAutomationId = 
+                    new WildcardPattern(automationId, options);
+                WildcardPattern wildcardClass = 
+                    new WildcardPattern(className, options);
+                WildcardPattern wildcardValue = 
+                    new WildcardPattern(textValue, options);
+
+                System.Collections.Generic.List<AutomationElement> list =
+                    new System.Collections.Generic.List<AutomationElement>();
+                foreach (AutomationElement elt in results) {
+                    list.Add(elt);
+                }
+
+                var query = list
+                    .Where<AutomationElement>(item => wildcardName.IsMatch(item.Current.Name))
+                    .Where<AutomationElement>(item => wildcardAutomationId.IsMatch(item.Current.AutomationId))
+                    .Where<AutomationElement>(item => wildcardClass.IsMatch(item.Current.ClassName))
+                    .Where<AutomationElement>(item => 
+                                              item.GetSupportedPatterns().Contains(ValuePattern.Pattern) ? 
+                                              wildcardValue.IsMatch((item.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern).Current.Value) : 
+                                              true)
+                    .ToArray<AutomationElement>();
+
+                this.WriteVerbose(
+                    this,
+                    "There are " +
+                    query.Count().ToString() +
+                    " elements");
+
+                resultCollection.AddRange(query);
+
+                this.WriteVerbose(
+                    this,
+                    "There are " +
+                    resultCollection.Count.ToString() +
+                    " elements");
+                
+                // 20130204
+#region commented
+//                foreach (AutomationElement oneMoreElement in results) {
+//                    
+////                    if (this.FromCache && CurrentData.CacheRequest != null) {
+////                        
+////                        try{
+////                            WriteVerbose(
+////                                this, 
+////                                oneMoreElement.Cached.ControlType.ProgrammaticName +
+////                                "\t" +
+////                                oneMoreElement.Cached.Name + 
+////                                "\t" +
+////                                oneMoreElement.Cached.AutomationId);
+////                            
+////                        }
+////                        catch {}
+////                    } else {
+////                        
+////                        try{
+////                            WriteVerbose(
+////                                this, 
+////                                oneMoreElement.Current.ControlType.ProgrammaticName +
+////                                "\t" +
+////                                oneMoreElement.Current.Name + 
+////                                "\t" +
+////                                oneMoreElement.Current.AutomationId);
+////                        }
+////                        catch {}
+////                    }
+//
+//                    
+//                    // 20120824
+//                    //result = processAutomationElement(
+//                    //resultCollection = processAutomationElement(
+//                    resultCollection.AddRange(processAutomationElement(
+//                            oneMoreElement,
+//                            name,
+//                            automationId,
+//                            className,
+//                            controlType,
+//                            caseSensitive,
+//                            // 20120824
+//                            //true, //onlyOneResult,
+//                            false,
+//                            true)); //onlyTopLevel);
+////                    if (null != resultCollection) {
+////                        WriteVerbose(this, resultCollection.Count.ToString());
+////                    } else {
+////                        WriteVerbose(this, "null == resultCollection");
+////                    }
+//                    
+//                    // 20120824
+//                    //if ((onlyTopLevel || onlyOneResult) && (result != null)) {
+//                    if ((onlyTopLevel || onlyOneResult) && (null != resultCollection) && (resultCollection.Count > 0)) {
+//                        
+//                        // 20120824
+//                        //return result; // returns only one window or control
+//                        //AutomationElementCollection shortCollection = resultCollection[0] as AutomationElementCollection;
+//                        //return (resultCollection[0] as AutomationElementCollection);
+//                        //return shortCollection;
+//                        return resultCollection;
+//                    // 20120824
+//                    //} else if (result != null) {
+//                    } else if (null != resultCollection) {
+//                        
+//                        // 20120824
+//                        //WriteObject(this, result);
+//                        // 20120824
+//                        //WriteObject(this, resultCollection);
+//                    }
+//                    
+//                }
+#endregion commented
                 
             }
-            catch {}
+            catch { //(Exception eWildCardSearch) {
+                
+            }
             
             // 20120824
             //return result;

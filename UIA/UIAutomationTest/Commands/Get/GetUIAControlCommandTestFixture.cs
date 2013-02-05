@@ -764,36 +764,6 @@ namespace UIAutomationTest.Commands.Get
                 "Get-UIAControl: timeout expired for class: ' + , control type: , title: ");
         }
         
-//UIAutomationTest.Commands.Get.GetUIAControlCommandTestFixture.GetControlByHashtable_WrongName_TimeoutDefault:
-//System.Management.Automation.CmdletInvocationException : A generic error occurred in GDI+.
-//  ----> System.Runtime.InteropServices.ExternalException : A generic error occurred in GDI+.
-
-//UIAutomationTest.Commands.Get.GetUIAControlCommandTestFixture.GetControlByHashtable_WrongName_TimeoutDefault:
-//  Expected string length 54 but was 25. Strings differ at index 0.
-//  Expected: "System.Management.Automation.CmdletInvocationException"
-//  But was:  "CmdletInvocationException"
-//  -----------^
-
-//UIAutomationTest.Commands.Get.GetUIAControlCommandTestFixture.GetControlByHashtable_WrongName_TimeoutDefault:
-//  Expected string length 33 but was 71. Strings differ at index 0.
-//  Expected: "A generic error occurred in GDI+."
-//  But was:  "GetUIAControl: timeout expired for class: ' + , control type:..."
-//  -----------^
-
-//UIAutomationTest.Commands.Get.GetUIAControlCommandTestFixture.GetControlByHashtable_WrongName_TimeoutDefault:
-//  Expected string length 61 but was 71. Strings differ at index 61.
-//  Expected: "...rol: timeout expired for class: ' + , control type:"
-//  But was:  "...rol: timeout expired for class: ' + , control type: , title: "
-//  -----------------------------------------------------------------^
-
-//UIAutomationTest.Commands.Get.GetUIAControlCommandTestFixture.GetControlByHashtable_WrongName_TimeoutDefault:
-//  Expected string length 71 but was 72. Strings differ at index 3.
-//  Expected: "GetUIAControl: timeout expired for class: ' + , control type:..."
-//  But was:  "Get-UIAControl: timeout expired for class: ' + , control type..."
-//  --------------^
-
-
-        
         [Test] //[Test(Description="TBD")]
         [Category("Slow")]
         [Category("WinForms")]
@@ -825,35 +795,6 @@ namespace UIAutomationTest.Commands.Get
                 "Get-UIAControl: timeout expired for class: ' + , control type: , title: Button222");
         }
         
-//UIAutomationTest.Commands.Get.GetUIAControlCommandTestFixture.GetControlByHashtable_WrongAutomationId_TimeoutDefault:
-//System.Management.Automation.CmdletInvocationException : A generic error occurred in GDI+.
-//  ----> System.Runtime.InteropServices.ExternalException : A generic error occurred in GDI+.
-
-//UIAutomationTest.Commands.Get.GetUIAControlCommandTestFixture.GetControlByHashtable_WrongAutomationId_TimeoutDefault:
-//  Expected string length 54 but was 25. Strings differ at index 0.
-//  Expected: "System.Management.Automation.CmdletInvocationException"
-//  But was:  "CmdletInvocationException"
-//  -----------^
-
-//UIAutomationTest.Commands.Get.GetUIAControlCommandTestFixture.GetControlByHashtable_WrongAutomationId_TimeoutDefault:
-//  Expected string length 33 but was 80. Strings differ at index 0.
-//  Expected: "A generic error occurred in GDI+."
-//  But was:  "GetUIAControl: timeout expired for class: ' + , control type:..."
-//  -----------^
-
-//UIAutomationTest.Commands.Get.GetUIAControlCommandTestFixture.GetControlByHashtable_WrongAutomationId_TimeoutDefault:
-//  Expected string length 61 but was 80. Strings differ at index 61.
-//  Expected: "...out expired for class: ' + , control type:"
-//  But was:  "...out expired for class: ' + , control type: , title: Button222"
-//  --------------------------------------------------------^
-
-//UIAutomationTest.Commands.Get.GetUIAControlCommandTestFixture.GetControlByHashtable_WrongAutomationId_TimeoutDefault:
-//  Expected string length 80 but was 81. Strings differ at index 3.
-//  Expected: "GetUIAControl: timeout expired for class: ' + , control type:..."
-//  But was:  "Get-UIAControl: timeout expired for class: ' + , control type..."
-//  --------------^
-
-
 //        [Test] //[Test(Description="TBD")]
 //        [Category("Slow")][Category("WinForms")]
 //        [Category("Slow")][Category("Control")]
@@ -1044,14 +985,82 @@ namespace UIAutomationTest.Commands.Get
 // =========================================================
 
 
+        [Test] //[Test(Description="TBD")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
+        [Category("Get_UIAControl")]
+        public void GetControlByValue_WildCard_Timeout2000()
+        {
+            string auId1 = "Edit1";
+            string expectedValue = "my text";
+            MiddleLevelCode.StartProcessWithFormAndControl(
+                UIAutomationTestForms.Forms.WinFormsEmpty, 
+                0,
+                System.Windows.Automation.ControlType.Edit,
+                "aaa",
+                auId1,
+                0);
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+                @"$null = Get-UIAWindow -pn " + 
+                MiddleLevelCode.TestFormProcess +
+                " | Get-UIAControl -AutomationId " + 
+                auId1 + 
+                " | " +
+                "Set-UIAcontrolText -Text '" +
+                expectedValue +
+                "'; Get-UIAEdit -Value '" +
+                expectedValue +
+                "' -timeout 2000 | Get-UIAEditText;",
+                expectedValue);
+        }
+
+
+        [Test] //[Test(Description="TBD")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
+        [Category("Get_UIAControl")]
+        public void GetControlByValueX2_WildCard_TimeoutDefault()
+        {
+            string auId1 = "Edit1";
+            string auId2 = "Edit2";
+            string expectedValue = "my text";
+            System.Collections.ArrayList arrList = 
+                new System.Collections.ArrayList();
+            ControlToForm ctf1 = 
+                new ControlToForm(
+                    System.Windows.Automation.ControlType.Edit,
+                    "e1",
+                    auId1, 
+                    0);
+            arrList.Add(ctf1);
+            ControlToForm ctf2 = 
+                new ControlToForm(
+                    System.Windows.Automation.ControlType.Edit,
+                    "e2",
+                    auId2, 
+                    0);
+            arrList.Add(ctf2);
+            
+            MiddleLevelCode.StartProcessWithFormAndControl(
+                UIAutomationTestForms.Forms.WinFormsEmpty, 
+                0,
+                (ControlToForm[])arrList.ToArray(typeof(ControlToForm)));
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+                @"$null = Get-UIAWindow -n " + 
+                MiddleLevelCode.TestFormNameEmpty +
+                " | Get-UIAControl -AutomationId Edit* | Set-UIAEditText -Text '" + 
+                expectedValue +
+                "'; Get-UIAEdit -Value '" +
+                expectedValue +
+                "' | Get-UIAEditText;",
+                expectedValue);
+        }
 
 
 
-
-
-
-
-
+// =========================================================
         
         [TearDown]
         public void DisposeRunspace()

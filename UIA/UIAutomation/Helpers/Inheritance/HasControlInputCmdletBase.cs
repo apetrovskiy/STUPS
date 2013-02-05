@@ -80,8 +80,6 @@ namespace UIAutomation
         #region Constructor
         public HasControlInputCmdletBase()
         {
-            //this.WriteVerbose(this, "constructor");
-            //this.WriteVerbose(this, "InputObject = null;");
             InputObject = null;
             PassThru = true;
         }
@@ -89,33 +87,15 @@ namespace UIAutomation
         
         #region Parameters
         [ValidateNotNullOrEmpty()]
-        // 20120123
-        //[Parameter(Mandatory = true, 
         [Parameter(Mandatory = false, 
             ValueFromPipeline = true,
-            // 20130105
-            //Position = 0,
             HelpMessage = "This is usually the output from Get-UIAControl" )] 
-        // 20120823
         public virtual System.Windows.Automation.AutomationElement[] InputObject { get; set; }
         [Parameter(Mandatory = false)]
         public virtual SwitchParameter PassThru { get; set; }
         
         [Parameter(Mandatory = false)]
-        public new ScriptBlock[] EventAction { get; set; }
-        
-// [Parameter(Mandatory = false)]
-// protected virtual SwitchParameter ChildAdded {get; set; }
-// [Parameter(Mandatory = false)]
-// protected virtual SwitchParameter ChildRemoved {get; set; }
-// [Parameter(Mandatory = false)]
-// protected virtual SwitchParameter ChildrenInvalidated {get; set; }
-// [Parameter(Mandatory = false)]
-// protected virtual SwitchParameter ChildrenBulkAdded {get; set; }
-// [Parameter(Mandatory = false)]
-// protected virtual SwitchParameter ChildrenBulkRemoved {get; set; }
-// [Parameter(Mandatory = false)]
-// protected virtual SwitchParameter ChildrenReordered {get; set; }
+        public ScriptBlock[] EventAction { get; set; }
         #endregion Parameters
         
         

@@ -11,8 +11,9 @@ namespace TMX
 {
     using System;
     using System.Management.Automation;
-    
     using PSTestLib;
+    using System.Collections.ObjectModel;
+    using System.Collections;
     
     /// <summary>
     /// Description of CmdletBase.
@@ -21,23 +22,7 @@ namespace TMX
     {
         public CommonCmdletBase()
         {
-//            if (null == UnitTestOutput) {
-//                UnitTestOutput =
-//                    new System.Collections.Generic.List<object>();
-//            }
         }
-        
-        //protected internal new bool UnitTestMode { get; set; }
-        //protected internal override bool UnitTestMode { get; set; }
-        //protected internal override bool UnitTestMode { get; set; }
-        //protected 
-        //internal new bool UnitTestMode { get; set; }
-        //protected internal override bool UnitTestMode { get; set; }
-        //[Parameter(Mandatory = false)]
-        //public new SwitchParameter UnitTestMode { get; set; }
-        //protected internal new System.Collections.Generic.List<object> UnitTestOutput { get; set; }
-        //internal static System.Collections.Generic.List<object> UnitTestOutput { get; set; }
-        //public static System.Collections.Generic.List<object> UnitTestOutput { get; set; }
         
         #region Parameters
         [Parameter(Mandatory = false)]
@@ -50,16 +35,22 @@ namespace TMX
         
         protected void notImplementedCase()
         {
-            ErrorRecord err = 
-                new ErrorRecord(
-                    new Exception(),
-                    "",
-                    ErrorCategory.NotImplemented,
-                    null);
-            err.ErrorDetails = 
-                new ErrorDetails("Not implemented");
-            //WriteError(err);
-            ThrowTerminatingError(err);
+//            ErrorRecord err = 
+//                new ErrorRecord(
+//                    new Exception(),
+//                    "",
+//                    ErrorCategory.NotImplemented,
+//                    null);
+//            err.ErrorDetails = 
+//                new ErrorDetails("Not implemented");
+//            ThrowTerminatingError(err);
+            
+            this.WriteError(
+                this,
+                "Not implemented",
+                "NotImplemented",
+                ErrorCategory.NotImplemented,
+                true);
         }
         
         protected override void WriteLog(string logRecord)
@@ -67,57 +58,87 @@ namespace TMX
             Console.WriteLine("Here should be logging");
         }
         
-        protected override bool WriteObjectMethod010CheckOutputObject(object obj)
-        {
-            this.WriteVerbose(this, "OutputMethod010CheckOutputObject TMX");
-            
-            return true;
-        }
+#region commented
+//        protected override bool WriteObjectMethod010CheckOutputObject(object obj)
+//        {
+//            this.WriteVerbose(this, "OutputMethod010CheckOutputObject TMX");
+//            
+//            return true;
+//        }
+//
+//        protected override void WriteObjectMethod020Highlight(PSCmdletBase cmdlet, object obj)
+//        {
+//            this.WriteVerbose(this, "OutputMethod020Highlight TMX");
+//        }
+//        
+//        protected override void WriteObjectMethod030RunScriptBlocks(PSCmdletBase cmdlet, object outputObject)
+//        {
+//            this.WriteVerbose(this, "OutputMethod030RunScriptBlocks TMX");
+//        }
+//        
+//        protected override void WriteObjectMethod040SetTestResult(PSCmdletBase cmdlet, object outputObject)
+//        {
+//            this.WriteVerbose(this, "OutputMethod040SetTestResult TMX");
+//        }
+//        
+//        protected override void WriteObjectMethod045OnSuccessScreenshot(PSCmdletBase cmdlet, object outputObject)
+//        {
+//            this.WriteVerbose(this, " TMX");
+//        }
+//        
+//        protected override void WriteObjectMethod050OnSuccessDelay(PSCmdletBase cmdlet, object outputObject)
+//        {
+//            this.WriteVerbose(this, "OutputMethod050OnSuccessDelay TMX");
+//        }
+//        
+//        protected override void WriteObjectMethod060OutputResult(PSCmdletBase cmdlet, object outputObject)
+//        {
+//            
+//            try {
+//
+//                    base.WriteObject(outputObject);
+//            }
+//            catch {}
+//        }
+//        
+//        protected override void WriteObjectMethod070Report(PSCmdletBase cmdlet, object outputObject)
+//        {
+//            this.WriteVerbose(this, "OutputMethod070Report TMX");
+//        }
+//        
+//        protected override void WriteObjectMethod080ReportFailure()
+//        {
+//            this.WriteVerbose(this, "OutputMethod070Report TMX");
+//        }
+#endregion commented
+        
+        protected override bool CheckSingleObject(PSCmdletBase cmdlet, object outputObject) { return true; }
+        protected override void BeforeWriteCollection(PSCmdletBase cmdlet, object[] outputObjectCollection) {}
+        protected override void BeforeWriteCollection(PSCmdletBase cmdlet, System.Collections.Generic.List<object> outputObjectCollection) {}
+        protected override void BeforeWriteCollection(PSCmdletBase cmdlet, ArrayList outputObjectCollection) {}
+        protected override void BeforeWriteCollection(PSCmdletBase cmdlet, IList outputObjectCollection) {}
+        protected override void BeforeWriteCollection(PSCmdletBase cmdlet, IEnumerable outputObjectCollection) {}
+        protected override void BeforeWriteCollection(PSCmdletBase cmdlet, ICollection outputObjectCollection) {}
+        protected override void BeforeWriteCollection(PSCmdletBase cmdlet, Hashtable outputObjectCollection) {}
+        protected override void BeforeWriteSingleObject(PSCmdletBase cmdlet, object outputObject) {}
 
-        protected override void WriteObjectMethod020Highlight(PSCmdletBase cmdlet, object obj)
+        protected override void WriteSingleObject(PSCmdletBase cmdlet, object outputObject)
         {
-            this.WriteVerbose(this, "OutputMethod020Highlight TMX");
-        }
-        
-        protected override void WriteObjectMethod030RunScriptBlocks(PSCmdletBase cmdlet, object outputObject)
-        {
-            this.WriteVerbose(this, "OutputMethod030RunScriptBlocks TMX");
-        }
-        
-        protected override void WriteObjectMethod040SetTestResult(PSCmdletBase cmdlet, object outputObject)
-        {
-            this.WriteVerbose(this, "OutputMethod040SetTestResult TMX");
-        }
-        
-        protected override void WriteObjectMethod045OnSuccessScreenshot(PSCmdletBase cmdlet, object outputObject)
-        {
-            this.WriteVerbose(this, " TMX");
-        }
-        
-        protected override void WriteObjectMethod050OnSuccessDelay(PSCmdletBase cmdlet, object outputObject)
-        {
-            this.WriteVerbose(this, "OutputMethod050OnSuccessDelay TMX");
-        }
-        
-        protected override void WriteObjectMethod060OutputResult(PSCmdletBase cmdlet, object outputObject)
-        {
-            
+            //WriteVerbose(this, " TMX");
             try {
-
-                    base.WriteObject(outputObject);
+                base.WriteObject(outputObject);
             }
             catch {}
         }
         
-        protected override void WriteObjectMethod070Report(PSCmdletBase cmdlet, object outputObject)
-        {
-            this.WriteVerbose(this, "OutputMethod070Report TMX");
-        }
-        
-        protected override void WriteObjectMethod080ReportFailure()
-        {
-            this.WriteVerbose(this, "OutputMethod070Report TMX");
-        }
+        protected override void AfterWriteSingleObject(PSCmdletBase cmdlet, object outputObject) {}
+        protected override void AfterWriteCollection(PSCmdletBase cmdlet, object[] outputObjectCollection) {}
+        protected override void AfterWriteCollection(PSCmdletBase cmdlet, System.Collections.Generic.List<object> outputObjectCollection) {}
+        protected override void AfterWriteCollection(PSCmdletBase cmdlet, ArrayList outputObjectCollection) {}
+        protected override void AfterWriteCollection(PSCmdletBase cmdlet, IList outputObjectCollection) {}
+        protected override void AfterWriteCollection(PSCmdletBase cmdlet, IEnumerable outputObjectCollection) {}
+        protected override void AfterWriteCollection(PSCmdletBase cmdlet, ICollection outputObjectCollection) {}
+        protected override void AfterWriteCollection(PSCmdletBase cmdlet, Hashtable outputObjectCollection) {}
 
         protected override void WriteErrorMethod010RunScriptBlocks(PSCmdletBase cmdlet)
         {

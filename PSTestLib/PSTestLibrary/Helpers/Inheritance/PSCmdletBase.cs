@@ -12,11 +12,10 @@ namespace PSTestLib
     using System;
     using System.Management.Automation;
     using System.Management.Automation.Runspaces;
+    using System.Collections;
     using System.Collections.ObjectModel;
     
     using System.Windows.Automation;
-    
-    using System.Collections;
     
     /// <summary>
     /// Description of PSCmdletBase.
@@ -25,15 +24,7 @@ namespace PSTestLib
     {
         public PSCmdletBase()
         {
-//            if (null == UnitTestOutput) {
-//                UnitTestOutput =
-//                    //new System.Collections.Generic.List<object>();
-//                    new UnitTestOutputClass();
-//            }
         }
-        
-        // unit
-        // ??
         
         #region Parameters
             #region Actions
@@ -103,20 +94,34 @@ namespace PSTestLib
         
         public static bool EnableTrace { get; set; }
         
-        protected abstract bool WriteObjectMethod010CheckOutputObject(object outputObject);
-        protected abstract void WriteObjectMethod020Highlight(PSCmdletBase cmdlet, object outputObject);
-        protected abstract void WriteObjectMethod030RunScriptBlocks(PSCmdletBase cmdlet, object outputObject);
-        protected abstract void WriteObjectMethod040SetTestResult(PSCmdletBase cmdlet, object outputObject);
-        protected abstract void WriteObjectMethod045OnSuccessScreenshot(PSCmdletBase cmdlet, object outputObject);
-        protected abstract void WriteObjectMethod050OnSuccessDelay(PSCmdletBase cmdlet, object outputObject);
-        protected abstract void WriteObjectMethod060OutputResult(PSCmdletBase cmdlet, object outputObject);
-        protected abstract void WriteObjectMethod070Report(PSCmdletBase cmdlet, object outputObject);
-        protected abstract void WriteObjectMethod080ReportFailure();
+//        protected abstract bool WriteObjectMethod010CheckOutputObject(object outputObject);
+//        protected abstract void WriteObjectMethod020Highlight(PSCmdletBase cmdlet, object outputObject);
+//        protected abstract void WriteObjectMethod030RunScriptBlocks(PSCmdletBase cmdlet, object outputObject);
+//        protected abstract void WriteObjectMethod040SetTestResult(PSCmdletBase cmdlet, object outputObject);
+//        protected abstract void WriteObjectMethod045OnSuccessScreenshot(PSCmdletBase cmdlet, object outputObject);
+//        protected abstract void WriteObjectMethod050OnSuccessDelay(PSCmdletBase cmdlet, object outputObject);
+//        protected abstract void WriteObjectMethod060OutputResult(PSCmdletBase cmdlet, object outputObject);
+//        protected abstract void WriteObjectMethod070Report(PSCmdletBase cmdlet, object outputObject);
+//        protected abstract void WriteObjectMethod080ReportFailure();
         
-        //protected abstract void BeforeWriteSingleObject(PSCmdletBase cmdlet, object outputObject);
-        //protected abstract void WriteSingleObject(PSCmdletBase cmdlet, object outputObject);
-        //protected abstract void AfterWriteSingleObject(PSCmdletBase cmdlet, object outputObject);
-        //protected abstract void BeforeWriteCollection(PSCmdletBase cmdlet, object outputObject);
+        protected abstract bool CheckSingleObject(PSCmdletBase cmdlet, object outputObject);
+        protected abstract void BeforeWriteSingleObject(PSCmdletBase cmdlet, object outputObject);
+        protected abstract void WriteSingleObject(PSCmdletBase cmdlet, object outputObject);
+        protected abstract void AfterWriteSingleObject(PSCmdletBase cmdlet, object outputObject);
+        protected abstract void BeforeWriteCollection(PSCmdletBase cmdlet, object[] outputObjectCollection);
+        protected abstract void BeforeWriteCollection(PSCmdletBase cmdlet, System.Collections.Generic.List<object> outputObjectCollection);
+        protected abstract void BeforeWriteCollection(PSCmdletBase cmdlet, ArrayList outputObjectCollection);
+        protected abstract void BeforeWriteCollection(PSCmdletBase cmdlet, IList outputObjectCollection);
+        protected abstract void BeforeWriteCollection(PSCmdletBase cmdlet, IEnumerable outputObjectCollection);
+        protected abstract void BeforeWriteCollection(PSCmdletBase cmdlet, ICollection outputObjectCollection);
+        protected abstract void BeforeWriteCollection(PSCmdletBase cmdlet, Hashtable outputObjectCollection);
+        protected abstract void AfterWriteCollection(PSCmdletBase cmdlet, object[] outputObjectCollection);
+        protected abstract void AfterWriteCollection(PSCmdletBase cmdlet, System.Collections.Generic.List<object> outputObjectCollection);
+        protected abstract void AfterWriteCollection(PSCmdletBase cmdlet, ArrayList outputObjectCollection);
+        protected abstract void AfterWriteCollection(PSCmdletBase cmdlet, IList outputObjectCollection);
+        protected abstract void AfterWriteCollection(PSCmdletBase cmdlet, IEnumerable outputObjectCollection);
+        protected abstract void AfterWriteCollection(PSCmdletBase cmdlet, ICollection outputObjectCollection);
+        protected abstract void AfterWriteCollection(PSCmdletBase cmdlet, Hashtable outputObjectCollection);
         
         public void WriteObject(PSCmdletBase cmdlet, object outputObject)
         {
@@ -133,25 +138,29 @@ namespace PSTestLib
         
         public virtual void WriteObject(PSCmdletBase cmdlet, object[] outputObjectCollection)
         {
-Console.WriteLine("WriteObject 1");
-Console.WriteLine(outputObjectCollection.Length.ToString());
+            BeforeWriteCollection(cmdlet, outputObjectCollection);
+            
             if (PSCmdletBase.UnitTestMode) {
-Console.WriteLine("WriteObject 2");
+
                 UnitTestOutput.CheckInitialized();
-Console.WriteLine("WriteObject 3");
+
                 UnitTestOutput.StartAddingOutput();
-Console.WriteLine("WriteObject 3.1");
+
             }
-Console.WriteLine("WriteObject 3.2");
+
             for (int i = 0; i < outputObjectCollection.Length; i++) {
-Console.WriteLine("WriteObject 4");
+
                 this.writeSingleObject(cmdlet, outputObjectCollection[i]);
-Console.WriteLine("WriteObject 5");
+
             }
+            
+            AfterWriteCollection(cmdlet, outputObjectCollection);
         }
         
         public virtual void WriteObject(PSCmdletBase cmdlet, System.Collections.Generic.List<object> outputObjectCollection)
         {
+            BeforeWriteCollection(cmdlet, outputObjectCollection);
+            
             if (PSCmdletBase.UnitTestMode) {
                 
                 UnitTestOutput.CheckInitialized();
@@ -164,10 +173,14 @@ Console.WriteLine("WriteObject 5");
                 this.writeSingleObject(cmdlet, item);
             }
             //}
+            
+            AfterWriteCollection(cmdlet, outputObjectCollection);
         }
        
         public virtual void WriteObject(PSCmdletBase cmdlet, ArrayList outputObjectCollection)
         {
+            BeforeWriteCollection(cmdlet, outputObjectCollection);
+            
             if (PSCmdletBase.UnitTestMode) {
                 
                 UnitTestOutput.CheckInitialized();
@@ -180,11 +193,15 @@ Console.WriteLine("WriteObject 5");
             for (int i = 0; i < outputObjectCollection.Count; i++) {
                 this.WriteObject(cmdlet, outputObjectCollection[i]);
             }
+            
+            AfterWriteCollection(cmdlet, outputObjectCollection);
         }
         
         // 20121112
         public virtual void WriteObject(PSCmdletBase cmdlet, IList outputObjectCollection)
         {
+            BeforeWriteCollection(cmdlet, outputObjectCollection);
+            
             if (PSCmdletBase.UnitTestMode) {
 
                 UnitTestOutput.CheckInitialized();
@@ -195,12 +212,15 @@ Console.WriteLine("WriteObject 5");
             foreach (object item in outputObjectCollection) {
                 this.writeSingleObject(cmdlet, item);
             }
-
+            
+            AfterWriteCollection(cmdlet, outputObjectCollection);
         }
         
         // 20121112
         public virtual void WriteObject(PSCmdletBase cmdlet, IEnumerable outputObjectCollection)
         {
+            BeforeWriteCollection(cmdlet, outputObjectCollection);
+            
             if (PSCmdletBase.UnitTestMode) {
                 
                 UnitTestOutput.CheckInitialized();
@@ -211,6 +231,8 @@ Console.WriteLine("WriteObject 5");
             while (en.MoveNext()) {
                 this.writeSingleObject(cmdlet, en.Current);
             }
+            
+            AfterWriteCollection(cmdlet, outputObjectCollection);
         }
         
         // 20121112
@@ -227,6 +249,8 @@ Console.WriteLine("WriteObject 5");
         
         public virtual void WriteObject(PSCmdletBase cmdlet, ICollection outputObjectCollection)
         {
+            BeforeWriteCollection(cmdlet, outputObjectCollection);
+            
             if (PSCmdletBase.UnitTestMode) {
                 
                 UnitTestOutput.CheckInitialized();
@@ -238,10 +262,14 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
                 //WriteObject(cmdlet, outputObject);
                 this.writeSingleObject(cmdlet, outputObject);
             }
+            
+            AfterWriteCollection(cmdlet, outputObjectCollection);
         }
         
         public virtual void WriteObject(PSCmdletBase cmdlet, Hashtable outputObjectCollection)
         {
+            BeforeWriteCollection(cmdlet, outputObjectCollection);
+            
             if (PSCmdletBase.UnitTestMode) {
                 
                 UnitTestOutput.CheckInitialized();
@@ -249,23 +277,26 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
                 UnitTestOutput.StartAddingOutput();
             }
             this.writeSingleObject(cmdlet, outputObjectCollection);
+            
+            AfterWriteCollection(cmdlet, outputObjectCollection);
         }
         
         private void writeSingleObject(PSCmdletBase cmdlet, object outputObject)
         {
-            if (WriteObjectMethod010CheckOutputObject(outputObject)) {
+            //if (WriteObjectMethod010CheckOutputObject(outputObject)) {
+            if (CheckSingleObject(cmdlet, outputObject)) {
 
-                WriteObjectMethod020Highlight(cmdlet, outputObject);
-
-                WriteObjectMethod030RunScriptBlocks(cmdlet, outputObject);
-
-                WriteObjectMethod040SetTestResult(cmdlet, outputObject);
-
-                WriteObjectMethod045OnSuccessScreenshot(cmdlet, outputObject);
-
-                WriteObjectMethod050OnSuccessDelay(cmdlet, outputObject);
+//                WriteObjectMethod020Highlight(cmdlet, outputObject);
+//
+//                WriteObjectMethod030RunScriptBlocks(cmdlet, outputObject);
+//
+//                WriteObjectMethod040SetTestResult(cmdlet, outputObject);
+//
+//                WriteObjectMethod045OnSuccessScreenshot(cmdlet, outputObject);
+//
+//                WriteObjectMethod050OnSuccessDelay(cmdlet, outputObject);
                 
-                //BeforeWriteSingleObject(cmdlet, outputObject);
+                BeforeWriteSingleObject(cmdlet, outputObject);
                 
 
                 //WriteSingleObject(cmdlet, outputObject);
@@ -275,13 +306,13 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
                 try {
     
                     if (PSCmdletBase.UnitTestMode) {
-Console.WriteLine("writeSingleObject 1");
+
                         UnitTestOutput.Add(outputObject);
-Console.WriteLine("writeSingleObject 2");
+
                     } else {
-Console.WriteLine("writeSingleObject 3");
-                        WriteObjectMethod060OutputResult(cmdlet, outputObject);
-Console.WriteLine("writeSingleObject 4");
+
+//                        WriteObjectMethod060OutputResult(cmdlet, outputObject);
+                        WriteSingleObject(cmdlet, outputObject);
                     }
                 }
                 catch {}
@@ -289,9 +320,9 @@ Console.WriteLine("writeSingleObject 4");
                 
                 //WriteObjectMethod060OutputResult(cmdlet, outputObject);
                 
-                //AfterWriteSingleObject(cmdlet, outputObject);
+                AfterWriteSingleObject(cmdlet, outputObject);
                 
-                WriteObjectMethod070Report(cmdlet, outputObject);
+//                WriteObjectMethod070Report(cmdlet, outputObject);
 
                 //WriteObjectMethod080ReportFailure();
             

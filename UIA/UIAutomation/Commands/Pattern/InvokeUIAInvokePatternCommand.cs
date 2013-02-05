@@ -15,7 +15,9 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of InvokeUIAInvokePatternCommand.
     /// </summary>
+    // 20130204
     [Cmdlet(VerbsLifecycle.Invoke, "UIAInvokePattern")]
+    //[Cmdlet(VerbsLifecycle.Invoke, "UIAInvokePattern", DefaultParameterSetName = "UIAWildCard")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class InvokeUIAInvokePatternCommand : PatternCmdletBase

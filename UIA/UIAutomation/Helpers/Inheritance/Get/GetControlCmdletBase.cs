@@ -23,66 +23,23 @@ namespace UIAutomation
         #region Constructor
         public GetControlCmdletBase()
         {
-            //this.WriteVerbose(this, "constructor");
-            
-            this.Class = String.Empty;
-            // Title = String.Empty;
-            this.Name = String.Empty;
-            this.ControlType = String.Empty;
-            this.AutomationId = String.Empty;
-            // 20120824
-            //this.InputObject = CurrentData.CurrentWindow;
-            //WriteVerbose(this, "this.InputObject[0] = CurrentData.CurrentWindow;");
-            //this.InputObject[0] = CurrentData.CurrentWindow;
-            // 20120824
+            this.Class = string.Empty;
+            this.Name = string.Empty;
+            this.ControlType = string.Empty;
+            this.AutomationId = string.Empty;
+            this.Value = string.Empty;
             this.InputObject = 
                 new System.Windows.Automation.AutomationElement[] { CurrentData.CurrentWindow };
             
             // CacheRequest
             this.FromCache = Preferences.FromCache;
+            
+            // 20130204
+//            this.Fake = true;
         }
         #endregion Constructor
         
         #region Parameters
-        // 20130128
-        // change the order
-#region commented
-//        [Parameter(Mandatory = false,
-//                   ParameterSetName = "UIAuto")]
-//        //[Parameter(Mandatory = false,
-//        //           ParameterSetName = "First")]
-//        // 20120824
-//        //public string Class { get; set; }
-//        public string Class { get; set; }
-//        
-//        [Parameter(Mandatory = false,
-//                   ParameterSetName = "UIAuto")]
-//        [Parameter(Mandatory = false,
-//                   ParameterSetName = "Win32")]
-//        //[Parameter(Mandatory = false,
-//        //           ParameterSetName = "First")]
-//        [Alias("Title")]
-//        // 20120824
-//        //public string Name { get; set; }
-//        public string Name { get; set; }
-//        
-//        [Parameter(Mandatory = false,
-//                   ParameterSetName = "UIAuto")]
-//        //[Parameter(Mandatory = false,
-//        //           ParameterSetName = "First")]
-//        // 20120824
-//        //public string ControlType { get; set; }
-//        public string ControlType { get; set; }
-//        
-//        [Parameter(Mandatory = false,
-//                   ParameterSetName = "UIAuto")]
-//        //[Parameter(Mandatory = false,
-//        //           ParameterSetName = "First")]
-//        // 20120824
-//        //public string AutomationId { get; set; }
-//        public string AutomationId { get; set; }
-#endregion commented
-        
         [Parameter(Mandatory = false,
                    Position = 0,
                    ParameterSetName = "UIASearch")]
@@ -139,6 +96,11 @@ namespace UIAutomation
         // 20130127
         [Parameter(Mandatory = false)]
         public SwitchParameter CaseSensitive { get; set; }
+        
+        // 20130204
+//        [Parameter(Mandatory = false,
+//                   ParameterSetName = "fake")]
+//        internal SwitchParameter Fake { get; set; }
         #endregion Parameters
 
     }

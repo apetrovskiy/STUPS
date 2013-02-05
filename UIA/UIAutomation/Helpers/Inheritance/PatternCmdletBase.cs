@@ -14,13 +14,16 @@ namespace UIAutomation
     using System.Management.Automation;
     using System.Windows.Automation;
     using System.Windows.Automation.Text;
+    // 20130204
+    using System.Collections;
 
     /// <summary>
     /// Description of PatternCmdletBase.
     /// </summary>
     //[Cmdlet(VerbsCommon.Set, "PatternCmdletBase")]
     //[Cmdlet]
-    public class PatternCmdletBase : HasControlInputCmdletBase
+    // 20130204
+    public class PatternCmdletBase : HasControlInputCmdletBase // 20130204 GetControlCmdletBase // HasControlInputCmdletBase
     {
         #region Constructor
         public PatternCmdletBase()
@@ -43,6 +46,32 @@ namespace UIAutomation
         {
             if (!this.CheckControl(this)) { return; }
             
+            // 20130204
+            // search for controls to apply the pattern to
+#region "Pattern + search"
+//            if ((null != this.ContainsText && string.Empty != this.ContainsText) ||
+//                (null != this.Name && string.Empty != this.Name) ||
+//                (null != this.AutomationId && string.Empty != this.AutomationId) ||
+//                (null != this.Class && string.Empty != this.Class) ||
+//                (null != this.Value && string.Empty != this.Value)) {
+//                
+//                if (! this.GetType().Name.ToUpper().Contains("INVOKEPATTERN")) {
+//                    
+//                    this.ControlType =
+//                        this.GetType().Name.Replace("GetUIA", string.Empty).Replace("Command", string.Empty);
+//                }
+//                
+//                ArrayList returnCollection =
+//                    getControl(this);
+//                
+//                if (null == returnCollection || 0 == returnCollection.Count) {
+//                    
+//                    //
+//                }
+//                
+//                this.InputObject = (AutomationElement[])returnCollection.ToArray(typeof(AutomationElement));
+//            }
+#endregion "Pattern + search"
             
             System.Windows.Automation.AutomationElement _control = null;
             

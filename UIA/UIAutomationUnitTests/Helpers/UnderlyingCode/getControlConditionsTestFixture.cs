@@ -52,20 +52,8 @@ namespace UIAutomationUnitTests
                 new UIAutomation.CommonCmdletBase();
             
             this.ResultCondition =
-                // 20130127
-                //common.getControlConditions(cmdlet, controlType);
-                // 20130128
-                //common.getControlConditions(cmdlet, controlType, cmdlet.CaseSensitive);
-                //common.getControlConditions(cmdlet, controlType, cmdlet.CaseSensitive, true);
                 (common.getControlConditions(cmdlet, controlType, cmdlet.CaseSensitive, true) as AndCondition);
-            
-//Console.WriteLine("this.ResultCondition.GetConditions().Length.ToString() = " + this.ResultCondition.GetConditions().Length.ToString());
-//Console.WriteLine("(this.ResultCondition.GetConditions()[0] as AndCondition)" + (this.ResultCondition.GetConditions()[0] as AndCondition));
-//Console.WriteLine("(this.ResultCondition.GetConditions()[0] as Condition)" + (this.ResultCondition.GetConditions()[0] as Condition));
-//Console.WriteLine("(this.ResultCondition.GetConditions()[0] as PropertyCondition)" + (this.ResultCondition.GetConditions()[0] as PropertyCondition));
-//Console.WriteLine("(this.ResultCondition.GetConditions()[1] as AndCondition)" + (this.ResultCondition.GetConditions()[1] as AndCondition));
-//Console.WriteLine("(this.ResultCondition.GetConditions()[1] as Condition)" + (this.ResultCondition.GetConditions()[1] as Condition));
-//Console.WriteLine("(this.ResultCondition.GetConditions()[1] as PropertyCondition)" + (this.ResultCondition.GetConditions()[1] as PropertyCondition));
+
         }
         
         [Test]
@@ -95,14 +83,10 @@ namespace UIAutomationUnitTests
             
             Assert.AreEqual(
                 System.Windows.Automation.ControlType.Button.Id,
-                // 20130128
-                //(this.ResultCondition.GetConditions()[0] as PropertyCondition).Value);
                 (this.ResultCondition.GetConditions()[1] as PropertyCondition).Value);
             
             Assert.AreEqual(
                 expectedName,
-                // 20130128
-                //(this.ResultCondition.GetConditions()[1] as PropertyCondition).Value);
                 (this.ResultCondition.GetConditions()[0] as PropertyCondition).Value);
         }
         
@@ -117,14 +101,10 @@ namespace UIAutomationUnitTests
             
             Assert.AreEqual(
                 System.Windows.Automation.ControlType.Button.Id,
-                // 20130128
-                //(this.ResultCondition.GetConditions()[0] as PropertyCondition).Value);
                 (this.ResultCondition.GetConditions()[1] as PropertyCondition).Value);
             
             Assert.AreEqual(
                 expectedAutomationId,
-                // 20130128
-                //(this.ResultCondition.GetConditions()[1] as PropertyCondition).Value);
                 (this.ResultCondition.GetConditions()[0] as PropertyCondition).Value);
         }
         
@@ -162,14 +142,10 @@ namespace UIAutomationUnitTests
             
             Assert.AreEqual(
                 expectedName,
-                // 20130128
-                //(this.ResultCondition.GetConditions()[1] as PropertyCondition).Value);
                 ((this.ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
 
             Assert.AreEqual(
                 expectedAutomationId,
-                // 20130128
-                //(this.ResultCondition.GetConditions()[2] as PropertyCondition).Value);
                 ((this.ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
         }
         
@@ -185,21 +161,14 @@ namespace UIAutomationUnitTests
 
             Assert.AreEqual(
                 expectedClassName,
-                // 20130128
-                //(this.ResultCondition.GetConditions()[0] as PropertyCondition).Value);
-                //(this.ResultCondition.GetConditions()[1] as PropertyCondition).Value);
                 ((this.ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
 
             Assert.AreEqual(
                 System.Windows.Automation.ControlType.Button.Id,
-                // 20130128
-                //(this.ResultCondition.GetConditions()[1] as PropertyCondition).Value);
                 (this.ResultCondition.GetConditions()[0] as PropertyCondition).Value);
             
             Assert.AreEqual(
                 expectedName,
-                // 20130128
-                //(this.ResultCondition.GetConditions()[2] as PropertyCondition).Value);
                 ((this.ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
         }
         
@@ -215,21 +184,14 @@ namespace UIAutomationUnitTests
 
             Assert.AreEqual(
                 expectedClassName,
-                // 20130128
-                //(this.ResultCondition.GetConditions()[0] as PropertyCondition).Value);
-                //(this.ResultCondition.GetConditions()[1] as PropertyCondition).Value);
                 ((this.ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
 
             Assert.AreEqual(
                 System.Windows.Automation.ControlType.Button.Id,
-                // 20130128
-                //(this.ResultCondition.GetConditions()[1] as PropertyCondition).Value);
                 (this.ResultCondition.GetConditions()[0] as PropertyCondition).Value);
             
             Assert.AreEqual(
                 expectedAutomationId,
-                // 20130128
-                //(this.ResultCondition.GetConditions()[2] as PropertyCondition).Value);
                 ((this.ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
         }
         
@@ -246,27 +208,18 @@ namespace UIAutomationUnitTests
 
             Assert.AreEqual(
                 expectedClassName,
-                // 20130128
-                //(this.ResultCondition.GetConditions()[0] as PropertyCondition).Value);
-                //(this.ResultCondition.GetConditions()[1] as PropertyCondition).Value);
                 ((this.ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
 
             Assert.AreEqual(
                 System.Windows.Automation.ControlType.Button.Id,
-                // 20130128
-                //(this.ResultCondition.GetConditions()[1] as PropertyCondition).Value);
                 (this.ResultCondition.GetConditions()[0] as PropertyCondition).Value);
             
             Assert.AreEqual(
                 expectedName,
-                // 20130128
-                //(this.ResultCondition.GetConditions()[2] as PropertyCondition).Value);
                 ((this.ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
             
             Assert.AreEqual(
                 expectedAutomationId,
-                // 20130128
-                //(this.ResultCondition.GetConditions()[3] as PropertyCondition).Value);
                 ((this.ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[2] as PropertyCondition).Value);
         }
 
@@ -338,14 +291,10 @@ namespace UIAutomationUnitTests
             
             Assert.AreEqual(
                 expectedName,
-                // 20130129
-                //(this.ResultCondition.GetConditions()[0] as PropertyCondition).Value);
                 ((this.ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
 
             Assert.AreEqual(
                 expectedAutomationId,
-                // 20130129
-                //(this.ResultCondition.GetConditions()[1] as PropertyCondition).Value);
                 ((this.ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
         }
         
@@ -361,14 +310,10 @@ namespace UIAutomationUnitTests
 
             Assert.AreEqual(
                 expectedClassName,
-                // 20130129
-                //(this.ResultCondition.GetConditions()[0] as PropertyCondition).Value);
                 ((this.ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
 
             Assert.AreEqual(
                 expectedName,
-                // 20130129
-                //(this.ResultCondition.GetConditions()[1] as PropertyCondition).Value);
                 ((this.ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
         }
         
@@ -384,15 +329,10 @@ namespace UIAutomationUnitTests
 
             Assert.AreEqual(
                 expectedClassName,
-                // 20130129
-                //(this.ResultCondition.GetConditions()[0] as PropertyCondition).Value);
                 ((this.ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
-                //((this.ResultCondition.GetConditions()[0] as AndCondition).GetConditions() as PropertyCondition).Value);
 
             Assert.AreEqual(
                 expectedAutomationId,
-                // 20130129
-                //(this.ResultCondition.GetConditions()[1] as PropertyCondition).Value);
                 ((this.ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
         }
         
@@ -409,20 +349,14 @@ namespace UIAutomationUnitTests
             
             Assert.AreEqual(
                 expectedClassName,
-                // 20130129
-                //(this.ResultCondition.GetConditions()[0] as PropertyCondition).Value);
                 ((this.ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
 
             Assert.AreEqual(
                 expectedName,
-                // 20130129
-                //(this.ResultCondition.GetConditions()[1] as PropertyCondition).Value);
                 ((this.ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
             
             Assert.AreEqual(
                 expectedAutomationId,
-                // 20130129
-                //(this.ResultCondition.GetConditions()[2] as PropertyCondition).Value);
                 ((this.ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[2] as PropertyCondition).Value);
         }
         

@@ -29,7 +29,6 @@ namespace UIAutomation.Commands
         #region Constructor
         public GetUIAControlCommand()
         {
-            //WriteVerbose(this, "constructor");
         }
         #endregion Constructor
 

@@ -1116,8 +1116,8 @@ namespace UIAutomationTest.Commands.Get
                 "' -AutomationId '" +
                 auId1 +
                 "' -timeout 2000;",
-                "1",
-                "2");
+                "CmdletInvocationException",
+                @"Get-UIAButton: timeout expired for class: ' + , control type: Button, title:");
         }
 
 // =========================================================

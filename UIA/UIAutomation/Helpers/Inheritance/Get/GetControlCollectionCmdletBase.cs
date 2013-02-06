@@ -609,11 +609,19 @@ namespace UIAutomation
             
             // if a control's ValuePattern has no value
             if (string.Empty == realValue) {
+                
+                if ("*" != name || "*" != automationId || "*" != className) {
+                    return true;
+                }
                 return result;
             }
             
             // if there was not specified the -Value parameter
             if ("*" == textValue) {
+                
+                if ("*" != name || "*" != automationId || "*" != className) {
+                    return true;
+                }
                 return result;
             }
             

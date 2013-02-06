@@ -97,6 +97,7 @@
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Helpers\UnderlyingCode\elementOfPossibleControlTypeTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\GetAutomationElementsViaWildcards_FindAllTestFixture.cs" />
     <Compile Include="Helpers\UnderlyingCode\getControlConditionsTestFixture.cs" />
     <Compile Include="Helpers\UnitTestingHelper.cs" />
     <Compile Include="ParamChecks\Common\InvokeUIAControlClickCommandTestFixture.cs" />

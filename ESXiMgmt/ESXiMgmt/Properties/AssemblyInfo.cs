@@ -14,7 +14,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Alexander Petrovskiy")]
 [assembly: AssemblyProduct("ESXiMgmt")]
-[assembly: AssemblyCopyright("Copyright 2012")]
+[assembly: AssemblyCopyright("Copyright 2011-2013")]
 [assembly: AssemblyTrademark("SoftwareTestingUsingPowerShell.com")]
 [assembly: AssemblyCulture("")]
 

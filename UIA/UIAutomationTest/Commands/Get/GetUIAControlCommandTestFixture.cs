@@ -1060,7 +1060,70 @@ namespace UIAutomationTest.Commands.Get
                 expectedValue);
         }
 
-
+        [Test] //[Test(Description="TBD")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
+        [Category("Get_UIAControl")]
+        public void GetControlByValueAndAutomationId_WildCard_TimeoutDefault()
+        {
+            string auId1 = "Edit1";
+            string expectedValue = "my text";
+            MiddleLevelCode.StartProcessWithFormAndControl(
+                UIAutomationTestForms.Forms.WinFormsEmpty, 
+                0,
+                System.Windows.Automation.ControlType.Edit,
+                "aaa",
+                auId1,
+                0);
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+                @"$null = Get-UIAWindow -pn " + 
+                MiddleLevelCode.TestFormProcess +
+                " | Get-UIAControl -AutomationId " + 
+                auId1 + 
+                " | " +
+                "Set-UIAEditText -Text '" +
+                expectedValue +
+                "'; Get-UIAEdit -Value '" +
+                expectedValue +
+                "' -AutomationId '" +
+                auId1 +
+                "' | Get-UIAEditText;",
+                expectedValue);
+        }
+        
+        [Test] //[Test(Description="TBD")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
+        [Category("Get_UIAControl")]
+        public void GetControlByNonValueAndAutomationId_WildCard_Timeout2000()
+        {
+            string auId1 = "Edit1";
+            string expectedValue = "my text";
+            MiddleLevelCode.StartProcessWithFormAndControl(
+                UIAutomationTestForms.Forms.WinFormsEmpty, 
+                0,
+                System.Windows.Automation.ControlType.Edit,
+                "aaa",
+                auId1,
+                0);
+            CmdletUnitTest.TestRunspace.RunAndGetTheException(
+                @"$null = Get-UIAWindow -pn " + 
+                MiddleLevelCode.TestFormProcess +
+                " | Get-UIAControl -AutomationId " + 
+                auId1 + 
+                " | " +
+                "Set-UIAEditText -Text '" +
+                expectedValue +
+                "'; Get-UIAEdit -Value '" +
+                expectedValue +
+                "' -AutomationId '" +
+                auId1 +
+                "' -timeout 2000 | Get-UIAEditText;",
+                "1",
+                "2");
+        }
 
 // =========================================================
         

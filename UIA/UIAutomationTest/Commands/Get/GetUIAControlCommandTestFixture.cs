@@ -1097,30 +1097,25 @@ namespace UIAutomationTest.Commands.Get
         [Category("WinForms")]
         [Category("Control")]
         [Category("Get_UIAControl")]
-        public void GetControlByNonValueAndAutomationId_WildCard_Timeout2000()
+        public void GetControlByNoValueAndAutomationId_WildCard_Timeout2000()
         {
-            string auId1 = "Edit1";
+            string auId1 = "Button1";
             string expectedValue = "my text";
             MiddleLevelCode.StartProcessWithFormAndControl(
                 UIAutomationTestForms.Forms.WinFormsEmpty, 
                 0,
-                System.Windows.Automation.ControlType.Edit,
+                System.Windows.Automation.ControlType.Button,
                 "aaa",
                 auId1,
                 0);
             CmdletUnitTest.TestRunspace.RunAndGetTheException(
                 @"$null = Get-UIAWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAControl -AutomationId " + 
-                auId1 + 
-                " | " +
-                "Set-UIAEditText -Text '" +
-                expectedValue +
-                "'; Get-UIAEdit -Value '" +
+                " | Get-UIAButton -Value '" +
                 expectedValue +
                 "' -AutomationId '" +
                 auId1 +
-                "' -timeout 2000 | Get-UIAEditText;",
+                "' -timeout 2000;",
                 "1",
                 "2");
         }

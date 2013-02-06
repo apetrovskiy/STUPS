@@ -54,15 +54,15 @@ namespace CmdletUnitTest
 
                 System.Collections.ObjectModel.Collection<PSObject> coll =
                     PSRunner.Runner.RunPSCode(codeSnippet, showCode);
-
+                
+                Assert.Fail();
             }
             catch (Exception ee) {
 
                 Assert.AreEqual(exceptionType, ee.GetType().Name);
-                //Assert.AreEqual(message, ee.Message);
+
                 if (!ee.Message.Contains(message)) {
 
-                    //Assert.Fail("Exception description does not match: ", new object[]{ ee.Message });
                     Assert.Fail("Exception description does not match: " + ee.Message);
 
                 }

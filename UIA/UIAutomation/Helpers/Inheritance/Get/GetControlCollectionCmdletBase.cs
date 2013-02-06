@@ -425,6 +425,93 @@ namespace UIAutomation
                     results.Count.ToString() +
                     " elements");
 
+                resultCollection =
+                    returnOnlyRightElements(
+                        results,
+                        name,
+                        automationId,
+                        className,
+                        textValue,
+                        controlType,
+                        caseSensitive);
+                
+//                ArrayList resultCollection = new ArrayList();
+//                
+//                WildcardOptions options;
+//                if (caseSensitive) {
+//                    options =
+//                        WildcardOptions.Compiled;
+//                } else {
+//                    options =
+//                        WildcardOptions.IgnoreCase |
+//                        WildcardOptions.Compiled;
+//                }
+//
+//                if (string.Empty == name || 0 == name.Length) { name = "*"; }
+//                if (string.Empty == automationId || 0 == automationId.Length) { automationId = "*"; }
+//                if (string.Empty == className || 0 == className.Length) { className = "*"; }
+//                if (string.Empty == textValue || 0 == textValue.Length) { textValue = "*"; }
+//
+//                WildcardPattern wildcardName = 
+//                    new WildcardPattern(name, options);
+//                WildcardPattern wildcardAutomationId = 
+//                    new WildcardPattern(automationId, options);
+//                WildcardPattern wildcardClass = 
+//                    new WildcardPattern(className, options);
+//                WildcardPattern wildcardValue = 
+//                    new WildcardPattern(textValue, options);
+//
+//                System.Collections.Generic.List<AutomationElement> list =
+//                    new System.Collections.Generic.List<AutomationElement>();
+//                foreach (AutomationElement elt in results) {
+//                    list.Add(elt);
+//                }
+//
+//                var query = list
+//                    .Where<AutomationElement>(item => wildcardName.IsMatch(item.Current.Name))
+//                    .Where<AutomationElement>(item => wildcardAutomationId.IsMatch(item.Current.AutomationId))
+//                    .Where<AutomationElement>(item => wildcardClass.IsMatch(item.Current.ClassName))
+//                    .Where<AutomationElement>(item => 
+//                                              item.GetSupportedPatterns().Contains(ValuePattern.Pattern) ? 
+//                                              wildcardValue.IsMatch((item.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern).Current.Value) : 
+//                                              true)
+//                    .ToArray<AutomationElement>();
+//
+//                this.WriteVerbose(
+//                    this,
+//                    "There are " +
+//                    query.Count().ToString() +
+//                    " elements");
+//
+//                resultCollection.AddRange(query);
+//
+//                this.WriteVerbose(
+//                    this,
+//                    "There are " +
+//                    resultCollection.Count.ToString() +
+//                    " elements");
+//                
+            }
+            catch { //(Exception eWildCardSearch) {
+                
+            }
+            
+            // 20120824
+            //return result;
+            return resultCollection;
+        }
+        
+        internal ArrayList returnOnlyRightElements(
+            AutomationElementCollection results,
+            string name,
+            string automationId,
+            string className,
+            string textValue,
+            string[] controlType,
+            bool caseSensitive)
+        {
+                ArrayList resultCollection = new ArrayList();
+                
                 WildcardOptions options;
                 if (caseSensitive) {
                     options =
@@ -455,14 +542,29 @@ namespace UIAutomation
                     list.Add(elt);
                 }
 
+            try {
                 var query = list
-                    .Where<AutomationElement>(item => wildcardName.IsMatch(item.Current.Name))
-                    .Where<AutomationElement>(item => wildcardAutomationId.IsMatch(item.Current.AutomationId))
-                    .Where<AutomationElement>(item => wildcardClass.IsMatch(item.Current.ClassName))
-                    .Where<AutomationElement>(item => 
-                                              item.GetSupportedPatterns().Contains(ValuePattern.Pattern) ? 
-                                              wildcardValue.IsMatch((item.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern).Current.Value) : 
-                                              true)
+//                    .Where<AutomationElement>(item => wildcardName.IsMatch(item.Current.Name))
+//                    .Where<AutomationElement>(item => wildcardAutomationId.IsMatch(item.Current.AutomationId))
+//                    .Where<AutomationElement>(item => wildcardClass.IsMatch(item.Current.ClassName))
+//                    .Where<AutomationElement>(item => 
+//                                              item.GetSupportedPatterns().Contains(ValuePattern.Pattern) ? 
+//                                              //(("*" != textValue) ? wildcardValue.IsMatch((item.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern).Current.Value) : false) :
+//                                              (("*" != textValue) ? (positiveMatch(item, wildcardValue, textValue)) : (negativeMatch(textValue))) :
+//                                              true
+//                                              )
+                    .Where<AutomationElement>(
+                        item => (wildcardName.IsMatch(item.Current.Name) &&
+                                 wildcardAutomationId.IsMatch(item.Current.AutomationId) &&
+                                 wildcardClass.IsMatch(item.Current.ClassName) &&
+                                 // check whether a control has or hasn't ValuePattern
+                                 (item.GetSupportedPatterns().Contains(ValuePattern.Pattern) ?
+                                  testRealValueAndValueParameter(item, name, automationId, className, textValue, wildcardValue) :
+                                  // check whether the -Value parameter has or hasn't value
+                                  ("*" == textValue ? true : false)
+                                 )
+                                )
+                       )
                     .ToArray<AutomationElement>();
 
                 this.WriteVerbose(
@@ -479,94 +581,48 @@ namespace UIAutomation
                     resultCollection.Count.ToString() +
                     " elements");
                 
-                // 20130204
-#region commented
-//                foreach (AutomationElement oneMoreElement in results) {
-//                    
-////                    if (this.FromCache && CurrentData.CacheRequest != null) {
-////                        
-////                        try{
-////                            WriteVerbose(
-////                                this, 
-////                                oneMoreElement.Cached.ControlType.ProgrammaticName +
-////                                "\t" +
-////                                oneMoreElement.Cached.Name + 
-////                                "\t" +
-////                                oneMoreElement.Cached.AutomationId);
-////                            
-////                        }
-////                        catch {}
-////                    } else {
-////                        
-////                        try{
-////                            WriteVerbose(
-////                                this, 
-////                                oneMoreElement.Current.ControlType.ProgrammaticName +
-////                                "\t" +
-////                                oneMoreElement.Current.Name + 
-////                                "\t" +
-////                                oneMoreElement.Current.AutomationId);
-////                        }
-////                        catch {}
-////                    }
-//
-//                    
-//                    // 20120824
-//                    //result = processAutomationElement(
-//                    //resultCollection = processAutomationElement(
-//                    resultCollection.AddRange(processAutomationElement(
-//                            oneMoreElement,
-//                            name,
-//                            automationId,
-//                            className,
-//                            controlType,
-//                            caseSensitive,
-//                            // 20120824
-//                            //true, //onlyOneResult,
-//                            false,
-//                            true)); //onlyTopLevel);
-////                    if (null != resultCollection) {
-////                        WriteVerbose(this, resultCollection.Count.ToString());
-////                    } else {
-////                        WriteVerbose(this, "null == resultCollection");
-////                    }
-//                    
-//                    // 20120824
-//                    //if ((onlyTopLevel || onlyOneResult) && (result != null)) {
-//                    if ((onlyTopLevel || onlyOneResult) && (null != resultCollection) && (resultCollection.Count > 0)) {
-//                        
-//                        // 20120824
-//                        //return result; // returns only one window or control
-//                        //AutomationElementCollection shortCollection = resultCollection[0] as AutomationElementCollection;
-//                        //return (resultCollection[0] as AutomationElementCollection);
-//                        //return shortCollection;
-//                        return resultCollection;
-//                    // 20120824
-//                    //} else if (result != null) {
-//                    } else if (null != resultCollection) {
-//                        
-//                        // 20120824
-//                        //WriteObject(this, result);
-//                        // 20120824
-//                        //WriteObject(this, resultCollection);
-//                    }
-//                    
-//                }
-#endregion commented
-                
             }
-            catch { //(Exception eWildCardSearch) {
+            catch {
                 
             }
             
-            // 20120824
-            //return result;
             return resultCollection;
         }
         
-        // 20120824
-        //private AutomationElement processAutomationElement(
-        //private AutomationElementCollection processAutomationElement(
+        private bool testRealValueAndValueParameter(
+            AutomationElement item,
+            string name,
+            string automationId,
+            string className,
+            string textValue,
+            WildcardPattern wildcardValue)
+        {
+            bool result = false;
+            
+            // getting the real value of a control
+            string realValue = string.Empty;
+            try {
+                realValue =
+                    (item.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern).Current.Value;
+            }
+            catch {}
+            
+            // if a control's ValuePattern has no value
+            if (string.Empty == realValue) {
+                return result;
+            }
+            
+            // if there was not specified the -Value parameter
+            if ("*" == textValue) {
+                return result;
+            }
+            
+            result =
+                wildcardValue.IsMatch(realValue);
+
+            return result;
+        }
+        
         private ArrayList processAutomationElement(
             AutomationElement element,
             string name,
@@ -577,12 +633,8 @@ namespace UIAutomation
             bool onlyOneResult,
             bool onlyTopLevel)
         {
-            // 20120824
-            //AutomationElement result = null;
-            //AutomationElementCollection resultCollection = null;
             ArrayList resultCollection = new ArrayList();
             
-            // 20130125 // ??
             if (null == name) {
                 name = string.Empty;
             }

@@ -36,17 +36,17 @@ namespace SePSXUnitTests.CheckCmdletParameters
         
         [Test]
         [Category("Fast")]
-        public void Chrome_InputObject_NoInstanceName()
+        public void StopSeChrome_InputObject_NoInstanceName()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Stop-SeChrome -InputObject $null;");
         }
         
         [Test]
         [Category("Fast")]
-        public void Chrome_InstanceName()
+        public void StopSeChrome_Chrome_InstanceName()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Stop-SeChrome -InstanceName aaa;");
         }
     }

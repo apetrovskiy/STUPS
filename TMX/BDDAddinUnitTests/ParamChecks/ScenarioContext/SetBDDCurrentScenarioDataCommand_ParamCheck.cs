@@ -37,7 +37,8 @@ namespace BDDAddinUnitTests.CheckCmdletParameters.ScenarioContext
         [Test]
         [Ignore]
         [Category("Fast")]
-        public void Happy_path()
+        [Category("Set-BDDCurrentScenarioData")]
+        public void SetBDDCurrentScenarioData_Happy_path()
         {
 //            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
 //                "New-BDDFeature -FeatureName name -Asa user -IWant that -SoThat do;");

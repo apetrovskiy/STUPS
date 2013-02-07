@@ -45,49 +45,55 @@ namespace SePSXUnitTests.CheckCmdletParameters
         
         [Test]
         [Category("Fast")]
-        public void InputObject_FirstSelected()
+        [Category("Get-SeSelection")]
+        public void GetSeSelection_InputObject_FirstSelected()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Get-SeSelection -InputObject $null -FirstSelected;");
         }
         
         [Test]
         [Category("Fast")]
-        public void InputObject_Selected()
+        [Category("Get-SeSelection")]
+        public void GetSeSelection_InputObject_Selected()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Get-SeSelection -InputObject $null -Selected;");
         }
         
         [Test]
         [Category("Fast")]
-        public void InputObject_All()
+        [Category("Get-SeSelection")]
+        public void GetSeSelection_InputObject_All()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Get-SeSelection -InputObject $null -All;");
         }
         
         [Test]
         [Category("Fast")]
-        public void NoInputObject_FirstSelected()
+        [Category("Get-SeSelection")]
+        public void GetSeSelection_NoInputObject_FirstSelected()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Get-SeSelection -FirstSelected;");
         }
         
         [Test]
         [Category("Fast")]
-        public void NoInputObject_Selected()
+        [Category("Get-SeSelection")]
+        public void GetSeSelection_NoInputObject_Selected()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Get-SeSelection -Selected;");
         }
         
         [Test]
         [Category("Fast")]
-        public void NoInputObject_All()
+        [Category("Get-SeSelection")]
+        public void GetSeSelection_NoInputObject_All()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Get-SeSelection -All;");
         }
     }

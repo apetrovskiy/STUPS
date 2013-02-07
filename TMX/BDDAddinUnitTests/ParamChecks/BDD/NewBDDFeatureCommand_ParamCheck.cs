@@ -36,10 +36,11 @@ namespace BDDAddinUnitTests.CheckCmdletParameters.BDD
         
         [Test]
         [Category("Fast")]
-        public void Happy_path()
+        [Category("New-BDDFeature -FeatureName name -AsA user -IWant that -SoThat do;")]
+        public void NewBDDFeature_Happy_path()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
-                "New-BDDFeature -FeatureName name -Asa user -IWant that -SoThat do;");
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_SuccessOutput(
+                "New-BDDFeature -FeatureName name -AsA user -IWant that -SoThat do;");
         }
     }
 }

@@ -46,9 +46,9 @@ namespace SePSXUnitTests.CheckCmdletParameters
         
         [Test]
         [Category("Fast")]
-        public void InputObject_Text()
+        public void SetSeWebElementKeys_InputObject_Text()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Set-SeWebElementKeys " +
                 "-InputObject ([SePSXUnitTests.ParamChecks.FakeWebObjectsFactory]::GetFakeWebElement()) " +
                 "-Text aaa;");
@@ -56,9 +56,9 @@ namespace SePSXUnitTests.CheckCmdletParameters
         
         [Test]
         [Category("Fast")]
-        public void NoInputObject_Text()
+        public void SetSeWebElementKeys_NoInputObject_Text()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "[SePSXUnitTests.ParamChecks.FakeWebObjectsFactory]::GetFakeWebElement() | " +
                 "Set-SeWebElementKeys aaa;");
         }

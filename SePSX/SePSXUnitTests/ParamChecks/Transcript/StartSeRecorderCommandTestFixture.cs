@@ -36,25 +36,25 @@ namespace SePSXUnitTests.CheckCmdletParameters
         
         [Test]
         [Category("Fast")]
-        public void Timeout_FileName()
+        public void StartSeRecorder_Timeout_FileName()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 @"Start-SeRecorder -Timeout 10000 -FileName C:\1\1.txt;");
         }
         
         [Test]
         [Category("Fast")]
-        public void Seconds_FileName()
+        public void StartSeRecorder_Seconds_FileName()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 @"Start-SeRecorder -Timeout 10 -FileName C:\1\1.txt;");
         }
         
         [Test]
         [Category("Fast")]
-        public void Seconds_NoFileName()
+        public void StartSeRecorder_Seconds_NoFileName()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 @"Start-SeRecorder -Timeout 10;");
         }
     }

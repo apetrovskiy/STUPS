@@ -37,41 +37,41 @@ namespace SePSXUnitTests.CheckCmdletParameters
         
         [Test]
         [Category("Fast")]
-        public void Firefox_Bare()
+        public void StartSeFirefox_Bare()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Start-SeFirefox;");
         }
         
         [Test]
         [Category("Fast")]
-        public void Firefox_Profile()
+        public void StartSeFirefox_Profile()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Start-SeFirefox -Profile $null;"); //(New-SeFirefoxProfile);");
         }
         
         [Test]
         [Category("Fast")]
-        public void Firefox_Capabilities()
+        public void StartSeFirefox_Capabilities()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Start-SeFirefox -Capabilities $null;");
         }
         
         [Test]
         [Category("Fast")]
-        public void Firefox_Binary_Profile()
+        public void StartSeFirefox_Binary_Profile()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Start-SeFirefox -Binary $null -Profile $null;");
         }
         
         [Test]
         [Category("Fast")]
-        public void Firefox_Binary_Profile_Timeout()
+        public void StartSeFirefox_Binary_Profile_Timeout()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Start-SeFirefox -Binary $null -Profile $null -Timeout 10000;");
         }
     }

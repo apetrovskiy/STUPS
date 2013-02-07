@@ -37,18 +37,18 @@ namespace SePSXUnitTests.CheckCmdletParameters
         
         [Test]
         [Category("Fast")]
-        public void InputObject()
+        public void ReadSeWebElementDisplayed_InputObject()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Read-SeWebElementDisplayed " +
                 "-InputObject ([SePSXUnitTests.ParamChecks.FakeWebObjectsFactory]::GetFakeWebElement());");
         }
         
         [Test]
         [Category("Fast")]
-        public void NoInputObject()
+        public void ReadSeWebElementDisplayed_NoInputObject()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "[SePSXUnitTests.ParamChecks.FakeWebObjectsFactory]::GetFakeWebElement() | " +
                 "Read-SeWebElementDisplayed;");
         }

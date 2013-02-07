@@ -46,17 +46,19 @@ namespace SePSXUnitTests.CheckCmdletParameters
         
         [Test]
         [Category("Fast")]
-        public void UrlValue()
+        [Category("Enter-SeURL")]
+        public void EnterSeURL_UrlValue()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Enter-SeURL 'http://google.com';");
         }
         
         [Test]
         [Category("Fast")]
-        public void UrlParam_UrlValue()
+        [Category("Enter-SeURL")]
+        public void EnterSeURL_UrlParam_UrlValue()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Enter-SeURL -URL 'http://google.com';");
         }
     }

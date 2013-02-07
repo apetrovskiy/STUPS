@@ -71,11 +71,24 @@ namespace CmdletUnitTest
             PSRunner.Runner.FinishRunningCode();
         }
         
-        public static void RunAndCheckCmdletParameters(string codeSnippet)
+        public static void RunAndCheckCmdletParameters_SuccessOutput(string codeSnippet)
         {
             RunAndGetTheException(
                 codeSnippet,
+                // 20130207
+                //"CmdletInvocationException",
+                "AssertionFailureException",
+                //"Parameters checked");
+                "An assertion failed.");
+        }
+        
+        public static void RunAndCheckCmdletParameters_FailureOutput(string codeSnippet)
+        {
+            RunAndGetTheException(
+                codeSnippet,
+                // 20130207
                 "CmdletInvocationException",
+                //"AssertionFailureException",
                 "Parameters checked");
         }
         

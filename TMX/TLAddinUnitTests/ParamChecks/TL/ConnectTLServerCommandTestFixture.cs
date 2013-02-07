@@ -55,7 +55,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void Connect_TLServer_Server_Apikey()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
         		"Connect-TLServer -Server 1.2.3.4 -Apikey '0123456789';");
         }
     }

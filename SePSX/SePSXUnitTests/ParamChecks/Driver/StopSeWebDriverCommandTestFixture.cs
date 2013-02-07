@@ -37,17 +37,17 @@ namespace SePSXUnitTests.CheckCmdletParameters
 
         [Test]
         [Category("Fast")]
-        public void InputObject_NoInstanceName()
+        public void StopSeWebDriver_InputObject_NoInstanceName()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Stop-SeWebDriver -InputObject $null;");
         }
         
         [Test]
         [Category("Fast")]
-        public void Chrome_InstanceName() // any type of a driver
+        public void StopSeWebDriver_InstanceName() // any type of a driver
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Stop-SeWebDriver -InstanceName aaa;");
         }
     }

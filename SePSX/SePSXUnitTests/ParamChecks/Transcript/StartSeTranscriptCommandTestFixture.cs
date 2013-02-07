@@ -37,25 +37,25 @@ namespace SePSXUnitTests.CheckCmdletParameters
         
         [Test]
         [Category("Fast")]
-        public void Timeout_FileName()
+        public void StartSeTranscript_Timeout_FileName()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 @"Start-SeTranscript -Timeout 10000 -FileName C:\1\1.txt;");
         }
         
         [Test]
         [Category("Fast")]
-        public void Seconds_FileName()
+        public void StartSeTranscript_Seconds_FileName()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 @"Start-SeTranscript -Timeout 10 -FileName C:\1\1.txt;");
         }
         
         [Test]
         [Category("Fast")]
-        public void Seconds_NoFileName()
+        public void StartSeTranscript_Seconds_NoFileName()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 @"Start-SeTranscript -Timeout 10;");
         }
     }

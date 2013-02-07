@@ -42,7 +42,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         [Description("Invoke-UIAButtonClick")]
         public void Invoke_UIAButtonClick_NoParameters()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
         		"Invoke-UIAButtonClick;");
         }
         
@@ -51,7 +51,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         [Description("Invoke-UIAButtonClick -PassThru")]
         public void Invoke_UIAButtonClick_PassThru()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
         		"Invoke-UIAButtonClick -PassThru;");
         }
         

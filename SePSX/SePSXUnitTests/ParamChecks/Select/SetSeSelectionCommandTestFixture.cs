@@ -46,73 +46,73 @@ namespace SePSXUnitTests.CheckCmdletParameters
         
         [Test]
         [Category("Fast")]
-        public void InputObject_Index()
+        public void SetSeSelection_InputObject_Index()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Set-SeSelection -InputObject $null -Index 1;");
         }
         
         [Test]
         [Category("Fast")]
-        public void InputObject_Value()
+        public void SetSeSelection_InputObject_Value()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Set-SeSelection -InputObject $null -Value 'aaa';");
         }
         
         [Test]
         [Category("Fast")]
-        public void InputObject_VisibleText()
+        public void SetSeSelection_InputObject_VisibleText()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Set-SeSelection -InputObject $null -VisibleText 'bbb';");
         }
         
         [Test]
         [Category("Fast")]
-        public void InputObject_All()
+        public void SetSeSelection_InputObject_All()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Set-SeSelection -InputObject $null -All;");
         }
         
         [Test]
         [Category("Fast")]
-        public void InputObject_Index_Deselect()
+        public void SetSeSelection_InputObject_Index_Deselect()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Set-SeSelection -InputObject $null -Index 1 -Deselect;");
         }
         
         [Test]
         [Category("Fast")]
-        public void InputObject_Value_Deselect()
+        public void SetSeSelection_InputObject_Value_Deselect()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Set-SeSelection -InputObject $null -Value 'aaa' -Deselect;");
         }
         
         [Test]
         [Category("Fast")]
-        public void InputObject_VisibleText_Deselect()
+        public void SetSeSelection_InputObject_VisibleText_Deselect()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Set-SeSelection -InputObject $null -VisibleText 'bbb' -Deselect;");
         }
         
         [Test]
         [Category("Fast")]
-        public void InputObject_All_Deselect()
+        public void SetSeSelection_InputObject_All_Deselect()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Set-SeSelection -InputObject $null -All -Deselect;");
         }
         
         [Test]
         [Category("Fast")]
-        public void NoInputObject_Index()
+        public void SetSeSelection_NoInputObject_Index()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Set-SeSelection -Index 1;");
         }
     }

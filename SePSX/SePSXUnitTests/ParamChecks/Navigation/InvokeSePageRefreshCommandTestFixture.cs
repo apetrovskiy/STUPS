@@ -37,9 +37,10 @@ namespace SePSXUnitTests.CheckCmdletParameters
         
         [Test]
         [Category("Fast")]
-        public void Empty()
+        [Category("Invoke-SePageRefresh")]
+        public void InvokeSePageRefresh_Empty()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Invoke-SePageRefresh;");
         }
     }

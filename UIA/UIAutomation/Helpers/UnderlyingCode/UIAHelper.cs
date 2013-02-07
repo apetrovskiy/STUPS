@@ -903,6 +903,24 @@ cmdlet.WriteVerbose(cmdlet, "match!");
                                     elementVerbosity += (" -Name '" + element.Cached.Name + "'");
                                 }
                             }
+                            // 20130207
+                            try {
+                                ValuePattern pattern =
+                                    element.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern;
+                                try { 
+                                    cmdlet.WriteVerbose(cmdlet, "getting Value");
+                                    //if (element.Current.Name.Length > 0) {
+                                    if (null != pattern.Current.Value && string.Empty != pattern.Current.Value) {
+                                        elementVerbosity += (" -Value '" + pattern.Current.Value + "'");
+                                    }
+                                }
+                                catch {
+                                    if (null != pattern.Cached.Value && string.Empty != pattern.Cached.Value) {
+                                        elementVerbosity += (" -Value '" + pattern.Cached.Value + "'");
+                                    }
+                                }
+                            }
+                            catch {}
                             cmdlet.WriteVerbose(cmdlet, 
                                                 "the concatenated result is: " +
                                                 elementVerbosity);

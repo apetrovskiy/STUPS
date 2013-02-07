@@ -37,9 +37,9 @@ namespace SePSXUnitTests.CheckCmdletParameters
         
         [Test]
         [Category("Fast")]
-        public void InternetExplorer64_Bare()
+        public void StartSeInternetExplorer64_Bare()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Start-SeInternetExplorer64;");
         }
         

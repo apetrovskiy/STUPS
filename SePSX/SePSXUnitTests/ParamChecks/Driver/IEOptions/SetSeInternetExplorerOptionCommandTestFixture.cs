@@ -38,41 +38,41 @@ namespace SePSXUnitTests.CheckCmdletParameters
         
         [Test]
         [Category("Fast")]
-        public void Set_SeInternetExplorerOption_InputObject_only()
+        public void SetSeInternetExplorerOption_InputObject_only()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Set-SeInternetExplorerOption -InputObject (New-SeInternetExplorerOptions);");
         }
         
         [Test]
         [Category("Fast")]
-        public void Set_SeInternetExplorerOption_InputObject_EnableNativeEvents()
+        public void SetSeInternetExplorerOption_InputObject_EnableNativeEvents()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Set-SeInternetExplorerOption -InputObject (New-SeInternetExplorerOptions) -EnableNativeEvents;");
         }
         
         [Test]
         [Category("Fast")]
-        public void Set_SeInternetExplorerOption_InputObject_IgnoreZoomLevel()
+        public void SetSeInternetExplorerOption_InputObject_IgnoreZoomLevel()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Set-SeInternetExplorerOption -InputObject (New-SeInternetExplorerOptions) -IgnoreZoomLevel;");
         }
         
         [Test]
         [Category("Fast")]
-        public void Set_SeInternetExplorerOption_InputObject_IntroduceInstabilityByIgnoringProtectedModeSettings()
+        public void SetSeInternetExplorerOption_InputObject_IntroduceInstabilityByIgnoringProtectedModeSettings()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Set-SeInternetExplorerOption -InputObject (New-SeInternetExplorerOptions) -IntroduceInstabilityByIgnoringProtectedModeSettings;");
         }
         
         [Test]
         [Category("Fast")]
-        public void Set_SeInternetExplorerOption_InputObject_InitialBrowserUrl()
+        public void SetSeInternetExplorerOption_InputObject_InitialBrowserUrl()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Set-SeInternetExplorerOption -InputObject (New-SeInternetExplorerOptions) -InitialBrowserUrl 'http://google.com';");
         }
     }

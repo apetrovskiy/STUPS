@@ -36,17 +36,17 @@ namespace SePSXUnitTests.CheckCmdletParameters
         
         [Test]
         [Category("Fast")]
-        public void Firefox_InputObject_NoInstanceName()
+        public void StopSeFirefox_InputObject_NoInstanceName()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Stop-SeFirefox -InputObject $null;");
         }
         
         [Test]
         [Category("Fast")]
-        public void Firefox_InstanceName()
+        public void StopSeFirefox_Firefox_InstanceName()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Stop-SeFirefox -InstanceName aaa;");
         }
     }

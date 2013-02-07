@@ -39,7 +39,7 @@ namespace SePSXUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void Chrome_NoInstanceName()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Start-SeWebDriver -DriverName chrome;");
         }
         
@@ -47,7 +47,7 @@ namespace SePSXUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void Chrome_WithInstanceName()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Start-SeWebDriver -DriverName chrome -InstanceName aaa;");
         }
         
@@ -55,7 +55,7 @@ namespace SePSXUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void Ch_NoInstanceName()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Start-SeWebDriver -DriverName ch;");
         }
         
@@ -63,7 +63,7 @@ namespace SePSXUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void Ch_WithInstanceName()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Start-SeWebDriver -DriverName ch -InstanceName aaa;");
         }
         
@@ -71,7 +71,7 @@ namespace SePSXUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void Firefox_NoInstanceName()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Start-SeWebDriver -DriverName Firefox;");
         }
         
@@ -79,7 +79,7 @@ namespace SePSXUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void Firefox_WithInstanceName()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Start-SeWebDriver -DriverName Firefox -InstanceName aaa;");
         }
         
@@ -87,7 +87,7 @@ namespace SePSXUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void FF_NoInstanceName()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Start-SeWebDriver -DriverName ff;");
         }
         
@@ -95,7 +95,7 @@ namespace SePSXUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void FF_WithInstanceName()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Start-SeWebDriver -DriverName ff -InstanceName aaa;");
         }
         
@@ -103,7 +103,7 @@ namespace SePSXUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void InternetExplorer32_NoInstanceName()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Start-SeWebDriver -DriverName InternetExplorer32;");
         }
         
@@ -111,7 +111,7 @@ namespace SePSXUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void InternetExplorer32_WithInstanceName()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Start-SeWebDriver -DriverName InternetExplorer32 -InstanceName aaa;");
         }
         
@@ -119,7 +119,7 @@ namespace SePSXUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void IE32_NoInstanceName()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Start-SeWebDriver -DriverName ie32;");
         }
         
@@ -127,7 +127,7 @@ namespace SePSXUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void IE32_WithInstanceName()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Start-SeWebDriver -DriverName ie32 -InstanceName aaa;");
         }
         
@@ -135,7 +135,7 @@ namespace SePSXUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void InternetExplorer64_NoInstanceName()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Start-SeWebDriver -DriverName InternetExplorer64;");
         }
         
@@ -143,7 +143,7 @@ namespace SePSXUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void InternetExplorer64_WithInstanceName()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Start-SeWebDriver -DriverName InternetExplorer64 -InstanceName aaa;");
         }
         
@@ -151,7 +151,7 @@ namespace SePSXUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void IE64_NoInstanceName()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Start-SeWebDriver -DriverName ie64;");
         }
         
@@ -159,7 +159,7 @@ namespace SePSXUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void IE64_WithInstanceName()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
                 "Start-SeWebDriver -DriverName ie64 -InstanceName aaa;");
         }
     }

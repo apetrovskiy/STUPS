@@ -57,6 +57,8 @@ namespace UIAutomation
         [Parameter(Mandatory = false,
                    ParameterSetName = "UIAWildCard")]
         [Parameter(Mandatory = false,
+                   ParameterSetName = "Win32")]
+        [Parameter(Mandatory = false,
                    ParameterSetName = "UIAClassic")]
         public string Value { get; set; }
         
@@ -81,6 +83,8 @@ namespace UIAutomation
         
         [Parameter(Mandatory = false,
                    ParameterSetName = "Win32")]
+        [Parameter(Mandatory = false,
+                   ParameterSetName = "UIASearch")]
         public SwitchParameter Win32 { get; set; }
         
         [Parameter (Mandatory = false,

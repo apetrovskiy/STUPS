@@ -32,13 +32,13 @@ namespace UIAutomation
     public static class UIAHelper
     {
 
-//        #region getting a control
-//        [DllImport("user32.dll", EntryPoint="FindWindowEx", CharSet=CharSet.Auto)]
-//        private static extern IntPtr FindWindowEx(IntPtr hwndParent, 
-//                                          IntPtr hwndChildAfter,
-//                                          string lpszClass,
-//                                          string lpszWindow);
-//        #endregion getting a control
+        //        #region getting a control
+        //        [DllImport("user32.dll", EntryPoint="FindWindowEx", CharSet=CharSet.Auto)]
+        //        private static extern IntPtr FindWindowEx(IntPtr hwndParent,
+        //                                          IntPtr hwndChildAfter,
+        //                                          string lpszClass,
+        //                                          string lpszWindow);
+        //        #endregion getting a control
         
         private static Highlighter highlighter = null;
         private static Highlighter highlighterParent = null;
@@ -67,42 +67,42 @@ namespace UIAutomation
             
             //if ("*" == name || string.Empty == name) {
             cmdlet.WriteVerbose(cmdlet, "using null instead of name");
-//            controlHandle = 
-//                NativeMethods.FindWindowEx(handle, controlHandle, null, null);
-//                //NativeMethods.FindWindowEx(handle, IntPtr.Zero, null, null);
-//            //} else {
-//            //    cmdlet.WriteVerbose(cmdlet, "using name");
-//            //    controlHandle = 
-//            //        //NativeMethods.FindWindowEx(handle, controlHandle, null, null); //name);
-//            //        NativeMethods.FindWindowEx(handle, controlHandle, null, name);
-//            //}
-//            if (controlHandle != IntPtr.Zero) {
-//                cmdlet.WriteVerbose(cmdlet, "found the control by its handle");
-//                // 20120827
-//                //return controlHandle;
-//                controlHandles.Add(controlHandle);
-//            }
+            //            controlHandle =
+            //                NativeMethods.FindWindowEx(handle, controlHandle, null, null);
+            //                //NativeMethods.FindWindowEx(handle, IntPtr.Zero, null, null);
+            //            //} else {
+            //            //    cmdlet.WriteVerbose(cmdlet, "using name");
+            //            //    controlHandle =
+            //            //        //NativeMethods.FindWindowEx(handle, controlHandle, null, null); //name);
+            //            //        NativeMethods.FindWindowEx(handle, controlHandle, null, name);
+            //            //}
+            //            if (controlHandle != IntPtr.Zero) {
+            //                cmdlet.WriteVerbose(cmdlet, "found the control by its handle");
+            //                // 20120827
+            //                //return controlHandle;
+            //                controlHandles.Add(controlHandle);
+            //            }
             
-cmdlet.WriteVerbose(cmdlet, "test >>>>>>>>>>>>>>>>>>>>>>>>>");
-try{ cmdlet.WriteVerbose(cmdlet, "name = " + AutomationElement.FromHandle(controlHandle).Current.Name); } catch {}
-try{ cmdlet.WriteVerbose(cmdlet, "automationid = " + AutomationElement.FromHandle(controlHandle).Current.AutomationId); } catch {}
-try{ cmdlet.WriteVerbose(cmdlet, "class = " + AutomationElement.FromHandle(controlHandle).Current.ClassName); } catch {}
-try{ cmdlet.WriteVerbose(cmdlet, "control type = " + AutomationElement.FromHandle(controlHandle).Current.ControlType.ProgrammaticName); } catch {}
+            cmdlet.WriteVerbose(cmdlet, "test >>>>>>>>>>>>>>>>>>>>>>>>>");
+            try{ cmdlet.WriteVerbose(cmdlet, "name = " + AutomationElement.FromHandle(controlHandle).Current.Name); } catch {}
+            try{ cmdlet.WriteVerbose(cmdlet, "automationid = " + AutomationElement.FromHandle(controlHandle).Current.AutomationId); } catch {}
+            try{ cmdlet.WriteVerbose(cmdlet, "class = " + AutomationElement.FromHandle(controlHandle).Current.ClassName); } catch {}
+            try{ cmdlet.WriteVerbose(cmdlet, "control type = " + AutomationElement.FromHandle(controlHandle).Current.ControlType.ProgrammaticName); } catch {}
             
             // 20120827
             //if (controlHandle == IntPtr.Zero) {
-                
+            
             // search at this level
             do {
-//                cmdlet.WriteVerbose(
-//                    cmdlet, 
-//                    "performing the recursive search at level " + level.ToString());
+                //                cmdlet.WriteVerbose(
+                //                    cmdlet,
+                //                    "performing the recursive search at level " + level.ToString());
                 cmdlet.WriteVerbose(
-                    cmdlet, 
+                    cmdlet,
                     "performing the search at level " + level.ToString());
-                controlHandle = 
+                controlHandle =
                     NativeMethods.FindWindowEx(handle, controlHandle, null, null);
-                    //NativeMethods.FindWindowEx(handle, IntPtr.Zero, null, null);
+                //NativeMethods.FindWindowEx(handle, IntPtr.Zero, null, null);
                 if (controlHandle != IntPtr.Zero) {
                     
                     // 20120827
@@ -110,12 +110,12 @@ try{ cmdlet.WriteVerbose(cmdlet, "control type = " + AutomationElement.FromHandl
                     
                     
                     cmdlet.WriteVerbose(
-                        cmdlet, 
+                        cmdlet,
                         "performing the recursive search at level " + (level + 1).ToString());
                     // 20120827
-                    //resultHandle = 
+                    //resultHandle =
                     tempControlHandles =
-                    //controlHandles =
+                        //controlHandles =
                         GetControlByName(cmdlet, controlHandle, name, level + 1);
                     //break;
                     if (null != tempControlHandles && 0 != tempControlHandles.Count) {
@@ -132,12 +132,12 @@ try{ cmdlet.WriteVerbose(cmdlet, "control type = " + AutomationElement.FromHandl
                     //}
                 }
             } while (controlHandle != IntPtr.Zero);
-                
-                // recursive search
-                
-                    
-//                    cmdlet.WriteVerbose(cmdlet, "The handle to the control of interest is zero");
-//                    return result;
+            
+            // recursive search
+            
+            
+            //                    cmdlet.WriteVerbose(cmdlet, "The handle to the control of interest is zero");
+            //                    return result;
 
             // 20120827
             //}
@@ -182,7 +182,7 @@ try{ cmdlet.WriteVerbose(cmdlet, "control type = " + AutomationElement.FromHandl
             
             try {
                 System.IntPtr handle =
-                        new System.IntPtr(container.Current.NativeWindowHandle);
+                    new System.IntPtr(container.Current.NativeWindowHandle);
                 if (handle == IntPtr.Zero){
                     cmdlet.WriteVerbose(cmdlet, "The container control has no handle");
                     // 20120824
@@ -193,13 +193,13 @@ try{ cmdlet.WriteVerbose(cmdlet, "control type = " + AutomationElement.FromHandl
                 }
                 
                 // 20120827
-                //System.IntPtr resultHandle = 
+                //System.IntPtr resultHandle =
                 //    GetControlByName(cmdlet, handle, name, 1);
                 
                 // 20120827
                 ArrayList handlesCollection =
                     new ArrayList();
-                handlesCollection = 
+                handlesCollection =
                     GetControlByName(cmdlet, handle, name, 1);
 
                 // 20120829
@@ -209,12 +209,12 @@ try{ cmdlet.WriteVerbose(cmdlet, "control type = " + AutomationElement.FromHandl
                 //    options =
                 //        WildcardOptions.Compiled;
                 //} else {
-                    options =
-                        WildcardOptions.IgnoreCase |
-                        WildcardOptions.Compiled;
+                options =
+                    WildcardOptions.IgnoreCase |
+                    WildcardOptions.Compiled;
                 //}
                 
-                WildcardPattern wildcardName = 
+                WildcardPattern wildcardName =
                     new WildcardPattern(name,options);
                 
                 // 20120827
@@ -226,22 +226,37 @@ try{ cmdlet.WriteVerbose(cmdlet, "control type = " + AutomationElement.FromHandl
                             if (IntPtr.Zero != controlHandle) {
                                 //resultCollection.Add
                                 cmdlet.WriteVerbose(cmdlet, "the handle is not null");
-                                AutomationElement tempElement = 
+                                AutomationElement tempElement =
                                     AutomationElement.FromHandle(controlHandle);
                                 cmdlet.WriteVerbose(cmdlet, "adding the handle to the collection");
                                 
-cmdlet.WriteVerbose(cmdlet, name);
-cmdlet.WriteVerbose(cmdlet, tempElement.Current.Name);
+                                cmdlet.WriteVerbose(cmdlet, name);
+                                cmdlet.WriteVerbose(cmdlet, tempElement.Current.Name);
                                 // 20120829
                                 //if (tempElement.Current.Name == name) {
                                 //    resultCollection.Add(tempElement);
                                 //}
+                                string elementName = tempElement.Current.Name;
                                 // 20120829
-                                if (wildcardName.IsMatch(tempElement.Current.Name)) {
-cmdlet.WriteVerbose(cmdlet, "match!");
+                                //if (wildcardName.IsMatch(tempElement.Current.Name)) {
+                                if (wildcardName.IsMatch(elementName)) {
+                                    cmdlet.WriteVerbose(cmdlet, "name matches!");
                                     resultCollection.Add(tempElement);
                                 }
-                                
+                                // 20130207
+                                try {
+                                if (null != cmdlet.Value && string.Empty != cmdlet.Value) {
+                                    string elementValue =
+                                        (tempElement.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern).Current.Value;
+                                    if (null != elementValue && string.Empty != elementValue) {
+                                        if (wildcardName.IsMatch(elementValue)) {
+                                            cmdlet.WriteVerbose(cmdlet, "value matches!");
+                                            resultCollection.Add(tempElement);
+                                        }
+                                    }
+                                }
+                                }
+                                catch {}
                                 //resultCollection.Add(tempElement);
                             }
                         }
@@ -251,27 +266,27 @@ cmdlet.WriteVerbose(cmdlet, "match!");
                     }
                 }
                 
-//                IntPtr control = IntPtr.Zero;
-////                IntPtr control = 
-////                    NativeMethods.FindWindowEx(handle, IntPtr.Zero, null, name);
-//                control = 
-//                    NativeMethods.FindWindowEx(handle, control, null, name);
-//                if (control == IntPtr.Zero) { //return null;
-//                    
-//                    // search at this level
-//                    
-//                    
-//                    // recursive search
-//                    
-//                        
-////                    cmdlet.WriteVerbose(cmdlet, "The handle to the control of interest is zero");
-////                    return result;
-//                }
+                //                IntPtr control = IntPtr.Zero;
+                ////                IntPtr control =
+                ////                    NativeMethods.FindWindowEx(handle, IntPtr.Zero, null, name);
+                //                control =
+                //                    NativeMethods.FindWindowEx(handle, control, null, name);
+                //                if (control == IntPtr.Zero) { //return null;
+//
+                //                    // search at this level
+//
+//
+                //                    // recursive search
+//
+//
+                ////                    cmdlet.WriteVerbose(cmdlet, "The handle to the control of interest is zero");
+                ////                    return result;
+                //                }
 
                 // 20120827
                 //if (resultHandle != IntPtr.Zero) {
                 //    // 20120824
-                //    result = 
+                //    result =
                 //    //resultCollection[0] =
                 //        AutomationElement.FromHandle(resultHandle);
                 //}
@@ -298,7 +313,7 @@ cmdlet.WriteVerbose(cmdlet, "match!");
             //try { if (highlighterFirstChild != null) { highlighterFirstChild.Dispose(); } } catch {}
             if ((element as AutomationElement) != null) {
                 //highlighter = new Highlighter(element, Highlighters.Element);
-                highlighter = 
+                highlighter =
                     new Highlighter(
                         element.Current.BoundingRectangle.Height,
                         element.Current.BoundingRectangle.Width,
@@ -308,9 +323,9 @@ cmdlet.WriteVerbose(cmdlet, "match!");
                         Highlighters.Element);
             }
             if (Preferences.HighlightParent) {
-                AutomationElement parent = 
+                AutomationElement parent =
                     UIAHelper.GetParent(element);
-                highlighterParent = 
+                highlighterParent =
                     //new Highlighter(UIAHelper.GetParent(element), Highlighters.Parent);
                     new Highlighter(
                         parent.Current.BoundingRectangle.Height,
@@ -319,12 +334,12 @@ cmdlet.WriteVerbose(cmdlet, "match!");
                         parent.Current.BoundingRectangle.Y,
                         parent.Current.NativeWindowHandle,
                         Highlighters.Parent);
-            }            
+            }
 
-//            if (Preferences.HighlightFirstChild) {
-//                highlighterFirstChild = 
-//                    new Highlighter(UIAHelper.GetFirstChild(element), Highlighters.FirstChild);
-//            }
+            //            if (Preferences.HighlightFirstChild) {
+            //                highlighterFirstChild =
+            //                    new Highlighter(UIAHelper.GetFirstChild(element), Highlighters.FirstChild);
+            //            }
         }
         
         internal static void HideHighlighters()
@@ -333,27 +348,27 @@ cmdlet.WriteVerbose(cmdlet, "match!");
             highlighterParent.Dispose();
         }
         
-//        internal static string GetTimedFileName()
-//        {
-//            string result = 
-//                System.DateTime.Now.Year.ToString() +
-//                System.DateTime.Now.Month.ToString() +
-//                System.DateTime.Now.Day.ToString() +
-//                System.DateTime.Now.Hour.ToString() +
-//                System.DateTime.Now.Minute.ToString() +
-//                System.DateTime.Now.Second.ToString() +
-//                System.DateTime.Now.Millisecond.ToString();
-//            return result;
-//        }
+        //        internal static string GetTimedFileName()
+        //        {
+        //            string result =
+        //                System.DateTime.Now.Year.ToString() +
+        //                System.DateTime.Now.Month.ToString() +
+        //                System.DateTime.Now.Day.ToString() +
+        //                System.DateTime.Now.Hour.ToString() +
+        //                System.DateTime.Now.Minute.ToString() +
+        //                System.DateTime.Now.Second.ToString() +
+        //                System.DateTime.Now.Millisecond.ToString();
+        //            return result;
+        //        }
         
         private static string getTimedFileNameForScreenShot()
         {
-            string result = 
+            string result =
                 //"'" +
                 Preferences.ScreenShotFolder +
-                @"\" + 
+                @"\" +
                 PSTestLib.PSTestHelper.GetTimedFileName(); // +
-                //"'";
+            //"'";
             return result;
         }
         
@@ -370,15 +385,15 @@ cmdlet.WriteVerbose(cmdlet, "match!");
             System.Drawing.Imaging.ImageFormat format)
         {
             
-//            if (Preferences.HideHighlighterOnScreenShotTaking) {
-//                UIAHelper.HideHighlighters();
-//            }
+            //            if (Preferences.HideHighlighterOnScreenShotTaking) {
+            //                UIAHelper.HideHighlighters();
+            //            }
             
 
 
-//if (null == cmdlet) {
-//    cmdlet = new HasControlInputCmdletBase();
-//}
+            //if (null == cmdlet) {
+            //    cmdlet = new HasControlInputCmdletBase();
+            //}
             
             // 20120824
             if (null == cmdlet.InputObject || 0 == cmdlet.InputObject.Length) {
@@ -390,7 +405,7 @@ cmdlet.WriteVerbose(cmdlet, "match!");
             }
 
             cmdlet.WriteVerbose(
-                cmdlet, 
+                cmdlet,
                 "input array consists of " + cmdlet.InputObject.Length.ToString() + " objects");
 
             // 20120823
@@ -399,9 +414,9 @@ cmdlet.WriteVerbose(cmdlet, "match!");
                 cmdlet.WriteVerbose(cmdlet, "calculating the size");
                 int absoluteX = 0;
                 int absoluteY = 0;
-                int absoluteWidth = 
+                int absoluteWidth =
                     Screen.PrimaryScreen.Bounds.Width;
-                int absoluteHeight = 
+                int absoluteHeight =
                     Screen.PrimaryScreen.Bounds.Height;
 
                 if (inputObject == null) {
@@ -466,184 +481,184 @@ cmdlet.WriteVerbose(cmdlet, "match!");
         {
             
             
-            if (Preferences.HideHighlighterOnScreenShotTaking && 
-        	    ! Preferences.ShowExecutionPlan) {
+            if (Preferences.HideHighlighterOnScreenShotTaking &&
+                ! Preferences.ShowExecutionPlan) {
                 UIAHelper.HideHighlighters();
             }
             
-//            // 20120824
-//            if (null == cmdlet.InputObject || 0 == cmdlet.InputObject.Length) {
-//                cmdlet.WriteVerbose(cmdlet, "(null == cmdlet.InputObject || 0 == cmdlet.InputObject.Length)");
-//                cmdlet.InputObject = new AutomationElement[] { AutomationElement.RootElement };
-//            }
-//            cmdlet.WriteVerbose(
-//                cmdlet, 
-//                "input array consists of " + cmdlet.InputObject.Length.ToString() + " objects");
-//            // 20120823
-//            foreach (AutomationElement inputObject in cmdlet.InputObject) {
-                cmdlet.WriteVerbose(cmdlet, "calculating the size");
-                int absoluteX = 0;
-                int absoluteY = 0;
-                int absoluteWidth = 
-                    Screen.PrimaryScreen.Bounds.Width;
-                int absoluteHeight = 
-                    Screen.PrimaryScreen.Bounds.Height;
+            //            // 20120824
+            //            if (null == cmdlet.InputObject || 0 == cmdlet.InputObject.Length) {
+            //                cmdlet.WriteVerbose(cmdlet, "(null == cmdlet.InputObject || 0 == cmdlet.InputObject.Length)");
+            //                cmdlet.InputObject = new AutomationElement[] { AutomationElement.RootElement };
+            //            }
+            //            cmdlet.WriteVerbose(
+            //                cmdlet,
+            //                "input array consists of " + cmdlet.InputObject.Length.ToString() + " objects");
+            //            // 20120823
+            //            foreach (AutomationElement inputObject in cmdlet.InputObject) {
+            cmdlet.WriteVerbose(cmdlet, "calculating the size");
+            int absoluteX = 0;
+            int absoluteY = 0;
+            int absoluteWidth =
+                Screen.PrimaryScreen.Bounds.Width;
+            int absoluteHeight =
+                Screen.PrimaryScreen.Bounds.Height;
 
-                if (null == element) {
-                    if (Left > 0) { absoluteX = Left; }
-                    if (Top > 0) { absoluteY = Top; }
-                    if (Height > 0) { absoluteHeight = Height; }
-                    if (Width > 0) { absoluteWidth = Width; }
+            if (null == element) {
+                if (Left > 0) { absoluteX = Left; }
+                if (Top > 0) { absoluteY = Top; }
+                if (Height > 0) { absoluteHeight = Height; }
+                if (Width > 0) { absoluteWidth = Width; }
+            }
+            cmdlet.WriteVerbose(cmdlet, "X = " + absoluteX.ToString());
+            cmdlet.WriteVerbose(cmdlet, "Y = " + absoluteY.ToString());
+            cmdlet.WriteVerbose(cmdlet, "Height = " + absoluteHeight.ToString());
+            cmdlet.WriteVerbose(cmdlet, "Width = " + absoluteWidth.ToString());
+
+            if (null != element && 0 < (int)element.Current.ProcessId) {
+                absoluteX = (int)element.Current.BoundingRectangle.X + Left;
+                absoluteY = (int)element.Current.BoundingRectangle.Y + Top;
+                absoluteHeight = (int)element.Current.BoundingRectangle.Height + Height;
+                absoluteWidth = (int)element.Current.BoundingRectangle.Width + Width;
+            }
+
+            if (0 == Height) {Height = Screen.PrimaryScreen.Bounds.Height; }
+            if (0 == Width) {Width = Screen.PrimaryScreen.Bounds.Width; }
+
+            if (element != null && (int)element.Current.ProcessId > 0) {
+
+                try {
+
+                    element.SetFocus();
+
                 }
-                cmdlet.WriteVerbose(cmdlet, "X = " + absoluteX.ToString());
-                cmdlet.WriteVerbose(cmdlet, "Y = " + absoluteY.ToString());
-                cmdlet.WriteVerbose(cmdlet, "Height = " + absoluteHeight.ToString());
-                cmdlet.WriteVerbose(cmdlet, "Width = " + absoluteWidth.ToString());
+                catch {
+                    // ??
 
-                if (null != element && 0 < (int)element.Current.ProcessId) {
-                    absoluteX = (int)element.Current.BoundingRectangle.X + Left;
-                    absoluteY = (int)element.Current.BoundingRectangle.Y + Top;
-                    absoluteHeight = (int)element.Current.BoundingRectangle.Height + Height;
-                    absoluteWidth = (int)element.Current.BoundingRectangle.Width + Width;
                 }
+            }
 
-                if (0 == Height) {Height = Screen.PrimaryScreen.Bounds.Height; }
-                if (0 == Width) {Width = Screen.PrimaryScreen.Bounds.Width; }
+            GetScreenshotOfSquare(
+                cmdlet,
+                description,
+                save,
+                absoluteX,
+                absoluteY,
+                absoluteHeight,
+                absoluteWidth,
+                path,
+                format);
 
-                if (element != null && (int)element.Current.ProcessId > 0) {
-
-                    try {
-
-                        element.SetFocus();
-
-                    }
-                    catch {
-                        // ??
-
-                    }
-                }
-
-                GetScreenshotOfSquare(
-                    cmdlet,
-                    description,
-                    save,
-                    absoluteX,
-                    absoluteY,
-                    absoluteHeight,
-                    absoluteWidth,
-                    path,
-                    format);
-
-//            }
+            //            }
         }
- 
+        
         [STAThread]
         public static void GetScreenshotOfSquare(//HasTimeoutCmdletBase cmdlet,
-                                                  PSCmdletBase cmdlet,
-                                                  string description,
-                                                  bool save,
-                                                  int absoluteX, //int Left, //, = 0,
-                                                  int absoluteY, //int Top, // = 0,
-                                                  int absoluteHeight, //int Height, // = 0,
-                                                  int absoluteWidth, //int Width,
-                                                  string path, //)// = 0) //, int monitor)
-                                                  System.Drawing.Imaging.ImageFormat format)
+                                                 PSCmdletBase cmdlet,
+                                                 string description,
+                                                 bool save,
+                                                 int absoluteX, //int Left, //, = 0,
+                                                 int absoluteY, //int Top, // = 0,
+                                                 int absoluteHeight, //int Height, // = 0,
+                                                 int absoluteWidth, //int Width,
+                                                 string path, //)// = 0) //, int monitor)
+                                                 System.Drawing.Imaging.ImageFormat format)
         {
-                Image myImage = 
-                    new Bitmap(absoluteWidth, 
-                               absoluteHeight);
+            Image myImage =
+                new Bitmap(absoluteWidth,
+                           absoluteHeight);
 
-                 Graphics gr1 = Graphics.FromImage(myImage); 
+            Graphics gr1 = Graphics.FromImage(myImage);
 
-                IntPtr dc1 = gr1.GetHdc(); 
-                
-                // for now, the primary display only
-                IntPtr desktopHandle = NativeMethods.GetDesktopWindow();
-                IntPtr dc2 = NativeMethods.GetWindowDC(desktopHandle); 
-                 // IntPtr dc2 = GetWindowDC(GetDesktopWindow()); 
-
-                NativeMethods.BitBlt(dc1, 0, 0, absoluteWidth,
-                    absoluteHeight, dc2, absoluteX, absoluteY, 13369376); 
-
-                gr1.ReleaseHdc(dc1);
-                //  // 
-                NativeMethods.ReleaseDC(desktopHandle, dc2);
-                //  // 
-                if (save) {
-                    if (description != null && 
-                        description != string.Empty && 
-                        description.Length > 0) {
-
-                        description = 
-                        "_" + 
-                        description;
-                    }
-
-                    string fileName = string.Empty;
-                    if (path != null && path != string.Empty &&
-                        path.Length > 0 &&
-                        path != @"\") { // && ! System.IO.File.Exists(path)) {
-
-                        if (System.IO.File.Exists(path)) {
-                            cmdlet.WriteError(
-                                cmdlet,
-                                "File '" + 
-                                path + 
-                                "' already exists",
-                                "FileAlreadyExists",
-                                ErrorCategory.InvalidArgument,
-                                true);
-                        }
-                        
-//                        if (System.IO.File.Open(
-                        fileName = path;
-                    } else {
-                        if (cmdlet is Commands.SaveUIAScreenshotCommand) {
-
-                            fileName =
-                                getTimedFileNameForScreenShot() +
-                                //((Commands.SaveUIAScreenshotCommand)cmdlet).Description +
-                                description +
-                                //".jpg";
-                                // 20120926
-                                //".bmp";
-                                getFileExtensionByImageType(format);
-                        } else {  // ??
-                            fileName =
-                                getTimedFileNameForScreenShot() +
-                                // 20120927
-                                description +
-                                //".jpg";
-                                // 20120926
-                                //".bmp";
-                                //getFileExtensionByImageType(Preferences.OnErrorScreenShotFormat);
-                                getFileExtensionByImageType(format);
-                        }
-                    }
-
-                    //fileName = "'" + fileName + "'";
-                     //string fileName =
-                     // getTimedFileNameForScreenShot() + 
-                     // ((Commands.SaveUIAScreenshotCommand)cmdlet).Description + 
-                     // ".jpg";
-                     myImage.Save(fileName, format); 
-                     // CurrentData.TestResults[CurrentData.TestResults.Count - 1].Details.Add(fileName);
-                     //TMX.TestData.AddTestResultDetail(fileName);
-
-                     //TMX.TMXHelper.AddTestResultScreenshotDetail("'" + fileName + "'");
-                     TMX.TMXHelper.AddTestResultScreenshotDetail(fileName);
-                } else {
-                    cmdlet.WriteObject(cmdlet, myImage);
-                }
-                 //  //  //
-                 // ReleaseDC(desktopHandle, dc2);  //// ??
-                 //  // 
-             
-        //} // 20120823
+            IntPtr dc1 = gr1.GetHdc();
             
-             
-    }  //// ??
-    
+            // for now, the primary display only
+            IntPtr desktopHandle = NativeMethods.GetDesktopWindow();
+            IntPtr dc2 = NativeMethods.GetWindowDC(desktopHandle);
+            // IntPtr dc2 = GetWindowDC(GetDesktopWindow());
+
+            NativeMethods.BitBlt(dc1, 0, 0, absoluteWidth,
+                                 absoluteHeight, dc2, absoluteX, absoluteY, 13369376);
+
+            gr1.ReleaseHdc(dc1);
+            //  // 
+            NativeMethods.ReleaseDC(desktopHandle, dc2);
+            //  // 
+            if (save) {
+                if (description != null &&
+                    description != string.Empty &&
+                    description.Length > 0) {
+
+                    description =
+                        "_" +
+                        description;
+                }
+
+                string fileName = string.Empty;
+                if (path != null && path != string.Empty &&
+                    path.Length > 0 &&
+                    path != @"\") { // && ! System.IO.File.Exists(path)) {
+
+                    if (System.IO.File.Exists(path)) {
+                        cmdlet.WriteError(
+                            cmdlet,
+                            "File '" +
+                            path +
+                            "' already exists",
+                            "FileAlreadyExists",
+                            ErrorCategory.InvalidArgument,
+                            true);
+                    }
+                    
+                    //                        if (System.IO.File.Open(
+                    fileName = path;
+                } else {
+                    if (cmdlet is Commands.SaveUIAScreenshotCommand) {
+
+                        fileName =
+                            getTimedFileNameForScreenShot() +
+                            //((Commands.SaveUIAScreenshotCommand)cmdlet).Description +
+                            description +
+                            //".jpg";
+                            // 20120926
+                            //".bmp";
+                            getFileExtensionByImageType(format);
+                    } else {  // ??
+                        fileName =
+                            getTimedFileNameForScreenShot() +
+                            // 20120927
+                            description +
+                            //".jpg";
+                            // 20120926
+                            //".bmp";
+                            //getFileExtensionByImageType(Preferences.OnErrorScreenShotFormat);
+                            getFileExtensionByImageType(format);
+                    }
+                }
+
+                //fileName = "'" + fileName + "'";
+                //string fileName =
+                // getTimedFileNameForScreenShot() +
+                // ((Commands.SaveUIAScreenshotCommand)cmdlet).Description +
+                // ".jpg";
+                myImage.Save(fileName, format);
+                // CurrentData.TestResults[CurrentData.TestResults.Count - 1].Details.Add(fileName);
+                //TMX.TestData.AddTestResultDetail(fileName);
+
+                //TMX.TMXHelper.AddTestResultScreenshotDetail("'" + fileName + "'");
+                TMX.TMXHelper.AddTestResultScreenshotDetail(fileName);
+            } else {
+                cmdlet.WriteObject(cmdlet, myImage);
+            }
+            //  //  //
+            // ReleaseDC(desktopHandle, dc2);  //// ??
+            //  // 
+            
+            //} // 20120823
+            
+            
+        }  //// ??
+        
         private static string getFileExtensionByImageType(System.Drawing.Imaging.ImageFormat format)
         {
             string result = string.Empty;
@@ -679,9 +694,9 @@ cmdlet.WriteVerbose(cmdlet, "match!");
                 case "WMF":
                     result = ".wmf";
                     break;
-                //default:
-                //    
-                //	break;
+                    //default:
+                    //
+                    //	break;
             }
             
             
@@ -696,7 +711,7 @@ cmdlet.WriteVerbose(cmdlet, "match!");
         private static bool errorInTheInnerCycle = false;
         
         /// <summary>
-        ///  
+        ///
         /// </summary>
         /// <param name="cmdlet"></param>
         internal static void ProcessingTranscript(TranscriptCmdletBase cmdlet)
@@ -704,7 +719,7 @@ cmdlet.WriteVerbose(cmdlet, "match!");
             Global.GTranscript = true;
             int counter = 0;
             
-            cmdlet.rootElement = 
+            cmdlet.rootElement =
                 System.Windows.Automation.AutomationElement.RootElement;
 
             cmdlet.startDate =
@@ -719,7 +734,7 @@ cmdlet.WriteVerbose(cmdlet, "match!");
         
         //internal static bool ProcessingTranscriptOnce(TranscriptCmdletBase cmdlet,
         /// <summary>
-        ///  
+        ///
         /// </summary>
         /// <param name="cmdlet"></param>
         /// <param name="counter"></param>
@@ -738,7 +753,7 @@ cmdlet.WriteVerbose(cmdlet, "match!");
             try {
                 // use Windows forms mouse code instead of WPF
                 System.Drawing.Point mouse = System.Windows.Forms.Cursor.Position;
-                System.Windows.Automation.AutomationElement element = 
+                System.Windows.Automation.AutomationElement element =
                     System.Windows.Automation.AutomationElement.FromPoint(
                         new System.Windows.Point(mouse.X, mouse.Y));
                 if (element != null && (int)element.Current.ProcessId > 0)
@@ -758,15 +773,15 @@ cmdlet.WriteVerbose(cmdlet, "match!");
             return true;
         }
         
-            #region working with an element
+        #region working with an element
         //private static void processingElement(TranscriptCmdletBase cmdlet, AutomationElement element)
         /// <summary>
-        ///  
+        ///
         /// </summary>
         /// <param name="cmdlet"></param>
         /// <param name="element"></param>
         public static bool ProcessingElement(
-            TranscriptCmdletBase cmdlet, 
+            TranscriptCmdletBase cmdlet,
             AutomationElement element)
             // 20120618 UIACOMWrapper
             //UIACOM::System.Windows.Automation.AutomationElement element)
@@ -788,351 +803,403 @@ cmdlet.WriteVerbose(cmdlet, "match!");
                 cacheRequest.Add(GridItemPattern.Pattern);
                 cacheRequest.Add(GridPattern.Pattern);
                 cacheRequest.Add(InvokePattern.Pattern);
-//                try {
-//                    cacheRequest.Add(ItemContainerPattern.Pattern);
-//                }
-//                catch {}
+                //                try {
+                //                    cacheRequest.Add(ItemContainerPattern.Pattern);
+                //                }
+                //                catch {}
                 cacheRequest.Add(MultipleViewPattern.Pattern);
                 cacheRequest.Add(RangeValuePattern.Pattern);
                 cacheRequest.Add(ScrollItemPattern.Pattern);
                 cacheRequest.Add(ScrollPattern.Pattern);
                 cacheRequest.Add(SelectionItemPattern.Pattern);
                 cacheRequest.Add(SelectionPattern.Pattern);
-//                try {
-//                    cacheRequest.Add(SynchronizedInputPattern.Pattern);
-//                }
-//                catch {}
+                //                try {
+                //                    cacheRequest.Add(SynchronizedInputPattern.Pattern);
+                //                }
+                //                catch {}
                 cacheRequest.Add(TableItemPattern.Pattern);
                 cacheRequest.Add(TablePattern.Pattern);
                 cacheRequest.Add(TextPattern.Pattern);
                 cacheRequest.Add(TogglePattern.Pattern);
                 cacheRequest.Add(TransformPattern.Pattern);
                 cacheRequest.Add(ValuePattern.Pattern);
-//                try {
-//                    cacheRequest.Add(VirtualizedItemPattern.Pattern);
-//                }
-//                catch {}
+                //                try {
+                //                    cacheRequest.Add(VirtualizedItemPattern.Pattern);
+                //                }
+                //                catch {}
                 cacheRequest.Add(WindowPattern.Pattern);
                 // cache patterns?
                 
                 // cacheRequest.Activate();
                 cacheRequest.Push();
                 
-                
-                
-                try{ 
+                try{
                     element.FindFirst(TreeScope.Element, System.Windows.Automation.Condition.TrueCondition);
                 }
-                catch { //(Exception eCacheRequest) {
-//                    Exception eCacheRequest2 = 
-//                        new Exception("Cache request:\r\n" + 
-//                                      eCacheRequest.Message);
-                    //throw(eCacheRequest2);
-                    
-                    // return result;
-                    //// return result; //// 
+                catch {
                 }
                 // element.GetUpdatedCache(cacheRequest);
                 
                 // if (lastRecordedItem.Count == 0 || element != lastRecordedItem[0]) {
+                try {
+                    // lastRecordedItem = new System.Collections.ArrayList();
+                    cmdlet.WriteVerbose(cmdlet, "getting ControlType");
+                    
+                    // 20130207
+                    string elementControlType =
+                        getElementControlTypeString(element);
+                    if (null == elementControlType || string.Empty == elementControlType) {
+                        return result;
+                    }
+                    
+                    string elementVerbosity = String.Empty; // ?
+
+                    elementVerbosity =
+                        "Get-UIA" + elementControlType;
+                    
+                    // collecting the element's properties for parameters
+                    bool hasName = false;
+                    elementVerbosity +=
+                        getElementPropertyString(cmdlet, element, "AutomationId", null, ref hasName);
+                    if (!cmdlet.NoClassInformation) {
+                        elementVerbosity +=
+                            getElementPropertyString(cmdlet, element, "Class", null, ref hasName);
+                    }
+                    elementVerbosity +=
+                        getElementPropertyString(cmdlet, element, "Name", null, ref hasName);
                     try {
-                        // lastRecordedItem = new System.Collections.ArrayList();
-                        cmdlet.WriteVerbose(cmdlet, "getting ControlType");
-                        string elementControlType = String.Empty;
-                        try {
-                            elementControlType = 
-                                element.Current.ControlType.ProgrammaticName;
-                                // getControlTypeNameOfAutomationElement(element, element);
-                                // element.Cached.ControlType.ProgrammaticName.Substring(
-                                // element.Cached.ControlType.ProgrammaticName.IndexOf('.') + 1);
-                        } 
-                        catch {
-                            elementControlType = 
-                                element.Cached.ControlType.ProgrammaticName;
-                        }
-                        if (elementControlType != string.Empty && // 20120306
-                            elementControlType.Length > 0) {
-                            elementControlType = 
-                                elementControlType.Substring(
-                                elementControlType.IndexOf('.') + 1);
-                        }
-                        string elementVerbosity = String.Empty;
-                        // if (elementControlType.Length > 0) {
-                        // if (element 
+                        ValuePattern pattern =
+                            element.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern;
+                        elementVerbosity +=
+                            getElementPropertyString(cmdlet, element, "Value", pattern, ref hasName);
+                    }
+                    catch {}
+                    if (hasName) {
+                        elementVerbosity +=
+                            getElementPropertyString(cmdlet, element, "Win32", null, ref hasName);
+                    }
+                    cmdlet.WriteVerbose(cmdlet,
+                                        "the concatenated result is: " +
+                                        elementVerbosity);
+                    // collected
+                    
+                    if (cmdlet.LastRecordedItem.Count == 0 || elementVerbosity != cmdlet.LastRecordedItem[0].ToString()) {
                         
-                        // added 20120126
-                        if (elementControlType == string.Empty || 
-                            elementControlType.Length == 0) {
-                            return result;
+                        if (!cmdlet.NoEvents) {
+                            cmdlet.WriteVerbose(cmdlet, "unsubscribe events");
+                            unsubscribeFromEventsDuringRecording(cmdlet); // thePreviouslyUsedElement);
+                            cmdlet.WriteVerbose(cmdlet, "events were unsubscribed");
                         }
-    
-                            elementVerbosity = 
-                                "Get-UIA" + elementControlType;
-                            try {
-                                cmdlet.WriteVerbose(cmdlet, "getting AutomationId");
-                                if (element.Current.AutomationId.Length > 0) {
-                                    elementVerbosity += (" -AutomationId '" + element.Current.AutomationId + "'");
-                                }
-                            }
-                            catch {
-                                if (element.Cached.AutomationId.Length > 0) {
-                                    elementVerbosity += (" -AutomationId '" + element.Cached.AutomationId + "'");
-                                }
-                            }
-                            if (!cmdlet.NoClassInformation) {
-                                try {
-                                    cmdlet.WriteVerbose(cmdlet, "getting ClassName");
-                                    if (element.Current.ClassName.Length > 0) {
-                                        elementVerbosity += (" -Class '" + element.Current.ClassName + "'");
-                                    }
-                                }
-                                catch {
-                                    if (element.Cached.ClassName.Length > 0) {
-                                        elementVerbosity += (" -Class '" + element.Cached.ClassName + "'");
-                                    }
-                                }
-                            }
-                            try { 
-                                cmdlet.WriteVerbose(cmdlet, "getting Name");
-                                if (element.Current.Name.Length > 0) {
-                                    elementVerbosity += (" -Name '" + element.Current.Name + "'");
-                                }
-                            } 
-                            catch {
-                                if (element.Cached.Name.Length > 0) {
-                                    elementVerbosity += (" -Name '" + element.Cached.Name + "'");
-                                }
-                            }
-                            // 20130207
-                            try {
-                                ValuePattern pattern =
-                                    element.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern;
-                                try { 
-                                    cmdlet.WriteVerbose(cmdlet, "getting Value");
-                                    //if (element.Current.Name.Length > 0) {
-                                    if (null != pattern.Current.Value && string.Empty != pattern.Current.Value) {
-                                        elementVerbosity += (" -Value '" + pattern.Current.Value + "'");
-                                    }
-                                }
-                                catch {
-                                    if (null != pattern.Cached.Value && string.Empty != pattern.Cached.Value) {
-                                        elementVerbosity += (" -Value '" + pattern.Cached.Value + "'");
-                                    }
-                                }
-                            }
-                            catch {}
-                            cmdlet.WriteVerbose(cmdlet, 
-                                                "the concatenated result is: " +
-                                                elementVerbosity);
-                        //}  //// ??
-                            
-                        if (cmdlet.LastRecordedItem.Count == 0 || elementVerbosity != cmdlet.LastRecordedItem[0].ToString()) {
+                        
+                        try{
+                            UIAHelper.Highlight(element);
+                        }
+                        catch {
+                        }
+                        
+                        cmdlet.LastRecordedItem = new System.Collections.ArrayList();
+                        string strElementPatterns = String.Empty;
+                        
+                        // if (WriteCurrentPattern) {
+                        // strElementPatterns = String.Empty;
+                        try {
+                            System.Windows.Automation.AutomationPattern[] elementPatterns =
+                                element.GetSupportedPatterns();
                             
                             if (!cmdlet.NoEvents) {
-                                cmdlet.WriteVerbose(cmdlet, "unsubscribe events");
-                                unsubscribeFromEventsDuringRecording(cmdlet); // thePreviouslyUsedElement);
-                                cmdlet.WriteVerbose(cmdlet, "events were unsubscribed");
+                                subscribeToEventsDuringRecording(cmdlet, element, elementPatterns);
                             }
                             
-                            try{
-                                UIAHelper.Highlight(element); //, Highlighters.Element);
-                                //UIAHelper.Highlight(UIAHelper.GetParent(element), Highlighters.Parent);
-                                //UIAHelper.Highlight(UIAHelper.GetFirstChild(element));
-                            }
-                            catch { //(Exception eHighlighter) {
-//                                Exception eHighlighter2 = 
-//                                    new Exception("Highligher:\r\n" + 
-//                                                  eHighlighter.Message);
-//                                throw(eHighlighter2);
-//                                return result;
-                            }
-                            
-                            cmdlet.LastRecordedItem = new System.Collections.ArrayList();
-                            string strElementPatterns = String.Empty;
-                            
-                            // if (WriteCurrentPattern) {
-                                // strElementPatterns = String.Empty;
-                                try {
-                                    System.Windows.Automation.AutomationPattern[] elementPatterns =
-                                        element.GetSupportedPatterns();
+                            if (cmdlet.WriteCurrentPattern) {
+                                foreach (System.Windows.Automation.AutomationPattern ptrn in elementPatterns)
+                                {
+                                    strElementPatterns += "\r\n\t\t#";
+                                    strElementPatterns +=
+                                        ptrn.ProgrammaticName.Replace("Identifiers.Pattern", "");
+                                    strElementPatterns += ": use the ";
                                     
-                                    if (!cmdlet.NoEvents) {
-                                        subscribeToEventsDuringRecording(cmdlet, element, elementPatterns);
-                                    }
+                                    string tempControlNameForCmdlet =
+                                        "-UIA" +
+                                        elementControlType;
                                     
-                                    if (cmdlet.WriteCurrentPattern) {
-                                        foreach (System.Windows.Automation.AutomationPattern ptrn in elementPatterns)
-                                        {
-                                            strElementPatterns += "\r\n\t\t#";
+                                    switch (ptrn.ProgrammaticName.Replace("Identifiers.Pattern", "")) {
+                                        case "InvokePattern":
                                             strElementPatterns +=
-                                                ptrn.ProgrammaticName.Replace("Identifiers.Pattern", "");
-                                            strElementPatterns += ": use the ";
-                                            
-                                            string tempControlNameForCmdlet = 
-                                                "-UIA" + 
-                                                elementControlType;
-                                            
-                                            switch (ptrn.ProgrammaticName.Replace("Identifiers.Pattern", "")) {
-                                                case "InvokePattern":
-                                                    strElementPatterns +=
-                                                        "Invoke" + tempControlNameForCmdlet + "Click";
-                                                    break;
-                                                case "ValuePattern":
-                                                    strElementPatterns +=
-                                                        "Set" + tempControlNameForCmdlet + "Text, Get" + tempControlNameForCmdlet + "Text";
-                                                    break;
-                                                case "RangeValuePattern":
-                                                    strElementPatterns +=
-                                                        "Set" + tempControlNameForCmdlet + "RangeValue, Get" + tempControlNameForCmdlet + "RangeValue";
-                                                    break;
-                                                case "SelectionItemPattern":
-                                                    string tempName = string.Empty;
-                                                    try { 
-                                                        if (element.Current.Name.Length > 0) {
-                                                            tempName = element.Current.Name;
-                                                        }
-                                                    } 
-                                                    catch {
-                                                        if (element.Cached.Name.Length > 0) {
-                                                            tempName = element.Cached.Name;
-                                                        }
-                                                    }
-                                                    strElementPatterns +=
-                                                        "Invoke" + 
-                                                        tempControlNameForCmdlet + 
-                                                        "SelectItem -ItemName '" + 
-                                                        tempName + 
-                                                        "', Get" + 
-                                                        tempControlNameForCmdlet +
-                                                        "SelectionItemState";
-                                                    break;
-                                                case "SelectionPattern":
-                                                    strElementPatterns +=
-                                                        "Get" + tempControlNameForCmdlet + "Selection";
-                                                    break;
-                                                case "ExpandCollapsePattern":
-                                                    strElementPatterns +=
-                                                        "Invoke" + 
-                                                        tempControlNameForCmdlet + 
-                                                        "Expand, Invoke" + 
-                                                        tempControlNameForCmdlet +
-                                                        "Collapse";
-                                                    break;
-                                                case "TogglePattern":
-                                                    strElementPatterns +=
-                                                        "Invoke" + 
-                                                        tempControlNameForCmdlet + 
-                                                        "Toggle, Get" + 
-                                                        tempControlNameForCmdlet +
-                                                        "ToggleState";
-                                                    break;
-                                                case "TransformPattern":
-                                                    strElementPatterns +=
-                                                        "Invoke" + 
-                                                        tempControlNameForCmdlet + 
-                                                        "TransformMove, Invoke" + 
-                                                        tempControlNameForCmdlet + 
-                                                        "TransformResize, Invoke" + 
-                                                        tempControlNameForCmdlet + 
-                                                        "TransformRotate";
-                                                    break;
-                                                case "WindowPattern":
-                                                    strElementPatterns +=
-                                                        "Invoke" + tempControlNameForCmdlet + "WindowState";
-                                                    break;
-//                                                case "Pattern":
-//                                                    strElementPatterns +=
-//                                                        "Invoke" + tempControlNameForCmdlet + "Click";
-//                                                    break;
+                                                "Invoke" + tempControlNameForCmdlet + "Click";
+                                            break;
+                                        case "ValuePattern":
+                                            strElementPatterns +=
+                                                "Set" + tempControlNameForCmdlet + "Text, Get" + tempControlNameForCmdlet + "Text";
+                                            break;
+                                        case "RangeValuePattern":
+                                            strElementPatterns +=
+                                                "Set" + tempControlNameForCmdlet + "RangeValue, Get" + tempControlNameForCmdlet + "RangeValue";
+                                            break;
+                                        case "SelectionItemPattern":
+                                            string tempName = string.Empty;
+                                            try {
+                                                if (element.Current.Name.Length > 0) {
+                                                    tempName = element.Current.Name;
+                                                }
                                             }
-                                            strElementPatterns += " cmdlet(s)";
-                                        }
-                                        if (strElementPatterns.Length == 0) {
-                                            strElementPatterns += "\r\n\t\t# no supported pattterns";
-                                        }
+                                            catch {
+                                                if (element.Cached.Name.Length > 0) {
+                                                    tempName = element.Cached.Name;
+                                                }
+                                            }
+                                            strElementPatterns +=
+                                                "Invoke" +
+                                                tempControlNameForCmdlet +
+                                                "SelectItem -ItemName '" +
+                                                tempName +
+                                                "', Get" +
+                                                tempControlNameForCmdlet +
+                                                "SelectionItemState";
+                                            break;
+                                        case "SelectionPattern":
+                                            strElementPatterns +=
+                                                "Get" + tempControlNameForCmdlet + "Selection";
+                                            break;
+                                        case "ExpandCollapsePattern":
+                                            strElementPatterns +=
+                                                "Invoke" +
+                                                tempControlNameForCmdlet +
+                                                "Expand, Invoke" +
+                                                tempControlNameForCmdlet +
+                                                "Collapse";
+                                            break;
+                                        case "TogglePattern":
+                                            strElementPatterns +=
+                                                "Invoke" +
+                                                tempControlNameForCmdlet +
+                                                "Toggle, Get" +
+                                                tempControlNameForCmdlet +
+                                                "ToggleState";
+                                            break;
+                                        case "TransformPattern":
+                                            strElementPatterns +=
+                                                "Invoke" +
+                                                tempControlNameForCmdlet +
+                                                "TransformMove, Invoke" +
+                                                tempControlNameForCmdlet +
+                                                "TransformResize, Invoke" +
+                                                tempControlNameForCmdlet +
+                                                "TransformRotate";
+                                            break;
+                                        case "WindowPattern":
+                                            strElementPatterns +=
+                                                "Invoke" + tempControlNameForCmdlet + "WindowState";
+                                            break;
+                                            //                                                case "Pattern":
+                                            //                                                    strElementPatterns +=
+                                            //                                                        "Invoke" + tempControlNameForCmdlet + "Click";
+                                            //                                                    break;
                                     }
-                                    strElementPatterns += "\r\n";
-                                } catch { //(Exception ePatterns) {
-//                                    Exception ePatterns2 = 
-//                                        new Exception("Patterns:\r\n" +
-//                                                      ePatterns.Message);
-                                    //throw(ePatterns2);
-                                    //return result;
-                                    // ErrorRecord
-                                    // 20120126
-//                                    if (element == null) { // ||
-//                                        //(element != null && element.Cached != null) ||
-//                                        //(element != null && (int)element.Current.ProcessId == 0)) {
-//                                        // continue;
-//                                        return;
-//                                    }
+                                    strElementPatterns += " cmdlet(s)";
                                 }
-                            //}
-                            cmdlet.LastRecordedItem.Add(elementVerbosity);
-                            try { cmdlet.WriteVerbose(elementVerbosity); } 
-                            catch {
-                                return result;
-                            }
-                            
-                            if (element == null) { return result; } // 20120306
-                            try{
-                                collectAncestors(cmdlet, element);
-                            }
-                            catch { //(Exception eCollecingAncestors) {
-//                                Exception eCollecingAncestors2 = 
-//                                    new Exception("Collecting ancestors:\r\n" + 
-//                                                  eCollecingAncestors.Message);
-                                //throw(eCollecingAncestors2);
-                                //return result;
-                            }
-
-                            if (!errorInTheInnerCycle) {
-                                if (cmdlet.LastRecordedItem.Count > 0) {
-                                    cmdlet.Recording.Add(cmdlet.LastRecordedItem);
-                                    if (cmdlet.WriteCurrentPattern) {
-                                        cmdlet.RecordingPatterns.Add(strElementPatterns);
-                                    }
+                                if (strElementPatterns.Length == 0) {
+                                    strElementPatterns += "\r\n\t\t# no supported pattterns";
                                 }
                             }
-                        // inTheOutercycle:
-                            
-                            cmdlet.thePreviouslyUsedElement = element;
-                        
+                            strElementPatterns += "\r\n";
+                        } catch { //(Exception ePatterns) {
+                            //                                    Exception ePatterns2 =
+                            //                                        new Exception("Patterns:\r\n" +
+                            //                                                      ePatterns.Message);
+                            //throw(ePatterns2);
+                            //return result;
+                            // ErrorRecord
+                            // 20120126
+                            //                                    if (element == null) { // ||
+                            //                                        //(element != null && element.Cached != null) ||
+                            //                                        //(element != null && (int)element.Current.ProcessId == 0)) {
+                            //                                        // continue;
+                            //                                        return;
+                            //                                    }
                         }
-                    } catch (Exception eGatheringCycle) {
-                        errorInTheGatheringCycle = true;
-                        errorMessageInTheGatheringCycle = 
-                            eGatheringCycle.Message;
-                        //throw (eGatheringCycle);
-                        Exception eGatheringCycle2 = 
-                            new Exception(
-                                "Gathering cycle\r\n" + 
-                                eGatheringCycle.Message);
-                        throw (eGatheringCycle2);
+                        //}
+                        cmdlet.LastRecordedItem.Add(elementVerbosity);
+                        try { cmdlet.WriteVerbose(elementVerbosity); }
+                        catch {
+                            return result;
+                        }
+                        
+                        if (element == null) { return result; } // 20120306
+                        try{
+                            collectAncestors(cmdlet, element);
+                        }
+                        catch { //(Exception eCollecingAncestors) {
+                            //                                Exception eCollecingAncestors2 =
+                            //                                    new Exception("Collecting ancestors:\r\n" +
+                            //                                                  eCollecingAncestors.Message);
+                            //throw(eCollecingAncestors2);
+                            //return result;
+                        }
+
+                        if (!errorInTheInnerCycle) {
+                            if (cmdlet.LastRecordedItem.Count > 0) {
+                                cmdlet.Recording.Add(cmdlet.LastRecordedItem);
+                                if (cmdlet.WriteCurrentPattern) {
+                                    cmdlet.RecordingPatterns.Add(strElementPatterns);
+                                }
+                            }
+                        }
+                        // inTheOutercycle:
+                        
+                        cmdlet.thePreviouslyUsedElement = element;
+                        
                     }
+                } catch (Exception eGatheringCycle) {
+                    errorInTheGatheringCycle = true;
+                    errorMessageInTheGatheringCycle =
+                        eGatheringCycle.Message;
+                    //throw (eGatheringCycle);
+                    Exception eGatheringCycle2 =
+                        new Exception(
+                            "Gathering cycle\r\n" +
+                            eGatheringCycle.Message);
+                    throw (eGatheringCycle2);
+                }
                 cacheRequest.Pop();
                 result = true;
                 return result;
                 
             } catch (Exception eUnknown) {
-                try {cmdlet.WriteDebug(cmdlet, eUnknown.Message); } 
+                try {cmdlet.WriteDebug(cmdlet, eUnknown.Message); }
                 catch {}
                 //throw (eUnknown);
-                Exception eUnknown2 = 
+                Exception eUnknown2 =
                     new Exception(
                         "Unknown\r\n" +
                         eUnknown.Message);
                 throw (eUnknown2);
             }
         }
-            #endregion working with an element
+
+        /// <summary>
+        /// Retrieves such element's properties as AutomationId, Name, Class(Name) and Value
+        /// </summary>
+        /// <param name="cmdlet">cmdlet to report</param>
+        /// <param name="element">The element properties taken from</param>
+        /// <param name="propertyName">The name of property</param>
+        /// <param name="pattern">an object of the ValuePattern type</param>
+        /// <returns></returns>
+        private static string getElementPropertyString(TranscriptCmdletBase cmdlet, AutomationElement element, string propertyName, ValuePattern pattern, ref bool hasName)
+        {
+            cmdlet.WriteVerbose(cmdlet, "getting " + propertyName);
+            string tempString = string.Empty;
+            try {
+                
+                switch (propertyName) {
+                    case "Name":
+                        if (0 < element.Current.Name.Length) {
+                            tempString = element.Current.Name;
+                            hasName = true;
+                        }
+                        break;
+                    case "AutomationId":
+                        if (0 < element.Current.AutomationId.Length) {
+                            tempString = element.Current.AutomationId;
+                        }
+                        break;
+                    case "Class":
+                        if (0 < element.Current.ClassName.Length) {
+                            tempString = element.Current.ClassName;
+                        }
+                        break;
+                    case "Value":
+                        if (null != pattern.Current.Value && string.Empty != pattern.Current.Value) {
+                            tempString = pattern.Current.Value;
+                            hasName = true;
+                        }
+                        break;
+                    case "Win32":
+                        if (0 < element.Current.NativeWindowHandle) {
+                            tempString = ".";
+                        }
+                        break;
+                    default:
+                        
+                    	break;
+                }
+            } catch {
+                switch (propertyName) {
+                    case "Name":
+                        if (0 < element.Cached.Name.Length) {
+                            tempString = element.Cached.Name;
+                            hasName = true;
+                        }
+                        break;
+                    case "AutomationId":
+                        if (0 < element.Cached.AutomationId.Length) {
+                            tempString = element.Cached.AutomationId;
+                        }
+                        break;
+                    case "Class":
+                        if (0 < element.Cached.ClassName.Length) {
+                            tempString = element.Cached.ClassName;
+                        }
+                        break;
+                    case "Value":
+                        if (null != pattern.Cached.Value && string.Empty != pattern.Cached.Value) {
+                            tempString = pattern.Cached.Value;
+                            hasName = true;
+                        }
+                        break;
+                    case "Win32":
+                        if (0 < element.Cached.NativeWindowHandle) {
+                            tempString = ".";
+                        }
+                        break;
+                    default:
+                        
+                    	break;
+                }
+            }
+            if (null == tempString || string.Empty == tempString) {
+                return string.Empty;
+            } else {
+                if ("Win32" == propertyName) {
+                    tempString =
+                        " -" + propertyName;
+                } else {
+                    tempString =
+                        " -" + propertyName + " '" + tempString + "'";
+                }
+                return tempString;
+            }
+        }
+
+        /// <summary>
+        /// Retrievs an element's ControlType property as a string.
+        /// </summary>
+        /// <param name="element">AutomationElement</param>
+        /// <returns>string</returns>
+        private static string getElementControlTypeString(AutomationElement element)
+        {
+            string elementControlType = String.Empty;
+            try {
+                elementControlType = element.Current.ControlType.ProgrammaticName;
+            } catch {
+                elementControlType = element.Cached.ControlType.ProgrammaticName;
+            }
+            if (string.Empty != elementControlType && 0 < elementControlType.Length) {
+                elementControlType = elementControlType.Substring(elementControlType.IndexOf('.') + 1);
+            }
+            //string elementVerbosity = String.Empty;
+            //if (string.Empty == elementControlType || 0 == elementControlType.Length) {
+            //    return result;
+            //}
+            return elementControlType;
+        }
+        #endregion working with an element
         
-            #region collect ancestors
+        #region collect ancestors
         internal static AutomationElement GetParent(AutomationElement element)
         {
             AutomationElement result = null;
             
-            System.Windows.Automation.TreeWalker walker = 
+            System.Windows.Automation.TreeWalker walker =
                 new System.Windows.Automation.TreeWalker(
                     System.Windows.Automation.Condition.TrueCondition);
             
@@ -1148,7 +1215,7 @@ cmdlet.WriteVerbose(cmdlet, "match!");
         {
             AutomationElement result = null;
             
-            System.Windows.Automation.TreeWalker walker = 
+            System.Windows.Automation.TreeWalker walker =
                 new System.Windows.Automation.TreeWalker(
                     System.Windows.Automation.Condition.TrueCondition);
             
@@ -1159,15 +1226,15 @@ cmdlet.WriteVerbose(cmdlet, "match!");
             
             return result;
         }
-            
-       /// <summary>
-       ///  
-       /// </summary>
-       /// <param name="cmdlet"></param>
-       /// <param name="element"></param>
+        
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="cmdlet"></param>
+        /// <param name="element"></param>
         private static void collectAncestors(TranscriptCmdletBase cmdlet, AutomationElement element)
         {
-            System.Windows.Automation.TreeWalker walker = 
+            System.Windows.Automation.TreeWalker walker =
                 new System.Windows.Automation.TreeWalker(
                     System.Windows.Automation.Condition.TrueCondition);
             System.Windows.Automation.AutomationElement testparent;
@@ -1180,43 +1247,43 @@ cmdlet.WriteVerbose(cmdlet, "match!");
                 testparent = element;
                 
                 while (testparent != null && (int)testparent.Current.ProcessId > 0) {
-                    testparent = 
+                    testparent =
                         walker.GetParent(testparent);
                     if (testparent != null && (int)testparent.Current.ProcessId > 0) {
                         if (testparent == cmdlet.rootElement)
                         { testparent = null; }
                         else{
-                            string parentControlType = 
+                            string parentControlType =
                                 // getControlTypeNameOfAutomationElement(testparent, element);
                                 // testparent.Current.ControlType.ProgrammaticName.Substring(
                                 // element.Current.ControlType.ProgrammaticName.IndexOf('.') + 1);
                                 //  // experimental
                                 testparent.Current.ControlType.ProgrammaticName.Substring(
                                     testparent.Current.ControlType.ProgrammaticName.IndexOf('.') + 1);
-                                //  // if (parentControlType.Length == 0) {
-                                // break;
-                                //}
-                                
-                            // in case this element is an upper-level Pane 
+                            //  // if (parentControlType.Length == 0) {
+                            // break;
+                            //}
+                            
+                            // in case this element is an upper-level Pane
                             // residing directrly under the RootElement
                             // change type to window
                             // i.e. Get-UIAPane - >  Get-UIAWindow
                             // since Get-UIAPane is unable to get something more than
-                            // a window's child pane control 
+                            // a window's child pane control
                             if (parentControlType == "Pane" || parentControlType == "Menu") {
                                 if (walker.GetParent(testparent) == cmdlet.rootElement) {
                                     parentControlType = "Window";
                                 }
                             }
-                                
-                            string parentVerbosity = 
+                            
+                            string parentVerbosity =
                                 @"Get-UIA" + parentControlType;
                             try {
                                 if (testparent.Current.AutomationId.Length > 0) {
                                     parentVerbosity += (" -AutomationId '" + testparent.Current.AutomationId + "'");
                                 }
                             }
-                            catch { 
+                            catch {
                             }
                             if (!cmdlet.NoClassInformation) {
                                 try {
@@ -1224,7 +1291,7 @@ cmdlet.WriteVerbose(cmdlet, "match!");
                                         parentVerbosity += (" -Class '" + testparent.Current.ClassName + "'");
                                     }
                                 }
-                                catch { 
+                                catch {
                                 }
                             }
                             try {
@@ -1232,7 +1299,7 @@ cmdlet.WriteVerbose(cmdlet, "match!");
                                     parentVerbosity += (" -Name '" + testparent.Current.Name + "'");
                                 }
                             }
-                            catch { 
+                            catch {
                             }
 
                             if (cmdlet.LastRecordedItem[cmdlet.LastRecordedItem.Count - 1].ToString() != parentVerbosity) {
@@ -1254,12 +1321,12 @@ cmdlet.WriteVerbose(cmdlet, "match!");
         {
             collectAncestors(cmdlet, element);
         }
-            #endregion collect ancestors
-            
-            
+        #endregion collect ancestors
+        
+        
         #region Subscribe to events during the recording session
         /// <summary>
-        ///  
+        ///
         /// </summary>
         /// <param name="cmdlet"></param>
         /// <param name="element"></param>
@@ -1269,163 +1336,163 @@ cmdlet.WriteVerbose(cmdlet, "match!");
                                                               AutomationPattern[] supportedPatterns)
         {
             try { // experimental
-        
-            if (element == null) { return; }
-            if (supportedPatterns == null ||
-                supportedPatterns.Length < 1) { return; }
-            try {
                 
-                // cache requiest object for collecting properties
-                CacheRequest cacheRequest = null;
-                
+                if (element == null) { return; }
+                if (supportedPatterns == null ||
+                    supportedPatterns.Length < 1) { return; }
                 try {
-                    cacheRequest = new CacheRequest();
-                    cacheRequest.AutomationElementMode = AutomationElementMode.None;
-                    cacheRequest.TreeFilter = Automation.RawViewCondition;
-                    cacheRequest.Add(AutomationElement.NameProperty);
-                    // cacheRequest.Add(AutomationElement.AutomationIdProperty);
-                    cacheRequest.Add(AutomationElement.ControlTypeProperty);
-                    // cacheRequest.Add(AutomationElement.ClassNameProperty);
-                    // cacheRequest.Push();
-                    cacheRequest.Activate();
-                    // element.FindFirst(TreeScope.Element, Condition.TrueCondition);
-                } catch (Exception eCacheRequest) {
-                    cmdlet.WriteVerbose(cmdlet, "Cache request failed for " + element.Current.Name);
-                    cmdlet.WriteVerbose(cmdlet, eCacheRequest.Message);
-                }
-                
-                foreach (AutomationPattern pattern in supportedPatterns) {
+                    
+                    // cache requiest object for collecting properties
+                    CacheRequest cacheRequest = null;
+                    
                     try {
-                        if (element == null) { break; }
-                        cmdlet.AutomationEventHandler = 
-                            cmdlet.OnUIRecordingAutomationEvent;
-                        switch (pattern.ProgrammaticName) {
-                            case "SelectionItemPatternIdentifiers.Pattern":
-                                cmdlet.SubscribeToEvents(cmdlet, 
-                                                  element,
-                                                  SelectionItemPattern.ElementAddedToSelectionEvent,
-                                                  null); //,
-                                                  //cmdlet.OnUIRecordingAutomationEvent);
-                                cmdlet.SubscribeToEvents(cmdlet,
-                                                  element,
-                                                  SelectionItemPattern.ElementRemovedFromSelectionEvent,
-                                                  null); //,
-                                                  //cmdlet.OnUIRecordingAutomationEvent);
-                                cmdlet.SubscribeToEvents(cmdlet,
-                                                  element,
-                                                  SelectionItemPattern.ElementSelectedEvent,
-                                                  null); //,
-                                                  //cmdlet.OnUIRecordingAutomationEvent);
-                                break;
-                            case "SelectionPatternIdentifiers.Pattern":
-                                cmdlet.SubscribeToEvents(cmdlet, 
-                                                  element,
-                                                  SelectionPattern.InvalidatedEvent,
-                                                  null); //,
-                                                  //cmdlet.OnUIRecordingAutomationEvent);
-                                break;
-                            case "InvokePatternIdentifiers.Pattern":
-                                cmdlet.SubscribeToEvents(cmdlet, 
-                                                  element,
-                                                  InvokePattern.InvokedEvent,
-                                                  null); //,
-                                                  //cmdlet.OnUIRecordingAutomationEvent);
-                                break;
-                            case "AutomationElementIdentifiers.Pattern":
-                                cmdlet.SubscribeToEvents(cmdlet, 
-                                                  element,
-                                                  AutomationElement.AsyncContentLoadedEvent,
-                                                  null); //,
-                                                  //cmdlet.OnUIRecordingAutomationEvent);
-                                cmdlet.SubscribeToEvents(cmdlet, 
-                                                  element,
-                                                  AutomationElement.LayoutInvalidatedEvent,
-                                                  null); //,
-                                                  //cmdlet.OnUIRecordingAutomationEvent);
-                                cmdlet.SubscribeToEvents(cmdlet, 
-                                                  element,
-                                                  AutomationElement.MenuClosedEvent,
-                                                  null); //,
-                                                  //cmdlet.OnUIRecordingAutomationEvent);
-                                
-                                cmdlet.SubscribeToEvents(cmdlet, 
-                                                  element,
-                                                  AutomationElement.MenuOpenedEvent,
-                                                  null); //,
-                                                  //cmdlet.OnUIRecordingAutomationEvent);
-                                cmdlet.SubscribeToEvents(cmdlet, 
-                                                  element,
-                                                  AutomationElement.ToolTipClosedEvent,
-                                                  null); //,
-                                                  //cmdlet.OnUIRecordingAutomationEvent);
-                                cmdlet.SubscribeToEvents(cmdlet, 
-                                                  element,
-                                                  AutomationElement.ToolTipOpenedEvent,
-                                                  null); //,
-                                                  //cmdlet.OnUIRecordingAutomationEvent);
-                                
-                                cmdlet.SubscribeToEvents(cmdlet, 
-                                                  element,
-                                                  AutomationElement.AutomationFocusChangedEvent,
-                                                  null); //,
-                                                  //cmdlet.OnUIRecordingAutomationEvent);
-                                cmdlet.SubscribeToEvents(cmdlet, 
-                                                  element,
-                                                  AutomationElement.AutomationPropertyChangedEvent,
-                                                  null); //,
-                                                  //cmdlet.OnUIRecordingAutomationEvent);
-                                cmdlet.SubscribeToEvents(cmdlet, 
-                                                  element,
-                                                  AutomationElement.StructureChangedEvent,
-                                                  null); //,
-                                                  //cmdlet.OnUIRecordingAutomationEvent);
-                                break;
-                            case "TextPatternIdentifiers.Pattern":
-                                cmdlet.SubscribeToEvents(cmdlet, 
-                                                  element,
-                                                  TextPattern.TextChangedEvent,
-                                                  null); //,
-                                                  //cmdlet.OnUIRecordingAutomationEvent);
-                                cmdlet.SubscribeToEvents(cmdlet, 
-                                                  element,
-                                                  TextPattern.TextSelectionChangedEvent,
-                                                  null); //,
-                                                  //cmdlet.OnUIRecordingAutomationEvent);
-                                break;
-                            case "WindowPatternIdentifiers.Pattern":
-                                cmdlet.SubscribeToEvents(cmdlet, 
-                                                  element,
-                                                  WindowPattern.WindowOpenedEvent,
-                                                  null); //,
-                                                  //cmdlet.OnUIRecordingAutomationEvent);
-                                cmdlet.SubscribeToEvents(cmdlet, 
-                                                  element,
-                                                  WindowPattern.WindowClosedEvent,
-                                                  null); //,
-                                                  //cmdlet.OnUIRecordingAutomationEvent);
-                                break;
-                        }
-                    } 
-                    catch { 
-                        cmdlet.WriteVerbose(cmdlet,
-                                            "Unable to register an " +
-                                            pattern.ProgrammaticName + 
-                                            " event for " + 
-                                            element.Current.Name);
+                        cacheRequest = new CacheRequest();
+                        cacheRequest.AutomationElementMode = AutomationElementMode.None;
+                        cacheRequest.TreeFilter = Automation.RawViewCondition;
+                        cacheRequest.Add(AutomationElement.NameProperty);
+                        // cacheRequest.Add(AutomationElement.AutomationIdProperty);
+                        cacheRequest.Add(AutomationElement.ControlTypeProperty);
+                        // cacheRequest.Add(AutomationElement.ClassNameProperty);
+                        // cacheRequest.Push();
+                        cacheRequest.Activate();
+                        // element.FindFirst(TreeScope.Element, Condition.TrueCondition);
+                    } catch (Exception eCacheRequest) {
+                        cmdlet.WriteVerbose(cmdlet, "Cache request failed for " + element.Current.Name);
+                        cmdlet.WriteVerbose(cmdlet, eCacheRequest.Message);
                     }
-//  // finish our cache request
-// cacheRequest.Pop();
+                    
+                    foreach (AutomationPattern pattern in supportedPatterns) {
+                        try {
+                            if (element == null) { break; }
+                            cmdlet.AutomationEventHandler =
+                                cmdlet.OnUIRecordingAutomationEvent;
+                            switch (pattern.ProgrammaticName) {
+                                case "SelectionItemPatternIdentifiers.Pattern":
+                                    cmdlet.SubscribeToEvents(cmdlet,
+                                                             element,
+                                                             SelectionItemPattern.ElementAddedToSelectionEvent,
+                                                             null); //,
+                                    //cmdlet.OnUIRecordingAutomationEvent);
+                                    cmdlet.SubscribeToEvents(cmdlet,
+                                                             element,
+                                                             SelectionItemPattern.ElementRemovedFromSelectionEvent,
+                                                             null); //,
+                                    //cmdlet.OnUIRecordingAutomationEvent);
+                                    cmdlet.SubscribeToEvents(cmdlet,
+                                                             element,
+                                                             SelectionItemPattern.ElementSelectedEvent,
+                                                             null); //,
+                                    //cmdlet.OnUIRecordingAutomationEvent);
+                                    break;
+                                case "SelectionPatternIdentifiers.Pattern":
+                                    cmdlet.SubscribeToEvents(cmdlet,
+                                                             element,
+                                                             SelectionPattern.InvalidatedEvent,
+                                                             null); //,
+                                    //cmdlet.OnUIRecordingAutomationEvent);
+                                    break;
+                                case "InvokePatternIdentifiers.Pattern":
+                                    cmdlet.SubscribeToEvents(cmdlet,
+                                                             element,
+                                                             InvokePattern.InvokedEvent,
+                                                             null); //,
+                                    //cmdlet.OnUIRecordingAutomationEvent);
+                                    break;
+                                case "AutomationElementIdentifiers.Pattern":
+                                    cmdlet.SubscribeToEvents(cmdlet,
+                                                             element,
+                                                             AutomationElement.AsyncContentLoadedEvent,
+                                                             null); //,
+                                    //cmdlet.OnUIRecordingAutomationEvent);
+                                    cmdlet.SubscribeToEvents(cmdlet,
+                                                             element,
+                                                             AutomationElement.LayoutInvalidatedEvent,
+                                                             null); //,
+                                    //cmdlet.OnUIRecordingAutomationEvent);
+                                    cmdlet.SubscribeToEvents(cmdlet,
+                                                             element,
+                                                             AutomationElement.MenuClosedEvent,
+                                                             null); //,
+                                    //cmdlet.OnUIRecordingAutomationEvent);
+                                    
+                                    cmdlet.SubscribeToEvents(cmdlet,
+                                                             element,
+                                                             AutomationElement.MenuOpenedEvent,
+                                                             null); //,
+                                    //cmdlet.OnUIRecordingAutomationEvent);
+                                    cmdlet.SubscribeToEvents(cmdlet,
+                                                             element,
+                                                             AutomationElement.ToolTipClosedEvent,
+                                                             null); //,
+                                    //cmdlet.OnUIRecordingAutomationEvent);
+                                    cmdlet.SubscribeToEvents(cmdlet,
+                                                             element,
+                                                             AutomationElement.ToolTipOpenedEvent,
+                                                             null); //,
+                                    //cmdlet.OnUIRecordingAutomationEvent);
+                                    
+                                    cmdlet.SubscribeToEvents(cmdlet,
+                                                             element,
+                                                             AutomationElement.AutomationFocusChangedEvent,
+                                                             null); //,
+                                    //cmdlet.OnUIRecordingAutomationEvent);
+                                    cmdlet.SubscribeToEvents(cmdlet,
+                                                             element,
+                                                             AutomationElement.AutomationPropertyChangedEvent,
+                                                             null); //,
+                                    //cmdlet.OnUIRecordingAutomationEvent);
+                                    cmdlet.SubscribeToEvents(cmdlet,
+                                                             element,
+                                                             AutomationElement.StructureChangedEvent,
+                                                             null); //,
+                                    //cmdlet.OnUIRecordingAutomationEvent);
+                                    break;
+                                case "TextPatternIdentifiers.Pattern":
+                                    cmdlet.SubscribeToEvents(cmdlet,
+                                                             element,
+                                                             TextPattern.TextChangedEvent,
+                                                             null); //,
+                                    //cmdlet.OnUIRecordingAutomationEvent);
+                                    cmdlet.SubscribeToEvents(cmdlet,
+                                                             element,
+                                                             TextPattern.TextSelectionChangedEvent,
+                                                             null); //,
+                                    //cmdlet.OnUIRecordingAutomationEvent);
+                                    break;
+                                case "WindowPatternIdentifiers.Pattern":
+                                    cmdlet.SubscribeToEvents(cmdlet,
+                                                             element,
+                                                             WindowPattern.WindowOpenedEvent,
+                                                             null); //,
+                                    //cmdlet.OnUIRecordingAutomationEvent);
+                                    cmdlet.SubscribeToEvents(cmdlet,
+                                                             element,
+                                                             WindowPattern.WindowClosedEvent,
+                                                             null); //,
+                                    //cmdlet.OnUIRecordingAutomationEvent);
+                                    break;
+                            }
+                        }
+                        catch {
+                            cmdlet.WriteVerbose(cmdlet,
+                                                "Unable to register an " +
+                                                pattern.ProgrammaticName +
+                                                " event for " +
+                                                element.Current.Name);
+                        }
+                        //  // finish our cache request
+                        // cacheRequest.Pop();
+                    }
+                    
+                    // finish our cache request
+                    cacheRequest.Pop();
+                    
                 }
+                catch { return; }  // ??????????
+                cmdlet.ElementToSubscribe = element; // ???????????????
                 
-                // finish our cache request
-                cacheRequest.Pop();
                 
-            } 
-            catch { return; }  // ??????????
-            cmdlet.ElementToSubscribe = element; // ???????????????
-            
-            
-            } 
+            }
             catch (Exception eUnknown) {
                 // WriteVerbose("!!!!!subscribeEvents " + eUnknown.Message);
                 cmdlet.WriteDebug(cmdlet, eUnknown.Message);
@@ -1441,7 +1508,7 @@ cmdlet.WriteVerbose(cmdlet, "match!");
         {
             try {
                 if (cmdlet.subscribedEvents != null &&
-                    cmdlet.subscribedEvents.Count > 0 && 
+                    cmdlet.subscribedEvents.Count > 0 &&
                     cmdlet.thePreviouslyUsedElement != null) {
                     for (int i = 0; i < cmdlet.subscribedEvents.Count; i++) {
                         Automation.RemoveAutomationEventHandler(
@@ -1456,7 +1523,7 @@ cmdlet.WriteVerbose(cmdlet, "match!");
             }
         }
         #endregion Unsubscribe from events during the recording session
-            
+        
         #endregion Start-UIATranscript
         
         /// <summary>
@@ -1469,7 +1536,7 @@ cmdlet.WriteVerbose(cmdlet, "match!");
             DiscoveryCmdletBase cmdlet,
             int handle)
         {
-            System.Windows.Automation.AutomationElement result = 
+            System.Windows.Automation.AutomationElement result =
                 null;
             if (handle == 0) {
                 cmdlet.WriteVerbose(cmdlet, "handle == 0");
@@ -1479,14 +1546,14 @@ cmdlet.WriteVerbose(cmdlet, "match!");
                 //System.IntPtr pHwnd = IntPtr.Zero;
                 System.IntPtr pHwnd = new IntPtr(handle);
                 cmdlet.WriteVerbose(cmdlet, "getting the control");
-                element = 
+                element =
                     AutomationElement.FromHandle(pHwnd);
                 if (element != null) {
                     cmdlet.WriteVerbose(cmdlet, element.Current.Name);
                 }
                 result = element;
-            } 
-            catch (Exception e) { 
+            }
+            catch (Exception e) {
                 cmdlet.WriteVerbose(cmdlet, e.Message);
             }
             return result;
@@ -1512,15 +1579,15 @@ cmdlet.WriteVerbose(cmdlet, "match!");
         /// <returns></returns>
         public static System.Windows.Automation.AutomationElement GetAutomationElementFromPoint()
         {
-            System.Windows.Automation.AutomationElement result = 
+            System.Windows.Automation.AutomationElement result =
                 null;
             try {
-                element = 
+                element =
                     AutomationElement.FromPoint(new System.Windows.Point(
-                        Cursor.Position.X, 
+                        Cursor.Position.X,
                         Cursor.Position.Y));
                 result = element;
-            } 
+            }
             catch { }
             return result;
         }
@@ -1544,11 +1611,11 @@ cmdlet.WriteVerbose(cmdlet, "match!");
         /// <returns></returns>
         internal static AutomationElement[] GetParentOrAncestor(AutomationElement element, TreeScope scope)
         {
-            System.Windows.Automation.TreeWalker walker = 
+            System.Windows.Automation.TreeWalker walker =
                 new System.Windows.Automation.TreeWalker(
                     System.Windows.Automation.Condition.TrueCondition);
             System.Windows.Automation.AutomationElement testparent;
-            System.Collections.Generic.List<AutomationElement >  ancestors = 
+            System.Collections.Generic.List<AutomationElement >  ancestors =
                 new System.Collections.Generic.List<AutomationElement > ();
             
             try {
@@ -1566,9 +1633,9 @@ cmdlet.WriteVerbose(cmdlet, "match!");
                 while (testparent != null &&
                        (int)testparent.Current.ProcessId > 0 &&
                        testparent != AutomationElement.RootElement) {
-                    testparent = 
+                    testparent =
                         walker.GetParent(testparent);
-                    if (testparent != null && 
+                    if (testparent != null &&
                         (int)testparent.Current.ProcessId > 0 &&
                         testparent != AutomationElement.RootElement) {
                         ancestors.Add(testparent);
@@ -1588,7 +1655,7 @@ cmdlet.WriteVerbose(cmdlet, "match!");
         /// <returns></returns>
         internal static AutomationElement GetAncestorWithHandle(AutomationElement element)
         {
-            System.Windows.Automation.TreeWalker walker = 
+            System.Windows.Automation.TreeWalker walker =
                 new System.Windows.Automation.TreeWalker(
                     System.Windows.Automation.Condition.TrueCondition);
             System.Windows.Automation.AutomationElement testparent;
@@ -1596,14 +1663,14 @@ cmdlet.WriteVerbose(cmdlet, "match!");
             try {
                 testparent =
                     walker.GetParent(element);
-                while (testparent != null && 
+                while (testparent != null &&
                        testparent.Current.NativeWindowHandle == 0) {
-                    testparent = 
+                    testparent =
                         walker.GetParent(testparent);
-                    if (testparent != null && 
+                    if (testparent != null &&
                         (int)testparent.Current.ProcessId > 0 &&
                         testparent.Current.NativeWindowHandle != 0) {
-                            return testparent;
+                        return testparent;
                     }
                 }
                 if (testparent.Current.NativeWindowHandle != 0) {
@@ -1624,7 +1691,7 @@ cmdlet.WriteVerbose(cmdlet, "match!");
         {
             object result = null;
             GetAutomationElementFromPoint();
-            result = 
+            result =
                 GetCurrentPattern(ref element,
                                   null);
             if (result != null) {
@@ -1638,7 +1705,7 @@ cmdlet.WriteVerbose(cmdlet, "match!");
         }
         
         /// <summary>
-        ///  
+        ///
         /// </summary>
         /// <param name="patternName"></param>
         /// <returns></returns>
@@ -1646,8 +1713,8 @@ cmdlet.WriteVerbose(cmdlet, "match!");
         {
             System.Windows.Automation.AutomationPattern result = null;
             // normalize name
-            patternName = 
-                patternName.Substring(0, patternName.Length - 7) + 
+            patternName =
+                patternName.Substring(0, patternName.Length - 7) +
                 "Pattern";
             patternName.Replace("dock", "Dock");
             switch (patternName) {
@@ -1707,13 +1774,13 @@ cmdlet.WriteVerbose(cmdlet, "match!");
                     break;
                 default:
                     result = null;
-                    break; 
+                    break;
             }
             return result;
         }
         
         /// <summary>
-        ///  
+        ///
         /// </summary>
         /// <param name="element"></param>
         /// <param name="patternType"></param>
@@ -1722,10 +1789,10 @@ cmdlet.WriteVerbose(cmdlet, "match!");
             ref System.Windows.Automation.AutomationElement element,
             System.Windows.Automation.AutomationPattern patternType)
         {
-            object result = 
+            object result =
                 null;
             try {
-                System.Windows.Automation.AutomationPattern[] supportedPatterns = 
+                System.Windows.Automation.AutomationPattern[] supportedPatterns =
                     element.GetSupportedPatterns();
                 if (supportedPatterns == null ||
                     supportedPatterns.Length < 1)
@@ -1736,13 +1803,13 @@ cmdlet.WriteVerbose(cmdlet, "match!");
                 foreach (System.Windows.Automation.AutomationPattern ptrn in supportedPatterns)
                 {
                     if (patternType.ProgrammaticName == ptrn.ProgrammaticName ||
-                           patternType == null) {
+                        patternType == null) {
                         if (element.TryGetCurrentPattern(
-                                ptrn, out pattern))
+                            ptrn, out pattern))
                         {
-                            object resPattern = 
+                            object resPattern =
                                 element.GetCurrentPattern(ptrn);
-                                    // as System.Windows.Automation.AutomationPattern;
+                            // as System.Windows.Automation.AutomationPattern;
                             result = resPattern;
                             return result;
                         }
@@ -1757,56 +1824,56 @@ cmdlet.WriteVerbose(cmdlet, "match!");
         }
         
         /// <summary>
-        ///  
+        ///
         /// </summary>
         /// <param name="controlType"></param>
         /// <returns></returns>
-        public static System.Windows.Automation.ControlType 
+        public static System.Windows.Automation.ControlType
             GetControlTypeByTypeName(string controlType)
         {
             System.Windows.Automation.ControlType ctrlType = null;
             string _controlType = controlType.ToUpper();
             switch (_controlType)
             {
-                case "BUTTON": { ctrlType = System.Windows.Automation.ControlType.Button; break; }
-                case "CALENDAR": { ctrlType = System.Windows.Automation.ControlType.Calendar; break; }
-                case "CHECKBOX": { ctrlType = System.Windows.Automation.ControlType.CheckBox; break; }
-                case "COMBOBOX": { ctrlType = System.Windows.Automation.ControlType.ComboBox; break; }
-                case "CUSTOM": { ctrlType = System.Windows.Automation.ControlType.Custom; break; }
-                case "DATAGRID": { ctrlType = System.Windows.Automation.ControlType.DataGrid; break; }
-                case "DATAITEM": { ctrlType = System.Windows.Automation.ControlType.DataItem; break; }
-                case "DOCUMENT": { ctrlType = System.Windows.Automation.ControlType.Document; break; }
-                case "EDIT": { ctrlType = System.Windows.Automation.ControlType.Edit; break; }
-                case "GROUP": { ctrlType = System.Windows.Automation.ControlType.Group; break; }
-                case "HEADER": { ctrlType = System.Windows.Automation.ControlType.Header; break; }
-                case "HEADERITEM": { ctrlType = System.Windows.Automation.ControlType.HeaderItem; break; }
-                case "HYPERLINK": { ctrlType = System.Windows.Automation.ControlType.Hyperlink; break; }
-                case "IMAGE": { ctrlType = System.Windows.Automation.ControlType.Image; break; }
-                case "LIST": { ctrlType = System.Windows.Automation.ControlType.List; break; }
-                case "LISTITEM": { ctrlType = System.Windows.Automation.ControlType.ListItem; break; }
-                case "MENU": { ctrlType = System.Windows.Automation.ControlType.Menu; break; }
-                case "MENUBAR": { ctrlType = System.Windows.Automation.ControlType.MenuBar; break; }
-                case "MENUITEM": { ctrlType = System.Windows.Automation.ControlType.MenuItem; break; }
-                case "PANE": { ctrlType = System.Windows.Automation.ControlType.Pane; break; }
-                case "PROGRESSBAR": { ctrlType = System.Windows.Automation.ControlType.ProgressBar; break; }
-                case "RADIOBUTTON": { ctrlType = System.Windows.Automation.ControlType.RadioButton; break; }
-                case "SCROLLBAR": { ctrlType = System.Windows.Automation.ControlType.ScrollBar; break; }
-                case "SEPARATOR": { ctrlType = System.Windows.Automation.ControlType.Separator; break; }
-                case "SLIDER": { ctrlType = System.Windows.Automation.ControlType.Slider; break; }
-                case "SPINNER": { ctrlType = System.Windows.Automation.ControlType.Spinner; break; }
-                case "SPLITBUTTON": { ctrlType = System.Windows.Automation.ControlType.SplitButton; break; }
-                case "STATUSBAR": { ctrlType = System.Windows.Automation.ControlType.StatusBar; break; }
-                case "TAB": { ctrlType = System.Windows.Automation.ControlType.Tab; break; }
-                case "TABITEM": { ctrlType = System.Windows.Automation.ControlType.TabItem; break; }
-                case "TABLE": { ctrlType = System.Windows.Automation.ControlType.Table; break; }
-                case "TEXT": { ctrlType = System.Windows.Automation.ControlType.Text; break; }
-                case "THUMB": { ctrlType = System.Windows.Automation.ControlType.Thumb; break; }
-                case "TITLEBAR": { ctrlType = System.Windows.Automation.ControlType.TitleBar; break; }
-                case "TOOLBAR": { ctrlType = System.Windows.Automation.ControlType.ToolBar; break; }
-                case "TOOLTIP": { ctrlType = System.Windows.Automation.ControlType.ToolTip; break; }
-                case "TREE": { ctrlType = System.Windows.Automation.ControlType.Tree; break; }
-                case "TREEITEM": { ctrlType = System.Windows.Automation.ControlType.TreeItem; break; }
-                case "WINDOW": { ctrlType = System.Windows.Automation.ControlType.Window; break; }
+                    case "BUTTON": { ctrlType = System.Windows.Automation.ControlType.Button; break; }
+                    case "CALENDAR": { ctrlType = System.Windows.Automation.ControlType.Calendar; break; }
+                    case "CHECKBOX": { ctrlType = System.Windows.Automation.ControlType.CheckBox; break; }
+                    case "COMBOBOX": { ctrlType = System.Windows.Automation.ControlType.ComboBox; break; }
+                    case "CUSTOM": { ctrlType = System.Windows.Automation.ControlType.Custom; break; }
+                    case "DATAGRID": { ctrlType = System.Windows.Automation.ControlType.DataGrid; break; }
+                    case "DATAITEM": { ctrlType = System.Windows.Automation.ControlType.DataItem; break; }
+                    case "DOCUMENT": { ctrlType = System.Windows.Automation.ControlType.Document; break; }
+                    case "EDIT": { ctrlType = System.Windows.Automation.ControlType.Edit; break; }
+                    case "GROUP": { ctrlType = System.Windows.Automation.ControlType.Group; break; }
+                    case "HEADER": { ctrlType = System.Windows.Automation.ControlType.Header; break; }
+                    case "HEADERITEM": { ctrlType = System.Windows.Automation.ControlType.HeaderItem; break; }
+                    case "HYPERLINK": { ctrlType = System.Windows.Automation.ControlType.Hyperlink; break; }
+                    case "IMAGE": { ctrlType = System.Windows.Automation.ControlType.Image; break; }
+                    case "LIST": { ctrlType = System.Windows.Automation.ControlType.List; break; }
+                    case "LISTITEM": { ctrlType = System.Windows.Automation.ControlType.ListItem; break; }
+                    case "MENU": { ctrlType = System.Windows.Automation.ControlType.Menu; break; }
+                    case "MENUBAR": { ctrlType = System.Windows.Automation.ControlType.MenuBar; break; }
+                    case "MENUITEM": { ctrlType = System.Windows.Automation.ControlType.MenuItem; break; }
+                    case "PANE": { ctrlType = System.Windows.Automation.ControlType.Pane; break; }
+                    case "PROGRESSBAR": { ctrlType = System.Windows.Automation.ControlType.ProgressBar; break; }
+                    case "RADIOBUTTON": { ctrlType = System.Windows.Automation.ControlType.RadioButton; break; }
+                    case "SCROLLBAR": { ctrlType = System.Windows.Automation.ControlType.ScrollBar; break; }
+                    case "SEPARATOR": { ctrlType = System.Windows.Automation.ControlType.Separator; break; }
+                    case "SLIDER": { ctrlType = System.Windows.Automation.ControlType.Slider; break; }
+                    case "SPINNER": { ctrlType = System.Windows.Automation.ControlType.Spinner; break; }
+                    case "SPLITBUTTON": { ctrlType = System.Windows.Automation.ControlType.SplitButton; break; }
+                    case "STATUSBAR": { ctrlType = System.Windows.Automation.ControlType.StatusBar; break; }
+                    case "TAB": { ctrlType = System.Windows.Automation.ControlType.Tab; break; }
+                    case "TABITEM": { ctrlType = System.Windows.Automation.ControlType.TabItem; break; }
+                    case "TABLE": { ctrlType = System.Windows.Automation.ControlType.Table; break; }
+                    case "TEXT": { ctrlType = System.Windows.Automation.ControlType.Text; break; }
+                    case "THUMB": { ctrlType = System.Windows.Automation.ControlType.Thumb; break; }
+                    case "TITLEBAR": { ctrlType = System.Windows.Automation.ControlType.TitleBar; break; }
+                    case "TOOLBAR": { ctrlType = System.Windows.Automation.ControlType.ToolBar; break; }
+                    case "TOOLTIP": { ctrlType = System.Windows.Automation.ControlType.ToolTip; break; }
+                    case "TREE": { ctrlType = System.Windows.Automation.ControlType.Tree; break; }
+                    case "TREEITEM": { ctrlType = System.Windows.Automation.ControlType.TreeItem; break; }
+                    case "WINDOW": { ctrlType = System.Windows.Automation.ControlType.Window; break; }
                 default:
                     // WriteVerbose(this, "there's no ControlType value.");
                     ctrlType = null;
@@ -1816,7 +1883,7 @@ cmdlet.WriteVerbose(cmdlet, "match!");
         }
         
         /// <summary>
-        ///  
+        ///
         /// </summary>
         /// <param name="element"></param>
         /// <param name="strResultString"></param>
@@ -1827,7 +1894,7 @@ cmdlet.WriteVerbose(cmdlet, "match!");
             out string strResultString,
             char delimiter)
         {
-            System.Windows.Automation.AutomationElementCollection headerItems = 
+            System.Windows.Automation.AutomationElementCollection headerItems =
                 element.FindAll(
                     System.Windows.Automation.TreeScope.Descendants,
                     new System.Windows.Automation.PropertyCondition(
@@ -1835,7 +1902,7 @@ cmdlet.WriteVerbose(cmdlet, "match!");
                         System.Windows.Automation.ControlType.HeaderItem));
             if (headerItems == null || headerItems.Count == 0) {
                 // WriteVerbose(this, "no headers found");
-                strResultString = 
+                strResultString =
                     "no headers found";
                 return false;
             }
@@ -1874,7 +1941,7 @@ cmdlet.WriteVerbose(cmdlet, "match!");
             out string strResultString,
             char delimiter)
         {
-            System.Windows.Automation.AutomationElementCollection headerItems = 
+            System.Windows.Automation.AutomationElementCollection headerItems =
                 element.FindAll(
                     System.Windows.Automation.TreeScope.Descendants,
                     new System.Windows.Automation.PropertyCondition(
@@ -1882,7 +1949,7 @@ cmdlet.WriteVerbose(cmdlet, "match!");
                         System.Windows.Automation.ControlType.Header));
             if (headerItems == null || headerItems.Count == 0) {
                 // WriteVerbose(this, "no headers found");
-                strResultString = 
+                strResultString =
                     "no headers found";
                 return false;
             }
@@ -1929,21 +1996,21 @@ cmdlet.WriteVerbose(cmdlet, "match!");
                  columnsCounter < columnsNumber;
                  columnsCounter++) {
                 onerow += '"';
-                object[] coordinates = 
-                    { rowsCounter, columnsCounter };
+                object[] coordinates =
+                { rowsCounter, columnsCounter };
                 onerow +=
                     ((System.Windows.Automation.AutomationElement)
                      pattern.GetType().GetMethod(
-                        "GetItem").Invoke(
-                            pattern,
-                            coordinates)).Current.Name;
-                            //{ coordinates)).Current.Name;
-// pattern.GetType().InvokeMember(
-// "GetItem",
-// System.Reflection.BindingFlags.Public,
-// pattern.GetItem(
-// rowsCounter,
-// columnsCounter).Current.Name;
+                         "GetItem").Invoke(
+                         pattern,
+                         coordinates)).Current.Name;
+                //{ coordinates)).Current.Name;
+                // pattern.GetType().InvokeMember(
+                // "GetItem",
+                // System.Reflection.BindingFlags.Public,
+                // pattern.GetItem(
+                // rowsCounter,
+                // columnsCounter).Current.Name;
                 onerow += '"';
                 if (columnsCounter < (columnsNumber - 1)) {
                     onerow += delimiter;
@@ -1957,22 +2024,22 @@ cmdlet.WriteVerbose(cmdlet, "match!");
         /// <param name="control"></param>
         /// <param name="delimiter"></param>
         /// <returns></returns>
-        internal static System.Collections.Generic.List<string >  
+        internal static System.Collections.Generic.List<string >
             GetOutputStringUsingItemsValuePattern(
                 AutomationElement control,
                 char delimiter)
         {
-            System.Collections.Generic.List<string >  rowsCollection = 
+            System.Collections.Generic.List<string >  rowsCollection =
                 new System.Collections.Generic.List<string > ();
             
-            AutomationElementCollection rows = 
+            AutomationElementCollection rows =
                 control.FindAll(TreeScope.Children,
-                           new PropertyCondition(
-                               AutomationElement.ControlTypeProperty,
-                               ControlType.Custom));
+                                new PropertyCondition(
+                                    AutomationElement.ControlTypeProperty,
+                                    ControlType.Custom));
             if (rows.Count > 0) {
                 foreach ( AutomationElement row in rows) {
-                    AutomationElementCollection rowItems = 
+                    AutomationElementCollection rowItems =
                         row.FindAll(TreeScope.Children,
                                     new PropertyCondition(
                                         AutomationElement.ControlTypeProperty,
@@ -1984,7 +2051,7 @@ cmdlet.WriteVerbose(cmdlet, "match!");
                             string strValue = String.Empty;
                             strValue += '"';
                             try {
-                                valPattern = 
+                                valPattern =
                                     rowItems[i].GetCurrentPattern(ValuePattern.Pattern)
                                     as ValuePattern;
                                 strValue += valPattern.Current.Value;
@@ -2027,8 +2094,8 @@ cmdlet.WriteVerbose(cmdlet, "match!");
         }
         
         private static string getSheridanTreeItemName(
-           SheridanCmdletBase cmdlet,
-           IntPtr hwndTreeItem)
+            SheridanCmdletBase cmdlet,
+            IntPtr hwndTreeItem)
         {
             string result = string.Empty;
             
@@ -2088,13 +2155,13 @@ cmdlet.WriteVerbose(cmdlet, "match!");
                         NativeMethods.TVGN_ROOT,
                         IntPtr.Zero);
                 
-Console.WriteLine(getSheridanTreeItemName(cmdlet, (IntPtr)hwndTreeViewRoot));
+                Console.WriteLine(getSheridanTreeItemName(cmdlet, (IntPtr)hwndTreeViewRoot));
                 
                 //if (IntPtr.Zero == hwndTreeViewRoot) {
                 if (0 == hwndTreeViewRoot) {
                     return resultElement;
                 }
-                        
+                
                 // search for a tree item recursively
                 resultElement =
                     getSheridanTreeItemFromTreeNode(
@@ -2124,7 +2191,7 @@ Console.WriteLine(getSheridanTreeItemName(cmdlet, (IntPtr)hwndTreeViewRoot));
             do {
                 
                 try {
-                
+                    
                     // getting siblings
                     resultHandle =
                         NativeMethods.SendMessage(
@@ -2136,7 +2203,7 @@ Console.WriteLine(getSheridanTreeItemName(cmdlet, (IntPtr)hwndTreeViewRoot));
                     //if (IntPtr.Zero != resultHandle) {
                     if (0 != resultHandle) {
                         
-                        resultElement = 
+                        resultElement =
                             GetAutomationElementFromHandle(
                                 (DiscoveryCmdletBase)cmdlet,
                                 resultHandle);
@@ -2145,17 +2212,17 @@ Console.WriteLine(getSheridanTreeItemName(cmdlet, (IntPtr)hwndTreeViewRoot));
                         }
                         
                         // gettting the first child
-                        childHandle = 
+                        childHandle =
                             NativeMethods.SendMessage(
                                 (int)hwndTreeView,
                                 NativeMethods.TVM_GETNEXTITEM,
                                 NativeMethods.TVGN_CHILD,
                                 (IntPtr)resultHandle);
-                    
+                        
                         //if (IntPtr.Zero != childHandle) {
                         if (0 != childHandle) {
                             
-                            resultElement = 
+                            resultElement =
                                 GetAutomationElementFromHandle(
                                     (DiscoveryCmdletBase)cmdlet,
                                     childHandle);
@@ -2176,11 +2243,11 @@ Console.WriteLine(getSheridanTreeItemName(cmdlet, (IntPtr)hwndTreeViewRoot));
                             
                         }
                     }
-                
+                    
                 }
                 catch {}
                 
-            //} while (IntPtr.Zero != resultHandle);
+                //} while (IntPtr.Zero != resultHandle);
             } while (0 != resultHandle);
             
             return resultElement;

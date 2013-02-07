@@ -1523,6 +1523,29 @@ namespace UIAutomation
                         }
 #endregion text search
 
+#region text search Win32
+                        // 20130207
+                        if (0 == aeCtrl.Count) {
+                            if (null != cmdlet.ContainsText && string.Empty != cmdlet.ContainsText && cmdlet.Win32) {
+                                
+                                this.WriteVerbose(cmdlet, "Text search Win32");
+                                ArrayList textSearchWin32List =
+                                    UIAHelper.GetControlByName(
+                                            cmdlet,
+                                            inputObject,
+                                            cmdlet.ContainsText);
+
+                                if (null != textSearchWin32List && 0 < textSearchWin32List.Count) {
+                                    
+                                    this.WriteVerbose(cmdlet, "There are " + textSearchWin32List.Count.ToString() + " elements");
+                                    foreach (AutomationElement element in textSearchWin32List) {
+                                        aeCtrl.Add(element);
+                                    }
+                                }
+                            }
+                        }
+#endregion text search Win32
+
 #region exact search
 
                         // 20130128
@@ -1709,8 +1732,9 @@ namespace UIAutomation
 #region Win32 search
                         if (0 == aeCtrl.Count && notTextSearch &&
                             (null == cmdlet.AutomationId || string.Empty == cmdlet.AutomationId) &&
-                            (null == cmdlet.Class || string.Empty == cmdlet.Class) &&
-                            (null == cmdlet.Value || string.Empty == cmdlet.Value)) { // && cmdlet.Name.Length > 0) { // 20120918
+                            (null == cmdlet.Class || string.Empty == cmdlet.Class)) { // &&
+                            // 20130207
+                            //(null == cmdlet.Value || string.Empty == cmdlet.Value)) { // && cmdlet.Name.Length > 0) { // 20120918
                             
                             // // 20130125
                             if (!Preferences.DisableWin32Search || cmdlet.Win32) {
@@ -1720,16 +1744,28 @@ namespace UIAutomation
                                 // using API
                                 this.WriteVerbose(cmdlet, "[getting the control] using FindWindowEx");
                                 
-                                // 20120917
-                                //aeCtrl =
-                                // 20120917
                                 ArrayList tempListWin32 =
-                                    UIAHelper.GetControlByName(
-                                        cmdlet,
-                                        // 20120823
-                                        //cmdlet.InputObject,
-                                        inputObject,
-                                        cmdlet.Name);
+                                    new ArrayList();
+                                
+                                if (null != cmdlet.Name && string.Empty != cmdlet.Name) {
+
+                                    this.WriteVerbose(cmdlet, "collecting controls by name (Win32)");
+                                    tempListWin32.AddRange(
+                                        UIAHelper.GetControlByName(
+                                            cmdlet,
+                                            inputObject,
+                                            cmdlet.Name));
+                                }
+                                
+                                if (null != cmdlet.Value && string.Empty != cmdlet.Value) {
+
+                                    this.WriteVerbose(cmdlet, "collecting controls by value (Win32)");
+                                    tempListWin32.AddRange(
+                                        UIAHelper.GetControlByName(
+                                            cmdlet,
+                                            inputObject,
+                                            cmdlet.Value));
+                                }
                                 
                                 foreach (AutomationElement tempElement3 in tempListWin32) {
 
@@ -1741,7 +1777,6 @@ namespace UIAutomation
 
                                             continue;
                                         }
-                                        //}
                                     }
                                     
                                     

@@ -151,10 +151,13 @@ namespace UIAutomationTest.Provider
                 "; (Get-PSDrive -Name " +
                 driveName +
                 ").Name;",
-                "DriveNotFoundException",
-                "Cannot find drive. A drive with the name " + 
-                driveName +
-                " does not exist.");
+                // 20130207
+                //"DriveNotFoundException",
+                "AssertionFailureException",
+                "An assertion failed.");
+                //"Cannot find drive. A drive with the name " + 
+                //driveName +
+                //" does not exist.");
         }
         
         [TearDown]

@@ -959,6 +959,89 @@ namespace UIAutomationTest.Commands.Get
                 name);
         }
         
+        [Test] //[Test(Description="TBD")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
+        [Category("Get_UIAControl")]
+        public void GetControlByTextSearch_Win32_Title_Timeout2000()
+        {
+            string name = "Button222";
+            MiddleLevelCode.StartProcessWithFormAndControl(
+                UIAutomationTestForms.Forms.WinFormsEmpty, 
+                0,
+                System.Windows.Automation.ControlType.Button,
+                name,
+                "btn",
+                0);
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+                @"Get-UIAWindow -pn " + 
+                MiddleLevelCode.TestFormProcess +
+                " | Get-UIAControl " + 
+                name + " -Win32 -timeout 2000 | " +
+                "Read-UIAControlName",
+                name);
+        }
+        
+        [Test] //[Test(Description="TBD")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
+        [Category("Get_UIAControl")]
+        public void GetControlByTextSearch_Value_Timeout2000()
+        {
+            string auId = "Edit222";
+            string expectedString = "my text";
+            MiddleLevelCode.StartProcessWithFormAndControl(
+                UIAutomationTestForms.Forms.WinFormsEmpty, 
+                0,
+                System.Windows.Automation.ControlType.Edit,
+                "edit",
+                auId,
+                0);
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+                @"$null = Get-UIAWindow -pn " + 
+                MiddleLevelCode.TestFormProcess +
+                " | Get-UIAControl -AutomationId '" + 
+                auId + "' | " +
+                "Set-UIAControlText '" +
+                expectedString +
+                "'; " +
+                "Get-UIAControl '" +
+                expectedString +
+                "' -timeout 2000 | Read-UIAControlAutomationId;",
+                auId);
+        }
+        
+        [Test] //[Test(Description="TBD")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
+        [Category("Get_UIAControl")]
+        public void GetControlByTextSearch_Win32_Value_Timeout2000()
+        {
+            string auId = "Edit222";
+            string expectedString = "my text";
+            MiddleLevelCode.StartProcessWithFormAndControl(
+                UIAutomationTestForms.Forms.WinFormsEmpty, 
+                0,
+                System.Windows.Automation.ControlType.Edit,
+                "edit",
+                auId,
+                0);
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+                @"$null = Get-UIAWindow -pn " + 
+                MiddleLevelCode.TestFormProcess +
+                " | Get-UIAControl -AutomationId '" + 
+                auId + "' | " +
+                "Set-UIAControlText '" +
+                expectedString +
+                "'; " +
+                "Get-UIAControl '" +
+                expectedString +
+                "' -Win32 -timeout 2000 | Read-UIAControlAutomationId;",
+                auId);
+        }
         
         
 //        [Test] //[Test(Description="TBD")]
@@ -1017,6 +1100,37 @@ namespace UIAutomationTest.Commands.Get
                 expectedValue);
         }
 
+        [Test] //[Test(Description="TBD")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
+        [Category("Get_UIAControl")]
+        public void GetControlByValue_Win32_WildCard_TimeoutDefault() //Timeout2000()
+        {
+            string auId1 = "Edit1";
+            string expectedValue = "my text";
+            MiddleLevelCode.StartProcessWithFormAndControl(
+                UIAutomationTestForms.Forms.WinFormsEmpty, 
+                0,
+                System.Windows.Automation.ControlType.Edit,
+                "aaa",
+                auId1,
+                0);
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+                @"$null = Get-UIAWindow -pn " + 
+                MiddleLevelCode.TestFormProcess +
+                " | Get-UIAControl -AutomationId " + 
+                auId1 + 
+                " | " +
+                //"Set-UIAcontrolText -Text '" +
+                "Set-UIAEditText -Text '" +
+                expectedValue +
+                "'; Get-UIAEdit -Value '" +
+                expectedValue +
+                //"' -timeout 2000 | Get-UIAEditText;",
+                "' -Win32 | Get-UIAEditText;",
+                expectedValue);
+        }
 
         [Test] //[Test(Description="TBD")]
         [Category("Slow")]

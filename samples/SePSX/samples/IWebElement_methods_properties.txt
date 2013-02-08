@@ -1,0 +1,39 @@
+//                    result.Click();
+Invoke-SeWebElementClick
+InvokeSeWebElementClickCommand
+//                    result.Clear();
+Clear-SeWebElement
+ClearSeWebElementCommand
+//                    result.GetAttribute(Name);
+Read-SeWebElementAttribute
+ReadSeWebElementAttributeCommand
+//result.GetCssValue(propertyName);
+Read-SeWebElementCssValue
+ReadSeWebElementCssValueCommand
+//result.SendKeys(text)
+Read-SeWebElementKeys
+ReadSeWebElementKeysCommand
+//result.Submit()
+Submit-SeWebElement
+SubmitSeWebElementCommand
+//result.Displayed
+Read-SeWebElementDisplayed
+ReadSeWebElementDisplayedCommand
+//result.Enabled
+Read-SeWebElementEnabled
+ReadSeWebElementEnabledCommand
+//result.Location
+Read-SeWebElementLocation
+ReadSeWebElementLocationCommand
+//result.Selected
+Read-SeWebElementSelected
+ReadSeWebElementSelectedCommand
+//result.Size
+Read-SeWebElementSize
+ReadSeWebElementSizeCommand
+//result.TagName
+Read-SeWebElementTagName
+ReadSeWebElementTagNameCommand
+//result.Text
+Read/Get-SeWebElementText
+Read/GetSeWebElementTextCommand

@@ -1,0 +1,81 @@
+ipmo C:\Projects\PS\STUPS\SePSX\bin\Release35\SePSX.dll;
+Start-SeFirefox | Enter-SeURL "https://paradmin:Admin4PAR@10.30.44.210/par/main.asp";
+#Start-SeChrome | Enter-SeURL "https://paradmin:Admin4PAR@10.30.44.210/par/main.asp";
+#Start-SeInternetExplorer64 | Enter-SeURL "https://paradmin:Admin4PAR@10.30.44.210/par/main.asp";
+#Get-SeWebElement -LinkText "Systems, Accounts, & Collections" -Verbose | Invoke-SeWebElementClick -DoubleClick -Verbose;
+#Invoke-SePageRefresh;
+#Invoke-SeNavigateBack;
+#Invoke-SeNavigateForward;
+#Invoke-SePageRefresh;
+#Enter-SeURL "https://paradmin:Admin4PAR@10.30.44.210/par/main.asp";
+##Get-SeWebElement -Id "homeButton" | Invoke-SeWebElementClick;
+#Get-SeWebElement -LinkText "Add File Request" | Invoke-SeWebElementClick;
+#Invoke-SeNavigateBack;
+[SePSX.Preferences]::OnSuccessDelay = 0;
+#Get-SeWebElement -LinkText "Systems, Accounts, & Collections" -Verbose | Move-SeCursorToWebElement -X 3 -Y 3;
+Get-SeWebElement -LinkText "Systems, Accounts, & Collections" -Verbose | Invoke-SeWebElementClick -DoubleClick;
+Get-SeWebElement -LinkText "Files" -Verbose | Invoke-SeWebElementClick -DoubleClick;
+Get-SeWebElement -LinkText "Add File" | Invoke-SeWebElementClick;
+
+
+
+ipmo C:\Projects\PS\STUPS\SePSX\bin\Release35\SePSX.dll;
+#Start-SeFirefox | Enter-SeURL "https://paradmin:Admin4PAR@10.30.44.210/par/main.asp";
+Start-SeChrome | Enter-SeURL "https://paradmin:Admin4PAR@10.30.44.210/par/main.asp";
+#Get-SeWebElement -LinkText "Systems, Accounts, & Collections" -Verbose | Invoke-SeWebElementClick -DoubleClick -Verbose;
+#Invoke-SePageRefresh;
+#Invoke-SeNavigateBack;
+#Invoke-SeNavigateForward;
+#Invoke-SePageRefresh;
+#Enter-SeURL "https://paradmin:Admin4PAR@10.30.44.210/par/main.asp";
+##Get-SeWebElement -Id "homeButton" | Invoke-SeWebElementClick;
+#Get-SeWebElement -LinkText "Add File Request" | Invoke-SeWebElementClick;
+#Invoke-SeNavigateBack;
+[SePSX.Preferences]::OnSuccessDelay = 0;
+Get-SeWebElement -LinkText "Systems, Accounts, & Collections" -Verbose | Invoke-SeWebElementClick;
+Get-SeWebElement -LinkText "Files" -Verbose | Invoke-SeWebElementClick;
+Get-SeWebElement -LinkText "Add File" | Invoke-SeWebElementClick;
+
+
+
+[SePSX.Preferences]::OnSuccessDelay = 500;
+
+
+[SePSX.Preferences]::OnSuccessDelay = 0;
+Get-SeWebElement -XPath "//*[@id='nav']/li[1]/a" | Move-SeCursorToWebElement
+
+
+
+
+[SePSX.Preferences]::OnSuccessDelay = 0;
+Get-SeWebElement -LinkText "Systems, Accounts, & Collections" -Verbose | Invoke-SeWebElementClick -DoubleClick -Verbose;
+Get-SeWebElement -LinkText "Files" -Verbose | Invoke-SeWebElementClick -DoubleClick -Verbose;
+Get-SeWebElement -LinkText "Add File" | Invoke-SeWebElementClick -Verbose;
+
+
+
+
+
+
+ipmo C:\Projects\PS\STUPS\SePSX\bin\Release35\SePSX.dll;
+Start-SeChrome | Enter-SeURL "https://paradmin:Admin4PAR@10.30.44.210/par/main.asp";
+# type in credentials
+Get-SeWebElement -XPath "//*[@id='nav']/li[1]/a" | Move-SeCursorToWebElement -X 10 -Y 10 -Verbose;
+Get-SeWebElement -XPath "//*[@id='Files']" | Invoke-SeWebElementClick;
+
+
+
+
+
+ipmo C:\Projects\PS\STUPS\SePSX\bin\Release35\SePSX.dll;
+Start-SeInternetExplorer32 | Enter-SeURL "https://paradmin:Admin4PAR@10.30.44.210/par/main.asp";
+# type in credentials
+Get-SeWebElement -XPath "//*[@id='nav']/li[1]/a" | Move-SeCursorToWebElement -X 10 -Y 10 -Verbose;
+Get-SeWebElement -XPath "//*[@id='Files']" | Invoke-SeWebElementClick;
+
+
+
+
+
+
+

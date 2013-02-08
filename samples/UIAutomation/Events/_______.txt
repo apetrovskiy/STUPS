@@ -1,0 +1,5 @@
+Get-UIARadioButton -Name degr* | Register-UIAPropertyChangedEvent -EventAction {param($src, $e)$src.current.name >> c:\1\asdfgh.txt; $e.eventid >> C:\1\asdfgh.txt; $e.oldvalue >> C:\1\asdfgh.txt; e$.newvalue >> C:\1\asdfgh.txt; $e.property.programmaticname >> C:\1\asdfgh.txt; }
+
+
+ipmo C:\Projects\PS\UIAutomation.Old\UIAutomation\bin\Release35\UIAutomation.dll
+start-process calc -passthru | get-uiawindow | Get-UIARadioButton -Name degr* | Register-UIAPropertyChangedEvent -EventAction {param($src, $e) $src.current.name >> c:\1\asdfgh.txt; $e.eventid >> C:\1\asdfgh.txt; $e.oldvalue >> C:\1\asdfgh.txt; e$.newvalue >> C:\1\asdfgh.txt; $e.property.programmaticname >> C:\1\asdfgh.txt; }

@@ -1,0 +1,4 @@
+IE:
+http://code.google.com/p/selenium/downloads/list
+Chrome:
+http://code.google.com/p/chromium/downloads/list

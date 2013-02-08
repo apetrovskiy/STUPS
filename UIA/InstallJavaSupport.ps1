@@ -12,7 +12,7 @@
 # path to 64-bit Java on a 64-bit system
 [string]$JAVAHOME64 = "C:\Program Files\Java\jre7";
 # path to 32-bit Java on a 64-bit system
-[string]$JAVAHOME32 = "C:\Program Files (x86)\Java\jre6";
+[string]$JAVAHOME32 = "C:\Program Files (x86)\Java\jre7";
 # path to Java on a 32-bit system
 [string]$JAVAHOME = "C:\Program Files\Java\jre6";
 

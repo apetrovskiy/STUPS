@@ -52,7 +52,7 @@ namespace UIAutomation
         //private static IntPtr GetControlByName(
         private static ArrayList GetControlByName(
             GetControlCmdletBase cmdlet,
-            IntPtr handle,
+            IntPtr containerHandle,
             string name,
             int level)
         {
@@ -101,7 +101,7 @@ namespace UIAutomation
                     cmdlet,
                     "performing the search at level " + level.ToString());
                 controlHandle =
-                    NativeMethods.FindWindowEx(handle, controlHandle, null, null);
+                    NativeMethods.FindWindowEx(containerHandle, controlHandle, null, null);
                 //NativeMethods.FindWindowEx(handle, IntPtr.Zero, null, null);
                 if (controlHandle != IntPtr.Zero) {
                     
@@ -154,7 +154,7 @@ namespace UIAutomation
         internal static ArrayList GetControlByName(
             GetControlCmdletBase cmdlet,
             AutomationElement container,
-            string name)
+            string controlTitle)
         {
             // 20120824
             //AutomationElement result = null;
@@ -178,12 +178,12 @@ namespace UIAutomation
             
             // 20120918
             //if (null == name || string.Empty == name || 0 == name.Length) { return resultCollection; }
-            if (null == name || string.Empty == name || 0 == name.Length) { name = "*"; }
+            if (null == controlTitle || string.Empty == controlTitle || 0 == controlTitle.Length) { controlTitle = "*"; }
             
             try {
-                System.IntPtr handle =
+                System.IntPtr containerHandle =
                     new System.IntPtr(container.Current.NativeWindowHandle);
-                if (handle == IntPtr.Zero){
+                if (containerHandle == IntPtr.Zero){
                     cmdlet.WriteVerbose(cmdlet, "The container control has no handle");
                     // 20120824
                     // 20120827
@@ -200,7 +200,7 @@ namespace UIAutomation
                 ArrayList handlesCollection =
                     new ArrayList();
                 handlesCollection =
-                    GetControlByName(cmdlet, handle, name, 1);
+                    GetControlByName(cmdlet, containerHandle, controlTitle, 1);
 
                 // 20120829
                 WildcardOptions options;
@@ -215,7 +215,7 @@ namespace UIAutomation
                 //}
                 
                 WildcardPattern wildcardName =
-                    new WildcardPattern(name,options);
+                    new WildcardPattern(controlTitle,options);
                 
                 // 20120827
                 if (null != handlesCollection && handlesCollection.Count > 0) {
@@ -230,7 +230,7 @@ namespace UIAutomation
                                     AutomationElement.FromHandle(controlHandle);
                                 cmdlet.WriteVerbose(cmdlet, "adding the handle to the collection");
                                 
-                                cmdlet.WriteVerbose(cmdlet, name);
+                                cmdlet.WriteVerbose(cmdlet, controlTitle);
                                 cmdlet.WriteVerbose(cmdlet, tempElement.Current.Name);
                                 // 20120829
                                 //if (tempElement.Current.Name == name) {
@@ -256,7 +256,8 @@ namespace UIAutomation
                                     }
                                 }
                                 }
-                                catch {}
+                                catch { //(Exception eValuePattern) {
+                                }
                                 //resultCollection.Add(tempElement);
                             }
                         }

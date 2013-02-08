@@ -1504,7 +1504,7 @@ namespace UIAutomation
 #region text search
                         // 20130128
                         if (0 == aeCtrl.Count) {
-                            if (null != cmdlet.ContainsText && string.Empty != cmdlet.ContainsText) {
+                            if (null != cmdlet.ContainsText && string.Empty != cmdlet.ContainsText && !cmdlet.Win32) {
                                 
                                 this.WriteVerbose(cmdlet, "Text search");
                                 AutomationElementCollection textSearchCollection =

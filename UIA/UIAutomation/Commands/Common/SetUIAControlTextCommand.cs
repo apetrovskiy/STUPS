@@ -59,54 +59,67 @@ namespace UIAutomation.Commands
         {
             if (!this.CheckControl(this)) { return; }
             
-            // 20120823
             foreach (AutomationElement inputObject in this.InputObject) {
-            
-            // 20120823
-            //if (this.InputObject.Current.NativeWindowHandle == 0) {
-            if (0 == inputObject.Current.NativeWindowHandle) {
-                ErrorRecord err = 
-                    new ErrorRecord(new Exception("The handle of this control equals to zero"),
-                                    "ZeroHandle",
-                                    ErrorCategory.InvalidArgument,
-                                    // 20130105
-                                    //this.InputObject);
-                                    inputObject);
-                err.ErrorDetails = 
-                    new ErrorDetails("This control does not have a handle. Try to use its parent");
-// 20120209 
-// WriteError(this, err);
-// return;
-                WriteError(this, err, true);
-            }
-            
-            System.IntPtr handle =
-                    // 20120823
-                    //new System.IntPtr(this.InputObject.Current.NativeWindowHandle);
-                new System.IntPtr(inputObject.Current.NativeWindowHandle);
-            
-            char c1;
-            foreach (char c in this.Text) {
-// if (c  > = 65 && c <= 122) {
-// c1 = c. - System.Char. (char)32;
-// } else {
+                
+                if (0 == inputObject.Current.NativeWindowHandle) {
+        //                ErrorRecord err = 
+        //                    new ErrorRecord(new Exception("The handle of this control equals to zero"),
+        //                                    "ZeroHandle",
+        //                                    ErrorCategory.InvalidArgument,
+        //                                    // 20130105
+        //                                    //this.InputObject);
+        //                                    inputObject);
+        //                err.ErrorDetails = 
+        //                    new ErrorDetails("This control does not have a handle. Try to use its parent");
+        //// 20120209 
+        //// WriteError(this, err);
+        //// return;
+        //                WriteError(this, err, true);
+                        
+                    this.WriteError(
+                        this,
+                        "The handle of this control equals to zero",
+                        "ZeroHandle",
+                        ErrorCategory.InvalidArgument,
+                        true);
+                }
+                
+                System.IntPtr handle =
+                    new System.IntPtr(inputObject.Current.NativeWindowHandle);
+                
+                // 20130208
+                // clean up the box
+                NativeMethods.SendMessage3(handle, NativeMethods.WM_SETTEXT, IntPtr.Zero, "");
+                    
+                char c1;
+                foreach (char c in this.Text) {
+    // if (c  > = 65 && c <= 122) {
+    // c1 = c. - System.Char. (char)32;
+    // } else {
                     c1 = c;
-// }
-                NativeMethods.SendMessage1(handle, 
-                             NativeMethods.WM_KEYDOWN, 
-                             c1,
-                             0);
-                NativeMethods.SendMessage1(handle, 
-                             NativeMethods.WM_CHAR, 
-                             c1,
-                             1);
-                // System.Threading.Thread.Sleep(200);
-                NativeMethods.SendMessage1(handle, 
-                             NativeMethods.WM_KEYUP, 
-                             c1,
-                             65539);
+    // }
+                    NativeMethods.SendMessage1(handle, 
+                                 NativeMethods.WM_KEYDOWN, 
+                                 c1,
+                                 0);
+                    NativeMethods.SendMessage1(handle, 
+                                 NativeMethods.WM_CHAR, 
+                                 c1,
+                                 1);
+                    // System.Threading.Thread.Sleep(200);
+                    NativeMethods.SendMessage1(handle, 
+                                 NativeMethods.WM_KEYUP, 
+                                 c1,
+                                 65539);
+                }
+                
+                // 20130208
+                if (this.PassThru) {
+                    this.WriteObject(
+                        this,
+                        inputObject);
+                }
             }
-        }
             
         } // 20120823
         

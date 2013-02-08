@@ -622,7 +622,9 @@ namespace UIAutomation
                 if ("*" != name || "*" != automationId || "*" != className) {
                     return true;
                 }
-                return result;
+                
+                // 20130208
+                //return result;
             }
             
             result =

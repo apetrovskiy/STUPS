@@ -218,7 +218,7 @@ namespace UIAutomationTest.Commands.Get
                 UIAutomationTestForms.Forms.WinFormsEmpty, 
                 0,
                 System.Windows.Automation.ControlType.ComboBox,
-                "ccc",
+                "ccc", // name?
                 "ddd",
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
@@ -237,7 +237,7 @@ namespace UIAutomationTest.Commands.Get
                 UIAutomationTestForms.Forms.WinFormsEmpty, 
                 0,
                 System.Windows.Automation.ControlType.ComboBox,
-                "ccc",
+                "ccc", // name?
                 "ddd",
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
@@ -256,7 +256,7 @@ namespace UIAutomationTest.Commands.Get
                 UIAutomationTestForms.Forms.WinFormsEmpty, 
                 0,
                 System.Windows.Automation.ControlType.ComboBox,
-                "ccc",
+                "ccc", // name?
                 "ddd",
                 TimeoutsAndDelays.Control_Timeout3000Delay500_Delay);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
@@ -275,7 +275,7 @@ namespace UIAutomationTest.Commands.Get
                 UIAutomationTestForms.Forms.WinFormsEmpty, 
                 0,
                 System.Windows.Automation.ControlType.ComboBox,
-                "ccc",
+                "ccc", // name?
                 "ddd",
                 TimeoutsAndDelays.Control_Timeout2000Delay4000_Delay);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(

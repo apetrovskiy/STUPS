@@ -996,7 +996,7 @@ namespace UIAutomationTest.Commands.Get
                 UIAutomationTestForms.Forms.WinFormsEmpty, 
                 0,
                 System.Windows.Automation.ControlType.Edit,
-                "edit",
+                "edit", // name?
                 auId,
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
@@ -1004,6 +1004,7 @@ namespace UIAutomationTest.Commands.Get
                 MiddleLevelCode.TestFormProcess +
                 " | Get-UIAControl -AutomationId '" + 
                 auId + "' | " +
+                "Clear-UIAControlText | " +
                 "Set-UIAControlText '" +
                 expectedString +
                 "'; " +
@@ -1026,7 +1027,7 @@ namespace UIAutomationTest.Commands.Get
                 UIAutomationTestForms.Forms.WinFormsEmpty, 
                 0,
                 System.Windows.Automation.ControlType.Edit,
-                "edit",
+                "edit", // name?
                 auId,
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
@@ -1034,6 +1035,7 @@ namespace UIAutomationTest.Commands.Get
                 MiddleLevelCode.TestFormProcess +
                 " | Get-UIAControl -AutomationId '" + 
                 auId + "' | " +
+                "Clear-UIAControlText | " +
                 "Set-UIAControlText '" +
                 expectedString +
                 "'; " +

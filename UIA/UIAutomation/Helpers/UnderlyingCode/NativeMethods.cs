@@ -512,13 +512,20 @@ namespace UIAutomation
 // uint WM_KEYUP                        = 0x0100;
 
 
-            
         [DllImport("user32.dll", EntryPoint="SendMessage", CharSet=CharSet.Auto)]
         [return: MarshalAs(UnmanagedType.Bool)]
         internal static extern bool SendMessage1(IntPtr hWnd, uint Msg,
                                         int wParam, int lParam);
         #endregion declarations
         #endregion Set-UIAControlText
+        #region Clear-UIAControlText
+        [return: MarshalAs (UnmanagedType.Bool)]
+        //[DllImport ("user32.dll", SetLastError = true)]
+        [DllImport("user32.dll", EntryPoint="SendMessage", CharSet=CharSet.Auto, SetLastError = true)]
+        internal static extern bool SendMessage3 (IntPtr hWnd, uint Msg, IntPtr wParam, string s);  
+        //const uint WM_SETTEXT = 0x000c;
+        internal static uint WM_SETTEXT                        = 0x000c;
+        #endregion Clear-UIAControlText
         
         #region Get-UIAActiveWindow
         #region declarations

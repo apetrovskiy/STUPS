@@ -124,6 +124,7 @@
   <ItemGroup>
     <Compile Include="Commands\Cache\StartUIACacheRequestCommand.cs" />
     <Compile Include="Commands\Cache\StopUIACacheRequestCommand.cs" />
+    <Compile Include="Commands\Common\ClearUIAControlTextCommand.cs" />
     <Compile Include="Commands\Common\GetUIAActiveWindowCommand.cs" />
     <Compile Include="Commands\Common\GetUIAFocusCommand.cs" />
     <Compile Include="Commands\Common\InvokeUIAControlContextMenuCommand.cs" />

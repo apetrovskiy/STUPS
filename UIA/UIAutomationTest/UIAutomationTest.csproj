@@ -144,6 +144,7 @@
     <Compile Include="Commands\Get\NamedCommands\GetUIAStatusBarCommandTestFixture.cs" />
     <Compile Include="Commands\Get\NamedCommands\GetUIATextBoxCommandTestFixture.cs" />
     <Compile Include="Commands\Get\NamedCommands\GetUIATreeViewCommandTestFixture.cs" />
+    <Compile Include="Commands\Get\Parameterless\ParameterlessSearchTestFixture.cs" />
     <Compile Include="Commands\Get\Relatives\GetUIAControlRelativesTestFixture.cs" />
     <Compile Include="Commands\Pattern\InvokeUIACollapsePatternCommandTestFixture.cs" />
     <Compile Include="Commands\Pattern\InvokeUIAExpandPatternCommandTestFixture.cs" />
@@ -213,6 +214,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands\ExecutionPlan" />
+    <Folder Include="Commands\Get\Parameterless" />
+    <Folder Include="Commands\Get\Win32" />
     <Folder Include="Commands\Sheridan" />
   </ItemGroup>
   <ItemGroup>

@@ -105,7 +105,6 @@ namespace UIAutomation
                 //NativeMethods.FindWindowEx(handle, IntPtr.Zero, null, null);
                 if (controlHandle != IntPtr.Zero) {
                     
-                    // 20120827
                     controlHandles.Add(controlHandle);
                     
                     
@@ -133,17 +132,6 @@ namespace UIAutomation
                 }
             } while (controlHandle != IntPtr.Zero);
             
-            // recursive search
-            
-            
-            //                    cmdlet.WriteVerbose(cmdlet, "The handle to the control of interest is zero");
-            //                    return result;
-
-            // 20120827
-            //}
-            
-            // 20120827
-            //return resultHandle;
             return controlHandles;
         }
         
@@ -200,14 +188,14 @@ namespace UIAutomation
                                 cmdlet.WriteVerbose(cmdlet, tempElement.Current.Name);
 
                                 // 20130209
-                                if (isMatchWildcardPattern(cmdlet, resultCollection, wildcardName, tempElement.Current.Name)) continue;
-                                if (isMatchWildcardPattern(cmdlet, resultCollection, wildcardName, tempElement.Current.AutomationId)) continue;
-                                if (isMatchWildcardPattern(cmdlet, resultCollection, wildcardName, tempElement.Current.ClassName)) continue;
+                                if (isMatchWildcardPattern(cmdlet, resultCollection, tempElement, wildcardName, tempElement.Current.Name)) continue;
+                                if (isMatchWildcardPattern(cmdlet, resultCollection, tempElement, wildcardName, tempElement.Current.AutomationId)) continue;
+                                if (isMatchWildcardPattern(cmdlet, resultCollection, tempElement, wildcardName, tempElement.Current.ClassName)) continue;
                                 try {
                                 //if (null != cmdlet.Value && string.Empty != cmdlet.Value) {
                                     string elementValue =
                                         (tempElement.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern).Current.Value;
-                                    if (isMatchWildcardPattern(cmdlet, resultCollection, wildcardName, elementValue)) continue;
+                                    if (isMatchWildcardPattern(cmdlet, resultCollection, tempElement, wildcardName, elementValue)) continue;
 //                                    if (null != elementValue && string.Empty != elementValue) {
 //                                        if (wildcardName.IsMatch(elementValue)) {
 //                                            cmdlet.WriteVerbose(cmdlet, "value matches!");
@@ -235,7 +223,7 @@ namespace UIAutomation
             }
         }
         
-        private static bool isMatchWildcardPattern(GetControlCmdletBase cmdlet, ArrayList resultCollection, WildcardPattern wcPattern, string dataToCheck)
+        private static bool isMatchWildcardPattern(GetControlCmdletBase cmdlet, ArrayList resultCollection, AutomationElement element, WildcardPattern wcPattern, string dataToCheck)
         {
             bool result = false;
             
@@ -246,7 +234,7 @@ namespace UIAutomation
             if (wcPattern.IsMatch(dataToCheck)) {
                 result = true;
                 cmdlet.WriteVerbose(cmdlet, "name '" + dataToCheck + "' matches!");
-                resultCollection.Add(tempElement);
+                resultCollection.Add(element);
             }
             
             return result;

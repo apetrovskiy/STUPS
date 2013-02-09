@@ -1,5 +1,4 @@
-﻿using UIAutomation.Commands;
-/*
+﻿/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
  * Date: 02/16/2012
@@ -18,6 +17,8 @@ namespace UIAutomation
     
     using System.Linq;
     using System.Linq.Expressions;
+    
+    using UIAutomation.Commands;
 
     /// <summary>
     /// Description of GetControlCollectionCmdletBase.
@@ -34,35 +35,17 @@ namespace UIAutomation
             string name,
             string automationId,
             string className,
-            // 20130204
             string textValue,
             string[] controlType,
             bool caseSensitive)
         {
-//                                GetControlCollectionCmdletBase cmdlet1 = 
-//                                    new GetControlCollectionCmdletBase();
-//                                    //(GetControlCollectionCmdletBase)cmdlet;
-//                                cmdlet1.InputObject = cmdlet.InputObject;
-//                                cmdlet1.Name = cmdlet.Name;
-//                                cmdlet1.AutomationId = cmdlet.AutomationId;
-//                                cmdlet1.Class = cmdlet.Class;
-//                                cmdlet1.CaseSensitive = this.caseSensitive;
-//                                // 20120824
-//                                //cmdlet1.ControlType = cmdlet.ControlType;
-//                                System.Collections.ArrayList arrList = 
-//                                    new System.Collections.ArrayList();
-//                                arrList.Add(cmdlet.ControlType);
-//                                cmdlet1.ControlType = (string[])arrList.ToArray(typeof(string));
-
             this.InputObject = inputObjectCollection;
             this.Name = name;
             this.AutomationId = automationId;
             this.Class = className;
-            // 20130204
             this.Value = textValue;
             this.ControlType = controlType;
             this.CaseSensitive = caseSensitive;
-            
         }
         
         #region Parameters
@@ -88,7 +71,6 @@ namespace UIAutomation
 //        public SwitchParameter CaseSensitive { get; set; }
         #endregion Parameters
 
-        
         protected override void BeginProcessing() {
             WriteVerbose(this, "ControlType = " + ControlType);
             WriteVerbose(this, "Class = " + Class);
@@ -97,7 +79,6 @@ namespace UIAutomation
         }
         
         protected void GetAutomationElementsViaWildcards_FindAll(
-            // 20120824
             AutomationElement inputObject,
             AndCondition conditions,
             bool caseSensitive,
@@ -107,13 +88,10 @@ namespace UIAutomation
             if (!this.CheckControl(this)) { return; }
           
             getAutomationElementsWithFindAll(
-                // 20120824
-                //this.InputObject,
                 inputObject,
                 this.Name,
                 this.AutomationId,
                 this.Class,
-                // 20130204
                 this.Value,
                 this.ControlType,
                 conditions,
@@ -122,12 +100,8 @@ namespace UIAutomation
                 onlyTopLevel);
         }
         
-        // 20120824
-        //internal AutomationElement GetAutomationElementsViaWildcards_FindAll(
-        //internal AutomationElementCollection GetAutomationElementsViaWildcards_FindAll(
         internal ArrayList GetAutomationElementsViaWildcards_FindAll(
             GetControlCollectionCmdletBase cmdlet,
-            // 20130126
             AutomationElement inputObject,
             AndCondition conditions,
             bool caseSensitive,
@@ -139,19 +113,12 @@ namespace UIAutomation
 
             ArrayList resultCollection = new ArrayList();
             
-            // 20120824
-            // 20130126
-            //foreach (AutomationElement inputObject in this.InputObject) {
-            
             resultCollection =
                 getAutomationElementsWithFindAll(
-                    // 20120824
-                    //cmdlet.InputObject,
                     inputObject,
                     cmdlet.Name,
                     cmdlet.AutomationId,
                     cmdlet.Class,
-                    // 20130204
                     cmdlet.Value,
                     cmdlet.ControlType,
                     conditions,
@@ -159,15 +126,11 @@ namespace UIAutomation
                     onlyOneResult,
                     onlyTopLevel);
 
-            // 20120824
-            //if (result == null) {
             if (null == resultCollection || resultCollection.Count == 0) {
                 
                 WriteVerbose(
                     cmdlet, 
                     "getAutomationElementsWithWalker (" +
-                    // 20120824
-                    //cmdlet.InputObject.Current.Name +
                     inputObject.Current.Name +
                     "," +
                     cmdlet.Name +
@@ -187,16 +150,10 @@ namespace UIAutomation
 
             }
             
-            // 20130126
-            //} // 20120824
-            
-            // 20120824
-            //return result;
             return resultCollection;
         }
         
         protected void GetAutomationElementsViaWildcards(
-            // 20120824
             AutomationElement inputObject,
             bool caseSensitive,
             bool onlyOneResult,
@@ -205,8 +162,6 @@ namespace UIAutomation
             if (!this.CheckControl(this)) { return; }
           
             getAutomationElementsWithWalker(
-                // 20120824
-                //this.InputObject,
                 inputObject,
                 this.Name,
                 this.AutomationId,
@@ -217,9 +172,6 @@ namespace UIAutomation
                 onlyTopLevel);
         }
         
-        // 20120824
-        //internal AutomationElement GetAutomationElementsViaWildcards(
-        //internal AutomationElementCollection GetAutomationElementsViaWildcards(
         internal ArrayList GetAutomationElementsViaWildcards(
             GetControlCollectionCmdletBase cmdlet,
             bool caseSensitive,
@@ -228,65 +180,48 @@ namespace UIAutomation
         {
             if (!cmdlet.CheckControl(cmdlet)) { return null; }
 
-            // 20120824
-            //AutomationElement result = null;
-            //AutomationElementCollection resultCollection = null;
             ArrayList resultCollection = new ArrayList();
             
-            // 20120824
             foreach (AutomationElement inputObject in this.InputObject) {
             
-            // 20120824
-            //result = 
-            resultCollection =
-                getAutomationElementsWithWalker(
-                    // 20120824
-                    //cmdlet.InputObject,
-                    inputObject,
-                    cmdlet.Name,
-                    cmdlet.AutomationId,
-                    cmdlet.Class,
-                    cmdlet.ControlType,
-                    caseSensitive,
-                    onlyOneResult,
-                    onlyTopLevel);
+                resultCollection =
+                    getAutomationElementsWithWalker(
+                        inputObject,
+                        cmdlet.Name,
+                        cmdlet.AutomationId,
+                        cmdlet.Class,
+                        cmdlet.ControlType,
+                        caseSensitive,
+                        onlyOneResult,
+                        onlyTopLevel);
 
-            // 20120824
-            //if (result == null) {
-            if (null == resultCollection) {
-                WriteVerbose(
-                    cmdlet, 
-                    "getAutomationElementsWithWalker (" +
-                    // 20120824
-                    //cmdlet.InputObject.Current.Name +
-                    inputObject.Current.Name +
-                    "," +
-                    cmdlet.Name +
-                    "," +
-                    cmdlet.AutomationId +
-                    "," +
-                    cmdlet.Class +
-                    "," +
-                    cmdlet.ControlType +
-                    "," +
-                    caseSensitive.ToString() +
-                    "," +
-                    onlyOneResult.ToString() +
-                    "," +
-                    onlyTopLevel.ToString() +
-                    ") returrned null");
+                if (null == resultCollection) {
+                    WriteVerbose(
+                        cmdlet, 
+                        "getAutomationElementsWithWalker (" +
+                        inputObject.Current.Name +
+                        "," +
+                        cmdlet.Name +
+                        "," +
+                        cmdlet.AutomationId +
+                        "," +
+                        cmdlet.Class +
+                        "," +
+                        cmdlet.ControlType +
+                        "," +
+                        caseSensitive.ToString() +
+                        "," +
+                        onlyOneResult.ToString() +
+                        "," +
+                        onlyTopLevel.ToString() +
+                        ") returrned null");
+                }
+            
             }
             
-            } // 20120824
-            
-            // 20120824
-            //return result;
             return resultCollection;
         }
         
-        // 20120824
-        //private AutomationElement getAutomationElementsWithWalker(
-        //private AutomationElementCollection getAutomationElementsWithWalker(
         private ArrayList getAutomationElementsWithWalker(
             AutomationElement element,
             string name,
@@ -297,9 +232,6 @@ namespace UIAutomation
             bool onlyOneResult,
             bool onlyTopLevel)
         {
-            // 20120824
-            //AutomationElement result = null;
-            //AutomationElementCollection resultCollection = null;
             ArrayList resultCollection = new ArrayList();
 
             System.Windows.Automation.TreeWalker walker = 
@@ -322,8 +254,6 @@ namespace UIAutomation
                 }
                 catch {}
 
-                // 20120824
-                //result = processAutomationElement(
                 resultCollection = processAutomationElement(
                         oneMoreElement,
                         name,
@@ -334,18 +264,12 @@ namespace UIAutomation
                         onlyOneResult,
                         onlyTopLevel);
 
-                // 20120824
-                //if ((onlyTopLevel || onlyOneResult) && (result != null)) {
                 if ((onlyTopLevel || onlyOneResult) && (null != resultCollection) && resultCollection.Count > 0) {
-                    // 20120824
-                    //return result; // returns only one window or control
-                    //return resultCollection[0];
+
                     return resultCollection;
-                // 20120824
-                //} else if (result != null) {
+
                 } else if (null != resultCollection) {
-                    // 20120824
-                    //WriteObject(this, result);
+
                     WriteObject(this, resultCollection);
                 }
                 
@@ -363,8 +287,6 @@ namespace UIAutomation
                     }
                     catch {}
 
-                    // 20120824
-                    //result = processAutomationElement(
                     resultCollection = processAutomationElement(
                         oneMoreElement,
                         name,
@@ -375,35 +297,26 @@ namespace UIAutomation
                         onlyOneResult,
                         onlyTopLevel);
 
-                    // 20120824
-                    //if ((onlyTopLevel || onlyOneResult) && (result != null)) {
                     if ((onlyTopLevel || onlyOneResult) && (null != resultCollection) && resultCollection.Count > 0) {
-                        // 20120824
-                        //return result; // returns only one window or control
+
                         return resultCollection;
-                    // 20120824
-                    //} else if (result != null) {
+
                     } else if (null != resultCollection) {
-                        // 20120824
-                        //WriteObject(this, result);
+
                         WriteObject(this, resultCollection);
                     }
                 }
             }
             catch {}
             
-            // 20120824
-            //return result;
             return resultCollection;
         }
         
-        // 20120824
         private ArrayList getAutomationElementsWithFindAll(
             AutomationElement element,
             string name,
             string automationId,
             string className,
-            // 20130204
             string textValue,
             string[] controlType,
             AndCondition conditions,
@@ -434,70 +347,12 @@ namespace UIAutomation
                         textValue,
                         controlType,
                         caseSensitive);
-                
-//                ArrayList resultCollection = new ArrayList();
-//                
-//                WildcardOptions options;
-//                if (caseSensitive) {
-//                    options =
-//                        WildcardOptions.Compiled;
-//                } else {
-//                    options =
-//                        WildcardOptions.IgnoreCase |
-//                        WildcardOptions.Compiled;
-//                }
-//
-//                if (string.Empty == name || 0 == name.Length) { name = "*"; }
-//                if (string.Empty == automationId || 0 == automationId.Length) { automationId = "*"; }
-//                if (string.Empty == className || 0 == className.Length) { className = "*"; }
-//                if (string.Empty == textValue || 0 == textValue.Length) { textValue = "*"; }
-//
-//                WildcardPattern wildcardName = 
-//                    new WildcardPattern(name, options);
-//                WildcardPattern wildcardAutomationId = 
-//                    new WildcardPattern(automationId, options);
-//                WildcardPattern wildcardClass = 
-//                    new WildcardPattern(className, options);
-//                WildcardPattern wildcardValue = 
-//                    new WildcardPattern(textValue, options);
-//
-//                System.Collections.Generic.List<AutomationElement> list =
-//                    new System.Collections.Generic.List<AutomationElement>();
-//                foreach (AutomationElement elt in results) {
-//                    list.Add(elt);
-//                }
-//
-//                var query = list
-//                    .Where<AutomationElement>(item => wildcardName.IsMatch(item.Current.Name))
-//                    .Where<AutomationElement>(item => wildcardAutomationId.IsMatch(item.Current.AutomationId))
-//                    .Where<AutomationElement>(item => wildcardClass.IsMatch(item.Current.ClassName))
-//                    .Where<AutomationElement>(item => 
-//                                              item.GetSupportedPatterns().Contains(ValuePattern.Pattern) ? 
-//                                              wildcardValue.IsMatch((item.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern).Current.Value) : 
-//                                              true)
-//                    .ToArray<AutomationElement>();
-//
-//                this.WriteVerbose(
-//                    this,
-//                    "There are " +
-//                    query.Count().ToString() +
-//                    " elements");
-//
-//                resultCollection.AddRange(query);
-//
-//                this.WriteVerbose(
-//                    this,
-//                    "There are " +
-//                    resultCollection.Count.ToString() +
-//                    " elements");
-//                
+
             }
             catch { //(Exception eWildCardSearch) {
                 
             }
             
-            // 20120824
-            //return result;
             return resultCollection;
         }
         
@@ -717,25 +572,14 @@ namespace UIAutomation
                 
                 if (matched) {
                     
-                    // 20120824
                     resultCollection.Add(element);
                     
                     if (onlyOneResult) {
-                        
-                        // 20120824
-                        //result = element;
-                        //resultCollection = (AutomationElementCollection)element as AutomationElementCollection;
-//                        AutomationElement[] resultArray = new AutomationElement[1];
-//                        resultArray[0] = element;
-//                        resultCollection = resultArray as AutomationElementCollection;
-                            throw (new Exception("wrong code here!"));
+
+                        throw (new Exception("wrong code here!"));
 
                     } else {
                         
-                        // 20120824
-                        //WriteObject(this, element);  // ??????
-                        
-                        // 20120824
                         return resultCollection;
                     }
                 }
@@ -755,22 +599,17 @@ namespace UIAutomation
                     onlyOneResult,
                     onlyTopLevel);
                 
-                
             }
-            // 20120824
-            //return result;
+
             return resultCollection;
         }
         
-        // 20130126
-        //private bool elementOfPossibleControlType(
         internal bool elementOfPossibleControlType(
             string[] controlType, 
             string elementControlType)
         {
             bool result = false;
             
-            // 20130126
             if (null == controlType || 0 == controlType.Length) {
                 return result;
             }
@@ -810,17 +649,17 @@ namespace UIAutomation
             // 20120823
             foreach (AutomationElement inputObject in this.InputObject) {
             
-            AutomationElement sibling = null;
-            if (nextSibling) {
-                // 20120823
-                //sibling = walker.GetNextSibling(this.InputObject);
-                sibling = walker.GetNextSibling(inputObject);
-            } else {
-                // 20120823
-                //sibling = walker.GetPreviousSibling(this.InputObject);
-                sibling = walker.GetPreviousSibling(inputObject);
-            }
-            WriteObject(this, sibling);
+                AutomationElement sibling = null;
+                if (nextSibling) {
+                    // 20120823
+                    //sibling = walker.GetNextSibling(this.InputObject);
+                    sibling = walker.GetNextSibling(inputObject);
+                } else {
+                    // 20120823
+                    //sibling = walker.GetPreviousSibling(this.InputObject);
+                    sibling = walker.GetPreviousSibling(inputObject);
+                }
+                WriteObject(this, sibling);
             
             } // 20120823
             

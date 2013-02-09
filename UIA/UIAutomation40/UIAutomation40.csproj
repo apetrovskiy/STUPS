@@ -156,6 +156,9 @@
     <Compile Include="..\UIAutomation\Commands\Cache\StopUIACacheRequestCommand.cs">
       <Link>Commands\Cache\StopUIACacheRequestCommand.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Commands\Common\ClearUIAControlTextCommand.cs">
+      <Link>Commands\Common\ClearUIAControlTextCommand.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Commands\Common\GetUIAActiveWindowCommand.cs">
       <Link>Commands\Common\GetUIAActiveWindowCommand.cs</Link>
     </Compile>

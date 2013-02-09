@@ -1326,16 +1326,12 @@ namespace UIAutomation
             {
 
                 WriteVerbose(cmdlet, "neither ControlType nor Class nor Name are present");
-                //WriteObject(null); //# produce the output
-                //return null;
-                
-                ////return conditions;
-                ////return Condition.TrueCondition;
+
                 return (new AndCondition(Condition.TrueCondition,
                                          Condition.TrueCondition));
             }
             try {
-                // 20130128
+
                 Condition[] tempConditions = null;
                 if (null != allConditions) {
 
@@ -1343,23 +1339,13 @@ namespace UIAutomation
                     conditionsToReturn = allConditions;
 
                 }
-                // 20130128
-                //if (andConditions != null) {
+
                 else if (null != andConditions) {
 
-                    // 20130128
-                    //Condition[] tempConditions = andConditions.GetConditions();
                     tempConditions = andConditions.GetConditions();
-                    // 20130128
-                    //for (int i = 0; i < tempConditions.Length; i++) {
-                    //    WriteVerbose(cmdlet, "condition: " + tempConditions[i].ToString());
-                    //}
-                    // 20130128
+
                     conditionsToReturn = andConditions;
 
-                    //WriteVerbose(cmdlet, "conditions: " +
-                    // conditions.GetConditions());
-                    // 20130128
                 } else if (null != orConditions) {
 
                     tempConditions = orConditions.GetConditions();
@@ -1495,7 +1481,7 @@ namespace UIAutomation
                         if (0 == aeCtrl.Count) {
                             if (!notTextSearch && cmdlet.Win32) {
                                 
-                                SearchByTextViaWin32(cmdlet, inputObject);
+                                SearchByTextViaWin32(cmdlet, inputObject, cmdlet.ControlType);
                             }
                         }
                         #endregion text search Win32
@@ -1672,20 +1658,6 @@ namespace UIAutomation
             #endregion commented
         }
 
-        // using API
-
-
-
-
-
-
-
-
-
-
-
-        // 20120917
-        //}
         internal void SearchByWildcardViaWin32(GetControlCmdletBase cmdlet, AutomationElement inputObject)
         {
             this.WriteVerbose(cmdlet, "[getting the control] using FindWindowEx");
@@ -1873,8 +1845,10 @@ namespace UIAutomation
         
         internal void SearchByTextViaWin32(
             GetControlCmdletBase cmdlet,
-            AutomationElement inputObject)
+            AutomationElement inputObject,
+            string controlType)
         {
+
             this.WriteVerbose(cmdlet, "Text search Win32");
             ArrayList textSearchWin32List =
                 UIAHelper.GetControlByName(
@@ -1885,8 +1859,22 @@ namespace UIAutomation
             if (null != textSearchWin32List && 0 < textSearchWin32List.Count) {
                 
                 this.WriteVerbose(cmdlet, "There are " + textSearchWin32List.Count.ToString() + " elements");
-                foreach (AutomationElement element in textSearchWin32List) {
-                    aeCtrl.Add(element);
+                foreach (AutomationElement elementToChoose in textSearchWin32List) {
+                    
+                    if (null != controlType && string.Empty != controlType && 0 < controlType.Length) {
+
+                        if (!elementToChoose.Current.ControlType.ProgrammaticName.ToUpper().Contains(controlType.ToUpper()) || 
+                            !(elementToChoose.Current.ControlType.ProgrammaticName.ToUpper().Substring(12).Length == controlType.ToUpper().Length)) {
+                            
+                            continue;
+                        } else {
+                            
+                            aeCtrl.Add(elementToChoose);
+                        }
+                    } else {
+                        
+                        aeCtrl.Add(elementToChoose);
+                    }
                 }
             }
         }

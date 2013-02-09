@@ -101,6 +101,7 @@
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Commands\TL\GetTLProjectCommandTestFixture.cs" />
+    <Compile Include="Commands\TL\NewTLUserCommandTestFixture.cs" />
     <Compile Include="Helpers\UnderlyingCode\Builds\AddBuildTestFixture.cs" />
     <Compile Include="Helpers\UnderlyingCode\Builds\GetBuildTestFixture.cs" />
     <Compile Include="Helpers\UnderlyingCode\Connect\TLSrvConnectCommandTestFixture.cs" />
@@ -142,6 +143,7 @@
     <Folder Include="Helpers" />
     <Folder Include="Helpers\Inheritance" />
     <Folder Include="Helpers\UnderlyingCode\Builds" />
+    <Folder Include="Helpers\UnderlyingCode\Users" />
     <Folder Include="Helpers\UnderlyingCode\TestProjects" />
     <Folder Include="Helpers\UnderlyingCode\TestCases" />
     <Folder Include="Helpers\UnderlyingCode\TestPlans" />

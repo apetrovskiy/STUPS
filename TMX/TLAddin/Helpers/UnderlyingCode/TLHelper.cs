@@ -804,5 +804,20 @@ namespace TMX
             // outputting the test suites collections
             cmdlet.WriteObject(cmdlet, testSuites);
         }
+        
+        internal static void NewUser(
+            TLSCmdletBase cmdlet,
+            string login,
+            string password,
+            string firstName,
+            string lastName,
+            string email,
+            string role,
+            string locale,
+            bool active,
+            bool disabled)
+        {
+            //TLAddinData.CurrentTestLinkConnection.
+        }
     }
 }

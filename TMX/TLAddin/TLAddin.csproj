@@ -96,6 +96,7 @@
     <Compile Include="Commands\TL\GetTLTestPlanCommand.cs" />
     <Compile Include="Commands\TL\GetTLTestSuiteCommand.cs" />
     <Compile Include="Commands\TL\NewTLTestPlanCommand.cs" />
+    <Compile Include="Commands\TL\NewTLUserCommand.cs" />
     <Compile Include="Helpers\Inheritance\TLAddTestPlanCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\TLBuildCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\TLCollectionCmdletBase.cs" />
@@ -107,6 +108,7 @@
     <Compile Include="Helpers\Inheritance\TLTestPlanCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\TLTestSubSuiteCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\TLTestSuiteCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\TLUserCmdletBase.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Builds\TLSrvAddBuildCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Builds\TLSrvGetBuildCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Connect\TLSrvConnectCommand.cs" />
@@ -118,6 +120,7 @@
     <Compile Include="Helpers\UnderlyingCode\Commands\TestSuites\TLSrvAddTestSuiteCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TestSuites\TLSrvGetTestSuiteCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TLSrvCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Users\TLSrvNewUserCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\TestLinkFactory.cs" />
     <Compile Include="Helpers\UnderlyingCode\TLHelper.cs" />
     <Compile Include="Helpers\UnderlyingCode\Wrappers\WrappedTestLink.cs" />
@@ -130,6 +133,7 @@
     <Folder Include="Helpers\Inheritance" />
     <Folder Include="Helpers\UnderlyingCode\Commands\Connect" />
     <Folder Include="Helpers\UnderlyingCode\Commands\Builds" />
+    <Folder Include="Helpers\UnderlyingCode\Commands\Users" />
     <Folder Include="Helpers\UnderlyingCode\Commands\TestSuites" />
     <Folder Include="Helpers\UnderlyingCode\Commands\TestProjects" />
     <Folder Include="Helpers\UnderlyingCode\Commands\TestPlans" />

@@ -36,7 +36,8 @@ namespace UIAutomation.Commands
         #endregion Parameters
 
         protected override void BeginProcessing() {
-            //WriteVerbose(this, "BeginProcessing()");
+            
+            // set the start time to calculate the timeout expiration
             startDate = System.DateTime.Now;
         }
         
@@ -70,15 +71,9 @@ namespace UIAutomation.Commands
                 return; // ?
 
             }
-            // 20120824
-            //if (returnValue != null) {
-            // 20120830
-            //if (returnCollection != null) {
-            if (null != returnCollection && 0 < returnCollection.Count) {
-                // 20120824
-                //WriteObject(this, returnValue);
 
-                // 20120917
+            if (null != returnCollection && 0 < returnCollection.Count) {
+
                 this.WriteObject(this, returnCollection);
                 
             } else {

@@ -147,37 +147,19 @@ namespace UIAutomation
             return controlHandles;
         }
         
-        // 20120824
-        //internal static AutomationElement GetControlByName(
-        //internal static AutomationElement[] GetControlByName(
-        // 20120827
         internal static ArrayList GetControlByName(
             GetControlCmdletBase cmdlet,
             AutomationElement container,
             string controlTitle)
         {
-            // 20120824
-            //AutomationElement result = null;
-            //AutomationElement[] resultCollection = null;
-            // 20120827
+
             ArrayList resultCollection = new ArrayList();
             
             cmdlet.WriteVerbose(cmdlet, "checking the container control");
-            // 20120824
-            //if (container == null) { return result; } //return null;
-            //if (null == container) { return resultCollection; }
-            // 20120827
-            //if (null == container) { return result; }
+
             if (null == container) { return resultCollection; }
             cmdlet.WriteVerbose(cmdlet, "checking the Name parameter");
-            // 20120824
-            //if (name == null || name == string.Empty || name.Length == 0) { return result; } //{ return null; }
-            //if (null == name || string.Empty == name || 0 == name.Length) { return resultCollection; }
-            // 20120827
-            //if (null == name || string.Empty == name || 0 == name.Length) { return result; }
-            
-            // 20120918
-            //if (null == name || string.Empty == name || 0 == name.Length) { return resultCollection; }
+
             if (null == controlTitle || string.Empty == controlTitle || 0 == controlTitle.Length) { controlTitle = "*"; }
             
             try {
@@ -185,39 +167,23 @@ namespace UIAutomation
                     new System.IntPtr(container.Current.NativeWindowHandle);
                 if (containerHandle == IntPtr.Zero){
                     cmdlet.WriteVerbose(cmdlet, "The container control has no handle");
-                    // 20120824
-                    // 20120827
-                    //return result;
-                    //return resultCollection;
+
                     return resultCollection;
                 }
                 
-                // 20120827
-                //System.IntPtr resultHandle =
-                //    GetControlByName(cmdlet, handle, name, 1);
-                
-                // 20120827
                 ArrayList handlesCollection =
                     new ArrayList();
                 handlesCollection =
                     GetControlByName(cmdlet, containerHandle, controlTitle, 1);
 
-                // 20120829
                 WildcardOptions options;
-                //if (caseSensitive) {
-                //if (cmdlet.cas
-                //    options =
-                //        WildcardOptions.Compiled;
-                //} else {
                 options =
                     WildcardOptions.IgnoreCase |
                     WildcardOptions.Compiled;
-                //}
                 
                 WildcardPattern wildcardName =
                     new WildcardPattern(controlTitle,options);
                 
-                // 20120827
                 if (null != handlesCollection && handlesCollection.Count > 0) {
                     cmdlet.WriteVerbose(cmdlet, "handles.Count = " + handlesCollection.Count.ToString());
                     foreach (System.IntPtr controlHandle in handlesCollection) {
@@ -232,29 +198,24 @@ namespace UIAutomation
                                 
                                 cmdlet.WriteVerbose(cmdlet, controlTitle);
                                 cmdlet.WriteVerbose(cmdlet, tempElement.Current.Name);
-                                // 20120829
-                                //if (tempElement.Current.Name == name) {
-                                //    resultCollection.Add(tempElement);
-                                //}
-                                string elementName = tempElement.Current.Name;
-                                // 20120829
-                                //if (wildcardName.IsMatch(tempElement.Current.Name)) {
-                                if (wildcardName.IsMatch(elementName)) {
-                                    cmdlet.WriteVerbose(cmdlet, "name matches!");
-                                    resultCollection.Add(tempElement);
-                                }
-                                // 20130207
+
+                                // 20130209
+                                if (isMatchWildcardPattern(cmdlet, resultCollection, wildcardName, tempElement.Current.Name)) continue;
+                                if (isMatchWildcardPattern(cmdlet, resultCollection, wildcardName, tempElement.Current.AutomationId)) continue;
+                                if (isMatchWildcardPattern(cmdlet, resultCollection, wildcardName, tempElement.Current.ClassName)) continue;
                                 try {
-                                if (null != cmdlet.Value && string.Empty != cmdlet.Value) {
+                                //if (null != cmdlet.Value && string.Empty != cmdlet.Value) {
                                     string elementValue =
                                         (tempElement.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern).Current.Value;
-                                    if (null != elementValue && string.Empty != elementValue) {
-                                        if (wildcardName.IsMatch(elementValue)) {
-                                            cmdlet.WriteVerbose(cmdlet, "value matches!");
-                                            resultCollection.Add(tempElement);
-                                        }
-                                    }
-                                }
+                                    if (isMatchWildcardPattern(cmdlet, resultCollection, wildcardName, elementValue)) continue;
+//                                    if (null != elementValue && string.Empty != elementValue) {
+//                                        if (wildcardName.IsMatch(elementValue)) {
+//                                            cmdlet.WriteVerbose(cmdlet, "value matches!");
+//                                            resultCollection.Add(tempElement);
+//                                            continue;
+//                                        }
+//                                    }
+                                //}
                                 }
                                 catch { //(Exception eValuePattern) {
                                 }
@@ -266,45 +227,29 @@ namespace UIAutomation
                         }
                     }
                 }
-                
-                //                IntPtr control = IntPtr.Zero;
-                ////                IntPtr control =
-                ////                    NativeMethods.FindWindowEx(handle, IntPtr.Zero, null, name);
-                //                control =
-                //                    NativeMethods.FindWindowEx(handle, control, null, name);
-                //                if (control == IntPtr.Zero) { //return null;
-//
-                //                    // search at this level
-//
-//
-                //                    // recursive search
-//
-//
-                ////                    cmdlet.WriteVerbose(cmdlet, "The handle to the control of interest is zero");
-                ////                    return result;
-                //                }
-
-                // 20120827
-                //if (resultHandle != IntPtr.Zero) {
-                //    // 20120824
-                //    result =
-                //    //resultCollection[0] =
-                //        AutomationElement.FromHandle(resultHandle);
-                //}
-                
-                // 20120824
-                // 20120827
-                //return result;
                 return resultCollection;
             } catch (Exception eWin32Control) {
                 cmdlet.WriteVerbose(cmdlet, "UIAHelper.GetControlByName() failed");
                 cmdlet.WriteVerbose(cmdlet, eWin32Control.Message);
-                // 20120824
-                //return null;
-                // 20120827
-                //return result;
                 return resultCollection;
             }
+        }
+        
+        private static bool isMatchWildcardPattern(GetControlCmdletBase cmdlet, ArrayList resultCollection, WildcardPattern wcPattern, string dataToCheck)
+        {
+            bool result = false;
+            
+            if (null == dataToCheck || string.Empty == dataToCheck) {
+                return result;
+            }
+            
+            if (wcPattern.IsMatch(dataToCheck)) {
+                result = true;
+                cmdlet.WriteVerbose(cmdlet, "name '" + dataToCheck + "' matches!");
+                resultCollection.Add(tempElement);
+            }
+            
+            return result;
         }
         
         internal static void Highlight(AutomationElement element) //, Highlighters control)  //(object obj)

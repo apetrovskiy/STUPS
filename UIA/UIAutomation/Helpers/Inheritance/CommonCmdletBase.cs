@@ -1421,7 +1421,7 @@ namespace UIAutomation
         protected ArrayList getControl(GetControlCmdletBase cmdlet)
         {
             try {
-                //aeCtrl = null;
+
                 aeCtrl = new ArrayList();
                 System.Windows.Automation.AndCondition conditions = null;
                 conditions = this.getControlConditions(cmdlet, cmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive, true) as AndCondition;
@@ -1719,29 +1719,6 @@ namespace UIAutomation
             }
         }
 
-        // 20120830
-        //nameAsterisk,
-        // 20130204
-        // 20130204
-        //(string[])(new ArrayList()).ToArray(typeof(string)),
-
-        // 20120917
-        //ArrayList tempList = new ArrayList();
-
-        // 20120917
-        //aeCtrl =
-
-        // 20130126
-        // 20120824
-        //true,
-
-
-        // 20120917
-
-        // // 20130125
-
-        // // 20130125
-
         internal void SearchByWildcardViaUIA(
             GetControlCmdletBase cmdlet,
             AutomationElement inputObject,
@@ -1773,30 +1750,29 @@ namespace UIAutomation
                         "there are " +
                         tempList.Count.ToString() +
                         " elements that match the conditions");
-Console.WriteLine(tempList.Count.ToString());
                     
                     foreach (AutomationElement tempElement2 in tempList) {
-Console.WriteLine("foreach");
+
                         if (null == cmdlet.SearchCriteria || 0 == cmdlet.SearchCriteria.Length) {
-Console.WriteLine("if");
+
                             aeCtrl.Add(tempElement2);
                             cmdlet.WriteVerbose(cmdlet, "WildCardSearch: element added to the result collection (no SearchCriteria)");
                         } else {
-Console.WriteLine("else");
+
                             cmdlet.WriteVerbose(cmdlet, "WildCardSearch: checking search criteria");
                             if (testControlWithAllSearchCriteria(cmdlet, cmdlet.SearchCriteria, tempElement2)) {
-Console.WriteLine("if 2");
+
                                 cmdlet.WriteVerbose(cmdlet, "WildCardSearch: the control matches the search criteria");
                                 aeCtrl.Add(tempElement2);
                                 cmdlet.WriteVerbose(cmdlet, "WildCardSearch: element added to the result collection (SearchCriteria)");
                             }
-                            cmdlet.WriteVerbose(cmdlet, "WildCardSearch: element added to the result collection (SearchCriteria) (2)");
+                            // cmdlet.WriteVerbose(cmdlet, "WildCardSearch: element added to the result collection (SearchCriteria) (2)");
                         }
-                        cmdlet.WriteVerbose(cmdlet, "WildCardSearch: element added to the result collection (SearchCriteria) (3)");
+                        // cmdlet.WriteVerbose(cmdlet, "WildCardSearch: element added to the result collection (SearchCriteria) (3)");
                     }
-                    cmdlet.WriteVerbose(cmdlet, "WildCardSearch: element added to the result collection (SearchCriteria) (4)");
+                    cmdlet.WriteVerbose(cmdlet, "WildCardSearch: element(s) added to the result collection: " + aeCtrl.Count.ToString());
                 } catch (Exception eUnexpected) {
-                    this.WriteVerbose(this, eUnexpected.Message);
+                    // this.WriteVerbose(this, eUnexpected.Message);
                     this.WriteError(
                         this,
                         "The input control or window has been possibly lost." +

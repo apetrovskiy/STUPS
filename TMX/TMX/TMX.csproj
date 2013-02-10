@@ -130,6 +130,15 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FluentNHibernate">
+      <HintPath>..\..\packages\FluentNHibernate.1.3.0.733\lib\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\..\packages\NHibernate.3.3.2.4000\lib\Net35\NHibernate.dll</HintPath>
+    </Reference>
     <Reference Include="SQLite.Designer">
       <HintPath>..\..\binaries\sqlite\35\64\SQLite.Designer.dll</HintPath>
     </Reference>
@@ -241,6 +250,14 @@
     <Compile Include="Helpers\UnderlyingCode\Commands\TMXCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\GatherTestResultsCollections.cs" />
     <Compile Include="Helpers\UnderlyingCode\IXMLElementsStruct.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Mapping\TestCaseMap.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Mapping\TestResultMap.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Mapping\TestScenarioMap.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Mapping\TestSuiteMap.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Types\Database.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Types\TestBucket.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Types\TestCase.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Types\TestConstant.cs" />
     <Compile Include="Helpers\UnderlyingCode\Types\TestResult.cs" />
     <Compile Include="Helpers\UnderlyingCode\Types\TestResultDetail.cs" />
     <Compile Include="Helpers\UnderlyingCode\Types\TestScenario.cs" />
@@ -296,6 +313,7 @@
     <Folder Include="Helpers\UnderlyingCode\Commands" />
     <Folder Include="Helpers\UnderlyingCode\Commands\TestStructure" />
     <Folder Include="Helpers\UnderlyingCode\Commands\Status" />
+    <Folder Include="Helpers\UnderlyingCode\Mapping" />
     <Folder Include="Helpers\UnderlyingCode\Types" />
     <Folder Include="SQLiteData" />
   </ItemGroup>
@@ -304,6 +322,9 @@
       <Project>{E4499004-DAE5-4700-B212-4CDEA3080BC5}</Project>
       <Name>PSTestLibrary</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>

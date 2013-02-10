@@ -382,6 +382,18 @@
     <Compile Include="..\TMX\Helpers\UnderlyingCode\TMXHelper.cs">
       <Link>Helpers\UnderlyingCode\TMXHelper.cs</Link>
     </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Types\Database.cs">
+      <Link>Helpers\UnderlyingCode\Types\Database.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Types\TestBucket.cs">
+      <Link>Helpers\UnderlyingCode\Types\TestBucket.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Types\TestCase.cs">
+      <Link>Helpers\UnderlyingCode\Types\TestCase.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Types\TestConstant.cs">
+      <Link>Helpers\UnderlyingCode\Types\TestConstant.cs</Link>
+    </Compile>
     <Compile Include="..\TMX\Helpers\UnderlyingCode\Types\TestResult.cs">
       <Link>Helpers\UnderlyingCode\Types\TestResult.cs</Link>
     </Compile>
@@ -468,6 +480,7 @@
     <Folder Include="Helpers\UnderlyingCode\Commands" />
     <Folder Include="Helpers\UnderlyingCode\Commands\TestStructure" />
     <Folder Include="Helpers\UnderlyingCode\Commands\Status" />
+    <Folder Include="Helpers\UnderlyingCode\Mapping" />
     <Folder Include="Helpers\UnderlyingCode\Types" />
     <Folder Include="SQLiteData" />
   </ItemGroup>

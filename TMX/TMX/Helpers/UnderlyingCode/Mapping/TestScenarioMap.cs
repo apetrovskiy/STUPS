@@ -27,6 +27,7 @@ namespace TMX
             Map(x => x.Id);
             Map(x => x.Status);
             Map(x => x.Description);
+            HasMany(x => x.TestResults);
         }
     }
 }

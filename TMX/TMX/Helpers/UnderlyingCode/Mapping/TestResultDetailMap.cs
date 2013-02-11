@@ -2,7 +2,7 @@
  * Created by SharpDevelop.
  * User: shuran
  * Date: 2/11/2013
- * Time: 2:35 AM
+ * Time: 9:29 AM
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
@@ -18,16 +18,13 @@ namespace TMX
     using NHibernate.Mapping;
     
     /// <summary>
-    /// Description of TestResultMap.
+    /// Description of TestResultDetailMap.
     /// </summary>
-    public class TestResultMap : ClassMap<TestResult>
+    public class TestResultDetailMap : ClassMap<TestResultDetail>
     {
-        public TestResultMap()
+        public TestResultDetailMap()
         {
             Map(x => x.Name);
-            Map(x => x.Id);
-            //Map(x => x.Error);
-            HasMany(x => x.Details);
         }
     }
 }

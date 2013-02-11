@@ -251,6 +251,7 @@
     <Compile Include="Helpers\UnderlyingCode\GatherTestResultsCollections.cs" />
     <Compile Include="Helpers\UnderlyingCode\IXMLElementsStruct.cs" />
     <Compile Include="Helpers\UnderlyingCode\Mapping\TestCaseMap.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Mapping\TestResultDetailMap.cs" />
     <Compile Include="Helpers\UnderlyingCode\Mapping\TestResultMap.cs" />
     <Compile Include="Helpers\UnderlyingCode\Mapping\TestScenarioMap.cs" />
     <Compile Include="Helpers\UnderlyingCode\Mapping\TestSuiteMap.cs" />

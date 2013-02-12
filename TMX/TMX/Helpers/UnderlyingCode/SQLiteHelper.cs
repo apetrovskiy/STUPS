@@ -286,6 +286,8 @@ namespace TMX
                             TestData.CurrentResultsDB = database;
                         }
                         
+                        SQLiteData.Databases.Add(database);
+                        
                         cmdlet.WriteObject(cmdlet, database);
                     }
                 }

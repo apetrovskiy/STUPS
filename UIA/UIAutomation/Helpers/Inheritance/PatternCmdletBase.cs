@@ -92,31 +92,26 @@ namespace UIAutomation
                 }
                 switch (WhatToDo)
                 {
-                        // not yet implemented
-                        // case "Dock":
-                        // pattern =
-                        // (System.Windows.Automation.DockPattern)pt;
-                        // break;
+                    case "DockSet":
+                        InvokeDockSet(_control, inputObject, ((InvokeUIADockPatternCommand)this).DockPosition);
+                        break;
+                    case "DockGet":
+                        InvokeDockGet(_control, inputObject);
+                        break;
                     case "Expand":
-                        
                         InvokeExpand(_control, inputObject);
                         break;
                     case "Collapse":
-                        
                         InvokeCollapse(_control, inputObject);
                         break;
                     case "GridItem":
-                        
                         InvokeGridItem(_control, inputObject);
                         break;
                         // not yet implemented
                     case "Grid":
-                        
                         InvokeGrid(_control, inputObject);
-                        
                         break;
                     case "Invoke":
-                        
                         InvokeInvoke(_control, inputObject);
                         break;
                         // not yet implemented
@@ -125,48 +120,38 @@ namespace UIAutomation
                         // (System.Windows.Automation.MultipleViewPattern)pt;
                         // break;
                     case "RangeValueGet":
-                        
                         InvokeRangeValueGet(_control, inputObject);
                         break;
                     case "RangeValueSet":
-                        
                         InvokeRangeValueSet(_control, inputObject);
                         break;
                     case "ScrollItem":
-                        
                         InvokeScrollItem(_control, inputObject);
                         break;
                     case "Scroll":
-                        
                         InvokeScroll(_control, inputObject);
                         break;
                     case "SelectionItem":
-                        
                         InvokeSelectionItem(_control, inputObject);
                         break;
                     case "SelectionItemState":
-                        
                         InvokeSelectionItemState(_control, inputObject);
                         break;
                         // 20130108
                     case "SelectedItem": // return only elements that are selected
-                        
                         InvokeSelectedItem(_control, inputObject);
                         break;
                     case "Selection":
-                        
                         InvokeSelection(_control, inputObject);
                         break;
                         // not yet implemented
                     case "TableItem":
-                        
                         InvokeTableItem(_control, inputObject);
                         // pattern =
                         // (System.Windows.Automation.TableItemPattern)pt;
                         break;
                         // not yet implemented
                     case "Table":
-                        
                         InvokeTable(_control, inputObject);
                         // pattern =
                         // (System.Windows.Automation.TablePattern)pt;
@@ -177,43 +162,33 @@ namespace UIAutomation
                         // pattern =
                         // (System.Windows.Automation.TextPattern)pt;
                         // break;
-                        
                         InvokeTextGet(_control, inputObject);
                         break;
                     case "TextSet":
-                        
                         InvokeTextSet(_control, inputObject);
                         break;
                     case "Toggle":
-                        
                         InvokeToggle(_control, inputObject);
                         break;
                     case "ToggleState":
-                        
                         InvokeToggleState(_control, inputObject);
                         break;
                     case "TransformMove":
-                        
                         InvokeTransformMove(_control, inputObject);
                         break;
                     case "TransformResize":
-                        
                         InvokeTransformResize(_control, inputObject);
                         break;
                     case "TransformRotate":
-                        
                         InvokeTransformRotate(_control, inputObject);
                         break;
                     case "ValueGet":
-                        
                         InvokeValueGet(_control, inputObject);
                         break;
                     case "ValueSet":
-                        
                         InvokeValueSet(_control, inputObject);
                         break;
                     case "Window":
-                        
                         InvokeWindow(_control, inputObject);
                         break;
                     case "Annotation":
@@ -290,6 +265,45 @@ namespace UIAutomation
                 
                 
             } //20120824
+        }
+        
+        internal void InvokeDockGet(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        {
+            //dockPattern.Current.DockPosition
+            try {
+                DockPattern dockPattern = _control.GetCurrentPattern(DockPattern.Pattern) as DockPattern;
+                if (null != dockPattern) {
+                    WriteObject(this, dockPattern.Current.DockPosition);
+                } else {
+                    WriteVerbose(this, "couldn't get DockPattern");
+                    WriteObject(this, false);
+                }
+            }
+            catch {
+                
+            }
+        }
+        
+        internal void InvokeDockSet(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject, DockPosition position)
+        {
+            try {
+                DockPattern dockPattern = _control.GetCurrentPattern(DockPattern.Pattern) as DockPattern;
+                if (null != dockPattern) {
+                    dockPattern.SetDockPosition(position);
+                    
+                    if (this.PassThru && null != (inputObject as AutomationElement)) {
+                        WriteObject(this, inputObject);
+                    } else {
+                        WriteObject(this, true);
+                    }
+                } else {
+                    WriteVerbose(this, "couldn't get DockPattern");
+                    WriteObject(this, false);
+                }
+            }
+            catch {
+                
+            }
         }
 
         // 20130109

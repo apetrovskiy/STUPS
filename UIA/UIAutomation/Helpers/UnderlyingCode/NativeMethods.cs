@@ -783,5 +783,9 @@ namespace UIAutomation
         
         [DllImport("user32.dll")]
         internal static extern bool SetForegroundWindow(IntPtr hWnd);
+        
+        #region screensaver prevention
+        
+        #endregion screensaver prevention
     }
 }

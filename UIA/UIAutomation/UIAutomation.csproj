@@ -171,7 +171,9 @@
     <Compile Include="Commands\Hotkey\ShowUIAMetroStartScreenCommand.cs" />
     <Compile Include="Commands\Hotkey\ShowUIAStartRunCommand.cs" />
     <Compile Include="Commands\Hotkey\ShowUIATaskManagerCommand.cs" />
+    <Compile Include="Commands\Pattern\GetUIADockPositionCommand.cs" />
     <Compile Include="Commands\Pattern\GetUIASelectedItemCommand.cs" />
+    <Compile Include="Commands\Pattern\InvokeUIADockPatternCommand.cs" />
     <Compile Include="Commands\Pattern\InvokeUIAScrollItemPatternCommand.cs" />
     <Compile Include="Commands\Pattern\InvokeUIAScrollPatternCommand.cs" />
     <Compile Include="Commands\Pattern\InvokeUIASelectionItemStateCommand.cs" />

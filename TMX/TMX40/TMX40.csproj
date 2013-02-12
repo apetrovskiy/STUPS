@@ -86,7 +86,16 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FluentNHibernate">
+      <HintPath>..\..\packages\FluentNHibernate.1.3.0.733\lib\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
+    </Reference>
     <Reference Include="mscorlib" />
+    <Reference Include="NHibernate">
+      <HintPath>..\..\packages\NHibernate.3.3.2.4000\lib\Net35\NHibernate.dll</HintPath>
+    </Reference>
     <Reference Include="SQLite.Designer">
       <HintPath>..\..\binaries\sqlite\40\64\SQLite.Designer.dll</HintPath>
     </Reference>
@@ -376,6 +385,21 @@
     <Compile Include="..\TMX\Helpers\UnderlyingCode\IXMLElementsStruct.cs">
       <Link>Helpers\UnderlyingCode\IXMLElementsStruct.cs</Link>
     </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Mapping\TestCaseMap.cs">
+      <Link>Helpers\UnderlyingCode\Mapping\TestCaseMap.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Mapping\TestResultDetailMap.cs">
+      <Link>Helpers\UnderlyingCode\Mapping\TestResultDetailMap.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Mapping\TestResultMap.cs">
+      <Link>Helpers\UnderlyingCode\Mapping\TestResultMap.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Mapping\TestScenarioMap.cs">
+      <Link>Helpers\UnderlyingCode\Mapping\TestScenarioMap.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Mapping\TestSuiteMap.cs">
+      <Link>Helpers\UnderlyingCode\Mapping\TestSuiteMap.cs</Link>
+    </Compile>
     <Compile Include="..\TMX\Helpers\UnderlyingCode\SQLiteHelper.cs">
       <Link>Helpers\UnderlyingCode\SQLiteHelper.cs</Link>
     </Compile>
@@ -483,6 +507,9 @@
     <Folder Include="Helpers\UnderlyingCode\Mapping" />
     <Folder Include="Helpers\UnderlyingCode\Types" />
     <Folder Include="SQLiteData" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>

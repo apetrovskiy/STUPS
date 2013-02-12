@@ -235,6 +235,7 @@
     <Compile Include="Helpers\Inheritance\SearchCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\SettingsCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\TestResultCmdletBase.cs" />
+    <Compile Include="Helpers\TestNH3.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Status\TMXGetTestScenarioStatusCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Status\TMXGetTestSuiteStatusCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TestStructure\TMXAddTestCaseCommand.cs" />

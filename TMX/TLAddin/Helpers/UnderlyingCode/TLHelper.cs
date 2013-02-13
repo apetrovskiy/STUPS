@@ -437,9 +437,52 @@ namespace TMX
 //            throw new NotImplementedException();
 //        }
         
-        public static void AddTestCase(TLSCmdletBase cmdlet, string[] name)
+        public static void AddTestCase(
+            TLSCmdletBase cmdlet, 
+            string name,
+            string authorLogin,
+            int suiteId,
+            int testProjectId,
+            string summary,
+            string[] keyword,
+            int order,
+            bool checkDuplicatedName,
+            Meyn.TestLink.ActionOnDuplicatedName actionDuplicatedName,
+            int executionType,
+            int importance)
         {
-            throw new NotImplementedException();
+            string keywords = string.Empty;
+            if (null != keyword && 0 < keyword.Length) {
+                foreach (string singleKeyword in keyword) {
+                    keywords += singleKeyword;
+                }
+            }
+            
+            if (null == TLAddinData.CurrentTestProject) {
+                //
+Console.WriteLine("!!!");
+                //
+            }
+            
+            if (null == actionDuplicatedName) {
+                actionDuplicatedName = ActionOnDuplicatedName.CreateNewVersion;
+            }
+            
+            TLAddinData.CurrentTestLinkConnection.CreateTestCase(
+                authorLogin,
+                suiteId,
+                name,
+                testProjectId,
+                summary,
+                keywords,
+                order,
+                checkDuplicatedName,
+                actionDuplicatedName,
+                executionType,
+                importance);
+            //
+            
+            //TLAddinData.CurrentTestLinkConnection.ReportTCResult
         }
         
         public static void GetTestCase(TLSCmdletBase cmdlet, string[] name)

@@ -131,6 +131,75 @@ namespace UIAutomation
 //            string lpCurrentDirectory,
 //            STARTUPINFO lpStartupInfo,
 //            PROCESS_INFORMATION lpProcessInformation);
+
+
+//Code Snippet
+//#include "userenv.h"
+//// Global Typedefs for function pointers in USERENV.DLL
+//typedef BOOL (STDMETHODCALLTYPE FAR * LPFNCREATEENVIRONMENTBLOCK)
+//    ( LPVOID  *lpEnvironment,
+//      HANDLE  hToken,
+//      BOOL    bInherit );
+//typedef BOOL (STDMETHODCALLTYPE FAR * LPFNDESTROYENVIRONMENTBLOCK)
+//    ( LPVOID lpEnvironment );
+//void InvokeApp()
+//{
+//    // Local Variable Declarations
+//    HANDLE hToken    = NULL;
+//    HANDLE hTokenDup = NULL;
+//    STARTUPINFO si;
+//    PROCESS_INFORMATION pi;
+//    ZeroMemory( &si, sizeof( STARTUPINFO ) );
+//    ZeroMemory( &pi, sizeof( PROCESS_INFORMATION ) );
+//    
+//    si.cb = sizeof( STARTUPINFO );
+//    si.lpDesktop = _T("Winsta0\\Default");
+//    
+//    DWORD  dwCreationFlag = NORMAL_PRIORITY_CLASS | CREATE_NEW_CONSOLE;
+//    LPVOID pEnvironment = NULL;
+//    LPFNCREATEENVIRONMENTBLOCK  lpfnCreateEnvironmentBlock  = NULL;
+//    LPFNDESTROYENVIRONMENTBLOCK lpfnDestroyEnvironmentBlock = NULL;
+//    HMODULE hUserEnvLib = NULL;
+//    hUserEnvLib = LoadLibrary( _T("userenv.dll") );
+//    if ( NULL != hUserEnvLib ) {
+//        lpfnCreateEnvironmentBlock  = (LPFNCREATEENVIRONMENTBLOCK)
+//        GetProcAddress( hUserEnvLib, "CreateEnvironmentBlock" );
+//        
+//        lpfnDestroyEnvironmentBlock = (LPFNDESTROYENVIRONMENTBLOCK)
+//        GetProcAddress( hUserEnvLib, "DestroyEnvironmentBlock" );
+//    }
+//    OpenThreadToken( GetCurrentThread(), TOKEN_DUPLICATE, TRUE, &hToken );
+//    DuplicateTokenEx( hToken,
+//                      TOKEN_IMPERSONATE|TOKEN_READ|TOKEN_ASSIGN_PRIMARY|TOKEN_DUPLICATE,
+//                      NULL, SecurityImpersonation, TokenPrimary, &hTokenDup );
+//    RevertToSelf( );
+//    CloseHandle( hToken );
+//    if ( NULL != lpfnCreateEnvironmentBlock ) {
+//        if ( lpfnCreateEnvironmentBlock( &pEnvironment, hTokenDup, FALSE ) ) {
+//            dwCreationFlag |= CREATE_UNICODE_ENVIRONMENT;   // must specify
+//        }
+//        else {
+//            pEnvironment = NULL;
+//            OutputDebugString( _T(" CreateEnvironmentBlock() -- FAILED") );
+//        }
+//    }
+//    else {
+//        OutputDebugString(_T(" FAILED - GetProcAddress(CreateEnvironmentBlock)"));
+//    }
+//    CreateProcessAsUser( hTokenDup, NULL, _T("c:\\windows\\notepad.exe"),
+//                         NULL, NULL, FALSE, dwCreationFlag,
+//                         pEnvironment, NULL, &si, &pi );
+//    if ( NULL != lpfnDestroyEnvironmentBlock )
+//        lpfnDestroyEnvironmentBlock( pEnvironment );
+//    if ( NULL != hUserEnvLib ) FreeLibrary( hUserEnvLib );
+//    CloseHandle( hTokenDup );
+//}
+//What I fixed? The issue I was facing was that the application I wanted my Print Monitor to launch using CreateProcessAsUser() was not getting the logged-on user's environment. The after-effect was that, because of this reason, when my application used to show the File Open common dialog box, it would behave strange while trying to browse to the Desktop in it. This was in Vista.
+// 
+//In Windows XP, the File Open dialog would let you browse to the Desktop folder but the object icons on the Desktop would not appear right in it.
+// 
+//Now it works. Thanks for your help, suggestions etc. Have a nice day. 
+
         #endregion remoting
         
         #region the click

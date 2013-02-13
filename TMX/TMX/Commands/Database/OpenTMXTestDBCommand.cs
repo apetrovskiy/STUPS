@@ -33,7 +33,7 @@ namespace TMX.Commands
                 this.RepositoryDB = true;
                 this.ResultsDB = true;
             }
-            
+
             SQLiteHelper.OpenDatabase(this, this.FileName, this.StructureDB, this.RepositoryDB, this.ResultsDB);
         }
     }

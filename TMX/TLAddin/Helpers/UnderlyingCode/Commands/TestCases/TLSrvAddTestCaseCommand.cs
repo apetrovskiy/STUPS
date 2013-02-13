@@ -23,9 +23,21 @@ namespace TMX
         
         internal override void Execute()
         {
+            AddTLTestCaseCommand cmdlet = (AddTLTestCaseCommand)this.Cmdlet;
+            
             TLHelper.AddTestCase(
                 this.Cmdlet, 
-                ((AddTLTestCaseCommand)this.Cmdlet).Name);
+                cmdlet.Name,
+                cmdlet.AuthorLogin,
+                cmdlet.InputObject.id,
+                TLAddinData.CurrentTestProject.id,
+                cmdlet.Summary,
+                cmdlet.Keyword,
+                cmdlet.Order,
+                cmdlet.CheckDuplicatedName,
+                cmdlet.ActionDuplicatedName,
+                cmdlet.ExecutionType,
+                cmdlet.Importance);
         }
     }
 }

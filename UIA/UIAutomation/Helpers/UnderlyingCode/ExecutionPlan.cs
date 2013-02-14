@@ -99,7 +99,8 @@ namespace UIAutomation
 		
 		public static void Enqueue(
 			AutomationElement elementToHighlight,
-			int highlightersGeneration)
+			int highlightersGeneration,
+		    string highlighterData)
 		{
 			Highlighter highlighter = null;
             if (null != (elementToHighlight as AutomationElement)) {
@@ -118,7 +119,8 @@ namespace UIAutomation
                         elementToHighlight.Current.BoundingRectangle.Y,
                         elementToHighlight.Current.NativeWindowHandle,
                         (Highlighters)(HighlighterNumber % 10),
-                        HighlighterNumber);
+                        HighlighterNumber,
+                        highlighterData);
 				ExecutionPlan.Enqueue(highlighter);
 			}
 		}

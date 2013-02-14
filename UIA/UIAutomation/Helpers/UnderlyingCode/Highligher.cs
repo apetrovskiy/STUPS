@@ -85,7 +85,8 @@ namespace UIAutomation
         	double Y,
         	int intHandle,
         	Highlighters control,
-        	int highlighterNumber)
+        	int highlighterNumber,
+            string highlighterData)
         {
         	this.createHighlighter(
         		height,
@@ -95,7 +96,7 @@ namespace UIAutomation
         		intHandle,
         		control);
         	
-        	this.PaintLabel(highlighterNumber);
+        	this.PaintLabel(highlighterNumber, highlighterData);
         }
         
 //        ~Highlighter()
@@ -141,7 +142,7 @@ namespace UIAutomation
         }
         
         [STAThread]
-        internal void PaintLabel(int highlighterNumber)
+        internal void PaintLabel(int highlighterNumber, string highlighterData)
         {
         	// painting a new form
         	int left =
@@ -160,8 +161,32 @@ namespace UIAutomation
         			width,
         			height, 
         			highlighterNumber,
-        			this.bottomSide.BackColor);
+        			this.bottomSide.BackColor,
+        		    highlighterData);
         }
+        
+//        [STAThread]
+//        internal void CreateToolTip(string highlighterData)
+//        {
+//        	// painting a new form
+//        	int left =
+//        		this.rightSide.Left - 20;
+//        	int top =
+//        		this.bottomSide.Top - 15;
+//        	int height =
+//        		this.bottomSide.Top - top;
+//        	int width =
+//        		this.rightSide.Left - left;
+//
+//        	labelForm =
+//        		new LabelForm(
+//        			left,
+//        			top,
+//        			width,
+//        			height, 
+//        			highlighterNumber,
+//        			this.bottomSide.BackColor);
+//        }
         
         private  NativeMethods.CursorPoint getPoint(
             double X,
@@ -358,7 +383,8 @@ namespace UIAutomation
             double width, 
             double height, 
             int highlighterNumber,
-            System.Drawing.Color foreColor)
+            System.Drawing.Color foreColor,
+            string tooltipText)
         {
             //this.Left = 0;
             //this.Top = 0;
@@ -408,6 +434,16 @@ namespace UIAutomation
             this.ShowInTaskbar = false;
             this.UseWaitCursor = false;
             this.Visible = true;
+            
+            if (Preferences.ShowInfoToolTip) {
+                // tooltip
+                ToolTip tooltip = new ToolTip();
+                tooltip.Active = true;
+                tooltip.ShowAlways = true;
+                tooltip.IsBalloon = true;
+                tooltip.Show(tooltipText, this);
+            }
+            
             this.Show();
         }
     	

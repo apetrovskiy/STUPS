@@ -32,6 +32,7 @@ namespace UIAutomation
 //            HighlighterBorderFirstChild = 3;
 
 			ShowExecutionPlan = false;
+			ShowInfoToolTip = true;
             
             Timeout = 5000;
             AfterFailTurboTimeout = 2000;
@@ -127,6 +128,10 @@ namespace UIAutomation
 		/// 
 		/// </summary>
 		public static bool ShowExecutionPlan { get; set; }
+		/// <summary>
+		/// 
+		/// </summary>
+		public static bool ShowInfoToolTip { get; set; }
         
         /// <summary>
         /// The timeout in Get- and Wait- cmdlets that abrupts

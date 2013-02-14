@@ -180,10 +180,18 @@ namespace UIAutomation
                         try {
                             this.WriteVerbose(this, "run Highlighter");
                             if (Preferences.ShowExecutionPlan) {
-                                ExecutionPlan.Enqueue(element, CommonCmdletBase.HighlighterGeneration);
+                                if (Preferences.ShowInfoToolTip) {
+                                    ExecutionPlan.Enqueue(element, CommonCmdletBase.HighlighterGeneration, "name: " + element.Current.Name);
+                                } else {
+                                    ExecutionPlan.Enqueue(element, CommonCmdletBase.HighlighterGeneration, string.Empty);
+                                }
                                 //this.Enqueue(element);
                             } else {
-                                UIAHelper.Highlight(element);
+//                                if (Preferences.ShowInfoToolTip) {
+                                    UIAHelper.Highlight(element);
+//                                } else {
+//                                    UIAHelper.Highlight(element);
+//                                }
                             }
                             this.WriteVerbose(this, "after running the Highlighter");
                         } catch (Exception ee) {

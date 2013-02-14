@@ -31,6 +31,7 @@ namespace TMX
         public string AuthorLogin { get; set; }
         
         [Parameter(Mandatory = true,
+                   ValueFromPipeline = true,
                    ParameterSetName = "ByName")]
         public Meyn.TestLink.TestSuite InputObject { get; set; }
         

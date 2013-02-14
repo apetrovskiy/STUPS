@@ -485,9 +485,20 @@ Console.WriteLine("!!!");
             //TLAddinData.CurrentTestLinkConnection.ReportTCResult
         }
         
-        public static void GetTestCase(TLSCmdletBase cmdlet, string[] name)
+        public static void GetTestCaseForTestSuite(TLSCmdletBase cmdlet, Meyn.TestLink.TestSuite testSuite, string[] name)
         {
-            throw new NotImplementedException();
+//            System.Collections.Generic.List<Meyn.TestLink.TestCase> testCases =
+//                TLAddinData.CurrentTestLinkConnection.GetTestCasesForTestSuite(testSuite.id, true);
+//            
+//            cmdlet.WriteObject(cmdlet, testCases);
+        }
+//        
+        public static void GetTestCaseForTestPlan(TLSCmdletBase cmdlet, Meyn.TestLink.TestPlan testPlan, string[] name)
+        {
+//            System.Collections.Generic.List<Meyn.TestLink.TestCase> testCases =
+//                TLAddinData.CurrentTestLinkConnection.GetTestCasesForTestPlan(testPlan.id);
+//            
+//            cmdlet.WriteObject(cmdlet, testPlan);
         }
         
 //        public static void OpenTestCase(TLSCmdletBase cmdlet, string name)

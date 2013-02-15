@@ -33,7 +33,7 @@ namespace TMX
         [Parameter(Mandatory = true,
                    ValueFromPipeline = true,
                    ParameterSetName = "ByName")]
-        public Meyn.TestLink.TestSuite InputObject { get; set; }
+        public Meyn.TestLink.TestSuite[] InputObject { get; set; }
         
         [Parameter(Mandatory = false)]
         public string Summary { get; set; }

@@ -15,7 +15,7 @@ namespace TMX
     /// <summary>
     /// Description of GetTLTestCaseCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "TLTestCase")]
+    [Cmdlet(VerbsCommon.Get, "TLTestCase", DefaultParameterSetName = "TestProjectInput")]
     public class GetTLTestCaseCommand : TLTestCaseCmdletBase
     {
         public GetTLTestCaseCommand()

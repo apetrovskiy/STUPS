@@ -38,7 +38,8 @@ namespace TMX
         public Meyn.TestLink.TestSuite[] InputObjectTestSuite { get; set; }
 
         [Parameter(Mandatory = false,
-                   ParameterSetName = "StringInput")]
+                   Position = 0)] //,
+                   //ParameterSetName = "StringInput")]
         public string[] TestSuiteName { get; set; }
         
         [Parameter(Mandatory = false,

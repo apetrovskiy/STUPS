@@ -64,12 +64,18 @@ namespace UIAutomation
         
         [Parameter(Mandatory = false,
                    ParameterSetName = "UIAWildCard")]
+        // 20130218
+        [Parameter(Mandatory = false,
+                   ParameterSetName = "Win32")]
         [Parameter(Mandatory = false,
                    ParameterSetName = "UIAClassic")]
         public string AutomationId { get; set; }
         
         [Parameter(Mandatory = false,
                    ParameterSetName = "UIAWildCard")]
+        // 20130218
+        [Parameter(Mandatory = false,
+                   ParameterSetName = "Win32")]
         [Parameter(Mandatory = false,
                    ParameterSetName = "UIAClassic")]
         [Alias("ClassName")]
@@ -77,6 +83,9 @@ namespace UIAutomation
         
         [Parameter(Mandatory = false,
                    ParameterSetName = "UIAWildCard")]
+        // 20130218
+        [Parameter(Mandatory = false,
+                   ParameterSetName = "Win32")]
         [Parameter(Mandatory = false,
                    ParameterSetName = "UIAClassic")]
         public string ControlType { get; set; }

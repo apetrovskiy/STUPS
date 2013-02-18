@@ -58,12 +58,17 @@ namespace UIAutomation.Commands
                 
                 this.WriteError(
                     this,
-                    CmdletSignature(this) + "timeout expired for class: ' + " +
+                    CmdletSignature(this) + "timeout expired for control with class: + '" +
                     this.Class + 
-                    ", control type: " + 
+                    "', control type: '" + 
                     this.ControlType + 
-                    ", title: " +
-                    this.Name,
+                    "', title: '" +
+                    this.Name +
+                    "', automationId: '" +
+                    this.AutomationId +
+                    "', value: '" +
+                    this.Value +
+                    "'",
                     "ControlIsNull",
                     ErrorCategory.OperationTimeout,
                     true);

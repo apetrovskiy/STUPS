@@ -27,14 +27,24 @@ namespace TMX
         }
         
         #region Parameters
+        // 20130219
+        //[Parameter(Mandatory = true,
+        //           Position = 0)]
         [Parameter(Mandatory = true,
-                   Position = 0)]
+                   Position = 0,
+                   ParameterSetName = "Common")]
         public string As { get; set; }
         
-        [Parameter(Mandatory = false)]
+        // 20130219
+        //[Parameter(Mandatory = false)]
+        [Parameter(Mandatory = false,
+                   ParameterSetName = "Common")]
         public string Path { get; set; }
         
-        [Parameter(Mandatory = false)]
+        // 20130219
+        //[Parameter(Mandatory = false)]
+        [Parameter(Mandatory = false,
+                   ParameterSetName = "Common")]
         internal new string Name { get; set; }
         
 

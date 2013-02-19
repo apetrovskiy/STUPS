@@ -25,19 +25,21 @@ namespace TMX
         {
             AddTLTestCaseCommand cmdlet = (AddTLTestCaseCommand)this.Cmdlet;
             
-            TLHelper.AddTestCase(
-                this.Cmdlet, 
-                cmdlet.Name,
-                cmdlet.AuthorLogin,
-                cmdlet.InputObject.id,
-                TLAddinData.CurrentTestProject.id,
-                cmdlet.Summary,
-                cmdlet.Keyword,
-                cmdlet.Order,
-                cmdlet.CheckDuplicatedName,
-                cmdlet.ActionDuplicatedName,
-                cmdlet.ExecutionType,
-                cmdlet.Importance);
+            foreach (Meyn.TestLink.TestSuite testSuite in cmdlet.InputObject) {
+                TLHelper.AddTestCase(
+                    this.Cmdlet, 
+                    cmdlet.Name,
+                    cmdlet.AuthorLogin,
+                    testSuite.id,
+                    TLAddinData.CurrentTestProject.id,
+                    cmdlet.Summary,
+                    cmdlet.Keyword,
+                    cmdlet.Order,
+                    cmdlet.CheckDuplicatedName,
+                    cmdlet.ActionDuplicatedName,
+                    cmdlet.ExecutionType,
+                    cmdlet.Importance);
+            }
         }
     }
 }

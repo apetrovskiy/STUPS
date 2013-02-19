@@ -1514,9 +1514,9 @@ namespace UIAutomation
                         #endregion wildcard search
                         
                         #region Win32 search
-                        if (0 == aeCtrl.Count && notTextSearch &&
-                            (null == cmdlet.AutomationId || string.Empty == cmdlet.AutomationId) &&
-                            (null == cmdlet.Class || string.Empty == cmdlet.Class)) {
+                        if (0 == aeCtrl.Count && notTextSearch) { // &&
+                            //(null == cmdlet.AutomationId || string.Empty == cmdlet.AutomationId) &&
+                            //(null == cmdlet.Class || string.Empty == cmdlet.Class)) {
                             
                             if (!Preferences.DisableWin32Search || cmdlet.Win32) {
                                 

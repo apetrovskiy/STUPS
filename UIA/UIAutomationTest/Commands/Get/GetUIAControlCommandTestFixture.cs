@@ -761,7 +761,9 @@ namespace UIAutomationTest.Commands.Get
                 "nope" + "\"} | " +
                 "Read-UIAControlName",
                 "CmdletInvocationException",
-                "Get-UIAControl: timeout expired for class: ' + , control type: , title: ");
+                // 20130219
+                //"Get-UIAControl: timeout expired for class: ' + , control type: , title: ");
+                @"Get-UIAControl: timeout expired for control with class: + '', control type: '', title: '', automationId: '', value: ''");
         }
         
         [Test] //[Test(Description="TBD")]
@@ -792,7 +794,9 @@ namespace UIAutomationTest.Commands.Get
                 "\"} | " +
                 "Read-UIAControlName",
                 "CmdletInvocationException",
-                "Get-UIAControl: timeout expired for class: ' + , control type: , title: Button222");
+                // 20130219
+                //"Get-UIAControl: timeout expired for class: ' + , control type: , title: Button222");
+                @"Get-UIAControl: timeout expired for control with class: + '', control type: '', title: 'Button222', automationId: '', value: ''");
         }
         
 //        [Test] //[Test(Description="TBD")]
@@ -1233,7 +1237,9 @@ namespace UIAutomationTest.Commands.Get
                 auId1 +
                 "' -timeout 2000;",
                 "CmdletInvocationException",
-                @"Get-UIAButton: timeout expired for class: ' + , control type: Button, title:");
+                // 20130219
+                //@"Get-UIAButton: timeout expired for class: ' + , control type: Button, title:");
+                @"Get-UIAButton: timeout expired for control with class: + '', control type: 'Button', title: '', automationId: 'Button1', value: 'my text'");
         }
 
 // =========================================================

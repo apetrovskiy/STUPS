@@ -68,13 +68,17 @@ namespace UIAutomation
                    HelpMessage="The parameter is not used and for the compatibility purpose")]
         [Alias("temporary", "fake")]
         // 20120206 public new string AutomationId { get; set; }
-        public string AutomationId { get; set; }
+        // 20130220
+        //public string AutomationId { get; set; }
+        internal string AutomationId { get; set; }
         
         
         [Parameter(Mandatory = false,
                    HelpMessage="The parameter is not used and for the compatibility purpose")]
         [Alias("oneMoreFakeParameter")]
-        public string Class { get; set; }
+        // 20130220
+        //public string Class { get; set; }
+        internal string Class { get; set; }
         
 //        [Parameter(Mandatory = false)]
 //        internal new System.Windows.Automation.AutomationElement InputObject { get; set; }

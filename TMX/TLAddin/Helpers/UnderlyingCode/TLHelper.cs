@@ -485,20 +485,65 @@ Console.WriteLine("!!!");
             //TLAddinData.CurrentTestLinkConnection.ReportTCResult
         }
         
-        public static void GetTestCaseForTestSuite(TLSCmdletBase cmdlet, Meyn.TestLink.TestSuite testSuite, string[] name)
+        public static void GetTestCaseFromProject(TLSCmdletBase cmdlet, Meyn.TestLink.TestProject[] testProjects, string[] testCaseNames)
         {
-//            System.Collections.Generic.List<Meyn.TestLink.TestCase> testCases =
-//                TLAddinData.CurrentTestLinkConnection.GetTestCasesForTestSuite(testSuite.id, true);
-//            
-//            cmdlet.WriteObject(cmdlet, testCases);
+            foreach (Meyn.TestLink.TestProject project in testProjects) {
+                
+                System.Collections.Generic.List<Meyn.TestLink.TestPlan> testPlans =
+                    TLAddinData.CurrentTestLinkConnection.GetProjectTestPlans(project.id);
+                
+                TLHelper.GetTestCaseFromTestPlan(cmdlet, testPlans.ToArray(), testCaseNames);
+                
+                System.Collections.Generic.List<Meyn.TestLink.TestSuite> firstLevelTestSuites =
+                    TLAddinData.CurrentTestLinkConnection.GetFirstLevelTestSuitesForTestProject(project.id);
+                
+                TLHelper.GetTestCaseFromTestSuite(cmdlet, firstLevelTestSuites.ToArray(), testCaseNames, true);
+                
+//                foreach (Meyn.TestLink.TestSuite suite in firstLevelTestSuites) {
+//                    
+//                    
+//                }
+            }
+        }
+        
+        public static void GetTestCaseFromTestSuite(TLSCmdletBase cmdlet, Meyn.TestLink.TestSuite[] testSuites, string[] testCaseNames, bool deep)
+        {
+            foreach (Meyn.TestLink.TestSuite testSuite in testSuites) {
+                
+                System.Collections.Generic.List<Meyn.TestLink.TestCaseFromTestSuite> testCases =
+                    TLAddinData.CurrentTestLinkConnection.GetTestCasesForTestSuite(testSuite.id, deep);
+                
+                if (null != testCaseNames && 0 < testCaseNames.Length) {
+                    
+                    foreach (Meyn.TestLink.TestCaseFromTestSuite testCase in testCases) {
+                        
+                        cmdlet.WriteObject(cmdlet, testCase);
+                    }
+                } else {
+                    
+                    cmdlet.WriteObject(cmdlet, testCases);
+                }
+            }
         }
 //        
-        public static void GetTestCaseForTestPlan(TLSCmdletBase cmdlet, Meyn.TestLink.TestPlan testPlan, string[] name)
+        public static void GetTestCaseFromTestPlan(TLSCmdletBase cmdlet, Meyn.TestLink.TestPlan[] testPlans, string[] testCaseNames)
         {
-//            System.Collections.Generic.List<Meyn.TestLink.TestCase> testCases =
-//                TLAddinData.CurrentTestLinkConnection.GetTestCasesForTestPlan(testPlan.id);
-//            
-//            cmdlet.WriteObject(cmdlet, testPlan);
+            foreach (Meyn.TestLink.TestPlan testPlan in testPlans) {
+                
+                System.Collections.Generic.List<Meyn.TestLink.TestCaseFromTestPlan> testCases =
+                    TLAddinData.CurrentTestLinkConnection.GetTestCasesForTestPlan(testPlan.id);
+                
+                if (null != testCaseNames && 0 < testCaseNames.Length) {
+                    
+                    foreach (Meyn.TestLink.TestCaseFromTestPlan testCase in testCases) {
+                        
+                        cmdlet.WriteObject(cmdlet, testCase);
+                    }
+                } else {
+                    
+                    cmdlet.WriteObject(cmdlet, testCases);
+                }
+            }
         }
         
 //        public static void OpenTestCase(TLSCmdletBase cmdlet, string name)

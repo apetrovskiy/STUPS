@@ -128,10 +128,15 @@ namespace UIAutomation
                         LogStream = 
                             new StreamWriter(Stream);
                     }
+                    // 20130216
+                    System.DateTime now = System.DateTime.Now;
                     string dateAndTime = 
-                        System.DateTime.Now.ToShortDateString() + 
+                        now.ToShortDateString() + 
                         " " +
-                        System.DateTime.Now.ToShortTimeString();
+                        //System.DateTime.Now.ToShortTimeString();
+                        now.ToLongTimeString() +
+                        " " +
+                        now.Millisecond;
                     LogStream.WriteLine(dateAndTime + "\t" + record);
                     //  //  // LogStream.Flush();
                     //  // 

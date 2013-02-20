@@ -25,6 +25,7 @@ namespace TMX
         internal override void Execute()
         {
             TLTestSuiteCmdletBase cmdlet = (TLTestSuiteCmdletBase)this.Cmdlet;
+            
             if (null != cmdlet.InputObjectTestProject) {
                 cmdlet.WriteVerbose(cmdlet, "getting test projects from the pipeline");
                 TLHelper.GetTestSuiteFromProject(cmdlet, cmdlet.InputObjectTestProject);
@@ -40,21 +41,26 @@ namespace TMX
                 TLHelper.GetTestSuiteFromTestSuite(cmdlet, cmdlet.InputObjectTestSuite);
                 return;
             }
-            if (null != ((TLTestSuiteCmdletBase)this.Cmdlet).TestSuiteName &&
-                0 < ((TLTestSuiteCmdletBase)this.Cmdlet).TestSuiteName.Length) {
+            // 20130215
+            //if (null != ((TLTestSuiteCmdletBase)this.Cmdlet).TestSuiteName &&
+            if (null != cmdlet.TestSuiteName && 0 < cmdlet.TestSuiteName.Length) {
+                // 20130215
+                //0 < ((TLTestSuiteCmdletBase)this.Cmdlet).TestSuiteName.Length) {
                 cmdlet.WriteVerbose(cmdlet, "getting test suites by name");
-                TLHelper.GetTestSuite(cmdlet, ((TLTestSuiteCmdletBase)this.Cmdlet).TestSuiteName);
+                // 20130215
+                //TLHelper.GetTestSuite(cmdlet, ((TLTestSuiteCmdletBase)this.Cmdlet).TestSuiteName);
+                TLHelper.GetTestSuite(cmdlet, cmdlet.TestSuiteName);
                 return;
             }
             if (null != TLAddinData.CurrentTestProject) {
                 cmdlet.WriteVerbose(cmdlet, "getting test suites from the test project in the store");
-                TestProject[] testProjects = { TLAddinData.CurrentTestProject };
+                Meyn.TestLink.TestProject[] testProjects = { TLAddinData.CurrentTestProject };
                 TLHelper.GetTestSuiteFromProject(cmdlet, testProjects);
                 return;
             }
             if (null != TLAddinData.CurrentTestPlan) {
                 cmdlet.WriteVerbose(cmdlet, "getting test suites from the test plan in the store");
-                TestPlan[] testPlans = { TLAddinData.CurrentTestPlan };
+                Meyn.TestLink.TestPlan[] testPlans = { TLAddinData.CurrentTestPlan };
                 TLHelper.GetTestSuiteFromTestPlan(cmdlet, testPlans);
                 return;
             }

@@ -381,6 +381,21 @@
     <Compile Include="..\UIAutomation\Commands\Profile\SetUIACurrentTestProfileCommand.cs">
       <Link>Commands\Profile\SetUIACurrentTestProfileCommand.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Commands\RDP\ConnectUIARemoteDesktopSessionCommand.cs">
+      <Link>Commands\RDP\ConnectUIARemoteDesktopSessionCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Commands\RDP\DisconnectUIARemoteDesktopSessionCommand.cs">
+      <Link>Commands\RDP\DisconnectUIARemoteDesktopSessionCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Commands\RDP\NewUIARemoteDesktopProtocolFileCommand.cs">
+      <Link>Commands\RDP\NewUIARemoteDesktopProtocolFileCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Commands\RDP\StartUIARemoteDesktopSessionCommand.cs">
+      <Link>Commands\RDP\StartUIARemoteDesktopSessionCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Commands\RDP\StopUIARemoteDesktopSessionCommand.cs">
+      <Link>Commands\RDP\StopUIARemoteDesktopSessionCommand.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Commands\Search\SearchUIAControlCommand.cs">
       <Link>Commands\Search\SearchUIAControlCommand.cs</Link>
     </Compile>
@@ -634,7 +649,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands\ExecutionPlan" />
+    <Folder Include="Commands\RDP" />
     <Folder Include="Commands\Sheridan" />
+    <Folder Include="Helpers\UnderlyingCode\Commands" />
+    <Folder Include="Helpers\UnderlyingCode\Commands\RDP" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>

@@ -199,6 +199,11 @@
     <Compile Include="Commands\Profile\GetUIATestProfileCommand.cs" />
     <Compile Include="Commands\Profile\NewUIATestProfileCommand.cs" />
     <Compile Include="Commands\Profile\SetUIACurrentTestProfileCommand.cs" />
+    <Compile Include="Commands\RDP\ConnectUIARemoteDesktopSessionCommand.cs" />
+    <Compile Include="Commands\RDP\DisconnectUIARemoteDesktopSessionCommand.cs" />
+    <Compile Include="Commands\RDP\NewUIARemoteDesktopProtocolFileCommand.cs" />
+    <Compile Include="Commands\RDP\StartUIARemoteDesktopSessionCommand.cs" />
+    <Compile Include="Commands\RDP\StopUIARemoteDesktopSessionCommand.cs" />
     <Compile Include="Commands\Search\SearchUIAControlCommand.cs" />
     <Compile Include="Commands\Search\SearchUIAWindowCommand.cs" />
     <Compile Include="Commands\Settings\SetUIAHighligherSettingsCommand.cs" />
@@ -344,7 +349,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands\ExecutionPlan" />
+    <Folder Include="Commands\RDP" />
     <Folder Include="Commands\Sheridan" />
+    <Folder Include="Helpers\UnderlyingCode\Commands" />
+    <Folder Include="Helpers\UnderlyingCode\Commands\RDP" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -14,8 +14,10 @@ namespace UIAutomation
     using System.Windows.Automation;
     using System.Runtime.InteropServices;
     using System.Diagnostics;
-    
+    using System.Windows.Automation;
     using System.Collections;
+    using System.Linq;
+    using System.Linq.Expressions;
 
     /// <summary>
     /// Description of HasTimeoutCmdletBase.
@@ -85,7 +87,9 @@ namespace UIAutomation
             int[] processIds,
             // 20120824
             //string title)
-            string[] windowNames)
+            string[] windowNames,
+            string automationId,
+            string className)
         {
             // 20120824
             //System.Windows.Automation.AutomationElement aeWnd = null;
@@ -119,25 +123,33 @@ namespace UIAutomation
                 if (null != processes && processes.Length > 0) {
                     // 20120824
                     //aeWnd = getWindowFromProcess(process);
+                    cmdlet.WriteVerbose(cmdlet, "getting a window by process");
                     aeWndCollection = getWindowCollectionFromProcess(processes);
                 // 20120824
                 //} else if (processId > 0) {
                 } else if (null != processIds && processIds.Length > 0) {
                     // 20120824
                     //aeWnd = getWindowByPID(processId);
+                    cmdlet.WriteVerbose(cmdlet, "getting a window by PID");
                     aeWndCollection = getWindowCollectionByPID(processIds);
                 // 20120824
                 //} else if (processName.Length > 0) {
                 } else if (null != processNames && processNames.Length > 0) {
                     // 20120824
                     //aeWnd = getWindowByProcessName(processName);
+                    cmdlet.WriteVerbose(cmdlet, "getting a window by name");
                     aeWndCollection = getWindowCollectionByProcessName(processNames);
                 // 20120824
                 //} else if (title != string.Empty) {
-                } else if (null != windowNames && windowNames.Length > 0) {
+                // 20130220
+                //} else if (null != windowNames && windowNames.Length > 0) {
+                } else if ((null != windowNames && windowNames.Length > 0) ||
+                           (null != automationId && 0 < automationId.Length) ||
+                           (null != className && 0 < className.Length)) {
                     // 20120824
                     //aeWnd = getWindowByTitle(title);
-                    aeWndCollection = getWindowCollectionByName(windowNames);
+                    cmdlet.WriteVerbose(cmdlet, "getting a window by name, automationId, className");
+                    aeWndCollection = getWindowCollectionByName(windowNames, automationId, className);
                 }
                 // 20120824
                 //if (aeWnd != null && (int)aeWnd.Current.ProcessId > 0)
@@ -466,7 +478,7 @@ namespace UIAutomation
         
         // 20120824
         //private System.Windows.Automation.AutomationElement getWindowByTitle(string title)
-        private ArrayList getWindowCollectionByName(string[] windowNames)
+        private ArrayList getWindowCollectionByName(string[] windowNames, string automationId, string className)
         {
             #region changed 20120608
             //            System.Windows.Automation.AndCondition conditionsTitle = null;
@@ -480,6 +492,11 @@ namespace UIAutomation
                 new System.Collections.ArrayList();
             System.Collections.ArrayList resultCollection = 
                 new System.Collections.ArrayList();
+            
+            // 20130220
+            if (null == windowNames) {
+                windowNames = new string[]{ string.Empty };
+            }
             
             // 20120824
             foreach (string windowTitle in windowNames) {
@@ -527,61 +544,93 @@ namespace UIAutomation
                 rootElement.FindAll(TreeScope.Children,
                                     conditionsSet);
             
-            WildcardOptions options;
-            //            if (caseSensitive) {
-            //                options =
-            //                    WildcardOptions.Compiled;
-            //            } else {
-            options =
-                WildcardOptions.IgnoreCase |
-                WildcardOptions.Compiled;
-            //            }
-            WildcardPattern wildcardName =
-                // 20120824
-                //new WildcardPattern(title,options);
-                new WildcardPattern(windowTitle, options);
+            // 20130220
+//            WildcardOptions options;
+//            //            if (caseSensitive) {
+//            //                options =
+//            //                    WildcardOptions.Compiled;
+//            //            } else {
+//            options =
+//                WildcardOptions.IgnoreCase |
+//                WildcardOptions.Compiled;
+//            //            }
+//            WildcardPattern wildcardName =
+//                // 20120824
+//                //new WildcardPattern(title,options);
+//                new WildcardPattern(windowTitle, options);
+//
+//            
+////            bool matched = false;
+////            if (name.Length > 0 && wildcardName.IsMatch(element.Current.Name)) {
+////                matched = true;
+////            } else if (automationId.Length > 0 &&
+////                       wildcardAutomationId.IsMatch(element.Current.AutomationId)) {
+////                matched = true;
+////            } else if (className.Length > 0 &&
+////                       wildcardClass.IsMatch(element.Current.ClassName)) {
+////                matched = true;
+////            }
+////
+////            if (matched) {
+////                if (onlyOneResult) {
+////                    result = element;
+////                } else {
+////                    WriteObject(this, element);
+////                }
+////            }
+//            
+//            if (aeWndCollection.Count > 0) {
+//    
+//                WriteVerbose(this, "aeWndCollection.Count > 0");
+//                
+//                foreach (AutomationElement wndInColleciton in aeWndCollection) {
+//                    if (wndInColleciton.Current.Name != null && 
+//                        wndInColleciton.Current.Name != string.Empty &&
+//                        wndInColleciton.Current.Name.Length > 0 &&
+//                        wildcardName.IsMatch(wndInColleciton.Current.Name)) {
+//                        // 20120824
+//                        //aeWndByTitle = wndInColleciton;
+//                        //break;
+//                        aeWndCollectionByTitle.Add(wndInColleciton);
+//                    }
+//                }
+//            }
+////
+//else {
+//    WriteVerbose(this, "aeWndCollection.Count == 0");
+//}
+////
 
             
-//            bool matched = false;
-//            if (name.Length > 0 && wildcardName.IsMatch(element.Current.Name)) {
-//                matched = true;
-//            } else if (automationId.Length > 0 &&
-//                       wildcardAutomationId.IsMatch(element.Current.AutomationId)) {
-//                matched = true;
-//            } else if (className.Length > 0 &&
-//                       wildcardClass.IsMatch(element.Current.ClassName)) {
-//                matched = true;
-//            }
-//
-//            if (matched) {
-//                if (onlyOneResult) {
-//                    result = element;
-//                } else {
-//                    WriteObject(this, element);
+//            if (null != aeWndCollection && 0 < aeWndCollection.Count) {
+//                
+//                System.Collections.ArrayList tempCollection = 
+//                    new System.Collections.ArrayList();
+//                System.Windows.Automation.AndCondition conditionsForWildCards =
+//                    this.getControlConditions(this, string.Empty, false, true) as AndCondition;
+//                
+//                SearchByWildcardViaUIA((GetCmdletBase)this, ref tempCollection, AutomationElement.RootElement, windowTitle, automationId, className, string.Empty, conditionsForWildCards);
+//                
+//                if (null != tempCollection && 0 < tempCollection.Count) {
+//                    aeWndCollectionByTitle.AddRange(tempCollection);
 //                }
 //            }
             
-            if (aeWndCollection.Count > 0) {
-    
-                WriteVerbose(this, "aeWndCollection.Count > 0");
-                
-                foreach (AutomationElement wndInColleciton in aeWndCollection) {
-                    if (wndInColleciton.Current.Name != null && 
-                        wndInColleciton.Current.Name != string.Empty &&
-                        wndInColleciton.Current.Name.Length > 0 &&
-                        wildcardName.IsMatch(wndInColleciton.Current.Name)) {
-                        // 20120824
-                        //aeWndByTitle = wndInColleciton;
-                        //break;
-                        aeWndCollectionByTitle.Add(wndInColleciton);
-                    }
-                }
-            }
-//
-else {
-    WriteVerbose(this, "aeWndCollection.Count == 0");
-}
-//
+            this.WriteVerbose(this, "trying to run the returnOnlyRightElements method");
+            
+            aeWndCollectionByTitle =
+                //(this as GetCmdletBase).returnOnlyRightElements(
+                this.returnOnlyRightElements(
+                    aeWndCollection,
+                    windowTitle,
+                    automationId,
+                    className,
+                    string.Empty,
+                    (new string[]{ "Window", "Pane", "Menu" }),
+                    false);
+            
+            this.WriteVerbose(this, "after running the returnOnlyRightElements method");
+            
             // 20120831
             if (null != aeWndCollectionByTitle && 0 < aeWndCollectionByTitle.Count) {
                 // 20120824
@@ -720,6 +769,150 @@ else {
                     ErrorCategory.InvalidOperation,
                     true);
             }
+        }
+        
+        internal ArrayList returnOnlyRightElements(
+            AutomationElementCollection results,
+            string name,
+            string automationId,
+            string className,
+            string textValue,
+            string[] controlType,
+            bool caseSensitive)
+        {
+            
+            this.WriteVerbose(this, "inside the returnOnlyRightElements method");
+            
+                ArrayList resultCollection = new ArrayList();
+
+                WildcardOptions options;
+                if (caseSensitive) {
+                    options =
+                        WildcardOptions.Compiled;
+                } else {
+                    options =
+                        WildcardOptions.IgnoreCase |
+                        WildcardOptions.Compiled;
+                }
+            
+                if (null == name || string.Empty == name || 0 == name.Length) { name = "*"; }
+            this.WriteVerbose(this, "inside the returnOnlyRightElements method 6");
+                if (null == automationId || string.Empty == automationId || 0 == automationId.Length) { automationId = "*"; }
+            this.WriteVerbose(this, "inside the returnOnlyRightElements method 7");
+                if (null == className || string.Empty == className || 0 == className.Length) { className = "*"; }
+            this.WriteVerbose(this, "inside the returnOnlyRightElements method 8");
+                if (null == textValue || string.Empty == textValue || 0 == textValue.Length) { textValue = "*"; }
+            this.WriteVerbose(this, "inside the returnOnlyRightElements method 10");
+                WildcardPattern wildcardName = 
+                    new WildcardPattern(name, options);
+                WildcardPattern wildcardAutomationId = 
+                    new WildcardPattern(automationId, options);
+                WildcardPattern wildcardClass = 
+                    new WildcardPattern(className, options);
+                WildcardPattern wildcardValue = 
+                    new WildcardPattern(textValue, options);
+            this.WriteVerbose(this, "inside the returnOnlyRightElements method 20");
+                System.Collections.Generic.List<AutomationElement> list =
+                    new System.Collections.Generic.List<AutomationElement>();
+                foreach (AutomationElement elt in results) {
+this.WriteVerbose(this, "inside the returnOnlyRightElements method 25");
+                    list.Add(elt);
+this.WriteVerbose(this, "inside the returnOnlyRightElements method 26");
+                }
+this.WriteVerbose(this, "inside the returnOnlyRightElements method 27");
+            try {
+                this.WriteVerbose(this, "trying to query into the collection");
+                
+                var query = list
+//                    .Where<AutomationElement>(item => wildcardName.IsMatch(item.Current.Name))
+//                    .Where<AutomationElement>(item => wildcardAutomationId.IsMatch(item.Current.AutomationId))
+//                    .Where<AutomationElement>(item => wildcardClass.IsMatch(item.Current.ClassName))
+//                    .Where<AutomationElement>(item => 
+//                                              item.GetSupportedPatterns().Contains(ValuePattern.Pattern) ? 
+//                                              //(("*" != textValue) ? wildcardValue.IsMatch((item.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern).Current.Value) : false) :
+//                                              (("*" != textValue) ? (positiveMatch(item, wildcardValue, textValue)) : (negativeMatch(textValue))) :
+//                                              true
+//                                              )
+                    .Where<AutomationElement>(
+                        item => (wildcardName.IsMatch(item.Current.Name) &&
+                                 wildcardAutomationId.IsMatch(item.Current.AutomationId) &&
+                                 wildcardClass.IsMatch(item.Current.ClassName) &&
+                                 // check whether a control has or hasn't ValuePattern
+                                 (item.GetSupportedPatterns().Contains(ValuePattern.Pattern) ?
+                                  testRealValueAndValueParameter(item, name, automationId, className, textValue, wildcardValue) :
+                                  // check whether the -Value parameter has or hasn't value
+                                  ("*" == textValue ? true : false)
+                                 )
+                                )
+                       )
+                    .ToArray<AutomationElement>();
+                
+                this.WriteVerbose(this, "after querying into the collection");
+
+                this.WriteVerbose(
+                    this,
+                    "There are " +
+                    query.Count().ToString() +
+                    " elements");
+
+                resultCollection.AddRange(query);
+
+                this.WriteVerbose(
+                    this,
+                    "There are " +
+                    resultCollection.Count.ToString() +
+                    " elements");
+                
+            }
+            catch {
+                
+            }
+            
+            return resultCollection;
+        }
+        
+        private bool testRealValueAndValueParameter(
+            AutomationElement item,
+            string name,
+            string automationId,
+            string className,
+            string textValue,
+            WildcardPattern wildcardValue)
+        {
+            bool result = false;
+            
+            // getting the real value of a control
+            string realValue = string.Empty;
+            try {
+                realValue =
+                    (item.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern).Current.Value;
+            }
+            catch {}
+            
+            // if a control's ValuePattern has no value
+            if (string.Empty == realValue) {
+                
+                if ("*" != name || "*" != automationId || "*" != className) {
+                    return true;
+                }
+                return result;
+            }
+            
+            // if there was not specified the -Value parameter
+            if ("*" == textValue) {
+                
+                if ("*" != name || "*" != automationId || "*" != className) {
+                    return true;
+                }
+                
+                // 20130208
+                //return result;
+            }
+            
+            result =
+                wildcardValue.IsMatch(realValue);
+
+            return result;
         }
     }
 }

@@ -108,8 +108,11 @@ namespace UIAutomation
             bool onlyOneResult,
             bool onlyTopLevel)
         {
+            cmdlet.WriteVerbose(cmdlet, "in the GetAutomationElementsViaWildcards_FindAll method");
             
             if (!cmdlet.CheckControl(cmdlet)) { return null; }
+            
+            cmdlet.WriteVerbose(cmdlet, "still in the GetAutomationElementsViaWildcards_FindAll method");
 
             ArrayList resultCollection = new ArrayList();
             
@@ -126,6 +129,8 @@ namespace UIAutomation
                     onlyOneResult,
                     onlyTopLevel);
 
+            cmdlet.WriteVerbose(cmdlet, "with some resultCollection");
+            
             if (null == resultCollection || resultCollection.Count == 0) {
                 
                 WriteVerbose(
@@ -356,137 +361,137 @@ namespace UIAutomation
             return resultCollection;
         }
         
-        internal ArrayList returnOnlyRightElements(
-            AutomationElementCollection results,
-            string name,
-            string automationId,
-            string className,
-            string textValue,
-            string[] controlType,
-            bool caseSensitive)
-        {
-                ArrayList resultCollection = new ArrayList();
-                
-                WildcardOptions options;
-                if (caseSensitive) {
-                    options =
-                        WildcardOptions.Compiled;
-                } else {
-                    options =
-                        WildcardOptions.IgnoreCase |
-                        WildcardOptions.Compiled;
-                }
-
-                if (string.Empty == name || 0 == name.Length) { name = "*"; }
-                if (string.Empty == automationId || 0 == automationId.Length) { automationId = "*"; }
-                if (string.Empty == className || 0 == className.Length) { className = "*"; }
-                if (string.Empty == textValue || 0 == textValue.Length) { textValue = "*"; }
-
-                WildcardPattern wildcardName = 
-                    new WildcardPattern(name, options);
-                WildcardPattern wildcardAutomationId = 
-                    new WildcardPattern(automationId, options);
-                WildcardPattern wildcardClass = 
-                    new WildcardPattern(className, options);
-                WildcardPattern wildcardValue = 
-                    new WildcardPattern(textValue, options);
-
-                System.Collections.Generic.List<AutomationElement> list =
-                    new System.Collections.Generic.List<AutomationElement>();
-                foreach (AutomationElement elt in results) {
-                    list.Add(elt);
-                }
-
-            try {
-                var query = list
-//                    .Where<AutomationElement>(item => wildcardName.IsMatch(item.Current.Name))
-//                    .Where<AutomationElement>(item => wildcardAutomationId.IsMatch(item.Current.AutomationId))
-//                    .Where<AutomationElement>(item => wildcardClass.IsMatch(item.Current.ClassName))
-//                    .Where<AutomationElement>(item => 
-//                                              item.GetSupportedPatterns().Contains(ValuePattern.Pattern) ? 
-//                                              //(("*" != textValue) ? wildcardValue.IsMatch((item.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern).Current.Value) : false) :
-//                                              (("*" != textValue) ? (positiveMatch(item, wildcardValue, textValue)) : (negativeMatch(textValue))) :
-//                                              true
-//                                              )
-                    .Where<AutomationElement>(
-                        item => (wildcardName.IsMatch(item.Current.Name) &&
-                                 wildcardAutomationId.IsMatch(item.Current.AutomationId) &&
-                                 wildcardClass.IsMatch(item.Current.ClassName) &&
-                                 // check whether a control has or hasn't ValuePattern
-                                 (item.GetSupportedPatterns().Contains(ValuePattern.Pattern) ?
-                                  testRealValueAndValueParameter(item, name, automationId, className, textValue, wildcardValue) :
-                                  // check whether the -Value parameter has or hasn't value
-                                  ("*" == textValue ? true : false)
-                                 )
-                                )
-                       )
-                    .ToArray<AutomationElement>();
-
-                this.WriteVerbose(
-                    this,
-                    "There are " +
-                    query.Count().ToString() +
-                    " elements");
-
-                resultCollection.AddRange(query);
-
-                this.WriteVerbose(
-                    this,
-                    "There are " +
-                    resultCollection.Count.ToString() +
-                    " elements");
-                
-            }
-            catch {
-                
-            }
-            
-            return resultCollection;
-        }
+//        internal ArrayList returnOnlyRightElements(
+//            AutomationElementCollection results,
+//            string name,
+//            string automationId,
+//            string className,
+//            string textValue,
+//            string[] controlType,
+//            bool caseSensitive)
+//        {
+//                ArrayList resultCollection = new ArrayList();
+//                
+//                WildcardOptions options;
+//                if (caseSensitive) {
+//                    options =
+//                        WildcardOptions.Compiled;
+//                } else {
+//                    options =
+//                        WildcardOptions.IgnoreCase |
+//                        WildcardOptions.Compiled;
+//                }
+//
+//                if (string.Empty == name || 0 == name.Length) { name = "*"; }
+//                if (string.Empty == automationId || 0 == automationId.Length) { automationId = "*"; }
+//                if (string.Empty == className || 0 == className.Length) { className = "*"; }
+//                if (string.Empty == textValue || 0 == textValue.Length) { textValue = "*"; }
+//
+//                WildcardPattern wildcardName = 
+//                    new WildcardPattern(name, options);
+//                WildcardPattern wildcardAutomationId = 
+//                    new WildcardPattern(automationId, options);
+//                WildcardPattern wildcardClass = 
+//                    new WildcardPattern(className, options);
+//                WildcardPattern wildcardValue = 
+//                    new WildcardPattern(textValue, options);
+//
+//                System.Collections.Generic.List<AutomationElement> list =
+//                    new System.Collections.Generic.List<AutomationElement>();
+//                foreach (AutomationElement elt in results) {
+//                    list.Add(elt);
+//                }
+//
+//            try {
+//                var query = list
+////                    .Where<AutomationElement>(item => wildcardName.IsMatch(item.Current.Name))
+////                    .Where<AutomationElement>(item => wildcardAutomationId.IsMatch(item.Current.AutomationId))
+////                    .Where<AutomationElement>(item => wildcardClass.IsMatch(item.Current.ClassName))
+////                    .Where<AutomationElement>(item => 
+////                                              item.GetSupportedPatterns().Contains(ValuePattern.Pattern) ? 
+////                                              //(("*" != textValue) ? wildcardValue.IsMatch((item.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern).Current.Value) : false) :
+////                                              (("*" != textValue) ? (positiveMatch(item, wildcardValue, textValue)) : (negativeMatch(textValue))) :
+////                                              true
+////                                              )
+//                    .Where<AutomationElement>(
+//                        item => (wildcardName.IsMatch(item.Current.Name) &&
+//                                 wildcardAutomationId.IsMatch(item.Current.AutomationId) &&
+//                                 wildcardClass.IsMatch(item.Current.ClassName) &&
+//                                 // check whether a control has or hasn't ValuePattern
+//                                 (item.GetSupportedPatterns().Contains(ValuePattern.Pattern) ?
+//                                  testRealValueAndValueParameter(item, name, automationId, className, textValue, wildcardValue) :
+//                                  // check whether the -Value parameter has or hasn't value
+//                                  ("*" == textValue ? true : false)
+//                                 )
+//                                )
+//                       )
+//                    .ToArray<AutomationElement>();
+//
+//                this.WriteVerbose(
+//                    this,
+//                    "There are " +
+//                    query.Count().ToString() +
+//                    " elements");
+//
+//                resultCollection.AddRange(query);
+//
+//                this.WriteVerbose(
+//                    this,
+//                    "There are " +
+//                    resultCollection.Count.ToString() +
+//                    " elements");
+//                
+//            }
+//            catch {
+//                
+//            }
+//            
+//            return resultCollection;
+//        }
         
-        private bool testRealValueAndValueParameter(
-            AutomationElement item,
-            string name,
-            string automationId,
-            string className,
-            string textValue,
-            WildcardPattern wildcardValue)
-        {
-            bool result = false;
-            
-            // getting the real value of a control
-            string realValue = string.Empty;
-            try {
-                realValue =
-                    (item.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern).Current.Value;
-            }
-            catch {}
-            
-            // if a control's ValuePattern has no value
-            if (string.Empty == realValue) {
-                
-                if ("*" != name || "*" != automationId || "*" != className) {
-                    return true;
-                }
-                return result;
-            }
-            
-            // if there was not specified the -Value parameter
-            if ("*" == textValue) {
-                
-                if ("*" != name || "*" != automationId || "*" != className) {
-                    return true;
-                }
-                
-                // 20130208
-                //return result;
-            }
-            
-            result =
-                wildcardValue.IsMatch(realValue);
-
-            return result;
-        }
+//        private bool testRealValueAndValueParameter(
+//            AutomationElement item,
+//            string name,
+//            string automationId,
+//            string className,
+//            string textValue,
+//            WildcardPattern wildcardValue)
+//        {
+//            bool result = false;
+//            
+//            // getting the real value of a control
+//            string realValue = string.Empty;
+//            try {
+//                realValue =
+//                    (item.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern).Current.Value;
+//            }
+//            catch {}
+//            
+//            // if a control's ValuePattern has no value
+//            if (string.Empty == realValue) {
+//                
+//                if ("*" != name || "*" != automationId || "*" != className) {
+//                    return true;
+//                }
+//                return result;
+//            }
+//            
+//            // if there was not specified the -Value parameter
+//            if ("*" == textValue) {
+//                
+//                if ("*" != name || "*" != automationId || "*" != className) {
+//                    return true;
+//                }
+//                
+//                // 20130208
+//                //return result;
+//            }
+//            
+//            result =
+//                wildcardValue.IsMatch(realValue);
+//
+//            return result;
+//        }
         
         private ArrayList processAutomationElement(
             AutomationElement element,

@@ -340,6 +340,42 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Get_UIAWindow")]
+        public void GetWindowByAutomationId_TimeoutDefault()
+        {
+            MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual1(@"if ((Get-UIAWindow -AutomationId " + 
+                MiddleLevelCode.TestFormNameEmpty +
+                ")) { 1; } else { 0; }");
+        }
+        
+        [Test] //[Test(Description="TBD")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Get_UIAWindow")]
+        public void GetWindowByAutomationId_WildCard_TimeoutDefault()
+        {
+            MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual1(@"if ((Get-UIAWindow -AutomationId '*Empty*'" + 
+                //MiddleLevelCode.TestFormNameEmpty +
+                ")) { 1; } else { 0; }");
+        }
+        
+        [Test] //[Test(Description="TBD")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Get_UIAWindow")]
+        public void GetWindowByClassName_WildCard_TimeoutDefault()
+        {
+            MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual1(@"if ((Get-UIAWindow -Class '" + 
+                @"*WindowsForms10.Window.8.app*'" +
+                ")) { 1; } else { 0; }");
+        }
+        
+        [Test] //[Test(Description="TBD")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Get_UIAWindow")]
         public void GetWindowByPIDWrong()
         {
             MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);

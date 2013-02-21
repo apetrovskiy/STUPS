@@ -68,7 +68,9 @@ namespace UIAutomation.Commands
                 if (null == this.ProcessName && //0 == this.ProcessName.Length) &&
                     // 20120824
                     //this.Name == string.Empty &&
-                    null == this.Name && //0 == this.Name.Length) &&
+                    // 20130220
+                    //null == this.Name && //0 == this.Name.Length) &&
+                    (null == this.Name && null == this.AutomationId && null == this.Class) &&
                     // 20120824
                     //(this.InputObject as System.Diagnostics.Process) == null &&
                     //null == (this.InputObject[0] as System.Diagnostics.Process) &&
@@ -137,7 +139,7 @@ namespace UIAutomation.Commands
             // 20120824
             //_returnedWindow =
             _returnedWindows =
-                GetWindow(this, this.InputObject, this.ProcessName, this.ProcessId, this.Name);
+                GetWindow(this, this.InputObject, this.ProcessName, this.ProcessId, this.Name, this.AutomationId, this.Class);
             
                 // GetWindow(this.ProcessName, this.Title);
             // 20120824

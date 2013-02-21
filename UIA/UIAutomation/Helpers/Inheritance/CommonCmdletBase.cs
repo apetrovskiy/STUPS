@@ -1061,7 +1061,9 @@ namespace UIAutomation
         // 20120823
         //protected AutomationElement aeCtrl { get; set; }
         //protected AutomationElementCollection aeCtrl { get; set; }
-        protected ArrayList aeCtrl { get; set; }
+        // 20130220
+        //protected ArrayList aeCtrl { get; set; }
+        protected ArrayList aeCtrl;
         //protected internal System.Windows.Automation.AutomationElement rootElement;
         protected internal AutomationElement rootElement { get; set; }
         
@@ -1106,7 +1108,9 @@ namespace UIAutomation
         //public AndCondition getControlConditions(HasControlInputCmdletBase cmdlet1, string controlType)
         // 20130128
         //public AndCondition getControlConditions(HasControlInputCmdletBase cmdlet1, string controlType, bool caseSensitive, bool AndVsOr)
-        public object getControlConditions(HasControlInputCmdletBase cmdlet1, string controlType, bool caseSensitive, bool AndVsOr)
+        // 20130221
+        //public object getControlConditions(HasControlInputCmdletBase cmdlet1, string controlType, bool caseSensitive, bool AndVsOr)
+        public object getControlConditions(GetCmdletBase cmdlet1, string controlType, bool caseSensitive, bool AndVsOr)
         {
             System.Windows.Automation.ControlType ctrlType = null;
             System.Windows.Automation.AndCondition andConditions = null;
@@ -1124,18 +1128,30 @@ namespace UIAutomation
             }
             
             GetControlCmdletBase cmdlet =
+                // 20130220
                 (GetControlCmdletBase)cmdlet1;
+                //new GetControlCmdletBase();
             
             // 20130128
             // the TextSearch mode
-            if (null != cmdlet.ContainsText &&
+            // 20130220
+            //if (null != cmdlet.ContainsText &&
+            if (null != (cmdlet as GetControlCmdletBase) && null != cmdlet.ContainsText &&
+                // 20130220
                 string.Empty != cmdlet.ContainsText &&
                 !AndVsOr) {
+Console.WriteLine("11111");
+                // 20130220
                 cmdlet.Name =
-                    cmdlet.AutomationId =
-                    cmdlet.Class =
-                    cmdlet.Value =
-                    cmdlet.ContainsText;
+                    //cmdlet.AutomationId =
+                    (cmdlet as GetControlCmdletBase).AutomationId =
+                    //cmdlet.Class =
+                    (cmdlet as GetControlCmdletBase).Class =
+                    //cmdlet.Value =
+                    (cmdlet as GetControlCmdletBase).Value =
+                    //cmdlet.ContainsText;
+                    (cmdlet as GetControlCmdletBase).ContainsText;
+Console.WriteLine("222");
             }
             
             //if (cmdlet.ControlType != null && cmdlet.ControlType.Length > 0) {
@@ -1418,11 +1434,17 @@ namespace UIAutomation
 
                 aeCtrl = new ArrayList();
                 System.Windows.Automation.AndCondition conditions = null;
-                conditions = this.getControlConditions(cmdlet, cmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive, true) as AndCondition;
+                // 20130221
+                System.Windows.Automation.AndCondition conditionsForWildCards = null;
+                // 20130221
+                System.Windows.Automation.AndCondition conditionsForTextSearch = null;
+                // 20130221
+                //conditions = this.getControlConditions(cmdlet, cmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive, true) as AndCondition;
                 
-                // display conditions for a regular search
-                this.WriteVerbose(cmdlet, "these conditions are used for an exact search:");
-                displayConditions(cmdlet, conditions, "for exact search");
+                // 20130221
+//                // display conditions for a regular search
+//                this.WriteVerbose(cmdlet, "these conditions are used for an exact search:");
+//                displayConditions(cmdlet, conditions, "for exact search");
 
 
                 // additional search conditions if the search works with wildcards
@@ -1440,24 +1462,54 @@ namespace UIAutomation
                 if (null != cmdlet.ContainsText && string.Empty != cmdlet.ContainsText) {
                     tempCmdlet.ContainsText = cmdlet.ContainsText;
                     notTextSearch = false;
+                    
+                    // 20130221
+                    conditionsForTextSearch =
+                        this.getControlConditions(
+                            tempCmdlet,
+                            tempCmdlet.ControlType,
+                            cmdlet.CaseSensitive,
+                            false) as AndCondition;
+                    
+                    // display conditions for text search
+                    this.WriteVerbose(cmdlet, "these conditions are used for text search:");
+                    displayConditions(cmdlet, conditionsForTextSearch, "for text search");
+                    
+                } else {
+                    // 20130221
+                    conditions = this.getControlConditions(cmdlet, cmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive, true) as AndCondition;
+                    // display conditions for a regular search
+                    this.WriteVerbose(cmdlet, "these conditions are used for an exact search:");
+                    displayConditions(cmdlet, conditions, "for exact search");
+                    
+                    conditionsForWildCards =
+                        this.getControlConditions(tempCmdlet, tempCmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive, true) as AndCondition;
+                    
+                    // display conditions for wildcard search
+                    this.WriteVerbose(cmdlet, "these conditions are used for wildcard search:");
+                    displayConditions(cmdlet, conditionsForWildCards, "for wildcard search");
                 }
-                System.Windows.Automation.AndCondition conditionsForWildCards =
-                    this.getControlConditions(tempCmdlet, tempCmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive, true) as AndCondition;
+                // 20130221
+                //System.Windows.Automation.AndCondition conditionsForWildCards =
+                //    this.getControlConditions(tempCmdlet, tempCmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive, true) as AndCondition;
                 
-                System.Windows.Automation.AndCondition conditionsForTextSearch =
-                    this.getControlConditions(
-                        tempCmdlet,
-                        tempCmdlet.ControlType,
-                        cmdlet.CaseSensitive,
-                        false) as AndCondition;
+                // 20130221
+                //System.Windows.Automation.AndCondition conditionsForTextSearch =
+                //    this.getControlConditions(
+                //        tempCmdlet,
+                //        tempCmdlet.ControlType,
+                //        cmdlet.CaseSensitive,
+                //        false) as AndCondition;
                 
-                // display conditions for wildcard search
-                this.WriteVerbose(cmdlet, "these conditions are used for wildcard search:");
-                displayConditions(cmdlet, conditionsForWildCards, "for wildcard search");
+                // 20130221
+                // // display conditions for wildcard search
+                // this.WriteVerbose(cmdlet, "these conditions are used for wildcard search:");
+                // displayConditions(cmdlet, conditionsForWildCards, "for wildcard search");
                 
-                // display conditions for text search
-                this.WriteVerbose(cmdlet, "these conditions are used for text search:");
-                displayConditions(cmdlet, conditionsForTextSearch, "for text search");
+                // 20130221
+                // // display conditions for text search
+                // this.WriteVerbose(cmdlet, "these conditions are used for text search:");
+                // displayConditions(cmdlet, conditionsForTextSearch, "for text search");
                 
                 // 20120823
                 foreach (AutomationElement inputObject in cmdlet.InputObject) {
@@ -1508,7 +1560,8 @@ namespace UIAutomation
                         if (0 == aeCtrl.Count && notTextSearch) {
                             if (!Preferences.DisableWildCardSearch && !cmdlet.Win32) {
                                 
-                                SearchByWildcardViaUIA(cmdlet, inputObject, conditionsForWildCards);
+                                //SearchByWildcardViaUIA(cmdlet, inputObject, conditionsForWildCards);
+                                SearchByWildcardViaUIA(cmdlet, ref aeCtrl, inputObject, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class, cmdlet.Value, conditionsForWildCards);
                             }
                         }
                         #endregion wildcard search
@@ -1700,22 +1753,43 @@ namespace UIAutomation
         }
 
         internal void SearchByWildcardViaUIA(
-            GetControlCmdletBase cmdlet,
+            //GetControlCmdletBase cmdlet,
+            //T cmdlet,
+            //CommonCmdletBase cmdlet,
+            //HasTimeoutCmdletBase cmdlet,
+            GetCmdletBase cmdlet,
+            ref ArrayList resultCollection,
             AutomationElement inputObject,
+            string name,
+            string automationId,
+            string className,
+            string strValue,
             System.Windows.Automation.AndCondition conditionsForWildCards)
         {
-            this.WriteVerbose(cmdlet, "[getting the control] using WildCard search");
+            this.WriteVerbose((cmdlet as PSTestLib.PSCmdletBase), "[getting the control] using WildCard search");
             try {
+//                string cmdletValue = string.Empty;
+//                try {
+//                    cmdletValue = cmdlet.Value;
+//                }
+//                catch {}
+                // 20130220
                 GetControlCollectionCmdletBase cmdlet1 =
                     new GetControlCollectionCmdletBase(
-                        cmdlet.InputObject,
-                        cmdlet.Name,
-                        cmdlet.AutomationId,
-                        cmdlet.Class,
-                        cmdlet.Value,
+                        //cmdlet.InputObject,
+                        null != cmdlet.InputObject ? cmdlet.InputObject : (new AutomationElement[]{ AutomationElement.RootElement }),
+                        //null,
+                        name, //cmdlet.Name,
+                        automationId, //cmdlet.AutomationId,
+                        className, //cmdlet.Class,
+                        //cmdlet.Value,
+                        //string.Empty != cmdlet.Value ? cmdlet.Value : null,
+                        strValue,
                         (new string[] {}),
                         this.caseSensitive);
                 try {
+                    this.WriteVerbose((cmdlet as PSTestLib.PSCmdletBase), "using the GetAutomationElementsViaWildcards_FindAll method");
+                    
                     ArrayList tempList =
                         cmdlet1.GetAutomationElementsViaWildcards_FindAll(
                             cmdlet1,
@@ -1735,7 +1809,7 @@ namespace UIAutomation
 
                         if (null == cmdlet.SearchCriteria || 0 == cmdlet.SearchCriteria.Length) {
 
-                            aeCtrl.Add(tempElement2);
+                            resultCollection.Add(tempElement2);
                             cmdlet.WriteVerbose(cmdlet, "WildCardSearch: element added to the result collection (no SearchCriteria)");
                         } else {
 
@@ -1743,14 +1817,14 @@ namespace UIAutomation
                             if (testControlWithAllSearchCriteria(cmdlet, cmdlet.SearchCriteria, tempElement2)) {
 
                                 cmdlet.WriteVerbose(cmdlet, "WildCardSearch: the control matches the search criteria");
-                                aeCtrl.Add(tempElement2);
+                                resultCollection.Add(tempElement2);
                                 cmdlet.WriteVerbose(cmdlet, "WildCardSearch: element added to the result collection (SearchCriteria)");
                             }
                             // cmdlet.WriteVerbose(cmdlet, "WildCardSearch: element added to the result collection (SearchCriteria) (2)");
                         }
                         // cmdlet.WriteVerbose(cmdlet, "WildCardSearch: element added to the result collection (SearchCriteria) (3)");
                     }
-                    cmdlet.WriteVerbose(cmdlet, "WildCardSearch: element(s) added to the result collection: " + aeCtrl.Count.ToString());
+                    cmdlet.WriteVerbose(cmdlet, "WildCardSearch: element(s) added to the result collection: " + resultCollection.Count.ToString());
                 } catch (Exception eUnexpected) {
                     // this.WriteVerbose(this, eUnexpected.Message);
                     this.WriteError(

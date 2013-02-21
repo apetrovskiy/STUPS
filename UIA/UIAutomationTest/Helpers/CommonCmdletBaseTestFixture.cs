@@ -25,7 +25,9 @@ namespace UIAutomationTest.Commands.Select
         {
         }
         
-        UIAutomation.HasControlInputCmdletBase cmdlet = null;
+        // 20130221
+        // UIAutomation.HasControlInputCmdletBase cmdlet = null;
+        UIAutomation.GetControlCmdletBase cmdlet = null;
         UIAutomation.CommonCmdletBase cmdletBase = null;
         
         private void checkConditionsArray(
@@ -37,7 +39,9 @@ namespace UIAutomationTest.Commands.Select
             cmdlet = 
                 new UIAutomation.Commands.GetUIAControlCommand();
             cmdletBase = 
-                new UIAutomation.CommonCmdletBase();
+                // 20130221
+                // new UIAutomation.CommonCmdletBase();
+                new UIAutomation.GetControlCmdletBase();
             AndCondition condition =
                 // 20130127
                 //cmdlet.getControlConditions(cmdlet, controlType);

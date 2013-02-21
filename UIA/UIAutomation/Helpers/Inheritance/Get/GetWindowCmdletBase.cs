@@ -109,6 +109,9 @@ namespace UIAutomation
         
 //        [Parameter(Mandatory = false)]
 //        internal new System.Windows.Automation.AutomationElement InputObject { get; set; }
+
+        [Parameter(Mandatory = false)]
+        public SwitchParameter Recurse { get; set; }
         #endregion Parameters
     }
 }

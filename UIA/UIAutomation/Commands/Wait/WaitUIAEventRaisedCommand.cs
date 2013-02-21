@@ -50,7 +50,7 @@ this.WriteTrace(this, "do");
                 if (CurrentData.LastEventInfoAdded) {
 this.WriteTrace(this, "if (CurrentData.LastEventInfoAdded)");
                     string name = string.Empty;
-                    string automaitonId = string.Empty;
+                    string automationId = string.Empty;
                     string controlType = string.Empty;
                     string eventId = string.Empty;
 
@@ -63,7 +63,7 @@ this.WriteTrace(this, "name 2");
 
                     try {
 this.WriteTrace(this, "auId 1");
-                        automaitonId = CurrentData.LastEventSource.Cached.AutomationId;
+                        automationId = CurrentData.LastEventSource.Cached.AutomationId;
 this.WriteTrace(this, "auId 2");
                     }
                     catch {}
@@ -96,7 +96,7 @@ this.WriteTrace(this, "name 002");
                     if (this.AutomationId != null &&
                         this.AutomationId.Length > 0) {
 this.WriteTrace(this, "auId 001");
-                        notFoundYet = !IsInArray(automaitonId, this.AutomationId);
+                        notFoundYet = !IsInArray(automationId, this.AutomationId);
 this.WriteTrace(this, "auId 002");
                     }
                     

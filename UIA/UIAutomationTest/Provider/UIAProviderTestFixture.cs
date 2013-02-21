@@ -59,7 +59,7 @@ namespace UIAutomationTest.Provider
         {
             string driveName = "UIA1";
             string providerName = "UIAProvider";
-            string rootpath = @"UIAutomaiton\UIAProvider::Services";
+            string rootpath = @"UIAutomation\UIAProvider::Services";
             string windowName = "Services";
             string processName = @"""""";
             int processId = 0;
@@ -88,7 +88,7 @@ namespace UIAutomationTest.Provider
         {
             string driveName = "UIA2";
             string providerName = "UIAProvider";
-            string rootpath = @"UIAutomaiton\UIAProvider::Services";
+            string rootpath = @"UIAutomation\UIAProvider::Services";
             string windowName = @"""""";
             string processName = "mmc";
             int processId = 0;
@@ -117,7 +117,7 @@ namespace UIAutomationTest.Provider
         {
             string driveName = "UIA3";
             string providerName = "UIAProvider";
-            string rootpath = @"UIAutomaiton\UIAProvider::Services";
+            string rootpath = @"UIAutomation\UIAProvider::Services";
             string windowName = @"""""";
             string processName = @"""""";
             int processId = 1024;

@@ -1140,7 +1140,7 @@ namespace UIAutomation
                 // 20130220
                 string.Empty != cmdlet.ContainsText &&
                 !AndVsOr) {
-Console.WriteLine("11111");
+
                 // 20130220
                 cmdlet.Name =
                     //cmdlet.AutomationId =
@@ -1151,7 +1151,7 @@ Console.WriteLine("11111");
                     (cmdlet as GetControlCmdletBase).Value =
                     //cmdlet.ContainsText;
                     (cmdlet as GetControlCmdletBase).ContainsText;
-Console.WriteLine("222");
+
             }
             
             //if (cmdlet.ControlType != null && cmdlet.ControlType.Length > 0) {

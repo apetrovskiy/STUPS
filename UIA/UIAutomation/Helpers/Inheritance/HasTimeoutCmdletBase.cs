@@ -501,194 +501,198 @@ namespace UIAutomation
             // 20120824
             foreach (string windowTitle in windowNames) {
             
-            WriteVerbose(this, "processName.Length == 0");
-            #region changed 20120608
-            //            conditionsTitle =
-            //                new AndCondition(
-            //                    new System.Windows.Automation.OrCondition(
-            //                        new System.Windows.Automation.PropertyCondition(
-            //                            System.Windows.Automation.AutomationElement.ControlTypeProperty,
-            //                            System.Windows.Automation.ControlType.Window),
-            //                        new System.Windows.Automation.PropertyCondition(
-            //                            System.Windows.Automation.AutomationElement.ControlTypeProperty,
-            //                            System.Windows.Automation.ControlType.Pane),
-            //                        new System.Windows.Automation.PropertyCondition(
-            //                            System.Windows.Automation.AutomationElement.ControlTypeProperty,
-            //                            System.Windows.Automation.ControlType.Menu)),
-            //                    new PropertyCondition(
-            //                        System.Windows.Automation.AutomationElement.NameProperty,
-            //                        title));
-            #endregion changed 20120608
-            conditionsSet =
-                new System.Windows.Automation.OrCondition(
-                    new System.Windows.Automation.PropertyCondition(
-                        System.Windows.Automation.AutomationElement.ControlTypeProperty,
-                        System.Windows.Automation.ControlType.Window),
-                    new System.Windows.Automation.PropertyCondition(
-                        System.Windows.Automation.AutomationElement.ControlTypeProperty,
-                        System.Windows.Automation.ControlType.Pane),
-                    new System.Windows.Automation.PropertyCondition(
-                        System.Windows.Automation.AutomationElement.ControlTypeProperty,
-                        System.Windows.Automation.ControlType.Menu));
-            WriteVerbose(this, "trying to get window: by title = " +
-                         // 20120824
-                         //title);
-                         windowTitle);
-            #region changed 20120608
-            //            aeWndByTitle =
-            //                rootElement.FindFirst(System.Windows.Automation.TreeScope.Children,
-            //                                    conditionsTitle);
-            #endregion changed 20120608
-            
-            AutomationElementCollection aeWndCollection =
-                rootElement.FindAll(TreeScope.Children,
-                                    conditionsSet);
-            
-            // 20130220
-//            WildcardOptions options;
-//            //            if (caseSensitive) {
-//            //                options =
-//            //                    WildcardOptions.Compiled;
-//            //            } else {
-//            options =
-//                WildcardOptions.IgnoreCase |
-//                WildcardOptions.Compiled;
-//            //            }
-//            WildcardPattern wildcardName =
-//                // 20120824
-//                //new WildcardPattern(title,options);
-//                new WildcardPattern(windowTitle, options);
-//
-//            
-////            bool matched = false;
-////            if (name.Length > 0 && wildcardName.IsMatch(element.Current.Name)) {
-////                matched = true;
-////            } else if (automationId.Length > 0 &&
-////                       wildcardAutomationId.IsMatch(element.Current.AutomationId)) {
-////                matched = true;
-////            } else if (className.Length > 0 &&
-////                       wildcardClass.IsMatch(element.Current.ClassName)) {
-////                matched = true;
-////            }
-////
-////            if (matched) {
-////                if (onlyOneResult) {
-////                    result = element;
-////                } else {
-////                    WriteObject(this, element);
-////                }
-////            }
-//            
-//            if (aeWndCollection.Count > 0) {
-//    
-//                WriteVerbose(this, "aeWndCollection.Count > 0");
-//                
-//                foreach (AutomationElement wndInColleciton in aeWndCollection) {
-//                    if (wndInColleciton.Current.Name != null && 
-//                        wndInColleciton.Current.Name != string.Empty &&
-//                        wndInColleciton.Current.Name.Length > 0 &&
-//                        wildcardName.IsMatch(wndInColleciton.Current.Name)) {
-//                        // 20120824
-//                        //aeWndByTitle = wndInColleciton;
-//                        //break;
-//                        aeWndCollectionByTitle.Add(wndInColleciton);
-//                    }
-//                }
-//            }
-////
-//else {
-//    WriteVerbose(this, "aeWndCollection.Count == 0");
-//}
-////
-
-            
-//            if (null != aeWndCollection && 0 < aeWndCollection.Count) {
-//                
-//                System.Collections.ArrayList tempCollection = 
-//                    new System.Collections.ArrayList();
-//                System.Windows.Automation.AndCondition conditionsForWildCards =
-//                    this.getControlConditions(this, string.Empty, false, true) as AndCondition;
-//                
-//                SearchByWildcardViaUIA((GetCmdletBase)this, ref tempCollection, AutomationElement.RootElement, windowTitle, automationId, className, string.Empty, conditionsForWildCards);
-//                
-//                if (null != tempCollection && 0 < tempCollection.Count) {
-//                    aeWndCollectionByTitle.AddRange(tempCollection);
-//                }
-//            }
-            
-            this.WriteVerbose(this, "trying to run the returnOnlyRightElements method");
-            
-            aeWndCollectionByTitle =
-                //(this as GetCmdletBase).returnOnlyRightElements(
-                this.returnOnlyRightElements(
-                    aeWndCollection,
-                    windowTitle,
-                    automationId,
-                    className,
-                    string.Empty,
-                    (new string[]{ "Window", "Pane", "Menu" }),
-                    false);
-            
-            this.WriteVerbose(this, "after running the returnOnlyRightElements method");
-            
-            // 20120831
-            if (null != aeWndCollectionByTitle && 0 < aeWndCollectionByTitle.Count) {
-                // 20120824
-                foreach (AutomationElement aeWndByTitle in aeWndCollectionByTitle) {
-                    
-                    // 20120831
-                    //AutomationElement tempElement = null;
+                WriteVerbose(this, "processName.Length == 0");
+                #region changed 20120608
+                //            conditionsTitle =
+                //                new AndCondition(
+                //                    new System.Windows.Automation.OrCondition(
+                //                        new System.Windows.Automation.PropertyCondition(
+                //                            System.Windows.Automation.AutomationElement.ControlTypeProperty,
+                //                            System.Windows.Automation.ControlType.Window),
+                //                        new System.Windows.Automation.PropertyCondition(
+                //                            System.Windows.Automation.AutomationElement.ControlTypeProperty,
+                //                            System.Windows.Automation.ControlType.Pane),
+                //                        new System.Windows.Automation.PropertyCondition(
+                //                            System.Windows.Automation.AutomationElement.ControlTypeProperty,
+                //                            System.Windows.Automation.ControlType.Menu)),
+                //                    new PropertyCondition(
+                //                        System.Windows.Automation.AutomationElement.NameProperty,
+                //                        title));
+                #endregion changed 20120608
+                conditionsSet =
+                    new System.Windows.Automation.OrCondition(
+                        new System.Windows.Automation.PropertyCondition(
+                            System.Windows.Automation.AutomationElement.ControlTypeProperty,
+                            System.Windows.Automation.ControlType.Window),
+                        new System.Windows.Automation.PropertyCondition(
+                            System.Windows.Automation.AutomationElement.ControlTypeProperty,
+                            System.Windows.Automation.ControlType.Pane),
+                        new System.Windows.Automation.PropertyCondition(
+                            System.Windows.Automation.AutomationElement.ControlTypeProperty,
+                            System.Windows.Automation.ControlType.Menu));
+                WriteVerbose(this, "trying to get window: by title = " +
+                             // 20120824
+                             //title);
+                             windowTitle);
+                #region changed 20120608
+                //            aeWndByTitle =
+                //                rootElement.FindFirst(System.Windows.Automation.TreeScope.Children,
+                //                                    conditionsTitle);
+                #endregion changed 20120608
                 
-                    if (aeWndByTitle != null &&
-                        (int)aeWndByTitle.Current.ProcessId > 0) {
-                        WriteVerbose(this, "aeWndByTitle: " +
-                                     aeWndByTitle.Current.Name +
-                                     // 20120824
-                                     //" is caught by title = " + title);
-                                     " is caught be title = " + windowTitle);
-                            
-                            // 20120824
-                            resultCollection.Add(aeWndByTitle);
-                            
-                    } 
-                    
-                } // 20120831
+                AutomationElementCollection aeWndCollection =
+                    rootElement.FindAll(TreeScope.Children,
+                                        conditionsSet);
                 
-            } else {
+#region commented
+                // 20130220
+    //            WildcardOptions options;
+    //            //            if (caseSensitive) {
+    //            //                options =
+    //            //                    WildcardOptions.Compiled;
+    //            //            } else {
+    //            options =
+    //                WildcardOptions.IgnoreCase |
+    //                WildcardOptions.Compiled;
+    //            //            }
+    //            WildcardPattern wildcardName =
+    //                // 20120824
+    //                //new WildcardPattern(title,options);
+    //                new WildcardPattern(windowTitle, options);
+    //
+    //            
+    ////            bool matched = false;
+    ////            if (name.Length > 0 && wildcardName.IsMatch(element.Current.Name)) {
+    ////                matched = true;
+    ////            } else if (automationId.Length > 0 &&
+    ////                       wildcardAutomationId.IsMatch(element.Current.AutomationId)) {
+    ////                matched = true;
+    ////            } else if (className.Length > 0 &&
+    ////                       wildcardClass.IsMatch(element.Current.ClassName)) {
+    ////                matched = true;
+    ////            }
+    ////
+    ////            if (matched) {
+    ////                if (onlyOneResult) {
+    ////                    result = element;
+    ////                } else {
+    ////                    WriteObject(this, element);
+    ////                }
+    ////            }
+    //            
+    //            if (aeWndCollection.Count > 0) {
+    //    
+    //                WriteVerbose(this, "aeWndCollection.Count > 0");
+    //                
+    //                foreach (AutomationElement wndInColleciton in aeWndCollection) {
+    //                    if (wndInColleciton.Current.Name != null && 
+    //                        wndInColleciton.Current.Name != string.Empty &&
+    //                        wndInColleciton.Current.Name.Length > 0 &&
+    //                        wildcardName.IsMatch(wndInColleciton.Current.Name)) {
+    //                        // 20120824
+    //                        //aeWndByTitle = wndInColleciton;
+    //                        //break;
+    //                        aeWndCollectionByTitle.Add(wndInColleciton);
+    //                    }
+    //                }
+    //            }
+    ////
+    //else {
+    //    WriteVerbose(this, "aeWndCollection.Count == 0");
+    //}
+    ////
+    
+                
+    //            if (null != aeWndCollection && 0 < aeWndCollection.Count) {
+    //                
+    //                System.Collections.ArrayList tempCollection = 
+    //                    new System.Collections.ArrayList();
+    //                System.Windows.Automation.AndCondition conditionsForWildCards =
+    //                    this.getControlConditions(this, string.Empty, false, true) as AndCondition;
+    //                
+    //                SearchByWildcardViaUIA((GetCmdletBase)this, ref tempCollection, AutomationElement.RootElement, windowTitle, automationId, className, string.Empty, conditionsForWildCards);
+    //                
+    //                if (null != tempCollection && 0 < tempCollection.Count) {
+    //                    aeWndCollectionByTitle.AddRange(tempCollection);
+    //                }
+    //            }
+#endregion commented
+    
+                this.WriteVerbose(this, "trying to run the returnOnlyRightElements method");
+                this.WriteVerbose(this, "collected " + aeWndCollection.Count.ToString() + " elements for further selection");
+                
+                aeWndCollectionByTitle =
+                    //(this as GetCmdletBase).returnOnlyRightElements(
+                    this.returnOnlyRightElements(
+                        aeWndCollection,
+                        windowTitle,
+                        automationId,
+                        className,
+                        string.Empty,
+                        (new string[]{ "Window", "Pane", "Menu" }),
+                        false);
+                
+                this.WriteVerbose(this, "after running the returnOnlyRightElements method");
+                this.WriteVerbose(this, "collected " + aeWndCollectionByTitle.Count.ToString() + " elements");
                 
                 // 20120831
-                AutomationElement tempElement = null;
+                if (null != aeWndCollectionByTitle && 0 < aeWndCollectionByTitle.Count) {
+                    // 20120824
+                    foreach (AutomationElement aeWndByTitle in aeWndCollectionByTitle) {
+                        
+                        // 20120831
+                        //AutomationElement tempElement = null;
+                    
+                        if (aeWndByTitle != null &&
+                            (int)aeWndByTitle.Current.ProcessId > 0) {
+                            WriteVerbose(this, "aeWndByTitle: " +
+                                         aeWndByTitle.Current.Name +
+                                         // 20120824
+                                         //" is caught by title = " + title);
+                                         " is caught be title = " + windowTitle);
+                                
+                                // 20120824
+                                resultCollection.Add(aeWndByTitle);
+                                
+                        } 
+                        
+                    } // 20120831
+                    
+                } else {
+                    
+                    // 20120831
+                    AutomationElement tempElement = null;
+                    
+                    // one more attempt using the FindWindow function
+                    System.IntPtr wndHandle =
+                        // 20120824
+                        //FindWindowByCaption(System.IntPtr.Zero, title);
+                        FindWindowByCaption(System.IntPtr.Zero, windowTitle);
+                    if (wndHandle != null && wndHandle != System.IntPtr.Zero) {
+                        // 20120824
+                        //aeWndByTitle =
+                        tempElement =
+                            AutomationElement.FromHandle(wndHandle);
+                    }
+                    // 20120824
+                    //if (aeWndByTitle != null && (int)aeWndByTitle.Current.ProcessId > 0) {
+                    if (null != tempElement && (int)tempElement.Current.ProcessId > 0) {
+                        WriteVerbose(this, "aeWndByTitle: " +
+                                     // 20120824
+                                     //aeWndByTitle.Current.Name +
+                                     // 20120824
+                                     //" is caught by title = " + title +
+                                     " is caught by title = " + windowTitle +
+                                     " using the FindWindow function");
+                        
+                        // 20120824
+                        resultCollection.Add(tempElement);
+                        
+                    }
+                }
                 
-                // one more attempt using the FindWindow function
-                System.IntPtr wndHandle =
-                    // 20120824
-                    //FindWindowByCaption(System.IntPtr.Zero, title);
-                    FindWindowByCaption(System.IntPtr.Zero, windowTitle);
-                if (wndHandle != null && wndHandle != System.IntPtr.Zero) {
-                    // 20120824
-                    //aeWndByTitle =
-                    tempElement =
-                        AutomationElement.FromHandle(wndHandle);
-                }
-                // 20120824
-                //if (aeWndByTitle != null && (int)aeWndByTitle.Current.ProcessId > 0) {
-                if (null != tempElement && (int)tempElement.Current.ProcessId > 0) {
-                    WriteVerbose(this, "aeWndByTitle: " +
-                                 // 20120824
-                                 //aeWndByTitle.Current.Name +
-                                 // 20120824
-                                 //" is caught by title = " + title +
-                                 " is caught by title = " + windowTitle +
-                                 " using the FindWindow function");
-                    
-                    // 20120824
-                    resultCollection.Add(tempElement);
-                    
-                }
-            }
-            
-            // 20120831                
-            //} // 20120824
+                // 20120831                
+                //} // 20120824
             
             } // 20120824
             
@@ -781,47 +785,41 @@ namespace UIAutomation
             bool caseSensitive)
         {
             
-            this.WriteVerbose(this, "inside the returnOnlyRightElements method");
-            
-                ArrayList resultCollection = new ArrayList();
+            ArrayList resultCollection = new ArrayList();
 
-                WildcardOptions options;
-                if (caseSensitive) {
-                    options =
-                        WildcardOptions.Compiled;
-                } else {
-                    options =
-                        WildcardOptions.IgnoreCase |
-                        WildcardOptions.Compiled;
-                }
+            WildcardOptions options;
+            if (caseSensitive) {
+                options =
+                    WildcardOptions.Compiled;
+            } else {
+                options =
+                    WildcardOptions.IgnoreCase |
+                    WildcardOptions.Compiled;
+            }
             
-                if (null == name || string.Empty == name || 0 == name.Length) { name = "*"; }
-            this.WriteVerbose(this, "inside the returnOnlyRightElements method 6");
-                if (null == automationId || string.Empty == automationId || 0 == automationId.Length) { automationId = "*"; }
-            this.WriteVerbose(this, "inside the returnOnlyRightElements method 7");
-                if (null == className || string.Empty == className || 0 == className.Length) { className = "*"; }
-            this.WriteVerbose(this, "inside the returnOnlyRightElements method 8");
-                if (null == textValue || string.Empty == textValue || 0 == textValue.Length) { textValue = "*"; }
-            this.WriteVerbose(this, "inside the returnOnlyRightElements method 10");
-                WildcardPattern wildcardName = 
-                    new WildcardPattern(name, options);
-                WildcardPattern wildcardAutomationId = 
-                    new WildcardPattern(automationId, options);
-                WildcardPattern wildcardClass = 
-                    new WildcardPattern(className, options);
-                WildcardPattern wildcardValue = 
-                    new WildcardPattern(textValue, options);
+            if (null == name || string.Empty == name || 0 == name.Length) { name = "*"; }
+            if (null == automationId || string.Empty == automationId || 0 == automationId.Length) { automationId = "*"; }
+            if (null == className || string.Empty == className || 0 == className.Length) { className = "*"; }
+            if (null == textValue || string.Empty == textValue || 0 == textValue.Length) { textValue = "*"; }
+
+            WildcardPattern wildcardName = 
+                new WildcardPattern(name, options);
+            WildcardPattern wildcardAutomationId = 
+                new WildcardPattern(automationId, options);
+            WildcardPattern wildcardClass = 
+                new WildcardPattern(className, options);
+            WildcardPattern wildcardValue = 
+                new WildcardPattern(textValue, options);
             this.WriteVerbose(this, "inside the returnOnlyRightElements method 20");
                 System.Collections.Generic.List<AutomationElement> list =
                     new System.Collections.Generic.List<AutomationElement>();
                 foreach (AutomationElement elt in results) {
-this.WriteVerbose(this, "inside the returnOnlyRightElements method 25");
+
                     list.Add(elt);
-this.WriteVerbose(this, "inside the returnOnlyRightElements method 26");
+
                 }
-this.WriteVerbose(this, "inside the returnOnlyRightElements method 27");
+
             try {
-                this.WriteVerbose(this, "trying to query into the collection");
                 
                 var query = list
 //                    .Where<AutomationElement>(item => wildcardName.IsMatch(item.Current.Name))
@@ -846,8 +844,6 @@ this.WriteVerbose(this, "inside the returnOnlyRightElements method 27");
                                 )
                        )
                     .ToArray<AutomationElement>();
-                
-                this.WriteVerbose(this, "after querying into the collection");
 
                 this.WriteVerbose(
                     this,

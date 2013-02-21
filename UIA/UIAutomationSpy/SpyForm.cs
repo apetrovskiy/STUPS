@@ -253,7 +253,7 @@ namespace UIAutomationSpy
             result = 
                 "name = '" + 
                 ancName +
-                "'; automaitonId = '" +
+                "'; automationId = '" +
                 ancAuId + 
                 "'; class = '" +
                 ancClass + 
@@ -462,7 +462,7 @@ namespace UIAutomationSpy
             return element;
         }
         
-        private void writingAutomaitonElementToPropertyGridControl(AutomationElement element)
+        private void writingAutomationElementToPropertyGridControl(AutomationElement element)
         {
             try {
                 this.pGridElement.SelectedObject = 
@@ -789,7 +789,7 @@ namespace UIAutomationSpy
                                     }
                                     
                                     // writing to the property grid control
-                                    this.writingAutomaitonElementToPropertyGridControl(element);
+                                    this.writingAutomationElementToPropertyGridControl(element);
                                     
                                     // writing to the family tree and the code
                                     try {

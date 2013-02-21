@@ -673,7 +673,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("WinForms")]
         [Category("Control")]
         [Category("Get_UIAControl")]
-        public void GetControlByHashtable_AutomaitonId_TimeoutDefault()
+        public void GetControlByHashtable_AutomationId_TimeoutDefault()
         {
             string name = "Button222";
             string automationId = "btn";

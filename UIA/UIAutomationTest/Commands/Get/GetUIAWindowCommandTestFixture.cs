@@ -482,6 +482,67 @@ namespace UIAutomationTest.Commands.Get
                            ")) { 1; } else { 0; }");
         }
         
+        
+        
+        // =============== Recurse ======================
+        [Test]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Get_UIAWindow")]
+        public void GetWindowByProcessName_Recurse_TimeoutDefault()
+        {
+            Assert.Fail();
+            
+            MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual1(@"if ((Get-UIAWindow -pn " + 
+                           MiddleLevelCode.TestFormProcess +
+                           ")) { 1; } else { 0; }");
+        }
+        
+        [Test]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Get_UIAWindow")]
+        public void GetWindowByProcessId_Recurse_TimeoutDefault()
+        {
+            Assert.Fail();
+            
+            MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual1(@"if ((Get-UIAWindow -pn " + 
+                           MiddleLevelCode.TestFormProcess +
+                           ")) { 1; } else { 0; }");
+        }
+        
+        [Test]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Get_UIAWindow")]
+        public void GetWindowByProcess_Recurse_TimeoutDefault()
+        {
+            Assert.Fail();
+            
+            MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual1(@"if ((Get-UIAWindow -pn " + 
+                           MiddleLevelCode.TestFormProcess +
+                           ")) { 1; } else { 0; }");
+        }
+        
+        [Test]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Get_UIAWindow")]
+        public void GetWindowByName_Recurse_TimeoutDefault()
+        {
+            Assert.Fail();
+            
+            MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual1(@"if ((Get-UIAWindow -pn " + 
+                           MiddleLevelCode.TestFormProcess +
+                           ")) { 1; } else { 0; }");
+        }
+        
+        // ================================================
+        
         [TearDown]
         public void DisposeRunspace()
         {

@@ -43,9 +43,20 @@ namespace TAMS
             } else if (null != cmdlet.ProcessName && 0 < cmdlet.ProcessName.Length) {
                 
                 foreach (string processName in cmdlet.ProcessName) {
-                    Process[] processes = System.Diagnostics.Process.GetProcessesByName(processName);
-                    foreach (Process process in processes) {
-                        processIdObjects.Add(process.Id);
+                    try {
+                        Process[] processes = System.Diagnostics.Process.GetProcessesByName(processName);
+                        foreach (Process process in processes) {
+                            processIdObjects.Add(process.Id);
+                        }
+                    }
+                    catch (Exception eGetProcess) {
+                        cmdlet.WriteError(
+                            cmdlet,
+                            "Failed to get a process. " +
+                            eGetProcess.Message,
+                            "FailedToGetProcess",
+                            ErrorCategory.InvalidArgument,
+                            false);
                     }
                 }
                 processIds = (int[])processIdObjects.ToArray(typeof(int));

@@ -18,6 +18,7 @@ namespace UIAutomation.Commands
     [Cmdlet(VerbsLifecycle.Invoke, "UIATogglePattern")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    [Obsolete("This cmdlet is obsolete. Please use the Invoke-UIATogglePatternSet cmdlet")]
     public class InvokeUIATogglePatternCommand : PatternCmdletBase
     { public InvokeUIATogglePatternCommand() { WhatToDo = "Toggle"; }
     }
@@ -28,6 +29,7 @@ namespace UIAutomation.Commands
     [Cmdlet(VerbsLifecycle.Invoke, "UIAButtonToggle")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    [Obsolete("This cmdlet is obsolete. Please use the Set-UIAButtonToggleState cmdlet")]
     public class InvokeUIAButtonToggleCommand : InvokeUIATogglePatternCommand 
     { public InvokeUIAButtonToggleCommand() { } }
     
@@ -37,6 +39,7 @@ namespace UIAutomation.Commands
     [Cmdlet(VerbsLifecycle.Invoke, "UIACheckBoxToggle")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    [Obsolete("This cmdlet is obsolete. Please use the Set-UIACheckBoxToggleState cmdlet")]
     public class InvokeUIACheckBoxToggleCommand : InvokeUIATogglePatternCommand 
     { public InvokeUIACheckBoxToggleCommand() { } }
     
@@ -46,6 +49,7 @@ namespace UIAutomation.Commands
     [Cmdlet(VerbsLifecycle.Invoke, "UIACustomToggle")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    [Obsolete("This cmdlet is obsolete. Please use the Set-UIACustomToggleState cmdlet")]
     public class InvokeUIACustomToggleCommand : InvokeUIATogglePatternCommand 
     { public InvokeUIACustomToggleCommand() { } }
     
@@ -55,6 +59,7 @@ namespace UIAutomation.Commands
     [Cmdlet(VerbsLifecycle.Invoke, "UIADataItemToggle")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    [Obsolete("This cmdlet is obsolete. Please use the Set-UIADataItemToggleState cmdlet")]
     public class InvokeUIADataItemToggleCommand : InvokeUIATogglePatternCommand 
     { public InvokeUIADataItemToggleCommand() { } }
     
@@ -64,6 +69,7 @@ namespace UIAutomation.Commands
     [Cmdlet(VerbsLifecycle.Invoke, "UIAListItemToggle")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    [Obsolete("This cmdlet is obsolete. Please use the Set-UIAListItemToggleState cmdlet")]
     public class InvokeUIAListItemToggleCommand : InvokeUIATogglePatternCommand 
     { public InvokeUIAListItemToggleCommand() { } }
     
@@ -73,6 +79,7 @@ namespace UIAutomation.Commands
     [Cmdlet(VerbsLifecycle.Invoke, "UIAMenuItemToggle")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    [Obsolete("This cmdlet is obsolete. Please use the Set-UIAMenuItemToggleState cmdlet")]
     public class InvokeUIAMenuItemToggleCommand : InvokeUIATogglePatternCommand 
     { public InvokeUIAMenuItemToggleCommand() { } }
     
@@ -82,6 +89,7 @@ namespace UIAutomation.Commands
     [Cmdlet(VerbsLifecycle.Invoke, "UIARadioButtonToggle")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    [Obsolete("This cmdlet is obsolete. Please use the Set-UIARadioButtonToggleState cmdlet")]
     public class InvokeUIARadioButtonToggleCommand : InvokeUIATogglePatternCommand 
     { public InvokeUIARadioButtonToggleCommand() { } }
 }

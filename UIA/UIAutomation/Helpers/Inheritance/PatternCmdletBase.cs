@@ -170,8 +170,11 @@ namespace UIAutomation
                     case "Toggle":
                         InvokeToggle(_control, inputObject);
                         break;
-                    case "ToggleState":
-                        InvokeToggleState(_control, inputObject);
+                    case "ToggleStateGet":
+                        InvokeToggleStateGet(_control, inputObject);
+                        break;
+                    case "ToggleStateSet":
+                        InvokeToggleStateSet(_control, inputObject, ((InvokeUIAToggleStateSetCommand)this).On);
                         break;
                     case "TransformMove":
                         InvokeTransformMove(_control, inputObject);
@@ -468,7 +471,7 @@ namespace UIAutomation
         }
 
         //writev
-        internal void InvokeToggleState(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        internal void InvokeToggleStateGet(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
         {
             try {
                 TogglePattern togglePattern1 = _control.GetCurrentPattern(TogglePattern.Pattern) as TogglePattern;
@@ -478,6 +481,38 @@ namespace UIAutomation
                         toggleState = true;
                     }
                     WriteObject(this, toggleState);
+                } else {
+                    WriteVerbose(this, "couldn't get TogglePattern");
+                    WriteObject(this, false);
+                }
+            } catch (Exception eToggleStatePatternException) {
+            }
+        }
+        
+        internal void InvokeToggleStateSet(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject, bool on)
+        {
+            try {
+                TogglePattern togglePattern1 = _control.GetCurrentPattern(TogglePattern.Pattern) as TogglePattern;
+                if (togglePattern1 != null) {
+                    bool toggleState = false;
+                    if (togglePattern1.Current.ToggleState == ToggleState.On && on) {
+                        // nothing to do
+                    } else if (togglePattern1.Current.ToggleState == ToggleState.Off && on) {
+                        togglePattern1.Toggle();
+                    } else if (togglePattern1.Current.ToggleState == ToggleState.On && !on) {
+                        togglePattern1.Toggle();
+                    } else if (togglePattern1.Current.ToggleState == ToggleState.Off && !on) {
+                        // nothing to do
+                    }
+//                    if (ToggleState.On == togglePattern1.Current.ToggleState) {
+//                        toggleState = true;
+//                    }
+//                    WriteObject(this, toggleState);
+                    if (this.PassThru && null != (inputObject as AutomationElement)) {
+                        WriteObject(this, inputObject);
+                    } else {
+                        WriteObject(this, true);
+                    }
                 } else {
                     WriteVerbose(this, "couldn't get TogglePattern");
                     WriteObject(this, false);

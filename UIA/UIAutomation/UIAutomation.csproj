@@ -197,6 +197,7 @@
     <Compile Include="Commands\Pattern\InvokeUIAWindowPatternCommand.cs" />
     <Compile Include="Commands\Get\GetUIAControlCommand.cs" />
     <Compile Include="Commands\Get\GetUIAWindowCommand.cs" />
+    <Compile Include="Commands\Pattern\InvokeUIAToggleStateSetCommand.cs" />
     <Compile Include="Commands\Profile\GetUIATestProfileCommand.cs" />
     <Compile Include="Commands\Profile\NewUIATestProfileCommand.cs" />
     <Compile Include="Commands\Profile\SetUIACurrentTestProfileCommand.cs" />

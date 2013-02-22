@@ -21,28 +21,18 @@ namespace UIAutomation
         #region Constructor
         public GetWindowCmdletBase()
         {
-            //WriteVerbose(this, "constructor");
-            
-            // 20120824
-            //this.ProcessName = String.Empty;
-            // Title = String.Empty;
-            // 20120824
-            //this.Name = String.Empty;
-            // 20120824
-            //this.ProcessId = 0;
-            // 20120824
-            //this.InputObject = null;
-            
             this.Class = string.Empty;
             //this.Name = string.Empty;
             //this.ControlType = string.Empty;
             this.AutomationId = string.Empty;
+            
+            // 20130222
+            this.Recurse = true;
         }
         #endregion Constructor
         
         #region Parameters
         [Parameter(Mandatory = false,
-                   //ParameterSetName = "Window",
                    ParameterSetName = "ProcessName",
                    HelpMessage="Accepts the name of a process")]
         [Alias("pn")]
@@ -50,7 +40,6 @@ namespace UIAutomation
         
         
         [Parameter(Mandatory = false,
-                   //ParameterSetName = "Window",
                    ParameterSetName = "UIA",
                    HelpMessage="Accepts the name (title) of a window")]
         [Alias("Title")]
@@ -59,20 +48,12 @@ namespace UIAutomation
         [Parameter(Mandatory = false,
                    ParameterSetName = "UIA",
                    HelpMessage="The parameter is not used and for the compatibility purpose")]
-        //[Alias("temporary", "fake")]
-        // 20120206 public new string AutomationId { get; set; }
-        // 20130220
         public string AutomationId { get; set; }
-        //internal string AutomationId { get; set; }
-        
         
         [Parameter(Mandatory = false,
                    ParameterSetName = "UIA",
                    HelpMessage="The parameter is not used and for the compatibility purpose")]
-        //[Alias("oneMoreFakeParameter")]
-        // 20130220
         public string Class { get; set; }
-        //internal string Class { get; set; }
         
         [Parameter(Mandatory = false,
                    ValueFromPipeline = true,
@@ -83,32 +64,10 @@ namespace UIAutomation
         
         
         [Parameter(Mandatory = false,
-                   //ParameterSetName = "Window",
                    ParameterSetName = "ProcessId",
                    HelpMessage="Accepts the Id of a process (PID)")]
         [Alias("pid")]
         public int[] ProcessId { get; set; }
-        
-//        [Parameter(Mandatory = false,
-//                   ParameterSetName = "UIA",
-//                   HelpMessage="The parameter is not used and for the compatibility purpose")]
-//        //[Alias("temporary", "fake")]
-//        // 20120206 public new string AutomationId { get; set; }
-//        // 20130220
-//        public string AutomationId { get; set; }
-//        //internal string AutomationId { get; set; }
-//        
-//        
-//        [Parameter(Mandatory = false,
-//                   ParameterSetName = "UIA",
-//                   HelpMessage="The parameter is not used and for the compatibility purpose")]
-//        //[Alias("oneMoreFakeParameter")]
-//        // 20130220
-//        public string Class { get; set; }
-//        //internal string Class { get; set; }
-        
-//        [Parameter(Mandatory = false)]
-//        internal new System.Windows.Automation.AutomationElement InputObject { get; set; }
 
         [Parameter(Mandatory = false)]
         public SwitchParameter Recurse { get; set; }

@@ -357,6 +357,9 @@
     <Compile Include="..\UIAutomation\Commands\Pattern\InvokeUIAToggleStateCommand.cs">
       <Link>Commands\Pattern\InvokeUIAToggleStateCommand.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Commands\Pattern\InvokeUIAToggleStateSetCommand.cs">
+      <Link>Commands\Pattern\InvokeUIAToggleStateSetCommand.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Commands\Pattern\InvokeUIATransformPatternMoveCommand.cs">
       <Link>Commands\Pattern\InvokeUIATransformPatternMoveCommand.cs</Link>
     </Compile>

@@ -164,6 +164,7 @@
     <Compile Include="Commands\Pattern\InvokeUIAWindowPatternCommandTestFixture.cs" />
     <Compile Include="Commands\Get\GetUIAControlCommandTestFixture.cs" />
     <Compile Include="Commands\Get\GetUIAWindowCommandTestFixture.cs" />
+    <Compile Include="Commands\Pattern\InvokeUIAToggleStateSetCommandTestFixture.cs" />
     <Compile Include="Commands\Profile\GetUIATestProfileCommandTestFixture.cs" />
     <Compile Include="Commands\Profile\NewUIATestProfileCommandTestFixture.cs" />
     <Compile Include="Commands\Profile\SetUIACurrentTestProfileCommandTestFixture.cs" />

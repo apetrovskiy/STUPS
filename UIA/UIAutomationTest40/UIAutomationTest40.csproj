@@ -259,6 +259,9 @@
     <Compile Include="..\UIAutomationTest\Commands\Pattern\InvokeUIAToggleStateCommandTestFixture.cs">
       <Link>Commands\Pattern\InvokeUIAToggleStateCommandTestFixture.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Pattern\InvokeUIAToggleStateSetCommandTestFixture.cs">
+      <Link>Commands\Pattern\InvokeUIAToggleStateSetCommandTestFixture.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomationTest\Commands\Pattern\InvokeUIATransformPatternMoveCommandTestFixture.cs">
       <Link>Commands\Pattern\InvokeUIATransformPatternMoveCommandTestFixture.cs</Link>
     </Compile>

@@ -192,6 +192,9 @@
     <Compile Include="..\UIAutomation\Commands\Common\ShowUIADesktopCommand.cs">
       <Link>Commands\Common\ShowUIADesktopCommand.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Commands\Container\NewUIAContainerCommand.cs">
+      <Link>Commands\Container\NewUIAContainerCommand.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Commands\Convert\ConvertFromUIADataGridCommand.cs">
       <Link>Commands\Convert\ConvertFromUIADataGridCommand.cs</Link>
     </Compile>
@@ -649,6 +652,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands\ExecutionPlan" />
+    <Folder Include="Commands\Container" />
     <Folder Include="Commands\RDP" />
     <Folder Include="Commands\Sheridan" />
     <Folder Include="Helpers\UnderlyingCode\Commands" />

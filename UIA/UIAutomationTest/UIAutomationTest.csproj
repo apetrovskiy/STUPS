@@ -116,6 +116,7 @@
     <Compile Include="Commands\Common\ReadUIAControlNameCommandTestFixture.cs" />
     <Compile Include="Commands\Common\SaveUIAScreenshotCommandTestFixture.cs" />
     <Compile Include="Commands\Common\SetUIAFocusCommandTextFixture.cs" />
+    <Compile Include="Commands\Container\NewUIAContainerCommandTestFixture.cs" />
     <Compile Include="Commands\Convert\ConvertFromUIADataGridCommandTestFixture.cs" />
     <Compile Include="Commands\Convert\ConvertFromUIAListCommandTestFixture.cs" />
     <Compile Include="Commands\Convert\ConvertFromUIATableCommandTestFixture.cs" />
@@ -216,6 +217,7 @@
     <Folder Include="Commands\ExecutionPlan" />
     <Folder Include="Commands\Get\Parameterless" />
     <Folder Include="Commands\Get\Win32" />
+    <Folder Include="Commands\Container" />
     <Folder Include="Commands\Sheridan" />
   </ItemGroup>
   <ItemGroup>

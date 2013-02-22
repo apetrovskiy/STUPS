@@ -58,60 +58,6 @@ namespace TMX
             Console.WriteLine("Here should be logging");
         }
         
-#region commented
-//        protected override bool WriteObjectMethod010CheckOutputObject(object obj)
-//        {
-//            this.WriteVerbose(this, "OutputMethod010CheckOutputObject TMX");
-//            
-//            return true;
-//        }
-//
-//        protected override void WriteObjectMethod020Highlight(PSCmdletBase cmdlet, object obj)
-//        {
-//            this.WriteVerbose(this, "OutputMethod020Highlight TMX");
-//        }
-//        
-//        protected override void WriteObjectMethod030RunScriptBlocks(PSCmdletBase cmdlet, object outputObject)
-//        {
-//            this.WriteVerbose(this, "OutputMethod030RunScriptBlocks TMX");
-//        }
-//        
-//        protected override void WriteObjectMethod040SetTestResult(PSCmdletBase cmdlet, object outputObject)
-//        {
-//            this.WriteVerbose(this, "OutputMethod040SetTestResult TMX");
-//        }
-//        
-//        protected override void WriteObjectMethod045OnSuccessScreenshot(PSCmdletBase cmdlet, object outputObject)
-//        {
-//            this.WriteVerbose(this, " TMX");
-//        }
-//        
-//        protected override void WriteObjectMethod050OnSuccessDelay(PSCmdletBase cmdlet, object outputObject)
-//        {
-//            this.WriteVerbose(this, "OutputMethod050OnSuccessDelay TMX");
-//        }
-//        
-//        protected override void WriteObjectMethod060OutputResult(PSCmdletBase cmdlet, object outputObject)
-//        {
-//            
-//            try {
-//
-//                    base.WriteObject(outputObject);
-//            }
-//            catch {}
-//        }
-//        
-//        protected override void WriteObjectMethod070Report(PSCmdletBase cmdlet, object outputObject)
-//        {
-//            this.WriteVerbose(this, "OutputMethod070Report TMX");
-//        }
-//        
-//        protected override void WriteObjectMethod080ReportFailure()
-//        {
-//            this.WriteVerbose(this, "OutputMethod070Report TMX");
-//        }
-#endregion commented
-        
         protected override bool CheckSingleObject(PSCmdletBase cmdlet, object outputObject) { return true; }
         protected override void BeforeWriteCollection(PSCmdletBase cmdlet, object[] outputObjectCollection) {}
         protected override void BeforeWriteCollection(PSCmdletBase cmdlet, System.Collections.Generic.List<object> outputObjectCollection) {}

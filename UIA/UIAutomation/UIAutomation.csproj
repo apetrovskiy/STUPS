@@ -136,6 +136,7 @@
     <Compile Include="Commands\Common\SetUIAControlTextCommand.cs" />
     <Compile Include="Commands\Common\SetUIAFocusCommand.cs" />
     <Compile Include="Commands\Common\ShowUIADesktopCommand.cs" />
+    <Compile Include="Commands\Container\NewUIAContainerCommand.cs" />
     <Compile Include="Commands\Convert\ConvertFromUIADataGridCommand.cs" />
     <Compile Include="Commands\Convert\ConvertFromUIAListCommand.cs" />
     <Compile Include="Commands\Convert\ConvertFromUIATableCommand.cs" />
@@ -282,6 +283,7 @@
     <Compile Include="Helpers\Inheritance\Wizard\WizardConstructionCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\Wizard\WizardContainerCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\Wizard\WizardRunCmdletBase.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Container\UIANewContainerCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\ExecutionPlan.cs" />
     <Compile Include="Helpers\UnderlyingCode\Global.cs" />
     <Compile Include="Helpers\UnderlyingCode\Highligher.cs">
@@ -349,9 +351,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands\ExecutionPlan" />
+    <Folder Include="Commands\Container" />
     <Folder Include="Commands\RDP" />
     <Folder Include="Commands\Sheridan" />
     <Folder Include="Helpers\UnderlyingCode\Commands" />
+    <Folder Include="Helpers\UnderlyingCode\Commands\Container" />
     <Folder Include="Helpers\UnderlyingCode\Commands\RDP" />
   </ItemGroup>
   <ItemGroup>

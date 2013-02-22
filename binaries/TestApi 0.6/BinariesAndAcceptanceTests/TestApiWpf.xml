@@ -1,0 +1,355 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TestApiWpf</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.Test.ApplicationControl.WpfInProcessApplicationSettings">
+            <summary>
+            Configures a WPF in-process test application.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Test.ApplicationControl.WpfInProcessApplicationSettings.WindowClassName">
+            <summary>
+            The window class to start. 
+            </summary>
+            <remarks>
+            This must be the full class name.
+            </remarks>
+        </member>
+        <member name="T:Microsoft.Test.VisualVerification.SnapshotHelper">
+            <summary>
+            WPF type centric helper, on top of the general purpose Snapshot.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Test.VisualVerification.SnapshotHelper.SnapshotFromWindow(System.Windows.Media.Visual,Microsoft.Test.VisualVerification.WindowSnapshotMode)">
+            <summary>
+            Creates a Snapshot instance from a Wpf Window.
+            </summary>
+            <param name="window">The Wpf Window, identifying the window to capture from.</param>
+            <param name="windowSnapshotMode">Determines if window border region should captured as part of Snapshot.</param>
+            <returns>A Snapshot instance of the pixels captured.</returns>
+        </member>
+        <member name="T:Microsoft.Test.ApplicationControl.WpfInProcessApplicationFactory">
+            <summary>
+            Factory for a WpfApplication implementation that AutomatedApplication
+            will consume.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Test.ApplicationControl.WpfInProcessApplicationFactory.Create(Microsoft.Test.ApplicationControl.ApplicationSettings,System.AppDomain)">
+            <summary>
+            Factory method for creating the IAutomatedApplicationImpl instance 
+            to be used by AutomatedApplication.
+            </summary>
+            <param name="settings">The settings needed to create the specific instance</param>
+            <param name="appDomain">
+            The AppDomain to create the implementation in.  This will be null for scenarios
+            where separate AppDomain is not specified.
+            </param>
+            <returns>Returns the application implementation of Wpf for an InProcessApplication</returns>
+        </member>
+        <member name="T:Microsoft.Test.DispatcherOperations">
+            <summary>
+            Helper class for the WPF Dispatcher. This class provides simple and 
+            consistent wrappers for common dispatcher operations.
+            </summary>
+            <example>
+            <code>
+                    // SAMPLE USAGE #1:
+                    // Move the mouse to a certain location on the screen. Wait for a popup to appear. 
+                    // Verify that it appeared.
+                    TimeSpan defaultPopupDelay = TimeSpan.FromSeconds(2);
+                    Mouse.MoveTo(new System.Drawing.Point(100, 100));
+                    DispatcherOperations.WaitFor(defaultPopupDelay);
+                    // verify that the popup showed up.
+            
+                    // SAMPLE USAGE #2:
+                    // Click on a button and verify that a mouse click event handler gets called.
+                    Mouse.MoveTo(new System.Drawing.Point(100, 100));
+                    Mouse.Click(System.Windows.Input.MouseButton.Left);
+                    DispatcherOperations.WaitFor(DispatcherPriority.SystemIdle);
+                    // verify that the handler has been clicked (e.g. check a isClicked variable)
+            </code>
+            </example>
+        </member>
+        <member name="M:Microsoft.Test.DispatcherOperations.WaitFor(System.Windows.Threading.DispatcherPriority)">
+            <summary>
+            This method will wait until all pending DispatcherOperations of a
+            priority higher than the specified priority have been processed.
+            </summary>
+            <param name="priority">The priority to wait for before continuing.</param>
+        </member>
+        <member name="M:Microsoft.Test.DispatcherOperations.WaitFor(System.TimeSpan)">
+            <summary>
+            This method will wait for the specified TimeSpan, allowing pending
+            DispatcherOperations (such as UI rendering) to continue during that
+            time. This method should be used with caution. Waiting for time is 
+            generally discouraged, because it may have an adverse effect on the 
+            overall run time of a test suite when the test suite has a large 
+            number of tests.
+            </summary>
+            <param name="time">Amount of time to wait.</param>
+        </member>
+        <member name="M:Microsoft.Test.DispatcherOperations.WaitFor(System.TimeSpan,System.Windows.Threading.DispatcherPriority)">
+            <summary>
+            This effectively enables a caller to do all pending UI work before continuing.
+            The method will block until the desired priority has been reached, emptying the
+            Dispatcher queue of all items with a higher priority.
+            </summary>
+            <param name="time">Amount of time to wait.</param>
+            <param name="priority">The priority to wait for before continuing.</param>
+        </member>
+        <member name="M:Microsoft.Test.DispatcherOperations.OnDispatched(System.Object,System.EventArgs)">
+            <summary>
+            Dummy SystemIdle dispatcher item.  This discontinues the current
+            dispatcher frame so control can return to the caller of WaitFor().
+            </summary>
+        </member>
+        <member name="M:Microsoft.Test.ApplicationControl.WpfApplicationImpl.Start">
+            <summary>
+            Starts the application 
+            </summary>
+        </member>
+        <member name="M:Microsoft.Test.ApplicationControl.WpfApplicationImpl.WaitForInputIdle(System.TimeSpan)">
+            <summary>
+            Waits for the application to become idle
+            </summary>
+            <param name="timeSpan">the timeout interval</param>
+        </member>
+        <member name="M:Microsoft.Test.ApplicationControl.WpfApplicationImpl.WaitForMainWindow(System.TimeSpan)">
+            <summary>
+            Blocks execution of the current thread until the main window of the 
+            application is displayed or until the specified timeout interval elapses.
+            </summary>
+            <param name="timeout">The timeout interval.</param>
+        </member>
+        <member name="M:Microsoft.Test.ApplicationControl.WpfApplicationImpl.WaitForWindow(System.String,System.TimeSpan)">
+            <summary>
+            Waits for the given window to activate.
+            </summary>
+            <remarks>
+            Note that this will not work for dialogs that block the thread.
+            </remarks>
+            <param name="windowName">The AutomationProperties.AutomationIdProperty value of the window</param>
+            <param name="timeout">The timeout interval.</param>
+        </member>
+        <member name="M:Microsoft.Test.ApplicationControl.WpfApplicationImpl.Close">
+            <summary>
+            Closes the application
+            </summary>
+        </member>
+        <member name="F:Microsoft.Test.ApplicationControl.WpfApplicationImpl.isAppFirstInitialization">
+            <summary>
+            Flag used to track if System.Windows.Application has already been called
+            </summary>
+        </member>
+        <member name="E:Microsoft.Test.ApplicationControl.WpfApplicationImpl.MainWindowOpened">
+            <summary>
+            Event fired when the main window is opened
+            </summary>
+        </member>
+        <member name="E:Microsoft.Test.ApplicationControl.WpfApplicationImpl.Exited">
+            <summary>
+            Event fired when the application exits
+            </summary>
+        </member>
+        <member name="E:Microsoft.Test.ApplicationControl.WpfApplicationImpl.FocusChanged">
+            <summary>
+            Event fired when focus is changed
+            </summary>
+        </member>
+        <member name="P:Microsoft.Test.ApplicationControl.WpfApplicationImpl.IsMainWindowOpened">
+            <summary>
+            Gets the value indicating whether the main window is opened
+            </summary>
+        </member>
+        <member name="P:Microsoft.Test.ApplicationControl.WpfApplicationImpl.MainWindow">
+            <summary>
+            Gets access to the MainWindow object which is a System.Windows.Window
+            </summary>
+        </member>
+        <member name="P:Microsoft.Test.ApplicationControl.WpfApplicationImpl.ApplicationDriver">
+            <summary>
+            Gets access to the System.Windows.Application
+            </summary>
+        </member>
+        <member name="T:Microsoft.Test.NamespaceDoc">
+            <summary>
+            Contains various helper classes for interaction with the WPF dispatcher, 
+            helper wrappers of User Interface Automation (UIA), etc.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Test.ApplicationControl.UIAutomationOutOfProcessApplicationFactory">
+            <summary>
+            Factory for a UIAutomation implementation that AutomatedApplication
+            will consume.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Test.ApplicationControl.UIAutomationOutOfProcessApplicationFactory.Create(Microsoft.Test.ApplicationControl.ApplicationSettings,System.AppDomain)">
+            <summary>
+            Factory method for creating the IAutomatedApplicationImpl instance 
+            to be used by AutomatedApplication.
+            </summary>
+            <param name="settings">The settings needed to create the specific instance</param>
+            <param name="appDomain">The UIAutomation app proxy does not require initialization on a separate appdomain</param>
+            <returns>Returns the application implementation of UIAutomation for an OutOfProcessApplication</returns>
+        </member>
+        <member name="T:Microsoft.Test.ApplicationControl.UIAutomationApplicationImpl">
+            <summary>
+            UIAutomation application implementation for Out-of-Process scenario
+            </summary>
+        </member>
+        <member name="M:Microsoft.Test.ApplicationControl.UIAutomationApplicationImpl.Start">
+            <summary>
+            Starts the application through System.Diagnostics.Process
+            </summary>
+        </member>
+        <member name="M:Microsoft.Test.ApplicationControl.UIAutomationApplicationImpl.WaitForInputIdle(System.TimeSpan)">
+            <summary>
+            Waits for the application to become idle
+            </summary>
+            <param name="timeSpan">the timeout interval</param>
+        </member>
+        <member name="M:Microsoft.Test.ApplicationControl.UIAutomationApplicationImpl.WaitForMainWindow(System.TimeSpan)">
+            <summary>
+            Blocks execution of the current thread until the main window of the 
+            application is displayed or until the specified timeout interval elapses.
+            </summary>
+            <param name="timeout">The timeout interval.</param>
+        </member>
+        <member name="M:Microsoft.Test.ApplicationControl.UIAutomationApplicationImpl.WaitForWindow(System.String,System.TimeSpan)">
+            <summary>
+            Waits for the given window to open
+            </summary>
+            <param name="windowName">the window id of the window to wait for</param>
+            <param name="timeout">the timeout interval</param>
+        </member>
+        <member name="M:Microsoft.Test.ApplicationControl.UIAutomationApplicationImpl.Close">
+            <summary>
+            Closes the application
+            </summary>
+        </member>
+        <member name="P:Microsoft.Test.ApplicationControl.UIAutomationApplicationImpl.Process">
+            <summary>
+            Gets the process associated with the application.
+            </summary>
+        </member>
+        <member name="E:Microsoft.Test.ApplicationControl.UIAutomationApplicationImpl.MainWindowOpened">
+            <summary>
+            Event fired when the main window AutomationEliement is opened
+            </summary>
+        </member>
+        <member name="E:Microsoft.Test.ApplicationControl.UIAutomationApplicationImpl.Exited">
+            <summary>
+            Event fired when the application exits
+            </summary>
+        </member>
+        <member name="E:Microsoft.Test.ApplicationControl.UIAutomationApplicationImpl.FocusChanged">
+            <summary>
+            Event fired when focus is changed
+            </summary>
+        </member>
+        <member name="P:Microsoft.Test.ApplicationControl.UIAutomationApplicationImpl.IsMainWindowOpened">
+            <summary>
+            Gets the value indicating whether the main window is opened
+            </summary>
+        </member>
+        <member name="P:Microsoft.Test.ApplicationControl.UIAutomationApplicationImpl.MainWindow">
+            <summary>
+            Gets access to the MainWindow object which is an AutomationElement
+            </summary>
+        </member>
+        <member name="P:Microsoft.Test.ApplicationControl.UIAutomationApplicationImpl.ApplicationDriver">
+            <summary>
+            UIAutomation always returns null for this property
+            </summary>
+        </member>
+        <member name="T:Microsoft.Test.AutomationUtilities">
+            <summary>
+            The AutomationUtilities class provides a simple interface to common 
+            <a href="http://msdn.microsoft.com/en-us/library/ms747327.aspx">UI Automation</a> (UIA) operations. 
+            The most common class of UIA operations in testing involves discovery of UI elements. 
+            </summary>
+            <example>
+            This sample discovers and clicks the "Close" button in an "About" dialog box, thus
+            dismissing the "About" dialog box.
+            <code>
+                    string aboutDialogName = "About";
+                    string closeButtonName = "Close";
+            
+                    AutomationElementCollection aboutDialogs = AutomationUtilities.FindElementsByName(
+                        AutomationElement.RootElement,
+                        aboutDialogName);
+            
+                    AutomationElementCollection closeButtons = AutomationUtilities.FindElementsByName(
+                        aboutDialogs[0],
+                        closeButtonName);
+            
+                    // You can either invoke the discovered control, through its invoke pattern ...
+                    InvokePattern p = 
+                        closeButtons[0].GetCurrentPattern(InvokePattern.Pattern) as InvokePattern;
+                    p.Invoke();
+            
+                    // ... or you can handle the mouse directly and click on the control.
+                    System.Windows.Point winPoint = closeButtons[0].GetClickablePoint();
+                    System.Drawing.Point drawingPoint = new System.Drawing.Point((int)winPoint.X, (int)winPoint.Y);
+                    Mouse.MoveTo(drawingPoint);
+                    Mouse.Click(System.Windows.Input.MouseButton.Left);
+            </code>
+            </example>
+        </member>
+        <member name="M:Microsoft.Test.AutomationUtilities.FindElementByIndex(System.Windows.Automation.AutomationElement,System.Int32)">
+            <summary>
+            Retrieves the child element with the specified index.
+            </summary>
+            <param name="rootElement">The parent element (e.g., a ListBox control).</param>
+            <param name="index"> The index of the child element to find.</param>
+            <returns>An AutomationElement representing the discovered child element.</returns>
+        </member>
+        <member name="M:Microsoft.Test.AutomationUtilities.FindElements(System.Windows.Automation.AutomationElement,System.Windows.Automation.Condition[])">
+            <summary>
+            Retrieves all UIA elements that meet the specified conditions.
+            </summary>
+            <param name="rootElement">Parent element, such as an application window, or 
+            AutomationElement.RootElement when searching for the application window.</param>
+            <param name="conditions">Conditions that the returned collection should meet.</param>
+            <returns>A UIA element collection.</returns>
+        </member>
+        <member name="M:Microsoft.Test.AutomationUtilities.FindElementsByClassName(System.Windows.Automation.AutomationElement,System.String)">
+            <summary>
+            Retrieves a UIA collection of all elements with a given class name.
+            </summary>
+            <param name="rootElement">Parent element, such as an application window, or 
+            AutomationElement.RootElement when searching for the application window.</param>
+            <param name="className">The class name of the control type to find.</param>
+            <returns>A UIA element collection.</returns>
+        </member>
+        <member name="M:Microsoft.Test.AutomationUtilities.FindElementsByControlType(System.Windows.Automation.AutomationElement,System.Windows.Automation.ControlType)">
+            <summary>
+            Retrieves a UIA collection of all elements of a given control type.
+            </summary>
+            <param name="rootElement">Parent element, such as an application window, or 
+            AutomationElement.RootElement when searching for the application window.</param>
+            <param name="controlType">Control type of the control, such as Button.</param>
+            <returns>A UIA element collection.</returns>
+        </member>
+        <member name="M:Microsoft.Test.AutomationUtilities.FindElementsById(System.Windows.Automation.AutomationElement,System.String)">
+            <summary>
+            Retrieves a UIA collection of all elements with a given UIA identifier.
+            </summary>
+            <param name="rootElement">Parent element, such as an application window, or 
+            AutomationElement.RootElement when searching for the application window.</param>
+            <param name="automationId">UIA identifier of the searched element, such as "button1".</param>
+            <returns>A UIA element collection.</returns>
+        </member>
+        <member name="M:Microsoft.Test.AutomationUtilities.FindElementsByName(System.Windows.Automation.AutomationElement,System.String)">
+            <summary>
+            Retrieves a UIA collection of all elements with a given name.
+            </summary>
+            <param name="rootElement">Parent element, such as an application window, or 
+            AutomationElement.RootElement when searching for the application window.</param>
+            <param name="name">Name of the searched element, such as "button1".</param>
+            <returns>A UIA element collection.</returns>
+        </member>
+    </members>
+</doc>

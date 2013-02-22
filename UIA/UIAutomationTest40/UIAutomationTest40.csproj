@@ -136,6 +136,9 @@
     <Compile Include="..\UIAutomationTest\Commands\Common\SetUIAFocusCommandTextFixture.cs">
       <Link>Commands\Common\SetUIAFocusCommandTextFixture.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Container\NewUIAContainerCommandTestFixture.cs">
+      <Link>Commands\Container\NewUIAContainerCommandTestFixture.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomationTest\Commands\Convert\ConvertFromUIADataGridCommandTestFixture.cs">
       <Link>Commands\Convert\ConvertFromUIADataGridCommandTestFixture.cs</Link>
     </Compile>
@@ -413,6 +416,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands\ExecutionPlan" />
+    <Folder Include="Commands\Container" />
     <Folder Include="Commands\Sheridan" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />

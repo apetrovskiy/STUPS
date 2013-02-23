@@ -37,10 +37,9 @@ namespace UIAutomationTest.Commands.Pattern
         [Test]
         [Category("Slow")]
         [Category("Set-UIACheckBoxToggleState")]
-        [Ignore("not done yet")]
         public void InvokeToggleStateSet_CheckBox_On_True()
         {
-            string name = "check box";
+            string name = "check_box";
             string automationId = "chbx";
             string expectedResult = "True";
             MiddleLevelCode.StartProcessWithFormAndControl(
@@ -72,10 +71,9 @@ namespace UIAutomationTest.Commands.Pattern
         [Test]
         [Category("Slow")]
         [Category("Set-UIACheckBoxToggleState")]
-        [Ignore("not done yet")]
         public void InvokeToggleStateSet_CheckBox_On_False()
         {
-            string name = "check box";
+            string name = "check_box";
             string automationId = "chbx";
             string expectedResult = "False";
             MiddleLevelCode.StartProcessWithFormAndControl(
@@ -107,10 +105,9 @@ namespace UIAutomationTest.Commands.Pattern
         [Test]
         [Category("Slow")]
         [Category("Set-UIACheckBoxToggleState")]
-        [Ignore("not done yet")]
         public void InvokeToggleStateSet_CheckBox_Off_True()
         {
-            string name = "check box";
+            string name = "check_box";
             string automationId = "chbx";
             string expectedResult = "True";
             MiddleLevelCode.StartProcessWithFormAndControl(
@@ -137,10 +134,9 @@ namespace UIAutomationTest.Commands.Pattern
         [Test]
         [Category("Slow")]
         [Category("Set-UIACheckBoxToggleState")]
-        [Ignore("not done yet")]
         public void InvokeToggleStateSet_CheckBox_Off_False()
         {
-            string name = "check box";
+            string name = "check_box";
             string automationId = "chbx";
             string expectedResult = "False";
             MiddleLevelCode.StartProcessWithFormAndControl(

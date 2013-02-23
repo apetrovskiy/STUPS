@@ -97,7 +97,7 @@ namespace UIAutomationTest.Commands.Pattern
         [Category("Get-UIACheckBoxToggleState")]
         public void InvokeToggleStateGet_CheckBox_On()
         {
-            string name = "check box";
+            string name = "check_box";
             string automationId = "chbx";
             string expectedResult = "True";
             MiddleLevelCode.StartProcessWithFormAndControl(
@@ -126,7 +126,7 @@ namespace UIAutomationTest.Commands.Pattern
         [Category("Get-UIACheckBoxToggleState")]
         public void InvokeToggleStateGet_CheckBox_Off()
         {
-            string name = "check box";
+            string name = "check_box";
             string automationId = "chbx";
             string expectedResult = "False";
             MiddleLevelCode.StartProcessWithFormAndControl(

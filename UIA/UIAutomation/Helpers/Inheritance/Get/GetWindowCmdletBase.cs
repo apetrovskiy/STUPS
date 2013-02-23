@@ -27,9 +27,9 @@ namespace UIAutomation
             this.AutomationId = string.Empty;
             
             // 20130222
-            this.Recurse = true;
+            //this.Recurse = true;
             // 20130223
-            //this.Recurse = false;
+            this.Recurse = false;
         }
         #endregion Constructor
         
@@ -40,7 +40,12 @@ namespace UIAutomation
         [Alias("pn")]
         public string[] ProcessName { get; set; }
         
-        
+        [Parameter(Mandatory = false,
+                   ParameterSetName = "ProcessName")]
+        [Parameter(Mandatory = false,
+                   ParameterSetName = "ProcessId")]
+        [Parameter(Mandatory = false,
+                   ParameterSetName = "Process")]
         [Parameter(Mandatory = false,
                    ParameterSetName = "UIA",
                    HelpMessage="Accepts the name (title) of a window")]
@@ -48,10 +53,22 @@ namespace UIAutomation
         public string[] Name { get; set; }
         
         [Parameter(Mandatory = false,
+                   ParameterSetName = "ProcessName")]
+        [Parameter(Mandatory = false,
+                   ParameterSetName = "ProcessId")]
+        [Parameter(Mandatory = false,
+                   ParameterSetName = "Process")]
+        [Parameter(Mandatory = false,
                    ParameterSetName = "UIA",
                    HelpMessage="The parameter is not used and for the compatibility purpose")]
         public string AutomationId { get; set; }
         
+        [Parameter(Mandatory = false,
+                   ParameterSetName = "ProcessName")]
+        [Parameter(Mandatory = false,
+                   ParameterSetName = "ProcessId")]
+        [Parameter(Mandatory = false,
+                   ParameterSetName = "Process")]
         [Parameter(Mandatory = false,
                    ParameterSetName = "UIA",
                    HelpMessage="The parameter is not used and for the compatibility purpose")]
@@ -64,15 +81,33 @@ namespace UIAutomation
         [Alias("Process", "p")]
         public new Process[] InputObject { get; set; }
         
-        
         [Parameter(Mandatory = false,
                    ParameterSetName = "ProcessId",
                    HelpMessage="Accepts the Id of a process (PID)")]
         [Alias("pid")]
         public int[] ProcessId { get; set; }
+        
+        [Parameter(Mandatory = false,
+                   ParameterSetName = "ProcessName")]
+        [Parameter(Mandatory = false,
+                   ParameterSetName = "ProcessId")]
+        [Parameter(Mandatory = false,
+                   ParameterSetName = "Process")]
+        [Parameter(Mandatory = false,
+                   ParameterSetName = "UIA")]
+        public SwitchParameter First { get; set; }
 
-        [Parameter(Mandatory = false)]
+        [Parameter(Mandatory = false,
+                   ParameterSetName = "ProcessName")]
+        [Parameter(Mandatory = false,
+                   ParameterSetName = "ProcessId")]
+        [Parameter(Mandatory = false,
+                   ParameterSetName = "Process")]
         public SwitchParameter Recurse { get; set; }
+        
+        [Parameter(Mandatory = false,
+                   ParameterSetName = "UIA")]
+        internal SwitchParameter Fake { get; set; }
         #endregion Parameters
     }
 }

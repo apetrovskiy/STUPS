@@ -44,6 +44,8 @@ namespace UIAutomation.Commands
         /// </summary>
         protected override void ProcessRecord()
         {
+            this.CheckCmdletParameters();
+            
             WriteVerbose(this, "Input parameters:");
             WriteVerbose(this, "ProcessName = " + this.ProcessName);
             WriteVerbose(this, "ProcessId = " + this.ProcessId);

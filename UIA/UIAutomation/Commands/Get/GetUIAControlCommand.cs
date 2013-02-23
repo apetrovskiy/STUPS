@@ -46,6 +46,8 @@ namespace UIAutomation.Commands
         /// </summary>
         protected override void ProcessRecord() 
         {
+            this.CheckCmdletParameters();
+            
             if (!this.CheckControl(this)) { return; }
 
             this.WriteVerbose(this, "getting the control");

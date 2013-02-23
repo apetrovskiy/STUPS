@@ -66,100 +66,66 @@ namespace UIAutomation
         
         protected override void StopProcessing()
         {
-            // 20120620
             WriteVerbose(this, "User interrupted");
             this.Wait = false;
         }
         
-        // 20120824
-        //internal System.Windows.Automation.AutomationElement GetWindow(
-        //internal AutomationElementCollection GetWindow(
         internal ArrayList GetWindow(
             GetWindowCmdletBase cmdlet,
-            // 20120824
-            //Process process,
             Process[] processes,
-            // 20120824
-            //string processName,
             string[] processNames,
-            // 20120824
-            //int processId,
             int[] processIds,
-            // 20120824
-            //string title)
             string[] windowNames,
             string automationId,
             string className)
         {
-            // 20120824
-            //System.Windows.Automation.AutomationElement aeWnd = null;
-            //AutomationElementCollection aeWndCollection = null;
             ArrayList aeWndCollection = 
                 new ArrayList();
             
-            WriteDebug(cmdlet, "getting the root element");
+            //WriteDebug(cmdlet, "getting the root element");
+            cmdlet.WriteVerbose(cmdlet, "getting the root element");
             rootElement =
                 System.Windows.Automation.AutomationElement.RootElement;
             if (rootElement == null)
             {
-                WriteVerbose(cmdlet, "rootElement == null");
-                // 20120831
-                //return null;
+                cmdlet.WriteVerbose(cmdlet, "rootElement == null");
                 return aeWndCollection;
             }
             else
             {
-                // try { WriteDebug(cmdlet, "rootElement: " + rootElement.Current); } catch { }
-                WriteDebug(cmdlet, "rootElement: " + rootElement.Current);
+                //WriteDebug(cmdlet, "rootElement: " + rootElement.Current);
+                cmdlet.WriteVerbose(cmdlet, "rootElement: " + rootElement.Current);
             }
             
             do {
-                // 20120824
-                //aeWnd = null; // ??????
-                // 20120824 ??
-                
-                // 20120824
-                //if (process != null) {
+
                 if (null != processes && processes.Length > 0) {
-                    // 20120824
-                    //aeWnd = getWindowFromProcess(process);
+
                     cmdlet.WriteVerbose(cmdlet, "getting a window by process");
-                    aeWndCollection = getWindowCollectionFromProcess(processes, cmdlet.Recurse);
-                // 20120824
-                //} else if (processId > 0) {
+                    aeWndCollection = getWindowCollectionFromProcess(processes, cmdlet.First, cmdlet.Recurse, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class);
+
                 } else if (null != processIds && processIds.Length > 0) {
-                    // 20120824
-                    //aeWnd = getWindowByPID(processId);
+
                     cmdlet.WriteVerbose(cmdlet, "getting a window by PID");
-                    aeWndCollection = getWindowCollectionByPID(processIds, cmdlet.Recurse);
-                // 20120824
-                //} else if (processName.Length > 0) {
+                    aeWndCollection = getWindowCollectionByPID(processIds, cmdlet.First, cmdlet.Recurse, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class);
+
                 } else if (null != processNames && processNames.Length > 0) {
-                    // 20120824
-                    //aeWnd = getWindowByProcessName(processName);
+
                     cmdlet.WriteVerbose(cmdlet, "getting a window by name");
-                    aeWndCollection = getWindowCollectionByProcessName(processNames, cmdlet.Recurse);
-                // 20120824
-                //} else if (title != string.Empty) {
-                // 20130220
-                //} else if (null != windowNames && windowNames.Length > 0) {
+                    aeWndCollection = getWindowCollectionByProcessName(processNames, cmdlet.First, cmdlet.Recurse, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class);
+
                 } else if ((null != windowNames && windowNames.Length > 0) ||
                            (null != automationId && 0 < automationId.Length) ||
                            (null != className && 0 < className.Length)) {
-                    // 20120824
-                    //aeWnd = getWindowByTitle(title);
+
                     cmdlet.WriteVerbose(cmdlet, "getting a window by name, automationId, className");
                     aeWndCollection = getWindowCollectionByName(windowNames, automationId, className, cmdlet.Recurse);
                 }
-                // 20120824
-                //if (aeWnd != null && (int)aeWnd.Current.ProcessId > 0)
-                //if (null != aeWndCollection && (int)((AutomationElement)aeWndCollection[0]).Current.ProcessId > 0) {
+
                 if (null != aeWndCollection && aeWndCollection.Count > 0) {
-                // 20120824
-                //{
-                    // 20120824
-                    //WriteDebug(cmdlet, "aeWnd != null");
-                    WriteDebug(cmdlet, "aeWndCollection != null");
+
+                    //WriteDebug(cmdlet, "aeWndCollection != null");
+                    cmdlet.WriteVerbose(cmdlet, "aeWndCollection != null");
                 }
                 // 20120123
                 // checkTimeout(ref aeWnd, true);
@@ -167,92 +133,65 @@ namespace UIAutomation
                 //checkTimeout(cmdlet, aeWnd, true);
                 checkTimeout(cmdlet, aeWndCollection, true);
                 
-                //WriteVerbose(this, "!!!!!!!!!!!!!! sleep !!!!!!!!!!!!!!!!!!");
-                //WriteVerbose(this, Preferences.OnSleepDelay.ToString());
                 System.Threading.Thread.Sleep(Preferences.OnSleepDelay);
                 
             } while (cmdlet.Wait);
             try {
-                // 20120824
-                //if (aeWnd != null && (int)aeWnd.Current.ProcessId > 0)
+
                 if (null != aeWndCollection && (int)((AutomationElement)aeWndCollection[0]).Current.ProcessId > 0) {
-                // 20120824
-                //{
-                    // 20120824
-                    //WriteDebug(cmdlet, "" + aeWnd);
-                    WriteDebug(cmdlet, "" + aeWndCollection.ToString());
-                    WriteDebug(cmdlet, "aeWnd.Current.GetType() = " +
-                               // 20120824
-                               //aeWnd.Current.GetType().Name);
-                               ((AutomationElement)aeWndCollection[0]).GetType().Name);
-                    //} // 20120127
-                    // 20120208 if (Highlight) { Global.PaintRectangle(aeWnd); }
+
+                    //WriteDebug(cmdlet, "" + aeWndCollection.ToString());
+                    cmdlet.WriteVerbose(cmdlet, "" + aeWndCollection.ToString());
+                    //WriteDebug(cmdlet, "aeWnd.Current.GetType() = " +
+                    cmdlet.WriteVerbose(cmdlet, 
+                                        "aeWnd.Current.GetType() = " +
+                                        ((AutomationElement)aeWndCollection[0]).GetType().Name);
+
                 } // 20120127
-                // 20120824
-                //CurrentData.CurrentWindow = aeWnd;
+
                 CurrentData.CurrentWindow = (AutomationElement)aeWndCollection[aeWndCollection.Count -1];
                 // 20120824
                 //return aeWnd;
                 //return aeWndCollection;
             } catch (Exception eEvaluatingWindowAndWritingToPipeline) {
-                WriteDebug(cmdlet, "exception: " +
-                           eEvaluatingWindowAndWritingToPipeline.Message);
-                // 20120206 return aeWnd; // ??
-                // 20120206
-                WriteVerbose(this, "<<<< ==  ==  writing/nullifying CurrentWindow  ==  == >>>>>");
-                // 20120824
-                //CurrentData.CurrentWindow = aeWnd;
-                //CurrentData.CurrentWindow = (AutomationElement)aeWndCollection[aeWndCollection.Count - 1];
+                
+                //WriteDebug(cmdlet, "exception: " +
+                cmdlet.WriteVerbose(
+                    cmdlet,
+                    "exception: " +
+                    eEvaluatingWindowAndWritingToPipeline.Message);
+
+                cmdlet.WriteVerbose(this, "<<<< ==  ==  writing/nullifying CurrentWindow  ==  == >>>>>");
+
                 CurrentData.CurrentWindow = null;
                 
-                //WriteVerbose(this, "000001");
-                
-                //try {WriteVerbose(this, "<<<< ==  ==  " + CurrentData.CurrentWindow.Current.Name + "  ==  == >>>>>"); } catch {}
-                
-                // 20121001
-                //UIAHelper.GetScreenshotOfAutomationElement(this, CmdletName(cmdlet) + "_WindowEqNull", true, 0, 0, 0, 0, string.Empty, System.Drawing.Imaging.ImageFormat.Jpeg);
-//                cmdlet.WriteError(
-//                    cmdlet,
-//                    "An unknown error raised while working with the results of GetWindow. " +
-//                    eEvaluatingWindowAndWritingToPipeline.Message,
-//                    "AnalyzingResults",
-//                    ErrorCategory.InvalidOperation,
-//                    true);
-                
-                //WriteVerbose(this, "000002");
-                
-                // 20120824
-                //return aeWnd; // ??
-                //return aeWndCollection;
             }
-            
-            //WriteVerbose(this, "000003");
-            
             
             return aeWndCollection;
         }
-        //}
-        
-        // 20120824
-        //private System.Windows.Automation.AutomationElement getWindowByProcessName(string processName)
-        private ArrayList getWindowCollectionByProcessName(string[] processNames, bool recurse)
+
+        private ArrayList getWindowCollectionByProcessName(
+            string[] processNames,
+            bool first,
+            bool recurse,
+            string[] name,
+            string automationId,
+            string className)
         {
-            //int processId = 0;
-            //System.Windows.Automation.AndCondition conditionsProcessId = null;
-            // 20120824
-            //System.Windows.Automation.AutomationElement aeWndByProcId = null;
+
             ArrayList aeWndCollectionByProcId = 
                 new ArrayList();
             
-            // 20120824
             System.Collections.ArrayList processIdList = 
                 new System.Collections.ArrayList();
             
             foreach (string processName in processNames) {
             
-                //WriteDebug(this, "processName.Length > 0");
                 try {
-                    WriteDebug(this, "getting process Id");
+                    
+                    //WriteDebug(this, "getting process Id");
+                    this.WriteVerbose(this, "getting process Id");
+                    
                     System.Diagnostics.Process[] processes =
                         System.Diagnostics.Process.GetProcessesByName(processName);
                     // only the first
@@ -286,18 +225,32 @@ namespace UIAutomation
             } // 20120824
             
             int[] processIds = (int[])processIdList.ToArray(typeof(int));
-            aeWndCollectionByProcId = getWindowCollectionByPID(processIds, recurse);
+            aeWndCollectionByProcId = getWindowCollectionByPID(processIds, first, recurse, name, automationId, className);
             
             return aeWndCollectionByProcId;
         }
         
-        private ArrayList getWindowCollectionByPID(int[] processIds, bool recurse)
+        private ArrayList getWindowCollectionByPID(
+            int[] processIds,
+            bool first,
+            bool recurse,
+            string[] name,
+            string automaitonId,
+            string className)
         {
             System.Windows.Automation.AndCondition conditionsProcessId = null;
             // 20130223
             System.Windows.Automation.AndCondition conditionsForRecurseSearch = null;
             ArrayList aeWndCollectionByProcessId = 
                 new ArrayList();
+            
+            // 20130223
+            if ((null != name && 0 < name.Length) ||
+                (null != automaitonId && string.Empty != automaitonId) ||
+                (null != className && string.Empty != className)) {
+                
+                recurse = true;
+            }
             
             foreach (int processId in processIds) {
             
@@ -370,38 +323,77 @@ namespace UIAutomation
     
                 try {
                     
-                    AutomationElementCollection tempCollection = null;
+                    //AutomationElementCollection tempCollection = null;
                     if (recurse) {
                         
-                        AutomationElementCollection rootCollection =
-                            rootElement.FindAll(
-                                TreeScope.Children,
-                                conditionsProcessId);
-                        
-                        aeWndCollectionByProcessId.AddRange(rootCollection);
-                        
-                        if (null != rootCollection && 0 < rootCollection.Count) {
+                        if (first) {
                             
-                            foreach (AutomationElement rootWindowElement in rootCollection) {
+                            AutomationElement rootWindowElement =
+                                rootElement.FindFirst(
+                                    TreeScope.Children,
+                                    conditionsProcessId);
+                            
+                            if (null != rootWindowElement) {
                                 
-                                tempCollection = null;
-                                tempCollection =
-                                    rootWindowElement.FindAll(
-                                        TreeScope.Descendants,
-                                        conditionsForRecurseSearch);
+                                aeWndCollectionByProcessId.Add(rootWindowElement);
                                 
-                                if (null != tempCollection && 0 < tempCollection.Count) {
-                                    aeWndCollectionByProcessId.AddRange(tempCollection);
+//                                AutomationElement lowerElement =
+//                                    rootWindowElement.FindFirst(
+//                                        TreeScope.Descendants,
+//                                        conditionsForRecurseSearch);
+//                                
+//                                if (null != lowerElement) {
+//                                    aeWndCollectionByProcessId.Add(lowerElement);
+//                                }
+                            }
+                            
+                        } else {
+                        
+                            AutomationElementCollection rootCollection =
+                                rootElement.FindAll(
+                                    TreeScope.Children,
+                                    conditionsProcessId);
+                            
+                            if (null != rootCollection && 0 < rootCollection.Count) {
+                                
+                                aeWndCollectionByProcessId.AddRange(rootCollection);
+                                
+                                foreach (AutomationElement rootWindowElement in rootCollection) {
+                                    
+                                    AutomationElementCollection tempCollection = null;
+                                    tempCollection =
+                                        rootWindowElement.FindAll(
+                                            TreeScope.Descendants,
+                                            conditionsForRecurseSearch);
+                                    
+                                    if (null != tempCollection && 0 < tempCollection.Count) {
+                                        aeWndCollectionByProcessId.AddRange(tempCollection);
+                                    }
                                 }
                             }
                         }
                         
                     } else {
                         
-                        tempCollection =
-                            rootElement.FindAll(TreeScope.Children,
-                                                conditionsProcessId);
-                        aeWndCollectionByProcessId.AddRange(tempCollection);
+                        if (first) {
+                            
+                            AutomationElement tempElement =
+                                rootElement.FindFirst(TreeScope.Children,
+                                                      conditionsProcessId);
+                            
+                            if (null != tempElement) {
+                                aeWndCollectionByProcessId.Add(tempElement);
+                            }
+                        } else {
+                            
+                            AutomationElementCollection tempCollection =
+                                rootElement.FindAll(TreeScope.Children,
+                                                    conditionsProcessId);
+                            
+                            if (null != tempCollection && 0 < tempCollection.Count) {
+                                aeWndCollectionByProcessId.AddRange(tempCollection);
+                            }
+                        }
                     }
                     
                 } catch (Exception eGetFirstChildOfRootByProcessId) {
@@ -430,7 +422,13 @@ namespace UIAutomation
             return aeWndCollectionByProcessId;
         }
         
-        private ArrayList getWindowCollectionFromProcess(Process[] processes, bool recurse)
+        private ArrayList getWindowCollectionFromProcess(
+            Process[] processes,
+            bool first,
+            bool recurse,
+            string[] name,
+            string automationId,
+            string className)
         {
             int processId = 0;
             ArrayList aeWndCollectionByProcId = 
@@ -458,7 +456,7 @@ namespace UIAutomation
                     WriteVerbose(this, "!!!!!!!!!!!!!!!!!!!! null == processIds !!!!!!!!!");
                 }
                 
-                tempCollection = getWindowCollectionByPID(processIds, recurse);
+                tempCollection = getWindowCollectionByPID(processIds, first, recurse, name, automationId, className);
                 
                 foreach (AutomationElement tempElement in tempCollection) {
                     aeWndCollectionByProcId.Add(tempElement);

@@ -105,6 +105,7 @@
     <Compile Include="ParamChecks\Common\InvokeUIAControlClickCommandTestFixture.cs" />
     <Compile Include="ParamChecks\Container\NewUIAContainerCommandTestFixture.cs" />
     <Compile Include="ParamChecks\Get\GetUIAControlCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\Get\GetUIAWindowCommandTestFixture.cs" />
     <Compile Include="ParamChecks\MiddleLevelCode.cs" />
     <Compile Include="ParamChecks\Pattern\GetUIAEditTextCommandTestFixture.cs" />
     <Compile Include="ParamChecks\Pattern\InvokeUIAButtonClickCommandTestFixture.cs" />

@@ -91,5 +91,58 @@ namespace UIAutomationTest.Commands.Pattern
         {
             MiddleLevelCode.DisposeRunspace();
         }
+        
+        [Test]
+        [Category("Slow")]
+        [Category("Get-UIACheckBoxToggleState")]
+        public void InvokeToggleStateGet_CheckBox_On()
+        {
+            string name = "check box";
+            string automationId = "chbx";
+            string expectedResult = "True";
+            MiddleLevelCode.StartProcessWithFormAndControl(
+                UIAutomationTestForms.Forms.WinFormsFull,
+                0,
+                System.Windows.Automation.ControlType.CheckBox,
+                name,
+                automationId,
+                0);
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+                @"$null = Get-UIAWindow -pn " + 
+                MiddleLevelCode.TestFormProcess +
+                " | Get-UIACheckBox -Name '" +
+                name +
+                "' | Set-UIACheckBoxToggleState $true; " +
+                @"Get-UIAWindow -pn " + 
+                MiddleLevelCode.TestFormProcess +
+                " | Get-UIACheckBox -Name '" +
+                name +
+                "' | Get-UIACheckBoxToggleState;",
+                expectedResult);
+        }
+        
+        [Test]
+        [Category("Slow")]
+        [Category("Get-UIACheckBoxToggleState")]
+        public void InvokeToggleStateGet_CheckBox_Off()
+        {
+            string name = "check box";
+            string automationId = "chbx";
+            string expectedResult = "False";
+            MiddleLevelCode.StartProcessWithFormAndControl(
+                UIAutomationTestForms.Forms.WinFormsFull,
+                0,
+                System.Windows.Automation.ControlType.CheckBox,
+                name,
+                automationId,
+                0);
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+                @"Get-UIAWindow -pn " + 
+                MiddleLevelCode.TestFormProcess +
+                " | Get-UIACheckBox -Name '" +
+                name +
+                "' | Get-UIACheckBoxToggleState;",
+                expectedResult);
+        }
     }
 }

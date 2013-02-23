@@ -29,8 +29,6 @@ namespace UIAutomationTest.Commands.Pattern
             MiddleLevelCode.PrepareRunspace();
         }
         
-        
-        
         [TearDown]
         public void DisposeRunspace()
         {

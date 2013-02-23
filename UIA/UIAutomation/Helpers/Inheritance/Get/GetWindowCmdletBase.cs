@@ -28,6 +28,8 @@ namespace UIAutomation
             
             // 20130222
             this.Recurse = true;
+            // 20130223
+            //this.Recurse = false;
         }
         #endregion Constructor
         

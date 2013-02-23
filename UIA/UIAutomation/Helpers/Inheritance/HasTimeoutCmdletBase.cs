@@ -285,32 +285,42 @@ namespace UIAutomation
             
             } // 20120824
             
-            // 20120824
             int[] processIds = (int[])processIdList.ToArray(typeof(int));
             aeWndCollectionByProcId = getWindowCollectionByPID(processIds, recurse);
             
-            // 20120824
             return aeWndCollectionByProcId;
         }
         
-        // 20120824
-        //private AutomationElement getWindowByPID(int processId)
         private ArrayList getWindowCollectionByPID(int[] processIds, bool recurse)
         {
             System.Windows.Automation.AndCondition conditionsProcessId = null;
-            // 20120824
-            //System.Windows.Automation.AutomationElement aeWndByProcId = null;
+            // 20130223
+            System.Windows.Automation.AndCondition conditionsForRecurseSearch = null;
             ArrayList aeWndCollectionByProcessId = 
                 new ArrayList();
             
-            // 20120824
             foreach (int processId in processIds) {
             
                 try {
                     
-                    // 20130221
+                    conditionsProcessId =
+                        new System.Windows.Automation.AndCondition(
+                            new System.Windows.Automation.PropertyCondition(
+                                System.Windows.Automation.AutomationElement.ProcessIdProperty,
+                                processId),
+                            new System.Windows.Automation.OrCondition(
+                                new System.Windows.Automation.PropertyCondition(
+                                    System.Windows.Automation.AutomationElement.ControlTypeProperty,
+                                    System.Windows.Automation.ControlType.Window),
+                                new System.Windows.Automation.PropertyCondition(
+                                    System.Windows.Automation.AutomationElement.ControlTypeProperty,
+                                    System.Windows.Automation.ControlType.Pane),
+                                new System.Windows.Automation.PropertyCondition(
+                                    System.Windows.Automation.AutomationElement.ControlTypeProperty,
+                                    System.Windows.Automation.ControlType.Menu)));
+                    
                     if (recurse) {
-                        conditionsProcessId =
+                        conditionsForRecurseSearch =
                             new System.Windows.Automation.AndCondition(
                                 new System.Windows.Automation.PropertyCondition(
                                     System.Windows.Automation.AutomationElement.ProcessIdProperty,
@@ -318,32 +328,32 @@ namespace UIAutomation
                                 new System.Windows.Automation.PropertyCondition(
                                     System.Windows.Automation.AutomationElement.ControlTypeProperty,
                                     System.Windows.Automation.ControlType.Window));
-                    } else {
-                        conditionsProcessId =
-                            new System.Windows.Automation.AndCondition(
-                                new System.Windows.Automation.PropertyCondition(
-                                    System.Windows.Automation.AutomationElement.ProcessIdProperty,
-                                    processId),
-                                new System.Windows.Automation.OrCondition(
-                                    new System.Windows.Automation.PropertyCondition(
-                                        System.Windows.Automation.AutomationElement.ControlTypeProperty,
-                                        System.Windows.Automation.ControlType.Window),
-                                    new System.Windows.Automation.PropertyCondition(
-                                        System.Windows.Automation.AutomationElement.ControlTypeProperty,
-                                        System.Windows.Automation.ControlType.Pane),
-                                    new System.Windows.Automation.PropertyCondition(
-                                        System.Windows.Automation.AutomationElement.ControlTypeProperty,
-                                        System.Windows.Automation.ControlType.Menu)));
                     }
+                    
                     WriteVerbose(this, "using processId = " +
                                  processId.ToString() +
                                  " and ControlType.Window or ControlType.Pane conditions");
                 } catch { // 20120206  (Exception eCouldNotGetProcessId) {
                     // if (fromCmdlet) WriteDebug(this, "" + eCouldNotGetProcessId.Message);
                     
-                    // 20130221
+                    conditionsProcessId =
+                        new System.Windows.Automation.AndCondition(
+                            new System.Windows.Automation.PropertyCondition(
+                                System.Windows.Automation.AutomationElement.ProcessIdProperty,
+                                processId),
+                            new System.Windows.Automation.OrCondition(
+                                new System.Windows.Automation.PropertyCondition(
+                                    System.Windows.Automation.AutomationElement.ControlTypeProperty,
+                                    System.Windows.Automation.ControlType.Window),
+                                new System.Windows.Automation.PropertyCondition(
+                                    System.Windows.Automation.AutomationElement.ControlTypeProperty,
+                                    System.Windows.Automation.ControlType.Pane),
+                                new System.Windows.Automation.PropertyCondition(
+                                    System.Windows.Automation.AutomationElement.ControlTypeProperty,
+                                    System.Windows.Automation.ControlType.Menu)));
+                    
                     if (recurse) {
-                        conditionsProcessId =
+                        conditionsForRecurseSearch =
                             new System.Windows.Automation.AndCondition(
                                 new System.Windows.Automation.PropertyCondition(
                                     System.Windows.Automation.AutomationElement.ProcessIdProperty,
@@ -351,22 +361,6 @@ namespace UIAutomation
                                 new System.Windows.Automation.PropertyCondition(
                                     System.Windows.Automation.AutomationElement.ControlTypeProperty,
                                     System.Windows.Automation.ControlType.Window));
-                    } else {
-                        conditionsProcessId =
-                            new System.Windows.Automation.AndCondition(
-                                new System.Windows.Automation.PropertyCondition(
-                                    System.Windows.Automation.AutomationElement.ProcessIdProperty,
-                                    processId),
-                                new System.Windows.Automation.OrCondition(
-                                    new System.Windows.Automation.PropertyCondition(
-                                        System.Windows.Automation.AutomationElement.ControlTypeProperty,
-                                        System.Windows.Automation.ControlType.Window),
-                                    new System.Windows.Automation.PropertyCondition(
-                                        System.Windows.Automation.AutomationElement.ControlTypeProperty,
-                                        System.Windows.Automation.ControlType.Pane),
-                                    new System.Windows.Automation.PropertyCondition(
-                                        System.Windows.Automation.AutomationElement.ControlTypeProperty,
-                                        System.Windows.Automation.ControlType.Menu)));
                     }
                     
                 }
@@ -374,31 +368,40 @@ namespace UIAutomation
                 WriteVerbose(this, "trying to get aeWndByProcId: by processId = " +
                              processId.ToString());
     
-                // 20120824
-                //if (rootElement == null) { WriteDebug(this, "rootEl is null"); }
                 try {
-                    // 20120824
-                    //aeWndByProcId =
-                    //aeWndCollectionByProcessId =
                     
-                    // 20130221
                     AutomationElementCollection tempCollection = null;
                     if (recurse) {
                         
-                        tempCollection =
-                            rootElement.FindAll(TreeScope.Descendants,
-                                                conditionsProcessId);
+                        AutomationElementCollection rootCollection =
+                            rootElement.FindAll(
+                                TreeScope.Children,
+                                conditionsProcessId);
+                        
+                        aeWndCollectionByProcessId.AddRange(rootCollection);
+                        
+                        if (null != rootCollection && 0 < rootCollection.Count) {
+                            
+                            foreach (AutomationElement rootWindowElement in rootCollection) {
+                                
+                                tempCollection = null;
+                                tempCollection =
+                                    rootWindowElement.FindAll(
+                                        TreeScope.Descendants,
+                                        conditionsForRecurseSearch);
+                                
+                                if (null != tempCollection && 0 < tempCollection.Count) {
+                                    aeWndCollectionByProcessId.AddRange(tempCollection);
+                                }
+                            }
+                        }
+                        
                     } else {
                         
-                        //AutomationElementCollection tempCollection =
                         tempCollection =
                             rootElement.FindAll(TreeScope.Children,
                                                 conditionsProcessId);
-                    }
-                    // 20120824
-                    foreach (AutomationElement tempElement in tempCollection) {
-
-                        aeWndCollectionByProcessId.Add(tempElement);
+                        aeWndCollectionByProcessId.AddRange(tempCollection);
                     }
                     
                 } catch (Exception eGetFirstChildOfRootByProcessId) {
@@ -424,18 +427,12 @@ namespace UIAutomation
             
             } // 20120824
             
-            // 20120824
-            //return aeWndByProcId;
             return aeWndCollectionByProcessId;
         }
         
-        // 20120824
-        //private AutomationElement getWindowFromProcess(Process process)
         private ArrayList getWindowCollectionFromProcess(Process[] processes, bool recurse)
         {
             int processId = 0;
-            // 20120824
-            //System.Windows.Automation.AutomationElement aeWndByProcId = null;
             ArrayList aeWndCollectionByProcId = 
                 new ArrayList();
             ArrayList tempCollection = 
@@ -445,78 +442,44 @@ namespace UIAutomation
                 new System.Collections.ArrayList();
             int[] processIds = null;
             
-            // 20120824
             foreach (Process process in processes) {
             
-                //WriteVerbose(this, "0001");
-                
-            //WriteDebug(this, "processName.Length > 0");
             try {
                 processId = process.Id;
-                // 20120824
-                //if (processId == 0) {
                 if (0 != processId) {
-                    // 20120824
-                    //return aeWndByProcId;
-                    //return aeWndCollectionByProcId;
-                    // 20120824
                     processIdList.Add(processId);
                 }
                 
-                //WriteVerbose(this, "0002");
-                
                 WriteVerbose(this, "processId = " + processId.ToString());
-                // 20120824
-                //aeWndByProcId = getWindowByPID(processId);
+
                 processIds = (int[])processIdList.ToArray(typeof(int));
                 
-                //WriteVerbose(this, "0003");
                 if (null == processIds) {
                     WriteVerbose(this, "!!!!!!!!!!!!!!!!!!!! null == processIds !!!!!!!!!");
                 }
                 
-                //aeWndCollectionByProcId = getWindowCollectionByPID(processIds);
                 tempCollection = getWindowCollectionByPID(processIds, recurse);
                 
                 foreach (AutomationElement tempElement in tempCollection) {
                     aeWndCollectionByProcId.Add(tempElement);
                 }
-                
-                //WriteVerbose(this, "0004");
-                
-                // 20120824
-                //return aeWndByProcId;
-                //return aeWndCollectionByProcId;
             }
             catch (Exception tempException) {
-                // 20120824
-                //return aeWndByProcId;
                 
                 WriteVerbose(this, tempException.Message);
-                //WriteVerbose(this, "0005catch");
                 
                 //return aeWndCollectionByProcId;
             }
             
             } // 20120824
-            
-            // 20120824
-            //WriteVerbose(this, "0006");
+
             return aeWndCollectionByProcId;
         }
         
-        // 20120824
-        //private System.Windows.Automation.AutomationElement getWindowByTitle(string title)
         private ArrayList getWindowCollectionByName(string[] windowNames, string automationId, string className, bool recurse)
         {
-            #region changed 20120608
-            //            System.Windows.Automation.AndCondition conditionsTitle = null;
-            #endregion changed 20120608
             System.Windows.Automation.OrCondition conditionsSet = null;
             
-            // 20120824
-            //System.Windows.Automation.AutomationElement aeWndByTitle = null;
-            //AutomationElementCollection aeWndCollectionByTitle = null;
             System.Collections.ArrayList aeWndCollectionByTitle = 
                 new System.Collections.ArrayList();
             System.Collections.ArrayList resultCollection = 

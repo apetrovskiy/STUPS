@@ -101,7 +101,7 @@ namespace UIAutomationTest.Commands.Pattern
             string automationId = "chbx";
             string expectedResult = "True";
             MiddleLevelCode.StartProcessWithFormAndControl(
-                UIAutomationTestForms.Forms.WinFormsFull,
+                UIAutomationTestForms.Forms.WinFormsEmpty,
                 0,
                 System.Windows.Automation.ControlType.CheckBox,
                 name,
@@ -130,7 +130,7 @@ namespace UIAutomationTest.Commands.Pattern
             string automationId = "chbx";
             string expectedResult = "False";
             MiddleLevelCode.StartProcessWithFormAndControl(
-                UIAutomationTestForms.Forms.WinFormsFull,
+                UIAutomationTestForms.Forms.WinFormsEmpty,
                 0,
                 System.Windows.Automation.ControlType.CheckBox,
                 name,

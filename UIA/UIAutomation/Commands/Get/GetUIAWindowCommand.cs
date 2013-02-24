@@ -18,7 +18,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIAWindow.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAWindow")]
+    [Cmdlet(VerbsCommon.Get, "UIAWindow", DefaultParameterSetName = "UIA")]
     [OutputType(typeof(object))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIAWindowCommand : GetWindowCmdletBase

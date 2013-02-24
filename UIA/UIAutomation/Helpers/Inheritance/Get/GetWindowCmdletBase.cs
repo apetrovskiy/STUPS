@@ -32,59 +32,60 @@ namespace UIAutomation
             this.Recurse = false;
             
             // 20130224
-            this.Fake = true;
+            this.UseNameAuIdClass = true;
         }
         #endregion Constructor
         
         #region Parameters
+
+        [Parameter(Mandatory = false,
+                   ParameterSetName = "UIA",
+                   HelpMessage="Accepts the name (title) of a window")]
+        [Parameter(Mandatory = false,
+                   ParameterSetName = "ProcessName")]
+        [Parameter(Mandatory = false,
+                   ParameterSetName = "ProcessId")]
+        [Parameter(Mandatory = false,
+                   ParameterSetName = "Process")]
+
+//        [Parameter(Mandatory = false,
+//                   HelpMessage="Accepts the name (title) of a window")]
+        [Alias("Title")]
+        public string[] Name { get; set; }
+        
+        [Parameter(Mandatory = false,
+                   ParameterSetName = "UIA",
+                   HelpMessage="Accepts AutomationId of a window")]
+        [Parameter(Mandatory = false,
+                   ParameterSetName = "ProcessName")]
+        [Parameter(Mandatory = false,
+                   ParameterSetName = "ProcessId")]
+        [Parameter(Mandatory = false,
+                   ParameterSetName = "Process")]
+
+//        [Parameter(Mandatory = false,
+//                   HelpMessage="Accepts AutomationId of a window")]
+        public string AutomationId { get; set; }
+        
+        [Parameter(Mandatory = false,
+                   ParameterSetName = "UIA",
+                   HelpMessage="Accepts ClassName of a window")]
+        [Parameter(Mandatory = false,
+                   ParameterSetName = "ProcessName")]
+        [Parameter(Mandatory = false,
+                   ParameterSetName = "ProcessId")]
+        [Parameter(Mandatory = false,
+                   ParameterSetName = "Process")]
+        
+//        [Parameter(Mandatory = false,
+//                   HelpMessage="Accepts ClassName of a window")]
+        public string Class { get; set; }
+        
         [Parameter(Mandatory = false,
                    ParameterSetName = "ProcessName",
                    HelpMessage="Accepts the name of a process")]
         [Alias("pn")]
         public string[] ProcessName { get; set; }
-        
-//        [Parameter(Mandatory = false,
-//                   ParameterSetName = "ProcessName")]
-//        [Parameter(Mandatory = false,
-//                   ParameterSetName = "ProcessId")]
-//        [Parameter(Mandatory = false,
-//                   ParameterSetName = "Process")]
-//        [Parameter(Mandatory = false,
-//                   ParameterSetName = "UIA",
-//                   HelpMessage="Accepts the name (title) of a window")]
-        [Parameter(Mandatory = false,
-                   HelpMessage="Accepts the name (title) of a window")]
-        [Alias("Title")]
-        public string[] Name { get; set; }
-        
-//        [Parameter(Mandatory = false,
-//                   ParameterSetName = "ProcessName")]
-//        [Parameter(Mandatory = false,
-//                   ParameterSetName = "ProcessId")]
-//        [Parameter(Mandatory = false,
-//                   ParameterSetName = "Process")]
-//        [Parameter(Mandatory = false,
-//                   ParameterSetName = "UIA",
-//                   //HelpMessage="The parameter is not used and for the compatibility purpose")]
-//                   HelpMessage="Accepts AutomationId of a window")]
-        [Parameter(Mandatory = false,
-                   HelpMessage="Accepts AutomationId of a window")]
-        public string AutomationId { get; set; }
-        
-//        [Parameter(Mandatory = false,
-//                   ParameterSetName = "ProcessName")]
-//        [Parameter(Mandatory = false,
-//                   ParameterSetName = "ProcessId")]
-//        [Parameter(Mandatory = false,
-//                   ParameterSetName = "Process")]
-//        [Parameter(Mandatory = false,
-//                   ParameterSetName = "UIA",
-//                   //HelpMessage="The parameter is not used and for the compatibility purpose")]
-//                   HelpMessage="Accepts ClassName of a window")]
-        [Parameter(Mandatory = false,
-                   //HelpMessage="The parameter is not used and for the compatibility purpose")]
-                   HelpMessage="Accepts ClassName of a window")]
-        public string Class { get; set; }
         
         [Parameter(Mandatory = false,
                    ValueFromPipeline = true,
@@ -117,9 +118,9 @@ namespace UIAutomation
                    ParameterSetName = "Process")]
         public SwitchParameter Recurse { get; set; }
         
-        [Parameter(Mandatory = false,
+        [Parameter(Mandatory = true,
                    ParameterSetName = "UIA")]
-        internal SwitchParameter Fake { get; set; }
+        internal SwitchParameter UseNameAuIdClass { get; set; }
         #endregion Parameters
     }
 }

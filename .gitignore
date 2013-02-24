@@ -178,7 +178,8 @@ MoqCmdlets
 MoqCmdlets40
 MoqCmdletsUnitTests
 OpenQualityCenter
-out
+#out
+0*
 RepositoryViewer
 RepositoryViewer40
 RootSchema.uml
@@ -189,10 +190,6 @@ SQL
 SQL40
 SQLTest
 SQLUnitTests
-#TAMS
-#TAMS40
-#TAMSTest
-#TAMSTest40
 TestCaseBrowser
 TestCaseBrowser40
 testlib

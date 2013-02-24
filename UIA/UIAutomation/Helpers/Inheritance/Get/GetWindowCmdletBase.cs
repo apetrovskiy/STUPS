@@ -30,6 +30,9 @@ namespace UIAutomation
             //this.Recurse = true;
             // 20130223
             this.Recurse = false;
+            
+            // 20130224
+            this.Fake = true;
         }
         #endregion Constructor
         
@@ -40,50 +43,59 @@ namespace UIAutomation
         [Alias("pn")]
         public string[] ProcessName { get; set; }
         
+//        [Parameter(Mandatory = false,
+//                   ParameterSetName = "ProcessName")]
+//        [Parameter(Mandatory = false,
+//                   ParameterSetName = "ProcessId")]
+//        [Parameter(Mandatory = false,
+//                   ParameterSetName = "Process")]
+//        [Parameter(Mandatory = false,
+//                   ParameterSetName = "UIA",
+//                   HelpMessage="Accepts the name (title) of a window")]
         [Parameter(Mandatory = false,
-                   ParameterSetName = "ProcessName")]
-        [Parameter(Mandatory = false,
-                   ParameterSetName = "ProcessId")]
-        [Parameter(Mandatory = false,
-                   ParameterSetName = "Process")]
-        [Parameter(Mandatory = false,
-                   ParameterSetName = "UIA",
                    HelpMessage="Accepts the name (title) of a window")]
         [Alias("Title")]
         public string[] Name { get; set; }
         
+//        [Parameter(Mandatory = false,
+//                   ParameterSetName = "ProcessName")]
+//        [Parameter(Mandatory = false,
+//                   ParameterSetName = "ProcessId")]
+//        [Parameter(Mandatory = false,
+//                   ParameterSetName = "Process")]
+//        [Parameter(Mandatory = false,
+//                   ParameterSetName = "UIA",
+//                   //HelpMessage="The parameter is not used and for the compatibility purpose")]
+//                   HelpMessage="Accepts AutomationId of a window")]
         [Parameter(Mandatory = false,
-                   ParameterSetName = "ProcessName")]
-        [Parameter(Mandatory = false,
-                   ParameterSetName = "ProcessId")]
-        [Parameter(Mandatory = false,
-                   ParameterSetName = "Process")]
-        [Parameter(Mandatory = false,
-                   ParameterSetName = "UIA",
-                   HelpMessage="The parameter is not used and for the compatibility purpose")]
+                   HelpMessage="Accepts AutomationId of a window")]
         public string AutomationId { get; set; }
         
+//        [Parameter(Mandatory = false,
+//                   ParameterSetName = "ProcessName")]
+//        [Parameter(Mandatory = false,
+//                   ParameterSetName = "ProcessId")]
+//        [Parameter(Mandatory = false,
+//                   ParameterSetName = "Process")]
+//        [Parameter(Mandatory = false,
+//                   ParameterSetName = "UIA",
+//                   //HelpMessage="The parameter is not used and for the compatibility purpose")]
+//                   HelpMessage="Accepts ClassName of a window")]
         [Parameter(Mandatory = false,
-                   ParameterSetName = "ProcessName")]
-        [Parameter(Mandatory = false,
-                   ParameterSetName = "ProcessId")]
-        [Parameter(Mandatory = false,
-                   ParameterSetName = "Process")]
-        [Parameter(Mandatory = false,
-                   ParameterSetName = "UIA",
-                   HelpMessage="The parameter is not used and for the compatibility purpose")]
+                   //HelpMessage="The parameter is not used and for the compatibility purpose")]
+                   HelpMessage="Accepts ClassName of a window")]
         public string Class { get; set; }
         
         [Parameter(Mandatory = false,
                    ValueFromPipeline = true,
                    ParameterSetName = "Process",
-                   HelpMessage="Accepts a process")]
+                   HelpMessage="Accepts a process object")]
         [Alias("Process", "p")]
         public new Process[] InputObject { get; set; }
         
         [Parameter(Mandatory = false,
                    ParameterSetName = "ProcessId",
-                   HelpMessage="Accepts the Id of a process (PID)")]
+                   HelpMessage="Accepts Id of a process (PID)")]
         [Alias("pid")]
         public int[] ProcessId { get; set; }
         

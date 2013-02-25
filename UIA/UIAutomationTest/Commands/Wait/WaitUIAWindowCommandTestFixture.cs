@@ -39,7 +39,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Wait-UIAWindow")]
-        public void TestWindow_ByProcessName_Timeout2000()
+        public void WaitWindow_ByProcessName_Timeout2000()
         {
             MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
 
@@ -54,7 +54,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Wait-UIAWindow")]
-        public void TestWindow_ByProcessName_Wrong_Timeout2000()
+        public void WaitWindow_ByProcessName_Wrong_Timeout2000()
         {
             MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
 
@@ -67,7 +67,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Wait-UIAWindow")]
-        public void TestWindow_ByProcessId_Timeout2000()
+        public void WaitWindow_ByProcessId_Timeout2000()
         {
             MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
 
@@ -82,7 +82,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Wait-UIAWindow")]
-        public void TestWindow_ByProcessId_Wrong_Timeout2000()
+        public void WaitWindow_ByProcessId_Wrong_Timeout2000()
         {
             MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
 

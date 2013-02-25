@@ -97,8 +97,8 @@
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Commands\Container\NewUIAContainerCommandTestFixture.cs" />
-    <Compile Include="Commands\Get\TestUIAWindowCommandTestFixture.cs" />
     <Compile Include="Commands\Pattern\InvokeUIAToggleStateSetCommandTestFixture.cs" />
+    <Compile Include="Commands\Wait\WaitUIAWindowCommandTestFixture.cs" />
     <Compile Include="Helpers\UnderlyingCode\elementOfPossibleControlTypeTestFixture.cs" />
     <Compile Include="Helpers\UnderlyingCode\GetAutomationElementsViaWildcards_FindAllTestFixture.cs" />
     <Compile Include="Helpers\UnderlyingCode\getControlConditionsTestFixture.cs" />
@@ -107,7 +107,6 @@
     <Compile Include="ParamChecks\Container\NewUIAContainerCommandTestFixture.cs" />
     <Compile Include="ParamChecks\Get\GetUIAControlCommandTestFixture.cs" />
     <Compile Include="ParamChecks\Get\GetUIAWindowCommandTestFixture.cs" />
-    <Compile Include="ParamChecks\Get\TestUIAWindowCommandTestFixture.cs" />
     <Compile Include="ParamChecks\MiddleLevelCode.cs" />
     <Compile Include="ParamChecks\Pattern\GetUIAEditTextCommandTestFixture.cs" />
     <Compile Include="ParamChecks\Pattern\InvokeUIAButtonClickCommandTestFixture.cs" />
@@ -115,6 +114,7 @@
     <Compile Include="ParamChecks\Pattern\InvokeUIAToggleStateSetCommandTestFixture.cs" />
     <Compile Include="ParamChecks\Pattern\SetUIAEditTextCommandTestFixture.cs" />
     <Compile Include="ParamChecks\Settings.cs" />
+    <Compile Include="ParamChecks\Wait\WaitUIAWindowCommandTestFixture.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">
@@ -141,6 +141,7 @@
     <Folder Include="Commands\Get" />
     <Folder Include="Commands\Hotkey" />
     <Folder Include="Commands\Container" />
+    <Folder Include="Commands\Wait" />
     <Folder Include="Commands\Pattern" />
     <Folder Include="Helpers" />
     <Folder Include="Helpers\UnderlyingCode" />

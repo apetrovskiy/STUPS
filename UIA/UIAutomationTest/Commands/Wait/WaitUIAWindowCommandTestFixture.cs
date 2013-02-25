@@ -14,12 +14,12 @@ namespace UIAutomationTest.Commands.Get
     using MbUnit.Framework;
 
     /// <summary>
-    /// Description of TestUIAWindowCommandTestFixture.
+    /// Description of WaitUIAWindowCommandTestFixture.
     /// </summary>
     [TestFixture]
-    public class TestUIAWindowCommandTestFixture
+    public class WaitUIAWindowCommandTestFixture
     {
-        public TestUIAWindowCommandTestFixture()
+        public WaitUIAWindowCommandTestFixture()
         {
         }
         
@@ -38,13 +38,13 @@ namespace UIAutomationTest.Commands.Get
         [Test]
         [Category("Slow")]
         [Category("WinForms")]
-        [Category("Test-UIAWindow")]
+        [Category("Wait-UIAWindow")]
         public void TestWindow_ByProcessName_Timeout2000()
         {
             MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
 
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Test-UIAWindow -pn '" + 
+                @"Wait-UIAWindow -pn '" + 
                 MiddleLevelCode.TestFormProcess +
                 "' -Seconds 2;",
                 "True");
@@ -53,26 +53,26 @@ namespace UIAutomationTest.Commands.Get
         [Test]
         [Category("Slow")]
         [Category("WinForms")]
-        [Category("Test-UIAWindow")]
+        [Category("Wait-UIAWindow")]
         public void TestWindow_ByProcessName_Wrong_Timeout2000()
         {
             MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
 
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Test-UIAWindow -pn 'wrong process name' -Seconds 2;",
+                @"Wait-UIAWindow -pn 'wrong process name' -Seconds 2;",
                 "False");
         }
         
         [Test]
         [Category("Slow")]
         [Category("WinForms")]
-        [Category("Test-UIAWindow")]
+        [Category("Wait-UIAWindow")]
         public void TestWindow_ByProcessId_Timeout2000()
         {
             MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
 
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Test-UIAWindow -pid (Get-Process '" + 
+                @"Wait-UIAWindow -pid (Get-Process '" + 
                 MiddleLevelCode.TestFormProcess +
                 "').Id -Seconds 2;",
                 "True");
@@ -81,14 +81,14 @@ namespace UIAutomationTest.Commands.Get
         [Test]
         [Category("Slow")]
         [Category("WinForms")]
-        [Category("Test-UIAWindow")]
+        [Category("Wait-UIAWindow")]
         public void TestWindow_ByProcessId_Wrong_Timeout2000()
         {
             MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
 
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                //@"Test-UIAWindow -pid (Get-Process 'wrong process name').Id -Seconds 2;",
-                @"Test-UIAWindow -pid 0 -Seconds 2;",
+                //@"Wait-UIAWindow -pid (Get-Process 'wrong process name').Id -Seconds 2;",
+                @"Wait-UIAWindow -pid 0 -Seconds 2;",
                 "True");
         }
     }

@@ -164,7 +164,6 @@
     <Compile Include="Commands\Get\GetUIADesktopCommand.cs" />
     <Compile Include="Commands\Get\TestUIAControlStateCommand.cs" />
     <Compile Include="Commands\Get\GetUIAControlRelativesCommand.cs" />
-    <Compile Include="Commands\Get\TestUIAWindowCommand.cs" />
     <Compile Include="Commands\Hotkey\InvokeUIAHotKeyCommand.cs" />
     <Compile Include="Commands\Hotkey\ShowUIAContextMenuCommand.cs" />
     <Compile Include="Commands\Hotkey\ShowUIADesktopCommand.cs" />
@@ -244,6 +243,7 @@
     <Compile Include="Commands\Wait\WaitUIAControlIsVisibleCommand.cs" />
     <Compile Include="Commands\Wait\WaitUIAControlStateCommand.cs" />
     <Compile Include="Commands\Wait\WaitUIAEventRaisedCommand.cs" />
+    <Compile Include="Commands\Wait\WaitUIAWindowCommand.cs" />
     <Compile Include="Commands\Wizard\AddUIAWizardStepCommand.cs" />
     <Compile Include="Commands\Wizard\GetUIAWizardCommand.cs" />
     <Compile Include="Commands\Wizard\InvokeUIAWizardCommand.cs" />

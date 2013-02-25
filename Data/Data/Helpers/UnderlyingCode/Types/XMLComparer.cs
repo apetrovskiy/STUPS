@@ -18,19 +18,24 @@ namespace Data
     /// </summary>
     public class XMLComparer : IXMLComparer
     {
-        public XMLComparer(List<IXMLDataEntry> xPathCollection)
+        public XMLComparer(List<IXMLDataEntry> dataEntryCollection)
         {
-            this.XPathCollection = xPathCollection;
+            this.DataEntryCollection = dataEntryCollection;
         }
         
-        public List<IXMLDataEntry> XPathCollection { get; set; }
+        public List<IXMLDataEntry> DataEntryCollection { get; set; }
+        public List<IXMLDataEntry> LoadedDataCollection { get; set; }
         
         public bool LoadXmlFile(string path)
         {
             bool result = false;
             
             // check the file's existense
-            
+            if (!System.IO.File.Exists(path)) {
+                
+                return result;
+                
+            }
             
             // read the file data to memory
             

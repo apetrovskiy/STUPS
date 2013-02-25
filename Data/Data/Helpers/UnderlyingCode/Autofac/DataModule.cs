@@ -41,9 +41,6 @@ namespace Data
 		            })
 		        .Named<IXMLDataEntry>("full");
 		    
-//		    builder.RegisterType<XMLComparer>()
-//		        .As<IXMLComparer>();
-		    
 		    builder.RegisterType<XMLComparer>()
 		        .As<IXMLComparer>()
 		        .UsingConstructor(

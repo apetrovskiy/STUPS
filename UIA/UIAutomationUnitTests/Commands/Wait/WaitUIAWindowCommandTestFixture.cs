@@ -11,11 +11,11 @@ using System;
 namespace UIAutomationUnitTests.Commands.Get
 {
     /// <summary>
-    /// Description of TestUIAWindowCommandTestFixture.
+    /// Description of WaitUIAWindowCommandTestFixture.
     /// </summary>
-    public class TestUIAWindowCommandTestFixture
+    public class WaitUIAWindowCommandTestFixture
     {
-        public TestUIAWindowCommandTestFixture()
+        public WaitUIAWindowCommandTestFixture()
         {
         }
     }

@@ -27,7 +27,7 @@ namespace Data
             ImportDtXmlFileCommand cmdlet =
                 (ImportDtXmlFileCommand)this.Cmdlet;
             
-            //XMLHelper.CreateXMLComparer(cmdlet);
+            XMLHelper.LoadXMLFile(cmdlet, cmdlet.InputObject, cmdlet.Path);
         }
     }
 }

@@ -13,6 +13,10 @@ namespace Data
     using System.Management.Automation;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Xml;
+    using System.Xml.XPath;
+    using System.Linq;
+    using System.Linq.Expressions;
     
     using Autofac;
     
@@ -31,7 +35,7 @@ namespace Data
             
             List<Autofac.Core.Parameter> listOfParameters =
                 new List<Autofac.Core.Parameter>();
-            listOfParameters.Add(new NamedParameter("xPathCollection", (new List<IXMLDataEntry>())));
+            listOfParameters.Add(new NamedParameter("dataEntryCollection", (new List<IXMLDataEntry>())));
             
             IXMLComparer comparer =
                 DataFactory.Container.ResolveNamed<IXMLComparer>(
@@ -61,11 +65,36 @@ namespace Data
             
             cmdlet.WriteVerbose(cmdlet, "adding an XMLDataEntry object to the comparer");
             
-            comparer.XPathCollection.Add(dataEntry);
+            comparer.DataEntryCollection.Add(dataEntry);
             
             cmdlet.WriteVerbose(cmdlet, "an XMLDataEntry object has been added to the comparer");
             
             cmdlet.WriteObject(cmdlet, comparer);
+        }
+        
+        public static void LoadXMLFile(XMLCmdletBase cmdlet, IXMLComparer comparer, string path)
+        {
+            bool result = false;
+            
+            if (System.IO.File.Exists(path)) { // ??
+                
+                result =
+                    comparer.LoadXmlFile(path);
+                
+            }
+            
+            if (result) {
+                cmdlet.WriteObject(cmdlet, comparer);
+            } else {
+                cmdlet.WriteError(
+                    cmdlet,
+                    "Failed to load file '" +
+                    path +
+                    "'.",
+                    "FaileToLoadFile",
+                    ErrorCategory.InvalidData,
+                    true);
+            }
         }
     }
 }

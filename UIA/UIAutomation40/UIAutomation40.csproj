@@ -282,9 +282,6 @@
     <Compile Include="..\UIAutomation\Commands\Get\TestUIAControlStateCommand.cs">
       <Link>Commands\Get\TestUIAControlStateCommand.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Commands\Get\TestUIAWindowCommand.cs">
-      <Link>Commands\Get\TestUIAWindowCommand.cs</Link>
-    </Compile>
     <Compile Include="..\UIAutomation\Commands\Hotkey\InvokeUIAHotKeyCommand.cs">
       <Link>Commands\Hotkey\InvokeUIAHotKeyCommand.cs</Link>
     </Compile>
@@ -483,6 +480,9 @@
     </Compile>
     <Compile Include="..\UIAutomation\Commands\Wait\WaitUIAEventRaisedCommand.cs">
       <Link>Commands\Wait\WaitUIAEventRaisedCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Commands\Wait\WaitUIAWindowCommand.cs">
+      <Link>Commands\Wait\WaitUIAWindowCommand.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Commands\Wizard\AddUIAWizardStepCommand.cs">
       <Link>Commands\Wizard\AddUIAWizardStepCommand.cs</Link>

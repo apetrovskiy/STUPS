@@ -16,11 +16,11 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
     using MbUnit.Framework;
     
     /// <summary>
-    /// Description of TestUIAWindowCommandTestFixture.
+    /// Description of WaitUIAWindowCommandTestFixture.
     /// </summary>
-    public class TestUIAWindowCommandTestFixture
+    public class WaitUIAWindowCommandTestFixture
     {
-        public TestUIAWindowCommandTestFixture()
+        public WaitUIAWindowCommandTestFixture()
         {
         }
         

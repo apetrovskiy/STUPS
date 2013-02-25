@@ -18,7 +18,7 @@ namespace Data
     /// </summary>
     public interface IXMLComparer
     {
-        List<IXMLDataEntry> XPathCollection { get; set; }
+        List<IXMLDataEntry> DataEntryCollection { get; set; }
         bool LoadXmlFile(string path);
         bool CompareData();
     }

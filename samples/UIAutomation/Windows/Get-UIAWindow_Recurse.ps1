@@ -1,19 +1,21 @@
 # run it with Administrator's privileges
-#ipmo C:\Projects\PS\STUPS\UIA\UIAutomation\bin\Release35\UIAutomation.dll;
+ipmo C:\Projects\PS\STUPS\UIA\UIAutomation\bin\Release35\UIAutomation.dll;
 
 services.msc
 Start-Process calc -PassThru | Get-UIAWindow | Get-UIAMenuItem -Name help | Invoke-UIAMenuItemExpand | Get-UIAMenuItem -Name *about* | Invoke-UIAMenuItemClick;
 
 Write-Host "process name";
-#Get-UIAWindow -pn calc -Recurse | Read-UIAControlName;
 Get-UIAWindow -pn calc | Read-UIAControlName;
+Write-Host "process name + recurse";
+Get-UIAWindow -pn calc -Recurse | Read-UIAControlName;
 
 Write-Host "process name + name";
 Get-UIAWindow -pn calc -n *about* | Read-UIAControlName;
 
 Write-Host "name";
-#Get-UIAWindow -n *about* -Recurse | Read-UIAControlName;
 Get-UIAWindow -n *about* | Read-UIAControlName;
+Write-Host "process name + recurse";
+Get-UIAWindow -n *about* -Recurse | Read-UIAControlName;
 Stop-Process -Name calc -Force;
 
 Write-Host "======================";

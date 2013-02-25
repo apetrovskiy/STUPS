@@ -82,7 +82,6 @@ namespace UIAutomation
             ArrayList aeWndCollection = 
                 new ArrayList();
             
-            //WriteDebug(cmdlet, "getting the root element");
             cmdlet.WriteVerbose(cmdlet, "getting the root element");
             rootElement =
                 System.Windows.Automation.AutomationElement.RootElement;
@@ -93,7 +92,6 @@ namespace UIAutomation
             }
             else
             {
-                //WriteDebug(cmdlet, "rootElement: " + rootElement.Current);
                 cmdlet.WriteVerbose(cmdlet, "rootElement: " + rootElement.Current);
             }
             
@@ -124,7 +122,6 @@ namespace UIAutomation
 
                 if (null != aeWndCollection && aeWndCollection.Count > 0) {
 
-                    //WriteDebug(cmdlet, "aeWndCollection != null");
                     cmdlet.WriteVerbose(cmdlet, "aeWndCollection != null");
                 }
                 // 20120123
@@ -414,10 +411,40 @@ namespace UIAutomation
                                  "is caught by processId = " + processId.ToString());
                 }
                 else{
-                    WriteDebug(this, "aeWndByProcId is still null");
+                    //WriteDebug(this, "aeWndByProcId is still null");
+                    this.WriteVerbose(this, "aeWndByProcId is still null");
                 }
             
             } // 20120824
+            
+            // 20130225
+            if (recurse && 
+                (null != name && 0 < name.Length ||
+                null != automaitonId && string.Empty != automaitonId ||
+                null != className && string.Empty != className)) {
+                
+                ArrayList resultList =
+                    new ArrayList();
+                
+                foreach (string n in name) {
+                    
+                    resultList.AddRange(
+                        returnOnlyRightElements(
+                            aeWndCollectionByProcessId,
+                            n,
+                            automaitonId,
+                            className,
+                            string.Empty,
+                            new string[]{ "Window" },
+                            false));
+                    
+                }
+                
+                //if (null != resultList && 0 < 
+                
+                aeWndCollectionByProcessId = resultList;
+                
+            }
             
             return aeWndCollectionByProcessId;
         }
@@ -786,7 +813,8 @@ namespace UIAutomation
         }
         
         internal ArrayList returnOnlyRightElements(
-            AutomationElementCollection results,
+            //AutomationElementCollection results,
+            IEnumerable results,
             string name,
             string automationId,
             string className,

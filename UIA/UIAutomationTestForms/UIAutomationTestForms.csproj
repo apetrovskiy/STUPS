@@ -194,6 +194,14 @@
     <Compile Include="FormsCollection\WinForms\WinFormsRich.Designer.cs">
       <DependentUpon>WinFormsRich.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormsCollection\WinForms\WinFormsSecond.cs" />
+    <Compile Include="FormsCollection\WinForms\WinFormsSecond.Designer.cs">
+      <DependentUpon>WinFormsSecond.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsCollection\WinForms\WinFormsTripled.cs" />
+    <Compile Include="FormsCollection\WinForms\WinFormsTripled.Designer.cs">
+      <DependentUpon>WinFormsTripled.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormsCollection\WinForms\WinFormsWizard.cs">
       <SubType>Form</SubType>
     </Compile>

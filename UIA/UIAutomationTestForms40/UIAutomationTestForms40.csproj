@@ -173,6 +173,18 @@
     <Compile Include="..\UIAutomationTestForms\FormsCollection\WinForms\WinFormsRich.Designer.cs">
       <Link>FormsCollection\WinForms\WinFormsRich.Designer.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomationTestForms\FormsCollection\WinForms\WinFormsSecond.cs">
+      <Link>FormsCollection\WinForms\WinFormsSecond.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTestForms\FormsCollection\WinForms\WinFormsSecond.Designer.cs">
+      <Link>FormsCollection\WinForms\WinFormsSecond.Designer.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTestForms\FormsCollection\WinForms\WinFormsTripled.cs">
+      <Link>FormsCollection\WinForms\WinFormsTripled.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTestForms\FormsCollection\WinForms\WinFormsTripled.Designer.cs">
+      <Link>FormsCollection\WinForms\WinFormsTripled.Designer.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomationTestForms\FormsCollection\WinForms\WinFormsWizard.cs">
       <Link>FormsCollection\WinForms\WinFormsWizard.cs</Link>
       <SubType>Form</SubType>

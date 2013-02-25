@@ -258,10 +258,7 @@ namespace UIAutomationTestForms
             {
                 case Forms.WinFormsEmpty:
                     System.Windows.Forms.Application.Run(
-                        //new WinFormsEmpty(ctrlType, controlName, controlAutomationId, controlDelay));
                         new WinFormsEmpty(controls));
-                    // WinFormsEmpty frmWFE = new WinFormsEmpty();
-                    // frmWFE.ShowDialog();
                     break;
                 case Forms.WinFormsEmptyX2:
                     System.Windows.Forms.Application.Run(
@@ -285,6 +282,10 @@ namespace UIAutomationTestForms
                 case Forms.WinFormsNoTaskBar:
                     System.Windows.Forms.Application.Run(
                         new WinFormsNoTaskBar(ctrlType, controlName, controlAutomationId, controlDelay));
+                    break;
+                case Forms.WinFormsTripled:
+                    System.Windows.Forms.Application.Run(
+                        new WinFormsTripled(controls));
                     break;
                 case Forms.WinFormsRich:
                     System.Windows.Forms.Application.Run(
@@ -479,6 +480,7 @@ namespace UIAutomationTestForms
         WinFormsMinimized = 4,
         WinFormsMaximized = 5,
         WinFormsNoTaskBar = 11,
+        WinFormsTripled = 21,
         WinFormsRich = 31,
         WinFormsFull = 32,
         WinFormsWizard = 33,

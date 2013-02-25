@@ -34,6 +34,8 @@ namespace UIAutomation.Commands
         #region Parameters
         #endregion Parameters
 
+        protected bool TestMode { get; set; }
+        
         protected override void BeginProcessing()
         {
             startDate = System.DateTime.Now;
@@ -95,7 +97,7 @@ namespace UIAutomation.Commands
             } // describe
             
             _returnedWindows =
-                GetWindow(this, this.InputObject, this.ProcessName, this.ProcessId, this.Name, this.AutomationId, this.Class);
+                GetWindow(this, this.InputObject, this.ProcessName, this.ProcessId, this.Name, this.AutomationId, this.Class, this.TestMode);
             
             if (null != _returnedWindows && _returnedWindows.Count > 0) {
 
@@ -104,50 +106,86 @@ namespace UIAutomation.Commands
                 if (null != this.SearchCriteria && this.SearchCriteria.Length > 0) {
                     filteredWindows = 
                         getFiltredElementsCollection(this, _returnedWindows);
-                    WriteObject(this, filteredWindows);
+                    
+                    if (this.TestMode && null != filteredWindows && 0 < filteredWindows.Count) {
+                        
+                        this.WriteObject(this, true);
+                    } else {
+                        
+                        this.WriteObject(this, filteredWindows);
+                    }
                 } else {
-                    WriteObject(this, _returnedWindows);
+                    
+                    if (this.TestMode && null != _returnedWindows && 0 < _returnedWindows.Count) {
+                        
+                        this.WriteObject(this, true);
+                    } else {
+                        
+                        this.WriteObject(this, _returnedWindows);
+                    }
                 }
             } else {
                 
-                ErrorRecord err = 
-                    new ErrorRecord(
-                        new Exception("Failed to get the window"),
-                        "FailedToGetWindow",
-                        ErrorCategory.InvalidResult,
-                        _returnedWindows.ToString());
+                // 20130225
+//                ErrorRecord err = 
+//                    new ErrorRecord(
+//                        new Exception("Failed to get the window"),
+//                        "FailedToGetWindow",
+//                        ErrorCategory.InvalidResult,
+//                        _returnedWindows.ToString());
                 
-                string name = string.Empty;
-                string procName = string.Empty;
-                string procId = string.Empty;
-
-                try{ 
-                    foreach(string n in this.Name) { 
-                        name += n; name += ","; 
+                if (this.TestMode) {
+                    
+                    this.WriteObject(this, false);
+    
+                } else {
+                
+                    string name = string.Empty;
+                    string procName = string.Empty;
+                    string procId = string.Empty;
+    
+                    try{ 
+                        foreach(string n in this.Name) { 
+                            name += n; name += ","; 
+                        }
+                        name = name.Substring(0, name.Length - 1);
                     }
-                    name = name.Substring(0, name.Length - 1);
-                }
-                catch {}
-
-                try{ 
-                    foreach(string s in this.ProcessName) { 
-                        procName += s; procName += ","; 
+                    catch {}
+    
+                    try{ 
+                        foreach(string s in this.ProcessName) { 
+                            procName += s; procName += ","; 
+                        }
+                        procName = procName.Substring(0, procName.Length - 1);
                     }
-                    procName = procName.Substring(0, procName.Length - 1);
-                }
-                catch {}
-
-                try {
-                    foreach (int i in this.ProcessId) {
-                        procId += i.ToString();
-                        procId += ",";
+                    catch {}
+    
+                    try {
+                        foreach (int i in this.ProcessId) {
+                            procId += i.ToString();
+                            procId += ",";
+                        }
+                        procId = procId.Substring(0, procId.Length - 1);
                     }
-                    procId = procId.Substring(0, procId.Length - 1);
-                }
-                catch {}
-
-                err.ErrorDetails = 
-                    new ErrorDetails(
+                    catch {}
+    
+                    // 20130225
+    //                err.ErrorDetails = 
+    //                    new ErrorDetails(
+    //                        "Failed to get the window by:" + 
+    //                        " process name: '" +
+    //                        procName +
+    //                        "' process Id: " + 
+    //                        procId + 
+    //                        " window title: '" + 
+    //                        name +
+    //                        "'");
+    //                        
+    //                WriteError(this, err, true);
+                    
+                    // 20130225
+                    this.WriteError(
+                        this,
                         "Failed to get the window by:" + 
                         " process name: '" +
                         procName +
@@ -155,9 +193,11 @@ namespace UIAutomation.Commands
                         procId + 
                         " window title: '" + 
                         name +
-                        "'");
-                        
-                WriteError(this, err, true);
+                        "'",
+                        "FailedToGetWindow",
+                        ErrorCategory.InvalidResult,
+                        true);
+                }
             }
         }
         

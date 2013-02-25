@@ -186,10 +186,10 @@ RootSchema.uml
 pre-samples
 SeleniumSpy
 SeleniumSpy40
-SQL
-SQL40
-SQLTest
-SQLUnitTests
+Data
+Data40
+DataTest
+DataUnitTests
 TestCaseBrowser
 TestCaseBrowser40
 testlib

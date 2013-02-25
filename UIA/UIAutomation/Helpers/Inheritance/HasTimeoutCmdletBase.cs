@@ -77,7 +77,8 @@ namespace UIAutomation
             int[] processIds,
             string[] windowNames,
             string automationId,
-            string className)
+            string className,
+            bool testMode)
         {
             ArrayList aeWndCollection = 
                 new ArrayList();
@@ -137,9 +138,7 @@ namespace UIAutomation
 
                 if (null != aeWndCollection && (int)((AutomationElement)aeWndCollection[0]).Current.ProcessId > 0) {
 
-                    //WriteDebug(cmdlet, "" + aeWndCollection.ToString());
                     cmdlet.WriteVerbose(cmdlet, "" + aeWndCollection.ToString());
-                    //WriteDebug(cmdlet, "aeWnd.Current.GetType() = " +
                     cmdlet.WriteVerbose(cmdlet, 
                                         "aeWnd.Current.GetType() = " +
                                         ((AutomationElement)aeWndCollection[0]).GetType().Name);
@@ -394,8 +393,13 @@ namespace UIAutomation
                     }
                     
                 } catch (Exception eGetFirstChildOfRootByProcessId) {
-                    WriteDebug(this, "exception: " +
-                               eGetFirstChildOfRootByProcessId.Message);
+                    
+                    // 20130225
+                    //WriteDebug(this, "exception: " +
+                    this.WriteVerbose(
+                        this,
+                        "exception: " +
+                        eGetFirstChildOfRootByProcessId.Message);
                 }
                 // 20120824
                 //if (aeWndByProcId != null &&
@@ -426,21 +430,32 @@ namespace UIAutomation
                 ArrayList resultList =
                     new ArrayList();
                 
-                foreach (string n in name) {
+                if (null != name && 0 < name.Length) {
+                    foreach (string n in name) {
+                        
+                        resultList.AddRange(
+                            returnOnlyRightElements(
+                                aeWndCollectionByProcessId,
+                                n,
+                                automaitonId,
+                                className,
+                                string.Empty,
+                                new string[]{ "Window" },
+                                false));
+                        
+                    }
+                } else {
                     
                     resultList.AddRange(
                         returnOnlyRightElements(
                             aeWndCollectionByProcessId,
-                            n,
+                            string.Empty,
                             automaitonId,
                             className,
                             string.Empty,
                             new string[]{ "Window" },
                             false));
-                    
                 }
-                
-                //if (null != resultList && 0 < 
                 
                 aeWndCollectionByProcessId = resultList;
                 

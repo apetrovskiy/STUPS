@@ -61,26 +61,7 @@ namespace UIAutomation.Commands
             
             //System.Windows.Automation.AutomationElement _control = null;
             
-
-            // 20120927
-            // 20120823
-            //if (this.ControlType != this.InputObject.Current.ControlType) {
             if (this.ControlType != inputObject.Current.ControlType) {
-//                WriteObject(this, this.InputObject);
-//                ErrorRecord err = 
-//                    new ErrorRecord(
-//                        new Exception(),
-//                        "WrongControlType",
-//                        ErrorCategory.InvalidArgument,
-//                        this.InputObject);
-//                err.ErrorDetails = 
-//                    new ErrorDetails("Control is not of " +
-//                                     this.ControlType.ProgrammaticName +
-//                                     " type");
-//
-//                UIAHelper.GetScreenshotOfAutomationElement(this, CmdletName(this) + "_BadControl", true, 0, 0, 0, 0, string.Empty, System.Drawing.Imaging.ImageFormat.Jpeg);
-//                // 20120209 return;
-//                WriteError(this, err, true);
                 
                 this.WriteError(
                     this,
@@ -114,8 +95,6 @@ namespace UIAutomation.Commands
                     true);
             }
 
-            // 20120823
-            //WriteObject(this, this.InputObject);
             WriteObject(this, inputObject);
             
             } // 20120823

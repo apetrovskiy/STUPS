@@ -164,6 +164,7 @@
     <Compile Include="Commands\Get\GetUIADesktopCommand.cs" />
     <Compile Include="Commands\Get\TestUIAControlStateCommand.cs" />
     <Compile Include="Commands\Get\GetUIAControlRelativesCommand.cs" />
+    <Compile Include="Commands\Get\TestUIAWindowCommand.cs" />
     <Compile Include="Commands\Hotkey\InvokeUIAHotKeyCommand.cs" />
     <Compile Include="Commands\Hotkey\ShowUIAContextMenuCommand.cs" />
     <Compile Include="Commands\Hotkey\ShowUIADesktopCommand.cs" />

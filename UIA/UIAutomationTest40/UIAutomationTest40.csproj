@@ -232,6 +232,9 @@
     <Compile Include="..\UIAutomationTest\Commands\Get\Relatives\GetUIAControlRelativesTestFixture.cs">
       <Link>Commands\Get\Relatives\GetUIAControlRelativesTestFixture.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Get\TestUIAWindowCommandTestFixture.cs">
+      <Link>Commands\Get\TestUIAWindowCommandTestFixture.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomationTest\Commands\Pattern\InvokeUIACollapsePatternCommandTestFixture.cs">
       <Link>Commands\Pattern\InvokeUIACollapsePatternCommandTestFixture.cs</Link>
     </Compile>

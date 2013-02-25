@@ -30,7 +30,7 @@ namespace UIAutomation.Commands
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     [Obsolete("This cmdlet is obsolete. Please use the Set-UIAButtonToggleState cmdlet")]
-    public class InvokeUIAButtonToggleCommand : InvokeUIATogglePatternCommand 
+    public class InvokeUIAButtonToggleCommand : InvokeUIATogglePatternCommand
     { public InvokeUIAButtonToggleCommand() { } }
     
     /// <summary>
@@ -40,7 +40,7 @@ namespace UIAutomation.Commands
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     [Obsolete("This cmdlet is obsolete. Please use the Set-UIACheckBoxToggleState cmdlet")]
-    public class InvokeUIACheckBoxToggleCommand : InvokeUIATogglePatternCommand 
+    public class InvokeUIACheckBoxToggleCommand : InvokeUIATogglePatternCommand
     { public InvokeUIACheckBoxToggleCommand() { } }
     
     /// <summary>
@@ -50,7 +50,7 @@ namespace UIAutomation.Commands
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     [Obsolete("This cmdlet is obsolete. Please use the Set-UIACustomToggleState cmdlet")]
-    public class InvokeUIACustomToggleCommand : InvokeUIATogglePatternCommand 
+    public class InvokeUIACustomToggleCommand : InvokeUIATogglePatternCommand
     { public InvokeUIACustomToggleCommand() { } }
     
     /// <summary>
@@ -60,7 +60,7 @@ namespace UIAutomation.Commands
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     [Obsolete("This cmdlet is obsolete. Please use the Set-UIADataItemToggleState cmdlet")]
-    public class InvokeUIADataItemToggleCommand : InvokeUIATogglePatternCommand 
+    public class InvokeUIADataItemToggleCommand : InvokeUIATogglePatternCommand
     { public InvokeUIADataItemToggleCommand() { } }
     
     /// <summary>
@@ -70,7 +70,7 @@ namespace UIAutomation.Commands
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     [Obsolete("This cmdlet is obsolete. Please use the Set-UIAListItemToggleState cmdlet")]
-    public class InvokeUIAListItemToggleCommand : InvokeUIATogglePatternCommand 
+    public class InvokeUIAListItemToggleCommand : InvokeUIATogglePatternCommand
     { public InvokeUIAListItemToggleCommand() { } }
     
     /// <summary>
@@ -80,7 +80,7 @@ namespace UIAutomation.Commands
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     [Obsolete("This cmdlet is obsolete. Please use the Set-UIAMenuItemToggleState cmdlet")]
-    public class InvokeUIAMenuItemToggleCommand : InvokeUIATogglePatternCommand 
+    public class InvokeUIAMenuItemToggleCommand : InvokeUIATogglePatternCommand
     { public InvokeUIAMenuItemToggleCommand() { } }
     
     /// <summary>
@@ -90,6 +90,6 @@ namespace UIAutomation.Commands
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     [Obsolete("This cmdlet is obsolete. Please use the Set-UIARadioButtonToggleState cmdlet")]
-    public class InvokeUIARadioButtonToggleCommand : InvokeUIATogglePatternCommand 
+    public class InvokeUIARadioButtonToggleCommand : InvokeUIATogglePatternCommand
     { public InvokeUIARadioButtonToggleCommand() { } }
 }

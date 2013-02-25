@@ -134,6 +134,7 @@ namespace PSTestLib
             }
 
             this.writeSingleObject(cmdlet, outputObject);
+
         }
         
         public virtual void WriteObject(PSCmdletBase cmdlet, object[] outputObjectCollection)
@@ -297,14 +298,11 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
 //                WriteObjectMethod050OnSuccessDelay(cmdlet, outputObject);
                 
                 BeforeWriteSingleObject(cmdlet, outputObject);
-                
 
                 //WriteSingleObject(cmdlet, outputObject);
                 
-                
-                
                 try {
-    
+
                     if (PSCmdletBase.UnitTestMode) {
 
                         UnitTestOutput.Add(outputObject);
@@ -313,15 +311,16 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
 
 //                        WriteObjectMethod060OutputResult(cmdlet, outputObject);
                         WriteSingleObject(cmdlet, outputObject);
+
                     }
                 }
                 catch {}
                 
                 
                 //WriteObjectMethod060OutputResult(cmdlet, outputObject);
-                
+
                 AfterWriteSingleObject(cmdlet, outputObject);
-                
+
 //                WriteObjectMethod070Report(cmdlet, outputObject);
 
                 //WriteObjectMethod080ReportFailure();

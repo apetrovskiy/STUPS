@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectGuid>{1EEEFEC8-AC67-4E2A-9279-F8AD320E6780}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Data40</RootNamespace>
+    <AssemblyName>Data40</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <OutputPath>bin\Release35\</OutputPath>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <NoStdLib>False</NoStdLib>
+    <DebugType>None</DebugType>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release35' ">
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'Release35' ">
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\..\binaries\autofac\40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Management.Automation" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Data\Commands\XML\AddDtXmlDataEntryCommand.cs">
+      <Link>Commands\XML\AddDtXmlDataEntryCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\Data\Commands\XML\CompareDtXmlDataCommand.cs">
+      <Link>Commands\XML\CompareDtXmlDataCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\Data\Commands\XML\ImportDtXmlFileCommand.cs">
+      <Link>Commands\XML\ImportDtXmlFileCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\Data\Commands\XML\NewDtXmlComparerCommand.cs">
+      <Link>Commands\XML\NewDtXmlComparerCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\Data\Helpers\Inheritance\CommonCmdletBase.cs">
+      <Link>Helpers\Inheritance\CommonCmdletBase.cs</Link>
+    </Compile>
+    <Compile Include="..\Data\Helpers\Inheritance\XMLCmdletBase.cs">
+      <Link>Helpers\Inheritance\XMLCmdletBase.cs</Link>
+    </Compile>
+    <Compile Include="..\Data\Helpers\UnderlyingCode\Autofac\DataModule.cs">
+      <Link>Helpers\UnderlyingCode\Autofac\DataModule.cs</Link>
+    </Compile>
+    <Compile Include="..\Data\Helpers\UnderlyingCode\Commands\DataCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\DataCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\Data\Helpers\UnderlyingCode\Commands\XML\DtAddXmlDataEntryCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\XML\DtAddXmlDataEntryCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\Data\Helpers\UnderlyingCode\Commands\XML\DtCompareXmlDataCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\XML\DtCompareXmlDataCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\Data\Helpers\UnderlyingCode\Commands\XML\DtImportXmlFileCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\XML\DtImportXmlFileCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\Data\Helpers\UnderlyingCode\Commands\XML\DtNewXmlComparerCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\XML\DtNewXmlComparerCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\Data\Helpers\UnderlyingCode\DataFactory.cs">
+      <Link>Helpers\UnderlyingCode\DataFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\Data\Helpers\UnderlyingCode\Enums\Enums.cs">
+      <Link>Helpers\UnderlyingCode\Enums\Enums.cs</Link>
+    </Compile>
+    <Compile Include="..\Data\Helpers\UnderlyingCode\Interfaces\IXMLComparer.cs">
+      <Link>Helpers\UnderlyingCode\Interfaces\IXMLComparer.cs</Link>
+    </Compile>
+    <Compile Include="..\Data\Helpers\UnderlyingCode\Interfaces\IXMLDataEntry.cs">
+      <Link>Helpers\UnderlyingCode\Interfaces\IXMLDataEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\Data\Helpers\UnderlyingCode\Types\XMLComparer.cs">
+      <Link>Helpers\UnderlyingCode\Types\XMLComparer.cs</Link>
+    </Compile>
+    <Compile Include="..\Data\Helpers\UnderlyingCode\Types\XMLDataEntry.cs">
+      <Link>Helpers\UnderlyingCode\Types\XMLDataEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\Data\Helpers\UnderlyingCode\XMLHelper.cs">
+      <Link>Helpers\UnderlyingCode\XMLHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\Data\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Commands\XML" />
+    <Folder Include="Helpers" />
+    <Folder Include="Helpers\Inheritance" />
+    <Folder Include="Helpers\UnderlyingCode" />
+    <Folder Include="Helpers\UnderlyingCode\Commands" />
+    <Folder Include="Helpers\UnderlyingCode\Commands\XML" />
+    <Folder Include="Helpers\UnderlyingCode\Interfaces" />
+    <Folder Include="Helpers\UnderlyingCode\Enums" />
+    <Folder Include="Helpers\UnderlyingCode\Autofac" />
+    <Folder Include="Helpers\UnderlyingCode\Types" />
+    <Folder Include="Commands" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">
+      <Project>{E4499004-DAE5-4700-B212-4CDEA3080BC5}</Project>
+      <Name>PSTestLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+</Project>

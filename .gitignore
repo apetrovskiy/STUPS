@@ -186,10 +186,6 @@ RootSchema.uml
 pre-samples
 SeleniumSpy
 SeleniumSpy40
-Data
-Data40
-DataTest
-DataUnitTests
 TestCaseBrowser
 TestCaseBrowser40
 testlib
@@ -206,3 +202,4 @@ UpgradeLog.XML
 RallyAddin
 RallyAddinUnitTests
 obj
+*.log

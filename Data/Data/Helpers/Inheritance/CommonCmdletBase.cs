@@ -1,13 +1,13 @@
 ﻿/*
  * Created by SharpDevelop.
- * User: Alexander Petrovskiy
- * Date: 18/02/2012
- * Time: 01:36 a.m.
+ * User: APetrovsky
+ * Date: 2/25/2013
+ * Time: 6:43 PM
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMX
+namespace Data
 {
     using System;
     using System.Management.Automation;
@@ -16,46 +16,35 @@ namespace TMX
     using System.Collections;
     
     /// <summary>
-    /// Description of CmdletBase.
+    /// Description of CommonCmdletBase.
     /// </summary>
-    public partial class CommonCmdletBase : PSCmdletBase
+    public class CommonCmdletBase : PSCmdletBase
     {
         public CommonCmdletBase()
         {
-        }
-        
-        #region Parameters
-        [Parameter(Mandatory = false)]
-        [ValidateNotNullOrEmpty()]
-        public string Name { get; set; }
-        [Parameter(Mandatory = false)]
-        //[ValidateNotNullOrEmpty()]
-        public string Id { get; set; }
-        #endregion Parameters
-        
-        protected void notImplementedCase()
-        {
-//            ErrorRecord err = 
-//                new ErrorRecord(
-//                    new Exception(),
-//                    "",
-//                    ErrorCategory.NotImplemented,
-//                    null);
-//            err.ErrorDetails = 
-//                new ErrorDetails("Not implemented");
-//            ThrowTerminatingError(err);
             
-            this.WriteError(
-                this,
-                "Not implemented",
-                "NotImplemented",
-                ErrorCategory.NotImplemented,
-                true);
+            if (!UnitTestMode && !ModuleAlreadyLoaded) {
+
+                DataFactory.AutofacModule = new DataModule();
+
+                DataFactory.Init();
+
+                ModuleAlreadyLoaded = true;
+            }
+            
+            //CurrentData.Init();
         }
+        
+        protected override void BeginProcessing()
+        {
+            this.CheckCmdletParameters();
+        }
+        
+        internal static bool ModuleAlreadyLoaded { get; set; }
         
         protected override void WriteLog(string logRecord)
         {
-            Console.WriteLine("Here should be logging TMX");
+            Console.WriteLine("Here should be logging Data");
         }
         
         protected override bool CheckSingleObject(PSCmdletBase cmdlet, object outputObject) { return true; }
@@ -67,10 +56,9 @@ namespace TMX
         protected override void BeforeWriteCollection(PSCmdletBase cmdlet, ICollection outputObjectCollection) {}
         protected override void BeforeWriteCollection(PSCmdletBase cmdlet, Hashtable outputObjectCollection) {}
         protected override void BeforeWriteSingleObject(PSCmdletBase cmdlet, object outputObject) {}
-
+        
         protected override void WriteSingleObject(PSCmdletBase cmdlet, object outputObject)
         {
-            //WriteVerbose(this, " TMX");
             try {
                 base.WriteObject(outputObject);
             }
@@ -85,35 +73,36 @@ namespace TMX
         protected override void AfterWriteCollection(PSCmdletBase cmdlet, IEnumerable outputObjectCollection) {}
         protected override void AfterWriteCollection(PSCmdletBase cmdlet, ICollection outputObjectCollection) {}
         protected override void AfterWriteCollection(PSCmdletBase cmdlet, Hashtable outputObjectCollection) {}
-
+        
+        
         protected override void WriteErrorMethod010RunScriptBlocks(PSCmdletBase cmdlet)
         {
-            this.WriteVerbose(this, " TMX");
+            this.WriteVerbose(this, " Data");
         }
         
         protected override void WriteErrorMethod020SetTestResult(PSCmdletBase cmdlet, ErrorRecord errorRecord)
         {
-            this.WriteVerbose(this, " TMX");
+            this.WriteVerbose(this, " Data");
         }
         
         protected override void WriteErrorMethod030ChangeTimeoutSettings(PSCmdletBase cmdlet, bool terminating)
         {
-            this.WriteVerbose(this, " TMX");
+            this.WriteVerbose(this, " Data");
         }
         
         protected override void WriteErrorMethod040AddErrorToErrorList(PSCmdletBase cmdlet, ErrorRecord errorRecord)
         {
-            this.WriteVerbose(this, " TMX");
+            this.WriteVerbose(this, " Data");
         }
 
         protected override void WriteErrorMethod045OnErrorScreenshot(PSCmdletBase cmdlet)
         {
-            WriteVerbose(this, "WriteErrorMethod045OnErrorScreenshot TMX");
+            WriteVerbose(this, "WriteErrorMethod045OnErrorScreenshot Data");
         }
         
         protected override void WriteErrorMethod050OnErrorDelay(PSCmdletBase cmdlet)
         {
-            this.WriteVerbose(this, " TMX");
+            this.WriteVerbose(this, " Data");
         }
 
         protected override void WriteErrorMethod060OutputError(PSCmdletBase cmdlet, ErrorRecord errorRecord, bool terminating)
@@ -135,8 +124,7 @@ namespace TMX
         
         protected override void WriteErrorMethod070Report(PSCmdletBase cmdlet)
         {
-            this.WriteVerbose(this, " TMX");
+            this.WriteVerbose(this, " Data");
         }
-
     }
 }

@@ -23,10 +23,13 @@ namespace TMX
         
         internal override void Execute()
         {
+            TFSConnectCmdletBase cmdlet =
+                (TFSConnectCmdletBase)this.Cmdlet;
+            
             TFHelper.ConnectTFServer(
-                this.Cmdlet,
-                ((TFSConnectCmdletBase)this.Cmdlet).Url,
-                ((TFSConnectCmdletBase)this.Cmdlet).Credentials);
+                cmdlet,
+                cmdlet.Url,
+                cmdlet.Credentials);
         }
     }
 }

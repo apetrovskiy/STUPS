@@ -20,5 +20,12 @@ namespace TMX
         public TFSCmdletBase()
         {
         }
+        
+        #region Parameters
+        [Parameter(Mandatory = false,
+                   Position = 0)]
+        [ValidateNotNullOrEmpty()]
+        public new string Name { get; set; }
+        #endregion Parameters
     }
 }

@@ -28,7 +28,6 @@ namespace TMX
             
             TFSrvGetCollectionCommand command =
                 new TFSrvGetCollectionCommand(this);
-            //command.Cmdlet = this;
             command.Execute();
         }
     }

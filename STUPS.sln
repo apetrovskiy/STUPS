@@ -166,8 +166,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataTest", "Data\DataTest\D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataUnitTests", "Data\DataUnitTests\DataUnitTests.csproj", "{71F8DDFF-D338-47FA-A146-71F1EBA5BEDF}"
 EndProject
-Project("{CFEE4113-1246-4D54-95CB-156813CB8593}") = "OpenQualityCenter", "OpenQualityCenter\OpenQualityCenter.wixproj", "{D8C1FE32-C14E-47AA-A5F1-F1BC118F0F48}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTesting", "UnitTesting", "{34333558-C0A4-4450-8E60-D7F4AFC347D2}"
 	ProjectSection(SolutionItems) = postProject
 	EndProjectSection
@@ -177,6 +175,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoqCmdlets40", "UnitTesting\MoqCmdlets40\MoqCmdlets40.csproj", "{403CA8E4-EB7E-4E6B-B13B-16BCB9F22339}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoqCmdletsUnitTests", "UnitTesting\MoqCmdletsUnitTests\MoqCmdletsUnitTests.csproj", "{73875744-356D-40A1-B72B-91E65D38E0B9}"
+EndProject
+Project("{CFEE4113-1246-4D54-95CB-156813CB8593}") = "OpenQualityCenter", "OpenQualityCenter\OpenQualityCenter.wixproj", "{D8C1FE32-C14E-47AA-A5F1-F1BC118F0F48}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

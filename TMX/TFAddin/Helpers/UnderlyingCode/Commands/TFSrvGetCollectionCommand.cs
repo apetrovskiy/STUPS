@@ -25,8 +25,12 @@ namespace TMX
         
         internal override void Execute()
         {
-            //TFHelper.ConnectTFServer((
-            //    (TFCollectionCmdletBase)this.Cmdlet);
+            TFCollectionCmdletBase cmdlet =
+                (TFCollectionCmdletBase)this.Cmdlet;
+
+            TFHelper.OpenProjectCollection(
+                cmdlet,
+                cmdlet.Name);
         }
     }
 }

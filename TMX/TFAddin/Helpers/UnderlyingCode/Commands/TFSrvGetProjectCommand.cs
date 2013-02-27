@@ -25,6 +25,12 @@ namespace TMX
         
         internal override void Execute()
         {
+            TFProjectCmdletBase cmdlet =
+                (TFProjectCmdletBase)this.Cmdlet;
+                
+            TFHelper.OpenProject(
+                cmdlet,
+                cmdlet.Name);
         }
     }
 }

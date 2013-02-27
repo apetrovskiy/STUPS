@@ -10,6 +10,7 @@
 namespace TMX
 {
     using System;
+    using System.Management.Automation;
     using Microsoft.TeamFoundation.Client;
     using Microsoft.TeamFoundation.TestManagement.Client;
     using Microsoft.TeamFoundation.WorkItemTracking.Client;
@@ -31,13 +32,39 @@ namespace TMX
             try
             {
                 Uri uri =
-                    //new Uri("http://10.30.37.86:8080/tfs");
                     new Uri(url);
+                
                 TfsConfigurationServer tfsServer =
                     new TfsConfigurationServer(
                         uri,
                         credentials);
+                
+                cmdlet.WriteVerbose(
+                    cmdlet,
+                    "Connected, checking the connection");
+                
+                try {
+                    tfsServer.EnsureAuthenticated();
+                }
+                catch (Exception eTfsServerConnected) {
+                    
+                    cmdlet.WriteError(
+                        cmdlet,
+                        "Failed to connect to server '" +
+                        url +
+                        "'." +
+                        eTfsServerConnected.Message,
+                        "FailedToConnect",
+                        ErrorCategory.InvalidResult,
+                        true);
+                }
+                
                 CurrentData.CurrentServer = tfsServer;
+                
+                cmdlet.WriteVerbose(cmdlet,
+                                    "Connected to: '" +
+                                    url + 
+                                    "'");
                 
                 cmdlet.WriteObject(cmdlet, tfsServer);
             }
@@ -53,31 +80,48 @@ namespace TMX
             {
                 // handle other web exception
             }
-//            tfsServer.GetTeamProjectCollection
-//Console.WriteLine(tfsServer.Name);
-//Console.WriteLine(tfsServer.Uri.Host);
-//Console.WriteLine(tfsServer.Uri.Port.ToString());
         }
         
         public static void OpenProjectCollection(TFSCmdletBase cmdlet, string name)
         {
             try
             {
-//                var projectCollectionUri =
-//                    //new Uri("http://tfs2010:8080/tfs/MyCollection");
-//                    new Uri(url);
-                
                 var projectCollectionUri =
                     new Uri(
                         CurrentData.CurrentServer.Uri.OriginalString +
                         "/" +
                         name);
                 
+                cmdlet.WriteVerbose(
+                    cmdlet,
+                    "connecing to the collection: '" +
+                    projectCollectionUri.ToString() +
+                    "'");
+                
                 var projectCollection =
-                    //TfsTeamProjectCollectionFactory.GetTeamProjectCollection(projectCollectionUri, new UICredentialsProvider());
                     TfsTeamProjectCollectionFactory.GetTeamProjectCollection(projectCollectionUri);
-                //projectCollection..ConfigurationServer = CurrentServer;
-                projectCollection.EnsureAuthenticated();
+                
+                cmdlet.WriteVerbose(
+                    cmdlet,
+                    "Collection is connected, checking the connection");
+                
+                try {
+                    projectCollection.EnsureAuthenticated();
+                }
+                catch (Exception eTfsCollectionConnected) {
+                    
+                    cmdlet.WriteError(
+                        cmdlet,
+                        "Failed to connect to collection '" +
+                        projectCollectionUri.ToString() +
+                        "'." +
+                        eTfsCollectionConnected.Message,
+                        "FailedToConnect",
+                        ErrorCategory.InvalidResult,
+                        true);
+                }
+                
+                cmdlet.WriteVerbose(cmdlet, "connected to the collection");
                 
                 CurrentData.CurrentCollection = projectCollection;
                 
@@ -100,37 +144,45 @@ namespace TMX
         
         public static void OpenProject(TFSCmdletBase cmdlet, string name)
         {
-Console.WriteLine("00003");
-            //throw new NotImplementedException();
+
             try {
+                
                 ITestManagementService testMgmtSvc =
                     (ITestManagementService)CurrentData.CurrentCollection.GetService(typeof(ITestManagementService));
+
                 WorkItemStore store =
                     (WorkItemStore)CurrentData.CurrentCollection.GetService(typeof(WorkItemStore));
-                ITestManagementTeamProject project =
-                    //((ITestManagementService)CurrentData.CurrentCollection).GetTeamProject(name);
-                    testMgmtSvc.GetTeamProject(name);
-if (null == project) {
-    Console.WriteLine("null");
-} else {
-    Console.WriteLine("not null");
-    Console.WriteLine(project.IsValid.ToString());
-}
-Console.WriteLine(project);
 
+                ITestManagementTeamProject project =
+                    testMgmtSvc.GetTeamProject(name);
+                
+                cmdlet.WriteVerbose(
+                    cmdlet,
+                    "Connected to the project '" +
+                    name +
+                    "'");
+                
                 CurrentData.CurrentProject = project;
                 
                 cmdlet.WriteObject(cmdlet, project);
                 
             }
             catch (Exception eOpenProject) {
-                Console.WriteLine(eOpenProject.Message);
+                
+                cmdlet.WriteError(
+                    cmdlet,
+                    "Failed to connect to project '" +
+                    name +
+                    "'." +
+                    eOpenProject.Message,
+                    "FailedToConnect",
+                    ErrorCategory.InvalidResult,
+                    true);
             }
         }
         
         public static void NewTestPlan(TFSCmdletBase cmdlet, string name)
         {
-            //throw new NotImplementedException();
             try {
                 ITestPlan testPlan =
                     CurrentData.CurrentProject.TestPlans.Create();

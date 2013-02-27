@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+<Project ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
   <PropertyGroup>
     <ProjectGuid>{68B32555-34E0-4843-8F8F-28FF39FFA0BA}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -64,6 +64,9 @@
     <Reference Include="Microsoft.TeamFoundation.Client" />
     <Reference Include="Microsoft.TeamFoundation.TestManagement.Client" />
     <Reference Include="Microsoft.TeamFoundation.WorkItemTracking.Client" />
+    <Reference Include="Moq">
+      <HintPath>..\..\binaries\Moq\NET35\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -213,6 +216,7 @@
     <Compile Include="..\TMX\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="UnitTests\Fakes\FakeTfsFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands" />

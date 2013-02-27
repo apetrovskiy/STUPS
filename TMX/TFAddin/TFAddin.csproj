@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectGuid>{686D29A7-8CA9-4908-82D3-11530ACCBD19}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <OutputType>Library</OutputType>
+    <RootNamespace>TMX</RootNamespace>
+    <AssemblyName>TFAddin</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <NoStdLib>False</NoStdLib>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <OutputPath>bin\Release35\</OutputPath>
+    <DebugType>None</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Release35\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release35' ">
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'Release35' ">
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|Release35'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|Release35'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release35|x86'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release35|Release35'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.TeamFoundation" />
+    <Reference Include="Microsoft.TeamFoundation.Client" />
+    <Reference Include="Microsoft.TeamFoundation.TestManagement.Client" />
+    <Reference Include="Microsoft.TeamFoundation.WorkItemTracking.Client" />
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Management.Automation" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\TMX\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Commands\TF\AddTFTestCaseCommand.cs" />
+    <Compile Include="Commands\TF\AddTFTestSubSuiteCommand.cs" />
+    <Compile Include="Commands\TF\AddTFTestSuiteCommand.cs" />
+    <Compile Include="Commands\TF\ConnectTFServerCommand.cs" />
+    <Compile Include="Commands\TF\GetTFCollectionCommand.cs" />
+    <Compile Include="Commands\TF\GetTFProjectCommand.cs" />
+    <Compile Include="Commands\TF\GetTFTestCaseCommand.cs" />
+    <Compile Include="Commands\TF\GetTFTestPlanCommand.cs" />
+    <Compile Include="Commands\TF\GetTFTestSubSuiteCommand.cs" />
+    <Compile Include="Commands\TF\GetTFTestSuiteCommand.cs" />
+    <Compile Include="Commands\TF\NewTFTestPlanCommand.cs" />
+    <Compile Include="Commands\TF\OpenTFCollectionCommand.cs" />
+    <Compile Include="Commands\TF\OpenTFProjectCommand.cs" />
+    <Compile Include="Commands\TF\OpenTFTestCaseCommand.cs" />
+    <Compile Include="Commands\TF\OpenTFTestPlanCommand.cs" />
+    <Compile Include="Commands\TF\OpenTFTestSubSuiteCommand.cs" />
+    <Compile Include="Commands\TF\OpenTFTestSuiteCommand.cs" />
+    <Compile Include="Helpers\Inheritance\TFCollectionCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\TFProjectCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\TFSConnectCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\TFTestCaseCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\TFTestPlanCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\TFTestSubSuiteCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\TFTestSuiteCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\TFSCmdletBase.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TFSrvAddTestCaseCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TFSrvAddTestSubSuiteCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TFSrvAddTestSuiteCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TFSrvCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TFSrvConnectCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TFSrvGetCollectionCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TFSrvGetProjectCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TFSrvGetTestCaseCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TFSrvGetTestPlanCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TFSrvGetTestSubSuiteCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TFSrvGetTestSuiteCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TFSrvNewTestPlanCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TFSrvOpenCollectionCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TFSrvOpenProjectCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TFSrvOpenTestCaseCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TFSrvOpenTestPlanCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TFSrvOpenTestSubSuiteCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TFSrvOpenTestSuiteCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\TFHelper.cs" />
+    <Compile Include="Helpers\UserSettings\CurrentData.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">
+      <Project>{E4499004-DAE5-4700-B212-4CDEA3080BC5}</Project>
+      <Name>PSTestLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TMX\TMX.csproj">
+      <Project>{DFFF7F28-CFA4-4EE5-84F0-4A12A415BC0C}</Project>
+      <Name>TMX</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+</Project>

@@ -192,8 +192,8 @@ testlib
 testninject
 tests
 testtl
-TFAddin
-TFAddinUnitTests
+#TFAddin
+#TFAddinUnitTests
 tl2
 tltest
 UIACOM3

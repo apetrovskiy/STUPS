@@ -1,3 +1,9 @@
+###################################################################################
+#  the UIAutomation module release script
+# v. 1.0 2013/02/24 the initial version
+# v. 1.1 2013/02/27 excluded 3rd party sources
+###################################################################################
+
 param(
       [string]$Password,
       [string]$DirName
@@ -92,7 +98,7 @@ Copy-Item -Path "$($pathToProjectRoot)\UIA\bgshell-21772\NET40\BgShell\bin\Relea
 Copy-Item -Path "$($pathToProjectRoot)\certificate\SoftwareTestingUsingPowerShell.cer" -Destination "$($pathToProjectRoot)\out\$($DirName)\Metro"
 
 # Source code
-Start-Process -FilePath "xcopy" -ArgumentList @("$($pathToProjectRoot)\UIA\*.cs*", "$($pathToProjectRoot)\out\$($DirName)\sources\UIA\", "/s", "/v", "/i") -NoNewWindow -PassThru;
+Start-Process -FilePath "xcopy" -ArgumentList @("$($pathToProjectRoot)\UIA\*.?s*", "$($pathToProjectRoot)\out\$($DirName)\sources\UIA\", "/s", "/v", "/i", "/exclude:exclude_UIA.txt") -NoNewWindow -PassThru;
 Start-Process -FilePath "xcopy" -ArgumentList @("$($pathToProjectRoot)\PS\*.cs*", "$($pathToProjectRoot)\out\$($DirName)\sources\PS\", "/s", "/v", "/i") -NoNewWindow -PassThru;
 Start-Process -FilePath "xcopy" -ArgumentList @("$($pathToProjectRoot)\PSTestLib\*.cs*", "$($pathToProjectRoot)\out\$($DirName)\sources\PSTestLib\", "/s", "/v", "/i") -NoNewWindow -PassThru;
 Copy-Item -Path "$($pathToProjectRoot)\*.sln" -Destination "$($pathToProjectRoot)\out\$($DirName)\sources";

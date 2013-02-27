@@ -174,9 +174,9 @@ AWSUnitTests
 bin_later
 certificate
 Maintenance
-MoqCmdlets
-MoqCmdlets40
-MoqCmdletsUnitTests
+#MoqCmdlets
+#MoqCmdlets40
+#MoqCmdletsUnitTests
 OpenQualityCenter
 #out
 0*

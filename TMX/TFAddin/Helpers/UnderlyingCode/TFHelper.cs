@@ -11,12 +11,15 @@ namespace TMX
 {
     using System;
     using System.Management.Automation;
+    using System.Net;
+    using System.Collections.Specialized;
+    using System.Globalization;
+    //using Microsoft.TeamFoundation
     using Microsoft.TeamFoundation.Client;
     using Microsoft.TeamFoundation.TestManagement.Client;
     using Microsoft.TeamFoundation.WorkItemTracking.Client;
-    //using Microsoft.TeamFoundation
-    using System.Net;
-    using System.Collections.Specialized;
+    using Microsoft.TeamFoundation.Client.Channels;
+    using Microsoft.TeamFoundation.Framework.Client;
     
     /// <summary>
     /// Description of TFHelper.

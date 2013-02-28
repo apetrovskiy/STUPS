@@ -60,10 +60,18 @@
     <Reference Include="MbUnit">
       <HintPath>..\..\..\..\Program Files\Gallio\bin\MbUnit.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.TeamFoundation" />
-    <Reference Include="Microsoft.TeamFoundation.Client" />
-    <Reference Include="Microsoft.TeamFoundation.TestManagement.Client" />
-    <Reference Include="Microsoft.TeamFoundation.WorkItemTracking.Client" />
+    <Reference Include="Microsoft.TeamFoundation">
+      <HintPath>..\..\..\..\..\Program Files %28x86%29\Microsoft Visual Studio 11.0\Common7\IDE\ReferenceAssemblies\v2.0\Microsoft.TeamFoundation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.TeamFoundation.Client">
+      <HintPath>..\..\..\..\..\Program Files %28x86%29\Microsoft Visual Studio 11.0\Common7\IDE\ReferenceAssemblies\v2.0\Microsoft.TeamFoundation.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.TeamFoundation.TestManagement.Client">
+      <HintPath>..\..\..\..\..\Program Files %28x86%29\Microsoft Visual Studio 11.0\Common7\IDE\ReferenceAssemblies\v2.0\Microsoft.TeamFoundation.TestManagement.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.TeamFoundation.WorkItemTracking.Client">
+      <HintPath>..\..\..\..\..\Program Files %28x86%29\Microsoft Visual Studio 11.0\Common7\IDE\ReferenceAssemblies\v2.0\Microsoft.TeamFoundation.WorkItemTracking.Client.dll</HintPath>
+    </Reference>
     <Reference Include="Moq">
       <HintPath>..\..\binaries\Moq\NET35\Moq.dll</HintPath>
     </Reference>

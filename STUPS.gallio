@@ -16,8 +16,8 @@
     <properties />
   </testPackage>
   <testFilters>
-    <testFilter filterName="AutoSave" filterExpr="Id: cf19c01288df0393" />
-    <testFilter filterName="LastRun" filterExpr="Id: cf19c01288df0393" />
+    <testFilter filterName="AutoSave" filterExpr="(Id: 40e6f6363f6560b6 or Id: 6444a19f596988e2)" />
+    <testFilter filterName="LastRun" filterExpr="(Id: 40e6f6363f6560b6 or Id: 6444a19f596988e2)" />
   </testFilters>
   <extensionSpecifications />
   <reportDirectory>..\..\..\Program Files\Gallio\bin\Reports</reportDirectory>

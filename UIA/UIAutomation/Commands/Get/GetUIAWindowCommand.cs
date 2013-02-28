@@ -97,39 +97,80 @@ namespace UIAutomation.Commands
             } // describe
             
             _returnedWindows =
-                GetWindow(this, this.InputObject, this.ProcessName, this.ProcessId, this.Name, this.AutomationId, this.Class, this.TestMode);
+                GetWindow(this, this.InputObject, this.ProcessName, this.ProcessId, this.Name, this.AutomationId, this.Class, this.TestMode); //, this.SearchCriteria, this.WithControl);
             
             if (null != _returnedWindows && _returnedWindows.Count > 0) {
 
-                ArrayList filteredWindows = 
-                    new ArrayList();
-                if (null != this.SearchCriteria && this.SearchCriteria.Length > 0) {
-                    filteredWindows = 
-                        getFiltredElementsCollection(this, _returnedWindows);
+#region commented
+//                ArrayList filteredWindows = 
+//                    new ArrayList();
+//                if (null != this.SearchCriteria && this.SearchCriteria.Length > 0) {
+//                    filteredWindows = 
+//                        getFiltredElementsCollection(this, _returnedWindows);
+//                    
+//                    if (this.TestMode && null != filteredWindows && 0 < filteredWindows.Count) {
+//                        
+//                        this.WriteObject(this, true);
+//                    } else {
+//                        
+//                        this.WriteObject(this, filteredWindows);
+//                    }
+//                } else {
+//                    
+//                    if (this.TestMode && null != _returnedWindows && 0 < _returnedWindows.Count) {
+//                        
+//                        this.WriteObject(this, true);
+//                    } else {
+//                        
+//                        this.WriteObject(this, _returnedWindows);
+//                    }
+//                }
+//                
+//                // 20130228
+//                if (null != this.WithControl && 0 < this.WithControl.Length) {
+//                    
+//                    
+//                }
+#endregion commented
+                
+//                if (null != this.SearchCriteria && 0 < this.SearchCriteria.Length) {
+//                    
+//                    _returnedWindows =
+//                        getFiltredElementsCollection(
+//                            this,
+//                            _returnedWindows);
+//                }
+//                
+//                if (null != this.WithControl && 0 < this.WithControl.Length) {
+//                    
+//                    ArrayList filteredWindows =
+//                        new ArrayList();
+//    
+//                    foreach (AutomationElement window in _returnedWindows) {
+//                        
+//                        GetUIAControlCommand cmdlet =
+//                            new GetUIAControlCommand();
+//                        cmdlet.SearchCriteria = this.WithControl;
+//                        
+//                        ArrayList controlsList =
+//                            getControl(cmdlet);
+//                        
+//                        if (null != controlsList && 0 < controlsList.Count) {
+//                            filteredWindows.Add(window);
+//                        }
+//                    }
+//                    
+//                    _returnedWindows = filteredWindows;
+//                }
+//                
+//                if (null != _returnedWindows && 0 < _returnedWindows.Count) {
                     
-                    if (this.TestMode && null != filteredWindows && 0 < filteredWindows.Count) {
-                        
+                    if (this.TestMode) {
                         this.WriteObject(this, true);
                     } else {
-                        
-                        this.WriteObject(this, filteredWindows);
-                    }
-                } else {
-                    
-                    if (this.TestMode && null != _returnedWindows && 0 < _returnedWindows.Count) {
-                        
-                        this.WriteObject(this, true);
-                    } else {
-                        
                         this.WriteObject(this, _returnedWindows);
                     }
-                }
-                
-                // 20130228
-                if (null != this.WithControl && 0 < this.WithControl.Length) {
-                    
-                    
-                }
+//                }
                 
             } else {
                 

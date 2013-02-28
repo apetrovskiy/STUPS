@@ -87,9 +87,8 @@ namespace UIAutomationTest.Commands.Get
             MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
 
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                //@"Wait-UIAWindow -pid (Get-Process 'wrong process name').Id -Seconds 2;",
                 @"Wait-UIAWindow -pid 0 -Seconds 2;",
-                "True");
+                "False");
         }
     }
 }

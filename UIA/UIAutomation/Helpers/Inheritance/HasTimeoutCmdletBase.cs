@@ -120,6 +120,64 @@ namespace UIAutomation
                     cmdlet.WriteVerbose(cmdlet, "getting a window by name, automationId, className");
                     aeWndCollection = getWindowCollectionByName(windowNames, automationId, className, cmdlet.Recurse);
                 }
+                
+                // 20130228
+                if (null != aeWndCollection && 0 < aeWndCollection.Count) {
+                    
+                    cmdlet.WriteVerbose(cmdlet, "one or several windows were found by name, process name, process id or process object");
+                    
+                    if (null != cmdlet.SearchCriteria && 0 < cmdlet.SearchCriteria.Length) {
+                    
+                        cmdlet.WriteVerbose(cmdlet, "processing SearchCriteria");
+                        
+                        aeWndCollection =
+                            cmdlet.getFiltredElementsCollection(
+                                cmdlet,
+                                aeWndCollection);
+                    }
+                    
+                    if (null != aeWndCollection && 0 < aeWndCollection.Count) {
+                    
+                        cmdlet.WriteVerbose(cmdlet, "one or several windows were not excluded by SearchCriteria");
+                        
+                        if (null != cmdlet.WithControl && 0 < cmdlet.WithControl.Length) {
+                        
+                            cmdlet.WriteVerbose(cmdlet, "processing WithControl");
+                            
+                            ArrayList filteredWindows =
+                                new ArrayList();
+            
+                            foreach (AutomationElement window in aeWndCollection) {
+                                
+                                cmdlet.WriteVerbose(cmdlet, "searching for control(s) for every window, one by one");
+                                
+                                GetControlCmdletBase cmdletCtrl =
+                                    new GetControlCmdletBase();
+                                //cmdletCtrl.InputObject = (AutomationElement[])aeWndCollection.ToArray();
+                                cmdletCtrl.InputObject =
+                                    (AutomationElement[])aeWndCollection.ToArray(typeof(AutomationElement));
+                                cmdletCtrl.SearchCriteria = cmdlet.WithControl;
+                                
+                                cmdlet.WriteVerbose(cmdlet, "searching for one or more controls");
+                                
+                                ArrayList controlsList =
+                                    getControl(cmdletCtrl);
+                                
+                                cmdlet.WriteVerbose(cmdlet, "after the search");
+                                
+                                if (null != controlsList && 0 < controlsList.Count) {
+                                    
+                                    cmdlet.WriteVerbose(cmdlet, "ths list of controls that are on the window is not empty");
+                                    
+                                    filteredWindows.Add(window);
+                                }
+                            }
+                            
+                            aeWndCollection = filteredWindows;
+                        }
+                    }
+                }
+                
 
                 if (null != aeWndCollection && aeWndCollection.Count > 0) {
 

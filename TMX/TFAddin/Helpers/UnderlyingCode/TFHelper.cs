@@ -18,7 +18,7 @@ namespace TMX
     using Microsoft.TeamFoundation.Client;
     using Microsoft.TeamFoundation.TestManagement.Client;
     using Microsoft.TeamFoundation.WorkItemTracking.Client;
-    using Microsoft.TeamFoundation.Client.Channels;
+    //using Microsoft.TeamFoundation.Client.Channels;
     using Microsoft.TeamFoundation.Framework.Client;
     
     /// <summary>
@@ -85,50 +85,66 @@ namespace TMX
             }
         }
         
-        public static void OpenProjectCollection(TFSCmdletBase cmdlet, string name)
+        public static void OpenProjectCollection(TFSCmdletBase cmdlet, string[] collectionNames)
         {
             try
             {
-                var projectCollectionUri =
-                    new Uri(
-                        CurrentData.CurrentServer.Uri.OriginalString +
-                        "/" +
-                        name);
+                if (null != collectionNames && 0 < collectionNames.Length) {
+                    
+                    foreach (string collectionName in collectionNames) {
+                        
+                        var projectCollectionUri =
+                            new Uri(
+                                CurrentData.CurrentServer.Uri.OriginalString +
+                                "/" +
+                                collectionName);
+                        
+                        cmdlet.WriteVerbose(
+                            cmdlet,
+                            "connecing to the collection: '" +
+                            projectCollectionUri.ToString() +
+                            "'");
+                        
+                        var projectCollection =
+                            TfsTeamProjectCollectionFactory.GetTeamProjectCollection(projectCollectionUri);
+                        
+                        cmdlet.WriteVerbose(
+                            cmdlet,
+                            "Collection is connected, checking the connection");
+                        
+                        try {
+                            projectCollection.EnsureAuthenticated();
+                        }
+                        catch (Exception eTfsCollectionConnected) {
+                            
+                            cmdlet.WriteError(
+                                cmdlet,
+                                "Failed to connect to collection '" +
+                                projectCollectionUri.ToString() +
+                                "'." +
+                                eTfsCollectionConnected.Message,
+                                "FailedToConnect",
+                                ErrorCategory.InvalidResult,
+                                true);
+                        }
+                        
+                        cmdlet.WriteVerbose(cmdlet, "connected to the collection");
+                        
+                        CurrentData.CurrentCollection = projectCollection;
+                        
+                        cmdlet.WriteObject(cmdlet, projectCollection);
+                    }
                 
-                cmdlet.WriteVerbose(
-                    cmdlet,
-                    "connecing to the collection: '" +
-                    projectCollectionUri.ToString() +
-                    "'");
-                
-                var projectCollection =
-                    TfsTeamProjectCollectionFactory.GetTeamProjectCollection(projectCollectionUri);
-                
-                cmdlet.WriteVerbose(
-                    cmdlet,
-                    "Collection is connected, checking the connection");
-                
-                try {
-                    projectCollection.EnsureAuthenticated();
-                }
-                catch (Exception eTfsCollectionConnected) {
+                } else {
                     
                     cmdlet.WriteError(
                         cmdlet,
-                        "Failed to connect to collection '" +
-                        projectCollectionUri.ToString() +
-                        "'." +
-                        eTfsCollectionConnected.Message,
-                        "FailedToConnect",
-                        ErrorCategory.InvalidResult,
+                        "A wrong name or names were provided for collection search",
+                        "WrongCollectionName",
+                        ErrorCategory.InvalidArgument,
                         true);
+                    
                 }
-                
-                cmdlet.WriteVerbose(cmdlet, "connected to the collection");
-                
-                CurrentData.CurrentCollection = projectCollection;
-                
-                cmdlet.WriteObject(cmdlet, projectCollection);
             }
 //            catch (TeamFoundationServerUnauthorizedException ex)
 //            {
@@ -145,37 +161,58 @@ namespace TMX
             
         }
         
-        public static void OpenProject(TFSCmdletBase cmdlet, string name)
+        public static void OpenProject(TFSCmdletBase cmdlet, string[] projectNames)
         {
 
+            string currentProjectName = string.Empty;
+            
             try {
                 
-                ITestManagementService testMgmtSvc =
-                    (ITestManagementService)CurrentData.CurrentCollection.GetService(typeof(ITestManagementService));
-
-                WorkItemStore store =
-                    (WorkItemStore)CurrentData.CurrentCollection.GetService(typeof(WorkItemStore));
-
-                ITestManagementTeamProject project =
-                    testMgmtSvc.GetTeamProject(name);
-                
-                cmdlet.WriteVerbose(
-                    cmdlet,
-                    "Connected to the project '" +
-                    name +
-                    "'");
-                
-                CurrentData.CurrentProject = project;
-                
-                cmdlet.WriteObject(cmdlet, project);
-                
+                if (null != projectNames && 0 < projectNames.Length) {
+                    
+                    foreach (string projectName in projectNames) {
+                        
+                        currentProjectName = projectName;
+                        
+                        ITestManagementService testMgmtSvc =
+                            (ITestManagementService)CurrentData.CurrentCollection.GetService(typeof(ITestManagementService));
+        
+                        WorkItemStore store =
+                            (WorkItemStore)CurrentData.CurrentCollection.GetService(typeof(WorkItemStore));
+        
+                        ITestManagementTeamProject project =
+                            testMgmtSvc.GetTeamProject(projectName);
+                        
+                        cmdlet.WriteVerbose(
+                            cmdlet,
+                            "Connected to the project '" +
+                            projectNames +
+                            "'");
+                        
+                        CurrentData.CurrentProject = project;
+                        
+                        cmdlet.WriteObject(cmdlet, project);
+                        
+                    }
+                    
+                } else {
+                    
+                    cmdlet.WriteError(
+                        cmdlet,
+                        "A wrong name or names were provided for project search",
+                        "WrongProjectName",
+                        ErrorCategory.InvalidArgument,
+                        true);
+                        
+                    
+                }
             }
             catch (Exception eOpenProject) {
                 
                 cmdlet.WriteError(
                     cmdlet,
                     "Failed to connect to project '" +
-                    name +
+                    currentProjectName +
                     "'." +
                     eOpenProject.Message,
                     "FailedToConnect",

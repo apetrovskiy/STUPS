@@ -111,6 +111,8 @@
     <Compile Include="Commands\TF\OpenTFTestPlanCommand.cs" />
     <Compile Include="Commands\TF\OpenTFTestSubSuiteCommand.cs" />
     <Compile Include="Commands\TF\OpenTFTestSuiteCommand.cs" />
+    <Compile Include="Helpers\Inheritance\MultipleNamesCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\SingleNameCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\TFCollectionCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\TFProjectCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\TFSConnectCmdletBase.cs" />

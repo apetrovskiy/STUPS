@@ -27,7 +27,7 @@ namespace TMX
         {
             TFProjectCmdletBase cmdlet =
                 (TFProjectCmdletBase)this.Cmdlet;
-                
+            
             TFHelper.OpenProject(
                 cmdlet,
                 cmdlet.Name);

@@ -21,11 +21,11 @@ namespace TMX
         {
         }
         
-        #region Parameters
-        [Parameter(Mandatory = false,
-                   Position = 0)]
-        [ValidateNotNullOrEmpty()]
-        public new string Name { get; set; }
-        #endregion Parameters
+//        #region Parameters
+//        [Parameter(Mandatory = false,
+//                   Position = 0)]
+//        [ValidateNotNullOrEmpty()]
+//        public new string[] Name { get; set; }
+//        #endregion Parameters
     }
 }

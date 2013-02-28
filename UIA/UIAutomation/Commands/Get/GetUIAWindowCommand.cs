@@ -124,6 +124,13 @@ namespace UIAutomation.Commands
                         this.WriteObject(this, _returnedWindows);
                     }
                 }
+                
+                // 20130228
+                if (null != this.WithControl && 0 < this.WithControl.Length) {
+                    
+                    
+                }
+                
             } else {
                 
                 // 20130225

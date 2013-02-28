@@ -15,7 +15,7 @@ namespace TMX
     /// <summary>
     /// Description of TFProjectCmdletBase.
     /// </summary>
-    public class TFProjectCmdletBase : TFSCmdletBase
+    public class TFProjectCmdletBase : MultipleNamesCmdletBase // TFSCmdletBase
     {
         public TFProjectCmdletBase()
         {

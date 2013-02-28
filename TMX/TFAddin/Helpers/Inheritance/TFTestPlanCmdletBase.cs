@@ -15,7 +15,7 @@ namespace TMX
     /// <summary>
     /// Description of TFTestPlanCmdletBase.
     /// </summary>
-    public class TFTestPlanCmdletBase : TFSCmdletBase
+    public class TFTestPlanCmdletBase : MultipleNamesCmdletBase //TFSCmdletBase
     {
         public TFTestPlanCmdletBase()
         {

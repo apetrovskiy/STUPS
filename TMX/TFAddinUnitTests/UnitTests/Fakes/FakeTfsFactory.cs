@@ -35,7 +35,7 @@ namespace TFAddinUnitTests
     using Microsoft.TeamFoundation.Client;
     using Microsoft.TeamFoundation.TestManagement.Client;
     using Microsoft.TeamFoundation.WorkItemTracking.Client;
-    using Microsoft.TeamFoundation.Client.Channels;
+    //using Microsoft.TeamFoundation.Client.Channels;
     using Microsoft.TeamFoundation.Framework.Client;
     using MbUnit.Framework;
     using PSTestLib;

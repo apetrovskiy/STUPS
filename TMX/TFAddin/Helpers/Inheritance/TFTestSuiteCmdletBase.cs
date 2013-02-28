@@ -15,7 +15,7 @@ namespace TMX
     /// <summary>
     /// Description of TFTestSuiteCmdletBase.
     /// </summary>
-    public class TFTestSuiteCmdletBase : TFSCmdletBase
+    public class TFTestSuiteCmdletBase : SingleNameCmdletBase // TFSCmdletBase
     {
         public TFTestSuiteCmdletBase()
         {

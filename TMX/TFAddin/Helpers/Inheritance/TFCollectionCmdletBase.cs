@@ -15,7 +15,7 @@ namespace TMX
     /// <summary>
     /// Description of TFCollectionCmdletBase.
     /// </summary>
-    public class TFCollectionCmdletBase : TFSCmdletBase
+    public class TFCollectionCmdletBase : MultipleNamesCmdletBase //TFSCmdletBase
     {
         public TFCollectionCmdletBase()
         {

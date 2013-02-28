@@ -40,8 +40,9 @@ namespace UIAutomation
         //           ParameterSetName = "Window")]
         //[Parameter(Mandatory = false,
         //           ParameterSetName = "First")]
-        [Parameter(Mandatory = false,
-                   ParameterSetName = "SearchCriteria")]
+        // 20130228
+        //[Parameter(Mandatory = false,
+        //           ParameterSetName = "SearchCriteria")]
         public Hashtable[] SearchCriteria { get; set; }
         #endregion Parameters
                 

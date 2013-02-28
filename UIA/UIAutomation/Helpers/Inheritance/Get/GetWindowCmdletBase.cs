@@ -12,6 +12,7 @@ namespace UIAutomation
     using System;
     using System.Management.Automation;
     using System.Diagnostics;
+    using System.Collections;
 
     /// <summary>
     /// Description of GetWindowCmdletBase.
@@ -117,6 +118,15 @@ namespace UIAutomation
         [Parameter(Mandatory = false,
                    ParameterSetName = "Process")]
         public SwitchParameter Recurse { get; set; }
+        
+//        [Parameter(Mandatory = false,
+//                   ParameterSetName = "ProcessName")]
+//        [Parameter(Mandatory = false,
+//                   ParameterSetName = "ProcessId")]
+//        [Parameter(Mandatory = false,
+//                   ParameterSetName = "Process")]
+        [Parameter(Mandatory = false)]
+        public Hashtable[] WithControl { get; set; }
         
         [Parameter(Mandatory = true,
                    ParameterSetName = "UIA")]

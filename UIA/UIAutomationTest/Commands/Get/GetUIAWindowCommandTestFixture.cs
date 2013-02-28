@@ -543,6 +543,49 @@ namespace UIAutomationTest.Commands.Get
         
         // ================================================
         
+        [Test]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Get_UIAWindow")]
+        public void GetWindowByName_WithControl_Timeout5000()
+        {
+            MiddleLevelCode.StartProcessWithFormAndControl(
+                UIAutomationTestForms.Forms.WinFormsEmpty,
+                0,
+                System.Windows.Automation.ControlType.Button,
+                "OK",
+                "btn",
+                TimeoutsAndDelays.Control_Delay2000);
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+                "Get-UIAWindow -Name '" +
+                MiddleLevelCode.TestFormNameEmpty +
+                "' -timeout 5000 -WithControl @{controlType=\"button\";name=\"*OK*\"} | Read-UIAControlName;",
+                MiddleLevelCode.TestFormNameEmpty);
+        }
+        
+        [Test]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Get_UIAWindow")]
+        public void GetWindowByName_WithControl_Wrong_Timeout5000()
+        {
+            MiddleLevelCode.StartProcessWithFormAndControl(
+                UIAutomationTestForms.Forms.WinFormsEmpty,
+                0,
+                System.Windows.Automation.ControlType.Button,
+                "OK",
+                "btn",
+                TimeoutsAndDelays.Control_Delay2000);
+            CmdletUnitTest.TestRunspace.RunAndGetTheException(
+                "Get-UIAWindow -Name '" +
+                MiddleLevelCode.TestFormNameEmpty +
+                "' -timeout 5000 -WithControl @{controlType=\"button\";name=\"*Nope*\"} | Read-UIAControlName;",
+                "",
+                "");
+        }
+        
+        // ================================================
+        
         [TearDown]
         public void DisposeRunspace()
         {

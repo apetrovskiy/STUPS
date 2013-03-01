@@ -61,5 +61,7 @@ namespace TMX
             return !left.Equals(right);
         }
         #endregion
+        
+        //public void SetTimeSpent
     }
 }

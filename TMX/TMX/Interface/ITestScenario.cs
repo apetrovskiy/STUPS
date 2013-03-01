@@ -24,5 +24,10 @@ namespace TMX
         string Status { get; }
         
         string SuiteId { get; }
+        // 20130301
+        System.DateTime Timestamp { get; }
+        void SetNow();
+        
+        List<string> Tags { get; set; }
     }
 }

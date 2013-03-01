@@ -122,6 +122,7 @@ namespace UIAutomation
                 }
                 
                 // 20130228
+                // filtering result window collection by SearchCriteria
                 if (null != aeWndCollection && 0 < aeWndCollection.Count) {
                     
                     cmdlet.WriteVerbose(cmdlet, "one or several windows were found by name, process name, process id or process object");
@@ -135,59 +136,62 @@ namespace UIAutomation
                                 cmdlet,
                                 aeWndCollection);
                     }
+                }
                     
-                    if (null != aeWndCollection && 0 < aeWndCollection.Count) {
+                // filtering result window collection by having a control(s) with properties as from WithControl
+                if (null != aeWndCollection && 0 < aeWndCollection.Count) {
+                
+                    cmdlet.WriteVerbose(cmdlet, "one or several windows were not excluded by SearchCriteria");
                     
-                        cmdlet.WriteVerbose(cmdlet, "one or several windows were not excluded by SearchCriteria");
+                    if (null != cmdlet.WithControl && 0 < cmdlet.WithControl.Length) {
+                    
+                        cmdlet.WriteVerbose(cmdlet, "processing WithControl");
                         
-                        if (null != cmdlet.WithControl && 0 < cmdlet.WithControl.Length) {
-                        
-                            cmdlet.WriteVerbose(cmdlet, "processing WithControl");
+                        ArrayList filteredWindows =
+                            new ArrayList();
+        
+                        foreach (AutomationElement window in aeWndCollection) {
                             
-                            ArrayList filteredWindows =
-                                new ArrayList();
-            
-                            foreach (AutomationElement window in aeWndCollection) {
+                            cmdlet.WriteVerbose(cmdlet, "searching for control(s) for every window, one by one");
+                            
+                            GetControlCmdletBase cmdletCtrl =
+                                new GetControlCmdletBase();
+                            //cmdletCtrl.InputObject = (AutomationElement[])aeWndCollection.ToArray();
+                            cmdletCtrl.InputObject =
+                                (AutomationElement[])aeWndCollection.ToArray(typeof(AutomationElement));
+                            cmdletCtrl.SearchCriteria = cmdlet.WithControl;
+                            cmdletCtrl.Timeout = 0;
+                            
+                            cmdlet.WriteVerbose(cmdlet, "searching for one or more controls");
+                            
+                            // 20130301
+                            try {
+                            
+                                ArrayList controlsList =
+                                    getControl(cmdletCtrl);
                                 
-                                cmdlet.WriteVerbose(cmdlet, "searching for control(s) for every window, one by one");
+                                cmdlet.WriteVerbose(cmdlet, "after the search");
                                 
-                                GetControlCmdletBase cmdletCtrl =
-                                    new GetControlCmdletBase();
-                                //cmdletCtrl.InputObject = (AutomationElement[])aeWndCollection.ToArray();
-                                cmdletCtrl.InputObject =
-                                    (AutomationElement[])aeWndCollection.ToArray(typeof(AutomationElement));
-                                cmdletCtrl.SearchCriteria = cmdlet.WithControl;
-                                
-                                cmdlet.WriteVerbose(cmdlet, "searching for one or more controls");
-                                
-                                // 20130301
-                                try {
-                                
-                                    ArrayList controlsList =
-                                        getControl(cmdletCtrl);
+                                if (null != controlsList && 0 < controlsList.Count) {
                                     
-                                    cmdlet.WriteVerbose(cmdlet, "after the search");
+                                    cmdlet.WriteVerbose(cmdlet, "ths list of controls that are on the window is not empty");
                                     
-                                    if (null != controlsList && 0 < controlsList.Count) {
-                                        
-                                        cmdlet.WriteVerbose(cmdlet, "ths list of controls that are on the window is not empty");
-                                        
-                                        filteredWindows.Add(window);
-                                    }
-                                
-                                // 20130301
+                                    filteredWindows.Add(window);
                                 }
-                                
-                                catch (Exception eWindowIsGone) {
-                                    
-                                    aeWndCollection.Clear();
-                                    break;
-                                    
-                                }
+                            
+                            // 20130301
                             }
                             
-                            aeWndCollection = filteredWindows;
+                            catch (Exception eWindowIsGone) {
+                                
+                                // forcing to a next loop
+                                aeWndCollection.Clear();
+                                break;
+                                
+                            }
                         }
+                        
+                        aeWndCollection = filteredWindows;
                     }
                 }
                 

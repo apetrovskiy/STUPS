@@ -800,6 +800,14 @@ namespace TMX
                 return false;
             }
             
+            // 20130301
+            if (System.DateTime.MinValue != TMX.TestData.CurrentTestSuite.Timestamp) {
+                TMX.TestData.CurrentTestSuite.SetTimeSpent(
+                    TMX.TestData.CurrentTestSuite.TimeSpent +=
+                    (System.DateTime.Now - TMX.TestData.CurrentTestSuite.Timestamp).TotalSeconds);
+                TMX.TestData.CurrentTestSuite.Timestamp = System.DateTime.MinValue;
+            }
+            
             TestSuites.Add(new TestSuite(testSuiteName, testSuiteId));
             if (testSuiteDesctiption != null && testSuiteDesctiption != string.Empty) {
                 TestData.TestSuites[TestSuites.Count - 1].Description = 
@@ -808,6 +816,9 @@ namespace TMX
             
             TestData.CurrentTestSuite = 
                 TestData.TestSuites[TestSuites.Count - 1];
+            
+            // 20130301
+            TestData.CurrentTestSuite.SetNow();
             
             if (TestData.CurrentTestSuite != null) {
                 OnTMXNewTestSuiteCreated(TestData.CurrentTestSuite, new EventArgs()); //null);
@@ -886,6 +897,14 @@ namespace TMX
                 }
             }
             
+            // 20130301
+            if (System.DateTime.MinValue != TMX.TestData.CurrentTestScenario.Timestamp) {
+                TMX.TestData.CurrentTestScenario.SetTimeSpent(
+                    TMX.TestData.CurrentTestScenario.TimeSpent +=
+                    (System.DateTime.Now - TMX.TestData.CurrentTestScenario.Timestamp).TotalSeconds);
+                TMX.TestData.CurrentTestScenario.Timestamp = System.DateTime.MinValue;
+            }
+            
             if (testSuite != null) {
                 TestData.CurrentTestSuite = testSuite;
             } else if (testSuite == null && 
@@ -909,6 +928,9 @@ namespace TMX
             if (TestData.CurrentTestSuite == null) {
                 return result;
             }
+            
+            // 20130301
+            CurrentTestScenario.SetNow();
             
             if (testScenarioId == null || testScenarioId == string.Empty) {
                 testScenarioId = 

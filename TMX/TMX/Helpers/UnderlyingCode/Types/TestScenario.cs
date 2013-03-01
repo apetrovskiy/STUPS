@@ -40,6 +40,9 @@ namespace TMX
             }
             catch {}
             
+            // 20130301
+            this.SetNow();
+            
             this.TestResults.Add(
                 new TestResult(
                     TestData.TestSuites[TestData.TestSuites.Count - 1].TestScenarios[TestData.TestSuites[TestData.TestSuites.Count - 1].TestScenarios.Count - 1].Id, // "???",
@@ -85,6 +88,9 @@ namespace TMX
             }
             catch {}
             
+            // 20130301
+            this.SetNow();
+            
             this.TestResults.Add(
                 new TestResult(
                    this.Id,
@@ -129,5 +135,19 @@ namespace TMX
         public TestStat Statistics { get; set; }
         
         public string SuiteId { get; internal set; }
+        
+        // 20130301
+        public System.DateTime Timestamp { get; internal set; }
+        public void SetNow()
+        {
+            this.Timestamp = System.DateTime.Now;
+        }
+        public double TimeSpent { get; internal set; }
+        public void SetTimeSpent(double timeSpent)
+        {
+            this.TimeSpent = timeSpent;
+        }
+        
+        public List<string> Tags { get; set; }
     }
 }

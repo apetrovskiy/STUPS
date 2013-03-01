@@ -22,5 +22,10 @@ namespace TMX
         List<ITestScenario >  TestScenarios { get; }
         string Description { get; set; }
         string Status { get; }
+        // 20130301
+        System.DateTime Timestamp { get; }
+        void SetNow();
+        
+        List<string> Tags { get; set; }
     }
 }

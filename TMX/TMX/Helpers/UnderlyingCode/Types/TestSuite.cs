@@ -22,6 +22,9 @@ namespace TMX
             TestScenarios = new List<ITestScenario > ();
             this.Statistics = new TestStat();
             this.enStatus = TestSuiteStatuses.NotTested;
+            
+            // 20130301
+            this.SetNow();
         }
         
         public TestSuite(string testSuiteName, string testSuiteId)
@@ -36,6 +39,9 @@ namespace TMX
                 this.Id = 
                     TestData.GetTestSuiteId();
             }
+            
+            // 20130301
+            this.SetNow();
         }
         
         public string Name { get; internal set; }
@@ -72,5 +78,19 @@ namespace TMX
         }
         
         public TestStat Statistics { get; set; }
+        
+        // 20130301
+        public System.DateTime Timestamp { get; internal set; }
+        public void SetNow()
+        {
+            this.Timestamp = System.DateTime.Now;
+        }
+        public double TimeSpent { get; internal set; }
+        public void SetTimeSpent(double timeSpent)
+        {
+            this.TimeSpent = timeSpent;
+        }
+        
+        public List<string> Tags { get; set; }
     }
 }

@@ -74,10 +74,21 @@ namespace TMX
         {
             bool result = false;
             
+            // 20130301
+            if (System.DateTime.MinValue != TMX.TestData.CurrentTestSuite.Timestamp) {
+                TMX.TestData.CurrentTestSuite.SetTimeSpent(
+                    TMX.TestData.CurrentTestSuite.TimeSpent +=
+                    (System.DateTime.Now - TMX.TestData.CurrentTestSuite.Timestamp).TotalSeconds);
+                TMX.TestData.CurrentTestSuite.Timestamp = System.DateTime.MinValue;
+            }
+            
             TMX.TestData.CurrentTestSuite = 
                 TMX.TestData.GetTestSuite(testSuiteName, testSuiteId);
             if (TMX.TestData.CurrentTestSuite != null) {
                 //TMX.TestData.FireTMXTestSuiteOpened(TMX.TestData.CurrentTestSuite, null);
+                // 20130301
+                TMX.TestData.CurrentTestSuite.SetNow();
+                
                 TMX.TestData.OnTMXTestSuiteOpened(TMX.TestData.CurrentTestSuite, null);
                 result = true;
             }
@@ -112,6 +123,15 @@ namespace TMX
                 string.Empty,
                 true);
             }
+            
+            // 20130301
+            if (System.DateTime.MinValue != TMX.TestData.CurrentTestScenario.Timestamp) {
+                TMX.TestData.CurrentTestScenario.SetTimeSpent(
+                    TMX.TestData.CurrentTestScenario.TimeSpent +=
+                    (System.DateTime.Now - TMX.TestData.CurrentTestScenario.Timestamp).TotalSeconds);
+                TMX.TestData.CurrentTestScenario.Timestamp = System.DateTime.MinValue;
+            }
+            
                 //true);
             //TMX.TestData.CurrentTestScenario =
                 TMX.TestData.GetTestScenario(cmdlet.InputObject,
@@ -126,6 +146,10 @@ namespace TMX
                        TMX.TestData.CurrentTestScenario.SuiteId));
                 TMX.TestData.CurrentTestResult =
                     TMX.TestData.CurrentTestScenario.TestResults[TMX.TestData.CurrentTestScenario.TestResults.Count - 1];
+                
+                // 20130301
+                TMX.TestData.CurrentTestScenario.SetNow();
+                
                 //TMX.TestData.FireTMXTestScenarioOpened(TMX.TestData.CurrentTestResult, null);
                 TMX.TestData.OnTMXTestScenarioOpened(TMX.TestData.CurrentTestScenario, null);
                 result = true;

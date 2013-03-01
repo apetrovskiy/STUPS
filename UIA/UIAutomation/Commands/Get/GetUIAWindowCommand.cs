@@ -132,7 +132,8 @@ namespace UIAutomation.Commands
 //                    
 //                }
 #endregion commented
-                
+      
+#region commented
 //                if (null != this.SearchCriteria && 0 < this.SearchCriteria.Length) {
 //                    
 //                    _returnedWindows =
@@ -164,7 +165,8 @@ namespace UIAutomation.Commands
 //                }
 //                
 //                if (null != _returnedWindows && 0 < _returnedWindows.Count) {
-                    
+#endregion commented
+
                     if (this.TestMode) {
                         this.WriteObject(this, true);
                     } else {

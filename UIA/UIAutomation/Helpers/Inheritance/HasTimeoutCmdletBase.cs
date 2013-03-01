@@ -160,16 +160,29 @@ namespace UIAutomation
                                 
                                 cmdlet.WriteVerbose(cmdlet, "searching for one or more controls");
                                 
-                                ArrayList controlsList =
-                                    getControl(cmdletCtrl);
+                                // 20130301
+                                try {
                                 
-                                cmdlet.WriteVerbose(cmdlet, "after the search");
+                                    ArrayList controlsList =
+                                        getControl(cmdletCtrl);
+                                    
+                                    cmdlet.WriteVerbose(cmdlet, "after the search");
+                                    
+                                    if (null != controlsList && 0 < controlsList.Count) {
+                                        
+                                        cmdlet.WriteVerbose(cmdlet, "ths list of controls that are on the window is not empty");
+                                        
+                                        filteredWindows.Add(window);
+                                    }
                                 
-                                if (null != controlsList && 0 < controlsList.Count) {
+                                // 20130301
+                                }
+                                
+                                catch (Exception eWindowIsGone) {
                                     
-                                    cmdlet.WriteVerbose(cmdlet, "ths list of controls that are on the window is not empty");
+                                    aeWndCollection.Clear();
+                                    break;
                                     
-                                    filteredWindows.Add(window);
                                 }
                             }
                             

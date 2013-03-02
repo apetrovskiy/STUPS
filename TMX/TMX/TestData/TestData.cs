@@ -801,11 +801,16 @@ namespace TMX
             }
             
             // 20130301
-            if (System.DateTime.MinValue != TMX.TestData.CurrentTestSuite.Timestamp) {
-                TMX.TestData.CurrentTestSuite.SetTimeSpent(
-                    TMX.TestData.CurrentTestSuite.TimeSpent +=
-                    (System.DateTime.Now - TMX.TestData.CurrentTestSuite.Timestamp).TotalSeconds);
-                TMX.TestData.CurrentTestSuite.Timestamp = System.DateTime.MinValue;
+            // set time spent on the previous suite
+            if (null != TMX.TestData.CurrentTestSuite) {
+
+                if (System.DateTime.MinValue != TMX.TestData.CurrentTestSuite.Timestamp) {
+
+                    TMX.TestData.CurrentTestSuite.SetTimeSpent(
+                        TMX.TestData.CurrentTestSuite.TimeSpent +=
+                        (System.DateTime.Now - TMX.TestData.CurrentTestSuite.Timestamp).TotalSeconds);
+                    TMX.TestData.CurrentTestSuite.Timestamp = System.DateTime.MinValue;
+                }
             }
             
             TestSuites.Add(new TestSuite(testSuiteName, testSuiteId));
@@ -817,10 +822,12 @@ namespace TMX
             TestData.CurrentTestSuite = 
                 TestData.TestSuites[TestSuites.Count - 1];
             
-            // 20130301
-            TestData.CurrentTestSuite.SetNow();
-            
             if (TestData.CurrentTestSuite != null) {
+                
+                // 20130301
+                // set the initial time for this suite's session
+                TestData.CurrentTestSuite.SetNow();
+
                 OnTMXNewTestSuiteCreated(TestData.CurrentTestSuite, new EventArgs()); //null);
             } else {
                 //
@@ -898,11 +905,16 @@ namespace TMX
             }
             
             // 20130301
-            if (System.DateTime.MinValue != TMX.TestData.CurrentTestScenario.Timestamp) {
-                TMX.TestData.CurrentTestScenario.SetTimeSpent(
-                    TMX.TestData.CurrentTestScenario.TimeSpent +=
-                    (System.DateTime.Now - TMX.TestData.CurrentTestScenario.Timestamp).TotalSeconds);
-                TMX.TestData.CurrentTestScenario.Timestamp = System.DateTime.MinValue;
+            // set time spent on the previous scenario
+            if (null != TMX.TestData.CurrentTestScenario) {
+
+                if (System.DateTime.MinValue != TMX.TestData.CurrentTestScenario.Timestamp) {
+
+                    TMX.TestData.CurrentTestScenario.SetTimeSpent(
+                        TMX.TestData.CurrentTestScenario.TimeSpent +=
+                        (System.DateTime.Now - TMX.TestData.CurrentTestScenario.Timestamp).TotalSeconds);
+                    TMX.TestData.CurrentTestScenario.Timestamp = System.DateTime.MinValue;
+                }
             }
             
             if (testSuite != null) {
@@ -929,9 +941,6 @@ namespace TMX
                 return result;
             }
             
-            // 20130301
-            CurrentTestScenario.SetNow();
-            
             if (testScenarioId == null || testScenarioId == string.Empty) {
                 testScenarioId = 
                     GetTestScenarioId();
@@ -947,6 +956,11 @@ namespace TMX
             }
             TestData.CurrentTestScenario = 
                 (TestScenario)TestData.CurrentTestSuite.TestScenarios[CurrentTestSuite.TestScenarios.Count - 1];
+            
+            // 20130301
+            // set the initial time for this scenario's session
+            CurrentTestScenario.SetNow();
+            
             OnTMXNewTestScenarioAdded(TestData.CurrentTestScenario, null);
             result = true;
             return result;

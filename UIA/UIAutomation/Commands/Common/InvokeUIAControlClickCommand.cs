@@ -68,8 +68,6 @@ namespace UIAutomation.Commands
             
                 ClickControl(
                     this,
-                    // 20120823
-                    //this.InputObject,
                     inputObject,
                     this.RightClick,
                     this.MidClick,
@@ -82,8 +80,7 @@ namespace UIAutomation.Commands
                     this.Y);
     
                 if (this.PassThru) {
-                    // 20130105
-                    //this.WriteObject(this, this.InputObject);
+
                     this.WriteObject(this, inputObject);
                 } else {
                     this.WriteObject(this, true);

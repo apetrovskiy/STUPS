@@ -2361,6 +2361,11 @@
             Gets the <see cref="T:OpenQA.Selenium.IAlert" /> that has not been handled.
             </summary>
     </member>
+    <member name="P:OpenQA.Selenium.UnhandledAlertException.AlertText">
+      <summary>
+            Gets the text of the unhandled alert.
+            </summary>
+    </member>
     <member name="T:OpenQA.Selenium.WebDriverResult">
       <summary>
             Specifies return values for actions in the driver.
@@ -3475,6 +3480,18 @@
             </summary>
       <returns>A <see cref="T:OpenQA.Selenium.Screenshot" /> object containing the image.</returns>
     </member>
+    <member name="P:OpenQA.Selenium.Chrome.ChromeDriver.FileDetector">
+      <summary>
+            Gets or sets the <see cref="T:OpenQA.Selenium.IFileDetector" /> responsible for detecting 
+            sequences of keystrokes representing file paths and names. 
+            </summary>
+      <remarks>The Chrome driver does not allow a file detector to be set,
+            as the server component of the Chrome driver (ChromeDriver.exe) only 
+            allows uploads from the local computer environment. Attempting to set
+            this property has no effect, but does not throw an exception. If you 
+            are attempting to run the Chrome driver remotely, use <see cref="T:OpenQA.Selenium.Remote.RemoteWebDriver" />
+            in conjunction with a standalone WebDriver server.</remarks>
+    </member>
     <member name="T:OpenQA.Selenium.Chrome.ChromeDriverService">
       <summary>
             Exposes the service provided by the native ChromeDriver executable.
@@ -4310,6 +4327,18 @@
       <param name="elementId">The ID of this element.</param>
       <returns>A <see cref="T:OpenQA.Selenium.Remote.RemoteWebElement" /> with the specified ID. For the FirefoxDriver this will be a <see cref="T:OpenQA.Selenium.Firefox.FirefoxWebElement" />.</returns>
     </member>
+    <member name="P:OpenQA.Selenium.Firefox.FirefoxDriver.FileDetector">
+      <summary>
+            Gets or sets the <see cref="T:OpenQA.Selenium.IFileDetector" /> responsible for detecting 
+            sequences of keystrokes representing file paths and names. 
+            </summary>
+      <remarks>The Firefox driver does not allow a file detector to be set,
+            as the server component of the Firefox driver only allows uploads from
+            the local computer environment. Attempting to set this property has no
+            effect, but does not throw an exception. If you  are attempting to run 
+            the Firefox driver remotely, use <see cref="T:OpenQA.Selenium.Remote.RemoteWebDriver" /> in 
+            conjunction with a standalone WebDriver server.</remarks>
+    </member>
     <member name="P:OpenQA.Selenium.Firefox.FirefoxDriver.Binary">
       <summary>
             Gets the FirefoxBinary and its details for subclasses
@@ -4887,6 +4916,18 @@
             </summary>
       <returns>A <see cref="T:OpenQA.Selenium.Screenshot" /> object containing the image.</returns>
     </member>
+    <member name="P:OpenQA.Selenium.IE.InternetExplorerDriver.FileDetector">
+      <summary>
+            Gets or sets the <see cref="T:OpenQA.Selenium.IFileDetector" /> responsible for detecting 
+            sequences of keystrokes representing file paths and names. 
+            </summary>
+      <remarks>The IE driver does not allow a file detector to be set,
+            as the server component of the IE driver (IEDriverServer.exe) only 
+            allows uploads from the local computer environment. Attempting to set
+            this property has no effect, but does not throw an exception. If you 
+            are attempting to run the IE driver remotely, use <see cref="T:OpenQA.Selenium.Remote.RemoteWebDriver" />
+            in conjunction with a standalone WebDriver server.</remarks>
+    </member>
     <member name="T:OpenQA.Selenium.IE.InternetExplorerDriverLogLevel">
       <summary>
             Represents the valid values of logging levels available with the IEDriverServer.exe.
@@ -5114,6 +5155,12 @@
       <summary>
             Gets or sets a value indicating whether to enable persistently sending WM_MOUSEMOVE messages
             to the IE window during a mouse hover.
+            </summary>
+    </member>
+    <member name="P:OpenQA.Selenium.IE.InternetExplorerOptions.BrowserAttachTimeout">
+      <summary>
+            Gets or sets the amount of time the driver will attempt to look for a newly launched instance
+            of Internet Explorer.
             </summary>
     </member>
     <member name="T:OpenQA.Selenium.IE.InternetExplorerWebElement">
@@ -6008,6 +6055,14 @@
             </summary>
       <returns>The directory of the currently executing assembly.</returns>
     </member>
+    <member name="M:OpenQA.Selenium.Internal.FileUtilities.GenerateRandomTempDirectoryName(System.String)">
+      <summary>
+            Generates the full path to a random directory name in the temporary directory, following a naming pattern..
+            </summary>
+      <param name="directoryPattern">The pattern to use in creating the directory name, following standard
+            .NET string replacement tokens.</param>
+      <returns>The full path to the random directory name in the temporary directory.</returns>
+    </member>
     <member name="T:OpenQA.Selenium.Internal.IWrapsElement">
       <summary>
             Defines the interface through which the user can discover if there is an underlying element to be used.
@@ -6192,6 +6247,18 @@
             Gets a <see cref="T:OpenQA.Selenium.Screenshot" /> object representing the image of the page on the screen.
             </summary>
       <returns>A <see cref="T:OpenQA.Selenium.Screenshot" /> object containing the image.</returns>
+    </member>
+    <member name="P:OpenQA.Selenium.PhantomJS.PhantomJSDriver.FileDetector">
+      <summary>
+            Gets or sets the <see cref="T:OpenQA.Selenium.IFileDetector" /> responsible for detecting 
+            sequences of keystrokes representing file paths and names. 
+            </summary>
+      <remarks>The PhantomJS driver does not allow a file detector to be set,
+            as PhantomJS only allows uploads from the local computer environment.
+            Attempting to set this property has no effect, but does not throw an
+            exception. If you are attempting to run the PhantomJS driver remotely,
+            use <see cref="T:OpenQA.Selenium.Remote.RemoteWebDriver" /> in conjunction with a standalone
+            WebDriver server.</remarks>
     </member>
     <member name="T:OpenQA.Selenium.PhantomJS.PhantomJSDriverService">
       <summary>
@@ -7975,6 +8042,18 @@
             Initializes a new instance of the <see cref="T:OpenQA.Selenium.Safari.SafariDriver" /> class.
             </summary>
     </member>
+    <member name="M:OpenQA.Selenium.Safari.SafariDriver.#ctor(OpenQA.Selenium.Safari.SafariOptions)">
+      <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Safari.SafariDriver" /> class using the specified <see cref="T:OpenQA.Selenium.Safari.SafariOptions" />.
+            </summary>
+      <param name="options">The <see cref="T:OpenQA.Selenium.Safari.SafariOptions" /> to use for this <see cref="T:OpenQA.Selenium.Safari.SafariDriver" /> instance.</param>
+    </member>
+    <member name="M:OpenQA.Selenium.Safari.SafariDriver.GetScreenshot">
+      <summary>
+            Gets a <see cref="T:OpenQA.Selenium.Screenshot" /> object representing the image of the page on the screen.
+            </summary>
+      <returns>A <see cref="T:OpenQA.Selenium.Screenshot" /> object containing the image.</returns>
+    </member>
     <member name="M:OpenQA.Selenium.Safari.SafariDriver.StartClient">
       <summary>
             Starts the command executor, enabling communication with the browser.
@@ -7985,23 +8064,28 @@
             Stops the command executor, ending further communication with the browser.
             </summary>
     </member>
+    <member name="P:OpenQA.Selenium.Safari.SafariDriver.FileDetector">
+      <summary>
+            Gets or sets the <see cref="T:OpenQA.Selenium.IFileDetector" /> responsible for detecting 
+            sequences of keystrokes representing file paths and names. 
+            </summary>
+      <remarks>The Safari driver does not allow a file detector to be set,
+            as the server component of the Safari driver (the Safari extension) only 
+            allows uploads from the local computer environment. Attempting to set
+            this property has no effect, but does not throw an exception. If you 
+            are attempting to run the Safari driver remotely, use <see cref="T:OpenQA.Selenium.Remote.RemoteWebDriver" />
+            in conjunction with a standalone WebDriver server.</remarks>
+    </member>
     <member name="T:OpenQA.Selenium.Safari.SafariDriverCommandExecutor">
       <summary>
             Provides a way of executing Commands using the SafariDriver.
             </summary>
     </member>
-    <member name="M:OpenQA.Selenium.Safari.SafariDriverCommandExecutor.#ctor(System.Int32)">
+    <member name="M:OpenQA.Selenium.Safari.SafariDriverCommandExecutor.#ctor(OpenQA.Selenium.Safari.SafariOptions)">
       <summary>
             Initializes a new instance of the <see cref="T:OpenQA.Selenium.Safari.SafariDriverCommandExecutor" /> class.
             </summary>
-      <param name="port">The port on which the executor communicates with the extension.</param>
-    </member>
-    <member name="M:OpenQA.Selenium.Safari.SafariDriverCommandExecutor.#ctor(System.Int32,System.String)">
-      <summary>
-            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Safari.SafariDriverCommandExecutor" /> class.
-            </summary>
-      <param name="port">The port on which the executor communicates with the extension.</param>
-      <param name="safariLocation">The location of the Safari executable</param>
+      <param name="options">The <see cref="T:OpenQA.Selenium.Safari.SafariOptions" /> used to create the command executor.</param>
     </member>
     <member name="M:OpenQA.Selenium.Safari.SafariDriverCommandExecutor.Start">
       <summary>
@@ -8045,6 +8129,46 @@
             </summary>
       <param name="command">The <see cref="T:OpenQA.Selenium.Remote.Command" /> to send to the driver.</param>
       <returns>The <see cref="T:OpenQA.Selenium.Remote.Response" /> from the command.</returns>
+    </member>
+    <member name="T:OpenQA.Selenium.Safari.SafariDriverExtension">
+      <summary>
+            The <see cref="T:OpenQA.Selenium.Safari.SafariDriverExtension" /> class manages the Safari extension
+            used by the <see cref="T:OpenQA.Selenium.Safari.SafariDriver" />. It handles installation and uninstallation
+            as well as its extraction from an embedded resource, if needed.
+            </summary>
+    </member>
+    <member name="M:OpenQA.Selenium.Safari.SafariDriverExtension.#ctor">
+      <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Safari.SafariDriverExtension" /> class.
+            </summary>
+    </member>
+    <member name="M:OpenQA.Selenium.Safari.SafariDriverExtension.#ctor(System.String,System.Boolean)">
+      <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Safari.SafariDriverExtension" /> class, given the
+            specified source path, and whether to skip the installation of the extension.
+            </summary>
+      <param name="sourcePath">The path to the SafariDriver.safariextz file used to install the
+            WebDriver Safari extension.</param>
+      <param name="skipExtensionInstallation">
+        <see langword="true" /> to skip installation of the
+            WebDriver Safari extension; otherwise <see langword="false" />.</param>
+    </member>
+    <member name="M:OpenQA.Selenium.Safari.SafariDriverExtension.Install">
+      <summary>
+            Installs the WebDriver Safari extension.
+            </summary>
+    </member>
+    <member name="M:OpenQA.Selenium.Safari.SafariDriverExtension.Uninstall">
+      <summary>
+            Uninstalls the WebDriver Safari extension.
+            </summary>
+    </member>
+    <member name="M:OpenQA.Selenium.Safari.SafariDriverExtension.GetSafariDataDirectory">
+      <summary>
+            Gets Safari's application data directory for the current platform.
+            </summary>
+      <returns>Safari's application data directory for the current platform.</returns>
+      <exception cref="T:System.InvalidOperationException">Thrown if the current platform is unsupported.</exception>
     </member>
     <member name="T:OpenQA.Selenium.Safari.SafariDriverServer">
       <summary>
@@ -8097,6 +8221,83 @@
       <summary>
             Gets the URI of the server.
             </summary>
+    </member>
+    <member name="T:OpenQA.Selenium.Safari.SafariOptions">
+      <summary>
+            Class to manage options specific to <see cref="T:OpenQA.Selenium.Safari.SafariDriver" /></summary>
+      <example>
+        <code>
+            SafariOptions options = new SafariOptions();
+            options.SkipExtensionInstallation = true;
+            </code>
+        <para>
+        </para>
+        <para>For use with SafariDriver:</para>
+        <para>
+        </para>
+        <code>
+            SafariDriver driver = new SafariDriver(options);
+            </code>
+        <para>
+        </para>
+        <para>For use with RemoteWebDriver:</para>
+        <para>
+        </para>
+        <code>
+            RemoteWebDriver driver = new RemoteWebDriver(new Uri("http://localhost:4444/wd/hub"), options.ToCapabilities());
+            </code>
+      </example>
+    </member>
+    <member name="M:OpenQA.Selenium.Safari.SafariOptions.#ctor">
+      <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Safari.SafariOptions" /> class.
+            </summary>
+    </member>
+    <member name="M:OpenQA.Selenium.Safari.SafariOptions.AddAdditionalCapability(System.String,System.Object)">
+      <summary>
+            Provides a means to add additional capabilities not yet added as type safe options 
+            for the Safari driver.
+            </summary>
+      <param name="capabilityName">The name of the capability to add.</param>
+      <param name="capabilityValue">The value of the capability to add.</param>
+      <exception cref="T:System.ArgumentException">
+            thrown when attempting to add a capability for which there is already a type safe option, or 
+            when <paramref name="capabilityName" /> is <see langword="null" /> or the empty string.
+            </exception>
+      <remarks>Calling <see cref="M:OpenQA.Selenium.Safari.SafariOptions.AddAdditionalCapability(System.String,System.Object)" /> where <paramref name="capabilityName" />
+            has already been added will overwrite the existing value with the new value in <paramref name="capabilityValue" /></remarks>
+    </member>
+    <member name="M:OpenQA.Selenium.Safari.SafariOptions.ToCapabilities">
+      <summary>
+            Returns ICapabilities for Safari with these options included as
+            capabilities. This copies the options. Further changes will not be
+            reflected in the returned capabilities.
+            </summary>
+      <returns>The ICapabilities for Safari with these options.</returns>
+    </member>
+    <member name="P:OpenQA.Selenium.Safari.SafariOptions.SafariLocation">
+      <summary>
+            Gets or sets the install location of the Safari browser.
+            </summary>
+    </member>
+    <member name="P:OpenQA.Selenium.Safari.SafariOptions.Port">
+      <summary>
+            Gets or sets the port on which the SafariDriver will listen for commands.
+            </summary>
+    </member>
+    <member name="P:OpenQA.Selenium.Safari.SafariOptions.CustomExtensionPath">
+      <summary>
+            Gets or sets the path to the SafariDriver.safariextz file from which the extension will be installed.
+            </summary>
+    </member>
+    <member name="P:OpenQA.Selenium.Safari.SafariOptions.SkipExtensionInstallation">
+      <summary>
+            Gets or sets a value indicating whether to skip the installation of the SafariDriver extension.
+            </summary>
+      <remarks>
+            Set this property to <see langword="true" /> if the SafariDriver extension is already installed 
+            in Safari, and you don't want to overwrite it with the version included with WebDriver.
+            </remarks>
     </member>
     <member name="T:OpenQA.Selenium.Safari.SafariResponseMessage">
       <summary>
@@ -10209,7 +10410,12 @@
     </member>
     <member name="P:Newtonsoft.Json.JsonWriter.DateTimeZoneHandling">
       <summary>
-            Get or set how <see cref="T:System.DateTime" /> time zones are handling when writing JSON.
+            Get or set how <see cref="T:System.DateTime" /> time zones are handling when writing JSON text.
+            </summary>
+    </member>
+    <member name="P:Newtonsoft.Json.JsonWriter.StringEscapeHandling">
+      <summary>
+            Get or set how strings are escaped when writing JSON text.
             </summary>
     </member>
     <member name="T:Newtonsoft.Json.Bson.BsonWriter">
@@ -10419,8 +10625,7 @@
       <summary>
             Writes a <see cref="T:Byte[]" /> value that represents a BSON object id.
             </summary>
-      <param name="value">
-      </param>
+      <param name="value">The Object ID value to write.</param>
     </member>
     <member name="M:Newtonsoft.Json.Bson.BsonWriter.WriteRegex(System.String,System.String)">
       <summary>
@@ -10605,8 +10810,7 @@
       <summary>
             Create a custom object
             </summary>
-      <typeparam name="T">
-      </typeparam>
+      <typeparam name="T">The object type to convert.</typeparam>
     </member>
     <member name="M:Newtonsoft.Json.Converters.CustomCreationConverter`1.WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)">
       <summary>
@@ -10631,8 +10835,7 @@
             Creates an object which will then be populated by the serializer.
             </summary>
       <param name="objectType">Type of the object.</param>
-      <returns>
-      </returns>
+      <returns>The created object.</returns>
     </member>
     <member name="M:Newtonsoft.Json.Converters.CustomCreationConverter`1.CanConvert(System.Type)">
       <summary>
@@ -10834,9 +11037,6 @@
             </returns>
     </member>
     <member name="T:Newtonsoft.Json.Converters.StringEnumConverter">
-      <summary>
-            Converts an <see cref="T:System.Enum" /> to and from its name string value.
-            </summary>
       <summary>
             Converts an <see cref="T:System.Enum" /> to and from its name string value.
             </summary>
@@ -11128,6 +11328,50 @@
             Instructs the <see cref="T:Newtonsoft.Json.JsonSerializer" /> to use the specified constructor when deserializing that object.
             </summary>
     </member>
+    <member name="T:Newtonsoft.Json.Serialization.ITraceWriter">
+      <summary>
+            Represents a trace writer.
+            </summary>
+    </member>
+    <member name="M:Newtonsoft.Json.Serialization.ITraceWriter.Trace(System.Diagnostics.TraceLevel,System.String,System.Exception)">
+      <summary>
+            Writes the specified trace level, message and optional exception.
+            </summary>
+      <param name="level">The <see cref="T:System.Diagnostics.TraceLevel" /> at which to write this trace.</param>
+      <param name="message">The trace message.</param>
+      <param name="ex">The trace exception. This parameter is optional.</param>
+    </member>
+    <member name="P:Newtonsoft.Json.Serialization.ITraceWriter.LevelFilter">
+      <summary>
+            Gets the <see cref="T:System.Diagnostics.TraceLevel" /> that will be used to filter the trace messages passed to the writer.
+            For example a filter level of <code>Info</code> will exclude <code>Verbose</code> messages and include <code>Info</code>,
+            <code>Warning</code> and <code>Error</code> messages.
+            </summary>
+      <value>The <see cref="T:System.Diagnostics.TraceLevel" /> that will be used to filter the trace messages passed to the writer.</value>
+    </member>
+    <member name="T:Newtonsoft.Json.Serialization.DiagnosticsTraceWriter">
+      <summary>
+            Represents a trace writer that writes to the application's <see cref="T:System.Diagnostics.TraceListener" /> instances.
+            </summary>
+    </member>
+    <member name="M:Newtonsoft.Json.Serialization.DiagnosticsTraceWriter.Trace(System.Diagnostics.TraceLevel,System.String,System.Exception)">
+      <summary>
+            Writes the specified trace level, message and optional exception.
+            </summary>
+      <param name="level">The <see cref="T:System.Diagnostics.TraceLevel" /> at which to write this trace.</param>
+      <param name="message">The trace message.</param>
+      <param name="ex">The trace exception. This parameter is optional.</param>
+    </member>
+    <member name="P:Newtonsoft.Json.Serialization.DiagnosticsTraceWriter.LevelFilter">
+      <summary>
+            Gets the <see cref="T:System.Diagnostics.TraceLevel" /> that will be used to filter the trace messages passed to the writer.
+            For example a filter level of <code>Info</code> will exclude <code>Verbose</code> messages and include <code>Info</code>,
+            <code>Warning</code> and <code>Error</code> messages.
+            </summary>
+      <value>
+            The <see cref="T:System.Diagnostics.TraceLevel" /> that will be used to filter the trace messages passed to the writer.
+            </value>
+    </member>
     <member name="T:Newtonsoft.Json.Serialization.JsonContract">
       <summary>
             Contract details for a <see cref="T:System.Type" /> used by the <see cref="T:Newtonsoft.Json.JsonSerializer" />.
@@ -11235,6 +11479,69 @@
             Gets or sets the collection item type name handling.
             </summary>
       <value>The type name handling.</value>
+    </member>
+    <member name="T:Newtonsoft.Json.Serialization.MemoryTraceWriter">
+      <summary>
+            Represents a trace writer that writes to memory. When the trace message limit is
+            reached then old trace messages will be removed as new messages are added.
+            </summary>
+    </member>
+    <member name="M:Newtonsoft.Json.Serialization.MemoryTraceWriter.#ctor">
+      <summary>
+            Initializes a new instance of the <see cref="T:Newtonsoft.Json.Serialization.MemoryTraceWriter" /> class.
+            </summary>
+    </member>
+    <member name="M:Newtonsoft.Json.Serialization.MemoryTraceWriter.Trace(System.Diagnostics.TraceLevel,System.String,System.Exception)">
+      <summary>
+            Writes the specified trace level, message and optional exception.
+            </summary>
+      <param name="level">The <see cref="T:System.Diagnostics.TraceLevel" /> at which to write this trace.</param>
+      <param name="message">The trace message.</param>
+      <param name="ex">The trace exception. This parameter is optional.</param>
+    </member>
+    <member name="M:Newtonsoft.Json.Serialization.MemoryTraceWriter.GetTraceMessages">
+      <summary>
+            Returns an enumeration of the most recent trace messages.
+            </summary>
+      <returns>An enumeration of the most recent trace messages.</returns>
+    </member>
+    <member name="M:Newtonsoft.Json.Serialization.MemoryTraceWriter.ToString">
+      <summary>
+            Returns a <see cref="T:System.String" /> of the most recent trace messages.
+            </summary>
+      <returns>
+            A <see cref="T:System.String" /> of the most recent trace messages.
+            </returns>
+    </member>
+    <member name="P:Newtonsoft.Json.Serialization.MemoryTraceWriter.LevelFilter">
+      <summary>
+            Gets the <see cref="T:System.Diagnostics.TraceLevel" /> that will be used to filter the trace messages passed to the writer.
+            For example a filter level of <code>Info</code> will exclude <code>Verbose</code> messages and include <code>Info</code>,
+            <code>Warning</code> and <code>Error</code> messages.
+            </summary>
+      <value>
+            The <see cref="T:System.Diagnostics.TraceLevel" /> that will be used to filter the trace messages passed to the writer.
+            </value>
+    </member>
+    <member name="T:Newtonsoft.Json.StringEscapeHandling">
+      <summary>
+            Specifies how strings are escaped when writing JSON text.
+            </summary>
+    </member>
+    <member name="F:Newtonsoft.Json.StringEscapeHandling.Default">
+      <summary>
+            Only control characters (e.g. newline) are escaped.
+            </summary>
+    </member>
+    <member name="F:Newtonsoft.Json.StringEscapeHandling.EscapeNonAscii">
+      <summary>
+            All non-ASCII and control characters (e.g. newline) are escaped.
+            </summary>
+    </member>
+    <member name="F:Newtonsoft.Json.StringEscapeHandling.EscapeHtml">
+      <summary>
+            HTML (&lt;, &gt;, &amp;, ', ") and control characters (e.g. newline) are escaped.
+            </summary>
     </member>
     <member name="T:Newtonsoft.Json.Linq.IJEnumerable`1">
       <summary>
@@ -11435,6 +11742,13 @@
       <param name="value">The value.</param>
       <returns>The result of the conversion.</returns>
     </member>
+    <member name="M:Newtonsoft.Json.Linq.JToken.op_Explicit(Newtonsoft.Json.Linq.JToken)~System.Nullable{System.Char}">
+      <summary>
+            Performs an explicit conversion from <see cref="T:Newtonsoft.Json.Linq.JToken" /> to <see cref="T:System.Nullable`1" />.
+            </summary>
+      <param name="value">The value.</param>
+      <returns>The result of the conversion.</returns>
+    </member>
     <member name="M:Newtonsoft.Json.Linq.JToken.op_Explicit(Newtonsoft.Json.Linq.JToken)~System.Int32">
       <summary>
             Performs an explicit conversion from <see cref="T:Newtonsoft.Json.Linq.JToken" /> to <see cref="T:System.Int32" />.
@@ -11456,6 +11770,20 @@
       <param name="value">The value.</param>
       <returns>The result of the conversion.</returns>
     </member>
+    <member name="M:Newtonsoft.Json.Linq.JToken.op_Explicit(Newtonsoft.Json.Linq.JToken)~System.Char">
+      <summary>
+            Performs an explicit conversion from <see cref="T:Newtonsoft.Json.Linq.JToken" /> to <see cref="T:System.Char" />.
+            </summary>
+      <param name="value">The value.</param>
+      <returns>The result of the conversion.</returns>
+    </member>
+    <member name="M:Newtonsoft.Json.Linq.JToken.op_Explicit(Newtonsoft.Json.Linq.JToken)~System.Byte">
+      <summary>
+            Performs an explicit conversion from <see cref="T:Newtonsoft.Json.Linq.JToken" /> to <see cref="T:System.Byte" />.
+            </summary>
+      <param name="value">The value.</param>
+      <returns>The result of the conversion.</returns>
+    </member>
     <member name="M:Newtonsoft.Json.Linq.JToken.op_Explicit(Newtonsoft.Json.Linq.JToken)~System.Nullable{System.Int32}">
       <summary>
             Performs an explicit conversion from <see cref="T:Newtonsoft.Json.Linq.JToken" /> to <see cref="T:System.Nullable`1" />.
@@ -11471,6 +11799,13 @@
       <returns>The result of the conversion.</returns>
     </member>
     <member name="M:Newtonsoft.Json.Linq.JToken.op_Explicit(Newtonsoft.Json.Linq.JToken)~System.Nullable{System.UInt16}">
+      <summary>
+            Performs an explicit conversion from <see cref="T:Newtonsoft.Json.Linq.JToken" /> to <see cref="T:System.Nullable`1" />.
+            </summary>
+      <param name="value">The value.</param>
+      <returns>The result of the conversion.</returns>
+    </member>
+    <member name="M:Newtonsoft.Json.Linq.JToken.op_Explicit(Newtonsoft.Json.Linq.JToken)~System.Nullable{System.Byte}">
       <summary>
             Performs an explicit conversion from <see cref="T:Newtonsoft.Json.Linq.JToken" /> to <see cref="T:System.Nullable`1" />.
             </summary>
@@ -11557,6 +11892,41 @@
     <member name="M:Newtonsoft.Json.Linq.JToken.op_Explicit(Newtonsoft.Json.Linq.JToken)~System.Byte[]">
       <summary>
             Performs an explicit conversion from <see cref="T:Newtonsoft.Json.Linq.JToken" /> to <see cref="T:System.Byte[]" />.
+            </summary>
+      <param name="value">The value.</param>
+      <returns>The result of the conversion.</returns>
+    </member>
+    <member name="M:Newtonsoft.Json.Linq.JToken.op_Explicit(Newtonsoft.Json.Linq.JToken)~System.Guid">
+      <summary>
+            Performs an explicit conversion from <see cref="T:Newtonsoft.Json.Linq.JToken" /> to <see cref="T:System.Guid" />.
+            </summary>
+      <param name="value">The value.</param>
+      <returns>The result of the conversion.</returns>
+    </member>
+    <member name="M:Newtonsoft.Json.Linq.JToken.op_Explicit(Newtonsoft.Json.Linq.JToken)~System.Nullable{System.Guid}">
+      <summary>
+            Performs an explicit conversion from <see cref="T:Newtonsoft.Json.Linq.JToken" /> to <see cref="T:System.Guid" />.
+            </summary>
+      <param name="value">The value.</param>
+      <returns>The result of the conversion.</returns>
+    </member>
+    <member name="M:Newtonsoft.Json.Linq.JToken.op_Explicit(Newtonsoft.Json.Linq.JToken)~System.TimeSpan">
+      <summary>
+            Performs an explicit conversion from <see cref="T:Newtonsoft.Json.Linq.JToken" /> to <see cref="T:System.TimeSpan" />.
+            </summary>
+      <param name="value">The value.</param>
+      <returns>The result of the conversion.</returns>
+    </member>
+    <member name="M:Newtonsoft.Json.Linq.JToken.op_Explicit(Newtonsoft.Json.Linq.JToken)~System.Nullable{System.TimeSpan}">
+      <summary>
+            Performs an explicit conversion from <see cref="T:Newtonsoft.Json.Linq.JToken" /> to <see cref="T:System.TimeSpan" />.
+            </summary>
+      <param name="value">The value.</param>
+      <returns>The result of the conversion.</returns>
+    </member>
+    <member name="M:Newtonsoft.Json.Linq.JToken.op_Explicit(Newtonsoft.Json.Linq.JToken)~System.Uri">
+      <summary>
+            Performs an explicit conversion from <see cref="T:Newtonsoft.Json.Linq.JToken" /> to <see cref="T:System.Uri" />.
             </summary>
       <param name="value">The value.</param>
       <returns>The result of the conversion.</returns>
@@ -11743,6 +12113,41 @@
       <param name="value">The value to create a <see cref="T:Newtonsoft.Json.Linq.JValue" /> from.</param>
       <returns>The <see cref="T:Newtonsoft.Json.Linq.JValue" /> initialized with the specified value.</returns>
     </member>
+    <member name="M:Newtonsoft.Json.Linq.JToken.op_Implicit(System.Uri)~Newtonsoft.Json.Linq.JToken">
+      <summary>
+            Performs an implicit conversion from <see cref="T:System.Uri" /> to <see cref="T:Newtonsoft.Json.Linq.JToken" />.
+            </summary>
+      <param name="value">The value to create a <see cref="T:Newtonsoft.Json.Linq.JValue" /> from.</param>
+      <returns>The <see cref="T:Newtonsoft.Json.Linq.JValue" /> initialized with the specified value.</returns>
+    </member>
+    <member name="M:Newtonsoft.Json.Linq.JToken.op_Implicit(System.TimeSpan)~Newtonsoft.Json.Linq.JToken">
+      <summary>
+            Performs an implicit conversion from <see cref="T:System.TimeSpan" /> to <see cref="T:Newtonsoft.Json.Linq.JToken" />.
+            </summary>
+      <param name="value">The value to create a <see cref="T:Newtonsoft.Json.Linq.JValue" /> from.</param>
+      <returns>The <see cref="T:Newtonsoft.Json.Linq.JValue" /> initialized with the specified value.</returns>
+    </member>
+    <member name="M:Newtonsoft.Json.Linq.JToken.op_Implicit(System.Nullable{System.TimeSpan})~Newtonsoft.Json.Linq.JToken">
+      <summary>
+            Performs an implicit conversion from <see cref="T:System.Nullable`1" /> to <see cref="T:Newtonsoft.Json.Linq.JToken" />.
+            </summary>
+      <param name="value">The value to create a <see cref="T:Newtonsoft.Json.Linq.JValue" /> from.</param>
+      <returns>The <see cref="T:Newtonsoft.Json.Linq.JValue" /> initialized with the specified value.</returns>
+    </member>
+    <member name="M:Newtonsoft.Json.Linq.JToken.op_Implicit(System.Guid)~Newtonsoft.Json.Linq.JToken">
+      <summary>
+            Performs an implicit conversion from <see cref="T:System.Guid" /> to <see cref="T:Newtonsoft.Json.Linq.JToken" />.
+            </summary>
+      <param name="value">The value to create a <see cref="T:Newtonsoft.Json.Linq.JValue" /> from.</param>
+      <returns>The <see cref="T:Newtonsoft.Json.Linq.JValue" /> initialized with the specified value.</returns>
+    </member>
+    <member name="M:Newtonsoft.Json.Linq.JToken.op_Implicit(System.Nullable{System.Guid})~Newtonsoft.Json.Linq.JToken">
+      <summary>
+            Performs an implicit conversion from <see cref="T:System.Nullable`1" /> to <see cref="T:Newtonsoft.Json.Linq.JToken" />.
+            </summary>
+      <param name="value">The value to create a <see cref="T:Newtonsoft.Json.Linq.JValue" /> from.</param>
+      <returns>The <see cref="T:Newtonsoft.Json.Linq.JValue" /> initialized with the specified value.</returns>
+    </member>
     <member name="M:Newtonsoft.Json.Linq.JToken.CreateReader">
       <summary>
             Creates an <see cref="T:Newtonsoft.Json.JsonReader" /> for this token.
@@ -11768,12 +12173,29 @@
       <summary>
             Creates the specified .NET type from the <see cref="T:Newtonsoft.Json.Linq.JToken" />.
             </summary>
+      <typeparam name="T">The object type that the token will be deserialized to.</typeparam>
+      <returns>The new object created from the JSON value.</returns>
+    </member>
+    <member name="M:Newtonsoft.Json.Linq.JToken.ToObject(System.Type)">
+      <summary>
+            Creates the specified .NET type from the <see cref="T:Newtonsoft.Json.Linq.JToken" />.
+            </summary>
+      <param name="objectType">The object type that the token will be deserialized to.</param>
       <returns>The new object created from the JSON value.</returns>
     </member>
     <member name="M:Newtonsoft.Json.Linq.JToken.ToObject``1(Newtonsoft.Json.JsonSerializer)">
       <summary>
             Creates the specified .NET type from the <see cref="T:Newtonsoft.Json.Linq.JToken" /> using the specified <see cref="T:Newtonsoft.Json.JsonSerializer" />.
             </summary>
+      <typeparam name="T">The object type that the token will be deserialized to.</typeparam>
+      <param name="jsonSerializer">The <see cref="T:Newtonsoft.Json.JsonSerializer" /> that will be used when creating the object.</param>
+      <returns>The new object created from the JSON value.</returns>
+    </member>
+    <member name="M:Newtonsoft.Json.Linq.JToken.ToObject(System.Type,Newtonsoft.Json.JsonSerializer)">
+      <summary>
+            Creates the specified .NET type from the <see cref="T:Newtonsoft.Json.Linq.JToken" /> using the specified <see cref="T:Newtonsoft.Json.JsonSerializer" />.
+            </summary>
+      <param name="objectType">The object type that the token will be deserialized to.</param>
       <param name="jsonSerializer">The <see cref="T:Newtonsoft.Json.JsonSerializer" /> that will be used when creating the object.</param>
       <returns>The new object created from the JSON value.</returns>
     </member>
@@ -11925,6 +12347,12 @@
             </summary>
       <param name="value">The value.</param>
     </member>
+    <member name="M:Newtonsoft.Json.Linq.JValue.#ctor(System.Char)">
+      <summary>
+            Initializes a new instance of the <see cref="T:Newtonsoft.Json.Linq.JValue" /> class with the given value.
+            </summary>
+      <param name="value">The value.</param>
+    </member>
     <member name="M:Newtonsoft.Json.Linq.JValue.#ctor(System.UInt64)">
       <summary>
             Initializes a new instance of the <see cref="T:Newtonsoft.Json.Linq.JValue" /> class with the given value.
@@ -11932,6 +12360,12 @@
       <param name="value">The value.</param>
     </member>
     <member name="M:Newtonsoft.Json.Linq.JValue.#ctor(System.Double)">
+      <summary>
+            Initializes a new instance of the <see cref="T:Newtonsoft.Json.Linq.JValue" /> class with the given value.
+            </summary>
+      <param name="value">The value.</param>
+    </member>
+    <member name="M:Newtonsoft.Json.Linq.JValue.#ctor(System.Single)">
       <summary>
             Initializes a new instance of the <see cref="T:Newtonsoft.Json.Linq.JValue" /> class with the given value.
             </summary>
@@ -12423,6 +12857,9 @@
       <summary>
             Specifies reference handling options for the <see cref="T:Newtonsoft.Json.JsonSerializer" />.
             </summary>
+      <example>
+        <code lang="cs" source="..\Src\Newtonsoft.Json.Tests\Documentation\SerializationTests.cs" region="PreservingObjectReferencesOn" title="Preserve Object References" />
+      </example>
     </member>
     <member name="F:Newtonsoft.Json.PreserveReferencesHandling.None">
       <summary>
@@ -12477,6 +12914,10 @@
       <summary>
             Specifies default value handling options for the <see cref="T:Newtonsoft.Json.JsonSerializer" />.
             </summary>
+      <example>
+        <code lang="cs" source="..\Src\Newtonsoft.Json.Tests\Documentation\SerializationTests.cs" region="ReducingSerializedJsonSizeDefaultValueHandlingObject" title="DefaultValueHandling Class" />
+        <code lang="cs" source="..\Src\Newtonsoft.Json.Tests\Documentation\SerializationTests.cs" region="ReducingSerializedJsonSizeDefaultValueHandlingExample" title="DefaultValueHandling Ignore Example" />
+      </example>
     </member>
     <member name="F:Newtonsoft.Json.DefaultValueHandling.Include">
       <summary>
@@ -12487,7 +12928,10 @@
     <member name="F:Newtonsoft.Json.DefaultValueHandling.Ignore">
       <summary>
             Ignore members where the member value is the same as the member's default value when serializing objects
-            so that is is not written to JSON, and ignores setting members when the JSON value equals the member's default value.
+            so that is is not written to JSON.
+            This option will ignore all default values (e.g. <c>null</c> for objects and nullable typesl; <c>0</c> for integers,
+            decimals and floating point numbers; and <c>false</c> for booleans). The default value ignored can be changed by
+            placing the <see cref="T:System.ComponentModel.DefaultValueAttribute" /> on the property.
             </summary>
     </member>
     <member name="F:Newtonsoft.Json.DefaultValueHandling.Populate">
@@ -12636,6 +13080,12 @@
             Gets or sets the <see cref="T:Newtonsoft.Json.Serialization.IReferenceResolver" /> used by the serializer when resolving references.
             </summary>
       <value>The reference resolver.</value>
+    </member>
+    <member name="P:Newtonsoft.Json.JsonSerializerSettings.TraceWriter">
+      <summary>
+            Gets or sets the <see cref="T:Newtonsoft.Json.Serialization.ITraceWriter" /> used by the serializer when writing trace messages.
+            </summary>
+      <value>The trace writer.</value>
     </member>
     <member name="P:Newtonsoft.Json.JsonSerializerSettings.Binder">
       <summary>
@@ -13519,6 +13969,9 @@
       <summary>
             Provides methods for converting between common language runtime types and JSON types.
             </summary>
+      <example>
+        <code lang="cs" source="..\Src\Newtonsoft.Json.Tests\Documentation\SerializationTests.cs" region="SerializeObject" title="Serializing and Deserializing JSON with JsonConvert" />
+      </example>
     </member>
     <member name="F:Newtonsoft.Json.JsonConvert.True">
       <summary>
@@ -13717,7 +14170,7 @@
             Converts the <see cref="T:System.String" /> to its JSON string representation.
             </summary>
       <param name="value">The value to convert.</param>
-      <param name="delimter">The string delimiter character.</param>
+      <param name="delimiter">The string delimiter character.</param>
       <returns>A JSON string representation of the <see cref="T:System.String" />.</returns>
     </member>
     <member name="M:Newtonsoft.Json.JsonConvert.ToString(System.Object)">
@@ -14211,6 +14664,12 @@
             Gets or sets the <see cref="T:System.Runtime.Serialization.SerializationBinder" /> used by the serializer when resolving type names.
             </summary>
     </member>
+    <member name="P:Newtonsoft.Json.JsonSerializer.TraceWriter">
+      <summary>
+            Gets or sets the <see cref="T:Newtonsoft.Json.Serialization.ITraceWriter" /> used by the serializer when writing trace messages.
+            </summary>
+      <value>The trace writer.</value>
+    </member>
     <member name="P:Newtonsoft.Json.JsonSerializer.TypeNameHandling">
       <summary>
             Gets or sets how type name writing and reading is handled by the serializer.
@@ -14682,6 +15141,9 @@
       <summary>
             Represents a JSON object.
             </summary>
+      <example>
+        <code lang="cs" source="..\Src\Newtonsoft.Json.Tests\Documentation\LinqToJsonTests.cs" region="LinqToJsonCreateParse" title="Parsing a JSON Object from Text" />
+      </example>
     </member>
     <member name="M:Newtonsoft.Json.Linq.JObject.#ctor">
       <summary>
@@ -14738,6 +15200,9 @@
             </summary>
       <param name="json">A <see cref="T:System.String" /> that contains JSON.</param>
       <returns>A <see cref="T:Newtonsoft.Json.Linq.JObject" /> populated from the string that contains JSON.</returns>
+      <example>
+        <code lang="cs" source="..\Src\Newtonsoft.Json.Tests\Documentation\LinqToJsonTests.cs" region="LinqToJsonCreateParse" title="Parsing a JSON Object from Text" />
+      </example>
     </member>
     <member name="M:Newtonsoft.Json.Linq.JObject.FromObject(System.Object)">
       <summary>
@@ -14760,6 +15225,34 @@
             </summary>
       <param name="writer">A <see cref="T:Newtonsoft.Json.JsonWriter" /> into which this method will write.</param>
       <param name="converters">A collection of <see cref="T:Newtonsoft.Json.JsonConverter" /> which will be used when writing the token.</param>
+    </member>
+    <member name="M:Newtonsoft.Json.Linq.JObject.GetValue(System.String)">
+      <summary>
+            Gets the <see cref="T:Newtonsoft.Json.Linq.JToken" /> with the specified property name.
+            </summary>
+      <param name="propertyName">Name of the property.</param>
+      <value>The <see cref="T:Newtonsoft.Json.Linq.JToken" /> with the specified property name.</value>
+    </member>
+    <member name="M:Newtonsoft.Json.Linq.JObject.GetValue(System.String,System.StringComparison)">
+      <summary>
+            Gets the <see cref="T:Newtonsoft.Json.Linq.JToken" /> with the specified property name.
+            The exact property name will be searched for first and if no matching property is found then
+            the <see cref="T:System.StringComparison" /> will be used to match a property.
+            </summary>
+      <param name="propertyName">Name of the property.</param>
+      <param name="comparison">One of the enumeration values that specifies how the strings will be compared.</param>
+      <value>The <see cref="T:Newtonsoft.Json.Linq.JToken" /> with the specified property name.</value>
+    </member>
+    <member name="M:Newtonsoft.Json.Linq.JObject.TryGetValue(System.String,System.StringComparison,Newtonsoft.Json.Linq.JToken@)">
+      <summary>
+            Tries to get the <see cref="T:Newtonsoft.Json.Linq.JToken" /> with the specified property name.
+            The exact property name will be searched for first and if no matching property is found then
+            the <see cref="T:System.StringComparison" /> will be used to match a property.
+            </summary>
+      <param name="propertyName">Name of the property.</param>
+      <param name="value">The value.</param>
+      <param name="comparison">One of the enumeration values that specifies how the strings will be compared.</param>
+      <returns>true if a value was successfully retrieved; otherwise, false.</returns>
     </member>
     <member name="M:Newtonsoft.Json.Linq.JObject.Add(System.String,Newtonsoft.Json.Linq.JToken)">
       <summary>
@@ -14851,6 +15344,9 @@
       <summary>
             Represents a JSON array.
             </summary>
+      <example>
+        <code lang="cs" source="..\Src\Newtonsoft.Json.Tests\Documentation\LinqToJsonTests.cs" region="LinqToJsonCreateParseArray" title="Parsing a JSON Array from Text" />
+      </example>
     </member>
     <member name="M:Newtonsoft.Json.Linq.JArray.#ctor">
       <summary>
@@ -14888,6 +15384,9 @@
             </summary>
       <param name="json">A <see cref="T:System.String" /> that contains JSON.</param>
       <returns>A <see cref="T:Newtonsoft.Json.Linq.JArray" /> populated from the string that contains JSON.</returns>
+      <example>
+        <code lang="cs" source="..\Src\Newtonsoft.Json.Tests\Documentation\LinqToJsonTests.cs" region="LinqToJsonCreateParseArray" title="Parsing a JSON Array from Text" />
+      </example>
     </member>
     <member name="M:Newtonsoft.Json.Linq.JArray.FromObject(System.Object)">
       <summary>
@@ -15581,6 +16080,10 @@
       <summary>
             Used by <see cref="T:Newtonsoft.Json.JsonSerializer" /> to resolves a <see cref="T:Newtonsoft.Json.Serialization.JsonContract" /> for a given <see cref="T:System.Type" />.
             </summary>
+      <example>
+        <code lang="cs" source="..\Src\Newtonsoft.Json.Tests\Documentation\SerializationTests.cs" region="ReducingSerializedJsonSizeContractResolverObject" title="IContractResolver Class" />
+        <code lang="cs" source="..\Src\Newtonsoft.Json.Tests\Documentation\SerializationTests.cs" region="ReducingSerializedJsonSizeContractResolverExample" title="IContractResolver Example" />
+      </example>
     </member>
     <member name="M:Newtonsoft.Json.Serialization.IContractResolver.ResolveContract(System.Type)">
       <summary>
@@ -15652,8 +16155,7 @@
             Resolves the default <see cref="T:Newtonsoft.Json.JsonConverter" /> for the contract.
             </summary>
       <param name="objectType">Type of the object.</param>
-      <returns>
-      </returns>
+      <returns>The contract's default <see cref="T:Newtonsoft.Json.JsonConverter" />.</returns>
     </member>
     <member name="M:Newtonsoft.Json.Serialization.DefaultContractResolver.CreateDictionaryContract(System.Type)">
       <summary>
@@ -15878,6 +16380,13 @@
             </summary>
       <value>The <see cref="T:System.Type" /> of the collection items.</value>
     </member>
+    <member name="P:Newtonsoft.Json.Serialization.JsonArrayContract.IsMultidimensionalArray">
+      <summary>
+            Gets a value indicating whether the collection type is a multidimensional array.
+            </summary>
+      <value>
+        <c>true</c> if the collection type is a multidimensional array; otherwise, <c>false</c>.</value>
+    </member>
     <member name="T:Newtonsoft.Json.Serialization.JsonDictionaryContract">
       <summary>
             Contract details for a <see cref="T:System.Type" /> used by the <see cref="T:Newtonsoft.Json.JsonSerializer" />.
@@ -15989,6 +16498,13 @@
             </summary>
       <value>
         <c>true</c> if writable; otherwise, <c>false</c>.</value>
+    </member>
+    <member name="P:Newtonsoft.Json.Serialization.JsonProperty.HasMemberAttribute">
+      <summary>
+            Gets a value indicating whether this <see cref="T:Newtonsoft.Json.Serialization.JsonProperty" /> has a member attribute.
+            </summary>
+      <value>
+        <c>true</c> if has a member attribute; otherwise, <c>false</c>.</value>
     </member>
     <member name="P:Newtonsoft.Json.Serialization.JsonProperty.DefaultValue">
       <summary>
@@ -16142,6 +16658,10 @@
       <summary>
             Specifies null value handling options for the <see cref="T:Newtonsoft.Json.JsonSerializer" />.
             </summary>
+      <example>
+        <code lang="cs" source="..\Src\Newtonsoft.Json.Tests\Documentation\SerializationTests.cs" region="ReducingSerializedJsonSizeNullValueHandlingObject" title="NullValueHandling Class" />
+        <code lang="cs" source="..\Src\Newtonsoft.Json.Tests\Documentation\SerializationTests.cs" region="ReducingSerializedJsonSizeNullValueHandlingExample" title="NullValueHandling Ignore Example" />
+      </example>
     </member>
     <member name="F:Newtonsoft.Json.NullValueHandling.Include">
       <summary>
@@ -16634,6 +17154,7 @@
       <summary>
             Represents a method that constructs an object.
             </summary>
+      <typeparam name="T">The object type to create.</typeparam>
     </member>
     <member name="T:Newtonsoft.Json.TypeNameHandling">
       <summary>

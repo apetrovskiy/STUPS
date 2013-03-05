@@ -244,6 +244,8 @@
     <Compile Include="Commands\Wait\WaitUIAControlStateCommand.cs" />
     <Compile Include="Commands\Wait\WaitUIAEventRaisedCommand.cs" />
     <Compile Include="Commands\Wait\WaitUIAWindowCommand.cs" />
+    <Compile Include="Commands\Win32\CProbe.cs" />
+    <Compile Include="Commands\Win32\GetUIATreeItemCheckedStateCommand.cs" />
     <Compile Include="Commands\Wizard\AddUIAWizardStepCommand.cs" />
     <Compile Include="Commands\Wizard\GetUIAWizardCommand.cs" />
     <Compile Include="Commands\Wizard\InvokeUIAWizardCommand.cs" />
@@ -354,6 +356,7 @@
   <ItemGroup>
     <Folder Include="Commands\ExecutionPlan" />
     <Folder Include="Commands\Container" />
+    <Folder Include="Commands\Win32" />
     <Folder Include="Commands\RDP" />
     <Folder Include="Commands\Sheridan" />
     <Folder Include="Helpers\UnderlyingCode\Commands" />

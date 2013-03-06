@@ -12,6 +12,7 @@ namespace TAMS
     using System;
     using System.Management.Automation;
     using Microsoft.Test.LeakDetection;
+    using Microsoft.Test.ObjectComparison;
     
     /// <summary>
     /// Description of TAMSHelper.
@@ -22,6 +23,7 @@ namespace TAMS
         {
         }
         
+        #region Memory Snapshot
         public static void GetMemoryShapshot(MemorySnapshotCmdletBase cmdlet, int[] processIds)
         {
             if (null != processIds && 0 < processIds.Length) {
@@ -34,5 +36,37 @@ namespace TAMS
                 }
             }
         }
+        #endregion Memory Snapshot
+        
+        #region Object Comparison
+        public static void CompareObjects(ObjectComparisonCmdletBase cmdlet, object referenceObject, object[] differenceObjects)
+        {
+            // left is null
+            
+            
+            
+            
+            // right is null
+            
+            
+            
+            
+            if (null != differenceObjects && 0 < differenceObjects.Length) {
+                
+                ObjectGraphFactory factory = new PublicPropertyObjectGraphFactory();
+                GraphNode referenceGraph = factory.CreateObjectGraph(referenceObject, null);
+                
+                foreach (var differenceObject in differenceObjects) {
+                    
+                    GraphNode differenceGraph = factory.CreateObjectGraph(differenceObject, null);
+                    ObjectGraphComparer comparer = new ObjectGraphComparer();
+                    bool result = comparer.Compare(referenceGraph, differenceGraph);
+                    
+                    cmdlet.WriteObject(cmdlet, result);
+                }
+            }
+            
+        }
+        #endregion Object Comparison
     }
 }

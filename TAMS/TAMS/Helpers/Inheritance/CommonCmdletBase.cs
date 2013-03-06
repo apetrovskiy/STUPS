@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TAMS //.Helpers.Inheritance
+namespace TAMS
 {
     using System;
     using System.Management.Automation;

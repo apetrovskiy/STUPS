@@ -61,8 +61,10 @@
   <ItemGroup>
     <Folder Include="Commands" />
     <Folder Include="Commands\MemorySnapshot" />
+    <Folder Include="Commands\ObjectComparison" />
     <Folder Include="ParamChecks" />
     <Folder Include="ParamChecks\MemorySnapshot" />
+    <Folder Include="ParamChecks\ObjectComparison" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\TAMS\Properties\AssemblyInfo.cs">

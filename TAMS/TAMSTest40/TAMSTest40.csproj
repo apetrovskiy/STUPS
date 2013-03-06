@@ -67,6 +67,7 @@
   <ItemGroup>
     <Folder Include="Commands" />
     <Folder Include="Commands\MemorySnapshot" />
+    <Folder Include="Commands\ObjectComparison" />
     <Folder Include="Helpers" />
     <Folder Include="Helpers\Inheritance" />
     <Folder Include="Helpers\UserSettings" />

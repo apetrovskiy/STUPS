@@ -69,14 +69,23 @@
     <Compile Include="..\TAMS\Commands\MemorySnapshot\GetTamsMemorySnapshotCommand.cs">
       <Link>Commands\MemorySnapshot\GetTamsMemorySnapshotCommand.cs</Link>
     </Compile>
+    <Compile Include="..\TAMS\Commands\ObjectComparison\CompareTamsObjectCommand.cs">
+      <Link>Commands\ObjectComparison\CompareTamsObjectCommand.cs</Link>
+    </Compile>
     <Compile Include="..\TAMS\Helpers\Inheritance\CommonCmdletBase.cs">
       <Link>Helpers\Inheritance\CommonCmdletBase.cs</Link>
     </Compile>
     <Compile Include="..\TAMS\Helpers\Inheritance\MemorySnapshotCmdletBase.cs">
       <Link>Helpers\Inheritance\MemorySnapshotCmdletBase.cs</Link>
     </Compile>
+    <Compile Include="..\TAMS\Helpers\Inheritance\ObjectComparisoncmdletBase.cs">
+      <Link>Helpers\Inheritance\ObjectComparisoncmdletBase.cs</Link>
+    </Compile>
     <Compile Include="..\TAMS\Helpers\UnderlyingCode\Commands\MemorySnapshot\TamsGetMemorySnapshotCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\MemorySnapshot\TamsGetMemorySnapshotCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TAMS\Helpers\UnderlyingCode\Commands\ObjectComparison\TamsCompareObjectCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\ObjectComparison\TamsCompareObjectCommand.cs</Link>
     </Compile>
     <Compile Include="..\TAMS\Helpers\UnderlyingCode\Commands\TamsCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\TamsCommand.cs</Link>
@@ -91,10 +100,12 @@
   <ItemGroup>
     <Folder Include="Commands" />
     <Folder Include="Commands\MemorySnapshot" />
+    <Folder Include="Commands\ObjectComparison" />
     <Folder Include="Helpers" />
     <Folder Include="Helpers\Inheritance" />
     <Folder Include="Helpers\UnderlyingCode\Commands" />
     <Folder Include="Helpers\UnderlyingCode\Commands\MemorySnapshot" />
+    <Folder Include="Helpers\UnderlyingCode\Commands\ObjectComparison" />
     <Folder Include="Helpers\UserSettings" />
     <Folder Include="Helpers\UnderlyingCode" />
   </ItemGroup>

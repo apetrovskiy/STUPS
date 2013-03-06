@@ -1,0 +1,10 @@
+BDDAddin
+BZAddin
+RallyAddin
+RepositoryViewer
+RMAddin40
+TestCaseBrowser
+testninject
+testtl
+tl2
+tltest

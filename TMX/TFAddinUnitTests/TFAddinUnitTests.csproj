@@ -75,6 +75,9 @@
     <Reference Include="Moq">
       <HintPath>..\..\binaries\Moq\NET35\Moq.dll</HintPath>
     </Reference>
+    <Reference Include="NSubstitute">
+      <HintPath>..\..\packages\NSubstitute.1.5.0.0\lib\NET35\NSubstitute.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -116,6 +119,7 @@
     <Compile Include="..\TMX\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="UnitTests\Fakes\FakeNSubFactory.cs" />
     <Compile Include="UnitTests\Fakes\FakeTfsFactory.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -142,6 +146,9 @@
       <Project>{DFFF7F28-CFA4-4EE5-84F0-4A12A415BC0C}</Project>
       <Name>TMX</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>

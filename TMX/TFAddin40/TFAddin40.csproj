@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
   <PropertyGroup>
-    <ProjectGuid>{68B32555-34E0-4843-8F8F-28FF39FFA0BA}</ProjectGuid>
+    <ProjectGuid>{F8035836-B3FE-4B26-B3A4-09F6C765EAA1}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <OutputType>Library</OutputType>
-    <RootNamespace>TFAddinUnitTests</RootNamespace>
-    <AssemblyName>TFAddinUnitTests</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <RootNamespace>TFAddin40</RootNamespace>
+    <AssemblyName>TFAddin40</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <OutputPath>bin\Release35\</OutputPath>
@@ -17,11 +17,6 @@
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <DebugSymbols>false</DebugSymbols>
-    <FileUpgradeFlags>
-    </FileUpgradeFlags>
-    <UpgradeBackupLocation>
-    </UpgradeBackupLocation>
-    <OldToolsVersion>3.5</OldToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <OutputPath>bin\Debug\</OutputPath>
@@ -54,12 +49,6 @@
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Gallio">
-      <HintPath>..\..\..\..\Program Files\Gallio\bin\Gallio.dll</HintPath>
-    </Reference>
-    <Reference Include="MbUnit">
-      <HintPath>..\..\..\..\Program Files\Gallio\bin\MbUnit.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.TeamFoundation">
       <HintPath>..\..\..\..\..\Program Files %28x86%29\Microsoft Visual Studio 11.0\Common7\IDE\ReferenceAssemblies\v2.0\Microsoft.TeamFoundation.dll</HintPath>
     </Reference>
@@ -72,9 +61,6 @@
     <Reference Include="Microsoft.TeamFoundation.WorkItemTracking.Client">
       <HintPath>..\..\..\..\..\Program Files %28x86%29\Microsoft Visual Studio 11.0\Common7\IDE\ReferenceAssemblies\v2.0\Microsoft.TeamFoundation.WorkItemTracking.Client.dll</HintPath>
     </Reference>
-    <Reference Include="Moq">
-      <HintPath>..\..\binaries\Moq\NET35\Moq.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -86,6 +72,54 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Commands" />
+    <Folder Include="Commands\TF" />
+    <Folder Include="Helpers" />
+    <Folder Include="Helpers\Inheritance" />
+    <Folder Include="Helpers\UserSettings" />
+    <Folder Include="Helpers\UnderlyingCode" />
+    <Folder Include="Helpers\UnderlyingCode\Commands" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\TFAddin\Commands\TF\AddTFTestCaseCommand.cs">
+      <Link>Commands\TF\AddTFTestCaseCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TFAddin\Commands\TF\AddTFTestSubSuiteCommand.cs">
+      <Link>Commands\TF\AddTFTestSubSuiteCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TFAddin\Commands\TF\AddTFTestSuiteCommand.cs">
+      <Link>Commands\TF\AddTFTestSuiteCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TFAddin\Commands\TF\ConnectTFServerCommand.cs">
+      <Link>Commands\TF\ConnectTFServerCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TFAddin\Commands\TF\GetTFCollectionCommand.cs">
+      <Link>Commands\TF\GetTFCollectionCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TFAddin\Commands\TF\GetTFProjectCommand.cs">
+      <Link>Commands\TF\GetTFProjectCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TFAddin\Commands\TF\GetTFTestCaseCommand.cs">
+      <Link>Commands\TF\GetTFTestCaseCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TFAddin\Commands\TF\GetTFTestPlanCommand.cs">
+      <Link>Commands\TF\GetTFTestPlanCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TFAddin\Commands\TF\GetTFTestSubSuiteCommand.cs">
+      <Link>Commands\TF\GetTFTestSubSuiteCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TFAddin\Commands\TF\GetTFTestSuiteCommand.cs">
+      <Link>Commands\TF\GetTFTestSuiteCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TFAddin\Commands\TF\NewTFTestPlanCommand.cs">
+      <Link>Commands\TF\NewTFTestPlanCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TFAddin\Helpers\Inheritance\MultipleNamesCmdletBase.cs">
+      <Link>Helpers\Inheritance\MultipleNamesCmdletBase.cs</Link>
+    </Compile>
+    <Compile Include="..\TFAddin\Helpers\Inheritance\SingleNameCmdletBase.cs">
+      <Link>Helpers\Inheritance\SingleNameCmdletBase.cs</Link>
+    </Compile>
     <Compile Include="..\TFAddin\Helpers\Inheritance\TFCollectionCmdletBase.cs">
       <Link>Helpers\Inheritance\TFCollectionCmdletBase.cs</Link>
     </Compile>
@@ -110,33 +144,56 @@
     <Compile Include="..\TFAddin\Helpers\Inheritance\TFTestSuiteCmdletBase.cs">
       <Link>Helpers\Inheritance\TFTestSuiteCmdletBase.cs</Link>
     </Compile>
+    <Compile Include="..\TFAddin\Helpers\UnderlyingCode\Commands\TFSrvAddTestCaseCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\TFSrvAddTestCaseCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TFAddin\Helpers\UnderlyingCode\Commands\TFSrvAddTestSubSuiteCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\TFSrvAddTestSubSuiteCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TFAddin\Helpers\UnderlyingCode\Commands\TFSrvAddTestSuiteCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\TFSrvAddTestSuiteCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TFAddin\Helpers\UnderlyingCode\Commands\TFSrvCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\TFSrvCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TFAddin\Helpers\UnderlyingCode\Commands\TFSrvConnectCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\TFSrvConnectCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TFAddin\Helpers\UnderlyingCode\Commands\TFSrvGetCollectionCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\TFSrvGetCollectionCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TFAddin\Helpers\UnderlyingCode\Commands\TFSrvGetProjectCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\TFSrvGetProjectCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TFAddin\Helpers\UnderlyingCode\Commands\TFSrvGetTestCaseCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\TFSrvGetTestCaseCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TFAddin\Helpers\UnderlyingCode\Commands\TFSrvGetTestPlanCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\TFSrvGetTestPlanCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TFAddin\Helpers\UnderlyingCode\Commands\TFSrvGetTestSubSuiteCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\TFSrvGetTestSubSuiteCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TFAddin\Helpers\UnderlyingCode\Commands\TFSrvGetTestSuiteCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\TFSrvGetTestSuiteCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TFAddin\Helpers\UnderlyingCode\Commands\TFSrvNewTestPlanCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\TFSrvNewTestPlanCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TFAddin\Helpers\UnderlyingCode\TFHelper.cs">
+      <Link>Helpers\UnderlyingCode\TFHelper.cs</Link>
+    </Compile>
     <Compile Include="..\TFAddin\Helpers\UserSettings\CurrentData.cs">
       <Link>Helpers\UserSettings\CurrentData.cs</Link>
     </Compile>
     <Compile Include="..\TMX\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="UnitTests\Fakes\FakeTfsFactory.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Commands" />
-    <Folder Include="Commands\TF" />
-    <Folder Include="Helpers" />
-    <Folder Include="Helpers\Inheritance" />
-    <Folder Include="Helpers\UserSettings" />
-    <Folder Include="Helpers\UnderlyingCode" />
-    <Folder Include="Helpers\UnderlyingCode\Commands" />
-    <Folder Include="UnitTests" />
-    <Folder Include="UnitTests\Fakes" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">
       <Project>{E4499004-DAE5-4700-B212-4CDEA3080BC5}</Project>
       <Name>PSTestLibrary</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TFAddin\TFAddin.csproj">
-      <Project>{686D29A7-8CA9-4908-82D3-11530ACCBD19}</Project>
-      <Name>TFAddin</Name>
     </ProjectReference>
     <ProjectReference Include="..\TMX\TMX.csproj">
       <Project>{DFFF7F28-CFA4-4EE5-84F0-4A12A415BC0C}</Project>

@@ -105,12 +105,12 @@
     <Compile Include="Commands\TF\GetTFTestSubSuiteCommand.cs" />
     <Compile Include="Commands\TF\GetTFTestSuiteCommand.cs" />
     <Compile Include="Commands\TF\NewTFTestPlanCommand.cs" />
-    <Compile Include="Commands\TF\OpenTFCollectionCommand.cs" />
-    <Compile Include="Commands\TF\OpenTFProjectCommand.cs" />
-    <Compile Include="Commands\TF\OpenTFTestCaseCommand.cs" />
-    <Compile Include="Commands\TF\OpenTFTestPlanCommand.cs" />
-    <Compile Include="Commands\TF\OpenTFTestSubSuiteCommand.cs" />
-    <Compile Include="Commands\TF\OpenTFTestSuiteCommand.cs" />
+    <Compile Include="Commands\TF\open\OpenTFCollectionCommand.cs" />
+    <Compile Include="Commands\TF\open\OpenTFProjectCommand.cs" />
+    <Compile Include="Commands\TF\open\OpenTFTestCaseCommand.cs" />
+    <Compile Include="Commands\TF\open\OpenTFTestPlanCommand.cs" />
+    <Compile Include="Commands\TF\open\OpenTFTestSubSuiteCommand.cs" />
+    <Compile Include="Commands\TF\open\OpenTFTestSuiteCommand.cs" />
     <Compile Include="Helpers\Inheritance\MultipleNamesCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\SingleNameCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\TFCollectionCmdletBase.cs" />
@@ -121,6 +121,12 @@
     <Compile Include="Helpers\Inheritance\TFTestSubSuiteCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\TFTestSuiteCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\TFSCmdletBase.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\open\TFSrvOpenCollectionCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\open\TFSrvOpenProjectCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\open\TFSrvOpenTestCaseCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\open\TFSrvOpenTestPlanCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\open\TFSrvOpenTestSubSuiteCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\open\TFSrvOpenTestSuiteCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TFSrvAddTestCaseCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TFSrvAddTestSubSuiteCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TFSrvAddTestSuiteCommand.cs" />
@@ -133,16 +139,13 @@
     <Compile Include="Helpers\UnderlyingCode\Commands\TFSrvGetTestSubSuiteCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TFSrvGetTestSuiteCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TFSrvNewTestPlanCommand.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Commands\TFSrvOpenCollectionCommand.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Commands\TFSrvOpenProjectCommand.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Commands\TFSrvOpenTestCaseCommand.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Commands\TFSrvOpenTestPlanCommand.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Commands\TFSrvOpenTestSubSuiteCommand.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Commands\TFSrvOpenTestSuiteCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\TFHelper.cs" />
     <Compile Include="Helpers\UserSettings\CurrentData.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Commands\TF\open" />
+    <Folder Include="Helpers\UnderlyingCode\Commands\open" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">
       <Project>{E4499004-DAE5-4700-B212-4CDEA3080BC5}</Project>

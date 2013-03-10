@@ -2,7 +2,7 @@
 // * Created by SharpDevelop.
 // * User: Alexander Petrovskiy
 // * Date: 11/9/2012
-// * Time: 6:51 PM
+// * Time: 6:53 PM
 // * 
 // * To change this template use Tools | Options | Coding | Edit Standard Headers.
 // */
@@ -13,12 +13,12 @@
 //    using System.Management.Automation;
 //    
 //    /// <summary>
-//    /// Description of GetTFProjectCommand.
+//    /// Description of OpenTFTestCaseCommand.
 //    /// </summary>
-//    [Cmdlet(VerbsCommon.Get, "TFProject")]
-//    public class GetTFProjectCommand : TFProjectCmdletBase
+//    [Cmdlet(VerbsCommon.Open, "TFTestCase")]
+//    public class OpenTFTestCaseCommand : TFTestCaseCmdletBase
 //    {
-//        public GetTFProjectCommand()
+//        public OpenTFTestCaseCommand()
 //        {
 //        }
 //        
@@ -26,8 +26,8 @@
 //        {
 //            this.CheckCmdletParameters();
 //            
-//            TFSrvGetProjectCommand command =
-//                new TFSrvGetProjectCommand(this);
+//            TFSrvOpenTestCaseCommand command =
+//                new TFSrvOpenTestCaseCommand(this);
 //            command.Execute();
 //        }
 //    }

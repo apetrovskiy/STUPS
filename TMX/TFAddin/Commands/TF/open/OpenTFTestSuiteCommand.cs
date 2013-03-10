@@ -13,12 +13,12 @@
 //    using System.Management.Automation;
 //    
 //    /// <summary>
-//    /// Description of GetTFProjectCommand.
+//    /// Description of OpenTFTestSuiteCommand.
 //    /// </summary>
-//    [Cmdlet(VerbsCommon.Get, "TFProject")]
-//    public class GetTFProjectCommand : TFProjectCmdletBase
+//    [Cmdlet(VerbsCommon.Open, "TFTestSuite")]
+//    public class OpenTFTestSuiteCommand : TFTestSuiteCmdletBase
 //    {
-//        public GetTFProjectCommand()
+//        public OpenTFTestSuiteCommand()
 //        {
 //        }
 //        
@@ -26,8 +26,8 @@
 //        {
 //            this.CheckCmdletParameters();
 //            
-//            TFSrvGetProjectCommand command =
-//                new TFSrvGetProjectCommand(this);
+//            TFSrvOpenTestSuiteCommand command =
+//                new TFSrvOpenTestSuiteCommand(this);
 //            command.Execute();
 //        }
 //    }

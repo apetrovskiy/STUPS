@@ -489,8 +489,8 @@ namespace UIAutomationTest.Commands.Get
         private void prepareThreeForms()
         {
             CmdletUnitTest.TestRunspace.RunPSCode(
-                @"[void](Get-UIAWindow -n '*outer*' | Get-UIAButton -n '*form*' | Invoke-UIAButtonClick;); " +
-                @"[void](Get-UIAWindow -n '*medium*' | Get-UIAButton -n '*form*' | Invoke-UIAButtonClick;);");
+                @"[void](Get-UIAWindow -n '*outer*' | Get-UIAButton -n '*form*' | Invoke-UIAButtonClick); " +
+                @"[void](Get-UIAWindow -n '*medium*' | Get-UIAButton -n '*form*' | Invoke-UIAButtonClick);");
         }
         
         [Test]
@@ -533,22 +533,24 @@ namespace UIAutomationTest.Commands.Get
             prepareThreeForms();
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"(Get-UIAWindow -InputObject (Get-Process " +
+                MiddleLevelCode.TestFormProcess +
                 ") -Recurse).Count",
                 "3");
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Get_UIAWindow")]
-        public void GetWindowByName_Recurse_TimeoutDefault()
-        {
-            MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsThreeSet, 0);
-            prepareThreeForms();
-            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"(Get-UIAWindow -n '*winfowm*' -Recurse).Count",
-                "3");
-        }
+        // this is not supported
+//        [Test]
+//        [Category("Slow")]
+//        [Category("WinForms")]
+//        [Category("Get_UIAWindow")]
+//        public void GetWindowByName_Recurse_TimeoutDefault()
+//        {
+//            MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsThreeSet, 0);
+//            prepareThreeForms();
+//            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+//                @"(Get-UIAWindow -n '*winform*' -Recurse).Count",
+//                "3");
+//        }
         
         // ================================================
         
@@ -589,7 +591,7 @@ namespace UIAutomationTest.Commands.Get
                 "Get-UIAWindow -Name '" +
                 MiddleLevelCode.TestFormNameEmpty +
                 "' -timeout 5000 -WithControl @{controlType=\"button\";name=\"*Nope*\"} | Read-UIAControlName;",
-                "",
+                "CmdletInvocationException",
                 "");
         }
         

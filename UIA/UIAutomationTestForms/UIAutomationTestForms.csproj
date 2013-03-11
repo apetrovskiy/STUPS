@@ -170,11 +170,19 @@
     <Compile Include="FormsCollection\WinForms\WinFormsFull.Designer.cs">
       <DependentUpon>WinFormsFull.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormsCollection\WinForms\WinFormsInner.cs" />
+    <Compile Include="FormsCollection\WinForms\WinFormsInner.Designer.cs">
+      <DependentUpon>WinFormsInner.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormsCollection\WinForms\WinFormsMaximized.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormsCollection\WinForms\WinFormsMaximized.Designer.cs">
       <DependentUpon>WinFormsMaximized.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsCollection\WinForms\WinFormsMedium.cs" />
+    <Compile Include="FormsCollection\WinForms\WinFormsMedium.Designer.cs">
+      <DependentUpon>WinFormsMedium.cs</DependentUpon>
     </Compile>
     <Compile Include="FormsCollection\WinForms\WinFormsMinimized.cs">
       <SubType>Form</SubType>
@@ -187,6 +195,10 @@
     </Compile>
     <Compile Include="FormsCollection\WinForms\WinFormsNoTaskBar.Designer.cs">
       <DependentUpon>WinFormsNoTaskBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsCollection\WinForms\WinFormsOuter.cs" />
+    <Compile Include="FormsCollection\WinForms\WinFormsOuter.Designer.cs">
+      <DependentUpon>WinFormsOuter.cs</DependentUpon>
     </Compile>
     <Compile Include="FormsCollection\WinForms\WinFormsRich.cs">
       <SubType>Form</SubType>
@@ -293,6 +305,12 @@
   <ItemGroup>
     <EmbeddedResource Include="FormsCollection\WinForms\WinFormsFull.resx">
       <DependentUpon>WinFormsFull.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsCollection\WinForms\WinFormsMedium.resx">
+      <DependentUpon>WinFormsMedium.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsCollection\WinForms\WinFormsOuter.resx">
+      <DependentUpon>WinFormsOuter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormsCollection\WinForms\WinFormsWizard.resx">
       <DependentUpon>WinFormsWizard.cs</DependentUpon>

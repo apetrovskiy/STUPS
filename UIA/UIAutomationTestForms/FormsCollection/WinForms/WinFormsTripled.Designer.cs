@@ -72,11 +72,16 @@ namespace UIAutomationTestForms
             // 
             // btnSecondForm
             // 
-            this.btnSecondForm.Location = new System.Drawing.Point(40, 40);
+            //this.btnSecondForm.Location = new System.Drawing.Point(40, 40);
+            this.btnSecondForm.Location = new System.Drawing.Point(100, 100);
             this.btnSecondForm.Name = "btnSecondForm";
             this.btnSecondForm.Size = new System.Drawing.Size(71, 27);
             this.btnSecondForm.TabIndex = 0;
             this.btnSecondForm.Text = "The second form";
+            this.btnSecondForm.Visible = true;
+            this.btnSecondForm.Enabled = true;
+            //this.btnSecondForm.Left = 100;
+            //this.btnSecondForm.Top = 100;
             this.btnSecondForm.UseVisualStyleBackColor = true;
             this.btnSecondForm.Click += new System.EventHandler(this.btnSecondFormClick);
             

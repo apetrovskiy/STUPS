@@ -145,12 +145,24 @@
     <Compile Include="..\UIAutomationTestForms\FormsCollection\WinForms\WinFormsFull.Designer.cs">
       <Link>FormsCollection\WinForms\WinFormsFull.Designer.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomationTestForms\FormsCollection\WinForms\WinFormsInner.cs">
+      <Link>FormsCollection\WinForms\WinFormsInner.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTestForms\FormsCollection\WinForms\WinFormsInner.Designer.cs">
+      <Link>FormsCollection\WinForms\WinFormsInner.Designer.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomationTestForms\FormsCollection\WinForms\WinFormsMaximized.cs">
       <Link>FormsCollection\WinForms\WinFormsMaximized.cs</Link>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="..\UIAutomationTestForms\FormsCollection\WinForms\WinFormsMaximized.Designer.cs">
       <Link>FormsCollection\WinForms\WinFormsMaximized.Designer.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTestForms\FormsCollection\WinForms\WinFormsMedium.cs">
+      <Link>FormsCollection\WinForms\WinFormsMedium.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTestForms\FormsCollection\WinForms\WinFormsMedium.Designer.cs">
+      <Link>FormsCollection\WinForms\WinFormsMedium.Designer.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomationTestForms\FormsCollection\WinForms\WinFormsMinimized.cs">
       <Link>FormsCollection\WinForms\WinFormsMinimized.cs</Link>
@@ -165,6 +177,12 @@
     </Compile>
     <Compile Include="..\UIAutomationTestForms\FormsCollection\WinForms\WinFormsNoTaskBar.Designer.cs">
       <Link>FormsCollection\WinForms\WinFormsNoTaskBar.Designer.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTestForms\FormsCollection\WinForms\WinFormsOuter.cs">
+      <Link>FormsCollection\WinForms\WinFormsOuter.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTestForms\FormsCollection\WinForms\WinFormsOuter.Designer.cs">
+      <Link>FormsCollection\WinForms\WinFormsOuter.Designer.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomationTestForms\FormsCollection\WinForms\WinFormsRich.cs">
       <Link>FormsCollection\WinForms\WinFormsRich.cs</Link>
@@ -257,6 +275,13 @@
   <ItemGroup>
     <EmbeddedResource Include="..\UIAutomationTestForms\FormsCollection\WinForms\WinFormsFull.resx">
       <Link>FormsCollection\WinForms\WinFormsFull.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\UIAutomationTestForms\FormsCollection\WinForms\WinFormsMedium.resx">
+      <Link>FormsCollection\WinForms\WinFormsMedium.resx</Link>
+      <DependentUpon>WinFormsMedium.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\UIAutomationTestForms\FormsCollection\WinForms\WinFormsOuter.resx">
+      <Link>FormsCollection\WinForms\WinFormsOuter.resx</Link>
     </EmbeddedResource>
     <EmbeddedResource Include="..\UIAutomationTestForms\FormsCollection\WinForms\WinFormsWizard.resx">
       <Link>FormsCollection\WinForms\WinFormsWizard.resx</Link>

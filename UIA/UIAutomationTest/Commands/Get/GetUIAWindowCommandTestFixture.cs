@@ -485,18 +485,27 @@ namespace UIAutomationTest.Commands.Get
         
         
         // =============== Recurse ======================
+        
+        private void prepareThreeForms()
+        {
+            CmdletUnitTest.TestRunspace.RunPSCode(
+                @"[void](Get-UIAWindow -n '*outer*' | Get-UIAButton -n '*form*' | Invoke-UIAButtonClick;); " +
+                @"[void](Get-UIAWindow -n '*medium*' | Get-UIAButton -n '*form*' | Invoke-UIAButtonClick;);");
+        }
+        
         [Test]
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Get_UIAWindow")]
         public void GetWindowByProcessName_Recurse_TimeoutDefault()
         {
-            Assert.Fail();
-            
-            MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
-            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual1(@"if ((Get-UIAWindow -pn " + 
-                           MiddleLevelCode.TestFormProcess +
-                           ")) { 1; } else { 0; }");
+            MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsThreeSet, 0);
+            prepareThreeForms();
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+                @"(Get-UIAWindow -pn " +
+                MiddleLevelCode.TestFormProcess +
+                " -Recurse).Count;",
+                "3");
         }
         
         [Test]
@@ -505,12 +514,13 @@ namespace UIAutomationTest.Commands.Get
         [Category("Get_UIAWindow")]
         public void GetWindowByProcessId_Recurse_TimeoutDefault()
         {
-            Assert.Fail();
-            
-            MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
-            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual1(@"if ((Get-UIAWindow -pn " + 
-                           MiddleLevelCode.TestFormProcess +
-                           ")) { 1; } else { 0; }");
+            MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsThreeSet, 0);
+            prepareThreeForms();
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+                @"(Get-UIAWindow -pid (Get-Process " +
+                MiddleLevelCode.TestFormProcess +
+                ").Id -Recurse).Count",
+                "3");
         }
         
         [Test]
@@ -519,12 +529,12 @@ namespace UIAutomationTest.Commands.Get
         [Category("Get_UIAWindow")]
         public void GetWindowByProcess_Recurse_TimeoutDefault()
         {
-            Assert.Fail();
-            
-            MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
-            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual1(@"if ((Get-UIAWindow -pn " + 
-                           MiddleLevelCode.TestFormProcess +
-                           ")) { 1; } else { 0; }");
+            MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsThreeSet, 0);
+            prepareThreeForms();
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+                @"(Get-UIAWindow -InputObject (Get-Process " +
+                ") -Recurse).Count",
+                "3");
         }
         
         [Test]
@@ -533,12 +543,11 @@ namespace UIAutomationTest.Commands.Get
         [Category("Get_UIAWindow")]
         public void GetWindowByName_Recurse_TimeoutDefault()
         {
-            Assert.Fail();
-            
-            MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
-            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual1(@"if ((Get-UIAWindow -pn " + 
-                           MiddleLevelCode.TestFormProcess +
-                           ")) { 1; } else { 0; }");
+            MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsThreeSet, 0);
+            prepareThreeForms();
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+                @"(Get-UIAWindow -n '*winfowm*' -Recurse).Count",
+                "3");
         }
         
         // ================================================

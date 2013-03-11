@@ -287,6 +287,10 @@ namespace UIAutomationTestForms
                     System.Windows.Forms.Application.Run(
                         new WinFormsTripled(controls));
                     break;
+                case Forms.WinFormsThreeSet:
+                    System.Windows.Forms.Application.Run(
+                        new WinFormsOuter()); //(controls));
+                    break;
                 case Forms.WinFormsRich:
                     System.Windows.Forms.Application.Run(
                         new WinFormsRich()); //ctrlType, controlName, controlAutomationId, controlDelay));
@@ -481,6 +485,7 @@ namespace UIAutomationTestForms
         WinFormsMaximized = 5,
         WinFormsNoTaskBar = 11,
         WinFormsTripled = 21,
+        WinFormsThreeSet = 22,
         WinFormsRich = 31,
         WinFormsFull = 32,
         WinFormsWizard = 33,

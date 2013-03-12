@@ -524,6 +524,7 @@ namespace UIAutomation
                     bool res0 = 
                         // 20130118
                         //NativeMethods.SendMessage1(handle, NativeMethods.WM_MOUSEACTIVATE, 
+                        // 20130312
                         NativeMethods.PostMessage1(handle, NativeMethods.WM_MOUSEACTIVATE, 
                                      mainWindow, lParam2);
                     WriteVerbose(this, "WM_MOUSEACTIVATE is sent");
@@ -558,7 +559,15 @@ namespace UIAutomation
             
             // // 20120620 for Home Tab
             bool res1 = NativeMethods.PostMessage1(handle, uDown, wParamDown, lParam);
+            // 20130312
             //bool res1 = NativeMethods.SendMessage1(handle, uDown, wParamDown, lParam);
+            
+            
+            // 20130312
+            // MouseMove
+            if (RightClick || DoubleClick) {
+                bool resMM = NativeMethods.PostMessage1(handle, NativeMethods.WM_MOUSEMOVE, wParamDown, lParam);
+            }
             
 // if (Ctrl) {
 //// PostMessage1(handle, WM_SYSKEYDOWN, new IntPtr(VK_CONTROL), lParamKeyDown);
@@ -581,6 +590,7 @@ namespace UIAutomation
             
             // // 20120620 for Home Tab
             bool res2 = NativeMethods.PostMessage1(handle, uUp, wParamUp, lParam);
+            // 20130312
             //bool res2 = NativeMethods.SendMessage1(handle, uUp, wParamUp, lParam);
             
 // if (Ctrl) {
@@ -618,11 +628,13 @@ namespace UIAutomation
 
             WriteVerbose(cmdlet,
                          // // 20120620 for Home Tab
+                         // 20130312
                          "PostMessage " + uDown.ToString() + 
                          //"SendMessage " + uDown.ToString() + 
                          " result = " + res1.ToString());
             WriteVerbose(cmdlet, 
                          // // 20120620 for Home Tab
+                         // 20130312
                          "PostMessage " + uUp.ToString() +
                          //"SendMessage " + uUp.ToString() + 
                          " result = " + res2.ToString());

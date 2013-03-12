@@ -206,6 +206,7 @@ namespace UIAutomation
         #region declarations
         // http://msdn.microsoft.com/en-us/library/windows/desktop/ms646244(v=vs.85).aspx
         internal static uint WM_MOUSEACTIVATE             = 0x0021;
+        internal static uint WM_MOUSEMOVE                 = 0x0200;
         internal static uint WM_LBUTTONDOWN               = 0x0201;
         internal static uint WM_LBUTTONUP                 = 0x0202;
         internal static uint WM_LBUTTONDBLCLK             = 0x0203;

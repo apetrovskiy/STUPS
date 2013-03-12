@@ -81,8 +81,8 @@ namespace UIAutomation
             EveryCmdletAsTestResult = false;
             FailTestResultIfFailInTestSequence = true;
             
-            ClickOnControlByCoordX = 3;
-            ClickOnControlByCoordY = 3;
+            ClickOnControlByCoordX = 5; //3;
+            ClickOnControlByCoordY = 5; //3;
             
             // 20130105
             PerformWin32ClickOnFail = true;

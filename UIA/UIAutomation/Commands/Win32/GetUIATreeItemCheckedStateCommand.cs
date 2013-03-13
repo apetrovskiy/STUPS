@@ -18,7 +18,7 @@ namespace UIAutomation.Commands
     /// Description of GetUIATreeItemCheckedStateCommand.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UIATreeItemCheckedState")]
-    public class GetUIATreeItemCheckedStateCommand : GetControlCmdletBase
+    public class GetUIATreeItemCheckedStateCommand : Win32CmdletBase //GetControlCmdletBase
     {
         public GetUIATreeItemCheckedStateCommand()
         {

@@ -246,6 +246,7 @@
     <Compile Include="Commands\Wait\WaitUIAWindowCommand.cs" />
     <Compile Include="Commands\Win32\CProbe.cs" />
     <Compile Include="Commands\Win32\GetUIATreeItemCheckedStateCommand.cs" />
+    <Compile Include="Commands\Win32\SetUIADateTimePickerDateCommand.cs" />
     <Compile Include="Commands\Wizard\AddUIAWizardStepCommand.cs" />
     <Compile Include="Commands\Wizard\GetUIAWizardCommand.cs" />
     <Compile Include="Commands\Wizard\InvokeUIAWizardCommand.cs" />
@@ -283,6 +284,7 @@
     <Compile Include="Helpers\Inheritance\TranscriptCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\ULtraGridCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\WaitCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\Win32CmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\Wizard\WizardCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\Wizard\WizardConstructionCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\Wizard\WizardContainerCmdletBase.cs" />

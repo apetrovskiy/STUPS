@@ -857,5 +857,136 @@ namespace UIAutomation
         #region screensaver prevention
         
         #endregion screensaver prevention
+        
+        #region DateTimePicker
+        [DllImport("user32.dll")]
+        internal static extern IntPtr SendMessage(IntPtr hWnd, UInt32 Msg, IntPtr wParam, IntPtr lParam);
+        [DllImport("kernel32.dll", SetLastError = true)]
+        internal static extern bool WriteProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, byte[] lpBuffer, uint nSize, UIntPtr lpNumberOfBytesWritten);
+        [DllImport("kernel32.dll", SetLastError = true, ExactSpelling = true)]
+        internal static extern IntPtr VirtualAllocEx(IntPtr hProcess, IntPtr lpAddress, uint dwSize, AllocationType flAllocationType, MemoryProtection flProtect);
+        [DllImport("kernel32.dll", SetLastError = true, ExactSpelling = true)]
+        internal static extern bool VirtualFreeEx(IntPtr hProcess, IntPtr lpAddress, int dwSize, FreeType dwFreeType);
+        [DllImport("kernel32.dll")]
+        internal static extern IntPtr OpenProcess(ProcessAccessFlags dwDesiredAccess, [MarshalAs(UnmanagedType.Bool)] bool bInheritHandle, int dwProcessId);
+        [DllImport("kernel32.dll", SetLastError = true)]
+        internal static extern bool CloseHandle(IntPtr hHandle);
+        
+        // SYSTEMTIME c++ struct to be injected into process
+        [StructLayoutAttribute(LayoutKind.Sequential)]
+        internal  struct SYSTEMTIME
+        {
+            public short wYear;
+            public short wMonth;
+            public short wDayOfWeek;
+            public short wDay;
+            public short wHour;
+            public short wMinute;
+            public short wSecond;
+            public short wMilliseconds;
+
+            public SYSTEMTIME(DateTime value)
+            {
+                wYear = (short)value.Year;
+                wMonth = (short)value.Month;
+                wDayOfWeek = (short)value.DayOfWeek;
+                wDay = (short)value.Day;
+                wHour = (short)value.Hour;
+                wMinute = (short)value.Minute;
+                wSecond = (short)value.Second;
+                wMilliseconds = 0;
+            }
+        }
+
+        [Flags]
+        public enum AllocationType
+        {
+            Commit = 0x1000,
+            Reserve = 0x2000,
+            Decommit = 0x4000,
+            Release = 0x8000,
+            Reset = 0x80000,
+            Physical = 0x400000,
+            TopDown = 0x100000,
+            WriteWatch = 0x200000,
+            LargePages = 0x20000000
+        }
+
+        [Flags]
+        public enum MemoryProtection
+        {
+            Execute = 0x10,
+            ExecuteRead = 0x20,
+            ExecuteReadWrite = 0x40,
+            ExecuteWriteCopy = 0x80,
+            NoAccess = 0x01,
+            ReadOnly = 0x02,
+            ReadWrite = 0x04,
+            WriteCopy = 0x08,
+            GuardModifierflag = 0x100,
+            NoCacheModifierflag = 0x200,
+            WriteCombineModifierflag = 0x400
+        }
+
+        [Flags]
+        internal enum ProcessAccessFlags : uint
+        {
+            All = 0x001F0FFF,
+            Terminate = 0x00000001,
+            CreateThread = 0x00000002,
+            VMOperation = 0x00000008,
+            VMRead = 0x00000010,
+            VMWrite = 0x00000020,
+            DupHandle = 0x00000040,
+            SetInformation = 0x00000200,
+            QueryInformation = 0x00000400,
+            Synchronize = 0x00100000
+        }
+
+        [Flags]
+        public enum FreeType
+        {
+            Decommit = 0x4000,
+            Release = 0x8000,
+        }
+
+        internal const uint DTM_FIRST = 0x1000;
+        internal const uint DTM_SETSYSTEMTIME = DTM_FIRST + 2;
+        internal const ushort GDT_VALID = 0;
+        internal const uint WM_COMMAND = 0x0111;
+
+//        internal static void InjectMemory(int procId, byte[] buffer, out IntPtr hndProc, out IntPtr lpAddress)
+//        {
+//            // open process and get handle
+//            hndProc = OpenProcess(ProcessAccessFlags.All, true, procId);
+//
+//            if (hndProc == (IntPtr)0)
+//            {
+//                AccessViolationException ex = new AccessViolationException("Unable to attach to process with an id " + procId);
+//                ThrowTerminatingError(new ErrorRecord(ex, "AccessDenined", ErrorCategory.SecurityError, null));
+//            }
+//
+//            // allocate memory for object to be injected
+//            lpAddress = VirtualAllocEx(hndProc, (IntPtr)null, (uint)buffer.Length,
+//                AllocationType.Commit | AllocationType.Reserve, MemoryProtection.ExecuteReadWrite);
+//
+//            if (lpAddress == (IntPtr)0)
+//            {
+//                AccessViolationException ex = new AccessViolationException("Unable to allocate memory to proces with an id " + procId);
+//                ThrowTerminatingError(new ErrorRecord(ex, "AccessDenined", ErrorCategory.SecurityError, null));
+//            }
+//
+//            // write data to process
+//            uint wrotelen = 0;
+//            WriteProcessMemory(hndProc, lpAddress, buffer, (uint)buffer.Length, (UIntPtr)wrotelen);
+//
+//            if (Marshal.GetLastWin32Error() != 0)
+//            {
+//                AccessViolationException ex = new AccessViolationException("Unable to write memory to process with an id " + procId);
+//                ThrowTerminatingError(new ErrorRecord(ex, "AccessDenined", ErrorCategory.SecurityError, null));
+//            }
+//        }
+        
+        #endregion DateTimePicker
     }
 }

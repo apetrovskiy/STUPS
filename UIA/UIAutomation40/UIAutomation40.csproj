@@ -571,6 +571,9 @@
     <Compile Include="..\UIAutomation\Helpers\Inheritance\ProfileInputCmdletBase.cs">
       <Link>Helpers\Inheritance\ProfileInputCmdletBase.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Inheritance\RDPCmdletBase.cs">
+      <Link>Helpers\Inheritance\RDPCmdletBase.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Helpers\Inheritance\ReadAndConvertCmdletBase.cs">
       <Link>Helpers\Inheritance\ReadAndConvertCmdletBase.cs</Link>
     </Compile>

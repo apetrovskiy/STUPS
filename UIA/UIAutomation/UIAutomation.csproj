@@ -274,6 +274,7 @@
     <Compile Include="Helpers\Inheritance\HotkeyCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\ProfileCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\ProfileInputCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\RDPCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\ReadAndConvertCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\ReadCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\PatternCmdletBase.cs" />

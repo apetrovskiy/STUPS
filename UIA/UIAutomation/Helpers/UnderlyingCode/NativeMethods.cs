@@ -13,6 +13,7 @@ namespace UIAutomation
     using System.Runtime.InteropServices;
     // http://msdn.microsoft.com/ru-ru/library/windows/desktop/aa379560(v=vs.85).aspx
     using DWORD = System.UInt32; // Optional alias, used below.
+    using System.ComponentModel;
     
     /// <summary>
     /// Description of NativeMethods.
@@ -988,5 +989,64 @@ namespace UIAutomation
 //        }
         
         #endregion DateTimePicker
+        
+        #region Protect/Unprotect Data
+        // http://www.obviex.com/samples/dpapi.aspx
+        
+        // Wrapper for DPAPI CryptProtectData function.
+        [DllImport( "crypt32.dll",
+                    SetLastError=true,
+                    CharSet=System.Runtime.InteropServices.CharSet.Auto)]
+        internal static extern
+            bool CryptProtectData(  ref DATA_BLOB     pPlainText,
+                                        string        szDescription,
+                                    ref DATA_BLOB     pEntropy,
+                                        IntPtr        pReserved,
+                                    ref CRYPTPROTECT_PROMPTSTRUCT pPrompt,
+                                        int           dwFlags,
+                                    ref DATA_BLOB     pCipherText);
+        
+        // Wrapper for DPAPI CryptUnprotectData function.
+        [DllImport( "crypt32.dll",
+                    SetLastError=true,
+                    CharSet=System.Runtime.InteropServices.CharSet.Auto)]
+        internal static extern
+            bool CryptUnprotectData(ref DATA_BLOB       pCipherText,
+                                    ref string          pszDescription,
+                                    ref DATA_BLOB       pEntropy,
+                                        IntPtr          pReserved,
+                                    ref CRYPTPROTECT_PROMPTSTRUCT pPrompt,
+                                        int             dwFlags,
+                                    ref DATA_BLOB       pPlainText);
+        
+        // BLOB structure used to pass data to DPAPI functions.
+        [StructLayout(LayoutKind.Sequential, CharSet=CharSet.Unicode)]
+        internal struct DATA_BLOB
+        {
+            public int     cbData;
+            public IntPtr  pbData;
+        }
+        
+        // Prompt structure to be used for required parameters.
+        [StructLayout(LayoutKind.Sequential, CharSet=CharSet.Unicode)]
+        internal struct CRYPTPROTECT_PROMPTSTRUCT
+        {
+            public int      cbSize;
+            public int      dwPromptFlags;
+            public IntPtr   hwndApp;
+            public string   szPrompt;
+        }
+        
+        // Wrapper for the NULL handle or pointer.
+        static internal IntPtr NullPtr = ((IntPtr)((int)(0)));
+        
+        // DPAPI key initialization flags.
+        internal const int CRYPTPROTECT_UI_FORBIDDEN  = 0x1;
+        internal const int CRYPTPROTECT_LOCAL_MACHINE = 0x4;
+        
+        [DllImport("kernel32.dll", SetLastError=true)]
+        internal static extern IntPtr LocalFree(IntPtr hMem);
+        
+        #endregion Protect/Unprotect Data
     }
 }

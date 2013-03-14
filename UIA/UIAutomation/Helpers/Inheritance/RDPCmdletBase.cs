@@ -37,68 +37,72 @@ namespace UIAutomation
         
         protected string EncryptPassword(string password)
         {
-            //function CryptRDPPassword(sPassword: string): string; 
-            //var DataIn: DATA_BLOB; 
-            //    DataOut: DATA_BLOB; 
-            //    pwDescription: PWideChar; 
-            //    PwdHash: string; 
-            //begin 
-            //  PwdHash := '';                                      
-            string PwdHash = "";
+            string result = string.Empty;
             
-            NativeMethods.DATA_BLOB DataIn;
-            NativeMethods.DATA_BLOB DataOut;
-             
-            //  DataOut.cbData := 0; 
-            //  DataOut.pbData := nil;                                      
-            
-            DataOut.cbData = 0;
-            DataOut.pbData = IntPtr.Zero;
-             
-              // RDP uses UniCode 
-            //  DataIn.pbData := Pointer(WideString(sPassword)); 
-            //  DataIn.cbData := Length(sPassword) * SizeOf(WChar);                                      
-            
-            DataIn.pbData = (System.IntPtr)password;
-            DataIn.cbData = password.Length * sizeof(char);
-             
-              // RDP always sets description to psw 
-            //  pwDescription := WideString('psw');                                      
-            string pwDescription = "psw";
-             
-//              if CryptProtectData(@DataIn, 
-//                                  pwDescription, 
-//                                  nil, 
-//                                  nil, 
-//                                  nil, 
-//                                  CRYPTPROTECT_UI_FORBIDDEN,  // Never show interface 
-//                                  @DataOut) then 
-//              begin 
-//                PwdHash := BlobDataToHexStr(DataOut.pbData, DataOut.cbData); 
-//              end; 
-//              Result := PwdHash;                             
+//            //function CryptRDPPassword(sPassword: string): string; 
+//            //var DataIn: DATA_BLOB; 
+//            //    DataOut: DATA_BLOB; 
+//            //    pwDescription: PWideChar; 
+//            //    PwdHash: string; 
+//            //begin 
+//            //  PwdHash := '';                                      
+//            string PwdHash = "";
+//            
+//            NativeMethods.DATA_BLOB DataIn;
+//            NativeMethods.DATA_BLOB DataOut;
+//             
+//            //  DataOut.cbData := 0; 
+//            //  DataOut.pbData := nil;                                      
+//            
+//            DataOut.cbData = 0;
+//            DataOut.pbData = IntPtr.Zero;
+//             
+//              // RDP uses UniCode 
+//            //  DataIn.pbData := Pointer(WideString(sPassword)); 
+//            //  DataIn.cbData := Length(sPassword) * SizeOf(WChar);                                      
+//            
+//            DataIn.pbData = (System.IntPtr)password;
+//            DataIn.cbData = password.Length * sizeof(char);
+//             
+//              // RDP always sets description to psw 
+//            //  pwDescription := WideString('psw');                                      
+//            string pwDescription = "psw";
+//             
+////              if CryptProtectData(@DataIn, 
+////                                  pwDescription, 
+////                                  nil, 
+////                                  nil, 
+////                                  nil, 
+////                                  CRYPTPROTECT_UI_FORBIDDEN,  // Never show interface 
+////                                  @DataOut) then 
+////              begin 
+////                PwdHash := BlobDataToHexStr(DataOut.pbData, DataOut.cbData); 
+////              end; 
+////              Result := PwdHash;                             
+//
+//            if (NativeMethods.CryptProtectData(
+//                  ref DataIn,
+//                  pwDescription,
+//                  ref DataIn, //null, //ref null,
+//                  IntPtr.Zero, //null,
+//                  ref (NativeMethods.CRYPTPROTECT_PROMPTSTRUCT)null, //null,
+//                  NativeMethods.CRYPTPROTECT_UI_FORBIDDEN,  // Never show interface
+//                  ref DataOut)) {
+//                PwdHash = BlobDataToHexStr(DataOut.pbData, DataOut.cbData); 
+//            }
+//            string Result = PwdHash;
+//             
+//              // Cleanup 
+//            //  LocalFree(Cardinal(DataOut.pbData)); 
+//            //  LocalFree(Cardinal(DataIn.pbData));                                      
+//            NativeMethods.LocalFree((System.IntPtr)DataOut.pbData);
+//            NativeMethods.LocalFree((System.IntPtr)DataOut.pbData);
+//             
+//            return Result;
+//            
+//            //end;
 
-            if (NativeMethods.CryptProtectData(
-                  ref DataIn,
-                  pwDescription,
-                  ref DataIn, //null, //ref null,
-                  IntPtr.Zero, //null,
-                  ref (NativeMethods.CRYPTPROTECT_PROMPTSTRUCT)null, //null,
-                  NativeMethods.CRYPTPROTECT_UI_FORBIDDEN,  // Never show interface
-                  ref DataOut)) {
-                PwdHash = BlobDataToHexStr(DataOut.pbData, DataOut.cbData); 
-            }
-            string Result = PwdHash;
-             
-              // Cleanup 
-            //  LocalFree(Cardinal(DataOut.pbData)); 
-            //  LocalFree(Cardinal(DataIn.pbData));                                      
-            NativeMethods.LocalFree((System.IntPtr)DataOut.pbData);
-            NativeMethods.LocalFree((System.IntPtr)DataOut.pbData);
-             
-            return Result;
-            
-            //end;
+            return result;
         }
     }
 }

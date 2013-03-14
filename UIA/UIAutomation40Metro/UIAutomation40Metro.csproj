@@ -616,6 +616,15 @@
     <Compile Include="..\UIAutomation\Helpers\Inheritance\Wizard\WizardRunCmdletBase.cs">
       <Link>Helpers\Inheritance\Wizard\WizardRunCmdletBase.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Commands\Container\UIANewContainerCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\Container\UIANewContainerCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Commands\UIACommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\UIACommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Commands\Wizard\UIANewWizardCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\Wizard\UIANewWizardCommand.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\ExecutionPlan.cs">
       <Link>Helpers\UnderlyingCode\ExecutionPlan.cs</Link>
     </Compile>
@@ -672,6 +681,8 @@
     <Folder Include="Commands\RDP" />
     <Folder Include="Commands\Sheridan" />
     <Folder Include="Helpers\UnderlyingCode\Commands" />
+    <Folder Include="Helpers\UnderlyingCode\Commands\Container" />
+    <Folder Include="Helpers\UnderlyingCode\Commands\Wizard" />
     <Folder Include="Helpers\UnderlyingCode\Commands\RDP" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />

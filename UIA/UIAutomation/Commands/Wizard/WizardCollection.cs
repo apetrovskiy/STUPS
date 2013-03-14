@@ -25,7 +25,12 @@ namespace UIAutomation
             Wizards = new List<Wizard>();
         }
         
-        public static List<Wizard >  Wizards { get; set; }
+        public static List<Wizard> Wizards { get; set; }
+        
+        public static void ResetData()
+        {
+            Wizards = new List<Wizard>();
+        }
         
     }
     
@@ -39,7 +44,7 @@ namespace UIAutomation
         }
         
         public string Name { get; set; }
-        public List<WizardStep >  Steps { get; set; }
+        public List<WizardStep> Steps { get; set; }
         public ScriptBlock[] StartAction { get; set; }
         //public ScriptBlock[] StopAction { get; set; }
     }

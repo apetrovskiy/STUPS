@@ -36,26 +36,30 @@ namespace UIAutomation.Commands
         
         protected override void BeginProcessing()
         {
-            if (!ValidateWizardName(Name)) {
-                ErrorRecord err = 
-                    new ErrorRecord(
-                        new Exception("The wizard name you selected is already in use"),
-                        "NameInUse",
-                        ErrorCategory.InvalidArgument,
-                        this.Name);
-                err.ErrorDetails = 
-                    new ErrorDetails(
-                        "The wizard name you selected is already in use");
-                //ThrowTerminatingError(err);
-                this.WriteError(this, err, true);
-            }
-            this.WriteVerbose(this, "wizard name validated");
-            Wizard wzd = new Wizard(Name);
-            this.WriteVerbose(this, "wizard object created");
-            if (StartAction != null && StartAction.Length > 0) {
-                wzd.StartAction = StartAction;
-            }
-            this.WriteObject(this, wzd);
+            UIANewWizardCommand command =
+                new UIANewWizardCommand(this);
+            command.Execute();
+            
+//            if (!ValidateWizardName(Name)) {
+//                ErrorRecord err = 
+//                    new ErrorRecord(
+//                        new Exception("The wizard name you selected is already in use"),
+//                        "NameInUse",
+//                        ErrorCategory.InvalidArgument,
+//                        this.Name);
+//                err.ErrorDetails = 
+//                    new ErrorDetails(
+//                        "The wizard name you selected is already in use");
+//                //ThrowTerminatingError(err);
+//                this.WriteError(this, err, true);
+//            }
+//            this.WriteVerbose(this, "wizard name validated");
+//            Wizard wzd = new Wizard(Name);
+//            this.WriteVerbose(this, "wizard object created");
+//            if (StartAction != null && StartAction.Length > 0) {
+//                wzd.StartAction = StartAction;
+//            }
+//            this.WriteObject(this, wzd);
         }
         
     }

@@ -33,7 +33,8 @@ namespace UIAutomation
 // public int Order { get; set; }
         #endregion Parameters
         
-        protected bool ValidateWizardName(string name)
+        //protected bool ValidateWizardName(string name)
+        protected internal bool ValidateWizardName(string name)
         {
             bool result = false;
             if (name == null || name == string.Empty) {

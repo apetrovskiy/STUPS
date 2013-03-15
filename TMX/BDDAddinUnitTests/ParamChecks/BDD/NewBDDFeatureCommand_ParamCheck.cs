@@ -39,7 +39,7 @@ namespace BDDAddinUnitTests.CheckCmdletParameters.BDD
         [Category("New-BDDFeature -FeatureName name -AsA user -IWant that -SoThat do;")]
         public void NewBDDFeature_Happy_path()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_SuccessOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsAccepted(
                 "New-BDDFeature -FeatureName name -AsA user -IWant that -SoThat do;");
         }
     }

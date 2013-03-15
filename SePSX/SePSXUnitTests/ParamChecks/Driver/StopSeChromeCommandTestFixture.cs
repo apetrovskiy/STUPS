@@ -38,7 +38,7 @@ namespace SePSXUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void StopSeChrome_InputObject_NoInstanceName()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
                 "Stop-SeChrome -InputObject $null;");
         }
         
@@ -46,7 +46,7 @@ namespace SePSXUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void StopSeChrome_Chrome_InstanceName()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
                 "Stop-SeChrome -InstanceName aaa;");
         }
     }

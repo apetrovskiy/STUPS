@@ -34,6 +34,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();
+            WizardCollection.ResetData();
         }
     }
 }

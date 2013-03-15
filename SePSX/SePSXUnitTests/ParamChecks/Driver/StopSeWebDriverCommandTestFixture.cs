@@ -39,7 +39,7 @@ namespace SePSXUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void StopSeWebDriver_InputObject_NoInstanceName()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
                 "Stop-SeWebDriver -InputObject $null;");
         }
         
@@ -47,7 +47,7 @@ namespace SePSXUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void StopSeWebDriver_InstanceName() // any type of a driver
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
                 "Stop-SeWebDriver -InstanceName aaa;");
         }
     }

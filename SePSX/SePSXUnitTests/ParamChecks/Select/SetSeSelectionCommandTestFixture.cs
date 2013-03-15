@@ -48,7 +48,7 @@ namespace SePSXUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void SetSeSelection_InputObject_Index()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
                 "Set-SeSelection -InputObject $null -Index 1;");
         }
         
@@ -56,7 +56,7 @@ namespace SePSXUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void SetSeSelection_InputObject_Value()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
                 "Set-SeSelection -InputObject $null -Value 'aaa';");
         }
         
@@ -64,7 +64,7 @@ namespace SePSXUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void SetSeSelection_InputObject_VisibleText()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
                 "Set-SeSelection -InputObject $null -VisibleText 'bbb';");
         }
         
@@ -72,7 +72,7 @@ namespace SePSXUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void SetSeSelection_InputObject_All()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
                 "Set-SeSelection -InputObject $null -All;");
         }
         
@@ -80,7 +80,7 @@ namespace SePSXUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void SetSeSelection_InputObject_Index_Deselect()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
                 "Set-SeSelection -InputObject $null -Index 1 -Deselect;");
         }
         
@@ -88,7 +88,7 @@ namespace SePSXUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void SetSeSelection_InputObject_Value_Deselect()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
                 "Set-SeSelection -InputObject $null -Value 'aaa' -Deselect;");
         }
         
@@ -96,7 +96,7 @@ namespace SePSXUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void SetSeSelection_InputObject_VisibleText_Deselect()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
                 "Set-SeSelection -InputObject $null -VisibleText 'bbb' -Deselect;");
         }
         
@@ -104,7 +104,7 @@ namespace SePSXUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void SetSeSelection_InputObject_All_Deselect()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
                 "Set-SeSelection -InputObject $null -All -Deselect;");
         }
         
@@ -112,7 +112,7 @@ namespace SePSXUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void SetSeSelection_NoInputObject_Index()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
                 "Set-SeSelection -Index 1;");
         }
     }

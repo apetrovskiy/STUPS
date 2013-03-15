@@ -71,7 +71,11 @@ namespace CmdletUnitTest
             PSRunner.Runner.FinishRunningCode();
         }
         
-        public static void RunAndCheckCmdletParameters_SuccessOutput(string codeSnippet)
+        /// <summary>
+        /// Throws an exception if all parameters and their values are okay.
+        /// </summary>
+        /// <param name="codeSnippet"></param>
+        public static void RunAndCheckCmdletParameters_ParamsAccepted(string codeSnippet)
         {
             RunAndGetTheException(
                 codeSnippet,
@@ -82,7 +86,7 @@ namespace CmdletUnitTest
                 "An assertion failed.");
         }
         
-        public static void RunAndCheckCmdletParameters_FailureOutput(string codeSnippet)
+        public static void RunAndCheckCmdletParameters_ParamsOK_CmdletException(string codeSnippet)
         {
             RunAndGetTheException(
                 codeSnippet,

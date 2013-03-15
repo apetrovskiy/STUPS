@@ -39,7 +39,7 @@ namespace SePSXUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void SubmitSeWebElement_InputObject()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
                 "Submit-SeWebElement " +
                 "-InputObject ([SePSXUnitTests.ParamChecks.FakeWebObjectsFactory]::GetFakeWebElement());");
         }
@@ -48,7 +48,7 @@ namespace SePSXUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void SubmitSeWebElement_NoInputObject()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
                 "[SePSXUnitTests.ParamChecks.FakeWebObjectsFactory]::GetFakeWebElement() | " +
                 "Submit-SeWebElement;");
         }

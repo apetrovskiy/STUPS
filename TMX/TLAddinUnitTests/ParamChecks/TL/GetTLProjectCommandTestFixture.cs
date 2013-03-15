@@ -39,7 +39,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void Get_TLProject_NoParameters()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"Get-TLProject;");
         }
         
@@ -47,7 +47,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void Get_TLProject_Name_Implicitly()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"Get-TLProject project;");
         }
         
@@ -55,7 +55,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void Get_TLProject_Name_Only()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"Get-TLProject -Name project;");
         }
         
@@ -63,7 +63,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void Get_TLProject_Id_Only()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"Get-TLProject -Id 111;");
         }
         
@@ -79,7 +79,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void Get_TLProject_NameArray_Only()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"Get-TLProject -Name project01,project02;");
         }
     }

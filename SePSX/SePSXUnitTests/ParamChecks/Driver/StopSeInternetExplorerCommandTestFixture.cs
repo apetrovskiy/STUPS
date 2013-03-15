@@ -38,7 +38,7 @@ namespace SePSXUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void StopSeInternetExplorer32_InputObject_NoInstanceName()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
                 "Stop-SeInternetExplorer -InputObject $null;");
         }
         
@@ -46,7 +46,7 @@ namespace SePSXUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void StopSeInternetExplorer32_InstanceName()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
                 "Stop-SeInternetExplorer -InstanceName aaa;");
         }
     }

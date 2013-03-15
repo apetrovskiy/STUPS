@@ -43,7 +43,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         [Description("Set-UIAEditText -Text 'text' -InputObject $obj")]
         public void Set_UIAEditText_Text()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_SuccessOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsAccepted(
         		"Set-UIAEditText -Text 'text' -InputObject $obj;");
         }
         
@@ -53,7 +53,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         [Description("Set-UIAEditText 'text' -InputObject $obj")]
         public void Set_UIAEditText_Text_Position0()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_SuccessOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsAccepted(
         		"Set-UIAEditText 'text' -InputObject $obj;");
         }
     }

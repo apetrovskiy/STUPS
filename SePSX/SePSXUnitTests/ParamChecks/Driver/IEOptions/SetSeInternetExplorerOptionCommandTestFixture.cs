@@ -40,7 +40,7 @@ namespace SePSXUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void SetSeInternetExplorerOption_InputObject_only()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
                 "Set-SeInternetExplorerOption -InputObject (New-SeInternetExplorerOptions);");
         }
         
@@ -48,7 +48,7 @@ namespace SePSXUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void SetSeInternetExplorerOption_InputObject_EnableNativeEvents()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
                 "Set-SeInternetExplorerOption -InputObject (New-SeInternetExplorerOptions) -EnableNativeEvents;");
         }
         
@@ -56,7 +56,7 @@ namespace SePSXUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void SetSeInternetExplorerOption_InputObject_IgnoreZoomLevel()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
                 "Set-SeInternetExplorerOption -InputObject (New-SeInternetExplorerOptions) -IgnoreZoomLevel;");
         }
         
@@ -64,7 +64,7 @@ namespace SePSXUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void SetSeInternetExplorerOption_InputObject_IntroduceInstabilityByIgnoringProtectedModeSettings()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
                 "Set-SeInternetExplorerOption -InputObject (New-SeInternetExplorerOptions) -IntroduceInstabilityByIgnoringProtectedModeSettings;");
         }
         
@@ -72,7 +72,7 @@ namespace SePSXUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void SetSeInternetExplorerOption_InputObject_InitialBrowserUrl()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
                 "Set-SeInternetExplorerOption -InputObject (New-SeInternetExplorerOptions) -InitialBrowserUrl 'http://google.com';");
         }
     }

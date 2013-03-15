@@ -34,22 +34,23 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();
+            WizardCollection.ResetData();
         }
         
         [Test]
         [Category("Fast")]
         public void NewWizard_Name_StartAction()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
-        		"New-UIAWizard -Name wizardName -StartAction {};");
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsAccepted(
+        		@"New-UIAWizard -Name 'wizardName' -StartAction { 'var' };");
         }
         
         [Test]
         [Category("Fast")]
         public void NewWizard_Name_StartActionX3()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
-        		"New-UIAWizard -Name wizardName -StartAction {},{},{};");
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsAccepted(
+        		@"New-UIAWizard -Name 'wizardName' -StartAction { 'var1' },{ 'var2' },{ 'var3' };");
         }
     }
 }

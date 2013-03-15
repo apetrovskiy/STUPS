@@ -39,7 +39,7 @@ namespace SePSXUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void StartSeInternetExplorer32_Bare()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
                 "Start-SeInternetExplorer32;");
         }
         

@@ -48,7 +48,8 @@ namespace UIAutomationUnitTests.Commands.Wizard
             
             Assert.AreEqual(
                 expectedName,
-                ((Wizard)(object)PSTestLib.UnitTestOutput.LastOutput[0]).Name);
+                //((Wizard)(object)PSTestLib.UnitTestOutput.LastOutput[0]).Name);
+                ((Wizard)PSTestLib.UnitTestOutput.LastOutput[0]).Name);
         }
         
         [Test]
@@ -62,13 +63,15 @@ namespace UIAutomationUnitTests.Commands.Wizard
             
             Assert.AreEqual(
                 expectedName,
-                ((Wizard)(object)PSTestLib.UnitTestOutput.LastOutput[0]).Name);
+                //((Wizard)(object)PSTestLib.UnitTestOutput.LastOutput[0]).Name);
+                ((Wizard)PSTestLib.UnitTestOutput.LastOutput[0]).Name);
         }
         
         [Test]
         [Description("New-UIAWizard")]
         [Category("Fast")]
         [Category("Wizard")]
+        [Ignore]
         public void NewWizard_DuplicatedName()
         {
             string expectedName = "name";

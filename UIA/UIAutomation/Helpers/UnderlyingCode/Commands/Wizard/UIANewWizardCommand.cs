@@ -27,19 +27,7 @@ namespace UIAutomation
             NewUIAWizardCommand cmdlet =
                 (NewUIAWizardCommand)this.Cmdlet;
             
-            //if (!ValidateWizardName(Name)) {
             if (!cmdlet.ValidateWizardName(cmdlet.Name)) {
-//                ErrorRecord err = 
-//                    new ErrorRecord(
-//                        new Exception("The wizard name you selected is already in use"),
-//                        "NameInUse",
-//                        ErrorCategory.InvalidArgument,
-//                        this.Name);
-//                err.ErrorDetails = 
-//                    new ErrorDetails(
-//                        "The wizard name you selected is already in use");
-//                //ThrowTerminatingError(err);
-//                this.WriteError(this, err, true);
                 
                 cmdlet.WriteError(
                     cmdlet,
@@ -51,15 +39,16 @@ namespace UIAutomation
                 // for unit tests
                 return;
             }
-            //this.WriteVerbose(this, "wizard name validated");
+
             cmdlet.WriteVerbose(cmdlet, "wizard name validated");
             Wizard wzd = new Wizard(cmdlet.Name);
-            //this.WriteVerbose(this, "wizard object created");
             cmdlet.WriteVerbose(cmdlet, "wizard object created");
-            if (cmdlet.StartAction != null && cmdlet.StartAction.Length > 0) {
+            if (null != cmdlet.StartAction && 0 < cmdlet.StartAction.Length) {
                 wzd.StartAction = cmdlet.StartAction;
+            } else {
+Console.WriteLine("asdfassssssssssssssssssssssssssssssssss");
             }
-            //this.WriteObject(this, wzd);
+
             cmdlet.WriteObject(cmdlet, wzd);
         }
     }

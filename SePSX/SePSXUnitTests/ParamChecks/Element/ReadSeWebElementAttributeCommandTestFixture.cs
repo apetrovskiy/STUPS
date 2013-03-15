@@ -48,7 +48,7 @@ namespace SePSXUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void ReadSeWebElementAttribute_InputObject_AttributeName()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
                 "Read-SeWebElementAttribute " +
                 "-InputObject ([SePSXUnitTests.ParamChecks.FakeWebObjectsFactory]::GetFakeWebElement()) " +
                 "-AttributeName aaa;");
@@ -58,7 +58,7 @@ namespace SePSXUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void ReadSeWebElementAttribute_NoInputObject_AttributeName()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
                 "[SePSXUnitTests.ParamChecks.FakeWebObjectsFactory]::GetFakeWebElement() | " +
                 "Read-SeWebElementAttribute -AttributeName aaa;");
         }

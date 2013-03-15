@@ -22,7 +22,7 @@ namespace UIAutomation
         public Wizard(string name)
         {
             this.Name = name;
-            Steps = new List<WizardStep>();
+            this.Steps = new List<WizardStep>();
             WizardCollection.Wizards.Add(this);
         }
         
@@ -30,5 +30,32 @@ namespace UIAutomation
         public List<WizardStep> Steps { get; set; }
         public ScriptBlock[] StartAction { get; set; }
         //public ScriptBlock[] StopAction { get; set; }
+        
+        public void ClearSteps()
+        {
+            this.Steps = new List<WizardStep>();
+        }
+        
+        public void ClearStepsData()
+        {
+            foreach (WizardStep step in this.Steps) {
+                
+                step.StepForwardAction = null;
+                step.StepBackwardAction = null;
+            }
+        }
+        
+        public void ClearStepsData(bool forward, bool backward)
+        {
+            foreach (WizardStep step in this.Steps) {
+                
+                if (forward) {
+                    step.StepForwardAction = null;
+                }
+                if (backward) {
+                    step.StepBackwardAction = null;
+                }
+            }
+        }
     }
 }

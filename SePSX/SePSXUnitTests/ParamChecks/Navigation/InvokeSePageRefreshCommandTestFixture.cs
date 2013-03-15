@@ -40,7 +40,7 @@ namespace SePSXUnitTests.CheckCmdletParameters
         [Category("Invoke-SePageRefresh")]
         public void InvokeSePageRefresh_Empty()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
                 "Invoke-SePageRefresh;");
         }
     }

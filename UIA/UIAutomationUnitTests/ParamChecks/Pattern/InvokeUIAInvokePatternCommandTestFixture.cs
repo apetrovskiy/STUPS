@@ -42,7 +42,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         [Description("Invoke-UIAInvokePattern")]
         public void Invoke_UIAInvokePattern_NoParameters()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"Invoke-UIAInvokePattern;");
         }
         
@@ -51,7 +51,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         [Description("Invoke-UIAInvokePattern -PassThru")]
         public void Invoke_UIAInvokePattern_PassThru()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"Invoke-UIAInvokePattern -PassThru;");
         }
         

@@ -41,7 +41,7 @@ namespace SePSXUnitTests.CheckCmdletParameters
         [Category("Invoke-SeNavigateBack")]
         public void InvokeSeNavigateBack_Empty()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
                 "Invoke-SeNavigateBack;");
         }
     }

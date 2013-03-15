@@ -49,7 +49,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void Get_UIAWindow_ProcessName()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"Get-UIAWindow -ProcessName processName;");
         }
         
@@ -57,7 +57,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void Get_UIAWindow_ProcessId()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"Get-UIAWindow -ProcessId 123;");
         }
         
@@ -65,7 +65,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void Get_UIAWindow_Process()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"Get-UIAWindow -InputObject $null;");
         }
         
@@ -73,7 +73,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void Get_UIAWindow_ProcessName_Name_AuId_Class()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"Get-UIAWindow -ProcessName processName -Name aaa -AutomationId bbb -Class ccc;");
         }
         
@@ -81,7 +81,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void Get_UIAWindow_ProcessId_Name_AuId_Class()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"Get-UIAWindow -ProcessId 123 -Name aaa -AutomationId bbb -Class ccc;");
         }
         
@@ -89,7 +89,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void Get_UIAWindow_Process_Name_AuId_Class()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"Get-UIAWindow -InputObject $null -Name aaa -AutomationId bbb -Class ccc;");
         }
         
@@ -97,7 +97,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void Get_UIAWindow_ProcessName_First()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"Get-UIAWindow -ProcessName processName -First;");
         }
         
@@ -105,7 +105,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void Get_UIAWindow_ProcessId_First()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"Get-UIAWindow -ProcessId 123 -First;");
         }
         
@@ -113,7 +113,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void Get_UIAWindow_Process_First()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"Get-UIAWindow -InputObject $null -First;");
         }
         
@@ -121,7 +121,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void Get_UIAWindow_ProcessName_Recurse()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"Get-UIAWindow -ProcessName processName -Recurse;");
         }
         
@@ -129,7 +129,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void Get_UIAWindow_ProcessId_Recurse()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"Get-UIAWindow -ProcessId 123 -Recurse;");
         }
         
@@ -137,7 +137,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void Get_UIAWindow_Process_Recurse()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"Get-UIAWindow -InputObject $null -Recurse;");
         }
         
@@ -145,7 +145,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void Get_UIAWindow_Name()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_SuccessOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsAccepted(
         		"Get-UIAWindow -Name name;");
         }
         
@@ -153,7 +153,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void Get_UIAWindow_Name_Array()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_SuccessOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsAccepted(
         		"Get-UIAWindow -Name name1,name2,name3;");
         }
         
@@ -161,7 +161,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void Get_UIAWindow_Name_AuId()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_SuccessOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsAccepted(
         		"Get-UIAWindow -Name name -AutomationId aaa;");
         }
         
@@ -169,7 +169,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void Get_UIAWindow_Name_Class()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_SuccessOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsAccepted(
         		"Get-UIAWindow -Name name -Class ccc;");
         }
         
@@ -177,7 +177,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void Get_UIAWindow_Name_AuId_Class()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_SuccessOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsAccepted(
         		"Get-UIAWindow -Name name -AutomationId aaa -Class ccc;");
         }
         
@@ -185,7 +185,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void Get_UIAWindow_Name_First()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_SuccessOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsAccepted(
         		"Get-UIAWindow -Name name -First;");
         }
     }

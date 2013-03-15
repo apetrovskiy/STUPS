@@ -40,7 +40,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         //[Ignore("for later demystification")]
         public void New_TLTestPlan_NoParameters()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"New-TLTestPlan;");
         }
         
@@ -49,7 +49,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         //[Ignore("for later demystification")]
         public void New_TLTestPlan_Name_Only()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"New-TLTestPlan -TestPlanName plan01;");
         }
         
@@ -58,7 +58,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         //[Ignore("for later demystification")]
         public void New_TLTestPlan_Name_Description()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"New-TLTestPlan -TestPlanName testplan20121119 -Description descr;");
         }
         
@@ -67,7 +67,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         //[Ignore("for later demystification")]
         public void New_TLTestPlan_Name_Active()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"New-TLTestPlan -TestPlanName testplan20121119 -Active;");
         }
         
@@ -76,7 +76,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         //[Ignore("for later demystification")]
         public void New_TLTestPlan_Name_Active_Description()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"New-TLTestPlan -TestPlanName testplan20121119 -Description descr -Active;");
         }
         
@@ -84,7 +84,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void New_TLTestPlan_Name_Description_TestProjectName()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"New-TLTestPlan -TestPlanName testplan20121119 -Description descr -TestProjectName proj;");
         }
         
@@ -92,7 +92,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void New_TLTestPlan_Name_Active_TestProjectName()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"New-TLTestPlan -TestPlanName testplan20121119 -Active -TestProjectName proj;");
         }
         
@@ -100,7 +100,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void New_TLTestPlan_Name_Active_Description_TestProjectName()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"New-TLTestPlan -TestPlanName testplan20121119 -Description descr -Active -TestProjectName proj;");
         }
         
@@ -124,7 +124,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void New_TLTestPlan_InputObject()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"New-TLTestPlan -InputObject (Get-TLProject -Name prj);");
         }
         
@@ -132,7 +132,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void New_TLTestPlan_Name_InputObject()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"New-TLTestPlan -TestPlanName plan01 -InputObject (Get-TLProject -Name prj);");
         }
         
@@ -140,7 +140,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void New_TLTestPlan_Name_Description_InputObject()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"New-TLTestPlan -TestPlanName testplan20121119 -Description descr -InputObject (Get-TLProject -Name prj);");
         }
         
@@ -148,7 +148,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void New_TLTestPlan_Name_Active_InputObject()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"New-TLTestPlan -TestPlanName testplan20121119 -Active -InputObject (Get-TLProject -Name prj);");
         }
         
@@ -156,7 +156,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void New_TLTestPlan_Name_Active_Description_InputObject()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"New-TLTestPlan -TestPlanName testplan20121119 -Description descr -Active -InputObject (Get-TLProject -Name prj);");
         }
         

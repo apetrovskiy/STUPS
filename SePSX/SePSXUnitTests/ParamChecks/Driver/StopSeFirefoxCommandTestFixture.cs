@@ -38,7 +38,7 @@ namespace SePSXUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void StopSeFirefox_InputObject_NoInstanceName()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
                 "Stop-SeFirefox -InputObject $null;");
         }
         
@@ -46,7 +46,7 @@ namespace SePSXUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void StopSeFirefox_Firefox_InstanceName()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
                 "Stop-SeFirefox -InstanceName aaa;");
         }
     }

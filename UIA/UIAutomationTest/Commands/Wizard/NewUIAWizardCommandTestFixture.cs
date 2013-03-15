@@ -28,12 +28,14 @@ namespace UIAutomationTest.Commands.Wizard
         {
             MiddleLevelCode.PrepareRunspace();
             CmdletUnitTest.TestRunspace.RunPSCode(
-                @"[UIAutomation.WizardCollection]::Wizards.Clear();");
+                //@"[UIAutomation.WizardCollection]::Wizards.Clear();");
+                @"[UIAutomation.WizardCollection]::ResetData();");
         }
         
         [Test] //[Test(Description="Creating a simple wizard object")]
-        [Category("Slow")][Category("NoForms")]
-        [Category("Slow")][Category("Wizard")]
+        [Category("NoForms")]
+        [Category("Slow")]
+        [Category("Wizard")]
         public void NewWizard_Simple()
         {
             string name = "wizard";
@@ -45,8 +47,9 @@ namespace UIAutomationTest.Commands.Wizard
         }
         
         [Test] //[Test(Description="Creating a simple wizard object with the complex name")]
-        [Category("Slow")][Category("NoForms")]
-        [Category("Slow")][Category("Wizard")]
+        [Category("NoForms")]
+        [Category("Slow")]
+        [Category("Wizard")]
         public void NewWizard_Complex1()
         {
             string name = "wi*za*rd";
@@ -58,8 +61,9 @@ namespace UIAutomationTest.Commands.Wizard
         }
         
         [Test] //[Test(Description="Creating a simple wizard object with the complex name")]
-        [Category("Slow")][Category("NoForms")]
-        [Category("Slow")][Category("Wizard")]
+        [Category("NoForms")]
+        [Category("Slow")]
+        [Category("Wizard")]
         public void NewWizard_Complex2()
         {
             string name = @"``//\\`""`''#$(1)567";
@@ -72,8 +76,9 @@ namespace UIAutomationTest.Commands.Wizard
         }
         
         [Test] //[Test(Description="Creating a simple wizard object with an action")]
-        [Category("Slow")][Category("NoForms")]
-        [Category("Slow")][Category("Wizard")]
+        [Category("NoForms")]
+        [Category("Slow")]
+        [Category("Wizard")]
         public void NewWizard_Simple_WithStartAction()
         {
             string name = "wizard";

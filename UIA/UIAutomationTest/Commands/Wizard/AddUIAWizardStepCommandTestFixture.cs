@@ -28,12 +28,14 @@ namespace UIAutomationTest.Commands.Wizard
         {
             MiddleLevelCode.PrepareRunspace();
             CmdletUnitTest.TestRunspace.RunPSCode(
-                @"[UIAutomation.WizardCollection]::Wizards.Clear();");
+                //@"[UIAutomation.WizardCollection]::Wizards.Clear();");
+                @"[UIAutomation.WizardCollection]::ResetData();");
         }
         
         [Test] //[Test(Description="Creating a simple wizard object with one step")]
-        [Category("Slow")][Category("NoForms")]
-        [Category("Slow")][Category("Wizard")]
+        [Category("NoForms")]
+        [Category("Slow")]
+        [Category("Wizard")]
         public void AddWizardStep_Simple()
         {
             string wizardName = "wizard";
@@ -49,8 +51,9 @@ namespace UIAutomationTest.Commands.Wizard
         }
         
         [Test] //[Test(Description="Creating a simple wizard object with the complex name")]
-        [Category("Slow")][Category("NoForms")]
-        [Category("Slow")][Category("Wizard")]
+        [Category("NoForms")]
+        [Category("Slow")]
+        [Category("Wizard")]
         public void AddWizardStep_Complex1()
         {
             string wizardName = "wi*za*rd";
@@ -66,8 +69,9 @@ namespace UIAutomationTest.Commands.Wizard
         }
         
         [Test] //[Test(Description="Creating a simple wizard object with the complex name")]
-        [Category("Slow")][Category("NoForms")]
-        [Category("Slow")][Category("Wizard")]
+        [Category("NoForms")]
+        [Category("Slow")]
+        [Category("Wizard")]
         public void AddWizardStep_Complex2()
         {
             string wizardName = @"``//\\`""`''#$(1)567";

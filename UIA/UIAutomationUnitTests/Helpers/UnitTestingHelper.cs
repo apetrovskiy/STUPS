@@ -13,6 +13,7 @@ namespace UIAutomationUnitTests
     using UIAutomation;
     using UIAutomation.Commands;
     using PSTestLib;
+    using System.Management.Automation;
     
     /// <summary>
     /// Description of UnitTestingHelper.
@@ -34,6 +35,23 @@ namespace UIAutomationUnitTests
             
             UIAutomation.CurrentData.ResetData();
             
+        }
+        
+        public static void CreateWizard(string name, ScriptBlock[] sb)
+        {
+            UIAutomation.Commands.NewUIAWizardCommand cmdlet =
+                new UIAutomation.Commands.NewUIAWizardCommand();
+            cmdlet.Name = name;
+            cmdlet.StartAction = sb;
+            UIANewWizardCommand command =
+                new UIANewWizardCommand(cmdlet);
+            command.Execute();
+        }
+        
+        public static void AddWizardStep(Wizard wizard, string name, ScriptBlock[] forwardAction, ScriptBlock[] backwardAction)
+        {
+        	Wizard wizard =
+        		
         }
     }
 }

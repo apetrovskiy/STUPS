@@ -87,6 +87,7 @@
     <Compile Include="Commands\Container\NewUIAContainerCommandTestFixture.cs" />
     <Compile Include="Commands\Pattern\InvokeUIAToggleStateSetCommandTestFixture.cs" />
     <Compile Include="Commands\Wait\WaitUIAWindowCommandTestFixture.cs" />
+    <Compile Include="Commands\Wizard\AddUIAWizardStepCommandTestFixture.cs" />
     <Compile Include="Commands\Wizard\NewUIAWizardCommandTestFixture.cs" />
     <Compile Include="Helpers\UnderlyingCode\elementOfPossibleControlTypeTestFixture.cs" />
     <Compile Include="Helpers\UnderlyingCode\GetAutomationElementsViaWildcards_FindAllTestFixture.cs" />

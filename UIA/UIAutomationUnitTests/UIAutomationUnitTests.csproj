@@ -105,6 +105,8 @@
     <Compile Include="ParamChecks\Pattern\SetUIAEditTextCommandTestFixture.cs" />
     <Compile Include="ParamChecks\Settings.cs" />
     <Compile Include="ParamChecks\Wait\WaitUIAWindowCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\Wizard\AddUIAWizardStepCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\Wizard\NewUIAWizardCommandTestFixture.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">

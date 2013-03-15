@@ -16,7 +16,7 @@
     <properties />
   </testPackage>
   <testFilters>
-    <testFilter filterName="AutoSave" filterExpr="Id: fbb04ebee03362c9" />
+    <testFilter filterName="AutoSave" filterExpr="not *" />
     <testFilter filterName="LastRun" filterExpr="Id: fbb04ebee03362c9" />
   </testFilters>
   <extensionSpecifications />

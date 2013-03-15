@@ -48,10 +48,23 @@ namespace UIAutomationUnitTests
             command.Execute();
         }
         
-        public static void AddWizardStep(Wizard wizard, string name, ScriptBlock[] forwardAction, ScriptBlock[] backwardAction)
+        public static void AddWizardStep(string name, ScriptBlock[] forwardAction, ScriptBlock[] backwardAction)
         {
+            CreateWizard("wizard", null);
         	Wizard wizard =
-        		
+        	    (Wizard)UnitTestOutput.LastOutput[0];
+        	
+        	UIAutomation.Commands.AddUIAWizardStepCommand cmdlet =
+        	    new AddUIAWizardStepCommand();
+        	cmdlet.InputObject = wizard;
+        	cmdlet.Name = name;
+        	cmdlet.StepForwardAction = forwardAction;
+        	cmdlet.StepBackwardAction = backwardAction;
+        	
+        	UIAutomation.UIAAddWizardStepCommand command =
+        	    new UIAutomation.UIAAddWizardStepCommand(cmdlet);
+        	
+        	command.Execute();
         }
     }
 }

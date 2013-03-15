@@ -254,8 +254,10 @@
     <Compile Include="Commands\Wizard\RemoveUIAWizardStepCommand.cs" />
     <Compile Include="Commands\Wizard\SetUIAWizardCommand.cs" />
     <Compile Include="Commands\Wizard\StepUIAWizardCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Types\Wizard.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Types\WizardCollection.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Types\WizardStep.cs" />
     <Compile Include="Commands\Wizard\WaitUIAWizardStepCommand.cs" />
-    <Compile Include="Commands\Wizard\WizardCollection.cs" />
     <Compile Include="Helpers\Inheritance\CacheRequestCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\CommonCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\ConvertToCmdletBase.cs" />
@@ -292,6 +294,7 @@
     <Compile Include="Helpers\Inheritance\Wizard\WizardRunCmdletBase.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Container\UIANewContainerCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\UIACommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Wizard\UIAAddWizardStepCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Wizard\UIANewWizardCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\ExecutionPlan.cs" />
     <Compile Include="Helpers\UnderlyingCode\Global.cs" />
@@ -364,6 +367,7 @@
     <Folder Include="Commands\Win32" />
     <Folder Include="Commands\RDP" />
     <Folder Include="Commands\Sheridan" />
+    <Folder Include="Helpers\UnderlyingCode\Types" />
     <Folder Include="Helpers\UnderlyingCode\Commands" />
     <Folder Include="Helpers\UnderlyingCode\Commands\Container" />
     <Folder Include="Helpers\UnderlyingCode\Commands\Wizard" />

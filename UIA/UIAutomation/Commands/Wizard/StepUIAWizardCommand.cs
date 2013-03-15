@@ -81,6 +81,8 @@ namespace UIAutomation.Commands
                     } else {
                         result = 
                             testControlByPropertiesFromHashtable(
+                                // 20130315
+                                null,
                                 stepToRun.SearchCriteria,
                                 this.Timeout);
                     }

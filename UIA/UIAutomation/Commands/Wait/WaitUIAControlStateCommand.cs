@@ -44,6 +44,8 @@ namespace UIAutomation.Commands
             do {
                 result = 
                     testControlByPropertiesFromHashtable(
+                        // 20130315
+                        this.InputObject,
                         this.SearchCriteria,
                         this.Timeout);
                 if (result) {

@@ -1209,6 +1209,8 @@ try {
         #endregion checker event handler inputs
 
         protected bool testControlByPropertiesFromHashtable(
+            // 20130315
+            AutomationElement[] inputElements,
             System.Collections.Hashtable[] SearchCriteria,
             int timeout)
         {
@@ -1251,19 +1253,29 @@ try {
                 try{ cmdlet.AutomationId = dict["AUTOMATIONID"]; } catch {}
                 try{ cmdlet.ControlType = dict["CONTROLTYPE"]; } catch {}
                 try{ cmdlet.Name = dict["NAME"]; } catch {}
+                // 20130315
+                try{ cmdlet.Value = dict["VALUE"]; } catch {}
                 
 //                this.WriteVerbose(this, cmdlet.Name);
                 
                 
                 cmdlet.Timeout = timeout;
-if (UIAutomation.CurrentData.CurrentWindow == null) {
-// WriteVerbose(this, " ==  == <<<<<<<<<<<<<<<<<!!!!!!!!!!!!!!!!!!!!!!  UIAutomation.CurrentData.CurrentWindow == null  !!!!!!!!!!!!! >  >  >  >  >  >  >  >  >  >  >  ==  ==  ==  ==  == =");
-// WriteVerbose(this, "exiting");
-    return result;
-}
-                // 20120824
-                //cmdlet.InputObject = UIAutomation.CurrentData.CurrentWindow;
-                cmdlet.InputObject[0] = UIAutomation.CurrentData.CurrentWindow;
+                
+                // 20130315
+                if (null != inputElements && null != (inputElements as AutomationElement[]) && 0 < inputElements.Length) {
+                    cmdlet.InputObject = inputElements;
+                } else {
+                    if (UIAutomation.CurrentData.CurrentWindow == null) {
+                    // WriteVerbose(this, " ==  == <<<<<<<<<<<<<<<<<!!!!!!!!!!!!!!!!!!!!!!  UIAutomation.CurrentData.CurrentWindow == null  !!!!!!!!!!!!! >  >  >  >  >  >  >  >  >  >  >  ==  ==  ==  ==  == =");
+                    // WriteVerbose(this, "exiting");
+                        return result;
+                    }
+                    // 20120824
+                    //cmdlet.InputObject = UIAutomation.CurrentData.CurrentWindow;
+                    // 20130315
+                    //cmdlet.InputObject[0] = UIAutomation.CurrentData.CurrentWindow;
+                    cmdlet.InputObject = new AutomationElement[]{ UIAutomation.CurrentData.CurrentWindow };
+                }
                 //cmdlet._window = //UIAutomation.CurrentData.CurrentWindow;
                 // (System.Windows.Automation.AutomationElement)(cmdlet.InputObject);
                 //AutomationElement elementToWorkWith = getControl(this);

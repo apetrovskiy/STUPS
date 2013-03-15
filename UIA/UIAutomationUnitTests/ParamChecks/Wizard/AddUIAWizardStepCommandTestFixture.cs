@@ -36,5 +36,37 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
             MiddleLevelCode.DisposeRunspace();
             WizardCollection.ResetData();
         }
+        
+        [Test]
+        [Category("Fast")]
+        public void AddWizardStep_Name()
+        {
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
+        		@"Add-UIAWizardStep -Name 'stepName' -InputObject (New-UIAWizard -Name wizardName -StartAction {});");
+        }
+        
+        [Test]
+        [Category("Fast")]
+        public void AddWizardStep_Name_StepForwardAction()
+        {
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
+        		@"Add-UIAWizardStep -Name 'stepName' -InputObject (New-UIAWizard -Name wizardName -StartAction {}) -StepForwardAction {};");
+        }
+        
+        [Test]
+        [Category("Fast")]
+        public void AddWizardStep_Name_StepBackwardAction()
+        {
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
+        		@"Add-UIAWizardStep -Name 'stepName' -InputObject (New-UIAWizard -Name wizardName -StartAction {}) -StepBackwardAction {};");
+        }
+        
+        [Test]
+        [Category("Fast")]
+        public void AddWizardStep_Name_StepForwardAction_StepBackwardAction()
+        {
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
+        		@"Add-UIAWizardStep -Name 'stepName' -InputObject (New-UIAWizard -Name wizardName -StartAction {}) -StepForwardAction {} -StepBackwardAction {};");
+        }
     }
 }

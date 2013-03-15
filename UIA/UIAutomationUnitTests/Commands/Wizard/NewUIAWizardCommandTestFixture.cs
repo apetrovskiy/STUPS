@@ -48,7 +48,6 @@ namespace UIAutomationUnitTests.Commands.Wizard
             
             Assert.AreEqual(
                 expectedName,
-                //((Wizard)(object)PSTestLib.UnitTestOutput.LastOutput[0]).Name);
                 ((Wizard)PSTestLib.UnitTestOutput.LastOutput[0]).Name);
         }
         
@@ -63,7 +62,6 @@ namespace UIAutomationUnitTests.Commands.Wizard
             
             Assert.AreEqual(
                 expectedName,
-                //((Wizard)(object)PSTestLib.UnitTestOutput.LastOutput[0]).Name);
                 ((Wizard)PSTestLib.UnitTestOutput.LastOutput[0]).Name);
         }
         

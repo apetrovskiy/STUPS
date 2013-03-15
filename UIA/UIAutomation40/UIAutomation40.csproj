@@ -619,6 +619,9 @@
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Commands\UIACommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\UIACommand.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Commands\Wizard\UIAAddWizardStepCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\Wizard\UIAAddWizardStepCommand.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Commands\Wizard\UIANewWizardCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\Wizard\UIANewWizardCommand.cs</Link>
     </Compile>
@@ -688,8 +691,11 @@
     <Folder Include="Commands\Sheridan" />
     <Folder Include="Helpers\UnderlyingCode\Commands" />
     <Folder Include="Helpers\UnderlyingCode\Commands\Container" />
+    <Folder Include="Helpers\UnderlyingCode\Commands\Container" />
     <Folder Include="Helpers\UnderlyingCode\Commands\Wizard" />
     <Folder Include="Helpers\UnderlyingCode\Commands\RDP" />
+    <Folder Include="Helpers\UnderlyingCode\Commands\Wizard" />
+    <Folder Include="Helpers\UnderlyingCode\Types" />
     <Folder Include="Helpers\UnderlyingCode\Types" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />

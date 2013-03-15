@@ -10,13 +10,13 @@ $VerbosePreference = [System.Management.Automation.ActionPreference]::Continue;
 Write-Host "=======================================================================================";
 Write-Host "Creating a wizard`r`n";
 Write-Host "expecting success";
-New-UIAWizard -Name wizard1
+New-UIAWizard -Name wizard1 -StartAction {}
 Write-Host "expecting fail";
-New-UIAWizard -Name wizard1
+New-UIAWizard -Name wizard1 -StartAction {}
 Write-Host "expecting success";
-New-UIAWizard -Name wizard2
+New-UIAWizard -Name wizard2 -StartAction {}
 Write-Host "expecting success";
-New-UIAWizard -Name 'wizard 3'
+New-UIAWizard -Name 'wizard 3' -StartAction {},{},{}
 #endregion Creating a wizard
 
 #region Getting a wizard

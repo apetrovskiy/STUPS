@@ -183,14 +183,6 @@ namespace UIAutomation.Commands
                 
             } else {
                 
-                // 20130225
-//                ErrorRecord err = 
-//                    new ErrorRecord(
-//                        new Exception("Failed to get the window"),
-//                        "FailedToGetWindow",
-//                        ErrorCategory.InvalidResult,
-//                        _returnedWindows.ToString());
-                
                 if (this.TestMode) {
                     
                     this.WriteObject(this, false);

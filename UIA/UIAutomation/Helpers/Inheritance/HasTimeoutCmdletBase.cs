@@ -158,7 +158,9 @@ namespace UIAutomation
                                 new GetControlCmdletBase();
                             //cmdletCtrl.InputObject = (AutomationElement[])aeWndCollection.ToArray();
                             cmdletCtrl.InputObject =
-                                (AutomationElement[])aeWndCollection.ToArray(typeof(AutomationElement));
+                                // 20130316
+                                //(AutomationElement[])aeWndCollection.ToArray(typeof(AutomationElement));
+                                new AutomationElement[]{ window };
                             cmdletCtrl.SearchCriteria = cmdlet.WithControl;
                             cmdletCtrl.Timeout = 0;
                             

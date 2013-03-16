@@ -55,6 +55,10 @@ namespace UIAutomation.Commands
             WriteVerbose(this, "ProcessName = " + this.ProcessName);
             WriteVerbose(this, "ProcessId = " + this.ProcessId);
             WriteVerbose(this, "Name = " + this.Name);
+            // 20130316
+            WriteVerbose(this, "AutomationId = " + this.AutomationId);
+            WriteVerbose(this, "Class = " + this.Class);
+            WriteVerbose(this, "Recurse = " + this.Recurse.ToString());
             WriteVerbose(this, "Timeout " + this.Timeout.ToString());
             
             ArrayList _returnedWindows = new ArrayList();
@@ -222,31 +226,22 @@ namespace UIAutomation.Commands
                     }
                     catch {}
     
-                    // 20130225
-    //                err.ErrorDetails = 
-    //                    new ErrorDetails(
-    //                        "Failed to get the window by:" + 
-    //                        " process name: '" +
-    //                        procName +
-    //                        "' process Id: " + 
-    //                        procId + 
-    //                        " window title: '" + 
-    //                        name +
-    //                        "'");
-    //                        
-    //                WriteError(this, err, true);
-                    
-                    // 20130225
                     this.WriteError(
                         this,
                         "Failed to get the window by:" + 
                         " process name: '" +
                         procName +
-                        "' process Id: " + 
+                        "', process Id: " + 
                         procId + 
-                        " window title: '" + 
+                        ", window title: '" + 
                         name +
-                        "'",
+                        // 20130316
+                        //"'",
+                        "', automationId: '" +
+                        this.AutomationId +
+                        "', className: '" +
+                        this.Class +
+                        ",",
                         "FailedToGetWindow",
                         ErrorCategory.InvalidResult,
                         true);

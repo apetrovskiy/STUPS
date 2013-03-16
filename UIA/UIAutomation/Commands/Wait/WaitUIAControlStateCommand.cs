@@ -65,24 +65,17 @@ namespace UIAutomation.Commands
                 }
             } while (!result);
             //WriteObject(this, false);
-//            ErrorRecord err = 
-//                new ErrorRecord(
-//                    new Exception("Timeout expired"),
-//                    "TimeoutExpired",
-//                    ErrorCategory.OperationTimeout,
-//                    this.InputObject);
-//            err.ErrorDetails = 
-//                new ErrorDetails(
-//                    "Timeout expired");
-//            WriteError(this, err, true);
-//            return;
+
+            // 20130316
+            // graceful fail
+            this.WriteObject(this, false);
             
-            this.WriteError(
-                this,
-                "Timeout expired",
-                "TimeoutExpired",
-                ErrorCategory.OperationTimeout,
-                true);
+//            this.WriteError(
+//                this,
+//                "Timeout expired",
+//                "TimeoutExpired",
+//                ErrorCategory.OperationTimeout,
+//                true);
         }
     }
 }

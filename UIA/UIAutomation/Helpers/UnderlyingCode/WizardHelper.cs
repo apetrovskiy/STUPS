@@ -37,6 +37,7 @@ namespace UIAutomation
             wzd.DefaultStepForwardAction = cmdlet.DefaultStepForwardAction;
             wzd.DefaultStepBackwardAction = cmdlet.DefaultStepBackwardAction;
             wzd.DefaultStepCancelAction = cmdlet.DefaultStepCancelAction;
+            wzd.DefaultStepGetWindowAction = cmdlet.DefaultStepGetWindowAction;
 
             cmdlet.WriteObject(cmdlet, wzd);
         }
@@ -71,26 +72,26 @@ namespace UIAutomation
         
         public static void InvokeWizard(WizardRunCmdletBase cmdlet)
         {
-            Console.WriteLine("exec 000001");
+Console.WriteLine("InvokeWizard 000001");
             Wizard wzd = cmdlet.GetWizard(cmdlet.Name);
-            Console.WriteLine("exec 000002");
+Console.WriteLine("InvokeWizard 000002");
             if (null == wzd) {
-                Console.WriteLine("exec 000003");
+Console.WriteLine("InvokeWizard 000003");
                 cmdlet.WriteError(cmdlet, "Couldn't get the wizard you asked for", "NoSuchWizard", ErrorCategory.InvalidArgument, true);
             } else {
-                Console.WriteLine("exec 000004");
+Console.WriteLine("InvokeWizard 000004");
                 wzd.Automatic = cmdlet.Automatic;
                 wzd.ForwardDirection = cmdlet.ForwardDirection;
-                Console.WriteLine("exec 000005");
+Console.WriteLine("InvokeWizard 000005");
                 //this.WriteVerbose(this, "running script blocks");
                 cmdlet.WriteVerbose(cmdlet, "running script blocks");
                 //RunWizardScriptBlocks(this, wzd);
                 cmdlet.RunWizardStartScriptBlocks(cmdlet, wzd);
-                Console.WriteLine("exec 000006");
+Console.WriteLine("InvokeWizard 000006");
 
                 // 20130317
                 cmdlet.RunWizardInAutomaticMode(cmdlet, wzd);
-                Console.WriteLine("exec 000007");
+Console.WriteLine("InvokeWizard 000007");
                 //if (PassThru) {
                 //this.WriteObject(this, wzd);
                 cmdlet.WriteObject(cmdlet, wzd);

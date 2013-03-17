@@ -67,19 +67,24 @@ namespace UIAutomation
 			//CurrentData.CurrentWindow = null;
 			//cmdlet.RunWizardGetWindowScriptBlocks(cmdlet, wizard);
 			CurrentData.CurrentWindow = AutomationElement.RootElement;
-Console.WriteLine("00001");
+Console.WriteLine("RunWizardInAutomaticMode 00001");
 			//while (cmdlet.RunWizardGetWindowScriptBlocks(cmdlet, wizard)) { // better: until timeout expires
 			while ((null != CurrentData.CurrentWindow)) {
-Console.WriteLine("00002");
+Console.WriteLine("RunWizardInAutomaticMode 00002");
 				CurrentData.CurrentWindow = null;
 				cmdlet.RunWizardGetWindowScriptBlocks(cmdlet, wizard);
-Console.WriteLine("00003");
+Console.WriteLine("RunWizardInAutomaticMode 00003");
 				// selector of steps' unique controls
 				WizardStep currentStep =
 					wizard.GetActiveStep();
-Console.WriteLine("00004");
-				cmdlet.RunWizardStepScriptBlocks(cmdlet, currentStep, cmdlet.ForwardDirection);
-Console.WriteLine("00005");
+Console.WriteLine("RunWizardInAutomaticMode 00004");
+if (null == currentStep) {
+	Console.WriteLine("currentStep == null");
+}
+				if (null != currentStep) {
+					cmdlet.RunWizardStepScriptBlocks(cmdlet, currentStep, cmdlet.ForwardDirection);
+				}
+Console.WriteLine("RunWizardInAutomaticMode 00005");
 			}
 		}
     }

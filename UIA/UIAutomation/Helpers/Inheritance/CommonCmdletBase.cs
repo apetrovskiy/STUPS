@@ -1459,7 +1459,7 @@ Console.WriteLine("RunWizardStepScriptBlocks 00005");
         }
         
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "get")]
-        protected internal	 ArrayList getControl(GetControlCmdletBase cmdlet)
+        protected internal ArrayList getControl(GetControlCmdletBase cmdlet)
         {
             try {
 
@@ -1505,7 +1505,7 @@ Console.WriteLine("RunWizardStepScriptBlocks 00005");
                     // display conditions for text search
                     this.WriteVerbose(cmdlet, "these conditions are used for text search:");
                     displayConditions(cmdlet, conditionsForTextSearch, "for text search");
-                    
+Console.WriteLine("text search");
                 } else {
                     // 20130221
                     conditions = this.getControlConditions(cmdlet, cmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive, true) as AndCondition;
@@ -1519,6 +1519,7 @@ Console.WriteLine("RunWizardStepScriptBlocks 00005");
                     // display conditions for wildcard search
                     this.WriteVerbose(cmdlet, "these conditions are used for wildcard search:");
                     displayConditions(cmdlet, conditionsForWildCards, "for wildcard search");
+Console.WriteLine("wildcard search");
                 }
                 // 20130221
                 //System.Windows.Automation.AndCondition conditionsForWildCards =
@@ -1558,7 +1559,8 @@ Console.WriteLine("RunWizardStepScriptBlocks 00005");
                         }
                         // 20130204
                         // don't change the order! (text->exact->wildcard->win32 to win32->text->exact->wildcard)
-
+Console.WriteLine("getControl 000010");
+if (null == aeCtrl || 0 == aeCtrl.Count) { Console.WriteLine("null == aeCtrl"); }
                         #region text search
                         if (0 == aeCtrl.Count) {
                             if (!notTextSearch && !cmdlet.Win32) {
@@ -1567,7 +1569,8 @@ Console.WriteLine("RunWizardStepScriptBlocks 00005");
                             }
                         }
                         #endregion text search
-
+Console.WriteLine("getControl 000020");
+if (null == aeCtrl || 0 == aeCtrl.Count) { Console.WriteLine("null == aeCtrl"); }
                         #region text search Win32
                         if (0 == aeCtrl.Count) {
                             if (!notTextSearch && cmdlet.Win32) {
@@ -1576,7 +1579,8 @@ Console.WriteLine("RunWizardStepScriptBlocks 00005");
                             }
                         }
                         #endregion text search Win32
-
+Console.WriteLine("getControl 000030");
+if (null == aeCtrl || 0 == aeCtrl.Count) { Console.WriteLine("null == aeCtrl"); }
                         #region exact search
                         if (0 == aeCtrl.Count && notTextSearch) {
                             if (!Preferences.DisableExactSearch && !cmdlet.Win32 ) {
@@ -1586,7 +1590,8 @@ Console.WriteLine("RunWizardStepScriptBlocks 00005");
                             }
                         }
                         #endregion exact search
-
+Console.WriteLine("getControl 000040");
+if (null == aeCtrl || 0 == aeCtrl.Count) { Console.WriteLine("null == aeCtrl"); }
                         #region wildcard search
                         if (0 == aeCtrl.Count && notTextSearch) {
                             if (!Preferences.DisableWildCardSearch && !cmdlet.Win32) {
@@ -1596,7 +1601,8 @@ Console.WriteLine("RunWizardStepScriptBlocks 00005");
                             }
                         }
                         #endregion wildcard search
-                        
+Console.WriteLine("getControl 000050");
+if (null == aeCtrl || 0 == aeCtrl.Count) { Console.WriteLine("null == aeCtrl"); }
                         #region Win32 search
                         if (0 == aeCtrl.Count && notTextSearch) { // &&
                             //(null == cmdlet.AutomationId || string.Empty == cmdlet.AutomationId) &&
@@ -1609,7 +1615,8 @@ Console.WriteLine("RunWizardStepScriptBlocks 00005");
                             } // if (! Preferences.DisableWin32Search)
                         } // FindWindowEx
                         #endregion Win32 search
-                        
+Console.WriteLine("getControl 000060");
+if (null == aeCtrl || 0 == aeCtrl.Count) { Console.WriteLine("null == aeCtrl"); }
                         if (null != aeCtrl && aeCtrl.Count > 0) {
                             
                             break;
@@ -1774,7 +1781,7 @@ Console.WriteLine("RunWizardStepScriptBlocks 00005");
                     cmdlet.WriteVerbose(cmdlet, "Win32Search: element added to the result collection");
                 } else {
                     cmdlet.WriteVerbose(cmdlet, "Win32Search: checking search criteria");
-                    if (testControlWithAllSearchCriteria(cmdlet, cmdlet.SearchCriteria, tempElement3)) {
+                    if (TestControlWithAllSearchCriteria(cmdlet, cmdlet.SearchCriteria, tempElement3)) {
                         cmdlet.WriteVerbose(cmdlet, "Win32Search: the control matches the search criteria");
                         aeCtrl.Add(tempElement3);
                         cmdlet.WriteVerbose(cmdlet, "Win32Search: element added to the result collection");
@@ -1845,7 +1852,7 @@ Console.WriteLine("RunWizardStepScriptBlocks 00005");
                         } else {
 
                             cmdlet.WriteVerbose(cmdlet, "WildCardSearch: checking search criteria");
-                            if (testControlWithAllSearchCriteria(cmdlet, cmdlet.SearchCriteria, tempElement2)) {
+                            if (TestControlWithAllSearchCriteria(cmdlet, cmdlet.SearchCriteria, tempElement2)) {
 
                                 cmdlet.WriteVerbose(cmdlet, "WildCardSearch: the control matches the search criteria");
                                 resultCollection.Add(tempElement2);
@@ -1930,7 +1937,7 @@ Console.WriteLine("RunWizardStepScriptBlocks 00005");
                             cmdlet.WriteVerbose(cmdlet, "ExactSearch: element added to the result collection");
                         } else {
                             cmdlet.WriteVerbose(cmdlet, "ExactSearch: checking search criteria");
-                            if (testControlWithAllSearchCriteria(cmdlet, cmdlet.SearchCriteria, tempElement)) {
+                            if (TestControlWithAllSearchCriteria(cmdlet, cmdlet.SearchCriteria, tempElement)) {
                                 cmdlet.WriteVerbose(cmdlet, "ExactSearch: the control matches the search criteria");
                                 aeCtrl.Add(tempElement);
                                 cmdlet.WriteVerbose(cmdlet, "ExactSearch: element added to the result collection");
@@ -2289,7 +2296,7 @@ Console.WriteLine("RunWizardStepScriptBlocks 00005");
         //            return dict;
         //        }
         
-        protected bool testControlWithAllSearchCriteria(
+        protected internal bool TestControlWithAllSearchCriteria(
             GetCmdletBase cmdlet,
             Hashtable[] hashtables,
             AutomationElement element)

@@ -79,25 +79,40 @@ namespace UIAutomation
         	
         	GetControlCmdletBase cmdletCtrl =
         		new GetControlCmdletBase();
-        	
+Console.WriteLine("GetActiveStep 000001");
+if (null == CurrentData.CurrentWindow) {
+	Console.WriteLine("null == CurrentData.CurrentWindow");
+} else {
+	Console.WriteLine("CurrentData.CurrentWindow.Current.Name = " + CurrentData.CurrentWindow.Current.Name);
+}
         	cmdletCtrl.InputObject =
         		new AutomationElement[]{ CurrentData.CurrentWindow };
         	cmdletCtrl.Timeout = 0;
         	
         	foreach (WizardStep step in this.Steps) {
-				
+Console.WriteLine("GetActiveStep 000002");
+Console.WriteLine("step.Name = " + step.Name);
         		cmdletCtrl.SearchCriteria = step.SearchCriteria;
         		
 	        	ArrayList controlsList = null;
 	        	
 	        	try {
+Console.WriteLine("GetActiveStep 000003");
 	        		controlsList =
 	        			cmdletCtrl.getControl(cmdletCtrl);
+if (null == controlsList) {
+	Console.WriteLine("<<<<<<<<<<<<<<<<<<< null == controlsList >>>>>>>>>>>>>>>>>>>>>>>>>>");
+}
+	        		//cmdletCtrl.TestControlWithAllSearchCriteria(
+	        		//	cmdletCtrl,
+	        		//	cmdletCtrl.SearchCriteria,
+	        		//	ElementNotAvailableException);
+Console.WriteLine("GetActiveStep 000004");
 	        	}
 	        	catch {}
         		
 	        	if (null != controlsList && 0 < controlsList.Count) {
-	        		
+Console.WriteLine("GetActiveStep 000005");
 	        		resultStep = step;
 	        		break;
 	        	}

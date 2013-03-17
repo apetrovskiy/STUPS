@@ -20,37 +20,55 @@ namespace UIAutomation.Commands
     {
         public InvokeUIAWizardCommand()
         {
+//        	// 20130317
+//        	//this.Automatic = true;
+//        	this.Automatic = false;
+//        	
+//        	// 20130317
+//        	this.ForwardDirection = true;
         }
         
         #region Parameters
-        [Parameter(Mandatory = false)]
-        internal new Wizard InputObject { get; set; }
+//        [Parameter(Mandatory = false)]
+//        internal new Wizard InputObject { get; set; }
+//        
+//        // 20130317
+//        [Parameter(Mandatory = false)]
+//        public SwitchParameter Automatic { get; set; }
+//        
+//        // 20130317
+//        [Parameter(Mandatory = false)]
+//        public SwitchParameter ForwardDirection { get; set; }
         #endregion Parameters
         
         protected override void BeginProcessing()
         {
-            Wizard wzd = GetWizard(Name);
-            if (wzd == null) {
-                ErrorRecord err = 
-                    new ErrorRecord(
-                        new Exception("Couldn't get the wizard you asked for"),
-                        "NoSuchWizard",
-                        ErrorCategory.InvalidArgument,
-                        Name);
-                err.ErrorDetails = 
-                    new ErrorDetails(
-                        "Failed to get the wizard you asked for");
-                //ThrowTerminatingError(err);
-                this.WriteError(this, err, true);
-            } else {
-                this.WriteVerbose(this, "running script blocks");
-                RunWizardScriptBlocks(this, wzd);
-                //if (PassThru) {
-                this.WriteObject(this, wzd);
-                //} else {
-                // WriteObject(this, true);
-                //}
-            }
+        	UIAInvokeWizardCommand command =
+        		new UIAInvokeWizardCommand(this);
+        	command.Execute();
+        	
+//            Wizard wzd = GetWizard(Name);
+//            if (wzd == null) {
+//                ErrorRecord err = 
+//                    new ErrorRecord(
+//                        new Exception("Couldn't get the wizard you asked for"),
+//                        "NoSuchWizard",
+//                        ErrorCategory.InvalidArgument,
+//                        Name);
+//                err.ErrorDetails = 
+//                    new ErrorDetails(
+//                        "Failed to get the wizard you asked for");
+//                //ThrowTerminatingError(err);
+//                this.WriteError(this, err, true);
+//            } else {
+//                this.WriteVerbose(this, "running script blocks");
+//                RunWizardScriptBlocks(this, wzd);
+//                //if (PassThru) {
+//                this.WriteObject(this, wzd);
+//                //} else {
+//                // WriteObject(this, true);
+//                //}
+//            }
         }
     }
 }

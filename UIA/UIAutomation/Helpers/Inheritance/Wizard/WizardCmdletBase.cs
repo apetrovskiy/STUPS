@@ -52,7 +52,7 @@ namespace UIAutomation
             return result;
         }
         
-        protected Wizard GetWizard(string name)
+        protected internal Wizard GetWizard(string name)
         {
             Wizard result = null;
             

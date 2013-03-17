@@ -34,7 +34,7 @@ namespace UIAutomation
         // 20130317
         public ScriptBlock[] StepGetWindowAction { get; set; }
         public Hashtable[] SearchCriteria { get; set; }
-        
-        
+        // 20130317
+        public Wizard Parent { get; set; }
     }
 }

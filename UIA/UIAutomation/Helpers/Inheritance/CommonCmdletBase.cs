@@ -931,11 +931,19 @@ namespace UIAutomation
             }
         }
         
-        protected internal void RunWizardScriptBlocks(WizardCmdletBase cmdlet, Wizard wizard)
+        protected internal void RunWizardStartScriptBlocks(WizardCmdletBase cmdlet, Wizard wizard)
         {
             runTwoScriptBlockCollections(
                 null,
                 wizard.StartAction,
+                cmdlet);
+        }
+        
+        protected internal void RunWizardGetWindowScriptBlocks(WizardCmdletBase cmdlet, Wizard wizard)
+        {
+            runTwoScriptBlockCollections(
+                null,
+                wizard.DefaultStepGetWindowAction,
                 cmdlet);
         }
         
@@ -946,12 +954,16 @@ namespace UIAutomation
         {
             if (forward) {
                 runTwoScriptBlockCollections(
-                    null,
+        			// 20130317
+                    //null,
+                    wizardStep.Parent.DefaultStepForwardAction,
                     wizardStep.StepForwardAction,
                     cmdlet);
             } else {
                 runTwoScriptBlockCollections(
-                    null,
+        			// 20130317
+                    //null,
+                    wizardStep.Parent.DefaultStepBackwardAction,
                     wizardStep.StepBackwardAction,
                     cmdlet);
             }
@@ -1428,7 +1440,7 @@ namespace UIAutomation
         }
         
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "get")]
-        protected ArrayList getControl(GetControlCmdletBase cmdlet)
+        protected internal	 ArrayList getControl(GetControlCmdletBase cmdlet)
         {
             try {
 

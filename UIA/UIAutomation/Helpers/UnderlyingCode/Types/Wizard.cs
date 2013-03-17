@@ -13,6 +13,7 @@ namespace UIAutomation
     using System.Collections;
     using System.Collections.Generic;
     using System.Management.Automation;
+    using System.Windows.Automation;
 
     /// <summary>
     /// Description of Wizard.
@@ -33,7 +34,17 @@ namespace UIAutomation
         // 20130317
         public ScriptBlock[] StopAction { get; set; }
         // 20130317
-        public ScriptBlock[] StepGetWindowAction { get; set; }
+        public ScriptBlock[] DefaultStepForwardAction { get; set; }
+        // 20130317
+        public ScriptBlock[] DefaultStepBackwardAction { get; set; }
+        // 20130317
+        public ScriptBlock[] DefaultStepCancelAction { get; set; }
+        // 20130317
+        public ScriptBlock[] DefaultStepGetWindowAction { get; set; }
+        // 20130317
+        public bool Automatic { get; set; }
+        // 20130317
+        public bool ForwardDirection { get; set; }
         
         public void ClearSteps()
         {
@@ -60,6 +71,39 @@ namespace UIAutomation
                     step.StepBackwardAction = null;
                 }
             }
+        }
+        
+        public WizardStep GetActiveStep()
+        {
+        	WizardStep resultStep = null;
+        	
+        	GetControlCmdletBase cmdletCtrl =
+        		new GetControlCmdletBase();
+        	
+        	cmdletCtrl.InputObject =
+        		new AutomationElement[]{ CurrentData.CurrentWindow };
+        	cmdletCtrl.Timeout = 0;
+        	
+        	foreach (WizardStep step in this.Steps) {
+				
+        		cmdletCtrl.SearchCriteria = step.SearchCriteria;
+        		
+	        	ArrayList controlsList = null;
+	        	
+	        	try {
+	        		controlsList =
+	        			cmdletCtrl.getControl(cmdletCtrl);
+	        	}
+	        	catch {}
+        		
+	        	if (null != controlsList && 0 < controlsList.Count) {
+	        		
+	        		resultStep = step;
+	        		break;
+	        	}
+        	}
+        	
+        	return resultStep;
         }
     }
 }

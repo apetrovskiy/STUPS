@@ -254,6 +254,7 @@
     <Compile Include="Commands\Wizard\RemoveUIAWizardStepCommand.cs" />
     <Compile Include="Commands\Wizard\SetUIAWizardCommand.cs" />
     <Compile Include="Commands\Wizard\StepUIAWizardCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Wizard\UIAInvokeWizardCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Types\Wizard.cs" />
     <Compile Include="Helpers\UnderlyingCode\Types\WizardCollection.cs" />
     <Compile Include="Helpers\UnderlyingCode\Types\WizardStep.cs" />
@@ -367,6 +368,7 @@
     <Folder Include="Commands\Win32" />
     <Folder Include="Commands\RDP" />
     <Folder Include="Commands\Sheridan" />
+    <Folder Include="Helpers\UnderlyingCode\Commands\RDP" />
     <Folder Include="Helpers\UnderlyingCode\Types" />
     <Folder Include="Helpers\UnderlyingCode\Commands" />
     <Folder Include="Helpers\UnderlyingCode\Commands\Container" />

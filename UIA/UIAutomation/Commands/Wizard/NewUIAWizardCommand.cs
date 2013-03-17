@@ -32,7 +32,19 @@ namespace UIAutomation.Commands
         public ScriptBlock[] StartAction { get; set; }
         // 20130317
         [Parameter(Mandatory = false)]
-        public ScriptBlock[] StepGetWindowAction { get; set; }
+        public ScriptBlock[] StopAction { get; set; }
+        // 20130317
+        [Parameter(Mandatory = false)]
+        public ScriptBlock[] DefaultStepForwardAction { get; set; }
+        // 20130317
+        [Parameter(Mandatory = false)]
+        public ScriptBlock[] DefaultStepBackwardAction { get; set; }
+        // 20130317
+        [Parameter(Mandatory = false)]
+        public ScriptBlock[] DefaultStepCancelAction { get; set; }
+        // 20130317
+        [Parameter(Mandatory = false)]
+        public ScriptBlock[] DefaultStepGetWindowAction { get; set; }
         [Parameter(Mandatory = false)]
         internal int Order { get; set; }
         #endregion Parameters

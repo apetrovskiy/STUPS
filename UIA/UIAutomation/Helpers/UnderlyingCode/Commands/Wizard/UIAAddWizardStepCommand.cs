@@ -31,25 +31,31 @@ namespace UIAutomation
 
                 WizardStep step = new WizardStep(cmdlet.Name, cmdlet.Order);
 
-                if (null != cmdlet.SearchCriteria && 0 < cmdlet.SearchCriteria.Length) {
-
-                    cmdlet.WriteVerbose(cmdlet, "adding search criteria");
+                //if (null != cmdlet.SearchCriteria && 0 < cmdlet.SearchCriteria.Length) {
+				//
+                //    cmdlet.WriteVerbose(cmdlet, "adding search criteria");
                     step.SearchCriteria = cmdlet.SearchCriteria;
-                }
+                //}
 
-                if (null != cmdlet.StepForwardAction && 0 < cmdlet.StepForwardAction.Length) {
-
-                    cmdlet.WriteVerbose(cmdlet, "adding step forward actions");
+                //if (null != cmdlet.StepForwardAction && 0 < cmdlet.StepForwardAction.Length) {
+				//
+                //    cmdlet.WriteVerbose(cmdlet, "adding step forward actions");
                     step.StepForwardAction = cmdlet.StepForwardAction;
-                }
+                //}
 
-                if (null != cmdlet.StepBackwardAction && 0 < cmdlet.StepBackwardAction.Length) {
-
-                    cmdlet.WriteVerbose(cmdlet, "adding step backward actions");
+                //if (null != cmdlet.StepBackwardAction && 0 < cmdlet.StepBackwardAction.Length) {
+				//
+                //    cmdlet.WriteVerbose(cmdlet, "adding step backward actions");
                     step.StepBackwardAction = cmdlet.StepBackwardAction;
-                }
+                //}
+                
+                step.StepCancelAction = cmdlet.StepCancelAction;
+                step.StepGetWindowAction = cmdlet.StepGetWindowAction;
 
                 cmdlet.WriteVerbose(cmdlet, "adding the step");
+                // 20130317
+                step.Parent = cmdlet.InputObject;
+                
                 cmdlet.InputObject.Steps.Add(step);
 
                 if (cmdlet.PassThru) {

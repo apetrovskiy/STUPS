@@ -1,9 +1,13 @@
-﻿[scriptblock]$backwardAction = { Get-UIAButton -AutomationId 'backbutton' | Invoke-UIAButtonClick; };
+﻿ipmo C:\Projects\PS\STUPS\UIA\UIAutomation\bin\Release35\UIAutomation.dll
+
+[scriptblock]$backwardAction = { Get-UIAButton -AutomationId 'backbutton' | Invoke-UIAButtonClick; };
 [scriptblock]$cancelAction = { Get-UIAButton -AutomationId 'cancelbutton' | Invoke-UIAButtonClick; };
 [scriptblock]$getWindowAction = { Wait-UIAWindow -pn "rundll32" -Seconds 10; };
+[UIAutomation.WizardCollection]::ResetData();
 
 New-UIAWizard -Name AddPrinterWizard `
-    -StartAction { Start-Process "$($env:SystemRoot)\System32\rundll32.exe" -ArgumentList "'printui.dll,PrintUIEntry'","/il" -PassThru | Get-UIAWindow; } | `
+    -DefaultStepGetWindowAction $getWindowAction `
+    -StartAction { Start-Process "$($env:SystemRoot)\System32\rundll32.exe" -ArgumentList "printui.dll`,PrintUIEntry","/il" -PassThru | Get-UIAWindow; } | `
     Add-UIAWizardStep -Name Step01Initial `
         -StepForwardAction { Get-UIAPane -Name "*the*printer*that*i*wand*isn't*listed*" | Invoke-UIAControlClick; } `
         -StepBackwardAction {} `
@@ -90,4 +94,5 @@ New-UIAWizard -Name AddPrinterWizard `
         -StepBackwardAction $backwardAction `
         -StepCancelAction $cancelAction `
         -StepGetWindowAction $getWindowAction `
-        -SearchCriteria @{controlType="text";name="*you've*successfully*added*driver**"} | `
+        -SearchCriteria @{controlType="text";name="*you've*successfully*added*driver*"} # | `
+    Invoke-UIAWizard -Automatic -ForwardDirection -Name AddPrinterWizard

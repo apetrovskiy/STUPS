@@ -29,6 +29,10 @@ namespace UIAutomation
         public int Order { get; set; }
         public ScriptBlock[] StepForwardAction { get; set; }
         public ScriptBlock[] StepBackwardAction { get; set; }
+        // 20130317
+        public ScriptBlock[] StepCancelAction { get; set; }
+        // 20130317
+        public ScriptBlock[] StepGetWindowAction { get; set; }
         public Hashtable[] SearchCriteria { get; set; }
         
         

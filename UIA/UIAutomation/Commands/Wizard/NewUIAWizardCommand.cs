@@ -30,6 +30,9 @@ namespace UIAutomation.Commands
         [Parameter(Mandatory = true)]
         [ValidateNotNullOrEmpty]
         public ScriptBlock[] StartAction { get; set; }
+        // 20130317
+        [Parameter(Mandatory = false)]
+        public ScriptBlock[] StepGetWindowAction { get; set; }
         [Parameter(Mandatory = false)]
         internal int Order { get; set; }
         #endregion Parameters

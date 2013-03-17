@@ -30,6 +30,10 @@ namespace UIAutomation
         public List<WizardStep> Steps { get; set; }
         public ScriptBlock[] StartAction { get; set; }
         //public ScriptBlock[] StopAction { get; set; }
+        // 20130317
+        public ScriptBlock[] StopAction { get; set; }
+        // 20130317
+        public ScriptBlock[] StepGetWindowAction { get; set; }
         
         public void ClearSteps()
         {

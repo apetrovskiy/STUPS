@@ -27,35 +27,19 @@ namespace UIAutomation
             NewUIAWizardCommand cmdlet =
                 (NewUIAWizardCommand)this.Cmdlet;
             
-            if (!cmdlet.ValidateWizardName(cmdlet.Name)) {
-                
-                cmdlet.WriteError(
-                    cmdlet,
-                    "The wizard name you selected is already in use",
-                    "NameInUse",
-                    ErrorCategory.InvalidArgument,
-                    true);
-                
-                // for unit tests
-                return;
-            }
-
-            cmdlet.WriteVerbose(cmdlet, "wizard name validated");
-            Wizard wzd = new Wizard(cmdlet.Name);
-            cmdlet.WriteVerbose(cmdlet, "wizard object created");
-//            if (null != cmdlet.StartAction && 0 < cmdlet.StartAction.Length) {
-//                wzd.StartAction = cmdlet.StartAction;
-//            } else {
-//Console.WriteLine("asdfassssssssssssssssssssssssssssssssss");
-//            }
-			
-			wzd.StartAction = cmdlet.StartAction;
-			wzd.StopAction = cmdlet.StopAction;
-			wzd.DefaultStepForwardAction = cmdlet.DefaultStepForwardAction;
-			wzd.DefaultStepBackwardAction = cmdlet.DefaultStepBackwardAction;
-			wzd.DefaultStepCancelAction = cmdlet.DefaultStepCancelAction;
-			
-            cmdlet.WriteObject(cmdlet, wzd);
+            WizardHelper.CreateWizard(cmdlet);
         }
+
+
+
+        // for unit tests
+
+        //            if (null != cmdlet.StartAction && 0 < cmdlet.StartAction.Length) {
+        //                wzd.StartAction = cmdlet.StartAction;
+        //            } else {
+        //Console.WriteLine("asdfassssssssssssssssssssssssssssssssss");
+        //            }
+
+
     }
 }

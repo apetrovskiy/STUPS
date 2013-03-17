@@ -952,20 +952,39 @@ namespace UIAutomation
             WizardStep wizardStep,
             bool forward)
         {
+Console.WriteLine("RunWizardStepScriptBlocks 00001");
             if (forward) {
+Console.WriteLine("RunWizardStepScriptBlocks 00002");
+if (null == wizardStep) {
+    Console.WriteLine("wizardStep == null");
+}
+if (null == wizardStep.Parent) {
+    Console.WriteLine("wizardStep.Parent == null");
+}
+if (null == wizardStep.Parent.DefaultStepForwardAction) {
+    Console.WriteLine("wizardStep.Parent.DefaultStepForwardAction == null");
+} else if (0 == wizardStep.Parent.DefaultStepForwardAction.Length) {
+    Console.WriteLine("wizardStep.Parent.DefaultStepForwardAction.Length == 0");
+}
+if (null == wizardStep.StepForwardAction) {
+    Console.WriteLine("wizardStep.StepForwardAction == null");
+}
                 runTwoScriptBlockCollections(
         			// 20130317
                     //null,
                     wizardStep.Parent.DefaultStepForwardAction,
                     wizardStep.StepForwardAction,
                     cmdlet);
+Console.WriteLine("RunWizardStepScriptBlocks 00003");
             } else {
+Console.WriteLine("RunWizardStepScriptBlocks 00004");
                 runTwoScriptBlockCollections(
         			// 20130317
                     //null,
                     wizardStep.Parent.DefaultStepBackwardAction,
                     wizardStep.StepBackwardAction,
                     cmdlet);
+Console.WriteLine("RunWizardStepScriptBlocks 00005");
             }
         }
         

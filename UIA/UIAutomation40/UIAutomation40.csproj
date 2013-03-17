@@ -656,6 +656,9 @@
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\UIAHelper.cs">
       <Link>Helpers\UnderlyingCode\UIAHelper.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\WizardHelper.cs">
+      <Link>Helpers\UnderlyingCode\WizardHelper.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Helpers\UserSettings\CurrentData.cs">
       <Link>Helpers\UserSettings\CurrentData.cs</Link>
     </Compile>

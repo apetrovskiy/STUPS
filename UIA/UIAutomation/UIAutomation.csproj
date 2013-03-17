@@ -305,6 +305,7 @@
     <Compile Include="Helpers\UnderlyingCode\JavaHelper.cs" />
     <Compile Include="Helpers\UnderlyingCode\NativeMethods.cs" />
     <Compile Include="Helpers\UnderlyingCode\UIAHelper.cs" />
+    <Compile Include="Helpers\UnderlyingCode\WizardHelper.cs" />
     <Compile Include="Helpers\UserSettings\CurrentData.cs" />
     <Compile Include="Helpers\UserSettings\Preferences.cs" />
     <Compile Include="Helpers\UserSettings\Profile.cs" />

@@ -70,6 +70,10 @@ namespace UIAutomation
 
 			while ((null != CurrentData.CurrentWindow)) {
 
+			    if (wizard.StopImmediately) {
+			        break;
+			    }
+			    
 				CurrentData.CurrentWindow = null;
 				// 20130318
 				//cmdlet.RunWizardGetWindowScriptBlocks(cmdlet, wizard);

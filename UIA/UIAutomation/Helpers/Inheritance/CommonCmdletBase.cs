@@ -962,6 +962,7 @@ namespace UIAutomation
         //protected internal void RunWizardStartScriptBlocks(WizardCmdletBase cmdlet, Wizard wizard)
         protected internal void RunWizardStartScriptBlocks(WizardCmdletBase cmdlet, Wizard wizard, object[] parameters)
         {
+Console.WriteLine("RunWizardStartScriptBlocks 00001");
             runTwoScriptBlockCollections(
                 null,
                 wizard.StartAction,
@@ -969,6 +970,7 @@ namespace UIAutomation
                 //cmdlet);
                 cmdlet,
                 parameters);
+Console.WriteLine("RunWizardStartScriptBlocks 00002");
         }
         
         // 20130318
@@ -994,7 +996,11 @@ namespace UIAutomation
         {
 
             if (forward) {
-
+                
+                cmdlet.WriteVerbose(
+                    cmdlet,
+                    "ForwardAction scriptblocks");
+                
                 runTwoScriptBlockCollections(
         			// 20130317
                     //null,
@@ -1007,6 +1013,10 @@ namespace UIAutomation
 
             } else {
 
+                cmdlet.WriteVerbose(
+                    cmdlet,
+                    "BackwardAction scriptblocks");
+                
                 runTwoScriptBlockCollections(
         			// 20130317
                     //null,

@@ -133,11 +133,13 @@ namespace UIAutomation
 
                 }
 
-                cmdlet.WriteVerbose(cmdlet, "running script blocks");
+                cmdlet.WriteVerbose(cmdlet, "running Wizard StartAction scriptblocks");
 
                 // 20130318
                 //cmdlet.RunWizardStartScriptBlocks(cmdlet, wzd);
                 cmdlet.RunWizardStartScriptBlocks(cmdlet, wzd, null);
+                
+                cmdlet.WriteVerbose(cmdlet, "running Wizard in the automated mode");
 
                 cmdlet.RunWizardInAutomaticMode(cmdlet, wzd);
 
@@ -329,7 +331,7 @@ namespace UIAutomation
                 } while (!result);
                 
                 //WriteVerbose(this, "running script blocks");
-                cmdlet.WriteVerbose(cmdlet, "running script blocks");
+                cmdlet.WriteVerbose(cmdlet, "running ForwardAction, BackwardAction, CancelAction scriptblocks");
                 //RunWizardStepScriptBlocks(this, stepToRun, Forward);
                 // 20130318
                 //cmdlet.RunWizardStepScriptBlocks(cmdlet, stepToRun, cmdlet.Forward);

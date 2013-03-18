@@ -47,6 +47,8 @@ namespace UIAutomation
         public bool ForwardDirection { get; set; }
         // 20130318
         public WizardStep ActiveStep { get; set; }
+        // 20130318
+        internal bool StopImmediately { get; set; }
         
         public void ClearSteps()
         {
@@ -93,6 +95,8 @@ namespace UIAutomation
         
         public WizardStep GetActiveStep()
         {
+            this.StopImmediately = false;
+            
         	WizardStep resultStep = null;
         	
         	//GetControlCmdletBase cmdletCtrl =
@@ -107,6 +111,11 @@ namespace UIAutomation
         	
         	foreach (WizardStep step in this.Steps) {
 
+        	    if (this.StopImmediately) {
+        	        resultStep = step;
+        	        break;
+        	    }
+        	    
         		cmdletCtrl.SearchCriteria = step.SearchCriteria;
 
 	        	ArrayList controlsList = null;
@@ -132,6 +141,11 @@ namespace UIAutomation
         	}
         	
         	return resultStep;
+        }
+        
+        public void Stop()
+        {
+            this.StopImmediately = true;
         }
     }
 }

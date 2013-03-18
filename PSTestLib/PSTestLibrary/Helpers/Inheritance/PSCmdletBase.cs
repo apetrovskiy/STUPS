@@ -575,21 +575,29 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
         {
             System.Collections.Generic.List<ScriptBlock> scriptblocks =
                 new System.Collections.Generic.List<ScriptBlock>();
+
             if (scriptblocksSet1 != null &&
                 scriptblocksSet1.Length > 0) {
+
                 foreach (ScriptBlock sb in scriptblocksSet1) {
+
                     scriptblocks.Add(sb);
                 }
             }
+
             if (scriptblocksSet2 != null &&
                 scriptblocksSet2.Length > 0) {
+
                 foreach (ScriptBlock sb in scriptblocksSet2) {
+
                     scriptblocks.Add(sb);
                 }
             }
+
             // 20130318
             //runScriptBlocks(scriptblocks, cmdlet, false);
             runScriptBlocks(scriptblocks, cmdlet, false, parameters);
+
         }
         
         // 20120816
@@ -602,6 +610,7 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
             object[] parameters)
         {
             try {
+
                 if (scriptblocks != null &&
                     scriptblocks.Count > 0) {
 
@@ -622,9 +631,12 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
                                     //runScriptBlock runner = new runScriptBlock(runSBAction);
                                     //runner(sb, cmdlet.EventSource, cmdlet.EventArgs);
                                     runScriptBlockWithParameters runnerWithParams = new runScriptBlockWithParameters(runSBActionWithParams);
+
                                     runnerWithParams(sb, parameters);
+
                                 }
                             } catch (Exception eInner) {
+
                                 // 20130318
 //                                ErrorRecord err = 
 //                                    new ErrorRecord(
@@ -645,7 +657,9 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
                                     eInner.Message,
                                     "InvokeException",
                                     ErrorCategory.OperationStopped,
-                                    false);
+                                    // 20130318
+                                    //false);
+                                    true);
                             }
                         }
                     }
@@ -725,7 +739,9 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
                         e1.Message,
                         "ErrorOnOpeningRunspace",
                         ErrorCategory.InvalidOperation,
-                        false);
+                        // 20130318
+                        //false);
+                        true);
                 }
                 try {
                     System.Collections.Generic.List<object> inputParams = 
@@ -829,7 +845,9 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
                     eOuter.Message,
                     "ErrorInInvokingScriptBlock",
                     ErrorCategory.InvalidOperation,
-                    false);
+                    // 20130318
+                    //false);
+                    true);
             }
         }
         #endregion Action delegate
@@ -841,15 +859,21 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
         {
             Collection<PSObject> psObjects = null;
             try {
+
                 if (null == parameters || 0 == parameters.Length) {
+
                     psObjects =
                         sb.Invoke();
+
                 } else {
+
                     psObjects =
                         sb.Invoke(parameters);
+
                 }
 
             } catch (Exception eOuter) {
+
                 // 20130318
 //                ErrorRecord err = 
 //                    new ErrorRecord(eOuter,
@@ -873,7 +897,9 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
                     eOuter.Message,
                     "ErrorInInvokingScriptBlock",
                     ErrorCategory.InvalidOperation,
-                    false);
+                    // 20130318
+                    //false);
+                    true);
             }
         }
         #endregion Action delegate

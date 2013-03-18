@@ -952,39 +952,39 @@ namespace UIAutomation
             WizardStep wizardStep,
             bool forward)
         {
-Console.WriteLine("RunWizardStepScriptBlocks 00001");
+//Console.WriteLine("RunWizardStepScriptBlocks 00001");
             if (forward) {
-Console.WriteLine("RunWizardStepScriptBlocks 00002");
-if (null == wizardStep) {
-    Console.WriteLine("wizardStep == null");
-}
-if (null == wizardStep.Parent) {
-    Console.WriteLine("wizardStep.Parent == null");
-}
-if (null == wizardStep.Parent.DefaultStepForwardAction) {
-    Console.WriteLine("wizardStep.Parent.DefaultStepForwardAction == null");
-} else if (0 == wizardStep.Parent.DefaultStepForwardAction.Length) {
-    Console.WriteLine("wizardStep.Parent.DefaultStepForwardAction.Length == 0");
-}
-if (null == wizardStep.StepForwardAction) {
-    Console.WriteLine("wizardStep.StepForwardAction == null");
-}
+//Console.WriteLine("RunWizardStepScriptBlocks 00002");
+//if (null == wizardStep) {
+//    Console.WriteLine("RunWizardStepScriptBlocks wizardStep == null");
+//}
+//if (null == wizardStep.Parent) {
+//    Console.WriteLine("RunWizardStepScriptBlocks wizardStep.Parent == null");
+//}
+//if (null == wizardStep.Parent.DefaultStepForwardAction) {
+//    Console.WriteLine("RunWizardStepScriptBlocks wizardStep.Parent.DefaultStepForwardAction == null");
+//} else if (0 == wizardStep.Parent.DefaultStepForwardAction.Length) {
+//    Console.WriteLine("RunWizardStepScriptBlocks wizardStep.Parent.DefaultStepForwardAction.Length == 0");
+//}
+//if (null == wizardStep.StepForwardAction) {
+//    Console.WriteLine("RunWizardStepScriptBlocks wizardStep.StepForwardAction == null");
+//}
                 runTwoScriptBlockCollections(
         			// 20130317
                     //null,
                     wizardStep.Parent.DefaultStepForwardAction,
                     wizardStep.StepForwardAction,
                     cmdlet);
-Console.WriteLine("RunWizardStepScriptBlocks 00003");
+//Console.WriteLine("RunWizardStepScriptBlocks 00003");
             } else {
-Console.WriteLine("RunWizardStepScriptBlocks 00004");
+//Console.WriteLine("RunWizardStepScriptBlocks 00004");
                 runTwoScriptBlockCollections(
         			// 20130317
                     //null,
                     wizardStep.Parent.DefaultStepBackwardAction,
                     wizardStep.StepBackwardAction,
                     cmdlet);
-Console.WriteLine("RunWizardStepScriptBlocks 00005");
+//Console.WriteLine("RunWizardStepScriptBlocks 00005");
             }
         }
         
@@ -1459,42 +1459,24 @@ Console.WriteLine("RunWizardStepScriptBlocks 00005");
         }
         
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "get")]
-        protected internal ArrayList getControl(GetControlCmdletBase cmdlet)
+        protected internal ArrayList GetControl(GetControlCmdletBase cmdlet)
         {
             try {
 
                 aeCtrl = new ArrayList();
                 System.Windows.Automation.AndCondition conditions = null;
-                // 20130221
                 System.Windows.Automation.AndCondition conditionsForWildCards = null;
-                // 20130221
                 System.Windows.Automation.AndCondition conditionsForTextSearch = null;
-                // 20130221
-                //conditions = this.getControlConditions(cmdlet, cmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive, true) as AndCondition;
                 
-                // 20130221
-//                // display conditions for a regular search
-//                this.WriteVerbose(cmdlet, "these conditions are used for an exact search:");
-//                displayConditions(cmdlet, conditions, "for exact search");
-
-
-                // additional search conditions if the search works with wildcards
-                // only ControlType is here since that
-                // Name, AutomationID, ClassName can be wildcarded
-                
-                // 20120918
-                //                System.Windows.Automation.ControlType ctrlTypeForWildCards =
-                //                    UIAHelper.GetControlTypeByTypeName(cmdlet.ControlType);
                 GetControlCmdletBase tempCmdlet =
                     new GetControlCmdletBase();
                 tempCmdlet.ControlType = cmdlet.ControlType;
-                // 20130128
+
                 bool notTextSearch = true;
                 if (null != cmdlet.ContainsText && string.Empty != cmdlet.ContainsText) {
                     tempCmdlet.ContainsText = cmdlet.ContainsText;
                     notTextSearch = false;
                     
-                    // 20130221
                     conditionsForTextSearch =
                         this.getControlConditions(
                             tempCmdlet,
@@ -1505,7 +1487,7 @@ Console.WriteLine("RunWizardStepScriptBlocks 00005");
                     // display conditions for text search
                     this.WriteVerbose(cmdlet, "these conditions are used for text search:");
                     displayConditions(cmdlet, conditionsForTextSearch, "for text search");
-Console.WriteLine("text search");
+
                 } else {
                     // 20130221
                     conditions = this.getControlConditions(cmdlet, cmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive, true) as AndCondition;
@@ -1519,31 +1501,9 @@ Console.WriteLine("text search");
                     // display conditions for wildcard search
                     this.WriteVerbose(cmdlet, "these conditions are used for wildcard search:");
                     displayConditions(cmdlet, conditionsForWildCards, "for wildcard search");
-Console.WriteLine("wildcard search");
+
                 }
-                // 20130221
-                //System.Windows.Automation.AndCondition conditionsForWildCards =
-                //    this.getControlConditions(tempCmdlet, tempCmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive, true) as AndCondition;
-                
-                // 20130221
-                //System.Windows.Automation.AndCondition conditionsForTextSearch =
-                //    this.getControlConditions(
-                //        tempCmdlet,
-                //        tempCmdlet.ControlType,
-                //        cmdlet.CaseSensitive,
-                //        false) as AndCondition;
-                
-                // 20130221
-                // // display conditions for wildcard search
-                // this.WriteVerbose(cmdlet, "these conditions are used for wildcard search:");
-                // displayConditions(cmdlet, conditionsForWildCards, "for wildcard search");
-                
-                // 20130221
-                // // display conditions for text search
-                // this.WriteVerbose(cmdlet, "these conditions are used for text search:");
-                // displayConditions(cmdlet, conditionsForTextSearch, "for text search");
-                
-                // 20120823
+
                 foreach (AutomationElement inputObject in cmdlet.InputObject) {
 
                     int processId = 0;
@@ -1559,8 +1519,6 @@ Console.WriteLine("wildcard search");
                         }
                         // 20130204
                         // don't change the order! (text->exact->wildcard->win32 to win32->text->exact->wildcard)
-Console.WriteLine("getControl 000010");
-if (null == aeCtrl || 0 == aeCtrl.Count) { Console.WriteLine("null == aeCtrl"); }
                         #region text search
                         if (0 == aeCtrl.Count) {
                             if (!notTextSearch && !cmdlet.Win32) {
@@ -1569,8 +1527,7 @@ if (null == aeCtrl || 0 == aeCtrl.Count) { Console.WriteLine("null == aeCtrl"); 
                             }
                         }
                         #endregion text search
-Console.WriteLine("getControl 000020");
-if (null == aeCtrl || 0 == aeCtrl.Count) { Console.WriteLine("null == aeCtrl"); }
+
                         #region text search Win32
                         if (0 == aeCtrl.Count) {
                             if (!notTextSearch && cmdlet.Win32) {
@@ -1579,8 +1536,7 @@ if (null == aeCtrl || 0 == aeCtrl.Count) { Console.WriteLine("null == aeCtrl"); 
                             }
                         }
                         #endregion text search Win32
-Console.WriteLine("getControl 000030");
-if (null == aeCtrl || 0 == aeCtrl.Count) { Console.WriteLine("null == aeCtrl"); }
+
                         #region exact search
                         if (0 == aeCtrl.Count && notTextSearch) {
                             if (!Preferences.DisableExactSearch && !cmdlet.Win32 ) {
@@ -1590,33 +1546,27 @@ if (null == aeCtrl || 0 == aeCtrl.Count) { Console.WriteLine("null == aeCtrl"); 
                             }
                         }
                         #endregion exact search
-Console.WriteLine("getControl 000040");
-if (null == aeCtrl || 0 == aeCtrl.Count) { Console.WriteLine("null == aeCtrl"); }
+
                         #region wildcard search
                         if (0 == aeCtrl.Count && notTextSearch) {
                             if (!Preferences.DisableWildCardSearch && !cmdlet.Win32) {
-                                
-                                //SearchByWildcardViaUIA(cmdlet, inputObject, conditionsForWildCards);
+
                                 SearchByWildcardViaUIA(cmdlet, ref aeCtrl, inputObject, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class, cmdlet.Value, conditionsForWildCards);
                             }
                         }
                         #endregion wildcard search
-Console.WriteLine("getControl 000050");
-if (null == aeCtrl || 0 == aeCtrl.Count) { Console.WriteLine("null == aeCtrl"); }
+
                         #region Win32 search
-                        if (0 == aeCtrl.Count && notTextSearch) { // &&
-                            //(null == cmdlet.AutomationId || string.Empty == cmdlet.AutomationId) &&
-                            //(null == cmdlet.Class || string.Empty == cmdlet.Class)) {
+                        if (0 == aeCtrl.Count && notTextSearch) {
                             
                             if (!Preferences.DisableWin32Search || cmdlet.Win32) {
                                 
                                 SearchByWildcardViaWin32(cmdlet, inputObject);
                                 
-                            } // if (! Preferences.DisableWin32Search)
+                            } // if (!Preferences.DisableWin32Search || cmdlet.Win32)
                         } // FindWindowEx
                         #endregion Win32 search
-Console.WriteLine("getControl 000060");
-if (null == aeCtrl || 0 == aeCtrl.Count) { Console.WriteLine("null == aeCtrl"); }
+
                         if (null != aeCtrl && aeCtrl.Count > 0) {
                             
                             break;
@@ -1709,28 +1659,8 @@ if (null == aeCtrl || 0 == aeCtrl.Count) { Console.WriteLine("null == aeCtrl"); 
                     
                 } // 20120823
 
-                #region commented
-                // 20120824
-                //if (aeCtrl != null && (int)aeCtrl.Current.ProcessId > 0)
-                // 20120830
-                //if (null != aeCtrl && (int)((AutomationElement)aeCtrl[0]).Current.ProcessId > 0) {
-                //{
-                //                if (null != aeCtrl && 0 < aeCtrl.Count) {
-                //                    WriteVerbose(cmdlet, aeCtrl);
-                //                }
-//
-//
-                //                // 20120917
-                //                if (null == aeCtrl) {
-                //                    cmdlet.WriteVerbose(cmdlet, "aeCtrl == null");
-                //                }
-                //                if (0 == aeCtrl.Count) {
-                //                    cmdlet.WriteVerbose(cmdlet, "aeCtrl.Count == 0");
-                //                }
-                #endregion commented
-                
                 return aeCtrl;
-                #region commented
+
             }
             catch (Exception eGetControlException) {
                 
@@ -1744,17 +1674,7 @@ if (null == aeCtrl || 0 == aeCtrl.Count) { Console.WriteLine("null == aeCtrl"); 
                 
                 return null;
             }
-            //            catch {
-            //                this.WriteError(
-            //                    cmdlet,
-            //                    "Failed to get the control.",
-            //                    "UnableToGetControl",
-            //                    ErrorCategory.InvalidResult,
-            //                    true);
-//
-            //                return null;
-            //            }
-            #endregion commented
+
         }
 
         internal void SearchByWildcardViaWin32(GetControlCmdletBase cmdlet, AutomationElement inputObject)
@@ -1791,11 +1711,8 @@ if (null == aeCtrl || 0 == aeCtrl.Count) { Console.WriteLine("null == aeCtrl"); 
         }
 
         internal void SearchByWildcardViaUIA(
-            //GetControlCmdletBase cmdlet,
-            //T cmdlet,
-            //CommonCmdletBase cmdlet,
-            //HasTimeoutCmdletBase cmdlet,
-            GetCmdletBase cmdlet,
+            //GetCmdletBase cmdlet,
+            GetControlCmdletBase cmdlet, // 20130318 // ??
             ref ArrayList resultCollection,
             AutomationElement inputObject,
             string name,
@@ -1806,11 +1723,7 @@ if (null == aeCtrl || 0 == aeCtrl.Count) { Console.WriteLine("null == aeCtrl"); 
         {
             this.WriteVerbose((cmdlet as PSTestLib.PSCmdletBase), "[getting the control] using WildCard search");
             try {
-//                string cmdletValue = string.Empty;
-//                try {
-//                    cmdletValue = cmdlet.Value;
-//                }
-//                catch {}
+
                 // 20130220
                 GetControlCollectionCmdletBase cmdlet1 =
                     new GetControlCollectionCmdletBase(
@@ -1823,8 +1736,20 @@ if (null == aeCtrl || 0 == aeCtrl.Count) { Console.WriteLine("null == aeCtrl"); 
                         //cmdlet.Value,
                         //string.Empty != cmdlet.Value ? cmdlet.Value : null,
                         strValue,
-                        (new string[] {}),
+                        // 20130318
+                        //(new string[] {}),
+                        //null != cmdlet.controlt
+                        //string.Empty != cmdlet.ControlType ? cmdlet.ControlType : (new string[] {}),
+                        //null != cmdlet.ControlType ? cmdlet.ControlType : (new string[] {}),
+                        //null != cmdlet.ControlType ? cmdlet.ControlType : string.Empty,
+                        //string.Empty != cmdlet.ControlType ? cmdlet.ControlType : string.Empty,
+                        null != cmdlet.ControlType ? (new string[] {cmdlet.ControlType}) : (new string[] {}),
                         this.caseSensitive);
+//Console.WriteLine("SearchByWildcardViaUIA cmdlet.InputObject.Name = " + cmdlet.InputObject[0].Current.Name);
+//Console.WriteLine("SearchByWildcardViaUIA conditionsForWildCards.Length = " + conditionsForWildCards.GetConditions().Length.ToString());
+//foreach (Condition condition in conditionsForWildCards.GetConditions()) {
+//    Console.WriteLine("SearchByWildcardViaUIA condition = " + condition.ToString());
+//}
                 try {
                     this.WriteVerbose((cmdlet as PSTestLib.PSCmdletBase), "using the GetAutomationElementsViaWildcards_FindAll method");
                     
@@ -1836,7 +1761,10 @@ if (null == aeCtrl || 0 == aeCtrl.Count) { Console.WriteLine("null == aeCtrl"); 
                             cmdlet1.CaseSensitive,
                             false,
                             false);
-                    
+//Console.WriteLine("SearchByWildcardViaUIA there are >>>>>>>>>>" + tempList.Count.ToString() + "<<<<<<<<<<<<<<<<<< elements that match the conditions");
+//foreach (AutomationElement element001 in tempList) {
+//    Console.WriteLine(element001.Current.ControlType.ProgrammaticName +"\t" + element001.Current.Name + "\t" + element001.Current.AutomationId + "\t" + element001.Current.ClassName);
+//}
                     cmdlet.WriteVerbose(
                         cmdlet, 
                         "there are " +
@@ -1846,14 +1774,14 @@ if (null == aeCtrl || 0 == aeCtrl.Count) { Console.WriteLine("null == aeCtrl"); 
                     foreach (AutomationElement tempElement2 in tempList) {
 
                         if (null == cmdlet.SearchCriteria || 0 == cmdlet.SearchCriteria.Length) {
-
+//Console.WriteLine("SearchByWildcardViaUIA >>>>>>>> null == cmdlet.SearchCriteria || 0 == cmdlet.SearchCriteria.Length");
                             resultCollection.Add(tempElement2);
                             cmdlet.WriteVerbose(cmdlet, "WildCardSearch: element added to the result collection (no SearchCriteria)");
                         } else {
-
+//Console.WriteLine("SearchByWildcardViaUIA >>>>>>>> else (yeah, SearchCriteria)");
                             cmdlet.WriteVerbose(cmdlet, "WildCardSearch: checking search criteria");
                             if (TestControlWithAllSearchCriteria(cmdlet, cmdlet.SearchCriteria, tempElement2)) {
-
+//Console.WriteLine("SearchByWildcardViaUIA WildCardSearch: !!!!!!!!!!!!!!!  the control matches the search criteria !!!!!!!!!!!!!!!!!!!!!");
                                 cmdlet.WriteVerbose(cmdlet, "WildCardSearch: the control matches the search criteria");
                                 resultCollection.Add(tempElement2);
                                 cmdlet.WriteVerbose(cmdlet, "WildCardSearch: element added to the result collection (SearchCriteria)");
@@ -1864,6 +1792,7 @@ if (null == aeCtrl || 0 == aeCtrl.Count) { Console.WriteLine("null == aeCtrl"); 
                     }
                     cmdlet.WriteVerbose(cmdlet, "WildCardSearch: element(s) added to the result collection: " + resultCollection.Count.ToString());
                 } catch (Exception eUnexpected) {
+//Console.WriteLine("SearchByWildcardViaUIA error = " + eUnexpected.Message);
                     // this.WriteVerbose(this, eUnexpected.Message);
                     this.WriteError(
                         this,
@@ -1874,6 +1803,7 @@ if (null == aeCtrl || 0 == aeCtrl.Count) { Console.WriteLine("null == aeCtrl"); 
                         true);
                 }
             } catch (Exception eWildCardSearch) {
+//Console.WriteLine("SearchByWildcardViaUIA error = " + eWildCardSearch.Message);
                 this.WriteError(
                     cmdlet,
                     "The input control or window has been possibly lost." +
@@ -2320,7 +2250,8 @@ if (null == aeCtrl || 0 == aeCtrl.Count) { Console.WriteLine("null == aeCtrl"); 
                 //                    cmdlet.WriteVerbose(cmdlet, "test of the control has failed");
                 //                    return result;
                 //                }
-                cmdlet.WriteVerbose(cmdlet, "test of the control has passed");
+                //cmdlet.WriteVerbose(cmdlet, "test of the control has passed");
+                cmdlet.WriteVerbose(cmdlet, "test of the control has finished");
             }
             
             //result = true;

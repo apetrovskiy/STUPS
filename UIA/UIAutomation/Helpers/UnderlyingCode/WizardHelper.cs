@@ -45,16 +45,17 @@ namespace UIAutomation
         public static void AddWizardStep(WizardConstructionCmdletBase cmdlet)
         {
             if (null != cmdlet.InputObject && cmdlet.InputObject is Wizard) {
+                
                 WizardStep step = new WizardStep(cmdlet.Name, cmdlet.Order);
                 step.SearchCriteria = cmdlet.SearchCriteria;
                 step.StepForwardAction = cmdlet.StepForwardAction;
                 step.StepBackwardAction = cmdlet.StepBackwardAction;
                 step.StepCancelAction = cmdlet.StepCancelAction;
                 step.StepGetWindowAction = cmdlet.StepGetWindowAction;
-                cmdlet.WriteVerbose(cmdlet, "adding the step");
-                // 20130317
+                step.Description = cmdlet.Description;
                 step.Parent = cmdlet.InputObject;
 
+                cmdlet.WriteVerbose(cmdlet, "adding the step");
                 cmdlet.InputObject.Steps.Add(step);
 
                 if (cmdlet.PassThru) {
@@ -72,31 +73,23 @@ namespace UIAutomation
         
         public static void InvokeWizard(WizardRunCmdletBase cmdlet)
         {
-Console.WriteLine("InvokeWizard 000001");
             Wizard wzd = cmdlet.GetWizard(cmdlet.Name);
-Console.WriteLine("InvokeWizard 000002");
+
             if (null == wzd) {
-Console.WriteLine("InvokeWizard 000003");
+
                 cmdlet.WriteError(cmdlet, "Couldn't get the wizard you asked for", "NoSuchWizard", ErrorCategory.InvalidArgument, true);
             } else {
-Console.WriteLine("InvokeWizard 000004");
+
                 wzd.Automatic = cmdlet.Automatic;
                 wzd.ForwardDirection = cmdlet.ForwardDirection;
-Console.WriteLine("InvokeWizard 000005");
-                //this.WriteVerbose(this, "running script blocks");
-                cmdlet.WriteVerbose(cmdlet, "running script blocks");
-                //RunWizardScriptBlocks(this, wzd);
-                cmdlet.RunWizardStartScriptBlocks(cmdlet, wzd);
-Console.WriteLine("InvokeWizard 000006");
 
-                // 20130317
+                cmdlet.WriteVerbose(cmdlet, "running script blocks");
+
+                cmdlet.RunWizardStartScriptBlocks(cmdlet, wzd);
+
                 cmdlet.RunWizardInAutomaticMode(cmdlet, wzd);
-Console.WriteLine("InvokeWizard 000007");
-                //if (PassThru) {
-                //this.WriteObject(this, wzd);
+
                 cmdlet.WriteObject(cmdlet, wzd);
-                //} else {
-                // WriteObject(this, true);
             }
         }
     }

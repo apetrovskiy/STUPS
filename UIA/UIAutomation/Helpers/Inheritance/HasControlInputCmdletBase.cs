@@ -1284,7 +1284,7 @@ try {
                 //AutomationElement elementToWorkWith = getControl(cmdlet);
                 //AutomationElementCollection elementsToWorkWith = getControl(cmdlet);
                 // 20120824
-                ArrayList elementsToWorkWith = getControl(cmdlet);
+                ArrayList elementsToWorkWith = GetControl(cmdlet);
                 // 20120824
                 //if (elementToWorkWith == null) {
                 if (null == elementsToWorkWith) {

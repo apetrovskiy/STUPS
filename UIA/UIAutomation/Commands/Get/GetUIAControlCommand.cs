@@ -54,7 +54,7 @@ namespace UIAutomation.Commands
             
             // 20120830
             ArrayList returnCollection = 
-                getControl(this);
+                GetControl(this);
             
             if (null == returnCollection || 0 == returnCollection.Count) {
                 

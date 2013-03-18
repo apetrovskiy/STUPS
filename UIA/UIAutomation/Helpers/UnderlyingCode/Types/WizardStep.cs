@@ -36,5 +36,7 @@ namespace UIAutomation
         public Hashtable[] SearchCriteria { get; set; }
         // 20130317
         public Wizard Parent { get; set; }
+        // 20130318
+        public string Description { get; set; }
     }
 }

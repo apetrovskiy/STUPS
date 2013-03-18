@@ -38,6 +38,10 @@ namespace UIAutomation
         public ScriptBlock[] StepGetWindowAction { get; set; }
         [Parameter(Mandatory = false)]
         public int Order { get; set; }
+        
+        // 20130318
+        [Parameter(Mandatory = false)]
+        public string Description { get; set; }
         #endregion Parameters
     }
 }

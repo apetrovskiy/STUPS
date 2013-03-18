@@ -170,7 +170,7 @@ namespace UIAutomation
                             try {
                             
                                 ArrayList controlsList =
-                                    getControl(cmdletCtrl);
+                                    GetControl(cmdletCtrl);
                                 
                                 cmdlet.WriteVerbose(cmdlet, "after the search");
                                 

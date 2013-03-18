@@ -44,7 +44,9 @@ namespace UIAutomationTest.Commands.Get
                 "'wrong process name' -Seconds 2" +
                 ")) { 0; } else { 1; }",
                 "CmdletInvocationException",
-                "Failed to get the window by: process name: 'wrong process name' process Id:  window title: ''");
+                // 20130318
+                //"Failed to get the window by: process name: 'wrong process name' process Id:  window title: ''");
+                "Failed to get the window by: process name: 'wrong process name', process Id: , window title: '', automationId: '', className: ',");
 
         }
         
@@ -102,8 +104,9 @@ namespace UIAutomationTest.Commands.Get
                 MiddleLevelCode.TestFormProcess +
                 ")) { 1; } else { 0; }",
                 "CmdletInvocationException",
-                "Failed to get the window by: process name: 'UIAutomationTestForms' process Id:  window title: ''");
-
+                // 20130318
+                //"Failed to get the window by: process name: 'UIAutomationTestForms' process Id:  window title: ''");
+                "Failed to get the window by: process name: 'UIAutomationTestForms', process Id: , window title: '', automationId: '', className: ',");
         }
         
         [Test] //[Test(Description="TBD")]
@@ -147,7 +150,9 @@ namespace UIAutomationTest.Commands.Get
                 MiddleLevelCode.TestFormProcess +
                 ")) { 1; } else { 0; }",
                 "CmdletInvocationException",
-                "Failed to get the window by: process name: 'UIAutomationTestForms' process Id:  window title: ''");
+                // 20130318
+                //"Failed to get the window by: process name: 'UIAutomationTestForms' process Id:  window title: ''");
+                "Failed to get the window by: process name: 'UIAutomationTestForms', process Id: , window title: '', automationId: '', className: ',");
 
         }
         
@@ -178,7 +183,9 @@ namespace UIAutomationTest.Commands.Get
                 "'wrong name' -Seconds 2" +
                 ")) { 0; } else { 1; }",
                 "CmdletInvocationException",
-                "Failed to get the window by: process name: '' process Id:  window title: 'wrong name'");
+                // 20130318
+                //"Failed to get the window by: process name: '' process Id:  window title: 'wrong name'");
+                "Failed to get the window by: process name: '', process Id: , window title: 'wrong name', automationId: '', className: ',");
 
         }
         
@@ -332,7 +339,11 @@ namespace UIAutomationTest.Commands.Get
                 " -timeout 3000 " + 
                 ")) { 0; } else { 1; }",
                 "CmdletInvocationException",
-                "Failed to get the window by: process name: '' process Id:  window title: 'WinFormsEmpty'");
+                // 20130318
+                //"Failed to get the window by: process name: '' process Id:  window title: 'WinFormsEmpty'");
+                "Failed to get the window by: process name: '', process Id: , window title: 'WinFormsEmpty', automationId: '', className: ',");
+
+
 
         }
         
@@ -385,7 +396,9 @@ namespace UIAutomationTest.Commands.Get
                 "12345678 -Seconds 2" +
                 ")) { 0; } else { 1; }",
                 "CmdletInvocationException",
-                "Failed to get the window by: process name: '' process Id: 12345678 window title: ''");
+                // 20130318
+                //"Failed to get the window by: process name: '' process Id: 12345678 window title: ''");
+                "Failed to get the window by: process name: '', process Id: 12345678, window title: '', automationId: '', className: ',");
 
         }
         

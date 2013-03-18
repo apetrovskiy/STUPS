@@ -77,42 +77,46 @@ namespace UIAutomation
         {
         	WizardStep resultStep = null;
         	
-        	GetControlCmdletBase cmdletCtrl =
-        		new GetControlCmdletBase();
-Console.WriteLine("GetActiveStep 000001");
-if (null == CurrentData.CurrentWindow) {
-	Console.WriteLine("null == CurrentData.CurrentWindow");
-} else {
-	Console.WriteLine("CurrentData.CurrentWindow.Current.Name = " + CurrentData.CurrentWindow.Current.Name);
-}
+        	//GetControlCmdletBase cmdletCtrl =
+        	//	new GetControlCmdletBase();
+        	UIAutomation.Commands.GetUIAControlCommand cmdletCtrl =
+        	    new UIAutomation.Commands.GetUIAControlCommand();
+
         	cmdletCtrl.InputObject =
         		new AutomationElement[]{ CurrentData.CurrentWindow };
+
         	cmdletCtrl.Timeout = 0;
         	
         	foreach (WizardStep step in this.Steps) {
-Console.WriteLine("GetActiveStep 000002");
-Console.WriteLine("step.Name = " + step.Name);
+//Console.WriteLine("GetActiveStep 000002");
+//Console.WriteLine("GetActiveStep probing step.Name = " + step.Name);
         		cmdletCtrl.SearchCriteria = step.SearchCriteria;
-        		
+//if (null != cmdletCtrl.SearchCriteria) {
+//    foreach (Hashtable searchCriterion in cmdletCtrl.SearchCriteria) {
+//        Console.WriteLine("GetActiveStep searchCriterion = " + searchCriterion.ToString());
+//        Console.WriteLine("GetActiveStep searchCriterion.Count = " + searchCriterion.Count.ToString());
+//        foreach (object key in searchCriterion.Keys) {
+//            Console.WriteLine("GetActiveStep searchCriterion[" + key.ToString() + "] = " + searchCriterion[key]);
+//        }
+//    }
+//}
+
 	        	ArrayList controlsList = null;
 	        	
 	        	try {
-Console.WriteLine("GetActiveStep 000003");
+//Console.WriteLine("GetActiveStep 000003");
 	        		controlsList =
-	        			cmdletCtrl.getControl(cmdletCtrl);
-if (null == controlsList) {
-	Console.WriteLine("<<<<<<<<<<<<<<<<<<< null == controlsList >>>>>>>>>>>>>>>>>>>>>>>>>>");
-}
-	        		//cmdletCtrl.TestControlWithAllSearchCriteria(
-	        		//	cmdletCtrl,
-	        		//	cmdletCtrl.SearchCriteria,
-	        		//	ElementNotAvailableException);
-Console.WriteLine("GetActiveStep 000004");
+	        			cmdletCtrl.GetControl(cmdletCtrl);
+//if (null == controlsList) {
+//	Console.WriteLine("GetActiveStep <<<<<<<<<<<<<<<<<<< null == controlsList >>>>>>>>>>>>>>>>>>>>>>>>>>");
+//}
+
+//Console.WriteLine("GetActiveStep 000004");
 	        	}
 	        	catch {}
         		
 	        	if (null != controlsList && 0 < controlsList.Count) {
-Console.WriteLine("GetActiveStep 000005");
+//Console.WriteLine("GetActiveStep 000005");
 	        		resultStep = step;
 	        		break;
 	        	}

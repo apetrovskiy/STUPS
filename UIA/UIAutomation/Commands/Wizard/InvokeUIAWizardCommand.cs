@@ -46,29 +46,6 @@ namespace UIAutomation.Commands
         	UIAInvokeWizardCommand command =
         		new UIAInvokeWizardCommand(this);
         	command.Execute();
-        	
-//            Wizard wzd = GetWizard(Name);
-//            if (wzd == null) {
-//                ErrorRecord err = 
-//                    new ErrorRecord(
-//                        new Exception("Couldn't get the wizard you asked for"),
-//                        "NoSuchWizard",
-//                        ErrorCategory.InvalidArgument,
-//                        Name);
-//                err.ErrorDetails = 
-//                    new ErrorDetails(
-//                        "Failed to get the wizard you asked for");
-//                //ThrowTerminatingError(err);
-//                this.WriteError(this, err, true);
-//            } else {
-//                this.WriteVerbose(this, "running script blocks");
-//                RunWizardScriptBlocks(this, wzd);
-//                //if (PassThru) {
-//                this.WriteObject(this, wzd);
-//                //} else {
-//                // WriteObject(this, true);
-//                //}
-//            }
         }
     }
 }

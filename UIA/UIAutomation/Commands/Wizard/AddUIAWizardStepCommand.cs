@@ -27,10 +27,6 @@ namespace UIAutomation.Commands
         }
         
         #region Parameters
-// [Parameter(Mandatory = true,
-// ValueFromPipeline = true)]
-// public Wizard InputObject { get; set; }
-
 //        [Parameter(Mandatory = false)]
 //        //public System.Collections.Hashtable[] SearchCriteria { get; set; }
 //        public Hashtable[] SearchCriteria { get; set; }

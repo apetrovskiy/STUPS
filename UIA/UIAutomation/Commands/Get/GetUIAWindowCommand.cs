@@ -38,7 +38,7 @@ namespace UIAutomation.Commands
         
         protected override void BeginProcessing()
         {
-            startDate = System.DateTime.Now;
+            StartDate = System.DateTime.Now;
             
             // 20130314
             CurrentData.SetCurrentWindow(null);

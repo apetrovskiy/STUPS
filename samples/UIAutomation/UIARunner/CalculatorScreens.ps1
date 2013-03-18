@@ -1,5 +1,5 @@
 Set-StrictMode -Version Latest
-ipmo C:\Projects\PS\STUPS\UIAutomationSpy\bin\Release35\UIAutomation.dll
+ipmo C:\Projects\PS\STUPS\UIA\UIAutomationSpy\bin\Release35\UIAutomation.dll
 [UIAutomation.Preferences]::OnSuccessDelay = 0;
 [UIAutomation.WizardCollection]::Wizards.Clear();
 

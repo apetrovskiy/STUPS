@@ -41,7 +41,7 @@ namespace UIAutomation.Commands
             if (!this.CheckControl(this)) { return; }
             
             bool result = 
-                testControlByPropertiesFromHashtable(
+                TestControlByPropertiesFromHashtable(
                     // 20130315
                     this.InputObject,
                     this.SearchCriteria,

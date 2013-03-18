@@ -1,8 +1,8 @@
 ﻿/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
- * Date: 3/15/2013
- * Time: 12:09 AM
+ * Date: 3/18/2013
+ * Time: 2:15 PM
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
@@ -14,20 +14,20 @@ namespace UIAutomation
     using UIAutomation.Commands;
     
     /// <summary>
-    /// Description of UIANewWizardCommand.
+    /// Description of UIARemoveWizardStepCommand.
     /// </summary>
-    internal class UIANewWizardCommand : UIACommand
+    internal class UIARemoveWizardStepCommand : UIACommand
     {
-        internal UIANewWizardCommand(CommonCmdletBase cmdlet) : base (cmdlet)
+        internal UIARemoveWizardStepCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         
         internal override void Execute()
         {
-            NewUIAWizardCommand cmdlet =
-                (NewUIAWizardCommand)this.Cmdlet;
+            RemoveUIAWizardStepCommand cmdlet =
+                (RemoveUIAWizardStepCommand)this.Cmdlet;
             
-            WizardHelper.CreateWizard(cmdlet);
+            WizardHelper.RemoveWizardStep(cmdlet);
         }
     }
 }

@@ -252,13 +252,14 @@
     <Compile Include="Commands\Wizard\InvokeUIAWizardCommand.cs" />
     <Compile Include="Commands\Wizard\NewUIAWizardCommand.cs" />
     <Compile Include="Commands\Wizard\RemoveUIAWizardStepCommand.cs" />
-    <Compile Include="Commands\Wizard\SetUIAWizardCommand.cs" />
     <Compile Include="Commands\Wizard\StepUIAWizardCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Wizard\UIAGetWizardCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Wizard\UIAInvokeWizardCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Wizard\UIARemoveWizardStepCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Wizard\UIAStepWizardCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Types\Wizard.cs" />
     <Compile Include="Helpers\UnderlyingCode\Types\WizardCollection.cs" />
     <Compile Include="Helpers\UnderlyingCode\Types\WizardStep.cs" />
-    <Compile Include="Commands\Wizard\WaitUIAWizardStepCommand.cs" />
     <Compile Include="Helpers\Inheritance\CacheRequestCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\CommonCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\ConvertToCmdletBase.cs" />

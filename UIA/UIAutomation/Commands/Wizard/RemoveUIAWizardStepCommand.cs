@@ -36,33 +36,37 @@ namespace UIAutomation.Commands
         /// </summary>
         protected override void ProcessRecord()
         {
-            if (InputObject != null && InputObject is Wizard) {
-                WizardStep stepToRemove = null;
-                foreach (WizardStep step in InputObject.Steps) {
-                    if (step.Name == Name) {
-                        stepToRemove = step;
-                    }
-                }
-                InputObject.Steps.Remove(stepToRemove);
-                if (PassThru) {
-                    WriteObject(this, InputObject);
-                } else {
-                    WriteObject(this, true);
-                }
-            } else {
-                ErrorRecord err = 
-                    new ErrorRecord(
-                        new Exception("The wizard object you provided is not valid"),
-                        "WrongWizardObject",
-                        ErrorCategory.InvalidArgument,
-                        InputObject);
-                err.ErrorDetails = 
-                    new ErrorDetails(
-                        "The wizard object you provided is not valid");
-                WriteError(this, err, true);
-            }
-        // WizardStep step = new WizardStep(Name, Order);
-        // if (SearchCriteria != null && SearchCriteria.Length > 0) {
+            UIARemoveWizardStepCommand command =
+                new UIARemoveWizardStepCommand(this);
+            command.Execute();
+            
+//            if (InputObject != null && InputObject is Wizard) {
+//                WizardStep stepToRemove = null;
+//                foreach (WizardStep step in InputObject.Steps) {
+//                    if (step.Name == Name) {
+//                        stepToRemove = step;
+//                    }
+//                }
+//                InputObject.Steps.Remove(stepToRemove);
+//                if (PassThru) {
+//                    WriteObject(this, InputObject);
+//                } else {
+//                    WriteObject(this, true);
+//                }
+//            } else {
+//                ErrorRecord err = 
+//                    new ErrorRecord(
+//                        new Exception("The wizard object you provided is not valid"),
+//                        "WrongWizardObject",
+//                        ErrorCategory.InvalidArgument,
+//                        InputObject);
+//                err.ErrorDetails = 
+//                    new ErrorDetails(
+//                        "The wizard object you provided is not valid");
+//                WriteError(this, err, true);
+//            }
+//        // WizardStep step = new WizardStep(Name, Order);
+//        // if (SearchCriteria != null && SearchCriteria.Length > 0) {
         }
     }
 }

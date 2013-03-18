@@ -1208,7 +1208,7 @@ try {
         }
         #endregion checker event handler inputs
 
-        protected bool testControlByPropertiesFromHashtable(
+        protected internal bool TestControlByPropertiesFromHashtable(
             // 20130315
             AutomationElement[] inputElements,
             System.Collections.Hashtable[] SearchCriteria,

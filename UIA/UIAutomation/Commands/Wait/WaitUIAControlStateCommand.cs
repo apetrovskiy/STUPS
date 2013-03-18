@@ -29,7 +29,7 @@ namespace UIAutomation.Commands
         protected override void BeginProcessing() {
             WriteVerbose(this, "Timeout = " + Timeout.ToString());
             
-            startDate = System.DateTime.Now;
+            StartDate = System.DateTime.Now;
             // 20120208 if (Highlight) { Global.MinimizeRectangle(); }
         }
         
@@ -43,7 +43,7 @@ namespace UIAutomation.Commands
             bool result = false;
             do {
                 result = 
-                    testControlByPropertiesFromHashtable(
+                    TestControlByPropertiesFromHashtable(
                         // 20130315
                         this.InputObject,
                         this.SearchCriteria,
@@ -56,7 +56,7 @@ namespace UIAutomation.Commands
                     // wait until timeout expires or the state will be confirmed as valid
                     System.DateTime nowDate = 
                         System.DateTime.Now;
-                    if ((nowDate - startDate).TotalSeconds > this.Timeout / 1000) {
+                    if ((nowDate - StartDate).TotalSeconds > this.Timeout / 1000) {
                         //WriteObject(this, false);
                         result = true;
                         //write

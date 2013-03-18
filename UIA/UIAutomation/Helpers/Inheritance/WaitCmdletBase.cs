@@ -68,7 +68,7 @@ namespace UIAutomation
                                  //_control.Current.IsEnabled.ToString() +
                                  tempIsReport +
                                  ", seconds: " + 
-                                 ((nowDate - startDate).TotalSeconds).ToString());
+                                 ((nowDate - StartDate).TotalSeconds).ToString());
                 } catch { }
                 if (!this.CheckControl(this))
                 {
@@ -92,7 +92,7 @@ namespace UIAutomation
                 } else {
                     this.Wait = (_control.Current).IsOffscreen;
                 }
-                if ((nowDate - startDate).TotalSeconds > this.Timeout / 1000)
+                if ((nowDate - StartDate).TotalSeconds > this.Timeout / 1000)
                 {
                     WriteVerbose(this, "timeout expired for AutomationId: " + 
                                  _control.Current.AutomationId +

@@ -50,7 +50,7 @@ namespace UIAutomation.Commands
 //                WriteVerbose(this, "ControlType " + 
 //                             this.ControlType.ProgrammaticName);
 //            }
-            startDate = System.DateTime.Now;
+            StartDate = System.DateTime.Now;
         }
         
         /// <summary>

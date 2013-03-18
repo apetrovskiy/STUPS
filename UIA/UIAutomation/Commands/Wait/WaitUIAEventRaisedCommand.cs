@@ -37,7 +37,7 @@ namespace UIAutomation.Commands
         
         protected override void BeginProcessing()
         {
-            this.startDate = System.DateTime.Now;
+            this.StartDate = System.DateTime.Now;
         }
         
         protected override void ProcessRecord()
@@ -119,7 +119,7 @@ this.WriteTrace(this, "eventId 002");
                 SleepAndRunScriptBlocks(this);
                 System.DateTime nowDate = System.DateTime.Now;
 
-                if ((nowDate - startDate).TotalSeconds > this.Timeout / 1000)
+                if ((nowDate - StartDate).TotalSeconds > this.Timeout / 1000)
                 {
                     ErrorRecord err =
                         new ErrorRecord(

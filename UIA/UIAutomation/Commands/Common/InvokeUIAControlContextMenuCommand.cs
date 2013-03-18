@@ -100,7 +100,7 @@ namespace UIAutomation.Commands
                 inputObject.Current.ProcessId;
             WriteVerbose(this, "process Id = " + processId.ToString());
             AutomationElementCollection windowsByPID = null;
-            startDate = System.DateTime.Now;
+            StartDate = System.DateTime.Now;
             bool breakSearch = false;
             do {
                 // getting all menus in this process
@@ -151,7 +151,7 @@ namespace UIAutomation.Commands
                     
                     System.DateTime nowDate = 
                         System.DateTime.Now;
-                    if ((nowDate - startDate).TotalSeconds > 3) {
+                    if ((nowDate - StartDate).TotalSeconds > 3) {
                         breakSearch = true;
                         break;
                     }

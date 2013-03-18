@@ -1,6 +1,6 @@
 ﻿/*
  * Created by SharpDevelop.
- * User: Alexander
+ * User: Alexander Petrovskiy
  * Date: 3/17/2013
  * Time: 7:03 PM
  * 
@@ -12,6 +12,7 @@ namespace UIAutomation
     using System;
     using System.Management.Automation;
     using System.Windows.Automation;
+    using UIAutomation.Commands;
     
     /// <summary>
     /// Description of WizardHelper.
@@ -22,7 +23,8 @@ namespace UIAutomation
         {
         }
         
-        public static void CreateWizard(WizardContainerCmdletBase cmdlet)
+        //public static void CreateWizard(WizardContainerCmdletBase cmdlet)
+        public static void CreateWizard(NewUIAWizardCommand cmdlet)
         {
             if (!cmdlet.ValidateWizardName(cmdlet.Name)) {
                 cmdlet.WriteError(cmdlet, "The wizard name you selected is already in use", "NameInUse", ErrorCategory.InvalidArgument, true);
@@ -90,6 +92,226 @@ namespace UIAutomation
                 cmdlet.RunWizardInAutomaticMode(cmdlet, wzd);
 
                 cmdlet.WriteObject(cmdlet, wzd);
+            }
+        }
+        
+        public static void GetWizard(GetUIAWizardCommand cmdlet)
+        {
+            //Wizard wzd = GetWizard(Name);
+            Wizard wzd = cmdlet.GetWizard(cmdlet.Name);
+            if (wzd != null) {
+
+                //WriteObject(this, wzd);
+                cmdlet.WriteObject(cmdlet, wzd);
+
+            } else {
+//                ErrorRecord err = 
+//                    new ErrorRecord(
+//                        new Exception("Can't get the wizard you asked for"),
+//                        "NoWizard",
+//                        ErrorCategory.InvalidArgument,
+//                        Name);
+//                err.ErrorDetails = 
+//                    new ErrorDetails(
+//                        "Failed to get the wizard you asked for");
+//
+//                //ThrowTerminatingError(err);
+//                this.WriteError(this, err, true);
+                
+                cmdlet.WriteError(
+                    cmdlet,
+                    "Can't get the wizard you asked for",
+                    "NoWizard",
+                    ErrorCategory.InvalidArgument,
+                    true);
+
+            }
+        }
+        
+        public static void RemoveWizardStep(RemoveUIAWizardStepCommand cmdlet)
+        {
+            
+            //if (InputObject != null && InputObject is Wizard) {
+            if (cmdlet.InputObject != null && cmdlet.InputObject is Wizard) {
+                WizardStep stepToRemove = null;
+                //foreach (WizardStep step in InputObject.Steps) {
+                foreach (WizardStep step in cmdlet.InputObject.Steps) {
+                    //if (step.Name == Name) {
+                    if (step.Name == cmdlet.Name) {
+                        stepToRemove = step;
+                    }
+                }
+                //InputObject.Steps.Remove(stepToRemove);
+                cmdlet.InputObject.Steps.Remove(stepToRemove);
+                //if (PassThru) {
+                if (cmdlet.PassThru) {
+                    //WriteObject(this, InputObject);
+                    cmdlet.WriteObject(cmdlet, cmdlet.InputObject);
+                } else {
+                    //WriteObject(this, true);
+                    cmdlet.WriteObject(cmdlet, true);
+                }
+            } else {
+//                ErrorRecord err = 
+//                    new ErrorRecord(
+//                        new Exception("The wizard object you provided is not valid"),
+//                        "WrongWizardObject",
+//                        ErrorCategory.InvalidArgument,
+//                        InputObject);
+//                err.ErrorDetails = 
+//                    new ErrorDetails(
+//                        "The wizard object you provided is not valid");
+//                WriteError(this, err, true);
+                
+                cmdlet.WriteError(
+                    cmdlet,
+                    "The wizard object you provided is not valid",
+                    "WrongWizardObject",
+                    ErrorCategory.InvalidArgument,
+                    true);
+            }
+        // WizardStep step = new WizardStep(Name, Order);
+        // if (SearchCriteria != null && SearchCriteria.Length > 0) {
+        }
+        
+        public static void StepWizardStep(StepUIAWizardCommand cmdlet)
+        {
+            // getting the step the user ordered to run
+            //if (InputObject != null && InputObject is Wizard) {
+            if (cmdlet.InputObject != null && cmdlet.InputObject is Wizard) {
+                WizardStep stepToRun = null;
+                //WriteVerbose(this, "searching for a step");
+                cmdlet.WriteVerbose(cmdlet, "searching for a step");
+                //foreach (WizardStep step in InputObject.Steps) {
+                foreach (WizardStep step in cmdlet.InputObject.Steps) {
+                    //WriteVerbose(this, "found step: " + step.Name);
+                    cmdlet.WriteVerbose(cmdlet, "found step: " + step.Name);
+                    //if (step.Name == Name) {
+                    if (step.Name == cmdlet.Name) {
+                        //WriteVerbose(this, "found the step we've been searching for");
+                        cmdlet.WriteVerbose(cmdlet, "found the step we've been searching for");
+                        stepToRun = step;
+                        break;
+                    }
+                }
+                if (stepToRun == null) {
+//                    ErrorRecord err = 
+//                        new ErrorRecord(
+//                            new Exception("Couldn't find the step"),
+//                            "StepNotFound",
+//                            ErrorCategory.InvalidArgument,
+//                            stepToRun.Name);
+//                    err.ErrorDetails = 
+//                        new ErrorDetails(
+//                            "Failed to find the step");
+//                    WriteError(this, err, true);
+                    
+                    cmdlet.WriteError(
+                        cmdlet,
+                        "Couldn't find the step",
+                        "StepNotFound",
+                        ErrorCategory.InvalidArgument,
+                        true);
+                }
+                
+                bool result = false;
+                do {
+                    //WriteVerbose(this, "checking controls' properties");
+                    cmdlet.WriteVerbose(cmdlet, "checking controls' properties");
+                    
+                    // if there is no SearchCriteria, for example, there's at least one @{}
+                    if (stepToRun.SearchCriteria.Length == 0 ||
+                        System.Text.RegularExpressions.Regex.IsMatch(
+                            stepToRun.SearchCriteria.ToString(),
+                           @"[\@][\{]\s+?[\}]")) {
+                        result = true;
+                    } else {
+                        result = 
+                            //testControlByPropertiesFromHashtable(
+                            cmdlet.TestControlByPropertiesFromHashtable(
+                                // 20130315
+                                null,
+                                stepToRun.SearchCriteria,
+                                //this.Timeout);
+                                cmdlet.Timeout);
+                    }
+                    if (result) {
+                        
+                        //WriteVerbose(this, "there are no SearchCriteria");
+                        cmdlet.WriteVerbose(cmdlet, "there are no SearchCriteria");
+                        //WriteVerbose(this, "thus, control state is confirmed");
+                        cmdlet.WriteVerbose(cmdlet, "thus, control state is confirmed");
+                        //WriteObject(this, true);
+                        //return;
+                    } else {
+                        //WriteVerbose(this, "control state is not yet confirmed. Checking the timeout");
+                        cmdlet.WriteVerbose(cmdlet, "control state is not yet confirmed. Checking the timeout");
+                        //SleepAndRunScriptBlocks(this);
+                        cmdlet.SleepAndRunScriptBlocks(cmdlet);
+                        // wait until timeout expires or the state will be confirmed as valid
+                        System.DateTime nowDate = 
+                            System.DateTime.Now;
+                        //if ((nowDate - startDate).TotalSeconds > this.Timeout / 1000) {
+                        if ((nowDate - cmdlet.StartDate).TotalSeconds > cmdlet.Timeout / 1000) {
+                            //WriteObject(this, false);
+                            //result = true;
+                            //return;
+//                            WriteVerbose(this, "the timeout has already expired");
+//                            ErrorRecord err = 
+//                                new ErrorRecord(
+//                                    new Exception("Timeout expired"),
+//                                    "TimeoutExpired",
+//                                    ErrorCategory.OperationTimeout,
+//                                    this.InputObject);
+//                            err.ErrorDetails = 
+//                                new ErrorDetails(
+//                                    "Timeout expired");
+//                            WriteError(this, err, true);
+                            
+                            cmdlet.WriteError(
+                                cmdlet,
+                                "Timeout expired",
+                                "TimeoutExpired",
+                                ErrorCategory.OperationTimeout,
+                                true);
+                        }
+                    }
+                } while (!result);
+                
+                //WriteVerbose(this, "running script blocks");
+                cmdlet.WriteVerbose(cmdlet, "running script blocks");
+                //RunWizardStepScriptBlocks(this, stepToRun, Forward);
+                cmdlet.RunWizardStepScriptBlocks(cmdlet, stepToRun, cmdlet.Forward);
+
+                //if (PassThru) {
+                if (cmdlet.PassThru) {
+
+                    //WriteObject(this, InputObject);
+                    cmdlet.WriteObject(cmdlet, cmdlet.InputObject);
+                } else {
+
+                    //WriteObject(this, true);
+                    cmdlet.WriteObject(cmdlet, true);
+                }
+            } else {
+
+//                ErrorRecord err = 
+//                    new ErrorRecord(
+//                        new Exception("The wizard object you provided is not valid"),
+//                        "WrongWizardObject",
+//                        ErrorCategory.InvalidArgument,
+//                        InputObject);
+//                err.ErrorDetails = 
+//                    new ErrorDetails(
+//                        "The wizard object you provided is not valid");
+//                WriteError(this, err, true);
+                
+                cmdlet.WriteError(
+                    cmdlet,
+                    "The wizard object you provided is not valid",
+                    "WrongWizardObject",
+                    ErrorCategory.InvalidArgument,
+                    true);
             }
         }
     }

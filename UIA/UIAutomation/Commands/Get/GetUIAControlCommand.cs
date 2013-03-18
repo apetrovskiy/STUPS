@@ -38,7 +38,7 @@ namespace UIAutomation.Commands
         protected override void BeginProcessing() {
             
             // set the start time to calculate the timeout expiration
-            startDate = System.DateTime.Now;
+            StartDate = System.DateTime.Now;
         }
         
         /// <summary>

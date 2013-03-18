@@ -656,7 +656,7 @@ namespace UIAutomation
             cmdlet.rootElement =
                 System.Windows.Automation.AutomationElement.RootElement;
 
-            cmdlet.startDate =
+            cmdlet.StartDate =
                 System.DateTime.Now;
             do
             {
@@ -703,7 +703,7 @@ namespace UIAutomation
                 cmdlet.WriteDebug(cmdlet, eUnknown.Message);
             }
             System.DateTime nowDate = System.DateTime.Now;
-            if ((nowDate - cmdlet.startDate).TotalSeconds > cmdlet.Timeout / 1000) return false; // break;
+            if ((nowDate - cmdlet.StartDate).TotalSeconds > cmdlet.Timeout / 1000) return false; // break;
             return true;
         }
         

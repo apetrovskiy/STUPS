@@ -867,7 +867,7 @@ namespace UIAutomation
         #region sleep and run scripts
         // 20120312 0.6.11
         //protected void SleepAndRunScriptBlocks(HasTimeoutCmdletBase cmdlet)
-        protected void SleepAndRunScriptBlocks(HasControlInputCmdletBase cmdlet)
+        protected internal void SleepAndRunScriptBlocks(HasControlInputCmdletBase cmdlet)
         {
             this.RunOnSleepScriptBlocks(cmdlet);
             System.Threading.Thread.Sleep(Preferences.OnSleepDelay);
@@ -1085,7 +1085,7 @@ namespace UIAutomation
         #endregion Invoke-UIAScript
         
         //protected internal System.DateTime startDate;
-        protected internal System.DateTime startDate { get; set; }
+        protected internal System.DateTime StartDate { get; set; }
         //protected System.Windows.Automation.AutomationElement _window = null;
         protected AutomationElement _window { get; set; }
         //protected System.Windows.Automation.AutomationElement aeCtrl = null;
@@ -1594,12 +1594,12 @@ namespace UIAutomation
                                          "' , value: '" +
                                          cmdlet.Value +
                                          "' , seconds: " +
-                                         ((nowDate - startDate).TotalSeconds).ToString());
+                                         ((nowDate - StartDate).TotalSeconds).ToString());
                         } catch { //(Exception eWriteVerbose) {
                             //WriteVerbose(this, eWriteVerbose.Message);
                         }
                         
-                        if ((nowDate - startDate).TotalSeconds > cmdlet.Timeout / 1000) {
+                        if ((nowDate - StartDate).TotalSeconds > cmdlet.Timeout / 1000) {
                             
                             if (null == aeCtrl || 0 == aeCtrl.Count) {
 

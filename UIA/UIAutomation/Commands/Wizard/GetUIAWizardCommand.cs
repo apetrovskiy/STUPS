@@ -24,26 +24,30 @@ namespace UIAutomation.Commands
         
         protected override void BeginProcessing()
         {
-            Wizard wzd = GetWizard(Name);
-            if (wzd != null) {
-
-                WriteObject(this, wzd);
-
-            } else {
-                ErrorRecord err = 
-                    new ErrorRecord(
-                        new Exception("Can't get the wizard you asked for"),
-                        "NoWizard",
-                        ErrorCategory.InvalidArgument,
-                        Name);
-                err.ErrorDetails = 
-                    new ErrorDetails(
-                        "Failed to get the wizard you asked for");
-
-                //ThrowTerminatingError(err);
-                this.WriteError(this, err, true);
-
-            }
+            UIAGetWizardCommand command =
+                new UIAGetWizardCommand(this);
+            command.Execute();
+            
+//            Wizard wzd = GetWizard(Name);
+//            if (wzd != null) {
+//
+//                WriteObject(this, wzd);
+//
+//            } else {
+//                ErrorRecord err = 
+//                    new ErrorRecord(
+//                        new Exception("Can't get the wizard you asked for"),
+//                        "NoWizard",
+//                        ErrorCategory.InvalidArgument,
+//                        Name);
+//                err.ErrorDetails = 
+//                    new ErrorDetails(
+//                        "Failed to get the wizard you asked for");
+//
+//                //ThrowTerminatingError(err);
+//                this.WriteError(this, err, true);
+//
+//            }
 
         }
     }

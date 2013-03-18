@@ -36,12 +36,14 @@ namespace UIAutomation
         }
 
         [Parameter(Mandatory = false)]
-        public ScriptBlock[] OnSleepAction { get; set; }
-        
-        
+        // 20130318
+        //public ScriptBlock[] OnSleepAction { get; set; }
+        public new ScriptBlock[] OnSleepAction { get; set; }
         
         [Parameter(Mandatory = false)]
-        internal new Wizard InputObject { get; set; }
+        // 20130318
+        //internal new Wizard InputObject { get; set; }
+        public new Wizard InputObject { get; set; }
         
         [Parameter(Mandatory = false)]
         public SwitchParameter Automatic { get; set; }

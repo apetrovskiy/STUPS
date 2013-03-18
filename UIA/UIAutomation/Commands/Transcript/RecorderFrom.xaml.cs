@@ -39,7 +39,7 @@ namespace UIAutomation.Commands
             int counter = 0;
             cmdlet.rootElement = 
                 System.Windows.Automation.AutomationElement.RootElement;
-            cmdlet.startDate =
+            cmdlet.StartDate =
                 System.DateTime.Now;
             do{
                 //Application.DoEvents();

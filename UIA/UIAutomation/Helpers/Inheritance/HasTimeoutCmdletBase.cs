@@ -847,13 +847,13 @@ namespace UIAutomation
                          cmdlet.ProcessName +
                          ", name: " +
                          cmdlet.Name +
-                         ", seconds: " + (nowDate - startDate).TotalSeconds);
+                         ", seconds: " + (nowDate - StartDate).TotalSeconds);
             try {
                 // 20120824
                 //if ((aeWindow != null && (int)aeWindow.Current.ProcessId > 0) ||
                 if ((null != aeWindowList && //(int)((AutomationElement)aeWindowList[0]).Current.ProcessId > 0) ||
                      aeWindowList.Count > 0) ||
-                    (nowDate - startDate).TotalSeconds > this.Timeout / 1000)
+                    (nowDate - StartDate).TotalSeconds > this.Timeout / 1000)
                 {
                     // 20120824
                     //if (aeWindow == null) {

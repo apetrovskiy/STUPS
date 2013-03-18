@@ -502,14 +502,8 @@
     <Compile Include="..\UIAutomation\Commands\Wizard\RemoveUIAWizardStepCommand.cs">
       <Link>Commands\Wizard\RemoveUIAWizardStepCommand.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Commands\Wizard\SetUIAWizardCommand.cs">
-      <Link>Commands\Wizard\SetUIAWizardCommand.cs</Link>
-    </Compile>
     <Compile Include="..\UIAutomation\Commands\Wizard\StepUIAWizardCommand.cs">
       <Link>Commands\Wizard\StepUIAWizardCommand.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Commands\Wizard\WaitUIAWizardStepCommand.cs">
-      <Link>Commands\Wizard\WaitUIAWizardStepCommand.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\Inheritance\CacheRequestCmdletBase.cs">
       <Link>Helpers\Inheritance\CacheRequestCmdletBase.cs</Link>
@@ -622,11 +616,20 @@
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Commands\Wizard\UIAAddWizardStepCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\Wizard\UIAAddWizardStepCommand.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Commands\Wizard\UIAGetWizardCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\Wizard\UIAGetWizardCommand.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Commands\Wizard\UIAInvokeWizardCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\Wizard\UIAInvokeWizardCommand.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Commands\Wizard\UIANewWizardCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\Wizard\UIANewWizardCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Commands\Wizard\UIARemoveWizardStepCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\Wizard\UIARemoveWizardStepCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Commands\Wizard\UIAStepWizardCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\Wizard\UIAStepWizardCommand.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\ExecutionPlan.cs">
       <Link>Helpers\UnderlyingCode\ExecutionPlan.cs</Link>
@@ -695,6 +698,7 @@
     <Folder Include="Commands\Win32" />
     <Folder Include="Commands\RDP" />
     <Folder Include="Commands\Sheridan" />
+    <Folder Include="Commands\Win32" />
     <Folder Include="Helpers\UnderlyingCode\Commands" />
     <Folder Include="Helpers\UnderlyingCode\Commands" />
     <Folder Include="Helpers\UnderlyingCode\Commands\Container" />

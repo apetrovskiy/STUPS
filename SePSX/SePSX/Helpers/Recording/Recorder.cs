@@ -1103,7 +1103,9 @@ Console.WriteLine("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< unused element !!!!!!!!!!!!!
         
         private static void SleepAndRunScriptBlocks(TranscriptCmdletBase cmdlet)
         {
-            cmdlet.RunOnTranscriptIntervalScriptBlocks(cmdlet);
+            // 20130318
+            //cmdlet.RunOnTranscriptIntervalScriptBlocks(cmdlet);
+            cmdlet.RunOnTranscriptIntervalScriptBlocks(cmdlet, null);
             System.Threading.Thread.Sleep(Preferences.TranscriptInterval);
         }
     }

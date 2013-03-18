@@ -531,11 +531,16 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
         }
             #endregion Cmdlet Signature
         
-        protected System.Collections.Generic.Dictionary<string, string> ConvertHashtableToDictionary(
+        // 20130318
+        //protected System.Collections.Generic.Dictionary<string, string> ConvertHashtableToDictionary(
+        protected System.Collections.Generic.Dictionary<string, object> ConvertHashtableToDictionary(
             Hashtable hashtable)
         {
-            System.Collections.Generic.Dictionary<string, string> dict = 
-                new System.Collections.Generic.Dictionary<string, string>();
+            // 20130318
+            //System.Collections.Generic.Dictionary<string, string> dict = 
+            //    new System.Collections.Generic.Dictionary<string, string>();
+            System.Collections.Generic.Dictionary<string, object> dict = 
+                new System.Collections.Generic.Dictionary<string, object>();
             
             this.WriteVerbose(this, hashtable.Keys.Count.ToString());
             
@@ -545,84 +550,118 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
 
                 this.WriteVerbose(this, "found key: " + keyUpper);
                 
-                dict.Add(keyUpper, hashtable[key1].ToString());
+                // 20130318
+                //dict.Add(keyUpper, hashtable[key1].ToString());
+                dict.Add(keyUpper, hashtable[key1]);
                 
-                this.WriteVerbose(this, "added to the dictionary: " +
-                                  keyUpper + " = " + dict[keyUpper].ToString());
+                this.WriteVerbose(
+                    this,
+                    "added to the dictionary: " +
+                    keyUpper +
+                    " = " +
+                    dict[keyUpper].ToString());
             }
             
             return dict;
         }
         
         protected void runTwoScriptBlockCollections(
-            ScriptBlock[] blocks1,
-            ScriptBlock[] blocks2,
-            PSCmdletBase cmdlet)
+            ScriptBlock[] scriptblocksSet1,
+            ScriptBlock[] scriptblocksSet2,
+            // 20130318
+            //PSCmdletBase cmdlet)
+            PSCmdletBase cmdlet,
+            object[] parameters)
         {
-            System.Collections.Generic.List<ScriptBlock> blocks =
+            System.Collections.Generic.List<ScriptBlock> scriptblocks =
                 new System.Collections.Generic.List<ScriptBlock>();
-            if (blocks1 != null &&
-                blocks1.Length > 0) {
-                foreach (ScriptBlock sb in blocks1) {
-                    blocks.Add(sb);
+            if (scriptblocksSet1 != null &&
+                scriptblocksSet1.Length > 0) {
+                foreach (ScriptBlock sb in scriptblocksSet1) {
+                    scriptblocks.Add(sb);
                 }
             }
-            if (blocks2 != null &&
-                blocks2.Length > 0) {
-                foreach (ScriptBlock sb in blocks2) {
-                    blocks.Add(sb);
+            if (scriptblocksSet2 != null &&
+                scriptblocksSet2.Length > 0) {
+                foreach (ScriptBlock sb in scriptblocksSet2) {
+                    scriptblocks.Add(sb);
                 }
             }
-            runScriptBlocks(blocks, cmdlet, false);
+            // 20130318
+            //runScriptBlocks(scriptblocks, cmdlet, false);
+            runScriptBlocks(scriptblocks, cmdlet, false, parameters);
         }
         
         // 20120816
-        public void runScriptBlocks(System.Collections.Generic.List<ScriptBlock >  blocks,
-                                     PSCmdletBase cmdlet,
-                                     bool eventHandlers)
+        public void runScriptBlocks(
+            System.Collections.Generic.List<ScriptBlock> scriptblocks,
+            PSCmdletBase cmdlet,
+            // 20130318
+            //bool eventHandlers)
+            bool eventHandlers,
+            object[] parameters)
         {
             try {
-                if (blocks != null &&
-                    blocks.Count > 0) {
-                    // WriteVerbose(this, "runScriptBlocks 1 fired");
-                    foreach (ScriptBlock sb in blocks) {
-                        // WriteVerbose(this, "runScriptBlocks 2 fired");
+                if (scriptblocks != null &&
+                    scriptblocks.Count > 0) {
+
+                    foreach (ScriptBlock sb in scriptblocks) {
+
                         if (sb != null) {
-                            // WriteVerbose(this, "runScriptBlocks 3 fired");
+
                             try {
                                 if (eventHandlers) {
-                                    // WriteVerbose(this, "runScriptBlocks 4 fired");
-                                    // runScriptBlock runner = new runScriptBlock(runSBEvent);
-                                    // runScriptBlock runner = new runScriptBlock(runSBEvent);
-                                    // test
+
                                     runScriptBlock runner = new runScriptBlock(runSBEvent);
-                                    // WriteVerbose(this, "runScriptBlocks 5 fired");
+
                                     runner(sb, cmdlet.EventSource, cmdlet.EventArgs);
-                                    // WriteVerbose(this, "runScriptBlocks 6 fired");
+
                                 } else {
-                                    // runScriptBlock runner = new runScriptBlock(runSB);
-                                    runScriptBlock runner = new runScriptBlock(runSBAction);
-                                    runner(sb, cmdlet.EventSource, cmdlet.EventArgs);
+
+                                    // 20130318
+                                    //runScriptBlock runner = new runScriptBlock(runSBAction);
+                                    //runner(sb, cmdlet.EventSource, cmdlet.EventArgs);
+                                    runScriptBlockWithParameters runnerWithParams = new runScriptBlockWithParameters(runSBActionWithParams);
+                                    runnerWithParams(sb, parameters);
                                 }
                             } catch (Exception eInner) {
-                                ErrorRecord err = 
-                                    new ErrorRecord(
-                                        eInner,
-                                        "InvokeException",
-                                        ErrorCategory.OperationStopped,
-                                        sb);
-                                err.ErrorDetails = 
-                                    new ErrorDetails("Error in " +
-                                                     sb.ToString());
-                                WriteError(this, err, false);
+                                // 20130318
+//                                ErrorRecord err = 
+//                                    new ErrorRecord(
+//                                        eInner,
+//                                        "InvokeException",
+//                                        ErrorCategory.OperationStopped,
+//                                        sb);
+//                                err.ErrorDetails = 
+//                                    new ErrorDetails("Error in " +
+//                                                     sb.ToString());
+//                                WriteError(this, err, false);
+                                
+                                this.WriteError(
+                                    this,
+                                    "Error in " +
+                                    sb.ToString() +
+                                    ". " +
+                                    eInner.Message,
+                                    "InvokeException",
+                                    ErrorCategory.OperationStopped,
+                                    false);
                             }
                         }
                     }
                 }
             } catch (Exception eOuter) {
-                WriteError(this, 
-                           new ErrorRecord(eOuter, "runScriptBlocks", ErrorCategory.InvalidArgument, null),
-                           true);
+                // 20130318
+//                WriteError(this, 
+//                           new ErrorRecord(eOuter, "runScriptBlocks", ErrorCategory.InvalidArgument, null),
+//                           true);
+                
+                this.WriteError(
+                    this,
+                    eOuter.Message,
+                    "runScriptBlocks",
+                    ErrorCategory.InvalidArgument,
+                    true);
             }
         }
         //#endregion Invoke-UIAScript
@@ -666,20 +705,31 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
                 try {
                     System.Management.Automation.Runspaces.Runspace.DefaultRunspace.Open();
                 } catch (Exception e1) {
-                    ErrorRecord err = 
-                        new ErrorRecord(e1,
-                                        "ErrorOnOpeningRunspace",
-                                        ErrorCategory.InvalidOperation,
-                                        sb);
-                    err.ErrorDetails = 
-                        new ErrorDetails(
-                            "Unable to run a scriptblock:\r\n" + 
-                            sb.ToString());
-                    WriteError(this, err, false);
+                    // 20130318
+//                    ErrorRecord err = 
+//                        new ErrorRecord(e1,
+//                                        "ErrorOnOpeningRunspace",
+//                                        ErrorCategory.InvalidOperation,
+//                                        sb);
+//                    err.ErrorDetails = 
+//                        new ErrorDetails(
+//                            "Unable to run a scriptblock:\r\n" + 
+//                            sb.ToString());
+//                    WriteError(this, err, false);
+                    
+                    this.WriteError(
+                        this,
+                        "Unable to run a scriptblock:\r\n" + 
+                        sb.ToString() +
+                        "." +
+                        e1.Message,
+                        "ErrorOnOpeningRunspace",
+                        ErrorCategory.InvalidOperation,
+                        false);
                 }
                 try {
-                    System.Collections.Generic.List<object >  inputParams = 
-                        new System.Collections.Generic.List<object > ();
+                    System.Collections.Generic.List<object> inputParams = 
+                        new System.Collections.Generic.List<object>();
                     inputParams.Add(src);
                     inputParams.Add(e);
                     object[] inputParamsArray = inputParams.ToArray();
@@ -688,28 +738,48 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
                         // sb.Invoke(inputParamsArray);
                     
                 } catch (Exception e2) {
-                    ErrorRecord err = 
-                        new ErrorRecord(e2,
-                                        "ErrorInOpenedRunspace",
-                                        ErrorCategory.InvalidOperation,
-                                        sb);
-                    err.ErrorDetails = 
-                        new ErrorDetails("Unable to run a scriptblock");
-                    WriteError(this, err, true);
+                    // 20130318
+//                    ErrorRecord err = 
+//                        new ErrorRecord(e2,
+//                                        "ErrorInOpenedRunspace",
+//                                        ErrorCategory.InvalidOperation,
+//                                        sb);
+//                    err.ErrorDetails = 
+//                        new ErrorDetails("Unable to run a scriptblock");
+//                    WriteError(this, err, true);
+                    
+                    this.WriteError(
+                        this,
+                        "Unable to run a scriptblock." + 
+                        e2.Message,
+                        "ErrorInOpenedRunspace",
+                        ErrorCategory.InvalidOperation,
+                        true);
                 }
 // psObjects =
 // sb.Invoke();
             } catch (Exception eOuter) {
-                ErrorRecord err = 
-                    new ErrorRecord(eOuter,
-                                    "ErrorInInvokingScriptBlock", //"ErrorinCreatingRunspace",
-                                    ErrorCategory.InvalidOperation,
-                                    System.Management.Automation.Runspaces.Runspace.DefaultRunspace);
-                err.ErrorDetails = 
-                    new ErrorDetails("Unable to issue the following command:\r\n" + 
-                                     "System.Management.Automation.Runspaces.Runspace.DefaultRunspace = RunspaceFactory.CreateRunspace();" +
-                                     "\r\nException raised is\r\n" +
-                                     eOuter.Message);
+                // 20130318
+//                ErrorRecord err = 
+//                    new ErrorRecord(eOuter,
+//                                    "ErrorInInvokingScriptBlock", //"ErrorinCreatingRunspace",
+//                                    ErrorCategory.InvalidOperation,
+//                                    System.Management.Automation.Runspaces.Runspace.DefaultRunspace);
+//                err.ErrorDetails = 
+//                    new ErrorDetails("Unable to issue the following command:\r\n" + 
+//                                     "System.Management.Automation.Runspaces.Runspace.DefaultRunspace = RunspaceFactory.CreateRunspace();" +
+//                                     "\r\nException raised is\r\n" +
+//                                     eOuter.Message);
+                
+                this.WriteError(
+                    this,
+                    "Unable to issue the following command:\r\n" + 
+                     "System.Management.Automation.Runspaces.Runspace.DefaultRunspace = RunspaceFactory.CreateRunspace();" +
+                     "\r\nException raised is\r\n" +
+                     eOuter.Message,
+                    "ErrorInInvokingScriptBlock",
+                    ErrorCategory.InvalidOperation,
+                    true);
             }
         }
         #endregion Event delegate
@@ -736,19 +806,74 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
 // }
 // }
             } catch (Exception eOuter) {
-                ErrorRecord err = 
-                    new ErrorRecord(eOuter,
-                                    "ErrorInInvokingScriptBlock",
-                                    ErrorCategory.InvalidOperation,
-                                    System.Management.Automation.Runspaces.Runspace.DefaultRunspace);
-                err.ErrorDetails = 
-                    new ErrorDetails(
-                        "Unable to issue the following command:\r\n" +
-                        sb.ToString() + 
-                        "\r\nThe exception raised is\r\n" + 
-                        eOuter.Message);
-                                     //"System.Management.Automation.Runspaces.Runspace.DefaultRunspace = RunspaceFactory.CreateRunspace();");
-                WriteError(err);
+                // 20130318
+//                ErrorRecord err = 
+//                    new ErrorRecord(eOuter,
+//                                    "ErrorInInvokingScriptBlock",
+//                                    ErrorCategory.InvalidOperation,
+//                                    System.Management.Automation.Runspaces.Runspace.DefaultRunspace);
+//                err.ErrorDetails = 
+//                    new ErrorDetails(
+//                        "Unable to issue the following command:\r\n" +
+//                        sb.ToString() + 
+//                        "\r\nThe exception raised is\r\n" + 
+//                        eOuter.Message);
+//                                     //"System.Management.Automation.Runspaces.Runspace.DefaultRunspace = RunspaceFactory.CreateRunspace();");
+//                WriteError(err);
+                
+                this.WriteError(
+                    this,
+                    "Unable to issue the following command:\r\n" +
+                    sb.ToString() + 
+                    "\r\nThe exception raised is\r\n" + 
+                    eOuter.Message,
+                    "ErrorInInvokingScriptBlock",
+                    ErrorCategory.InvalidOperation,
+                    false);
+            }
+        }
+        #endregion Action delegate
+        
+        #region Action delegate
+        private void runSBActionWithParams(
+            ScriptBlock sb,
+            object[] parameters)
+        {
+            Collection<PSObject> psObjects = null;
+            try {
+                if (null == parameters || 0 == parameters.Length) {
+                    psObjects =
+                        sb.Invoke();
+                } else {
+                    psObjects =
+                        sb.Invoke(parameters);
+                }
+
+            } catch (Exception eOuter) {
+                // 20130318
+//                ErrorRecord err = 
+//                    new ErrorRecord(eOuter,
+//                                    "ErrorInInvokingScriptBlock",
+//                                    ErrorCategory.InvalidOperation,
+//                                    System.Management.Automation.Runspaces.Runspace.DefaultRunspace);
+//                err.ErrorDetails = 
+//                    new ErrorDetails(
+//                        "Unable to issue the following command:\r\n" +
+//                        sb.ToString() + 
+//                        "\r\nThe exception raised is\r\n" + 
+//                        eOuter.Message);
+//                                     //"System.Management.Automation.Runspaces.Runspace.DefaultRunspace = RunspaceFactory.CreateRunspace();");
+//                WriteError(err);
+                
+                this.WriteError(
+                    this,
+                    "Unable to issue the following command:\r\n" +
+                    sb.ToString() + 
+                    "\r\nThe exception raised is\r\n" + 
+                    eOuter.Message,
+                    "ErrorInInvokingScriptBlock",
+                    ErrorCategory.InvalidOperation,
+                    false);
             }
         }
         #endregion Action delegate
@@ -758,5 +883,11 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
     delegate void runScriptBlock(ScriptBlock sb, 
                                  AutomationElement src, 
                                  AutomationEventArgs e);
+    #endregion Action delegate
+    
+    #region Action delegate
+    delegate void runScriptBlockWithParameters(
+        ScriptBlock sb,
+        object[] parameters);
     #endregion Action delegate
 }

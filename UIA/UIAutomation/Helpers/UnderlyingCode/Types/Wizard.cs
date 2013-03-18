@@ -73,6 +73,22 @@ namespace UIAutomation
             }
         }
         
+        public WizardStep GetStep(string name)
+        {
+            WizardStep resultStep = null;
+            
+            foreach (WizardStep step in this.Steps) {
+                
+                if (name.ToUpper() == step.Name.ToUpper()) {
+                    
+                    resultStep = step;
+                    break;
+                }
+            }
+            
+            return resultStep;
+        }
+        
         public WizardStep GetActiveStep()
         {
         	WizardStep resultStep = null;
@@ -88,35 +104,21 @@ namespace UIAutomation
         	cmdletCtrl.Timeout = 0;
         	
         	foreach (WizardStep step in this.Steps) {
-//Console.WriteLine("GetActiveStep 000002");
-//Console.WriteLine("GetActiveStep probing step.Name = " + step.Name);
+
         		cmdletCtrl.SearchCriteria = step.SearchCriteria;
-//if (null != cmdletCtrl.SearchCriteria) {
-//    foreach (Hashtable searchCriterion in cmdletCtrl.SearchCriteria) {
-//        Console.WriteLine("GetActiveStep searchCriterion = " + searchCriterion.ToString());
-//        Console.WriteLine("GetActiveStep searchCriterion.Count = " + searchCriterion.Count.ToString());
-//        foreach (object key in searchCriterion.Keys) {
-//            Console.WriteLine("GetActiveStep searchCriterion[" + key.ToString() + "] = " + searchCriterion[key]);
-//        }
-//    }
-//}
 
 	        	ArrayList controlsList = null;
 	        	
 	        	try {
-//Console.WriteLine("GetActiveStep 000003");
+
 	        		controlsList =
 	        			cmdletCtrl.GetControl(cmdletCtrl);
-//if (null == controlsList) {
-//	Console.WriteLine("GetActiveStep <<<<<<<<<<<<<<<<<<< null == controlsList >>>>>>>>>>>>>>>>>>>>>>>>>>");
-//}
 
-//Console.WriteLine("GetActiveStep 000004");
 	        	}
 	        	catch {}
         		
 	        	if (null != controlsList && 0 < controlsList.Count) {
-//Console.WriteLine("GetActiveStep 000005");
+
 	        		resultStep = step;
 	        		break;
 	        	}

@@ -13,6 +13,8 @@ namespace UIAutomation
     using System.Management.Automation;
     using System.Windows.Automation;
     using UIAutomation.Commands;
+    using System.Collections;
+    using System.Collections.Generic;
     
     /// <summary>
     /// Description of WizardHelper.
@@ -85,9 +87,46 @@ namespace UIAutomation
                 wzd.Automatic = cmdlet.Automatic;
                 wzd.ForwardDirection = cmdlet.ForwardDirection;
 
+                // scriptblocks' parameters
+                if (null != cmdlet.ParametersDictionaries && 0 < cmdlet.ParametersDictionaries.Count) {
+
+                    foreach (Dictionary<string, object> dict in cmdlet.ParametersDictionaries) {
+
+                        try {
+
+                            WizardStep step =
+                                wzd.GetStep(dict["STEP"].ToString());
+
+                            switch (dict["ACTION"].ToString().ToUpper()) {
+                                case "FORWARD":
+                                    step.StepForwardActionParameters = (object[])dict["PARAMETERS"];
+                                    break;
+                                case "BACKWARD":
+                                    step.StepBackwardActionParameters = (object[])dict["PARAMETERS"];
+                                    break;
+                                case "CANCEL":
+                                    step.StepCancelActionParameters = (object[])dict["PARAMETERS"];
+                                    break;
+                                case "GETWINDOW":
+                                    step.StepGetWindowActionParameters = (object[])dict["PARAMETERS"];
+                                    break;
+                                default:
+                                    // nothing to do
+                                	break;
+                            }
+                        }
+                        catch (Exception eSwitch) {
+                            
+                        }
+                    }
+
+                }
+
                 cmdlet.WriteVerbose(cmdlet, "running script blocks");
 
-                cmdlet.RunWizardStartScriptBlocks(cmdlet, wzd);
+                // 20130318
+                //cmdlet.RunWizardStartScriptBlocks(cmdlet, wzd);
+                cmdlet.RunWizardStartScriptBlocks(cmdlet, wzd, null);
 
                 cmdlet.RunWizardInAutomaticMode(cmdlet, wzd);
 
@@ -281,7 +320,9 @@ namespace UIAutomation
                 //WriteVerbose(this, "running script blocks");
                 cmdlet.WriteVerbose(cmdlet, "running script blocks");
                 //RunWizardStepScriptBlocks(this, stepToRun, Forward);
-                cmdlet.RunWizardStepScriptBlocks(cmdlet, stepToRun, cmdlet.Forward);
+                // 20130318
+                //cmdlet.RunWizardStepScriptBlocks(cmdlet, stepToRun, cmdlet.Forward);
+                cmdlet.RunWizardStepScriptBlocks(cmdlet, stepToRun, cmdlet.Forward, null);
 
                 //if (PassThru) {
                 if (cmdlet.PassThru) {

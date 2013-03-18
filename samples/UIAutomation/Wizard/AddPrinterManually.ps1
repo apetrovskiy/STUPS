@@ -49,8 +49,12 @@ New-UIAWizard -Name AddPrinterWizard `
     Add-UIAWizardStep -Name Step05PrinterData `
         -Description "Type a printer hostname or IP address" `
         -StepForwardAction {
-            Get-UIAEdit -AutomationId '4690' | Set-UIAEditText "printer001";
-            Get-UIAEdit -AutomationId '4692' | Set-UIAEditText "port_001";
+            param(
+                  [string]$PrinterName,
+                  [string]$PortName
+                  )
+            Get-UIAEdit -AutomationId '4690' | Set-UIAEditText $PrinterName; #"printer001";
+            Get-UIAEdit -AutomationId '4692' | Set-UIAEditText $PortName; #"port_001";
             Get-UIACheckBox -Name "*query*" | Set-UIACheckBoxToggleState $true;
             Get-UIAButton -AutomationId 'nextbutton' | Invoke-UIAButtonClick;
                            } `
@@ -145,4 +149,6 @@ New-UIAWizard -Name AddPrinterWizard `
         -StepCancelAction $cancelAction `
         -StepGetWindowAction $getWindowAction `
         -SearchCriteria @{controlType="button";name="*finish*"} # | `
-    Invoke-UIAWizard -Automatic -ForwardDirection -Name AddPrinterWizard -Verbose;
+    #Invoke-UIAWizard -Automatic -ForwardDirection -Name AddPrinterWizard -Verbose;
+    #Invoke-UIAWizard -Automatic -ForwardDirection -Name AddPrinterWizard -Parameters @{step="Step05PrinterData";action="forward";parameters=@("printer_parameterized","port_parameterized")}
+    Invoke-UIAWizard -Automatic -ForwardDirection -Name AddPrinterWizard -Parameters @{step="Step05PrinterData";action="forward";parameters=@("printer_parameterized_2","port_parameterized_2")}

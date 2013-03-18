@@ -11,6 +11,8 @@ namespace UIAutomation.Commands
 {
     using System;
     using System.Management.Automation;
+    using System.Collections;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Description of InvokeUIAWizardCommand.
@@ -20,12 +22,6 @@ namespace UIAutomation.Commands
     {
         public InvokeUIAWizardCommand()
         {
-//        	// 20130317
-//        	//this.Automatic = true;
-//        	this.Automatic = false;
-//        	
-//        	// 20130317
-//        	this.ForwardDirection = true;
         }
         
         #region Parameters
@@ -43,6 +39,17 @@ namespace UIAutomation.Commands
         
         protected override void BeginProcessing()
         {
+            if (null != this.Parameters && 0 < this.Parameters.Length) {
+
+                foreach (Hashtable parametersTable in this.Parameters) {
+
+                    Dictionary<string, object> dict =
+                        this.ConvertHashtableToDictionary(parametersTable);
+
+                    this.ParametersDictionaries.Add(dict);
+                }
+            }
+
         	UIAInvokeWizardCommand command =
         		new UIAInvokeWizardCommand(this);
         	command.Execute();

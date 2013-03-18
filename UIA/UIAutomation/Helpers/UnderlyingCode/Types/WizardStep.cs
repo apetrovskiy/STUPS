@@ -38,5 +38,10 @@ namespace UIAutomation
         public Wizard Parent { get; set; }
         // 20130318
         public string Description { get; set; }
+        // 20130318
+        public object[] StepForwardActionParameters { get; set; }
+        public object[] StepBackwardActionParameters { get; set; }
+        public object[] StepCancelActionParameters { get; set; }
+        public object[] StepGetWindowActionParameters { get; set; }
     }
 }

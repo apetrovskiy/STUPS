@@ -485,15 +485,21 @@ namespace SePSX
                     if (outputObject == null) {
                         this.WriteVerbose(this, "run OnError script blocks (null)");
                         //RunOnErrorScriptBlocks(((HasScriptBlockCmdletBase)cmdlet));
-                        RunOnErrorScriptBlocks(cmdlet);
+                        // 20130318
+                        //RunOnErrorScriptBlocks(cmdlet);
+                        RunOnErrorScriptBlocks(cmdlet, null);
                     } else if (outputObject is bool && ((bool)outputObject) == false) {
                         this.WriteVerbose(this, "run OnError script blocks (false)");
                         //RunOnErrorScriptBlocks(((HasScriptBlockCmdletBase)cmdlet));
-                        RunOnErrorScriptBlocks(cmdlet);
+                        // 20130318
+                        //RunOnErrorScriptBlocks(cmdlet);
+                        RunOnErrorScriptBlocks(cmdlet, null);
                     } else if (outputObject != null) {
                         this.WriteVerbose(this, "run OnSuccess script blocks");
                         //RunOnSuccessScriptBlocks(((HasScriptBlockCmdletBase)cmdlet));
-                        RunOnSuccessScriptBlocks(cmdlet);
+                        // 20130318
+                        //RunOnSuccessScriptBlocks(cmdlet);
+                        RunOnSuccessScriptBlocks(cmdlet, null);
                     }
                 }
             }
@@ -812,29 +818,41 @@ namespace SePSX
         // 20120816
         // 20120209 protected void RunOnSuccessScriptBlocks(HasScriptBlockCmdletBase cmdlet)
         //protected internal void RunOnSuccessScriptBlocks(HasScriptBlockCmdletBase cmdlet)
-        protected internal void RunOnSuccessScriptBlocks(PSCmdletBase cmdlet)
+        // 20130318
+        //protected internal void RunOnSuccessScriptBlocks(PSCmdletBase cmdlet)
+        protected internal void RunOnSuccessScriptBlocks(PSCmdletBase cmdlet, object[] parameters)
         {
             runTwoScriptBlockCollections(
                 Preferences.OnSuccessAction,
                 cmdlet.OnSuccessAction,
-                cmdlet);
+                // 20130318
+                //cmdlet);
+                cmdlet,
+                parameters);
         }
         
         // 20120209 protected void RunOnErrorScriptBlocks(HasScriptBlockCmdletBase cmdlet)
         //protected internal void RunOnErrorScriptBlocks(HasScriptBlockCmdletBase cmdlet)
-        protected internal void RunOnErrorScriptBlocks(PSCmdletBase cmdlet)
+        // 20130318
+        //protected internal void RunOnErrorScriptBlocks(PSCmdletBase cmdlet)
+        protected internal void RunOnErrorScriptBlocks(PSCmdletBase cmdlet, object[] parameters)
         {
             runTwoScriptBlockCollections(
                 Preferences.OnErrorAction,
                 cmdlet.OnErrorAction,
-                cmdlet);
+                // 20130318
+                //cmdlet);
+                cmdlet,
+                parameters);
         }
         
         // 20120209 protected void RunOnSleepScriptBlocks(HasTimeoutCmdletBase cmdlet)
         // 20120312 0.6.11
         //protected internal void RunOnSleepScriptBlocks(HasTimeoutCmdletBase cmdlet)
         //protected internal void RunOnSleepScriptBlocks(HasControlInputCmdletBase cmdlet)
-        protected internal void RunOnSleepScriptBlocks(PSCmdletBase cmdlet)
+        // 20130318
+        //protected internal void RunOnSleepScriptBlocks(PSCmdletBase cmdlet)
+        protected internal void RunOnSleepScriptBlocks(PSCmdletBase cmdlet, object[] parameters)
         {
             //if (cmdlet is HasTimeoutCmdletBase) {
             if (cmdlet is PSCmdletBase) {
@@ -842,12 +860,16 @@ namespace SePSX
                     Preferences.OnSleepAction,
                     //((HasTimeoutCmdletBase)cmdlet).OnSleepAction,
                     ((PSCmdletBase)cmdlet).OnSleepAction,
-                    cmdlet);
+                    // 20130318
+                    //cmdlet);
+                    cmdlet,
+                    parameters);
             }
         }
         
-        
-        protected internal void RunOnTranscriptIntervalScriptBlocks(PSCmdletBase cmdlet)
+        // 20130318
+        //protected internal void RunOnTranscriptIntervalScriptBlocks(PSCmdletBase cmdlet)
+        protected internal void RunOnTranscriptIntervalScriptBlocks(PSCmdletBase cmdlet, object[] parameters)
         {
             //if (cmdlet is HasTimeoutCmdletBase) {
             if (cmdlet is PSCmdletBase) {
@@ -855,7 +877,10 @@ namespace SePSX
                     Preferences.OnTranscriptIntervalAction,
                     //((HasTimeoutCmdletBase)cmdlet).OnSleepAction,
                     null, //((PSCmdletBase)cmdlet).OnSleepAction,
-                    cmdlet);
+                    // 20130318
+                    //cmdlet);
+                    cmdlet,
+                    parameters);
             }
         }
         

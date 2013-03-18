@@ -218,13 +218,19 @@ namespace UIAutomation
                     this.WriteVerbose(this, "cmdlet is of the HasScriptBlockCmdletBase type");
                     if (outputObject == null) {
                         this.WriteVerbose(this, "run OnError script blocks (null)");
-                        RunOnErrorScriptBlocks(((HasScriptBlockCmdletBase)cmdlet));
+                        // 20130318
+                        //RunOnErrorScriptBlocks(((HasScriptBlockCmdletBase)cmdlet));
+                        RunOnErrorScriptBlocks(((HasScriptBlockCmdletBase)cmdlet), null);
                     } else if (outputObject is bool && ((bool)outputObject) == false) {
                         this.WriteVerbose(this, "run OnError script blocks (false)");
-                        RunOnErrorScriptBlocks(((HasScriptBlockCmdletBase)cmdlet));
+                        // 20130318
+                        //RunOnErrorScriptBlocks(((HasScriptBlockCmdletBase)cmdlet));
+                        RunOnErrorScriptBlocks(((HasScriptBlockCmdletBase)cmdlet), null);
                     } else if (outputObject != null) {
                         this.WriteVerbose(this, "run OnSuccess script blocks");
-                        RunOnSuccessScriptBlocks(((HasScriptBlockCmdletBase)cmdlet));
+                        // 20130318
+                        //RunOnSuccessScriptBlocks(((HasScriptBlockCmdletBase)cmdlet));
+                        RunOnSuccessScriptBlocks(((HasScriptBlockCmdletBase)cmdlet), null);
                     }
                 }
             }
@@ -653,7 +659,9 @@ namespace UIAutomation
             if (cmdlet != null) {
                 // run scriptblocks
                 if (cmdlet is HasScriptBlockCmdletBase) {
-                    this.RunOnErrorScriptBlocks(((HasScriptBlockCmdletBase)cmdlet));
+                    // 20130318
+                    //this.RunOnErrorScriptBlocks(((HasScriptBlockCmdletBase)cmdlet));
+                    this.RunOnErrorScriptBlocks(((HasScriptBlockCmdletBase)cmdlet), null);
                 }
             }
         }
@@ -869,7 +877,9 @@ namespace UIAutomation
         //protected void SleepAndRunScriptBlocks(HasTimeoutCmdletBase cmdlet)
         protected internal void SleepAndRunScriptBlocks(HasControlInputCmdletBase cmdlet)
         {
-            this.RunOnSleepScriptBlocks(cmdlet);
+            // 20130318
+            //this.RunOnSleepScriptBlocks(cmdlet);
+            this.RunOnSleepScriptBlocks(cmdlet, null);
             System.Threading.Thread.Sleep(Preferences.OnSleepDelay);
             // RunScriptBlocks(cmdlet);
         }
@@ -895,96 +905,118 @@ namespace UIAutomation
                                       " is ready to be fired");
                 }
             }
-            runScriptBlocks(blocks, cmdlet, true);
+            // 20130318
+            //runScriptBlocks(blocks, cmdlet, true);
+            runScriptBlocks(blocks, cmdlet, true, null);
             // runEventScriptBlocks(blocks, cmdlet); //, true);
         }
         
         // 20120816
         // 20120209 protected void RunOnSuccessScriptBlocks(HasScriptBlockCmdletBase cmdlet)
-        protected internal void RunOnSuccessScriptBlocks(HasScriptBlockCmdletBase cmdlet)
+        // 20130318
+        //protected internal void RunOnSuccessScriptBlocks(HasScriptBlockCmdletBase cmdlet)
+        protected internal void RunOnSuccessScriptBlocks(HasScriptBlockCmdletBase cmdlet, object[] parameters)
         {
             runTwoScriptBlockCollections(
                 Preferences.OnSuccessAction,
                 cmdlet.OnSuccessAction,
-                cmdlet);
+                // 20130318
+                //cmdlet);
+                cmdlet,
+                parameters);
         }
         
         // 20120209 protected void RunOnErrorScriptBlocks(HasScriptBlockCmdletBase cmdlet)
-        protected internal void RunOnErrorScriptBlocks(HasScriptBlockCmdletBase cmdlet)
+        // 20130318
+        //protected internal void RunOnErrorScriptBlocks(HasScriptBlockCmdletBase cmdlet)
+        protected internal void RunOnErrorScriptBlocks(HasScriptBlockCmdletBase cmdlet, object[] parameters)
         {
             runTwoScriptBlockCollections(
                 Preferences.OnErrorAction,
                 cmdlet.OnErrorAction,
-                cmdlet);
+                // 20130318
+                //cmdlet);
+                cmdlet,
+                parameters);
         }
         
         // 20120209 protected void RunOnSleepScriptBlocks(HasTimeoutCmdletBase cmdlet)
         // 20120312 0.6.11
         //protected internal void RunOnSleepScriptBlocks(HasTimeoutCmdletBase cmdlet)
-        protected internal void RunOnSleepScriptBlocks(HasControlInputCmdletBase cmdlet)
+        // 20130318
+        //protected internal void RunOnSleepScriptBlocks(HasControlInputCmdletBase cmdlet)
+        protected internal void RunOnSleepScriptBlocks(HasControlInputCmdletBase cmdlet, object[] parameters)
         {
             if (cmdlet is HasTimeoutCmdletBase) {
                 runTwoScriptBlockCollections(
                     Preferences.OnSleepAction,
                     ((HasTimeoutCmdletBase)cmdlet).OnSleepAction,
-                    cmdlet);
+                    // 20130318
+                    //cmdlet);
+                    cmdlet,
+                    parameters);
             }
         }
         
-        protected internal void RunWizardStartScriptBlocks(WizardCmdletBase cmdlet, Wizard wizard)
+        // 20130318
+        //protected internal void RunWizardStartScriptBlocks(WizardCmdletBase cmdlet, Wizard wizard)
+        protected internal void RunWizardStartScriptBlocks(WizardCmdletBase cmdlet, Wizard wizard, object[] parameters)
         {
             runTwoScriptBlockCollections(
                 null,
                 wizard.StartAction,
-                cmdlet);
+                // 20130318
+                //cmdlet);
+                cmdlet,
+                parameters);
         }
         
-        protected internal void RunWizardGetWindowScriptBlocks(WizardCmdletBase cmdlet, Wizard wizard)
+        // 20130318
+        //protected internal void RunWizardGetWindowScriptBlocks(WizardCmdletBase cmdlet, Wizard wizard)
+        protected internal void RunWizardGetWindowScriptBlocks(WizardCmdletBase cmdlet, Wizard wizard, object[] parameters)
         {
             runTwoScriptBlockCollections(
                 null,
                 wizard.DefaultStepGetWindowAction,
-                cmdlet);
+                // 20130318
+                //cmdlet);
+                cmdlet,
+                parameters);
         }
         
         protected internal void RunWizardStepScriptBlocks(
             WizardCmdletBase cmdlet,
             WizardStep wizardStep,
-            bool forward)
+            // 20130318
+            //bool forward)
+            bool forward,
+            object[] parameters)
         {
-//Console.WriteLine("RunWizardStepScriptBlocks 00001");
+
             if (forward) {
-//Console.WriteLine("RunWizardStepScriptBlocks 00002");
-//if (null == wizardStep) {
-//    Console.WriteLine("RunWizardStepScriptBlocks wizardStep == null");
-//}
-//if (null == wizardStep.Parent) {
-//    Console.WriteLine("RunWizardStepScriptBlocks wizardStep.Parent == null");
-//}
-//if (null == wizardStep.Parent.DefaultStepForwardAction) {
-//    Console.WriteLine("RunWizardStepScriptBlocks wizardStep.Parent.DefaultStepForwardAction == null");
-//} else if (0 == wizardStep.Parent.DefaultStepForwardAction.Length) {
-//    Console.WriteLine("RunWizardStepScriptBlocks wizardStep.Parent.DefaultStepForwardAction.Length == 0");
-//}
-//if (null == wizardStep.StepForwardAction) {
-//    Console.WriteLine("RunWizardStepScriptBlocks wizardStep.StepForwardAction == null");
-//}
+
                 runTwoScriptBlockCollections(
         			// 20130317
                     //null,
                     wizardStep.Parent.DefaultStepForwardAction,
                     wizardStep.StepForwardAction,
-                    cmdlet);
-//Console.WriteLine("RunWizardStepScriptBlocks 00003");
+                    // 20130318
+                    //cmdlet);
+                    cmdlet,
+                    parameters);
+
             } else {
-//Console.WriteLine("RunWizardStepScriptBlocks 00004");
+
                 runTwoScriptBlockCollections(
         			// 20130317
                     //null,
                     wizardStep.Parent.DefaultStepBackwardAction,
                     wizardStep.StepBackwardAction,
-                    cmdlet);
-//Console.WriteLine("RunWizardStepScriptBlocks 00005");
+                    // 20130318
+                    //cmdlet);
+                    cmdlet,
+                    parameters);
+
             }
         }
         
@@ -1929,8 +1961,10 @@ namespace UIAutomation
             }
         }
         
+        // 20130318
         protected bool testControlByPropertiesFromDictionary(
-            System.Collections.Generic.Dictionary<string, string> dict,
+            //System.Collections.Generic.Dictionary<string, string> dict,
+            System.Collections.Generic.Dictionary<string, object> dict,
             AutomationElement elementToWorkWith)
         {
             bool result = false;
@@ -1943,7 +1977,9 @@ namespace UIAutomation
                 //string keyValue = dict[key].ToUpper();
                 
                 // 20120917
-                string keyValue = dict[key];
+                // 20130318
+                //string keyValue = dict[key];
+                string keyValue = dict[key].ToString();
                 //WildcardOptions options;
                 //if (caseSensitive) {
                 //    options =

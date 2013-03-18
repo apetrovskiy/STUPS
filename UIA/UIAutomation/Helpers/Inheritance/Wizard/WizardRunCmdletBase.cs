@@ -12,6 +12,8 @@ namespace UIAutomation
     using System;
     using System.Management.Automation;
     using System.Windows.Automation;
+    using System.Collections;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Description of WizardRunCmdletBase.
@@ -23,6 +25,10 @@ namespace UIAutomation
             Timeout = Preferences.Timeout;
         	this.Automatic = false;
         	this.ForwardDirection = true;
+        	
+        	// 20130318
+        	this.ParametersDictionaries =
+        	    new List<Dictionary<string, object>>();
         }
         
         #region Parameters
@@ -50,7 +56,13 @@ namespace UIAutomation
         
         [Parameter(Mandatory = false)]
         public SwitchParameter ForwardDirection { get; set; }
+        
+        // 20130318
+        [Parameter(Mandatory = false)]
+        public Hashtable[] Parameters { get; set; }
         #endregion Parameters
+        
+        internal List<Dictionary<string, object>> ParametersDictionaries { get; set; }
         
 		protected internal void RunWizardInAutomaticMode(WizardRunCmdletBase cmdlet, Wizard wizard)
 		{
@@ -59,14 +71,22 @@ namespace UIAutomation
 			while ((null != CurrentData.CurrentWindow)) {
 
 				CurrentData.CurrentWindow = null;
-				cmdlet.RunWizardGetWindowScriptBlocks(cmdlet, wizard);
+				// 20130318
+				//cmdlet.RunWizardGetWindowScriptBlocks(cmdlet, wizard);
+				cmdlet.RunWizardGetWindowScriptBlocks(cmdlet, wizard, null);
 
 				// selector of steps' unique controls
 				WizardStep currentStep =
 					wizard.GetActiveStep();
 
 				if (null != currentStep) {
-					cmdlet.RunWizardStepScriptBlocks(cmdlet, currentStep, cmdlet.ForwardDirection);
+				    // 20130318
+					//cmdlet.RunWizardStepScriptBlocks(cmdlet, currentStep, cmdlet.ForwardDirection);
+					cmdlet.RunWizardStepScriptBlocks(
+					    cmdlet,
+					    currentStep,
+					    cmdlet.ForwardDirection,
+					    cmdlet.ForwardDirection ? currentStep.StepForwardActionParameters : currentStep.StepBackwardActionParameters);
 				}
 			}
 		}

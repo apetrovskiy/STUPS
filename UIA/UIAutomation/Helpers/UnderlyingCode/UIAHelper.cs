@@ -677,7 +677,9 @@ namespace UIAutomation
             TranscriptCmdletBase cmdlet,
             int counter)
         {
-            cmdlet.RunOnSleepScriptBlocks(cmdlet);
+            // 20130318
+            //cmdlet.RunOnSleepScriptBlocks(cmdlet);
+            cmdlet.RunOnSleepScriptBlocks(cmdlet, null);
             System.Threading.Thread.Sleep(Preferences.TranscriptInterval);
             while (cmdlet.Paused) {
                 System.Threading.Thread.Sleep(Preferences.TranscriptInterval);

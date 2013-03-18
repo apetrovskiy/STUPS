@@ -88,7 +88,9 @@ namespace UIAutomation.Commands
                 // temporary!!!
                 // get rows
                 if (tblPattern.Current.RowCount > 0) {
-                    RunOnSuccessScriptBlocks(this);
+                    // 20130318
+                    //RunOnSuccessScriptBlocks(this);
+                    RunOnSuccessScriptBlocks(this, null);
                         for (int rowsCounter = 0;
                              rowsCounter<tblPattern.Current.RowCount;
                              rowsCounter++) {
@@ -138,7 +140,9 @@ namespace UIAutomation.Commands
                         UIAHelper.GetOutputStringUsingItemsValuePattern(inputObject,
                                                                         this.Delimiter);
                     if (rows.Count > 0) {
-                        RunOnSuccessScriptBlocks(this);
+                        // 20130318
+                        //RunOnSuccessScriptBlocks(this);
+                        RunOnSuccessScriptBlocks(this, null);
                         foreach (string row in rows) {
                             this.WriteObject(row);
                         }

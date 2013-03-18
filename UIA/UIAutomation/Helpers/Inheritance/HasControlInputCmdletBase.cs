@@ -1225,7 +1225,10 @@ try {
 //                string automationId = string.Empty;
                 
                 // 20120917
-                System.Collections.Generic.Dictionary<string, string> dict = 
+                // 20130318
+                //System.Collections.Generic.Dictionary<string, string> dict = 
+                //    this.ConvertHashtableToDictionary(SearchCriteria[i]);
+                System.Collections.Generic.Dictionary<string, object> dict = 
                     this.ConvertHashtableToDictionary(SearchCriteria[i]);
                 
                 
@@ -1249,12 +1252,22 @@ try {
 //                cmdlet.Name = name;
                 
                 // 20120917
-                try{ cmdlet.Class = dict["CLASS"]; } catch {}
-                try{ cmdlet.AutomationId = dict["AUTOMATIONID"]; } catch {}
-                try{ cmdlet.ControlType = dict["CONTROLTYPE"]; } catch {}
-                try{ cmdlet.Name = dict["NAME"]; } catch {}
+                // 20130318
+                //try{ cmdlet.Class = dict["CLASS"]; } catch {}
+                try{ cmdlet.Class = dict["CLASS"].ToString(); } catch {}
+                // 20130318
+                //try{ cmdlet.AutomationId = dict["AUTOMATIONID"]; } catch {}
+                try{ cmdlet.AutomationId = dict["AUTOMATIONID"].ToString(); } catch {}
+                // 20130318
+                //try{ cmdlet.ControlType = dict["CONTROLTYPE"]; } catch {}
+                try{ cmdlet.ControlType = dict["CONTROLTYPE"].ToString(); } catch {}
+                // 20130318
+                //try{ cmdlet.Name = dict["NAME"]; } catch {}
+                try{ cmdlet.Name = dict["NAME"].ToString(); } catch {}
                 // 20130315
-                try{ cmdlet.Value = dict["VALUE"]; } catch {}
+                // 20130318
+                //try{ cmdlet.Value = dict["VALUE"]; } catch {}
+                try{ cmdlet.Value = dict["VALUE"].ToString(); } catch {}
                 
 //                this.WriteVerbose(this, cmdlet.Name);
                 

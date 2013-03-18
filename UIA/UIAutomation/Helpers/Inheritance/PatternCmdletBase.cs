@@ -361,6 +361,8 @@ namespace UIAutomation
             try {
                 ValuePattern valuePatternSet = _control.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern;
                 if (valuePatternSet != null) {
+                    
+                    this.WriteVerbose(this, "using ValuePattern");
                     valuePatternSet.SetValue(((Commands.InvokeUIAValuePatternSetCommand)Child).Text);
                     if (this.PassThru && null != (inputObject as AutomationElement)) {
                         WriteObject(this, inputObject);
@@ -368,6 +370,7 @@ namespace UIAutomation
                         WriteObject(this, true);
                     }
                 } else {
+                    
                     WriteVerbose(this, "couldn't get ValuePattern. SendKeys is used");
                     _control.SetFocus();
                     System.Windows.Forms.SendKeys.SendWait(((Commands.InvokeUIAValuePatternSetCommand)Child).Text);
@@ -494,7 +497,7 @@ namespace UIAutomation
             try {
                 TogglePattern togglePattern1 = _control.GetCurrentPattern(TogglePattern.Pattern) as TogglePattern;
                 if (togglePattern1 != null) {
-                    bool toggleState = false;
+                    //bool toggleState = false;
                     if (togglePattern1.Current.ToggleState == ToggleState.On && on) {
                         // nothing to do
                     } else if (togglePattern1.Current.ToggleState == ToggleState.Off && on) {
@@ -518,6 +521,22 @@ namespace UIAutomation
                     WriteObject(this, false);
                 }
             } catch (Exception eToggleStatePatternException) {
+                //!!!!!!!!!!!!
+                if (Preferences.PerformWin32ClickOnFail) {
+
+                    ClickControl(this, _control, false, false, false, false, false, false, false, 0,
+                                 0);
+
+                    if (this.PassThru && null != (inputObject as AutomationElement)) {
+
+                        this.WriteObject(this, inputObject);
+
+                    } else {
+
+                        this.WriteObject(this, true);
+
+                    }
+                }
             }
         }
 

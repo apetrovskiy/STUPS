@@ -50,6 +50,17 @@ namespace UIAutomation
         {
             if (null != cmdlet.InputObject && cmdlet.InputObject is Wizard) {
                 
+                WizardStep probeTheSameStep = cmdlet.InputObject.GetStep(cmdlet.Name);
+                if (null != probeTheSameStep) {
+                    
+                    cmdlet.WriteError(
+                        cmdlet,
+                        "A step with the name provided already exists",
+                        "StepAlreadyExists",
+                        ErrorCategory.InvalidArgument,
+                        true);
+                }
+                
                 WizardStep step = new WizardStep(cmdlet.Name, cmdlet.Order);
                 step.SearchCriteria = cmdlet.SearchCriteria;
                 step.StepForwardAction = cmdlet.StepForwardAction;
@@ -322,7 +333,7 @@ namespace UIAutomation
                 //RunWizardStepScriptBlocks(this, stepToRun, Forward);
                 // 20130318
                 //cmdlet.RunWizardStepScriptBlocks(cmdlet, stepToRun, cmdlet.Forward);
-                cmdlet.RunWizardStepScriptBlocks(cmdlet, stepToRun, cmdlet.Forward, null);
+                cmdlet.RunWizardStepForwardOrBackwardScriptBlocks(cmdlet, stepToRun, cmdlet.Forward, null);
 
                 //if (PassThru) {
                 if (cmdlet.PassThru) {

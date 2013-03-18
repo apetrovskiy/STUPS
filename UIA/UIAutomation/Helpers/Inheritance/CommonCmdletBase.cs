@@ -984,7 +984,7 @@ namespace UIAutomation
                 parameters);
         }
         
-        protected internal void RunWizardStepScriptBlocks(
+        protected internal void RunWizardStepForwardOrBackwardScriptBlocks(
             WizardCmdletBase cmdlet,
             WizardStep wizardStep,
             // 20130318
@@ -1018,6 +1018,19 @@ namespace UIAutomation
                     parameters);
 
             }
+        }
+        
+        protected internal void RunWizardStepCancelScriptBlocks(
+            WizardCmdletBase cmdlet,
+            WizardStep wizardStep,
+            object[] parameters)
+        {
+
+            runTwoScriptBlockCollections(
+                wizardStep.Parent.DefaultStepCancelAction,
+                wizardStep.StepCancelAction,
+                cmdlet,
+                parameters);
         }
         
         

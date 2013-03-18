@@ -82,11 +82,16 @@ namespace UIAutomation
 				if (null != currentStep) {
 				    // 20130318
 					//cmdlet.RunWizardStepScriptBlocks(cmdlet, currentStep, cmdlet.ForwardDirection);
-					cmdlet.RunWizardStepScriptBlocks(
+					cmdlet.RunWizardStepForwardOrBackwardScriptBlocks(
 					    cmdlet,
 					    currentStep,
 					    cmdlet.ForwardDirection,
 					    cmdlet.ForwardDirection ? currentStep.StepForwardActionParameters : currentStep.StepBackwardActionParameters);
+					
+					cmdlet.RunWizardStepCancelScriptBlocks(
+					    cmdlet,
+					    currentStep,
+					    currentStep.StepCancelActionParameters);
 				}
 			}
 		}

@@ -45,6 +45,8 @@ namespace UIAutomation
         public bool Automatic { get; set; }
         // 20130317
         public bool ForwardDirection { get; set; }
+        // 20130318
+        public WizardStep ActiveStep { get; set; }
         
         public void ClearSteps()
         {
@@ -119,7 +121,12 @@ namespace UIAutomation
         		
 	        	if (null != controlsList && 0 < controlsList.Count) {
 
+	        	    if (step == this.ActiveStep) {
+	        	        continue;
+	        	    }
+	        	    
 	        		resultStep = step;
+	        		this.ActiveStep = step;
 	        		break;
 	        	}
         	}

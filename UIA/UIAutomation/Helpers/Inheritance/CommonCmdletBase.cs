@@ -907,7 +907,19 @@ namespace UIAutomation
             }
             // 20130318
             //runScriptBlocks(blocks, cmdlet, true);
-            runScriptBlocks(blocks, cmdlet, true, null);
+            // 20130319
+            try {
+                runScriptBlocks(blocks, cmdlet, true, null);
+            }
+            catch (Exception eScriptBlocks) {
+                
+                cmdlet.WriteError(
+                    cmdlet,
+                    eScriptBlocks.Message,
+                    "ScriptblocksFailed",
+                    ErrorCategory.InvalidResult,
+                    true);
+            }
             // runEventScriptBlocks(blocks, cmdlet); //, true);
         }
         
@@ -962,7 +974,7 @@ namespace UIAutomation
         //protected internal void RunWizardStartScriptBlocks(WizardCmdletBase cmdlet, Wizard wizard)
         protected internal void RunWizardStartScriptBlocks(WizardCmdletBase cmdlet, Wizard wizard, object[] parameters)
         {
-Console.WriteLine("RunWizardStartScriptBlocks 00001");
+
             runTwoScriptBlockCollections(
                 null,
                 wizard.StartAction,
@@ -970,7 +982,7 @@ Console.WriteLine("RunWizardStartScriptBlocks 00001");
                 //cmdlet);
                 cmdlet,
                 parameters);
-Console.WriteLine("RunWizardStartScriptBlocks 00002");
+
         }
         
         // 20130318
@@ -996,13 +1008,13 @@ Console.WriteLine("RunWizardStartScriptBlocks 00002");
             bool forward,
             object[] parameters)
         {
-Console.WriteLine("RunWizardStepForwardOrBackwardScriptBlocks 0001");
+
             if (forward) {
-Console.WriteLine("RunWizardStepForwardOrBackwardScriptBlocks 0002");
+
                 cmdlet.WriteVerbose(
                     cmdlet,
                     "ForwardAction scriptblocks");
-Console.WriteLine("RunWizardStepForwardOrBackwardScriptBlocks 0003");
+
                 runTwoScriptBlockCollections(
         			// 20130317
                     //null,
@@ -1012,10 +1024,9 @@ Console.WriteLine("RunWizardStepForwardOrBackwardScriptBlocks 0003");
                     //cmdlet);
                     cmdlet,
                     parameters);
-Console.WriteLine("RunWizardStepForwardOrBackwardScriptBlocks 0004");
 
             } else {
-Console.WriteLine("RunWizardStepForwardOrBackwardScriptBlocks 0005");
+
                 cmdlet.WriteVerbose(
                     cmdlet,
                     "BackwardAction scriptblocks");
@@ -1029,7 +1040,7 @@ Console.WriteLine("RunWizardStepForwardOrBackwardScriptBlocks 0005");
                     //cmdlet);
                     cmdlet,
                     parameters);
-Console.WriteLine("RunWizardStepForwardOrBackwardScriptBlocks 0006");
+
             }
         }
         
@@ -1803,11 +1814,7 @@ Console.WriteLine("RunWizardStepForwardOrBackwardScriptBlocks 0006");
                         //string.Empty != cmdlet.ControlType ? cmdlet.ControlType : string.Empty,
                         null != cmdlet.ControlType ? (new string[] {cmdlet.ControlType}) : (new string[] {}),
                         this.caseSensitive);
-//Console.WriteLine("SearchByWildcardViaUIA cmdlet.InputObject.Name = " + cmdlet.InputObject[0].Current.Name);
-//Console.WriteLine("SearchByWildcardViaUIA conditionsForWildCards.Length = " + conditionsForWildCards.GetConditions().Length.ToString());
-//foreach (Condition condition in conditionsForWildCards.GetConditions()) {
-//    Console.WriteLine("SearchByWildcardViaUIA condition = " + condition.ToString());
-//}
+
                 try {
                     this.WriteVerbose((cmdlet as PSTestLib.PSCmdletBase), "using the GetAutomationElementsViaWildcards_FindAll method");
                     
@@ -1819,10 +1826,7 @@ Console.WriteLine("RunWizardStepForwardOrBackwardScriptBlocks 0006");
                             cmdlet1.CaseSensitive,
                             false,
                             false);
-//Console.WriteLine("SearchByWildcardViaUIA there are >>>>>>>>>>" + tempList.Count.ToString() + "<<<<<<<<<<<<<<<<<< elements that match the conditions");
-//foreach (AutomationElement element001 in tempList) {
-//    Console.WriteLine(element001.Current.ControlType.ProgrammaticName +"\t" + element001.Current.Name + "\t" + element001.Current.AutomationId + "\t" + element001.Current.ClassName);
-//}
+
                     cmdlet.WriteVerbose(
                         cmdlet, 
                         "there are " +
@@ -1832,14 +1836,14 @@ Console.WriteLine("RunWizardStepForwardOrBackwardScriptBlocks 0006");
                     foreach (AutomationElement tempElement2 in tempList) {
 
                         if (null == cmdlet.SearchCriteria || 0 == cmdlet.SearchCriteria.Length) {
-//Console.WriteLine("SearchByWildcardViaUIA >>>>>>>> null == cmdlet.SearchCriteria || 0 == cmdlet.SearchCriteria.Length");
+
                             resultCollection.Add(tempElement2);
                             cmdlet.WriteVerbose(cmdlet, "WildCardSearch: element added to the result collection (no SearchCriteria)");
                         } else {
-//Console.WriteLine("SearchByWildcardViaUIA >>>>>>>> else (yeah, SearchCriteria)");
+
                             cmdlet.WriteVerbose(cmdlet, "WildCardSearch: checking search criteria");
                             if (TestControlWithAllSearchCriteria(cmdlet, cmdlet.SearchCriteria, tempElement2)) {
-//Console.WriteLine("SearchByWildcardViaUIA WildCardSearch: !!!!!!!!!!!!!!!  the control matches the search criteria !!!!!!!!!!!!!!!!!!!!!");
+
                                 cmdlet.WriteVerbose(cmdlet, "WildCardSearch: the control matches the search criteria");
                                 resultCollection.Add(tempElement2);
                                 cmdlet.WriteVerbose(cmdlet, "WildCardSearch: element added to the result collection (SearchCriteria)");
@@ -1850,7 +1854,7 @@ Console.WriteLine("RunWizardStepForwardOrBackwardScriptBlocks 0006");
                     }
                     cmdlet.WriteVerbose(cmdlet, "WildCardSearch: element(s) added to the result collection: " + resultCollection.Count.ToString());
                 } catch (Exception eUnexpected) {
-//Console.WriteLine("SearchByWildcardViaUIA error = " + eUnexpected.Message);
+
                     // this.WriteVerbose(this, eUnexpected.Message);
                     this.WriteError(
                         this,
@@ -1861,7 +1865,7 @@ Console.WriteLine("RunWizardStepForwardOrBackwardScriptBlocks 0006");
                         true);
                 }
             } catch (Exception eWildCardSearch) {
-//Console.WriteLine("SearchByWildcardViaUIA error = " + eWildCardSearch.Message);
+
                 this.WriteError(
                     cmdlet,
                     "The input control or window has been possibly lost." +

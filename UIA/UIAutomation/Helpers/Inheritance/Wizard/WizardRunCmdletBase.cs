@@ -77,28 +77,56 @@ namespace UIAutomation
 				CurrentData.CurrentWindow = null;
 				// 20130318
 				//cmdlet.RunWizardGetWindowScriptBlocks(cmdlet, wizard);
-Console.WriteLine("RunWizardInAutomaticMode 0001");
 				cmdlet.RunWizardGetWindowScriptBlocks(cmdlet, wizard, null);
-Console.WriteLine("RunWizardInAutomaticMode 0002");
-				// selector of steps' unique controls
-				WizardStep currentStep =
-					wizard.GetActiveStep();
-Console.WriteLine("RunWizardInAutomaticMode 0003");
-				if (null != currentStep) {
-				    // 20130318
-					//cmdlet.RunWizardStepScriptBlocks(cmdlet, currentStep, cmdlet.ForwardDirection);
-Console.WriteLine("RunWizardInAutomaticMode 0004");
-					cmdlet.RunWizardStepForwardOrBackwardScriptBlocks(
-					    cmdlet,
-					    currentStep,
-					    cmdlet.ForwardDirection,
-					    cmdlet.ForwardDirection ? currentStep.StepForwardActionParameters : currentStep.StepBackwardActionParameters);
-Console.WriteLine("RunWizardInAutomaticMode 0005");
-					// 20130319 - need moving to an appropriate place
-					//cmdlet.RunWizardStepCancelScriptBlocks(
-					//    cmdlet,
-					//    currentStep,
-					//    currentStep.StepCancelActionParameters);
+				if (null != (CurrentData.CurrentWindow as AutomationElement)) {
+				    
+				    cmdlet.WriteVerbose(
+				        cmdlet,
+				        "the window: name = '" +
+				        CurrentData.CurrentWindow.Current.Name +
+				        "', automationId = '" +
+				        CurrentData.CurrentWindow.Current.AutomationId +
+				        "', class = '" +
+				        CurrentData.CurrentWindow.Current.ClassName +
+				        "', processId = " +
+				        CurrentData.CurrentWindow.Current.ProcessId.ToString() +
+				        ".");
+				    
+    				// selector of steps' unique controls
+    				WizardStep currentStep =
+    					wizard.GetActiveStep();
+
+    				if (null != currentStep) {
+        
+                        cmdlet.WriteVerbose(
+                            cmdlet,
+                            "current ste name = " +
+                            currentStep.Name);
+                        
+    				    // 20130318
+    					//cmdlet.RunWizardStepScriptBlocks(cmdlet, currentStep, cmdlet.ForwardDirection);
+    					cmdlet.RunWizardStepForwardOrBackwardScriptBlocks(
+    					    cmdlet,
+    					    currentStep,
+    					    cmdlet.ForwardDirection,
+    					    cmdlet.ForwardDirection ? currentStep.StepForwardActionParameters : currentStep.StepBackwardActionParameters);
+
+    					// 20130319 - need moving to an appropriate place
+    					//cmdlet.RunWizardStepCancelScriptBlocks(
+    					//    cmdlet,
+    					//    currentStep,
+    					//    currentStep.StepCancelActionParameters);
+                    } else {
+                        
+                        cmdlet.WriteVerbose(
+                            cmdlet,
+                            "current step is still null");
+                    }
+				} else {
+				    
+				    cmdlet.WriteVerbose(
+				        cmdlet,
+				        "window is still null");
 				}
 			}
 		}

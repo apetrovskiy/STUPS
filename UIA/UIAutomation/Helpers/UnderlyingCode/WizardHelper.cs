@@ -121,10 +121,6 @@ namespace UIAutomation
                                 case "CANCEL":
                                     step.StepCancelActionParameters = (object[])dict["PARAMETERS"];
                                     break;
-                                // 20130319
-                                //case "GETWINDOW":
-                                //    step.StepGetWindowActionParameters = (object[])dict["PARAMETERS"];
-                                //    break;
                                 default:
                                     // nothing to do
                                 	break;

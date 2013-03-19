@@ -596,8 +596,19 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
 
             // 20130318
             //runScriptBlocks(scriptblocks, cmdlet, false);
-            runScriptBlocks(scriptblocks, cmdlet, false, parameters);
-
+            // 20130319
+            try {
+                runScriptBlocks(scriptblocks, cmdlet, false, parameters);
+            }
+            catch (Exception eScriptBlocks) {
+                
+                cmdlet.WriteError(
+                    cmdlet,
+                    eScriptBlocks.Message,
+                    "ScriptblocksFailed",
+                    ErrorCategory.InvalidResult,
+                    true);
+            }
         }
         
         // 20120816
@@ -649,17 +660,19 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
 //                                                     sb.ToString());
 //                                WriteError(this, err, false);
                                 
-                                this.WriteError(
-                                    this,
-                                    "Error in " +
-                                    sb.ToString() +
-                                    ". " +
-                                    eInner.Message,
-                                    "InvokeException",
-                                    ErrorCategory.OperationStopped,
-                                    // 20130318
-                                    //false);
-                                    true);
+//                                this.WriteError(
+//                                    this,
+//                                    "Error in " +
+//                                    sb.ToString() +
+//                                    ". " +
+//                                    eInner.Message,
+//                                    "InvokeException",
+//                                    ErrorCategory.OperationStopped,
+//                                    // 20130318
+//                                    //false);
+//                                    true);
+                                    
+                                    throw;
                             }
                         }
                     }
@@ -670,12 +683,14 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
 //                           new ErrorRecord(eOuter, "runScriptBlocks", ErrorCategory.InvalidArgument, null),
 //                           true);
                 
-                this.WriteError(
-                    this,
-                    eOuter.Message,
-                    "runScriptBlocks",
-                    ErrorCategory.InvalidArgument,
-                    true);
+//                this.WriteError(
+//                    this,
+//                    eOuter.Message,
+//                    "runScriptBlocks",
+//                    ErrorCategory.InvalidArgument,
+//                    true);
+                    
+                throw;
             }
         }
         //#endregion Invoke-UIAScript

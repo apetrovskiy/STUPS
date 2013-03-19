@@ -34,10 +34,8 @@ New-UIAWizard -Name AddPrinterWizard `
         -SearchCriteria @{controlType="RadioButton";name="*create*new*port*"} `
         -StepForwardAction {
             Get-UIARadioButton -Name "*create*new*port*" | Set-UIARadioButtonToggleState $true;
-            #Invoke-UIARadioButtonSelectItem -ItemName "*create*new*port*"; #Invoke-UIARadioButtonToggle; #Set-UIARadioButtonToggleState $true;
             Get-UIAComboBox -Name "*type*of*port*" | Get-UIAButton | Invoke-UIAButtonClick;
             Get-UIAComboBox -Name "*type*of*port*" | Get-UIAListItem -Name "*standard*tcp*port*" | Invoke-UIAListItemClick;
-            #| Invoke-UIAListItemSelectItem - "*standard*tcp*port*";
             sleep -Seconds 2;
             Get-UIAButton -AutomationId 'nextbutton' | Invoke-UIAButtonClick;
                            } `
@@ -51,8 +49,8 @@ New-UIAWizard -Name AddPrinterWizard `
                   [string]$PrinterName,
                   [string]$PortName
                   )
-            Get-UIAEdit -AutomationId '4690' | Set-UIAEditText $PrinterName; #"printer001";
-            Get-UIAEdit -AutomationId '4692' | Set-UIAEditText $PortName; #"port_001";
+            Get-UIAEdit -AutomationId '4690' | Set-UIAEditText $PrinterName;
+            Get-UIAEdit -AutomationId '4692' | Set-UIAEditText $PortName;
             Get-UIACheckBox -Name "*query*" | Set-UIACheckBoxToggleState $true;
             Get-UIAButton -AutomationId 'nextbutton' | Invoke-UIAButtonClick;
                            } `
@@ -75,7 +73,7 @@ New-UIAWizard -Name AddPrinterWizard `
         -StepBackwardAction $backwardAction `
         -StepCancelAction $cancelAction | `
     Add-UIAWizardStep -Name Step08DetectingDriverModel `
-        -Description "detecting the driver model..." `
+        -Description "Detecting the driver model..." `
         -SearchCriteria @{controlType="text";name="*Windows*is*communicating*with*the*printer*"} `
         -StepForwardAction {} `
         -StepBackwardAction {} `
@@ -99,34 +97,41 @@ New-UIAWizard -Name AddPrinterWizard `
         -SearchCriteria @{controlType="text";name="*Windows*detected*driver*already*installed*printer*"} `
         -StepForwardAction {
             Get-UIARadioButton -Name '*Use*driver*currently*installed*recommended*' | Set-UIARadioButtonToggleState $true;
-            #Invoke-UIARadioButtonSelectItem -ItemName '*Use*driver*currently*installed*recommended*';
             Get-UIAButton -AutomationId 'nextbutton' | Invoke-UIAButtonClick;
                            } `
         -StepBackwardAction $backwardAction `
         -StepCancelAction $cancelAction | `
     Add-UIAWizardStep -Name Step11PrinterName `
-        -Description "" `
-        -SearchCriteria @{controlType="text";name="*printer*name*"} `
+        -Description "Type a printer name" `
+        -SearchCriteria @{controlType="text";name="*printer*name*:*"} `
         -StepForwardAction {
-            Get-UIAEdit -AutomationId '1046' | Set-UIAEditText "new printer";
+            param(
+                  [string]$PrinterName
+                  )
+            Get-UIAEdit -AutomationId '1046' | Set-UIAEditText "$($PrinterName)";
             Get-UIAButton -AutomationId 'nextbutton' | Invoke-UIAButtonClick;
                            } `
         -StepBackwardAction $backwardAction `
         -StepCancelAction $cancelAction | `
     Add-UIAWizardStep -Name Step12InstallingDriver `
         -Description "" `
-        -SearchCriteria @{} `
+        -SearchCriteria @{controlType="text";name="*installing*"} `
         -StepForwardAction {} `
         -StepBackwardAction {} `
         -StepCancelAction $cancelAction | `
     Add-UIAWizardStep -Name Step13PrinterSharing `
-        -Description "" `
-        -SearchCriteria @{controlType="text";name="*if*you*want*to*share*this*printer*"} `
+        -Description "Printer Sharing" `
+        -SearchCriteria @{controlType="radiobutton";name="*share*printer*"} `
         -StepForwardAction {
+            param(
+                  [string]$ShareName,
+                  [string]$Location,
+                  [string]$Comment
+                  )
             Get-UIARadioButton -Name "*share*printer*others*can*find*" | Set-UIARadioButtonToggleState $true;
-            Get-UIAEdit -AutomationId '3302' | Set-UIAEditText 'share$$';
-            Get-UIAEdit -AutomationId '4553' | Set-UIAEditText "location";
-            Get-UIAEdit -AutomationId '4552' | Set-UIAEditText "my comment";
+            Get-UIAEdit -AutomationId '3302' | Set-UIAEditText "$($ShareName)";
+            Get-UIAEdit -AutomationId '4553' | Set-UIAEditText "$($Location)";
+            Get-UIAEdit -AutomationId '4552' | Set-UIAEditText "$($Comment)";
             Get-UIAButton -AutomationId 'nextbutton' | Invoke-UIAButtonClick;
                            } `
         -StepBackwardAction $backwardAction `
@@ -135,15 +140,24 @@ New-UIAWizard -Name AddPrinterWizard `
         -Description "" `
         -SearchCriteria @{controlType="button";name="*finish*"} `
         -StepForwardAction {
-            Get-UIARadioButton -Name "*share*printer*others*can*find*" | Set-UIARadioButtonToggleState $true;
-            Get-UIACheckBox -Name "*set*as*the*default*printer*" | Set-UIACheckBoxToggleState $true;
+            try {
+                Get-UIACheckBox -Name "*set*as*the*default*printer*" | Set-UIACheckBoxToggleState $true;
+            }
+            catch {}
             Get-UIAButton -AutomationId 'finishbutton' | Invoke-UIAButtonClick;
                            } `
         -StepBackwardAction $backwardAction `
         -StepCancelAction $cancelAction;
 
     Invoke-UIAWizard -Automatic -ForwardDirection -Name AddPrinterWizard `
-        -Parameters @{step="Step05PrinterData";action="forward";parameters=@("printer_parameterized_1","port_parameterized_1")},
-                    @{step="Step09InstallPrinterDriver";action="forward";parameters=@('Canon','*0303*')}
+        -Parameters @{step="Step05PrinterData";action="forward";parameters=@("printer_1","port_1")},
+                    @{step="Step09InstallPrinterDriver";action="forward";parameters=@('Canon','*0303*')},
+                    @{step="Step11PrinterName";action="forward";parameters=@("one more printer")},
+                    @{step="Step13PrinterSharing";action="forward";parameters=@('share$$','location01','my comment')} -Verbose;
 
-    
+    Invoke-UIAWizard -Automatic -ForwardDirection -Name AddPrinterWizard `
+        -Parameters @{step="Step05PrinterData";action="forward";parameters=@("printer_2","port_2")},
+                    @{step="Step09InstallPrinterDriver";action="forward";parameters=@('Canon','*0303*')},
+                    @{step="Step11PrinterName";action="forward";parameters=@("the second one")},
+                    @{step="Step13PrinterSharing";action="forward";parameters=@('share$$$','location02','my new comment')} -Verbose;
+

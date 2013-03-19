@@ -142,8 +142,6 @@ New-UIAWizard -Name AddPrinterWizard `
         -StepBackwardAction $backwardAction `
         -StepCancelAction $cancelAction;
 
-    #Invoke-UIAWizard -Automatic -ForwardDirection -Name AddPrinterWizard -Verbose;
-    #Invoke-UIAWizard -Automatic -ForwardDirection -Name AddPrinterWizard -Parameters @{step="Step05PrinterData";action="forward";parameters=@("printer_parameterized","port_parameterized")}
     Invoke-UIAWizard -Automatic -ForwardDirection -Name AddPrinterWizard `
         -Parameters @{step="Step05PrinterData";action="forward";parameters=@("printer_parameterized_1","port_parameterized_1")},
                     @{step="Step09InstallPrinterDriver";action="forward";parameters=@('Canon','*0303*')}

@@ -996,13 +996,13 @@ Console.WriteLine("RunWizardStartScriptBlocks 00002");
             bool forward,
             object[] parameters)
         {
-
+Console.WriteLine("RunWizardStepForwardOrBackwardScriptBlocks 0001");
             if (forward) {
-                
+Console.WriteLine("RunWizardStepForwardOrBackwardScriptBlocks 0002");
                 cmdlet.WriteVerbose(
                     cmdlet,
                     "ForwardAction scriptblocks");
-                
+Console.WriteLine("RunWizardStepForwardOrBackwardScriptBlocks 0003");
                 runTwoScriptBlockCollections(
         			// 20130317
                     //null,
@@ -1012,9 +1012,10 @@ Console.WriteLine("RunWizardStartScriptBlocks 00002");
                     //cmdlet);
                     cmdlet,
                     parameters);
+Console.WriteLine("RunWizardStepForwardOrBackwardScriptBlocks 0004");
 
             } else {
-
+Console.WriteLine("RunWizardStepForwardOrBackwardScriptBlocks 0005");
                 cmdlet.WriteVerbose(
                     cmdlet,
                     "BackwardAction scriptblocks");
@@ -1028,7 +1029,7 @@ Console.WriteLine("RunWizardStartScriptBlocks 00002");
                     //cmdlet);
                     cmdlet,
                     parameters);
-
+Console.WriteLine("RunWizardStepForwardOrBackwardScriptBlocks 0006");
             }
         }
         

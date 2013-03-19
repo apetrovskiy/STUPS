@@ -77,25 +77,28 @@ namespace UIAutomation
 				CurrentData.CurrentWindow = null;
 				// 20130318
 				//cmdlet.RunWizardGetWindowScriptBlocks(cmdlet, wizard);
+Console.WriteLine("RunWizardInAutomaticMode 0001");
 				cmdlet.RunWizardGetWindowScriptBlocks(cmdlet, wizard, null);
-
+Console.WriteLine("RunWizardInAutomaticMode 0002");
 				// selector of steps' unique controls
 				WizardStep currentStep =
 					wizard.GetActiveStep();
-
+Console.WriteLine("RunWizardInAutomaticMode 0003");
 				if (null != currentStep) {
 				    // 20130318
 					//cmdlet.RunWizardStepScriptBlocks(cmdlet, currentStep, cmdlet.ForwardDirection);
+Console.WriteLine("RunWizardInAutomaticMode 0004");
 					cmdlet.RunWizardStepForwardOrBackwardScriptBlocks(
 					    cmdlet,
 					    currentStep,
 					    cmdlet.ForwardDirection,
 					    cmdlet.ForwardDirection ? currentStep.StepForwardActionParameters : currentStep.StepBackwardActionParameters);
-					
-					cmdlet.RunWizardStepCancelScriptBlocks(
-					    cmdlet,
-					    currentStep,
-					    currentStep.StepCancelActionParameters);
+Console.WriteLine("RunWizardInAutomaticMode 0005");
+					// 20130319 - need moving to an appropriate place
+					//cmdlet.RunWizardStepCancelScriptBlocks(
+					//    cmdlet,
+					//    currentStep,
+					//    currentStep.StepCancelActionParameters);
 				}
 			}
 		}

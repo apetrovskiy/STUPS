@@ -44,7 +44,9 @@ namespace UIAutomation.Commands
         public ScriptBlock[] DefaultStepCancelAction { get; set; }
         // 20130317
         [Parameter(Mandatory = false)]
-        public ScriptBlock[] DefaultStepGetWindowAction { get; set; }
+        // 20130319
+        //public ScriptBlock[] DefaultStepGetWindowAction { get; set; }
+        public ScriptBlock[] GetWindowAction { get; set; }
 //        [Parameter(Mandatory = false)]
 //        internal int Order { get; set; }
         #endregion Parameters

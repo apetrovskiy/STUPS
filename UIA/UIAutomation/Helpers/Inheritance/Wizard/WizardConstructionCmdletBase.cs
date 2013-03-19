@@ -34,8 +34,10 @@ namespace UIAutomation
         [Parameter(Mandatory = false)]
         public ScriptBlock[] StepCancelAction { get; set; }
         // 20130317
-        [Parameter(Mandatory = false)]
-        public ScriptBlock[] StepGetWindowAction { get; set; }
+        // 20130319
+        //[Parameter(Mandatory = false)]
+        //public ScriptBlock[] StepGetWindowAction { get; set; }
+        
         [Parameter(Mandatory = false)]
         public int Order { get; set; }
         

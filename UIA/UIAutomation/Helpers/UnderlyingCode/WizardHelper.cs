@@ -41,7 +41,9 @@ namespace UIAutomation
             wzd.DefaultStepForwardAction = cmdlet.DefaultStepForwardAction;
             wzd.DefaultStepBackwardAction = cmdlet.DefaultStepBackwardAction;
             wzd.DefaultStepCancelAction = cmdlet.DefaultStepCancelAction;
-            wzd.DefaultStepGetWindowAction = cmdlet.DefaultStepGetWindowAction;
+            // 20130319
+            //wzd.DefaultStepGetWindowAction = cmdlet.DefaultStepGetWindowAction;
+            wzd.GetWindowAction = cmdlet.GetWindowAction;
 
             cmdlet.WriteObject(cmdlet, wzd);
         }
@@ -66,7 +68,8 @@ namespace UIAutomation
                 step.StepForwardAction = cmdlet.StepForwardAction;
                 step.StepBackwardAction = cmdlet.StepBackwardAction;
                 step.StepCancelAction = cmdlet.StepCancelAction;
-                step.StepGetWindowAction = cmdlet.StepGetWindowAction;
+                // 20130319
+                //step.StepGetWindowAction = cmdlet.StepGetWindowAction;
                 step.Description = cmdlet.Description;
                 step.Parent = cmdlet.InputObject;
 
@@ -118,9 +121,10 @@ namespace UIAutomation
                                 case "CANCEL":
                                     step.StepCancelActionParameters = (object[])dict["PARAMETERS"];
                                     break;
-                                case "GETWINDOW":
-                                    step.StepGetWindowActionParameters = (object[])dict["PARAMETERS"];
-                                    break;
+                                // 20130319
+                                //case "GETWINDOW":
+                                //    step.StepGetWindowActionParameters = (object[])dict["PARAMETERS"];
+                                //    break;
                                 default:
                                     // nothing to do
                                 	break;
@@ -331,7 +335,9 @@ namespace UIAutomation
                 } while (!result);
                 
                 //WriteVerbose(this, "running script blocks");
-                cmdlet.WriteVerbose(cmdlet, "running ForwardAction, BackwardAction, CancelAction scriptblocks");
+                // 20130319
+                //cmdlet.WriteVerbose(cmdlet, "running ForwardAction, BackwardAction, CancelAction scriptblocks");
+                cmdlet.WriteVerbose(cmdlet, "running ForwardAction or BackwardAction scriptblocks");
                 //RunWizardStepScriptBlocks(this, stepToRun, Forward);
                 // 20130318
                 //cmdlet.RunWizardStepScriptBlocks(cmdlet, stepToRun, cmdlet.Forward);

@@ -979,7 +979,9 @@ Console.WriteLine("RunWizardStartScriptBlocks 00002");
         {
             runTwoScriptBlockCollections(
                 null,
-                wizard.DefaultStepGetWindowAction,
+                // 20130319
+                //wizard.DefaultStepGetWindowAction,
+                wizard.GetWindowAction,
                 // 20130318
                 //cmdlet);
                 cmdlet,

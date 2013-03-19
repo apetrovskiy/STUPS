@@ -32,7 +32,9 @@ namespace UIAutomation
         // 20130317
         public ScriptBlock[] StepCancelAction { get; set; }
         // 20130317
-        public ScriptBlock[] StepGetWindowAction { get; set; }
+        // 20130319
+        //public ScriptBlock[] StepGetWindowAction { get; set; }
+        
         public Hashtable[] SearchCriteria { get; set; }
         // 20130317
         public Wizard Parent { get; set; }
@@ -42,6 +44,7 @@ namespace UIAutomation
         public object[] StepForwardActionParameters { get; set; }
         public object[] StepBackwardActionParameters { get; set; }
         public object[] StepCancelActionParameters { get; set; }
-        public object[] StepGetWindowActionParameters { get; set; }
+        // 20130319
+        //public object[] StepGetWindowActionParameters { get; set; }
     }
 }

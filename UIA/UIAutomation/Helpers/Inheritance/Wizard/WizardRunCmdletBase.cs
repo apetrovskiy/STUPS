@@ -100,8 +100,9 @@ namespace UIAutomation
         
                         cmdlet.WriteVerbose(
                             cmdlet,
-                            "current ste name = " +
-                            currentStep.Name);
+                            "current step name = '" +
+                            currentStep.Name +
+                            "'");
                         
     				    // 20130318
     					//cmdlet.RunWizardStepScriptBlocks(cmdlet, currentStep, cmdlet.ForwardDirection);

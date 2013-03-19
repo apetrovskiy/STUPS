@@ -602,6 +602,8 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
             }
             catch (Exception eScriptBlocks) {
                 
+                cmdlet.WriteVerbose(cmdlet, eScriptBlocks.Message);
+                
                 cmdlet.WriteError(
                     cmdlet,
                     eScriptBlocks.Message,

@@ -68,6 +68,9 @@ namespace UIAutomation
 		{
 		    // 20130320
 			//CurrentData.CurrentWindow = AutomationElement.RootElement;
+			
+			cmdlet.StartDate =
+			    System.DateTime.Now;
 
 			// 20130320
 			//while ((null != CurrentData.CurrentWindow)) {
@@ -122,6 +125,10 @@ namespace UIAutomation
     					//    cmdlet,
     					//    currentStep,
     					//    currentStep.StepCancelActionParameters);
+    					
+    					cmdlet.StartDate =
+    					    System.DateTime.Now;
+    					
                     } else {
                         
                         cmdlet.WriteVerbose(
@@ -133,6 +140,20 @@ namespace UIAutomation
 				    cmdlet.WriteVerbose(
 				        cmdlet,
 				        "window is still null");
+				    
+				    System.DateTime nowDate = 
+                        System.DateTime.Now;
+                    if ((nowDate - cmdlet.StartDate).TotalSeconds > Preferences.Timeout) {
+                        
+				        cmdlet.WriteError(
+				            cmdlet,
+				            "Timeout expired",
+				            "TimeoutExpired",
+				            ErrorCategory.OperationTimeout,
+				            true);
+                    }
+				    
+				    
 				}
 			}
 		}

@@ -134,26 +134,26 @@ namespace UIAutomation
                         cmdlet.WriteVerbose(
                             cmdlet,
                             "current step is still null");
+    				    
+				    
+    				    System.DateTime nowDate = 
+                            System.DateTime.Now;
+                        if ((nowDate - cmdlet.StartDate).TotalSeconds > Preferences.Timeout) {
+                            
+    				        cmdlet.WriteError(
+    				            cmdlet,
+    				            "Timeout expired",
+    				            "TimeoutExpired",
+    				            ErrorCategory.OperationTimeout,
+    				            true);
+                        }
+    				    
                     }
 				} else {
 				    
 				    cmdlet.WriteVerbose(
 				        cmdlet,
 				        "window is still null");
-				    
-				    System.DateTime nowDate = 
-                        System.DateTime.Now;
-                    if ((nowDate - cmdlet.StartDate).TotalSeconds > Preferences.Timeout) {
-                        
-				        cmdlet.WriteError(
-				            cmdlet,
-				            "Timeout expired",
-				            "TimeoutExpired",
-				            ErrorCategory.OperationTimeout,
-				            true);
-                    }
-				    
-				    
 				}
 			}
 		}

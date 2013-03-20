@@ -66,18 +66,23 @@ namespace UIAutomation
         
 		protected internal void RunWizardInAutomaticMode(WizardRunCmdletBase cmdlet, Wizard wizard)
 		{
-			CurrentData.CurrentWindow = AutomationElement.RootElement;
+		    // 20130320
+			//CurrentData.CurrentWindow = AutomationElement.RootElement;
 
-			while ((null != CurrentData.CurrentWindow)) {
+			// 20130320
+			//while ((null != CurrentData.CurrentWindow)) {
+			while (cmdlet.RunWizardGetWindowScriptBlocks(cmdlet, wizard, null)) {
 
 			    if (wizard.StopImmediately) {
 			        break;
 			    }
 			    
-				CurrentData.CurrentWindow = null;
+			    // 20130320
+				//CurrentData.CurrentWindow = null;
 				// 20130318
 				//cmdlet.RunWizardGetWindowScriptBlocks(cmdlet, wizard);
-				cmdlet.RunWizardGetWindowScriptBlocks(cmdlet, wizard, null);
+				// 20130320
+				//cmdlet.RunWizardGetWindowScriptBlocks(cmdlet, wizard, null);
 				if (null != (CurrentData.CurrentWindow as AutomationElement)) {
 				    
 				    cmdlet.WriteVerbose(

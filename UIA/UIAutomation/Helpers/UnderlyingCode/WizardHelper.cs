@@ -106,10 +106,28 @@ namespace UIAutomation
 
                     foreach (Dictionary<string, object> dict in cmdlet.ParametersDictionaries) {
 
+                        WizardStep step = null;
+                        string stepName = string.Empty;
+                        
                         try {
 
-                            WizardStep step =
-                                wzd.GetStep(dict["STEP"].ToString());
+                            stepName =
+                                dict["STEP"].ToString();
+                            
+                            step =
+                                wzd.GetStep(stepName);
+                            
+                            if (null == step) {
+                                
+                                cmdlet.WriteError(
+                                    cmdlet,
+                                    "Failed to get a step with name '" +
+                                    stepName +
+                                    ".",
+                                    "FailedToGetStep",
+                                    ErrorCategory.InvalidArgument,
+                                    true);
+                            }
 
                             switch (dict["ACTION"].ToString().ToUpper()) {
                                 case "FORWARD":
@@ -128,6 +146,15 @@ namespace UIAutomation
                         }
                         catch (Exception eSwitch) {
                             
+                            cmdlet.WriteError(
+                                cmdlet,
+                                "Failed to parse parameters for step '" +
+                                stepName +
+                                "'. " +
+                                eSwitch.Message,
+                                "FailedToParseParameters",
+                                ErrorCategory.InvalidArgument,
+                                true);
                         }
                     }
 

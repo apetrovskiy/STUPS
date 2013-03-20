@@ -987,8 +987,11 @@ namespace UIAutomation
         
         // 20130318
         //protected internal void RunWizardGetWindowScriptBlocks(WizardCmdletBase cmdlet, Wizard wizard)
-        protected internal void RunWizardGetWindowScriptBlocks(WizardCmdletBase cmdlet, Wizard wizard, object[] parameters)
+        protected internal bool RunWizardGetWindowScriptBlocks(WizardCmdletBase cmdlet, Wizard wizard, object[] parameters)
         {
+            bool result = false;
+            
+            try {
             runTwoScriptBlockCollections(
                 null,
                 // 20130319
@@ -998,6 +1001,12 @@ namespace UIAutomation
                 //cmdlet);
                 cmdlet,
                 parameters);
+                
+                result = true;
+            }
+            catch {}
+            
+            return result;
         }
         
         protected internal void RunWizardStepForwardOrBackwardScriptBlocks(

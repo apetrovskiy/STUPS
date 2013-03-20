@@ -138,7 +138,8 @@ namespace UIAutomation
 				    
     				    System.DateTime nowDate = 
                             System.DateTime.Now;
-                        if ((nowDate - cmdlet.StartDate).TotalSeconds > Preferences.Timeout) {
+
+    				    if ((nowDate - cmdlet.StartDate).TotalSeconds > (Preferences.Timeout / 1000)) {
                             
     				        cmdlet.WriteError(
     				            cmdlet,

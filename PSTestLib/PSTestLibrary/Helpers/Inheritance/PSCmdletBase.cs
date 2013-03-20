@@ -576,22 +576,37 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
             System.Collections.Generic.List<ScriptBlock> scriptblocks =
                 new System.Collections.Generic.List<ScriptBlock>();
 
-            if (scriptblocksSet1 != null &&
-                scriptblocksSet1.Length > 0) {
-
-                foreach (ScriptBlock sb in scriptblocksSet1) {
-
-                    scriptblocks.Add(sb);
+            try {
+                if (scriptblocksSet1 != null &&
+                    scriptblocksSet1.Length > 0) {
+    
+                    foreach (ScriptBlock sb in scriptblocksSet1) {
+    
+                        scriptblocks.Add(sb);
+                    }
+                }
+    
+                if (scriptblocksSet2 != null &&
+                    scriptblocksSet2.Length > 0) {
+    
+                    foreach (ScriptBlock sb in scriptblocksSet2) {
+    
+                        scriptblocks.Add(sb);
+                    }
                 }
             }
-
-            if (scriptblocksSet2 != null &&
-                scriptblocksSet2.Length > 0) {
-
-                foreach (ScriptBlock sb in scriptblocksSet2) {
-
-                    scriptblocks.Add(sb);
-                }
+            catch (Exception eScriptblocksPreparation) {
+                
+                cmdlet.WriteVerbose(cmdlet, "Scriptblocks are not going to be run");
+                
+                cmdlet.WriteVerbose(cmdlet, eScriptblocksPreparation.Message);
+                
+                cmdlet.WriteError(
+                    cmdlet,
+                    eScriptblocksPreparation.Message,
+                    "ScriptblocksNotPrepared",
+                    ErrorCategory.InvalidOperation,
+                    true);
             }
 
             // 20130318
@@ -601,6 +616,8 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
                 runScriptBlocks(scriptblocks, cmdlet, false, parameters);
             }
             catch (Exception eScriptBlocks) {
+                
+                cmdlet.WriteVerbose(cmdlet, "Scriptblocks failed");
                 
                 cmdlet.WriteVerbose(cmdlet, eScriptBlocks.Message);
                 

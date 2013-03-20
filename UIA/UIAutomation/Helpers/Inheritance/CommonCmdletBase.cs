@@ -1042,6 +1042,10 @@ namespace UIAutomation
                     parameters);
 
             }
+            
+            cmdlet.WriteVerbose(
+                cmdlet,
+                "Scriptblocks finished");
         }
         
         protected internal void RunWizardStepCancelScriptBlocks(

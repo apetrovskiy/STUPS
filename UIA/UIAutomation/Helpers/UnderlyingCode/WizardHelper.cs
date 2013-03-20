@@ -48,7 +48,9 @@ namespace UIAutomation
             cmdlet.WriteObject(cmdlet, wzd);
         }
         
-        public static void AddWizardStep(WizardConstructionCmdletBase cmdlet)
+        // 20130320
+        //public static void AddWizardStep(WizardConstructionCmdletBase cmdlet)
+        public static void AddWizardStep(WizardStepCmdletBase cmdlet)
         {
             if (null != cmdlet.InputObject && cmdlet.InputObject is Wizard) {
                 

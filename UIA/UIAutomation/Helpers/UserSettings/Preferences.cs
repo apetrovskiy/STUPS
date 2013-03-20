@@ -86,6 +86,10 @@ namespace UIAutomation
             
             // 20130105
             PerformWin32ClickOnFail = true;
+            
+            // 20130320
+            // Wizard
+            OnSelectWizardStepDelay = 100;
         }
         
         /// <summary>
@@ -296,6 +300,10 @@ namespace UIAutomation
         
         // 20130105
         public static bool PerformWin32ClickOnFail { get; set; }
+        
+        // 20130320
+        // Wizard
+        public static int OnSelectWizardStepDelay { get; set; }
     }
     
     public static class Mode

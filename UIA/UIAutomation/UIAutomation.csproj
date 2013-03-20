@@ -253,6 +253,7 @@
     <Compile Include="Commands\Wizard\NewUIAWizardCommand.cs" />
     <Compile Include="Commands\Wizard\RemoveUIAWizardStepCommand.cs" />
     <Compile Include="Commands\Wizard\StepUIAWizardCommand.cs" />
+    <Compile Include="Helpers\Inheritance\Wizard\WizardStepCmdletBase.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Wizard\UIAGetWizardCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Wizard\UIAInvokeWizardCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Wizard\UIARemoveWizardStepCommand.cs" />

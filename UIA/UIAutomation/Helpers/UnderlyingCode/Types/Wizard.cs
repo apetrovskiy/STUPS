@@ -118,6 +118,10 @@ namespace UIAutomation
         	        break;
         	    }
         	    
+        	    // 20130320
+			    // sleep interval
+			    System.Threading.Thread.Sleep(Preferences.OnSelectWizardStepDelay);
+        	    
         		cmdletCtrl.SearchCriteria = step.SearchCriteria;
 
 	        	ArrayList controlsList = null;

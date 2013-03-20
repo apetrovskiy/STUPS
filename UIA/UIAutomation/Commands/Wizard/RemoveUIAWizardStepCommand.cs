@@ -18,7 +18,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsCommon.Remove, "UIAWizardStep")]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class RemoveUIAWizardStepCommand : WizardConstructionCmdletBase
+    public class RemoveUIAWizardStepCommand : WizardStepCmdletBase //WizardConstructionCmdletBase
     //internal class RemoveUIAWizardStepCommand : WizardCmdletBase
     {
         public RemoveUIAWizardStepCommand()

@@ -607,6 +607,9 @@
     <Compile Include="..\UIAutomation\Helpers\Inheritance\Wizard\WizardRunCmdletBase.cs">
       <Link>Helpers\Inheritance\Wizard\WizardRunCmdletBase.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Inheritance\Wizard\WizardStepCmdletBase.cs">
+      <Link>Helpers\Inheritance\Wizard\WizardStepCmdletBase.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Commands\Container\UIANewContainerCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\Container\UIANewContainerCommand.cs</Link>
     </Compile>

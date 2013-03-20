@@ -992,17 +992,19 @@ namespace UIAutomation
             bool result = false;
             
             try {
-            runTwoScriptBlockCollections(
-                null,
-                // 20130319
-                //wizard.DefaultStepGetWindowAction,
-                wizard.GetWindowAction,
-                // 20130318
-                //cmdlet);
-                cmdlet,
-                parameters);
-                
-                result = true;
+                runTwoScriptBlockCollections(
+                    null,
+                    // 20130319
+                    //wizard.DefaultStepGetWindowAction,
+                    wizard.GetWindowAction,
+                    // 20130318
+                    //cmdlet);
+                    cmdlet,
+                    parameters);
+                    
+                if (null != CurrentData.CurrentWindow) {
+                    result = true;
+                }
             }
             catch {}
             

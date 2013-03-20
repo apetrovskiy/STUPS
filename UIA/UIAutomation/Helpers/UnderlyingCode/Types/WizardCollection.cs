@@ -32,6 +32,15 @@ namespace UIAutomation
             Wizards = new List<Wizard>();
         }
         
+        public static void RemoveWizard(string wizardName)
+        {
+            Wizard wizard = Wizards.Find(x => x.Name == wizardName);
+            
+            if (null != wizard) {
+                Wizards.Remove(wizard);
+            }
+        }
+        
         public static Wizard GetWizard(string name)
         {
             Wizard wizard = null;

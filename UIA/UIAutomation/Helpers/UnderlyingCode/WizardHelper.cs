@@ -131,45 +131,52 @@ namespace UIAutomation
                                     true);
                             }
 
-                            switch (dict["ACTION"].ToString().ToUpper()) {
-                                case "FORWARD":
-                                    step.ToDo = WizardStepActions.Forward;
-                                    break;
-                                case "BACKWARD":
-                                    step.ToDo = WizardStepActions.Backward;
-                                    break;
-                                case "CANCEL":
-                                    step.ToDo = WizardStepActions.Cancel;
-                                    break;
-                                case "STOP":
-                                    step.ToDo = WizardStepActions.Stop;
-                                    break;
-                                default:
-                                    // nothing to do
-                                	break;
-                            }
+                            try {
                             
-                            var parameters =
-                                (Hashtable)dict["PARAMETERS"];
-                            
-                            if (null != parameters) {
-                                
-                                switch (parameters["ACTION"].ToString().ToUpper()) {
+                                switch (dict["ACTION"].ToString().ToUpper()) {
                                     case "FORWARD":
-                                        step.StepForwardActionParameters = (object[])parameters["LIST"];
+                                        step.ToDo = WizardStepActions.Forward;
                                         break;
                                     case "BACKWARD":
-                                        step.StepBackwardActionParameters = (object[])parameters["LIST"];
+                                        step.ToDo = WizardStepActions.Backward;
                                         break;
                                     case "CANCEL":
-                                        step.StepCancelActionParameters = (object[])parameters["LIST"];
+                                        step.ToDo = WizardStepActions.Cancel;
+                                        break;
+                                    case "STOP":
+                                        step.ToDo = WizardStepActions.Stop;
                                         break;
                                     default:
                                         // nothing to do
                                     	break;
                                 }
-                                
                             }
+                            catch {}
+                            
+                            try {
+                                var parameters =
+                                    (Hashtable)dict["PARAMETERS"];
+                                
+                                if (null != parameters) {
+                                    
+                                    switch (parameters["ACTION"].ToString().ToUpper()) {
+                                        case "FORWARD":
+                                            step.StepForwardActionParameters = (object[])parameters["LIST"];
+                                            break;
+                                        case "BACKWARD":
+                                            step.StepBackwardActionParameters = (object[])parameters["LIST"];
+                                            break;
+                                        case "CANCEL":
+                                            step.StepCancelActionParameters = (object[])parameters["LIST"];
+                                            break;
+                                        default:
+                                            // nothing to do
+                                        	break;
+                                    }
+                                    
+                                }
+                            }
+                            catch {}
                             
                         }
                         catch (Exception eSwitch) {

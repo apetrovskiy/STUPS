@@ -133,18 +133,44 @@ namespace UIAutomation
 
                             switch (dict["ACTION"].ToString().ToUpper()) {
                                 case "FORWARD":
-                                    step.StepForwardActionParameters = (object[])dict["PARAMETERS"];
+                                    step.ToDo = WizardStepActions.Forward;
                                     break;
                                 case "BACKWARD":
-                                    step.StepBackwardActionParameters = (object[])dict["PARAMETERS"];
+                                    step.ToDo = WizardStepActions.Backward;
                                     break;
                                 case "CANCEL":
-                                    step.StepCancelActionParameters = (object[])dict["PARAMETERS"];
+                                    step.ToDo = WizardStepActions.Cancel;
+                                    break;
+                                case "STOP":
+                                    step.ToDo = WizardStepActions.Stop;
                                     break;
                                 default:
                                     // nothing to do
                                 	break;
                             }
+                            
+                            var parameters =
+                                (Hashtable)dict["PARAMETERS"];
+                            
+                            if (null != parameters) {
+                                
+                                switch (parameters["ACTION"].ToString().ToUpper()) {
+                                    case "FORWARD":
+                                        step.StepForwardActionParameters = (object[])parameters["LIST"];
+                                        break;
+                                    case "BACKWARD":
+                                        step.StepBackwardActionParameters = (object[])parameters["LIST"];
+                                        break;
+                                    case "CANCEL":
+                                        step.StepCancelActionParameters = (object[])parameters["LIST"];
+                                        break;
+                                    default:
+                                        // nothing to do
+                                    	break;
+                                }
+                                
+                            }
+                            
                         }
                         catch (Exception eSwitch) {
                             
@@ -370,7 +396,9 @@ namespace UIAutomation
                 //RunWizardStepScriptBlocks(this, stepToRun, Forward);
                 // 20130318
                 //cmdlet.RunWizardStepScriptBlocks(cmdlet, stepToRun, cmdlet.Forward);
-                cmdlet.RunWizardStepForwardOrBackwardScriptBlocks(cmdlet, stepToRun, cmdlet.Forward, null);
+                // 20130321
+                //cmdlet.RunWizardStepScriptBlocks(cmdlet, stepToRun, cmdlet.Forward, null);
+                cmdlet.RunWizardStepScriptBlocks(cmdlet, stepToRun, stepToRun.ToDo, null);
 
                 //if (PassThru) {
                 if (cmdlet.PassThru) {

@@ -258,6 +258,7 @@
     <Compile Include="Helpers\UnderlyingCode\Commands\Wizard\UIAInvokeWizardCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Wizard\UIARemoveWizardStepCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Wizard\UIAStepWizardCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Types\Enums.cs" />
     <Compile Include="Helpers\UnderlyingCode\Types\Wizard.cs" />
     <Compile Include="Helpers\UnderlyingCode\Types\WizardCollection.cs" />
     <Compile Include="Helpers\UnderlyingCode\Types\WizardStep.cs" />

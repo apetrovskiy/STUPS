@@ -46,5 +46,8 @@ namespace UIAutomation
         public object[] StepCancelActionParameters { get; set; }
         // 20130319
         //public object[] StepGetWindowActionParameters { get; set; }
+        
+        // 20130321
+        public WizardStepActions ToDo { get; set; }
     }
 }

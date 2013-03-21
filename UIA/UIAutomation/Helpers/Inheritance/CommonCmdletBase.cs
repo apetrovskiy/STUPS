@@ -1011,67 +1011,124 @@ namespace UIAutomation
             return result;
         }
         
-        protected internal void RunWizardStepForwardOrBackwardScriptBlocks(
+        protected internal void RunWizardStepScriptBlocks(
             WizardCmdletBase cmdlet,
             WizardStep wizardStep,
             // 20130318
             //bool forward)
-            bool forward,
+            // 20130321
+            //bool forward,
+            WizardStepActions whatToRun,
             object[] parameters)
         {
 
-            if (forward) {
-
-                cmdlet.WriteVerbose(
-                    cmdlet,
-                    "ForwardAction scriptblocks");
-
-                runTwoScriptBlockCollections(
-        			// 20130317
-                    //null,
-                    wizardStep.Parent.DefaultStepForwardAction,
-                    wizardStep.StepForwardAction,
-                    // 20130318
-                    //cmdlet);
-                    cmdlet,
-                    parameters);
-
-            } else {
-
-                cmdlet.WriteVerbose(
-                    cmdlet,
-                    "BackwardAction scriptblocks");
-                
-                runTwoScriptBlockCollections(
-        			// 20130317
-                    //null,
-                    wizardStep.Parent.DefaultStepBackwardAction,
-                    wizardStep.StepBackwardAction,
-                    // 20130318
-                    //cmdlet);
-                    cmdlet,
-                    parameters);
-
+            switch (whatToRun) {
+                case WizardStepActions.NotSet:
+                case WizardStepActions.Forward:
+                    cmdlet.WriteVerbose(
+                        cmdlet,
+                        "ForwardAction scriptblocks");
+    
+                    runTwoScriptBlockCollections(
+                        wizardStep.Parent.DefaultStepForwardAction,
+                        wizardStep.StepForwardAction,
+                        cmdlet,
+                        parameters);
+                    break;
+                case WizardStepActions.Backward:
+                    cmdlet.WriteVerbose(
+                        cmdlet,
+                        "BackwardAction scriptblocks");
+                    
+                    runTwoScriptBlockCollections(
+                        wizardStep.Parent.DefaultStepBackwardAction,
+                        wizardStep.StepBackwardAction,
+                        cmdlet,
+                        parameters);
+                    break;
+                case WizardStepActions.Cancel:
+                    cmdlet.WriteVerbose(
+                        cmdlet,
+                        "CancelAction scriptblocks");
+                    
+                    runTwoScriptBlockCollections(
+                        wizardStep.Parent.DefaultStepCancelAction,
+                        wizardStep.StepCancelAction,
+                        cmdlet,
+                        parameters);
+                    break;
+                case WizardStepActions.Stop:
+                    cmdlet.WriteVerbose(
+                        cmdlet,
+                        "StopAction scriptblocks");
+                    
+                    runTwoScriptBlockCollections(
+                        null,
+                        wizardStep.Parent.StopAction,
+                        cmdlet,
+                        parameters);
+                    break;
+                default:
+                    throw new Exception("Invalid value for WizardStepActions");
             }
+            
+            // 20130321
+#region commented
+//            if (forward) {
+//
+//                cmdlet.WriteVerbose(
+//                    cmdlet,
+//                    "ForwardAction scriptblocks");
+//
+//                runTwoScriptBlockCollections(
+//        			// 20130317
+//                    //null,
+//                    wizardStep.Parent.DefaultStepForwardAction,
+//                    wizardStep.StepForwardAction,
+//                    // 20130318
+//                    //cmdlet);
+//                    cmdlet,
+//                    parameters);
+//
+//            } else {
+//
+//                cmdlet.WriteVerbose(
+//                    cmdlet,
+//                    "BackwardAction scriptblocks");
+//                
+//                runTwoScriptBlockCollections(
+//        			// 20130317
+//                    //null,
+//                    wizardStep.Parent.DefaultStepBackwardAction,
+//                    wizardStep.StepBackwardAction,
+//                    // 20130318
+//                    //cmdlet);
+//                    cmdlet,
+//                    parameters);
+//
+//            }
+#endregion commented
             
             cmdlet.WriteVerbose(
                 cmdlet,
                 "Scriptblocks finished");
         }
         
-        protected internal void RunWizardStepCancelScriptBlocks(
-            WizardCmdletBase cmdlet,
-            WizardStep wizardStep,
-            object[] parameters)
-        {
-
-            runTwoScriptBlockCollections(
-                wizardStep.Parent.DefaultStepCancelAction,
-                wizardStep.StepCancelAction,
-                cmdlet,
-                parameters);
-        }
-        
+        // 20130321
+#region commented
+//        protected internal void RunWizardStepCancelScriptBlocks(
+//            WizardCmdletBase cmdlet,
+//            WizardStep wizardStep,
+//            object[] parameters)
+//        {
+//
+//            runTwoScriptBlockCollections(
+//                wizardStep.Parent.DefaultStepCancelAction,
+//                wizardStep.StepCancelAction,
+//                cmdlet,
+//                parameters);
+//        }
+#endregion commented
         
         // 20120829
         //protected override void SaveEventInput(

@@ -172,7 +172,11 @@ namespace UIAutomation
 
                 cmdlet.RunWizardInAutomaticMode(cmdlet, wzd);
 
-                cmdlet.WriteObject(cmdlet, wzd);
+                if (cmdlet.Quiet) {
+                    cmdlet.WriteObject(cmdlet, true);
+                } else {
+                    cmdlet.WriteObject(cmdlet, wzd);
+                }
             }
         }
         

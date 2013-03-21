@@ -60,6 +60,10 @@ namespace UIAutomation
         // 20130318
         [Parameter(Mandatory = false)]
         public Hashtable[] Parameters { get; set; }
+        
+        // 20130321
+        [Parameter(Mandatory = false)]
+        public SwitchParameter Quiet { get; set; }
         #endregion Parameters
         
         internal List<Dictionary<string, object>> ParametersDictionaries { get; set; }
@@ -141,12 +145,22 @@ namespace UIAutomation
 
     				    if ((nowDate - cmdlet.StartDate).TotalSeconds > (Preferences.Timeout / 1000)) {
                             
-    				        cmdlet.WriteError(
-    				            cmdlet,
-    				            "Timeout expired",
-    				            "TimeoutExpired",
-    				            ErrorCategory.OperationTimeout,
-    				            true);
+    				        if (this.Quiet) {
+    				            
+    				            cmdlet.WriteObject(
+    				                cmdlet,
+    				                false);
+    				            return;
+    				            
+    				        } else {
+    				        
+        				        cmdlet.WriteError(
+        				            cmdlet,
+        				            "Timeout expired",
+        				            "TimeoutExpired",
+        				            ErrorCategory.OperationTimeout,
+        				            true);
+    				        }
                         }
     				    
                     }

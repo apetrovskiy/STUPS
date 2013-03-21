@@ -117,11 +117,11 @@ namespace UIAutomation
                             "'");
                         
     				    // 20130321
-    				    ScriptBlock[] whichToRun = null;
+    				    object[] currentParameters = null;
     				    if (wizard.ForwardDirection) {
-    				        whichToRun = currentStep.StepForwardAction;
+    				        currentParameters = currentStep.StepForwardActionParameters;
     				    } else {
-    				        whichToRun = currentStep.StepBackwardAction;
+    				        currentParameters = currentStep.StepBackwardActionParameters;
     				    }
     				    // if the step has its own direction
     				    switch (currentStep.ToDo) {
@@ -129,16 +129,16 @@ namespace UIAutomation
     				            // nothing to do
     				            break;
     				        case WizardStepActions.Forward:
-    				            whichToRun = currentStep.StepForwardAction;
+    				            currentParameters = currentStep.StepForwardActionParameters;
     				            break;
     				        case WizardStepActions.Backward:
-    				            whichToRun = currentStep.StepBackwardAction;
+    				            currentParameters = currentStep.StepBackwardActionParameters;
     				            break;
     				        case WizardStepActions.Cancel:
-    				            whichToRun = currentStep.StepCancelAction;
+    				            currentParameters = currentStep.StepCancelActionParameters;
     				            break;
     				        case WizardStepActions.Stop:
-    				            whichToRun = currentStep.Parent.StopAction;
+    				        //    currentParameters = currentStep.Parent.StopActionp;
     				            wizard.StopImmediately = true;
     				            break;
     				        default:
@@ -155,7 +155,7 @@ namespace UIAutomation
     					    currentStep.ToDo,
     					    // 20130321
     					    //cmdlet.ForwardDirection ? currentStep.StepForwardActionParameters : currentStep.StepBackwardActionParameters);
-    					    whichToRun);
+    					    currentParameters);
 
     					// 20130319 - need moving to an appropriate place
     					//cmdlet.RunWizardStepCancelScriptBlocks(

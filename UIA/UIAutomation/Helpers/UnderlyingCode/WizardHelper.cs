@@ -151,14 +151,20 @@ namespace UIAutomation
                                     	break;
                                 }
                             }
-                            catch {}
+                            catch (Exception eActionType) {
+                                
+                                cmdlet.WriteVerbose(
+                                    cmdlet,
+                                    "The action parameter: " +
+                                    eActionType.Message);
+                            }
                             
                             try {
-                                var parameters =
+                                Hashtable parameters =
                                     (Hashtable)dict["PARAMETERS"];
                                 
                                 if (null != parameters) {
-                                    
+
                                     switch (parameters["ACTION"].ToString().ToUpper()) {
                                         case "FORWARD":
                                             step.StepForwardActionParameters = (object[])parameters["LIST"];
@@ -174,9 +180,21 @@ namespace UIAutomation
                                         	break;
                                     }
                                     
+                                } else {
+                                    
+                                    cmdlet.WriteVerbose(
+                                        cmdlet,
+                                        "Parameters: " +
+                                        "parameters hashtable is null.");
                                 }
                             }
-                            catch {}
+                            catch (Exception eParameters) {
+                                
+                                cmdlet.WriteVerbose(
+                                    cmdlet,
+                                    "Parameters: " +
+                                    eParameters.Message);
+                            }
                             
                         }
                         catch (Exception eSwitch) {

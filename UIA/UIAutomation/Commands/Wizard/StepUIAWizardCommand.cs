@@ -18,6 +18,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsCommon.Step, "UIAWizard")]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    [Obsolete("This cmdlet is now obsolete. Wizard now support only automatic mode.")]
     public class StepUIAWizardCommand : WizardRunCmdletBase
     //internal class StepUIAWizardCommand : WizardCmdletBase
     {

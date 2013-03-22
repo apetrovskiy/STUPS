@@ -11,6 +11,7 @@ namespace TMX
 {
     using System;
     using System.Management.Automation;
+    using TMX.Commands;
     
     /// <summary>
     /// Description of TMXGetTestScenarioStatusCommand.
@@ -23,17 +24,35 @@ namespace TMX
         
         internal override void Execute()
         {
-            OpenScenarioCmdletBase cmdlet =
-                (OpenScenarioCmdletBase)this.Cmdlet;
+            // 20130322
+            //OpenScenarioCmdletBase cmdlet =
+            //    (OpenScenarioCmdletBase)this.Cmdlet;
+            GetTMXTestScenarioStatusCommand cmdlet =
+                (GetTMXTestScenarioStatusCommand)this.Cmdlet;
+            
             if (null != cmdlet.Name && string.Empty != cmdlet.Name) {
+                
+                // 20130322
                 TMXHelper.GetTestScenarioStatus(
-                    cmdlet);
+                    //cmdlet);
+                    cmdlet,
+                    cmdlet.FilterOutAutomaticResults);
+                
             } else if (null != cmdlet.Id && string.Empty != cmdlet.Id) {
+                
+                // 20130322
                 TMXHelper.GetTestScenarioStatus(
-                    cmdlet);
+                    //cmdlet);
+                    cmdlet,
+                    cmdlet.FilterOutAutomaticResults);
+                
             } else {
+                
+                // 20130322
                 TMXHelper.GetCurrentTestScenarioStatus(
-                    cmdlet);
+                    //cmdlet);
+                    cmdlet,
+                    cmdlet.FilterOutAutomaticResults);
             }
         }
     }

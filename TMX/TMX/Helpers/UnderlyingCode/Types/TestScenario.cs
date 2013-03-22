@@ -33,7 +33,10 @@ namespace TMX
                         null, // MyInvocation
                         null, // Error
                         string.Empty,
-                        true);
+                        // 20130322
+                        //true);
+                        true,
+                        false);
                 } else {
                     TestData.CurrentTestResult = null;
                 }
@@ -81,7 +84,10 @@ namespace TMX
                         null, // MyInvocation
                         null, // Error
                         string.Empty,
-                        true);
+                        // 20130322
+                        //true);
+                        true,
+                        false);
                 } else {
                     TestData.CurrentTestResult = null;
                 }

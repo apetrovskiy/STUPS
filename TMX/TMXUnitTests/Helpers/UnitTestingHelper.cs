@@ -85,9 +85,11 @@ namespace TMXUnitTests
             return (ITestSuite)(object)PSTestLib.UnitTestOutput.LastOutput[0];
         }
         
-        internal static string GetTestSuiteStatus()
+        internal static string GetTestSuiteStatus(bool skipAutomatic)
         {
-            TestData.SetSuiteStatus();
+            // 20130322
+            //TestData.SetSuiteStatus();
+            TestData.SetSuiteStatus(skipAutomatic);
 
             return TestData.CurrentTestSuite.Status;
         }

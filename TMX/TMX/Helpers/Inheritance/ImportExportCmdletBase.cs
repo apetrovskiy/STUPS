@@ -24,6 +24,8 @@ namespace TMX
             this.As = string.Empty;
             this.Name = string.Empty;
             this.Path = string.Empty;
+            // 20130322
+            this.ExcludeAutomatic = false;
         }
         
         #region Parameters
@@ -47,7 +49,9 @@ namespace TMX
                    ParameterSetName = "Common")]
         internal new string Name { get; set; }
         
-
+        // 20130322
+        [Parameter(Mandatory = false)]
+        public SwitchParameter ExcludeAutomatic { get; set; }
         #endregion Parameters
         
         private const string styleExpand = 
@@ -291,7 +295,10 @@ namespace TMX
         
         protected internal void ExportToHTML(
             string path,
-            bool fullReport)
+            // 20130322
+            //bool fullReport)
+            bool fullReport,
+            bool skipAutomatic)
         {
             WriteVerbose(this, "exporting test suites into HTML");
             
@@ -330,7 +337,9 @@ namespace TMX
                 resultHTML +=
                     //liOpen +
                     //pgfSuite + 
-                    getStatisticsStringSuite(ts); // +
+                    // 20130322
+                    //getStatisticsStringSuite(ts); // +
+                    getStatisticsStringSuite(ts, skipAutomatic);
                     //pgfClose;
 
                 globalLinkId++;
@@ -379,7 +388,7 @@ namespace TMX
                     
                     // statistics
                     resultHTML +=
-                        getStatisticsStringScenario(tsc);
+                        getStatisticsStringScenario(tsc, skipAutomatic);
                     
                     globalLinkId++;
                     resultHTML +=
@@ -416,6 +425,12 @@ namespace TMX
                         if (tr.enStatus == TestResultStatuses.KnownIssue) {
                             pgfTestResult = pgfTestResultOpenKnownIssue;
                             styleTestResult = styleTestResultOpenKnownIssue;
+                        }
+                        // 20130322
+                        if (skipAutomatic) {
+                            if (TestResultOrigins.Automatic == tr.Origin) {
+                                continue;
+                            }
                         }
                         resultHTML +=
                             newLineCS +
@@ -630,9 +645,13 @@ namespace TMX
             }
         }
         
-        protected internal void ExportResultsToHTML(string path)
+        // 20130322
+        //protected internal void ExportResultsToHTML(string path)
+        protected internal void ExportResultsToHTML(ImportExportCmdletBase cmdlet, string path)
         {
-            ExportToHTML(path, true);
+            // 20130322
+            //ExportToHTML(path, true);
+            ExportToHTML(path, true, cmdlet.ExcludeAutomatic);
         }
         
         protected internal void ExportResultsToCSV(string path)
@@ -650,9 +669,11 @@ namespace TMX
             this.notImplementedCase();
         }
         
-        protected internal void ExportSummaryToHTML(string path)
+        protected internal void ExportSummaryToHTML(ImportExportCmdletBase cmdlet, string path)
         {
-            ExportToHTML(path, false);
+            // 20130322
+            //ExportToHTML(path, false);
+            ExportToHTML(path, false, cmdlet.ExcludeAutomatic);
         }
         
         protected internal void ExportSummaryToCSV(string path)
@@ -776,10 +797,12 @@ namespace TMX
             return result;
         }
         
-        private string getStatisticsStringScenario(TestScenario scenario)
+        private string getStatisticsStringScenario(TestScenario scenario, bool skipAutomatic)
         {
             string result = string.Empty;
-            TestData.RefreshScenarioStatistics(scenario);
+            // 20130322
+            //TestData.RefreshScenarioStatistics(scenario);
+            TestData.RefreshScenarioStatistics(scenario, skipAutomatic);
             result += @"<div id=""scenariostat"">";
             
             // test results
@@ -797,10 +820,10 @@ namespace TMX
             return result;
         }
         
-        private string getStatisticsStringSuite(TestSuite suite)
+        private string getStatisticsStringSuite(TestSuite suite, bool skipAutomatic)
         {
             string result = string.Empty;
-            TestData.RefreshSuiteStatistics(suite);
+            TestData.RefreshSuiteStatistics(suite, skipAutomatic);
             result += @"<div id=""suitestat"">";
             
             int scPassed = 0;

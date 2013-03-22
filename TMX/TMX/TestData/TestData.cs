@@ -250,7 +250,10 @@ namespace TMX
                                            InvocationInfo myInvocation,
                                            ErrorRecord error,
                                            string testResultDescription,
-                                           bool generated)
+                                           // 20130322
+                                           //bool generated)
+                                           bool generated,
+                                           bool skipAutomatic)
         {
             
             TestData.InitCurrentTestScenario();
@@ -277,6 +280,14 @@ namespace TMX
             } else {
                 
                 currentTestResult.Name = "generated test result name";
+            }
+            
+            // 20130322
+            // setting test result's origin
+            if (generated) {
+                currentTestResult.SetOrigin(TestResultOrigins.Automatic);
+            } else {
+                currentTestResult.SetOrigin(TestResultOrigins.Logical);
             }
 
             if (previousTestResultId != null &&
@@ -369,9 +380,13 @@ namespace TMX
                       
             var sourceTestResult = TestData.CurrentTestResult;
 
-            SetScenarioStatus();
+            // 20130322
+            //SetScenarioStatus();
+            SetScenarioStatus(skipAutomatic);
 
-            SetSuiteStatus();
+            // 20130322
+            //SetSuiteStatus();
+            SetSuiteStatus(skipAutomatic);
 
             if (generateNextResult) {
 
@@ -485,7 +500,9 @@ namespace TMX
             }
         }
         
-        internal static TestStat RefreshScenarioStatistics(TestScenario scenario)
+        // 20130322
+        //internal static TestStat RefreshScenarioStatistics(TestScenario scenario)
+        internal static TestStat RefreshScenarioStatistics(TestScenario scenario, bool skipAutomatic)
         {
             TestStat ts = new TestStat();
 
@@ -493,6 +510,14 @@ namespace TMX
                 
                 ts.All = scenario.TestResults.Count;
                 foreach (TestResult tr in scenario.TestResults) {
+                    
+                    // 20130322
+                    if (skipAutomatic) {
+                        if (TestResultOrigins.Automatic == tr.Origin) {
+                            continue;
+                        }
+                    }
+                    
                     if (tr.enStatus == TestResultStatuses.Passed ||
                         tr.enStatus == TestResultStatuses.KnownIssue) {
                         ts.Passed++;
@@ -514,11 +539,14 @@ namespace TMX
             return ts;
         }
         
-        internal static TestStat RefreshSuiteStatistics(TestSuite suite)
+        internal static TestStat RefreshSuiteStatistics(TestSuite suite, bool skipAutomatic)
         {
             TestStat ts = new TestStat();
             foreach (TestScenario tsc in suite.TestScenarios) {
-                RefreshScenarioStatistics(tsc);
+                
+                // 20130322
+                //RefreshScenarioStatistics(tsc);
+                RefreshScenarioStatistics(tsc, skipAutomatic);
                 ts.All += tsc.Statistics.All;
                 ts.Passed += tsc.Statistics.Passed;
                 ts.Failed += tsc.Statistics.Failed;
@@ -530,7 +558,7 @@ namespace TMX
             return ts;
         }
         
-        internal static void SetScenarioStatus()
+        internal static void SetScenarioStatus(bool skipAutomatic)
         {
             if (null == TestData.CurrentTestScenario) {
                 TestData.InitCurrentTestScenario();
@@ -569,17 +597,21 @@ namespace TMX
                 }
             
                 // set statistics
-                RefreshScenarioStatistics(TestData.CurrentTestScenario);
+                // 20130322
+                //RefreshScenarioStatistics(TestData.CurrentTestScenario);
+                RefreshScenarioStatistics(TestData.CurrentTestScenario, skipAutomatic);
             }
         }
         
-        internal static void SetSuiteStatus()
+        internal static void SetSuiteStatus(bool skipAutomatic)
         {
             if (null == TestData.CurrentTestSuite) {
                 TestData.InitCurrentTestScenario();
             }
 
-            TestData.SetScenarioStatus();
+            // 20130322
+            //TestData.SetScenarioStatus();
+            TestData.SetScenarioStatus(skipAutomatic);
 
             int counterPassedResults = 0;
             int counterKnownIssueResults = 0;
@@ -616,7 +648,9 @@ namespace TMX
                 }
 
                 // set statistics
-                RefreshSuiteStatistics(TestData.CurrentTestSuite);
+                // 20130322
+                //RefreshSuiteStatistics(TestData.CurrentTestSuite);
+                RefreshSuiteStatistics(TestData.CurrentTestSuite, skipAutomatic);
 
             }
         }

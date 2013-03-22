@@ -259,7 +259,10 @@ namespace UIAutomation
                                                       this.MyInvocation,
                                                       null, // Error
                                                       string.Empty,
-                                                      false);
+                                                      // 20130322
+                                                      //false);
+                                                      false,
+                                                      true);
 
                     } else {
 
@@ -279,7 +282,10 @@ namespace UIAutomation
                                                           this.MyInvocation,
                                                           null, // Error
                                                           string.Empty,
-                                                          true);
+                                                          // 20130322
+                                                          //true);
+                                                          true,
+                                                          false);
                         }
                     }
                 }
@@ -698,7 +704,10 @@ namespace UIAutomation
                                                       this.MyInvocation,
                                                       errorRecord,
                                                       string.Empty,
-                                                      true);
+                                                      // 20130322
+                                                      //true);
+                                                      true,
+                                                      false);
                         //((HasScriptBlockCmdletBase)cmdlet).TestLog);
 
                     } else {
@@ -726,7 +735,10 @@ namespace UIAutomation
                                                           //                                                              TMX.TMXHelper.GetPipelinePosition(this.MyInvocation),
                                                           //                                                              iInfo,
                                                           string.Empty,
-                                                          true);
+                                                          // 20130322
+                                                          //true);
+                                                          true,
+                                                          false);
                         }
                     }
                 }
@@ -1023,7 +1035,6 @@ namespace UIAutomation
         {
 
             switch (whatToRun) {
-                case WizardStepActions.NotSet:
                 case WizardStepActions.Forward:
                     cmdlet.WriteVerbose(
                         cmdlet,

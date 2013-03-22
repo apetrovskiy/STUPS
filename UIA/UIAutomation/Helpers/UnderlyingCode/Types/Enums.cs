@@ -9,7 +9,7 @@
 
 public enum WizardStepActions
 {
-    NotSet,
+    //NotSet,
     Forward,
     Backward,
     Cancel,

@@ -104,4 +104,10 @@ namespace TMX
         /// </summary>
         KnownIssue = 4
     }
+    
+    public enum TestResultOrigins
+    {
+        Automatic,
+        Logical
+    }
 }

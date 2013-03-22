@@ -43,10 +43,22 @@ namespace UIAutomation.Commands
 
                 foreach (Hashtable parametersTable in this.Parameters) {
 
-                    Dictionary<string, object> dict =
+                    Dictionary<string, object> dictParameters =
                         this.ConvertHashtableToDictionary(parametersTable);
 
-                    this.ParametersDictionaries.Add(dict);
+                    this.ParametersDictionaries.Add(dictParameters);
+                }
+            }
+            
+            // 20130322
+            if (null != this.Directions && 0 < this.Directions.Length) {
+                
+                foreach (Hashtable directionsTable in this.Directions) {
+                    
+                    Dictionary<string, object> dictDirections =
+                        this.ConvertHashtableToDictionary(directionsTable);
+                    
+                    this.DirectionsDictionaries.Add(dictDirections);
                 }
             }
 

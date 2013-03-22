@@ -114,5 +114,11 @@ namespace TMX
         {
             this.Screenshot = path;
         }
+        
+        public TestResultOrigins Origin { get; internal set; }
+        public void SetOrigin(TestResultOrigins origin)
+        {
+            this.Origin = origin;
+        }
     }
 }

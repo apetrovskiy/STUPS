@@ -11,6 +11,7 @@ namespace TMX
 {
     using System;
     using System.Management.Automation;
+    using TMX.Commands;
     
     /// <summary>
     /// Description of TMXGetTestSuiteStatusCommand.
@@ -23,19 +24,40 @@ namespace TMX
         
         internal override void Execute()
         {
-            OpenSuiteCmdletBase cmdlet =
-                (OpenSuiteCmdletBase)this.Cmdlet;
+            // 20130322
+            //OpenSuiteCmdletBase cmdlet =
+            //    (OpenSuiteCmdletBase)this.Cmdlet;
+            GetTMXTestSuiteStatusCommand cmdlet =
+                (GetTMXTestSuiteStatusCommand)this.Cmdlet;
+            
             if (null != cmdlet.Name && string.Empty != cmdlet.Name) {
+                
+                // 20130322
                 TMXHelper.GetTestSuiteStatusByName(
                     cmdlet,
-                    cmdlet.Name);
+                    // 20130322
+                    //cmdlet.Name);
+                    cmdlet.Name,
+                    cmdlet.FilterOutAutomaticResults);
+                
             } else if (null != cmdlet.Id && string.Empty != cmdlet.Id) {
+                
+                // 20130322
                 TMXHelper.GetTestSuiteStatusById(
                     cmdlet,
-                    cmdlet.Id);
+                    // 20130322
+                    //cmdlet.Id);
+                    cmdlet.Id,
+                    cmdlet.FilterOutAutomaticResults);
+                
             } else {
+                
+                // 20130322
                 TMXHelper.GetCurrentTestSuiteStatus(
-                    cmdlet);
+                    // 20130322
+                    //cmdlet);
+                    cmdlet,
+                    cmdlet.FilterOutAutomaticResults);
             }
         }
     }

@@ -52,5 +52,8 @@ namespace TMX
         
         string Screenshot { get; }
         void SetScreenshot(string path);
+        
+        TestResultOrigins Origin { get; }
+        void SetOrigin(TestResultOrigins origin);
     }
 }

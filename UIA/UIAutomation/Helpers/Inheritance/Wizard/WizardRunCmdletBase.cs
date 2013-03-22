@@ -23,11 +23,17 @@ namespace UIAutomation
         public WizardRunCmdletBase()
         {
             Timeout = Preferences.Timeout;
-        	this.Automatic = false;
-        	this.ForwardDirection = true;
+            // 20130322
+        	//this.Automatic = false;
+        	// 20130322
+        	//this.ForwardDirection = true;
         	
         	// 20130318
         	this.ParametersDictionaries =
+        	    new List<Dictionary<string, object>>();
+        	
+        	// 20130322
+        	this.DirectionsDictionaries =
         	    new List<Dictionary<string, object>>();
         }
         
@@ -51,11 +57,17 @@ namespace UIAutomation
         //internal new Wizard InputObject { get; set; }
         public new Wizard InputObject { get; set; }
         
-        [Parameter(Mandatory = false)]
-        public SwitchParameter Automatic { get; set; }
+        // 20130322
+        //[Parameter(Mandatory = false)]
+        //public SwitchParameter Automatic { get; set; }
         
+        // 20130322
+        //[Parameter(Mandatory = false)]
+        //public SwitchParameter ForwardDirection { get; set; }
+        
+        // 20130322
         [Parameter(Mandatory = false)]
-        public SwitchParameter ForwardDirection { get; set; }
+        public Hashtable[] Directions { get; set; }
         
         // 20130318
         [Parameter(Mandatory = false)]
@@ -67,6 +79,8 @@ namespace UIAutomation
         #endregion Parameters
         
         internal List<Dictionary<string, object>> ParametersDictionaries { get; set; }
+        // 20130322
+        internal List<Dictionary<string, object>> DirectionsDictionaries { get; set; }
         
 		protected internal void RunWizardInAutomaticMode(WizardRunCmdletBase cmdlet, Wizard wizard)
 		{
@@ -116,18 +130,17 @@ namespace UIAutomation
                             currentStep.Name +
                             "'");
                         
-    				    // 20130321
+    				    // 20130322
+    				    // // 20130321
     				    object[] currentParameters = null;
-    				    if (wizard.ForwardDirection) {
-    				        currentParameters = currentStep.StepForwardActionParameters;
-    				    } else {
-    				        currentParameters = currentStep.StepBackwardActionParameters;
-    				    }
+    				    //if (wizard.ForwardDirection) {
+    				    //    currentParameters = currentStep.StepForwardActionParameters;
+    				    //} else {
+    				    //    currentParameters = currentStep.StepBackwardActionParameters;
+    				    //}
+    				    
     				    // if the step has its own direction
     				    switch (currentStep.ToDo) {
-    				        case WizardStepActions.NotSet:
-    				            // nothing to do
-    				            break;
     				        case WizardStepActions.Forward:
     				            currentParameters = currentStep.StepForwardActionParameters;
     				            break;
@@ -138,11 +151,13 @@ namespace UIAutomation
     				            currentParameters = currentStep.StepCancelActionParameters;
     				            break;
     				        case WizardStepActions.Stop:
-    				        //    currentParameters = currentStep.Parent.StopActionp;
+    				        //    currentParameters = currentStep.Parent.StopActionp; // ??
     				            wizard.StopImmediately = true;
     				            break;
     				        default:
-    				            throw new Exception("Invalid value for WizardStepActions");
+    				            //throw new Exception("Invalid value for WizardStepActions");
+    				            currentParameters = currentStep.StepForwardActionParameters;
+    				            break;
     				    }
     				    
     				    // 20130318

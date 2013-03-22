@@ -128,7 +128,10 @@ namespace TMX
                 cmdlet.MyInvocation,
                 null, // Error
                 string.Empty,
-                true);
+                // 20130322
+                //true);
+                true,
+                false);
             }
             
             // 20130301
@@ -221,7 +224,10 @@ namespace TMX
             InvocationInfo myInvocation,
             ErrorRecord error,
             string description,
-            bool generated)
+            // 20130322
+            //bool generated)
+            bool generated,
+            bool skipAutomatic)
         {
             // 20121224
             //bool result = false;
@@ -239,7 +245,10 @@ namespace TMX
                 myInvocation,
                 error,
                 description,
-                generated);
+                // 20130322
+                //generated);
+                generated,
+                skipAutomatic);
 
             // 20121224
             //return result;
@@ -585,14 +594,18 @@ namespace TMX
             if (cmdlet.OrderByPassRate) {
                 ordering += suite => 
                     {
-                        TMX.TestData.RefreshSuiteStatistics(suite);
+                        // 20130322
+                        //TMX.TestData.RefreshSuiteStatistics(suite);
+                        TMX.TestData.RefreshSuiteStatistics(suite, cmdlet.FilterOutAutomaticResults);
                         return (suite.Statistics.Passed / suite.Statistics.All);
                     };
             } 
             if (cmdlet.OrderByFailRate) {
                 ordering += suite => 
                     {
-                        TMX.TestData.RefreshSuiteStatistics(suite);
+                        // 20130322
+                        //TMX.TestData.RefreshSuiteStatistics(suite);
+                        TMX.TestData.RefreshSuiteStatistics(suite, cmdlet.FilterOutAutomaticResults);
                         return (suite.Statistics.Failed / suite.Statistics.All);
                     };
             } 
@@ -784,6 +797,10 @@ namespace TMX
                 cmdlet.FilterAll = false;
             } else if (cmdlet.FilterPassedWithBadSmell) {
                 query = testResult => testResult.enStatus == TestResultStatuses.KnownIssue;
+                cmdlet.FilterAll = false;
+            } // 20130322
+            else if (cmdlet.FilterOutAutomaticResults) {
+                query = testResult => testResult.Origin != TestResultOrigins.Automatic;
                 cmdlet.FilterAll = false;
             }
             if (cmdlet.FilterAll) {
@@ -1044,49 +1061,64 @@ namespace TMX
             }
         }
         
-        public static void GetCurrentTestSuiteStatus(OpenSuiteCmdletBase cmdlet)
+        public static void GetCurrentTestSuiteStatus(OpenSuiteCmdletBase cmdlet, bool skipAutomatic)
         {
             if (null != TestData.CurrentTestSuite) {
-                TestData.RefreshSuiteStatistics(TestData.CurrentTestSuite);
+                
+                // 20130322
+                //TestData.RefreshSuiteStatistics(TestData.CurrentTestSuite);
+                TestData.RefreshSuiteStatistics(TestData.CurrentTestSuite, skipAutomatic);
                 cmdlet.WriteObject(cmdlet, TestData.CurrentTestSuite.Status);
             }
         }
         
-        public static void GetTestSuiteStatusByName(OpenSuiteCmdletBase cmdlet, string name)
+        public static void GetTestSuiteStatusByName(OpenSuiteCmdletBase cmdlet, string name, bool skipAutomatic)
         {
             TMXHelper.OpenTestSuite(
                 name,
                     string.Empty);
             if (null != TestData.CurrentTestSuite) {
-                TestData.RefreshSuiteStatistics(TestData.CurrentTestSuite);
+                
+                // 20130322
+                //TestData.RefreshSuiteStatistics(TestData.CurrentTestSuite);
+                TestData.RefreshSuiteStatistics(TestData.CurrentTestSuite, skipAutomatic);
                 cmdlet.WriteObject(cmdlet, TestData.CurrentTestSuite.Status);
             }
         }
         
-        public static void GetTestSuiteStatusById(OpenSuiteCmdletBase cmdlet, string id)
+        public static void GetTestSuiteStatusById(OpenSuiteCmdletBase cmdlet, string id, bool skipAutomatic)
         {
             TMXHelper.OpenTestSuite(
                 string.Empty,
                 id);
             if (null != TestData.CurrentTestSuite) {
-                TestData.RefreshSuiteStatistics(TestData.CurrentTestSuite);
+                
+                // 20130322
+                //TestData.RefreshSuiteStatistics(TestData.CurrentTestSuite);
+                TestData.RefreshSuiteStatistics(TestData.CurrentTestSuite, skipAutomatic);
                 cmdlet.WriteObject(cmdlet, TestData.CurrentTestSuite.Status);
             }
         }
         
-        public static void GetCurrentTestScenarioStatus(OpenScenarioCmdletBase cmdlet)
+        public static void GetCurrentTestScenarioStatus(OpenScenarioCmdletBase cmdlet, bool skipAutomatic)
         {
             if (null != TestData.CurrentTestScenario) {
-                TestData.RefreshScenarioStatistics(TestData.CurrentTestScenario);
+                
+                // 20130322
+                //TestData.RefreshScenarioStatistics(TestData.CurrentTestScenario);
+                TestData.RefreshScenarioStatistics(TestData.CurrentTestScenario, skipAutomatic);
                 cmdlet.WriteObject(cmdlet, TestData.CurrentTestScenario.Status);
             }
         }
         
-        public static void GetTestScenarioStatus(OpenScenarioCmdletBase cmdlet)
+        public static void GetTestScenarioStatus(OpenScenarioCmdletBase cmdlet, bool skipAutomatic)
         {
             TMXHelper.OpenTestScenario(cmdlet);
             if (null != TestData.CurrentTestScenario) {
-                TestData.RefreshScenarioStatistics(TestData.CurrentTestScenario);
+                
+                // 201330322
+                //TestData.RefreshScenarioStatistics(TestData.CurrentTestScenario);
+                TestData.RefreshScenarioStatistics(TestData.CurrentTestScenario, skipAutomatic);
                 cmdlet.WriteObject(cmdlet, TestData.CurrentTestScenario.Status);
             }
         }

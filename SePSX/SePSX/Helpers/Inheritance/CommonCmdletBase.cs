@@ -528,7 +528,10 @@ namespace SePSX
                                                       this.MyInvocation,
                                                       null, // Error
                                                       string.Empty,
-                                                      false);
+                                                      // 20130322
+                                                      //false);
+                                                      false,
+                                                      true);
                     } else {
                         if (Preferences.EveryCmdletAsTestResult) {
                             
@@ -551,7 +554,10 @@ namespace SePSX
                                                           this.MyInvocation,
                                                           null, // Error
                                                           string.Empty,
-                                                          true);
+                                                          // 20130322
+                                                          //true);
+                                                          true,
+                                                          false);
                         }
                     }
                 }
@@ -673,8 +679,11 @@ namespace SePSX
                                                       cmdlet.KnownIssue,
                                                       this.MyInvocation,
                                                       errorRecord,
-                                                      string.Empty, 
-                                                      true);
+                                                      string.Empty,
+                                                      // 20130322
+                                                      //true);
+                                                      true,
+                                                      false);
                                                       //((HasScriptBlockCmdletBase)cmdlet).TestLog);
                                                       
                     } else {
@@ -706,7 +715,10 @@ namespace SePSX
 //                                                              TMX.TMXHelper.GetPipelinePosition(this.MyInvocation),
 //                                                              iInfo,
                                                               string.Empty,
-                                                              true);
+                                                              // 20130322
+                                                              //true);
+                                                              true,
+                                                              false);
                         }
                     }
                 }

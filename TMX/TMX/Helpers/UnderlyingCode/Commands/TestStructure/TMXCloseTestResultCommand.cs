@@ -67,7 +67,10 @@ namespace TMX
                 cmdlet.MyInvocation,
                 null,
                 cmdlet.Description,
-                false);
+                // 20130322
+                //false);
+                false,
+                true);
             
         }
     }

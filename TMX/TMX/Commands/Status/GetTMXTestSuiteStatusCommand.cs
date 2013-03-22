@@ -22,6 +22,12 @@ namespace TMX.Commands
         {
         }
         
+        #region Parameters
+        // 20130322
+        [Parameter(Mandatory = false)]
+        public SwitchParameter FilterOutAutomaticResults { get; set; }
+        #endregion Parameters
+        
         protected override void BeginProcessing()
         {
             TMXGetTestSuiteStatusCommand command =

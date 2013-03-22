@@ -85,6 +85,14 @@ namespace TMX
                    ParameterSetName = "Common")]
         public SwitchParameter FilterPassedWithBadSmell { get; set; }
         
+        // 20130322
+        [Parameter(Mandatory = true,
+                   ParameterSetName = "NoAutomatic",
+                   Position = 0)]
+        [Parameter(Mandatory = false,
+                   ParameterSetName = "Common")]
+        public SwitchParameter FilterOutAutomaticResults { get; set; }
+        
         // Order By parameters
         [Parameter(Mandatory = false,
                    ParameterSetName = "Common")]

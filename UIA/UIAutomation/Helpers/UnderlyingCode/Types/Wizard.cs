@@ -43,10 +43,12 @@ namespace UIAutomation
         // 20130319
         //public ScriptBlock[] DefaultStepGetWindowAction { get; set; }
         public ScriptBlock[] GetWindowAction { get; set; }
-        // 20130317
-        public bool Automatic { get; set; }
-        // 20130317
-        public bool ForwardDirection { get; set; }
+        // 20130322
+        // // 20130317
+        //public bool Automatic { get; set; }
+        // 20130322
+        // // 20130317
+        //public bool ForwardDirection { get; set; }
         // 20130318
         public WizardStep ActiveStep { get; set; }
         // 20130318

@@ -100,54 +100,52 @@ namespace UIAutomation
                 cmdlet.WriteError(cmdlet, "Couldn't get the wizard you asked for", "NoSuchWizard", ErrorCategory.InvalidArgument, true);
             } else {
 
-                wzd.Automatic = cmdlet.Automatic;
-                wzd.ForwardDirection = cmdlet.ForwardDirection;
-
-                // scriptblocks' parameters
-                if (null != cmdlet.ParametersDictionaries && 0 < cmdlet.ParametersDictionaries.Count) {
-
-                    foreach (Dictionary<string, object> dict in cmdlet.ParametersDictionaries) {
-
-                        WizardStep step = null;
-                        string stepName = string.Empty;
+                // 20130322
+                //wzd.Automatic = cmdlet.Automatic;
+                //wzd.ForwardDirection = cmdlet.ForwardDirection;
+                
+                // 20130322
+                if (null != cmdlet.Directions && 0 < cmdlet.DirectionsDictionaries.Count) {
+                    
+                    foreach (Dictionary<string, object> dictDirections in cmdlet.DirectionsDictionaries) {
+                        
+                        WizardStep stepWithDirections = null;
+                        string stepWithDirectionsName = string.Empty;
                         
                         try {
-
-                            stepName =
-                                dict["STEP"].ToString();
                             
-                            step =
-                                wzd.GetStep(stepName);
+                            stepWithDirectionsName =
+                                dictDirections["STEP"].ToString();
                             
-                            if (null == step) {
+                            if (null == stepWithDirections) {
                                 
                                 cmdlet.WriteError(
                                     cmdlet,
                                     "Failed to get a step with name '" +
-                                    stepName +
-                                    ".",
+                                    stepWithDirectionsName +
+                                    " in the Directions hashtable.",
                                     "FailedToGetStep",
                                     ErrorCategory.InvalidArgument,
                                     true);
                             }
-
+                            
                             try {
                             
-                                switch (dict["ACTION"].ToString().ToUpper()) {
+                                switch (dictDirections["ACTION"].ToString().ToUpper()) {
                                     case "FORWARD":
-                                        step.ToDo = WizardStepActions.Forward;
+                                        stepWithDirections.ToDo = WizardStepActions.Forward;
                                         break;
                                     case "BACKWARD":
-                                        step.ToDo = WizardStepActions.Backward;
+                                        stepWithDirections.ToDo = WizardStepActions.Backward;
                                         break;
                                     case "CANCEL":
-                                        step.ToDo = WizardStepActions.Cancel;
+                                        stepWithDirections.ToDo = WizardStepActions.Cancel;
                                         break;
                                     case "STOP":
-                                        step.ToDo = WizardStepActions.Stop;
+                                        stepWithDirections.ToDo = WizardStepActions.Stop;
                                         break;
                                     default:
-                                        // nothing to do
+                                        stepWithDirections.ToDo = WizardStepActions.Forward;
                                     	break;
                                 }
                             }
@@ -159,33 +157,119 @@ namespace UIAutomation
                                     eActionType.Message);
                             }
                             
-                            try {
-                                Hashtable parameters =
-                                    (Hashtable)dict["PARAMETERS"];
-                                
-                                if (null != parameters) {
+                        }
+                        catch {}
+                        
+                        }
+                    
+                }
 
-                                    switch (parameters["ACTION"].ToString().ToUpper()) {
-                                        case "FORWARD":
-                                            step.StepForwardActionParameters = (object[])parameters["LIST"];
-                                            break;
-                                        case "BACKWARD":
-                                            step.StepBackwardActionParameters = (object[])parameters["LIST"];
-                                            break;
-                                        case "CANCEL":
-                                            step.StepCancelActionParameters = (object[])parameters["LIST"];
-                                            break;
-                                        default:
-                                            // nothing to do
-                                        	break;
-                                    }
-                                    
-                                } else {
-                                    
-                                    cmdlet.WriteVerbose(
-                                        cmdlet,
-                                        "Parameters: " +
-                                        "parameters hashtable is null.");
+                // scriptblocks' parameters
+                if (null != cmdlet.ParametersDictionaries && 0 < cmdlet.ParametersDictionaries.Count) {
+
+                    foreach (Dictionary<string, object> dictParameters in cmdlet.ParametersDictionaries) {
+
+                        WizardStep stepWithParameters = null;
+                        string stepWithParametersName = string.Empty;
+                        
+                        try {
+
+                            stepWithParametersName =
+                                dictParameters["STEP"].ToString();
+                            
+                            stepWithParameters =
+                                wzd.GetStep(stepWithParametersName);
+                            
+                            if (null == stepWithParameters) {
+                                
+                                cmdlet.WriteError(
+                                    cmdlet,
+                                    "Failed to get a step with name '" +
+                                    stepWithParametersName +
+                                    " in the Parameters hashtable.",
+                                    "FailedToGetStep",
+                                    ErrorCategory.InvalidArgument,
+                                    true);
+                            }
+
+                            // these were an action in the Parameters hashtable (the outer hashtable):
+                            // @{step="Step05PrinterData";action="forward";parameters=@{action="forward";list=@("printer_2","port_2")}}
+#region commented
+//                            try {
+//                            
+//                                switch (dictParameters["ACTION"].ToString().ToUpper()) {
+//                                    case "FORWARD":
+//                                        stepWithParameters.ToDo = WizardStepActions.Forward;
+//                                        break;
+//                                    case "BACKWARD":
+//                                        stepWithParameters.ToDo = WizardStepActions.Backward;
+//                                        break;
+//                                    case "CANCEL":
+//                                        stepWithParameters.ToDo = WizardStepActions.Cancel;
+//                                        break;
+//                                    case "STOP":
+//                                        stepWithParameters.ToDo = WizardStepActions.Stop;
+//                                        break;
+//                                    default:
+//                                        // nothing to do
+//                                    	break;
+//                                }
+//                            }
+//                            catch (Exception eActionType) {
+//                                
+//                                cmdlet.WriteVerbose(
+//                                    cmdlet,
+//                                    "The action parameter: " +
+//                                    eActionType.Message);
+//                            }
+#endregion commented                           
+                            try {
+                                
+                                // these were a hashtable of parameters in the outerhashtable
+                                // @{step="Step05PrinterData";action="forward";parameters=@{action="forward";list=@("printer_2","port_2")}}
+#region commented
+//                                Hashtable parameters =
+//                                    (Hashtable)dictParameters["PARAMETERS"];
+//                                
+//                                if (null != parameters) {
+//
+//                                    switch (parameters["ACTION"].ToString().ToUpper()) {
+//                                        case "FORWARD":
+//                                            stepWithParameters.StepForwardActionParameters = (object[])parameters["LIST"];
+//                                            break;
+//                                        case "BACKWARD":
+//                                            stepWithParameters.StepBackwardActionParameters = (object[])parameters["LIST"];
+//                                            break;
+//                                        case "CANCEL":
+//                                            stepWithParameters.StepCancelActionParameters = (object[])parameters["LIST"];
+//                                            break;
+//                                        default:
+//                                            // nothing to do
+//                                        	break;
+//                                    }
+//                                    
+//                                } else {
+//                                    
+//                                    cmdlet.WriteVerbose(
+//                                        cmdlet,
+//                                        "Parameters: " +
+//                                        "parameters hashtable is null.");
+//                                }
+#endregion commented
+                                // 20130322
+                                switch (dictParameters["ACTION"].ToString().ToUpper()) {
+                                    case "FORWARD":
+                                        stepWithParameters.StepForwardActionParameters = (object[])dictParameters["PARAMETERS"];
+                                        break;
+                                    case "BACKWARD":
+                                        stepWithParameters.StepBackwardActionParameters = (object[])dictParameters["PARAMETERS"];
+                                        break;
+                                    case "CANCEL":
+                                        stepWithParameters.StepCancelActionParameters = (object[])dictParameters["PARAMETERS"];
+                                        break;
+                                    default:
+                                        
+                                    	break;
                                 }
                             }
                             catch (Exception eParameters) {
@@ -202,7 +286,7 @@ namespace UIAutomation
                             cmdlet.WriteError(
                                 cmdlet,
                                 "Failed to parse parameters for step '" +
-                                stepName +
+                                stepWithParametersName +
                                 "'. " +
                                 eSwitch.Message,
                                 "FailedToParseParameters",

@@ -43,7 +43,9 @@ namespace TMXUnitTests.Commands.Status
             string expectedResult = TMX.TestData.TestStateNotTested;
             Assert.AreEqual(
                 expectedResult,
-                UnitTestingHelper.GetTestSuiteStatus());
+                // 20130322
+                //UnitTestingHelper.GetTestSuiteStatus());
+                UnitTestingHelper.GetTestSuiteStatus(true));
         }
         
         [Test]
@@ -56,7 +58,9 @@ namespace TMXUnitTests.Commands.Status
             UnitTestingHelper.GetNewTestSuite("name", "id", "description");
             Assert.AreEqual(
                 expectedResult,
-                UnitTestingHelper.GetTestSuiteStatus());
+                // 20130322
+                //UnitTestingHelper.GetTestSuiteStatus());
+                UnitTestingHelper.GetTestSuiteStatus(true));
         }
         
         [Test]
@@ -70,7 +74,9 @@ namespace TMXUnitTests.Commands.Status
 
             Assert.AreEqual(
                 expectedResult,
-                UnitTestingHelper.GetTestSuiteStatus());
+                // 20130322
+                //UnitTestingHelper.GetTestSuiteStatus());
+                UnitTestingHelper.GetTestSuiteStatus(true));
         }
         
         [Test]
@@ -82,7 +88,9 @@ namespace TMXUnitTests.Commands.Status
             UnitTestingHelper.CloseTestResult(TestResultStatuses.Failed, false);
             Assert.AreEqual(
                 expectedResult,
-                UnitTestingHelper.GetTestSuiteStatus());
+                // 20130322
+                //UnitTestingHelper.GetTestSuiteStatus());
+                UnitTestingHelper.GetTestSuiteStatus(true));
         }
         
         [Test]
@@ -97,7 +105,9 @@ namespace TMXUnitTests.Commands.Status
             UnitTestingHelper.CloseTestResult(TestResultStatuses.Passed, true);
             Assert.AreEqual(
                 expectedResult,
-                UnitTestingHelper.GetTestSuiteStatus());
+                // 20130322
+                //UnitTestingHelper.GetTestSuiteStatus());
+                UnitTestingHelper.GetTestSuiteStatus(true));
         }
         
         [Test]
@@ -113,7 +123,9 @@ namespace TMXUnitTests.Commands.Status
             UnitTestingHelper.CloseTestResult(TestResultStatuses.Failed, true);
             Assert.AreEqual(
                 expectedResult,
-                UnitTestingHelper.GetTestSuiteStatus());
+                // 20130322
+                //UnitTestingHelper.GetTestSuiteStatus());
+                UnitTestingHelper.GetTestSuiteStatus(true));
         }
     }
 }

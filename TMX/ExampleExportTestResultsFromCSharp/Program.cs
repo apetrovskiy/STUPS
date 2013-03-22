@@ -75,7 +75,10 @@ namespace ExampleExportTestResultsFromCSharp
                             null,
                             null,
                             "description",
-                            false);
+                            // 20130322
+                            //false);
+                            false,
+                            true);
                         
                     }
                 }

@@ -165,6 +165,9 @@
     <Compile Include="..\UIAutomation\Commands\Common\GetUIAFocusCommand.cs">
       <Link>Commands\Common\GetUIAFocusCommand.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Commands\Common\HideUIABannerCommand.cs">
+      <Link>Commands\Common\HideUIABannerCommand.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Commands\Common\InvokeUIAControlClickCommand.cs">
       <Link>Commands\Common\InvokeUIAControlClickCommand.cs</Link>
     </Compile>
@@ -188,6 +191,9 @@
     </Compile>
     <Compile Include="..\UIAutomation\Commands\Common\SetUIAFocusCommand.cs">
       <Link>Commands\Common\SetUIAFocusCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Commands\Common\ShowUIABannerCommand.cs">
+      <Link>Commands\Common\ShowUIABannerCommand.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Commands\Common\ShowUIADesktopCommand.cs">
       <Link>Commands\Common\ShowUIADesktopCommand.cs</Link>

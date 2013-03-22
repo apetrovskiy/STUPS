@@ -158,11 +158,12 @@ namespace UIAutomation
 
                 UIAHelper.ShowBanner(((HasScriptBlockCmdletBase)cmdlet).Banner);
 
-            } else {
-
-                UIAHelper.HideBanner();
-
-            }
+            } 
+            //else {
+            //
+            //    UIAHelper.HideBanner();
+            //
+            //}
             
 //            // 20130322
 //            try {

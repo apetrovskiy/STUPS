@@ -31,6 +31,9 @@ namespace UIAutomation
 //            this.HighlightFirstChild = Preferences.HighlightFirstChild;
             
             this.KnownIssue = false;
+            
+            // 20130322
+            this.Banner = string.Empty;
         }
         #endregion Constructor
 
@@ -66,6 +69,9 @@ namespace UIAutomation
         public SwitchParameter HighlightParent { get; set; }
 //        [Parameter(Mandatory = false)]
 //        public SwitchParameter HighlightFirstChild { get; set; }
+        // 20130322
+        [Parameter(Mandatory = false)]
+        public string Banner { get; set; }
         #endregion Parameters
         
         protected internal AutomationElement ElementToSubscribe;

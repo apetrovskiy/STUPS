@@ -123,7 +123,7 @@ namespace UIAutomation
                                     cmdlet,
                                     "Failed to get a step with name '" +
                                     stepWithDirectionsName +
-                                    " in the Directions hashtable.",
+                                    "' in the Directions hashtable.",
                                     "FailedToGetStep",
                                     ErrorCategory.InvalidArgument,
                                     true);
@@ -186,7 +186,7 @@ namespace UIAutomation
                                     cmdlet,
                                     "Failed to get a step with name '" +
                                     stepWithParametersName +
-                                    " in the Parameters hashtable.",
+                                    "' in the Parameters hashtable.",
                                     "FailedToGetStep",
                                     ErrorCategory.InvalidArgument,
                                     true);

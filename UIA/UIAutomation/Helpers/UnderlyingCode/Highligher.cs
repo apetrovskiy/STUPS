@@ -312,6 +312,102 @@ namespace UIAutomation
         }
     }
     
+    internal class Banner : Form, IDisposable
+    {
+        public Banner(
+            double left, 
+            double top, 
+            double width, 
+            double height,
+            string message)
+        {
+            
+#region commented (from the Side class)
+//            this.TopMost = true;
+//            this.FormBorderStyle = FormBorderStyle.None;
+//            this.Visible = false;
+//            this.Opacity = 0.5;
+//            this.AllowTransparency = true;
+//            this.ControlBox = false;
+//            this.ShowIcon = false;
+//            this.ShowInTaskbar = false;
+//            this.TopLevel = true;
+//            this.UseWaitCursor = false;
+//            this.WindowState = FormWindowState.Normal;
+//            // 20130322
+//            this.Left = (int)left;
+//            this.Top = (int)top;
+//            this.Width = 0;
+//            this.Height = 0;
+//            this.Show();
+//            this.Hide();
+//            this.Left = (int)left;
+//            this.Top = (int)top;
+//            this.Width = (int)width;
+//            this.Height = (int)height;
+//            this.Enabled = false;
+//            this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
+//            this.ShowInTaskbar = false;
+//            this.UseWaitCursor = false;
+//            this.Visible = true;
+//            this.Show();
+#endregion commented (from the Side class)
+
+            if (string.Empty == message || 0 == message.Length) {
+                this.Dispose();
+                return;
+            }
+            
+            this.lblMessage = new System.Windows.Forms.Label();
+            this.SuspendLayout();
+            // 
+            // lblMessage
+            // 
+            this.lblMessage.BackColor = this.BackColor;
+            this.lblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMessage.Location = new System.Drawing.Point(0, 0);
+            this.lblMessage.Name = "lblMessage";
+            //this.lblMessage.Size = new System.Drawing.Size(800, 80);
+            this.lblMessage.Size = new System.Drawing.Size((int)width, (int)height);
+            this.lblMessage.TabIndex = 0;
+            this.lblMessage.Text = message;
+            // 
+            // MainForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            //this.ClientSize = new System.Drawing.Size(471, 35);
+            this.ClientSize = new System.Drawing.Size((int)width, (int)height);
+            this.Controls.Add(this.lblMessage);
+            this.Name = "MainForm";
+            this.Opacity = 0.7D;
+            //this.Opacity = 0.5D;
+            //this.Opacity = 0.3D;
+            this.TopMost = true;
+            this.ControlBox = false;
+            this.FormBorderStyle = FormBorderStyle.None;
+            //this.Left = 100;
+            this.Left = (int)left;
+            //this.Top = 100;
+            this.Top = (int)top;
+            //this.Width = 800;
+            this.Width = (int)width;
+            //this.Height = 80;
+            this.Height = (int)height;
+            this.ResumeLayout(false);
+            
+            this.Show();
+        }
+        
+        public new void Dispose()
+        {
+            this.Close();
+            //GC.SuppressFinalize(this);
+        }
+        
+        private Label lblMessage;
+    }
+    
     internal class Side : Form, IDisposable
     {
         
@@ -353,6 +449,11 @@ namespace UIAutomation
             this.TopLevel = true;
             this.UseWaitCursor = false;
             this.WindowState = FormWindowState.Normal;
+            // 20130322
+            this.Left = (int)left;
+            this.Top = (int)top;
+            this.Width = 0;
+            this.Height = 0;
             this.Show();
             this.Hide();
             this.Left = (int)left;

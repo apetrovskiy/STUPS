@@ -44,6 +44,9 @@ namespace UIAutomation
         private static Highlighter highlighterParent = null;
         //private static Highlighter highlighterFirstChild = null;
         
+        // 20130322
+        private static Banner banner = null;
+        
         private static System.Windows.Automation.AutomationElement element = null;
         
         //internal static CacheRequest CacheRequest = null;
@@ -280,6 +283,30 @@ namespace UIAutomation
         {
             highlighter.Dispose();
             highlighterParent.Dispose();
+        }
+        
+        // 20130322
+        internal static void ShowBanner(string message)
+        {
+            try { if (null != banner) { banner.Dispose(); } } catch {}
+            
+            banner =
+                new Banner(
+                    Preferences.BannerLeft,
+                    Preferences.BannerTop,
+                    Preferences.BannerWidth,
+                    Preferences.BannerHeight,
+                    message);
+        }
+        
+        // 20130322
+        internal static void HideBanner()
+        {
+            try {
+                banner.Hide();
+            }
+            catch {}
+            banner.Dispose();
         }
         
         //        internal static string GetTimedFileName()

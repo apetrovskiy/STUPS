@@ -145,6 +145,15 @@ namespace UIAutomation
         {
             //WriteVerbose("OutputMethod020Highlight UIAutomation");
             
+            // 20130322
+            if (string.Empty != ((HasScriptBlockCmdletBase)cmdlet).Banner) {
+                
+                UIAHelper.ShowBanner(((HasScriptBlockCmdletBase)cmdlet).Banner);
+            } else {
+                
+                UIAHelper.HideBanner();
+            }
+            
             // 20121002
             if (Preferences.Highlight || ((HasScriptBlockCmdletBase)cmdlet).Highlight) {
                 //try{

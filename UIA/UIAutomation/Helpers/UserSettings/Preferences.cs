@@ -90,6 +90,12 @@ namespace UIAutomation
             // 20130320
             // Wizard
             OnSelectWizardStepDelay = 100;
+            
+            // 20130322
+            BannerLeft = 100;
+            BannerTop = 100;
+            BannerWidth = 600;
+            BannerHeight = 80;
         }
         
         /// <summary>
@@ -304,6 +310,12 @@ namespace UIAutomation
         // 20130320
         // Wizard
         public static int OnSelectWizardStepDelay { get; set; }
+        
+        // 20130322
+        public static int BannerLeft { get; set; }
+        public static int BannerTop { get; set; }
+        public static int BannerWidth { get; set; }
+        public static int BannerHeight { get; set; }
     }
     
     public static class Mode

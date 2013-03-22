@@ -100,7 +100,7 @@ publish
 [Bb]in
 [Oo]bj
 sql
-TestResults
+# TestResults
 *.Cache
 ClientBin
 stylecop.*

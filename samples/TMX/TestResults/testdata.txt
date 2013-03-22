@@ -1,0 +1,60 @@
+type,id,name,description
+suite,5,Directory Migration Agent management enhancements,1111
+scenario,1,Install agent
+scenario,2,Change credentials
+scenario,3,Upgrade agents
+scenario,4,Uninstall agents
+suite,6,Create Migration
+scenario,1,Select Migration Template
+scenario,2,Create Directory to Online migration
+scenario,3,Create Directory to Directory migration
+suite,7,Create Collection
+scenario,1,Create Collection
+suite,8,Directory Migration API Agents Managements
+scenario,1,Enumerate agents
+scenario,2,Install agent
+scenario,3,Change credentials
+scenario,4,Upgrade agents
+scenario,5,Uninstall agents
+suite,9,Collection Population
+scenario,1,Add objects by browsing directory tree
+scenario,2,Add objects by querying directory
+scenario,3,Add objects from import file
+scenario,4,Add groups of the selected objects
+scenario,5,Add members of the selected objects
+suite,10,Objects matching preview
+scenario,1,Create Objects Matching Task
+scenario,2,Reviewing Objects Matching Results
+scenario,3,Reviewing Objects Matching Task Failure
+suite,11,Mapping Templates
+scenario,1,Default Mapping Templates
+scenario,2,Change Mapping Template
+suite,12,Objects Migration
+scenario,1,Create Objects Migration Task
+scenario,2,Reviewing Objects Matching Results
+scenario,3,Reviewing Objects Matching Task Failure
+suite,13,Objects Rollback
+scenario,1,Create Rollback Task
+suite,14,Coexistance for AD to O365 migration
+scenario,1,Enable coexistance
+scenario,2,Disable coexistance
+suite,15,Possibility to customise mapping
+scenario,1,Add mapping rule
+scenario,2,Edit mapping rule
+scenario,3,Remove mapping rule
+suite,16,Objects conflicts preview
+scenario,1,Create Conflicts Searching Task
+scenario,2,Reviewing Conflicts Searching Results
+scenario,3,Reviewing Conflicts Searching Task Failure
+suite,17,Directory Migration API
+scenario,1,Manage connections
+scenario,2,Manage migrations
+scenario,3,Manage migration collections
+scenario,4,Manage migration mapping
+scenario,5,Manage migration matching
+scenario,6,Manage collection objects
+scenario,7,Manage collection tasks
+suite,18,Directory Migration Statistics
+scenario,1,Collection statistics
+scenario,2,Migration statistics
+scenario,2,Project statistics

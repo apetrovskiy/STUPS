@@ -1,0 +1,562 @@
+***** TMXTest.Commands.Common.AddTMXTestResultDetailCommandTestFixture.TestPrm_Echo_Complex
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+Add-TMXTestResultDetail -TestResultDetail ("\\d//e::t`'`'a`"i`"l`<`<`>`>") -Echo;[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Details[0].Name;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.AddTMXTestResultDetailCommandTestFixture.TestPrm_Echo_Simple
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+Add-TMXTestResultDetail -TestResultDetail detail -Echo;[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Details[0].Name;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.AddTMXTestResultDetailCommandTestFixture.TestPrm_TestResultDetail_Complex
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+Add-TMXTestResultDetail -TestResultDetail ("\\d//e::t`'`'a`"i`"l`<`<`>`>");[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Details[0].Name;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.AddTMXTestResultDetailCommandTestFixture.TestPrm_TestResultDetail_Simple
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+Add-TMXTestResultDetail -TestResultDetail detail;[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Details[0].Name;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.AddTMXTestScenarioCommandTestFixture.TestPrm_Name_Complex_after_NewSuite
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+(New-TMXTestSuite -Name 'suite%%`1  1' | Add-TMXTestScenario -Name '\ s c 1 \').Name;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.AddTMXTestScenarioCommandTestFixture.TestPrm_Name_Complex_after_OpenSuite
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name suite1; $null = New-TMXTestSuite -Name 'suite%%`2  2'; $null = New-TMXTestSuite -Name suite3; (Open-TMXTestSuite -Name 'suite%%`2  2' | Add-TMXTestScenario -Name '\ s c 1 \').Name;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.AddTMXTestScenarioCommandTestFixture.TestPrm_Name_Description1
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+[void](New-TMXTestSuite -Description "suite description" -Name suite1 -Id 111); [void](Add-TMXTestScenario -Name sc1 -Id 1111 -TestSuiteName suite1 -Description ''); [TMX.TestData]::TestSuites[0].TestScenarios[0].Description;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.AddTMXTestScenarioCommandTestFixture.TestPrm_Name_Description2
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+[void](New-TMXTestSuite -Description "suite description" -Name suite1 -Id 111); [void](Add-TMXTestScenario -Name sc1 -Id 1111 -TestSuiteName suite1 -Description 'test scenario description'); [TMX.TestData]::TestSuites[0].TestScenarios[0].Description;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.AddTMXTestScenarioCommandTestFixture.TestPrm_Name_Description3
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+[void](New-TMXTestSuite -Description "suite description" -Name suite1 -Id 111); [void](Add-TMXTestScenario -Name sc1 -Id 1111 -TestSuiteName suite1 -Description 'test \\scenario `r`ndescription ...'); [TMX.TestData]::TestSuites[0].TestScenarios[0].Description;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.AddTMXTestScenarioCommandTestFixture.TestPrm_Name_Simple_after_NewSuite
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+(New-TMXTestSuite -Name suite1 | Add-TMXTestScenario -Name sc1).Name;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.AddTMXTestScenarioCommandTestFixture.TestPrm_Name_Simple_after_OpenSuite
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name suite1; $null = New-TMXTestSuite -Name suite2; $null = New-TMXTestSuite -Name suite3; (Open-TMXTestSuite -Name suite2 | Add-TMXTestScenario -Name sc1).Name;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.AddTMXTestScenarioCommandTestFixture.TestPrm_Name_TestSuiteId_Complex
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name suite1; $null = New-TMXTestSuite -Name 'suite%%`2  2' -Id '/2\'; $null = New-TMXTestSuite -Name suite3; (Add-TMXTestScenario -Name '\ s c 1 \' -TestSuiteId '/2\').Name;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.AddTMXTestScenarioCommandTestFixture.TestPrm_Name_TestSuiteId_Simple
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name suite1; $null = New-TMXTestSuite -Name suite2 -Id 222; $null = New-TMXTestSuite -Name suite3; (Add-TMXTestScenario -Name sc1 -TestSuiteId 222).Name;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.AddTMXTestScenarioCommandTestFixture.TestPrm_Name_TestSuiteName_Complex
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name suite1; $null = New-TMXTestSuite -Name 'suite%%`2  2'; $null = New-TMXTestSuite -Name suite3; (Add-TMXTestScenario -Name '\ s c 1 \' -TestSuiteName 'suite%%`2  2').Name;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.AddTMXTestScenarioCommandTestFixture.TestPrm_Name_TestSuiteName_Simple
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name suite1; $null = New-TMXTestSuite -Name suite2; $null = New-TMXTestSuite -Name suite3; (Add-TMXTestScenario -Name sc1 -TestSuiteName suite2).Name;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.AddTMXTestScenarioCommandTestFixture.TestPrm_Name_TestSuiteName_TestSuiteId_Complex
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name suite1; $null = New-TMXTestSuite -Name 'suite%%`2  2' -Id '/2\'; $null = New-TMXTestSuite -Name suite3; (Add-TMXTestScenario -Name '\ s c 1 \' -TestSuiteName 'suite%%`2  2' -TestSuiteId '/2\').Name;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.AddTMXTestScenarioCommandTestFixture.TestPrm_Name_TestSuiteName_TestSuiteId_Simple
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name suite1; $null = New-TMXTestSuite -Name suite2 -Id 222; $null = New-TMXTestSuite -Name suite3; (Add-TMXTestScenario -Name sc1 -TestSuiteName suite2 -TestSuiteId 222).Name;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.AddTMXTestScenarioCommandTestFixture.TestProperty_SuiteId
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+(New-TMXTestSuite -Name 'suite1' -Id '111' | Add-TMXTestScenario -Name sc1).SuiteId;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.CloseTMXTestResultCommandTestFixture.TestPrm_Name_Complex
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+Close-TMXTestResult -Name '\\#result1  ;;;';[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.CloseTMXTestResultCommandTestFixture.TestPrm_Name_DescriptionScenario1
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+[void](New-TMXTestSuite -Description "suite description" -Name suite1 -Id 111); [void](Add-TMXTestScenario -Name sc1 -Id 1111 -TestSuiteName suite1 -Description ''); [void](Add-TMXTestResultDetail -TestResultDetail "1"); [void](Add-TMXTestResultDetail -TestResultDetail "2"); [void](Close-TMXTestResult -TestPassed -Name test1); [TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Description;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.CloseTMXTestResultCommandTestFixture.TestPrm_Name_DescriptionScenario2
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+[void](New-TMXTestSuite -Description "suite description" -Name suite1 -Id 111); [void](Add-TMXTestScenario -Name sc1 -Id 1111 -TestSuiteName suite1 -Description 'scenario description'); [void](Add-TMXTestResultDetail -TestResultDetail "1"); [void](Add-TMXTestResultDetail -TestResultDetail "2"); [void](Close-TMXTestResult -TestPassed -Name test1); [TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Description;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.CloseTMXTestResultCommandTestFixture.TestPrm_Name_DescriptionSuite
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+[void](New-TMXTestSuite -Description "suite description" -Name suite1 -Id 111); [void](Add-TMXTestScenario -Name sc1 -Id 1111 -TestSuiteName suite1); [void](Add-TMXTestResultDetail -TestResultDetail "1"); [void](Add-TMXTestResultDetail -TestResultDetail "2"); [void](Close-TMXTestResult -TestPassed -Name test1); [TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Description;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.CloseTMXTestResultCommandTestFixture.TestPrm_Name_DescriptionTestResult1
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+[void](New-TMXTestSuite -Description "suite description" -Name suite1 -Id 111); [void](Add-TMXTestScenario -Name sc1 -Id 1111 -TestSuiteName suite1 -Description 'scenario description'); [void](Add-TMXTestResultDetail -TestResultDetail "1"); [void](Add-TMXTestResultDetail -TestResultDetail "2"); [void](Close-TMXTestResult -TestPassed -Name test1 -Description ''); [TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Description;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.CloseTMXTestResultCommandTestFixture.TestPrm_Name_DescriptionTestResult2
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+[void](New-TMXTestSuite -Description "suite description" -Name suite1 -Id 111); [void](Add-TMXTestScenario -Name sc1 -Id 1111 -TestSuiteName suite1 -Description 'scenario description'); [void](Add-TMXTestResultDetail -TestResultDetail "1"); [void](Add-TMXTestResultDetail -TestResultDetail "2"); [void](Close-TMXTestResult -TestPassed -Name test1 -Description 'test result description'); [TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Description;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.CloseTMXTestResultCommandTestFixture.TestPrm_Name_Simple
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+Close-TMXTestResult -Name result1;[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.CloseTMXTestResultCommandTestFixture.TestPrm_Name_TestFailed1
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+Close-TMXTestResult -Name result1 -TestPassed:$false;[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.CloseTMXTestResultCommandTestFixture.TestPrm_Name_TestFailed2
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+Close-TMXTestResult -Name result1;[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.CloseTMXTestResultCommandTestFixture.TestPrm_Name_TestKnownIssue1
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+Close-TMXTestResult -Name result1 -KnownIssue;[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.CloseTMXTestResultCommandTestFixture.TestPrm_Name_TestKnownIssue1f
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+Close-TMXTestResult -Name result1 -KnownIssue:$false;[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.CloseTMXTestResultCommandTestFixture.TestPrm_Name_TestKnownIssue1t
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+Close-TMXTestResult -Name result1 -KnownIssue:$true;[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.CloseTMXTestResultCommandTestFixture.TestPrm_Name_TestKnownIssue2
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+Close-TMXTestResult -Name result1 -TestPassed:$false -KnownIssue;[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.CloseTMXTestResultCommandTestFixture.TestPrm_Name_TestKnownIssue2f
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+Close-TMXTestResult -Name result1 -TestPassed:$false -KnownIssue:$false;[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.CloseTMXTestResultCommandTestFixture.TestPrm_Name_TestKnownIssue2t
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+Close-TMXTestResult -Name result1 -TestPassed:$false -KnownIssue:$true;[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.CloseTMXTestResultCommandTestFixture.TestPrm_Name_TestKnownIssue3
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+Close-TMXTestResult -Name result1 -TestPassed:$true -KnownIssue;[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.CloseTMXTestResultCommandTestFixture.TestPrm_Name_TestKnownIssue3f
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+Close-TMXTestResult -Name result1 -TestPassed:$true -KnownIssue:$false;[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.CloseTMXTestResultCommandTestFixture.TestPrm_Name_TestKnownIssue3t
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+Close-TMXTestResult -Name result1 -TestPassed:$true -KnownIssue:$true;[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.CloseTMXTestResultCommandTestFixture.TestPrm_Name_TestNotTested
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+Add-TMXTestResultDetail -TestResultDetail result1;[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.CloseTMXTestResultCommandTestFixture.TestPrm_Name_TestPassed1
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+Close-TMXTestResult -Name result1 -TestPassed;[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.CloseTMXTestResultCommandTestFixture.TestPrm_Name_TestPassed2
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+Close-TMXTestResult -Name result1 -TestPassed:$true;[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.CloseTMXTestResultCommandTestFixture.TestProperty_ScenarioId
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+[void](New-TMXTestSuite -Description "suite description" -Name suite1 -Id 111); [void](Add-TMXTestScenario -Name sc1 -Id 1111 -TestSuiteName suite1); [void](Add-TMXTestResultDetail -TestResultDetail "1"); [void](Add-TMXTestResultDetail -TestResultDetail "2"); [void](Close-TMXTestResult -TestPassed -Name test1); [TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].ScenarioId;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.CloseTMXTestResultCommandTestFixture.TestProperty_SuiteId
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+[void](New-TMXTestSuite -Description "suite description" -Name suite1 -Id 111); [void](Add-TMXTestScenario -Name sc1 -Id 111 -TestSuiteName suite1); [void](Add-TMXTestResultDetail -TestResultDetail "1"); [void](Add-TMXTestResultDetail -TestResultDetail "2"); [void](Close-TMXTestResult -TestPassed -Name test1); [TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].SuiteId;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.NewTMXTestSuiteCommandTestFixture.TestPrm_Id_Alphanumeric
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name abc1 -Id 'a\ 1'; $null = New-TMXTestSuite -Name abc2 -Id 'a\ 2'; $null = New-TMXTestSuite -Name suite3 -Id 'a\ 3'; $null = New-TMXTestSuite -Name abc4 -Id 'a\ 4'; $null = New-TMXTestSuite -Name abc5 -Id 'a\ 5'; (Open-TMXTestSuite -Id 'a\ 3').Id;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.NewTMXTestSuiteCommandTestFixture.TestPrm_Id_Numeric
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name abc1 -Id 1; $null = New-TMXTestSuite -Name abc2 -Id 2; $null = New-TMXTestSuite -Name suite3 -Id 3; $null = New-TMXTestSuite -Name abc4 -Id 4; $null = New-TMXTestSuite -Name abc5 -Id 5; (Open-TMXTestSuite -Id 3).Id;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.NewTMXTestSuiteCommandTestFixture.TestPrm_Name_Complex
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+(New-TMXTestSuite -Name 'suite%%`1  1').Name;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.NewTMXTestSuiteCommandTestFixture.TestPrm_Name_Complex_In_Series
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name 'suite%%`1  1'; $null = New-TMXTestSuite -Name 'suite%%`2  2'; $null = New-TMXTestSuite -Name 'suite%%`3  3'; $null = New-TMXTestSuite -Name 'suite%%`4  4'; $null = New-TMXTestSuite -Name 'suite%%`5  5'; (Open-TMXTestSuite -Name 'suite%%`3  3').Name;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.NewTMXTestSuiteCommandTestFixture.TestPrm_Name_Id_Alphanumeric
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+(New-TMXTestSuite -Name suite1 -Id 'a\ 3').Name;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+(Open-TMXTestSuite -Name suite1 -Id 'a\ 3').Id;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.NewTMXTestSuiteCommandTestFixture.TestPrm_Name_Id_AndDescription
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+(New-TMXTestSuite -Name suite1 -Id 3 -description descr).Name;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+(Open-TMXTestSuite -Name suite1 -Id 3).Id;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+(Open-TMXTestSuite -Name suite1 -Id 3).Description;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.NewTMXTestSuiteCommandTestFixture.TestPrm_Name_Id_Description_Perverse1
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+(New-TMXTestSuite -Name '  567   ' -Id '   777   ' -description '   888   ').Name;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+(Open-TMXTestSuite -Name '  567   ' -Id '   777   ').Id;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+(Open-TMXTestSuite -Name '  567   ' -Id '   777   ').Description;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.NewTMXTestSuiteCommandTestFixture.TestPrm_Name_Id_Description_Perverse2
+``//\\`"`''#$(1)567
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+(New-TMXTestSuite -Name '``//\\`"`''#$(1)567' -Id '-5.5' -description '$($null)').Name;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+(Open-TMXTestSuite -Name '``//\\`"`''#$(1)567' -Id '-5.5').Id;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+(Open-TMXTestSuite -Name '``//\\`"`''#$(1)567' -Id '-5.5').Description;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.NewTMXTestSuiteCommandTestFixture.TestPrm_Name_Id_Numeric
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+(New-TMXTestSuite -Name suite1 -Id 3).Name;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+(Open-TMXTestSuite -Name suite1 -Id 3).Id;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.NewTMXTestSuiteCommandTestFixture.TestPrm_Name_Simple
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+(New-TMXTestSuite -Name suite1).Name;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.NewTMXTestSuiteCommandTestFixture.TestPrm_Name_Simple_In_Series
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name suite1; $null = New-TMXTestSuite -Name suite2; $null = New-TMXTestSuite -Name suite3; $null = New-TMXTestSuite -Name suite4; $null = New-TMXTestSuite -Name suite5; (Open-TMXTestSuite -Name suite3).Name;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.OpenTMXTestScenarioCommandTestFixture.TestPrm_Name_Complex_from_active_suite
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name 'suite%%`1  1' | Add-TMXTestScenario -Name '\ s c 1 \'; (Open-TMXTestScenario -Name '\ s c 1 \').Name;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.OpenTMXTestScenarioCommandTestFixture.TestPrm_Name_Complex_from_selected_suite
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name suite1; $null = Add-TMXTestScenario -Name '$(`r)'; $null = New-TMXTestSuite -Name 'suite%%`2  2'; $null = Add-TMXTestScenario -Name '\ s c 1 \'; $null = New-TMXTestSuite -Name suite3; $null = Open-TMXTestSuite -Name 'suite%%`2  2'; (Open-TMXTestScenario -Name '\ s c 1 \').Name;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.OpenTMXTestScenarioCommandTestFixture.TestPrm_Name_Complex_selected_from_active_suite
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name 'suite%%`1  1' | Add-TMXTestScenario -Name 'asdfa \sdter//'; $null = Add-TMXTestScenario -Name '\ s c 1 \'; $null = Add-TMXTestScenario -Name '"`bb`"'; (Open-TMXTestScenario -Name '\ s c 1 \').Name;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.OpenTMXTestScenarioCommandTestFixture.TestPrm_Name_Simple_from_active_suite
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name suite1 | Add-TMXTestScenario -Name sc1; (Open-TMXTestScenario -Name sc1).Name;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.OpenTMXTestScenarioCommandTestFixture.TestPrm_Name_Simple_from_selected_suite
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name suite1; $null = Add-TMXTestScenario -Name sc1; $null = New-TMXTestSuite -Name suite2; $null = Add-TMXTestScenario -Name sc1; $null = New-TMXTestSuite -Name suite3; $null = Open-TMXTestSuite -Name suite2; (Open-TMXTestScenario -Name sc1).Name;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.OpenTMXTestScenarioCommandTestFixture.TestPrm_Name_Simple_selected_from_active_suite
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name suite1 | Add-TMXTestScenario -Name sc1; $null = Add-TMXTestScenario -Name sc2; $null = Add-TMXTestScenario -Name sc3; (Open-TMXTestScenario -Name sc1).Name;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.OpenTMXTestSuiteCommandTestFixture.TestPrm_Id_againts_bunch
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name abc1 -Id 'a\ 1'; $null = New-TMXTestSuite -Name abc2 -Id 'a\ 2'; $null = New-TMXTestSuite -Name abc3 -Id 'a\ 3'; $null = New-TMXTestSuite -Name abc4 -Id 'a\ 4'; $null = New-TMXTestSuite -Name abc5 -Id 'a\ 5'; (Open-TMXTestSuite -Id 'a\ 3').Id;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.OpenTMXTestSuiteCommandTestFixture.TestPrm_Name_againts_bunch
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name abc1; $null = New-TMXTestSuite -Name abc2; $null = New-TMXTestSuite -Name abc3; $null = New-TMXTestSuite -Name abc4; $null = New-TMXTestSuite -Name abc5; (Open-TMXTestSuite -Name 'abc3').Name;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.OpenTMXTestSuiteCommandTestFixture.TestPrm_Name_Complex
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name 'suite%%`1  1';(Open-TMXTestSuite -Name 'suite%%`1  1').Name;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.OpenTMXTestSuiteCommandTestFixture.TestPrm_Name_Id_Alphanumeric
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name suite1 -Id 'a\ 3';(Open-TMXTestSuite -Name suite1 -Id 'a\ 3').Name;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+(Open-TMXTestSuite -Name suite1 -Id 'a\ 3').Id;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.OpenTMXTestSuiteCommandTestFixture.TestPrm_Name_Id_Numeric
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name suite1 -Id 3;(Open-TMXTestSuite -Name suite1 -Id 3).Name;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+(Open-TMXTestSuite -Name suite1 -Id 3).Id;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+[TMX.TestData]::TestSuites[0].Name
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Common.OpenTMXTestSuiteCommandTestFixture.TestPrm_Name_Simple
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name suite1;(Open-TMXTestSuite -Name suite1).Name;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestResultCommandTestFixture.TestPrm_FilterDescriptionContains
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name 'suite%%`1  1'; $null = Add-TMXTestScenario -Name 'scenario`r`n%% 1'; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = New-TMXTestSuite -Name 'suite%%`2  2'; $null = Add-TMXTestScenario -Name 'scenario`r`n%% 2'; $null = Close-TMXTestResult -Name 'test result`r`n%% 1' -Description 'abc' -TestPassed; $null = Add-TMXTestScenario -Name 'scenario`r`n%% 3'; $null = Close-TMXTestResult -Name 'test result`r`n%% 2' -Id 01 -TestPassed; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = New-TMXTestSuite -Name 'suite%%`3  3'; $null = New-TMXTestSuite -Name 'suite%%`4  4'; $null = Add-TMXTestScenario -Name 'scenario`r`n%% 4'; $null = Add-TMXTestScenario -Name 'scenario`r`n%% 2'; $null = New-TMXTestSuite -Name 'suite%%`5  5'; $null = Close-TMXTestResult -Name 'test result`r`n%% 3' -Description 'cab' -TestPassed; $null = Close-TMXTestResult -Name 'a' -Id '003' -Description 'ccc' -TestPassed; Search-TMXTestResult -FilterDescriptionContains 'ab' | %{$_.Name;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestResultCommandTestFixture.TestPrm_FilterDescriptionContains_Descending
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name 'suite%%`1  1'; $null = Add-TMXTestScenario -Name 'scenario`r`n%% 1'; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = New-TMXTestSuite -Name 'suite%%`2  2'; $null = Add-TMXTestScenario -Name 'scenario`r`n%% 2'; $null = Close-TMXTestResult -Name 'test result`r`n%% 1' -Description 'abc' -TestPassed; $null = Add-TMXTestScenario -Name 'scenario`r`n%% 3'; $null = Close-TMXTestResult -Name 'test result`r`n%% 2' -Id 01 -TestPassed; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = New-TMXTestSuite -Name 'suite%%`3  3'; $null = New-TMXTestSuite -Name 'suite%%`4  4'; $null = Add-TMXTestScenario -Name 'scenario`r`n%% 4'; $null = Add-TMXTestScenario -Name 'scenario`r`n%% 2'; $null = New-TMXTestSuite -Name 'suite%%`5  5'; $null = Close-TMXTestResult -Name 'test result`r`n%% 3' -Description 'cab' -TestPassed; $null = Close-TMXTestResult -Name 'a' -Id '003' -Description 'ccc' -TestPassed; Search-TMXTestResult -FilterDescriptionContains 'ab' -Descending | %{$_.Name;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestResultCommandTestFixture.TestPrm_FilterIdContains
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name 'suite%%`1  1'; $null = Add-TMXTestScenario -Name 'scenario`r`n%% 1'; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = New-TMXTestSuite -Name 'suite%%`2  2'; $null = Add-TMXTestScenario -Name 'scenario`r`n%% 2'; $null = Close-TMXTestResult -Name 'test result`r`n%% 1' -TestPassed; $null = Add-TMXTestScenario -Name 'scenario`r`n%% 3'; $null = Close-TMXTestResult -Name 'test result`r`n%% 2' -Id 01 -TestPassed; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = New-TMXTestSuite -Name 'suite%%`3  3'; $null = New-TMXTestSuite -Name 'suite%%`4  4'; $null = Add-TMXTestScenario -Name 'scenario`r`n%% 4'; $null = Add-TMXTestScenario -Name 'scenario`r`n%% 2'; $null = New-TMXTestSuite -Name 'suite%%`5  5'; $null = Close-TMXTestResult -Name 'test result`r`n%% 3' -TestPassed; $null = Close-TMXTestResult -Name 'a' -Id '003' -TestPassed; Search-TMXTestResult -FilterIdContains '0' | %{$_.Name;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestResultCommandTestFixture.TestPrm_FilterIdContains_Descending
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name 'suite%%`1  1'; $null = Add-TMXTestScenario -Name 'scenario`r`n%% 1'; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = New-TMXTestSuite -Name 'suite%%`2  2'; $null = Add-TMXTestScenario -Name 'scenario`r`n%% 2'; $null = Close-TMXTestResult -Name 'test result`r`n%% 1' -TestPassed; $null = Add-TMXTestScenario -Name 'scenario`r`n%% 3'; $null = Close-TMXTestResult -Name 'test result`r`n%% 2' -Id 01 -TestPassed; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = New-TMXTestSuite -Name 'suite%%`3  3'; $null = New-TMXTestSuite -Name 'suite%%`4  4'; $null = Add-TMXTestScenario -Name 'scenario`r`n%% 4'; $null = Add-TMXTestScenario -Name 'scenario`r`n%% 2'; $null = New-TMXTestSuite -Name 'suite%%`5  5'; $null = Close-TMXTestResult -Name 'test result`r`n%% 3' -TestPassed; $null = Close-TMXTestResult -Name 'a' -Id '003' -TestPassed; Search-TMXTestResult -FilterIdContains '0' -Descending | %{$_.Name;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestResultCommandTestFixture.TestPrm_FilterNameContains
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name suite1; $null = Add-TMXTestScenario -Name scenario1; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = New-TMXTestSuite -Name suite2; $null = New-TMXTestSuite -Name suite3; $null = Add-TMXTestScenario -Name scenario2; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = Close-TMXTestResult -Name 'tr 1' -KnownIssue; $null = Close-TMXTestResult -Name 'tr 02' -TestPassed; $null = Add-TMXTestScenario -Name scenario3; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = Close-TMXTestResult -Name 'tr 01' -KnownIssue; $null = Close-TMXTestResult -Name 'tr 02' -TestPassed; $null = New-TMXTestSuite -Name suite4; $null = Add-TMXTestScenario -Name scenario4; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = Close-TMXTestResult -Name 'tr 1' -KnownIssue; $null = Close-TMXTestResult -Name 'tr 02' -TestPassed; $null = Add-TMXTestScenario -Name scenario2; $null = Add-TMXTestScenario -Name scenario5; $null = New-TMXTestSuite -Name suite5; $null = Add-TMXTestScenario -Name scenario2; Search-TMXTestResult -FilterNameContains '0' | %{$_.Name;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestResultCommandTestFixture.TestPrm_FilterNameContains_Descending
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name suite1; $null = Add-TMXTestScenario -Name scenario1; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = New-TMXTestSuite -Name suite2; $null = New-TMXTestSuite -Name suite3; $null = Add-TMXTestScenario -Name scenario2; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = Close-TMXTestResult -Name 'tr 1' -KnownIssue; $null = Close-TMXTestResult -Name 'tr 02' -TestPassed; $null = Add-TMXTestScenario -Name scenario3; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = Close-TMXTestResult -Name 'tr 01' -KnownIssue; $null = Close-TMXTestResult -Name 'tr 02' -TestPassed; $null = New-TMXTestSuite -Name suite4; $null = Add-TMXTestScenario -Name scenario4; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = Close-TMXTestResult -Name 'tr 1' -KnownIssue; $null = Close-TMXTestResult -Name 'tr 02' -TestPassed; $null = Add-TMXTestScenario -Name scenario2; $null = Add-TMXTestScenario -Name scenario5; $null = New-TMXTestSuite -Name suite5; $null = Add-TMXTestScenario -Name scenario2; Search-TMXTestResult -FilterNameContains '0' -Descending | %{$_.Name;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestResultCommandTestFixture.TestPrm_Id_Alphanumeric
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name abc1 -Id 'a\ 1'; $null = Add-TMXTestScenario -Name scenario1 -Id 'a\ 1'; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = New-TMXTestSuite -Name abc2 -Id 'a\ 2'; $null = Add-TMXTestScenario -Name scenario2 -Id 'a\ 2'; $null = Close-TMXTestResult -Name 'tr1' -Id 'a\ 1' -TestPassed; $null = Close-TMXTestResult -Name 'tr1' -Id 'a\ 2' -TestPassed; $null = Add-TMXTestScenario -Name scenario3 -Id 'a\ 3'; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = New-TMXTestSuite -Name abc2 -Id 'a\ 3'; $null = New-TMXTestSuite -Name abc4 -Id 'a\ 4'; $null = Add-TMXTestScenario -Name scenario4 -Id 'a\ 4'; $null = Add-TMXTestScenario -Name scenario2 -Id 'a\ 2'; $null = New-TMXTestSuite -Name abc5 -Id 'a\ 5'; $null = Close-TMXTestResult -Name 'tr1' -Id 'a\ 1' -TestPassed; Search-TMXTestResult -OrderById | %{$_.Id;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestResultCommandTestFixture.TestPrm_Id_Numeric
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name abc1 -Id 1; $null = Add-TMXTestScenario -Name scenario1 -Id 1; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = New-TMXTestSuite -Name abc2 -Id 2; $null = Add-TMXTestScenario -Name scenario2 -Id 2; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = Close-TMXTestResult -Name 'tr1' -Id 1 -TestPassed; $null = Add-TMXTestScenario -Name scenario3 -Id 3; $null = Close-TMXTestResult -Name 'tr2' -Id 1 -TestPassed; $null = Close-TMXTestResult -Name 'tr3' -Id 2 -TestPassed; $null = New-TMXTestSuite -Name abc3 -Id 3; $null = New-TMXTestSuite -Name abc4 -Id 4; $null = Add-TMXTestScenario -Name scenario4 -Id 4; $null = Add-TMXTestScenario -Name scenario2 -Id 2; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = New-TMXTestSuite -Name abc5 -Id 5; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = Close-TMXTestResult -Name 'tr4' -Id 100 -TestPassed; Search-TMXTestResult -OrderById | %{$_.Id;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestResultCommandTestFixture.TestPrm_Name_Complex_In_Series
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name 'suite%%`1  1'; $null = Add-TMXTestScenario -Name 'scenario`r`n%% 1'; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = New-TMXTestSuite -Name 'suite%%`2  2'; $null = Add-TMXTestScenario -Name 'scenario`r`n%% 2'; $null = Close-TMXTestResult -Name 'test result`r`n%% 1' -TestPassed; $null = Add-TMXTestScenario -Name 'scenario`r`n%% 3'; $null = Close-TMXTestResult -Name 'test result`r`n%% 2' -TestPassed; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = New-TMXTestSuite -Name 'suite%%`3  3'; $null = New-TMXTestSuite -Name 'suite%%`4  4'; $null = Add-TMXTestScenario -Name 'scenario`r`n%% 4'; $null = Add-TMXTestScenario -Name 'scenario`r`n%% 2'; $null = New-TMXTestSuite -Name 'suite%%`5  5'; $null = Close-TMXTestResult -Name 'test result`r`n%% 3' -TestPassed; Search-TMXTestResult -OrderById | %{$_.Name;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestResultCommandTestFixture.TestPrm_Name_Simple_In_Series
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name suite1; $null = Add-TMXTestScenario -Name scenario1; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = New-TMXTestSuite -Name suite2; $null = New-TMXTestSuite -Name suite3; $null = Add-TMXTestScenario -Name scenario2; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = Close-TMXTestResult -Name 'tr 1' -KnownIssue; $null = Close-TMXTestResult -Name 'tr 2' -TestPassed; $null = Add-TMXTestScenario -Name scenario3; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = Close-TMXTestResult -Name 'tr 1' -KnownIssue; $null = Close-TMXTestResult -Name 'tr 2' -TestPassed; $null = New-TMXTestSuite -Name suite4; $null = Add-TMXTestScenario -Name scenario4; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = Close-TMXTestResult -Name 'tr 1' -KnownIssue; $null = Close-TMXTestResult -Name 'tr 2' -TestPassed; $null = Add-TMXTestScenario -Name scenario2; $null = Add-TMXTestScenario -Name scenario5; $null = New-TMXTestSuite -Name suite5; $null = Add-TMXTestScenario -Name scenario2; Search-TMXTestResult -OrderById | %{$_.Name;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestResultCommandTestFixture.TestPrm_OrderByDateTime_Descending_Numeric
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name abc1 -Id 1; $null = Add-TMXTestScenario -Name scenario1 -Id 1; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; sleep -Milliseconds 300; $null = New-TMXTestSuite -Name abc2 -Id 2; $null = Add-TMXTestScenario -Name scenario2 -Id 2; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; sleep -Milliseconds 500; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = Close-TMXTestResult -Name 'tr1' -Id 1 -TestPassed; $null = Add-TMXTestScenario -Name scenario3 -Id 3; sleep -Milliseconds 100; $null = Close-TMXTestResult -Name 'tr2' -Id 1 -TestPassed; sleep -Milliseconds 50; $null = Close-TMXTestResult -Name 'tr3' -Id 2 -TestPassed; $null = New-TMXTestSuite -Name abc3 -Id 3; sleep -Milliseconds 700; $null = New-TMXTestSuite -Name abc4 -Id 4; $null = Add-TMXTestScenario -Name scenario4 -Id 4; sleep -Milliseconds 1000; $null = Add-TMXTestScenario -Name scenario2 -Id 2; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; sleep -Milliseconds 200; $null = New-TMXTestSuite -Name abc5 -Id 5; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; sleep -Milliseconds 1200; $null = Close-TMXTestResult -Name 'tr4' -Id 100 -TestPassed; Search-TMXTestResult -OrderByDateTime -Descending | %{$_.Id;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestResultCommandTestFixture.TestPrm_OrderByDateTime_Numeric
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name abc1 -Id 1; $null = Add-TMXTestScenario -Name scenario1 -Id 1; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; sleep -Milliseconds 300; $null = New-TMXTestSuite -Name abc2 -Id 2; $null = Add-TMXTestScenario -Name scenario2 -Id 2; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; sleep -Milliseconds 500; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = Close-TMXTestResult -Name 'tr1' -Id 1 -TestPassed; $null = Add-TMXTestScenario -Name scenario3 -Id 3; sleep -Milliseconds 100; $null = Close-TMXTestResult -Name 'tr2' -Id 1 -TestPassed; sleep -Milliseconds 50; $null = Close-TMXTestResult -Name 'tr3' -Id 2 -TestPassed; $null = New-TMXTestSuite -Name abc3 -Id 3; sleep -Milliseconds 700; $null = New-TMXTestSuite -Name abc4 -Id 4; $null = Add-TMXTestScenario -Name scenario4 -Id 4; sleep -Milliseconds 1000; $null = Add-TMXTestScenario -Name scenario2 -Id 2; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; sleep -Milliseconds 200; $null = New-TMXTestSuite -Name abc5 -Id 5; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; sleep -Milliseconds 1200; $null = Close-TMXTestResult -Name 'tr4' -Id 100 -TestPassed; Search-TMXTestResult -OrderByDateTime | %{$_.Id;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestResultCommandTestFixture.TestPrm_OrderById_Descending_Numeric
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name abc1 -Id 1; $null = Add-TMXTestScenario -Name scenario1 -Id 1; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = New-TMXTestSuite -Name abc2 -Id 2; $null = Add-TMXTestScenario -Name scenario2 -Id 2; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = Close-TMXTestResult -Name 'tr1' -Id 1 -TestPassed; $null = Add-TMXTestScenario -Name scenario3 -Id 3; $null = Close-TMXTestResult -Name 'tr2' -Id 1 -TestPassed; $null = Close-TMXTestResult -Name 'tr3' -Id 2 -TestPassed; $null = New-TMXTestSuite -Name abc3 -Id 3; $null = New-TMXTestSuite -Name abc4 -Id 4; $null = Add-TMXTestScenario -Name scenario4 -Id 4; $null = Add-TMXTestScenario -Name scenario2 -Id 2; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = New-TMXTestSuite -Name abc5 -Id 5; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = Close-TMXTestResult -Name 'tr4' -Id 100 -TestPassed; Search-TMXTestResult -OrderById -Descending | %{$_.Id;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestResultCommandTestFixture.TestPrm_OrderById_Numeric
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name abc1 -Id 1; $null = Add-TMXTestScenario -Name scenario1 -Id 1; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = New-TMXTestSuite -Name abc2 -Id 2; $null = Add-TMXTestScenario -Name scenario2 -Id 2; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = Close-TMXTestResult -Name 'tr1' -Id 1 -TestPassed; $null = Add-TMXTestScenario -Name scenario3 -Id 3; $null = Close-TMXTestResult -Name 'tr2' -Id 1 -TestPassed; $null = Close-TMXTestResult -Name 'tr3' -Id 2 -TestPassed; $null = New-TMXTestSuite -Name abc3 -Id 3; $null = New-TMXTestSuite -Name abc4 -Id 4; $null = Add-TMXTestScenario -Name scenario4 -Id 4; $null = Add-TMXTestScenario -Name scenario2 -Id 2; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = New-TMXTestSuite -Name abc5 -Id 5; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = Close-TMXTestResult -Name 'tr4' -Id 100 -TestPassed; Search-TMXTestResult -OrderById | %{$_.Id;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestResultCommandTestFixture.TestPrm_OrderByName_Alphanumeric
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name abc1 -Id 1; $null = Add-TMXTestScenario -Name scenario1 -Id 1; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 100'; $null = New-TMXTestSuite -Name abc2 -Id 2; $null = Add-TMXTestScenario -Name scenario2 -Id 2; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 2'; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = Close-TMXTestResult -Name 'tr1' -Id 1 -TestPassed; $null = Add-TMXTestScenario -Name scenario3 -Id 3; $null = Close-TMXTestResult -Name 'tr2' -Id 1 -TestPassed; $null = Close-TMXTestResult -Name 'tr3' -Id 2 -TestPassed; $null = New-TMXTestSuite -Name abc3 -Id 3; $null = New-TMXTestSuite -Name abc4 -Id 4; $null = Add-TMXTestScenario -Name scenario4 -Id 4; $null = Add-TMXTestScenario -Name scenario2 -Id 2; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 3'; $null = New-TMXTestSuite -Name abc5 -Id 5; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 5'; $null = Close-TMXTestResult -Name 'tr4' -Id 100 -TestPassed; Search-TMXTestResult -OrderByName | %{$_.Name;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestResultCommandTestFixture.TestPrm_OrderByName_Descending_Alphanumeric
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name abc1 -Id 1; $null = Add-TMXTestScenario -Name scenario1 -Id 1; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = New-TMXTestSuite -Name abc2 -Id 2; $null = Add-TMXTestScenario -Name scenario2 -Id 2; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = Close-TMXTestResult -Name 'tr1' -Id 1 -TestPassed; $null = Add-TMXTestScenario -Name scenario3 -Id 3; $null = Close-TMXTestResult -Name 'tr2' -Id 1 -TestPassed; $null = Close-TMXTestResult -Name 'tr3' -Id 2 -TestPassed; $null = New-TMXTestSuite -Name abc3 -Id 3; $null = New-TMXTestSuite -Name abc4 -Id 4; $null = Add-TMXTestScenario -Name scenario4 -Id 4; $null = Add-TMXTestScenario -Name scenario2 -Id 2; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = New-TMXTestSuite -Name abc5 -Id 5; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = Close-TMXTestResult -Name 'tr4' -Id 100 -TestPassed; Search-TMXTestResult -OrderByName -Descending | %{$_.Name;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestResultCommandTestFixture.TestPrm_OrderByTimeSpent_Descending_Numeric
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name abc1 -Id 1; $null = Add-TMXTestScenario -Name scenario1 -Id 1; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; sleep -Milliseconds 300; $null = New-TMXTestSuite -Name abc2 -Id 2; $null = Add-TMXTestScenario -Name scenario2 -Id 2; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; sleep -Milliseconds 500; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = Close-TMXTestResult -Name 'tr1' -Id 1 -TestPassed; $null = Add-TMXTestScenario -Name scenario3 -Id 3; sleep -Milliseconds 100; $null = Close-TMXTestResult -Name 'tr2' -Id 1 -TestPassed; sleep -Milliseconds 50; $null = Close-TMXTestResult -Name 'tr3' -Id 2 -TestPassed; $null = New-TMXTestSuite -Name abc3 -Id 3; sleep -Milliseconds 700; $null = New-TMXTestSuite -Name abc4 -Id 4; $null = Add-TMXTestScenario -Name scenario4 -Id 4; sleep -Milliseconds 1000; $null = Add-TMXTestScenario -Name scenario2 -Id 2; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; sleep -Milliseconds 200; $null = New-TMXTestSuite -Name abc5 -Id 5; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; sleep -Milliseconds 1200; $null = Close-TMXTestResult -Name 'tr4' -Id 100 -TestPassed; Search-TMXTestResult -OrderByTimeSpent -Descending | %{$_.Id;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestResultCommandTestFixture.TestPrm_OrderByTimeSpent_Numeric
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name abc1 -Id 1; $null = Add-TMXTestScenario -Name scenario1 -Id 1; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; sleep -Milliseconds 300; $null = New-TMXTestSuite -Name abc2 -Id 2; $null = Add-TMXTestScenario -Name scenario2 -Id 2; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; sleep -Milliseconds 500; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = Close-TMXTestResult -Name 'tr1' -Id 1 -TestPassed; $null = Add-TMXTestScenario -Name scenario3 -Id 3; sleep -Milliseconds 100; $null = Close-TMXTestResult -Name 'tr2' -Id 1 -TestPassed; sleep -Milliseconds 50; $null = Close-TMXTestResult -Name 'tr3' -Id 2 -TestPassed; $null = New-TMXTestSuite -Name abc3 -Id 3; sleep -Milliseconds 700; $null = New-TMXTestSuite -Name abc4 -Id 4; $null = Add-TMXTestScenario -Name scenario4 -Id 4; sleep -Milliseconds 1000; $null = Add-TMXTestScenario -Name scenario2 -Id 2; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; sleep -Milliseconds 200; $null = New-TMXTestSuite -Name abc5 -Id 5; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; $null = Add-TMXTestResultDetail -TestResultDetail 'detail 1'; sleep -Milliseconds 1200; $null = Close-TMXTestResult -Name 'tr4' -Id 100 -TestPassed; Search-TMXTestResult -OrderByTimeSpent | %{$_.Id;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestScenarioCommandTestFixture.TestPrm_FilterDescriptionContains
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name suite1; $null = Add-TMXTestScenario -Name scenario1 -Description 'abc'; $null = New-TMXTestSuite -Name suite2; $null = New-TMXTestSuite -Name suite3; $null = Add-TMXTestScenario -Name scenario2; $null = Add-TMXTestScenario -Name scenario3 -Description 'bac'; $null = New-TMXTestSuite -Name suite4; $null = Add-TMXTestScenario -Name scenario4; $null = Add-TMXTestScenario -Name scenario2 -Description 'cab'; $null = Add-TMXTestScenario -Name scenario5 -Description 'abab'; $null = New-TMXTestSuite -Name suite5; $null = Add-TMXTestScenario -Name scenario2 -Description ''; Search-TMXTestScenario -FilterDescriptionContains 'ab' | %{$_.Name;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestScenarioCommandTestFixture.TestPrm_FilterDescriptionContains_Descending
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name suite1; $null = Add-TMXTestScenario -Name scenario1 -Description 'abc'; $null = New-TMXTestSuite -Name suite2; $null = New-TMXTestSuite -Name suite3; $null = Add-TMXTestScenario -Name scenario2; $null = Add-TMXTestScenario -Name scenario3 -Description 'bac'; $null = New-TMXTestSuite -Name suite4; $null = Add-TMXTestScenario -Name scenario4; $null = Add-TMXTestScenario -Name scenario2 -Description 'cab'; $null = Add-TMXTestScenario -Name scenario5 -Description 'abab'; $null = New-TMXTestSuite -Name suite5; $null = Add-TMXTestScenario -Name scenario2 -Description ''; Search-TMXTestScenario -FilterDescriptionContains 'ab' -Descending | %{$_.Name;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestScenarioCommandTestFixture.TestPrm_FilterIdContains
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name suite1; $null = Add-TMXTestScenario -Name scenario1 -Id 1; $null = New-TMXTestSuite -Name suite2; $null = New-TMXTestSuite -Name suite3; $null = Add-TMXTestScenario -Name scenario2 -Id 01; $null = Add-TMXTestScenario -Name scenario3; $null = New-TMXTestSuite -Name suite4; $null = Add-TMXTestScenario -Name scenario4 -Id 2; $null = Add-TMXTestScenario -Name scenario2; $null = Add-TMXTestScenario -Name scenario5 -Id 01; $null = New-TMXTestSuite -Name suite5; $null = Add-TMXTestScenario -Name scenario2 -Id 3; Search-TMXTestScenario -FilterIdContains '0' | %{$_.Name;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestScenarioCommandTestFixture.TestPrm_FilterIdContains_Descending
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name suite1; $null = Add-TMXTestScenario -Name scenario1 -Id 1; $null = New-TMXTestSuite -Name suite2; $null = New-TMXTestSuite -Name suite3; $null = Add-TMXTestScenario -Name scenario2 -Id 01; $null = Add-TMXTestScenario -Name scenario3; $null = New-TMXTestSuite -Name suite4; $null = Add-TMXTestScenario -Name scenario4 -Id 2; $null = Add-TMXTestScenario -Name scenario2; $null = Add-TMXTestScenario -Name scenario5 -Id 01; $null = New-TMXTestSuite -Name suite5; $null = Add-TMXTestScenario -Name scenario2 -Id 3; Search-TMXTestScenario -FilterIdContains '0' -Descending | %{$_.Name;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestScenarioCommandTestFixture.TestPrm_FilterNameContains
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name suite1; $null = Add-TMXTestScenario -Name scenario1; $null = New-TMXTestSuite -Name suite2; $null = New-TMXTestSuite -Name suite3; $null = Add-TMXTestScenario -Name scenario02; $null = Add-TMXTestScenario -Name scenario3; $null = New-TMXTestSuite -Name suite4; $null = Add-TMXTestScenario -Name scenario4; $null = Add-TMXTestScenario -Name scenario02; $null = Add-TMXTestScenario -Name scenario05; $null = New-TMXTestSuite -Name suite5; $null = Add-TMXTestScenario -Name scenario2; Search-TMXTestScenario -FilterNameContains '0' | %{$_.Name;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestScenarioCommandTestFixture.TestPrm_FilterNameContains_Descending
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name suite1; $null = Add-TMXTestScenario -Name scenario1; $null = New-TMXTestSuite -Name suite2; $null = New-TMXTestSuite -Name suite3; $null = Add-TMXTestScenario -Name scenario02; $null = Add-TMXTestScenario -Name scenario3; $null = New-TMXTestSuite -Name suite4; $null = Add-TMXTestScenario -Name scenario4; $null = Add-TMXTestScenario -Name scenario02; $null = Add-TMXTestScenario -Name scenario05; $null = New-TMXTestSuite -Name suite5; $null = Add-TMXTestScenario -Name scenario2; Search-TMXTestScenario -FilterNameContains '0' -Descending | %{$_.Name;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestScenarioCommandTestFixture.TestPrm_Id_Alphanumeric
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name abc1 -Id 'a\ 1'; $null = Add-TMXTestScenario -Name scenario1 -Id 'a\ 1'; $null = New-TMXTestSuite -Name abc2 -Id 'a\ 2'; $null = Add-TMXTestScenario -Name scenario2 -Id 'a\ 2'; $null = Add-TMXTestScenario -Name scenario3 -Id 'a\ 3'; $null = New-TMXTestSuite -Name abc2 -Id 'a\ 3'; $null = New-TMXTestSuite -Name abc4 -Id 'a\ 4'; $null = Add-TMXTestScenario -Name scenario4 -Id 'a\ 4'; $null = Add-TMXTestScenario -Name scenario2 -Id 'a\ 2'; $null = New-TMXTestSuite -Name abc5 -Id 'a\ 5'; Search-TMXTestScenario -OrderById | %{$_.Id;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestScenarioCommandTestFixture.TestPrm_Id_Numeric
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name abc1 -Id 1; $null = Add-TMXTestScenario -Name scenario1 -Id 1; $null = New-TMXTestSuite -Name abc2 -Id 2; $null = Add-TMXTestScenario -Name scenario2 -Id 2; $null = Add-TMXTestScenario -Name scenario3 -Id 3; $null = New-TMXTestSuite -Name abc3 -Id 3; $null = New-TMXTestSuite -Name abc4 -Id 4; $null = Add-TMXTestScenario -Name scenario4 -Id 4; $null = Add-TMXTestScenario -Name scenario2 -Id 2; $null = New-TMXTestSuite -Name abc5 -Id 5; Search-TMXTestScenario -OrderById | %{$_.Id;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestScenarioCommandTestFixture.TestPrm_Name_Complex_In_Series
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name 'suite%%`1  1'; $null = Add-TMXTestScenario -Name 'scenario`r`n%% 1'; $null = New-TMXTestSuite -Name 'suite%%`2  2'; $null = Add-TMXTestScenario -Name 'scenario`r`n%% 2'; $null = Add-TMXTestScenario -Name 'scenario`r`n%% 3'; $null = New-TMXTestSuite -Name 'suite%%`3  3'; $null = New-TMXTestSuite -Name 'suite%%`4  4'; $null = Add-TMXTestScenario -Name 'scenario`r`n%% 4'; $null = Add-TMXTestScenario -Name 'scenario`r`n%% 2'; $null = New-TMXTestSuite -Name 'suite%%`5  5'; Search-TMXTestScenario -OrderById | %{$_.Name;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestScenarioCommandTestFixture.TestPrm_Name_Simple_In_Series
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name suite1; $null = Add-TMXTestScenario -Name scenario1; $null = New-TMXTestSuite -Name suite2; $null = New-TMXTestSuite -Name suite3; $null = Add-TMXTestScenario -Name scenario2; $null = Add-TMXTestScenario -Name scenario3; $null = New-TMXTestSuite -Name suite4; $null = Add-TMXTestScenario -Name scenario4; $null = Add-TMXTestScenario -Name scenario2; $null = Add-TMXTestScenario -Name scenario5; $null = New-TMXTestSuite -Name suite5; $null = Add-TMXTestScenario -Name scenario2; Search-TMXTestScenario -OrderById | %{$_.Name;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestScenarioCommandTestFixture.TestPrm_OrderById_Descending_Numeric
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name abc1 -Id 5; $null = Add-TMXTestScenario -Name scenario1 -Id 5; $null = New-TMXTestSuite -Name abc2 -Id 2; $null = Add-TMXTestScenario -Name scenario2 -Id 2; $null = Add-TMXTestScenario -Name scenario3 -Id 3; $null = New-TMXTestSuite -Name abc3 -Id 3; $null = New-TMXTestSuite -Name abc4 -Id 4; $null = Add-TMXTestScenario -Name scenario4 -Id 4; $null = Add-TMXTestScenario -Name scenario2 -Id 2; $null = New-TMXTestSuite -Name abc5 -Id 1; Search-TMXTestScenario -OrderById -Descending | %{$_.Id;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestScenarioCommandTestFixture.TestPrm_OrderById_Numeric
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name abc1 -Id 5; $null = Add-TMXTestScenario -Name scenario1 -Id 5; $null = New-TMXTestSuite -Name abc2 -Id 2; $null = Add-TMXTestScenario -Name scenario2 -Id 2; $null = Add-TMXTestScenario -Name scenario3 -Id 3; $null = New-TMXTestSuite -Name abc3 -Id 3; $null = New-TMXTestSuite -Name abc4 -Id 4; $null = Add-TMXTestScenario -Name scenario4 -Id 4; $null = Add-TMXTestScenario -Name scenario2 -Id 2; $null = New-TMXTestSuite -Name abc5 -Id 1; Search-TMXTestScenario -OrderById | %{$_.Id;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestScenarioCommandTestFixture.TestPrm_OrderByName_Alphanumeric
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name abc1 -Id 5; $null = Add-TMXTestScenario -Name scenario1 -Id 5; $null = New-TMXTestSuite -Name abc2 -Id 2; $null = Add-TMXTestScenario -Name scenario2 -Id 2; $null = Add-TMXTestScenario -Name scenario3 -Id 3; $null = New-TMXTestSuite -Name abc3 -Id 3; $null = New-TMXTestSuite -Name abc4 -Id 4; $null = Add-TMXTestScenario -Name scenario4 -Id 4; $null = Add-TMXTestScenario -Name scenario2 -Id 2; $null = New-TMXTestSuite -Name abc5 -Id 1; Search-TMXTestScenario -OrderByName | %{$_.Name;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestScenarioCommandTestFixture.TestPrm_OrderByName_Descending_Alphanumeric
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name abc1 -Id 5; $null = Add-TMXTestScenario -Name scenario1 -Id 5; $null = New-TMXTestSuite -Name abc2 -Id 2; $null = Add-TMXTestScenario -Name scenario2 -Id 2; $null = Add-TMXTestScenario -Name scenario3 -Id 3; $null = New-TMXTestSuite -Name abc3 -Id 3; $null = New-TMXTestSuite -Name abc4 -Id 4; $null = Add-TMXTestScenario -Name scenario4 -Id 4; $null = Add-TMXTestScenario -Name scenario2 -Id 2; $null = New-TMXTestSuite -Name abc5 -Id 1; Search-TMXTestScenario -OrderByName -Descending | %{$_.Name;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestScenarioCommandTestFixture.TestPrm_OrderByTimeSpent
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name abc1 -Id 5; $null = Add-TMXTestScenario -Name scenario1 -Id 5; $null = Close-TMXTestResult -TestPassed -Name t1; sleep -Milliseconds 2300; $null = New-TMXTestSuite -Name abc2 -Id 2; $null = Add-TMXTestScenario -Name scenario2 -Id 2; sleep -Milliseconds 200; $null = Add-TMXTestScenario -Name scenario3 -Id 3; sleep -Milliseconds 600; $null = New-TMXTestSuite -Name abc3 -Id 3; $null = New-TMXTestSuite -Name abc4 -Id 4; $null = Add-TMXTestScenario -Name scenario4 -Id 4; sleep -Milliseconds 1200; $null = Add-TMXTestScenario -Name scenario2 -Id 2; sleep -Milliseconds 10; $null = New-TMXTestSuite -Name abc5 -Id 1; Search-TMXTestScenario -OrderByTimeSpent | %{$_.Name;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestScenarioCommandTestFixture.TestPrm_OrderByTimeSpent_Descending
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name abc1 -Id 5; $null = Add-TMXTestScenario -Name scenario1 -Id 5; $null = Close-TMXTestResult -TestPassed -Name t1; sleep -Milliseconds 2300; $null = New-TMXTestSuite -Name abc2 -Id 2; $null = Add-TMXTestScenario -Name scenario2 -Id 2; sleep -Milliseconds 200; $null = Add-TMXTestScenario -Name scenario3 -Id 3; sleep -Milliseconds 600; $null = New-TMXTestSuite -Name abc3 -Id 3; $null = New-TMXTestSuite -Name abc4 -Id 4; $null = Add-TMXTestScenario -Name scenario4 -Id 4; sleep -Milliseconds 1200; $null = Add-TMXTestScenario -Name scenario2 -Id 2; sleep -Milliseconds 10; $null = New-TMXTestSuite -Name abc5 -Id 1; Search-TMXTestScenario -OrderByTimeSpent -Descending | %{$_.Name;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestSuiteCommandTestFixture.TestPrm_FilterDescriptionContains
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name suite1 -Description 'abc'; $null = New-TMXTestSuite -Name suite2 -Description 'bac'; $null = New-TMXTestSuite -Name suite3; $null = New-TMXTestSuite -Name suite4 -Description 'cab'; $null = New-TMXTestSuite -Name suite5 -Description 'bac'; Search-TMXTestSuite -FilterDescriptionContains 'ab' | %{$_.Name;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestSuiteCommandTestFixture.TestPrm_FilterDescriptionContains_Descending
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name suite1 -Description 'abc'; $null = New-TMXTestSuite -Name suite2 -Description 'bac'; $null = New-TMXTestSuite -Name suite3; $null = New-TMXTestSuite -Name suite4 -Description 'cab'; $null = New-TMXTestSuite -Name suite5 -Description 'bac'; Search-TMXTestSuite -FilterDescriptionContains 'ab' -Descending | %{$_.Name;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestSuiteCommandTestFixture.TestPrm_FilterIdContains
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name abc1 -Id 111; $null = New-TMXTestSuite -Name abc2 -Id 122; $null = New-TMXTestSuite -Name abc3 -Id 133; $null = New-TMXTestSuite -Name abc4 -Id 114; $null = New-TMXTestSuite -Name abc5 -Id 125; Search-TMXTestSuite -FilterIdContains '12' | %{$_.Id;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestSuiteCommandTestFixture.TestPrm_FilterIdContains_Descending
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name abc1 -Id 111; $null = New-TMXTestSuite -Name abc2 -Id 122; $null = New-TMXTestSuite -Name abc3 -Id 133; $null = New-TMXTestSuite -Name abc4 -Id 114; $null = New-TMXTestSuite -Name abc5 -Id 125; Search-TMXTestSuite -FilterIdContains '12' -Descending | %{$_.Id;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestSuiteCommandTestFixture.TestPrm_FilterNameContains
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name suite1; $null = New-TMXTestSuite -Name suite02; $null = New-TMXTestSuite -Name suite3; $null = New-TMXTestSuite -Name suite04; $null = New-TMXTestSuite -Name suite5; Search-TMXTestSuite -FilterNameContains '0' | %{$_.Name;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestSuiteCommandTestFixture.TestPrm_FilterNameContains_Descending
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name suite1; $null = New-TMXTestSuite -Name suite02; $null = New-TMXTestSuite -Name suite3; $null = New-TMXTestSuite -Name suite04; $null = New-TMXTestSuite -Name suite5; Search-TMXTestSuite -FilterNameContains '0' -Descending | %{$_.Name;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestSuiteCommandTestFixture.TestPrm_Id_Alphanumeric
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name abc1 -Id 'a\ 1'; $null = New-TMXTestSuite -Name abc2 -Id 'a\ 2'; $null = New-TMXTestSuite -Name abc2 -Id 'a\ 3'; $null = New-TMXTestSuite -Name abc4 -Id 'a\ 4'; $null = New-TMXTestSuite -Name abc5 -Id 'a\ 5'; Search-TMXTestSuite -OrderById | %{$_.Id;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestSuiteCommandTestFixture.TestPrm_Id_Numeric
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name abc1 -Id 1; $null = New-TMXTestSuite -Name abc2 -Id 2; $null = New-TMXTestSuite -Name abc3 -Id 3; $null = New-TMXTestSuite -Name abc4 -Id 4; $null = New-TMXTestSuite -Name abc5 -Id 5; Search-TMXTestSuite -OrderById | %{$_.Id;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestSuiteCommandTestFixture.TestPrm_Name_Complex_In_Series
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name 'suite%%`1  1'; $null = New-TMXTestSuite -Name 'suite%%`2  2'; $null = New-TMXTestSuite -Name 'suite%%`3  3'; $null = New-TMXTestSuite -Name 'suite%%`4  4'; $null = New-TMXTestSuite -Name 'suite%%`5  5'; Search-TMXTestSuite -OrderById | %{$_.Name;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestSuiteCommandTestFixture.TestPrm_Name_Simple_In_Series
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name suite1; $null = New-TMXTestSuite -Name suite2; $null = New-TMXTestSuite -Name suite3; $null = New-TMXTestSuite -Name suite4; $null = New-TMXTestSuite -Name suite5; Search-TMXTestSuite -OrderById | %{$_.Name;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestSuiteCommandTestFixture.TestPrm_OrderByFailRate
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name 4; $null = Add-TMXTestScenario -TestSuiteName 4 -Name sc1; $null = Close-TMXTestResult -TestPassed -Name t01; $null = Close-TMXTestResult -TestPassed:$false -Name t02; $null = Close-TMXTestResult -TestPassed -Name t03; $null = New-TMXTestSuite -Name 1; $null = Add-TMXTestScenario -TestSuiteName 1 -Name sc1; $null = Close-TMXTestResult -TestPassed -Name t04; $null = Close-TMXTestResult -TestPassed:$false -Name t05; $null = Close-TMXTestResult -TestPassed -Name t06; $null = Close-TMXTestResult -TestPassed:$false -Name t07; $null = New-TMXTestSuite -Name 3; $null = Add-TMXTestScenario -TestSuiteName 3 -Name sc1; $null = Close-TMXTestResult -TestPassed -Name t08; $null = Close-TMXTestResult -TestPassed -Name t09; $null = Close-TMXTestResult -TestPassed -Name t10; $null = New-TMXTestSuite -Name 5; $null = Add-TMXTestScenario -TestSuiteName 5 -Name sc1; $null = Close-TMXTestResult -TestPassed:$false -Name t11; $null = New-TMXTestSuite -Name 2; $null = Add-TMXTestScenario -TestSuiteName 2 -Name sc1; $null = Close-TMXTestResult -TestPassed -Name t12; Search-TMXTestSuite -OrderByFailRate | %{$_.Name;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestSuiteCommandTestFixture.TestPrm_OrderByFailRate_Descending
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name 4; $null = Add-TMXTestScenario -TestSuiteName 4 -Name sc1; $null = Close-TMXTestResult -TestPassed -Name t01; $null = Close-TMXTestResult -TestPassed:$false -Name t02; $null = Close-TMXTestResult -TestPassed -Name t03; $null = New-TMXTestSuite -Name 1; $null = Add-TMXTestScenario -TestSuiteName 1 -Name sc1; $null = Close-TMXTestResult -TestPassed -Name t04; $null = Close-TMXTestResult -TestPassed:$false -Name t05; $null = Close-TMXTestResult -TestPassed -Name t06; $null = Close-TMXTestResult -TestPassed:$false -Name t07; $null = New-TMXTestSuite -Name 3; $null = Add-TMXTestScenario -TestSuiteName 3 -Name sc1; $null = Close-TMXTestResult -TestPassed -Name t08; $null = Close-TMXTestResult -TestPassed -Name t09; $null = Close-TMXTestResult -TestPassed -Name t10; $null = New-TMXTestSuite -Name 5; $null = Add-TMXTestScenario -TestSuiteName 5 -Name sc1; $null = Close-TMXTestResult -TestPassed:$false -Name t11; $null = New-TMXTestSuite -Name 2; $null = Add-TMXTestScenario -TestSuiteName 2 -Name sc1; $null = Close-TMXTestResult -TestPassed -Name t12; Search-TMXTestSuite -OrderByFailRate -Descending | %{$_.Name;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestSuiteCommandTestFixture.TestPrm_OrderById_Alphanumeric
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name abc4 -Id i4; $null = New-TMXTestSuite -Name abc1 -Id i1; $null = New-TMXTestSuite -Name abc3 -Id i3; $null = New-TMXTestSuite -Name abc5 -Id i5; $null = New-TMXTestSuite -Name abc2 -Id i2; Search-TMXTestSuite -OrderById | %{$_.Id;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestSuiteCommandTestFixture.TestPrm_OrderById_Descending_Numeric
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name abc4 -Id 4; $null = New-TMXTestSuite -Name abc1 -Id 1; $null = New-TMXTestSuite -Name abc3 -Id 3; $null = New-TMXTestSuite -Name abc5 -Id 5; $null = New-TMXTestSuite -Name abc2 -Id 2; Search-TMXTestSuite -OrderById -Descending | %{$_.Id;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestSuiteCommandTestFixture.TestPrm_OrderById_Numeric
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name abc4 -Id 4; $null = New-TMXTestSuite -Name abc1 -Id 1; $null = New-TMXTestSuite -Name abc3 -Id 3; $null = New-TMXTestSuite -Name abc5 -Id 5; $null = New-TMXTestSuite -Name abc2 -Id 2; Search-TMXTestSuite -OrderById | %{$_.Id;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestSuiteCommandTestFixture.TestPrm_OrderByName_Alphanumeric
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name abc4; $null = New-TMXTestSuite -Name abc1; $null = New-TMXTestSuite -Name abc3; $null = New-TMXTestSuite -Name abc5; $null = New-TMXTestSuite -Name abc2; Search-TMXTestSuite -OrderByName | %{$_.Name;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestSuiteCommandTestFixture.TestPrm_OrderByName_Descending_Alphanumeric
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name abc4; $null = New-TMXTestSuite -Name abc1; $null = New-TMXTestSuite -Name abc3; $null = New-TMXTestSuite -Name abc5; $null = New-TMXTestSuite -Name abc2; Search-TMXTestSuite -OrderByName -Descending | %{$_.Name;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestSuiteCommandTestFixture.TestPrm_OrderByName_Numeric
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name 4; $null = New-TMXTestSuite -Name 1; $null = New-TMXTestSuite -Name 3; $null = New-TMXTestSuite -Name 5; $null = New-TMXTestSuite -Name 2; Search-TMXTestSuite -OrderByName | %{$_.Name;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestSuiteCommandTestFixture.TestPrm_OrderByPassRate
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name 4; $null = Add-TMXTestScenario -TestSuiteName 4 -Name sc1; $null = Close-TMXTestResult -TestPassed -Name t01; $null = Close-TMXTestResult -TestPassed:$false -Name t02; $null = Close-TMXTestResult -TestPassed -Name t03; $null = New-TMXTestSuite -Name 1; $null = Add-TMXTestScenario -TestSuiteName 1 -Name sc1; $null = Close-TMXTestResult -TestPassed -Name t04; $null = Close-TMXTestResult -TestPassed:$false -Name t05; $null = Close-TMXTestResult -TestPassed -Name t06; $null = Close-TMXTestResult -TestPassed:$false -Name t07; $null = New-TMXTestSuite -Name 3; $null = Add-TMXTestScenario -TestSuiteName 3 -Name sc1; $null = Close-TMXTestResult -TestPassed -Name t08; $null = Close-TMXTestResult -TestPassed -Name t09; $null = Close-TMXTestResult -TestPassed -Name t10; $null = New-TMXTestSuite -Name 5; $null = Add-TMXTestScenario -TestSuiteName 5 -Name sc1; $null = Close-TMXTestResult -TestPassed:$false -Name t11; $null = New-TMXTestSuite -Name 2; $null = Add-TMXTestScenario -TestSuiteName 2 -Name sc1; $null = Close-TMXTestResult -TestPassed -Name t12; Search-TMXTestSuite -OrderByPassRate | %{$_.Name;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestSuiteCommandTestFixture.TestPrm_OrderByPassRate_Descending
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name 4; $null = Add-TMXTestScenario -TestSuiteName 4 -Name sc1; $null = Close-TMXTestResult -TestPassed -Name t01; $null = Close-TMXTestResult -TestPassed:$false -Name t02; $null = Close-TMXTestResult -TestPassed -Name t03; $null = New-TMXTestSuite -Name 1; $null = Add-TMXTestScenario -TestSuiteName 1 -Name sc1; $null = Close-TMXTestResult -TestPassed -Name t04; $null = Close-TMXTestResult -TestPassed:$false -Name t05; $null = Close-TMXTestResult -TestPassed -Name t06; $null = Close-TMXTestResult -TestPassed:$false -Name t07; $null = New-TMXTestSuite -Name 3; $null = Add-TMXTestScenario -TestSuiteName 3 -Name sc1; $null = Close-TMXTestResult -TestPassed -Name t08; $null = Close-TMXTestResult -TestPassed -Name t09; $null = Close-TMXTestResult -TestPassed -Name t10; $null = New-TMXTestSuite -Name 5; $null = Add-TMXTestScenario -TestSuiteName 5 -Name sc1; $null = Close-TMXTestResult -TestPassed:$false -Name t11; $null = New-TMXTestSuite -Name 2; $null = Add-TMXTestScenario -TestSuiteName 2 -Name sc1; $null = Close-TMXTestResult -TestPassed -Name t12; Search-TMXTestSuite -OrderByPassRate -Descending | %{$_.Name;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestSuiteCommandTestFixture.TestPrm_OrderByTimeSpent
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name 4; $null = Add-TMXTestScenario -TestSuiteName 4 -Name sc1; $null = Close-TMXTestResult -TestPassed -Name t1; sleep -Milliseconds 2300; $null = Close-TMXTestResult -TestPassed -Name t2; $null = New-TMXTestSuite -Name 1; sleep -Milliseconds 10; $null = Add-TMXTestScenario -TestSuiteName 1 -Name sc1; $null = Close-TMXTestResult -TestPassed -Name t1; $null = New-TMXTestSuite -Name 3; sleep -Milliseconds 2000; $null = Add-TMXTestScenario -TestSuiteName 3 -Name sc1; $null = Close-TMXTestResult -TestPassed -Name t1; $null = New-TMXTestSuite -Name 5; sleep -Milliseconds 1500; $null = Add-TMXTestScenario -TestSuiteName 5 -Name sc1; $null = Close-TMXTestResult -TestPassed -Name t1; $null = New-TMXTestSuite -Name 2; $null = Add-TMXTestScenario -TestSuiteName 2 -Name sc1; $null = Close-TMXTestResult -TestPassed -Name t1; Search-TMXTestSuite -OrderByTimeSpent | %{$_.Name;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Commands.Search.SearchTMXTestSuiteCommandTestFixture.TestPrm_OrderByTimeSpent_Descending
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-TMXTestSuite -Name 4; $null = Add-TMXTestScenario -TestSuiteName 4 -Name sc1; $null = Close-TMXTestResult -TestPassed -Name t1; sleep -Milliseconds 2300; $null = Close-TMXTestResult -TestPassed -Name t2; $null = New-TMXTestSuite -Name 1; sleep -Milliseconds 10; $null = Add-TMXTestScenario -TestSuiteName 1 -Name sc1; $null = Close-TMXTestResult -TestPassed -Name t1; $null = New-TMXTestSuite -Name 3; sleep -Milliseconds 2000; $null = Add-TMXTestScenario -TestSuiteName 3 -Name sc1; $null = Close-TMXTestResult -TestPassed -Name t1; $null = New-TMXTestSuite -Name 5; sleep -Milliseconds 1500; $null = Add-TMXTestScenario -TestSuiteName 5 -Name sc1; $null = Close-TMXTestResult -TestPassed -Name t1; $null = New-TMXTestSuite -Name 2; $null = Add-TMXTestScenario -TestSuiteName 2 -Name sc1; $null = Close-TMXTestResult -TestPassed -Name t1; Search-TMXTestSuite -OrderByTimeSpent -Descending | %{$_.Name;}
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Provider.TMXProviderTestFixture.CheckDefaultDrive
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+(Get-PSDrive -Name TMX).Name;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Provider.TMXProviderTestFixture.CheckNewDriveByProcessId
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-PSDrive -Name  TMX3 -PSProvider TMXProvider -Root TMX\TMXProvider::suite3 -WindowName "" -ProcessName "" -ProcessId 1024; (Get-PSDrive -Name TMX3).Name;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Provider.TMXProviderTestFixture.CheckNewDrivebyProcessName
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-PSDrive -Name  TMX2 -PSProvider TMXProvider -Root TMX\TMXProvider::suite2 -WindowName "" -ProcessName mmc -ProcessId 0; (Get-PSDrive -Name TMX2).Name;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Provider.TMXProviderTestFixture.CheckNewDriveByWindowName
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = New-PSDrive -Name  TMX1 -PSProvider TMXProvider -Root TMX\TMXProvider::suite1 -WindowName suite1 -ProcessName "" -ProcessId 0; (Get-PSDrive -Name TMX1).Name;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Provider.TMXProviderTestFixture.CheckProvider
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+(Get-PSProvider -PSProvider TMXProvider).Name;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.Provider.TMXProviderTestFixture.RemoveDefaultDrive
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+$null = Remove-PSDrive -Name TMX; (Get-PSDrive -Name TMX).Name;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.TestData.TMXEventsTestFixture.TMXEvents_TMXNewTestResultClosed
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+[string]$global:name = ''; $null = Register-ObjectEvent -InputObject $([TMX.TestData]) -EventName "TMXNewTestResultClosed" -Action {param($src, $e) $global:name = $src.Name;}; $null = New-TMXTestSuite -Name 'aaaa'; $null = Add-TMXTestScenario -Name 'bbbb'; $null = Add-TMXTestResultDetail -TestResultDetail 'cccc'; $null = Close-TMXTestResult -Name 'res1' -TestPassed; sleep -Seconds 2; $global:name;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.TestData.TMXEventsTestFixture.TMXEvents_TMXNewTestResultDetailAdded
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+[string]$global:name = ''; $null = Register-ObjectEvent -InputObject $([TMX.TestData]) -EventName "TMXNewTestResultDetailAdded" -Action {param($src, $e) $global:name = $src.Name;}; $null = New-TMXTestSuite -Name 'aaaa'; $null = Add-TMXTestScenario -Name 'bbbb'; $null = Add-TMXTestResultDetail -TestResultDetail 'res1'; sleep -Seconds 2; $global:name;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.TestData.TMXEventsTestFixture.TMXEvents_TMXNewTestScenarioAdded
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+[string]$global:name = ''; $null = Register-ObjectEvent -InputObject $([TMX.TestData]) -EventName "TMXNewTestScenarioAdded" -Action {param($src, $e) $global:name = $src.Name;}; $null = New-TMXTestSuite -Name 'aaaa'; $null = Add-TMXTestScenario -Name 'scenario1'; sleep -Seconds 2; $global:name;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.TestData.TMXEventsTestFixture.TMXEvents_TMXNewTestSuiteCreated
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+[string]$global:name = ''; $null = Register-ObjectEvent -InputObject $([TMX.TestData]) -EventName "TMXNewTestSuiteCreated" -Action {param($src, $e) $global:name = $src.Name;}; $null = New-TMXTestSuite -Name 'suite1'; sleep -Seconds 2; $global:name;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.TestData.TMXEventsTestFixture.TMXEvents_TMXTestScenarioOpened
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+[string]$global:name = ''; $null = Register-ObjectEvent -InputObject $([TMX.TestData]) -EventName "TMXTestScenarioOpened" -Action {param($src, $e) $global:name = $src.Name;}; $null = New-TMXTestSuite -Name 'aaaa'; $null = Add-TMXTestScenario -Name 'scenario1'; $null = Add-TMXTestScenario -Name 'aaaaa'; $null = Open-TMXTestScenario -Name 'scenario1'; sleep -Seconds 2; $global:name;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+***** TMXTest.TestData.TMXEventsTestFixture.TMXEvents_TMXTestSuiteOpened
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =
+[string]$global:name = ''; $null = Register-ObjectEvent -InputObject $([TMX.TestData]) -EventName "TMXTestSuiteOpened" -Action {param($src, $e) $global:name = $src.Name;}; $null = New-TMXTestSuite -Name 'suite1'; $null = New-TMXTestSuite -Name 'aaa'; $null = Open-TMXTestSuite -Name 'suite1'; sleep -Seconds 2; $global:name;
+# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =

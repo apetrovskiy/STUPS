@@ -128,6 +128,9 @@ namespace UIAutomation
                             stepWithDirectionsName =
                                 dictDirections["STEP"].ToString();
                             
+                            stepWithDirections =
+                                wzd.GetStep(stepWithDirectionsName);
+                            
                             if (null == stepWithDirections) {
                                 
                                 cmdlet.WriteError(

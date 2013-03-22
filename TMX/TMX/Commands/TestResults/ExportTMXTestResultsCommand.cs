@@ -55,7 +55,9 @@ namespace TMX.Commands
                     TMXHelper.ExportResultsToJUnitXML(this, this.Path);
                     break;
                 case "HTML":
-                    this.ExportResultsToHTML(this.Path);
+                    // 20130322
+                    //this.ExportResultsToHTML(this.Path);
+                    this.ExportResultsToHTML(this, this.Path);
                     break;
                 case "CSV":
                     this.ExportResultsToCSV(this.Path);

@@ -35,7 +35,9 @@ namespace TMX.Commands
                     
                     break;
                 case "HTML":
-                    this.ExportSummaryToHTML(this.Path);
+                    // 20130322
+                    //this.ExportSummaryToHTML(this.Path);
+                    this.ExportSummaryToHTML(this, this.Path);
                     break;
                 case "CSV":
                     this.ExportSummaryToCSV(this.Path);

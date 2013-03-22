@@ -102,13 +102,21 @@ namespace UIAutomation
 
         protected override void WriteSingleObject(PSCmdletBase cmdlet, object outputObject)
         {
+
             WriteObjectMethod020Highlight(cmdlet, outputObject);
+
             WriteObjectMethod030RunScriptBlocks(cmdlet, outputObject);
+
             WriteObjectMethod040SetTestResult(cmdlet, outputObject);
+
             WriteObjectMethod045OnSuccessScreenshot(cmdlet, outputObject);
+
             WriteObjectMethod050OnSuccessDelay(cmdlet, outputObject);
+
             WriteObjectMethod060OutputResult(cmdlet, outputObject);
+
             WriteObjectMethod070Report(cmdlet, outputObject);
+
         }
         
         protected override void AfterWriteSingleObject(PSCmdletBase cmdlet, object outputObject) {}
@@ -144,22 +152,37 @@ namespace UIAutomation
         protected void WriteObjectMethod020Highlight(PSCmdletBase cmdlet, object outputObject)
         {
             //WriteVerbose("OutputMethod020Highlight UIAutomation");
-            
+
             // 20130322
             if (string.Empty != ((HasScriptBlockCmdletBase)cmdlet).Banner) {
-                
+
                 UIAHelper.ShowBanner(((HasScriptBlockCmdletBase)cmdlet).Banner);
+
             } else {
-                
+
                 UIAHelper.HideBanner();
+
             }
             
+//            // 20130322
+//            try {
+//                if (outputObject is HasScriptBlockCmdletBase) {
+//    
+//                    cmdlet.WriteVerbose(cmdlet, "this output object is not a matter of highlighting");
+//                    return;
+//                }
+//            }
+//            catch {}
+
             // 20121002
             if (Preferences.Highlight || ((HasScriptBlockCmdletBase)cmdlet).Highlight) {
                 //try{
                 AutomationElement element = null;
+
                 if (cmdlet != null && !(cmdlet is WizardCmdletBase)) {
+
                     try {
+
                         element = outputObject as AutomationElement;
                         if (element is AutomationElement &&
                             (int)element.Current.ProcessId > 0) {
@@ -829,16 +852,23 @@ namespace UIAutomation
                 AutomationElement elementToTakeScreenShot = null;
                 try {
                     if (null != CurrentData.CurrentWindow) {
+                        cmdlet.WriteVerbose(cmdlet, "taking screenshot of the current window");
                         elementToTakeScreenShot = CurrentData.CurrentWindow;
                     } else {
+                        cmdlet.WriteVerbose(cmdlet, "taking screenshot of the desktop object");
                         elementToTakeScreenShot = AutomationElement.RootElement;
                     }
                 }
                 catch {
+                    cmdlet.WriteVerbose(cmdlet, "taking screenshot of the desktop object (on fail)");
                     elementToTakeScreenShot = AutomationElement.RootElement;
                 }
+                
+                cmdlet.WriteVerbose(cmdlet, "taking screenshot");
                 UIAHelper.GetScreenshotOfAutomationElement(
-                    (cmdlet as HasControlInputCmdletBase),
+                    // 20130322
+                    //(cmdlet as HasControlInputCmdletBase),
+                    cmdlet,
                     elementToTakeScreenShot,
                     CmdletName(cmdlet),
                     true,
@@ -848,6 +878,7 @@ namespace UIAutomation
                     0,
                     string.Empty,
                     UIAutomation.Preferences.OnErrorScreenShotFormat);
+                cmdlet.WriteVerbose(cmdlet, "done");
             }
         }
         

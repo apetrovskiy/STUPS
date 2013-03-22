@@ -133,6 +133,8 @@ namespace PSTestLib
 
             }
 
+            cmdlet.WriteVerbose(cmdlet, "outputting the object");
+            
             this.writeSingleObject(cmdlet, outputObject);
 
         }
@@ -286,6 +288,8 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
         {
             //if (WriteObjectMethod010CheckOutputObject(outputObject)) {
             if (CheckSingleObject(cmdlet, outputObject)) {
+                
+                cmdlet.WriteVerbose(cmdlet, "the output object is not null");
 
 //                WriteObjectMethod020Highlight(cmdlet, outputObject);
 //

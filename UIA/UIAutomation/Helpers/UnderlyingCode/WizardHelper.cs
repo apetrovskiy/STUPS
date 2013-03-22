@@ -29,7 +29,17 @@ namespace UIAutomation
         public static void CreateWizard(NewUIAWizardCommand cmdlet)
         {
             if (!cmdlet.ValidateWizardName(cmdlet.Name)) {
-                cmdlet.WriteError(cmdlet, "The wizard name you selected is already in use", "NameInUse", ErrorCategory.InvalidArgument, true);
+                
+                cmdlet.WriteVerbose(
+                    cmdlet,
+                    "The wizard name you selected is already in use");
+                    
+                cmdlet.WriteError(
+                        cmdlet,
+                        "The wizard name you selected is already in use",
+                        "NameInUse",
+                        ErrorCategory.InvalidArgument,
+                        true);
                 // return;
             }
             
@@ -44,7 +54,8 @@ namespace UIAutomation
             // 20130319
             //wzd.DefaultStepGetWindowAction = cmdlet.DefaultStepGetWindowAction;
             wzd.GetWindowAction = cmdlet.GetWindowAction;
-
+            cmdlet.WriteVerbose(cmdlet, "the wizard is fulfilled with properties");
+            
             cmdlet.WriteObject(cmdlet, wzd);
         }
         

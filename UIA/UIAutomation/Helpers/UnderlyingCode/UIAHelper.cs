@@ -302,11 +302,13 @@ namespace UIAutomation
         // 20130322
         internal static void HideBanner()
         {
-            try {
-                banner.Hide();
+            if (null != banner) {
+                try {
+                    banner.Hide();
+                }
+                catch {}
+                banner.Dispose();
             }
-            catch {}
-            banner.Dispose();
         }
         
         //        internal static string GetTimedFileName()
@@ -429,7 +431,9 @@ namespace UIAutomation
         }
         
         public static void GetScreenshotOfAutomationElement(
-            HasControlInputCmdletBase cmdlet,
+            // 20130322
+            //HasControlInputCmdletBase cmdlet,
+            PSCmdletBase cmdlet,
             AutomationElement element,
             string description,
             bool save,
@@ -441,6 +445,8 @@ namespace UIAutomation
             System.Drawing.Imaging.ImageFormat format)
         {
             
+                
+            cmdlet.WriteVerbose(cmdlet, "hiding highlighter if it's been used");
             
             if (Preferences.HideHighlighterOnScreenShotTaking &&
                 ! Preferences.ShowExecutionPlan) {

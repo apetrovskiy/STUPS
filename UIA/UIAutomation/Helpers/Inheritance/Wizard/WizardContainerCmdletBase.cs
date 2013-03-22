@@ -23,7 +23,9 @@ namespace UIAutomation
         
         #region Parameters
         [Parameter(Mandatory = false)]
-        internal new Wizard InputObject { get; set; }
+        // 20130322
+        //internal new Wizard InputObject { get; set; }
+        public new Wizard InputObject { get; set; }
         
         
         

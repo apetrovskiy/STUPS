@@ -169,10 +169,19 @@ namespace UIAutomation
                             }
                             
                         }
-                        catch {}
-                        
+                        catch (Exception eDirectionsDictionaries) {
+                            
+                            cmdlet.WriteError(
+                                cmdlet,
+                                "Failed to parse directions for step '" +
+                                stepWithDirectionsName +
+                                "'. " +
+                                eDirectionsDictionaries.Message,
+                                "FailedToParseDirections",
+                                ErrorCategory.InvalidArgument,
+                                true);
                         }
-                    
+                    }
                 }
 
                 // scriptblocks' parameters
@@ -292,14 +301,14 @@ namespace UIAutomation
                             }
                             
                         }
-                        catch (Exception eSwitch) {
+                        catch (Exception eParametersDictionaries) {
                             
                             cmdlet.WriteError(
                                 cmdlet,
                                 "Failed to parse parameters for step '" +
                                 stepWithParametersName +
                                 "'. " +
-                                eSwitch.Message,
+                                eParametersDictionaries.Message,
                                 "FailedToParseParameters",
                                 ErrorCategory.InvalidArgument,
                                 true);

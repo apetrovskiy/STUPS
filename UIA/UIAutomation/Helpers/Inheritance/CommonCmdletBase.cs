@@ -151,29 +151,16 @@ namespace UIAutomation
         //protected override sealed void WriteObjectMethod020Highlight(PSCmdletBase cmdlet, object outputObject)
         protected void WriteObjectMethod020Highlight(PSCmdletBase cmdlet, object outputObject)
         {
-            //WriteVerbose("OutputMethod020Highlight UIAutomation");
-
+            if (null == (outputObject as AutomationElement)) {
+                return;
+            }
+            
             // 20130322
             if (string.Empty != ((HasScriptBlockCmdletBase)cmdlet).Banner) {
 
                 UIAHelper.ShowBanner(((HasScriptBlockCmdletBase)cmdlet).Banner);
 
             } 
-            //else {
-            //
-            //    UIAHelper.HideBanner();
-            //
-            //}
-            
-//            // 20130322
-//            try {
-//                if (outputObject is HasScriptBlockCmdletBase) {
-//    
-//                    cmdlet.WriteVerbose(cmdlet, "this output object is not a matter of highlighting");
-//                    return;
-//                }
-//            }
-//            catch {}
 
             // 20121002
             if (Preferences.Highlight || ((HasScriptBlockCmdletBase)cmdlet).Highlight) {

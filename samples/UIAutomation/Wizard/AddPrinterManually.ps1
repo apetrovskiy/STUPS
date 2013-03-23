@@ -149,18 +149,6 @@ New-UIAWizard -Name AddPrinterWizard `
         -StepBackwardAction $backwardAction `
         -StepCancelAction $cancelAction;
 
-    #Invoke-UIAWizard -Automatic -ForwardDirection -Name AddPrinterWizard `
-    #    -Parameters @{step="Step05PrinterData";action="forward";parameters=@{action="forward";list=@("printer_1","port_1")}},
-    #                @{step="Step09InstallPrinterDriver";action="forward";parameters=@{action="forward";list=@('Canon','*0303*')}},
-    #                @{step="Step11PrinterName";action="forward";parameters=@{action="forward";list=@("one more printer")}},
-    #                @{step="Step13PrinterSharing";action="forward";parameters=@{action="forward";list=@('share$$','location01','my comment')}} -Verbose;
-
-    #Invoke-UIAWizard -Automatic -ForwardDirection -Name AddPrinterWizard `
-    #    -Parameters @{step="Step05PrinterData";action="forward";parameters=@{action="forward";list=@("printer_2","port_2")}},
-    #                @{step="Step09InstallPrinterDriver";action="forward";parameters=@{action="forward";list=@('Canon','*0303*')}},
-    #                @{step="Step11PrinterName";action="forward";parameters=@{action="forward";list=@("the second one")}},
-    #                @{step="Step13PrinterSharing";action="forward";parameters=@{action="forward";list=@('share$$$','location02','my new comment')}} -Verbose;
-
     Invoke-UIAWizard -Name AddPrinterWizard `
         -Parameters @{step="Step05PrinterData";action="forward";parameters=@("printer_1","port_1")},
                     @{step="Step09InstallPrinterDriver";action="forward";parameters=@('Canon','*0303*')},

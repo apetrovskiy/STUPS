@@ -33,15 +33,23 @@ namespace UIAutomation.Commands
                 CurrentData.Profiles.Add(profile);
                 WriteObject(this, profile);
             } else {
-                ErrorRecord err = 
-                    new ErrorRecord(
-                        new Exception("The profile already exists"),
-                        "ProfileAlreadyExists",
-                        ErrorCategory.InvalidArgument,
-                        profile);
-                err.ErrorDetails = 
-                    new ErrorDetails("The profile already exists");
-                WriteError(this, err, true);
+                // 20130323
+//                ErrorRecord err = 
+//                    new ErrorRecord(
+//                        new Exception("The profile already exists"),
+//                        "ProfileAlreadyExists",
+//                        ErrorCategory.InvalidArgument,
+//                        profile);
+//                err.ErrorDetails = 
+//                    new ErrorDetails("The profile already exists");
+//                WriteError(this, err, true);
+                
+                this.WriteError(
+                    this,
+                    "The profile already exists",
+                    "ProfileAlreadyExists",
+                    ErrorCategory.InvalidArgument,
+                    true);
             }
         }
     }

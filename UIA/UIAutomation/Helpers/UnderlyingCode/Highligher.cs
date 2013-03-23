@@ -406,6 +406,29 @@ namespace UIAutomation
         }
         
         private Label lblMessage;
+        
+        public string Message {
+            get { return this.lblMessage.Text; }
+            set { this.lblMessage.Text = value; }
+        }
+        
+        private string originalMessage = string.Empty;
+        
+        public void AppendMessage(string message)
+        {
+            if (string.Empty != originalMessage) {
+                originalMessage = this.Message;
+            }
+            
+            this.Message += message;
+        }
+        
+        public void RestoreOriginalMessage()
+        {
+            if (string.Empty != this.originalMessage) {
+                this.Message = this.originalMessage;
+            }
+        }
     }
     
     internal class Side : Form, IDisposable

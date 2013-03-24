@@ -156,6 +156,12 @@ New-UIAWizard -Name AddPrinterWizard `
                     @{step="Step13PrinterSharing";action="forward";parameters=@('share$$','location01','my comment')} -Verbose;
 
     Invoke-UIAWizard -Name AddPrinterWizard `
+        -Directions @{step="Step05PrinterData";action="backward"},
+                    @{step="Step05PrinterData";action="forward"},
+                    @{step="Step05PrinterData";action="backward"},
+                    @{step="Step09InstallPrinterDriver";action="backward"},
+                    @{step="Step11PrinterName";action="backward"},
+                    @{step="Step13PrinterSharing";action="backward"} `
         -Parameters @{step="Step05PrinterData";action="forward";parameters=@("printer_2","port_2")},
                     @{step="Step09InstallPrinterDriver";action="forward";parameters=@('Canon','*0303*')},
                     @{step="Step11PrinterName";action="forward";parameters=@("the second one")},

@@ -426,11 +426,17 @@ Console.WriteLine("WriteSingleObject 00001");
             WriteObjectMethod020Highlight(cmdlet, outputObject);
 Console.WriteLine("WriteSingleObject 00002");
             WriteObjectMethod030RunScriptBlocks(cmdlet, outputObject);
+Console.WriteLine("WriteSingleObject 00003");
             WriteObjectMethod040SetTestResult(cmdlet, outputObject);
+Console.WriteLine("WriteSingleObject 00004");
             WriteObjectMethod045OnSuccessScreenshot(cmdlet, outputObject);
+Console.WriteLine("WriteSingleObject 00005");
             WriteObjectMethod050OnSuccessDelay(cmdlet, outputObject);
+Console.WriteLine("WriteSingleObject 00006");
             WriteObjectMethod060OutputResult(cmdlet, outputObject);
+Console.WriteLine("WriteSingleObject 00007");
             WriteObjectMethod070Report(cmdlet, outputObject);
+Console.WriteLine("WriteSingleObject 00008");
             WriteObjectMethod080ReportFailure(cmdlet, outputObject);
         }
         
@@ -460,13 +466,13 @@ Console.WriteLine("WriteSingleObject 00002");
         protected void WriteObjectMethod020Highlight(PSCmdletBase cmdlet, object outputObject)
         {
             this.WriteVerbose(this, "IWebDriver or IWebElement");
-Console.WriteLine("WriteObjectMethod020Highlight 00001");
+//Console.WriteLine("WriteObjectMethod020Highlight 00001");
             if (Preferences.Highlight && outputObject is IWebElement) {
-Console.WriteLine("WriteObjectMethod020Highlight 00002");
+//Console.WriteLine("WriteObjectMethod020Highlight 00002");
                 this.WriteVerbose(this, "Highlighting");
-Console.WriteLine("WriteObjectMethod020Highlight 00003");
+//Console.WriteLine("WriteObjectMethod020Highlight 00003");
                 this.WriteVerbose(this, outputObject.GetType().Name);
-Console.WriteLine("WriteObjectMethod020Highlight 00004");
+//Console.WriteLine("WriteObjectMethod020Highlight 00004");
                 this.WriteVerbose(this, ((IWebElement)outputObject).GetType().Name);
 Console.WriteLine("WriteObjectMethod020Highlight 00005");
                 SeHelper.Highlight((IWebElement)outputObject);

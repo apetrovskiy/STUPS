@@ -422,7 +422,9 @@ namespace SePSX
 
         protected override void WriteSingleObject(PSCmdletBase cmdlet, object outputObject)
         {
+Console.WriteLine("WriteSingleObject 00001");
             WriteObjectMethod020Highlight(cmdlet, outputObject);
+Console.WriteLine("WriteSingleObject 00002");
             WriteObjectMethod030RunScriptBlocks(cmdlet, outputObject);
             WriteObjectMethod040SetTestResult(cmdlet, outputObject);
             WriteObjectMethod045OnSuccessScreenshot(cmdlet, outputObject);
@@ -458,17 +460,17 @@ namespace SePSX
         protected void WriteObjectMethod020Highlight(PSCmdletBase cmdlet, object outputObject)
         {
             this.WriteVerbose(this, "IWebDriver or IWebElement");
-
+Console.WriteLine("WriteObjectMethod020Highlight 00001");
             if (Preferences.Highlight && outputObject is IWebElement) {
-
+Console.WriteLine("WriteObjectMethod020Highlight 00002");
                 this.WriteVerbose(this, "Highlighting");
-
+Console.WriteLine("WriteObjectMethod020Highlight 00003");
                 this.WriteVerbose(this, outputObject.GetType().Name);
-
+Console.WriteLine("WriteObjectMethod020Highlight 00004");
                 this.WriteVerbose(this, ((IWebElement)outputObject).GetType().Name);
-
+Console.WriteLine("WriteObjectMethod020Highlight 00005");
                 SeHelper.Highlight((IWebElement)outputObject);
-
+Console.WriteLine("WriteObjectMethod020Highlight 00006");
             }
         }
         

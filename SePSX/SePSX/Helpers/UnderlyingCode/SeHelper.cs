@@ -1429,7 +1429,7 @@ namespace SePSX
 //    Console.WriteLine("null != elementOfTheResult");
 //}
                             cmdletGet.WriteObject(cmdletGet, elementOfTheResult);
-Console.WriteLine("GetWebElement: 00027");
+//Console.WriteLine("GetWebElement: 00027");
                         }
                     } else {
 //Console.WriteLine("GetWebElement: 00028");
@@ -1439,7 +1439,7 @@ Console.WriteLine("GetWebElement: 00027");
                     }
                 }
                 catch (Exception eFindByException) {
-Console.WriteLine("GetWebElement: 00030");
+//Console.WriteLine("GetWebElement: 00030");
                     cmdletGet.WriteError(
                         cmdletGet,
                         "Could not find an element by its " +
@@ -1597,29 +1597,29 @@ Console.WriteLine("GetWebElement: 00030");
 //Console.WriteLine("getWebElement: 00022");
                             cmdlet.WriteVerbose(cmdlet, "a set of elements, IWebDriver as input");
                             if (by != null) {
-Console.WriteLine("getWebElement: 00023: webDriver.GetType().Name = " + webDriver.GetType().Name);
-Console.WriteLine(webDriver.Url);
+//Console.WriteLine("getWebElement: 00023: webDriver.GetType().Name = " + webDriver.GetType().Name);
+//Console.WriteLine(webDriver.Url);
 //Console.WriteLine("webDriver.Elements.Count = " + webDriver.Elements.Count.ToString());
                                 cmdlet.WriteVerbose(cmdlet, "finding a set of elements, with by");
                                 result = webDriver.FindElements(by);
 //Console.WriteLine("getWebElement: 00024");
-Console.WriteLine("getWebElement: 00024 Count = " + result.Count.ToString());
-Console.WriteLine("getWebElement: 00024 type = " + result[0].GetType().Name);
-try {
-Console.WriteLine("getWebElement: 00024 ((RemoteWebElement)result[0]) = " + ((RemoteWebElement)result[0]));
-var fakeRemoteWebElement =
-    result[0];
-Console.WriteLine("getWebElement: 00024 fakeRemoteWebElement.GetType().Name = " + fakeRemoteWebElement.GetType().Name);
-Console.WriteLine("getWebElement: 00024 ((RemoteWebElement)fakeRemoteWebElement).GetType().Name = " + ((RemoteWebElement)fakeRemoteWebElement).GetType().Name);
-
-//Console.WriteLine("getWebElement: 00024 ((RemoteWebElement)fakeRemoteWebElement).Enabled = " + ((RemoteWebElement)fakeRemoteWebElement).Enabled.ToString());
-//Console.WriteLine("getWebElement: 00024 ((RemoteWebElement)fakeRemoteWebElement).TagName = " + ((RemoteWebElement)fakeRemoteWebElement).TagName);
-//Console.WriteLine("getWebElement: 00024 fakeRemoteWebElement.TagName = " + fakeRemoteWebElement.TagName);
-//Console.WriteLine("getWebElement: 00024 ((RemoteWebElement)result[0]).TagName = " + ((RemoteWebElement)result[0]).TagName);
-} catch (Exception e00024) {
-    Console.WriteLine(e00024.Message);
-    Console.WriteLine(e00024.GetType().Name);
-}
+//Console.WriteLine("getWebElement: 00024 Count = " + result.Count.ToString());
+//Console.WriteLine("getWebElement: 00024 type = " + result[0].GetType().Name);
+//try {
+//Console.WriteLine("getWebElement: 00024 ((RemoteWebElement)result[0]) = " + ((RemoteWebElement)result[0]));
+//var fakeRemoteWebElement =
+//    result[0];
+//Console.WriteLine("getWebElement: 00024 fakeRemoteWebElement.GetType().Name = " + fakeRemoteWebElement.GetType().Name);
+//Console.WriteLine("getWebElement: 00024 ((RemoteWebElement)fakeRemoteWebElement).GetType().Name = " + ((RemoteWebElement)fakeRemoteWebElement).GetType().Name);
+//
+////Console.WriteLine("getWebElement: 00024 ((RemoteWebElement)fakeRemoteWebElement).Enabled = " + ((RemoteWebElement)fakeRemoteWebElement).Enabled.ToString());
+////Console.WriteLine("getWebElement: 00024 ((RemoteWebElement)fakeRemoteWebElement).TagName = " + ((RemoteWebElement)fakeRemoteWebElement).TagName);
+////Console.WriteLine("getWebElement: 00024 fakeRemoteWebElement.TagName = " + fakeRemoteWebElement.TagName);
+////Console.WriteLine("getWebElement: 00024 ((RemoteWebElement)result[0]).TagName = " + ((RemoteWebElement)result[0]).TagName);
+//} catch (Exception e00024) {
+//    Console.WriteLine(e00024.Message);
+//    Console.WriteLine(e00024.GetType().Name);
+//}
                             } else {
 //Console.WriteLine("getWebElement: 00025");
                                 //listOfResults =
@@ -1771,7 +1771,7 @@ try{
                 ISearchHistory history = WebDriverFactory.Container.Resolve<SearchHistory>();
 //Console.WriteLine("GetDecoratedCollection: 00003");
                 history.ByType = @by;
-Console.WriteLine("GetDecoratedCollection: 00004");
+//Console.WriteLine("GetDecoratedCollection: 00004");
 //if (null == resultWebElement) {
 //    Console.WriteLine("null == resultWebElement");
 //} else {
@@ -1782,7 +1782,7 @@ Console.WriteLine("GetDecoratedCollection: 00004");
 //} else {
 //    Console.WriteLine("null != history");
 //}
-Console.WriteLine(resultWebElement.GetType().Name);
+//Console.WriteLine(resultWebElement.GetType().Name);
 //try {
 //if (null == ((RemoteWebElement)resultWebElement)) {
 //    Console.WriteLine("null == ((RemoteWebElement)resultWebElement)");
@@ -1794,8 +1794,8 @@ Console.WriteLine(resultWebElement.GetType().Name);
 //    Console.WriteLine(e00000000.Message);
 //    Console.WriteLine(e00000000.GetType().Name);
 //}
-Console.WriteLine("GetDecoratedCollection: 00005:");
-Console.WriteLine("resultWebElement.GetType().Name = " + resultWebElement.GetType().Name);
+//Console.WriteLine("GetDecoratedCollection: 00005:");
+//Console.WriteLine("resultWebElement.GetType().Name = " + resultWebElement.GetType().Name);
 //Console.WriteLine("resultWebElement.TagName = " + resultWebElement.TagName);
                 //history.ByValue
                 history.PositionInResult = position;
@@ -1804,8 +1804,8 @@ Console.WriteLine("resultWebElement.GetType().Name = " + resultWebElement.GetTyp
                     //new WebElementDecorator((RemoteWebElement)resultWebElement);
                     new WebElementDecorator(resultWebElement);
                 
-Console.WriteLine("GetDecoratedCollection: 00006:");
-Console.WriteLine("GetDecoratedCollection: 00006+: " + ((WebElementDecorator)decorator).DecoratedWebElement.ToString());
+//Console.WriteLine("GetDecoratedCollection: 00006:");
+//Console.WriteLine("GetDecoratedCollection: 00006+: " + ((WebElementDecorator)decorator).DecoratedWebElement.ToString());
 //Console.WriteLine("GetDecoratedCollection: 00007: tagName = " + ((WebElementDecorator)decorator).TagName);
                 
 //Console.WriteLine("GetDecoratedCollection: 00005");

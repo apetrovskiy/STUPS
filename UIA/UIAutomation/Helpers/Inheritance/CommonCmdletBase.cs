@@ -1107,17 +1107,17 @@ namespace UIAutomation
                         cmdlet,
                         parameters);
                     break;
-                case WizardStepActions.Stop:
-                    cmdlet.WriteVerbose(
-                        cmdlet,
-                        "StopAction scriptblocks");
-                    
-                    runTwoScriptBlockCollections(
-                        null,
-                        wizardStep.Parent.StopAction,
-                        cmdlet,
-                        parameters);
-                    break;
+//                case WizardStepActions.Stop:
+//                    cmdlet.WriteVerbose(
+//                        cmdlet,
+//                        "StopAction scriptblocks");
+//                    
+//                    runTwoScriptBlockCollections(
+//                        null,
+//                        wizardStep.Parent.StopAction,
+//                        cmdlet,
+//                        parameters);
+//                    break;
                 default:
                     throw new Exception("Invalid value for WizardStepActions");
             }

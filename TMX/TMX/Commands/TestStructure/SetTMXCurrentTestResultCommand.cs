@@ -1,6 +1,6 @@
 ﻿/*
  * Created by SharpDevelop.
- * User: Alexander Petrovskiy
+ * User: APetrovsky
  * Date: 3/25/2013
  * Time: 1:37 PM
  * 

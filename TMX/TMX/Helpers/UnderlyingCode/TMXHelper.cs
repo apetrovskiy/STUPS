@@ -1170,6 +1170,8 @@ namespace TMX
 
                     TestData.CurrentTestResult.enStatus = TestResultStatuses.KnownIssue;
                 }
+                
+                TestData.CurrentTestResult.SetOrigin(TestResultOrigins.Logical);
 
             } else {
 

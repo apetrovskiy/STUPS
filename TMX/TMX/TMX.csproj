@@ -197,6 +197,7 @@
     <Compile Include="Commands\TestStructure\AddTMXTestCaseCommand.cs" />
     <Compile Include="Commands\TestStructure\GetTMXTestCaseCommand.cs" />
     <Compile Include="Commands\TestStructure\RemoveTMXTestCaseCommand.cs" />
+    <Compile Include="Commands\TestStructure\SetTMXCurrentTestResultCommand.cs" />
     <Compile Include="Commands\TestStructure\SetTMXTestCaseCommand.cs" />
     <Compile Include="Commands\TestStructure\AddTMXTestResultDetailCommand.cs" />
     <Compile Include="Commands\TestStructure\AddTMXTestScenarioCommand.cs" />
@@ -238,6 +239,7 @@
     <Compile Include="Helpers\UnderlyingCode\Commands\TestStructure\TMXOpenTestScenarioCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TestStructure\TMXOpenTestSuiteCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TestStructure\TMXRemoveTestCaseCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TestStructure\TMXSetCurrentTestResultCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TestStructure\TMXSetTestCaseCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TMXCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\GatherTestResultsCollections.cs" />

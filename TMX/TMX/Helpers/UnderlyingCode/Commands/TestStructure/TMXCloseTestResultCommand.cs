@@ -44,20 +44,23 @@ namespace TMX
             string testResultName = string.Empty;
             if ((null == cmdlet.Name || string.Empty == cmdlet.Name) &&
                 (null != cmdlet.TestResultName && string.Empty != cmdlet.TestResultName)) {
-                
+
                 testResultName = cmdlet.TestResultName;
+
             }
             if ((null != cmdlet.Name && string.Empty != cmdlet.Name) &&
                 (null == cmdlet.TestResultName || string.Empty == cmdlet.TestResultName)) {
-                
+
                 testResultName = cmdlet.Name;
+
             }
             if ((null != cmdlet.TestResultName && string.Empty != cmdlet.TestResultName) &&
                 (null != cmdlet.Name && string.Empty != cmdlet.Name)) {
-                
+
                 testResultName = cmdlet.TestResultName;
+
             }
-            
+
             TMXHelper.CloseTestResult(
                 // 20121223
                 testResultName,

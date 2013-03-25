@@ -162,6 +162,7 @@
     <Compile Include="Commands\TestStructure\OpenTMXTestScenarioCommandTestFixture.cs" />
     <Compile Include="Commands\TestStructure\OpenTMXTestSuiteCommandTestFixture.cs" />
     <Compile Include="Commands\TestStructure\RemoveTMXTestCaseCommandTestFixture.cs" />
+    <Compile Include="Commands\TestStructure\SetTMXCurrentTestResultCommandTestFixture.cs" />
     <Compile Include="Commands\TestStructure\SetTMXTestCaseCommandTestFixture.cs" />
     <Compile Include="MiddleLevelCode.cs" />
     <Compile Include="Provider\TMXProviderTestFixture.cs" />

@@ -30,11 +30,11 @@ namespace TMX.Commands
         }
         
         #region Parameters
-        [Parameter(Mandatory = false)]
-        public new SwitchParameter TestPassed { get; set; }
-        
-        [Parameter(Mandatory = false)]
-        public new SwitchParameter KnownIssue { get; set; }
+//        [Parameter(Mandatory = false)]
+//        public new SwitchParameter TestPassed { get; set; }
+//        
+//        [Parameter(Mandatory = false)]
+//        public new SwitchParameter KnownIssue { get; set; }
         
         [Parameter(Mandatory = false)]
         public SwitchParameter Echo { get; set; }
@@ -42,19 +42,19 @@ namespace TMX.Commands
         [Parameter(Mandatory = false)]
         public new SwitchParameter TestLog { get; set; }
         
-        [Parameter(Mandatory = false)]
-        [AllowNull]
-        [AllowEmptyString]
-        public string Description { get; set; }
-        
-        [Parameter(Mandatory = false)]
-        internal new string Name { get; set; }
-        
-        [Parameter(Mandatory = true,
-                   Position = 0)]
-        [ValidateNotNullOrEmpty]
-        [Alias("Name")]
-        public override string TestResultName { get; set; }
+//        [Parameter(Mandatory = false)]
+//        [AllowNull]
+//        [AllowEmptyString]
+//        public string Description { get; set; }
+//        
+//        [Parameter(Mandatory = false)]
+//        internal new string Name { get; set; }
+//        
+//        [Parameter(Mandatory = true,
+//                   Position = 0)]
+//        [ValidateNotNullOrEmpty]
+//        [Alias("Name")]
+//        public override string TestResultName { get; set; }
         #endregion Parameters
         
         protected override void BeginProcessing()

@@ -215,6 +215,9 @@
     <Compile Include="..\TMXTest\Commands\TestStructure\RemoveTMXTestCaseCommandTestFixture.cs">
       <Link>Commands\TestStructure\RemoveTMXTestCaseCommandTestFixture.cs</Link>
     </Compile>
+    <Compile Include="..\TMXTest\Commands\TestStructure\SetTMXCurrentTestResultCommandTestFixture.cs">
+      <Link>Commands\TestStructure\SetTMXCurrentTestResultCommandTestFixture.cs</Link>
+    </Compile>
     <Compile Include="..\TMXTest\Commands\TestStructure\SetTMXTestCaseCommandTestFixture.cs">
       <Link>Commands\TestStructure\SetTMXTestCaseCommandTestFixture.cs</Link>
     </Compile>

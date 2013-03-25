@@ -31,6 +31,30 @@ namespace TMX
         [Parameter(Mandatory = false)]
         //[ValidateNotNullOrEmpty()]
         public string Id { get; set; }
+        
+        // 20130325
+        [Parameter(Mandatory = false)]
+        internal new SwitchParameter TestPassed { get; set; }
+        
+        [Parameter(Mandatory = false)]
+        internal new SwitchParameter KnownIssue { get; set; }
+        
+        [Parameter(Mandatory = false)]
+        internal new SwitchParameter TestLog { get; set; }
+        
+//        [Parameter(Mandatory = false)]
+//        [AllowNull]
+//        [AllowEmptyString]
+//        public string Description { get; set; }
+        
+//        [Parameter(Mandatory = false)]
+//        internal new string Name { get; set; }
+        
+        [Parameter(Mandatory = false)]
+        internal new string TestResultName { get; set; }
+        
+        [Parameter(Mandatory = false)]
+        internal new string TestResultId { get; set; }
         #endregion Parameters
         
         protected void notImplementedCase()

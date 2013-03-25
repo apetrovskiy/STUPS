@@ -1,0 +1,32 @@
+﻿/*
+ * Created by SharpDevelop.
+ * User: APetrovsky
+ * Date: 3/25/2013
+ * Time: 1:37 PM
+ * 
+ * To change this template use Tools | Options | Coding | Edit Standard Headers.
+ */
+
+namespace TMX.Commands
+{
+    using System;
+    using System.Management.Automation;
+    
+    /// <summary>
+    /// Description of SetTMXCurrentTestResultCommand.
+    /// </summary>
+    [Cmdlet(VerbsCommon.Set, "TMXCurrentTestResult")]
+    public class SetTMXCurrentTestResultCommand : TestResultCmdletBase
+    {
+        public SetTMXCurrentTestResultCommand()
+        {
+        }
+        
+        protected override void BeginProcessing()
+        {
+            TMXSetCurrentTestResultCommand command =
+                new TMXSetCurrentTestResultCommand(this);
+            command.Execute();
+        }
+    }
+}

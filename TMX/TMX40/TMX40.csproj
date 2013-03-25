@@ -277,6 +277,9 @@
     <Compile Include="..\TMX\Commands\TestStructure\RemoveTMXTestCaseCommand.cs">
       <Link>Commands\TestStructure\RemoveTMXTestCaseCommand.cs</Link>
     </Compile>
+    <Compile Include="..\TMX\Commands\TestStructure\SetTMXCurrentTestResultCommand.cs">
+      <Link>Commands\TestStructure\SetTMXCurrentTestResultCommand.cs</Link>
+    </Compile>
     <Compile Include="..\TMX\Commands\TestStructure\SetTMXTestCaseCommand.cs">
       <Link>Commands\TestStructure\SetTMXTestCaseCommand.cs</Link>
     </Compile>
@@ -366,6 +369,9 @@
     </Compile>
     <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TestStructure\TMXOpenTestSuiteCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\TestStructure\TMXOpenTestSuiteCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TestStructure\TMXSetCurrentTestResultCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\TestStructure\TMXSetCurrentTestResultCommand.cs</Link>
     </Compile>
     <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TMXCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\TMXCommand.cs</Link>
@@ -495,6 +501,7 @@
     <Folder Include="Helpers\UnderlyingCode\Commands" />
     <Folder Include="Helpers\UnderlyingCode\Commands\TestStructure" />
     <Folder Include="Helpers\UnderlyingCode\Commands\Status" />
+    <Folder Include="Helpers\UnderlyingCode\Mapping" />
     <Folder Include="Helpers\UnderlyingCode\Mapping" />
     <Folder Include="Helpers\UnderlyingCode\Types" />
     <Folder Include="SQLiteData" />

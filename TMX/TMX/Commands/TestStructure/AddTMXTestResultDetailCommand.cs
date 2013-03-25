@@ -32,7 +32,10 @@ namespace TMX.Commands
         [Parameter(Mandatory = false)]
         internal new string Id { get; set; }
         
-        [Parameter(Mandatory = true)]
+        // 20130325
+        //[Parameter(Mandatory = true)]
+        [Parameter(Mandatory = true,
+                   Position = 0)]
         [ValidateNotNullOrEmpty()]
         public string TestResultDetail { get; set; }
         

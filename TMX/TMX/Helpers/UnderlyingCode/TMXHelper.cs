@@ -214,6 +214,24 @@ namespace TMX
             return result;
         }
         
+//        public static void CloseTestResultAsIs()
+//        {
+//
+//            if (TestData.TestSuites.Count == 0) {
+//                TestData.InitTestData();
+//            }
+//            
+//            if (null != TestData.CurrentTestResult) {
+//                TestData.CurrentTestScenario.TestResults.Add(TestData.CurrentTestResult);
+//            }
+//            
+//            TestData.CurrentTestResult =
+//                new TestResult(
+//                    TestData.CurrentTestScenario.Id,
+//                    TestData.CurrentTestSuite.Id);
+//
+//        }
+        
         // 20121224
         //public static bool CloseTestResult(
         public static void CloseTestResult(
@@ -1120,6 +1138,38 @@ namespace TMX
                 //TestData.RefreshScenarioStatistics(TestData.CurrentTestScenario);
                 TestData.RefreshScenarioStatistics(TestData.CurrentTestScenario, skipAutomatic);
                 cmdlet.WriteObject(cmdlet, TestData.CurrentTestScenario.Status);
+            }
+        }
+        
+        public static void SetCurrentTestResult(TestResultCmdletBase cmdlet)
+        {
+            if (null != TestData.CurrentTestResult) {
+                
+                if (null != cmdlet.TestResultName && 0 < cmdlet.TestResultName.Length) {
+                    TestData.CurrentTestResult.Name = cmdlet.TestResultName;
+                }
+                
+//                if (null != cmdlet.TestResultId && 0 < cmdlet.TestResultId.Length) {
+//                    TestData.CurrentTestResult.Id = cmdlet.TestResultId;
+//                }
+                
+                if (null != cmdlet.Id && 0 < cmdlet.Id.Length) {
+                    TestData.CurrentTestResult.Id = cmdlet.Id;
+                }
+                
+                if (null != cmdlet.Description && 0 < cmdlet.Description.Length) {
+                    TestData.CurrentTestResult.Description = cmdlet.Description;
+                }
+                
+                TestData.CurrentTestResult.enStatus = TestResultStatuses.Failed;
+                
+                if (cmdlet.KnownIssue) {
+                    TestData.CurrentTestResult.enStatus = TestResultStatuses.KnownIssue;
+                }
+                
+            } else {
+                
+                //TMXHelper.
             }
         }
     }

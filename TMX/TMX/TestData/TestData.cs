@@ -255,52 +255,68 @@ namespace TMX
                                            bool generated,
                                            bool skipAutomatic)
         {
-            
+
             TestData.InitCurrentTestScenario();
-            
+
             ITestResult currentTestResult;
             if (null != TestData.CurrentTestResult) {
+
                 currentTestResult = TestData.CurrentTestResult;
+
             } else {
-            
+
                 currentTestResult =
                     new TestResult(
                         TestData.CurrentTestScenario.Id,
                         TestData.CurrentTestSuite.Id);
             }
-            
-            if (previousTestResultName != null &&
-                previousTestResultName != string.Empty &&
-                previousTestResultName.Length > 0 &&
-                TMX.TestData.CurrentTestResult != null && 
-                 previousTestResultName != TMX.TestData.CurrentTestResult.Name) {
-                
-                currentTestResult.Name = previousTestResultName;
 
-            } else {
-                
-                currentTestResult.Name = "generated test result name";
+            // 20130325
+            if (null == currentTestResult.Name ||
+                string.Empty == currentTestResult.Name ||
+                0 == currentTestResult.Name.Length) {
+
+                if (previousTestResultName != null &&
+                    previousTestResultName != string.Empty &&
+                    previousTestResultName.Length > 0 &&
+                    TMX.TestData.CurrentTestResult != null && 
+                     previousTestResultName != TMX.TestData.CurrentTestResult.Name) {
+
+                    currentTestResult.Name = previousTestResultName;
+
+                } else {
+
+                    currentTestResult.Name = "generated test result name";
+                }
             }
-            
+
             // 20130322
             // setting test result's origin
             if (generated) {
+
                 currentTestResult.SetOrigin(TestResultOrigins.Automatic);
             } else {
+
                 currentTestResult.SetOrigin(TestResultOrigins.Logical);
             }
 
-            if (previousTestResultId != null &&
-                previousTestResultId != string.Empty &&
-                previousTestResultId.Length > 0 &&
+            // 20130325
+            if (null == currentTestResult.Id ||
+                string.Empty == currentTestResult.Id ||
+                0 == currentTestResult.Id.Length) {
 
-                null != TMX.TestData.CurrentTestResult &&
-                previousTestResultId != TMX.TestData.CurrentTestResult.Id) {
+                if (previousTestResultId != null &&
+                    previousTestResultId != string.Empty &&
+                    previousTestResultId.Length > 0 &&
 
-                currentTestResult.Id = previousTestResultId;
-            } else {
-                
-                currentTestResult.Id = GetTestResultId();
+                    null != TMX.TestData.CurrentTestResult &&
+                    previousTestResultId != TMX.TestData.CurrentTestResult.Id) {
+
+                    currentTestResult.Id = previousTestResultId;
+                } else {
+
+                    currentTestResult.Id = GetTestResultId();
+                }
             }
 
             if (passed != null) {

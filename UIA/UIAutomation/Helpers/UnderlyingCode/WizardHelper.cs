@@ -200,21 +200,27 @@ namespace UIAutomation
                             stepWithParametersName =
                                 dictParameters["STEP"].ToString();
                             
-                            stepWithParameters =
-                                wzd.GetStep(stepWithParametersName);
-                            
-                            if (null == stepWithParameters) {
+                            // 20130325
+                            if ("0" == stepWithParametersName) {
                                 
-                                cmdlet.WriteError(
-                                    cmdlet,
-                                    "Failed to get a step with name '" +
-                                    stepWithParametersName +
-                                    "' in the Parameters hashtable.",
-                                    "FailedToGetStep",
-                                    ErrorCategory.InvalidArgument,
-                                    true);
+                            } else {
+                            
+                                stepWithParameters =
+                                    wzd.GetStep(stepWithParametersName);
+                                
+                                if (null == stepWithParameters) {
+                                    
+                                    cmdlet.WriteError(
+                                        cmdlet,
+                                        "Failed to get a step with name '" +
+                                        stepWithParametersName +
+                                        "' in the Parameters hashtable.",
+                                        "FailedToGetStep",
+                                        ErrorCategory.InvalidArgument,
+                                        true);
+                                }
                             }
-
+                            
                             // these were an action in the Parameters hashtable (the outer hashtable):
                             // @{step="Step05PrinterData";action="forward";parameters=@{action="forward";list=@("printer_2","port_2")}}
 #region commented
@@ -290,6 +296,12 @@ namespace UIAutomation
                                     case "CANCEL":
                                         stepWithParameters.StepCancelActionParameters = (object[])dictParameters["PARAMETERS"];
                                         break;
+                                    case "STOP":
+                                        wzd.StopActionParameters = (object[])dictParameters["PARAMETERS"];
+                                        break;
+                                    case "START":
+                                        wzd.StartActionParameters = (object[])dictParameters["PARAMETERS"];
+                                        break;
                                     default:
                                         
                                     	break;
@@ -324,7 +336,9 @@ namespace UIAutomation
 
                 // 20130318
                 //cmdlet.RunWizardStartScriptBlocks(cmdlet, wzd);
-                cmdlet.RunWizardStartScriptBlocks(cmdlet, wzd, null);
+                // 20130325
+                //cmdlet.RunWizardStartScriptBlocks(cmdlet, wzd, null);
+                cmdlet.RunWizardStartScriptBlocks(cmdlet, wzd, wzd.StartActionParameters);
                 
                 cmdlet.WriteVerbose(cmdlet, "running Wizard in the automated mode");
 

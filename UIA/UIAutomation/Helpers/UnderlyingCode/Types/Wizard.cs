@@ -53,6 +53,9 @@ namespace UIAutomation
         public WizardStep ActiveStep { get; set; }
         // 20130318
         internal bool StopImmediately { get; set; }
+        // 20130325
+        public object[] StartActionParameters { get; set; }
+        public object[] StopActionParameters { get; set; }
         
         public void ClearSteps()
         {

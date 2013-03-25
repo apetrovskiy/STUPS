@@ -1025,6 +1025,17 @@ namespace UIAutomation
 
         }
         
+        protected internal void RunWizardStopScriptBlocks(WizardCmdletBase cmdlet, Wizard wizard, object[] parameters)
+        {
+
+            runTwoScriptBlockCollections(
+                null,
+                wizard.StopAction,
+                cmdlet,
+                parameters);
+
+        }
+        
         // 20130318
         //protected internal void RunWizardGetWindowScriptBlocks(WizardCmdletBase cmdlet, Wizard wizard)
         protected internal bool RunWizardGetWindowScriptBlocks(WizardCmdletBase cmdlet, Wizard wizard, object[] parameters)

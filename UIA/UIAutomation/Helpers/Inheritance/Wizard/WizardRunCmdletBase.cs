@@ -153,6 +153,8 @@ namespace UIAutomation
     				        case WizardStepActions.Stop:
     				        //    currentParameters = currentStep.Parent.StopActionp; // ??
     				            wizard.StopImmediately = true;
+    				            // 20130325
+    				            currentParameters = wizard.StopActionParameters;
     				            break;
     				        default:
     				            //throw new Exception("Invalid value for WizardStepActions");
@@ -160,18 +162,25 @@ namespace UIAutomation
     				            break;
     				    }
     				    
-    				    // 20130318
-    					//cmdlet.RunWizardStepScriptBlocks(cmdlet, currentStep, cmdlet.ForwardDirection);
-    					cmdlet.RunWizardStepScriptBlocks(
-    					    cmdlet,
-    					    currentStep,
-    					    // 20130321
-    					    //cmdlet.ForwardDirection,
-    					    currentStep.ToDo,
-    					    // 20130321
-    					    //cmdlet.ForwardDirection ? currentStep.StepForwardActionParameters : currentStep.StepBackwardActionParameters);
-    					    currentParameters);
-
+    				    // 20130325
+    				    if (WizardStepActions.Stop == currentStep.ToDo) {
+    				        cmdlet.RunWizardStartScriptBlocks(
+    				            cmdlet,
+    				            wizard,
+    				            currentParameters);
+    				    } else {
+        				    // 20130318
+        					//cmdlet.RunWizardStepScriptBlocks(cmdlet, currentStep, cmdlet.ForwardDirection);
+        					cmdlet.RunWizardStepScriptBlocks(
+        					    cmdlet,
+        					    currentStep,
+        					    // 20130321
+        					    //cmdlet.ForwardDirection,
+        					    currentStep.ToDo,
+        					    // 20130321
+        					    //cmdlet.ForwardDirection ? currentStep.StepForwardActionParameters : currentStep.StepBackwardActionParameters);
+        					    currentParameters);
+    				    }
     					// 20130319 - need moving to an appropriate place
     					//cmdlet.RunWizardStepCancelScriptBlocks(
     					//    cmdlet,

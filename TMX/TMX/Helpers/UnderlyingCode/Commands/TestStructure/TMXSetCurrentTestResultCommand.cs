@@ -26,17 +26,47 @@ namespace TMX
             TestResultCmdletBase cmdlet =
                 (TestResultCmdletBase)this.Cmdlet;
                 
+            cmdlet.WriteVerbose(
+                cmdlet,
+                "Checking the current test structure, creating the first test suite and scenario if needed");
             TestData.InitCurrentTestScenario();
             
+            cmdlet.WriteVerbose(
+                cmdlet,
+                "Checking whether the current test result is fulfilled nad must be added to the current test scenairo' results");
             if (null != TestData.CurrentTestResult) {
-             
-                TestData.CurrentTestScenario.TestResults.Add(TestData.CurrentTestResult);                
-            }
                 
+                cmdlet.WriteVerbose(
+                    cmdlet,
+                    "The current test result is not null");
+
+                if ((null != TestData.CurrentTestResult.Name &&
+                    string.Empty != TestData.CurrentTestResult.Name &&
+                    null != TestData.CurrentTestResult.Id &&
+                    string.Empty != TestData.CurrentTestResult.Id) ||
+                    (0 < TestData.CurrentTestResult.Details.Count)) {
+                    
+                    cmdlet.WriteVerbose(
+                        cmdlet,
+                        "Ading the current test result to the current test scenario' results");
+                    
+                    TestData.CurrentTestScenario.TestResults.Add(TestData.CurrentTestResult);                
+                }
+                
+            }
+            
+            cmdlet.WriteVerbose(
+                cmdlet,
+                "Creating the current test result for putting new data into it");
+            
             TestData.CurrentTestResult =
                 new TestResult(
                     TestData.CurrentTestScenario.Id,
                     TestData.CurrentTestSuite.Id);
+            
+            cmdlet.WriteVerbose(
+                cmdlet,
+                "Writing data to the current test result");
             
             TMXHelper.SetCurrentTestResult(cmdlet);
             

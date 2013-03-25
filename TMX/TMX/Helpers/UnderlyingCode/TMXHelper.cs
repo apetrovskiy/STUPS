@@ -1144,8 +1144,9 @@ namespace TMX
         public static void SetCurrentTestResult(TestResultCmdletBase cmdlet)
         {
             if (null != TestData.CurrentTestResult) {
-                
+
                 if (null != cmdlet.TestResultName && 0 < cmdlet.TestResultName.Length) {
+
                     TestData.CurrentTestResult.Name = cmdlet.TestResultName;
                 }
                 
@@ -1154,22 +1155,25 @@ namespace TMX
 //                }
                 
                 if (null != cmdlet.Id && 0 < cmdlet.Id.Length) {
+
                     TestData.CurrentTestResult.Id = cmdlet.Id;
                 }
                 
                 if (null != cmdlet.Description && 0 < cmdlet.Description.Length) {
+
                     TestData.CurrentTestResult.Description = cmdlet.Description;
                 }
-                
+
                 TestData.CurrentTestResult.enStatus = TestResultStatuses.Failed;
-                
+
                 if (cmdlet.KnownIssue) {
+
                     TestData.CurrentTestResult.enStatus = TestResultStatuses.KnownIssue;
                 }
-                
+
             } else {
-                
-                //TMXHelper.
+
+                // there is already the current test result
             }
         }
     }

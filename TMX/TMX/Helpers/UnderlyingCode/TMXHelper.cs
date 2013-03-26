@@ -1149,6 +1149,9 @@ namespace TMX
                 if (null != cmdlet.TestResultName && 0 < cmdlet.TestResultName.Length) {
 
                     TestData.CurrentTestResult.Name = cmdlet.TestResultName;
+                } else {
+                    
+                    TestData.CurrentTestResult.Name = "this test result was preset";
                 }
                 
 //                if (null != cmdlet.TestResultId && 0 < cmdlet.TestResultId.Length) {
@@ -1177,6 +1180,7 @@ namespace TMX
             } else {
 
                 // there is already the current test result
+Console.WriteLine("!!!!!!!!!!!!!! else !!!!!!!!!!!!!!!");
             }
         }
     }

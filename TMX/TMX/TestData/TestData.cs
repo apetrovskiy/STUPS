@@ -242,8 +242,8 @@ namespace TMX
             CurrentTestSuite = null;
         }
         
-        internal static void AddTestResult(string previousTestResultName,
-                                           string previousTestResultId,
+        internal static void AddTestResult(string closingTestResultName, // previousTestResultName
+                                           string closingTestResultId, // previousTestResultId
                                            bool? passed,
                                            bool isKnownIssue,
                                            bool generateNextResult,
@@ -276,18 +276,34 @@ namespace TMX
                 string.Empty == currentTestResult.Name ||
                 0 == currentTestResult.Name.Length) {
 
-                if (previousTestResultName != null &&
-                    previousTestResultName != string.Empty &&
-                    previousTestResultName.Length > 0 &&
+                if (closingTestResultName != null &&
+                    closingTestResultName != string.Empty &&
+                    closingTestResultName.Length > 0 &&
                     TMX.TestData.CurrentTestResult != null && 
-                     previousTestResultName != TMX.TestData.CurrentTestResult.Name) {
+                     closingTestResultName != TMX.TestData.CurrentTestResult.Name) {
 
-                    currentTestResult.Name = previousTestResultName;
+                    currentTestResult.Name = closingTestResultName;
 
                 } else {
 
                     currentTestResult.Name = "generated test result name";
                 }
+                
+            // 20130326
+            } else {
+                
+                // nothing to do
+Console.WriteLine("yo-yo!");
+Console.WriteLine("currentTestResult.Name = " + currentTestResult.Name);
+
+                // 20130326
+                //TestData.CurrentTestScenario.TestResults.Add(currentTestResult);
+//                TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1] =
+//                    currentTestResult;
+//                currentTestResult =
+//                    new TestResult(
+//                        TestData.CurrentTestScenario.Id,
+//                        TestData.CurrentTestSuite.Id);
             }
 
             // 20130322
@@ -305,18 +321,25 @@ namespace TMX
                 string.Empty == currentTestResult.Id ||
                 0 == currentTestResult.Id.Length) {
 
-                if (previousTestResultId != null &&
-                    previousTestResultId != string.Empty &&
-                    previousTestResultId.Length > 0 &&
+                if (closingTestResultId != null &&
+                    closingTestResultId != string.Empty &&
+                    closingTestResultId.Length > 0 &&
 
                     null != TMX.TestData.CurrentTestResult &&
-                    previousTestResultId != TMX.TestData.CurrentTestResult.Id) {
+                    closingTestResultId != TMX.TestData.CurrentTestResult.Id) {
 
-                    currentTestResult.Id = previousTestResultId;
+                    currentTestResult.Id = closingTestResultId;
                 } else {
 
                     currentTestResult.Id = GetTestResultId();
                 }
+            // 20130326
+            } else {
+                
+                // nothing to do
+                
+Console.WriteLine("id, wow");
+Console.WriteLine("currentTestResult.Id = " + currentTestResult.Id);
             }
 
             if (passed != null) {
@@ -359,9 +382,11 @@ namespace TMX
             currentTestResult.SetNow();
             currentTestResult.SetTimeSpent(
                 (currentTestResult.Timestamp - TMXHelper.TestCaseStarted).TotalSeconds);
-            
+Console.WriteLine("before TestData.CurrentTestResult.Name = " + TestData.CurrentTestResult.Name);
+Console.WriteLine("before TestData.CurrentTestResult.Id = " + TestData.CurrentTestResult.Id);
             TestData.CurrentTestResult = currentTestResult;
-            
+Console.WriteLine("after TestData.CurrentTestResult.Name = " + TestData.CurrentTestResult.Name);
+Console.WriteLine("after TestData.CurrentTestResult.Id = " + TestData.CurrentTestResult.Id);
             TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1] = 
                 TestData.CurrentTestResult;
             

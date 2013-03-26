@@ -293,8 +293,8 @@ namespace TMX
             } else {
                 
                 // nothing to do
-Console.WriteLine("yo-yo!");
-Console.WriteLine("currentTestResult.Name = " + currentTestResult.Name);
+//Console.WriteLine("yo-yo!");
+//Console.WriteLine("currentTestResult.Name = " + currentTestResult.Name);
 
                 // 20130326
                 //TestData.CurrentTestScenario.TestResults.Add(currentTestResult);
@@ -338,8 +338,8 @@ Console.WriteLine("currentTestResult.Name = " + currentTestResult.Name);
                 
                 // nothing to do
                 
-Console.WriteLine("id, wow");
-Console.WriteLine("currentTestResult.Id = " + currentTestResult.Id);
+//Console.WriteLine("id, wow");
+//Console.WriteLine("currentTestResult.Id = " + currentTestResult.Id);
             }
 
             if (passed != null) {
@@ -382,11 +382,11 @@ Console.WriteLine("currentTestResult.Id = " + currentTestResult.Id);
             currentTestResult.SetNow();
             currentTestResult.SetTimeSpent(
                 (currentTestResult.Timestamp - TMXHelper.TestCaseStarted).TotalSeconds);
-Console.WriteLine("before TestData.CurrentTestResult.Name = " + TestData.CurrentTestResult.Name);
-Console.WriteLine("before TestData.CurrentTestResult.Id = " + TestData.CurrentTestResult.Id);
+//Console.WriteLine("before TestData.CurrentTestResult.Name = " + TestData.CurrentTestResult.Name);
+//Console.WriteLine("before TestData.CurrentTestResult.Id = " + TestData.CurrentTestResult.Id);
             TestData.CurrentTestResult = currentTestResult;
-Console.WriteLine("after TestData.CurrentTestResult.Name = " + TestData.CurrentTestResult.Name);
-Console.WriteLine("after TestData.CurrentTestResult.Id = " + TestData.CurrentTestResult.Id);
+//Console.WriteLine("after TestData.CurrentTestResult.Name = " + TestData.CurrentTestResult.Name);
+//Console.WriteLine("after TestData.CurrentTestResult.Id = " + TestData.CurrentTestResult.Id);
             TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1] = 
                 TestData.CurrentTestResult;
             

@@ -1159,8 +1159,11 @@ namespace TMX
 //                }
                 
                 if (null != cmdlet.Id && 0 < cmdlet.Id.Length) {
-
+//Console.WriteLine("here should be our test id");
                     TestData.CurrentTestResult.Id = cmdlet.Id;
+                } else {
+                    
+                    TestData.GetTestResultId();
                 }
                 
                 if (null != cmdlet.Description && 0 < cmdlet.Description.Length) {
@@ -1179,8 +1182,8 @@ namespace TMX
 
             } else {
 
-                // there is already the current test result
-Console.WriteLine("!!!!!!!!!!!!!! else !!!!!!!!!!!!!!!");
+                // there always is the current test result
+//Console.WriteLine("Unit tests' path");
             }
         }
     }

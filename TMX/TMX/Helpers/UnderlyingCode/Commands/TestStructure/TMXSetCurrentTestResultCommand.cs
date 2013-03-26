@@ -44,8 +44,8 @@ namespace TMX
 
                 if ((null != TestData.CurrentTestResult.Name &&
                      string.Empty != TestData.CurrentTestResult.Name) || // &&
-                    (null != TestData.CurrentTestResult.Id &&
-                    string.Empty != TestData.CurrentTestResult.Id) ||
+                    //(null != TestData.CurrentTestResult.Id &&
+                    //string.Empty != TestData.CurrentTestResult.Id) ||
                     (0 < TestData.CurrentTestResult.Details.Count)) {
                     
                     cmdlet.WriteVerbose(
@@ -58,12 +58,15 @@ namespace TMX
                         TestData.CurrentTestResult;
                 } else {
                     
-Console.WriteLine("not adding test result");
+//Console.WriteLine("not adding the current test result to the collection");
+                    
                 }
+                
+                
                 
             } else {
                 
-Console.WriteLine(" current result is null");
+//Console.WriteLine(" current result is null");
             }
             
             cmdlet.WriteVerbose(
@@ -85,7 +88,7 @@ Console.WriteLine(" current result is null");
             cmdlet.WriteVerbose(
                 cmdlet,
                 "Writing data to the current test result");
-            
+//Console.WriteLine("cmdlet.Id = " + cmdlet.Id);
             TMXHelper.SetCurrentTestResult(cmdlet);
             
         }

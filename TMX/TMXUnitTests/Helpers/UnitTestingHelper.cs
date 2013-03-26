@@ -146,7 +146,6 @@ namespace TMXUnitTests
             return (ITestScenario)TMX.TestData.CurrentTestScenario;
         }
         
-        
         // more parameters!
         internal static ITestResult CloseTestResult(TestResultStatuses codeStatus, bool logicStatus)
         {
@@ -179,6 +178,34 @@ namespace TMXUnitTests
             
             TMXCloseTestResultCommand command =
                 new TMXCloseTestResultCommand(cmdlet);
+            command.Execute();
+
+            return TMX.TestData.CurrentTestResult;
+        }
+        
+        internal static ITestResult SetTestResult(string testResultName, string testResultId)
+        {
+            GetNewTestSuite("name", "id", "description");
+
+            SetTMXCurrentTestResultCommand cmdlet =
+                new SetTMXCurrentTestResultCommand();
+
+            if (null != testResultName &&
+                string.Empty != testResultName &&
+                0 < testResultName.Length) {
+                
+                cmdlet.TestResultName = testResultName;
+            }
+            
+            if (null != testResultId &&
+                string.Empty != testResultId &&
+                0 < testResultId.Length) {
+                
+                cmdlet.Id = testResultId;
+            }
+
+            TMXSetCurrentTestResultCommand command =
+                new TMXSetCurrentTestResultCommand(cmdlet);
             command.Execute();
 
             return TMX.TestData.CurrentTestResult;

@@ -95,7 +95,7 @@ namespace UIAutomation
             BannerLeft = 100;
             BannerTop = 100;
             BannerWidth = 600;
-            BannerHeight = 80;
+            BannerHeight = 100; //80;
         }
         
         /// <summary>

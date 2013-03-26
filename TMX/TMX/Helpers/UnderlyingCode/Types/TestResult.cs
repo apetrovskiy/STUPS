@@ -118,7 +118,13 @@ namespace TMX
         public TestResultOrigins Origin { get; internal set; }
         public void SetOrigin(TestResultOrigins origin)
         {
-            this.Origin = origin;
+            if (TestResultOrigins.Logical == this.Origin) {
+                
+                // don't change the origin - it already was logical
+            } else {
+                
+                this.Origin = origin;
+            }
         }
     }
 }

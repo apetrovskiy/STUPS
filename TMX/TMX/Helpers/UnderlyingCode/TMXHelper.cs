@@ -1154,12 +1154,8 @@ namespace TMX
                     TestData.CurrentTestResult.Name = "this test result was preset";
                 }
                 
-//                if (null != cmdlet.TestResultId && 0 < cmdlet.TestResultId.Length) {
-//                    TestData.CurrentTestResult.Id = cmdlet.TestResultId;
-//                }
-                
                 if (null != cmdlet.Id && 0 < cmdlet.Id.Length) {
-//Console.WriteLine("here should be our test id");
+
                     TestData.CurrentTestResult.Id = cmdlet.Id;
                 } else {
                     
@@ -1183,7 +1179,6 @@ namespace TMX
             } else {
 
                 // there always is the current test result
-//Console.WriteLine("Unit tests' path");
             }
         }
     }

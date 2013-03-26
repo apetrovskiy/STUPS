@@ -292,18 +292,8 @@ namespace TMX
             // 20130326
             } else {
                 
+                // the current test result is a result that was preset
                 // nothing to do
-Console.WriteLine("yo-yo!");
-Console.WriteLine("currentTestResult.Name = " + currentTestResult.Name);
-
-                // 20130326
-                //TestData.CurrentTestScenario.TestResults.Add(currentTestResult);
-//                TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1] =
-//                    currentTestResult;
-//                currentTestResult =
-//                    new TestResult(
-//                        TestData.CurrentTestScenario.Id,
-//                        TestData.CurrentTestSuite.Id);
             }
 
             // 20130322
@@ -336,10 +326,8 @@ Console.WriteLine("currentTestResult.Name = " + currentTestResult.Name);
             // 20130326
             } else {
                 
+                // there already was the Id
                 // nothing to do
-                
-Console.WriteLine("id, wow");
-Console.WriteLine("currentTestResult.Id = " + currentTestResult.Id);
             }
 
             if (passed != null) {
@@ -382,11 +370,22 @@ Console.WriteLine("currentTestResult.Id = " + currentTestResult.Id);
             currentTestResult.SetNow();
             currentTestResult.SetTimeSpent(
                 (currentTestResult.Timestamp - TMXHelper.TestCaseStarted).TotalSeconds);
-Console.WriteLine("before TestData.CurrentTestResult.Name = " + TestData.CurrentTestResult.Name);
-Console.WriteLine("before TestData.CurrentTestResult.Id = " + TestData.CurrentTestResult.Id);
+
             TestData.CurrentTestResult = currentTestResult;
-Console.WriteLine("after TestData.CurrentTestResult.Name = " + TestData.CurrentTestResult.Name);
-Console.WriteLine("after TestData.CurrentTestResult.Id = " + TestData.CurrentTestResult.Id);
+
+            // 20130326
+            if (null != TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1] &&
+                TestResultOrigins.Logical == TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1].Origin &&
+                TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1] != TestData.CurrentTestResult &&
+                null != TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1].Name &&
+                0 < TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1].Name.Length) {
+                
+                
+                TMXHelper.TestCaseStarted =
+                    System.DateTime.Now;
+                TestData.CurrentTestScenario.TestResults.Add(new TestResult(TestData.CurrentTestScenario.Id, TestData.CurrentTestSuite.Id));
+            }
+            
             TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1] = 
                 TestData.CurrentTestResult;
             
@@ -440,6 +439,7 @@ Console.WriteLine("after TestData.CurrentTestResult.Id = " + TestData.CurrentTes
                        TestData.CurrentTestScenario.SuiteId));
                 TestData.CurrentTestResult = 
                     TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1];
+
             } else {
 
                 // write zero time

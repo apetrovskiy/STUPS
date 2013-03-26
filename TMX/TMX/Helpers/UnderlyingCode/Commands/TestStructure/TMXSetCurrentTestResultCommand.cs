@@ -34,58 +34,55 @@ namespace TMX
             cmdlet.WriteVerbose(
                 cmdlet,
                 "Checking whether the current test result is fulfilled and must be added to the current test scenairo' results");
-//Console.WriteLine("name in the Set-TMXCurrentTestResult = " + cmdlet.TestResultName);
-//Console.WriteLine("name of the current = " + TestData.CurrentTestResult.Name);
+
             if (null != TestData.CurrentTestResult) {
-//Console.WriteLine("null != TestData.CurrentTestResult");
+
                 cmdlet.WriteVerbose(
                     cmdlet,
                     "The current test result is not null");
 
                 if ((null != TestData.CurrentTestResult.Name &&
-                     string.Empty != TestData.CurrentTestResult.Name) || // &&
-                    (null != TestData.CurrentTestResult.Id &&
-                    string.Empty != TestData.CurrentTestResult.Id) ||
+                     string.Empty != TestData.CurrentTestResult.Name) ||
                     (0 < TestData.CurrentTestResult.Details.Count)) {
                     
                     cmdlet.WriteVerbose(
                         cmdlet,
                         "Adding the current test result to the current test scenario' results");
                     
-                    //TestData.CurrentTestScenario.TestResults.Add(TestData.CurrentTestResult);
+
                     // 20130326
+
+                    TMXHelper.TestCaseStarted =
+                        System.DateTime.Now;
+                    TestData.CurrentTestScenario.TestResults.Add(new TestResult(TestData.CurrentTestScenario.Id, TestData.CurrentTestSuite.Id));
                     TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1] = 
                         TestData.CurrentTestResult;
+
                 } else {
                     
-Console.WriteLine("not adding test result");
+                    // nothing to do
                 }
+                
+                
                 
             } else {
                 
-Console.WriteLine(" current result is null");
+                // nothing to do
             }
             
             cmdlet.WriteVerbose(
                 cmdlet,
                 "Creating the current test result for putting new data into it");
             
-//Console.WriteLine("before setting a new current test result: TestData.CurrentTestResult.Name = " + TestData.CurrentTestResult.Name);
-//Console.WriteLine("before setting a new current test result: TestData.CurrentTestResult.Id = " + TestData.CurrentTestResult.Id);
-//Console.WriteLine("before setting a new current test result: TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1].Name = " + TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1].Name);
-//Console.WriteLine("before setting a new current test result: TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1].Id = " + TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1].Id);
             TestData.CurrentTestResult =
                 new TestResult(
                     TestData.CurrentTestScenario.Id,
                     TestData.CurrentTestSuite.Id);
-//Console.WriteLine("after setting a new current test result: TestData.CurrentTestResult.Name = " + TestData.CurrentTestResult.Name);
-//Console.WriteLine("after setting a new current test result: TestData.CurrentTestResult.Id = " + TestData.CurrentTestResult.Id);
-//Console.WriteLine("after setting a new current test result: TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1].Name = " + TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1].Name);
-//Console.WriteLine("after setting a new current test result: TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1].Id = " + TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1].Id);
+
             cmdlet.WriteVerbose(
                 cmdlet,
                 "Writing data to the current test result");
-            
+
             TMXHelper.SetCurrentTestResult(cmdlet);
             
         }

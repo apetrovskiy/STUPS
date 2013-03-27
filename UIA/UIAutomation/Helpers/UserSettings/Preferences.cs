@@ -96,6 +96,8 @@ namespace UIAutomation
             BannerTop = 100;
             BannerWidth = 600;
             BannerHeight = 100; //80;
+            // 20130327
+            BannerFontSize = 20;
         }
         
         /// <summary>
@@ -316,6 +318,8 @@ namespace UIAutomation
         public static int BannerTop { get; set; }
         public static int BannerWidth { get; set; }
         public static int BannerHeight { get; set; }
+        // 201130327
+        public static int BannerFontSize { get; set; }
     }
     
     public static class Mode

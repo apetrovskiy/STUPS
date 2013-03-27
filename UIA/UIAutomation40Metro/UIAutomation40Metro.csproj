@@ -156,6 +156,9 @@
     <Compile Include="..\UIAutomation\Commands\Cache\StopUIACacheRequestCommand.cs">
       <Link>Commands\Cache\StopUIACacheRequestCommand.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Commands\Common\AddUIABannerTextCommand.cs">
+      <Link>Commands\Common\AddUIABannerTextCommand.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Commands\Common\ClearUIAControlTextCommand.cs">
       <Link>Commands\Common\ClearUIAControlTextCommand.cs</Link>
     </Compile>

@@ -22,6 +22,12 @@ namespace TMX.Commands
         {
         }
         
+        #region Parameters
+        // 20130327
+        //[Parameter(Mandatory = false)]
+        //public string Banner { get; set; }
+        #endregion Parameters
+        
         protected override void BeginProcessing()
         {
             TMXSetCurrentTestResultCommand command =

@@ -286,7 +286,9 @@ namespace UIAutomation
         }
         
         // 20130322
-        internal static void ShowBanner(string message)
+        // 20130327
+        //internal static void ShowBanner(string message)
+        public static void ShowBanner(string message)
         {
             try { if (null != banner) { banner.Dispose(); } } catch {}
             
@@ -308,6 +310,35 @@ namespace UIAutomation
                 }
                 catch {}
                 banner.Dispose();
+            }
+        }
+        
+        // 20130327
+        public static void AppendBanner(string message)
+        {
+            if (null != banner) {
+                
+                banner.AppendMessage(message);
+                
+            } else {
+            
+                banner =
+                    new Banner(
+                        Preferences.BannerLeft,
+                        Preferences.BannerTop,
+                        Preferences.BannerWidth,
+                        Preferences.BannerHeight,
+                        message);
+                
+            }
+        }
+        
+        // 20130327
+        public static void ClearBanner()
+        {
+            if (null != banner) {
+                
+                banner.Message = string.Empty;
             }
         }
         

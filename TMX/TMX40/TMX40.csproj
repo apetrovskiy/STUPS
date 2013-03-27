@@ -102,6 +102,7 @@
       <HintPath>..\..\binaries\sqlite\40\64\System.Data.SQLite.Linq.dll</HintPath>
     </Reference>
     <Reference Include="System.Management.Automation" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>

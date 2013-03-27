@@ -89,6 +89,9 @@ namespace UIAutomation
 			
 			cmdlet.StartDate =
 			    System.DateTime.Now;
+			
+			// 20130327
+			string previousStepName = string.Empty;
 
 			// 20130320
 			//while ((null != CurrentData.CurrentWindow)) {
@@ -130,6 +133,38 @@ namespace UIAutomation
                             "current step name = '" +
                             currentStep.Name +
                             "'");
+    				    
+    				    // 20130327
+    				    if (previousStepName == currentStep.Name) {
+    				        
+    				        // the same code as below
+    				        System.DateTime nowDate =
+    				            System.DateTime.Now;
+    				        
+        				    if ((nowDate - cmdlet.StartDate).TotalSeconds > (Preferences.Timeout / 1000)) {
+                                
+        				        if (this.Quiet) {
+        				            
+        				            cmdlet.WriteObject(
+        				                cmdlet,
+        				                false);
+        				            return;
+        				            
+        				        } else {
+        				        
+            				        cmdlet.WriteError(
+            				            cmdlet,
+            				            "Timeout expired",
+            				            "TimeoutExpired",
+            				            ErrorCategory.OperationTimeout,
+            				            true);
+        				        }
+                            }
+    				        
+    				        System.Threading.Thread.Sleep(Preferences.OnSelectWizardStepDelay);
+    				        continue;
+    				    }
+    				    previousStepName = currentStep.Name;
                         
     				    // 20130322
     				    // // 20130321

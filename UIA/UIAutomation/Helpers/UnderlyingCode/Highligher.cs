@@ -358,18 +358,31 @@ namespace UIAutomation
                 return;
             }
             
+            // 20130327
+            this.left = (int)left;
+            this.top = (int)top;
+            this.width = (int)width;
+            this.height = (int)height;
+            
             this.lblMessage = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblMessage
             // 
             this.lblMessage.BackColor = this.BackColor;
-            this.lblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            //this.lblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            // 20130327
+            //this.lblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", (float)Preferences.BannerFontSize, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMessage.Location = new System.Drawing.Point(0, 0);
             this.lblMessage.Name = "lblMessage";
             //this.lblMessage.Size = new System.Drawing.Size(800, 80);
-            this.lblMessage.Size = new System.Drawing.Size((int)width, (int)height);
+            // 20130327
+            //this.lblMessage.Size = new System.Drawing.Size((int)this.width, (int)this.height);
+            this.lblMessage.Size = new System.Drawing.Size(this.width, this.height);
             this.lblMessage.TabIndex = 0;
+            // replace "&" with "&&"
+            message = message.Replace("&", "&&");
             this.lblMessage.Text = message;
             // 
             // MainForm
@@ -377,7 +390,9 @@ namespace UIAutomation
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             //this.ClientSize = new System.Drawing.Size(471, 35);
-            this.ClientSize = new System.Drawing.Size((int)width, (int)height);
+            // 20130327
+            //this.ClientSize = new System.Drawing.Size((int)this.width, (int)this.height);
+            this.ClientSize = new System.Drawing.Size(this.width, this.height);
             this.Controls.Add(this.lblMessage);
             this.Name = "MainForm";
             this.Opacity = 0.7D;
@@ -387,16 +402,37 @@ namespace UIAutomation
             this.ControlBox = false;
             this.FormBorderStyle = FormBorderStyle.None;
             //this.Left = 100;
-            this.Left = (int)left;
+            // 20130327
+            //this.Left = (int)this.left;
+            this.Left = this.left;
             //this.Top = 100;
-            this.Top = (int)top;
+            // 20130327
+            //this.Top = (int)this.top;
+            this.Top = this.top;
             //this.Width = 800;
-            this.Width = (int)width;
+            // 20130327
+            //this.Width = (int)this.width;
+            this.Width = this.width;
             //this.Height = 80;
-            this.Height = (int)height;
+            // 20130327
+            //this.Height = (int)this.height;
+            this.Height = this.height;
+            // 20130327
+            //this.Location = new System.Drawing.Point((int)this.left, (int)this.top);
+            this.Location = new System.Drawing.Point(this.left, this.top);
+            // 20130327
+            this.Text = "UIABanner";
+            // 20130327
+            this.Load += new System.EventHandler(this.MainFormLoad);
             this.ResumeLayout(false);
             
             this.Show();
+        }
+        
+        // 20130327
+        void MainFormLoad(object sender, EventArgs e)
+        {
+            this.Location = new System.Drawing.Point((int)this.left, (int)this.top);
         }
         
         public new void Dispose()
@@ -406,6 +442,11 @@ namespace UIAutomation
         }
         
         private Label lblMessage;
+        // 20130327
+        private int left;
+        private int top;
+        private int width;
+        private int height;
         
         public string Message {
             get { return this.lblMessage.Text; }
@@ -421,6 +462,8 @@ namespace UIAutomation
             }
             
             this.Message += message;
+            // 20130327
+            Application.DoEvents();
         }
         
         public void RestoreOriginalMessage()
@@ -428,6 +471,8 @@ namespace UIAutomation
             if (string.Empty != this.originalMessage) {
                 this.Message = this.originalMessage;
             }
+            // 20130327
+            Application.DoEvents();
         }
     }
     

@@ -32,6 +32,9 @@ namespace TMX
         
         internal static DateTime TestCaseStarted { get; set; }
         
+        // 20130327
+        public static System.Windows.Forms.Form BannerForm { get; set; }
+        
         public static string GetScriptName(InvocationInfo iInfo)
         {
             string result = string.Empty;

@@ -2221,5 +2221,25 @@ namespace UIAutomation
             
             return resultElement;
         }
+        
+        // 20130327
+        public static void AppendBanner(string message)
+        {
+            if (null != banner) {
+                
+                banner.AppendMessage(message);
+                
+            } else {
+            
+                banner =
+                    new Banner(
+                        Preferences.BannerLeft,
+                        Preferences.BannerTop,
+                        Preferences.BannerWidth,
+                        Preferences.BannerHeight,
+                        message);
+                
+            }
+        }
     }
 }

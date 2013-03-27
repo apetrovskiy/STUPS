@@ -1,5 +1,4 @@
-﻿using System.Data.SqlTypes;
-/*
+﻿/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
  * Date: 2/20/2012
@@ -18,6 +17,8 @@ namespace TMX
     using System.Collections.Generic;
     using System.Xml.Linq;
     using System.Reflection;
+    
+    //using System.Data.SqlTypes;
 
     /// <summary>
     /// Description of TMXHelper.
@@ -1172,6 +1173,8 @@ namespace TMX
 
                     TestData.CurrentTestResult.enStatus = TestResultStatuses.KnownIssue;
                 }
+                
+                TestData.CurrentTestResult.SetOrigin(TestResultOrigins.Logical);
 
             } else {
 

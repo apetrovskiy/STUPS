@@ -371,6 +371,8 @@ namespace UIAutomation
             //this.lblMessage.Size = new System.Drawing.Size(800, 80);
             this.lblMessage.Size = new System.Drawing.Size((int)width, (int)height);
             this.lblMessage.TabIndex = 0;
+            // replace "&" with "&&"
+            message = message.Replace("&", "&&");
             this.lblMessage.Text = message;
             // 
             // MainForm
@@ -395,6 +397,7 @@ namespace UIAutomation
             this.Width = (int)width;
             //this.Height = 80;
             this.Height = (int)height;
+            this.Location = new System.Drawing.Point((int)left, (int)top);
             this.ResumeLayout(false);
             
             this.Show();

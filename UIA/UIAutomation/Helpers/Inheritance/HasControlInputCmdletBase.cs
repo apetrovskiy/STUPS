@@ -780,7 +780,9 @@ namespace UIAutomation
                             //uiaEventHandler = new AutomationEventHandler(((EventCmdletBase)cmdlet).AutomationEventHandler));
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
                         UIAHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
-                        this.WriteObject(cmdlet, uiaEventHandler);
+                        // 20130327
+                        //this.WriteObject(cmdlet, uiaEventHandler);
+                        if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "TextPatternIdentifiers.TextChangedEvent":
                         this.WriteVerbose(cmdlet, "subscribing to the TextChangedEvent handler");
@@ -793,7 +795,9 @@ namespace UIAutomation
                             //uiaEventHandler = new AutomationEventHandler(((EventCmdletBase)cmdlet).AutomationEventHandler));
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
                         UIAHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
-                        this.WriteObject(cmdlet, uiaEventHandler);
+                        // 20130327
+                        //this.WriteObject(cmdlet, uiaEventHandler);
+                        if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "TextPatternIdentifiers.TextSelectionChangedEvent":
                         this.WriteVerbose(cmdlet, "subscribing to the TextSelectionChangedEvent handler");
@@ -806,7 +810,9 @@ namespace UIAutomation
                             //uiaEventHandler = new AutomationEventHandler(((EventCmdletBase)cmdlet).AutomationEventHandler));
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
                         UIAHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
-                        this.WriteObject(cmdlet, uiaEventHandler);
+                        // 20130327
+                        //this.WriteObject(cmdlet, uiaEventHandler);
+                        if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "WindowPatternIdentifiers.WindowOpenedProperty":
                         this.WriteVerbose(cmdlet, "subscribing to the WindowOpenedEvent handler");
@@ -819,7 +825,9 @@ namespace UIAutomation
                             //uiaEventHandler = new AutomationEventHandler(((EventCmdletBase)cmdlet).AutomationEventHandler));
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
                         UIAHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
-                        this.WriteObject(cmdlet, uiaEventHandler);
+                        // 20130327
+                        //this.WriteObject(cmdlet, uiaEventHandler);
+                        if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "AutomationElementIdentifiers.AutomationPropertyChangedEvent":
                         if (prop != null) {
@@ -834,7 +842,9 @@ namespace UIAutomation
                                     new AutomationPropertyChangedEventHandler(cmdlet.AutomationPropertyChangedEventHandler),
                                 prop);
                             UIAHelper.WriteEventToCollection(cmdlet, uiaPropertyChangedEventHandler);
-                            this.WriteObject(cmdlet, uiaPropertyChangedEventHandler);
+                            // 20130327
+                            //this.WriteObject(cmdlet, uiaPropertyChangedEventHandler);
+                            if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaPropertyChangedEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         }
                         break;
                     case "AutomationElementIdentifiers.StructureChangedEvent":
@@ -848,7 +858,9 @@ namespace UIAutomation
                             //new StructureChangedEventHandler(((EventCmdletBase)cmdlet).StructureChangedEventHandler));
                             new StructureChangedEventHandler(cmdlet.StructureChangedEventHandler));
                         UIAHelper.WriteEventToCollection(cmdlet, uiaStructureChangedEventHandler);
-                        this.WriteObject(cmdlet, uiaStructureChangedEventHandler);
+                        // 20130327
+                        //this.WriteObject(cmdlet, uiaStructureChangedEventHandler);
+                        if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaStructureChangedEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "WindowPatternIdentifiers.WindowClosedProperty":
                         this.WriteVerbose(cmdlet, "subscribing to the WindowClosedEvent handler");
@@ -861,7 +873,9 @@ namespace UIAutomation
                             //uiaEventHandler = new AutomationEventHandler(((EventCmdletBase)cmdlet).AutomationEventHandler));
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
                         UIAHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
-                        this.WriteObject(cmdlet, uiaEventHandler);
+                        // 20130327
+                        //this.WriteObject(cmdlet, uiaEventHandler);
+                        if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "AutomationElementIdentifiers.MenuClosedEvent":
                         this.WriteVerbose(cmdlet, "subscribing to the MenuClosedEvent handler");
@@ -871,7 +885,9 @@ namespace UIAutomation
                             TreeScope.Subtree,
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
                         UIAHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
-                        this.WriteObject(cmdlet, uiaEventHandler);
+                        // 20130327
+                        //this.WriteObject(cmdlet, uiaEventHandler);
+                        if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "AutomationElementIdentifiers.MenuOpenedEvent":
                         this.WriteVerbose(cmdlet, "subscribing to the MenuOpenedEvent handler");
@@ -881,7 +897,9 @@ namespace UIAutomation
                             TreeScope.Subtree,
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
                         UIAHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
-                        this.WriteObject(cmdlet, uiaEventHandler);
+                        // 20130327
+                        //this.WriteObject(cmdlet, uiaEventHandler);
+                        if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "AutomationElementIdentifiers.ToolTipClosedEvent":
                         this.WriteVerbose(cmdlet, "subscribing to the ToolTipClosedEvent handler");
@@ -891,7 +909,9 @@ namespace UIAutomation
                             TreeScope.Subtree,
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
                         UIAHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
-                        this.WriteObject(cmdlet, uiaEventHandler);
+                        // 20130327
+                        //this.WriteObject(cmdlet, uiaEventHandler);
+                        if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "AutomationElementIdentifiers.ToolTipOpenedEvent":
                         this.WriteVerbose(cmdlet, "subscribing to the ToolTipOpenedEvent handler");
@@ -901,7 +921,9 @@ namespace UIAutomation
                             TreeScope.Subtree,
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
                         UIAHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
-                        this.WriteObject(cmdlet, uiaEventHandler);
+                        // 20130327
+                        //this.WriteObject(cmdlet, uiaEventHandler);
+                        if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "AutomationElementIdentifiers.AutomationFocusChangedEvent":
                         WriteVerbose(cmdlet, "subscribing to the AutomationFocusChangedEvent handler");
@@ -912,7 +934,9 @@ namespace UIAutomation
                             //TreeScope.Subtree,
                             uiaFocusChangedEventHandler = new AutomationFocusChangedEventHandler(cmdlet.AutomationEventHandler));
                         UIAHelper.WriteEventToCollection(cmdlet, uiaFocusChangedEventHandler);
-                        this.WriteObject(cmdlet, uiaFocusChangedEventHandler);
+                        // 20130327
+                        //this.WriteObject(cmdlet, uiaFocusChangedEventHandler);
+                        if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaFocusChangedEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     default:
                         this.WriteVerbose(cmdlet, 

@@ -11,6 +11,7 @@ namespace TMX
 {
     using System;
     using System.Management.Automation;
+    using TMX.Commands;
     
     /// <summary>
     /// Description of TMXSetCurrentTestResultCommand.
@@ -23,8 +24,12 @@ namespace TMX
         
         internal override void Execute()
         {
-            TestResultCmdletBase cmdlet =
-                (TestResultCmdletBase)this.Cmdlet;
+            // 20130327
+            //TestResultCmdletBase cmdlet =
+            //    (TestResultCmdletBase)this.Cmdlet;
+            
+            SetTMXCurrentTestResultCommand cmdlet =
+                (SetTMXCurrentTestResultCommand)this.Cmdlet;
                 
             cmdlet.WriteVerbose(
                 cmdlet,
@@ -85,6 +90,11 @@ namespace TMX
 
             TMXHelper.SetCurrentTestResult(cmdlet);
             
+            // 20130327
+            //if (null != cmdlet.Banner && string.Empty != cmdlet.Banner && 0 < cmdlet.Banner.Length) {
+                //UIAutomation.UIAHelper.ShowBanner(cmdlet.TestResultName);
+                //TMXHelper.BannerForm
+            //}
         }
     }
 }

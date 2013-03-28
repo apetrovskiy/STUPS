@@ -12,6 +12,7 @@ namespace UIAutomation
     using System;
     using System.Management.Automation;
     using System.Windows.Automation;
+    using System.Collections;
 
     /// <summary>
     /// Description of HasScriptBlockCmdletBase.

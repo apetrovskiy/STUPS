@@ -42,6 +42,10 @@ namespace UIAutomation
         internal new SwitchParameter OnErrorScreenShot { get; set; }
 // [Parameter(Mandatory = false)]
 // public new ScriptBlock[] EventAction { get; set; }
+
+        // 20130328
+        [Parameter(Mandatory = false)]
+        public Hashtable[] SearchCriteria { get; set; }
         #endregion Parameters
         
         #region Properties

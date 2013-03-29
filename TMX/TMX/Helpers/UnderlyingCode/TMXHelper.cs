@@ -122,7 +122,9 @@ namespace TMX
         public static bool OpenTestScenario(OpenScenarioCmdletBase cmdlet)
         {
             bool result = false;
+
             if (TestData.CurrentTestResult.Details.Count > 0) {
+
             TMX.TestData.AddTestResult(
                 "autoclosed", 
                 TestData.GetTestResultId(), 
@@ -136,8 +138,9 @@ namespace TMX
                 //true);
                 true,
                 false);
+
             }
-            
+
             // 20130301
             // set time spent on the previous scenario
             if (null != TMX.TestData.CurrentTestScenario) {
@@ -148,9 +151,10 @@ namespace TMX
                         TMX.TestData.CurrentTestScenario.TimeSpent +=
                         (System.DateTime.Now - TMX.TestData.CurrentTestScenario.Timestamp).TotalSeconds);
                     TMX.TestData.CurrentTestScenario.Timestamp = System.DateTime.MinValue;
+
                 }
             }
-            
+
                 //true);
             //TMX.TestData.CurrentTestScenario =
                 TMX.TestData.GetTestScenario(cmdlet.InputObject,
@@ -158,20 +162,24 @@ namespace TMX
                                              cmdlet.Id,
                                              cmdlet.TestSuiteName,
                                              cmdlet.TestSuiteId);
+
             if (TMX.TestData.CurrentTestScenario != null) {
+
                 TMX.TestData.CurrentTestScenario.TestResults.Add(
                     new TestResult(
                        TMX.TestData.CurrentTestScenario.Id,
                        TMX.TestData.CurrentTestScenario.SuiteId));
+
                 TMX.TestData.CurrentTestResult =
                     TMX.TestData.CurrentTestScenario.TestResults[TMX.TestData.CurrentTestScenario.TestResults.Count - 1];
-                
+
                 // 20130301
                 // set the initial time for this scenario's session
                 TMX.TestData.CurrentTestScenario.SetNow();
-                
+
                 //TMX.TestData.FireTMXTestScenarioOpened(TMX.TestData.CurrentTestResult, null);
                 TMX.TestData.OnTMXTestScenarioOpened(TMX.TestData.CurrentTestScenario, null);
+
                 result = true;
             }
             return result;

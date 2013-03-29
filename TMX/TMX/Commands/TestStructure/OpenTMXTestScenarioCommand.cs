@@ -32,20 +32,13 @@ namespace TMX.Commands
         {
             bool result = 
                 TMX.TMXHelper.OpenTestScenario(this);
+
             if (result) {
+
                 WriteObject(TestData.CurrentTestScenario);
+
             } else {
-                // 20130130
-//                ErrorRecord err = 
-//                    new ErrorRecord(new Exception("Couldn't open a test scenario"),
-//                                    "GettingTestScenario",
-//                                    ErrorCategory.InvalidOperation,
-//                                    this.Name);
-//                err.ErrorDetails = 
-//                    new ErrorDetails(
-//                        "Failed to open a test scenario");
-//                ThrowTerminatingError(err);
-                
+
                 this.WriteError(
                     this,
                     "Couldn't open a test scenario",

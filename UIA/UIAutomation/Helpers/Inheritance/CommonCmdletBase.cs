@@ -682,16 +682,14 @@ namespace UIAutomation
 
         protected override void WriteErrorMethod010RunScriptBlocks(PSCmdletBase cmdlet)
         {
-Console.WriteLine("error scriptblocks 0001");
             if (cmdlet != null) {
-Console.WriteLine("error scriptblocks 0002");
+
                 // run scriptblocks
                 if (cmdlet is HasScriptBlockCmdletBase) {
-Console.WriteLine("error scriptblocks 0003");
+
                     // 20130318
                     //this.RunOnErrorScriptBlocks(((HasScriptBlockCmdletBase)cmdlet));
                     this.RunOnErrorScriptBlocks(((HasScriptBlockCmdletBase)cmdlet), null);
-Console.WriteLine("error scriptblocks 0004");
                 }
             }
         }

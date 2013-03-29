@@ -255,7 +255,6 @@ namespace TMX
                                            bool generated,
                                            bool skipAutomatic)
         {
-
             TestData.InitCurrentTestScenario();
 
             ITestResult currentTestResult;
@@ -269,6 +268,7 @@ namespace TMX
                     new TestResult(
                         TestData.CurrentTestScenario.Id,
                         TestData.CurrentTestSuite.Id);
+
             }
 
             // 20130325
@@ -291,7 +291,7 @@ namespace TMX
                 
             // 20130326
             } else {
-                
+
                 // the current test result is a result that was preset
                 // nothing to do
             }
@@ -301,9 +301,11 @@ namespace TMX
             if (generated) {
 
                 currentTestResult.SetOrigin(TestResultOrigins.Automatic);
+
             } else {
 
                 currentTestResult.SetOrigin(TestResultOrigins.Logical);
+
             }
 
             // 20130325
@@ -314,18 +316,19 @@ namespace TMX
                 if (closingTestResultId != null &&
                     closingTestResultId != string.Empty &&
                     closingTestResultId.Length > 0 &&
-
                     null != TMX.TestData.CurrentTestResult &&
                     closingTestResultId != TMX.TestData.CurrentTestResult.Id) {
 
                     currentTestResult.Id = closingTestResultId;
+
                 } else {
 
                     currentTestResult.Id = GetTestResultId();
+
                 }
             // 20130326
             } else {
-                
+
                 // there already was the Id
                 // nothing to do
             }
@@ -348,26 +351,28 @@ namespace TMX
 
                 currentTestResult.enStatus = TestResultStatuses.NotTested;
             }
-            
+
             if (testResultDescription != null &&
                 testResultDescription != string.Empty &&
                 testResultDescription.Length > 0){
-    
+
                 currentTestResult.Description = testResultDescription;
 
             }
-            
+
             if (generated) {
-                
+
                 currentTestResult.SetGenerated();
+
             }
 
             if (TMXHelper.TestCaseStarted == System.DateTime.MinValue) {
 
                 TMXHelper.TestCaseStarted = System.DateTime.Now;
             }
-            
+
             currentTestResult.SetNow();
+
             currentTestResult.SetTimeSpent(
                 (currentTestResult.Timestamp - TMXHelper.TestCaseStarted).TotalSeconds);
 
@@ -380,41 +385,61 @@ namespace TMX
                 null != TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1].Name &&
                 0 < TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1].Name.Length) {
                 
-                
                 TMXHelper.TestCaseStarted =
                     System.DateTime.Now;
                 TestData.CurrentTestScenario.TestResults.Add(new TestResult(TestData.CurrentTestScenario.Id, TestData.CurrentTestSuite.Id));
+
             }
-            
+
             TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1] = 
                 TestData.CurrentTestResult;
-            
+
             #region Test Result's PowerShell data
             if (myInvocation != null) {
 
                 TestData.CurrentTestResult.SetScriptName(TMXHelper.GetScriptName(myInvocation));
+
                 TestData.CurrentTestResult.SetLineNumber(TMXHelper.GetScriptLineNumber(myInvocation));
+
                 TestData.CurrentTestResult.SetPosition(TMXHelper.GetPipelinePosition(myInvocation));
-                if (((bool)passed && Preferences.LogScriptName_Passed) || (!(bool)passed && Preferences.LogScriptName_Failed)) {
-                    TestData.CurrentTestResult.Code += 
-                        "script name: " + 
-                        TestData.CurrentTestResult.ScriptName;
+
+                // 20130329
+                try {
+                    if (((bool)passed && Preferences.LogScriptName_Passed) || (!(bool)passed && Preferences.LogScriptName_Failed)) {
+    
+                        TestData.CurrentTestResult.Code += 
+                            "script name: " + 
+                            TestData.CurrentTestResult.ScriptName;
+    
+                    }
                 }
-                if (((bool)passed && Preferences.LogLineNumber_Passed) || (!(bool)passed && Preferences.LogLineNumber_Failed)) {
-                    TestData.CurrentTestResult.Code +=
-                        "\r\nline number: " +
-                        TestData.CurrentTestResult.LineNumber.ToString();
+                catch {}
+                try {
+                    if (((bool)passed && Preferences.LogLineNumber_Passed) || (!(bool)passed && Preferences.LogLineNumber_Failed)) {
+    
+                        TestData.CurrentTestResult.Code +=
+                            "\r\nline number: " +
+                            TestData.CurrentTestResult.LineNumber.ToString();
+    
+                    }
                 }
-                if (((bool)passed && Preferences.LogCode_Passed) || (!(bool)passed && Preferences.LogCode_Failed)) {
-                    TestData.CurrentTestResult.Code +=
-                        "\r\ncode:\r\n" +
-                        myInvocation.Line;
+                catch {}
+                try {
+                    if (((bool)passed && Preferences.LogCode_Passed) || (!(bool)passed && Preferences.LogCode_Failed)) {
+    
+                        TestData.CurrentTestResult.Code +=
+                            "\r\ncode:\r\n" +
+                            myInvocation.Line;
+    
+                    }
                 }
+                catch {}
             }
-            
+
             if (error != null) {
 
                 TestData.CurrentTestResult.SetError(error);
+
             }
             #endregion Test Result's PowerShell data
                       
@@ -447,6 +472,7 @@ namespace TMX
                     System.DateTime.MinValue;
                 TestData.CurrentTestResult = null;
             }
+
             OnTMXNewTestResultClosed(sourceTestResult, null);
         }
         
@@ -720,37 +746,49 @@ namespace TMX
         internal static string GetTestScenarioId()
         {
             string result = string.Empty;            
-            
+
             // 20121220
-            int scNumber = 0;
+            // 20130329
+            //int scNumber = 0;
+            int scNumber = 1;
             if (null != TestData.TestSuites && 0 < TestData.TestSuites.Count) {
-                
+
                 if (null != TestData.CurrentTestSuite.TestScenarios) {
-                    
+
                     // read the last used id and generate a new one
                     scNumber = 
                         TestData.CurrentTestSuite.TestScenarios.Count; // + 1;
                     bool noValidId = true;
+
                     do {
+
                         foreach (TestScenario scenario in TestData.CurrentTestSuite.TestScenarios) {
+
                             if (scenario.Id == scNumber.ToString()) {
+
                                 scNumber++;
                             }
                         }
                         noValidId = false;
+
+                        // 20130329
+                        if (0 == scNumber) {
+                            scNumber++;
+                        }
+                        
                         result = scNumber.ToString();
                     } while (noValidId);
                     
                     
                     
                 } else {
-                    
+
                     result = scNumber.ToString();
                 }
                 
                 
             } else {
-                
+
                 result = scNumber.ToString();
             }
             
@@ -978,7 +1016,7 @@ namespace TMX
                     }
                 }
             }
-            
+
             // 20130301
             // set time spent on the previous scenario
             if (null != TMX.TestData.CurrentTestScenario) {
@@ -1017,6 +1055,7 @@ namespace TMX
             }
             
             if (testScenarioId == null || testScenarioId == string.Empty) {
+
                 testScenarioId = 
                     GetTestScenarioId();
             }
@@ -1048,7 +1087,7 @@ namespace TMX
                                                      string testSuiteId)
         {
             TestScenario result = null;
-            
+
             if (testSuite != null) {
                 TestData.CurrentTestSuite = testSuite;
             } else if (testSuite == null && 

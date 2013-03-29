@@ -22,6 +22,8 @@ namespace TMX
     {
         public CommonCmdletBase()
         {
+            // 20130329
+            this.Id = string.Empty;
         }
         
         #region Parameters

@@ -136,22 +136,30 @@ namespace UIAutomation
     				    
     				    // 20130327
     				    if (previousStepName == currentStep.Name) {
-Console.WriteLine("the first step duplication check");
+
     				        // the same code as below
     				        System.DateTime nowDate =
     				            System.DateTime.Now;
     				        
         				    if ((nowDate - cmdlet.StartDate).TotalSeconds > (Preferences.Timeout / 1000)) {
-Console.WriteLine("the first step duplication check 2");
+
+
+                                // 20130329
+                                // running the StopAction script after timeout expired
+        				        cmdlet.RunWizardStopScriptBlocks(
+        				            cmdlet,
+        				            wizard,
+        				            wizard.StopActionParameters);
+
         				        if (this.Quiet) {
-Console.WriteLine("the first step duplication check 3");
+
         				            cmdlet.WriteObject(
         				                cmdlet,
         				                false);
         				            return;
         				            
         				        } else {
-Console.WriteLine("the first step duplication check 4");
+
             				        cmdlet.WriteError(
             				            cmdlet,
             				            "Timeout expired",
@@ -165,7 +173,7 @@ Console.WriteLine("the first step duplication check 4");
     				        continue;
     				    }
     				    previousStepName = currentStep.Name;
-Console.WriteLine("wzd 00003");
+
     				    // 20130322
     				    // // 20130321
     				    object[] currentParameters = null;
@@ -197,10 +205,10 @@ Console.WriteLine("wzd 00003");
     				            //currentParameters = currentStep.StepForwardActionParameters;
     				            //break;
     				    }
-Console.WriteLine("wzd 00004");
+
     				    // 20130325
     				    if (WizardStepActions.Stop == currentStep.ToDo) {
-Console.WriteLine("wzd 00005 stop");
+
     				        cmdlet.RunWizardStopScriptBlocks(
     				            cmdlet,
     				            wizard,
@@ -213,7 +221,7 @@ Console.WriteLine("wzd 00005 stop");
                             return;
                             
     				    } else {
-Console.WriteLine("wzd 00006 non-stop");
+
         				    // 20130318
         					//cmdlet.RunWizardStepScriptBlocks(cmdlet, currentStep, cmdlet.ForwardDirection);
         					cmdlet.RunWizardStepScriptBlocks(
@@ -226,10 +234,10 @@ Console.WriteLine("wzd 00006 non-stop");
         					    //cmdlet.ForwardDirection ? currentStep.StepForwardActionParameters : currentStep.StepBackwardActionParameters);
         					    currentParameters);
     				    }
-Console.WriteLine("wzd 00007");
+
     				    // 20130325
         			    if (wizard.StopImmediately) {
-Console.WriteLine("wzd 00008 stop immediately");
+
         			        break;
         			    }
     				    
@@ -248,21 +256,27 @@ Console.WriteLine("wzd 00008 stop immediately");
                             cmdlet,
                             "current step is still null");
     				    
-Console.WriteLine("wzd 00009 checking for timeout expiration");
     				    System.DateTime nowDate = 
                             System.DateTime.Now;
 
     				    if ((nowDate - cmdlet.StartDate).TotalSeconds > (Preferences.Timeout / 1000)) {
+    				        
+                            // 20130329
+                            // running the StopAction script after timeout expired
+    				        cmdlet.RunWizardStopScriptBlocks(
+    				            cmdlet,
+    				            wizard,
+    				            wizard.StopActionParameters);
                             
     				        if (this.Quiet) {
-Console.WriteLine("wzd 00011");
+
     				            cmdlet.WriteObject(
     				                cmdlet,
     				                false);
     				            return;
     				            
     				        } else {
-Console.WriteLine("wzd 00012");
+
         				        cmdlet.WriteError(
         				            cmdlet,
         				            "Timeout expired",
@@ -274,7 +288,7 @@ Console.WriteLine("wzd 00012");
     				    
                     }
 				} else {
-Console.WriteLine("wzd 00015");
+
 				    cmdlet.WriteVerbose(
 				        cmdlet,
 				        "window is still null");

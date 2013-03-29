@@ -25,7 +25,10 @@ namespace TMX
         /// <summary>
         /// Overrides the Name parameters at the CommonCmdletBase class level.
         /// </summary>
-        [Parameter(Mandatory = true)]
+        // 20130329
+        //[Parameter(Mandatory = true)]
+        [Parameter(Mandatory = true,
+                   Position = 0)]
         [ValidateNotNullOrEmpty()]
         public new string Name { get; set; }
         

@@ -3,7 +3,7 @@ ipmo C:\Projects\PS\STUPS\UIA\UIAutomation\bin\Release35\TMX.dll
 Set-TMXCurrentTestResult -Id 111
 Add-TMXTestResultDetail "1"
 Add-TMXTestResultDetail "2"
-Close-TMXTestResult
+Close-TMXTestResult -Id 111
 Search-TMXTestResult
 
 Set-TMXCurrentTestResult -Id 222

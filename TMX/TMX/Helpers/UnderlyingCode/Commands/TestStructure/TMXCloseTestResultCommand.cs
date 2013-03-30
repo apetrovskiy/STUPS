@@ -25,6 +25,9 @@ namespace TMX
         {
             TMX.Commands.CloseTMXTestResultCommand cmdlet =
                 (TMX.Commands.CloseTMXTestResultCommand)this.Cmdlet;
+            
+            // 20130330
+            cmdlet.ConvertTestResultStatusToTraditionalTestResult();
                 
             cmdlet.WriteVerbose(cmdlet, 
                               cmdlet.Name + ", Id = " +

@@ -30,6 +30,9 @@ namespace TMX
             
             SetTMXCurrentTestResultCommand cmdlet =
                 (SetTMXCurrentTestResultCommand)this.Cmdlet;
+            
+            // 20130330
+            cmdlet.ConvertTestResultStatusToTraditionalTestResult();
                 
             cmdlet.WriteVerbose(
                 cmdlet,

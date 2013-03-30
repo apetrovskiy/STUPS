@@ -15,7 +15,9 @@ namespace TMX.Commands
     /// <summary>
     /// Description of SetTMXCurrentTestResultCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Set, "TMXCurrentTestResult")]
+    // 20130330
+    //[Cmdlet(VerbsCommon.Set, "TMXCurrentTestResult")]
+    [Cmdlet(VerbsCommon.Set, "TMXCurrentTestResult", DefaultParameterSetName = "DefaultLogicId")]
     public class SetTMXCurrentTestResultCommand : TestResultCmdletBase
     {
         public SetTMXCurrentTestResultCommand()

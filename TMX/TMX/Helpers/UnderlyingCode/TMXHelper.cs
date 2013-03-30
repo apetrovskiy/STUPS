@@ -1178,7 +1178,9 @@ namespace TMX
                     TestData.CurrentTestResult.Description = cmdlet.Description;
                 }
 
-                TestData.CurrentTestResult.enStatus = TestResultStatuses.Failed;
+                // 20130330
+                //TestData.CurrentTestResult.enStatus = TestResultStatuses.Failed;
+                TestData.CurrentTestResult.enStatus = TestResultStatuses.NotTested;
 
                 if (cmdlet.KnownIssue) {
 

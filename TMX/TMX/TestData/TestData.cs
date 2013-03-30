@@ -350,6 +350,29 @@ namespace TMX
             } else {
 
                 currentTestResult.enStatus = TestResultStatuses.NotTested;
+                
+                // 20130330
+                // if there were no errors during the test case execution
+                // it is marked as passed
+                bool noErrors = true;
+                if (null == currentTestResult.Error &&
+                    TestResultStatuses.Failed != currentTestResult.enStatus &&
+                    TestResultStatuses.KnownIssue != currentTestResult.enStatus) {
+                    
+                    //foreach (ITestResultDetail detail in currentTestResult.Details) {
+                    foreach (ITestResultDetail detail in currentTestResult.Details) {
+                        
+                        if (null == ((TestResultDetail)detail).ErrorDetail) {
+                            
+                            noErrors = false;
+                            break;
+                        }
+                    }
+                }
+                if (noErrors) {
+                    currentTestResult.enStatus = TestResultStatuses.Passed;
+                }
+
             }
 
             if (testResultDescription != null &&

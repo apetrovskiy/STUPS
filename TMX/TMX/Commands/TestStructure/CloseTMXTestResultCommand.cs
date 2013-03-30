@@ -15,7 +15,9 @@ namespace TMX.Commands
     /// <summary>
     /// Description of CloseTMXTestResultCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Close, "TMXTestResult")]
+    //V20130330
+    //[Cmdlet(VerbsCommon.Close, "TMXTestResult")]
+    [Cmdlet(VerbsCommon.Close, "TMXTestResult", DefaultParameterSetName = "DefaultLogicId")]
     public class CloseTMXTestResultCommand : TestResultCmdletBase
     {
         public CloseTMXTestResultCommand()

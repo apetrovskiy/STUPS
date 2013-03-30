@@ -27,8 +27,12 @@ namespace TMX
         /// </summary>
         // 20130329
         //[Parameter(Mandatory = true)]
+        // 20130330
+        //[Parameter(Mandatory = true,
+        //           Position = 0)]
         [Parameter(Mandatory = true,
-                   Position = 0)]
+                   Position = 0,
+                   ParameterSetName = "DefaultLogicName")]
         [ValidateNotNullOrEmpty()]
         public new string Name { get; set; }
         

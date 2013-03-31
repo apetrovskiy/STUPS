@@ -184,6 +184,7 @@
     <Compile Include="Commands\Repository\RemoveTMXTestConstantCommand.cs" />
     <Compile Include="Commands\Repository\SetTMXTestBucketCommand.cs" />
     <Compile Include="Commands\Repository\SetTMXTestConstantValueCommand.cs" />
+    <Compile Include="Commands\Status\GetTMXTestResultStatusCommand.cs" />
     <Compile Include="Commands\Status\GetTMXTestScenarioStatusCommand.cs" />
     <Compile Include="Commands\Status\GetTMXTestSuiteStatusCommand.cs" />
     <Compile Include="Commands\TestResults\BackupTMXTestResultsCommand.cs" />
@@ -231,6 +232,7 @@
     <Compile Include="Helpers\Inheritance\TestResultCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\TestResultDetailCmdletBase.cs" />
     <Compile Include="Helpers\TestNH3.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Status\TMXGetTestResultStatusCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Status\TMXGetTestScenarioStatusCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Status\TMXGetTestSuiteStatusCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TestStructure\TMXAddSimpleTestResultCommand.cs" />

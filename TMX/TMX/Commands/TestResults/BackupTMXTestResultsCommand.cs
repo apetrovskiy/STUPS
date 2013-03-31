@@ -18,7 +18,7 @@ namespace TMX.Commands
     /// </summary>
     [Cmdlet(VerbsData.Backup, "TMXTestResults")]
     [OutputType(typeof(bool))]
-    public class BackupTMXTestResultsCommand : TestResultsCmdletBase //DatabaseCmdletBase
+    public class BackupTMXTestResultsCommand : TestResultCmdletBase //DatabaseCmdletBase
     {
         public BackupTMXTestResultsCommand()
         {

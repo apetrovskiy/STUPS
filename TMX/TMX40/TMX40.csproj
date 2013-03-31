@@ -218,6 +218,9 @@
     <Compile Include="..\TMX\Commands\Repository\SetTMXTestConstantValueCommand.cs">
       <Link>Commands\Repository\SetTMXTestConstantValueCommand.cs</Link>
     </Compile>
+    <Compile Include="..\TMX\Commands\Status\GetTMXTestResultStatusCommand.cs">
+      <Link>Commands\Status\GetTMXTestResultStatusCommand.cs</Link>
+    </Compile>
     <Compile Include="..\TMX\Commands\Status\GetTMXTestScenarioStatusCommand.cs">
       <Link>Commands\Status\GetTMXTestScenarioStatusCommand.cs</Link>
     </Compile>
@@ -355,6 +358,9 @@
     </Compile>
     <Compile Include="..\TMX\Helpers\Inheritance\TestResultDetailCmdletBase.cs">
       <Link>Helpers\Inheritance\TestResultDetailCmdletBase.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\Status\TMXGetTestResultStatusCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\Status\TMXGetTestResultStatusCommand.cs</Link>
     </Compile>
     <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\Status\TMXGetTestScenarioStatusCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\Status\TMXGetTestScenarioStatusCommand.cs</Link>

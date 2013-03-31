@@ -1197,5 +1197,14 @@ namespace TMX
                 // there always is the current test result
             }
         }
+        
+        public static void GetCurrentTestResultStatus(TestResultCmdletBase cmdlet)
+        {
+            if (null != TestData.CurrentTestResult) {
+                cmdlet.WriteObject(cmdlet, TestData.CurrentTestResult.Status);
+            } else {
+                cmdlet.WriteObject(cmdlet, "NOT TESTED");
+            }
+        }
     }
 }

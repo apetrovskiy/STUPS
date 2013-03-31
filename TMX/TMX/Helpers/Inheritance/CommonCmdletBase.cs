@@ -29,24 +29,25 @@ namespace TMX
         #region Parameters
         
         // 20130330
-        //[Parameter(Mandatory = false)]
-        [Parameter(Mandatory = false,
-                   ParameterSetName = "DualLogic")]
-        [Parameter(Mandatory = false,
-                   ParameterSetName = "EnumLogic")]
-        [Parameter(Mandatory = false,
-                   ParameterSetName = "DefaultLogicName")]
+        [Parameter(Mandatory = false)]
+        // 20130331
+        //[Parameter(Mandatory = false,
+        //           ParameterSetName = "DualLogic")]
+        //[Parameter(Mandatory = false,
+        //           ParameterSetName = "EnumLogic")]
+        //[Parameter(Mandatory = false,
+        //           ParameterSetName = "DefaultLogicName")]
         [ValidateNotNullOrEmpty()]
         public string Name { get; set; }
         
         // 20130330
-        //[Parameter(Mandatory = false)]
-        [Parameter(Mandatory = false,
-                   ParameterSetName = "DualLogic")]
-        [Parameter(Mandatory = false,
-                   ParameterSetName = "EnumLogic")]
-        [Parameter(Mandatory = true,
-                   ParameterSetName = "DefaultLogicId")]
+        [Parameter(Mandatory = false)]
+        //[Parameter(Mandatory = false,
+        //           ParameterSetName = "DualLogic")]
+        //[Parameter(Mandatory = false,
+        //           ParameterSetName = "EnumLogic")]
+        //[Parameter(Mandatory = true,
+        //           ParameterSetName = "DefaultLogicId")]
         //[ValidateNotNullOrEmpty()]
         public string Id { get; set; }
         

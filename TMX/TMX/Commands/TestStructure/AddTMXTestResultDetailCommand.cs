@@ -16,7 +16,7 @@ namespace TMX.Commands
     /// Description of AddTMXTestResultDetailCommand.
     /// </summary>
     [Cmdlet(VerbsCommon.Add, "TMXTestResultDetail")]
-    public class AddTMXTestResultDetailCommand : CommonCmdletBase
+    public class AddTMXTestResultDetailCommand : TestResultDetailCmdletBase //CommonCmdletBase
     {
         public AddTMXTestResultDetailCommand()
         {
@@ -26,21 +26,21 @@ namespace TMX.Commands
         }
         
         #region Parameters
-        [Parameter(Mandatory = false)]
-        internal new string Name { get; set; }
-        
-        [Parameter(Mandatory = false)]
-        internal new string Id { get; set; }
-        
-        // 20130325
-        //[Parameter(Mandatory = true)]
-        [Parameter(Mandatory = true,
-                   Position = 0)]
-        [ValidateNotNullOrEmpty()]
-        public string TestResultDetail { get; set; }
-        
-        [Parameter(Mandatory = false)]
-        public SwitchParameter Echo { get; set; }
+//        [Parameter(Mandatory = false)]
+//        internal new string Name { get; set; }
+//        
+//        [Parameter(Mandatory = false)]
+//        internal new string Id { get; set; }
+//        
+//        // 20130325
+//        //[Parameter(Mandatory = true)]
+//        [Parameter(Mandatory = true,
+//                   Position = 0)]
+//        [ValidateNotNullOrEmpty()]
+//        public string TestResultDetail { get; set; }
+//        
+//        [Parameter(Mandatory = false)]
+//        public SwitchParameter Echo { get; set; }
         #endregion Parameters
         
         protected override void BeginProcessing()
@@ -52,7 +52,9 @@ namespace TMX.Commands
 
                 WriteObject(this.TestResultDetail);
             }
-            TMX.TestData.AddTestResultTextDetail(this.TestResultDetail);
+            // 20130331
+            //TMX.TestData.AddTestResultTextDetail(this.TestResultDetail);
+            TMX.TestData.AddTestResultTextDetail(this, this.TestResultDetail);
         }
     }
 }

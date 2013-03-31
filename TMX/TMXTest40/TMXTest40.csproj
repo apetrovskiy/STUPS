@@ -188,6 +188,9 @@
     <Compile Include="..\TMXTest\Commands\TestResults\SearchTMXTestSuiteCommandTestFixture.cs">
       <Link>Commands\TestResults\SearchTMXTestSuiteCommandTestFixture.cs</Link>
     </Compile>
+    <Compile Include="..\TMXTest\Commands\TestStructure\AddTMXSimpleTestResultCommandTestFixture.cs">
+      <Link>Commands\TestStructure\AddTMXSimpleTestResultCommandTestFixture.cs</Link>
+    </Compile>
     <Compile Include="..\TMXTest\Commands\TestStructure\AddTMXTestCaseCommandTestFixture.cs">
       <Link>Commands\TestStructure\AddTMXTestCaseCommandTestFixture.cs</Link>
     </Compile>

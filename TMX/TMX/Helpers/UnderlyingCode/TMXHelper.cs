@@ -199,14 +199,17 @@ namespace TMX
             return result;
         }
         
-        public static bool AddTestResultTextDetail(string testResultTextDetail)
-        {
-            bool result = false;
-            
-            TMX.TestData.AddTestResultTextDetail(testResultTextDetail);
-            
-            return result;
-        }
+        // 20130331
+//        public static bool AddTestResultTextDetail(string testResultTextDetail)
+//        {
+//            bool result = false;
+//            
+//            // 20130331
+//            //TMX.TestData.AddTestResultTextDetail(testResultTextDetail);
+//            TMX.TestData.AddTestResultTextDetail(testResultTextDetail);
+//            
+//            return result;
+//        }
         
         public static bool AddTestResultScreenshotDetail(string testResultScreenshotDetail)
         {

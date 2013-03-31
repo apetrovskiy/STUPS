@@ -71,6 +71,7 @@
     </Compile>
     <Compile Include="Commands\Status\GetTMXTestScenarioStatusCommandTestFixture.cs" />
     <Compile Include="Commands\Status\GetTMXTestSuiteStatusCommandTestFixture.cs" />
+    <Compile Include="Commands\TestStructure\AddTMXSimpleTestResultCommandTestFixture.cs" />
     <Compile Include="Commands\TestStructure\AddTMXTestCaseCommandTestFixture.cs" />
     <Compile Include="Commands\TestStructure\AddTMXTestResultDetailCommandTestFixture.cs" />
     <Compile Include="Commands\TestStructure\AddTMXTestScenarioCommandTestFixture.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="Commands\TestStructure\SetTMXCurrentTestResultCommandTestFixture.cs" />
     <Compile Include="Commands\TestStructure\SetTMXTestCaseCommandTestFixture.cs" />
     <Compile Include="Helpers\UnitTestingHelper.cs" />
+    <Compile Include="ParamChecks\TestStructure\AddTMXSimpleTestResultCommandTestFixture.cs" />
     <Compile Include="ParamChecks\TestStructure\SetTMXCurrentTestResultCommandTestFixture.cs" />
   </ItemGroup>
   <ItemGroup>

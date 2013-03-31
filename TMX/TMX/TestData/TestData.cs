@@ -873,7 +873,9 @@ namespace TMX
             return result;
         }
         
-        internal static void AddTestResultTextDetail(object detail)
+        // 20130331
+        //internal static void AddTestResultTextDetail(object detail)
+        internal static void AddTestResultTextDetail(TestResultDetailCmdletBase cmdlet, object detail)
         {
             ITestResultDetail testResultDetail = 
                 new TestResultDetail();
@@ -886,6 +888,26 @@ namespace TMX
                 TestResultDetailTypes.Comment,
                 detail.ToString());
             CurrentTestResult.Details.Add(testResultDetail);
+            
+            // 20130331
+            switch (cmdlet.TestResultStatus) {
+                case TestResultStatuses.Failed:
+                    CurrentTestResult.enStatus = TestResultStatuses.Failed;
+                    break;
+                case TestResultStatuses.Passed:
+                    CurrentTestResult.enStatus = TestResultStatuses.Passed;
+                    break;
+                case TestResultStatuses.NotTested:
+                    // nothing to do
+                    break;
+                case TestResultStatuses.KnownIssue:
+                    CurrentTestResult.enStatus = TestResultStatuses.KnownIssue;
+                    break;
+                default:
+                    
+                	break;
+            }
+            
             OnTMXNewTestResultDetailAdded(testResultDetail, null);
         }
         

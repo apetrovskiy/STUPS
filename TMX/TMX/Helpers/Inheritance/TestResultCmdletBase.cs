@@ -28,13 +28,13 @@ namespace TMX
         //[Parameter(Mandatory = true,
         //           Position = 0)]
         // 20130330
-        //[Parameter(Mandatory = false)]
-        [Parameter(Mandatory = false,
-                   ParameterSetName = "DualLogic")]
-        [Parameter(Mandatory = false,
-                   ParameterSetName = "EnumLogic")]
-        [Parameter(Mandatory = false,
-                   ParameterSetName = "DefaultLogicName")]
+        [Parameter(Mandatory = false)]
+        //[Parameter(Mandatory = false,
+        //           ParameterSetName = "DualLogic")]
+        //[Parameter(Mandatory = false,
+        //           ParameterSetName = "EnumLogic")]
+        //[Parameter(Mandatory = false,
+        //           ParameterSetName = "DefaultLogicName")]
         // 20130325
         //[ValidateNotNullOrEmpty]
         [Alias("Name")]

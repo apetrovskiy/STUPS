@@ -10,7 +10,7 @@
 namespace TMXTest.Commands.TestStructure
 {
     using System;
-    using MbUnit.Framework; // using MbUnit.Framework;
+    using MbUnit.Framework;
     
     /// <summary>
     /// Description of CloseTMXTestResultCommandTestFixture.

@@ -153,6 +153,7 @@
     <Compile Include="Commands\TestResults\SearchTMXTestResultCommandTestFixture.cs" />
     <Compile Include="Commands\TestResults\SearchTMXTestScenarioCommandTestFixture.cs" />
     <Compile Include="Commands\TestResults\SearchTMXTestSuiteCommandTestFixture.cs" />
+    <Compile Include="Commands\TestStructure\AddTMXSimpleTestResultCommandTestFixture.cs" />
     <Compile Include="Commands\TestStructure\AddTMXTestCaseCommandTestFixture.cs" />
     <Compile Include="Commands\TestStructure\AddTMXTestResultDetailCommandTestFixture.cs" />
     <Compile Include="Commands\TestStructure\AddTMXTestScenarioCommandTestFixture.cs" />

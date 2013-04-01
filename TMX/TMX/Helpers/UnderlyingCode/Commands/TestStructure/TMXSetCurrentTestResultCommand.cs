@@ -57,6 +57,23 @@ namespace TMX
                         cmdlet,
                         "Adding the current test result to the current test scenario' results");
                     
+                    // 20130401
+                    TestData.CurrentTestResult.SetTimeSpent(
+                        //(TestData.CurrentTestResult.Timestamp - TMXHelper.TestCaseStarted).TotalSeconds);
+                        //(System.DateTime.Now - TMXHelper.TestCaseStarted).TotalSeconds);
+                        (System.DateTime.Now - TestData.CurrentTestResult.Timestamp).TotalSeconds);
+                    
+                    cmdlet.WriteVerbose(
+                        cmdlet,
+                        "Finishing test result Id = '" +
+                        TestData.CurrentTestResult.Id + 
+                        "' Name = '" + 
+                        TestData.CurrentTestResult.Name +
+                        "' Status = '" +
+                        TestData.CurrentTestResult.Status +
+                        "' TimeSpent = " +
+                        TestData.CurrentTestResult.TimeSpent.ToString() +
+                        " seconds");
 
                     // 20130326
 

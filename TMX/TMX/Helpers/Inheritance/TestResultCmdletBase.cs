@@ -28,7 +28,10 @@ namespace TMX
         //[Parameter(Mandatory = true,
         //           Position = 0)]
         // 20130330
-        [Parameter(Mandatory = false)]
+        // 20130401
+        //[Parameter(Mandatory = false)]
+        [Parameter(Mandatory = false,
+                   Position = 0)]
         //[Parameter(Mandatory = false,
         //           ParameterSetName = "DualLogic")]
         //[Parameter(Mandatory = false,

@@ -55,5 +55,8 @@ namespace TMX
         
         TestResultOrigins Origin { get; }
         void SetOrigin(TestResultOrigins origin);
+        
+        // 20130401
+        object[] ListDetailNames();
     }
 }

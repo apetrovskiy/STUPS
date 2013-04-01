@@ -12,6 +12,7 @@ namespace TMX
     using System;
     using System.Collections.Generic;
     using System.Management.Automation;
+    using System.Collections;
     
     /// <summary>
     /// Description of TestResult.
@@ -29,6 +30,9 @@ namespace TMX
             // scenarioId and suiteId
             this.ScenarioId = testScenarioId;
             this.SuiteId = testSuiteId;
+            
+            // 20130401
+            this.SetNow();
         }
         
         public string Name { get; set; }
@@ -125,6 +129,23 @@ namespace TMX
                 
                 this.Origin = origin;
             }
+        }
+        
+        public object[] ListDetailNames()
+        {
+            ArrayList detailsList =
+                new ArrayList();
+            
+            if (null != this.Details && 0 < this.Details.Count) {
+                
+                foreach (TestResultDetail detail in this.Details) {
+                    
+                    detailsList.Add(detail.Name);
+                }
+                
+            }
+            
+            return detailsList.ToArray();
         }
     }
 }

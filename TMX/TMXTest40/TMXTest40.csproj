@@ -170,6 +170,9 @@
     <Compile Include="..\TMXTest\Commands\Repository\SetTMXTestConstantValueCommandTestFixture.cs">
       <Link>Commands\Repository\SetTMXTestConstantValueCommandTestFixture.cs</Link>
     </Compile>
+    <Compile Include="..\TMXTest\Commands\Status\GetTMXTestResultDetailsCommandTestFixture.cs">
+      <Link>Commands\Status\GetTMXTestResultDetailsCommandTestFixture.cs</Link>
+    </Compile>
     <Compile Include="..\TMXTest\Commands\Status\GetTMXTestResultStatusCommandTestFixture.cs">
       <Link>Commands\Status\GetTMXTestResultStatusCommandTestFixture.cs</Link>
     </Compile>

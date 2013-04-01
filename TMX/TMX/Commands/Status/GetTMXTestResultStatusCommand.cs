@@ -16,7 +16,7 @@ namespace TMX.Commands
     /// Description of GetTMXTestResultStatusCommand.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "TMXTestResultStatus")]
-    public class GetTMXTestResultStatusCommand : TestResultCmdletBase
+    public class GetTMXTestResultStatusCommand : TestResultStatusCmdletBase //TestResultCmdletBase
     {
         public GetTMXTestResultStatusCommand()
         {

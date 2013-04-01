@@ -1206,5 +1206,12 @@ namespace TMX
                 cmdlet.WriteObject(cmdlet, "NOT TESTED");
             }
         }
+        
+        public static void GetCurrentTestResultDetails(TestResultCmdletBase cmdlet)
+        {
+            if (null != TestData.CurrentTestResult) {
+                cmdlet.WriteObject(cmdlet, TestData.CurrentTestResult.ListDetailNames());
+            }
+        }
     }
 }

@@ -111,10 +111,36 @@ namespace UIAutomation
                 cmdlet.WriteError(cmdlet, "Couldn't get the wizard you asked for", "NoSuchWizard", ErrorCategory.InvalidArgument, true);
             } else {
 
+                // publish the wizard as a global variable
+                WizardCollection.CurrentWizard = wzd;
+                
+#region commented
+//                try {
+//
+//                    System.Management.Automation.Runspaces.Runspace.DefaultRunspace.SessionStateProxy.GetVariable(".SessionStateProxy.PSVariable.Set(
+//                        "Wizard",
+//                        wzd);
+//
+////                    testRunSpace.SessionStateProxy.SetVariable(
+////                        variableName,
+////                        variableValue);
+////                    result = true;
+//                }
+//                catch (Exception eWizardVariable) {
+//
+//                    cmdlet.WriteError(
+//                        cmdlet,
+//                        eWizardVariable.Message,
+//                        "VariablePublishingFailed",
+//                        ErrorCategory.InvalidOperation,
+//                        true);
+//                }
+#endregion commented
+
                 // 20130322
                 //wzd.Automatic = cmdlet.Automatic;
                 //wzd.ForwardDirection = cmdlet.ForwardDirection;
-                
+
                 // 20130322
                 if (null != cmdlet.Directions && 0 < cmdlet.DirectionsDictionaries.Count) {
                     

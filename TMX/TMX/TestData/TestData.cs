@@ -892,10 +892,21 @@ namespace TMX
             // 20130331
             switch (cmdlet.TestResultStatus) {
                 case TestResultStatuses.Failed:
-                    CurrentTestResult.enStatus = TestResultStatuses.Failed;
+                    // 20130402
+                    //CurrentTestResult.enStatus = TestResultStatuses.Failed;
+                    if (TestResultStatuses.KnownIssue != CurrentTestResult.enStatus) {
+                        
+                        CurrentTestResult.enStatus = TestResultStatuses.Failed;
+                    }
                     break;
                 case TestResultStatuses.Passed:
-                    CurrentTestResult.enStatus = TestResultStatuses.Passed;
+                    // 20130402
+                    //CurrentTestResult.enStatus = TestResultStatuses.Passed;
+                    if (TestResultStatuses.KnownIssue != CurrentTestResult.enStatus &&
+                        TestResultStatuses.Failed != CurrentTestResult.enStatus) {
+                        
+                        CurrentTestResult.enStatus = TestResultStatuses.Passed;
+                    }
                     break;
                 case TestResultStatuses.NotTested:
                     // nothing to do

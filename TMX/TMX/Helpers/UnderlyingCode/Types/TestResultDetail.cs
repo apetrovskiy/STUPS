@@ -108,5 +108,7 @@ namespace TMX
             }
             return null;
         }
+        
+        public TestResultStatuses DetailStatus { get; set; }
     }
 }

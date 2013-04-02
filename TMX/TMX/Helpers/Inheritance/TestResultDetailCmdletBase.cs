@@ -41,6 +41,10 @@ namespace TMX
         
         [Parameter(Mandatory = false)]
         public SwitchParameter Echo { get; set; }
+        
+        // 20130402
+        [Parameter(Mandatory = false)]
+        public SwitchParameter Finished { get; set; }
         #endregion Parameters
     }
 }

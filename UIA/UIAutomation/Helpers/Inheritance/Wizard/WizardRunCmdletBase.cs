@@ -176,6 +176,8 @@ namespace UIAutomation
                             "current step is still null");
 
                         InterruptOnTimeoutExpiration(cmdlet, wizard);
+                        // 20130402
+                        break;
                         
                     }
                 } else {
@@ -183,6 +185,10 @@ namespace UIAutomation
                     cmdlet.WriteVerbose(
                         cmdlet,
                         "window is still null");
+                    
+                    // 20130402
+                    InterruptOnTimeoutExpiration(cmdlet, wizard);
+                    break;
                 }
             }
         }
@@ -194,7 +200,17 @@ namespace UIAutomation
         {
             System.DateTime nowDate = System.DateTime.Now;
             if ((nowDate - cmdlet.StartDate).TotalSeconds > (Preferences.Timeout / 1000)) {
+                
+                cmdlet.WriteVerbose(
+                    cmdlet,
+                    "Timout expired. Running the StopAction scriptblock");
+                
                 cmdlet.RunWizardStopScriptBlocks(cmdlet, wizard, wizard.StopActionParameters);
+                
+                cmdlet.WriteVerbose(
+                    cmdlet,
+                    "outputting the wizard");
+                
                 if (this.Quiet) {
                     cmdlet.WriteObject(cmdlet, false);
                     return;

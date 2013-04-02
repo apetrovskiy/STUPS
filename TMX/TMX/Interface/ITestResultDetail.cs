@@ -22,5 +22,8 @@ namespace TMX
         void AddTestResultDetail(TestResultDetailTypes detailType, string detail);
         void AddTestResultDetail(TestResultDetailTypes detailType, ErrorRecord detail);
         object GetDetail();
+        
+        // 20130402
+        TestResultStatuses DetailStatus { get; set; }
     }
 }

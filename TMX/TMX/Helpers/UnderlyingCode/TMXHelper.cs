@@ -1207,10 +1207,40 @@ namespace TMX
             }
         }
         
-        public static void GetCurrentTestResultDetails(TestResultCmdletBase cmdlet)
+        public static void GetTestResultDetails(TestResultStatusCmdletBase cmdlet)
         {
-            if (null != TestData.CurrentTestResult) {
-                cmdlet.WriteObject(cmdlet, TestData.CurrentTestResult.ListDetailNames());
+            // 20130402
+            string testResultId = cmdlet.Id;
+            
+            cmdlet.WriteVerbose(cmdlet, "Getting test result with Id = " + testResultId);
+            
+            if (null != testResultId && string.Empty != testResultId && 0 < testResultId.Length) {
+                
+                cmdlet.WriteVerbose(cmdlet, "Trying to get a test result with Id = " + testResultId);
+                
+                var testResultWithIdCollection =
+                    from testResult in TestData.CurrentTestScenario.TestResults
+                    where testResult.Id == testResultId
+                    select testResult;
+                
+                if (null != testResultWithIdCollection  && 0 < testResultWithIdCollection.Count()) {
+                    
+                    foreach (ITestResult testResultWithId in testResultWithIdCollection) {
+                        
+                        cmdlet.WriteVerbose(cmdlet, "Trying the test result '" + ((ITestResult)testResultWithId).Name + "'");
+                        cmdlet.WriteObject(cmdlet, ((ITestResult)testResultWithId).ListDetailNames(cmdlet));
+                    }
+                }
+                
+            } else {
+                
+                cmdlet.WriteVerbose(cmdlet, "Trying the current test result");
+                
+                if (null != TestData.CurrentTestResult) {
+                    
+                    cmdlet.WriteVerbose(cmdlet, "The current test result");
+                    cmdlet.WriteObject(cmdlet, TestData.CurrentTestResult.ListDetailNames(cmdlet));
+                }
             }
         }
     }

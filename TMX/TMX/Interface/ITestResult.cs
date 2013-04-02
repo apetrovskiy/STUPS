@@ -57,6 +57,6 @@ namespace TMX
         void SetOrigin(TestResultOrigins origin);
         
         // 20130401
-        object[] ListDetailNames();
+        object[] ListDetailNames(TestResultStatusCmdletBase cmdlet);
     }
 }

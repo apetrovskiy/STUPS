@@ -27,7 +27,7 @@ namespace TMX
             GetTMXTestResultDetailsCommand cmdlet =
                 (GetTMXTestResultDetailsCommand)this.Cmdlet;
             
-            TMXHelper.GetCurrentTestResultDetails(cmdlet);
+            TMXHelper.GetTestResultDetails(cmdlet);
         }
     }
 }

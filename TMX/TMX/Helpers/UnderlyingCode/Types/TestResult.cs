@@ -13,6 +13,8 @@ namespace TMX
     using System.Collections.Generic;
     using System.Management.Automation;
     using System.Collections;
+    using System.Linq;
+    using System.Linq.Expressions;
     
     /// <summary>
     /// Description of TestResult.
@@ -131,21 +133,47 @@ namespace TMX
             }
         }
         
-        public object[] ListDetailNames()
+        public object[] ListDetailNames(TestResultStatusCmdletBase cmdlet)
         {
-            ArrayList detailsList =
-                new ArrayList();
+            //ArrayList detailsList =
+            //    new ArrayList();
+            
+            // 20130402
+            ITestResultDetail[] detailsList = null;
             
             if (null != this.Details && 0 < this.Details.Count) {
                 
-                foreach (TestResultDetail detail in this.Details) {
+                // 20130402
+                //if (null == cmdlet.TestResultStatus) {
+                if (TestResultStatuses.NotTested == cmdlet.TestResultStatus) {
                     
-                    detailsList.Add(detail.Name);
+                    var testResultDetailsNonFiltered = 
+                        from detail in this.Details
+                        select detail;
+                    
+                    detailsList = testResultDetailsNonFiltered.ToArray();
+                    
+                } else {
+                    
+                    var testResultDetailFiltered =
+                        from detail in this.Details
+                        where detail.DetailStatus == TestResultStatuses.Failed || detail.DetailStatus == TestResultStatuses.KnownIssue
+                        select detail;
+                    
+                    detailsList = testResultDetailFiltered.ToArray();
+                    
                 }
+                
+//                foreach (TestResultDetail detail in this.Details) {
+//                    
+//                    detailsList.Add(detail.Name);
+//                }
                 
             }
             
-            return detailsList.ToArray();
+            // 20130402
+            //return detailsList.ToArray();
+            return detailsList;
         }
     }
 }

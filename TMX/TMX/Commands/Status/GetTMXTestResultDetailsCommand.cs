@@ -37,6 +37,12 @@ namespace TMX.Commands
 //        
 //        [Parameter(Mandatory = false)]
 //        internal new string Description { get; set; }
+        
+        //[Parameter(Mandatory = false)]
+        //public TestResultStatuses[] TestResultStatus { get; set; }
+        
+        //[Parameter(Mandatory = false)]
+        //public string Id { get; set; }
         #endregion Parameters
         
         protected override void BeginProcessing()

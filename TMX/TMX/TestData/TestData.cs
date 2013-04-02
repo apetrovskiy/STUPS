@@ -889,9 +889,13 @@ namespace TMX
                 detail.ToString());
             CurrentTestResult.Details.Add(testResultDetail);
             
+            // 20130402
+            testResultDetail.DetailStatus = cmdlet.TestResultStatus;
+            
             // 20130331
             switch (cmdlet.TestResultStatus) {
                 case TestResultStatuses.Failed:
+                    cmdlet.WriteVerbose(cmdlet, "TestResultStatus = Failed");
                     // 20130402
                     //CurrentTestResult.enStatus = TestResultStatuses.Failed;
                     if (TestResultStatuses.KnownIssue != CurrentTestResult.enStatus) {
@@ -900,6 +904,7 @@ namespace TMX
                     }
                     break;
                 case TestResultStatuses.Passed:
+                    cmdlet.WriteVerbose(cmdlet, "TestResultStatus = Passed");
                     // 20130402
                     //CurrentTestResult.enStatus = TestResultStatuses.Passed;
                     if (TestResultStatuses.KnownIssue != CurrentTestResult.enStatus &&
@@ -909,17 +914,32 @@ namespace TMX
                     }
                     break;
                 case TestResultStatuses.NotTested:
+                    cmdlet.WriteVerbose(cmdlet, "TestResultStatus = NotTested");
                     // nothing to do
                     break;
                 case TestResultStatuses.KnownIssue:
+                    cmdlet.WriteVerbose(cmdlet, "TestResultStatus = KnownIssue");
                     CurrentTestResult.enStatus = TestResultStatuses.KnownIssue;
                     break;
                 default:
-                    
+                    cmdlet.WriteVerbose(cmdlet, "TestResultStatus = ????");
+                    cmdlet.WriteVerbose(cmdlet, cmdlet.TestResultStatus.ToString());
                 	break;
             }
             
             OnTMXNewTestResultDetailAdded(testResultDetail, null);
+            
+            // 20130402
+            if (cmdlet.Finished) {
+                
+                TMXHelper.TestCaseStarted =
+                    System.DateTime.Now;
+                    
+                TestData.CurrentTestScenario.TestResults.Add(new TestResult(TestData.CurrentTestScenario.Id, TestData.CurrentTestSuite.Id));
+                TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1] =
+                    TestData.CurrentTestResult;
+                
+            }
         }
         
         internal static void AddTestResultErrorDetail(ErrorRecord detail)

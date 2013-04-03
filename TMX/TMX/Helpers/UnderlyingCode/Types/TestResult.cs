@@ -141,6 +141,8 @@ namespace TMX
             // 20130402
             ITestResultDetail[] detailsList = null;
             
+            cmdlet.WriteVerbose(cmdlet, "trying to enumerate details");
+            
             if (null != this.Details && 0 < this.Details.Count) {
                 
                 // 20130402
@@ -151,7 +153,10 @@ namespace TMX
                         from detail in this.Details
                         select detail;
                     
-                    detailsList = testResultDetailsNonFiltered.ToArray();
+                    try {
+                        detailsList = testResultDetailsNonFiltered.ToArray();
+                    }
+                    catch {}
                     
                 } else {
                     
@@ -160,7 +165,10 @@ namespace TMX
                         where detail.DetailStatus == TestResultStatuses.Failed || detail.DetailStatus == TestResultStatuses.KnownIssue
                         select detail;
                     
-                    detailsList = testResultDetailFiltered.ToArray();
+                    try {
+                        detailsList = testResultDetailFiltered.ToArray();
+                    }
+                    catch {}
                     
                 }
                 

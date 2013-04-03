@@ -1200,10 +1200,62 @@ namespace TMX
         
         public static void GetCurrentTestResultStatus(TestResultCmdletBase cmdlet)
         {
-            if (null != TestData.CurrentTestResult) {
-                cmdlet.WriteObject(cmdlet, TestData.CurrentTestResult.Status);
+            // 20130403
+            string testResultId = cmdlet.Id;
+            
+            cmdlet.WriteVerbose(cmdlet, "Getting test result with Id = " + testResultId);
+            
+            if (null != testResultId && string.Empty != testResultId && 0 < testResultId.Length) {
+            
+//                if (null != TestData.CurrentTestResult) {
+//                    cmdlet.WriteObject(cmdlet, TestData.CurrentTestResult.Status);
+//                } else {
+//                    cmdlet.WriteObject(cmdlet, "NOT TESTED");
+//                }
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                cmdlet.WriteVerbose(cmdlet, "Trying to get a test result with Id = " + testResultId);
+                
+                var testResultWithIdCollection =
+                    from testResult in TestData.CurrentTestScenario.TestResults
+                    where testResult.Id == testResultId
+                    select testResult;
+                
+                if (null != testResultWithIdCollection  && 0 < testResultWithIdCollection.Count()) {
+                    
+                    foreach (ITestResult testResultWithId in testResultWithIdCollection) {
+                        
+                        cmdlet.WriteVerbose(cmdlet, "Trying the test result '" + ((ITestResult)testResultWithId).Name + "'");
+                        try {
+                            // if the result is null, there's the try-catch construction
+                            cmdlet.WriteObject(cmdlet, ((ITestResult)testResultWithId).Status);
+                        }
+                        catch {
+                            //cmdlet.WriteObject(cmdlet, (new object[] { null }));
+                            cmdlet.WriteObject(cmdlet, "NOT TESTED");
+                        }
+                    }
+                }
+                
             } else {
-                cmdlet.WriteObject(cmdlet, "NOT TESTED");
+                
+                cmdlet.WriteVerbose(cmdlet, "Trying the current test result");
+                
+                if (null != TestData.CurrentTestResult) {
+                    
+                    cmdlet.WriteVerbose(cmdlet, "The current test result");
+                    cmdlet.WriteObject(cmdlet, TestData.CurrentTestResult.Status);
+                }
+                
             }
         }
         
@@ -1228,7 +1280,16 @@ namespace TMX
                     foreach (ITestResult testResultWithId in testResultWithIdCollection) {
                         
                         cmdlet.WriteVerbose(cmdlet, "Trying the test result '" + ((ITestResult)testResultWithId).Name + "'");
-                        cmdlet.WriteObject(cmdlet, ((ITestResult)testResultWithId).ListDetailNames(cmdlet));
+                        try {
+                            // if the result is null, there's the try-catch construction
+                            //cmdlet.WriteObject(cmdlet, ((ITestResult)testResultWithId).ListDetailNames(cmdlet));
+                            foreach (ITestResultDetail singleDetail in ((ITestResult)testResultWithId).ListDetailNames(cmdlet)) {
+                                cmdlet.WriteObject(cmdlet, singleDetail.Name);
+                            }
+                        }
+                        catch {
+                            cmdlet.WriteObject(cmdlet, (new object[] { null }));
+                        }
                     }
                 }
                 

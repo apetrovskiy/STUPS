@@ -110,6 +110,16 @@ namespace TMX
 
             TMXHelper.SetCurrentTestResult(cmdlet);
             
+            // 20130403
+            TestData.SetScenarioStatus(true); // skipAutomatic
+            TestData.SetSuiteStatus(true); // skipAutomatic
+            try {
+                TestData.OnTMXNewTestResultClosed(
+                    TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1],
+                    null);
+            }
+            catch {}
+            
             // 20130327
             //if (null != cmdlet.Banner && string.Empty != cmdlet.Banner && 0 < cmdlet.Banner.Length) {
                 //UIAutomation.UIAHelper.ShowBanner(cmdlet.TestResultName);

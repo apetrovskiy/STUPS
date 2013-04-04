@@ -579,6 +579,8 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
             PSCmdletBase cmdlet,
             object[] parameters)
         {
+            cmdlet.WriteVerbose(cmdlet, "preparing scriptblocks");
+            
             System.Collections.Generic.List<ScriptBlock> scriptblocks =
                 new System.Collections.Generic.List<ScriptBlock>();
 
@@ -600,6 +602,8 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
                         scriptblocks.Add(sb);
                     }
                 }
+                
+                cmdlet.WriteVerbose(cmdlet, "scriptblocks were prepared");
             }
             catch (Exception eScriptblocksPreparation) {
                 
@@ -619,7 +623,12 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
             //runScriptBlocks(scriptblocks, cmdlet, false);
             // 20130319
             try {
+                
+                cmdlet.WriteVerbose(cmdlet, "running scriptblocks");
+                
                 runScriptBlocks(scriptblocks, cmdlet, false, parameters);
+                
+                cmdlet.WriteVerbose(cmdlet, "Scriptblocks finished successfully");
             }
             catch (Exception eScriptBlocks) {
                 
@@ -657,11 +666,15 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
                             try {
                                 if (eventHandlers) {
 
+                                    cmdlet.WriteVerbose(cmdlet, "run event handler");
+                                    
                                     runScriptBlock runner = new runScriptBlock(runSBEvent);
 
                                     runner(sb, cmdlet.EventSource, cmdlet.EventArgs);
 
                                 } else {
+                                    
+                                    cmdlet.WriteVerbose(cmdlet, "run action with parameters");
 
                                     // 20130318
                                     //runScriptBlock runner = new runScriptBlock(runSBAction);

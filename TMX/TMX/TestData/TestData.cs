@@ -259,39 +259,39 @@ namespace TMX
 
             ITestResult currentTestResult;
             if (null != TestData.CurrentTestResult) {
-
+dumpTestStructure("AddTestResult #1");
                 currentTestResult = TestData.CurrentTestResult;
-
+dumpTestStructure("AddTestResult #1b");
             } else {
-
+dumpTestStructure("AddTestResult #2");
                 currentTestResult =
                     new TestResult(
                         TestData.CurrentTestScenario.Id,
                         TestData.CurrentTestSuite.Id);
-
+dumpTestStructure("AddTestResult #2b");
             }
 
             // 20130325
             if (null == currentTestResult.Name ||
                 string.Empty == currentTestResult.Name ||
                 0 == currentTestResult.Name.Length) {
-
+dumpTestStructure("AddTestResult #3");
                 if (closingTestResultName != null &&
                     closingTestResultName != string.Empty &&
                     closingTestResultName.Length > 0 &&
                     TMX.TestData.CurrentTestResult != null && 
                      closingTestResultName != TMX.TestData.CurrentTestResult.Name) {
-
+dumpTestStructure("AddTestResult #3b");
                     currentTestResult.Name = closingTestResultName;
 
                 } else {
-
+dumpTestStructure("AddTestResult #4");
                     currentTestResult.Name = "generated test result name";
                 }
                 
             // 20130326
             } else {
-
+dumpTestStructure("AddTestResult #5");
                 // the current test result is a result that was preset
                 // nothing to do
             }
@@ -299,11 +299,11 @@ namespace TMX
             // 20130322
             // setting test result's origin
             if (generated) {
-
+dumpTestStructure("AddTestResult #6");
                 currentTestResult.SetOrigin(TestResultOrigins.Automatic);
 
             } else {
-
+dumpTestStructure("AddTestResult #7");
                 currentTestResult.SetOrigin(TestResultOrigins.Logical);
 
             }
@@ -312,29 +312,32 @@ namespace TMX
             if (null == currentTestResult.Id ||
                 string.Empty == currentTestResult.Id ||
                 0 == currentTestResult.Id.Length) {
-
+dumpTestStructure("AddTestResult #8");
                 if (closingTestResultId != null &&
                     closingTestResultId != string.Empty &&
                     closingTestResultId.Length > 0 &&
                     null != TMX.TestData.CurrentTestResult &&
                     closingTestResultId != TMX.TestData.CurrentTestResult.Id) {
-
+dumpTestStructure("AddTestResult #9");
                     currentTestResult.Id = closingTestResultId;
 
                 } else {
-
+dumpTestStructure("AddTestResult #10");
                     currentTestResult.Id = GetTestResultId();
 
                 }
             // 20130326
             } else {
-
+dumpTestStructure("AddTestResult #11");
                 // there already was the Id
                 // nothing to do
             }
-
+Console.WriteLine(passed.ToString());
+if (null == passed) {
+    Console.WriteLine("null == passed");
+}
             if (passed != null) {
-
+dumpTestStructure("AddTestResult #14");
                 if ((bool)passed) {
 
                     currentTestResult.enStatus = TestResultStatuses.Passed;
@@ -348,8 +351,10 @@ namespace TMX
                     currentTestResult.enStatus = TestResultStatuses.KnownIssue;
                 }
             } else {
+dumpTestStructure("AddTestResult #15");
 
-                currentTestResult.enStatus = TestResultStatuses.NotTested;
+                // 20130407
+                //currentTestResult.enStatus = TestResultStatuses.NotTested;
                 
                 // 20130330
                 // if there were no errors during the test case execution
@@ -358,47 +363,50 @@ namespace TMX
                 if (null == currentTestResult.Error &&
                     TestResultStatuses.Failed != currentTestResult.enStatus &&
                     TestResultStatuses.KnownIssue != currentTestResult.enStatus) {
-                    
+dumpTestStructure("AddTestResult #16");
                     //foreach (ITestResultDetail detail in currentTestResult.Details) {
                     foreach (ITestResultDetail detail in currentTestResult.Details) {
-                        
+dumpTestStructure("AddTestResult #17");
                         if (null == ((TestResultDetail)detail).ErrorDetail) {
-                            
+dumpTestStructure("AddTestResult #18");
                             noErrors = false;
                             break;
                         }
                     }
                 }
-                if (noErrors) {
+                // 20130407
+                //if (noErrors) {
+                if (noErrors && null != passed) {
+dumpTestStructure("AddTestResult #19");
                     currentTestResult.enStatus = TestResultStatuses.Passed;
                 }
 
             }
-
+dumpTestStructure("AddTestResult #20");
             if (testResultDescription != null &&
                 testResultDescription != string.Empty &&
                 testResultDescription.Length > 0){
-
+dumpTestStructure("AddTestResult #21");
                 currentTestResult.Description = testResultDescription;
 
             }
 
             if (generated) {
-
+dumpTestStructure("AddTestResult #23");
                 currentTestResult.SetGenerated();
 
             }
 
             if (TMXHelper.TestCaseStarted == System.DateTime.MinValue) {
-
+dumpTestStructure("AddTestResult #25");
                 TMXHelper.TestCaseStarted = System.DateTime.Now;
             }
 
             currentTestResult.SetNow();
-
+dumpTestStructure("AddTestResult #27");
             currentTestResult.SetTimeSpent(
                 (currentTestResult.Timestamp - TMXHelper.TestCaseStarted).TotalSeconds);
-
+dumpTestStructure("AddTestResult #29");
             TestData.CurrentTestResult = currentTestResult;
 
             // 20130326
@@ -407,7 +415,7 @@ namespace TMX
                 TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1] != TestData.CurrentTestResult &&
                 null != TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1].Name &&
                 0 < TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1].Name.Length) {
-                
+dumpTestStructure("AddTestResult #30");
                 TMXHelper.TestCaseStarted =
                     System.DateTime.Now;
                 TestData.CurrentTestScenario.TestResults.Add(new TestResult(TestData.CurrentTestScenario.Id, TestData.CurrentTestSuite.Id));
@@ -477,7 +485,7 @@ namespace TMX
             SetSuiteStatus(skipAutomatic);
 
             if (generateNextResult) {
-
+dumpTestStructure("AddTestResult #40");
                 // write current time
                 TMXHelper.TestCaseStarted =
                     System.DateTime.Now;
@@ -487,9 +495,9 @@ namespace TMX
                        TestData.CurrentTestScenario.SuiteId));
                 TestData.CurrentTestResult = 
                     TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1];
-
+dumpTestStructure("AddTestResult #45");
             } else {
-
+dumpTestStructure("AddTestResult #46");
                 // write zero time
                 TMXHelper.TestCaseStarted =
                     System.DateTime.MinValue;
@@ -1000,6 +1008,16 @@ namespace TMX
                         (System.DateTime.Now - TMX.TestData.CurrentTestSuite.Timestamp).TotalSeconds);
                     TMX.TestData.CurrentTestSuite.Timestamp = System.DateTime.MinValue;
                 }
+                
+//                // 20130407 (added)
+//                try {
+//                    if (TMX.TestData.CurrentTestSuite.Name == TMX.TestData.TestSuites[TMX.TestData.TestSuites.Count - 1].Name &&
+//                        TMX.TestData.CurrentTestSuite.Id == TMX.TestData.TestSuites[TMX.TestData.TestSuites.Count - 1].Id) {
+//Console.WriteLine("<<<<<<<<<<<<<<<<<<<<<<<!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! here !!!!!!!!!!!!!!!!!!!!!!!!!!!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+//                        TMX.TestData.TestSuites[TMX.TestData.TestSuites.Count - 1] = TMX.TestData.CurrentTestSuite;
+//                    }
+//                }
+//                catch {}
             }
             
             TestSuites.Add(new TestSuite(testSuiteName, testSuiteId));
@@ -1073,6 +1091,20 @@ namespace TMX
             return result;
         }
         
+internal static void dumpTestStructure(string strNumber)
+{
+//    try {
+//        int tsCounter = TestData.TestSuites.Count;
+//        int tscCounter = TestData.TestSuites[tsCounter - 1].TestScenarios.Count;
+//        int trCounter = TestData.TestSuites[tsCounter - 1].TestScenarios[tscCounter - 1].TestResults.Count;
+//        try { Console.WriteLine(strNumber + " TestData.TestSuites[tsCounter - 1].TestScenarios[tscCounter - 1].TestResults[trCounter - 1].Status = " + TestData.TestSuites[tsCounter - 1].TestScenarios[tscCounter - 1].TestResults[trCounter - 1].Status); } catch {}
+//        try { Console.WriteLine(strNumber + " TestData.TestSuites[tsCounter - 1].TestScenarios[tscCounter - 2].TestResults[trCounter - 1].Status = " + TestData.TestSuites[tsCounter - 1].TestScenarios[tscCounter - 2].TestResults[trCounter - 1].Status); } catch {}
+//        try { Console.WriteLine(strNumber + " TestData.CurrentTestSuite.TestScenarios[tscCounter44 - 1].TestResults[trCounter44 - 1].Status = " + TestData.CurrentTestSuite.TestScenarios[tscCounter - 1].TestResults[trCounter - 1].Status); } catch {}
+//        try { Console.WriteLine(strNumber + " TestData.CurrentTestScenario.TestResults[trCounter44 - 1].Status = " + TestData.CurrentTestScenario.TestResults[trCounter - 1].Status); } catch {}
+//        try { Console.WriteLine(strNumber + " TestData.CurrentTestResult.Status = " + TestData.CurrentTestResult.Status); } catch {}
+//    } catch {}
+}
+        
         internal static bool AddTestScenario(TestSuite testSuite,
                                              string testScenarioName,
                                              string testScenarioId,
@@ -1091,6 +1123,20 @@ namespace TMX
                         TestData.CurrentTestScenario.TestResults.RemoveAt(TestData.CurrentTestScenario.TestResults.Count - 1);
                     }
                 }
+                
+//                // 20130405
+//                if ((null != TestData.CurrentTestResult.Name &&
+//                     string.Empty != TestData.CurrentTestResult.Name) ||
+//                    (0 < TestData.CurrentTestResult.Details.Count)) {
+//                    //TMXHelper.TestCaseStarted =
+//                    //    System.DateTime.Now;
+//                    TestData.CurrentTestScenario.TestResults.Add(new TestResult(TestData.CurrentTestScenario.Id, TestData.CurrentTestSuite.Id));
+//                    TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1] =
+//                        TestData.CurrentTestResult;
+//                    
+//Console.WriteLine("1 TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1].Status = " + TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1].Status);
+//Console.WriteLine("1 TestData.CurrentTestResult.Status = " + TestData.CurrentTestResult.Status);
+//                }
             }
 
             // 20130301
@@ -1105,6 +1151,7 @@ namespace TMX
                     TMX.TestData.CurrentTestScenario.Timestamp = System.DateTime.MinValue;
                 }
             }
+dumpTestStructure("2");
             
             if (testSuite != null) {
                 TestData.CurrentTestSuite = testSuite;
@@ -1125,7 +1172,7 @@ namespace TMX
                     TestData.CurrentTestSuite = testSuite3;
                 }
             }
-            
+
             if (TestData.CurrentTestSuite == null) {
                 return result;
             }
@@ -1136,23 +1183,56 @@ namespace TMX
                     GetTestScenarioId();
             }
 
+dumpTestStructure("4");
+            
+//            // 20130405
+//            if (null != TestData.TestSuites && 0 < TestData.TestSuites.Count) {
+//                int lastTestSuiteNumber = TestData.TestSuites.Count - 1;
+//
+//                if (null != TestData.TestSuites[lastTestSuiteNumber].TestScenarios && 0 < TestData.TestSuites[lastTestSuiteNumber].TestScenarios.Count) {
+//                    int lastTestScenarioNumber = TestData.TestSuites[lastTestSuiteNumber].TestScenarios.Count - 1;
+//
+//                    if (TestData.CurrentTestScenario.Name == TestData.TestSuites[lastTestSuiteNumber].TestScenarios[lastTestScenarioNumber].Name &&
+//                        TestData.CurrentTestScenario.Id == TestData.TestSuites[lastTestSuiteNumber].TestScenarios[lastTestScenarioNumber].Id) {
+//                        
+//                        TestData.TestSuites[lastTestSuiteNumber].TestScenarios[lastTestScenarioNumber] = TestData.CurrentTestScenario;
+//                    }
+//                }
+//            }
+
+dumpTestStructure("4.4");
+            
             TestData.CurrentTestSuite.TestScenarios.Add(
                 new TestScenario(testScenarioName, testScenarioId, TestData.CurrentTestSuite.Id)); //testSuiteId));
-            
+
+dumpTestStructure("4.5");
             // description
             if (testScenarioDescription != null && testScenarioDescription != string.Empty) {
                 TestData.CurrentTestSuite.TestScenarios[CurrentTestSuite.TestScenarios.Count - 1].Description = 
                     testScenarioDescription;
             }
+
+dumpTestStructure("4.6");
             TestData.CurrentTestScenario = 
                 (TestScenario)TestData.CurrentTestSuite.TestScenarios[CurrentTestSuite.TestScenarios.Count - 1];
+//try {
+//Console.WriteLine("5 TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1].Status = " + TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1].Status);
+//Console.WriteLine("5 TestData.CurrentTestResult.Status = " + TestData.CurrentTestResult.Status);
+//} catch {}
             
             // 20130301
             // set the initial time for this scenario's session
             CurrentTestScenario.SetNow();
+//try {
+//Console.WriteLine("6 TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1].Status = " + TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1].Status);
+//Console.WriteLine("6 TestData.CurrentTestResult.Status = " + TestData.CurrentTestResult.Status);
+//} catch {}
             
             OnTMXNewTestScenarioAdded(TestData.CurrentTestScenario, null);
             result = true;
+
+dumpTestStructure("7");
+            
             return result;
         }
         

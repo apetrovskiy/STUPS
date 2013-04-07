@@ -74,6 +74,7 @@ namespace TMX
             this.SuiteId = testSuiteId;
             
             try{
+TestData.dumpTestStructure("TestScenario #1");
                 if (TestData.CurrentTestResult.Details.Count > 0) {
                     TMX.TestData.AddTestResult(
                         "autoclosed", 
@@ -88,7 +89,9 @@ namespace TMX
                         //true);
                         true,
                         false);
+TestData.dumpTestStructure("TestScenario #2");
                 } else {
+TestData.dumpTestStructure("TestScenario #3");
                     TestData.CurrentTestResult = null;
                 }
             }
@@ -96,13 +99,32 @@ namespace TMX
             
             // 20130301
             this.SetNow();
-            
+TestData.dumpTestStructure("TestScenario #4");
             this.TestResults.Add(
                 new TestResult(
                    this.Id,
                    this.SuiteId));
+TestData.dumpTestStructure("TestScenario #5");
+            
+            // 20130407
+            try {
+TestData.dumpTestStructure("TestScenario #5.1");
+                if ((null != TestData.CurrentTestResult.Name ||
+                    null != TestData.CurrentTestResult.Id) &&
+                    null != TestData.CurrentTestResult.Details &&
+                    0 < TestData.CurrentTestResult.Details.Count) {
+TestData.dumpTestStructure("TestScenario #5.3");
+                    TestData.CurrentTestScenario.TestResults.Add(TestData.CurrentTestResult);
+TestData.dumpTestStructure("TestScenario #5.5");
+                }
+            }
+            catch (Exception eeeee) {
+                Console.WriteLine(eeeee.Message);
+            }
+TestData.dumpTestStructure("TestScenario #5.9");
             TestData.CurrentTestResult = 
                 TestResults[TestResults.Count - 1];
+TestData.dumpTestStructure("TestScenario #6");
         }
         
         public string Name { get; internal set; }

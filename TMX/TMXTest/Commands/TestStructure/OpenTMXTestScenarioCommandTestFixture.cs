@@ -166,6 +166,146 @@ namespace TMXTest.Commands.TestStructure
                 scenarioName);
         }
         
+        // ============================================================================================================
+        
+        [Test]
+        [Category("Slow")]
+        [Category("ScenarioLevel")]
+        [Category("Open_TMXTestScenario")]
+        public void SetCurrentTestResult_Passed_OpenTestScenario()
+        {
+            string suiteName = @"suite1";
+            string scenarioName1 = @"sc1";
+            string scenarioName2 = @"sc2";
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+                @"$null = New-TMXTestSuite -Name '" + 
+                suiteName + 
+                "' | Add-TMXTestScenario -Name '" +
+                scenarioName1 +
+                "'; " +
+                "Set-TMXCurrentTestResult 'tr1' -Id 001;" +
+                "Add-TMXTestResultDetail 'detail 01' -TestResultStatus Passed;" +
+                "$null = Add-TMXTestScenario -Name '" + 
+                scenarioName2 + 
+                "'; " +
+                "$null = Open-TMXTestScenario -Name '" + 
+                scenarioName1 + 
+                "';" + 
+                "Get-TMXTestResultStatus -Id 001;",
+                TMX.TestData.TestStatePassed);
+        }
+        
+        [Test]
+        [Category("Slow")]
+        [Category("ScenarioLevel")]
+        [Category("Open_TMXTestScenario")]
+        public void SetCurrentTestResult_Failed_OpenTestScenario()
+        {
+            string suiteName = @"suite1";
+            string scenarioName1 = @"sc1";
+            string scenarioName2 = @"sc2";
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+                @"$null = New-TMXTestSuite -Name '" + 
+                suiteName + 
+                "' | Add-TMXTestScenario -Name '" +
+                scenarioName1 +
+                "'; " +
+                "Set-TMXCurrentTestResult 'tr1' -Id 001;" +
+                "Add-TMXTestResultDetail 'detail 01' -TestResultStatus Failed;" +
+                "$null = Add-TMXTestScenario -Name '" + 
+                scenarioName2 + 
+                "'; " +
+                "$null = Open-TMXTestScenario -Name '" + 
+                scenarioName1 + 
+                "';" + 
+                "Get-TMXTestResultStatus -Id 001;",
+                TMX.TestData.TestStateFailed);
+        }
+        
+        [Test]
+        [Category("Slow")]
+        [Category("ScenarioLevel")]
+        [Category("Open_TMXTestScenario")]
+        public void SetCurrentTestResult_KnownIssue_OpenTestScenario()
+        {
+            string suiteName = @"suite1";
+            string scenarioName1 = @"sc1";
+            string scenarioName2 = @"sc2";
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+                @"$null = New-TMXTestSuite -Name '" + 
+                suiteName + 
+                "' | Add-TMXTestScenario -Name '" +
+                scenarioName1 +
+                "'; " +
+                "Set-TMXCurrentTestResult 'tr1' -Id 001;" +
+                "Add-TMXTestResultDetail 'detail 01' -TestResultStatus KnownIssue;" +
+                "$null = Add-TMXTestScenario -Name '" + 
+                scenarioName2 + 
+                "'; " +
+                "$null = Open-TMXTestScenario -Name '" + 
+                scenarioName1 + 
+                "';" + 
+                "Get-TMXTestResultStatus -Id 001;",
+                TMX.TestData.TestStateKnownIssue);
+        }
+        
+        [Test]
+        [Category("Slow")]
+        [Category("ScenarioLevel")]
+        [Category("Open_TMXTestScenario")]
+        public void SetCurrentTestResult_FailedOverPassed_OpenTestScenario()
+        {
+            string suiteName = @"suite1";
+            string scenarioName1 = @"sc1";
+            string scenarioName2 = @"sc2";
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+                @"$null = New-TMXTestSuite -Name '" + 
+                suiteName + 
+                "' | Add-TMXTestScenario -Name '" +
+                scenarioName1 +
+                "'; " +
+                "Set-TMXCurrentTestResult 'tr1' -Id 001;" +
+                "Add-TMXTestResultDetail 'detail 01' -TestResultStatus Failed;" +
+                "Add-TMXTestResultDetail 'detail 01' -TestResultStatus Passed;" +
+                "$null = Add-TMXTestScenario -Name '" + 
+                scenarioName2 + 
+                "'; " +
+                "$null = Open-TMXTestScenario -Name '" + 
+                scenarioName1 + 
+                "';" + 
+                "Get-TMXTestResultStatus -Id 001;",
+                TMX.TestData.TestStateFailed);
+        }
+        
+        [Test]
+        [Category("Slow")]
+        [Category("ScenarioLevel")]
+        [Category("Open_TMXTestScenario")]
+        public void SetCurrentTestResult_KnownIssueOverFailed_OpenTestScenario()
+        {
+            string suiteName = @"suite1";
+            string scenarioName1 = @"sc1";
+            string scenarioName2 = @"sc2";
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+                @"$null = New-TMXTestSuite -Name '" + 
+                suiteName + 
+                "' | Add-TMXTestScenario -Name '" +
+                scenarioName1 +
+                "'; " +
+                "Set-TMXCurrentTestResult 'tr1' -Id 001;" +
+                "Add-TMXTestResultDetail 'detail 01' -TestResultStatus KnownIssue;" +
+                "Add-TMXTestResultDetail 'detail 01' -TestResultStatus Failed;" +
+                "Add-TMXTestResultDetail 'detail 01' -TestResultStatus Passed;" +
+                "$null = Add-TMXTestScenario -Name '" + 
+                scenarioName2 + 
+                "'; " +
+                "$null = Open-TMXTestScenario -Name '" + 
+                scenarioName1 + 
+                "';" + 
+                "Get-TMXTestResultStatus -Id 001;",
+                TMX.TestData.TestStateKnownIssue);
+        }
+        
         [TearDown]
         public void DisposeRunspace()
         {

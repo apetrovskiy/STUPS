@@ -332,10 +332,7 @@ dumpTestStructure("AddTestResult #11");
                 // there already was the Id
                 // nothing to do
             }
-Console.WriteLine(passed.ToString());
-if (null == passed) {
-    Console.WriteLine("null == passed");
-}
+
             if (passed != null) {
 dumpTestStructure("AddTestResult #14");
                 if ((bool)passed) {
@@ -1133,9 +1130,6 @@ internal static void dumpTestStructure(string strNumber)
 //                    TestData.CurrentTestScenario.TestResults.Add(new TestResult(TestData.CurrentTestScenario.Id, TestData.CurrentTestSuite.Id));
 //                    TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1] =
 //                        TestData.CurrentTestResult;
-//                    
-//Console.WriteLine("1 TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1].Status = " + TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1].Status);
-//Console.WriteLine("1 TestData.CurrentTestResult.Status = " + TestData.CurrentTestResult.Status);
 //                }
             }
 
@@ -1215,18 +1209,10 @@ dumpTestStructure("4.5");
 dumpTestStructure("4.6");
             TestData.CurrentTestScenario = 
                 (TestScenario)TestData.CurrentTestSuite.TestScenarios[CurrentTestSuite.TestScenarios.Count - 1];
-//try {
-//Console.WriteLine("5 TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1].Status = " + TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1].Status);
-//Console.WriteLine("5 TestData.CurrentTestResult.Status = " + TestData.CurrentTestResult.Status);
-//} catch {}
             
             // 20130301
             // set the initial time for this scenario's session
             CurrentTestScenario.SetNow();
-//try {
-//Console.WriteLine("6 TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1].Status = " + TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1].Status);
-//Console.WriteLine("6 TestData.CurrentTestResult.Status = " + TestData.CurrentTestResult.Status);
-//} catch {}
             
             OnTMXNewTestScenarioAdded(TestData.CurrentTestScenario, null);
             result = true;

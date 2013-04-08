@@ -27,7 +27,9 @@ namespace TMX.Commands
 		
 		protected override void BeginProcessing()
 		{
-			//
+			TMXAddSimpleTestResultCommand command =
+			    new TMXAddSimpleTestResultCommand(this);
+			command.Execute();
 		}
 	}
 }

@@ -377,11 +377,23 @@
     <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\Status\TMXGetTestSuiteStatusCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\Status\TMXGetTestSuiteStatusCommand.cs</Link>
     </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TestStructure\TMXAddSimpleTestResultCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\TestStructure\TMXAddSimpleTestResultCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TestStructure\TMXAddTestCaseCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\TestStructure\TMXAddTestCaseCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TestStructure\TMXAddTestResultDetailCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\TestStructure\TMXAddTestResultDetailCommand.cs</Link>
+    </Compile>
     <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TestStructure\TMXAddTestScenarioCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\TestStructure\TMXAddTestScenarioCommand.cs</Link>
     </Compile>
     <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TestStructure\TMXCloseTestResultCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\TestStructure\TMXCloseTestResultCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TestStructure\TMXGetTestCaseCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\TestStructure\TMXGetTestCaseCommand.cs</Link>
     </Compile>
     <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TestStructure\TMXNewTestSuiteCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\TestStructure\TMXNewTestSuiteCommand.cs</Link>
@@ -392,8 +404,14 @@
     <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TestStructure\TMXOpenTestSuiteCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\TestStructure\TMXOpenTestSuiteCommand.cs</Link>
     </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TestStructure\TMXRemoveTestCaseCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\TestStructure\TMXRemoveTestCaseCommand.cs</Link>
+    </Compile>
     <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TestStructure\TMXSetCurrentTestResultCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\TestStructure\TMXSetCurrentTestResultCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TestStructure\TMXSetTestCaseCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\TestStructure\TMXSetTestCaseCommand.cs</Link>
     </Compile>
     <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TMXCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\TMXCommand.cs</Link>

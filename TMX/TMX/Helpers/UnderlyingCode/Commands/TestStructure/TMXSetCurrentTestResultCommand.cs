@@ -41,7 +41,7 @@ namespace TMX
             
             cmdlet.WriteVerbose(
                 cmdlet,
-                "Checking whether the current test result is fulfilled and must be added to the current test scenario' results");
+                "Checking whether the current test result is fulfilled and must be added to the current test scenario's results");
 
             if (null != TestData.CurrentTestResult) {
 
@@ -55,7 +55,7 @@ namespace TMX
                     
                     cmdlet.WriteVerbose(
                         cmdlet,
-                        "Adding the current test result to the current test scenario' results");
+                        "Adding the current test result to the current test scenario's results");
                     
                     // 20130401
                     TestData.CurrentTestResult.SetTimeSpent(

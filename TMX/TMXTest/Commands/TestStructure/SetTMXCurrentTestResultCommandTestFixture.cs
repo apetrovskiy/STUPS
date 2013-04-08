@@ -426,9 +426,13 @@ namespace TMXTest.Commands.TestStructure
         [Category("Slow")]
         [Category("TestResultLevel")]
         [Category("Set-TMXCurrentTestResult")]
-        public void SetTMXCurrentTestResult_AddTMXTestResultDetail_SetTMXCurrentTestResult_TestResultStatus_ImplicitlyFailed()
+        // 20130408
+        //public void SetTMXCurrentTestResult_AddTMXTestResultDetail_SetTMXCurrentTestResult_TestResultStatus_ImplicitlyFailed()
+        public void SetTMXCurrentTestResult_AddTMXTestResultDetail_SetTMXCurrentTestResult_TestResultStatus_NotTested()
         {
-            TestResultStatuses expectedTestResultStatus = TestResultStatuses.Failed;
+            // 20130408
+            //TestResultStatuses expectedTestResultStatus = TestResultStatuses.Failed;
+            TestResultStatuses expectedTestResultStatus = TestResultStatuses.NotTested;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Set-TMXCurrentTestResult -Name 'tr1'; " + 
                 @"Add-TMXTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus NotTested; " +

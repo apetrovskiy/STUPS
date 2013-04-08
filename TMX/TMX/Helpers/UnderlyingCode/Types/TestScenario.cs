@@ -119,7 +119,7 @@ TestData.dumpTestStructure("TestScenario #5.5");
                 }
             }
             catch (Exception eeeee) {
-                Console.WriteLine(eeeee.Message);
+                //Console.WriteLine(eeeee.Message);
             }
 TestData.dumpTestStructure("TestScenario #5.9");
             TestData.CurrentTestResult = 

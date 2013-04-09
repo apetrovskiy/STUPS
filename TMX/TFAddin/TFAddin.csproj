@@ -77,9 +77,24 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.TeamFoundation" />
+    <Reference Include="Microsoft.TeamFoundation.Build.Client">
+      <HintPath>..\..\..\..\..\Program Files %28x86%29\Microsoft Visual Studio 11.0\Common7\IDE\ReferenceAssemblies\v2.0\Microsoft.TeamFoundation.Build.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.TeamFoundation.Build.Common">
+      <HintPath>..\..\..\..\..\Program Files %28x86%29\Microsoft Visual Studio 11.0\Common7\IDE\ReferenceAssemblies\v2.0\Microsoft.TeamFoundation.Build.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.TeamFoundation.Build.Workflow">
+      <HintPath>..\..\..\..\..\Program Files %28x86%29\Microsoft Visual Studio 11.0\Common7\IDE\ReferenceAssemblies\v2.0\Microsoft.TeamFoundation.Build.Workflow.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.TeamFoundation.Client" />
     <Reference Include="Microsoft.TeamFoundation.TestManagement.Client" />
     <Reference Include="Microsoft.TeamFoundation.WorkItemTracking.Client" />
+    <Reference Include="Microsoft.TeamFoundation.WorkItemTracking.Client">
+      <HintPath>..\..\..\..\..\Program Files %28x86%29\Microsoft Visual Studio 11.0\Common7\IDE\ReferenceAssemblies\v2.0\Microsoft.TeamFoundation.WorkItemTracking.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.Common">
+      <HintPath>..\..\..\..\..\Program Files %28x86%29\Microsoft Visual Studio 11.0\Common7\IDE\ReferenceAssemblies\v2.0\Microsoft.VisualStudio.QualityTools.Common.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -104,6 +119,7 @@
     <Compile Include="Commands\TF\GetTFTestPlanCommand.cs" />
     <Compile Include="Commands\TF\GetTFTestSubSuiteCommand.cs" />
     <Compile Include="Commands\TF\GetTFTestSuiteCommand.cs" />
+    <Compile Include="Commands\TF\NewTFBuildCommand.cs" />
     <Compile Include="Commands\TF\NewTFTestPlanCommand.cs" />
     <Compile Include="Commands\TF\open\OpenTFCollectionCommand.cs" />
     <Compile Include="Commands\TF\open\OpenTFProjectCommand.cs" />
@@ -113,6 +129,7 @@
     <Compile Include="Commands\TF\open\OpenTFTestSuiteCommand.cs" />
     <Compile Include="Helpers\Inheritance\MultipleNamesCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\SingleNameCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\TFBuildCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\TFCollectionCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\TFProjectCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\TFSConnectCmdletBase.cs" />
@@ -138,6 +155,7 @@
     <Compile Include="Helpers\UnderlyingCode\Commands\TFSrvGetTestPlanCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TFSrvGetTestSubSuiteCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TFSrvGetTestSuiteCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TFSrvNewBuildCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TFSrvNewTestPlanCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\TFHelper.cs" />
     <Compile Include="Helpers\UserSettings\CurrentData.cs" />

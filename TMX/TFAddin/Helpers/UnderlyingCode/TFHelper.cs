@@ -21,6 +21,9 @@ namespace TMX
     //using Microsoft.TeamFoundation.Client.Channels;
     using Microsoft.TeamFoundation.Framework.Client;
     
+    using Microsoft.TeamFoundation.Build.Client;
+    using Microsoft.TeamFoundation.Build.Common;
+    
     /// <summary>
     /// Description of TFHelper.
     /// </summary>
@@ -361,5 +364,43 @@ namespace TMX
         }
         
 
+        
+        public static void NewBuild(TFSCmdletBase cmdlet, string name)
+        {
+            try {
+                
+                IBuildDefinition buildDefinition;
+                BuildTypeInfo buildInfo = new Microsoft.TeamFoundation.Build.Common.BuildTypeInfo("1.2.3");
+                
+//                IBuildDefinition buildDefinition =
+//                    CurrentData.CurrentServer.
+//                //var buildDefinition = (IBuildDefinition)listAddDefinitionBuildDefinitions.SelectedItem;    
+//                IBuildDetail buildDetail = buildDefinition.CreateManualBuild(txtBuildName.Text); 
+//                IBuildProjectNode buildProjectNode = buildDetail.Information.AddBuildProjectNode(   
+//                DateTime.Now.AddSeconds(10),            // Finish Time = The time at which the project finished building.  
+//                comboFlavor.SelectedValue.ToString(),   //Flavor = The flavor (configuration) the project was built for.  
+//                txtLocalPath.Text,                      //Local Path = The local path of the project file.            
+//                comboPlatform.SelectedValue.ToString(), //Platform = The platform the project was built for.           
+//                txtServerPath.Text,                     // Server Path = The server path of the project file.            
+//                DateTime.Now,                           //Start Time = The time at which the project was built.          
+//                "default");                             //Target Name = The targets for which the project was built.    
+//                buildProjectNode.Save();        
+//                buildDetail.FinalizeStatus((BuildStatus)comboBuildStatus.SelectedItem); 
+//                ClearAddBuildForm();  
+//                
+//                ITestPlan testPlan =
+//                    CurrentData.CurrentProject.TestPlans.Create();
+//                testPlan.Name = name;
+//                testPlan.Save();
+//                
+//                CurrentData.CurrentTestPlan = testPlan;
+//                
+//                cmdlet.WriteObject(cmdlet, testPlan);
+                
+            }
+            catch (Exception eNewTestPlan) {
+                Console.WriteLine(eNewTestPlan.Message);
+            }
+        }
     }
 }

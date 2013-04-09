@@ -119,6 +119,8 @@
     <Compile Include="..\TMX\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Commands\TF\NewTFBuildCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\TF\NewTFBuildCommandTestFixture.cs" />
     <Compile Include="UnitTests\Fakes\FakeNSubFactory.cs" />
     <Compile Include="UnitTests\Fakes\FakeTfsFactory.cs" />
   </ItemGroup>
@@ -130,6 +132,8 @@
     <Folder Include="Helpers\UserSettings" />
     <Folder Include="Helpers\UnderlyingCode" />
     <Folder Include="Helpers\UnderlyingCode\Commands" />
+    <Folder Include="ParamChecks" />
+    <Folder Include="ParamChecks\TF" />
     <Folder Include="UnitTests" />
     <Folder Include="UnitTests\Fakes" />
   </ItemGroup>

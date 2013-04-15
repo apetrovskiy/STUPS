@@ -859,7 +859,7 @@ namespace UIAutomation
         
         #endregion screensaver prevention
         
-        #region DateTimePicker
+        #region DateTimePicker by Josef Nemec
         [DllImport("user32.dll")]
         internal static extern IntPtr SendMessage(IntPtr hWnd, UInt32 Msg, IntPtr wParam, IntPtr lParam);
         [DllImport("kernel32.dll", SetLastError = true)]
@@ -988,7 +988,7 @@ namespace UIAutomation
 //            }
 //        }
         
-        #endregion DateTimePicker
+        #endregion DateTimePicker by Josef Nemec
         
         #region Protect/Unprotect Data
         // http://www.obviex.com/samples/dpapi.aspx

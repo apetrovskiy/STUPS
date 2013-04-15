@@ -15,7 +15,7 @@ namespace Win32Utils.Commands
     /// <summary>
     /// Description of SetWin32LocalAccountPrivilegeCommand.
     /// </summary>
-    public class SetWin32LocalAccountPrivilegeCommand
+    public class SetWin32LocalAccountPrivilegeCommand : PrivilegeCmdletBase
     {
         public SetWin32LocalAccountPrivilegeCommand()
         {

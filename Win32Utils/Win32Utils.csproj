@@ -44,6 +44,8 @@
   <ItemGroup>
     <Compile Include="Commands\Security\SetWin32LocalAccountPrivilegeCommand.cs" />
     <Compile Include="Helpers\Inheritance\CommonCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\PrivilegeCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\SecurityCmdletBase.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Security\Win32SetLocalAccountPrivilegeCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Win32Command.cs" />
     <Compile Include="Helpers\Win32Helper.cs" />

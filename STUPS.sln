@@ -184,13 +184,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoqCmdlets40", "UnitTesting
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoqCmdletsUnitTests", "UnitTesting\MoqCmdletsUnitTests\MoqCmdletsUnitTests.csproj", "{73875744-356D-40A1-B72B-91E65D38E0B9}"
 EndProject
-Project("{CFEE4113-1246-4D54-95CB-156813CB8593}") = "OpenQualityCenter", "OpenQualityCenter\OpenQualityCenter.wixproj", "{D8C1FE32-C14E-47AA-A5F1-F1BC118F0F48}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utils", "Utils", "{0C65F486-4EBC-48C6-8185-8B38816FEF04}"
 	ProjectSection(SolutionItems) = postProject
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Win32Utils", "Win32Utils\Win32Utils.csproj", "{FFD78ABA-4388-421F-85CA-69D68FBC982C}"
+EndProject
+Project("{CFEE4113-1246-4D54-95CB-156813CB8593}") = "OpenQualityCenter", "OpenQualityCenter\OpenQualityCenter.wixproj", "{D8C1FE32-C14E-47AA-A5F1-F1BC118F0F48}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -2537,7 +2537,7 @@ Global
 		{FFD78ABA-4388-421F-85CA-69D68FBC982C}.Release35|x86.Build.0 = Debug|x86
 		{FFD78ABA-4388-421F-85CA-69D68FBC982C}.Release35|x86.ActiveCfg = Debug|x86
 		{FFD78ABA-4388-421F-85CA-69D68FBC982C}.Release35|Release35.Build.0 = Debug|x86
-		{FFD78ABA-4388-421F-85CA-69D68FBC982C}.Release35|Release35.ActiveCfg = Debug|x86
+		{FFD78ABA-4388-421F-85CA-69D68FBC982C}.Release35|Release35.ActiveCfg = Release35|Release35
 		{FFD78ABA-4388-421F-85CA-69D68FBC982C}.Release35|Release40.Build.0 = Debug|x86
 		{FFD78ABA-4388-421F-85CA-69D68FBC982C}.Release35|Release40.ActiveCfg = Debug|x86
 		{FFD78ABA-4388-421F-85CA-69D68FBC982C}.Release40|Any CPU.Build.0 = Debug|x86

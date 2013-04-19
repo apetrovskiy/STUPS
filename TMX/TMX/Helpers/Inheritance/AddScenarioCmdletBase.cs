@@ -22,7 +22,10 @@ namespace TMX
         }
         
         #region Parameters
-        [Parameter(Mandatory = false)]
+        // 20130419
+        //[Parameter(Mandatory = false)]
+        [Parameter(Mandatory = false,
+                   Position = 0)]
         [AllowNull]
         [AllowEmptyString]
         public string Description { get; set; }

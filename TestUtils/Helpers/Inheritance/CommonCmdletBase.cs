@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace Win32Utils
+namespace TestUtils
 {
     using System;
     using System.Management.Automation;
@@ -44,7 +44,7 @@ namespace Win32Utils
         
         protected override void WriteLog(string logRecord)
         {
-            Console.WriteLine("Here should be logging Win32");
+            Console.WriteLine("Here should be logging TestUtils");
         }
         
         protected override bool CheckSingleObject(PSCmdletBase cmdlet, object outputObject) { return true; }
@@ -77,22 +77,22 @@ namespace Win32Utils
         
         protected override void WriteErrorMethod010RunScriptBlocks(PSCmdletBase cmdlet)
         {
-            this.WriteVerbose(this, " Win32");
+            this.WriteVerbose(this, " TestUtils");
         }
         
         protected override void WriteErrorMethod020SetTestResult(PSCmdletBase cmdlet, ErrorRecord errorRecord)
         {
-            this.WriteVerbose(this, " Win32");
+            this.WriteVerbose(this, " TestUtils");
         }
         
         protected override void WriteErrorMethod030ChangeTimeoutSettings(PSCmdletBase cmdlet, bool terminating)
         {
-            this.WriteVerbose(this, " Win32");
+            this.WriteVerbose(this, " TestUtils");
         }
         
         protected override void WriteErrorMethod040AddErrorToErrorList(PSCmdletBase cmdlet, ErrorRecord errorRecord)
         {
-            this.WriteVerbose(this, " Win32");
+            this.WriteVerbose(this, " TestUtils");
         }
 
         protected override void WriteErrorMethod045OnErrorScreenshot(PSCmdletBase cmdlet)
@@ -102,7 +102,7 @@ namespace Win32Utils
         
         protected override void WriteErrorMethod050OnErrorDelay(PSCmdletBase cmdlet)
         {
-            this.WriteVerbose(this, " Win32");
+            this.WriteVerbose(this, " TestUtils");
         }
 
         protected override void WriteErrorMethod060OutputError(PSCmdletBase cmdlet, ErrorRecord errorRecord, bool terminating)
@@ -124,7 +124,7 @@ namespace Win32Utils
         
         protected override void WriteErrorMethod070Report(PSCmdletBase cmdlet)
         {
-            this.WriteVerbose(this, " Win32");
+            this.WriteVerbose(this, " TestUtils");
         }
     }
 }

@@ -659,6 +659,12 @@
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NativeMethods.cs">
       <Link>Helpers\UnderlyingCode\NativeMethods.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\RDP\DataProtectionForRDPWrapper.cs">
+      <Link>Helpers\UnderlyingCode\RDP\DataProtectionForRDPWrapper.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\RDP\DataProtector.cs">
+      <Link>Helpers\UnderlyingCode\RDP\DataProtector.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Types\Enums.cs">
       <Link>Helpers\UnderlyingCode\Types\Enums.cs</Link>
     </Compile>
@@ -724,6 +730,7 @@
     <Folder Include="Helpers\UnderlyingCode\Commands\RDP" />
     <Folder Include="Helpers\UnderlyingCode\Commands\Wizard" />
     <Folder Include="Helpers\UnderlyingCode\Commands\Wizard" />
+    <Folder Include="Helpers\UnderlyingCode\RDP" />
     <Folder Include="Helpers\UnderlyingCode\Types" />
     <Folder Include="Helpers\UnderlyingCode\Types" />
     <Folder Include="Helpers\UnderlyingCode\Types" />

@@ -188,7 +188,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utils", "Utils", "{0C65F486
 	ProjectSection(SolutionItems) = postProject
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Win32Utils", "Win32Utils\Win32Utils.csproj", "{FFD78ABA-4388-421F-85CA-69D68FBC982C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestUtils", "TestUtils\TestUtils.csproj", "{FFD78ABA-4388-421F-85CA-69D68FBC982C}"
 EndProject
 Project("{CFEE4113-1246-4D54-95CB-156813CB8593}") = "OpenQualityCenter", "OpenQualityCenter\OpenQualityCenter.wixproj", "{D8C1FE32-C14E-47AA-A5F1-F1BC118F0F48}"
 EndProject

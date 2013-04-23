@@ -5,18 +5,19 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <OutputType>Library</OutputType>
-    <RootNamespace>Win32Utils</RootNamespace>
-    <AssemblyName>Win32Utils</AssemblyName>
+    <RootNamespace>TestUtils</RootNamespace>
+    <AssemblyName>TestUtils</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
-    <NoStdLib>True</NoStdLib>
+    <NoStdLib>False</NoStdLib>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <OutputPath>bin\Release35\</OutputPath>
     <DebugType>None</DebugType>
     <DebugSymbols>false</DebugSymbols>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
     <RegisterForComInterop>False</RegisterForComInterop>
@@ -29,17 +30,17 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>Full</DebugType>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <Optimize>False</Optimize>
     <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <OutputPath>bin\Release\</OutputPath>
     <DebugSymbols>False</DebugSymbols>
     <DebugType>None</DebugType>
-    <DefineConstants>TRACE</DefineConstants>
     <Optimize>True</Optimize>
     <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release35' ">
     <Optimize>False</Optimize>
@@ -53,6 +54,9 @@
     <FileAlignment>4096</FileAlignment>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\binaries\Ionic\zip-v1.9\Release\Ionic.Zip.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -64,10 +68,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\Archiving\NewTuZipArchiveCommand.cs" />
     <Compile Include="Commands\Security\GrantWin32LocalAccountPrivilegeCommand.cs" />
+    <Compile Include="Helpers\ArchivingHelper.cs" />
+    <Compile Include="Helpers\Inheritance\ArchivingCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\CommonCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\PrivilegeCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\SecurityCmdletBase.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Archiving\TuNewZipArchiveCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Security\Win32GrantLocalAccountPrivilegeCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Win32Command.cs" />
     <Compile Include="Helpers\Win32Helper.cs" />
@@ -75,11 +83,13 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands" />
+    <Folder Include="Commands\Archiving" />
     <Folder Include="Commands\Security" />
     <Folder Include="Helpers" />
     <Folder Include="Helpers\Inheritance" />
     <Folder Include="Helpers\UnderlyingCode" />
     <Folder Include="Helpers\UnderlyingCode\Commands" />
+    <Folder Include="Helpers\UnderlyingCode\Commands\Archiving" />
     <Folder Include="Helpers\UnderlyingCode\Commands\Security" />
   </ItemGroup>
   <ItemGroup>

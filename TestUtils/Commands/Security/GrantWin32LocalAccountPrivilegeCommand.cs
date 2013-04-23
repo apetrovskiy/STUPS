@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace Win32Utils.Commands
+namespace TestUtils.Commands
 {
     using System;
     using System.Management.Automation;

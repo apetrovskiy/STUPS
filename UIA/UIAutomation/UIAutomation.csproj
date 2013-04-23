@@ -261,6 +261,8 @@
     <Compile Include="Helpers\UnderlyingCode\Commands\Wizard\UIAInvokeWizardCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Wizard\UIARemoveWizardStepCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Wizard\UIAStepWizardCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\RDP\DataProtectionForRDPWrapper.cs" />
+    <Compile Include="Helpers\UnderlyingCode\RDP\DataProtector.cs" />
     <Compile Include="Helpers\UnderlyingCode\Types\Enums.cs" />
     <Compile Include="Helpers\UnderlyingCode\Types\Wizard.cs" />
     <Compile Include="Helpers\UnderlyingCode\Types\WizardCollection.cs" />
@@ -378,6 +380,7 @@
     <Folder Include="Commands\RDP" />
     <Folder Include="Commands\Sheridan" />
     <Folder Include="Helpers\UnderlyingCode\Commands\RDP" />
+    <Folder Include="Helpers\UnderlyingCode\RDP" />
     <Folder Include="Helpers\UnderlyingCode\Types" />
     <Folder Include="Helpers\UnderlyingCode\Commands" />
     <Folder Include="Helpers\UnderlyingCode\Commands\Container" />

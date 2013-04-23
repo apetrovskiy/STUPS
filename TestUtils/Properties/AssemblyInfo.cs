@@ -10,11 +10,11 @@ using System.Runtime.CompilerServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Win32Utils")]
+[assembly: AssemblyTitle("TestUtils")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Alexander Petrovskiy")]
-[assembly: AssemblyProduct("Win32 Cmdlets")]
+[assembly: AssemblyProduct("TestUtils Cmdlets")]
 [assembly: AssemblyCopyright("Copyright 2013")]
 [assembly: AssemblyTrademark("SoftwareTestingUsingPowerShell.com")]
 [assembly: AssemblyCulture("")]

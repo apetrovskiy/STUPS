@@ -1,23 +1,23 @@
 ﻿/*
  * Created by SharpDevelop.
- * User: Alexander Petrovskiy
- * Date: 4/15/2013
- * Time: 1:46 PM
+ * User: APetrovsky
+ * Date: 4/23/2013
+ * Time: 6:01 PM
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace Win32Utils
+namespace TestUtils
 {
     using System;
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of PrivilegeCmdletBase.
+    /// Description of ArchivingCmdletBase.
     /// </summary>
-    public class PrivilegeCmdletBase : SecurityCmdletBase
+    public class ArchivingCmdletBase : CommonCmdletBase
     {
-        public PrivilegeCmdletBase()
+        public ArchivingCmdletBase()
         {
         }
     }

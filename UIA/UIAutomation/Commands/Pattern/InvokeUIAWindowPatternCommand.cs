@@ -15,7 +15,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of InvokeUIAWindowPatternCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAWindowPattern")]
+    //[Cmdlet(VerbsLifecycle.Invoke, "UIAWindowPattern")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class InvokeUIAWindowPatternCommand : PatternCmdletBase

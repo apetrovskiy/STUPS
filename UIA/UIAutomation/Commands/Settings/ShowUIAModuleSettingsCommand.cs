@@ -97,6 +97,13 @@ namespace UIAutomation.Commands
                         Preferences.HighlighterBorderParent.ToString());
             WriteObject("[UIAutomation.Preferences]::HighlighterColorParent = " + 
                         Preferences.HighlighterColorParent.ToString());
+            // 20130423
+            WriteObject("[UIAutomation.Preferences]::HighlightCheckedControl = $" + 
+                        Preferences.HighlightCheckedControl.ToString());
+            WriteObject("[UIAutomation.Preferences]::HighlighterBorderCheckedControl = " + 
+                        Preferences.HighlighterBorderCheckedControl.ToString());
+            WriteObject("[UIAutomation.Preferences]::HighlighterColorCheckedControl = " + 
+                        Preferences.HighlighterColorCheckedControl.ToString());
         }
         #endregion Show-UIAModuleSettings
     }

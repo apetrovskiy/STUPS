@@ -1340,11 +1340,30 @@ try {
                     try {WriteVerbose(this, "ClassName = " + elementToWorkWith.Current.ClassName); }catch {}
                     try {WriteVerbose(this, "ControlType = " + elementToWorkWith.Current.ControlType.ProgrammaticName); }catch {}
                     
-                    // 20120917
-                    result = testControlByPropertiesFromDictionary(dict, elementToWorkWith);
-                    if (! result) {
+                    // 20130423
+                    // // 20120917
+                    //result = testControlByPropertiesFromDictionary(dict, elementToWorkWith);
+                    //if (! result) {
+                    //    return result;
+                    //}
+                    
+                    // 20130423
+                    result =
+                        testControlByPropertiesFromDictionary(
+                            //this.ConvertHashtableToDictionary(hashtable),
+                            dict,
+                            elementToWorkWith);
+                    
+                    if (result) {
+                        
+                        // 20130423
+                        if (Preferences.HighlightCheckedControl) {
+                            UIAHelper.HighlightCheckedControl(elementToWorkWith);
+                        }
+                        
                         return result;
                     }
+                    
                     
 // 20120917
                     

@@ -65,7 +65,9 @@ namespace UIAutomation
             double X,
             double Y,
             int intHandle,
-            Highlighters control)
+            Highlighters control,
+            // 20130423
+            System.Nullable<System.Drawing.Color> color)
         {
 			this.disposeSides();
 			
@@ -75,7 +77,9 @@ namespace UIAutomation
         		X,
         		Y,
         		intHandle,
-        		control);
+        		control,
+        	    // 20130423
+        	    color);
         }
         
         public Highlighter(
@@ -94,7 +98,9 @@ namespace UIAutomation
         		X,
         		Y,
         		intHandle,
-        		control);
+        		control,
+        	    // 20130423
+        	    null);
         	
         	this.PaintLabel(highlighterNumber, highlighterData);
         }
@@ -118,7 +124,9 @@ namespace UIAutomation
             double X,
             double Y,
             int intHandle,
-            Highlighters control)
+            Highlighters control,
+            // 20130423
+            System.Nullable<System.Drawing.Color> color)
         {
             try {
 
@@ -131,10 +139,10 @@ namespace UIAutomation
                             Y,
                             intHandle);;
                     
-                    this.paintLeftSide(control, border, p, height, width);
-                    this.paintTopSide(control, border, p, height, width);
-                    this.paintRightSide(control, border, p, height, width);
-                    this.paintBottomSide(control, border, p, height, width);
+                    this.paintLeftSide(control, border, p, height, width, color);
+                    this.paintTopSide(control, border, p, height, width, color);
+                    this.paintRightSide(control, border, p, height, width, color);
+                    this.paintBottomSide(control, border, p, height, width, color);
                 }
             }
             catch { //(Exception eHighlighter) {
@@ -227,13 +235,17 @@ namespace UIAutomation
             int border,
             NativeMethods.CursorPoint p,
             double height,
-            double width)
+            double width,
+            // 20130423
+            System.Nullable<System.Drawing.Color> color)
         {
             leftSide = new Side(p.X - (border / 2),
                                 p.Y,
                                 border,
                                 height,
-                                control);
+                                control,
+                                // 20130423
+                                color);
         }
         
         [STAThread]
@@ -242,13 +254,17 @@ namespace UIAutomation
             int border,
             NativeMethods.CursorPoint p,
             double height,
-            double width)
+            double width,
+            // 20130423
+            System.Nullable<System.Drawing.Color> color)
         {
             topSide = new Side(p.X,
                                p.Y - (border / 2),
                                width,
                                border,
-                               control);
+                               control,
+                               // 20130423
+                               color);
         }
         
         [STAThread]
@@ -257,7 +273,9 @@ namespace UIAutomation
             int border,
             NativeMethods.CursorPoint p,
             double height,
-            double width)
+            double width,
+            // 20130423
+            System.Nullable<System.Drawing.Color> color)
         {
             rightSide = new Side(p.X +
                                  width -
@@ -265,7 +283,9 @@ namespace UIAutomation
                                  p.Y,
                                  border,
                                  height,
-                                 control);
+                                 control,
+                                 // 20130423
+                                 color);
         }
         
         [STAThread]
@@ -274,7 +294,9 @@ namespace UIAutomation
             int border,
             NativeMethods.CursorPoint p,
             double height,
-            double width)
+            double width,
+            // 20130423
+            System.Nullable<System.Drawing.Color> color)
         {
             bottomSide = new Side(p.X,
                                   p.Y +
@@ -282,7 +304,9 @@ namespace UIAutomation
                                       (border / 2),
                                   width,
                                   border,
-                                  control);
+                                  control,
+                                  // 20130423
+                                  color);
         }
         
         [STAThread]
@@ -484,7 +508,9 @@ namespace UIAutomation
             double top, 
             double width, 
             double height, 
-            Highlighters control)
+            Highlighters control,
+            // 20130423
+            System.Nullable<System.Drawing.Color> color)
         {
             //this.Left = 0;
             //this.Top = 0;
@@ -495,20 +521,27 @@ namespace UIAutomation
             this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
             this.Visible = false;
             this.Opacity = 0.5;
-            if (control == Highlighters.Parent) {
-                this.BackColor = Preferences.HighlighterColorParent;
-                this.ForeColor = Preferences.HighlighterColorParent;
-            } else if (control == Highlighters.Element) {
-                this.BackColor = Preferences.HighlighterColor;
-                this.ForeColor = Preferences.HighlighterColor;
+            
+            // 20130413
+            if (null != color) {
+                this.BackColor = (System.Drawing.Color)color;
+                this.ForeColor = (System.Drawing.Color)color;
             } else {
-            	this.BackColor = Color.FromKnownColor(ExecutionPlan.colorTable[(int)control]);
-            	this.ForeColor = Color.FromKnownColor(ExecutionPlan.colorTable[(int)control]);
+                if (control == Highlighters.Parent) {
+                    this.BackColor = Preferences.HighlighterColorParent;
+                    this.ForeColor = Preferences.HighlighterColorParent;
+                } else if (control == Highlighters.Element) {
+                    this.BackColor = Preferences.HighlighterColor;
+                    this.ForeColor = Preferences.HighlighterColor;
+                } else {
+                	this.BackColor = Color.FromKnownColor(ExecutionPlan.colorTable[(int)control]);
+                	this.ForeColor = Color.FromKnownColor(ExecutionPlan.colorTable[(int)control]);
+                }
+    //            else if (control == Highlighters.FirstChild) {
+    //                this.BackColor = Preferences.HighlighterColorFirstChild;
+    //                this.ForeColor = Preferences.HighlighterColorFirstChild;
+    //            }
             }
-//            else if (control == Highlighters.FirstChild) {
-//                this.BackColor = Preferences.HighlighterColorFirstChild;
-//                this.ForeColor = Preferences.HighlighterColorFirstChild;
-//            }
             
             this.AllowTransparency = true;
             this.ControlBox = false;

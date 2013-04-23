@@ -30,7 +30,12 @@ namespace UIAutomation
 //            HighlightFirstChild = false; //true;
 //            HighlighterColorFirstChild = System.Drawing.Color.Yellow;
 //            HighlighterBorderFirstChild = 3;
-
+            
+            // 20130423
+            HighlightCheckedControl = true;
+            HighlighterColorCheckedControl = System.Drawing.Color.Blue;
+            HighlighterBorderCheckedControl = 3;
+            
 			ShowExecutionPlan = false;
 			ShowInfoToolTip = true;
             
@@ -136,6 +141,19 @@ namespace UIAutomation
 //        /// Thikness of Highlighter's border.
 //        /// </summary>
 //        public static int HighlighterBorderFirstChild { get; set; }
+        // 20130423
+        /// <summary>
+        /// The flag that initiates the Highlighter to run.
+        /// </summary>
+        public static bool HighlightCheckedControl { get; set; }
+        /// <summary>
+        /// Color of Highlighter
+        /// </summary>
+        public static System.Drawing.Color HighlighterColorCheckedControl { get; set; }
+        /// <summary>
+        /// Thikness of Highlighter's border.
+        /// </summary>
+        public static int HighlighterBorderCheckedControl { get; set; }
 		/// <summary>
 		/// 
 		/// </summary>

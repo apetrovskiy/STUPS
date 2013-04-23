@@ -43,6 +43,8 @@ namespace UIAutomation
         private static Highlighter highlighter = null;
         private static Highlighter highlighterParent = null;
         //private static Highlighter highlighterFirstChild = null;
+        // 20130423
+        private static Highlighter highlighterCheckedControl = null;
         
         // 20130322
         private static Banner banner = null;
@@ -250,6 +252,7 @@ namespace UIAutomation
             //try { if (highlighterFirstChild != null) { highlighterFirstChild.Dispose(); } } catch {}
             if ((element as AutomationElement) != null) {
                 //highlighter = new Highlighter(element, Highlighters.Element);
+                // 20130423
                 highlighter =
                     new Highlighter(
                         element.Current.BoundingRectangle.Height,
@@ -257,11 +260,14 @@ namespace UIAutomation
                         element.Current.BoundingRectangle.X,
                         element.Current.BoundingRectangle.Y,
                         element.Current.NativeWindowHandle,
-                        Highlighters.Element);
+                        Highlighters.Element,
+                        // 20130423
+                        Preferences.HighlighterColor);
             }
             if (Preferences.HighlightParent) {
                 AutomationElement parent =
                     UIAHelper.GetParent(element);
+                // 20130423
                 highlighterParent =
                     //new Highlighter(UIAHelper.GetParent(element), Highlighters.Parent);
                     new Highlighter(
@@ -270,13 +276,33 @@ namespace UIAutomation
                         parent.Current.BoundingRectangle.X,
                         parent.Current.BoundingRectangle.Y,
                         parent.Current.NativeWindowHandle,
-                        Highlighters.Parent);
+                        Highlighters.Parent,
+                        // 20130423
+                        Preferences.HighlighterColorParent);
             }
 
             //            if (Preferences.HighlightFirstChild) {
             //                highlighterFirstChild =
             //                    new Highlighter(UIAHelper.GetFirstChild(element), Highlighters.FirstChild);
             //            }
+        }
+        
+        internal static void HighlightCheckedControl(AutomationElement element) //, Highlighters control)  //(object obj)
+        {
+            try { if (highlighterCheckedControl != null) { highlighterCheckedControl.Dispose(); } } catch {}
+
+            if ((element as AutomationElement) != null) {
+
+                highlighterCheckedControl =
+                    new Highlighter(
+                        element.Current.BoundingRectangle.Height,
+                        element.Current.BoundingRectangle.Width,
+                        element.Current.BoundingRectangle.X,
+                        element.Current.BoundingRectangle.Y,
+                        element.Current.NativeWindowHandle,
+                        Highlighters.Element,
+                        Preferences.HighlighterColorCheckedControl);
+            }
         }
         
         internal static void HideHighlighters()

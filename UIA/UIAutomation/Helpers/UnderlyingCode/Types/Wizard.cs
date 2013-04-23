@@ -142,6 +142,14 @@ namespace UIAutomation
 	        	if (null != controlsList && 0 < controlsList.Count) {
 
 	        	    if (step == this.ActiveStep) {
+	        	        
+	        	        // 20130423
+	        	        if (Preferences.HighlightCheckedControl) {
+	        	            foreach (AutomationElement elementChecked in controlsList) {
+	        	                UIAHelper.HighlightCheckedControl(elementChecked);
+	        	            }
+	        	        }
+	        	        
 	        	        continue;
 	        	    }
 	        	    

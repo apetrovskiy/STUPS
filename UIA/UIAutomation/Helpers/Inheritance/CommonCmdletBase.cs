@@ -2433,6 +2433,12 @@ namespace UIAutomation
                         element);
                 
                 if (result) {
+                    
+                    // 20130423
+                    if (Preferences.HighlightCheckedControl) {
+                        UIAHelper.HighlightCheckedControl(element);
+                    }
+                    
                     return result;
                 }
                 

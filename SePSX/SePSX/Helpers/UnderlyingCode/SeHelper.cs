@@ -236,7 +236,9 @@ Console.WriteLine("Highlight 00000000000008");
                                 absoluteCoordinates[0],
                                 absoluteCoordinates[1],
                                 0,
-                                UIAutomation.Highlighters.Element);
+                                UIAutomation.Highlighters.Element,
+                                // 20130423
+                                null);
 Console.WriteLine("Highlight 00000000000009");
                     }
                     catch (Exception e000001) {
@@ -272,7 +274,9 @@ Console.WriteLine("Highlight 00000000000014");
                                             parentAbsoluteCoordinates[0],
                                             parentAbsoluteCoordinates[1],
                                             0,
-                                            UIAutomation.Highlighters.Parent);
+                                            UIAutomation.Highlighters.Parent,
+                                            // 20130423
+                                            null);
 Console.WriteLine("Highlight 00000000000015");
                                 }
                                 catch {}

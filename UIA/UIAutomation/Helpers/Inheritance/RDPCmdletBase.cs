@@ -172,10 +172,16 @@ namespace UIAutomation
         public bool RedirectClipboard { get; set; }
         
         [Parameter(Mandatory = false)]
+        public string DriveStoreRedirect { get; set; }
+        
+        [Parameter(Mandatory = false)]
         public int AuthenticationLevel { get; set; }
         
         [Parameter(Mandatory = false)]
         public string AlternateShell { get; set; }
+        
+        [Parameter(Mandatory = false)]
+        public string Template { get; set; }
         #endregion Parameters
         
         // http://www.pinvoke.net

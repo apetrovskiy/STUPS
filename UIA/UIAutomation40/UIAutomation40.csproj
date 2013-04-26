@@ -622,6 +622,9 @@
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Commands\Container\UIANewContainerCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\Container\UIANewContainerCommand.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Commands\RDP\UIANewRemoteDesktopProtocolFileCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\RDP\UIANewRemoteDesktopProtocolFileCommand.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Commands\UIACommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\UIACommand.cs</Link>
     </Compile>
@@ -658,6 +661,9 @@
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NativeMethods.cs">
       <Link>Helpers\UnderlyingCode\NativeMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\RDPHelper.cs">
+      <Link>Helpers\UnderlyingCode\RDPHelper.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\RDP\DataProtectionForRDPWrapper.cs">
       <Link>Helpers\UnderlyingCode\RDP\DataProtectionForRDPWrapper.cs</Link>

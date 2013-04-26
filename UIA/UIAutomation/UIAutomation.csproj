@@ -257,10 +257,12 @@
     <Compile Include="Commands\Wizard\RemoveUIAWizardStepCommand.cs" />
     <Compile Include="Commands\Wizard\StepUIAWizardCommand.cs" />
     <Compile Include="Helpers\Inheritance\Wizard\WizardStepCmdletBase.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\RDP\UIANewRemoteDesktopProtocolFileCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Wizard\UIAGetWizardCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Wizard\UIAInvokeWizardCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Wizard\UIARemoveWizardStepCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Wizard\UIAStepWizardCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\RDPHelper.cs" />
     <Compile Include="Helpers\UnderlyingCode\RDP\DataProtectionForRDPWrapper.cs" />
     <Compile Include="Helpers\UnderlyingCode\RDP\DataProtector.cs" />
     <Compile Include="Helpers\UnderlyingCode\Types\Enums.cs" />

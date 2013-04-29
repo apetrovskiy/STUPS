@@ -19,6 +19,10 @@ namespace TMX
     {
         public TestResultDetailCmdletBase()
         {
+            // 20130429
+            if (TMX.Preferences.AutoEcho) {
+                this.Echo = true;
+            }
         }
         
         #region Parameters

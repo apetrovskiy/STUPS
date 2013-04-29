@@ -50,6 +50,10 @@ namespace TMX
                     new TestResult(
                         TestData.CurrentTestScenario.Id,
                         TestData.CurrentTestSuite.Id));
+                
+                // 20130429
+                Logger.NLogger.Info("Test result: '" + cmdlet.TestResultName + "'\t" + cmdlet.TestResultStatus.ToString());
+                
             //} else {
                 
                 

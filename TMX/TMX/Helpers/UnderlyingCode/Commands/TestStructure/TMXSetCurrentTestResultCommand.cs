@@ -107,6 +107,9 @@ namespace TMX
             cmdlet.WriteVerbose(
                 cmdlet,
                 "Writing data to the current test result");
+            
+            // 20130429
+            Logger.NLogger.Info("Test result: '" + cmdlet.TestResultName + "'");
 
             TMXHelper.SetCurrentTestResult(cmdlet);
             

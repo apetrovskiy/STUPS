@@ -28,6 +28,10 @@ namespace TMX
             
             bool result = 
                 TMX.TMXHelper.AddTestScenario(cmdlet);
+            
+            // 20130429
+            Logger.NLogger.Info("Test scenario: '" + cmdlet.Name + "'");
+            
             if (result) {
                 
                 cmdlet.WriteObject(

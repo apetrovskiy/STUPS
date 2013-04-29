@@ -155,7 +155,10 @@ TestData.dumpTestStructure("TestScenario #6");
                         this.status = TMX.TestData.TestStateKnownIssue;
                         break;
                     default:
-                        throw new Exception("Invalid value for TestScenarioStatuses");
+                        // 20130428
+                        //throw new Exception("Invalid value for TestScenarioStatuses");
+                        this.status = TMX.TestData.TestStateNotTested;
+                        break;
                 }
             }
         }

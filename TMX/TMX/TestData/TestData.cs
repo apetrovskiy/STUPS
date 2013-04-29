@@ -256,6 +256,9 @@ namespace TMX
                                            bool skipAutomatic)
         {
             TestData.InitCurrentTestScenario();
+            
+            // 20130429
+            Logger.NLogger.Info("Test result: '" + closingTestResultName + "'\tPassed:" + passed.ToString() + "\tKnown issue:" + isKnownIssue.ToString());
 
             ITestResult currentTestResult;
             if (null != TestData.CurrentTestResult) {
@@ -733,7 +736,10 @@ dumpTestStructure("AddTestResult #46");
                             TestData.CurrentTestSuite.enStatus = TestSuiteStatuses.Passed;
                             break;
                         default:
-                            throw new Exception("Invalid value for TestScenarioStatuses");
+                            // 20130428
+                            //throw new Exception("Invalid value for TestScenarioStatuses");
+                            // as Not Tested
+                            break;
                     }
                 }
 
@@ -983,6 +989,10 @@ dumpTestStructure("AddTestResult #46");
                                           string testSuiteDesctiption)
         {
             bool result = false;
+            
+            // 20130429
+            Logger.NLogger.Info("Test suite: '" + testSuiteName + "'");
+            
             if (testSuiteId == null || testSuiteId == string.Empty) {
                 testSuiteId = 
                     GetTestSuiteId();

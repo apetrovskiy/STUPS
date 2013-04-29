@@ -27,6 +27,9 @@ namespace TMX
             LogScriptName_Passed = false;
             LogLineNumber_Passed = false;
             LogCode_Passed = false;
+            
+            // 20130429
+            AutoEcho = false;
         }
         
         public static bool TestLog { get; set; }
@@ -38,5 +41,8 @@ namespace TMX
         public static bool LogScriptName_Passed { get; set; }
         public static bool LogLineNumber_Passed { get; set; }
         public static bool LogCode_Passed { get; set; }
+        
+        // 20130429
+        public static bool AutoEcho { get; set; }
     }
 }

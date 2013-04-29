@@ -29,6 +29,11 @@ namespace TMX.Commands
                 TMX.TestData.GetTestResultId();
             this.TestLog = TMX.Preferences.TestLog;
             this.KnownIssue = false;
+            
+            // 20130429
+            if (TMX.Preferences.AutoEcho) {
+                this.Echo = true;
+            }
         }
         
         #region Parameters

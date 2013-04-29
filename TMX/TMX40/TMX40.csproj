@@ -87,6 +87,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
+    <Reference Include="NLog">
+      <HintPath>..\..\binaries\NLog\40\NLog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="SQLite.Designer">
       <HintPath>..\..\binaries\sqlite\40\64\SQLite.Designer.dll</HintPath>
     </Reference>
@@ -422,6 +426,9 @@
     <Compile Include="..\TMX\Helpers\UnderlyingCode\IXMLElementsStruct.cs">
       <Link>Helpers\UnderlyingCode\IXMLElementsStruct.cs</Link>
     </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Logger.cs">
+      <Link>Helpers\UnderlyingCode\Logger.cs</Link>
+    </Compile>
     <Compile Include="..\TMX\Helpers\UnderlyingCode\Mapping\TestCaseMap.cs">
       <Link>Helpers\UnderlyingCode\Mapping\TestCaseMap.cs</Link>
     </Compile>
@@ -547,6 +554,9 @@
     <Folder Include="SQLiteData" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\TMX\Helpers\UnderlyingCode\NLog.config">
+      <Link>Helpers\UnderlyingCode\NLog.config</Link>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />

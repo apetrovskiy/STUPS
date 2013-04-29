@@ -130,6 +130,9 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NLog">
+      <HintPath>..\..\binaries\NLog\35\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="SQLite.Designer">
       <HintPath>..\..\binaries\sqlite\35\64\SQLite.Designer.dll</HintPath>
     </Reference>
@@ -253,6 +256,7 @@
     <Compile Include="Helpers\UnderlyingCode\Commands\TMXCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\GatherTestResultsCollections.cs" />
     <Compile Include="Helpers\UnderlyingCode\IXMLElementsStruct.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Logger.cs" />
     <Compile Include="Helpers\UnderlyingCode\Mapping\TestCaseMap.cs" />
     <Compile Include="Helpers\UnderlyingCode\Mapping\TestResultDetailMap.cs" />
     <Compile Include="Helpers\UnderlyingCode\Mapping\TestResultMap.cs" />
@@ -328,6 +332,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Helpers\UnderlyingCode\NLog.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />

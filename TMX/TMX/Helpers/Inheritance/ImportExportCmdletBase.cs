@@ -13,6 +13,7 @@ namespace TMX
     using System.Management.Automation;
     using System.Linq;
     using System.Xml.Linq;
+    using System.Text;
     
     /// <summary>
     /// Description of ImportExportCmdletBase.
@@ -605,43 +606,67 @@ namespace TMX
             }
             catch (Exception eee) {
                 try{
+                    
+                    Encoding en = new UnicodeEncoding();
                     writer = 
-                        new System.IO.StreamWriter(generatedFileName);
+                        new System.IO.StreamWriter(generatedFileName, false, en);
                     writer.WriteLine(resultHTML);
                     writer.Flush();
                     writer.Close();
                     return;
                 }
                 catch (Exception ee) {
-                    ErrorRecord err = 
-                        new ErrorRecord(
-                            new Exception("Unable to create the report file: " +
-                                          reportFileName),
-                            "CantCreateReportFile",
-                            ErrorCategory.InvalidArgument,
-                            writer);
-                    err.ErrorDetails = 
-                        new ErrorDetails(
-                            "Unable to create the report file: " +
-                            generatedFileName + 
-                            "\r\n" + 
-                            ee.Message);
-                    ThrowTerminatingError(err);
-                }
-                ErrorRecord err2 = 
-                    new ErrorRecord(
-                        new Exception("Unable to create the report file: " +
-                                      reportFileName),
+                    
+                    // 20130428
+//                    ErrorRecord err = 
+//                        new ErrorRecord(
+//                            new Exception("Unable to create the report file: " +
+//                                          reportFileName),
+//                            "CantCreateReportFile",
+//                            ErrorCategory.InvalidArgument,
+//                            writer);
+//                    err.ErrorDetails = 
+//                        new ErrorDetails(
+//                            "Unable to create the report file: " +
+//                            generatedFileName + 
+//                            "\r\n" + 
+//                            ee.Message);
+//                    ThrowTerminatingError(err);
+                    
+                    this.WriteError(
+                        this,
+                        "Unable to create the report file: '" +
+                        reportFileName + 
+                        "'.",
                         "CantCreateReportFile",
                         ErrorCategory.InvalidArgument,
-                        writer);
-                err2.ErrorDetails = 
-                    new ErrorDetails(
-                        "Unable to create the report file: " +
-                        reportFileName + 
-                        "\r\n" +
-                        eee.Message);
-                ThrowTerminatingError(err2);
+                        true);
+                }
+                
+                // 20130428
+//                ErrorRecord err2 = 
+//                    new ErrorRecord(
+//                        new Exception("Unable to create the report file: " +
+//                                      reportFileName),
+//                        "CantCreateReportFile",
+//                        ErrorCategory.InvalidArgument,
+//                        writer);
+//                err2.ErrorDetails = 
+//                    new ErrorDetails(
+//                        "Unable to create the report file: " +
+//                        reportFileName + 
+//                        "\r\n" +
+//                        eee.Message);
+//                ThrowTerminatingError(err2);
+                
+                this.WriteError(
+                    this,
+                    "Unable to create the report file: '" +
+                    reportFileName +
+                    "'.",
+                    "CantCreateReportFile",
+                    ErrorCategory.InvalidArgument,
+                    true);
             }
         }
         
@@ -841,7 +866,10 @@ namespace TMX
                         scNotTested++;
                         break;
                     default:
-                        throw new Exception("Invalid value for TestScenarioStatuses");
+                        // 20130428
+                        //throw new Exception("Invalid value for TestScenarioStatuses");
+                        scNotTested++;
+                        break;
                 }
             }
             
@@ -917,7 +945,10 @@ namespace TMX
                             scNotTested++;
                             break;
                         default:
-                            throw new Exception("Invalid value for TestScenarioStatuses");
+                            // 20130428
+                            //throw new Exception("Invalid value for TestScenarioStatuses");
+                            scNotTested++;
+                            break;
                     }
                 }
             }

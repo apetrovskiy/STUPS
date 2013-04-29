@@ -45,7 +45,12 @@ namespace TMX
             fileTarget.FileName =
                 System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments) +
                 @"\TMX.log";
-            fileTarget.Layout = "${date:format=HH\\:MM\\:ss}: ${message}";
+            //fileTarget.Layout = "${date:format=HH\\:MM\\:ss}: ${message}";
+            //fileTarget.Layout = "[${date:format=DD/MM/YYYY HH\\:mm\\:ss}] [${}] ${message}";
+            //"${longdate}|${level:uppercase=true}|${logger}|${message}";
+            fileTarget.Layout = "${longdate}|${level:uppercase=true}|${message}";
+            //fileTarget.Encoding = "iso-8859-2";
+            fileTarget.Encoding = System.Text.Encoding.Unicode;
 
             LoggingRule rule = new LoggingRule("*", LogLevel.Info, fileTarget);
             config.LoggingRules.Add(rule);

@@ -258,7 +258,7 @@ namespace TMX
             TestData.InitCurrentTestScenario();
             
             // 20130429
-            Logger.NLogger.Info("Test result: '" + closingTestResultName + "'\tPassed:" + passed.ToString() + "\tKnown issue:" + isKnownIssue.ToString());
+            TMX.Logger.TMXLogger.Info("Test result: '" + closingTestResultName + "'\tPassed:" + passed.ToString() + "\tKnown issue:" + isKnownIssue.ToString());
 
             ITestResult currentTestResult;
             if (null != TestData.CurrentTestResult) {
@@ -991,7 +991,7 @@ dumpTestStructure("AddTestResult #46");
             bool result = false;
             
             // 20130429
-            Logger.NLogger.Info("Test suite: '" + testSuiteName + "'");
+            TMX.Logger.TMXLogger.Info("Test suite: '" + testSuiteName + "'");
             
             if (testSuiteId == null || testSuiteId == string.Empty) {
                 testSuiteId = 

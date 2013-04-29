@@ -103,6 +103,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands" />
+    <Folder Include="Commands\Logging" />
     <Folder Include="Commands\TestStructure" />
     <Folder Include="Commands\Status" />
     <Folder Include="Helpers" />
@@ -112,6 +113,7 @@
     <Folder Include="ParamChecks" />
     <Folder Include="ParamChecks\Configuration" />
     <Folder Include="ParamChecks\Database" />
+    <Folder Include="ParamChecks\Logging" />
     <Folder Include="ParamChecks\TestResults" />
     <Folder Include="ParamChecks\TestStructure" />
     <Folder Include="ParamChecks\Status" />

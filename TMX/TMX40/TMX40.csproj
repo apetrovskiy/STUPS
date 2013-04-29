@@ -538,6 +538,7 @@
   <ItemGroup>
     <Folder Include="Commands\Database" />
     <Folder Include="Commands\Configuration" />
+    <Folder Include="Commands\Logging" />
     <Folder Include="Commands\Status" />
     <Folder Include="Commands\TestStructure" />
     <Folder Include="Commands\TestResults" />
@@ -546,6 +547,7 @@
     <Folder Include="ExternalUse" />
     <Folder Include="Helpers\UnderlyingCode" />
     <Folder Include="Helpers\UnderlyingCode\Commands" />
+    <Folder Include="Helpers\UnderlyingCode\Commands\Logging" />
     <Folder Include="Helpers\UnderlyingCode\Commands\TestStructure" />
     <Folder Include="Helpers\UnderlyingCode\Commands\Status" />
     <Folder Include="Helpers\UnderlyingCode\Mapping" />

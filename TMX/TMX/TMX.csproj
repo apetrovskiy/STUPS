@@ -164,6 +164,7 @@
     <Compile Include="Commands\Experimental\GetTestResultsFromCollectionsCommand.cs" />
     <Compile Include="Commands\Experimental\GetTestResultsFromSearchCommand.cs" />
     <Compile Include="Commands\Experimental\GetTestResultsViaDataSetCommand.cs" />
+    <Compile Include="Commands\Logging\StartTMXLoggingCommand.cs" />
     <Compile Include="Commands\NUnit\AssertNUnitAreEqualCommand.cs" />
     <Compile Include="Commands\NUnit\AssertNUnitAreNotEqualCommand.cs" />
     <Compile Include="Commands\NUnit\AssertNUnitAreNotSameCommand.cs" />
@@ -237,6 +238,7 @@
     <Compile Include="Helpers\Inheritance\TestResultDetailCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\TestResultStatusCmdletBase.cs" />
     <Compile Include="Helpers\TestNH3.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Logging\TMXStartLoggingCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Status\TMXGetTestResultDetailsCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Status\TMXGetTestResultStatusCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Status\TMXGetTestScenarioStatusCommand.cs" />
@@ -312,6 +314,7 @@
     <Folder Include="Commands\Database" />
     <Folder Include="Commands\Experimental" />
     <Folder Include="Commands\Configuration" />
+    <Folder Include="Commands\Logging" />
     <Folder Include="Commands\Status" />
     <Folder Include="Commands\TestResults" />
     <Folder Include="Commands\Repository" />
@@ -319,6 +322,7 @@
     <Folder Include="ExternalUse" />
     <Folder Include="Helpers\UnderlyingCode" />
     <Folder Include="Helpers\UnderlyingCode\Commands" />
+    <Folder Include="Helpers\UnderlyingCode\Commands\Logging" />
     <Folder Include="Helpers\UnderlyingCode\Commands\TestStructure" />
     <Folder Include="Helpers\UnderlyingCode\Commands\Status" />
     <Folder Include="Helpers\UnderlyingCode\Mapping" />

@@ -1,6 +1,6 @@
 ﻿/*
  * Created by SharpDevelop.
- * User: APetrovsky
+ * User: Alexander Petrovskiy
  * Date: 4/29/2013
  * Time: 8:45 PM
  * 
@@ -12,6 +12,7 @@ namespace TMX
     using System;
     using NLog;
     using NLog.Targets;
+    using NLog.Config;
     
     /// <summary>
     /// Description of Logger.
@@ -20,18 +21,68 @@ namespace TMX
     {
         static Logger()
         {
-Console.WriteLine("creating logger");
-            //NLogger = LogManager.GetLogger("TMX");
-Console.WriteLine("logger has been created");
-            
-            //LogManager.Configuration.AddTarget
-            Target target = new FileTarget();
-            target.Name = "TMX";
-            LogManager.Configuration.AddTarget("TMX", target);
-            //NLogger = LogManager.
-            
+            Init();
         }
         
-        public static NLog.Logger NLogger { get; set; }
+        public static string LogPath
+        {
+            //get { return logger.}
+            set {
+                FileTarget myFileTarget = (FileTarget)LogManager.Configuration.FindTargetByName("file");
+                myFileTarget.FileName = value;
+            }
+        }
+        
+        internal static NLog.Logger TMXLogger = null;
+        
+        internal static void Init()
+        {
+            LoggingConfiguration config = new LoggingConfiguration();
+
+            FileTarget fileTarget = new FileTarget();
+            config.AddTarget("file", fileTarget);
+
+            fileTarget.FileName =
+                System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments) +
+                @"\TMX.log";
+            fileTarget.Layout = "${date:format=HH\\:MM\\:ss}: ${message}";
+
+            LoggingRule rule = new LoggingRule("*", LogLevel.Info, fileTarget);
+            config.LoggingRules.Add(rule);
+
+            LogManager.Configuration = config;
+
+            TMXLogger = LogManager.GetLogger("TMX");
+        }
+        
+        public static void Fatal(string message)
+        {
+            TMXLogger.Fatal(message);
+        }
+        
+        public static void Error(string message)
+        {
+            TMXLogger.Error(message);
+        }
+        
+        public static void Warn(string message)
+        {
+            TMXLogger.Warn(message);
+        }
+        
+        public static void Info(string message)
+        {
+            TMXLogger.Info(message);
+        }
+        
+        public static void Debug(string message)
+        {
+            TMXLogger.Debug(message);
+        }
+        
+        public static void Trace(string message)
+        {
+            TMXLogger.Trace(message);
+        }
     }
 }

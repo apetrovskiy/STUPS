@@ -48,7 +48,7 @@ namespace TMX.Commands
             this.CheckCmdletParameters();
             
             this.WriteVerbose(this, this.TestResultDetail);
-            Logger.NLogger.Info(this.TestResultDetail);
+            TMX.Logger.TMXLogger.Info(this.TestResultDetail);
             if (this.Echo) {
 
                 WriteObject(this.TestResultDetail);

@@ -79,7 +79,7 @@ namespace TMX
             bool result = false;
             
             // 20130429
-            Logger.NLogger.Info("Test suite: '" + testSuiteName + "'");
+            TMX.Logger.TMXLogger.Info("Test suite: '" + testSuiteName + "'");
             
             // 20130301
             // set time spent on the previous suite

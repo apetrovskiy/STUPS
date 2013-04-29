@@ -109,7 +109,7 @@ namespace TMX
                 "Writing data to the current test result");
             
             // 20130429
-            Logger.NLogger.Info("Test result: '" + cmdlet.TestResultName + "'");
+            TMX.Logger.TMXLogger.Info("Test result: '" + cmdlet.TestResultName + "'");
 
             TMXHelper.SetCurrentTestResult(cmdlet);
             

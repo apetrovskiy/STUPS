@@ -102,12 +102,42 @@ namespace TMX
 //            Console.WriteLine("Here should be logging TMX");
 //        }
         
-        protected override void WriteLog(string logRecord)
+        // 20130430
+        //protected override void WriteLog(string logRecord)
+        protected override void WriteLog(LogLevels logLevel, string logRecord)
         {
             if (Preferences.AutoLog) {
-                TMX.Logger.Info(logRecord);
+                //TMX.Logger.Info(logRecord);
+                
+                switch (logLevel) {
+                    case LogLevels.Fatal:
+                        TMX.Logger.Fatal(logRecord);
+                        break;
+                    case LogLevels.Error:
+                        TMX.Logger.Error(logRecord);
+                        break;
+                    case LogLevels.Warn:
+                        TMX.Logger.Warn(logRecord);
+                        break;
+                    case LogLevels.Info:
+                        TMX.Logger.Info(logRecord);
+                        break;
+                    case LogLevels.Debug:
+                        TMX.Logger.Debug(logRecord);
+                        break;
+                    case LogLevels.Trace:
+                        TMX.Logger.Trace(logRecord);
+                        break;
+                    //default:
+                    //    throw new Exception("Invalid value for LogLevels");
+                }
             }
         }
+        
+//        protected void WriteLog(NLog.LogLevel logLevel, string logRecord)
+//        {
+//            
+//        }
         
         protected override bool CheckSingleObject(PSCmdletBase cmdlet, object outputObject) { return true; }
         protected override void BeforeWriteCollection(PSCmdletBase cmdlet, object[] outputObjectCollection) {}
@@ -139,45 +169,51 @@ namespace TMX
 
         protected override void WriteErrorMethod010RunScriptBlocks(PSCmdletBase cmdlet)
         {
-            this.WriteVerbose(this, " TMX");
+            //this.WriteVerbose(this, " TMX");
         }
         
         protected override void WriteErrorMethod020SetTestResult(PSCmdletBase cmdlet, ErrorRecord errorRecord)
         {
-            this.WriteVerbose(this, " TMX");
+            //this.WriteVerbose(this, " TMX");
         }
         
         protected override void WriteErrorMethod030ChangeTimeoutSettings(PSCmdletBase cmdlet, bool terminating)
         {
-            this.WriteVerbose(this, " TMX");
+            //this.WriteVerbose(this, " TMX");
         }
         
         protected override void WriteErrorMethod040AddErrorToErrorList(PSCmdletBase cmdlet, ErrorRecord errorRecord)
         {
-            this.WriteVerbose(this, " TMX");
+            //this.WriteVerbose(this, " TMX");
         }
 
         protected override void WriteErrorMethod045OnErrorScreenshot(PSCmdletBase cmdlet)
         {
-            WriteVerbose(this, "WriteErrorMethod045OnErrorScreenshot TMX");
+            //WriteVerbose(this, "WriteErrorMethod045OnErrorScreenshot TMX");
         }
         
         protected override void WriteErrorMethod050OnErrorDelay(PSCmdletBase cmdlet)
         {
-            this.WriteVerbose(this, " TMX");
+            //this.WriteVerbose(this, " TMX");
         }
 
         protected override void WriteErrorMethod060OutputError(PSCmdletBase cmdlet, ErrorRecord errorRecord, bool terminating)
         {
             if (terminating) {
-                this.WriteVerbose(this, "terminating error !!!");
+                //this.WriteVerbose(this, "terminating error !!!");
                 try {
+                    // 20130430
+                    WriteLog(LogLevels.Fatal, errorRecord);
+                    
                     ThrowTerminatingError(errorRecord);
                 }
                 catch {}
             } else {
-                this.WriteVerbose(this, "regular error !!!");
+                //this.WriteVerbose(this, "regular error !!!");
                 try {
+                    // 20130430
+                    WriteLog(LogLevels.Error, errorRecord);
+                    
                     WriteError(errorRecord);
                 }
                 catch {}
@@ -186,7 +222,7 @@ namespace TMX
         
         protected override void WriteErrorMethod070Report(PSCmdletBase cmdlet)
         {
-            this.WriteVerbose(this, " TMX");
+            //this.WriteVerbose(this, " TMX");
         }
 
     }

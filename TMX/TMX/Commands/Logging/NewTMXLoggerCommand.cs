@@ -1,8 +1,8 @@
 ﻿/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
- * Date: 4/29/2013
- * Time: 11:34 PM
+ * Date: 5/1/2013
+ * Time: 2:04 AM
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
@@ -13,11 +13,12 @@ namespace TMX.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of StartTMXLoggingCommand.
+    /// Description of NewTMXLoggerCommand.
     /// </summary>
-    public class StartTMXLoggingCommand
+    [Cmdlet(VerbsCommon.New, "TMXLogger")]
+    public class NewTMXLoggerCommand
     {
-        public StartTMXLoggingCommand()
+        public NewTMXLoggerCommand()
         {
         }
     }

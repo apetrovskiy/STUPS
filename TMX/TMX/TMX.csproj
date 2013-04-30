@@ -164,6 +164,7 @@
     <Compile Include="Commands\Experimental\GetTestResultsFromCollectionsCommand.cs" />
     <Compile Include="Commands\Experimental\GetTestResultsFromSearchCommand.cs" />
     <Compile Include="Commands\Experimental\GetTestResultsViaDataSetCommand.cs" />
+    <Compile Include="Commands\Logging\NewTMXLoggerCommand.cs" />
     <Compile Include="Commands\Logging\StartTMXLoggingCommand.cs" />
     <Compile Include="Commands\NUnit\AssertNUnitAreEqualCommand.cs" />
     <Compile Include="Commands\NUnit\AssertNUnitAreNotEqualCommand.cs" />
@@ -238,6 +239,7 @@
     <Compile Include="Helpers\Inheritance\TestResultDetailCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\TestResultStatusCmdletBase.cs" />
     <Compile Include="Helpers\TestNH3.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Logging\TMXNewLoggerCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Logging\TMXStartLoggingCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Status\TMXGetTestResultDetailsCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Status\TMXGetTestResultStatusCommand.cs" />

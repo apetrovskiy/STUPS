@@ -153,6 +153,12 @@
     <Compile Include="..\TMX\Commands\Database\OpenTMXTestDBCommand.cs">
       <Link>Commands\Database\OpenTMXTestDBCommand.cs</Link>
     </Compile>
+    <Compile Include="..\TMX\Commands\Logging\NewTMXLoggerCommand.cs">
+      <Link>Commands\Logging\NewTMXLoggerCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\Logging\StartTMXLoggingCommand.cs">
+      <Link>Commands\Logging\StartTMXLoggingCommand.cs</Link>
+    </Compile>
     <Compile Include="..\TMX\Commands\NUnit\AssertNUnitAreEqualCommand.cs">
       <Link>Commands\NUnit\AssertNUnitAreEqualCommand.cs</Link>
     </Compile>
@@ -368,6 +374,12 @@
     </Compile>
     <Compile Include="..\TMX\Helpers\Inheritance\TestResultStatusCmdletBase.cs">
       <Link>Helpers\Inheritance\TestResultStatusCmdletBase.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\Logging\TMXNewLoggerCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\Logging\TMXNewLoggerCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\Logging\TMXStartLoggingCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\Logging\TMXStartLoggingCommand.cs</Link>
     </Compile>
     <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\Status\TMXGetTestResultDetailsCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\Status\TMXGetTestResultDetailsCommand.cs</Link>

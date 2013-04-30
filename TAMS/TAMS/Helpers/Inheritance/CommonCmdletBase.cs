@@ -30,10 +30,38 @@ namespace TAMS
 //            Console.WriteLine("Here should be logging TAMS");
 //        }
         
-        protected override void WriteLog(string logRecord)
+        // 20130430
+//        protected override void WriteLog(string logRecord)
+//        {
+//            if (Preferences.AutoLog) {
+//                TMX.Logger.Info(logRecord);
+//            }
+//        }
+        
+        protected override void WriteLog(LogLevels logLevel, string logRecord)
         {
             if (Preferences.AutoLog) {
-                TMX.Logger.Info(logRecord);
+                
+                switch (logLevel) {
+                    case LogLevels.Fatal:
+                        TMX.Logger.Fatal(logRecord);
+                        break;
+                    case LogLevels.Error:
+                        TMX.Logger.Error(logRecord);
+                        break;
+                    case LogLevels.Warn:
+                        TMX.Logger.Warn(logRecord);
+                        break;
+                    case LogLevels.Info:
+                        TMX.Logger.Info(logRecord);
+                        break;
+                    case LogLevels.Debug:
+                        TMX.Logger.Debug(logRecord);
+                        break;
+                    case LogLevels.Trace:
+                        TMX.Logger.Trace(logRecord);
+                        break;
+                }
             }
         }
         
@@ -100,7 +128,7 @@ namespace TAMS
 
         protected override void WriteSingleObject(PSCmdletBase cmdlet, object outputObject)
         {
-            WriteVerbose(this, " TAMS");
+            //WriteVerbose(this, " TAMS");
             try {
                 base.WriteObject(outputObject);
             }
@@ -154,14 +182,22 @@ namespace TAMS
         protected override void WriteErrorMethod060OutputError(PSCmdletBase cmdlet, ErrorRecord errorRecord, bool terminating)
         {
             if (terminating) {
-                this.WriteVerbose(this, "terminating error !!!");
+                //this.WriteVerbose(this, "terminating error !!!");
                 try {
+                    
+                    // 20130430
+                    WriteLog(LogLevels.Fatal, errorRecord);
+                    
                     ThrowTerminatingError(errorRecord);
                 }
                 catch {}
             } else {
-                this.WriteVerbose(this, "regular error !!!");
+                //this.WriteVerbose(this, "regular error !!!");
                 try {
+                    
+                    // 20130430
+                    WriteLog(LogLevels.Error, errorRecord);
+                    
                     WriteError(errorRecord);
                 }
                 catch {}

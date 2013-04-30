@@ -139,6 +139,7 @@
     <Compile Include="Commands\Database\CloseTMXTestDBCommandTestFixture.cs" />
     <Compile Include="Commands\Database\NewTMXTestDBCommandTestFixture.cs" />
     <Compile Include="Commands\Database\OpenTMXTestDBCommandTestFixture.cs" />
+    <Compile Include="Commands\Logging\NewTMXLoggerCommandTestFixture.cs" />
     <Compile Include="Commands\Repository\AddTMXTestBucketCommandTestFixture.cs" />
     <Compile Include="Commands\Repository\AddTMXTestConstantCommandTestFixture.cs" />
     <Compile Include="Commands\Repository\GetTMXTestBucketCommandTestFixture.cs" />

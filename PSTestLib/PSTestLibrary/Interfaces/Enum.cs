@@ -44,4 +44,13 @@ namespace PSTestLib
         DataCode,
         HeaderDataFooterCode
     }
+    
+    public enum LogLevels {
+        Fatal,
+        Error,
+        Warn,
+        Info,
+        Debug,
+        Trace
+    }
 }

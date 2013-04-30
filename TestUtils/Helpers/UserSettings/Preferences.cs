@@ -1,22 +1,21 @@
 ﻿/*
  * Created by SharpDevelop.
- * User: Alexander Petrovskiy
- * Date: 4/30/2013
- * Time: 3:01 PM
+ * User: Alexander
+ * Date: 5/1/2013
+ * Time: 3:47 AM
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TAMS
+namespace TestUtils.Helpers.UserSettings
 {
-    using System;
     
     /// <summary>
     /// Description of Preferences.
     /// </summary>
-    public static class Preferences
+    public class Preferences
     {
-        static Preferences()
+        public Preferences()
         {
             // 20130430
             AutoLog = false;

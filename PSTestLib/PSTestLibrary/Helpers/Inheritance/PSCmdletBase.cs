@@ -90,7 +90,9 @@ namespace PSTestLib
             this.CheckCmdletParameters();
         }
         
-        protected abstract void WriteLog(string logRecord);
+        // 20130430
+        //protected abstract void WriteLog(string logRecord);
+        protected abstract void WriteLog(LogLevels logLevel, string logRecord);
         
         public static bool EnableTrace { get; set; }
         
@@ -433,7 +435,7 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
                 // WriteLog(reportString);
                 
                     // 20130430
-                    WriteLog(text);
+                    WriteLog(LogLevels.Trace, text);
                 }
                 catch (Exception eNotUsed) {
                     // ??

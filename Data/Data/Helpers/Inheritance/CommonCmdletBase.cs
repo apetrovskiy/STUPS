@@ -48,10 +48,38 @@ namespace Data
 //            Console.WriteLine("Here should be logging Data");
 //        }
         
-        protected override void WriteLog(string logRecord)
+        // 20130430
+//        protected override void WriteLog(string logRecord)
+//        {
+//            if (Preferences.AutoLog) {
+//                TMX.Logger.Info(logRecord);
+//            }
+//        }
+        
+        protected override void WriteLog(LogLevels logLevel, string logRecord)
         {
             if (Preferences.AutoLog) {
-                TMX.Logger.Info(logRecord);
+                
+                switch (logLevel) {
+                    case LogLevels.Fatal:
+                        TMX.Logger.Fatal(logRecord);
+                        break;
+                    case LogLevels.Error:
+                        TMX.Logger.Error(logRecord);
+                        break;
+                    case LogLevels.Warn:
+                        TMX.Logger.Warn(logRecord);
+                        break;
+                    case LogLevels.Info:
+                        TMX.Logger.Info(logRecord);
+                        break;
+                    case LogLevels.Debug:
+                        TMX.Logger.Debug(logRecord);
+                        break;
+                    case LogLevels.Trace:
+                        TMX.Logger.Trace(logRecord);
+                        break;
+                }
             }
         }
         

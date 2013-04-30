@@ -59,8 +59,34 @@ namespace SePSX
         private const string exceptionMessageWrongTypeWebDriverOrWebElement = 
             "The pipeline input is null or not of IWebDriver or IWebElement type";
         
-        protected override void WriteLog(string logRecord)
+        // 20130430
+        //protected override void WriteLog(string logRecord)
+        protected override void WriteLog(LogLevels logLevel, string logRecord)
         {
+            if (Preferences.AutoLog) {
+                
+                switch (logLevel) {
+                    case LogLevels.Fatal:
+                        TMX.Logger.Fatal(logRecord);
+                        break;
+                    case LogLevels.Error:
+                        TMX.Logger.Error(logRecord);
+                        break;
+                    case LogLevels.Warn:
+                        TMX.Logger.Warn(logRecord);
+                        break;
+                    case LogLevels.Info:
+                        TMX.Logger.Info(logRecord);
+                        break;
+                    case LogLevels.Debug:
+                        TMX.Logger.Debug(logRecord);
+                        break;
+                    case LogLevels.Trace:
+                        TMX.Logger.Trace(logRecord);
+                        break;
+                }
+            }
+            
             try {
                 //Global.WriteToLogFile(record);
                 //WriteToLogFile(record);
@@ -474,9 +500,9 @@ Console.WriteLine("WriteSingleObject 00008");
                 this.WriteVerbose(this, outputObject.GetType().Name);
 //Console.WriteLine("WriteObjectMethod020Highlight 00004");
                 this.WriteVerbose(this, ((IWebElement)outputObject).GetType().Name);
-Console.WriteLine("WriteObjectMethod020Highlight 00005");
+//Console.WriteLine("WriteObjectMethod020Highlight 00005");
                 SeHelper.Highlight((IWebElement)outputObject);
-Console.WriteLine("WriteObjectMethod020Highlight 00006");
+//Console.WriteLine("WriteObjectMethod020Highlight 00006");
             }
         }
         
@@ -579,7 +605,7 @@ Console.WriteLine("WriteObjectMethod020Highlight 00006");
         //protected override void WriteObjectMethod045OnSuccessScreenshot(PSCmdletBase cmdlet, object outputObject)
         protected void WriteObjectMethod045OnSuccessScreenshot(PSCmdletBase cmdlet, object outputObject)
         {
-            this.WriteVerbose(this, "WriteObjectMethod045OnSuccessScreenshot SePSX");
+            //this.WriteVerbose(this, "WriteObjectMethod045OnSuccessScreenshot SePSX");
             
             if (SePSX.Preferences.OnSuccessScreenShot) {
                 //UIAutomation.UIAHelper.GetScreenshotOfSquare(
@@ -642,9 +668,11 @@ Console.WriteLine("WriteObjectMethod020Highlight 00006");
             if (cmdlet != null && reportString != null && reportString != string.Empty) { //try { WriteVerbose(this, reportString);
                 this.WriteVerbose(this, reportString);
             } 
-            this.WriteVerbose(this, "writing into the log");
-            WriteLog(reportString);
-            this.WriteVerbose(this, "the log record has been written");
+            //this.WriteVerbose(this, "writing into the log");
+            // 20130430
+            //WriteLog(reportString);
+            WriteLog(
+            //this.WriteVerbose(this, "the log record has been written");
         }
         
         protected override void WriteErrorMethod010RunScriptBlocks(PSCmdletBase cmdlet) //, object outputObject)
@@ -790,24 +818,32 @@ Console.WriteLine("WriteObjectMethod020Highlight 00006");
         protected override void WriteErrorMethod060OutputError(PSCmdletBase cmdlet, ErrorRecord errorRecord, bool terminating)
         {
             if (terminating) {
-                this.WriteVerbose(this, "terminating error !!!");
+                //this.WriteVerbose(this, "terminating error !!!");
+                
+                // 20130430
+                WriteLog(LogLevels.Fatal, errorRecord);
+                
                 ThrowTerminatingError(errorRecord);
             } else {
-                this.WriteVerbose(this, "regular error !!!");
+                //this.WriteVerbose(this, "regular error !!!");
+                
+                // 20130430
+                WriteLog(LogLevels.Error, errorRecord);
+                
                 WriteError(errorRecord);
             }
         }
         
         protected override void WriteErrorMethod070Report(PSCmdletBase cmdlet)
         {
-            this.WriteVerbose(this, "WriteErrorMethod070Report PSePSX");
+            //this.WriteVerbose(this, "WriteErrorMethod070Report PSePSX");
         }
         
         // 20130204
         //protected override void WriteObjectMethod080ReportFailure()
         protected void WriteObjectMethod080ReportFailure(PSCmdletBase cmdlet, object outputObject)
         {
-            this.WriteVerbose(this, "WriteErrorMethod070Report PSePSX");
+            //this.WriteVerbose(this, "WriteErrorMethod070Report PSePSX");
         }
         
         private void writeErrorToTheList(ErrorRecord err)

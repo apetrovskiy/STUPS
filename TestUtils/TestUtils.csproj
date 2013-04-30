@@ -78,6 +78,7 @@
     <Compile Include="Helpers\UnderlyingCode\Commands\Archiving\TuNewZipArchiveCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Security\Win32GrantLocalAccountPrivilegeCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Win32Command.cs" />
+    <Compile Include="Helpers\UserSettings\Preferences.cs" />
     <Compile Include="Helpers\Win32Helper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -87,6 +88,7 @@
     <Folder Include="Commands\Security" />
     <Folder Include="Helpers" />
     <Folder Include="Helpers\Inheritance" />
+    <Folder Include="Helpers\UserSettings" />
     <Folder Include="Helpers\UnderlyingCode" />
     <Folder Include="Helpers\UnderlyingCode\Commands" />
     <Folder Include="Helpers\UnderlyingCode\Commands\Archiving" />

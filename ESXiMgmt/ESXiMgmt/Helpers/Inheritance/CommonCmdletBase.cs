@@ -35,7 +35,9 @@ namespace ESXiMgmt
 //        }
 #endregion commented
         
-        protected override void WriteLog(string logRecord)
+        // 20130430
+        //protected override void WriteLog(string logRecord)
+        protected override void WriteLog(LogLevels logLevel, string logRecord)
         {
             Console.WriteLine("Here should be logging ESXiMgmt");
         }

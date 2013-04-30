@@ -108,6 +108,9 @@ namespace SePSX
                     "TEMP",
                     EnvironmentVariableTarget.User) + 
                 @"\SePSX.log";
+            // 20130430
+            AutoLog = false;
+            
             MaximumErrorCount = 256;
             MaximumEventCount = 256;
 //            Mode.Profile = Modes.Presentation;
@@ -285,6 +288,9 @@ namespace SePSX
         /// Path to the log file
         /// </summary>
         public static string LogPath { get; set; }
+        // 20130429
+        public static bool AutoLog { get; set; }
+        
         private static int maximumErrorCount;
         /// <summary>
         /// The upper limit of number of errors that

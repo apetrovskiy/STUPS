@@ -431,6 +431,9 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
                 }
                 
                 // WriteLog(reportString);
+                
+                    // 20130430
+                    WriteLog(text);
                 }
                 catch (Exception eNotUsed) {
                     // ??

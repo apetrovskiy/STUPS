@@ -60,14 +60,22 @@ namespace UIAutomation
         }
         
         #region Write methods
+        // 20130430
+//        protected override void WriteLog(string logRecord)
+//        {
+//            try {
+//                Global.WriteToLogFile(logRecord);
+//            } catch (Exception e) {
+//                WriteVerbose(this, "Unable to write to the log file: " +
+//                             Preferences.LogPath);
+//                WriteVerbose(this, e.Message);
+//            }
+//        }
+        
         protected override void WriteLog(string logRecord)
         {
-            try {
-                Global.WriteToLogFile(logRecord);
-            } catch (Exception e) {
-                WriteVerbose(this, "Unable to write to the log file: " +
-                             Preferences.LogPath);
-                WriteVerbose(this, e.Message);
+            if (Preferences.AutoLog) {
+                TMX.Logger.Info(logRecord);
             }
         }
         

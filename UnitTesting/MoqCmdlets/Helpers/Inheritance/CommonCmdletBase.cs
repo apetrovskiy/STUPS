@@ -27,7 +27,7 @@ namespace MoqCmdlets
         
         protected override void WriteLog(string logRecord)
         {
-            Console.WriteLine("Here should be logging");
+            Console.WriteLine("Here should be logging Moq");
         }
         
 #region commented

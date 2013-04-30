@@ -120,14 +120,23 @@
     <Compile Include="..\Data\Helpers\UnderlyingCode\XMLHelper.cs">
       <Link>Helpers\UnderlyingCode\XMLHelper.cs</Link>
     </Compile>
+    <Compile Include="..\Data\Helpers\UserSettings\Preferences.cs">
+      <Link>Helpers\UserSettings\Preferences.cs</Link>
+    </Compile>
     <Compile Include="..\Data\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Commands" />
+    <Folder Include="Commands\XML" />
     <Folder Include="Commands\XML" />
     <Folder Include="Helpers" />
+    <Folder Include="Helpers" />
     <Folder Include="Helpers\Inheritance" />
+    <Folder Include="Helpers\Inheritance" />
+    <Folder Include="Helpers\UserSettings" />
+    <Folder Include="Helpers\UnderlyingCode" />
     <Folder Include="Helpers\UnderlyingCode" />
     <Folder Include="Helpers\UnderlyingCode\Commands" />
     <Folder Include="Helpers\UnderlyingCode\Commands\XML" />
@@ -136,11 +145,16 @@
     <Folder Include="Helpers\UnderlyingCode\Autofac" />
     <Folder Include="Helpers\UnderlyingCode\Types" />
     <Folder Include="Commands" />
+    <Folder Include="Properties" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">
       <Project>{E4499004-DAE5-4700-B212-4CDEA3080BC5}</Project>
       <Name>PSTestLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TMX\TMX\TMX.csproj">
+      <Project>{DFFF7F28-CFA4-4EE5-84F0-4A12A415BC0C}</Project>
+      <Name>TMX</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />

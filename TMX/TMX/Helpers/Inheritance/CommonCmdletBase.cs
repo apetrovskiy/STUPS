@@ -96,9 +96,17 @@ namespace TMX
                 true);
         }
         
+        // 20130430
+//        protected override void WriteLog(string logRecord)
+//        {
+//            Console.WriteLine("Here should be logging TMX");
+//        }
+        
         protected override void WriteLog(string logRecord)
         {
-            Console.WriteLine("Here should be logging TMX");
+            if (Preferences.AutoLog) {
+                TMX.Logger.Info(logRecord);
+            }
         }
         
         protected override bool CheckSingleObject(PSCmdletBase cmdlet, object outputObject) { return true; }

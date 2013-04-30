@@ -30,6 +30,8 @@ namespace TMX
             
             // 20130429
             AutoEcho = false;
+            // 20130430
+            AutoLog = false;
         }
         
         public static bool TestLog { get; set; }
@@ -44,5 +46,7 @@ namespace TMX
         
         // 20130429
         public static bool AutoEcho { get; set; }
+        // 20130429
+        public static bool AutoLog { get; set; }
     }
 }

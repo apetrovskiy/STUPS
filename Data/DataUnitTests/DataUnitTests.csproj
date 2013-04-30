@@ -76,9 +76,11 @@
     <Folder Include="Commands" />
     <Folder Include="Commands\XML" />
     <Folder Include="Helpers" />
+    <Folder Include="Helpers" />
     <Folder Include="Helpers\UnderlyingCode" />
     <Folder Include="ParamChecks" />
     <Folder Include="ParamChecks\XML" />
+    <Folder Include="Properties" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">

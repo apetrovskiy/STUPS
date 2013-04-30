@@ -42,9 +42,17 @@ namespace Data
         
         internal static bool ModuleAlreadyLoaded { get; set; }
         
+        // 20130430
+//        protected override void WriteLog(string logRecord)
+//        {
+//            Console.WriteLine("Here should be logging Data");
+//        }
+        
         protected override void WriteLog(string logRecord)
         {
-            Console.WriteLine("Here should be logging Data");
+            if (Preferences.AutoLog) {
+                TMX.Logger.Info(logRecord);
+            }
         }
         
         protected override bool CheckSingleObject(PSCmdletBase cmdlet, object outputObject) { return true; }

@@ -24,9 +24,17 @@ namespace TAMS
         {
         }
         
+        // 20130430
+//        protected override void WriteLog(string logRecord)
+//        {
+//            Console.WriteLine("Here should be logging TAMS");
+//        }
+        
         protected override void WriteLog(string logRecord)
         {
-            Console.WriteLine("Here should be logging");
+            if (Preferences.AutoLog) {
+                TMX.Logger.Info(logRecord);
+            }
         }
         
 #region commented

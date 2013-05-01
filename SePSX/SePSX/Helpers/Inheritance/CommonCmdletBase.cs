@@ -98,6 +98,15 @@ namespace SePSX
             }
         }
         
+        protected void WriteLog(LogLevels logLevel, System.Management.Automation.ErrorRecord errorRecord)
+        {
+            if (Preferences.AutoLog) {
+                
+                this.WriteLog(logLevel, errorRecord.Exception.Message);
+                this.WriteLog(logLevel, "Script: '" + errorRecord.InvocationInfo.ScriptName + "', line: " + errorRecord.InvocationInfo.Line.ToString());
+            }
+        }
+        
         protected void checkInputWebDriver(bool strict)
         {
             if (null == ((HasWebDriverInputCmdletBase)this).InputObject) {
@@ -671,7 +680,8 @@ Console.WriteLine("WriteSingleObject 00008");
             //this.WriteVerbose(this, "writing into the log");
             // 20130430
             //WriteLog(reportString);
-            WriteLog(
+            //WriteLog(
+            this.WriteLog(LogLevels.Info, reportString);
             //this.WriteVerbose(this, "the log record has been written");
         }
         

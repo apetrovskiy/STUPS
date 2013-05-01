@@ -507,10 +507,12 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
             if (null == cmdlet) return result;
             result = 
                 cmdlet.GetType().Name;
-            if (result.Contains("Se")) {
-                result = 
-                    result.Replace("Se", "-Se");
-            } else if (result.Contains("UIA")) {
+            // 20130501
+//            if (result.Contains("Se")) {
+//                result = 
+//                    result.Replace("Se", "-Se");
+//            } else 
+            if (result.Contains("UIA")) {
                 result = 
                     result.Replace("UIA", "-UIA");
             } else if (result.Contains("TMX")) {
@@ -526,6 +528,19 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
             else if (result.Contains("TAMS")) {
                 result = 
                     result.Replace("TAMS", "-TAMS");
+            }
+            // 20130501
+            else if (result.Contains("Dt")) {
+                result = 
+                    result.Replace("Dt", "-Dt");
+            }
+            else if (result.Contains("Tu")) {
+                result = 
+                    result.Replace("Tu", "-Tu");
+            }
+            else if (result.Contains("Se")) {
+                result = 
+                    result.Replace("Se", "-Se");
             }
             result = 
                 result.Replace("Command", "");

@@ -99,9 +99,45 @@ namespace ExampleCustomTestReport
         protected override void AfterWriteCollection(PSCmdletBase cmdlet, ICollection outputObjectCollection) {}
         protected override void AfterWriteCollection(PSCmdletBase cmdlet, Hashtable outputObjectCollection) {}
         
-        protected override void WriteLog(string logRecord)
+//        protected override void WriteLog(string logRecord)
+//        {
+//            throw new NotImplementedException();
+//        }
+        
+        protected override void WriteLog(LogLevels logLevel, string logRecord)
         {
-            throw new NotImplementedException();
+            //if (Preferences.AutoLog) {
+                
+                switch (logLevel) {
+                    case LogLevels.Fatal:
+                        TMX.Logger.Fatal(logRecord);
+                        break;
+                    case LogLevels.Error:
+                        TMX.Logger.Error(logRecord);
+                        break;
+                    case LogLevels.Warn:
+                        TMX.Logger.Warn(logRecord);
+                        break;
+                    case LogLevels.Info:
+                        TMX.Logger.Info(logRecord);
+                        break;
+                    case LogLevels.Debug:
+                        TMX.Logger.Debug(logRecord);
+                        break;
+                    case LogLevels.Trace:
+                        TMX.Logger.Trace(logRecord);
+                        break;
+                }
+            //}
+        }
+        
+        protected void WriteLog(LogLevels logLevel, System.Management.Automation.ErrorRecord errorRecord)
+        {
+            //if (Preferences.AutoLog) {
+                
+                this.WriteLog(logLevel, errorRecord.Exception.Message);
+                this.WriteLog(logLevel, "Script: '" + errorRecord.InvocationInfo.ScriptName + "', line: " + errorRecord.InvocationInfo.Line.ToString());
+            //}
         }
         
         protected override void WriteErrorMethod070Report(PSCmdletBase cmdlet)

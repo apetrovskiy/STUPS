@@ -1,15 +1,15 @@
 ﻿/*
  * Created by SharpDevelop.
- * User: Alexander
+ * User: APetrovsky
  * Date: 5/1/2013
- * Time: 3:47 AM
+ * Time: 10:08 AM
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
+using System;
 
-namespace TestUtils
+namespace MoqCmdlets
 {
-    
     /// <summary>
     /// Description of Preferences.
     /// </summary>
@@ -17,11 +17,11 @@ namespace TestUtils
     {
         public Preferences()
         {
-            // 20130430
+            // 20130501
             AutoLog = false;
         }
         
-        // 20130429
+        // 20130501
         public static bool AutoLog { get; set; }
     }
 }

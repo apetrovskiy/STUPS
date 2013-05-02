@@ -61,6 +61,7 @@ namespace UIAutomation
         
         #region Write methods
         // 20130430
+#region commented
 //        protected override void WriteLog(string logRecord)
 //        {
 //            try {
@@ -79,7 +80,8 @@ namespace UIAutomation
 //                TMX.Logger.Info(logRecord);
 //            }
 //        }
-        
+#endregion commented
+
         protected override void WriteLog(LogLevels logLevel, string logRecord)
         {
             if (Preferences.AutoLog) {
@@ -982,7 +984,7 @@ namespace UIAutomation
         
         protected override void WriteErrorMethod070Report(PSCmdletBase cmdlet)
         {
-            WriteVerbose(this, "WriteErrorMethod070Report PSCmdletBase");
+            //WriteVerbose(this, "WriteErrorMethod070Report PSCmdletBase");
         }
         
         //        private string getGeneratedTestResultNameByPosition(

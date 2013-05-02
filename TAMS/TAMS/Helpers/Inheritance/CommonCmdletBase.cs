@@ -140,6 +140,17 @@ namespace TAMS
             //WriteVerbose(this, " TAMS");
             try {
                 base.WriteObject(outputObject);
+                
+                if (Preferences.AutoLog) {
+                    
+                    string reportString =
+                        CmdletSignature(((CommonCmdletBase)cmdlet));
+                    
+                    reportString +=
+                        outputObject.ToString();
+                    
+                    this.WriteLog(LogLevels.Info, reportString);
+                }
             }
             catch {}
         }
@@ -215,7 +226,16 @@ namespace TAMS
         
         protected override void WriteErrorMethod070Report(PSCmdletBase cmdlet)
         {
-            
+//            if (Preferences.AutoLog) {
+//                
+//                string reportString =
+//                    CmdletSignature(((CommonCmdletBase)cmdlet));
+//                
+//                reportString +=
+//                    
+//                
+//                this.WriteLog(LogLevels.Info, reportString);
+//            }
         }
     }
 }

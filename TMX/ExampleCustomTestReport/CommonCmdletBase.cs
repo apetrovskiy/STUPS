@@ -86,6 +86,17 @@ namespace ExampleCustomTestReport
             //WriteVerbose(this, " ExampleCustomTestReport");
             try {
                 base.WriteObject(outputObject);
+                
+//                if (Preferences.AutoLog) {
+//                    
+//                    string reportString =
+//                        CmdletSignature(((CommonCmdletBase)cmdlet));
+//                    
+//                    reportString +=
+//                        
+//                    
+//                    this.WriteLog(LogLevels.Info, reportString);
+//                }
             }
             catch {}
         }

@@ -104,6 +104,9 @@ namespace UIAutomation
         
         public static void InvokeWizard(WizardRunCmdletBase cmdlet)
         {
+            cmdlet.WriteVerbose(
+                cmdlet,
+                "Getting the wizard");
             Wizard wzd = cmdlet.GetWizard(cmdlet.Name);
 
             if (null == wzd) {
@@ -111,6 +114,10 @@ namespace UIAutomation
                 cmdlet.WriteError(cmdlet, "Couldn't get the wizard you asked for", "NoSuchWizard", ErrorCategory.InvalidArgument, true);
             } else {
 
+                cmdlet.WriteVerbose(
+                    cmdlet,
+                    "The wizard has been obtained from the collection");
+                
                 // publish the wizard as a global variable
                 WizardCollection.CurrentWizard = wzd;
                 
@@ -144,12 +151,14 @@ namespace UIAutomation
                 // 20130322
                 if (null != cmdlet.Directions && 0 < cmdlet.DirectionsDictionaries.Count) {
                     
+                    cmdlet.WriteVerbose(cmdlet, "Preparing step directions");
                     PrepareStepDirections(cmdlet, wzd);
                 }
 
                 // scriptblocks' parameters
                 if (null != cmdlet.ParametersDictionaries && 0 < cmdlet.ParametersDictionaries.Count) {
 
+                    cmdlet.WriteVerbose(cmdlet, "Preparing step parameters");
                     PrepareStepParameters(cmdlet, wzd);
                 }
 

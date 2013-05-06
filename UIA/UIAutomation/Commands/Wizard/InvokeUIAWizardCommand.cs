@@ -40,7 +40,11 @@ namespace UIAutomation.Commands
         protected override void BeginProcessing()
         {
             if (null != this.Parameters && 0 < this.Parameters.Length) {
-
+                
+                this.WriteVerbose(
+                    this,
+                    "converting -Parameters hashtables to dictionaries");
+                
                 foreach (Hashtable parametersTable in this.Parameters) {
 
                     Dictionary<string, object> dictParameters =
@@ -52,6 +56,10 @@ namespace UIAutomation.Commands
             
             // 20130322
             if (null != this.Directions && 0 < this.Directions.Length) {
+                
+                this.WriteVerbose(
+                    this,
+                    "converting -Directions hashtables to dictionaries");
                 
                 foreach (Hashtable directionsTable in this.Directions) {
                     

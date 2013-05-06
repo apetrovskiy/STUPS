@@ -82,7 +82,6 @@
     <Folder Include="Commands" />
     <Folder Include="Commands\MemorySnapshot" />
     <Folder Include="Commands\ObjectComparison" />
-    <Folder Include="Commands\New Folder2" />
     <Folder Include="Helpers" />
     <Folder Include="Helpers\Inheritance" />
     <Folder Include="Helpers\UnderlyingCode\Commands" />

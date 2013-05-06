@@ -119,7 +119,7 @@ namespace UIAutomation
                     "The wizard has been obtained from the collection");
                 
                 // publish the wizard as a global variable
-                WizardCollection.CurrentWizard = wzd;
+                //WizardCollection.CurrentWizard = wzd;
                 
 #region commented
 //                try {

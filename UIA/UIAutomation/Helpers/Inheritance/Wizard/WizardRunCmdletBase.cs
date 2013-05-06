@@ -132,7 +132,7 @@ namespace UIAutomation
                         wizard.GetActiveStep();
                     
                     // 20130506
-                    WizardCollection.CurrentWizard = wizard;
+                    //WizardCollection.CurrentWizard = wizard;
 
                     if (null != currentStep) {
                         

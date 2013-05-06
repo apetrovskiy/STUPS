@@ -83,6 +83,15 @@ namespace Data
             }
         }
         
+        protected void WriteLog(LogLevels logLevel, System.Management.Automation.ErrorRecord errorRecord)
+        {
+            if (Preferences.AutoLog) {
+                
+                this.WriteLog(logLevel, errorRecord.Exception.Message);
+                this.WriteLog(logLevel, "Script: '" + errorRecord.InvocationInfo.ScriptName + "', line: " + errorRecord.InvocationInfo.Line.ToString());
+            }
+        }
+        
         protected override bool CheckSingleObject(PSCmdletBase cmdlet, object outputObject) { return true; }
         protected override void BeforeWriteCollection(PSCmdletBase cmdlet, object[] outputObjectCollection) {}
         protected override void BeforeWriteCollection(PSCmdletBase cmdlet, System.Collections.Generic.List<object> outputObjectCollection) {}

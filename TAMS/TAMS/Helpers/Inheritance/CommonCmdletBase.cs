@@ -65,6 +65,15 @@ namespace TAMS
             }
         }
         
+        protected void WriteLog(LogLevels logLevel, System.Management.Automation.ErrorRecord errorRecord)
+        {
+            if (Preferences.AutoLog) {
+                
+                this.WriteLog(logLevel, errorRecord.Exception.Message);
+                this.WriteLog(logLevel, "Script: '" + errorRecord.InvocationInfo.ScriptName + "', line: " + errorRecord.InvocationInfo.Line.ToString());
+            }
+        }
+        
 #region commented
 //        protected override bool WriteObjectMethod010CheckOutputObject(object outputObject)
 //        {
@@ -131,6 +140,17 @@ namespace TAMS
             //WriteVerbose(this, " TAMS");
             try {
                 base.WriteObject(outputObject);
+                
+                if (Preferences.AutoLog) {
+                    
+                    string reportString =
+                        CmdletSignature(((CommonCmdletBase)cmdlet));
+                    
+                    reportString +=
+                        outputObject.ToString();
+                    
+                    this.WriteLog(LogLevels.Info, reportString);
+                }
             }
             catch {}
         }
@@ -206,7 +226,16 @@ namespace TAMS
         
         protected override void WriteErrorMethod070Report(PSCmdletBase cmdlet)
         {
-            
+//            if (Preferences.AutoLog) {
+//                
+//                string reportString =
+//                    CmdletSignature(((CommonCmdletBase)cmdlet));
+//                
+//                reportString +=
+//                    
+//                
+//                this.WriteLog(LogLevels.Info, reportString);
+//            }
         }
     }
 }

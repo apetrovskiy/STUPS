@@ -98,6 +98,15 @@ namespace SePSX
             }
         }
         
+        protected void WriteLog(LogLevels logLevel, System.Management.Automation.ErrorRecord errorRecord)
+        {
+            if (Preferences.AutoLog) {
+                
+                this.WriteLog(logLevel, errorRecord.Exception.Message);
+                this.WriteLog(logLevel, "Script: '" + errorRecord.InvocationInfo.ScriptName + "', line: " + errorRecord.InvocationInfo.Line.ToString());
+            }
+        }
+        
         protected void checkInputWebDriver(bool strict)
         {
             if (null == ((HasWebDriverInputCmdletBase)this).InputObject) {
@@ -661,18 +670,24 @@ Console.WriteLine("WriteSingleObject 00008");
         //protected override void WriteObjectMethod070Report(PSCmdletBase cmdlet, object outputObject)
         protected void WriteObjectMethod070Report(PSCmdletBase cmdlet, object outputObject)
         {
-            string reportString =
-                CmdletSignature(((CommonCmdletBase)cmdlet)) +
-                outputObject.ToString();
             
-            if (cmdlet != null && reportString != null && reportString != string.Empty) { //try { WriteVerbose(this, reportString);
-                this.WriteVerbose(this, reportString);
-            } 
-            //this.WriteVerbose(this, "writing into the log");
-            // 20130430
-            //WriteLog(reportString);
-            WriteLog(
-            //this.WriteVerbose(this, "the log record has been written");
+            if (Preferences.AutoLog) {
+                
+                string reportString =
+                    CmdletSignature(((CommonCmdletBase)cmdlet)) +
+                    outputObject.ToString();
+                
+                if (cmdlet != null && reportString != null && reportString != string.Empty) { //try { WriteVerbose(this, reportString);
+                    this.WriteVerbose(this, reportString);
+                } 
+                //this.WriteVerbose(this, "writing into the log");
+                // 20130430
+                //WriteLog(reportString);
+                //WriteLog(
+                this.WriteLog(LogLevels.Info, reportString);
+                //this.WriteVerbose(this, "the log record has been written");
+            
+            }
         }
         
         protected override void WriteErrorMethod010RunScriptBlocks(PSCmdletBase cmdlet) //, object outputObject)

@@ -36,10 +36,46 @@ namespace ESXiMgmt
 #endregion commented
         
         // 20130430
-        //protected override void WriteLog(string logRecord)
+//        //protected override void WriteLog(string logRecord)
+//        protected override void WriteLog(LogLevels logLevel, string logRecord)
+//        {
+//            Console.WriteLine("Here should be logging ESXiMgmt");
+//        }
+        
         protected override void WriteLog(LogLevels logLevel, string logRecord)
         {
-            Console.WriteLine("Here should be logging ESXiMgmt");
+            //if (Preferences.AutoLog) {
+                
+                switch (logLevel) {
+                    case LogLevels.Fatal:
+                        TMX.Logger.Fatal(logRecord);
+                        break;
+                    case LogLevels.Error:
+                        TMX.Logger.Error(logRecord);
+                        break;
+                    case LogLevels.Warn:
+                        TMX.Logger.Warn(logRecord);
+                        break;
+                    case LogLevels.Info:
+                        TMX.Logger.Info(logRecord);
+                        break;
+                    case LogLevels.Debug:
+                        TMX.Logger.Debug(logRecord);
+                        break;
+                    case LogLevels.Trace:
+                        TMX.Logger.Trace(logRecord);
+                        break;
+                }
+            //}
+        }
+        
+        protected void WriteLog(LogLevels logLevel, System.Management.Automation.ErrorRecord errorRecord)
+        {
+            //if (Preferences.AutoLog) {
+                
+                this.WriteLog(logLevel, errorRecord.Exception.Message);
+                this.WriteLog(logLevel, "Script: '" + errorRecord.InvocationInfo.ScriptName + "', line: " + errorRecord.InvocationInfo.Line.ToString());
+            //}
         }
         
 #region commented
@@ -105,6 +141,17 @@ namespace ESXiMgmt
             WriteVerbose(this, " ESXiMgmt");
             try {
                 base.WriteObject(outputObject);
+                
+//                if (Preferences.AutoLog) {
+//                    
+//                    string reportString =
+//                        CmdletSignature(((CommonCmdletBase)cmdlet));
+//                    
+//                    reportString +=
+//                        
+//                    
+//                    this.WriteLog(LogLevels.Info, reportString);
+//                }
             }
             catch {}
         }

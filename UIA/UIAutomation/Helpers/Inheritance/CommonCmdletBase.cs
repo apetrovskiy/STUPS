@@ -61,6 +61,7 @@ namespace UIAutomation
         
         #region Write methods
         // 20130430
+#region commented
 //        protected override void WriteLog(string logRecord)
 //        {
 //            try {
@@ -79,7 +80,8 @@ namespace UIAutomation
 //                TMX.Logger.Info(logRecord);
 //            }
 //        }
-        
+#endregion commented
+
         protected override void WriteLog(LogLevels logLevel, string logRecord)
         {
             if (Preferences.AutoLog) {
@@ -107,12 +109,24 @@ namespace UIAutomation
             }
         }
         
+        protected void WriteLog(LogLevels logLevel, System.Management.Automation.ErrorRecord errorRecord)
+        {
+            if (Preferences.AutoLog) {
+                
+                this.WriteLog(logLevel, errorRecord.Exception.Message);
+                this.WriteLog(logLevel, "Script: '" + errorRecord.InvocationInfo.ScriptName + "', line: " + errorRecord.InvocationInfo.Line.ToString());
+            }
+        }
+        
         protected internal void WriteDebug(CommonCmdletBase cmdlet, string text)
         {
             string reportString =
                 CmdletSignature(cmdlet) +
                 text;
-            WriteLog(reportString);
+            
+            // 20130501
+            //WriteLog(reportString);
+            this.WriteLog(LogLevels.Debug, reportString);
         }
         
         protected internal void WriteDebug(CommonCmdletBase cmdlet, object obj)
@@ -120,7 +134,10 @@ namespace UIAutomation
             string reportString =
                 CmdletSignature(cmdlet) +
                 obj.ToString();
-            WriteLog(reportString);
+            
+            // 20130501
+            //WriteLog(reportString);
+            this.WriteLog(LogLevels.Debug, reportString);
         }
         
         protected override bool CheckSingleObject(PSCmdletBase cmdlet, object outputObject)
@@ -461,19 +478,54 @@ namespace UIAutomation
         //protected override void WriteObjectMethod070Report(PSCmdletBase cmdlet, object outputObject)
         protected void WriteObjectMethod070Report(PSCmdletBase cmdlet, object outputObject)
         {
-            //WriteVerbose("OutputMethod070Report UIAutomation");
+            if (Preferences.AutoLog) {
             
+                //WriteVerbose("OutputMethod070Report UIAutomation");
+                
+                // 20130501
+                //string reportString =
+                //    CmdletSignature(((CommonCmdletBase)cmdlet)) +
+                //    outputObject.ToString();
+                string reportString =
+                    CmdletSignature(((CommonCmdletBase)cmdlet));
+                
+                try {
+                    
+                    AutomationElement ae = outputObject as AutomationElement;
+                    if (null != ae) {
+                        
+                        reportString +=
+                            "Name: '" +
+                            ae.Current.Name +
+                            "', AutomationId: '" +
+                            ae.Current.AutomationId +
+                            "', Class: '" +
+                            ae.Current.ClassName +
+                            "'";
+                        
+                        //ValuePattern vPattern = null;
+                        object vPattern = null;
+                        if (ae.TryGetCurrentPattern(ValuePattern.Pattern, out vPattern)) {
+                            
+                            reportString +=
+                                ", Value: '" +
+                                ((ValuePattern)vPattern).Current.Value +
+                                "'";
+                        }
+                    }
+                }
+                catch {}
+                
+                if (cmdlet != null && reportString != null && reportString != string.Empty) { //try { WriteVerbose(reportString);
+                    this.WriteVerbose(reportString);
+                }
+                //this.WriteVerbose(this, "writing into the log");
+                // 20130501
+                //this.WriteLog(reportString);
+                this.WriteLog(LogLevels.Info, reportString);
+                //this.WriteVerbose(this, "the log record has been written");
             
-            string reportString =
-                CmdletSignature(((CommonCmdletBase)cmdlet)) +
-                outputObject.ToString();
-            
-            if (cmdlet != null && reportString != null && reportString != string.Empty) { //try { WriteVerbose(reportString);
-                this.WriteVerbose(reportString);
             }
-            this.WriteVerbose(this, "writing into the log");
-            this.WriteLog(reportString);
-            this.WriteVerbose(this, "the log record has been written");
         }
         
         //        protected override void WriteObjectMethod080ReportFailure()
@@ -932,7 +984,7 @@ namespace UIAutomation
         
         protected override void WriteErrorMethod070Report(PSCmdletBase cmdlet)
         {
-            WriteVerbose(this, "WriteErrorMethod070Report PSCmdletBase");
+            //WriteVerbose(this, "WriteErrorMethod070Report PSCmdletBase");
         }
         
         //        private string getGeneratedTestResultNameByPosition(

@@ -489,32 +489,84 @@ namespace UIAutomation
                 string reportString =
                     CmdletSignature(((CommonCmdletBase)cmdlet));
                 
-                try {
-                    
-                    AutomationElement ae = outputObject as AutomationElement;
-                    if (null != ae) {
-                        
+//TMX.Logger.Warn(outputObject.GetType().Name);
+
+                switch (outputObject.GetType().Name) {
+                    case "AutomationElement":
+                        try {
+                            
+                            AutomationElement ae = outputObject as AutomationElement;
+                            if (null != ae) {
+                                
+                                reportString +=
+                                    "Name: '" +
+                                    ae.Current.Name +
+                                    "', AutomationId: '" +
+                                    ae.Current.AutomationId +
+                                    "', Class: '" +
+                                    ae.Current.ClassName +
+                                    "'";
+                                
+                                //ValuePattern vPattern = null;
+                                object vPattern = null;
+                                if (ae.TryGetCurrentPattern(ValuePattern.Pattern, out vPattern)) {
+                                    
+                                    reportString +=
+                                        ", Value: '" +
+                                        ((ValuePattern)vPattern).Current.Value +
+                                        "'";
+                                }
+                            }
+                        }
+                        catch {}
+                        break;
+                    case "Wizard":
                         reportString +=
                             "Name: '" +
-                            ae.Current.Name +
-                            "', AutomationId: '" +
-                            ae.Current.AutomationId +
-                            "', Class: '" +
-                            ae.Current.ClassName +
+                            ((Wizard)outputObject).Name +
+                            "', Steps count: " +
+                            ((Wizard)outputObject).Steps.Count.ToString();
+                        break;
+                    case "WizardStep":
+                        reportString +=
+                            "Name: '" +
+                            ((WizardStep)outputObject).Name + 
                             "'";
+                        break;
+                    default:
                         
-                        //ValuePattern vPattern = null;
-                        object vPattern = null;
-                        if (ae.TryGetCurrentPattern(ValuePattern.Pattern, out vPattern)) {
+                        try {
                             
-                            reportString +=
-                                ", Value: '" +
-                                ((ValuePattern)vPattern).Current.Value +
-                                "'";
+                            if (cmdlet is GetControlStateCmdletBase) {
+                                
+                                Hashtable[] hashtables =
+                                    ((GetControlStateCmdletBase)cmdlet).SearchCriteria;
+                                foreach (Hashtable ht in hashtables) {
+                                    reportString +=
+                                        ht.Values;
+                                    reportString += ";";
+                                }
+                            }
+                            if (cmdlet is Commands.WaitUIAWindowCommand) {
+                                
+                                reportString +=
+                                    "Name: '" +
+                                    CurrentData.CurrentWindow.Current.Name +
+                                    "', AutomationId: '" +
+                                    CurrentData.CurrentWindow.Current.AutomationId +
+                                    "', Class: '" +
+                                    CurrentData.CurrentWindow.Current.ClassName +
+                                    "'";
+                            }
                         }
-                    }
+                        catch {
+                            reportString +=
+                                outputObject.GetType().Name;
+                        }
+                    	break;
                 }
-                catch {}
+                
+
                 
                 if (cmdlet != null && reportString != null && reportString != string.Empty) { //try { WriteVerbose(reportString);
                     this.WriteVerbose(reportString);

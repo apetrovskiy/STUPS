@@ -13,6 +13,7 @@ namespace TMX
     using NLog;
     using NLog.Targets;
     using NLog.Config;
+    using PSTestLib;
     
     /// <summary>
     /// Description of Logger.
@@ -26,14 +27,67 @@ namespace TMX
         
         public static string LogPath
         {
-            //get { return logger.}
+            get {
+                FileTarget myFileTarget = (FileTarget)LogManager.Configuration.FindTargetByName("file");
+                return myFileTarget.FileName.ToString();
+            }
             set {
                 FileTarget myFileTarget = (FileTarget)LogManager.Configuration.FindTargetByName("file");
                 myFileTarget.FileName = value;
             }
         }
         
-        internal static NLog.Logger TMXLogger = null;
+        public static LogLevels LogLevel
+        {
+//            get {
+//                FileTarget myFileTarget = (FileTarget)LogManager.Configuration.FindTargetByName("file");
+//                NLog.LogLevel levels = null;
+//                foreach (LoggingRule rule in LogManager.Configuration.LoggingRules) {
+//                    
+//                    if (rule.Targets.Contains(myFileTarget)) {
+//                        //return rule.Levels;
+//                        //levels = rule.Levels;
+//                        break;
+//                    }
+//                }
+//                
+//                //
+//            }
+            set {
+                FileTarget myFileTarget = (FileTarget)LogManager.Configuration.FindTargetByName("file");
+                LogManager.Configuration.LoggingRules.Clear();
+                LoggingRule rule = null;
+                switch (value) {
+                    case LogLevels.Fatal:
+                        rule = new LoggingRule("*", NLog.LogLevel.Fatal, myFileTarget);
+                        break;
+                    case LogLevels.Error:
+                        rule = new LoggingRule("*", NLog.LogLevel.Error, myFileTarget);
+                        break;
+                    case LogLevels.Warn:
+                        rule = new LoggingRule("*", NLog.LogLevel.Warn, myFileTarget);
+                        break;
+                    case LogLevels.Info:
+                        rule = new LoggingRule("*", NLog.LogLevel.Info, myFileTarget);
+                        break;
+                    case LogLevels.Debug:
+                        rule = new LoggingRule("*", NLog.LogLevel.Debug, myFileTarget);
+                        break;
+                    case LogLevels.Trace:
+                        rule = new LoggingRule("*", NLog.LogLevel.Trace, myFileTarget);
+                        break;
+                    //default:
+                    //    throw new Exception("Invalid value for LogLevels");
+                }
+                LogManager.Configuration.LoggingRules.Add(rule);
+                
+                TMXLogger = LogManager.GetLogger("TMX");
+            }
+        }
+        
+        // 20130506
+        //internal static NLog.Logger TMXLogger = null;
+        public static NLog.Logger TMXLogger = null;
         
         internal static void Init()
         {
@@ -53,7 +107,7 @@ namespace TMX
             //fileTarget.Encoding = "iso-8859-2";
             fileTarget.Encoding = System.Text.Encoding.Unicode;
 
-            LoggingRule rule = new LoggingRule("*", LogLevel.Info, fileTarget);
+            LoggingRule rule = new LoggingRule("*", NLog.LogLevel.Info, fileTarget);
             config.LoggingRules.Add(rule);
 
             LogManager.Configuration = config;

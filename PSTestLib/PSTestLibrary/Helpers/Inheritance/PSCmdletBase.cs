@@ -563,7 +563,7 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
             // 20130318
             //System.Collections.Generic.Dictionary<string, string> dict = 
             //    new System.Collections.Generic.Dictionary<string, string>();
-            System.Collections.Generic.Dictionary<string, object> dict = 
+            System.Collections.Generic.Dictionary<string, object> dict =
                 new System.Collections.Generic.Dictionary<string, object>();
             
             this.WriteVerbose(this, hashtable.Keys.Count.ToString());
@@ -574,11 +574,12 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
 
                 this.WriteVerbose(this, "found key: " + keyUpper);
                 
-                
-                
                 // 20130318
                 //dict.Add(keyUpper, hashtable[key1].ToString());
-                dict.Add(keyUpper, hashtable[key1]);
+                // 20130506
+                //dict.Add(keyUpper, hashtable[key1]);
+                var rawData = hashtable[key1];
+                dict.Add(keyUpper, rawData);
                 
                 this.WriteVerbose(
                     this,

@@ -1252,7 +1252,7 @@ try {
                 // 20130318
                 //System.Collections.Generic.Dictionary<string, string> dict = 
                 //    this.ConvertHashtableToDictionary(SearchCriteria[i]);
-                System.Collections.Generic.Dictionary<string, object> dict = 
+                System.Collections.Generic.Dictionary<string, object> dict =
                     this.ConvertHashtableToDictionary(SearchCriteria[i]);
                 
                 

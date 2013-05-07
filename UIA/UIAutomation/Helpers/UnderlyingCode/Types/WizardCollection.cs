@@ -27,7 +27,7 @@ namespace UIAutomation
         
         public static List<Wizard> Wizards { get; set; }
         // 20130401
-        //public static Wizard CurrentWizard { get; internal set; }
+        public static Wizard CurrentWizard { get; internal set; }
         
         public static void ResetData()
         {

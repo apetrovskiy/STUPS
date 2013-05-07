@@ -623,6 +623,7 @@ namespace UIAutomation
             try {
                 TableItemPattern tableItemPattern = _control.GetCurrentPattern(TableItemPattern.Pattern) as TableItemPattern;
                 if (tableItemPattern != null) {
+                    //tableItemPattern.Current.
                 }
             } catch (Exception eTableItemPatternException) {
             }
@@ -969,6 +970,7 @@ namespace UIAutomation
             try {
                 GridItemPattern gridItemPattern = _control.GetCurrentPattern(GridItemPattern.Pattern) as GridItemPattern;
                 if (gridItemPattern != null) {
+                    //gridItemPattern.Current.
                 }
             } catch (Exception eGridItemPatternException) {
             }

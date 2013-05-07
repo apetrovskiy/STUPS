@@ -22,10 +22,11 @@ namespace UIAutomation.Commands
     { public InvokeUIASelectionItemPatternCommand() { WhatToDo = "SelectionItem"; }
         
         #region Parameters
-        [Parameter(Mandatory = true,
-                   // 20130105
-                   Position = 0)]
-        public string[] ItemName { get; set; }
+        // 20130507
+//        [Parameter(Mandatory = true,
+//                   // 20130105
+//                   Position = 0)]
+//        public string[] ItemName { get; set; }
         #endregion Parameters
     }
     

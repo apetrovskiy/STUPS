@@ -555,6 +555,48 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
         }
             #endregion Cmdlet Signature
         
+        #region utilities
+        protected string ConvertHashtableToString(Hashtable hashtable)
+        {
+            string result = string.Empty;
+            
+            if (null == hashtable || 0 == hashtable.Count) {
+                return result;
+            }
+            
+            result += "@{";
+            
+            foreach (var key in hashtable.Keys) {
+                
+                result += key.ToString() + "=" + hashtable[key].ToString() + ";";
+            }
+            
+            result += "}";
+            
+            return result;
+        }
+        
+        protected string ConvertHashtablesArrayToString(Hashtable[] hashtables)
+        {
+            string result = string.Empty;
+            
+            if (null == hashtables || 0 == hashtables.Length) {
+                return result;
+            }
+            
+            foreach (Hashtable hashtable in hashtables) {
+                
+                result += ",";
+                result +=
+                    this.ConvertHashtableToString(hashtable);
+            }
+            
+            result = result.Substring(1);
+            
+            return result;
+        }
+        #endregion utilities
+        
         // 20130318
         //protected System.Collections.Generic.Dictionary<string, string> ConvertHashtableToDictionary(
         protected System.Collections.Generic.Dictionary<string, object> ConvertHashtableToDictionary(

@@ -88,6 +88,9 @@ namespace UIAutomation
 
                 cmdlet.WriteVerbose(cmdlet, "adding the step");
                 cmdlet.InputObject.Steps.Add(step);
+                
+                // 20130508
+                cmdlet.WriteInfo(cmdlet, step.Name + " has been added");
 
                 if (cmdlet.PassThru) {
 
@@ -121,6 +124,8 @@ namespace UIAutomation
                 // publish the wizard as a global variable
                 WizardCollection.CurrentWizard = wzd;
                 
+                // 20130508
+                cmdlet.WriteInfo(cmdlet, "the current wizard is '" + WizardCollection.CurrentWizard.Name + "'");
 #region commented
 //                try {
 //
@@ -162,7 +167,10 @@ namespace UIAutomation
                     PrepareStepParameters(cmdlet, wzd);
                 }
 
-                cmdlet.WriteVerbose(cmdlet, "running Wizard StartAction scriptblocks");
+                // 20130508
+                // temporary
+                //cmdlet.WriteVerbose(cmdlet, "running Wizard StartAction scriptblocks");
+                cmdlet.WriteInfo(cmdlet, "running Wizard StartAction scriptblocks");
 
                 // 20130318
                 //cmdlet.RunWizardStartScriptBlocks(cmdlet, wzd);
@@ -171,6 +179,8 @@ namespace UIAutomation
                 cmdlet.RunWizardStartScriptBlocks(cmdlet, wzd, wzd.StartActionParameters);
                 
                 cmdlet.WriteVerbose(cmdlet, "running Wizard in the automated mode");
+                // 20130508
+                cmdlet.WriteInfo(cmdlet, "working in unatended mode");
 
                 cmdlet.RunWizardInAutomaticMode(cmdlet, wzd);
 

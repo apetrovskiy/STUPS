@@ -140,6 +140,24 @@ namespace UIAutomation
             this.WriteLog(LogLevels.Debug, reportString);
         }
         
+        protected internal void WriteInfo(CommonCmdletBase cmdlet, string text)
+        {
+            string reportString =
+                CmdletSignature(cmdlet) +
+                text;
+            
+            TMX.Logger.Info(reportString);
+        }
+        
+        protected internal void WriteWarn(CommonCmdletBase cmdlet, string text)
+        {
+            string reportString =
+                CmdletSignature(cmdlet) +
+                text;
+            
+            TMX.Logger.Warn(reportString);
+        }
+        
         protected override bool CheckSingleObject(PSCmdletBase cmdlet, object outputObject)
         {
             return WriteObjectMethod010CheckOutputObject(outputObject);
@@ -532,6 +550,15 @@ namespace UIAutomation
                             "Name: '" +
                             ((WizardStep)outputObject).Name + 
                             "'";
+                        break;
+                    // 20130508
+                    case "Hashtable":
+                        reportString +=
+                            this.ConvertHashtableToString((Hashtable)outputObject);
+                        break;
+                    case "Hashtable[]":
+                        reportString +=
+                            this.ConvertHashtablesArrayToString((Hashtable[])outputObject);
                         break;
                     default:
                         
@@ -1192,6 +1219,11 @@ namespace UIAutomation
         {
             bool result = false;
             
+            // 20130508
+            // temporary
+            // profiling
+            cmdlet.WriteInfo(cmdlet, "running the GetWindowAction scriptblock");
+            
             try {
                 runTwoScriptBlockCollections(
                     null,
@@ -1208,6 +1240,11 @@ namespace UIAutomation
                 }
             }
             catch {}
+            
+            // 20130508
+            // temporary
+            // profiling
+            cmdlet.WriteInfo(cmdlet, "the result of the GetWindowAction scriptblock run is " + result.ToString());
             
             return result;
         }

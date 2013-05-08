@@ -54,6 +54,9 @@ namespace UIAutomation.Commands
                 }
             }
             
+            // 20130508
+            this.WriteInfo(this, "accepted " + this.ParametersDictionaries.Count.ToString() + " step parameters");
+            
             // 20130322
             if (null != this.Directions && 0 < this.Directions.Length) {
                 
@@ -69,6 +72,9 @@ namespace UIAutomation.Commands
                     this.DirectionsDictionaries.Add(dictDirections);
                 }
             }
+            
+            // 20130508
+            this.WriteInfo(this, "accepted " + this.DirectionsDictionaries.Count.ToString() + " step directions");
 
         	UIAInvokeWizardCommand command =
         		new UIAInvokeWizardCommand(this);

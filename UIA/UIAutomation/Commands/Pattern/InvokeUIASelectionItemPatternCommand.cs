@@ -23,6 +23,11 @@ namespace UIAutomation.Commands
         
         #region Parameters
         // 20130507
+        // 20130508
+        [Obsolete("This parameter does nothing and serves only for the compatibility purpose")]
+        [Parameter(Mandatory = false,
+                   Position = 0)]
+        public string[] ItemName { get; set; }
 //        [Parameter(Mandatory = true,
 //                   // 20130105
 //                   Position = 0)]

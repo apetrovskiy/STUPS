@@ -24,9 +24,6 @@ namespace UIAutomation
         
         internal override void Execute()
         {
-            //InvokeUIAWizardCommand cmdlet =
-            //	(InvokeUIAWizardCommand)this.Cmdlet;
-            
             WizardRunCmdletBase cmdlet =
                 (WizardRunCmdletBase)this.Cmdlet;
             

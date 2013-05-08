@@ -149,6 +149,8 @@ namespace UIAutomation
                             
                             InterruptOnTimeoutExpiration(cmdlet, wizard);
                             
+                            // 20130508
+                            cmdlet.WriteInfo(cmdlet, "the same step, sleeping...");
                             System.Threading.Thread.Sleep(Preferences.OnSelectWizardStepDelay);
                             continue;
                         }
@@ -182,6 +184,11 @@ namespace UIAutomation
                         cmdlet.WriteVerbose(
                             cmdlet,
                             "current step is still null");
+                        
+                        // 20130508
+                        // temporary
+                        // profiling
+                        cmdlet.WriteInfo(cmdlet, "the current step is still null");
 
                         InterruptOnTimeoutExpiration(cmdlet, wizard);
                         // 20130402
@@ -193,6 +200,11 @@ namespace UIAutomation
                     cmdlet.WriteVerbose(
                         cmdlet,
                         "window is still null");
+                    
+                    // 20130508
+                    // temporary
+                    // profiling
+                    cmdlet.WriteInfo(cmdlet, "window is still null");
                     
                     // 20130402
                     InterruptOnTimeoutExpiration(cmdlet, wizard);
@@ -244,10 +256,17 @@ namespace UIAutomation
         {
             if (WizardStepActions.Stop == currentStep.ToDo) {
                 cmdlet.RunWizardStopScriptBlocks(cmdlet, wizard, currentParameters);
-                cmdlet.WriteVerbose(cmdlet, "StopAction has finished, exiting...");
+                // 20130508
+                // temporary
+                // profiling
+                //cmdlet.WriteVerbose(cmdlet, "StopAction has finished, exiting...");
+                cmdlet.WriteInfo(cmdlet, "StopAction has finished, exiting...");
                 return;
             } else {
+                // 20130508
+                cmdlet.WriteInfo(cmdlet, "running scriptblocks for step '" + currentStep.Name + "', " + currentStep.ToDo.ToString());
                 cmdlet.RunWizardStepScriptBlocks(cmdlet, currentStep, currentStep.ToDo, currentParameters);
+                cmdlet.WriteInfo(cmdlet, "scriptblocks have finished");
             }
         }
 

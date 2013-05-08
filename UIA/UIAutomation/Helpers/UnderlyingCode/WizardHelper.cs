@@ -171,6 +171,7 @@ namespace UIAutomation
                 // temporary
                 //cmdlet.WriteVerbose(cmdlet, "running Wizard StartAction scriptblocks");
                 cmdlet.WriteInfo(cmdlet, "running Wizard StartAction scriptblocks");
+                cmdlet.WriteInfo(cmdlet, "parameters: " + cmdlet.ConvertObjectArrayToString(wzd.StartActionParameters));
 
                 // 20130318
                 //cmdlet.RunWizardStartScriptBlocks(cmdlet, wzd);
@@ -180,7 +181,7 @@ namespace UIAutomation
                 
                 cmdlet.WriteVerbose(cmdlet, "running Wizard in the automated mode");
                 // 20130508
-                cmdlet.WriteInfo(cmdlet, "working in unatended mode");
+                cmdlet.WriteInfo(cmdlet, "working in unattended mode");
 
                 cmdlet.RunWizardInAutomaticMode(cmdlet, wzd);
 

@@ -125,7 +125,7 @@ namespace UIAutomation
                         CurrentData.CurrentWindow.Current.ProcessId.ToString() +
                         ".");
                     
-                    TMX.Logger.Info("Getting the active step");
+                    cmdlet.WriteInfo(cmdlet, "Getting the active step");
                     
                     // selector of steps' unique controls
                     WizardStep currentStep =
@@ -142,7 +142,7 @@ namespace UIAutomation
                             currentStep.Name +
                             "'");
                         
-                        TMX.Logger.Info("The active step is '" + currentStep.Name + "'");
+                        cmdlet.WriteInfo(cmdlet, "the active step is '" + currentStep.Name + "'");
                         
                         // 20130327
                         if (previousStepName == currentStep.Name) {
@@ -158,13 +158,14 @@ namespace UIAutomation
 
                         object[] currentParameters = GetStepParameters(wizard, currentStep);
 
-                        TMX.Logger.Info("Running step's parameters");
+                        cmdlet.WriteInfo(cmdlet, "running step '" + currentStep.Name + "'");
+                        cmdlet.WriteInfo(cmdlet, "parameters: " + this.ConvertObjectArrayToString(currentParameters));
                         RunCurrentStepParameters(cmdlet, wizard, currentStep, currentParameters);
 
                         // 20130325
                         if (wizard.StopImmediately) {
 
-                            TMX.Logger.Info("Stopping the wizard");
+                            cmdlet.WriteInfo(cmdlet, "stopping the wizard");
                             break;
                         }
                         

@@ -368,19 +368,23 @@ namespace UIAutomationSpy
         
         void SpyFormResize(object sender, EventArgs e)
         {
-            this.tabOuter.Height = this.Height - 80;
-            this.tabOuter.Width = this.Width - 40;
-            
-            this.tabInner.Height = this.tabOuter.Height - 40;
-            this.tabInner.Width = this.tabOuter.Width - 25;
-            
-            this.richControlCode.Width = this.tabInner.Width - 40;
-            this.richPatterns.Width = this.richControlCode.Width;
-            this.txtFullCode.Width = this.richControlCode.Width;
-            this.txtFullCode.Height = this.tabInner.Height - 150;
-            
-            this.splitContScript.SplitterDistance = 51;
-            
+            // 20130508
+            // in the minimized mode
+            try {
+                this.tabOuter.Height = this.Height - 80;
+                this.tabOuter.Width = this.Width - 40;
+                
+                this.tabInner.Height = this.tabOuter.Height - 40;
+                this.tabInner.Width = this.tabOuter.Width - 25;
+                
+                this.richControlCode.Width = this.tabInner.Width - 40;
+                this.richPatterns.Width = this.richControlCode.Width;
+                this.txtFullCode.Width = this.richControlCode.Width;
+                this.txtFullCode.Height = this.tabInner.Height - 150;
+                
+                this.splitContScript.SplitterDistance = 51;
+            }
+            catch {}
             this.TopMost = true;
         }
         

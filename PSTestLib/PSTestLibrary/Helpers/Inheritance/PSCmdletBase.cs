@@ -556,6 +556,23 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
             #endregion Cmdlet Signature
         
         #region utilities
+        public string ConvertObjectArrayToString(object[] array)
+        {
+            string result = string.Empty;
+            
+            if (null == array || 0 == array.Length) {
+                return result;
+            }
+            
+            foreach (var element in array) {
+                
+                result += " ";
+                result += element.ToString();
+            }
+            
+            return result;
+        }
+        
         protected string ConvertHashtableToString(Hashtable hashtable)
         {
             string result = string.Empty;

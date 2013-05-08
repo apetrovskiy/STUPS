@@ -560,6 +560,13 @@ namespace UIAutomation
                         reportString +=
                             this.ConvertHashtablesArrayToString((Hashtable[])outputObject);
                         break;
+                    case "Boolean":
+                        reportString +=
+                            outputObject.ToString();
+                        break;
+                    case "String":
+                        reportString += outputObject;
+                        break;
                     default:
                         
                         try {
@@ -568,11 +575,13 @@ namespace UIAutomation
                                 
                                 Hashtable[] hashtables =
                                     ((GetControlStateCmdletBase)cmdlet).SearchCriteria;
-                                foreach (Hashtable ht in hashtables) {
-                                    reportString +=
-                                        ht.Values;
-                                    reportString += ";";
-                                }
+//                                foreach (Hashtable ht in hashtables) {
+//                                    reportString +=
+//                                        ht.Values;
+//                                    reportString += ";";
+//                                }
+                                reportString +=
+                                    this.ConvertHashtablesArrayToString(hashtables);
                             }
                             if (cmdlet is Commands.WaitUIAWindowCommand) {
                                 
@@ -1223,6 +1232,7 @@ namespace UIAutomation
             // temporary
             // profiling
             cmdlet.WriteInfo(cmdlet, "running the GetWindowAction scriptblock");
+            cmdlet.WriteInfo(cmdlet, "parameters" + parameters);
             
             try {
                 runTwoScriptBlockCollections(

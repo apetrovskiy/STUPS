@@ -2320,7 +2320,7 @@ namespace UIAutomation
         }
         
         
-        public static void Enum1ChildWindows(PSCmdletBase cmdlet, IntPtr parentHandle)
+        private static void Enum01ChildWindows(PSCmdletBase cmdlet, IntPtr parentHandle)
         {
             System.Collections.Generic.List<IntPtr> list =
                 GetChildWindows(parentHandle);
@@ -2341,11 +2341,58 @@ namespace UIAutomation
             }
         }
         
+//        private static void Enum02ChildWindows(PSCmdletBase cmdlet)
+//        {
+//            System.Collections.Generic.List<IntPtr> list =
+//                GetChildWindows2();
+//            
+//            foreach (IntPtr handle in list) {
+//                
+//                try {
+//                    
+//                    //System.Windows.Automation.Automation.
+//                    AutomationElement element =
+//                        GetAutomationElementFromHandle(cmdlet, handle.ToInt32());
+//                    
+//                    
+//                    Console.WriteLine("title = " + element.Current.Name + "\tautomaitonId = " + element.Current.AutomationId + "\thandle = " + element.Current.NativeWindowHandle.ToString());
+//                    
+//                }
+//                catch {}
+//            }
+//        }
+        
+//        public static List<IntPtr> GetChildWindows2()
+//        {
+//            List<IntPtr> result = new List<IntPtr>();
+//            GCHandle listHandle = GCHandle.Alloc(result);
+//            try
+//            {
+//                EnumWindowProc childProc = new EnumWindowProc(EnumWindow);
+//                //EnumChildWindows(parent, childProc, GCHandle.ToIntPtr(listHandle));
+//                NativeMethods.EnumChildWindows(int, childProc, GCHandle.ToIntPtr(listHandle));
+//            }
+//            finally
+//            {
+//                if (listHandle.IsAllocated)
+//                    listHandle.Free();
+//            }
+//            return result;
+//        }
+        
+        public static void Enum1ChildWindows(IntPtr parentHandle)
+        {
+            
+            PSCmdletBase cmdlet = new GetUIAWindowCommand();
+            Enum01ChildWindows(cmdlet, parentHandle);
+            
+        }
+        
         public static void Enum2ChildWindows(IntPtr parentHandle)
         {
             
             PSCmdletBase cmdlet = new GetUIAWindowCommand();
-            Enum1ChildWindows(cmdlet, parentHandle);
+            Enum01ChildWindows(cmdlet, IntPtr.Zero);
             
         }
         #endregion experimental

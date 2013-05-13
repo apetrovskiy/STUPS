@@ -20,6 +20,7 @@ namespace UIAutomation
     using System.Drawing.Imaging;
     
     using System.Collections;
+    using System.Collections.Generic;
     
     using PSTestLib;
     
@@ -1559,7 +1560,9 @@ namespace UIAutomation
         // 20121011
         //internal static AutomationElement GetAutomationElementFromHandle(
         public static AutomationElement GetAutomationElementFromHandle(
-            DiscoveryCmdletBase cmdlet,
+            // 20130513
+            //DiscoveryCmdletBase cmdlet,
+            PSCmdletBase cmdlet,
             int handle)
         {
             System.Windows.Automation.AutomationElement result =
@@ -2278,5 +2281,77 @@ namespace UIAutomation
             
             return resultElement;
         }
+        
+        // experimental
+        #region experimental
+
+
+//    [DllImport("user32")]
+//    [return: MarshalAs(UnmanagedType.Bool)]
+//    public static extern bool EnumChildWindows(IntPtr window, EnumWindowProc callback, IntPtr i);
+
+        public static List<IntPtr> GetChildWindows(IntPtr parent)
+        {
+            List<IntPtr> result = new List<IntPtr>();
+            GCHandle listHandle = GCHandle.Alloc(result);
+            try
+            {
+                EnumWindowProc childProc = new EnumWindowProc(EnumWindow);
+                //EnumChildWindows(parent, childProc, GCHandle.ToIntPtr(listHandle));
+                NativeMethods.EnumChildWindows(parent, childProc, GCHandle.ToIntPtr(listHandle));
+            }
+            finally
+            {
+                if (listHandle.IsAllocated)
+                    listHandle.Free();
+            }
+            return result;
+        }
+
+        private static bool EnumWindow(IntPtr handle, IntPtr pointer)
+        {
+            GCHandle gch = GCHandle.FromIntPtr(pointer);
+            List<IntPtr> list = gch.Target as List<IntPtr>;
+            if (list == null)
+                throw new InvalidCastException("GCHandle Target could not be cast as List<IntPtr>");
+    
+            list.Add(handle);            
+            return true;
+        }
+        
+        
+        public static void Enum1ChildWindows(PSCmdletBase cmdlet, IntPtr parentHandle)
+        {
+            System.Collections.Generic.List<IntPtr> list =
+                GetChildWindows(parentHandle);
+            
+            foreach (IntPtr handle in list) {
+                
+                try {
+                    
+                    //System.Windows.Automation.Automation.
+                    AutomationElement element =
+                        GetAutomationElementFromHandle(cmdlet, handle.ToInt32());
+                    
+                    
+                    Console.WriteLine("title = " + element.Current.Name + "\tautomaitonId = " + element.Current.AutomationId + "\thandle = " + element.Current.NativeWindowHandle.ToString());
+                    
+                }
+                catch {}
+            }
+        }
+        
+        public static void Enum2ChildWindows(IntPtr parentHandle)
+        {
+            
+            PSCmdletBase cmdlet = new GetUIAWindowCommand();
+            Enum1ChildWindows(cmdlet, parentHandle);
+            
+        }
+        #endregion experimental
     }
+    
+    #region experimental
+    public delegate bool EnumWindowProc(IntPtr hWnd, IntPtr parameter);
+    #endregion experimental
 }

@@ -94,6 +94,13 @@ namespace UIAutomation
         
         #endregion getting a control
         
+        #region getting windows
+        [DllImport("user32")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        //public static extern bool EnumChildWindows(IntPtr window, EnumWindowProc callback, IntPtr i);
+        internal static extern bool EnumChildWindows(IntPtr window, EnumWindowProc callback, IntPtr i);
+        #endregion getting windows
+        
         #region Highligher
         internal struct CursorPoint
         {

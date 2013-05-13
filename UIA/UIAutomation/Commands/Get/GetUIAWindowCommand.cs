@@ -104,7 +104,9 @@ namespace UIAutomation.Commands
             } // describe
             
             _returnedWindows =
-                GetWindow(this, this.InputObject, this.ProcessName, this.ProcessId, this.Name, this.AutomationId, this.Class, this.TestMode); //, this.SearchCriteria, this.WithControl);
+                // 20130513
+                //GetWindow(this, this.InputObject, this.ProcessName, this.ProcessId, this.Name, this.AutomationId, this.Class, this.TestMode); //, this.SearchCriteria, this.WithControl);
+                GetWindow(this, this.Win32, this.InputObject, this.ProcessName, this.ProcessId, this.Name, this.AutomationId, this.Class, this.TestMode); //, this.SearchCriteria, this.WithControl);
             
             if (null != _returnedWindows && _returnedWindows.Count > 0) {
 

@@ -16,6 +16,7 @@ namespace UIAutomation
     using System.Diagnostics;
     using System.Windows.Automation;
     using System.Collections;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Linq.Expressions;
 
@@ -72,6 +73,8 @@ namespace UIAutomation
         
         internal ArrayList GetWindow(
             GetWindowCmdletBase cmdlet,
+            // 20130513
+            bool win32,
             Process[] processes,
             string[] processNames,
             int[] processIds,
@@ -97,9 +100,15 @@ namespace UIAutomation
             }
             
             do {
-
-                if (null != processes && processes.Length > 0) {
-
+                
+                // 20130513
+                //if (null != processes && processes.Length > 0) {
+                if (win32) {
+                    
+                    cmdlet.WriteVerbose(cmdlet, "getting a window via Win32 API");
+                    aeWndCollection = getWindowCollectionViaWin32(cmdlet.First, cmdlet.Recurse, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class);
+                    
+                } else if (null != processes && processes.Length > 0) {
                     cmdlet.WriteVerbose(cmdlet, "getting a window by process");
                     aeWndCollection = getWindowCollectionFromProcess(processes, cmdlet.First, cmdlet.Recurse, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class);
 
@@ -308,7 +317,7 @@ namespace UIAutomation
             bool first,
             bool recurse,
             string[] name,
-            string automaitonId,
+            string automationId,
             string className)
         {
             System.Windows.Automation.AndCondition conditionsProcessId = null;
@@ -319,7 +328,7 @@ namespace UIAutomation
             
             // 20130223
             if ((null != name && 0 < name.Length) ||
-                (null != automaitonId && string.Empty != automaitonId) ||
+                (null != automationId && string.Empty != automationId) ||
                 (null != className && string.Empty != className)) {
                 
                 recurse = true;
@@ -501,7 +510,7 @@ namespace UIAutomation
             // 20130225
             if (recurse && 
                 (null != name && 0 < name.Length ||
-                null != automaitonId && string.Empty != automaitonId ||
+                null != automationId && string.Empty != automationId ||
                 null != className && string.Empty != className)) {
                 
                 ArrayList resultList =
@@ -511,10 +520,12 @@ namespace UIAutomation
                     foreach (string n in name) {
                         
                         resultList.AddRange(
-                            returnOnlyRightElements(
+                            ReturnOnlyRightElements(
+                                // 20130513
+                                this,
                                 aeWndCollectionByProcessId,
                                 n,
-                                automaitonId,
+                                automationId,
                                 className,
                                 string.Empty,
                                 new string[]{ "Window" },
@@ -524,10 +535,12 @@ namespace UIAutomation
                 } else {
                     
                     resultList.AddRange(
-                        returnOnlyRightElements(
+                        ReturnOnlyRightElements(
+                            // 20130513
+                            this,
                             aeWndCollectionByProcessId,
                             string.Empty,
-                            automaitonId,
+                            automationId,
                             className,
                             string.Empty,
                             new string[]{ "Window" },
@@ -539,6 +552,32 @@ namespace UIAutomation
             }
             
             return aeWndCollectionByProcessId;
+        }
+        
+        // 20130513
+        private ArrayList getWindowCollectionViaWin32(
+            bool first,
+            bool recurse,
+            string[] name,
+            string automationId,
+            string className)
+        {
+            
+//Console.WriteLine("name = " + name);
+//Console.WriteLine("auId = " + automationId);
+//Console.WriteLine("class = " + className);
+            
+            ArrayList aeWndCollectionViaWin32 = 
+                new ArrayList();
+            ArrayList tempCollection = 
+                new ArrayList();
+            
+            aeWndCollectionViaWin32 =
+                UIAHelper.EnumChildWindowsFromHandle(
+                    (GetWindowCmdletBase)this,
+                    IntPtr.Zero);
+            
+            return aeWndCollectionViaWin32;
         }
         
         private ArrayList getWindowCollectionFromProcess(
@@ -752,7 +791,10 @@ namespace UIAutomation
                 
                 aeWndCollectionByTitle =
                     //(this as GetCmdletBase).returnOnlyRightElements(
-                    this.returnOnlyRightElements(
+                    //this.ReturnOnlyRightElements(
+                    HasTimeoutCmdletBase.ReturnOnlyRightElements(
+                        // 20130513
+                        this,
                         aeWndCollection,
                         windowTitle,
                         automationId,
@@ -904,9 +946,14 @@ namespace UIAutomation
             }
         }
         
-        internal ArrayList returnOnlyRightElements(
+        // 20130513
+        //internal ArrayList returnOnlyRightElements(
+        internal static ArrayList ReturnOnlyRightElements(
             //AutomationElementCollection results,
+            // 20130513
+            HasTimeoutCmdletBase cmdlet,
             IEnumerable results,
+            //System.Collections.Generic.IEnumerable<AutomationElement> results,
             string name,
             string automationId,
             string className,
@@ -932,6 +979,11 @@ namespace UIAutomation
             if (null == className || string.Empty == className || 0 == className.Length) { className = "*"; }
             if (null == textValue || string.Empty == textValue || 0 == textValue.Length) { textValue = "*"; }
 
+//Console.WriteLine("name = " + name);
+//Console.WriteLine("auId = " + automationId);
+//Console.WriteLine("class = " + className);
+//Console.WriteLine("value = " + textValue);
+            
             WildcardPattern wildcardName = 
                 new WildcardPattern(name, options);
             WildcardPattern wildcardAutomationId = 
@@ -940,14 +992,20 @@ namespace UIAutomation
                 new WildcardPattern(className, options);
             WildcardPattern wildcardValue = 
                 new WildcardPattern(textValue, options);
-            this.WriteVerbose(this, "inside the returnOnlyRightElements method 20");
+            // 20130513
+            //this.WriteVerbose(this, "inside the returnOnlyRightElements method 20");
+            cmdlet.WriteVerbose(cmdlet, "inside the returnOnlyRightElements method 20");
                 System.Collections.Generic.List<AutomationElement> list =
                     new System.Collections.Generic.List<AutomationElement>();
+                
+                // 20130513
                 foreach (AutomationElement elt in results) {
-
+                
                     list.Add(elt);
-
+                
                 }
+                //list.AddRange(results);
+                //list.AddRange(results.AsQueryable());
 
             try {
                 
@@ -967,7 +1025,9 @@ namespace UIAutomation
                                  wildcardClass.IsMatch(item.Current.ClassName) &&
                                  // check whether a control has or hasn't ValuePattern
                                  (item.GetSupportedPatterns().Contains(ValuePattern.Pattern) ?
-                                  testRealValueAndValueParameter(item, name, automationId, className, textValue, wildcardValue) :
+                                  // 20130513
+                                  //testRealValueAndValueParameter(item, name, automationId, className, textValue, wildcardValue) :
+                                  cmdlet.testRealValueAndValueParameter(item, name, automationId, className, textValue, wildcardValue) :
                                   // check whether the -Value parameter has or hasn't value
                                   ("*" == textValue ? true : false)
                                  )
@@ -975,16 +1035,22 @@ namespace UIAutomation
                        )
                     .ToArray<AutomationElement>();
 
-                this.WriteVerbose(
-                    this,
-                    "There are " +
-                    query.Count().ToString() +
-                    " elements");
+                // 20130513
+                //this.WriteVerbose(
+                //    this,
+                cmdlet.WriteVerbose(
+                        cmdlet,
+                        "There are " +
+                        query.Count().ToString() +
+                        " elements");
 
                 resultCollection.AddRange(query);
 
-                this.WriteVerbose(
-                    this,
+                // 20130513
+                //this.WriteVerbose(
+                //    this,
+                cmdlet.WriteVerbose(
+                    cmdlet,
                     "There are " +
                     resultCollection.Count.ToString() +
                     " elements");

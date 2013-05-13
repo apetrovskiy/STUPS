@@ -38,7 +38,11 @@ namespace UIAutomation
         #endregion Constructor
         
         #region Parameters
-
+        // 20130513
+        [Parameter(Mandatory = true,
+                   ParameterSetName = "Win32")]
+        public SwitchParameter Win32 { get; set; }
+        
         [Parameter(Mandatory = false,
                    ParameterSetName = "UIA",
                    HelpMessage="Accepts the name (title) of a window")]
@@ -48,6 +52,9 @@ namespace UIAutomation
                    ParameterSetName = "ProcessId")]
         [Parameter(Mandatory = false,
                    ParameterSetName = "Process")]
+        // 20130513
+        [Parameter(Mandatory = false,
+                   ParameterSetName = "Win32")]
 
 //        [Parameter(Mandatory = false,
 //                   HelpMessage="Accepts the name (title) of a window")]
@@ -63,6 +70,9 @@ namespace UIAutomation
                    ParameterSetName = "ProcessId")]
         [Parameter(Mandatory = false,
                    ParameterSetName = "Process")]
+        // 20130513
+        [Parameter(Mandatory = false,
+                   ParameterSetName = "Win32")]
 
 //        [Parameter(Mandatory = false,
 //                   HelpMessage="Accepts AutomationId of a window")]
@@ -77,6 +87,9 @@ namespace UIAutomation
                    ParameterSetName = "ProcessId")]
         [Parameter(Mandatory = false,
                    ParameterSetName = "Process")]
+        // 20130513
+        [Parameter(Mandatory = false,
+                   ParameterSetName = "Win32")]
         
 //        [Parameter(Mandatory = false,
 //                   HelpMessage="Accepts ClassName of a window")]

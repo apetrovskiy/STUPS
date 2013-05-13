@@ -344,7 +344,9 @@ namespace UIAutomation
                     " elements");
 
                 resultCollection =
-                    returnOnlyRightElements(
+                    ReturnOnlyRightElements(
+                        // 20130513
+                        this,
                         results,
                         name,
                         automationId,

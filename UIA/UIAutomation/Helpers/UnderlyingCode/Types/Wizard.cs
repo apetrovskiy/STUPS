@@ -159,6 +159,12 @@ namespace UIAutomation
 	        	}
         	}
         	
+        	// 20130515
+        	// moving the current step to the end of the step collection
+        	int currentIndex = this.Steps.IndexOf(resultStep);
+        	this.Steps.Insert(this.Steps.Count, resultStep);
+        	this.Steps.RemoveAt(currentIndex);
+        	
         	return resultStep;
         }
         

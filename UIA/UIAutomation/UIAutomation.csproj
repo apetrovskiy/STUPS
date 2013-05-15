@@ -162,6 +162,7 @@
     <Compile Include="Commands\Event\RegisterUIATextSelectionChangedEventCommand.cs" />
     <Compile Include="Commands\Event\RegisterUIAToolTipClosedEventCommand.cs" />
     <Compile Include="Commands\Event\RegisterUIAToolTipOpenedEventCommand.cs" />
+    <Compile Include="Commands\Event\RegisterUIAUnexpectedWindowCommand.cs" />
     <Compile Include="Commands\Event\RegisterUIAWindowClosedEventCommand.cs" />
     <Compile Include="Commands\Event\RegisterUIAWindowOpenedEventCommand.cs" />
     <Compile Include="Commands\Event\UnregisterUIAEventCommand.cs" />

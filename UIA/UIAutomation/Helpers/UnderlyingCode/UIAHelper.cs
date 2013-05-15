@@ -2327,11 +2327,14 @@ namespace UIAutomation
             System.Collections.Generic.List<IntPtr> list =
                 GetChildWindows(parentHandle);
             
+            System.Collections.ArrayList resultElements =
+                new System.Collections.ArrayList();
+            
             System.Collections.ArrayList automationElements =
                 new System.Collections.ArrayList();
             
-            System.Collections.ArrayList resultElements =
-                new System.Collections.ArrayList();
+            //using (System.Collections.ArrayList automationElements =
+            //    new System.Collections.ArrayList()) {
             
             foreach (IntPtr handle in list) {
                 
@@ -2370,6 +2373,12 @@ namespace UIAutomation
                         false));
             }
             
+            //
+            // extra?
+            automationElements.Clear();
+            //
+            
+            //};
 //Console.WriteLine("result elements: " + resultElements.Count.ToString());
             
             //return automationElements;

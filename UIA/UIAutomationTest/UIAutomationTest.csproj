@@ -220,6 +220,7 @@
     <Folder Include="Commands\Get\Parameterless" />
     <Folder Include="Commands\Get\Win32" />
     <Folder Include="Commands\Container" />
+    <Folder Include="Commands\Get\Win32" />
     <Folder Include="Commands\Sheridan" />
   </ItemGroup>
   <ItemGroup>

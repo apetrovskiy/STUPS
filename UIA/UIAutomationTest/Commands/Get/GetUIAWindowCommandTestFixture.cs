@@ -610,6 +610,51 @@ namespace UIAutomationTest.Commands.Get
         
         // ================================================
         
+        
+        // =============the -Win32 parameter===============
+        [Test] //[Test(Description="TBD")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Get_UIAWindow")]
+        public void GetWindowByName_Win32_Delay2000_NoTaskBar()
+        {
+            MiddleLevelCode.StartProcessWithForm(
+                UIAutomationTestForms.Forms.WinFormsNoTaskBar, 
+                TimeoutsAndDelays.Form_Delay2000);
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual1(@"if ((Get-UIAWindow -Win32 -n " + 
+                           MiddleLevelCode.TestFormNameNoTaskBar +
+                           ")) { 1; } else { 0; }");
+        }
+        
+        [Test] //[Test(Description="TBD")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Get_UIAWindow")]
+        public void GetWindowByAutomationId_Win32_Delay2000_NoTaskBar()
+        {
+            MiddleLevelCode.StartProcessWithForm(
+                UIAutomationTestForms.Forms.WinFormsNoTaskBar, 
+                TimeoutsAndDelays.Form_Delay2000);
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual1(@"if ((Get-UIAWindow -Win32 -au " + 
+                           MiddleLevelCode.TestFormNameNoTaskBar +
+                           ")) { 1; } else { 0; }");
+        }
+        
+        [Test] //[Test(Description="TBD")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Get_UIAWindow")]
+        public void GetWindowByClass_Win32_Delay2000_NoTaskBar()
+        {
+            MiddleLevelCode.StartProcessWithForm(
+                UIAutomationTestForms.Forms.WinFormsNoTaskBar, 
+                TimeoutsAndDelays.Form_Delay2000);
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual1(@"if ((Get-UIAWindow -Win32 -class " + 
+                           @"*WindowsForms10.Window.8.app.0*" +
+                           ")) { 1; } else { 0; }");
+        }
+        // ================================================
+        
         [TearDown]
         public void DisposeRunspace()
         {

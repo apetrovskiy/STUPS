@@ -270,6 +270,7 @@
     <Compile Include="Helpers\UnderlyingCode\Types\TestBucket.cs" />
     <Compile Include="Helpers\UnderlyingCode\Types\TestCase.cs" />
     <Compile Include="Helpers\UnderlyingCode\Types\TestConstant.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Types\TestPlatform.cs" />
     <Compile Include="Helpers\UnderlyingCode\Types\TestResult.cs" />
     <Compile Include="Helpers\UnderlyingCode\Types\TestResultDetail.cs" />
     <Compile Include="Helpers\UnderlyingCode\Types\TestScenario.cs" />
@@ -285,6 +286,7 @@
     <Compile Include="Interface\ITestBucket.cs" />
     <Compile Include="Interface\ITestCase.cs" />
     <Compile Include="Interface\ITestConstant.cs" />
+    <Compile Include="Interface\ITestPlatform.cs" />
     <Compile Include="Interface\ITestResult.cs" />
     <Compile Include="Interface\ITestResultDetail.cs" />
     <Compile Include="Interface\ITestScenario.cs" />

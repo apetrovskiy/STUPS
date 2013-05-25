@@ -20,7 +20,7 @@ namespace TMX
     {
         string Name { get; set; }
         string Id { get; set; }
-        List<ITestResultDetail >  Details { get; }
+        List<ITestResultDetail> Details { get; }
         string Status { get; }
         TestResultStatuses enStatus { get; set; }
         
@@ -58,5 +58,7 @@ namespace TMX
         
         // 20130401
         object[] ListDetailNames(TestResultStatusCmdletBase cmdlet);
+        
+        List<string> PlatformIds { get; set; }
     }
 }

@@ -183,5 +183,7 @@ namespace TMX
             //return detailsList.ToArray();
             return detailsList;
         }
+        
+        public List<string> PlatformIds { get; set; }
     }
 }

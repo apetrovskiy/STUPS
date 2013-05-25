@@ -180,5 +180,7 @@ TestData.dumpTestStructure("TestScenario #6");
         }
         
         public List<string> Tags { get; set; }
+        
+        public List<string> PlatformIds { get; set; }
     }
 }

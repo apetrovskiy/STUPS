@@ -92,5 +92,7 @@ namespace TMX
         }
         
         public List<string> Tags { get; set; }
+        
+        public List<string> PlatformIds { get; set; }
     }
 }

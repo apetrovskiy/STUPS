@@ -19,7 +19,7 @@ namespace TMX
     {
         string Name { get; }
         string Id { get; }
-        List<ITestScenario >  TestScenarios { get; }
+        List<ITestScenario> TestScenarios { get; }
         string Description { get; set; }
         string Status { get; }
         // 20130301
@@ -27,5 +27,7 @@ namespace TMX
         void SetNow();
         
         List<string> Tags { get; set; }
+        
+        List<string> PlatformIds { get; set; }
     }
 }

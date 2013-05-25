@@ -19,6 +19,6 @@ namespace TMX
     {
         string Source {get; }
         string SourceId {get; }
-        List<ITestSuite >  TestSuites {get; }
+        List<ITestSuite> TestSuites {get; }
     }
 }

@@ -474,6 +474,9 @@
     <Compile Include="..\TMX\Helpers\UnderlyingCode\Types\TestConstant.cs">
       <Link>Helpers\UnderlyingCode\Types\TestConstant.cs</Link>
     </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Types\TestPlatform.cs">
+      <Link>Helpers\UnderlyingCode\Types\TestPlatform.cs</Link>
+    </Compile>
     <Compile Include="..\TMX\Helpers\UnderlyingCode\Types\TestResult.cs">
       <Link>Helpers\UnderlyingCode\Types\TestResult.cs</Link>
     </Compile>
@@ -512,6 +515,9 @@
     </Compile>
     <Compile Include="..\TMX\Interface\ITestConstant.cs">
       <Link>Interface\ITestConstant.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Interface\ITestPlatform.cs">
+      <Link>Interface\ITestPlatform.cs</Link>
     </Compile>
     <Compile Include="..\TMX\Interface\ITestResult.cs">
       <Link>Interface\ITestResult.cs</Link>

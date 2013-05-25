@@ -19,7 +19,7 @@ namespace TMX
     {
         string Name { get; }
         string Id { get; }
-        List<ITestResult >  TestResults { get; }
+        List<ITestResult> TestResults { get; }
         string Description { get; set; }
         string Status { get; }
         
@@ -29,5 +29,7 @@ namespace TMX
         void SetNow();
         
         List<string> Tags { get; set; }
+        
+        List<string> PlatformIds { get; set; }
     }
 }

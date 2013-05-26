@@ -129,6 +129,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands" />
+    <Folder Include="Commands\SQL" />
     <Folder Include="Commands\XML" />
     <Folder Include="Commands\XML" />
     <Folder Include="Helpers" />

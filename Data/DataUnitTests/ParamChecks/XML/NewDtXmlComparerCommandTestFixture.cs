@@ -6,10 +6,11 @@
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
-using System;
 
 namespace DataUnitTests.ParamChecks.XML
 {
+    using System;
+    
     /// <summary>
     /// Description of NewDtXmlComparerCommandTestFixture.
     /// </summary>

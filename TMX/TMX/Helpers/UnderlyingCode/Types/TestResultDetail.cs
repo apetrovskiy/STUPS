@@ -30,6 +30,7 @@ namespace TMX
                 new List<string>();
         }
         
+        public virtual int DbId { get; protected set; }
         public System.DateTime Timestamp { get; internal set; }
         internal TestResultDetailTypes DetailType { get; set; }
         internal string TextDetail { get; set; }

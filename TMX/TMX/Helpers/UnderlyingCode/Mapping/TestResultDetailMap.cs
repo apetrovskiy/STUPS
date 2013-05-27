@@ -7,24 +7,25 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-//namespace TMX
-//{
-//    using System;
-//    using System.Data;
-//    using System.Data.SQLite;
-//    using FluentNHibernate;
-//    using FluentNHibernate.Mapping;
-//    using NHibernate;
-//    using NHibernate.Mapping;
-//    
-//    /// <summary>
-//    /// Description of TestResultDetailMap.
-//    /// </summary>
-//    public class TestResultDetailMap : ClassMap<TestResultDetail>
-//    {
-//        public TestResultDetailMap()
-//        {
-//            Map(x => x.Name);
-//        }
-//    }
-//}
+namespace TMX
+{
+    using System;
+    using System.Data;
+    using System.Data.SQLite;
+    using FluentNHibernate;
+    using FluentNHibernate.Mapping;
+    using NHibernate;
+    using NHibernate.Mapping;
+    
+    /// <summary>
+    /// Description of TestResultDetailMap.
+    /// </summary>
+    public class TestResultDetailMap : ClassMap<TestResultDetail>
+    {
+        public TestResultDetailMap()
+        {
+            Id(x => x.DbId);
+            Map(x => x.Name);
+        }
+    }
+}

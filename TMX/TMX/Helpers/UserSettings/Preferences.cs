@@ -48,5 +48,14 @@ namespace TMX
         public static bool AutoEcho { get; set; }
         // 20130429
         public static bool AutoLog { get; set; }
+        
+        public static bool Storage { get; set; }
+        public static string StorageServer { get; set; }
+        public static string StorageDatabase { get; set; }
+        public static string StorageUsername { get; set; }
+        public static string StoragePassword { get; set; }
+        public static bool StorageIntegratedSecurity { get; set; }
+        public static string StorageConnectionString { get; internal set; }
+        
     }
 }

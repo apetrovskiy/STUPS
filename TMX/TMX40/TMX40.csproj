@@ -86,7 +86,16 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FluentNHibernate">
+      <HintPath>..\..\packages\FluentNHibernate.1.3.0.733\lib\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\..\packages\Iesi.Collections.3.3.3.4000\lib\Net35\Iesi.Collections.dll</HintPath>
+    </Reference>
     <Reference Include="mscorlib" />
+    <Reference Include="NHibernate">
+      <HintPath>..\..\packages\NHibernate.3.3.3.4000\lib\Net35\NHibernate.dll</HintPath>
+    </Reference>
     <Reference Include="NLog">
       <HintPath>..\..\binaries\NLog\40\NLog.dll</HintPath>
       <Private>True</Private>
@@ -251,6 +260,9 @@
     </Compile>
     <Compile Include="..\TMX\Commands\TestResults\ExportTMXTestSummaryCommand.cs">
       <Link>Commands\TestResults\ExportTMXTestSummaryCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\TestResults\InitializeTMXResultsStorageCommand.cs">
+      <Link>Commands\TestResults\InitializeTMXResultsStorageCommand.cs</Link>
     </Compile>
     <Compile Include="..\TMX\Commands\TestResults\RestoreTMXTestResultsCommand.cs">
       <Link>Commands\TestResults\RestoreTMXTestResultsCommand.cs</Link>
@@ -459,6 +471,9 @@
     <Compile Include="..\TMX\Helpers\UnderlyingCode\SQLiteHelper.cs">
       <Link>Helpers\UnderlyingCode\SQLiteHelper.cs</Link>
     </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\StorageHelper.cs">
+      <Link>Helpers\UnderlyingCode\StorageHelper.cs</Link>
+    </Compile>
     <Compile Include="..\TMX\Helpers\UnderlyingCode\TMXHelper.cs">
       <Link>Helpers\UnderlyingCode\TMXHelper.cs</Link>
     </Compile>
@@ -556,6 +571,7 @@
   <ItemGroup>
     <Folder Include="Commands\Database" />
     <Folder Include="Commands\Configuration" />
+    <Folder Include="Commands\Logging" />
     <Folder Include="Commands\Logging" />
     <Folder Include="Commands\Status" />
     <Folder Include="Commands\TestStructure" />

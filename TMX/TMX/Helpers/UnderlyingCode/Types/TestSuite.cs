@@ -44,6 +44,7 @@ namespace TMX
             this.SetNow();
         }
         
+        public virtual int DbId { get; protected set; }
         public string Name { get; internal set; }
         public string Id { get; internal set; }
         public System.Collections.Generic.List<ITestScenario> TestScenarios { get; internal set; }

@@ -37,10 +37,13 @@ namespace TMX
             this.SetNow();
         }
         
+        public virtual int DbId { get; protected set; }
         public string Name { get; set; }
         public string Id { get; set; }
         public string Description { get; set; }
+        // 20130527
         public List<ITestResultDetail> Details { get; internal set; }
+        //public List<TestResultDetail> Details { get; internal set; }
         
         public string ScriptName { get; internal set; }
         public void SetScriptName(string scriptName)

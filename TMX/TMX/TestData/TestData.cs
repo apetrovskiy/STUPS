@@ -503,6 +503,15 @@ dumpTestStructure("AddTestResult #46");
                     System.DateTime.MinValue;
                 TestData.CurrentTestResult = null;
             }
+            
+            
+            if (TMX.Preferences.Storage) {
+                // 20130527
+    			using (var session = StorageHelper.SessionFactory.OpenSession())
+                {
+                    session.Save(TestData.CurrentTestResult);
+    			}
+            }
 
             OnTMXNewTestResultClosed(sourceTestResult, null);
         }
@@ -1046,6 +1055,15 @@ dumpTestStructure("AddTestResult #46");
             } else {
                 //
             }
+            
+            if (TMX.Preferences.Storage) {
+                // 20130527
+    			using (var session = StorageHelper.SessionFactory.OpenSession())
+                {
+                    session.Save(TestData.CurrentTestSuite);
+    			}
+            }
+            
             result = true;
             return result;
         }
@@ -1225,6 +1243,16 @@ dumpTestStructure("4.6");
             CurrentTestScenario.SetNow();
             
             OnTMXNewTestScenarioAdded(TestData.CurrentTestScenario, null);
+            
+            
+            if (TMX.Preferences.Storage) {
+                // 20130527
+    			using (var session = StorageHelper.SessionFactory.OpenSession())
+                {
+                    session.Save(TestData.CurrentTestScenario);
+    			}
+            }
+            
             result = true;
 
 dumpTestStructure("7");

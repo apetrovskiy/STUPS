@@ -55,23 +55,32 @@ namespace TMX
             }
             
             try {
-    			Fluently.Configure()
-    			    .Database(MsSqlConfiguration
-    			              .MsSql2008
-    			              .ConnectionString(TMX.Preferences.StorageConnectionString))
-    			              //.ConnectionString(x => x.Is(connString)))
-    			    //.Mappings(m => m.FluentMappings.AddFromAssemblyOf<ProductMap>())
-    		        .Mappings(m => m.FluentMappings.AddFromAssemblyOf<TestSuiteMap>())
-    			    .ExposeConfiguration(CreateSchema)
-    			    .BuildConfiguration();
+//    			Fluently.Configure()
+//    			    .Database(MsSqlConfiguration
+//    			              .MsSql2008
+//    			              .ConnectionString(TMX.Preferences.StorageConnectionString))
+//    			              //.ConnectionString(x => x.Is(connString)))
+//    			    //.Mappings(m => m.FluentMappings.AddFromAssemblyOf<ProductMap>())
+//    			    .Mappings(m => m.FluentMappings
+//    			              .AddFromAssemblyOf<TestSuiteMap>()
+//    			              .AddFromAssemblyOf<System.Object>())
+//    			    .ExposeConfiguration(CreateSchema)
+//    			    .BuildConfiguration();
+    			
+Console.WriteLine("00001");
     			
     			SessionFactory = Fluently.Configure()
     			    .Database(MsSqlConfiguration
     			              .MsSql2008
     			              .ConnectionString(TMX.Preferences.StorageConnectionString))
     			    .Mappings(m =>m.FluentMappings
-    			              .AddFromAssemblyOf<TestSuiteMap>())
+    			              .AddFromAssembly(Assembly.GetExecutingAssembly()))
+    			              //.AddFromAssemblyOf<TestSuiteMap>()
+    			              //.AddFromAssemblyOf<System.Object>())
     			    .BuildSessionFactory();
+    			
+Console.WriteLine("00002");
+    			
             }
             catch (Exception eSession) {
                 cmdlet.WriteError(
@@ -85,9 +94,13 @@ namespace TMX
         
 		private static void CreateSchema(Configuration cfg)
 		{
+Console.WriteLine("00001-1");
 		    var schemaExport = new SchemaExport(cfg);
+Console.WriteLine("00001-2");
 		    schemaExport.Drop(false, true);
+Console.WriteLine("00001-3");
 		    schemaExport.Create(false, true);
+Console.WriteLine("00001-4");
 		}
     }
 }

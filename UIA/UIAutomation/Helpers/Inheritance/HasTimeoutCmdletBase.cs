@@ -65,6 +65,12 @@ namespace UIAutomation
 //        public ScriptBlock[] OnSleepAction { get; set; }
         #endregion Parameters
         
+        // 20130529
+        /// <summary>
+        /// This variable is used in 'negative result' cmdlets like Wait-UIANoWindow
+        /// </summary>
+        protected bool WaitNoWindow { get; set; }
+        
         protected override void StopProcessing()
         {
             WriteVerbose(this, "User interrupted");
@@ -99,6 +105,9 @@ namespace UIAutomation
                 cmdlet.WriteVerbose(cmdlet, "rootElement: " + rootElement.Current);
             }
             
+            
+            // 20130529
+            bool wasFound = false;
             do {
                 
                 // 20130513
@@ -206,10 +215,22 @@ namespace UIAutomation
                     }
                 }
                 
+                // 20130529
+                if (cmdlet.WaitNoWindow && wasFound && (null == aeWndCollection || 0 == aeWndCollection.Count)) {
+                    
+                    cmdlet.Wait = false;
+                }
+                
+                if (cmdlet.WaitNoWindow && !wasFound && null != aeWndCollection && 0 != aeWndCollection.Count) {
 
+                    wasFound = true;
+                    aeWndCollection = null;
+                }
+                
                 if (null != aeWndCollection && aeWndCollection.Count > 0) {
 
                     cmdlet.WriteVerbose(cmdlet, "aeWndCollection != null");
+                    
                 }
                 // 20120123
                 // checkTimeout(ref aeWnd, true);
@@ -925,7 +946,12 @@ namespace UIAutomation
 //                                     //aeWindow.Current.Name);
 //                                     ((AutomationElement)aeWindowList[0]).Current.Name);
                     }
-                    this.Wait = false;
+                    
+                    // 20130529
+                    //this.Wait = false;
+                    if (!cmdlet.WaitNoWindow) {
+                        this.Wait = false;
+                    }
                     // break;
                 }
             } catch (Exception eEvaluatingWindowOrMeasuringTimeout) {

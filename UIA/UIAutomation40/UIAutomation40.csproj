@@ -318,6 +318,9 @@
     <Compile Include="..\UIAutomation\Commands\Hotkey\ShowUIATaskManagerCommand.cs">
       <Link>Commands\Hotkey\ShowUIATaskManagerCommand.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Commands\No\WaitUIANoWindowCommand.cs">
+      <Link>Commands\No\WaitUIANoWindowCommand.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Commands\Pattern\GetUIADockPositionCommand.cs">
       <Link>Commands\Pattern\GetUIADockPositionCommand.cs</Link>
     </Compile>
@@ -725,6 +728,7 @@
   <ItemGroup>
     <Folder Include="Commands\ExecutionPlan" />
     <Folder Include="Commands\Container" />
+    <Folder Include="Commands\No" />
     <Folder Include="Commands\Win32" />
     <Folder Include="Commands\RDP" />
     <Folder Include="Commands\Sheridan" />

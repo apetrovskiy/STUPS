@@ -232,6 +232,9 @@
     <Compile Include="..\UIAutomationTest\Commands\Get\Relatives\GetUIAControlRelativesTestFixture.cs">
       <Link>Commands\Get\Relatives\GetUIAControlRelativesTestFixture.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\No\WaitUIANoWindowCommandTestFixture.cs">
+      <Link>Commands\No\WaitUIANoWindowCommandTestFixture.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomationTest\Commands\Pattern\InvokeUIACollapsePatternCommandTestFixture.cs">
       <Link>Commands\Pattern\InvokeUIACollapsePatternCommandTestFixture.cs</Link>
     </Compile>
@@ -423,6 +426,7 @@
   <ItemGroup>
     <Folder Include="Commands\ExecutionPlan" />
     <Folder Include="Commands\Container" />
+    <Folder Include="Commands\No" />
     <Folder Include="Commands\Sheridan" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />

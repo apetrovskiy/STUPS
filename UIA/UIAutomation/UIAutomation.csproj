@@ -179,6 +179,7 @@
     <Compile Include="Commands\Hotkey\ShowUIAMetroStartScreenCommand.cs" />
     <Compile Include="Commands\Hotkey\ShowUIAStartRunCommand.cs" />
     <Compile Include="Commands\Hotkey\ShowUIATaskManagerCommand.cs" />
+    <Compile Include="Commands\No\WaitUIANoWindowCommand.cs" />
     <Compile Include="Commands\Pattern\GetUIADockPositionCommand.cs" />
     <Compile Include="Commands\Pattern\GetUIASelectedItemCommand.cs" />
     <Compile Include="Commands\Pattern\InvokeUIADockPatternCommand.cs" />
@@ -382,6 +383,7 @@
   <ItemGroup>
     <Folder Include="Commands\ExecutionPlan" />
     <Folder Include="Commands\Container" />
+    <Folder Include="Commands\No" />
     <Folder Include="Commands\Win32" />
     <Folder Include="Commands\RDP" />
     <Folder Include="Commands\Sheridan" />

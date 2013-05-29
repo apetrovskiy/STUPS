@@ -35,6 +35,8 @@ namespace UIAutomation.Commands
         #endregion Parameters
 
         protected bool TestMode { get; set; }
+//        // 20130529
+//        protected bool WaitNoWindow { get; set; }
         
         protected override void BeginProcessing()
         {
@@ -177,7 +179,15 @@ namespace UIAutomation.Commands
 #endregion commented
 
                     if (this.TestMode) {
-                        this.WriteObject(this, true);
+                        
+                        // 20130529
+                        //this.WriteObject(this, true);
+                        if (this.WaitNoWindow) {
+                            this.WriteObject(this, false);
+                        } else {
+                            this.WriteObject(this, true);
+                        }
+                        
                     } else {
                         this.WriteObject(this, _returnedWindows);
                     }
@@ -187,7 +197,13 @@ namespace UIAutomation.Commands
                 
                 if (this.TestMode) {
                     
-                    this.WriteObject(this, false);
+                    // 20130529
+                    // this.WriteObject(this, false);
+                    if (this.WaitNoWindow) {
+                        this.WriteObject(this, true);
+                    } else {
+                        this.WriteObject(this, false);
+                    }
     
                 } else {
                 

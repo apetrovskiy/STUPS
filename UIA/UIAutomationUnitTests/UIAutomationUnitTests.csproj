@@ -85,6 +85,7 @@
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Commands\Container\NewUIAContainerCommandTestFixture.cs" />
+    <Compile Include="Commands\No\WaitUIANoWindowCommandTestFixture.cs" />
     <Compile Include="Commands\Pattern\InvokeUIAToggleStateSetCommandTestFixture.cs" />
     <Compile Include="Commands\Wait\WaitUIAWindowCommandTestFixture.cs" />
     <Compile Include="Commands\Wizard\AddUIAWizardStepCommandTestFixture.cs" />
@@ -98,6 +99,7 @@
     <Compile Include="ParamChecks\Get\GetUIAControlCommandTestFixture.cs" />
     <Compile Include="ParamChecks\Get\GetUIAWindowCommandTestFixture.cs" />
     <Compile Include="ParamChecks\MiddleLevelCode.cs" />
+    <Compile Include="ParamChecks\No\WaitUIANoWindowCommandTestFixture.cs" />
     <Compile Include="ParamChecks\Pattern\GetUIAEditTextCommandTestFixture.cs" />
     <Compile Include="ParamChecks\Pattern\InvokeUIAButtonClickCommandTestFixture.cs" />
     <Compile Include="ParamChecks\Pattern\InvokeUIAInvokePatternCommandTestFixture.cs" />
@@ -133,6 +135,7 @@
     <Folder Include="Commands\Get" />
     <Folder Include="Commands\Hotkey" />
     <Folder Include="Commands\Container" />
+    <Folder Include="Commands\No" />
     <Folder Include="Commands\Wizard" />
     <Folder Include="Commands\Wait" />
     <Folder Include="Commands\Pattern" />
@@ -148,6 +151,7 @@
     <Folder Include="ParamChecks\Get" />
     <Folder Include="ParamChecks\Hotkey" />
     <Folder Include="ParamChecks\Container" />
+    <Folder Include="ParamChecks\No" />
     <Folder Include="ParamChecks\Wizard" />
     <Folder Include="ParamChecks\Wait" />
     <Folder Include="ParamChecks\UltraGrid" />

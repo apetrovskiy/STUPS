@@ -272,6 +272,8 @@
     <Compile Include="Helpers\UnderlyingCode\GatherTestResultsCollections.cs" />
     <Compile Include="Helpers\UnderlyingCode\IXMLElementsStruct.cs" />
     <Compile Include="Helpers\UnderlyingCode\Logger.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Mapping\ITestResultMap.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Mapping\ITestScenarioMap.cs" />
     <Compile Include="Helpers\UnderlyingCode\Mapping\TestCaseMap.cs" />
     <Compile Include="Helpers\UnderlyingCode\Mapping\TestResultDetailMap.cs" />
     <Compile Include="Helpers\UnderlyingCode\Mapping\TestResultMap.cs" />

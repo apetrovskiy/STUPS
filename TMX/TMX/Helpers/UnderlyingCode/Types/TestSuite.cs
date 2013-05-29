@@ -19,12 +19,18 @@ namespace TMX
     {
         public TestSuite()
         {
-            TestScenarios = new List<ITestScenario > ();
+            TestScenarios = new List<ITestScenario>();
             this.Statistics = new TestStat();
             this.enStatus = TestSuiteStatuses.NotTested;
             
             // 20130301
             this.SetNow();
+            
+            // 20130529
+            this.PlatformIds =
+                new List<string>();
+            this.Tags =
+                new List<string>();
         }
         
         public TestSuite(string testSuiteName, string testSuiteId)
@@ -44,7 +50,8 @@ namespace TMX
             this.SetNow();
         }
         
-        public virtual int DbId { get; protected set; }
+        //public virtual int DbId { get; protected set; }
+        public virtual int DbId { get; set; }
         public string Name { get; internal set; }
         public string Id { get; internal set; }
         public System.Collections.Generic.List<ITestScenario> TestScenarios { get; internal set; }

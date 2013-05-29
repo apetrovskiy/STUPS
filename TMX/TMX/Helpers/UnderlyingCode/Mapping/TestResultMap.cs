@@ -35,7 +35,7 @@ namespace TMX
             Map(x => x.Position);
             Map(x => x.Error);
             Map(x => x.Code);
-            HasMany(x => x.Parameters);
+            //HasMany(x => x.Parameters);
             
             Map(x => x.Status);
             Map(x => x.enStatus);
@@ -48,7 +48,7 @@ namespace TMX
             Map(x => x.Screenshot);
             Map(x => x.Origin);
             
-            HasMany(x => x.PlatformIds);
+            //HasMany(x => x.PlatformIds);
         }
         
         

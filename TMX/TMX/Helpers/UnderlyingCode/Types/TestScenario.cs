@@ -43,6 +43,12 @@ namespace TMX
             }
             catch {}
             
+            // 20130529
+            this.PlatformIds =
+                new List<string>();
+            this.Tags =
+                new List<string>();
+            
             // 20130301
             this.SetNow();
             
@@ -97,6 +103,12 @@ TestData.dumpTestStructure("TestScenario #3");
             }
             catch {}
             
+            // 20130529
+            this.PlatformIds =
+                new List<string>();
+            this.Tags =
+                new List<string>();
+            
             // 20130301
             this.SetNow();
 TestData.dumpTestStructure("TestScenario #4");
@@ -127,7 +139,8 @@ TestData.dumpTestStructure("TestScenario #5.9");
 TestData.dumpTestStructure("TestScenario #6");
         }
         
-        public virtual int DbId { get; protected set; }
+        //public virtual int DbId { get; protected set; }
+        public virtual int DbId { get; set; }
         public string Name { get; internal set; }
         public string Id { get; internal set; }
         public System.Collections.Generic.List<ITestResult> TestResults {get; internal set; }

@@ -17,6 +17,7 @@ namespace TMX
     /// </summary>
     public interface ITestScenario
     {
+        int DbId { get; set; }
         string Name { get; }
         string Id { get; }
         List<ITestResult> TestResults { get; }

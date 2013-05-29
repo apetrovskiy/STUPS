@@ -453,6 +453,12 @@
     <Compile Include="..\TMX\Helpers\UnderlyingCode\Logger.cs">
       <Link>Helpers\UnderlyingCode\Logger.cs</Link>
     </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Mapping\ITestResultMap.cs">
+      <Link>Helpers\UnderlyingCode\Mapping\ITestResultMap.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Mapping\ITestScenarioMap.cs">
+      <Link>Helpers\UnderlyingCode\Mapping\ITestScenarioMap.cs</Link>
+    </Compile>
     <Compile Include="..\TMX\Helpers\UnderlyingCode\Mapping\TestCaseMap.cs">
       <Link>Helpers\UnderlyingCode\Mapping\TestCaseMap.cs</Link>
     </Compile>

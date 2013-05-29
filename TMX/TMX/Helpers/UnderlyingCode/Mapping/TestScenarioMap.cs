@@ -36,8 +36,8 @@ namespace TMX
             Map(x => x.SuiteId);
             Map(x => x.Timestamp);
             Map(x => x.TimeSpent);
-            HasMany(x => x.Tags);
-            HasMany(x => x.PlatformIds);
+            //HasMany(x => x.Tags);
+            //HasMany(x => x.PlatformIds);
         }
         
 #region bunch01

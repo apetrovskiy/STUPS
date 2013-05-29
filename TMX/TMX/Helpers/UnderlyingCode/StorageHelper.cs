@@ -55,17 +55,17 @@ namespace TMX
             }
             
             try {
-//    			Fluently.Configure()
-//    			    .Database(MsSqlConfiguration
-//    			              .MsSql2008
-//    			              .ConnectionString(TMX.Preferences.StorageConnectionString))
-//    			              //.ConnectionString(x => x.Is(connString)))
-//    			    //.Mappings(m => m.FluentMappings.AddFromAssemblyOf<ProductMap>())
-//    			    .Mappings(m => m.FluentMappings
-//    			              .AddFromAssemblyOf<TestSuiteMap>()
-//    			              .AddFromAssemblyOf<System.Object>())
-//    			    .ExposeConfiguration(CreateSchema)
-//    			    .BuildConfiguration();
+    			Fluently.Configure()
+    			    .Database(MsSqlConfiguration
+    			              .MsSql2008
+    			              .ConnectionString(TMX.Preferences.StorageConnectionString))
+    			              //.ConnectionString(x => x.Is(connString)))
+    			    //.Mappings(m => m.FluentMappings.AddFromAssemblyOf<ProductMap>())
+    			    .Mappings(m => m.FluentMappings
+    			              .AddFromAssemblyOf<TestSuiteMap>()
+    			              .AddFromAssemblyOf<System.Object>())
+    			    .ExposeConfiguration(CreateSchema)
+    			    .BuildConfiguration();
     			
 Console.WriteLine("00001");
     			

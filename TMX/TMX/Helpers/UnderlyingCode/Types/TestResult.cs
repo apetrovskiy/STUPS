@@ -26,7 +26,7 @@ namespace TMX
            string testSuiteId)
         {
             this.Details = 
-                new List<ITestResultDetail > ();
+                new List<ITestResultDetail>();
             this.enStatus = TestResultStatuses.NotTested;
             
             // scenarioId and suiteId
@@ -35,9 +35,16 @@ namespace TMX
             
             // 20130401
             this.SetNow();
+            
+            // 20130529
+            this.Parameters =
+                new List<object>();
+            this.PlatformIds =
+                new List<string>();
         }
         
-        public virtual int DbId { get; protected set; }
+        //public virtual int DbId { get; protected set; }
+        public virtual int DbId { get; set; }
         public string Name { get; set; }
         public string Id { get; set; }
         public string Description { get; set; }

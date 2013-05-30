@@ -154,6 +154,21 @@ namespace UIAutomation
         public string Hostname { get; set; }
         
         [Parameter(Mandatory = false)]
+        public SwitchParameter RemoteAppMode { get; set; }
+        
+        [Parameter(Mandatory = false)]
+        public string RemoteAppProgram { get; set; }
+        
+        [Parameter(Mandatory = false)]
+        public string RemoteAppCmdline { get; set; }
+        
+        [Parameter(Mandatory = false)]
+        public string AlternateShell { get; set; }
+        
+        [Parameter(Mandatory = false)]
+        public string ShellWorkingDir { get; set; }
+        
+        [Parameter(Mandatory = false)]
         public int DesktopHeight { get; set; }
         
         [Parameter(Mandatory = false)]
@@ -176,9 +191,6 @@ namespace UIAutomation
         
         [Parameter(Mandatory = false)]
         public int AuthenticationLevel { get; set; }
-        
-        [Parameter(Mandatory = false)]
-        public string AlternateShell { get; set; }
         
         [Parameter(Mandatory = false)]
         public string Template { get; set; }

@@ -38,6 +38,8 @@ namespace TMX
             //Map(x => x.TimeSpent);
             //HasMany(x => x.Tags);
             //HasMany(x => x.PlatformIds);
+            Map(x => x.Tags);
+            Map(x => x.PlatformId);
         }
     }
 }

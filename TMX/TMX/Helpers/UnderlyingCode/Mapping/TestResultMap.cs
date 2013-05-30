@@ -49,6 +49,7 @@ namespace TMX
             Map(x => x.Origin);
             
             //HasMany(x => x.PlatformIds);
+            Map(x => x.PlatformId);
         }
         
         

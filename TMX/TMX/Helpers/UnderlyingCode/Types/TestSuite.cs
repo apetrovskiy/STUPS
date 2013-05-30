@@ -25,12 +25,6 @@ namespace TMX
             
             // 20130301
             this.SetNow();
-            
-            // 20130529
-            this.PlatformIds =
-                new List<string>();
-            this.Tags =
-                new List<string>();
         }
         
         public TestSuite(string testSuiteName, string testSuiteId)
@@ -99,8 +93,10 @@ namespace TMX
             this.TimeSpent = timeSpent;
         }
         
-        public List<string> Tags { get; set; }
+        //public List<string> Tags { get; set; }
+        public string Tags { get; set; }
         
-        public List<string> PlatformIds { get; set; }
+        //public List<string> PlatformIds { get; set; }
+        public string PlatformId { get; set; }
     }
 }

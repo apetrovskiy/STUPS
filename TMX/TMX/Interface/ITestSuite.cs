@@ -27,8 +27,10 @@ namespace TMX
         System.DateTime Timestamp { get; }
         void SetNow();
         
-        List<string> Tags { get; set; }
+        //List<string> Tags { get; set; }
+        string Tags { get; set; }
         
-        List<string> PlatformIds { get; set; }
+        //List<string> PlatformIds { get; set; }
+        string PlatformId { get; set; }
     }
 }

@@ -43,12 +43,6 @@ namespace TMX
             }
             catch {}
             
-            // 20130529
-            this.PlatformIds =
-                new List<string>();
-            this.Tags =
-                new List<string>();
-            
             // 20130301
             this.SetNow();
             
@@ -102,12 +96,6 @@ TestData.dumpTestStructure("TestScenario #3");
                 }
             }
             catch {}
-            
-            // 20130529
-            this.PlatformIds =
-                new List<string>();
-            this.Tags =
-                new List<string>();
             
             // 20130301
             this.SetNow();
@@ -193,8 +181,9 @@ TestData.dumpTestStructure("TestScenario #6");
             this.TimeSpent = timeSpent;
         }
         
-        public List<string> Tags { get; set; }
-        
-        public List<string> PlatformIds { get; set; }
+        //public List<string> Tags { get; set; }
+        public string Tags { get; set; }
+        //public List<string> PlatformIds { get; set; }
+        public string PlatformId { get; set; }
     }
 }

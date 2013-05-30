@@ -56,6 +56,8 @@ authentication level:i:2
 prompt for credentials:i:0
 negotiate security layer:i:1
 remoteapplicationmode:i:0
+remoteapplicationprogram:s:
+remoteapplicationcmdline:s:
 alternate shell:s:
 shell working directory:s:
 gatewayhostname:s:
@@ -109,6 +111,32 @@ drivestoredirect:s:
                 DataProtectionForRDPWrapper.Encrypt(cmdlet.Password) +
                 "\r\n";
             
+            if (cmdlet.RemoteAppMode) {
+                
+                RDPFileTemplate =
+                    RDPFileTemplate.Replace(
+                        "remoteapplicationmode:i:0",
+                        "remoteapplicationmode:i:1");
+            }
+            
+            if (null != cmdlet.RemoteAppProgram && string.Empty != cmdlet.RemoteAppProgram) {
+                
+                RDPFileTemplate =
+                    RDPFileTemplate.Replace(
+                        "remoteapplicationprogram:s:",
+                        "remoteapplicationprogram:s:" +
+                        cmdlet.RemoteAppProgram);
+            }
+            
+            if (null != cmdlet.RemoteAppCmdline && string.Empty != cmdlet.RemoteAppCmdline) {
+                
+                RDPFileTemplate =
+                    RDPFileTemplate.Replace(
+                        "remoteapplicationcmdline:s:",
+                        "remoteapplicationcmdline:s:" +
+                        cmdlet.RemoteAppCmdline);
+            }
+            
             if (null != cmdlet.AlternateShell && string.Empty != cmdlet.AlternateShell) {
                 
                 RDPFileTemplate =
@@ -116,6 +144,15 @@ drivestoredirect:s:
                         "alternate shell:s:",
                         "alternate shell:s:" +
                         cmdlet.AlternateShell);
+            }
+            
+            if (null != cmdlet.ShellWorkingDir && string.Empty != cmdlet.ShellWorkingDir) {
+                
+                RDPFileTemplate =
+                    RDPFileTemplate.Replace(
+                        "shell working directory:s:",
+                        "shell working directory:s:" +
+                        cmdlet.ShellWorkingDir);
             }
             
             if (null != cmdlet.AuthenticationLevel) {

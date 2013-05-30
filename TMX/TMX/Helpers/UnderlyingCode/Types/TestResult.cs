@@ -36,11 +36,6 @@ namespace TMX
             // 20130401
             this.SetNow();
             
-            // 20130529
-            this.Parameters =
-                new List<object>();
-            this.PlatformIds =
-                new List<string>();
         }
         
         //public virtual int DbId { get; protected set; }
@@ -194,6 +189,7 @@ namespace TMX
             return detailsList;
         }
         
-        public List<string> PlatformIds { get; set; }
+        //public List<string> PlatformIds { get; set; }
+        public string PlatformId { get; set; }
     }
 }

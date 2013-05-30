@@ -60,6 +60,7 @@ namespace TMX
         // 20130401
         object[] ListDetailNames(TestResultStatusCmdletBase cmdlet);
         
-        List<string> PlatformIds { get; set; }
+        //List<string> PlatformIds { get; set; }
+        string PlatformId { get; set; }
     }
 }

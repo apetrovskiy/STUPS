@@ -25,7 +25,7 @@ namespace TMX
         public TestResultDetailMap()
         {
             Id(x => x.DbId);
-            Map(x => x.Name);
+            //Map(x => x.Name);
         }
     }
 }

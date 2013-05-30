@@ -17,6 +17,7 @@ namespace TMX
 
     public struct TestStat : IEquatable<TestStat>
     {
+        public int DbId { get; set; }
         public int All;
         public int Passed;
         public int Failed;

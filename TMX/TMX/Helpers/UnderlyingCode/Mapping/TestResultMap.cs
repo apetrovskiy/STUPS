@@ -48,7 +48,6 @@ namespace TMX
             Map(x => x.Screenshot);
             Map(x => x.Origin);
             
-            //HasMany(x => x.PlatformIds);
             Map(x => x.PlatformId);
         }
         

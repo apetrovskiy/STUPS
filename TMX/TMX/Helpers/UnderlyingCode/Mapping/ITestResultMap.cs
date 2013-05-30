@@ -30,25 +30,24 @@ namespace TMX
             //Map(x => x.Error);
             //HasMany(x => x.Details);
             
-            Map(x => x.ScriptName);
-            Map(x => x.LineNumber);
-            Map(x => x.Position);
-            Map(x => x.Error);
+            //Map(x => x.ScriptName);
+            //Map(x => x.LineNumber);
+            //Map(x => x.Position);
+            //Map(x => x.Error);
             Map(x => x.Code);
             //HasMany(x => x.Parameters);
             
-            Map(x => x.Status);
+            //Map(x => x.Status);
             Map(x => x.enStatus);
             
-            Map(x => x.TimeSpent);
-            Map(x => x.Timestamp);
-            Map(x => x.SuiteId);
-            Map(x => x.ScenarioId);
-            Map(x => x.Generated);
-            Map(x => x.Screenshot);
-            Map(x => x.Origin);
+            //Map(x => x.TimeSpent);
+            //Map(x => x.Timestamp);
+            //Map(x => x.SuiteId);
+            //Map(x => x.ScenarioId);
+            //Map(x => x.Generated);
+            //Map(x => x.Screenshot);
+            //Map(x => x.Origin);
             
-            //HasMany(x => x.PlatformIds);
             Map(x => x.PlatformId);
         }
     }

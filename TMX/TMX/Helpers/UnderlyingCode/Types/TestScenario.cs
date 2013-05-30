@@ -129,15 +129,15 @@ TestData.dumpTestStructure("TestScenario #6");
         
         //public virtual int DbId { get; protected set; }
         public virtual int DbId { get; set; }
-        public string Name { get; internal set; }
-        public string Id { get; internal set; }
-        public System.Collections.Generic.List<ITestResult> TestResults {get; internal set; }
-        public string Description { get; set; }
+        public virtual string Name { get; protected internal set; }
+        public virtual string Id { get; protected internal set; }
+        public virtual System.Collections.Generic.List<ITestResult> TestResults {get; protected internal set; }
+        public virtual string Description { get; set; }
 
         private string status;
-        public string Status { get { return this.status; } }
+        public virtual string Status { get { return this.status; } }
         private TestScenarioStatuses _enStatus;
-        internal TestScenarioStatuses enStatus
+        protected internal virtual TestScenarioStatuses enStatus
         { 
             get { return this._enStatus; }
             set{
@@ -165,25 +165,23 @@ TestData.dumpTestStructure("TestScenario #6");
             }
         }
         
-        public TestStat Statistics { get; set; }
+        public virtual TestStat Statistics { get; set; }
         
-        public string SuiteId { get; internal set; }
+        public virtual string SuiteId { get; protected internal set; }
         
         // 20130301
-        public System.DateTime Timestamp { get; internal set; }
-        public void SetNow()
+        public virtual System.DateTime Timestamp { get; protected internal set; }
+        public virtual void SetNow()
         {
             this.Timestamp = System.DateTime.Now;
         }
-        public double TimeSpent { get; internal set; }
-        public void SetTimeSpent(double timeSpent)
+        public virtual double TimeSpent { get; protected internal set; }
+        public virtual void SetTimeSpent(double timeSpent)
         {
             this.TimeSpent = timeSpent;
         }
         
-        //public List<string> Tags { get; set; }
-        public string Tags { get; set; }
-        //public List<string> PlatformIds { get; set; }
-        public string PlatformId { get; set; }
+        public virtual string Tags { get; set; }
+        public virtual string PlatformId { get; set; }
     }
 }

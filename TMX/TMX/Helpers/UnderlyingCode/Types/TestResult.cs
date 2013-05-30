@@ -21,6 +21,8 @@ namespace TMX
     /// </summary>
     public class TestResult : ITestResult
     {
+        public TestResult() {}
+        
         public TestResult(
            string testScenarioId,
            string testSuiteId)
@@ -40,41 +42,41 @@ namespace TMX
         
         //public virtual int DbId { get; protected set; }
         public virtual int DbId { get; set; }
-        public string Name { get; set; }
-        public string Id { get; set; }
-        public string Description { get; set; }
+        public virtual string Name { get; set; }
+        public virtual string Id { get; set; }
+        public virtual string Description { get; set; }
         // 20130527
-        public List<ITestResultDetail> Details { get; internal set; }
+        public virtual List<ITestResultDetail> Details { get; protected internal set; }
         //public List<TestResultDetail> Details { get; internal set; }
         
-        public string ScriptName { get; internal set; }
-        public void SetScriptName(string scriptName)
+        public virtual string ScriptName { get; protected internal set; }
+        public virtual void SetScriptName(string scriptName)
         {
             this.ScriptName = scriptName;
         }
-        public int LineNumber { get; internal set; }
-        public void SetLineNumber(int lineNumber)
+        public virtual int LineNumber { get; protected internal set; }
+        public virtual void SetLineNumber(int lineNumber)
         {
             this.LineNumber = lineNumber;
         }
-        public int Position { get; internal set; }
-        public void SetPosition(int position)
+        public virtual int Position { get; protected internal set; }
+        public virtual void SetPosition(int position)
         {
             this.Position = position;
         }
-        public ErrorRecord Error { get; internal set; }
-        public void SetError(ErrorRecord error)
+        public virtual ErrorRecord Error { get; protected internal set; }
+        public virtual void SetError(ErrorRecord error)
         {
             this.Error = error;
         }
-        public string Code { get; set; }
+        public virtual string Code { get; set; }
         
-        public List<object> Parameters { get; internal set; }
+        public virtual List<object> Parameters { get; protected internal set; }
 
         private string status;
-        public string Status { get { return this.status; } }
+        public virtual string Status { get { return this.status; } }
         private TestResultStatuses _enStatus;
-        public TestResultStatuses enStatus
+        public virtual TestResultStatuses enStatus
         { 
             get { return this._enStatus; }
             set{
@@ -99,35 +101,35 @@ namespace TMX
             }
         }
         
-        public double TimeSpent { get; internal set; }
-        public void SetTimeSpent(double timeSpent)
+        public virtual double TimeSpent { get; protected internal set; }
+        public virtual void SetTimeSpent(double timeSpent)
         {
             this.TimeSpent = timeSpent;
         }
         
-        public System.DateTime Timestamp { get; internal set; }
-        public void SetNow()
+        public virtual System.DateTime Timestamp { get; protected internal set; }
+        public virtual void SetNow()
         {
             this.Timestamp = System.DateTime.Now;
         }
         
-        public string SuiteId { get; internal set; }
-        public string ScenarioId { get; internal set; }
+        public virtual string SuiteId { get; protected internal set; }
+        public virtual string ScenarioId { get; protected internal set; }
         
-        public bool Generated { get; internal set; }
-        public void SetGenerated()
+        public virtual bool Generated { get; protected internal set; }
+        public virtual void SetGenerated()
         {
             this.Generated = true;
         }
         
-        public string Screenshot { get; internal set; }
-        public void SetScreenshot(string path)
+        public virtual string Screenshot { get; protected internal set; }
+        public virtual void SetScreenshot(string path)
         {
             this.Screenshot = path;
         }
         
-        public TestResultOrigins Origin { get; internal set; }
-        public void SetOrigin(TestResultOrigins origin)
+        public virtual TestResultOrigins Origin { get; protected internal set; }
+        public virtual void SetOrigin(TestResultOrigins origin)
         {
             if (TestResultOrigins.Logical == this.Origin) {
                 
@@ -138,7 +140,7 @@ namespace TMX
             }
         }
         
-        public object[] ListDetailNames(TestResultStatusCmdletBase cmdlet)
+        public virtual object[] ListDetailNames(TestResultStatusCmdletBase cmdlet)
         {
             //ArrayList detailsList =
             //    new ArrayList();
@@ -189,7 +191,6 @@ namespace TMX
             return detailsList;
         }
         
-        //public List<string> PlatformIds { get; set; }
-        public string PlatformId { get; set; }
+        public virtual string PlatformId { get; set; }
     }
 }

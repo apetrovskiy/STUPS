@@ -31,17 +31,17 @@ namespace TMX
         }
         
         public virtual int DbId { get; protected set; }
-        public System.DateTime Timestamp { get; internal set; }
-        internal TestResultDetailTypes DetailType { get; set; }
-        internal string TextDetail { get; set; }
-        internal ErrorRecord ErrorDetail { get; set; }
-        internal string ScreenshotDetail { get; set; }
+        public virtual System.DateTime Timestamp { get; protected internal set; }
+        protected internal virtual TestResultDetailTypes DetailType { get; set; }
+        protected internal virtual string TextDetail { get; set; }
+        protected internal virtual ErrorRecord ErrorDetail { get; set; }
+        protected internal virtual string ScreenshotDetail { get; set; }
         // 20121218
-        internal string LogDetail { get; set; }
+        protected internal virtual string LogDetail { get; set; }
         // 20121218
-        internal List<string> ExternalData { get; set; }
+        protected internal virtual List<string> ExternalData { get; set; }
         
-        public string Name
+        public virtual string Name
         {
             get {
                 if (this.TextDetail != null && this.TextDetail.Length > 0) {
@@ -55,7 +55,7 @@ namespace TMX
                 }
             }
         }
-        public void AddTestResultDetail(
+        public virtual void AddTestResultDetail(
            TestResultDetailTypes detailType,
            string detail)
         {
@@ -84,7 +84,7 @@ namespace TMX
                     throw new Exception("Invalid value for TestResultDetailTypes");
             }
         }
-        public void AddTestResultDetail(
+        public virtual void AddTestResultDetail(
            TestResultDetailTypes detailType,
            ErrorRecord detail)
         {
@@ -96,7 +96,7 @@ namespace TMX
                 this.ErrorDetail = detail;
             }
         }
-        public object GetDetail()
+        public virtual object GetDetail()
         {
             if (null != this.ErrorDetail) {
                 return this.ErrorDetail;
@@ -110,6 +110,6 @@ namespace TMX
             return null;
         }
         
-        public TestResultStatuses DetailStatus { get; set; }
+        public virtual TestResultStatuses DetailStatus { get; set; }
     }
 }

@@ -24,20 +24,18 @@ namespace TMX
         public ITestScenarioMap()
         {
             Id(x => x.DbId);
-            Map(x => x.Name);
-            Map(x => x.Id);
-            Map(x => x.Status);
+            //Map(x => x.Name);
+            //Map(x => x.Id);
+            //Map(x => x.Status);
             Map(x => x.Description);
-            HasMany(x => x.TestResults);
+            //HasMany(x => x.TestResults);
             
             //Map(x => x.Status);
             
             //Map(x => x.Statistics);
-            Map(x => x.SuiteId);
-            Map(x => x.Timestamp);
+            //Map(x => x.SuiteId);
+            //Map(x => x.Timestamp);
             //Map(x => x.TimeSpent);
-            //HasMany(x => x.Tags);
-            //HasMany(x => x.PlatformIds);
             Map(x => x.Tags);
             Map(x => x.PlatformId);
         }

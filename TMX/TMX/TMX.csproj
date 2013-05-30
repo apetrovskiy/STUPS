@@ -278,6 +278,7 @@
     <Compile Include="Helpers\UnderlyingCode\Mapping\TestResultDetailMap.cs" />
     <Compile Include="Helpers\UnderlyingCode\Mapping\TestResultMap.cs" />
     <Compile Include="Helpers\UnderlyingCode\Mapping\TestScenarioMap.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Mapping\TestStatMap.cs" />
     <Compile Include="Helpers\UnderlyingCode\Mapping\TestSuiteMap.cs" />
     <Compile Include="Helpers\UnderlyingCode\StorageHelper.cs" />
     <Compile Include="Helpers\UnderlyingCode\Types\Database.cs" />

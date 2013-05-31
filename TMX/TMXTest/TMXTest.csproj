@@ -162,6 +162,7 @@
     <Compile Include="Commands\TestStructure\AddTMXTestScenarioCommandTestFixture.cs" />
     <Compile Include="Commands\TestStructure\CloseTMXTestResultCommandTestFixture.cs" />
     <Compile Include="Commands\TestStructure\GetTMXTestCaseCommandTestFixture.cs" />
+    <Compile Include="Commands\TestStructure\NewTMXTestPlatformCommandTestFixture.cs" />
     <Compile Include="Commands\TestStructure\NewTMXTestSuiteCommandTestFixture.cs" />
     <Compile Include="Commands\TestStructure\OpenTMXTestScenarioCommandTestFixture.cs" />
     <Compile Include="Commands\TestStructure\OpenTMXTestSuiteCommandTestFixture.cs" />

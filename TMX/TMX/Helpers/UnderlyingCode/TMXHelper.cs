@@ -110,6 +110,29 @@ namespace TMX
             return result;
         }
         
+        public static bool NewTestPlatform(
+            string testPlatformName,
+            string testPlatformId,
+            string testPlatformDesctiption,
+            string testPlatformOS,
+            string testPlatformVersion,
+            string testPlatformArchitecture,
+            string testPlatformLanguage)
+        {
+            bool result = false;
+            result = 
+                TMX.TestData.AddTestPlatform(
+                    testPlatformName,
+                    testPlatformId,
+                    testPlatformDesctiption,
+                    testPlatformOS,
+                    testPlatformVersion,
+                    testPlatformArchitecture,
+                    testPlatformLanguage);
+            
+            return result;
+        }
+        
         public static bool NewTestSuite(string testSuiteName, 
                                         string testSuiteId,
                                         string testSuiteDesctiption)

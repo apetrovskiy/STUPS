@@ -297,6 +297,9 @@
     <Compile Include="..\TMX\Commands\TestStructure\GetTMXTestCaseCommand.cs">
       <Link>Commands\TestStructure\GetTMXTestCaseCommand.cs</Link>
     </Compile>
+    <Compile Include="..\TMX\Commands\TestStructure\NewTMXTestPlatformCommand.cs">
+      <Link>Commands\TestStructure\NewTMXTestPlatformCommand.cs</Link>
+    </Compile>
     <Compile Include="..\TMX\Commands\TestStructure\NewTMXTestSuiteCommand.cs">
       <Link>Commands\TestStructure\NewTMXTestSuiteCommand.cs</Link>
     </Compile>
@@ -354,6 +357,9 @@
     <Compile Include="..\TMX\Helpers\Inheritance\ImportExportCmdletBase.cs">
       <Link>Helpers\Inheritance\ImportExportCmdletBase.cs</Link>
     </Compile>
+    <Compile Include="..\TMX\Helpers\Inheritance\NewPlatformCmdletBase.cs">
+      <Link>Helpers\Inheritance\NewPlatformCmdletBase.cs</Link>
+    </Compile>
     <Compile Include="..\TMX\Helpers\Inheritance\NewSuiteCmdletBase.cs">
       <Link>Helpers\Inheritance\NewSuiteCmdletBase.cs</Link>
     </Compile>
@@ -365,6 +371,9 @@
     </Compile>
     <Compile Include="..\TMX\Helpers\Inheritance\OpenTestCaseCmdletBase.cs">
       <Link>Helpers\Inheritance\OpenTestCaseCmdletBase.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\Inheritance\PlatformCmdletBase.cs">
+      <Link>Helpers\Inheritance\PlatformCmdletBase.cs</Link>
     </Compile>
     <Compile Include="..\TMX\Helpers\Inheritance\ScenarioCmdletBase.cs">
       <Link>Helpers\Inheritance\ScenarioCmdletBase.cs</Link>
@@ -422,6 +431,9 @@
     </Compile>
     <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TestStructure\TMXGetTestCaseCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\TestStructure\TMXGetTestCaseCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TestStructure\TMXNewTestPlatformCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\TestStructure\TMXNewTestPlatformCommand.cs</Link>
     </Compile>
     <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TestStructure\TMXNewTestSuiteCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\TestStructure\TMXNewTestSuiteCommand.cs</Link>
@@ -587,6 +599,7 @@
     <Folder Include="ExternalUse" />
     <Folder Include="Helpers\UnderlyingCode" />
     <Folder Include="Helpers\UnderlyingCode\Commands" />
+    <Folder Include="Helpers\UnderlyingCode\Commands\Logging" />
     <Folder Include="Helpers\UnderlyingCode\Commands\Logging" />
     <Folder Include="Helpers\UnderlyingCode\Commands\TestStructure" />
     <Folder Include="Helpers\UnderlyingCode\Commands\Status" />

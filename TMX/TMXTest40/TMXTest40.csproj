@@ -215,6 +215,9 @@
     <Compile Include="..\TMXTest\Commands\TestStructure\GetTMXTestCaseCommandTestFixture.cs">
       <Link>Commands\TestStructure\GetTMXTestCaseCommandTestFixture.cs</Link>
     </Compile>
+    <Compile Include="..\TMXTest\Commands\TestStructure\NewTMXTestPlatformCommandTestFixture.cs">
+      <Link>Commands\TestStructure\NewTMXTestPlatformCommandTestFixture.cs</Link>
+    </Compile>
     <Compile Include="..\TMXTest\Commands\TestStructure\NewTMXTestSuiteCommandTestFixture.cs">
       <Link>Commands\TestStructure\NewTMXTestSuiteCommandTestFixture.cs</Link>
     </Compile>
@@ -252,6 +255,7 @@
   <ItemGroup>
     <Folder Include="Commands\Database" />
     <Folder Include="Commands\Configuration" />
+    <Folder Include="Commands\Logging" />
     <Folder Include="Commands\Logging" />
     <Folder Include="Commands\Status" />
     <Folder Include="Commands\TestStructure" />

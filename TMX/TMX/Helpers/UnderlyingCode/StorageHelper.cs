@@ -34,11 +34,15 @@ namespace TMX
         
         public static void InitializeStorage(CommonCmdletBase cmdlet)
         {
+Console.WriteLine("-0005");
             if (null != TMX.Preferences.StorageUsername && string.Empty != TMX.Preferences.StorageUsername) {
+Console.WriteLine("-0004");
                 TMX.Preferences.StorageConnectionString =
-                    @"Data Source=" + 
+                    //@"Data Source=" + 
+                    @"Server=" + 
                     TMX.Preferences.StorageServer +
-                    ";Initial Catalog=" +
+                    //";Initial Catalog=" +
+                    ";Database=" +
                     TMX.Preferences.StorageDatabase +
                     ";Username=" + 
                     TMX.Preferences.StorageUsername +
@@ -46,40 +50,59 @@ namespace TMX
                     TMX.Preferences.StoragePassword +
                     ";";
             } else {
+Console.WriteLine("-0003");
                 TMX.Preferences.StorageConnectionString =
-                    @"Data Source=" + 
+                    //@"Data Source=" + 
+                    @"Server=" + 
                     TMX.Preferences.StorageServer +
-                    ";Initial Catalog=" +
+                    //";Initial Catalog=" +
+                    ";Database=" +
                     TMX.Preferences.StorageDatabase +
                     ";Integrated Security=SSPI;";
             }
             
             try {
-    			Fluently.Configure()
-    			    .Database(MsSqlConfiguration
-    			              .MsSql2008
-    			              .ConnectionString(TMX.Preferences.StorageConnectionString))
-    			              //.ConnectionString(x => x.Is(connString)))
-    			    //.Mappings(m => m.FluentMappings.AddFromAssemblyOf<ProductMap>())
-    			    .Mappings(m => m.FluentMappings
-    			              .AddFromAssemblyOf<TestSuiteMap>()
-    			              .AddFromAssemblyOf<System.Object>())
-    			    .ExposeConfiguration(CreateSchema)
-    			    .BuildConfiguration();
+                
+Console.WriteLine("-0002");
+                
+                cmdlet.WriteVerbose("building configuration...");
+Console.WriteLine("-0001");
+Console.WriteLine(TMX.Preferences.StorageConnectionString);
+if (null == Fluently.Configure()) {
+    
+    Console.WriteLine("Fluently == null");
+}
+Console.WriteLine("Fluently != null");
+    			Fluently.Configure();
+//    			    .Database(MsSqlConfiguration
+//    			              .MsSql2008
+//    			              //.ConnectionString(TMX.Preferences.StorageConnectionString))
+//    			              //.ConnectionString(x => x.Is(connString)))
+//    			              .ConnectionString(x => x.Is(TMX.Preferences.StorageConnectionString)))
+//    			    //.Mappings(m => m.FluentMappings.AddFromAssemblyOf<ProductMap>())
+//    			    .Mappings(m => m.FluentMappings
+//    			              .AddFromAssemblyOf<TestSuiteMap>())
+//    			              //.AddFromAssemblyOf<System.Object>())
+//    			    .ExposeConfiguration(CreateSchema)
+//    			    .BuildConfiguration();
     			
 Console.WriteLine("00001");
+    			
+    			cmdlet.WriteVerbose("creating session factory...");
     			
     			SessionFactory = Fluently.Configure()
     			    .Database(MsSqlConfiguration
     			              .MsSql2008
     			              .ConnectionString(TMX.Preferences.StorageConnectionString))
     			    .Mappings(m =>m.FluentMappings
-    			              .AddFromAssembly(Assembly.GetExecutingAssembly()))
-    			              //.AddFromAssemblyOf<TestSuiteMap>()
+    			              //.AddFromAssembly(Assembly.GetExecutingAssembly()))
+    			              .AddFromAssemblyOf<TestSuiteMap>())
     			              //.AddFromAssemblyOf<System.Object>())
     			    .BuildSessionFactory();
     			
 Console.WriteLine("00002");
+    			
+    			cmdlet.WriteVerbose("session factory has been created...");
     			
             }
             catch (Exception eSession) {
@@ -94,13 +117,22 @@ Console.WriteLine("00002");
         
 		private static void CreateSchema(Configuration cfg)
 		{
-Console.WriteLine("00001-1");
+Console.WriteLine("creating schema export object...");
+            //cmdlet.WriteVerbose("creating schema export object...");
 		    var schemaExport = new SchemaExport(cfg);
-Console.WriteLine("00001-2");
-		    schemaExport.Drop(false, true);
-Console.WriteLine("00001-3");
-		    schemaExport.Create(false, true);
-Console.WriteLine("00001-4");
+Console.WriteLine("dropping the previous schema object...");
+            //cmdlet.WriteVerbose("dropping the previous schema object...");
+            try {
+                schemaExport.Drop(false, true);
+            }
+            catch (Exception eDroppingSchema) {
+                //cmdlet.
+Console.WriteLine(eDroppingSchema.InnerException.Message);
+            }
+Console.WriteLine("drocreating a new schema object...");
+		    //cmdlet.WriteVerbose("drocreating a new schema object...");
+            schemaExport.Create(false, true);
+Console.WriteLine("schema has been created");
 		}
     }
 }

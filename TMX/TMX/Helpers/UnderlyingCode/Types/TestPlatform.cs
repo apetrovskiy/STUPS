@@ -21,14 +21,21 @@ namespace TMX
     /// </summary>
     public class TestPlatform : ITestPlatform
     {
-        public TestPlatform()
+        public TestPlatform(string name, string id)
         {
+            this.Name = name;
+            this.Id = id;
         }
         
-        public string Name { get; set; }
-        public string Id { get; set; }
+        public virtual int DbId { get; set; }
+        
+        public virtual string Name { get; set; }
+        public virtual string Id { get; set; }
+        public virtual string Description { get; set; }
 
-        public string OperatingSystem { get; set; }
-        public string Version { get; set; }
+        public virtual string OperatingSystem { get; set; }
+        public virtual string Version { get; set; }
+        public virtual string Architecture { get; set; }
+        public virtual string Language { get; set; }
     }
 }

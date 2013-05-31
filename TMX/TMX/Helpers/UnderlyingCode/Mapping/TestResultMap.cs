@@ -51,7 +51,6 @@ namespace TMX
             Map(x => x.PlatformId);
         }
         
-        
 #region bunch01
 //        public string Name { get; set; }
 //        public string Id { get; set; }

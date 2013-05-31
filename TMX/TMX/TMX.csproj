@@ -216,6 +216,7 @@
     <Compile Include="Commands\TestStructure\AddTMXSimpleTestResultCommand.cs" />
     <Compile Include="Commands\TestStructure\AddTMXTestCaseCommand.cs" />
     <Compile Include="Commands\TestStructure\GetTMXTestCaseCommand.cs" />
+    <Compile Include="Commands\TestStructure\NewTMXTestPlatformCommand.cs" />
     <Compile Include="Commands\TestStructure\RemoveTMXTestCaseCommand.cs" />
     <Compile Include="Commands\TestStructure\SetTMXCurrentTestResultCommand.cs" />
     <Compile Include="Commands\TestStructure\SetTMXTestCaseCommand.cs" />
@@ -239,9 +240,11 @@
     <Compile Include="Helpers\Inheritance\Database\TestResultsCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\Database\TestStructureCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\ImportExportCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\NewPlatformCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\OpenScenarioCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\OpenSuiteCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\OpenTestCaseCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\PlatformCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\ScenarioCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\NewSuiteCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\SearchCmdletBase.cs" />
@@ -262,6 +265,7 @@
     <Compile Include="Helpers\UnderlyingCode\Commands\TestStructure\TMXAddTestScenarioCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TestStructure\TMXCloseTestResultCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TestStructure\TMXGetTestCaseCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TestStructure\TMXNewTestPlatformCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TestStructure\TMXNewTestSuiteCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TestStructure\TMXOpenTestScenarioCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TestStructure\TMXOpenTestSuiteCommand.cs" />
@@ -275,10 +279,10 @@
     <Compile Include="Helpers\UnderlyingCode\Mapping\ITestResultMap.cs" />
     <Compile Include="Helpers\UnderlyingCode\Mapping\ITestScenarioMap.cs" />
     <Compile Include="Helpers\UnderlyingCode\Mapping\TestCaseMap.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Mapping\TestPlatformMap.cs" />
     <Compile Include="Helpers\UnderlyingCode\Mapping\TestResultDetailMap.cs" />
     <Compile Include="Helpers\UnderlyingCode\Mapping\TestResultMap.cs" />
     <Compile Include="Helpers\UnderlyingCode\Mapping\TestScenarioMap.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Mapping\TestStatMap.cs" />
     <Compile Include="Helpers\UnderlyingCode\Mapping\TestSuiteMap.cs" />
     <Compile Include="Helpers\UnderlyingCode\StorageHelper.cs" />
     <Compile Include="Helpers\UnderlyingCode\Types\Database.cs" />

@@ -150,6 +150,7 @@
     <Compile Include="Commands\Repository\SetTMXTestConstantValueCommandTestFixture.cs" />
     <Compile Include="Commands\Status\GetTMXTestResultDetailsCommandTestFixture.cs" />
     <Compile Include="Commands\Status\GetTMXTestResultStatusCommandTestFixture.cs" />
+    <Compile Include="Commands\Status\GetTMXTestStatisticsCommandTestFixture.cs" />
     <Compile Include="Commands\TestResults\BackupTMXTestResultsCommandTestFixture.cs" />
     <Compile Include="Commands\TestResults\ImportTMXTestResultsCommandTestFixture.cs" />
     <Compile Include="Commands\TestResults\RestoreTMXTestResultsCommandTestFixture.cs" />

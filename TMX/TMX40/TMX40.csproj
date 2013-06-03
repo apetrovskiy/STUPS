@@ -246,6 +246,9 @@
     <Compile Include="..\TMX\Commands\Status\GetTMXTestScenarioStatusCommand.cs">
       <Link>Commands\Status\GetTMXTestScenarioStatusCommand.cs</Link>
     </Compile>
+    <Compile Include="..\TMX\Commands\Status\GetTMXTestStatisticsCommand.cs">
+      <Link>Commands\Status\GetTMXTestStatisticsCommand.cs</Link>
+    </Compile>
     <Compile Include="..\TMX\Commands\Status\GetTMXTestSuiteStatusCommand.cs">
       <Link>Commands\Status\GetTMXTestSuiteStatusCommand.cs</Link>
     </Compile>

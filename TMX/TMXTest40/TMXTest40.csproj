@@ -179,6 +179,9 @@
     <Compile Include="..\TMXTest\Commands\Status\GetTMXTestResultStatusCommandTestFixture.cs">
       <Link>Commands\Status\GetTMXTestResultStatusCommandTestFixture.cs</Link>
     </Compile>
+    <Compile Include="..\TMXTest\Commands\Status\GetTMXTestStatisticsCommandTestFixture.cs">
+      <Link>Commands\Status\GetTMXTestStatisticsCommandTestFixture.cs</Link>
+    </Compile>
     <Compile Include="..\TMXTest\Commands\TestResults\BackupTMXTestResultsCommandTestFixture.cs">
       <Link>Commands\TestResults\BackupTMXTestResultsCommandTestFixture.cs</Link>
     </Compile>

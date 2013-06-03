@@ -207,6 +207,7 @@
     <Compile Include="Commands\TestResults\ExportTMXTestLogCommand.cs" />
     <Compile Include="Commands\TestResults\ExportTMXTestResultsCommand.cs" />
     <Compile Include="Commands\TestResults\ExportTMXTestSummaryCommand.cs" />
+    <Compile Include="Commands\TestResults\ImportTMXTestResultsCommand.cs" />
     <Compile Include="Commands\TestResults\InitializeTMXResultsStorageCommand.cs" />
     <Compile Include="Commands\TestResults\RestoreTMXTestResultsCommand.cs" />
     <Compile Include="Commands\TestResults\SaveTMXTestScreenshotCommand.cs" />

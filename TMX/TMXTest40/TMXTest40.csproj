@@ -182,6 +182,9 @@
     <Compile Include="..\TMXTest\Commands\TestResults\BackupTMXTestResultsCommandTestFixture.cs">
       <Link>Commands\TestResults\BackupTMXTestResultsCommandTestFixture.cs</Link>
     </Compile>
+    <Compile Include="..\TMXTest\Commands\TestResults\ImportTMXTestResultsCommandTestFixture.cs">
+      <Link>Commands\TestResults\ImportTMXTestResultsCommandTestFixture.cs</Link>
+    </Compile>
     <Compile Include="..\TMXTest\Commands\TestResults\RestoreTMXTestResultsCommandTestFixture.cs">
       <Link>Commands\TestResults\RestoreTMXTestResultsCommandTestFixture.cs</Link>
     </Compile>

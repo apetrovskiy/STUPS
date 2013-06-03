@@ -279,10 +279,12 @@ namespace TMX
 
             ITestResult currentTestResult;
             if (null != TestData.CurrentTestResult) {
+                
 dumpTestStructure("AddTestResult #1");
                 currentTestResult = TestData.CurrentTestResult;
 dumpTestStructure("AddTestResult #1b");
             } else {
+                
 dumpTestStructure("AddTestResult #2");
                 currentTestResult =
                     new TestResult(
@@ -295,22 +297,26 @@ dumpTestStructure("AddTestResult #2b");
             if (null == currentTestResult.Name ||
                 string.Empty == currentTestResult.Name ||
                 0 == currentTestResult.Name.Length) {
+                
 dumpTestStructure("AddTestResult #3");
                 if (closingTestResultName != null &&
                     closingTestResultName != string.Empty &&
                     closingTestResultName.Length > 0 &&
                     TMX.TestData.CurrentTestResult != null && 
                      closingTestResultName != TMX.TestData.CurrentTestResult.Name) {
+                    
 dumpTestStructure("AddTestResult #3b");
                     currentTestResult.Name = closingTestResultName;
 
                 } else {
+                    
 dumpTestStructure("AddTestResult #4");
                     currentTestResult.Name = "generated test result name";
                 }
                 
             // 20130326
             } else {
+                
 dumpTestStructure("AddTestResult #5");
                 // the current test result is a result that was preset
                 // nothing to do
@@ -319,10 +325,12 @@ dumpTestStructure("AddTestResult #5");
             // 20130322
             // setting test result's origin
             if (generated) {
+                
 dumpTestStructure("AddTestResult #6");
                 currentTestResult.SetOrigin(TestResultOrigins.Automatic);
 
             } else {
+                
 dumpTestStructure("AddTestResult #7");
                 currentTestResult.SetOrigin(TestResultOrigins.Logical);
 
@@ -332,16 +340,20 @@ dumpTestStructure("AddTestResult #7");
             if (null == currentTestResult.Id ||
                 string.Empty == currentTestResult.Id ||
                 0 == currentTestResult.Id.Length) {
+                
 dumpTestStructure("AddTestResult #8");
                 if (closingTestResultId != null &&
                     closingTestResultId != string.Empty &&
                     closingTestResultId.Length > 0 &&
                     null != TMX.TestData.CurrentTestResult &&
                     closingTestResultId != TMX.TestData.CurrentTestResult.Id) {
+                    
 dumpTestStructure("AddTestResult #9");
                     currentTestResult.Id = closingTestResultId;
 
                 } else {
+                    
+
 dumpTestStructure("AddTestResult #10");
                     currentTestResult.Id = GetTestResultId();
 
@@ -1313,9 +1325,12 @@ internal static void dumpTestStructure(string strNumber)
             // clean up the last empty test result
             // in the previous scenario
             if (TestData.CurrentTestScenario != null) {
+                
                 if (TestData.CurrentTestScenario.TestResults.Count > 0) {
+                    
                     if (TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1].Details.Count == 0 &&
                         TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1].Status == TestStateNotTested) {
+
                         TestData.CurrentTestScenario.TestResults.RemoveAt(TestData.CurrentTestScenario.TestResults.Count - 1);
                     }
                 }
@@ -1331,13 +1346,13 @@ internal static void dumpTestStructure(string strNumber)
 //                        TestData.CurrentTestResult;
 //                }
             }
-
+            
             // 20130301
             // set time spent on the previous scenario
             if (null != TMX.TestData.CurrentTestScenario) {
-
+                
                 if (System.DateTime.MinValue != TMX.TestData.CurrentTestScenario.Timestamp) {
-
+                    
                     TMX.TestData.CurrentTestScenario.SetTimeSpent(
                         TMX.TestData.CurrentTestScenario.TimeSpent +=
                         (System.DateTime.Now - TMX.TestData.CurrentTestScenario.Timestamp).TotalSeconds);
@@ -1347,35 +1362,41 @@ internal static void dumpTestStructure(string strNumber)
 dumpTestStructure("2");
             
             if (testSuite != null) {
+                
                 TestData.CurrentTestSuite = testSuite;
             } else if (testSuite == null && 
                        testSuiteName != string.Empty &&
                        testSuiteName != null) {
+                
                 TestSuite testSuite2 = 
                     GetTestSuite(testSuiteName, testSuiteId);
                 if (testSuite2 != null) {
+                    
                     TestData.CurrentTestSuite = testSuite2;
                 }
             } else if (testSuite == null && 
                        testSuiteId != string.Empty &&
                        testSuiteId != null) {
+                
                 TestSuite testSuite3 = 
                     GetTestSuite(testSuiteName, testSuiteId);
                 if (testSuite3 != null) {
+                    
                     TestData.CurrentTestSuite = testSuite3;
                 }
             }
-
+            
             if (TestData.CurrentTestSuite == null) {
+                
                 return result;
             }
             
             if (testScenarioId == null || testScenarioId == string.Empty) {
-
+                
                 testScenarioId = 
                     GetTestScenarioId();
             }
-
+            
 dumpTestStructure("4");
             
 //            // 20130405
@@ -1397,24 +1418,28 @@ dumpTestStructure("4.4");
             
             TestData.CurrentTestSuite.TestScenarios.Add(
                 new TestScenario(testScenarioName, testScenarioId, TestData.CurrentTestSuite.Id)); //testSuiteId));
-
+            
 dumpTestStructure("4.5");
             // description
             if (testScenarioDescription != null && testScenarioDescription != string.Empty) {
+                
                 TestData.CurrentTestSuite.TestScenarios[CurrentTestSuite.TestScenarios.Count - 1].Description = 
                     testScenarioDescription;
             }
-
+            
 dumpTestStructure("4.6");
             TestData.CurrentTestScenario = 
                 (TestScenario)TestData.CurrentTestSuite.TestScenarios[CurrentTestSuite.TestScenarios.Count - 1];
             
             // 20130531
             try {
+                
                 TestData.CurrentTestScenario.PlatformId =
                     TestData.CurrentTestPlatform.Id;
             }
-            catch {}
+            catch {
+                
+            }
             
             // 20130301
             // set the initial time for this scenario's session
@@ -1422,11 +1447,12 @@ dumpTestStructure("4.6");
             
             OnTMXNewTestScenarioAdded(TestData.CurrentTestScenario, null);
             
-            
             if (TMX.Preferences.Storage) {
+                
                 // 20130527
     			using (var session = StorageHelper.SessionFactory.OpenSession())
                 {
+    			    
                     session.Save(TestData.CurrentTestScenario);
     			}
             }

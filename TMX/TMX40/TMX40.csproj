@@ -261,6 +261,9 @@
     <Compile Include="..\TMX\Commands\TestResults\ExportTMXTestSummaryCommand.cs">
       <Link>Commands\TestResults\ExportTMXTestSummaryCommand.cs</Link>
     </Compile>
+    <Compile Include="..\TMX\Commands\TestResults\ImportTMXTestResultsCommand.cs">
+      <Link>Commands\TestResults\ImportTMXTestResultsCommand.cs</Link>
+    </Compile>
     <Compile Include="..\TMX\Commands\TestResults\InitializeTMXResultsStorageCommand.cs">
       <Link>Commands\TestResults\InitializeTMXResultsStorageCommand.cs</Link>
     </Compile>

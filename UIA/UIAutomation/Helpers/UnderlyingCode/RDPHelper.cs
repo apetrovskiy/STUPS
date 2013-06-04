@@ -26,6 +26,7 @@ namespace UIAutomation
 use multimon:i:0
 desktopwidth:i:1024
 desktopheight:i:768
+smart sizing:i:0
 session bpp:i:32
 winposstr:s:0,1,63,37,1200,900
 compression:i:1
@@ -191,6 +192,14 @@ drivestoredirect:s:
                         "desktopwidth:i:1024",
                         "desktopwidth:i:" +
                         cmdlet.DesktopWidth);
+            }
+            
+            if (null != cmdlet.SmartSizing) {
+                
+                RDPFileTemplate =
+                    RDPFileTemplate.Replace(
+                        "smart sizing:i:0",
+                        "smart sizing:i:1");
             }
             
             if (null != cmdlet.DisableThemes) {

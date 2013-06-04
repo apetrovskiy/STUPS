@@ -175,6 +175,9 @@ namespace UIAutomation
         public int DesktopWidth { get; set; }
         
         [Parameter(Mandatory = false)]
+        public SwitchParameter SmartSizing { get; set; }
+        
+        [Parameter(Mandatory = false)]
         public bool DisableWallpaper { get; set; }
         
         [Parameter(Mandatory = false)]

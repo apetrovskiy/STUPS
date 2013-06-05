@@ -39,17 +39,48 @@ namespace TMX
             cmdlet.WriteVerbose(
                 cmdlet,
                 "Checking whether the current test result is fulfilled and must be added to the current test scenario's results");
-
-            int newTestResultIndex = TestData.CurrentTestScenario.TestResults.Count - 1;
             
-            if (null != TestData.CurrentTestScenario.TestResults &&
-                0 < TestData.CurrentTestScenario.TestResults.Count) {
+            // 20130605
+            // inserting the new simple test result to the suite/scenario the user provided
+            TestSuite testSuiteToAddTestResult = null;
+            TestScenario testScenarioToAddTestResult = null;
+            if (null != cmdlet.TestSuiteName || null != cmdlet.TestSuiteId) {
                 
-                TestData.CurrentTestScenario.TestResults.Insert(
+                testSuiteToAddTestResult =
+                    TestData.GetTestSuite(cmdlet.TestSuiteName, cmdlet.TestSuiteId);
+                if (null == testSuiteToAddTestResult) {
+                    testSuiteToAddTestResult = TestData.CurrentTestSuite;
+                }
+            }
+            
+            if (null != cmdlet.TestScenarioName || null != cmdlet.TestScenarioId) {
+                
+                testScenarioToAddTestResult =
+                    TestData.GetTestScenario(testSuiteToAddTestResult, cmdlet.TestScenarioName, cmdlet.TestScenarioId, cmdlet.TestSuiteName, cmdlet.TestSuiteId);
+                if (null == testScenarioToAddTestResult) {
+                    testScenarioToAddTestResult = TestData.CurrentTestScenario;
+                }
+            }
+
+            //int newTestResultIndex = TestData.CurrentTestScenario.TestResults.Count - 1;
+            int newTestResultIndex = testScenarioToAddTestResult.TestResults.Count - 1;
+            
+            //if (null != TestData.CurrentTestScenario.TestResults &&
+            //    0 < TestData.CurrentTestScenario.TestResults.Count) {
+            if (null != testScenarioToAddTestResult.TestResults &&
+                0 < testScenarioToAddTestResult.TestResults.Count) {
+                
+                //TestData.CurrentTestScenario.TestResults.Insert(
+                //    newTestResultIndex,
+                //    new TestResult(
+                //        TestData.CurrentTestScenario.Id,
+                //        TestData.CurrentTestSuite.Id));
+                
+                testScenarioToAddTestResult.TestResults.Insert(
                     newTestResultIndex,
                     new TestResult(
-                        TestData.CurrentTestScenario.Id,
-                        TestData.CurrentTestSuite.Id));
+                        testScenarioToAddTestResult.Id,
+                        testScenarioToAddTestResult.Id));
                 
                 // 20130429
                 TMX.Logger.TMXLogger.Info("Test result: '" + cmdlet.TestResultName + "'\t" + cmdlet.TestResultStatus.ToString());

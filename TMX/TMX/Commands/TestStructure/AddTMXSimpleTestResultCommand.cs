@@ -23,6 +23,18 @@ namespace TMX.Commands
 		}
 		
 		#region Parameters
+		// 20130605
+		[Parameter(Mandatory = false)]
+		public string TestSuiteName { get; set; }
+		
+		[Parameter(Mandatory = false)]
+		public string TestSuiteId { get; set; }
+		
+		[Parameter(Mandatory = false)]
+		public string TestScenarioName { get; set; }
+		
+		[Parameter(Mandatory = false)]
+		public string TestScenarioId { get; set; }
 		#endregion Parameters
 		
 		protected override void BeginProcessing()

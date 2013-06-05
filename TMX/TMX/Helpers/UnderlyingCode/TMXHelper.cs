@@ -505,7 +505,8 @@ namespace TMX
                              from testResultDetail in testResult.Details
                              select new XElement("detail", 
                                                  TMXHelper.CreateXAttribute("name", testResultDetail.Name),
-                                                 TMXHelper.CreateXAttribute(xmlStruct.TimeSpentAttribute, testResultDetail.Timestamp)
+                                                 TMXHelper.CreateXAttribute(xmlStruct.TimeSpentAttribute, testResultDetail.Timestamp),
+                                                 TMXHelper.CreateXAttribute("status", testResultDetail.DetailStatus)
                                                 )
                             );
 

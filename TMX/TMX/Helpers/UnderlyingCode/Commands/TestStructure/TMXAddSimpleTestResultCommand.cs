@@ -46,11 +46,18 @@ namespace TMX
             TestScenario testScenarioToAddTestResult = null;
             if (null != cmdlet.TestSuiteName || null != cmdlet.TestSuiteId) {
                 
+                cmdlet.WriteVerbose(cmdlet, "getting test suite '" + cmdlet.TestSuiteName + "' with Id '" + cmdlet.TestSuiteId + "'");
                 testSuiteToAddTestResult =
                     TestData.GetTestSuite(cmdlet.TestSuiteName, cmdlet.TestSuiteId);
                 if (null == testSuiteToAddTestResult) {
+                    
+                    cmdlet.WriteVerbose(cmdlet, "getting the current test suite");
                     testSuiteToAddTestResult = TestData.CurrentTestSuite;
                 }
+            } else {
+                
+                cmdlet.WriteVerbose(cmdlet, "getting the current test suite");
+                testSuiteToAddTestResult = TestData.CurrentTestSuite;
             }
             
             if (null != cmdlet.TestScenarioName || null != cmdlet.TestScenarioId) {
@@ -60,6 +67,8 @@ namespace TMX
                 if (null == testScenarioToAddTestResult) {
                     testScenarioToAddTestResult = TestData.CurrentTestScenario;
                 }
+            } else {
+                testScenarioToAddTestResult = TestData.CurrentTestScenario;
             }
 
             //int newTestResultIndex = TestData.CurrentTestScenario.TestResults.Count - 1;

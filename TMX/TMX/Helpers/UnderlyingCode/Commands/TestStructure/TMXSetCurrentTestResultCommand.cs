@@ -88,8 +88,6 @@ namespace TMX
                     // nothing to do
                 }
                 
-                
-                
             } else {
                 
                 // nothing to do
@@ -103,6 +101,19 @@ namespace TMX
                 new TestResult(
                     TestData.CurrentTestScenario.Id,
                     TestData.CurrentTestSuite.Id);
+            
+            // 20130605
+            if (null == TestData.CurrentTestResult.Id || string.Empty == TestData.CurrentTestResult.Id) {
+                
+                TestData.CurrentTestResult.Id = TMX.TestData.GetTestResultId();
+            }
+            
+            // 20130605
+            try {
+                TestData.CurrentTestResult.PlatformId =
+                    TestData.CurrentTestPlatform.Id;
+            }
+            catch {}
 
             cmdlet.WriteVerbose(
                 cmdlet,

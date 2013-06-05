@@ -76,6 +76,13 @@ namespace TMX
                 TestData.CurrentTestScenario.TestResults[newTestResultIndex].enStatus = cmdlet.TestResultStatus;
             }
             
+            // 20130605
+            try {
+                TestData.CurrentTestScenario.TestResults[newTestResultIndex].PlatformId =
+                    TestData.CurrentTestPlatform.Id;
+            }
+            catch {}
+            
             TestData.CurrentTestScenario.TestResults[newTestResultIndex].SetOrigin(TestResultOrigins.Logical);
             
 //            if (null != TestData.CurrentTestResult) {

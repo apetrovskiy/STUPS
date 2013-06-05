@@ -25,9 +25,13 @@ namespace TMX.Commands
         }
         
         #region Parameters
-        // 20130327
-        //[Parameter(Mandatory = false)]
-        //public string Banner { get; set; }
+        // 20130605
+        [Parameter(Mandatory = false)]
+        internal new TestResultStatuses TestResultStatus { get; set; }
+        [Parameter(Mandatory = false)]
+        internal new SwitchParameter TestPassed { get; set; }
+        [Parameter(Mandatory = false)]
+        internal new SwitchParameter KnownIssue { get; set; }
         #endregion Parameters
         
         protected override void BeginProcessing()

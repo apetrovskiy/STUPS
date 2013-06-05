@@ -121,6 +121,9 @@
     <Compile Include="..\UIAutomationTest\Commands\Cache\StopUIACacheRequestCommandTestFixture.cs">
       <Link>Commands\Cache\StopUIACacheRequestCommandTestFixture.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Common\HideUIACurrentHighlighterCommandTestFixture.cs">
+      <Link>Commands\Common\HideUIACurrentHighlighterCommandTestFixture.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomationTest\Commands\Common\MoveUIACursorCommandTestFixture.cs">
       <Link>Commands\Common\MoveUIACursorCommandTestFixture.cs</Link>
     </Compile>

@@ -84,6 +84,7 @@
     <Compile Include="..\UIAutomation\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Commands\Common\HideUIACurrentHighlighterCommandTestFixture.cs" />
     <Compile Include="Commands\Container\NewUIAContainerCommandTestFixture.cs" />
     <Compile Include="Commands\No\WaitUIANoWindowCommandTestFixture.cs" />
     <Compile Include="Commands\Pattern\InvokeUIAToggleStateSetCommandTestFixture.cs" />
@@ -94,6 +95,7 @@
     <Compile Include="Helpers\UnderlyingCode\GetAutomationElementsViaWildcards_FindAllTestFixture.cs" />
     <Compile Include="Helpers\UnderlyingCode\getControlConditionsTestFixture.cs" />
     <Compile Include="Helpers\UnitTestingHelper.cs" />
+    <Compile Include="ParamChecks\Common\HideUIACurrentHighlighterCommandTestFixture.cs" />
     <Compile Include="ParamChecks\Common\InvokeUIAControlClickCommandTestFixture.cs" />
     <Compile Include="ParamChecks\Container\NewUIAContainerCommandTestFixture.cs" />
     <Compile Include="ParamChecks\Get\GetUIAControlCommandTestFixture.cs" />

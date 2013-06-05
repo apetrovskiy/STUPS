@@ -308,8 +308,12 @@ namespace UIAutomation
         
         internal static void HideHighlighters()
         {
-            highlighter.Dispose();
-            highlighterParent.Dispose();
+            // 20130605
+            try {
+                highlighter.Dispose();
+                highlighterParent.Dispose();
+            }
+            catch {}
         }
         
         // 20130322

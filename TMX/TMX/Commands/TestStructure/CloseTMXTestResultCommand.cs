@@ -22,9 +22,10 @@ namespace TMX.Commands
     {
         public CloseTMXTestResultCommand()
         {
-            if (null == TestData.TestSuites || 0 == TestData.TestSuites.Count) {
-                TestData.InitTestData();
-            }
+            // 20130605
+//            if (null == TestData.TestSuites || 0 == TestData.TestSuites.Count) {
+//                TestData.InitTestData();
+//            }
             this.Id =
                 TMX.TestData.GetTestResultId();
             this.TestLog = TMX.Preferences.TestLog;

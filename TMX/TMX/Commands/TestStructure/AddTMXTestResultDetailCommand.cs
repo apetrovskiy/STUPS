@@ -20,9 +20,10 @@ namespace TMX.Commands
     {
         public AddTMXTestResultDetailCommand()
         {
-            if (null == TestData.TestSuites || 0 == TestData.TestSuites.Count) {
-                TestData.InitTestData();
-            }
+            // 20130605
+//            if (null == TestData.TestSuites || 0 == TestData.TestSuites.Count) {
+//                TestData.InitTestData();
+//            }
         }
         
         #region Parameters

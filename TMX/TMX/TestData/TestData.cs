@@ -563,6 +563,11 @@ dumpTestStructure("AddTestResult #46");
                 TestData.TestSuites = new List<TestSuite>();
             }
             
+            // 20130605
+            if (null == TestData.TestPlatforms) {
+                TestData.TestPlatforms = new List<TestPlatform>();
+            }
+            
             // 20130531
             // check that at least one platform exists
             if (0 == TestData.TestPlatforms.Count) {

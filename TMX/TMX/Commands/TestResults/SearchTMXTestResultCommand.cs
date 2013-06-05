@@ -21,9 +21,10 @@ namespace TMX.Commands
     {
         public SearchTMXTestResultCommand()
         {
-            if (TestData.TestSuites.Count == 0) {
-                TestData.InitTestData();
-            }
+            // 20130605
+//            if (TestData.TestSuites.Count == 0) {
+//                TestData.InitTestData();
+//            }
         }
         
         #region Parameters

@@ -738,7 +738,9 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
 
                 if (scriptblocks != null &&
                     scriptblocks.Count > 0) {
-
+                    
+                    cmdlet.WriteVerbose(cmdlet, "there are " + scriptblocks.Count.ToString() + " scriptblock(s) to run");
+                    
                     foreach (ScriptBlock sb in scriptblocks) {
 
                         if (sb != null) {
@@ -760,9 +762,23 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
                                     //runScriptBlock runner = new runScriptBlock(runSBAction);
                                     //runner(sb, cmdlet.EventSource, cmdlet.EventArgs);
                                     runScriptBlockWithParameters runnerWithParams = new runScriptBlockWithParameters(runSBActionWithParams);
-
+                                    
+                                    cmdlet.WriteVerbose(cmdlet, "the scriptblock runner has been created");
+                                    
+                                    // 20130606
+                                    try {
+                                        cmdlet.WriteVerbose(cmdlet, "listing parameters");
+                                        foreach (var singleParam in parameters) {
+                                            cmdlet.WriteVerbose(cmdlet, singleParam);
+                                        }
+                                    }
+                                    catch (Exception eListParameters) {
+                                        cmdlet.WriteVerbose(cmdlet, eListParameters.Message);
+                                    }
+                                    
                                     runnerWithParams(sb, parameters);
-
+                                    
+                                    cmdlet.WriteVerbose(cmdlet, "the scripblock runner has finished");
                                 }
                             } catch (Exception eInner) {
 
@@ -790,6 +806,7 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
 //                                    //false);
 //                                    true);
                                     
+                                    cmdlet.WriteVerbose(cmdlet, eInner.Message);
                                     throw;
                             }
                         }
@@ -808,6 +825,7 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
 //                    ErrorCategory.InvalidArgument,
 //                    true);
                     
+                cmdlet.WriteVerbose(cmdlet, eOuter.Message);
                 throw;
             }
         }
@@ -992,18 +1010,34 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
         {
             Collection<PSObject> psObjects = null;
             try {
-
+                
+                this.WriteVerbose(
+                    this,
+                    "select wheter a scripblock has parameters or doesn't");
+                
                 if (null == parameters || 0 == parameters.Length) {
-
+                    
+                    this.WriteVerbose(
+                        this,
+                        "without parameters");
+                    
                     psObjects =
                         sb.Invoke();
 
                 } else {
 
+                    this.WriteVerbose(
+                        this,
+                        "with parameters");
+                    
                     psObjects =
                         sb.Invoke(parameters);
 
                 }
+                
+                this.WriteVerbose(
+                    this,
+                    "scriptblock has been fired successfully");
 
             } catch (Exception eOuter) {
 
@@ -1033,6 +1067,9 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
                     // 20130318
                     //false);
                     true);
+                this.WriteVerbose(
+                    this,
+                    eOuter.InnerException.Message);
             }
         }
         #endregion Action delegate

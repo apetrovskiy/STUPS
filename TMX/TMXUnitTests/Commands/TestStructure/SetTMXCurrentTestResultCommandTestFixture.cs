@@ -36,7 +36,7 @@ namespace TMXUnitTests.Commands.TestStructure
         }
         
         [Test]
-        [Description("New-TMXTestSuite -Name suite1; Set-TMXTestResult -TestResultName result; Get-TMXTestSuiteStatus")]
+        [Description("New-TMXTestSuite -Name suite1; Set-TMXCurrentTestResult -TestResultName result; Get-TMXTestSuiteStatus")]
         [Category("Fast")]
         public void SetCurrentTestResult_Name_CheckingStatus()
         {
@@ -53,7 +53,7 @@ namespace TMXUnitTests.Commands.TestStructure
         }
         
         [Test]
-        [Description("New-TMXTestSuite -Name suite1; Set-TMXTestResult -TestResultName result")]
+        [Description("New-TMXTestSuite -Name suite1; Set-TMXCurrentTestResult -TestResultName result")]
         [Category("Fast")]
         public void SetCurrentTestResult_Name()
         {
@@ -67,7 +67,7 @@ namespace TMXUnitTests.Commands.TestStructure
         }
         
         [Test]
-        [Description("New-TMXTestSuite -Name suite1; Set-TMXTestResult -TestResultName ''")]
+        [Description("New-TMXTestSuite -Name suite1; Set-TMXCurrentTestResult -TestResultName ''")]
         [Category("Fast")]
         public void SetCurrentTestResult_Name_Empty()
         {
@@ -79,7 +79,7 @@ namespace TMXUnitTests.Commands.TestStructure
         }
         
         [Test]
-        [Description("New-TMXTestSuite -Name suite1; Set-TMXTestResult -TestResultId id")]
+        [Description("New-TMXTestSuite -Name suite1; Set-TMXCurrentTestResult -TestResultId id")]
         [Category("Fast")]
         public void SetCurrentTestResult_Id()
         {
@@ -93,20 +93,23 @@ namespace TMXUnitTests.Commands.TestStructure
         }
         
         [Test]
-        [Description("New-TMXTestSuite -Name suite1; Set-TMXTestResult -TestResultId ''")]
+        [Description("New-TMXTestSuite -Name suite1; Set-TMXCurrentTestResult -TestResultId ''")]
         [Category("Fast")]
         public void SetCurrentTestResult_Id_Empty()
         {
             UnitTestingHelper.SetTestResult(null, string.Empty);
 
             Assert.AreEqual(
-                null,
+                // 20130606
+                // now Ids are always generated
+                //null,
+                "1", 
                 TestData.CurrentTestResult.Id);
         }
         
         // ==============================================================================================================================
         [Test]
-        [Description("New-TMXTestSuite -Name suite1; Close-TMXTestResult -TestResultName r -TestPassed:$true; Set-TMXTestResult -TestResultName result; Get-TMXTestSuiteStatus")]
+        [Description("New-TMXTestSuite -Name suite1; Close-TMXTestResult -TestResultName r -TestPassed:$true; Set-TMXCurrentTestResult -TestResultName result; Get-TMXTestSuiteStatus")]
         [Category("Fast")]
         public void SetCurrentTestResult_Name_CheckingStatus_after_a_closed_result_1()
         {
@@ -124,7 +127,7 @@ namespace TMXUnitTests.Commands.TestStructure
         }
         
         [Test]
-        [Description("New-TMXTestSuite -Name suite1; Close-TMXTestResult -TestResultName r -TestPassed:$false; Set-TMXTestResult -TestResultName result; Get-TMXTestSuiteStatus")]
+        [Description("New-TMXTestSuite -Name suite1; Close-TMXTestResult -TestResultName r -TestPassed:$false; Set-TMXCurrentTestResult -TestResultName result; Get-TMXTestSuiteStatus")]
         [Category("Fast")]
         public void SetCurrentTestResult_Name_CheckingStatus_after_a_closed_result_2()
         {
@@ -142,7 +145,7 @@ namespace TMXUnitTests.Commands.TestStructure
         }
         
         [Test]
-        [Description("New-TMXTestSuite -Name suite1; Close-TMXTestResult -TestResultName r -TestPassed:$true; Set-TMXTestResult -TestResultName result")]
+        [Description("New-TMXTestSuite -Name suite1; Close-TMXTestResult -TestResultName r -TestPassed:$true; Set-TMXCurrentTestResult -TestResultName result")]
         [Category("Fast")]
         public void SetCurrentTestResult_Name_after_a_closed_result()
         {
@@ -158,7 +161,7 @@ namespace TMXUnitTests.Commands.TestStructure
         
         // ==============================================================================================================================
         [Test]
-        [Description("New-TMXTestSuite -Name suite1; Set-TMXTestResult -TestResultName result; Close-TMXTestResult -TestPassed:$true; Get-TMXTestSuiteStatus")]
+        [Description("New-TMXTestSuite -Name suite1; Set-TMXCurrentTestResult -TestResultName result; Close-TMXTestResult -TestPassed:$true; Get-TMXTestSuiteStatus")]
         [Category("Fast")]
         public void SetCurrentTestResult_Name_Checking_before_closing()
         {
@@ -174,7 +177,7 @@ namespace TMXUnitTests.Commands.TestStructure
         }
         
         [Test]
-        [Description("New-TMXTestSuite -Name suite1; Set-TMXTestResult -TestResultName result; Close-TMXTestResult -TestPassed:$true; Get-TMXTestSuiteStatus")]
+        [Description("New-TMXTestSuite -Name suite1; Set-TMXCurrentTestResult -TestResultName result; Close-TMXTestResult -TestPassed:$true; Get-TMXTestSuiteStatus")]
         [Category("Fast")]
         public void SetCurrentTestResult_Name_CheckingStatus_before_closing_1()
         {
@@ -190,7 +193,7 @@ namespace TMXUnitTests.Commands.TestStructure
         }
         
         [Test]
-        [Description("New-TMXTestSuite -Name suite1; Set-TMXTestResult -TestResultName result; Close-TMXTestResult -TestPassed:$false; Get-TMXTestSuiteStatus")]
+        [Description("New-TMXTestSuite -Name suite1; Set-TMXCurrentTestResult -TestResultName result; Close-TMXTestResult -TestPassed:$false; Get-TMXTestSuiteStatus")]
         [Category("Fast")]
         public void SetCurrentTestResult_Name_CheckingStatus_before_closing_2()
         {
@@ -206,7 +209,7 @@ namespace TMXUnitTests.Commands.TestStructure
         }
         // ==============================================================================================================================
         [Test]
-        [Description("New-TMXTestSuite -Name suite1; Set-TMXTestResult -TestResultName result; Set-TMXTestResult -TestResultName result2; Get-TMXTestSuiteStatus")]
+        [Description("New-TMXTestSuite -Name suite1; Set-TMXCurrentTestResult -TestResultName result; Set-TMXCurrentTestResult -TestResultName result2; Get-TMXTestSuiteStatus")]
         [Category("Fast")]
         public void SetCurrentTestResult_Name_Checking_before_setting_next_result()
         {

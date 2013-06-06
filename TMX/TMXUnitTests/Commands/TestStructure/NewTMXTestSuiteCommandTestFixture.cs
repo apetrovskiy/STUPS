@@ -146,9 +146,11 @@ namespace TMXUnitTests.Commands.TestStructure
                 ((ITestSuite)(object)PSTestLib.UnitTestOutput.LastOutput[0]).Name);
             
             // checks how many test suites
+            Console.WriteLine("Output in the UnitTestOutput object");
             Assert.AreEqual( // this is a technical solution
                 1,
                 PSTestLib.UnitTestOutput.Count);
+            Console.WriteLine("Test Suites counter");
             Assert.AreEqual( // this is a logical solution
                 1,
                 TMX.TestData.TestSuites.Count);

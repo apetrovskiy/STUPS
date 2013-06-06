@@ -683,6 +683,19 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
                     }
                 }
                 
+//                if (null == scriptblocks || 0 == scriptblocks.Count) {
+//                    
+//                    cmdlet.WriteVerbose(cmdlet, "there is no any StopAction scriptblock");
+//                    
+//                    //throw new Exception("There are no StopAction scriptblocks, define at least one");
+//                    cmdlet.WriteError(
+//                        cmdlet,
+//                        "There are no StopAction scriptblocks, define at least one",
+//                        "NoStopActionScripblocks",
+//                        ErrorCategory.InvalidArgument,
+//                        true);
+//                }
+                
                 cmdlet.WriteVerbose(cmdlet, "scriptblocks were prepared");
             }
             catch (Exception eScriptblocksPreparation) {
@@ -768,8 +781,12 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
                                     // 20130606
                                     try {
                                         cmdlet.WriteVerbose(cmdlet, "listing parameters");
-                                        foreach (var singleParam in parameters) {
-                                            cmdlet.WriteVerbose(cmdlet, singleParam);
+                                        if (null == parameters || 0 == parameters.Length) {
+                                            cmdlet.WriteVerbose(cmdlet, "there are no parameters");
+                                        } else {
+                                            foreach (var singleParam in parameters) {
+                                                cmdlet.WriteVerbose(cmdlet, singleParam);
+                                            }
                                         }
                                     }
                                     catch (Exception eListParameters) {
@@ -806,8 +823,10 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
 //                                    //false);
 //                                    true);
                                     
+                                    // 20130606
                                     cmdlet.WriteVerbose(cmdlet, eInner.Message);
-                                    throw;
+                                    //throw;
+                                    throw new Exception("Failed to run scriptblock");
                             }
                         }
                     }
@@ -825,8 +844,10 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
 //                    ErrorCategory.InvalidArgument,
 //                    true);
                     
+                // 20130606
                 cmdlet.WriteVerbose(cmdlet, eOuter.Message);
-                throw;
+                //throw;
+                throw new Exception("Failed to run scriptblocks");
             }
         }
         //#endregion Invoke-UIAScript
@@ -1013,7 +1034,7 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
                 
                 this.WriteVerbose(
                     this,
-                    "select wheter a scripblock has parameters or doesn't");
+                    "select whether a scripblock has parameters or doesn't");
                 
                 if (null == parameters || 0 == parameters.Length) {
                     
@@ -1056,6 +1077,11 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
 //                                     //"System.Management.Automation.Runspaces.Runspace.DefaultRunspace = RunspaceFactory.CreateRunspace();");
 //                WriteError(err);
                 
+                // 20130606
+//                this.WriteVerbose(
+//                    this,
+//                    eOuter.InnerException.Message);
+                
                 this.WriteError(
                     this,
                     "Unable to issue the following command:\r\n" +
@@ -1067,9 +1093,7 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
                     // 20130318
                     //false);
                     true);
-                this.WriteVerbose(
-                    this,
-                    eOuter.InnerException.Message);
+
             }
         }
         #endregion Action delegate

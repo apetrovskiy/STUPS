@@ -255,7 +255,13 @@ namespace UIAutomation
         //cmdlet.ForwardDirection ? currentStep.StepForwardActionParameters : currentStep.StepBackwardActionParameters);
         internal void RunCurrentStepParameters(WizardRunCmdletBase cmdlet, Wizard wizard, WizardStep currentStep, object[] currentParameters)
         {
+            // 20130606
+            //cmdlet.WriteVerbose(cmdlet, "running scriptblocks for the '" + currentStep.Name + "' step");
+            cmdlet.WriteInfo(cmdlet, "running scriptblocks for the '" + currentStep.Name + "' step");
+            
             if (WizardStepActions.Stop == currentStep.ToDo) {
+                
+                cmdlet.WriteInfo(cmdlet, "running scriptblocks from the StopAction scriptblock set");
                 cmdlet.RunWizardStopScriptBlocks(cmdlet, wizard, currentParameters);
                 // 20130508
                 // temporary
@@ -267,7 +273,7 @@ namespace UIAutomation
                 // 20130508
                 cmdlet.WriteInfo(cmdlet, "running scriptblocks for step '" + currentStep.Name + "', " + currentStep.ToDo.ToString());
                 cmdlet.RunWizardStepScriptBlocks(cmdlet, currentStep, currentStep.ToDo, currentParameters);
-                cmdlet.WriteInfo(cmdlet, "scriptblocks have finished");
+                cmdlet.WriteInfo(cmdlet, "Forward, Backward or Cancel scriptblocks have finished");
             }
         }
 
@@ -302,7 +308,7 @@ namespace UIAutomation
                     currentParameters = wizard.StopActionParameters;
                     break;
                 default:
-                    throw new Exception("Invalid value for WizardStepActions");
+                    throw new Exception("Invalid value for WizardStepActions on getting steps' parameters");
             }
             return currentParameters;
         }

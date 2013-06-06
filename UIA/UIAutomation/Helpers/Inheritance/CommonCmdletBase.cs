@@ -1214,6 +1214,19 @@ namespace UIAutomation
         protected internal void RunWizardStopScriptBlocks(WizardCmdletBase cmdlet, Wizard wizard, object[] parameters)
         {
 
+            if (null == wizard.StopAction || 0 == wizard.StopAction.Length) {
+                
+                cmdlet.WriteVerbose(cmdlet, "there is no any StopAction scriptblock");
+                
+                //throw new Exception("There are no StopAction scriptblocks, define at least one");
+                cmdlet.WriteError(
+                    cmdlet,
+                    "There are no StopAction scriptblocks, define at least one",
+                    "NoStopActionScripblocks",
+                    ErrorCategory.InvalidArgument,
+                    true);
+            }
+            
             runTwoScriptBlockCollections(
                 null,
                 wizard.StopAction,
@@ -1316,7 +1329,7 @@ namespace UIAutomation
 //                        parameters);
 //                    break;
                 default:
-                    throw new Exception("Invalid value for WizardStepActions");
+                    throw new Exception("Invalid value for WizardStepActions on running scriptblocks");
             }
             
             // 20130321

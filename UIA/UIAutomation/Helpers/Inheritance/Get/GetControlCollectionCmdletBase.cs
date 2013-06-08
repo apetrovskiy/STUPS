@@ -354,6 +354,9 @@ namespace UIAutomation
                         textValue,
                         controlType,
                         caseSensitive);
+                
+                // 20130608
+                results = null;
 
             }
             catch { //(Exception eWildCardSearch) {

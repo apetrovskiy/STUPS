@@ -2184,6 +2184,11 @@ namespace UIAutomation
                         }
                         // cmdlet.WriteVerbose(cmdlet, "WildCardSearch: element added to the result collection (SearchCriteria) (3)");
                     }
+                    
+                    // 20130608
+                    tempList.Clear();
+                    tempList = null;
+                    
                     cmdlet.WriteVerbose(cmdlet, "WildCardSearch: element(s) added to the result collection: " + resultCollection.Count.ToString());
                 } catch (Exception eUnexpected) {
 
@@ -2196,6 +2201,10 @@ namespace UIAutomation
                         ErrorCategory.ObjectNotFound,
                         true);
                 }
+                
+                // 20130608
+                cmdlet1 = null;
+                
             } catch (Exception eWildCardSearch) {
 
                 this.WriteError(

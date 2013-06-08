@@ -1904,6 +1904,9 @@ namespace UIAutomation
                     displayConditions(cmdlet, conditionsForWildCards, "for wildcard search");
 
                 }
+                
+                // 20130608
+                tempCmdlet = null;
 
                 foreach (AutomationElement inputObject in cmdlet.InputObject) {
 
@@ -2023,6 +2026,10 @@ namespace UIAutomation
                                                               pIDcondition);
                                     if (tempElement != null &&
                                         (int)tempElement.Current.ProcessId > 0) {
+                                        
+                                        // 20130608
+                                        tempElement = null;
+                                        
                                     } else {
 
                                         // 20120830 (the new style of writing errors)
@@ -2109,6 +2116,12 @@ namespace UIAutomation
                     }
                 }
             }
+            
+            // 20130608
+            if (null != tempListWin32) {
+                tempListWin32.Clear();
+                tempListWin32 = null;
+            }
         }
 
         internal void SearchByWildcardViaUIA(
@@ -2186,8 +2199,10 @@ namespace UIAutomation
                     }
                     
                     // 20130608
-                    tempList.Clear();
-                    tempList = null;
+                    if (null != tempList) {
+                        tempList.Clear();
+                        tempList = null;
+                    }
                     
                     cmdlet.WriteVerbose(cmdlet, "WildCardSearch: element(s) added to the result collection: " + resultCollection.Count.ToString());
                 } catch (Exception eUnexpected) {
@@ -2277,6 +2292,12 @@ namespace UIAutomation
                             }
                         }
                     }
+                    
+                    // 20130608
+                    if (null != tempCollection) {
+
+                        tempCollection = null;
+                    }
                 }
             }
         }
@@ -2293,6 +2314,10 @@ namespace UIAutomation
                 foreach (AutomationElement element in textSearchCollection) {
                     aeCtrl.Add(element);
                 }
+            }
+            // 20130608
+            if (null != textSearchCollection) {
+                textSearchCollection = null;
             }
         }
         
@@ -2329,6 +2354,12 @@ namespace UIAutomation
                         aeCtrl.Add(elementToChoose);
                     }
                 }
+            }
+            
+            // 20130608
+            if (null != textSearchWin32List) {
+                textSearchWin32List.Clear();
+                textSearchWin32List = null;
             }
         }
         

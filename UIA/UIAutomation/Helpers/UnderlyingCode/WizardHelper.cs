@@ -40,7 +40,6 @@ namespace UIAutomation
                     "NameInUse",
                     ErrorCategory.InvalidArgument,
                     true);
-                // return;
             }
             
             cmdlet.WriteVerbose(cmdlet, "wizard name validated");
@@ -124,7 +123,6 @@ namespace UIAutomation
                 // publish the wizard as a global variable
                 WizardCollection.CurrentWizard = wzd;
                 
-                // 20130508
                 cmdlet.WriteInfo(cmdlet, "the current wizard is '" + WizardCollection.CurrentWizard.Name + "'");
 #region commented
 //                try {
@@ -149,11 +147,6 @@ namespace UIAutomation
 //                }
 #endregion commented
 
-                // 20130322
-                //wzd.Automatic = cmdlet.Automatic;
-                //wzd.ForwardDirection = cmdlet.ForwardDirection;
-
-                // 20130322
                 if (null != cmdlet.Directions && 0 < cmdlet.DirectionsDictionaries.Count) {
                     
                     cmdlet.WriteVerbose(cmdlet, "Preparing step directions");
@@ -169,7 +162,6 @@ namespace UIAutomation
 
                 // 20130508
                 // temporary
-                //cmdlet.WriteVerbose(cmdlet, "running Wizard StartAction scriptblocks");
                 cmdlet.WriteInfo(cmdlet, "running Wizard StartAction scriptblocks");
                 cmdlet.WriteInfo(cmdlet, "parameters: " + cmdlet.ConvertObjectArrayToString(wzd.StartActionParameters));
 
@@ -180,7 +172,6 @@ namespace UIAutomation
                 cmdlet.RunWizardStartScriptBlocks(cmdlet, wzd, wzd.StartActionParameters);
                 
                 cmdlet.WriteVerbose(cmdlet, "running Wizard in the automated mode");
-                // 20130508
                 cmdlet.WriteInfo(cmdlet, "working in unattended mode");
 
                 cmdlet.RunWizardInAutomaticMode(cmdlet, wzd);

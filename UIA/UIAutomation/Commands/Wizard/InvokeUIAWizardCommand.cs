@@ -25,16 +25,6 @@ namespace UIAutomation.Commands
         }
         
         #region Parameters
-//        [Parameter(Mandatory = false)]
-//        internal new Wizard InputObject { get; set; }
-//        
-//        // 20130317
-//        [Parameter(Mandatory = false)]
-//        public SwitchParameter Automatic { get; set; }
-//        
-//        // 20130317
-//        [Parameter(Mandatory = false)]
-//        public SwitchParameter ForwardDirection { get; set; }
         #endregion Parameters
         
         protected override void BeginProcessing()
@@ -54,10 +44,8 @@ namespace UIAutomation.Commands
                 }
             }
             
-            // 20130508
             this.WriteInfo(this, "accepted " + this.ParametersDictionaries.Count.ToString() + " step parameters");
             
-            // 20130322
             if (null != this.Directions && 0 < this.Directions.Length) {
                 
                 this.WriteVerbose(
@@ -73,7 +61,6 @@ namespace UIAutomation.Commands
                 }
             }
             
-            // 20130508
             this.WriteInfo(this, "accepted " + this.DirectionsDictionaries.Count.ToString() + " step directions");
 
         	UIAInvokeWizardCommand command =

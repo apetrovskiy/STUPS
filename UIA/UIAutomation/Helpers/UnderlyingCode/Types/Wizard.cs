@@ -135,7 +135,7 @@ namespace UIAutomation
 
 	        		controlsList =
 	        			cmdletCtrl.GetControl(cmdletCtrl);
-
+	        		
 	        	}
 	        	catch {}
         		
@@ -161,9 +161,17 @@ namespace UIAutomation
         	
         	// 20130515
         	// moving the current step to the end of the step collection
-        	int currentIndex = this.Steps.IndexOf(resultStep);
-        	this.Steps.Insert(this.Steps.Count, resultStep);
-        	this.Steps.RemoveAt(currentIndex);
+        	try {
+        	   int currentIndex = this.Steps.IndexOf(resultStep);
+        	   cmdletCtrl.WriteInfo(cmdletCtrl, "current index = " + currentIndex.ToString());
+        	   this.Steps.Insert(this.Steps.Count, resultStep);
+        	   cmdletCtrl.WriteInfo(cmdletCtrl, "inserted after the last step");
+        	   this.Steps.RemoveAt(currentIndex);
+        	   cmdletCtrl.WriteInfo(cmdletCtrl, "deleted from the previous position");
+        	}
+        	catch (Exception eMovingToTheEnd) {
+        	    cmdletCtrl.WriteInfo(cmdletCtrl, eMovingToTheEnd.Message);
+        	}
         	
         	return resultStep;
         }

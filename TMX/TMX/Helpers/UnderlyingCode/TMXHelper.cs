@@ -1462,6 +1462,45 @@ namespace TMX
                                     singleTestResult.Attribute("platformId").Value;
                             }
                             catch {}
+                            
+                            try {
+                                var testResultDetails = from testResultDetail in singleTestResult.Descendants("detail")
+                                    select testResultDetail;
+                                
+                                if (null != testResultDetails && 0 < testResultDetails.Count()) {
+                                    foreach (var singleDetail in testResultDetails) {
+                                        
+                                        TestResultDetail detail = new TestResultDetail();
+                                        try {
+                                            detail.AddTestResultDetail(TestResultDetailTypes.Comment, singleDetail.Attribute("name").Value);
+                                        }
+                                        catch {}
+                                        try {
+                                            string detailStatus = singleDetail.Attribute("status").Value;
+                                            switch (detailStatus.ToUpper()) {
+                                                case "FAILED":
+                                                    detail.DetailStatus = TestResultStatuses.Failed;
+                                                    break;
+                                                case "PASSED":
+                                                    detail.DetailStatus = TestResultStatuses.Passed;
+                                                    break;
+                                                case "KNOWN ISSUE":
+                                                    detail.DetailStatus = TestResultStatuses.KnownIssue;
+                                                    break;
+                                                case "NOT TESTED":
+                                                    detail.DetailStatus = TestResultStatuses.NotTested;
+                                                    break;
+                                                //default:
+                                                //    
+                                                //	break;
+                                            }
+                                        }
+                                        catch {}
+                                        TMX.TestData.CurrentTestResult.Details.Add(detail);
+                                    }
+                                }
+                            }
+                            catch {}
                         }
                     }
                     

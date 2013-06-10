@@ -105,7 +105,13 @@ namespace TMX
             // 20130605
             if (null == TestData.CurrentTestResult.Id || string.Empty == TestData.CurrentTestResult.Id) {
                 
-                TestData.CurrentTestResult.Id = TMX.TestData.GetTestResultId();
+                // 20130610
+                if (null != cmdlet.Id && string.Empty != cmdlet.Id) {
+                    TestData.CurrentTestResult.Id = cmdlet.Id;
+                } else {
+                    cmdlet.WriteVerbose(cmdlet, "generating new test result Id for test result '" + TestData.CurrentTestResult.Name + "'");
+                    TestData.CurrentTestResult.Id = TMX.TestData.GetTestResultId();
+                }
             }
             
             // 20130605

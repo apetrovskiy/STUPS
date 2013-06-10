@@ -272,7 +272,7 @@ namespace TMX
                                            bool generated,
                                            bool skipAutomatic)
         {
-            TestData.InitCurrentTestScenario();
+            //TestData.InitCurrentTestScenario();
             
             // 20130429
             TMX.Logger.TMXLogger.Info("Test result: '" + closingTestResultName + "'\tPassed:" + passed.ToString() + "\tKnown issue:" + isKnownIssue.ToString());
@@ -299,11 +299,19 @@ dumpTestStructure("AddTestResult #2b");
                 0 == currentTestResult.Name.Length) {
                 
 dumpTestStructure("AddTestResult #3");
+                // 20130610
+//                if (closingTestResultName != null &&
+//                    closingTestResultName != string.Empty &&
+//                    closingTestResultName.Length > 0 &&
+//                    TMX.TestData.CurrentTestResult != null && 
+//                     closingTestResultName != TMX.TestData.CurrentTestResult.Name) {
+
                 if (closingTestResultName != null &&
                     closingTestResultName != string.Empty &&
                     closingTestResultName.Length > 0 &&
-                    TMX.TestData.CurrentTestResult != null && 
-                     closingTestResultName != TMX.TestData.CurrentTestResult.Name) {
+                    ((TMX.TestData.CurrentTestResult != null && 
+                      closingTestResultName != TMX.TestData.CurrentTestResult.Name) ||
+                      null == TMX.TestData.CurrentTestResult)) {
                     
 dumpTestStructure("AddTestResult #3b");
                     currentTestResult.Name = closingTestResultName;
@@ -342,11 +350,19 @@ dumpTestStructure("AddTestResult #7");
                 0 == currentTestResult.Id.Length) {
                 
 dumpTestStructure("AddTestResult #8");
+                // 20130610
+//                if (closingTestResultId != null &&
+//                    closingTestResultId != string.Empty &&
+//                    closingTestResultId.Length > 0 &&
+//                    null != TMX.TestData.CurrentTestResult &&
+//                    closingTestResultId != TMX.TestData.CurrentTestResult.Id) {
+
                 if (closingTestResultId != null &&
                     closingTestResultId != string.Empty &&
                     closingTestResultId.Length > 0 &&
-                    null != TMX.TestData.CurrentTestResult &&
-                    closingTestResultId != TMX.TestData.CurrentTestResult.Id) {
+                    ((null != TMX.TestData.CurrentTestResult &&
+                      closingTestResultId != TMX.TestData.CurrentTestResult.Id) ||
+                      null == TMX.TestData.CurrentTestResult)) {
                     
 dumpTestStructure("AddTestResult #9");
                     currentTestResult.Id = closingTestResultId;

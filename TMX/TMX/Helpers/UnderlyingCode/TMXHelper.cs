@@ -1372,7 +1372,7 @@ namespace TMX
                 
                 foreach (var singleSuite in suites) {
                     
-                    cmdlet.WriteVerbose("importing suite '" + singleSuite.Attribute("name").Value + "'");
+                    cmdlet.WriteVerbose(cmdlet, "importing suite '" + singleSuite.Attribute("name").Value + "'");
                     
                     string suiteDescription = string.Empty;
                     try {
@@ -1397,7 +1397,7 @@ namespace TMX
                     
                     foreach (var singleScenario in scenarios) {
                         
-                        cmdlet.WriteVerbose("importing scenario '" + singleScenario.Attribute("name").Value + "'");
+                        cmdlet.WriteVerbose(cmdlet, "importing scenario '" + singleScenario.Attribute("name").Value + "'");
                         
                         string scenarioDescription = string.Empty;
                         try {
@@ -1425,7 +1425,7 @@ namespace TMX
                         
                         foreach (var singleTestResult in testResults) {
                             
-                            cmdlet.WriteVerbose("importing test result '" + singleTestResult.Attribute("name").Value + "', id = '" + singleTestResult.Attribute("id").Value + "'");
+                            cmdlet.WriteVerbose(cmdlet, "importing test result '" + singleTestResult.Attribute("name").Value + "', id = '" + singleTestResult.Attribute("id").Value + "'");
                             
                             bool passedValue = false;
                             bool knownIssueValue = false;
@@ -1457,50 +1457,70 @@ namespace TMX
                                 false,
                                 true);
                             
-                            try {
-                                TMX.TestData.CurrentTestResult.PlatformId =
-                                    singleTestResult.Attribute("platformId").Value;
-                            }
-                            catch {}
+                            //TMX.TestData.CurrentTestResult = TMX.TestData.CurrentTestScenario.TestResults[TMX.TestData.CurrentTestScenario.TestResults.Count - 1];
+                            ITestResult currentlyAddedTestResult = TMX.TestData.CurrentTestScenario.TestResults[TMX.TestData.CurrentTestScenario.TestResults.Count - 1];
                             
                             try {
+                                //TMX.TestData.CurrentTestResult.PlatformId =
+                                currentlyAddedTestResult.PlatformId =
+                                    singleTestResult.Attribute("platformId").Value;
+                            }
+                            catch (Exception eTestResultPlatform) {
+                                cmdlet.WriteVerbose(cmdlet, "adding test platform to the current test result");
+                                cmdlet.WriteVerbose(cmdlet, eTestResultPlatform.Message);
+                            }
+                            
+                            try {
+                                
                                 var testResultDetails = from testResultDetail in singleTestResult.Descendants("detail")
                                     select testResultDetail;
                                 
                                 if (null != testResultDetails && 0 < testResultDetails.Count()) {
                                     foreach (var singleDetail in testResultDetails) {
                                         
+                                        cmdlet.WriteVerbose(cmdlet, "importing test result detail '" + singleDetail.Attribute("name").Value + "', status = '" + singleDetail.Attribute("status").Value + "'");
+                                        
+                                        //TestResultDetailCmdletBase cmdletTRD = new TestResultDetailCmdletBase();
                                         TestResultDetail detail = new TestResultDetail();
-                                        try {
-                                            detail.AddTestResultDetail(TestResultDetailTypes.Comment, singleDetail.Attribute("name").Value);
+                                        //cmdletTRD.Name = singleDetail.Attribute("name").Value;
+                                        detail.TextDetail = singleDetail.Attribute("name").Value;
+                                        string detailStatus = singleDetail.Attribute("status").Value;
+                                        switch (detailStatus.ToUpper()) {
+                                            case "FAILED":
+                                                //cmdletTRD.TestResultStatus = TestResultStatuses.Failed;
+                                                detail.DetailStatus = TestResultStatuses.Failed;
+                                                break;
+                                            case "PASSED":
+                                                //cmdletTRD.TestResultStatus = TestResultStatuses.Passed;
+                                                detail.DetailStatus = TestResultStatuses.Passed;
+                                                break;
+                                            case "KNOWNISSUE":
+                                                //cmdletTRD.TestResultStatus = TestResultStatuses.KnownIssue;
+                                                detail.DetailStatus = TestResultStatuses.KnownIssue;
+                                                break;
+                                            case "NOTTESTED":
+                                                //cmdletTRD.TestResultStatus = TestResultStatuses.NotTested;
+                                                detail.DetailStatus = TestResultStatuses.NotTested;
+                                                break;
+                                            default:
+                                                //cmdletTRD.TestResultStatus = TestResultStatuses.NotTested;
+                                                detail.DetailStatus = TestResultStatuses.NotTested;
+                                            	break;
                                         }
-                                        catch {}
-                                        try {
-                                            string detailStatus = singleDetail.Attribute("status").Value;
-                                            switch (detailStatus.ToUpper()) {
-                                                case "FAILED":
-                                                    detail.DetailStatus = TestResultStatuses.Failed;
-                                                    break;
-                                                case "PASSED":
-                                                    detail.DetailStatus = TestResultStatuses.Passed;
-                                                    break;
-                                                case "KNOWN ISSUE":
-                                                    detail.DetailStatus = TestResultStatuses.KnownIssue;
-                                                    break;
-                                                case "NOT TESTED":
-                                                    detail.DetailStatus = TestResultStatuses.NotTested;
-                                                    break;
-                                                //default:
-                                                //    
-                                                //	break;
-                                            }
-                                        }
-                                        catch {}
-                                        TMX.TestData.CurrentTestResult.Details.Add(detail);
+                                        
+                                        //cmdlet.WriteVerbose(cmdlet, "the current test result is name = '" + TMX.TestData.CurrentTestResult.Name + "', id ='" + TMX.TestData.CurrentTestResult.Id + "'");
+                                        cmdlet.WriteVerbose(cmdlet, "the current test result is name = '" + currentlyAddedTestResult.Name + "', id ='" + currentlyAddedTestResult.Id + "'");
+                                        
+                                        //TMX.TestData.AddTestResultTextDetail(cmdletTRD, cmdletTRD.TestResultDetail);
+                                        
+                                        currentlyAddedTestResult.Details.Add(detail);
+                                        
                                     }
                                 }
                             }
-                            catch {}
+                            catch (Exception eImportDetails) {
+                                cmdlet.WriteVerbose(cmdlet, eImportDetails);
+                            }
                         }
                     }
                     
@@ -1509,6 +1529,8 @@ namespace TMX
                 
                 TMX.TestData.CurrentTestSuite = currentTestSuite;
                 TMX.TestData.CurrentTestScenario = currentTestScenario;
+                
+                // ??
                 TMX.TestData.CurrentTestResult = currentTestResult;
                 
             }

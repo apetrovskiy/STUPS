@@ -452,6 +452,7 @@ dumpTestStructure("AddTestResult #27");
             currentTestResult.SetTimeSpent(
                 (currentTestResult.Timestamp - TMXHelper.TestCaseStarted).TotalSeconds);
 dumpTestStructure("AddTestResult #29");
+            
             TestData.CurrentTestResult = currentTestResult;
             
             // 20130531
@@ -460,7 +461,7 @@ dumpTestStructure("AddTestResult #29");
                     TestData.CurrentTestPlatform.Id;
             }
             catch {}
-
+            
             // 20130326
             if (null != TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1] &&
                 TestResultOrigins.Logical == TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1].Origin &&
@@ -468,18 +469,19 @@ dumpTestStructure("AddTestResult #29");
                 null != TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1].Name &&
                 0 < TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1].Name.Length) {
 dumpTestStructure("AddTestResult #30");
+                
                 TMXHelper.TestCaseStarted =
                     System.DateTime.Now;
                 TestData.CurrentTestScenario.TestResults.Add(new TestResult(TestData.CurrentTestScenario.Id, TestData.CurrentTestSuite.Id));
-
+               
             }
-
+            
             TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1] = 
                 TestData.CurrentTestResult;
-
+            
             #region Test Result's PowerShell data
             if (myInvocation != null) {
-
+                
                 TestData.CurrentTestResult.SetScriptName(TMXHelper.GetScriptName(myInvocation));
 
                 TestData.CurrentTestResult.SetLineNumber(TMXHelper.GetScriptLineNumber(myInvocation));
@@ -488,6 +490,7 @@ dumpTestStructure("AddTestResult #30");
 
                 // 20130329
                 try {
+                    
                     if (((bool)passed && Preferences.LogScriptName_Passed) || (!(bool)passed && Preferences.LogScriptName_Failed)) {
     
                         TestData.CurrentTestResult.Code += 
@@ -498,6 +501,7 @@ dumpTestStructure("AddTestResult #30");
                 }
                 catch {}
                 try {
+                    
                     if (((bool)passed && Preferences.LogLineNumber_Passed) || (!(bool)passed && Preferences.LogLineNumber_Failed)) {
     
                         TestData.CurrentTestResult.Code +=
@@ -508,6 +512,7 @@ dumpTestStructure("AddTestResult #30");
                 }
                 catch {}
                 try {
+                    
                     if (((bool)passed && Preferences.LogCode_Passed) || (!(bool)passed && Preferences.LogCode_Failed)) {
     
                         TestData.CurrentTestResult.Code +=
@@ -518,24 +523,24 @@ dumpTestStructure("AddTestResult #30");
                 }
                 catch {}
             }
-
+            
             if (error != null) {
 
                 TestData.CurrentTestResult.SetError(error);
 
             }
             #endregion Test Result's PowerShell data
-                      
+            
             var sourceTestResult = TestData.CurrentTestResult;
-
+            
             // 20130322
             //SetScenarioStatus();
             SetScenarioStatus(skipAutomatic);
-
+            
             // 20130322
             //SetSuiteStatus();
             SetSuiteStatus(skipAutomatic);
-
+            
             if (generateNextResult) {
 dumpTestStructure("AddTestResult #40");
                 // write current time
@@ -555,7 +560,6 @@ dumpTestStructure("AddTestResult #46");
                     System.DateTime.MinValue;
                 TestData.CurrentTestResult = null;
             }
-            
             
             if (TMX.Preferences.Storage) {
                 // 20130527

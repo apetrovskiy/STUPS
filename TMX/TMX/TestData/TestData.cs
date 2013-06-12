@@ -458,7 +458,9 @@ dumpTestStructure("AddTestResult #29");
             // 20130531
             try {
                 TestData.CurrentTestResult.PlatformId =
-                    TestData.CurrentTestPlatform.Id;
+                    // 20130612
+                    //TestData.CurrentTestPlatform.Id;
+                    TestData.CurrentTestScenario.PlatformId;
             }
             catch {}
             
@@ -1207,12 +1209,20 @@ Console.WriteLine(TestData.CurrentTestPlatform.Id);
             
             if (TestData.CurrentTestSuite != null) {
                 
-                // 20130531
-                try {
+//                // 20130531
+//                try {
+//                    TestData.CurrentTestSuite.PlatformId =
+//                        TestData.CurrentTestPlatform.Id;
+//                }
+//                catch {}
+                
+                // 20131612
+                if (null != testPlatformId && string.Empty != testPlatformId) {
+                    TestData.CurrentTestSuite.PlatformId = testPlatformId;
+                } else {
                     TestData.CurrentTestSuite.PlatformId =
                         TestData.CurrentTestPlatform.Id;
                 }
-                catch {}
                 
                 // 20130301
                 // set the initial time for this suite's session
@@ -1477,14 +1487,23 @@ dumpTestStructure("4.6");
             TestData.CurrentTestScenario = 
                 (TestScenario)TestData.CurrentTestSuite.TestScenarios[CurrentTestSuite.TestScenarios.Count - 1];
             
-            // 20130531
-            try {
-                
+//            // 20130531
+//            try {
+//                
+//                TestData.CurrentTestScenario.PlatformId =
+//                    TestData.CurrentTestPlatform.Id;
+//            }
+//            catch {
+//                
+//            }
+            
+            // 20130612
+            if (null != testPlatformId && string.Empty != testPlatformId) {
+                TestData.CurrentTestScenario.PlatformId = testPlatformId;
+            } else {
                 TestData.CurrentTestScenario.PlatformId =
-                    TestData.CurrentTestPlatform.Id;
-            }
-            catch {
-                
+                    //TestData.CurrentTestPlatform.Id;
+                    TestData.CurrentTestSuite.PlatformId;
             }
             
             // 20130301

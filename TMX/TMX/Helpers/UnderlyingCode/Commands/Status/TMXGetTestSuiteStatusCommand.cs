@@ -38,6 +38,7 @@ namespace TMX
                     // 20130322
                     //cmdlet.Name);
                     cmdlet.Name,
+                    cmdlet.TestPlatformId,
                     cmdlet.FilterOutAutomaticResults);
                 
             } else if (null != cmdlet.Id && string.Empty != cmdlet.Id) {
@@ -48,6 +49,7 @@ namespace TMX
                     // 20130322
                     //cmdlet.Id);
                     cmdlet.Id,
+                    cmdlet.TestPlatformId,
                     cmdlet.FilterOutAutomaticResults);
                 
             } else {

@@ -29,6 +29,9 @@ namespace TMX
             if (null == TestData.TestSuites || 0 == TestData.TestSuites.Count) {
                 TestData.InitTestData();
             }
+            
+            //
+            this.TestPlatformId = TestData.CurrentTestPlatform.Id;
         }
         
         #region Parameters
@@ -55,6 +58,11 @@ namespace TMX
         //           ParameterSetName = "DefaultLogicId")]
         //[ValidateNotNullOrEmpty()]
         public string Id { get; set; }
+        
+        [Parameter(Mandatory = false)]
+        [AllowNull]
+        [AllowEmptyString]
+        public string TestPlatformId { get; set; }
         
         // 20130325
         [Parameter(Mandatory = false)]

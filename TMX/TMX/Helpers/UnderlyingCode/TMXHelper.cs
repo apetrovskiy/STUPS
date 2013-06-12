@@ -75,7 +75,7 @@ namespace TMX
         }
         
         #region Actions
-        public static bool OpenTestSuite(string testSuiteName, string testSuiteId)
+        public static bool OpenTestSuite(string testSuiteName, string testSuiteId, string testPlatformId)
         {
             bool result = false;
             
@@ -96,7 +96,7 @@ namespace TMX
             }
             
             TMX.TestData.CurrentTestSuite = 
-                TMX.TestData.GetTestSuite(testSuiteName, testSuiteId);
+                TMX.TestData.GetTestSuite(testSuiteName, testSuiteId, testPlatformId);
             if (TMX.TestData.CurrentTestSuite != null) {
                 //TMX.TestData.FireTMXTestSuiteOpened(TMX.TestData.CurrentTestSuite, null);
                 
@@ -136,12 +136,14 @@ namespace TMX
         
         public static bool NewTestSuite(string testSuiteName, 
                                         string testSuiteId,
+                                        string testPlatformId,
                                         string testSuiteDesctiption)
         {
             bool result = false;
             result = 
                 TMX.TestData.AddTestSuite(testSuiteName, 
                                           testSuiteId,
+                                          testPlatformId,
                                           testSuiteDesctiption);
             return result;
         }
@@ -188,7 +190,8 @@ namespace TMX
                                              cmdlet.Name,
                                              cmdlet.Id,
                                              cmdlet.TestSuiteName,
-                                             cmdlet.TestSuiteId);
+                                             cmdlet.TestSuiteId,
+                                             cmdlet.TestPlatformId);
 
             if (TMX.TestData.CurrentTestScenario != null) {
 
@@ -221,7 +224,8 @@ namespace TMX
                                              cmdlet.Id,
                                              cmdlet.Description,
                                              cmdlet.TestSuiteName,
-                                             cmdlet.TestSuiteId);
+                                             cmdlet.TestSuiteId,
+                                             cmdlet.TestPlatformId);
             
             return result;
         }
@@ -1139,11 +1143,12 @@ namespace TMX
             }
         }
         
-        public static void GetTestSuiteStatusByName(OpenSuiteCmdletBase cmdlet, string name, bool skipAutomatic)
+        public static void GetTestSuiteStatusByName(OpenSuiteCmdletBase cmdlet, string name, string testPlatformId, bool skipAutomatic)
         {
             TMXHelper.OpenTestSuite(
                 name,
-                    string.Empty);
+                string.Empty,
+                testPlatformId);
             if (null != TestData.CurrentTestSuite) {
                 
                 // 20130322
@@ -1153,11 +1158,12 @@ namespace TMX
             }
         }
         
-        public static void GetTestSuiteStatusById(OpenSuiteCmdletBase cmdlet, string id, bool skipAutomatic)
+        public static void GetTestSuiteStatusById(OpenSuiteCmdletBase cmdlet, string id, string testPlatformId, bool skipAutomatic)
         {
             TMXHelper.OpenTestSuite(
                 string.Empty,
-                id);
+                id,
+                testPlatformId);
             if (null != TestData.CurrentTestSuite) {
                 
                 // 20130322
@@ -1342,6 +1348,12 @@ namespace TMX
         //public static void ImportResultsFromXML(SearchCmdletBase cmdlet, string path)
         public static void ImportResultsFromXML(ImportExportCmdletBase cmdlet, string path)
         {
+            
+            string lastTestSuiteName = string.Empty;
+            string lastTestScenarioName = string.Empty;
+            string lastTestResultName = string.Empty;
+            string lastTestResultDetailName = string.Empty;
+            
             try {
             
                 if (!System.IO.File.Exists(cmdlet.Path)) {
@@ -1373,6 +1385,7 @@ namespace TMX
                 foreach (var singleSuite in suites) {
                     
                     cmdlet.WriteVerbose(cmdlet, "importing suite '" + singleSuite.Attribute("name").Value + "'");
+                    lastTestSuiteName = singleSuite.Attribute("name").Value;
                     
                     string suiteDescription = string.Empty;
                     try {
@@ -1383,13 +1396,14 @@ namespace TMX
                     TMX.TestData.AddTestSuite(
                         singleSuite.Attribute("name").Value,
                         singleSuite.Attribute("id").Value,
+                        singleSuite.Attribute("platformId").Value,
                         suiteDescription);
                     //TMX.TestData.CurrentTestSuite.SetNow = singleSuite
-                    try {
-                        TMX.TestData.CurrentTestSuite.PlatformId =
-                            singleSuite.Attribute("platformId").Value;
-                    }
-                    catch {}
+//                    try {
+//                        TMX.TestData.CurrentTestSuite.PlatformId =
+//                            singleSuite.Attribute("platformId").Value;
+//                    }
+//                    catch {}
                     
                     var scenarios = from scenario in singleSuite.Descendants("scenario")
                         where scenario.Attribute("name").Value != "autogenerated"
@@ -1398,6 +1412,7 @@ namespace TMX
                     foreach (var singleScenario in scenarios) {
                         
                         cmdlet.WriteVerbose(cmdlet, "importing scenario '" + singleScenario.Attribute("name").Value + "'");
+                        lastTestScenarioName = singleScenario.Attribute("name").Value;
                         
                         string scenarioDescription = string.Empty;
                         try {
@@ -1411,13 +1426,14 @@ namespace TMX
                             singleScenario.Attribute("id").Value,
                             scenarioDescription,
                             string.Empty,
-                            string.Empty);
+                            string.Empty,
+                            singleScenario.Attribute("platformId").Value);
                         
-                        try {
-                            TMX.TestData.CurrentTestScenario.PlatformId =
-                                singleScenario.Attribute("platformId").Value;
-                        }
-                        catch {}
+//                        try {
+//                            TMX.TestData.CurrentTestScenario.PlatformId =
+//                                singleScenario.Attribute("platformId").Value;
+//                        }
+//                        catch {}
                         
                         var testResults = from testResult in singleScenario.Descendants("testResult")
                             //where testResult.Attribute("name").Value != "autoclosed"
@@ -1426,6 +1442,7 @@ namespace TMX
                         foreach (var singleTestResult in testResults) {
                             
                             cmdlet.WriteVerbose(cmdlet, "importing test result '" + singleTestResult.Attribute("name").Value + "', id = '" + singleTestResult.Attribute("id").Value + "'");
+                            lastTestResultName = singleTestResult.Attribute("name").Value;
                             
                             bool passedValue = false;
                             bool knownIssueValue = false;
@@ -1471,6 +1488,7 @@ namespace TMX
                             }
                             
                             try {
+                                lastTestResultDetailName = string.Empty;
                                 
                                 var testResultDetails = from testResultDetail in singleTestResult.Descendants("detail")
                                     select testResultDetail;
@@ -1479,6 +1497,7 @@ namespace TMX
                                     foreach (var singleDetail in testResultDetails) {
                                         
                                         cmdlet.WriteVerbose(cmdlet, "importing test result detail '" + singleDetail.Attribute("name").Value + "', status = '" + singleDetail.Attribute("status").Value + "'");
+                                        lastTestResultDetailName = singleDetail.Attribute("name").Value;
                                         
                                         //TestResultDetailCmdletBase cmdletTRD = new TestResultDetailCmdletBase();
                                         TestResultDetail detail = new TestResultDetail();
@@ -1535,12 +1554,22 @@ namespace TMX
                 
             }
             catch (Exception eImportDocument) {
+                
                 cmdlet.WriteError(
                     cmdlet,
-                    "Unable to load XML report to the file '" +
+                    "Unable to load an XML report from the file '" +
                     path +
                     "'. " + 
-                    eImportDocument.Message,
+                    eImportDocument.Message +
+                    "\r\nsuite='" + 
+                    lastTestSuiteName +
+                    "', scenario='" +
+                    lastTestScenarioName +
+                    "', test result='" +
+                    lastTestResultName +
+                    "', detail='" +
+                    lastTestResultDetailName +
+                    "',",
                     "FailedToImportReport",
                     ErrorCategory.InvalidOperation,
                     true);

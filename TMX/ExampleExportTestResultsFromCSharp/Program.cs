@@ -51,6 +51,7 @@ namespace ExampleExportTestResultsFromCSharp
                 TMX.TMXHelper.NewTestSuite(
                     story.Name,
                     story.Id,
+                    "platform",
                     "description");
                 
                 foreach (TestResult result in results) {

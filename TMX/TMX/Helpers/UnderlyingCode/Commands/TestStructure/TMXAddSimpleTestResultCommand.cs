@@ -48,7 +48,7 @@ namespace TMX
                 
                 cmdlet.WriteVerbose(cmdlet, "getting test suite '" + cmdlet.TestSuiteName + "' with Id '" + cmdlet.TestSuiteId + "'");
                 testSuiteToAddTestResult =
-                    TestData.GetTestSuite(cmdlet.TestSuiteName, cmdlet.TestSuiteId);
+                    TestData.GetTestSuite(cmdlet.TestSuiteName, cmdlet.TestSuiteId, cmdlet.TestPlatformId);
                 if (null == testSuiteToAddTestResult) {
                     
                     cmdlet.WriteVerbose(cmdlet, "getting the current test suite");
@@ -63,7 +63,7 @@ namespace TMX
             if (null != cmdlet.TestScenarioName || null != cmdlet.TestScenarioId) {
                 
                 testScenarioToAddTestResult =
-                    TestData.GetTestScenario(testSuiteToAddTestResult, cmdlet.TestScenarioName, cmdlet.TestScenarioId, cmdlet.TestSuiteName, cmdlet.TestSuiteId);
+                    TestData.GetTestScenario(testSuiteToAddTestResult, cmdlet.TestScenarioName, cmdlet.TestScenarioId, cmdlet.TestSuiteName, cmdlet.TestSuiteId, cmdlet.TestPlatformId);
                 if (null == testScenarioToAddTestResult) {
                     testScenarioToAddTestResult = TestData.CurrentTestScenario;
                 }

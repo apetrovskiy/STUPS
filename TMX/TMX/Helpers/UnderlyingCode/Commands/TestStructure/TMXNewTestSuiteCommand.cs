@@ -30,6 +30,7 @@ namespace TMX
                 TMX.TMXHelper.NewTestSuite(
                     cmdlet.Name,
                     cmdlet.Id,
+                    cmdlet.TestPlatformId,
                     cmdlet.Description);
             if (result) {
 

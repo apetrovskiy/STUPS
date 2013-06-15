@@ -137,14 +137,18 @@ namespace TMX
         public static bool NewTestSuite(string testSuiteName, 
                                         string testSuiteId,
                                         string testPlatformId,
-                                        string testSuiteDesctiption)
+                                        string testSuiteDesctiption,
+                                        ScriptBlock testSuiteBeforeScenario,
+                                        ScriptBlock testSuiteAfterScenario)
         {
             bool result = false;
             result = 
                 TMX.TestData.AddTestSuite(testSuiteName, 
                                           testSuiteId,
                                           testPlatformId,
-                                          testSuiteDesctiption);
+                                          testSuiteDesctiption,
+                                          testSuiteBeforeScenario,
+                                          testSuiteAfterScenario);
             return result;
         }
         
@@ -1397,7 +1401,9 @@ namespace TMX
                         singleSuite.Attribute("name").Value,
                         singleSuite.Attribute("id").Value,
                         singleSuite.Attribute("platformId").Value,
-                        suiteDescription);
+                        suiteDescription,
+                        null,
+                        null);
                     //TMX.TestData.CurrentTestSuite.SetNow = singleSuite
 //                    try {
 //                        TMX.TestData.CurrentTestSuite.PlatformId =

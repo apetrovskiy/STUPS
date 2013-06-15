@@ -33,9 +33,9 @@ namespace TMX
         {
             this.TestCaseName = testCaseName;
             this.TestCaseNumber = testCaseNumber;
-            this.AlternateBeforeTest = beforeCode;
+            //this.AlternateBeforeTest = beforeCode;
             this.TestCode = mainCode;
-            this.AlternateAfterTest = afterCode;
+            //this.AlternateAfterTest = afterCode;
         }
         
         public int TestCaseId { get; set; }

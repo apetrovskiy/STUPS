@@ -36,6 +36,13 @@ namespace TMX
         [AllowNull]
         [AllowEmptyString]
         public string Description { get; set; }
+        
+        // 20130615
+        [Parameter(Mandatory = false)]
+        public ScriptBlock BeforeTest { get; set; }
+        
+        [Parameter(Mandatory = false)]
+        public ScriptBlock AfterTest { get; set; }
         #endregion Parameters
     }
 }

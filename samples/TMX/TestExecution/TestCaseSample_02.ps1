@@ -1,4 +1,6 @@
-﻿New-TMXTestSuite "suite02" -Id 002 -BeforeScenario { param($b1, $b2, $b3) "before scenario script 1. $($b1) 2. $($b2) 3. $($b3)"; } -AfterScenario { param($a1, $a2, $a3) "after scenario script 1. $($a1) 2. $($a2) 3. $($a3)"; };
+﻿ipmo C:\Projects\PS\STUPS\TMX\TMX\bin\Release35\TMX.dll;
+
+New-TMXTestSuite "suite02" -Id 002 -BeforeScenario { param($b1, $b2, $b3) "before scenario script 1. $($b1) 2. $($b2) 3. $($b3)"; } -AfterScenario { param($a1, $a2, $a3) "after scenario script 1. $($a1) 2. $($a2) 3. $($a3)"; };
 Add-TMXTestScenario "sc002" -Id 0002 -BeforeTest { "before test script"; } -AfterTest { "after test script"; } ;
 Add-TMXTestCase -TestCaseName "tc04" -Id 00004 -TestCode { "test 00004"; } ;
 Add-TMXTestCase -TestCaseName "tc05" -Id 00005 -TestCode { "test 00005"; } ;

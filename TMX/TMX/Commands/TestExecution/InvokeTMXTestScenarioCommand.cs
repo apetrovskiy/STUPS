@@ -16,10 +16,19 @@ namespace TMX.Commands
     /// Description of InvokeTMXTestScenarioCommand.
     /// </summary>
     [Cmdlet(VerbsLifecycle.Invoke, "TMXTestScenario")]
-    public class InvokeTMXTestScenarioCommand
+    public class InvokeTMXTestScenarioCommand : TestScenarioExecCmdletBase
     {
         public InvokeTMXTestScenarioCommand()
         {
+        }
+        
+        protected override void BeginProcessing()
+        {
+            this.CheckCmdletParameters();
+            
+            TMXInvokeTestScenarioCommand command =
+                new TMXInvokeTestScenarioCommand(this);
+            command.Execute();
         }
     }
 }

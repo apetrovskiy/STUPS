@@ -21,5 +21,14 @@ namespace TMX.Commands
 		public InvokeTMXTestCaseCommand()
 		{
 		}
+		
+        protected override void BeginProcessing()
+        {
+            this.CheckCmdletParameters();
+            
+            TMXInvokeTestCaseCommand command =
+                new TMXInvokeTestCaseCommand(this);
+            command.Execute();
+        }
 	}
 }

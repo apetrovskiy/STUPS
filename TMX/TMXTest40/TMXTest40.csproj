@@ -182,6 +182,15 @@
     <Compile Include="..\TMXTest\Commands\Status\GetTMXTestStatisticsCommandTestFixture.cs">
       <Link>Commands\Status\GetTMXTestStatisticsCommandTestFixture.cs</Link>
     </Compile>
+    <Compile Include="..\TMXTest\Commands\TestExecution\InvokeTMXTestCaseCommandTestFixture.cs">
+      <Link>Commands\TestExecution\InvokeTMXTestCaseCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\TMXTest\Commands\TestExecution\InvokeTMXTestScenarioCommandTestFixture.cs">
+      <Link>Commands\TestExecution\InvokeTMXTestScenarioCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\TMXTest\Commands\TestExecution\InvokeTMXTestSuiteCommandTestFixture.cs">
+      <Link>Commands\TestExecution\InvokeTMXTestSuiteCommandTestFixture.cs</Link>
+    </Compile>
     <Compile Include="..\TMXTest\Commands\TestResults\BackupTMXTestResultsCommandTestFixture.cs">
       <Link>Commands\TestResults\BackupTMXTestResultsCommandTestFixture.cs</Link>
     </Compile>
@@ -265,6 +274,7 @@
     <Folder Include="Commands\Logging" />
     <Folder Include="Commands\TestExecution" />
     <Folder Include="Commands\Status" />
+    <Folder Include="Commands\TestExecution" />
     <Folder Include="Commands\TestStructure" />
     <Folder Include="Commands\TestResults" />
     <Folder Include="Commands\Repository" />

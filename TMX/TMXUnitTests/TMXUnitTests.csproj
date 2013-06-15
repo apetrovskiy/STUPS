@@ -75,6 +75,9 @@
     <Compile Include="Commands\Status\GetTMXTestScenarioStatusCommandTestFixture.cs" />
     <Compile Include="Commands\Status\GetTMXTestStatisticsCommandTestFixture.cs" />
     <Compile Include="Commands\Status\GetTMXTestSuiteStatusCommandTestFixture.cs" />
+    <Compile Include="Commands\TestExecution\InvokeTMXTestCaseCommandTestFixture.cs" />
+    <Compile Include="Commands\TestExecution\InvokeTMXTestScenarioCommandTestFixture.cs" />
+    <Compile Include="Commands\TestExecution\InvokeTMXTestSuiteCommandTestFixture.cs" />
     <Compile Include="Commands\TestResults\ImportTMXTestResultsCommandTestFixture.cs" />
     <Compile Include="Commands\TestStructure\AddTMXSimpleTestResultCommandTestFixture.cs" />
     <Compile Include="Commands\TestStructure\AddTMXTestCaseCommandTestFixture.cs" />
@@ -94,6 +97,9 @@
     <Compile Include="ParamChecks\Status\GetTMXTestResultDetailsCommandTestFixture.cs" />
     <Compile Include="ParamChecks\Status\GetTMXTestResultStatusCommandTestFixture.cs" />
     <Compile Include="ParamChecks\Status\GetTMXTestStatisticsCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\TestExecution\InvokeTMXTestCaseCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\TestExecution\InvokeTMXTestScenarioCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\TestExecution\InvokeTMXTestSuiteCommandTestFixture.cs" />
     <Compile Include="ParamChecks\TestResults\ImportTMXTestResultsCommandTestFixture.cs" />
     <Compile Include="ParamChecks\TestStructure\AddTMXSimpleTestResultCommandTestFixture.cs" />
     <Compile Include="ParamChecks\TestStructure\NewTMXTestPlatformCommandTestFixture.cs" />
@@ -113,6 +119,7 @@
     <Folder Include="Commands" />
     <Folder Include="Commands\Logging" />
     <Folder Include="Commands\TestExecution" />
+    <Folder Include="Commands\TestExecution" />
     <Folder Include="Commands\TestResults" />
     <Folder Include="Commands\TestStructure" />
     <Folder Include="Commands\Status" />
@@ -124,6 +131,7 @@
     <Folder Include="ParamChecks\Configuration" />
     <Folder Include="ParamChecks\Database" />
     <Folder Include="ParamChecks\Logging" />
+    <Folder Include="ParamChecks\TestExecution" />
     <Folder Include="ParamChecks\TestExecution" />
     <Folder Include="ParamChecks\TestResults" />
     <Folder Include="ParamChecks\TestStructure" />

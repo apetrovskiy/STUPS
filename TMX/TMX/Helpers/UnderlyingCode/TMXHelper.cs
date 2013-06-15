@@ -296,9 +296,9 @@ namespace TMX
             // 20121224
             //bool result = false;
             
-            if (TestData.TestSuites.Count == 0) {
-                TestData.InitTestData();
-            }
+//            if (TestData.TestSuites.Count == 0) {
+//                TestData.InitTestData();
+//            }
 
             TMX.TestData.AddTestResult(
                 testResultName, 

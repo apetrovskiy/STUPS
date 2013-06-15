@@ -20,5 +20,13 @@ namespace TMX
         public TestScenarioExecCmdletBase()
         {
         }
+        
+        #region Parameters
+        [Parameter(Mandatory = false)]
+        public object[] BeforeTestParameters { get; set; }
+        
+        [Parameter(Mandatory = false)]
+        public object[] AfterTestParameters { get; set; }
+        #endregion Parameters
     }
 }

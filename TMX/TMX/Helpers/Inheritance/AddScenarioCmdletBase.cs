@@ -39,10 +39,10 @@ namespace TMX
         
         // 20130615
         [Parameter(Mandatory = false)]
-        public ScriptBlock BeforeTest { get; set; }
+        public ScriptBlock[] BeforeTest { get; set; }
         
         [Parameter(Mandatory = false)]
-        public ScriptBlock AfterTest { get; set; }
+        public ScriptBlock[] AfterTest { get; set; }
         #endregion Parameters
     }
 }

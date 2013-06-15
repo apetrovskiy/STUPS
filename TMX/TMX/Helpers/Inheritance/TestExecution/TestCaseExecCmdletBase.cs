@@ -20,5 +20,15 @@ namespace TMX
         public TestCaseExecCmdletBase()
         {
         }
+        
+        #region Parameters
+        [Parameter(Mandatory = false,
+                   Position = 0,
+                   ValueFromPipeline = true)]
+        public ScriptBlock[] TestCode { get; set; }
+        
+        [Parameter(Mandatory = false)]
+        public object[] TestCodeParameters { get; set; }
+        #endregion Parameters
     }
 }

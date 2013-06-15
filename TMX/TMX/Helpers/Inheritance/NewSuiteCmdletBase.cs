@@ -42,10 +42,10 @@ namespace TMX
         public string Description { get; set; }
         
         [Parameter(Mandatory = false)]
-        public ScriptBlock BeforeScenario { get; set; }
+        public ScriptBlock[] BeforeScenario { get; set; }
         
         [Parameter(Mandatory = false)]
-        public ScriptBlock AfterScenario { get; set; }
+        public ScriptBlock[] AfterScenario { get; set; }
         #endregion Parameters
     }
 }

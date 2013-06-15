@@ -20,7 +20,8 @@ namespace TMX
     {
         public TestScenario()
         {
-            this.TestResults = new List<ITestResult> ();
+            this.TestResults = new List<ITestResult>();
+            this.TestCases = new List<ITestCase>();
             this.Statistics = new TestStat();
             this.enStatus = TestScenarioStatuses.NotTested;
             try{
@@ -186,9 +187,12 @@ TestData.dumpTestStructure("TestScenario #6");
         public virtual string PlatformId { get; set; }
         
         // 20130615
-        public virtual ScriptBlock BeforeTest { get; set; }
-        public virtual ScriptBlock AfterTest { get; set; }
-        public virtual ScriptBlock AlternateBeforeScenario { get; set; }
-        public virtual ScriptBlock AlternateAfterScenario { get; set; }
+        public virtual ScriptBlock[] BeforeTest { get; set; }
+        public virtual ScriptBlock[] AfterTest { get; set; }
+        //public virtual ScriptBlock[] AlternateBeforeScenario { get; set; }
+        //public virtual ScriptBlock[] AlternateAfterScenario { get; set; }
+        public virtual object[] BeforeTestParameters { get; set; }
+        public virtual object[] AfterTestParameters { get; set; }
+        public virtual List<ITestCase> TestCases { get; set; }
     }
 }

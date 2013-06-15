@@ -14,8 +14,7 @@ namespace TMX
     using System.Management.Automation;
     using System.ComponentModel;
     using System.Linq;
-    
-    
+	
     public delegate void TMXStructureChangedEventHandler(object sender, EventArgs e);
     public delegate void TMXDatabaseOperationCompletedEventHandler(object sender, EventArgs e);
     
@@ -684,7 +683,9 @@ Console.WriteLine(TestData.CurrentTestPlatform.Id);
                         string.Empty,
                         string.Empty,
                         string.Empty,
-                        TestData.CurrentTestPlatform.Id);
+                        TestData.CurrentTestPlatform.Id,
+                        null,
+                        null);
                 }
                 
                 TestData.CurrentTestScenario =
@@ -1162,8 +1163,8 @@ Console.WriteLine(TestData.CurrentTestPlatform.Id);
                                           string testSuiteId,
                                           string testPlatformId,
                                           string testSuiteDesctiption,
-                                          ScriptBlock testSuiteBeforeScenario,
-                                          ScriptBlock testSuiteAfterScenario)
+                                          ScriptBlock[] testSuiteBeforeScenario,
+                                          ScriptBlock[] testSuiteAfterScenario)
         {
             bool result = false;
             
@@ -1388,7 +1389,9 @@ internal static void dumpTestStructure(string strNumber)
                                              string testScenarioDescription,
                                              string testSuiteName,
                                              string testSuiteId,
-                                             string testPlatformId)
+                                             string testPlatformId,
+                                             ScriptBlock[] testScenarioBeforeTest,
+                                             ScriptBlock[] testScenarioAfterTest)
         {
             bool result = false;
             
@@ -1421,6 +1424,10 @@ internal static void dumpTestStructure(string strNumber)
             // set time spent on the previous scenario
             if (null != TMX.TestData.CurrentTestScenario) {
                 
+            	// 20130615
+            	TMX.TestData.CurrentTestScenario.BeforeTest = testScenarioBeforeTest;
+            	TMX.TestData.CurrentTestScenario.AfterTest = testScenarioBeforeTest;
+            	
                 if (System.DateTime.MinValue != TMX.TestData.CurrentTestScenario.Timestamp) {
                     
                     TMX.TestData.CurrentTestScenario.SetTimeSpent(

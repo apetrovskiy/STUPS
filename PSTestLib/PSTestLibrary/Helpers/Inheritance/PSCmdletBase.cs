@@ -651,7 +651,7 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
             return dict;
         }
         
-        protected void runTwoScriptBlockCollections(
+        protected internal void runTwoScriptBlockCollections(
             ScriptBlock[] scriptblocksSet1,
             ScriptBlock[] scriptblocksSet2,
             // 20130318
@@ -691,7 +691,7 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
 //                    cmdlet.WriteError(
 //                        cmdlet,
 //                        "There are no StopAction scriptblocks, define at least one",
-//                        "NoStopActionScripblocks",
+//                        "NoStopActionScriptblocks",
 //                        ErrorCategory.InvalidArgument,
 //                        true);
 //                }
@@ -795,7 +795,7 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
                                     
                                     runnerWithParams(sb, parameters);
                                     
-                                    cmdlet.WriteVerbose(cmdlet, "the scripblock runner has finished");
+                                    cmdlet.WriteVerbose(cmdlet, "the scriptblock runner has finished");
                                 }
                             } catch (Exception eInner) {
 
@@ -1034,7 +1034,7 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
                 
                 this.WriteVerbose(
                     this,
-                    "select whether a scripblock has parameters or doesn't");
+                    "select whether a scriptblock has parameters or doesn't");
                 
                 if (null == parameters || 0 == parameters.Length) {
                     

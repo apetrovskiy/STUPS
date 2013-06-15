@@ -27,9 +27,9 @@ namespace TMX
         public TestCase(
             string testCaseName, 
             string testCaseNumber,
-            ScriptBlock beforeCode,
-            ScriptBlock mainCode,
-            ScriptBlock afterCode)
+            ScriptBlock[] beforeCode,
+            ScriptBlock[] mainCode,
+            ScriptBlock[] afterCode)
         {
             this.TestCaseName = testCaseName;
             this.TestCaseNumber = testCaseNumber;
@@ -41,10 +41,11 @@ namespace TMX
         public int TestCaseId { get; set; }
         public string TestCaseName { get; set; }
         public string TestCaseNumber { get; set; }
-        //public ScriptBlock AlternateBeforeTest { get; set; }
-        public ScriptBlock TestCode { get; set; }
-        //public ScriptBlock AlternateAfterTest { get; set; }
+        //public ScriptBlock[] AlternateBeforeTest { get; set; }
+        public ScriptBlock[] TestCode { get; set; }
+        //public ScriptBlock[] AlternateAfterTest { get; set; }
         public string TestCaseTag { get; set; }
         public string Description { get; set; }
+        public virtual object[] TestCodeParameters { get; set; }
     }
 }

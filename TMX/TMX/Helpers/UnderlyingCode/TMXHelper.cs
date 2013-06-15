@@ -138,8 +138,8 @@ namespace TMX
                                         string testSuiteId,
                                         string testPlatformId,
                                         string testSuiteDesctiption,
-                                        ScriptBlock testSuiteBeforeScenario,
-                                        ScriptBlock testSuiteAfterScenario)
+                                        ScriptBlock[] testSuiteBeforeScenario,
+                                        ScriptBlock[] testSuiteAfterScenario)
         {
             bool result = false;
             result = 
@@ -229,7 +229,9 @@ namespace TMX
                                              cmdlet.Description,
                                              cmdlet.TestSuiteName,
                                              cmdlet.TestSuiteId,
-                                             cmdlet.TestPlatformId);
+                                             cmdlet.TestPlatformId,
+                                             cmdlet.BeforeTest,
+                                             cmdlet.AfterTest);
             
             return result;
         }
@@ -1433,7 +1435,9 @@ namespace TMX
                             scenarioDescription,
                             string.Empty,
                             string.Empty,
-                            singleScenario.Attribute("platformId").Value);
+                            singleScenario.Attribute("platformId").Value,
+                            null,
+                            null);
                         
 //                        try {
 //                            TMX.TestData.CurrentTestScenario.PlatformId =

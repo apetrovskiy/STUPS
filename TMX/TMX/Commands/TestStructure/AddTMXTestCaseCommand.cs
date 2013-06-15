@@ -22,5 +22,10 @@ namespace TMX.Commands
         public AddTMXTestCaseCommand()
         {
         }
+        
+        #region Parameters
+        [Parameter(Mandatory = false)]
+        public ScriptBlock[] TestCode { get; set; }
+        #endregion Parameters
     }
 }

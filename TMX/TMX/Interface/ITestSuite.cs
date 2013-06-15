@@ -35,9 +35,11 @@ namespace TMX
         string PlatformId { get; set; }
         
         // 20130615
-        //ScriptBlock BeforeTest { get; set; }
-        //ScriptBlock AfterTest { get; set; }
-        ScriptBlock BeforeScenario { get; set; }
-        ScriptBlock AfterScenario { get; set; }
+        //ScriptBlock[] BeforeTest { get; set; }
+        //ScriptBlock[] AfterTest { get; set; }
+        ScriptBlock[] BeforeScenario { get; set; }
+        ScriptBlock[] AfterScenario { get; set; }
+        object[] BeforeScenarioParameters { get; set; }
+        object[] AfterScenarioParameters { get; set; }
     }
 }

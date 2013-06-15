@@ -1222,7 +1222,7 @@ namespace UIAutomation
                 cmdlet.WriteError(
                     cmdlet,
                     "There are no StopAction scriptblocks, define at least one",
-                    "NoStopActionScripblocks",
+                    "NoStopActionScriptblocks",
                     ErrorCategory.InvalidArgument,
                     true);
             }

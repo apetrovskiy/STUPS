@@ -1,31 +1,32 @@
 ﻿/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
- * Date: 9/3/2012
- * Time: 11:36 PM
+ * Date: 6/15/2013
+ * Time: 1:40 PM
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMX.Commands
+namespace TMX
 {
     using System;
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of AddTMXTestCaseCommand.
+    /// Description of TestScenarioExecCmdletBase.
     /// </summary>
-    [Cmdlet(VerbsCommon.Add, "TMXTestCase")]
-    [OutputType(typeof(ITestCase))]
-    public class AddTMXTestCaseCommand : TestCaseCmdletBase
+    public class TestScenarioExecCmdletBase : TestExecCmdletBase
     {
-        public AddTMXTestCaseCommand()
+        public TestScenarioExecCmdletBase()
         {
         }
         
         #region Parameters
         [Parameter(Mandatory = false)]
-        public ScriptBlock[] TestCode { get; set; }
+        public object[] BeforeTestParameters { get; set; }
+        
+        [Parameter(Mandatory = false)]
+        public object[] AfterTestParameters { get; set; }
         #endregion Parameters
     }
 }

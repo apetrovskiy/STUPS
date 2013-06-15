@@ -40,6 +40,12 @@ namespace TMX
         [AllowNull]
         [AllowEmptyString]
         public string Description { get; set; }
+        
+        [Parameter(Mandatory = false)]
+        public ScriptBlock[] BeforeScenario { get; set; }
+        
+        [Parameter(Mandatory = false)]
+        public ScriptBlock[] AfterScenario { get; set; }
         #endregion Parameters
     }
 }

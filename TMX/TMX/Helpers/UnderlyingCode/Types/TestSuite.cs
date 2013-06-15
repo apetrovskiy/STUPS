@@ -11,6 +11,7 @@ namespace TMX
 {
     using System;
     using System.Collections.Generic;
+    using System.Management.Automation;
     
     /// <summary>
     /// Description of TestSuite.
@@ -95,5 +96,11 @@ namespace TMX
         
         public virtual string Tags { get; set; }
         public virtual string PlatformId { get; set; }
+        
+        // 20130615
+        public virtual ScriptBlock[] BeforeScenario { get; set; }
+        public virtual ScriptBlock[] AfterScenario { get; set; }
+        public virtual object[] BeforeScenarioParameters { get; set; }
+        public virtual object[] AfterScenarioParameters { get; set; }
     }
 }

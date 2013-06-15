@@ -52,7 +52,9 @@ namespace ExampleExportTestResultsFromCSharp
                     story.Name,
                     story.Id,
                     "platform",
-                    "description");
+                    "description",
+                    null,
+                    null);
                 
                 foreach (TestResult result in results) {
                     if (result.StoryId == story.Id) {

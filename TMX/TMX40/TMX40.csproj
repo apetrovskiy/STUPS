@@ -597,6 +597,7 @@
     <Folder Include="Commands\Configuration" />
     <Folder Include="Commands\Logging" />
     <Folder Include="Commands\Logging" />
+    <Folder Include="Commands\TestExecution" />
     <Folder Include="Commands\Status" />
     <Folder Include="Commands\TestStructure" />
     <Folder Include="Commands\TestResults" />
@@ -607,6 +608,7 @@
     <Folder Include="Helpers\UnderlyingCode\Commands" />
     <Folder Include="Helpers\UnderlyingCode\Commands\Logging" />
     <Folder Include="Helpers\UnderlyingCode\Commands\Logging" />
+    <Folder Include="Helpers\UnderlyingCode\Commands\TestExecution" />
     <Folder Include="Helpers\UnderlyingCode\Commands\TestStructure" />
     <Folder Include="Helpers\UnderlyingCode\Commands\Status" />
     <Folder Include="Helpers\UnderlyingCode\Mapping" />

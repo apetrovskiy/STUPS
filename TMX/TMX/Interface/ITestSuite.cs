@@ -11,6 +11,7 @@ namespace TMX
 {
     using System;
     using System.Collections.Generic;
+    using System.Management.Automation;
 
     /// <summary>
     /// Description of ITestSuite.
@@ -32,5 +33,13 @@ namespace TMX
         
         //List<string> PlatformIds { get; set; }
         string PlatformId { get; set; }
+        
+        // 20130615
+        //ScriptBlock[] BeforeTest { get; set; }
+        //ScriptBlock[] AfterTest { get; set; }
+        ScriptBlock[] BeforeScenario { get; set; }
+        ScriptBlock[] AfterScenario { get; set; }
+        object[] BeforeScenarioParameters { get; set; }
+        object[] AfterScenarioParameters { get; set; }
     }
 }

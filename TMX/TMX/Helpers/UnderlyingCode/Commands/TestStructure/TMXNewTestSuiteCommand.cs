@@ -31,9 +31,13 @@ namespace TMX
                     cmdlet.Name,
                     cmdlet.Id,
                     cmdlet.TestPlatformId,
-                    cmdlet.Description);
+                    cmdlet.Description,
+                    cmdlet.BeforeScenario,
+                    cmdlet.AfterScenario);
             if (result) {
-
+                
+                //TestData.CurrentTestSuite.
+                
                 cmdlet.WriteObject(cmdlet, TestData.CurrentTestSuite);
             } else {
                 

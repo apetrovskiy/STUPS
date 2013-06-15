@@ -263,6 +263,7 @@
     <Folder Include="Commands\Configuration" />
     <Folder Include="Commands\Logging" />
     <Folder Include="Commands\Logging" />
+    <Folder Include="Commands\TestExecution" />
     <Folder Include="Commands\Status" />
     <Folder Include="Commands\TestStructure" />
     <Folder Include="Commands\TestResults" />

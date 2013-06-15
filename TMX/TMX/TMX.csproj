@@ -204,6 +204,7 @@
     <Compile Include="Commands\Status\GetTMXTestStatisticsCommand.cs" />
     <Compile Include="Commands\Status\GetTMXTestSuiteStatusCommand.cs" />
     <Compile Include="Commands\Status\UpdateTMXTestStatisticsCommand.cs" />
+    <Compile Include="Commands\TestExecution\InvokeTMXTestSuiteCommand.cs" />
     <Compile Include="Commands\TestResults\BackupTMXTestResultsCommand.cs" />
     <Compile Include="Commands\TestResults\ExportTMXTestLogCommand.cs" />
     <Compile Include="Commands\TestResults\ExportTMXTestResultsCommand.cs" />
@@ -251,6 +252,10 @@
     <Compile Include="Helpers\Inheritance\NewSuiteCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\SearchCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\SettingsCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\TestExecution\TestCaseExecCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\TestExecution\TestExecCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\TestExecution\TestScenarioExecCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\TestExecution\TestSuiteExecCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\TestResultCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\TestResultDetailCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\TestResultStatusCmdletBase.cs" />
@@ -340,14 +345,17 @@
     <Folder Include="Commands\Experimental" />
     <Folder Include="Commands\Configuration" />
     <Folder Include="Commands\Logging" />
+    <Folder Include="Commands\TestExecution" />
     <Folder Include="Commands\Status" />
     <Folder Include="Commands\TestResults" />
     <Folder Include="Commands\Repository" />
     <Folder Include="Helpers\Inheritance\Database" />
     <Folder Include="ExternalUse" />
+    <Folder Include="Helpers\Inheritance\TestExecution" />
     <Folder Include="Helpers\UnderlyingCode" />
     <Folder Include="Helpers\UnderlyingCode\Commands" />
     <Folder Include="Helpers\UnderlyingCode\Commands\Logging" />
+    <Folder Include="Helpers\UnderlyingCode\Commands\TestExecution" />
     <Folder Include="Helpers\UnderlyingCode\Commands\TestStructure" />
     <Folder Include="Helpers\UnderlyingCode\Commands\Status" />
     <Folder Include="Helpers\UnderlyingCode\Mapping" />

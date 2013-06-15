@@ -33,17 +33,17 @@ namespace TMX
         {
             this.TestCaseName = testCaseName;
             this.TestCaseNumber = testCaseNumber;
-            this.BeforeCode = beforeCode;
-            this.MainCode = mainCode;
-            this.AfterCode = afterCode;
+            this.AlternateBeforeTest = beforeCode;
+            this.TestCode = mainCode;
+            this.AlternateAfterTest = afterCode;
         }
         
         public int TestCaseId { get; set; }
         public string TestCaseName { get; set; }
         public string TestCaseNumber { get; set; }
-        public ScriptBlock BeforeCode { get; set; }
-        public ScriptBlock MainCode { get; set; }
-        public ScriptBlock AfterCode { get; set; }
+        //public ScriptBlock AlternateBeforeTest { get; set; }
+        public ScriptBlock TestCode { get; set; }
+        //public ScriptBlock AlternateAfterTest { get; set; }
         public string TestCaseTag { get; set; }
         public string Description { get; set; }
     }

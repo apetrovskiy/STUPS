@@ -11,6 +11,7 @@ namespace TMX
 {
     using System;
     using System.Collections.Generic;
+    using System.Management.Automation;
     
     /// <summary>
     /// Description of TestScenario.
@@ -183,5 +184,11 @@ TestData.dumpTestStructure("TestScenario #6");
         
         public virtual string Tags { get; set; }
         public virtual string PlatformId { get; set; }
+        
+        // 20130615
+        public virtual ScriptBlock BeforeTest { get; set; }
+        public virtual ScriptBlock AfterTest { get; set; }
+        public virtual ScriptBlock AlternateBeforeScenario { get; set; }
+        public virtual ScriptBlock AlternateAfterScenario { get; set; }
     }
 }

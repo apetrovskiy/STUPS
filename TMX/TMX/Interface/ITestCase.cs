@@ -20,9 +20,9 @@ namespace TMX
         int TestCaseId { get; set; }
         string TestCaseName { get; set; }
         string TestCaseNumber { get; set; }
-        ScriptBlock BeforeCode { get; set; }
-        ScriptBlock MainCode { get; set; }
-        ScriptBlock AfterCode { get; set; }
+        ScriptBlock AlternateBeforeTest { get; set; }
+        ScriptBlock TestCode { get; set; }
+        ScriptBlock AlternateAfterTest { get; set; }
         string TestCaseTag { get; set; }
     }
 }

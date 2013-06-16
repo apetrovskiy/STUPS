@@ -28,5 +28,7 @@ namespace TMX
         [Parameter(Mandatory = false)]
         public object[] AfterScenarioParameters { get; set; }
         #endregion Parameters
+        
+        protected internal bool OnlySetParameters { get; set; }
     }
 }

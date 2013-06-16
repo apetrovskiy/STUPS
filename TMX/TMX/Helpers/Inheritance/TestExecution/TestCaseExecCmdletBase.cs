@@ -30,5 +30,7 @@ namespace TMX
         [Parameter(Mandatory = false)]
         public object[] TestCodeParameters { get; set; }
         #endregion Parameters
+        
+        protected internal bool OnlySetParameters { get; set; }
     }
 }

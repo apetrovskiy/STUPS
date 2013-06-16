@@ -659,6 +659,7 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
             PSCmdletBase cmdlet,
             object[] parameters)
         {
+            
             cmdlet.WriteVerbose(cmdlet, "preparing scriptblocks");
             
             System.Collections.Generic.List<ScriptBlock> scriptblocks =
@@ -747,6 +748,7 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
             bool eventHandlers,
             object[] parameters)
         {
+            
             try {
 
                 if (scriptblocks != null &&

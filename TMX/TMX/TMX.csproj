@@ -207,6 +207,9 @@
     <Compile Include="Commands\TestExecution\InvokeTMXTestCaseCommand.cs" />
     <Compile Include="Commands\TestExecution\InvokeTMXTestScenarioCommand.cs" />
     <Compile Include="Commands\TestExecution\InvokeTMXTestSuiteCommand.cs" />
+    <Compile Include="Commands\TestExecution\SetTMXTestCaseParametersCommand.cs" />
+    <Compile Include="Commands\TestExecution\SetTMXTestScenarioParametersCommand.cs" />
+    <Compile Include="Commands\TestExecution\SetTMXTestSuiteParametersCommand.cs" />
     <Compile Include="Commands\TestResults\BackupTMXTestResultsCommand.cs" />
     <Compile Include="Commands\TestResults\ExportTMXTestLogCommand.cs" />
     <Compile Include="Commands\TestResults\ExportTMXTestResultsCommand.cs" />

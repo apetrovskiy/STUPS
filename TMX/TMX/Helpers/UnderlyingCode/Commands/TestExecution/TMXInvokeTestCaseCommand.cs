@@ -1,6 +1,6 @@
 ﻿/*
  * Created by SharpDevelop.
- * User: Alexander
+ * User: Alexander Petrovskiy
  * Date: 6/15/2013
  * Time: 10:04 PM
  * 
@@ -38,6 +38,9 @@ namespace TMX
 //            	cmdlet,
 //            	testSuite);
             
+            if (!cmdlet.OnlySetParameters) {
+                //
+            }
         }
     }
 }

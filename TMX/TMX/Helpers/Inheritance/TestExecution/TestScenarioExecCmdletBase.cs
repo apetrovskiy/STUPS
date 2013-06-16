@@ -28,5 +28,7 @@ namespace TMX
         [Parameter(Mandatory = false)]
         public object[] AfterTestParameters { get; set; }
         #endregion Parameters
+        
+        protected internal bool OnlySetParameters { get; set; }
     }
 }

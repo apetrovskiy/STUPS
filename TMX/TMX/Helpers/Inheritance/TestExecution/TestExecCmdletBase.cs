@@ -29,7 +29,7 @@ namespace TMX
         	foreach (ITestScenario testScenario in testSuite.TestScenarios) {
         		
 	        	// run BeforeScenario scriptblocks
-				if (null != testSuite) {
+				if (null != testScenario) {
 					cmdlet.runTwoScriptBlockCollections(
 						testSuite.BeforeScenario,
 						null, // alternate scriptblocks
@@ -38,6 +38,7 @@ namespace TMX
 				}
 	        	
 	        	if (null != testScenario.TestCases && 0 < testScenario.TestCases.Count) {
+	        	    
 		        	foreach (ITestCase testCase in testScenario.TestCases) {
 	        	        
 		        		cmdlet.runTwoScriptBlockCollections(
@@ -62,7 +63,7 @@ namespace TMX
 	        	}
 	        	
 				// run AfterScenario scriptblocks
-				if (null != testSuite) {
+				if (null != testScenario) {
 					cmdlet.runTwoScriptBlockCollections(
 						testSuite.AfterScenario,
 						null, // alternate scriptblocks

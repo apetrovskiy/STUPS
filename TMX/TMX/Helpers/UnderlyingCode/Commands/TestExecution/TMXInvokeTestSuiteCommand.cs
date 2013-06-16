@@ -1,6 +1,6 @@
 ﻿/*
  * Created by SharpDevelop.
- * User: Alexander
+ * User: Alexander Petrovskiy
  * Date: 6/15/2013
  * Time: 7:01 PM
  * 
@@ -32,32 +32,16 @@ namespace TMX
             		cmdlet.Id,
             		cmdlet.TestPlatformId);
             
-            cmdlet.RunTestSuite(
-            	cmdlet,
-            	testSuite);
+            testSuite.BeforeScenarioParameters =
+                cmdlet.BeforeScenarioParameters;
+            testSuite.AfterScenarioParameters =
+                cmdlet.AfterScenarioParameters;
             
-//            bool result = 
-//                TMX.TMXHelper.NewTestSuite(
-//                    cmdlet.Name,
-//                    cmdlet.Id,
-//                    cmdlet.TestPlatformId,
-//                    cmdlet.Description,
-//                    cmdlet.BeforeScenario,
-//                    cmdlet.AfterScenario);
-//            if (result) {
-//                
-//                //TestData.CurrentTestSuite.
-//                
-//                cmdlet.WriteObject(cmdlet, TestData.CurrentTestSuite);
-//            } else {
-//                
-//                cmdlet.WriteError(
-//                    cmdlet,
-//                    "Couldn't create a test suite",
-//                    "CreatingTestSuite",
-//                    ErrorCategory.InvalidArgument,
-//                    true);
-//            }
+            if (!cmdlet.OnlySetParameters) {
+                cmdlet.RunTestSuite(
+                	cmdlet,
+                	testSuite);
+            }
         }
     }
 }

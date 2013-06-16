@@ -43,10 +43,13 @@ namespace TMXTest.Commands.TestExecution
         [Category("Invoke-TMXTestSuite")]
         public void NewTestSuite_NoScenarios_NoParameters()
         {
-            CmdletUnitTest.TestRunspace.RunAndEvaluateIsEmpty(
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+                @"[string]$global:result = ''; " +
                 @"$null = New-TMXTestSuite 'suite01' -Id 001; " + 
                 @"$null = Add-TMXTestScenario 'sc001' -Id 0001; " +
-                @"Invoke-TMXTestSuite -Id 001; ");
+                @"Invoke-TMXTestSuite -Id 001; " + 
+                @"[string]$global:result; ",
+                "");
         }
         
         [Test]
@@ -55,10 +58,13 @@ namespace TMXTest.Commands.TestExecution
         [Category("Invoke-TMXTestSuite")]
         public void NewTestSuite_NoScenarios_BeforeScenario()
         {
-            CmdletUnitTest.TestRunspace.RunAndEvaluateIsEmpty(
-                @"$null = New-TMXTestSuite 'suite01' -Id 001 -BeforeScenario { '01' | Out-Host; }; " + 
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+                @"[string]$global:result = ''; " +
+                @"$null = New-TMXTestSuite 'suite01' -Id 001 -BeforeScenario { $global:result += '01'; }; " + 
                 @"$null = Add-TMXTestScenario 'sc001' -Id 0001; " +
-                @"Invoke-TMXTestSuite -Id 001; ");
+                @"Invoke-TMXTestSuite -Id 001; " + 
+                @"[string]$global:result; ",
+                "01");
         }
         
         [Test]
@@ -67,10 +73,13 @@ namespace TMXTest.Commands.TestExecution
         [Category("Invoke-TMXTestSuite")]
         public void NewTestSuite_NoScenarios_BeforeScenarioX2()
         {
-            CmdletUnitTest.TestRunspace.RunAndEvaluateIsEmpty(
-                @"$null = New-TMXTestSuite 'suite01' -Id 001 -BeforeScenario { '01' | Out-Host; },{ '02' | Out-Host; }; " + 
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+                @"[string]$global:result = ''; " +
+                @"$null = New-TMXTestSuite 'suite01' -Id 001 -BeforeScenario { $global:result += '01'; },{ $global:result += '02'; }; " + 
                 @"$null = Add-TMXTestScenario 'sc001' -Id 0001; " +
-                @"Invoke-TMXTestSuite -Id 001; ");
+                @"Invoke-TMXTestSuite -Id 001; " + 
+                @"[string]$global:result; ",
+                "0102");
         }
         
         [Test]
@@ -79,10 +88,13 @@ namespace TMXTest.Commands.TestExecution
         [Category("Invoke-TMXTestSuite")]
         public void NewTestSuite_NoScenarios_AfterScenario()
         {
-            CmdletUnitTest.TestRunspace.RunAndEvaluateIsEmpty(
-                @"$null = New-TMXTestSuite 'suite01' -Id 001 -AfterScenario { '03' | Out-Host; }; " + 
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+                @"[string]$global:result = ''; " +
+                @"$null = New-TMXTestSuite 'suite01' -Id 001 -AfterScenario { $global:result += '03'; }; " + 
                 @"$null = Add-TMXTestScenario 'sc001' -Id 0001; " +
-                @"Invoke-TMXTestSuite -Id 001; ");
+                @"Invoke-TMXTestSuite -Id 001; " + 
+                @"[string]$global:result; ",
+                "03");
         }
         
         [Test]
@@ -91,10 +103,13 @@ namespace TMXTest.Commands.TestExecution
         [Category("Invoke-TMXTestSuite")]
         public void NewTestSuite_NoScenarios_AfterScenarioX2()
         {
-            CmdletUnitTest.TestRunspace.RunAndEvaluateIsEmpty(
-                @"$null = New-TMXTestSuite 'suite01' -Id 001 -AfterScenario { '03' | Out-Host; },{ '04' | Out-Host; }; " + 
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+                @"[string]$global:result = ''; " +
+                @"$null = New-TMXTestSuite 'suite01' -Id 001 -AfterScenario { $global:result += '03'; },{ $global:result += '04'; }; " + 
                 @"$null = Add-TMXTestScenario 'sc001' -Id 0001; " +
-                @"Invoke-TMXTestSuite -Id 001; ");
+                @"Invoke-TMXTestSuite -Id 001; " + 
+                @"[string]$global:result; ",
+                "0304");
         }
         
         [Test]
@@ -103,11 +118,14 @@ namespace TMXTest.Commands.TestExecution
         [Category("Invoke-TMXTestSuite")]
         public void NewTestSuite_NoScenarios_BeforeScenarioX2_AfterScenarioX2()
         {
-            CmdletUnitTest.TestRunspace.RunAndEvaluateIsEmpty(
-                @"$null = New-TMXTestSuite 'suite01' -Id 001 -BeforeScenario { '01' | Out-Host; },{ '02' | Out-Host; } " +
-                @"-AfterScenario { '03' | Out-Host; },{ '04' | Out-Host; }; " +
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+                @"[string]$global:result = ''; " +
+                @"$null = New-TMXTestSuite 'suite01' -Id 001 -BeforeScenario { $global:result += '01'; },{ $global:result += '02'; } " +
+                @"-AfterScenario { $global:result += '03'; },{ $global:result += '04'; }; " +
                 @"$null = Add-TMXTestScenario 'sc001' -Id 0001; " +
-                @"Invoke-TMXTestSuite -Id 001; ");
+                @"Invoke-TMXTestSuite -Id 001; " + 
+                @"[string]$global:result; ",
+                "01020304");
         }
         
         // ====================================================================================================
@@ -118,61 +136,76 @@ namespace TMXTest.Commands.TestExecution
         [Category("Slow")]
         [Category("SuiteLevel")]
         [Category("Invoke-TMXTestSuite")]
-        public void NewTestSuite_OneScenario_BeforeTest()
+        public void NewTestSuite_OneScenario_NoTestCases_BeforeTest()
         {
-            CmdletUnitTest.TestRunspace.RunAndEvaluateIsEmpty(
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+                @"[string]$global:result = ''; " +
                 @"$null = New-TMXTestSuite 'suite01' -Id 001; " + 
-                @"$null = Add-TMXTestScenario 'sc001' -Id 0001 -BeforeTest { '11' | Out-Host; }; " +
-                @"Invoke-TMXTestSuite -Id 001; ");
+                @"$null = Add-TMXTestScenario 'sc001' -Id 0001 -BeforeTest { $global:result += '11'; }; " +
+                @"Invoke-TMXTestSuite -Id 001; " + 
+                @"[string]$global:result; ",
+                ""); // as there are no test cases "11");
         }
         
         [Test]
         [Category("Slow")]
         [Category("SuiteLevel")]
         [Category("Invoke-TMXTestSuite")]
-        public void NewTestSuite_OneScenario_BeforeTestX2()
+        public void NewTestSuite_OneScenario_NoTestCases_BeforeTestX2()
         {
-            CmdletUnitTest.TestRunspace.RunAndEvaluateIsEmpty(
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+                @"[string]$global:result = ''; " +
                 @"$null = New-TMXTestSuite 'suite01' -Id 001; " + 
-                @"$null = Add-TMXTestScenario 'sc001' -Id 0001 -BeforeTest { '11' | Out-Host; },{ '12' | Out-Host; }; " +
-                @"Invoke-TMXTestSuite -Id 001; ");
+                @"$null = Add-TMXTestScenario 'sc001' -Id 0001 -BeforeTest { $global:result += '11'; },{ $global:result += '12'; }; " +
+                @"Invoke-TMXTestSuite -Id 001; " + 
+                @"[string]$global:result; ",
+                ""); // as there are no test cases "1112");
         }
         
         [Test]
         [Category("Slow")]
         [Category("SuiteLevel")]
         [Category("Invoke-TMXTestSuite")]
-        public void NewTestSuite_OneScenario_AfterTest()
+        public void NewTestSuite_OneScenario_NoTestCases_AfterTest()
         {
-            CmdletUnitTest.TestRunspace.RunAndEvaluateIsEmpty(
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+                @"[string]$global:result = ''; " +
                 @"$null = New-TMXTestSuite 'suite01' -Id 001; " + 
-                @"$null = Add-TMXTestScenario 'sc001' -Id 0001 -AfterTest { '13' | Out-Host; }; " +
-                @"Invoke-TMXTestSuite -Id 001; ");
+                @"$null = Add-TMXTestScenario 'sc001' -Id 0001 -AfterTest { $global:result += '13'; }; " +
+                @"Invoke-TMXTestSuite -Id 001; " + 
+                @"[string]$global:result; ",
+                ""); // as there are no test cases "13");
         }
         
         [Test]
         [Category("Slow")]
         [Category("SuiteLevel")]
         [Category("Invoke-TMXTestSuite")]
-        public void NewTestSuite_OneScenario_AfterTestX2()
+        public void NewTestSuite_OneScenario_NoTestCases_AfterTestX2()
         {
-            CmdletUnitTest.TestRunspace.RunAndEvaluateIsEmpty(
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+                @"[string]$global:result = ''; " +
                 @"$null = New-TMXTestSuite 'suite01' -Id 001; " + 
-                @"$null = Add-TMXTestScenario 'sc001' -Id 0001 -AfterTest { '13' | Out-Host; },{ '14' | Out-Host; }; " +
-                @"Invoke-TMXTestSuite -Id 001; ");
+                @"$null = Add-TMXTestScenario 'sc001' -Id 0001 -AfterTest { $global:result += '13'; },{ $global:result += '14'; }; " +
+                @"Invoke-TMXTestSuite -Id 001; " + 
+                @"[string]$global:result; ",
+                ""); // as there are no test cases "1314");
         }
         
         [Test]
         [Category("Slow")]
         [Category("SuiteLevel")]
         [Category("Invoke-TMXTestSuite")]
-        public void NewTestSuite_OneScenario_BeforeTestX2_AfterTestX2()
+        public void NewTestSuite_OneScenario_NoTestCases_BeforeTestX2_AfterTestX2()
         {
-            CmdletUnitTest.TestRunspace.RunAndEvaluateIsEmpty(
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+                @"[string]$global:result = ''; " +
                 @"$null = New-TMXTestSuite 'suite01' -Id 001; " + 
-                @"$null = Add-TMXTestScenario 'sc001' -Id 0001 -BeforeTest { '11' | Out-Host; },{ '12' | Out-Host; } " +
-                @"-AfterTest { '13' | Out-Host; },{ '14' | Out-Host; }; " +
-                @"Invoke-TMXTestSuite -Id 001; ");
+                @"$null = Add-TMXTestScenario 'sc001' -Id 0001 -BeforeTest { $global:result += '11'; },{ $global:result += '12'; } " +
+                @"-AfterTest { $global:result += '13'; },{ $global:result += '14'; }; " +
+                @"Invoke-TMXTestSuite -Id 001; " + 
+                @"[string]$global:result; ",
+                ""); // as there are no test cases "11121314");
         }
         
         
@@ -185,11 +218,14 @@ namespace TMXTest.Commands.TestExecution
         [Category("Invoke-TMXTestSuite")]
         public void NewTestSuite_OneScenario_OneTestCase_NoParameters()
         {
-            CmdletUnitTest.TestRunspace.RunAndEvaluateIsEmpty(
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+                @"[string]$global:result = ''; " +
                 @"$null = New-TMXTestSuite 'suite01' -Id 001; " + 
                 @"$null = Add-TMXTestScenario 'sc001' -Id 0001; " +
-                @"$null = Add-TMXTestCase -TestCaseName 'tc01' -Id 00001 -TestCode { '21' | Out-Host; }; " +
-                @"Invoke-TMXTestSuite -Id 001; ");
+                @"$null = Add-TMXTestCase -TestCaseName 'tc01' -Id 00001 -TestCode { $global:result += '21'; }; " +
+                @"Invoke-TMXTestSuite -Id 001; " + 
+                @"[string]$global:result; ",
+                "21");
         }
         
         [Test]
@@ -198,11 +234,14 @@ namespace TMXTest.Commands.TestExecution
         [Category("Invoke-TMXTestSuite")]
         public void NewTestSuite_OneScenario_OneTestCase_BeforeScenario()
         {
-            CmdletUnitTest.TestRunspace.RunAndEvaluateIsEmpty(
-                @"$null = New-TMXTestSuite 'suite01' -Id 001 -BeforeScenario { '01' | Out-Host; }; " +
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+                @"[string]$global:result = ''; " +
+                @"$null = New-TMXTestSuite 'suite01' -Id 001 -BeforeScenario { $global:result += '01'; }; " +
                 @"$null = Add-TMXTestScenario 'sc001' -Id 0001; " +
-                @"$null = Add-TMXTestCase -TestCaseName 'tc01' -Id 00001 -TestCode { '21' | Out-Host; }; " +
-                @"Invoke-TMXTestSuite -Id 001; ");
+                @"$null = Add-TMXTestCase -TestCaseName 'tc01' -Id 00001 -TestCode { $global:result += '21'; }; " +
+                @"Invoke-TMXTestSuite -Id 001; " + 
+                @"[string]$global:result; ",
+                "0121");
         }
         
         [Test]
@@ -211,11 +250,14 @@ namespace TMXTest.Commands.TestExecution
         [Category("Invoke-TMXTestSuite")]
         public void NewTestSuite_OneScenario_OneTestCase_BeforeScenario_BeforeTest()
         {
-            CmdletUnitTest.TestRunspace.RunAndEvaluateIsEmpty(
-                @"$null = New-TMXTestSuite 'suite01' -Id 001 -BeforeScenario { '01' | Out-Host; }; " +
-                @"$null = Add-TMXTestScenario 'sc001' -Id 0001 -BeforeTest { '11' | Out-Host; }; " +
-                @"$null = Add-TMXTestCase -TestCaseName 'tc01' -Id 00001 -TestCode { '21' | Out-Host; }; " +
-                @"Invoke-TMXTestSuite -Id 001; ");
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+                @"[string]$global:result = ''; " +
+                @"$null = New-TMXTestSuite 'suite01' -Id 001 -BeforeScenario { $global:result += '01'; }; " +
+                @"$null = Add-TMXTestScenario 'sc001' -Id 0001 -BeforeTest { $global:result += '11'; }; " +
+                @"$null = Add-TMXTestCase -TestCaseName 'tc01' -Id 00001 -TestCode { $global:result += '21'; }; " +
+                @"Invoke-TMXTestSuite -Id 001; " + 
+                @"[string]$global:result; ",
+                "011121");
         }
         
         [Test]
@@ -224,11 +266,14 @@ namespace TMXTest.Commands.TestExecution
         [Category("Invoke-TMXTestSuite")]
         public void NewTestSuite_OneScenario_OneTestCase_BeforeScenarioX2_BeforeTestX2()
         {
-            CmdletUnitTest.TestRunspace.RunAndEvaluateIsEmpty(
-                @"$null = New-TMXTestSuite 'suite01' -Id 001 -BeforeScenario { '01' | Out-Host; },{ '02' | Out-Host; }; " +
-                @"$null = Add-TMXTestScenario 'sc001' -Id 0001 -BeforeTest { '11' | Out-Host; },{ '12' | Out-Host; }; " +
-                @"$null = Add-TMXTestCase -TestCaseName 'tc01' -Id 00001 -TestCode { '21' | Out-Host; }; " +
-                @"Invoke-TMXTestSuite -Id 001; ");
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+                @"[string]$global:result = ''; " +
+                @"$null = New-TMXTestSuite 'suite01' -Id 001 -BeforeScenario { $global:result += '01'; },{ $global:result += '02'; }; " +
+                @"$null = Add-TMXTestScenario 'sc001' -Id 0001 -BeforeTest { $global:result += '11'; },{ $global:result += '12'; }; " +
+                @"$null = Add-TMXTestCase -TestCaseName 'tc01' -Id 00001 -TestCode { $global:result += '21'; }; " +
+                @"Invoke-TMXTestSuite -Id 001; " + 
+                @"[string]$global:result; ",
+                "0102111221");
         }
         
         [Test]
@@ -237,11 +282,14 @@ namespace TMXTest.Commands.TestExecution
         [Category("Invoke-TMXTestSuite")]
         public void NewTestSuite_OneScenario_OneTestCase_AfterScenario()
         {
-            CmdletUnitTest.TestRunspace.RunAndEvaluateIsEmpty(
-                @"$null = New-TMXTestSuite 'suite01' -Id 001 -AfterScenario { '03' | Out-Host; }; " +
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+                @"[string]$global:result = ''; " +
+                @"$null = New-TMXTestSuite 'suite01' -Id 001 -AfterScenario { $global:result += '03'; }; " +
                 @"$null = Add-TMXTestScenario 'sc001' -Id 0001; " +
-                @"$null = Add-TMXTestCase -TestCaseName 'tc01' -Id 00001 -TestCode { '21' | Out-Host; }; " +
-                @"Invoke-TMXTestSuite -Id 001; ");
+                @"$null = Add-TMXTestCase -TestCaseName 'tc01' -Id 00001 -TestCode { $global:result += '21'; }; " +
+                @"Invoke-TMXTestSuite -Id 001; " + 
+                @"[string]$global:result; ",
+                "2103");
         }
         
         [Test]
@@ -250,11 +298,14 @@ namespace TMXTest.Commands.TestExecution
         [Category("Invoke-TMXTestSuite")]
         public void NewTestSuite_OneScenario_OneTestCase_AfterScenario_AfterTest()
         {
-            CmdletUnitTest.TestRunspace.RunAndEvaluateIsEmpty(
-                @"$null = New-TMXTestSuite 'suite01' -Id 001 -AfterScenario { '03' | Out-Host; }; " +
-                @"$null = Add-TMXTestScenario 'sc001' -Id 0001 -AfterTest { '13' | Out-Host; }; " +
-                @"$null = Add-TMXTestCase -TestCaseName 'tc01' -Id 00001 -TestCode { '21' | Out-Host; }; " +
-                @"Invoke-TMXTestSuite -Id 001; ");
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+                @"[string]$global:result = ''; " +
+                @"$null = New-TMXTestSuite 'suite01' -Id 001 -AfterScenario { $global:result += '03'; }; " +
+                @"$null = Add-TMXTestScenario 'sc001' -Id 0001 -AfterTest { $global:result += '13'; }; " +
+                @"$null = Add-TMXTestCase -TestCaseName 'tc01' -Id 00001 -TestCode { $global:result += '21'; }; " +
+                @"Invoke-TMXTestSuite -Id 001; " + 
+                @"[string]$global:result; ",
+                "211303");
         }
         
         [Test]
@@ -263,11 +314,14 @@ namespace TMXTest.Commands.TestExecution
         [Category("Invoke-TMXTestSuite")]
         public void NewTestSuite_OneScenario_OneTestCase_AfterScenarioX2_AfterTestX2()
         {
-            CmdletUnitTest.TestRunspace.RunAndEvaluateIsEmpty(
-                @"$null = New-TMXTestSuite 'suite01' -Id 001 -AfterScenario { '03' | Out-Host; },{ '04' | Out-Host; }; " +
-                @"$null = Add-TMXTestScenario 'sc001' -Id 0001 -AfterTest { '13' | Out-Host; },{ '14' | Out-Host; }; " +
-                @"$null = Add-TMXTestCase -TestCaseName 'tc01' -Id 00001 -TestCode { '21' | Out-Host; }; " +
-                @"Invoke-TMXTestSuite -Id 001; ");
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+                @"[string]$global:result = ''; " +
+                @"$null = New-TMXTestSuite 'suite01' -Id 001 -AfterScenario { $global:result += '03'; },{ $global:result += '04'; }; " +
+                @"$null = Add-TMXTestScenario 'sc001' -Id 0001 -AfterTest { $global:result += '13'; },{ $global:result += '14'; }; " +
+                @"$null = Add-TMXTestCase -TestCaseName 'tc01' -Id 00001 -TestCode { $global:result += '21'; }; " +
+                @"Invoke-TMXTestSuite -Id 001; " + 
+                @"[string]$global:result; ",
+                "2113140304");
         }
         
         [Test]
@@ -276,13 +330,16 @@ namespace TMXTest.Commands.TestExecution
         [Category("Invoke-TMXTestSuite")]
         public void NewTestSuite_OneScenario_OneTestCase_BeforeScenarioX2_BeforeTestX2_AfterScenarioX2_AfterTestX2()
         {
-            CmdletUnitTest.TestRunspace.RunAndEvaluateIsEmpty(
-                @"$null = New-TMXTestSuite 'suite01' -Id 001 -BeforeScenario { '01' | Out-Host; },{ '02' | Out-Host; } " +
-                @"-AfterScenario { '03' | Out-Host; },{ '04' | Out-Host; }; " +
-                @"$null = Add-TMXTestScenario 'sc001' -Id 0001 -BeforeTest { '11' | Out-Host; },{ '12' | Out-Host; } " +
-                @"-AfterTest { '13' | Out-Host; },{ '14' | Out-Host; }; " +
-                @"$null = Add-TMXTestCase -TestCaseName 'tc01' -Id 00001 -TestCode { '21' | Out-Host; }; " +
-                @"Invoke-TMXTestSuite -Id 001; ");
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+                @"[string]$global:result = ''; " +
+                @"$null = New-TMXTestSuite 'suite01' -Id 001 -BeforeScenario { $global:result += '01'; },{ $global:result += '02'; } " +
+                @"-AfterScenario { $global:result += '03'; },{ $global:result += '04'; }; " +
+                @"$null = Add-TMXTestScenario 'sc001' -Id 0001 -BeforeTest { $global:result += '11'; },{ $global:result += '12'; } " +
+                @"-AfterTest { $global:result += '13'; },{ $global:result += '14'; }; " +
+                @"$null = Add-TMXTestCase -TestCaseName 'tc01' -Id 00001 -TestCode { $global:result += '21'; }; " +
+                @"Invoke-TMXTestSuite -Id 001; " + 
+                @"[string]$global:result; ",
+                "010211122113140304");
         }
         
         // ====================================================================================================

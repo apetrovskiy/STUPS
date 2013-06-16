@@ -145,7 +145,11 @@ namespace CmdletUnitTest
             //reportRunningCode(codeSnippet);
             System.Collections.ObjectModel.Collection<PSObject> coll =
                 PSRunner.Runner.RunPSCode(codeSnippet, showCode);
-            Assert.AreEqual(strValue, coll[0].ToString());
+            if (null != coll && 0 < coll.Count) {
+                Assert.AreEqual(strValue, coll[0].ToString());
+            } else {
+                Assert.Fail();
+            }
             PSRunner.Runner.FinishRunningCode();
         }
         

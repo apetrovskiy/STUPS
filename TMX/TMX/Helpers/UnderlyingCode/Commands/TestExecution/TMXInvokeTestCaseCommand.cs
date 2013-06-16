@@ -26,20 +26,25 @@ namespace TMX
             TestCaseExecCmdletBase cmdlet =
                 (TestCaseExecCmdletBase)this.Cmdlet;
             
-            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            ITestCase testCase =
+            	TestData.GetTestCase(
+            		TMX.TestData.CurrentTestSuite,
+            		cmdlet.Name,
+            		cmdlet.Id,
+            		TMX.TestData.CurrentTestSuite.Name,
+            		TMX.TestData.CurrentTestSuite.Id,
+            		TMX.TestData.CurrentTestScenario.Name,
+            		TMX.TestData.CurrentTestScenario.Id,
+            		cmdlet.TestPlatformId);
             
-//            ITestCase testCase =
-//            	TestData.GetTestCase(
-//            		cmdlet.Name,
-//            		cmdlet.Id,
-//            		cmdlet.TestPlatformId);
-//            
-//            cmdlet.RunTestCase(
-//            	cmdlet,
-//            	testSuite);
+            testCase.TestCodeParameters =
+                cmdlet.TestCodeParameters;
             
             if (!cmdlet.OnlySetParameters) {
-                //
+                cmdlet.RunTestCase(
+                	cmdlet,
+                	TMX.TestData.CurrentTestSuite, // temporary, add selection from cmdlet's parameters
+                	TMX.TestData.CurrentTestScenario);
             }
         }
     }

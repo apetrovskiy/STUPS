@@ -1623,12 +1623,30 @@ dumpTestStructure("7");
             return result;
         }
         
-        internal static TestScenario GetTestScenario(TestSuite testSuite, 
-                                                     string testScenarioName, 
-                                                     string testScenarioId,
-                                                     string testSuiteName,
-                                                     string testSuiteId,
-                                                     string testPlatformId)
+        internal static TestCase GetTestCase(
+            TestSuite testSuite,
+            string testCaseName,
+            string testCaseId,
+            string testScenarioName,
+            string testScenarioId,
+            string testSuiteName,
+            string testSuiteId,
+            string testPlatformId)
+        {
+            TestCase result = null;
+            
+            
+            
+            return result;
+        }
+        
+        internal static TestScenario GetTestScenario(
+            TestSuite testSuite,
+            string testScenarioName,
+            string testScenarioId,
+            string testSuiteName,
+            string testSuiteId,
+            string testPlatformId)
         {
             TestScenario result = null;
 

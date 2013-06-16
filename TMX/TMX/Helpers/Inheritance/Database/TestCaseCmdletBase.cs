@@ -25,6 +25,9 @@ namespace TMX
         #region Parameters
         [Parameter(Mandatory = false)]
         public string TestCaseName { get; set; }
+        
+        [Parameter(Mandatory = false)]
+        public ScriptBlock[] TestCode { get; set; }
         #endregion Parameters
     }
 }

@@ -23,6 +23,28 @@ namespace TMX
         
         internal override void Execute()
         {
+            AddTestCaseCmdletBase cmdlet =
+                (AddTestCaseCmdletBase)this.Cmdlet;
+            
+            bool result = 
+                TMX.TMXHelper.AddTestCase(cmdlet);
+            
+            // 20130616
+            TMX.Logger.TMXLogger.Info("Test case: '" + cmdlet.Name + "'");
+            
+            if (result) {
+                
+                cmdlet.WriteObject(
+                    cmdlet,
+                    TestData.CurrentTestScenario);
+            } else {
+                cmdlet.WriteError(
+                    cmdlet,
+                    "Couldn't add a test scenario",
+                    "AddingTestScenario",
+                    ErrorCategory.InvalidArgument,
+                    true);
+            }
         }
     }
 }

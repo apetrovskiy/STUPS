@@ -17,15 +17,22 @@ namespace TMX.Commands
     /// </summary>
     [Cmdlet(VerbsCommon.Add, "TMXTestCase")]
     [OutputType(typeof(ITestCase))]
-    public class AddTMXTestCaseCommand : TestCaseCmdletBase
+    public class AddTMXTestCaseCommand : AddTestCaseCmdletBase //TestCaseCmdletBase
     {
         public AddTMXTestCaseCommand()
         {
         }
         
         #region Parameters
-        [Parameter(Mandatory = false)]
-        public ScriptBlock[] TestCode { get; set; }
+//        [Parameter(Mandatory = false)]
+//        public ScriptBlock[] TestCode { get; set; }
         #endregion Parameters
+        
+        protected override void ProcessRecord()
+        {
+            TMXAddTestCaseCommand command =
+                new TMXAddTestCaseCommand(this);
+            command.Execute();
+        }
     }
 }

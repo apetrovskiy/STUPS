@@ -1590,5 +1590,24 @@ namespace TMX
         {
             throw new NotImplementedException();
         }
+        
+        public static bool AddTestCase(AddTestCaseCmdletBase cmdlet)
+        {
+            bool result = false;
+            
+            result = 
+                TMX.TestData.AddTestCase(//TestData.CurrentTestScenario, //cmdlet.InputObject,
+                                         cmdlet.Name,
+                                         cmdlet.Id,
+                                         "", //cmdlet.Description,
+                                         TestData.CurrentTestSuite.Name, //cmdlet.TestSuiteName,
+                                         TestData.CurrentTestSuite.Id, //cmdlet.TestSuiteId,
+                                         TestData.CurrentTestScenario.Name, //cmdlet.TestScenarioName,
+                                         TestData.CurrentTestScenario.Id, //cmdlet.TestScenarioId,
+                                         cmdlet.TestPlatformId,
+                                         cmdlet.TestCode);
+            
+            return result;
+        }
     }
 }

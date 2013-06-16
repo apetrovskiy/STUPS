@@ -333,9 +333,6 @@
     <Compile Include="..\TMX\Commands\TestStructure\SetTMXTestCaseCommand.cs">
       <Link>Commands\TestStructure\SetTMXTestCaseCommand.cs</Link>
     </Compile>
-    <Compile Include="..\TMX\Helpers\Inheritance\AddScenarioCmdletBase.cs">
-      <Link>Helpers\Inheritance\AddScenarioCmdletBase.cs</Link>
-    </Compile>
     <Compile Include="..\TMX\Helpers\Inheritance\AssertionsCmdletBase.cs">
       <Link>Helpers\Inheritance\AssertionsCmdletBase.cs</Link>
     </Compile>
@@ -372,35 +369,11 @@
     <Compile Include="..\TMX\Helpers\Inheritance\ImportExportCmdletBase.cs">
       <Link>Helpers\Inheritance\ImportExportCmdletBase.cs</Link>
     </Compile>
-    <Compile Include="..\TMX\Helpers\Inheritance\NewPlatformCmdletBase.cs">
-      <Link>Helpers\Inheritance\NewPlatformCmdletBase.cs</Link>
-    </Compile>
-    <Compile Include="..\TMX\Helpers\Inheritance\NewSuiteCmdletBase.cs">
-      <Link>Helpers\Inheritance\NewSuiteCmdletBase.cs</Link>
-    </Compile>
-    <Compile Include="..\TMX\Helpers\Inheritance\OpenScenarioCmdletBase.cs">
-      <Link>Helpers\Inheritance\OpenScenarioCmdletBase.cs</Link>
-    </Compile>
-    <Compile Include="..\TMX\Helpers\Inheritance\OpenSuiteCmdletBase.cs">
-      <Link>Helpers\Inheritance\OpenSuiteCmdletBase.cs</Link>
-    </Compile>
-    <Compile Include="..\TMX\Helpers\Inheritance\OpenTestCaseCmdletBase.cs">
-      <Link>Helpers\Inheritance\OpenTestCaseCmdletBase.cs</Link>
-    </Compile>
-    <Compile Include="..\TMX\Helpers\Inheritance\PlatformCmdletBase.cs">
-      <Link>Helpers\Inheritance\PlatformCmdletBase.cs</Link>
-    </Compile>
-    <Compile Include="..\TMX\Helpers\Inheritance\ScenarioCmdletBase.cs">
-      <Link>Helpers\Inheritance\ScenarioCmdletBase.cs</Link>
-    </Compile>
     <Compile Include="..\TMX\Helpers\Inheritance\SearchCmdletBase.cs">
       <Link>Helpers\Inheritance\SearchCmdletBase.cs</Link>
     </Compile>
     <Compile Include="..\TMX\Helpers\Inheritance\SettingsCmdletBase.cs">
       <Link>Helpers\SettingsCmdletBase.cs</Link>
-    </Compile>
-    <Compile Include="..\TMX\Helpers\Inheritance\SuiteCmdletBase.cs">
-      <Link>Helpers\Inheritance\SuiteCmdletBase.cs</Link>
     </Compile>
     <Compile Include="..\TMX\Helpers\Inheritance\TestExecution\TestCaseExecCmdletBase.cs">
       <Link>Helpers\Inheritance\TestExecution\TestCaseExecCmdletBase.cs</Link>
@@ -414,14 +387,44 @@
     <Compile Include="..\TMX\Helpers\Inheritance\TestExecution\TestSuiteExecCmdletBase.cs">
       <Link>Helpers\Inheritance\TestExecution\TestSuiteExecCmdletBase.cs</Link>
     </Compile>
-    <Compile Include="..\TMX\Helpers\Inheritance\TestResultCmdletBase.cs">
-      <Link>Helpers\Inheritance\TestResultCmdletBase.cs</Link>
-    </Compile>
-    <Compile Include="..\TMX\Helpers\Inheritance\TestResultDetailCmdletBase.cs">
-      <Link>Helpers\Inheritance\TestResultDetailCmdletBase.cs</Link>
-    </Compile>
     <Compile Include="..\TMX\Helpers\Inheritance\TestResultStatusCmdletBase.cs">
       <Link>Helpers\Inheritance\TestResultStatusCmdletBase.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\Inheritance\TestStructure\AddScenarioCmdletBase.cs">
+      <Link>Helpers\Inheritance\TestStructure\AddScenarioCmdletBase.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\Inheritance\TestStructure\AddTestCaseCmdletBase.cs">
+      <Link>Helpers\Inheritance\TestStructure\AddTestCaseCmdletBase.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\Inheritance\TestStructure\NewPlatformCmdletBase.cs">
+      <Link>Helpers\Inheritance\TestStructure\NewPlatformCmdletBase.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\Inheritance\TestStructure\NewSuiteCmdletBase.cs">
+      <Link>Helpers\Inheritance\TestStructure\NewSuiteCmdletBase.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\Inheritance\TestStructure\OpenScenarioCmdletBase.cs">
+      <Link>Helpers\Inheritance\TestStructure\OpenScenarioCmdletBase.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\Inheritance\TestStructure\OpenSuiteCmdletBase.cs">
+      <Link>Helpers\Inheritance\TestStructure\OpenSuiteCmdletBase.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\Inheritance\TestStructure\OpenTestCaseCmdletBase.cs">
+      <Link>Helpers\Inheritance\TestStructure\OpenTestCaseCmdletBase.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\Inheritance\TestStructure\PlatformCmdletBase.cs">
+      <Link>Helpers\Inheritance\TestStructure\PlatformCmdletBase.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\Inheritance\TestStructure\ScenarioCmdletBase.cs">
+      <Link>Helpers\Inheritance\TestStructure\ScenarioCmdletBase.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\Inheritance\TestStructure\SuiteCmdletBase.cs">
+      <Link>Helpers\Inheritance\TestStructure\SuiteCmdletBase.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\Inheritance\TestStructure\TestResultCmdletBase.cs">
+      <Link>Helpers\Inheritance\TestStructure\TestResultCmdletBase.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\Inheritance\TestStructure\TestResultDetailCmdletBase.cs">
+      <Link>Helpers\Inheritance\TestStructure\TestResultDetailCmdletBase.cs</Link>
     </Compile>
     <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\Logging\TMXNewLoggerCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\Logging\TMXNewLoggerCommand.cs</Link>
@@ -638,6 +641,7 @@
     <Folder Include="Commands\Repository" />
     <Folder Include="Helpers\Inheritance\Database" />
     <Folder Include="ExternalUse" />
+    <Folder Include="Helpers\Inheritance\TestStructure" />
     <Folder Include="Helpers\Inheritance\TestExecution" />
     <Folder Include="Helpers\UnderlyingCode" />
     <Folder Include="Helpers\UnderlyingCode\Commands" />

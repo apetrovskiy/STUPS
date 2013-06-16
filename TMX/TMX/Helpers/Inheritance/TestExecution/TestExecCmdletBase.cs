@@ -39,7 +39,7 @@ namespace TMX
 	        	
 	        	if (null != testScenario.TestCases && 0 < testScenario.TestCases.Count) {
 		        	foreach (ITestCase testCase in testScenario.TestCases) {
-		        		
+	        	        
 		        		cmdlet.runTwoScriptBlockCollections(
 							testScenario.BeforeTest,
 							null, // alternate scriptblocks

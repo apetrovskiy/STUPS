@@ -33,6 +33,16 @@ namespace TMXTest.Commands.TestExecution
             MiddleLevelCode.DisposeRunspace();
         }
         
-        
+        [Test]
+        [Category("Slow")]
+        [Category("SuiteLevel")]
+        [Category("Invoke-TMXTestScenario")]
+        public void AddTestScenario_1()
+        {
+            CmdletUnitTest.TestRunspace.RunAndEvaluateIsEmpty( //.RunAndEvaluateAreEqual(
+                @"$null = New-TMXTestSuite 'suite01' -Id 001; " + 
+                @"$null = Add-TMXTestScenario 'sc001' -Id 0001 -BeforeTest { '1' | Out-Host; } -AfterTest { '2' | Out-Host; }; " +
+                @"Invoke-TMXTestSuite -Id 001; ");
+        }
     }
 }

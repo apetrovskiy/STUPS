@@ -61,7 +61,8 @@ namespace TMX
             string testScenarioId,
             string testSuiteId)
         {
-            this.TestResults = new List<ITestResult> ();
+            this.TestResults = new List<ITestResult>();
+            this.TestCases = new List<ITestCase>();
             this.Statistics = new TestStat();
             this.enStatus = TestScenarioStatuses.NotTested;
             this.Name = testScenarioName;

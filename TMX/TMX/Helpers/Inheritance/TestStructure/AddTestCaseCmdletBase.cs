@@ -20,5 +20,12 @@ namespace TMX
         public AddTestCaseCmdletBase()
         {
         }
+        
+        #region Parameters
+//        [Parameter(Mandatory = true,
+//                   Position = 0)]
+//        [ValidateNotNullOrEmpty()]
+//        public new string Name { get; set; }
+        #endregion Parameters
     }
 }

@@ -37,8 +37,12 @@ namespace TMX
             		TMX.TestData.CurrentTestScenario.Id,
             		cmdlet.TestPlatformId);
             
+Console.WriteLine("000002");
+            
             testCase.TestCodeParameters =
                 cmdlet.TestCodeParameters;
+            
+Console.WriteLine("000003");
             
             if (!cmdlet.OnlySetParameters) {
                 cmdlet.RunTestCase(
@@ -46,6 +50,8 @@ namespace TMX
                 	TMX.TestData.CurrentTestSuite, // temporary, add selection from cmdlet's parameters
                 	TMX.TestData.CurrentTestScenario);
             }
+            
+Console.WriteLine("000004");
         }
     }
 }

@@ -17,7 +17,9 @@ namespace TMX
     /// </summary>
     public interface ITestCase
     {
-        int TestCaseId { get; set; }
+        int DbId { get; set; }
+        //int TestCaseId { get; set; }
+        string TestCaseId { get; set; }
         string TestCaseName { get; set; }
         string TestCaseNumber { get; set; }
         //ScriptBlock[] AlternateBeforeTest { get; set; }

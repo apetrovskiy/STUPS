@@ -1635,7 +1635,50 @@ dumpTestStructure("7");
         {
             TestCase result = null;
             
+            if (null == testSuite) {
+                
+                testSuite =
+                    TMX.TestData.GetTestSuite(
+                        testSuiteName,
+                        testSuiteId,
+                        testPlatformId);
+                
+            }
             
+            TestScenario testScenario = null;
+            
+            if (null != testSuite) {
+                
+                testScenario =
+                    TMX.TestData.GetTestScenario(
+                        testSuite,
+                        testScenarioName,
+                        testScenarioId,
+                        testSuiteName,
+                        testSuiteId,
+                        testPlatformId);
+            }
+            
+Console.WriteLine("-000000007");
+            
+            if (null != testScenario && 0 < testScenario.TestCases.Count) {
+                
+Console.WriteLine("-000000008");
+                
+                foreach (TestCase testCase in testScenario.TestCases) {
+                    
+Console.WriteLine("-000000009");
+                    
+                    if (testCaseName == testCase.TestCaseName &&
+                        testCaseId == testCase.TestCaseId) {
+                        
+Console.WriteLine("-000000010");
+                        
+                        result = testCase;
+                        break;
+                    }
+                }
+            }
             
             return result;
         }

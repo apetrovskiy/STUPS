@@ -38,7 +38,9 @@ namespace TMX
             //this.AlternateAfterTest = afterCode;
         }
         
-        public int TestCaseId { get; set; }
+        public virtual int DbId { get; set; }
+        //public int TestCaseId { get; set; }
+        public string TestCaseId { get; set; }
         public string TestCaseName { get; set; }
         public string TestCaseNumber { get; set; }
         //public ScriptBlock[] AlternateBeforeTest { get; set; }

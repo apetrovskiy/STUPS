@@ -23,7 +23,12 @@ namespace TMX
         }
         
         #region Parameters
-        [Parameter(Mandatory = false)]
+//        [Parameter(Mandatory = false)]
+//        public string TestCaseName { get; set; }
+        
+        [Parameter(Mandatory = true,
+                   Position = 0)]
+        [ValidateNotNullOrEmpty()]
         public string TestCaseName { get; set; }
         
         [Parameter(Mandatory = false)]

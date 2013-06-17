@@ -156,7 +156,7 @@ namespace TMXTest.Commands.TestExecution
                 @"[string]$global:result = ''; " +
                 @"$null = New-TMXTestSuite 'suite01' -Id 001; " +
                 @"$null = Add-TMXTestScenario 'sc001' -Id 0001; " +
-                @"$null = Add-TMXTestCase -TestCaseName 'tc01' -Id 00001; " +
+                @"$null = Add-TMXTestCase 'tc01' -Id 00001; " +
                 @"Invoke-TMXTestScenario -Id 0001; " +
                 @"[string]$global:result; ",
                 "");
@@ -171,7 +171,7 @@ namespace TMXTest.Commands.TestExecution
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"[string]$global:result = ''; " +
                 @"$null = Add-TMXTestScenario 'sc001' -Id 0001; " +
-                @"$null = Add-TMXTestCase -TestCaseName 'tc01' -Id 00001 -TestCode { $global:result += '21'; }; " +
+                @"$null = Add-TMXTestCase 'tc01' -Id 00001 -TestCode { $global:result += '21'; }; " +
                 @"Invoke-TMXTestScenario -Id 0001; " +
                 @"[string]$global:result; ",
                 "21");
@@ -187,7 +187,7 @@ namespace TMXTest.Commands.TestExecution
                 @"[string]$global:result = ''; " +
                 @"$null = New-TMXTestSuite 'suite01' -Id 001 -BeforeScenario { $global:result += '01'; }; " +
                 @"$null = Add-TMXTestScenario 'sc001' -Id 0001; " +
-                @"$null = Add-TMXTestCase -TestCaseName 'tc01' -Id 00001 -TestCode { $global:result += '21'; }; " +
+                @"$null = Add-TMXTestCase 'tc01' -Id 00001 -TestCode { $global:result += '21'; }; " +
                 @"Invoke-TMXTestScenario -Id 0001; " +
                 @"[string]$global:result; ",
                 "0121");
@@ -203,7 +203,7 @@ namespace TMXTest.Commands.TestExecution
                 @"[string]$global:result = ''; " +
                 @"$null = New-TMXTestSuite 'suite01' -Id 001 -BeforeScenario { $global:result += '01'; },{ $global:result += '02'; }; " +
                 @"$null = Add-TMXTestScenario 'sc001' -Id 0001; " +
-                @"$null = Add-TMXTestCase -TestCaseName 'tc01' -Id 00001 -TestCode { $global:result += '21'; }; " +
+                @"$null = Add-TMXTestCase 'tc01' -Id 00001 -TestCode { $global:result += '21'; }; " +
                 @"Invoke-TMXTestScenario -Id 0001; " +
                 @"[string]$global:result; ",
                 "010221");
@@ -219,7 +219,7 @@ namespace TMXTest.Commands.TestExecution
                 @"[string]$global:result = ''; " +
                 @"$null = New-TMXTestSuite 'suite01' -Id 001 -AfterScenario { $global:result += '03'; }; " +
                 @"$null = Add-TMXTestScenario 'sc001' -Id 0001; " +
-                @"$null = Add-TMXTestCase -TestCaseName 'tc01' -Id 00001 -TestCode { $global:result += '21'; }; " +
+                @"$null = Add-TMXTestCase 'tc01' -Id 00001 -TestCode { $global:result += '21'; }; " +
                 @"Invoke-TMXTestScenario -Id 0001; " +
                 @"[string]$global:result; ",
                 "2103");
@@ -235,7 +235,7 @@ namespace TMXTest.Commands.TestExecution
                 @"[string]$global:result = ''; " +
                 @"$null = New-TMXTestSuite 'suite01' -Id 001 -AfterScenario { $global:result += '03'; },{ $global:result += '04'; }; " +
                 @"$null = Add-TMXTestScenario 'sc001' -Id 0001; " +
-                @"$null = Add-TMXTestCase -TestCaseName 'tc01' -Id 00001 -TestCode { $global:result += '21'; }; " +
+                @"$null = Add-TMXTestCase 'tc01' -Id 00001 -TestCode { $global:result += '21'; }; " +
                 @"Invoke-TMXTestScenario -Id 0001; " +
                 @"[string]$global:result; ",
                 "210304");
@@ -252,7 +252,7 @@ namespace TMXTest.Commands.TestExecution
                 @"$null = New-TMXTestSuite 'suite01' -Id 001 -BeforeScenario { $global:result += '01'; },{ $global:result += '02'; } " +
                 @"-AfterScenario { $global:result += '03'; },{ $global:result += '04'; }; " +
                 @"$null = Add-TMXTestScenario 'sc001' -Id 0001; " +
-                @"$null = Add-TMXTestCase -TestCaseName 'tc01' -Id 00001 -TestCode { $global:result += '21'; }; " +
+                @"$null = Add-TMXTestCase 'tc01' -Id 00001 -TestCode { $global:result += '21'; }; " +
                 @"Invoke-TMXTestScenario -Id 0001; " +
                 @"[string]$global:result; ",
                 "0102210304");
@@ -270,7 +270,7 @@ namespace TMXTest.Commands.TestExecution
                 @"-AfterScenario { $global:result += '03'; },{ $global:result += '04'; }; " +
                 @"$null = Add-TMXTestScenario 'sc001' -Id 0001 -BeforeTest { param($a,$b,$c) $global:result += '11' + $a + $b + $c; },{ param($a,$b,$c) $global:result += '12' + $a + $b + $c; } " +
                 @"-AfterTest { param($d,$e,$f) $global:result += '13' + $d + $e + $f; },{ param($d,$e,$f) $global:result += '14' + $d + $e + $f; }; " +
-                @"$null = Add-TMXTestCase -TestCaseName 'tc01' -Id 00001 -TestCode { $global:result += '21'; }; " +
+                @"$null = Add-TMXTestCase 'tc01' -Id 00001 -TestCode { $global:result += '21'; }; " +
                 @"Invoke-TMXTestScenario -Id 0001 -BeforeTestParameters @('a','b','c') -AfterTestParameters @('d','e','f'); " + 
                 @"[string]$global:result; ",
                 "010211abc12abc2113def14def0304");

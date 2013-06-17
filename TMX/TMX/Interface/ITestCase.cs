@@ -21,7 +21,8 @@ namespace TMX
         //int TestCaseId { get; set; }
         string TestCaseId { get; set; }
         string TestCaseName { get; set; }
-        string TestCaseNumber { get; set; }
+        // 20130617
+        //string TestCaseNumber { get; set; }
         //ScriptBlock[] AlternateBeforeTest { get; set; }
         ScriptBlock[] TestCode { get; set; }
         //ScriptBlock[] AlternateAfterTest { get; set; }

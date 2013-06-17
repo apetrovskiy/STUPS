@@ -125,6 +125,21 @@ namespace TMX
 			TestSuite testSuite,
 			TestScenario testScenario)
 		{
+            
+			ITestCase testCase =
+			    TMX.TestData.GetTestCase(
+			        testSuite,
+			        string.Empty, //cmdlet.Name
+			        cmdlet.Id,
+			        testScenario.Name,
+			        testScenario.Id,
+			        testSuite.Name,
+			        testSuite.Id,
+			        testScenario.PlatformId);
+			if (null == testCase) {
+			    return;
+			}
+			
 			// run BeforeScenario scriptblocks
 			//if (null != testSuite) {
 			if (null != testSuite && null != testScenario) {
@@ -146,7 +161,8 @@ namespace TMX
 			
 			// run TestCode scriptblocks
 			cmdlet.runTwoScriptBlockCollections(
-				cmdlet.TestCode,
+				//cmdlet.TestCode,
+				testCase.TestCode,
 				null,
 				cmdlet,
 				cmdlet.TestCodeParameters);

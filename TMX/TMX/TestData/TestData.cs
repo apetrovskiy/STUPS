@@ -48,6 +48,8 @@ namespace TMX
         public static TestSuite CurrentTestSuite { get; set; }
         public static TestScenario CurrentTestScenario { get; set; }
         public static ITestResult CurrentTestResult { get; set; } // ?? rewrite as the last item of the collection ??
+        // 20130617
+        public static ITestCase CurrentTestCase { get; set; }
         // 20130531
         public static List<TestPlatform> TestPlatforms {get; internal set; }
         public static ITestPlatform CurrentTestPlatform { get; set; }
@@ -1420,6 +1422,8 @@ internal static void dumpTestStructure(string strNumber)
                 testSuite = TestData.CurrentTestSuite;
             }
             
+Console.WriteLine("test suite: " + testSuite.Name + "\t" + testSuite.Id);
+            
             TestScenario testScenario =
                 TestData.GetTestScenario(
                     testSuite,
@@ -1434,6 +1438,8 @@ internal static void dumpTestStructure(string strNumber)
                 testScenario = TestData.CurrentTestScenario;
             }
             
+Console.WriteLine("test scenario: " + testScenario.Name + "\t" + testScenario.Id);
+            
             TestCase testCase =
                 new TestCase(
                     testCaseName,
@@ -1441,6 +1447,8 @@ internal static void dumpTestStructure(string strNumber)
             
             testCase.Description = testCaseDescription;
             testCase.TestCode = testCode;
+            // 20130617
+            TMX.TestData.CurrentTestCase = testCase;
             
             try {
                 
@@ -1659,20 +1667,14 @@ dumpTestStructure("7");
                         testPlatformId);
             }
             
-Console.WriteLine("-000000007");
-            
             if (null != testScenario && 0 < testScenario.TestCases.Count) {
-                
-Console.WriteLine("-000000008");
                 
                 foreach (TestCase testCase in testScenario.TestCases) {
                     
-Console.WriteLine("-000000009");
-                    
-                    if (testCaseName == testCase.TestCaseName &&
-                        testCaseId == testCase.TestCaseId) {
-                        
-Console.WriteLine("-000000010");
+                    if ((testCaseName == testCase.TestCaseName &&
+                        testCaseId == testCase.TestCaseId) ||
+                        (null == testCaseName && testCaseId == testCase.TestCaseId) ||
+                        (null == testCaseId && testCaseName == testCase.TestCaseName)){
                         
                         result = testCase;
                         break;

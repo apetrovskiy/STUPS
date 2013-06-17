@@ -18,21 +18,27 @@ namespace TMX
     /// </summary>
     public class TestCase : ITestCase
     {
-        public TestCase(string testCaseName, string testCaseNumber)
+        public TestCase(string testCaseName, string testCaseId) //, string testCaseNumber)
         {
             this.TestCaseName = testCaseName;
-            this.TestCaseNumber = testCaseNumber;
+            // 20130617
+            //this.TestCaseNumber = testCaseNumber;
+            this.TestCaseId = testCaseId;
         }
         
         public TestCase(
-            string testCaseName, 
-            string testCaseNumber,
+            string testCaseName,
+            // 20130617
+            //string testCaseNumber,
+            string testCaseId,
             ScriptBlock[] beforeCode,
             ScriptBlock[] mainCode,
             ScriptBlock[] afterCode)
         {
             this.TestCaseName = testCaseName;
-            this.TestCaseNumber = testCaseNumber;
+            // 20130617
+            //this.TestCaseNumber = testCaseNumber;
+            this.TestCaseId = testCaseId;
             //this.AlternateBeforeTest = beforeCode;
             this.TestCode = mainCode;
             //this.AlternateAfterTest = afterCode;
@@ -42,7 +48,8 @@ namespace TMX
         //public int TestCaseId { get; set; }
         public string TestCaseId { get; set; }
         public string TestCaseName { get; set; }
-        public string TestCaseNumber { get; set; }
+        // 20130617
+        //public string TestCaseNumber { get; set; }
         //public ScriptBlock[] AlternateBeforeTest { get; set; }
         public ScriptBlock[] TestCode { get; set; }
         //public ScriptBlock[] AlternateAfterTest { get; set; }

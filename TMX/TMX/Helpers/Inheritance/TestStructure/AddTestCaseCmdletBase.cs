@@ -26,6 +26,11 @@ namespace TMX
 //                   Position = 0)]
 //        [ValidateNotNullOrEmpty()]
 //        public new string Name { get; set; }
+
+        [Parameter(Mandatory = true,
+                   Position = 0)]
+        [ValidateNotNullOrEmpty()]
+        public new string Name { get; set; }
         #endregion Parameters
     }
 }

@@ -36,12 +36,12 @@ namespace TMX
                 
                 cmdlet.WriteObject(
                     cmdlet,
-                    TestData.CurrentTestScenario);
+                    TestData.CurrentTestCase);
             } else {
                 cmdlet.WriteError(
                     cmdlet,
-                    "Couldn't add a test scenario",
-                    "AddingTestScenario",
+                    "Couldn't add a test case",
+                    "AddingTestCase",
                     ErrorCategory.InvalidArgument,
                     true);
             }

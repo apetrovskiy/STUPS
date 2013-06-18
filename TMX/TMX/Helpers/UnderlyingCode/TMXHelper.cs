@@ -1399,13 +1399,23 @@ namespace TMX
                     }
                     catch {}
                     
-                    TMX.TestData.AddTestSuite(
-                        singleSuite.Attribute("name").Value,
-                        singleSuite.Attribute("id").Value,
-                        singleSuite.Attribute("platformId").Value,
-                        suiteDescription,
-                        null,
-                        null);
+                    TestSuite testSuite =
+                        TMX.TestData.GetTestSuite(
+                            singleSuite.Attribute("name").Value,
+                            singleSuite.Attribute("id").Value,
+                            singleSuite.Attribute("platformId").Value);
+                    TMX.TestData.CurrentTestSuite = testSuite;
+                    
+                    if (null == testSuite) {
+                        TMX.TestData.AddTestSuite(
+                            singleSuite.Attribute("name").Value,
+                            singleSuite.Attribute("id").Value,
+                            singleSuite.Attribute("platformId").Value,
+                            suiteDescription,
+                            null,
+                            null);
+                    }
+                    
                     //TMX.TestData.CurrentTestSuite.SetNow = singleSuite
 //                    try {
 //                        TMX.TestData.CurrentTestSuite.PlatformId =
@@ -1428,16 +1438,28 @@ namespace TMX
                         }
                         catch {}
                         
-                        TMX.TestData.AddTestScenario(
-                            TMX.TestData.CurrentTestSuite,
-                            singleScenario.Attribute("name").Value,
-                            singleScenario.Attribute("id").Value,
-                            scenarioDescription,
-                            string.Empty,
-                            string.Empty,
-                            singleScenario.Attribute("platformId").Value,
-                            null,
-                            null);
+                        TestScenario testScenario =
+                            TMX.TestData.GetTestScenario(
+                                TMX.TestData.CurrentTestSuite,
+                                singleScenario.Attribute("name").Value,
+                                singleScenario.Attribute("id").Value,
+                                TMX.TestData.CurrentTestSuite.Name,
+                                TMX.TestData.CurrentTestSuite.Id,
+                                TMX.TestData.CurrentTestSuite.PlatformId);
+                        TMX.TestData.CurrentTestScenario = testScenario;
+                        
+                        if (null == testScenario) {
+                            TMX.TestData.AddTestScenario(
+                                TMX.TestData.CurrentTestSuite,
+                                singleScenario.Attribute("name").Value,
+                                singleScenario.Attribute("id").Value,
+                                scenarioDescription,
+                                string.Empty,
+                                string.Empty,
+                                singleScenario.Attribute("platformId").Value,
+                                null,
+                                null);
+                        }
                         
 //                        try {
 //                            TMX.TestData.CurrentTestScenario.PlatformId =

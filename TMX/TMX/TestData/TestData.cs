@@ -1372,8 +1372,13 @@ dumpTestStructure("AddTestResult #46");
                             continue;
                         } else {
                             
-                            result = testSuite;
-                            return result;
+                            // 20130621
+                            if (testSuiteName != testSuite.Name) {
+                                continue;
+                            } else {
+                                result = testSuite;
+                                return result;
+                            }
                         }
                     }
                 }
@@ -1729,8 +1734,21 @@ Console.WriteLine("-000000010");
             if (testScenarioId != null && testScenarioId != string.Empty) {
                 foreach (TestScenario testScenario in TestData.CurrentTestSuite.TestScenarios) {
                     if (testScenario.Id == testScenarioId) {
-                        TestData.CurrentTestScenario = testScenario;
-                        return testScenario;
+                        
+                        // 20130621
+                        if (testPlatformId != testScenario.PlatformId) {
+                            continue;
+                        } else {
+                            if (testScenarioName != testScenario.Name) {
+                                continue;
+                            } else {
+                                TestData.CurrentTestScenario = testScenario;
+                                return testScenario;
+                            }
+                        }
+                        // 20130621
+//                        TestData.CurrentTestScenario = testScenario;
+//                        return testScenario;
                     }
                 }
             }

@@ -75,6 +75,10 @@ namespace TMX
         [AllowEmptyString]
         public string Description { get; set; }
         
+        // 20130626
+        [Parameter(Mandatory = false)]
+        public TestResultOrigins TestOrigin { get; set; }
+        
         [Parameter(Mandatory = false)]
         internal new string Name { get; set; }
         

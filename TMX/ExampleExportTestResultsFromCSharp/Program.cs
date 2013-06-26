@@ -80,7 +80,9 @@ namespace ExampleExportTestResultsFromCSharp
                             "description",
                             // 20130322
                             //false);
-                            false,
+                            // 20130626
+                            //false,
+                            TMX.TestResultOrigins.Logical,
                             true);
                         
                     }

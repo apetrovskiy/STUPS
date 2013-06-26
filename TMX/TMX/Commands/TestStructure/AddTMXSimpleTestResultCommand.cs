@@ -20,6 +20,8 @@ namespace TMX.Commands
 	{
 		public AddTMXSimpleTestResultCommand()
 		{
+		    // 20130626
+            this.TestOrigin = TestResultOrigins.Logical;
 		}
 		
 		#region Parameters

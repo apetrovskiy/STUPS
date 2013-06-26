@@ -37,7 +37,9 @@ namespace TMX
                         string.Empty,
                         // 20130322
                         //true);
-                        true,
+                        // 20130626
+                        //true,
+                        TestResultOrigins.Automatic,
                         false);
                 } else {
                     TestData.CurrentTestResult = null;
@@ -90,7 +92,9 @@ TestData.dumpTestStructure("TestScenario #1");
                         string.Empty,
                         // 20130322
                         //true);
-                        true,
+                        // 20130626
+                        //true,
+                        TestResultOrigins.Automatic,
                         false);
 TestData.dumpTestStructure("TestScenario #2");
                 } else {

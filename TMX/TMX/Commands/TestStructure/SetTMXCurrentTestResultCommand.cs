@@ -22,6 +22,8 @@ namespace TMX.Commands
     {
         public SetTMXCurrentTestResultCommand()
         {
+            // 20130626
+            this.TestOrigin = TestResultOrigins.Logical;
         }
         
         #region Parameters

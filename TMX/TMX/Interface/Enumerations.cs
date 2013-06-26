@@ -108,6 +108,7 @@ namespace TMX
     public enum TestResultOrigins
     {
         Automatic,
-        Logical
+        Logical,
+        Technical
     }
 }

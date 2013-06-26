@@ -93,6 +93,14 @@ namespace TMX
                    ParameterSetName = "Common")]
         public SwitchParameter FilterOutAutomaticResults { get; set; }
         
+        // 20130626
+        [Parameter(Mandatory = true,
+                   ParameterSetName = "NoAutomatic",
+                   Position = 0)]
+        [Parameter(Mandatory = false,
+                   ParameterSetName = "Common")]
+        public SwitchParameter FilterOutAutomaticAndTechnicalResults { get; set; }
+        
         // Order By parameters
         [Parameter(Mandatory = false,
                    ParameterSetName = "Common")]

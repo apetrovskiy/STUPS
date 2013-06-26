@@ -75,7 +75,9 @@ namespace TMX
                 cmdlet.Description,
                 // 20130322
                 //false);
-                false,
+                // 20130626
+                //false,
+                cmdlet.TestOrigin,
                 true);
             
         }

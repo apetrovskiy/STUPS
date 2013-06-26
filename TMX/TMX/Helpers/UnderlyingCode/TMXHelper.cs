@@ -169,7 +169,9 @@ namespace TMX
                 string.Empty,
                 // 20130322
                 //true);
-                true,
+                // 20130626
+                //true,
+                TestResultOrigins.Automatic,
                 false);
 
             }
@@ -296,7 +298,8 @@ namespace TMX
             string description,
             // 20130322
             //bool generated)
-            bool generated,
+            //bool generated,
+            TestResultOrigins origin,
             bool skipAutomatic)
         {
             // 20121224
@@ -317,7 +320,9 @@ namespace TMX
                 description,
                 // 20130322
                 //generated);
-                generated,
+                // 20130626
+                //generated,
+                origin,
                 skipAutomatic);
 
             // 20121224
@@ -476,6 +481,8 @@ namespace TMX
                              new XAttribute("id", testResult.Id),
                              new XAttribute("name", testResult.Name),
                              new XAttribute("status", testResult.Status),
+                             // 20130626
+                             new XAttribute("origin", testResult.Origin),
                              TMXHelper.CreateXAttribute(xmlStruct.TimeSpentAttribute, Convert.ToInt32(testResult.TimeSpent)), // ??
                              TMXHelper.CreateXElement(
                                  "source",
@@ -878,6 +885,11 @@ namespace TMX
             } // 20130322
             else if (cmdlet.FilterOutAutomaticResults) {
                 query = testResult => testResult.Origin != TestResultOrigins.Automatic;
+                cmdlet.FilterAll = false;
+            }
+            // 20130626
+            else if (cmdlet.FilterOutAutomaticAndTechnicalResults) {
+                query = testResult => testResult.Origin != TestResultOrigins.Automatic && testResult.Origin != TestResultOrigins.Technical;
                 cmdlet.FilterAll = false;
             }
             if (cmdlet.FilterAll) {
@@ -1488,6 +1500,25 @@ namespace TMX
                             }
                             catch {}
                             
+                            // 20130626
+                            TestResultOrigins origin = TestResultOrigins.Logical;
+                            try {
+                                if ("TECHNICAL" == singleTestResult.Attribute("origin").Value.ToUpper()) {
+                                    origin = TestResultOrigins.Technical;
+                                }
+                                if ("AUTOMATIC" == singleTestResult.Attribute("origin").Value.ToUpper()) {
+                                    origin = TestResultOrigins.Automatic;
+                                }
+                            }
+                            catch {}
+                            
+                            if (TestResultOrigins.Technical == origin &&
+                                !knownIssueValue &&
+                                passedValue) {
+                                
+                                continue;
+                            }
+                            
                             string testResultDescription = string.Empty;
                             try {
                                 testResultDescription = singleTestResult.Attribute("description").Value;
@@ -1503,7 +1534,9 @@ namespace TMX
                                 null,
                                 null,
                                 testResultDescription,
-                                false,
+                                // 20130626
+                                //false,
+                                origin,
                                 true);
                             
                             //TMX.TestData.CurrentTestResult = TMX.TestData.CurrentTestScenario.TestResults[TMX.TestData.CurrentTestScenario.TestResults.Count - 1];

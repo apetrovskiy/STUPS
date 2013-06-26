@@ -573,7 +573,9 @@ Console.WriteLine("WriteSingleObject 00008");
                                                       string.Empty,
                                                       // 20130322
                                                       //false);
-                                                      false,
+                                                      // 20130626
+                                                      //false,
+                                                      TMX.TestResultOrigins.Logical,
                                                       true);
                     } else {
                         if (Preferences.EveryCmdletAsTestResult) {
@@ -599,7 +601,9 @@ Console.WriteLine("WriteSingleObject 00008");
                                                           string.Empty,
                                                           // 20130322
                                                           //true);
-                                                          true,
+                                                          // 20130626
+                                                          //true,
+                                                          TMX.TestResultOrigins.Automatic,
                                                           false);
                         }
                     }
@@ -733,7 +737,9 @@ Console.WriteLine("WriteSingleObject 00008");
                                                       string.Empty,
                                                       // 20130322
                                                       //true);
-                                                      true,
+                                                      // 20130626
+                                                      //true,
+                                                      TMX.TestResultOrigins.Automatic,
                                                       false);
                                                       //((HasScriptBlockCmdletBase)cmdlet).TestLog);
                                                       
@@ -768,7 +774,9 @@ Console.WriteLine("WriteSingleObject 00008");
                                                               string.Empty,
                                                               // 20130322
                                                               //true);
-                                                              true,
+                                                              // 20130626
+                                                              //true,
+                                                              TMX.TestResultOrigins.Automatic,
                                                               false);
                         }
                     }

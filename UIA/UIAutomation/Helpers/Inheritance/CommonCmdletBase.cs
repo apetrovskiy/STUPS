@@ -352,7 +352,9 @@ namespace UIAutomation
                                                       string.Empty,
                                                       // 20130322
                                                       //false);
-                                                      false,
+                                                      // 20130626
+                                                      //false,
+                                                      TMX.TestResultOrigins.Logical,
                                                       true);
 
                     } else {
@@ -375,7 +377,9 @@ namespace UIAutomation
                                                           string.Empty,
                                                           // 20130322
                                                           //true);
-                                                          true,
+                                                          // 20130626
+                                                          //true,
+                                                          TMX.TestResultOrigins.Automatic,
                                                           false);
                         }
                     }
@@ -904,7 +908,9 @@ namespace UIAutomation
                                                       string.Empty,
                                                       // 20130322
                                                       //true);
-                                                      true,
+                                                      // 20130602
+                                                      //true,
+                                                      TMX.TestResultOrigins.Automatic,
                                                       false);
                         //((HasScriptBlockCmdletBase)cmdlet).TestLog);
 
@@ -935,7 +941,9 @@ namespace UIAutomation
                                                           string.Empty,
                                                           // 20130322
                                                           //true);
-                                                          true,
+                                                          // 20130626
+                                                          //true,
+                                                          TMX.TestResultOrigins.Automatic,
                                                           false);
                         }
                     }

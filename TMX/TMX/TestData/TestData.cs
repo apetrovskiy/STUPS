@@ -270,10 +270,18 @@ namespace TMX
                                            string testResultDescription,
                                            // 20130322
                                            //bool generated)
-                                           bool generated,
+                                           // 20130626
+                                           //bool generated,
+                                           TestResultOrigins origin,
                                            bool skipAutomatic)
         {
             //TestData.InitCurrentTestScenario();
+            
+            // 20130626
+            bool generated = false;
+            if (TestResultOrigins.Automatic == origin) {
+                generated = true;
+            }
             
             // 20130429
             TMX.Logger.TMXLogger.Info("Test result: '" + closingTestResultName + "'\tPassed:" + passed.ToString() + "\tKnown issue:" + isKnownIssue.ToString());

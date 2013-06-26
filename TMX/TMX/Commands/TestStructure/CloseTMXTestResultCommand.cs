@@ -35,6 +35,9 @@ namespace TMX.Commands
             if (TMX.Preferences.AutoEcho) {
                 this.Echo = true;
             }
+            
+            // 20130626
+            this.TestOrigin = TestResultOrigins.Logical;
         }
         
         #region Parameters

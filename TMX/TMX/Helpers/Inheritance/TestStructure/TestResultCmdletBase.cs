@@ -76,6 +76,12 @@ namespace TMX
         public string Description { get; set; }
         
         // 20130626
+        // 20130627
+        //[Parameter(Mandatory = false)]
+//        [Parameter(Mandatory = false,
+//                   ParameterSetName = "DualLogic")]
+//        [Parameter(Mandatory = false,
+//                   ParameterSetName = "EnumLogic")]
         [Parameter(Mandatory = false)]
         public TestResultOrigins TestOrigin { get; set; }
         

@@ -1248,7 +1248,9 @@ namespace TMX
                     TestData.CurrentTestResult.enStatus = TestResultStatuses.KnownIssue;
                 }
                 
-                TestData.CurrentTestResult.SetOrigin(TestResultOrigins.Logical);
+                // 20130627
+                //TestData.CurrentTestResult.SetOrigin(TestResultOrigins.Logical);
+                TestData.CurrentTestResult.SetOrigin(cmdlet.TestOrigin);
 
             } else {
 

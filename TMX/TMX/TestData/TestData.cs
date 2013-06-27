@@ -349,7 +349,9 @@ dumpTestStructure("AddTestResult #6");
             } else {
                 
 dumpTestStructure("AddTestResult #7");
-                currentTestResult.SetOrigin(TestResultOrigins.Logical);
+				// 20130627
+                //currentTestResult.SetOrigin(TestResultOrigins.Logical);
+                currentTestResult.SetOrigin(origin);
 
             }
 

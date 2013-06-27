@@ -37,7 +37,7 @@ namespace TMX.Commands
             }
             
             // 20130626
-            this.TestOrigin = TestResultOrigins.Logical;
+            //this.TestOrigin = TestResultOrigins.Logical;
         }
         
         #region Parameters

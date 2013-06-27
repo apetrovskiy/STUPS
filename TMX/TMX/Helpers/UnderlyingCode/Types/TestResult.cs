@@ -131,6 +131,9 @@ namespace TMX
         public virtual TestResultOrigins Origin { get; protected internal set; }
         public virtual void SetOrigin(TestResultOrigins origin)
         {
+Console.WriteLine("new origin: " + origin.ToString());
+Console.WriteLine("current origin: " + this.Origin.ToString());
+        	
             if (TestResultOrigins.Logical == this.Origin) {
                 
                 // don't change the origin - it already was logical

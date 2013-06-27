@@ -88,16 +88,16 @@ namespace TMX
                 testScenarioToAddTestResult.TestResults.Insert(
                     newTestResultIndex,
                     new TestResult(
+                        // 20130627
                         testScenarioToAddTestResult.Id,
-                        testScenarioToAddTestResult.Id));
+                        testSuiteToAddTestResult.Id));
+                        //testScenarioToAddTestResult.Id));
                 
                 // 20130429
                 TMX.Logger.TMXLogger.Info("Test result: '" + cmdlet.TestResultName + "'\t" + cmdlet.TestResultStatus.ToString());
                 
             //} else {
-                
-                
-                
+            
             }
             
             if (null != cmdlet.TestResultName) {
@@ -123,7 +123,9 @@ namespace TMX
             }
             catch {}
             
-            TestData.CurrentTestScenario.TestResults[newTestResultIndex].SetOrigin(TestResultOrigins.Logical);
+            // 20130627
+            //TestData.CurrentTestScenario.TestResults[newTestResultIndex].SetOrigin(TestResultOrigins.Logical);
+            TestData.CurrentTestScenario.TestResults[newTestResultIndex].SetOrigin(cmdlet.TestOrigin);
             
 //            if (null != TestData.CurrentTestResult) {
 //

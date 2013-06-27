@@ -1514,9 +1514,9 @@ namespace TMX
                             }
                             catch {}
                             
-                            if (TestResultOrigins.Technical == origin &&
-                                !knownIssueValue &&
-                                passedValue) {
+                            if ((TestResultOrigins.Technical == origin) &&
+                                //(!knownIssueValue &&
+                                 passedValue) {
                                 
                                 continue;
                             }

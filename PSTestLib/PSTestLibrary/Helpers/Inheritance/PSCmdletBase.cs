@@ -354,6 +354,7 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
         
         public void WriteError(PSCmdletBase cmdlet, ErrorRecord errorRecord, bool terminating)
         {
+            
             // run error script blocks
             WriteErrorMethod010RunScriptBlocks(cmdlet);;
             
@@ -400,6 +401,7 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
                     null);
             err.ErrorDetails = 
                 new ErrorDetails(message);
+            
             WriteError(cmdlet, err, terminating);
         }
         

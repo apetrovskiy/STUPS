@@ -225,6 +225,7 @@
     <Compile Include="Commands\TestStructure\AddTMXTestCaseCommand.cs" />
     <Compile Include="Commands\TestStructure\GetTMXTestCaseCommand.cs" />
     <Compile Include="Commands\TestStructure\NewTMXTestPlatformCommand.cs" />
+    <Compile Include="Commands\TestStructure\OpenTMXTestPlatformCommand.cs" />
     <Compile Include="Commands\TestStructure\RemoveTMXTestCaseCommand.cs" />
     <Compile Include="Commands\TestStructure\SetTMXCurrentTestResultCommand.cs" />
     <Compile Include="Commands\TestStructure\SetTMXTestCaseCommand.cs" />

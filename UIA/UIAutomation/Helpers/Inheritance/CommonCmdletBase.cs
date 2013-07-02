@@ -876,20 +876,20 @@ namespace UIAutomation
         
         protected override void WriteErrorMethod020SetTestResult(PSCmdletBase cmdlet, ErrorRecord errorRecord)
         {
-
+            
             if (cmdlet != null) {
-
+                
                 // write error to the test results collection
                 // CurrentData.TestResults[CurrentData.TestResults.Count - 1].Details.Add(err);
                 //TMX.TestData.AddTestResultDetail(err);
                 TMX.TMXHelper.AddTestResultErrorDetail(errorRecord);
-
+                
                 // write test result label
                 try {
                     
                     // 20120328
                     CurrentData.LastResult = null;
-
+                    
                     string iInfo = string.Empty;
                     if (((HasScriptBlockCmdletBase)cmdlet).TestResultName != null &&
                         ((HasScriptBlockCmdletBase)cmdlet).TestResultName.Length > 0) {
@@ -898,7 +898,7 @@ namespace UIAutomation
                         //                        if (((HasScriptBlockCmdletBase)cmdlet).TestLog){
                         //                            iInfo = TMX.TMXHelper.GetInvocationInfo(this.MyInvocation);
                         //                        }
-
+                        
                         TMX.TMXHelper.CloseTestResult(((HasScriptBlockCmdletBase)cmdlet).TestResultName,
                                                       ((HasScriptBlockCmdletBase)cmdlet).TestResultId,
                                                       false, // the only result: FAILED //((HasScriptBlockCmdletBase)cmdlet).TestPassed,
@@ -913,10 +913,11 @@ namespace UIAutomation
                                                       TMX.TestResultOrigins.Automatic,
                                                       false);
                         //((HasScriptBlockCmdletBase)cmdlet).TestLog);
-
+                        
                     } else {
-
+                        
                         if (Preferences.EveryCmdletAsTestResult) {
+                            
                             ((HasScriptBlockCmdletBase)cmdlet).TestResultName =
                                 GetGeneratedTestResultNameByPosition(
                                     this.MyInvocation.Line,
@@ -924,11 +925,11 @@ namespace UIAutomation
                             //                                    this.MyInvocation.Line +
                             //                                    ", position: " +
                             //                                    this.MyInvocation.PipelinePosition.ToString();
-
+                            
                             ((HasScriptBlockCmdletBase)cmdlet).TestResultId = string.Empty;
                             ((HasScriptBlockCmdletBase)cmdlet).TestPassed = false;
                             //                                iInfo = TMX.TMXHelper.GetInvocationInfo(this.MyInvocation);
-
+                            
                             TMX.TMXHelper.CloseTestResult(((HasScriptBlockCmdletBase)cmdlet).TestResultName,
                                                           string.Empty, //((HasScriptBlockCmdletBase)cmdlet).TestResultId, // empty, to be generated
                                                           ((HasScriptBlockCmdletBase)cmdlet).TestPassed,
@@ -945,6 +946,7 @@ namespace UIAutomation
                                                           //true,
                                                           TMX.TestResultOrigins.Automatic,
                                                           false);
+                            
                         }
                     }
                 }
@@ -1025,15 +1027,19 @@ namespace UIAutomation
                 
                 AutomationElement elementToTakeScreenShot = null;
                 try {
+                    
                     if (null != CurrentData.CurrentWindow) {
+                        
                         cmdlet.WriteVerbose(cmdlet, "taking screenshot of the current window");
                         elementToTakeScreenShot = CurrentData.CurrentWindow;
                     } else {
+                        
                         cmdlet.WriteVerbose(cmdlet, "taking screenshot of the desktop object");
                         elementToTakeScreenShot = AutomationElement.RootElement;
                     }
                 }
                 catch {
+                    
                     cmdlet.WriteVerbose(cmdlet, "taking screenshot of the desktop object (on fail)");
                     elementToTakeScreenShot = AutomationElement.RootElement;
                 }
@@ -1052,6 +1058,7 @@ namespace UIAutomation
                     0,
                     string.Empty,
                     UIAutomation.Preferences.OnErrorScreenShotFormat);
+                
                 cmdlet.WriteVerbose(cmdlet, "done");
             }
         }

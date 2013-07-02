@@ -414,28 +414,25 @@ namespace UIAutomation
             //                UIAHelper.HideHighlighters();
             //            }
             
-
-
             //if (null == cmdlet) {
             //    cmdlet = new HasControlInputCmdletBase();
             //}
             
             // 20120824
             if (null == cmdlet.InputObject || 0 == cmdlet.InputObject.Length) {
-
+                
                 cmdlet.WriteVerbose(cmdlet, "(null == cmdlet.InputObject || 0 == cmdlet.InputObject.Length)");
-
+                
                 cmdlet.InputObject = new AutomationElement[] { AutomationElement.RootElement };
-
             }
-
+            
             cmdlet.WriteVerbose(
                 cmdlet,
                 "input array consists of " + cmdlet.InputObject.Length.ToString() + " objects");
-
+            
             // 20120823
             foreach (AutomationElement inputObject in cmdlet.InputObject) {
-
+                
                 cmdlet.WriteVerbose(cmdlet, "calculating the size");
                 int absoluteX = 0;
                 int absoluteY = 0;
@@ -443,41 +440,42 @@ namespace UIAutomation
                     Screen.PrimaryScreen.Bounds.Width;
                 int absoluteHeight =
                     Screen.PrimaryScreen.Bounds.Height;
-
+                
                 if (inputObject == null) {
                     if (Left > 0) { absoluteX = Left; }
                     if (Top > 0) { absoluteY = Top; }
                     if (Height > 0) { absoluteHeight = Height; }
                     if (Width > 0) { absoluteWidth = Width; }
                 }
+                
                 cmdlet.WriteVerbose(cmdlet, "X = " + absoluteX.ToString());
                 cmdlet.WriteVerbose(cmdlet, "Y = " + absoluteY.ToString());
                 cmdlet.WriteVerbose(cmdlet, "Height = " + absoluteHeight.ToString());
                 cmdlet.WriteVerbose(cmdlet, "Width = " + absoluteWidth.ToString());
 
                 if (inputObject != null && (int)inputObject.Current.ProcessId > 0) {
+                    
                     absoluteX = (int)inputObject.Current.BoundingRectangle.X + Left;
                     absoluteY = (int)inputObject.Current.BoundingRectangle.Y + Top;
                     absoluteHeight = (int)inputObject.Current.BoundingRectangle.Height + Height;
                     absoluteWidth = (int)inputObject.Current.BoundingRectangle.Width + Width;
                 }
-
+                
                 if (Height == 0) {Height = Screen.PrimaryScreen.Bounds.Height; }
                 if (Width == 0) {Width = Screen.PrimaryScreen.Bounds.Width; }
-
+                
                 if (inputObject != null && (int)inputObject.Current.ProcessId > 0) {
-
+                    
                     try {
-
+                        
                         inputObject.SetFocus();
-
                     }
                     catch {
                         // ??
 
                     }
                 }
-
+                
                 GetScreenshotOfSquare(
                     cmdlet,
                     description,
@@ -488,7 +486,6 @@ namespace UIAutomation
                     absoluteWidth,
                     path,
                     format);
-
             }
         }
         
@@ -507,11 +504,13 @@ namespace UIAutomation
             System.Drawing.Imaging.ImageFormat format)
         {
             
-                
             cmdlet.WriteVerbose(cmdlet, "hiding highlighter if it's been used");
-            
+            // 20130702
+            try {
+                
             if (Preferences.HideHighlighterOnScreenShotTaking &&
                 ! Preferences.ShowExecutionPlan) {
+                
                 UIAHelper.HideHighlighters();
             }
             
@@ -525,6 +524,7 @@ namespace UIAutomation
             //                "input array consists of " + cmdlet.InputObject.Length.ToString() + " objects");
             //            // 20120823
             //            foreach (AutomationElement inputObject in cmdlet.InputObject) {
+            
             cmdlet.WriteVerbose(cmdlet, "calculating the size");
             int absoluteX = 0;
             int absoluteY = 0;
@@ -532,7 +532,7 @@ namespace UIAutomation
                 Screen.PrimaryScreen.Bounds.Width;
             int absoluteHeight =
                 Screen.PrimaryScreen.Bounds.Height;
-
+            
             if (null == element) {
                 if (Left > 0) { absoluteX = Left; }
                 if (Top > 0) { absoluteY = Top; }
@@ -550,23 +550,22 @@ namespace UIAutomation
                 absoluteHeight = (int)element.Current.BoundingRectangle.Height + Height;
                 absoluteWidth = (int)element.Current.BoundingRectangle.Width + Width;
             }
-
+            
             if (0 == Height) {Height = Screen.PrimaryScreen.Bounds.Height; }
             if (0 == Width) {Width = Screen.PrimaryScreen.Bounds.Width; }
 
             if (element != null && (int)element.Current.ProcessId > 0) {
-
+                
                 try {
-
+                    
                     element.SetFocus();
-
                 }
                 catch {
                     // ??
 
                 }
             }
-
+            
             GetScreenshotOfSquare(
                 cmdlet,
                 description,
@@ -579,6 +578,8 @@ namespace UIAutomation
                 format);
 
             //            }
+            }
+            catch {}
         }
         
         [STAThread]
@@ -596,19 +597,16 @@ namespace UIAutomation
             Image myImage =
                 new Bitmap(absoluteWidth,
                            absoluteHeight);
-
+            
             Graphics gr1 = Graphics.FromImage(myImage);
-
             IntPtr dc1 = gr1.GetHdc();
             
             // for now, the primary display only
             IntPtr desktopHandle = NativeMethods.GetDesktopWindow();
             IntPtr dc2 = NativeMethods.GetWindowDC(desktopHandle);
             // IntPtr dc2 = GetWindowDC(GetDesktopWindow());
-
             NativeMethods.BitBlt(dc1, 0, 0, absoluteWidth,
                                  absoluteHeight, dc2, absoluteX, absoluteY, 13369376);
-
             gr1.ReleaseHdc(dc1);
             //  // 
             NativeMethods.ReleaseDC(desktopHandle, dc2);
@@ -617,18 +615,19 @@ namespace UIAutomation
                 if (description != null &&
                     description != string.Empty &&
                     description.Length > 0) {
-
+                    
                     description =
                         "_" +
                         description;
                 }
-
+                
                 string fileName = string.Empty;
                 if (path != null && path != string.Empty &&
                     path.Length > 0 &&
                     path != @"\") { // && ! System.IO.File.Exists(path)) {
-
+                    
                     if (System.IO.File.Exists(path)) {
+                        
                         cmdlet.WriteError(
                             cmdlet,
                             "File '" +
@@ -642,8 +641,9 @@ namespace UIAutomation
                     //                        if (System.IO.File.Open(
                     fileName = path;
                 } else {
+                    
                     if (cmdlet is Commands.SaveUIAScreenshotCommand) {
-
+                        
                         fileName =
                             getTimedFileNameForScreenShot() +
                             //((Commands.SaveUIAScreenshotCommand)cmdlet).Description +
@@ -652,7 +652,9 @@ namespace UIAutomation
                             // 20120926
                             //".bmp";
                             getFileExtensionByImageType(format);
+                        
                     } else {  // ??
+                        
                         fileName =
                             getTimedFileNameForScreenShot() +
                             // 20120927
@@ -662,6 +664,7 @@ namespace UIAutomation
                             //".bmp";
                             //getFileExtensionByImageType(Preferences.OnErrorScreenShotFormat);
                             getFileExtensionByImageType(format);
+                        
                     }
                 }
 
@@ -673,10 +676,11 @@ namespace UIAutomation
                 myImage.Save(fileName, format);
                 // CurrentData.TestResults[CurrentData.TestResults.Count - 1].Details.Add(fileName);
                 //TMX.TestData.AddTestResultDetail(fileName);
-
+                
                 //TMX.TMXHelper.AddTestResultScreenshotDetail("'" + fileName + "'");
                 TMX.TMXHelper.AddTestResultScreenshotDetail(fileName);
             } else {
+                
                 cmdlet.WriteObject(cmdlet, myImage);
             }
             //  //  //

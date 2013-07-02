@@ -263,7 +263,11 @@ namespace TMX
         {
             bool result = false;
             
-            TMX.TestData.AddTestResultErrorDetail(testResultErrorDetail);
+            // 20130702
+            try {
+                TMX.TestData.AddTestResultErrorDetail(testResultErrorDetail);
+            }
+            catch {}
             
             return result;
         }
@@ -1665,6 +1669,22 @@ namespace TMX
                                          cmdlet.TestCode);
             
             return result;
+        }
+        
+        public static ITestPlatform GetTestPlatformById(string id)
+        {
+            ITestPlatform resultPlatform = null;
+            
+            foreach (TestPlatform platform in TMX.TestData.TestPlatforms) {
+                
+                if (id == platform.Id) {
+                    
+                    resultPlatform = platform;
+                    break;
+                }
+            }
+            
+            return resultPlatform;
         }
     }
 }

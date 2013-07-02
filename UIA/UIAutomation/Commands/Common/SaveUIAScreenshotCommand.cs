@@ -24,7 +24,8 @@ namespace UIAutomation.Commands
         #region Constructor
         public ScreenshotCmdletBase()
         {
-            this.Path = string.Empty;
+            // 20130702
+            //this.Path = string.Empty;
             this.As = System.Drawing.Imaging.ImageFormat.Bmp;
         }
         #endregion Constructor
@@ -35,6 +36,9 @@ namespace UIAutomation.Commands
         //           ParameterSetName = "Screenshot")]
         [Parameter(Mandatory = false,
                    ParameterSetName = "NoFile")]
+        // 20130702
+        [Parameter(Mandatory = false,
+                   ParameterSetName = "File")]
         [AllowNull()]
         [AllowEmptyString()]
         public string Description { get; set; }

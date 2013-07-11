@@ -17,7 +17,7 @@ Get-UIAWindow -InputObject (Get-Process calc);
 # -Recurse = $true
 Get-UIAWindow -pn calc -Name *about*; # one window
 Get-UIAWindow -pn calc -Name *calc*; # two windows
-# earlier, we needed to issue somethink like:
+# earlier, we needed to issue something like:
 Get-UIAWindow -pn calc | Get-UIAChildWindow -Name *about*; # one window
 
 

@@ -316,6 +316,7 @@
     <Compile Include="Helpers\UnderlyingCode\Types\TestSuite.cs" />
     <Compile Include="Helpers\UnderlyingCode\SQLiteHelper.cs" />
     <Compile Include="Helpers\UnderlyingCode\TMXHelper.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Types\WorkflowStep.cs" />
     <Compile Include="Helpers\UnderlyingCode\XMLElementsJUnitStruct.cs" />
     <Compile Include="Helpers\UnderlyingCode\XMLElementsNativeStruct.cs" />
     <Compile Include="Helpers\UserSettings\Preferences.cs" />
@@ -330,6 +331,7 @@
     <Compile Include="Interface\ITestScenario.cs" />
     <Compile Include="Interface\ITestSuite.cs" />
     <Compile Include="Interface\ITestSuitesCollection.cs" />
+    <Compile Include="Interface\IWorkflowStep.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Provider\TMXProvider.cs" />
     <Compile Include="SQLiteData\SQLiteData.cs" />

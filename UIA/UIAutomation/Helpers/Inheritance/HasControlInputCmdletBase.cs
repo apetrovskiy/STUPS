@@ -1348,19 +1348,27 @@ try {
                     //}
                     
                     // 20130423
-                    result =
+                    // 20130710
+                    //result =
+                    bool oneControlResult = 
                         testControlByPropertiesFromDictionary(
                             //this.ConvertHashtableToDictionary(hashtable),
                             dict,
                             elementToWorkWith);
                     
-                    if (result) {
+                    // 20130710
+                    //if (result) {
+                    if (oneControlResult) {
                         
                         // 20130423
                         if (Preferences.HighlightCheckedControl) {
                             UIAHelper.HighlightCheckedControl(elementToWorkWith);
                         }
                         
+                        // 20130710
+                        //return result;
+                    } else { // 20130710
+                        //return false;
                         return result;
                     }
                     
@@ -1374,6 +1382,10 @@ try {
 
             // 20120917
             //result = true;
+            
+            // 20130710
+            result = true;
+            
             return result;
         }
     }

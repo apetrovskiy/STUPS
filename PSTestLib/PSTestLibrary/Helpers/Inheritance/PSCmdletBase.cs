@@ -722,7 +722,11 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
                 
                 cmdlet.WriteVerbose(cmdlet, "running scriptblocks");
                 
-                runScriptBlocks(scriptblocks, cmdlet, false, parameters);
+                // 20130712
+                //runScriptBlocks(scriptblocks, cmdlet, false, parameters);
+                if (null != scriptblocks && 0 < scriptblocks.Count) {
+                    runScriptBlocks(scriptblocks, cmdlet, false, parameters);
+                }
                 
                 cmdlet.WriteVerbose(cmdlet, "Scriptblocks finished successfully");
             }

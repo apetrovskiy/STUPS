@@ -171,9 +171,15 @@ namespace UIAutomation
                         // profiling
                         cmdlet.WriteInfo(cmdlet, "the current step is still null");
 
-                        InterruptOnTimeoutExpiration(cmdlet, wizard);
+                        // 20130712
+                        //InterruptOnTimeoutExpiration(cmdlet, wizard);
+                        bool interrupt1 = InterruptOnTimeoutExpiration(cmdlet, wizard);
                         // 20130402
-                        break;
+                        // 20130712
+                        //break;
+                        if (interrupt1) {
+                            break;
+                        }
                         
                     }
                 } else {
@@ -188,17 +194,28 @@ namespace UIAutomation
                     cmdlet.WriteInfo(cmdlet, "window is still null");
                     
                     // 20130402
-                    InterruptOnTimeoutExpiration(cmdlet, wizard);
-                    break;
+                    // 20130712
+                    //InterruptOnTimeoutExpiration(cmdlet, wizard);
+                    bool interrupt2 = InterruptOnTimeoutExpiration(cmdlet, wizard);
+                    if (interrupt2) {
+                        break;
+                    }
+                    // 20130712
+                    //break;
                 }
             }
         }
 
         // 20130329
         // running the StopAction script after timeout expired
-
-        internal void InterruptOnTimeoutExpiration(WizardRunCmdletBase cmdlet, Wizard wizard)
+        
+        // 20130712
+        //internal void InterruptOnTimeoutExpiration(WizardRunCmdletBase cmdlet, Wizard wizard)
+        internal bool InterruptOnTimeoutExpiration(WizardRunCmdletBase cmdlet, Wizard wizard)
         {
+            // 20130712
+            bool interrupt = false;
+            
             System.DateTime nowDate = System.DateTime.Now;
             if ((nowDate - cmdlet.StartDate).TotalSeconds > (Preferences.Timeout / 1000)) {
                 
@@ -214,11 +231,19 @@ namespace UIAutomation
                 
                 if (this.Quiet) {
                     cmdlet.WriteObject(cmdlet, false);
-                    return;
+                    // 20130712
+                    //return;
+                    return interrupt;
                 } else {
                     cmdlet.WriteError(cmdlet, "Timeout expired", "TimeoutExpired", ErrorCategory.OperationTimeout, true);
                 }
+                
+                // 20130712
+                interrupt = true;
             }
+            
+            // 20130712
+            return interrupt;
         }
 
         // 20130325

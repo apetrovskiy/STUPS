@@ -163,11 +163,21 @@ namespace UIAutomation
         	// moving the current step to the end of the step collection
         	try {
         	   int currentIndex = this.Steps.IndexOf(resultStep);
-        	   cmdletCtrl.WriteInfo(cmdletCtrl, "current index = " + currentIndex.ToString());
-        	   this.Steps.Insert(this.Steps.Count, resultStep);
-        	   cmdletCtrl.WriteInfo(cmdletCtrl, "inserted after the last step");
-        	   this.Steps.RemoveAt(currentIndex);
-        	   cmdletCtrl.WriteInfo(cmdletCtrl, "deleted from the previous position");
+        	   try {
+        	       cmdletCtrl.WriteInfo(cmdletCtrl, "current index = " + currentIndex.ToString());
+        	   }
+        	   catch {
+        	       cmdletCtrl.WriteInfo(cmdletCtrl, "failed to show the current index");
+        	   }
+        	   // 20130712
+        	   if (0 <= currentIndex && (this.Steps.Count - 1) != currentIndex) {
+            	   this.Steps.Insert(this.Steps.Count, resultStep);
+            	   cmdletCtrl.WriteInfo(cmdletCtrl, "inserted after the last step");
+            	   this.Steps.RemoveAt(currentIndex);
+            	   cmdletCtrl.WriteInfo(cmdletCtrl, "deleted from the previous position");
+        	   } else {
+        	       cmdletCtrl.WriteInfo(cmdletCtrl, "there was no manipulation with wizard steps' order");
+        	   }
         	}
         	catch (Exception eMovingToTheEnd) {
         	    cmdletCtrl.WriteInfo(cmdletCtrl, eMovingToTheEnd.Message);

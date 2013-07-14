@@ -12,3 +12,5 @@ Wait-UIAWindow -Class *frame* -WithControl @{controlType="button";name="1"},@{co
 Write-Host "could not be found:";
 Wait-UIAWindow -Class *frame* -WithControl @{controlType="button";name="1"},@{controlType="button";name="2"},@{controlType="button";name="3"},@{controlType="button";name="10"}; # -Verbose;
 
+Write-Host "should be found:";
+Wait-UIAWindow -Class *frame* -WithControl @{controlType="button";name="1"},@{controlType="button";name="2"},@{controlType="button";name="3"},@{controlType="button";name="1"};

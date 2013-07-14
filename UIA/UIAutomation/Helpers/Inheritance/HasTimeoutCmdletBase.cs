@@ -168,9 +168,21 @@ namespace UIAutomation
                         ArrayList filteredWindows =
                             new ArrayList();
         
+                        cmdlet.WriteVerbose(cmdlet, "searching for control(s) for every window, one by one");
+                        
+                        // 20130713
+                        // 20130714
+                        bool exitInnerCycle = false;
+                        
                         foreach (AutomationElement window in aeWndCollection) {
                             
-                            cmdlet.WriteVerbose(cmdlet, "searching for control(s) for every window, one by one");
+                            cmdlet.WriteVerbose(cmdlet, "Window: name='" + window.Current.Name + "', automaitonId='" + window.Current.AutomationId + "'");
+                            
+//                            if (exitInnerCycle) {
+//                                //break;
+//                                window = null;
+//                                continue;
+//                            }
                             
                             GetControlCmdletBase cmdletCtrl =
                                 new GetControlCmdletBase();
@@ -179,35 +191,65 @@ namespace UIAutomation
                                 // 20130316
                                 //(AutomationElement[])aeWndCollection.ToArray(typeof(AutomationElement));
                                 new AutomationElement[]{ window };
-                            cmdletCtrl.SearchCriteria = cmdlet.WithControl;
+                            // 20130713
+                            //cmdletCtrl.SearchCriteria = cmdlet.WithControl;
                             cmdletCtrl.Timeout = 0;
                             
-                            cmdlet.WriteVerbose(cmdlet, "searching for one or more controls");
                             
-                            // 20130301
-                            try {
                             
-                                ArrayList controlsList =
-                                    GetControl(cmdletCtrl);
+                            exitInnerCycle = false;
+                            bool addToResultCollection = false;
+                            //foreach (Hashtable searchCriterion in cmdlet.WithControl) {
+                            for (int iSearchCriterion = 0; iSearchCriterion < cmdlet.WithControl.Length; iSearchCriterion++) {
                                 
-                                cmdlet.WriteVerbose(cmdlet, "after the search");
+                                //cmdletCtrl.SearchCriteria = new Hashtable[]{ searchCriterion };
+                                cmdletCtrl.SearchCriteria = new Hashtable[]{ cmdlet.WithControl[iSearchCriterion] };
                                 
-                                if (null != controlsList && 0 < controlsList.Count) {
+                                //cmdlet.WriteVerbose(cmdlet, "searching for one or more controls");
+                                cmdlet.WriteVerbose(cmdlet, "searching for controls that match the following critetion: " + cmdlet.WithControl[iSearchCriterion].ToString());
+                                
+                                // 20130301
+                                try {
+                                
+                                    ArrayList controlsList =
+                                        GetControl(cmdletCtrl);
                                     
-                                    cmdlet.WriteVerbose(cmdlet, "ths list of controls that are on the window is not empty");
+                                    //cmdlet.WriteVerbose(cmdlet, "there are " + con + "results after the search");
                                     
-                                    filteredWindows.Add(window);
+                                    if (null != controlsList && 0 < controlsList.Count) {
+                                        
+                                        //cmdlet.WriteVerbose(cmdlet, "ths list of controls that are on the window is not empty");
+                                        cmdlet.WriteVerbose(cmdlet, "there are " + controlsList.Count.ToString() + " result(s) after the search");
+                                        
+                                        // 20130714
+                                        //filteredWindows.Add(window);
+                                        addToResultCollection = true;
+                                    } else { //20130713
+                                        
+                                        cmdlet.WriteVerbose(cmdlet, "there weren't found controls that match the criterion");
+                                        exitInnerCycle = true;
+                                        //window = null;
+                                        addToResultCollection = false;
+                                        //continue;
+                                        break;
+                                    }
+                            
+                                // 20130301
+                                }
+                                
+                                catch (Exception eWindowIsGone) {
+                                    
+                                    // forcing to a next loop
+                                    aeWndCollection.Clear();
+                                    break;
+                                    
                                 }
                             
-                            // 20130301
-                            }
+                            } //20130713
                             
-                            catch (Exception eWindowIsGone) {
-                                
-                                // forcing to a next loop
-                                aeWndCollection.Clear();
-                                break;
-                                
+                            // 20130714
+                            if (addToResultCollection) {
+                                filteredWindows.Add(window);
                             }
                         }
                         

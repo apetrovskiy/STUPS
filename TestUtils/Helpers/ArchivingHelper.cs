@@ -91,5 +91,56 @@ namespace TestUtils
                     true);
             }
         }
+        
+        public static void ExtractFromArchive(ExpandTuZipArchiveCommand cmdlet)
+        {
+            string[] pathToArchive = cmdlet.ArchiveName;
+            string pathToTargetDirectory = cmdlet.TargetFolder;
+            ExtractExistingFileAction fileAction = ExtractExistingFileAction.DoNotOverwrite;
+            if (cmdlet.Overwrite) {
+                fileAction = ExtractExistingFileAction.OverwriteSilently;
+            }
+            
+            foreach (string path in pathToArchive) {
+                
+                if (null != path && string.Empty != path) {
+                    
+                    cmdlet.WriteVerbose(
+                        cmdlet,
+                        "extracting '" +
+                        path +
+                        "'");
+                    
+                    try {
+                        
+                        using (ZipFile zipARchive = ZipFile.Read(path)) {
+                            
+                            cmdlet.WriteVerbose(cmdlet, "opening the archive");
+                            
+                            foreach (ZipEntry entry in zipARchive) {
+                                
+                                entry.Extract(pathToTargetDirectory, fileAction);
+                                cmdlet.WriteObject(
+                                    cmdlet,
+                                    pathToTargetDirectory +
+                                    @"\" +
+                                    entry.FileName);
+                            }
+                        }
+                    }
+                    catch (Exception eExtract) {
+                        cmdlet.WriteError(
+                            cmdlet,
+                            "Failed to extract archive '" +
+                            path +
+                            "'. " +
+                            eExtract.Message,
+                            "FailedToExtract",
+                            ErrorCategory.InvalidOperation,
+                            false);
+                    }
+                }
+            }
+        }
     }
 }

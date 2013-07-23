@@ -68,6 +68,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\Archiving\ExpandTuZipArchiveCommand.cs" />
     <Compile Include="Commands\Archiving\NewTuZipArchiveCommand.cs" />
     <Compile Include="Commands\Security\GrantWin32LocalAccountPrivilegeCommand.cs" />
     <Compile Include="Helpers\ArchivingHelper.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Helpers\Inheritance\CommonCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\PrivilegeCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\SecurityCmdletBase.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Archiving\TuExpandZipArchiveCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Archiving\TuNewZipArchiveCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Security\Win32GrantLocalAccountPrivilegeCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Win32Command.cs" />
@@ -85,6 +87,7 @@
   <ItemGroup>
     <Folder Include="Commands" />
     <Folder Include="Commands\Archiving" />
+    <Folder Include="Commands\CSV" />
     <Folder Include="Commands\Security" />
     <Folder Include="Helpers" />
     <Folder Include="Helpers\Inheritance" />

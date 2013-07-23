@@ -20,5 +20,14 @@ namespace TestUtils
         public ArchivingCmdletBase()
         {
         }
+        
+        #region Parameters
+//        [Parameter(Mandatory = true,
+//                   Position = 0,
+//                   ValueFromPipeline = true)]
+//        //[ValidateNotNull()]
+//        [ValidateNotNullOrEmpty()]
+//        public string[] Filename { get; set; }
+        #endregion Parameters
     }
 }

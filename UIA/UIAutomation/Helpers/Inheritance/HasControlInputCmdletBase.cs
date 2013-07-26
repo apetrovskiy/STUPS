@@ -90,7 +90,9 @@ namespace UIAutomation
         [Parameter(Mandatory = false, 
             ValueFromPipeline = true,
             HelpMessage = "This is usually the output from Get-UIAControl" )] 
-        public virtual System.Windows.Automation.AutomationElement[] InputObject { get; set; }
+        // 20130725
+        //public virtual System.Windows.Automation.AutomationElement[] InputObject { get; set; }
+        public System.Windows.Automation.AutomationElement[] InputObject { get; set; }
         [Parameter(Mandatory = false)]
         public virtual SwitchParameter PassThru { get; set; }
         

@@ -38,6 +38,14 @@ namespace UIAutomation
         #endregion Constructor
         
         #region Parameters
+        // 20130725
+        //[Parameter(Mandatory = false,
+        [Parameter(Mandatory = true,
+                   ValueFromPipeline = true,
+                   ParameterSetName = "Process1",
+                   HelpMessage="Accepts a process object")]
+        [Alias("Process", "p")]
+        public new Process[] InputObject { get; set; }
         // 20130513
         [Parameter(Mandatory = true,
                    ParameterSetName = "Win32")]
@@ -101,12 +109,12 @@ namespace UIAutomation
         [Alias("pn")]
         public string[] ProcessName { get; set; }
         
-        [Parameter(Mandatory = false,
-                   ValueFromPipeline = true,
-                   ParameterSetName = "Process",
-                   HelpMessage="Accepts a process object")]
-        [Alias("Process", "p")]
-        public new Process[] InputObject { get; set; }
+//        [Parameter(Mandatory = false,
+//                   ValueFromPipeline = true,
+//                   ParameterSetName = "Process",
+//                   HelpMessage="Accepts a process object")]
+//        [Alias("Process", "p")]
+//        public new Process[] InputObject { get; set; }
         
         [Parameter(Mandatory = false,
                    ParameterSetName = "ProcessId",
@@ -148,6 +156,9 @@ namespace UIAutomation
         [Parameter(Mandatory = true,
                    ParameterSetName = "UIA")]
         internal SwitchParameter UseNameAuIdClass { get; set; }
+        
+        [Parameter(Mandatory = false)]
+        internal new Hashtable[] SearchCriteria { get; set; }
         #endregion Parameters
     }
 }

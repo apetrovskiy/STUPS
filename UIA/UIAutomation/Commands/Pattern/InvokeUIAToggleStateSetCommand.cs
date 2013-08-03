@@ -26,7 +26,9 @@ namespace UIAutomation.Commands
         #region Parameters
         [Parameter(Mandatory = true,
                    Position = 0)]
-        public bool On { get; set; }
+        // 20130803
+        //public bool On { get; set; }
+        public SwitchParameter On { get; set; }
         #endregion Parameters
     }
     

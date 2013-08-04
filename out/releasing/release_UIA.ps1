@@ -45,6 +45,9 @@ Start-Process -FilePath $pathToSignTool -ArgumentList @("sign", "/f", "$($pathTo
 
 Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomationSpy\bin\Release35\UIAutomation.dll" -Destination "$($pathToProjectRoot)\out\$($DirName)\35"
 Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomationSpy\bin\Release35\TMX.dll" -Destination "$($pathToProjectRoot)\out\$($DirName)\35"
+Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomationSpy\bin\Release35\*hibe*" -Destination "$($pathToProjectRoot)\out\$($DirName)\35"
+Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomationSpy\bin\Release35\*log*" -Destination "$($pathToProjectRoot)\out\$($DirName)\35"
+Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomationSpy\bin\Release35\*iesi*" -Destination "$($pathToProjectRoot)\out\$($DirName)\35"
 Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomationSpy\bin\Release35\UIAutomationSpy.*" -Destination "$($pathToProjectRoot)\out\$($DirName)\35"
 Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomationAliases\bin\Release35\UIAutomationAliases.dll" -Destination "$($pathToProjectRoot)\out\$($DirName)\35"
 Copy-Item -Path "$($pathToProjectRoot)\UIA\UIARunner\bin\Release35\UIARunner.*" -Destination "$($pathToProjectRoot)\out\$($DirName)\35"
@@ -66,6 +69,9 @@ Start-Process -FilePath $pathToSignTool -ArgumentList @("sign", "/f", "$($pathTo
 
 Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomationSpy40\bin\Release35\UIAutomation.dll" -Destination "$($pathToProjectRoot)\out\$($DirName)\40"
 Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomationSpy40\bin\Release35\TMX.dll" -Destination "$($pathToProjectRoot)\out\$($DirName)\40"
+Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomationSpy40\bin\Release35\*hibe*" -Destination "$($pathToProjectRoot)\out\$($DirName)\40"
+Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomationSpy40\bin\Release35\*log*" -Destination "$($pathToProjectRoot)\out\$($DirName)\40"
+Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomationSpy40\bin\Release35\*iesi*" -Destination "$($pathToProjectRoot)\out\$($DirName)\40"
 Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomationSpy40\bin\Release35\UIAutomationSpy.*" -Destination "$($pathToProjectRoot)\out\$($DirName)\40"
 # Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomationAliases\bin\Release35\UIAutomationAliases.dll" -Destination "$($pathToProjectRoot)\out\$($DirName)\40"
 Copy-Item -Path "$($pathToProjectRoot)\UIA\UIARunner40\bin\Release35\UIARunner.*" -Destination "$($pathToProjectRoot)\out\$($DirName)\40"
@@ -89,6 +95,9 @@ Start-Process -FilePath $pathToSignTool -ArgumentList @("sign", "/f", "$($pathTo
 
 Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomationSpy40Metro\bin\Release35\UIAutomation.dll" -Destination "$($pathToProjectRoot)\out\$($DirName)\Metro"
 Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomationSpy40Metro\bin\Release35\TMX.dll" -Destination "$($pathToProjectRoot)\out\$($DirName)\Metro"
+Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomationSpy40Metro\bin\Release35\*hibe*" -Destination "$($pathToProjectRoot)\out\$($DirName)\Metro"
+Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomationSpy40Metro\bin\Release35\*log*" -Destination "$($pathToProjectRoot)\out\$($DirName)\Metro"
+Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomationSpy40Metro\bin\Release35\*iesi*" -Destination "$($pathToProjectRoot)\out\$($DirName)\Metro"
 Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomationSpy40Metro\bin\Release35\UIAutomationSpy.*" -Destination "$($pathToProjectRoot)\out\$($DirName)\Metro"
 # Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomationAliases\bin\Release35\UIAutomationAliases.dll" -Destination "$($pathToProjectRoot)\out\$($DirName)\Metro
 Copy-Item -Path "$($pathToProjectRoot)\UIA\UIARunner40Metro\bin\Release35\UIARunner.*" -Destination "$($pathToProjectRoot)\out\$($DirName)\Metro"

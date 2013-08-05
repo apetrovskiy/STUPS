@@ -29,6 +29,8 @@ namespace TMX
         //public TMXHelper()
         static TMXHelper()
         {
+            // 20130805
+            TestData.InitTestData();
         }
         
         internal static DateTime TestCaseStarted { get; set; }

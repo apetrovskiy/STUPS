@@ -142,6 +142,9 @@ namespace UIAutomation
         // experimental
         [Parameter(Mandatory = false,
                    ParameterSetName = "UIA")]
+        // 20130805
+        [Parameter(Mandatory = false,
+                   ParameterSetName = "Process1")]
         public SwitchParameter Recurse { get; set; }
         
 //        [Parameter(Mandatory = false,

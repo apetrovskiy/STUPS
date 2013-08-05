@@ -1,3 +1,4 @@
+cd C:\Projects\PS\STUPS\UIA\UIAutomationTest\bin\Release35
 ipmo C:\Projects\PS\STUPS\UIA\UIAutomation\bin\Release35\UIAutomation.dll
 
 # ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =

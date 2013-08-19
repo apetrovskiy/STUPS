@@ -74,7 +74,7 @@ namespace TMXUnitTests.Commands.TestStructure
             UnitTestingHelper.SetTestResult(string.Empty, null);
 
             Assert.AreEqual(
-                "this test result was preset",
+                "this test result was preset", // this is a bug // ?
                 TestData.CurrentTestResult.Name);
         }
         

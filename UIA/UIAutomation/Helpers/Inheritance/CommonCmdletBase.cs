@@ -1226,10 +1226,12 @@ namespace UIAutomation
 
         }
         
-        protected internal void RunWizardStopScriptBlocks(WizardCmdletBase cmdlet, Wizard wizard, object[] parameters)
+        protected internal void RunWizardStopScriptBlocks(WizardCmdletBase cmdlet, Wizard wizard, object[] parameters, bool hereMustBeStopAction)
         {
-
-            if (null == wizard.StopAction || 0 == wizard.StopAction.Length) {
+            
+            // 20130819
+            // if (null == wizard.StopAction || 0 == wizard.StopAction.Length) {
+            if (hereMustBeStopAction && (null == wizard.StopAction || 0 == wizard.StopAction.Length)) {
                 
                 cmdlet.WriteVerbose(cmdlet, "there is no any StopAction scriptblock");
                 

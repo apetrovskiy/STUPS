@@ -223,7 +223,9 @@ namespace UIAutomation
                     cmdlet,
                     "Timout expired. Running the StopAction scriptblock");
                 
-                cmdlet.RunWizardStopScriptBlocks(cmdlet, wizard, wizard.StopActionParameters);
+                // 20130819
+                // cmdlet.RunWizardStopScriptBlocks(cmdlet, wizard, wizard.StopActionParameters);
+                cmdlet.RunWizardStopScriptBlocks(cmdlet, wizard, wizard.StopActionParameters, false);
                 
                 cmdlet.WriteVerbose(
                     cmdlet,
@@ -267,7 +269,9 @@ namespace UIAutomation
             if (WizardStepActions.Stop == currentStep.ToDo) {
                 
                 cmdlet.WriteInfo(cmdlet, "running scriptblocks from the StopAction scriptblock set");
-                cmdlet.RunWizardStopScriptBlocks(cmdlet, wizard, currentParameters);
+                // 20130819
+                // cmdlet.RunWizardStopScriptBlocks(cmdlet, wizard, currentParameters);
+                cmdlet.RunWizardStopScriptBlocks(cmdlet, wizard, currentParameters, true);
                 // 20130508
                 // temporary
                 // profiling

@@ -1229,7 +1229,9 @@ namespace TMX
                     TestData.CurrentTestResult.Name = cmdlet.TestResultName;
                 } else {
                     
-                    TestData.CurrentTestResult.Name = "this test result was preset";
+                    // 20130819
+                    //TestData.CurrentTestResult.Name = "this test result was preset";
+                    // this is a potential bug
                 }
                 
                 if (null != cmdlet.Id && 0 < cmdlet.Id.Length) {

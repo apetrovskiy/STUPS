@@ -244,6 +244,8 @@ namespace TMX
             CurrentTestResult = null;
             CurrentTestScenario = null;
             CurrentTestSuite = null;
+            // 20130910
+            InitTestData();
         }
         
         public static void CleanData()

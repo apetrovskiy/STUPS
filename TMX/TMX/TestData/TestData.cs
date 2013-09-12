@@ -1388,7 +1388,9 @@ dumpTestStructure("AddTestResult #46");
                         } else {
                             
                             // 20130621
-                            if (testSuiteName != testSuite.Name) {
+                            // 20130912
+                            //if (testSuiteName != testSuite.Name) {
+                            if (testSuiteName != testSuite.Name && null != testSuiteName && string.Empty != testSuiteName) {
                                 continue;
                             } else {
                                 result = testSuite;
@@ -1440,7 +1442,7 @@ internal static void dumpTestStructure(string strNumber)
                 testSuite = TestData.CurrentTestSuite;
             }
             
-Console.WriteLine("test suite: " + testSuite.Name + "\t" + testSuite.Id);
+//Console.WriteLine("test suite: " + testSuite.Name + "\t" + testSuite.Id);
             
             TestScenario testScenario =
                 TestData.GetTestScenario(
@@ -1456,7 +1458,7 @@ Console.WriteLine("test suite: " + testSuite.Name + "\t" + testSuite.Id);
                 testScenario = TestData.CurrentTestScenario;
             }
             
-Console.WriteLine("test scenario: " + testScenario.Name + "\t" + testScenario.Id);
+//Console.WriteLine("test scenario: " + testScenario.Name + "\t" + testScenario.Id);
             
             TestCase testCase =
                 new TestCase(
@@ -1671,6 +1673,13 @@ dumpTestStructure("7");
                 
             }
             
+            // 20130912
+            if (null == testSuite) {
+                
+                // better error description?
+                return result;
+            }
+            
             TestScenario testScenario = null;
             
             if (null != testSuite) {
@@ -1685,14 +1694,26 @@ dumpTestStructure("7");
                         testPlatformId);
             }
             
+            // 20130912
+            if (null == testScenario) {
+                
+                // better error description?
+                return result;
+            }
+            
             if (null != testScenario && 0 < testScenario.TestCases.Count) {
                 
                 foreach (TestCase testCase in testScenario.TestCases) {
                     
+                    // 20130912
+                    //if ((testCaseName == testCase.TestCaseName &&
+                    //    testCaseId == testCase.TestCaseId) ||
+                    //    (null == testCaseName && testCaseId == testCase.TestCaseId) ||
+                    //    (null == testCaseId && testCaseName == testCase.TestCaseName)){
                     if ((testCaseName == testCase.TestCaseName &&
                         testCaseId == testCase.TestCaseId) ||
-                        (null == testCaseName && testCaseId == testCase.TestCaseId) ||
-                        (null == testCaseId && testCaseName == testCase.TestCaseName)){
+                        ((null == testCaseName || string.Empty == testCaseName) && testCaseId == testCase.TestCaseId) ||
+                        ((null == testCaseId || string.Empty == testCaseId) && testCaseName == testCase.TestCaseName)){
                         
                         result = testCase;
                         break;
@@ -1738,10 +1759,15 @@ dumpTestStructure("7");
             }
             
             if (testScenarioName != null && testScenarioName != string.Empty) {
+                
                 foreach (TestScenario testScenario in TestData.CurrentTestSuite.TestScenarios) {
+                    
                     if (testScenario.Name == testScenarioName) {
+                        
                         TestData.CurrentTestScenario = testScenario;
-                        return testScenario;
+                        // 20130912
+                        //return testScenario;
+                        return TestData.CurrentTestScenario;
                     }
                 }
             }
@@ -1754,7 +1780,9 @@ dumpTestStructure("7");
                         if (testPlatformId != testScenario.PlatformId) {
                             continue;
                         } else {
-                            if (testScenarioName != testScenario.Name) {
+                            // 20130912
+                            //if (testScenarioName != testScenario.Name) {
+                            if (testScenarioName != testScenario.Name && null != testScenarioName && string.Empty != testScenarioName) {
                                 continue;
                             } else {
                                 TestData.CurrentTestScenario = testScenario;

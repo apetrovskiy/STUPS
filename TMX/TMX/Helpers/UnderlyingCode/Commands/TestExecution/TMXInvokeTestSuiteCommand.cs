@@ -32,6 +32,21 @@ namespace TMX
             		cmdlet.Id,
             		cmdlet.TestPlatformId);
             
+            // 20130912
+            if (null == testSuite) {
+                
+                cmdlet.WriteError(
+                    cmdlet,
+                    "failed to find test suite with Name = '" +
+                    cmdlet.Name +
+                    "', Id = '" +
+                    cmdlet.Id +
+                    "'",
+                    "FailedToFindTestSuite",
+                    ErrorCategory.InvalidArgument,
+                    true);
+            }
+            
             testSuite.BeforeScenarioParameters =
                 cmdlet.BeforeScenarioParameters;
             testSuite.AfterScenarioParameters =

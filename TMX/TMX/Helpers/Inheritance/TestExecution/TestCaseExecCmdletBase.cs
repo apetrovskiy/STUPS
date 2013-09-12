@@ -29,6 +29,10 @@ namespace TMX
         
         [Parameter(Mandatory = false)]
         public object[] TestCodeParameters { get; set; }
+        
+        // 20130912
+        [Parameter(Mandatory = false)]
+        public new string Name { get; set; }
         #endregion Parameters
         
         protected internal bool OnlySetParameters { get; set; }

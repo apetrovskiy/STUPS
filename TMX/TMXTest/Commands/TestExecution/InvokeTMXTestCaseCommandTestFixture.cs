@@ -154,7 +154,9 @@ namespace TMXTest.Commands.TestExecution
         {
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"[string]$global:result = ''; " +
-                @"$null = New-TMXTestSuite 'suite01' -Id 001 -BeforeScenario { $global:result += '01'; },{ $global:result += '02'; }; " +
+                // 20130912
+                //@"$null = New-TMXTestSuite 'suite01' -Id 001 -BeforeScenario { $global:result += '01'; },{ $global:result += '02'; }; " +
+                @"$null = New-TMXTestSuite 'suite01' -Id 001 -BeforeScenario { $global:result += '01'; },{ $global:result += '02'; } " +
                 @"-AfterScenario { $global:result += '03'; },{ $global:result += '04'; }; " +
                 @"$null = Add-TMXTestScenario 'sc001' -Id 0001; " +
                 @"$null = Add-TMXTestCase 'tc0001' -Id 00001; " +

@@ -35,6 +35,20 @@ namespace TMX
             		TMX.TestData.CurrentTestSuite.Id,
             		cmdlet.TestPlatformId);
             
+            if (null == testScenario) {
+                
+                cmdlet.WriteError(
+                    cmdlet,
+                    "failed to find test scenario with Name = '" +
+                    cmdlet.Name +
+                    "', Id = '" +
+                    cmdlet.Id +
+                    "'",
+                    "FailedToFindTestScenario",
+                    ErrorCategory.InvalidArgument,
+                    true);
+            }
+            
             testScenario.BeforeTestParameters =
                 cmdlet.BeforeTestParameters;
             testScenario.AfterTestParameters =

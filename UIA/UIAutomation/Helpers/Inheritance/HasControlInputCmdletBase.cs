@@ -658,6 +658,19 @@ namespace UIAutomation
             // string cmdletName = cmdlet.GetType().Name.Replace("UIA", "-UIA");
             // 20120228 string cmdletName = CmdletName(cmdlet);
             
+            // 20130918
+            if (null == cmdlet.InputObject) {
+                
+                this.WriteVerbose(cmdlet, "[checking the control] Control(s) are null");
+                //return result;
+                cmdlet.WriteError(
+                    cmdlet,
+                    "The pipeline input is null",
+                    "InputIsNull",
+                    ErrorCategory.InvalidArgument,
+                    true);
+            }
+            
             // 20120823
             foreach (AutomationElement inputObject in cmdlet.InputObject) {
                 
@@ -681,7 +694,14 @@ namespace UIAutomation
                 // 20120830
                 //return false;
                 result = false;
-                return result;
+                // 20130918
+                //return result;
+                cmdlet.WriteError(
+                    cmdlet,
+                    "The pipeline input is null",
+                    "InputIsNull",
+                    ErrorCategory.InvalidArgument,
+                    true);
             }
             System.Windows.Automation.AutomationElement _control = null;
             try {

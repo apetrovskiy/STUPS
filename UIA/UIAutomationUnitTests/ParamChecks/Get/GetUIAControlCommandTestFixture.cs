@@ -41,7 +41,9 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void Get_UIAControl_NoParameters()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsAccepted(
+            // 20130918
+            //CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsAccepted(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"Get-UIAControl;");
         }
         
@@ -49,7 +51,9 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void Get_UIAControl_ControlType()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsAccepted(
+            // 20130918
+            //CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsAccepted(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"Get-UIAControl -ControlType Button;");
         }
         
@@ -57,7 +61,9 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void Get_UIAControl_Name()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsAccepted(
+            // 20130918
+            //CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsAccepted(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"Get-UIAControl -Name 'aaa';");
         }
         
@@ -65,7 +71,9 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void Get_UIAControl_ControlType_Name()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsAccepted(
+            // 20130918
+            //CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsAccepted(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"Get-UIAControl -ControlType Button -Name 'aaa';");
         }
         
@@ -73,7 +81,9 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void Get_UIAControl_AutomationId()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsAccepted(
+            // 20130918
+            //CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsAccepted(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"Get-UIAControl -AutomationId '111';");
         }
         
@@ -81,7 +91,9 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void Get_UIAControl_ControlType_AutomationId()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsAccepted(
+            // 20130918
+            //CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsAccepted(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"Get-UIAControl -ControlType Button -AutomationId '111';");
         }
         
@@ -89,7 +101,9 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void Get_UIAControl_ClassName()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsAccepted(
+            // 20130918
+            //CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsAccepted(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"Get-UIAControl -Class 'class';");
         }
         
@@ -97,7 +111,9 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         [Category("Fast")]
         public void Get_UIAControl_ControlType_ClassName()
         {
-            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsAccepted(
+            // 20130918
+            //CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsAccepted(
+            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"Get-UIAControl -ControlType Button -Class 'class';");
         }
     }

@@ -96,6 +96,15 @@ namespace CmdletUnitTest
                 "Parameters checked");
         }
         
+        // 20130918
+        public static void RunAndCheckCmdletParameters_ParamsBinding_ValidationException(string codeSnippet)
+        {
+            RunAndGetTheException(
+                codeSnippet,
+                "ParameterBindingValidationException",
+                "Cannot bind argument to parameter 'InputObject' because it is null.");
+        }
+        
         public static void RunAndCheckCmdletParameters_ParameterMissing(string codeSnippet)
         {
             RunAndGetTheException(

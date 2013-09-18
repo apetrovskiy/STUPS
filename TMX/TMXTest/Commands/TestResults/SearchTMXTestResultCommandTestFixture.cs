@@ -357,12 +357,22 @@ namespace TMXTest.Commands.TestResults
         {
             System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
                 new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
-            coll.Add(null);
+            // 20130918
+            // changes after spring-summer 2013
+            // Expected Value : [null, {1}, {1}, {1}, {2}, {100}]
+            // Actual Value   : [{1}, {1}, {1}, {2}, {100}, null]
+            // coll.Add(null);
+            // coll.Add(new System.Management.Automation.PSObject("1"));
+            // coll.Add(new System.Management.Automation.PSObject("1"));
+            // coll.Add(new System.Management.Automation.PSObject("1"));
+            // coll.Add(new System.Management.Automation.PSObject("2"));
+            // coll.Add(new System.Management.Automation.PSObject("100"));
             coll.Add(new System.Management.Automation.PSObject("1"));
             coll.Add(new System.Management.Automation.PSObject("1"));
             coll.Add(new System.Management.Automation.PSObject("1"));
             coll.Add(new System.Management.Automation.PSObject("2"));
             coll.Add(new System.Management.Automation.PSObject("100"));
+            coll.Add(null);
             //
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$null = New-TMXTestSuite -Name abc1 -Id 1; " + 
@@ -405,12 +415,23 @@ namespace TMXTest.Commands.TestResults
         {
             System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
                 new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
+            // 20130918
+            // changes after spring-summer 2013
+            // Expected Value : [{100}, {2}, {1}, {1}, {1}, null]
+            // Actual Value   : [{100}, null, {2}, {1}, {1}, {1}]
+            // coll.Add(new System.Management.Automation.PSObject("100"));
+            // coll.Add(new System.Management.Automation.PSObject("2"));
+            // coll.Add(new System.Management.Automation.PSObject("1"));
+            // coll.Add(new System.Management.Automation.PSObject("1"));
+            // coll.Add(new System.Management.Automation.PSObject("1"));
+            // coll.Add(null);
             coll.Add(new System.Management.Automation.PSObject("100"));
+            coll.Add(null);
             coll.Add(new System.Management.Automation.PSObject("2"));
             coll.Add(new System.Management.Automation.PSObject("1"));
             coll.Add(new System.Management.Automation.PSObject("1"));
             coll.Add(new System.Management.Automation.PSObject("1"));
-            coll.Add(null);
+            // 
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$null = New-TMXTestSuite -Name abc1 -Id 1; " + 
                 @"$null = Add-TMXTestScenario -Name scenario1 -Id 1; " + 

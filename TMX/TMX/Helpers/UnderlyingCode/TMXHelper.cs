@@ -1232,6 +1232,9 @@ namespace TMX
                     // 20130819
                     //TestData.CurrentTestResult.Name = "this test result was preset";
                     // this is a potential bug
+                    
+                    // 20130918
+                    TestData.CurrentTestResult.Name = "this test result is not provided with name";
                 }
                 
                 if (null != cmdlet.Id && 0 < cmdlet.Id.Length) {

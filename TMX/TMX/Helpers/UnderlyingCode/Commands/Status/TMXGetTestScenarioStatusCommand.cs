@@ -49,10 +49,21 @@ namespace TMX
             } else {
                 
                 // 20130322
-                TMXHelper.GetCurrentTestScenarioStatus(
-                    //cmdlet);
+                // 20130918
+                //TMXHelper.GetCurrentTestScenarioStatus(
+                //    //cmdlet);
+                //    cmdlet,
+                //    cmdlet.FilterOutAutomaticResults);
+                cmdlet.WriteError(
                     cmdlet,
-                    cmdlet.FilterOutAutomaticResults);
+                    "Failed to find test scenario with name = '" +
+                    cmdlet.Name + 
+                    "' and id = '" +
+                    cmdlet.Id +
+                    "'",
+                    "FailedToFindTestScenario",
+                    ErrorCategory.InvalidArgument,
+                    true);
             }
         }
     }

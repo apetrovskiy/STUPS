@@ -55,11 +55,22 @@ namespace TMX
             } else {
                 
                 // 20130322
-                TMXHelper.GetCurrentTestSuiteStatus(
-                    // 20130322
-                    //cmdlet);
+                // 20130918
+                //TMXHelper.GetCurrentTestSuiteStatus(
+                //    // 20130322
+                //    //cmdlet);
+                //    cmdlet,
+                //    cmdlet.FilterOutAutomaticResults);
+                cmdlet.WriteError(
                     cmdlet,
-                    cmdlet.FilterOutAutomaticResults);
+                    "Failed to find test suite with name = '" +
+                    cmdlet.Name + 
+                    "' and id = '" +
+                    cmdlet.Id +
+                    "'",
+                    "FailedToFindTestSuite",
+                    ErrorCategory.InvalidArgument,
+                    true);
             }
         }
     }

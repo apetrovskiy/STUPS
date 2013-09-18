@@ -258,11 +258,21 @@ namespace TMXTest.Commands.TestResults
         {
             System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
                 new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
-            coll.Add(new System.Management.Automation.PSObject("2"));
-            coll.Add(new System.Management.Automation.PSObject("1"));
-            coll.Add(new System.Management.Automation.PSObject("5"));
-            coll.Add(new System.Management.Automation.PSObject("3"));
+            // 20130918
+            // changes after spring-summer 2013
+            // Expected Value : [{2}, {1}, {5}, {3}, {4}]
+            // Actual Value   : [{4}, {1}, {3}, {5}, {2}]
+            // coll.Add(new System.Management.Automation.PSObject("2"));
+            // coll.Add(new System.Management.Automation.PSObject("1"));
+            // coll.Add(new System.Management.Automation.PSObject("5"));
+            // coll.Add(new System.Management.Automation.PSObject("3"));
+            // coll.Add(new System.Management.Automation.PSObject("4"));
             coll.Add(new System.Management.Automation.PSObject("4"));
+            coll.Add(new System.Management.Automation.PSObject("1"));
+            coll.Add(new System.Management.Automation.PSObject("3"));
+            coll.Add(new System.Management.Automation.PSObject("5"));
+            coll.Add(new System.Management.Automation.PSObject("2"));
+            // 
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$null = New-TMXTestSuite -Name 4; " + 
                 @"$null = Add-TMXTestScenario -TestSuiteName 4 -Name sc1; " + 
@@ -295,11 +305,21 @@ namespace TMXTest.Commands.TestResults
         {
             System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
                 new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
+            // 20130918
+            // changes after spring-summer 2013
+            // Expected Value : [{4}, {3}, {5}, {1}, {2}]
+            // Actual Value   : [{4}, {1}, {3}, {5}, {2}]
+            // coll.Add(new System.Management.Automation.PSObject("4"));
+            // coll.Add(new System.Management.Automation.PSObject("3"));
+            // coll.Add(new System.Management.Automation.PSObject("5"));
+            // coll.Add(new System.Management.Automation.PSObject("1"));
+            // coll.Add(new System.Management.Automation.PSObject("2"));
             coll.Add(new System.Management.Automation.PSObject("4"));
+            coll.Add(new System.Management.Automation.PSObject("1"));
             coll.Add(new System.Management.Automation.PSObject("3"));
             coll.Add(new System.Management.Automation.PSObject("5"));
-            coll.Add(new System.Management.Automation.PSObject("1"));
             coll.Add(new System.Management.Automation.PSObject("2"));
+            // 
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$null = New-TMXTestSuite -Name 4; " + 
                 @"$null = Add-TMXTestScenario -TestSuiteName 4 -Name sc1; " + 

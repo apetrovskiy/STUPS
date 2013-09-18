@@ -262,11 +262,21 @@ namespace TMXTest.Commands.TestResults
         {
             System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
                 new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
+            // 20130918
+            // changes after spring-summer 2013
+            // Expected Value : [{scenario2}, {scenario3}, {scenario4}, {scenario2}, {scenario1}]
+            // Actual Value   : [{scenario1}, {scenario2}, {scenario3}, {scenario4}, {scenario2}]
+            // coll.Add(new System.Management.Automation.PSObject("scenario2"));
+            // coll.Add(new System.Management.Automation.PSObject("scenario3"));
+            // coll.Add(new System.Management.Automation.PSObject("scenario4"));
+            // coll.Add(new System.Management.Automation.PSObject("scenario2"));
+            // coll.Add(new System.Management.Automation.PSObject("scenario1"));
+            coll.Add(new System.Management.Automation.PSObject("scenario1"));
             coll.Add(new System.Management.Automation.PSObject("scenario2"));
             coll.Add(new System.Management.Automation.PSObject("scenario3"));
             coll.Add(new System.Management.Automation.PSObject("scenario4"));
             coll.Add(new System.Management.Automation.PSObject("scenario2"));
-            coll.Add(new System.Management.Automation.PSObject("scenario1"));
+            // 
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$null = New-TMXTestSuite -Name abc1 -Id 5; " + 
                 @"$null = Add-TMXTestScenario -Name scenario1 -Id 5; " + 

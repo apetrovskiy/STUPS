@@ -42,30 +42,34 @@ namespace TAMS
         public static void CompareObjects(ObjectComparisonCmdletBase cmdlet, object referenceObject, object[] differenceObjects)
         {
             // left is null
-            
-            
-            
+            if (null == referenceObject) {
+                cmdlet.WriteObject(cmdlet, false);
+                return;
+            }
             
             // right is null
-            
-            
-            
+            if (null == differenceObjects) {
+                cmdlet.WriteObject(cmdlet, false);
+                return;
+            }
             
             if (null != differenceObjects && 0 < differenceObjects.Length) {
                 
                 ObjectGraphFactory factory = new PublicPropertyObjectGraphFactory();
-                GraphNode referenceGraph = factory.CreateObjectGraph(referenceObject, null);
+                ObjectGraphFactoryMap map = new ObjectGraphFactoryMap(true);
+                GraphNode referenceGraph = factory.CreateObjectGraph(referenceObject, map);
                 
                 foreach (var differenceObject in differenceObjects) {
                     
-                    GraphNode differenceGraph = factory.CreateObjectGraph(differenceObject, null);
+                    cmdlet.WriteVerbose(cmdlet, "comparing " + referenceObject + " and " + differenceObject);
+
+                    GraphNode differenceGraph = factory.CreateObjectGraph(differenceObject, map);
                     ObjectGraphComparer comparer = new ObjectGraphComparer();
                     bool result = comparer.Compare(referenceGraph, differenceGraph);
                     
                     cmdlet.WriteObject(cmdlet, result);
                 }
             }
-            
         }
         #endregion Object Comparison
     }

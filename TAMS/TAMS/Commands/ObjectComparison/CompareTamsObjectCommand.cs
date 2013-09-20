@@ -23,11 +23,15 @@ namespace TAMS.Commands
         }
         
         #region Parameters
-        [Parameter(Mandatory = true)]
+        [Parameter(Mandatory = true,
+                   Position = 0)]
+        [AllowNull()]
         public object ReferenceObject { get; set; }
         
         [Parameter(Mandatory = true,
-                  ValueFromPipeline = true)]
+                  ValueFromPipeline = true,
+                  Position = 1)]
+        [AllowNull()]
         public object[] DifferenceObject { get; set; }
         #endregion Parameters
         

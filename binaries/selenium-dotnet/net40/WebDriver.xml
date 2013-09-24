@@ -2151,6 +2151,11 @@
             Gets or sets the type of proxy.
             </summary>
     </member>
+    <member name="P:OpenQA.Selenium.Proxy.SerializableProxyKind">
+      <summary>
+            Gets the type of proxy as a string for JSON serialization.
+            </summary>
+    </member>
     <member name="P:OpenQA.Selenium.Proxy.IsAutoDetect">
       <summary>
             Gets or sets a value indicating whether the proxy uses automatic detection.
@@ -3631,6 +3636,11 @@
             Gets or sets the location of the Chrome browser's binary executable file.
             </summary>
     </member>
+    <member name="P:OpenQA.Selenium.Chrome.ChromeOptions.Proxy">
+      <summary>
+            Gets or sets the proxy to use with this instance of Chrome.
+            </summary>
+    </member>
     <member name="P:OpenQA.Selenium.Chrome.ChromeOptions.Arguments">
       <summary>
             Gets the list of arguments appended to the Chrome command line as a string array.
@@ -4641,6 +4651,8 @@
             </summary>
       <param name="key">The name of the preference to set.</param>
       <param name="value">A <see cref="T:System.String" /> value give the preference.</param>
+      <remarks>If the preference already exists in the currently-set list of preferences, 
+            the value will be updated.</remarks>
     </member>
     <member name="M:OpenQA.Selenium.Firefox.Preferences.SetPreference(System.String,System.Int32)">
       <summary>
@@ -4648,6 +4660,8 @@
             </summary>
       <param name="key">The name of the preference to set.</param>
       <param name="value">A <see cref="T:System.Int32" /> value give the preference.</param>
+      <remarks>If the preference already exists in the currently-set list of preferences, 
+            the value will be updated.</remarks>
     </member>
     <member name="M:OpenQA.Selenium.Firefox.Preferences.SetPreference(System.String,System.Boolean)">
       <summary>
@@ -4655,6 +4669,8 @@
             </summary>
       <param name="key">The name of the preference to set.</param>
       <param name="value">A <see cref="T:System.Boolean" /> value give the preference.</param>
+      <remarks>If the preference already exists in the currently-set list of preferences, 
+            the value will be updated.</remarks>
     </member>
     <member name="M:OpenQA.Selenium.Firefox.Preferences.AppendPreferencesTo(System.Collections.Generic.Dictionary{System.String,System.String})">
       <summary>
@@ -5180,6 +5196,45 @@
       <summary>
             Gets or sets the amount of time the driver will attempt to look for a newly launched instance
             of Internet Explorer.
+            </summary>
+    </member>
+    <member name="P:OpenQA.Selenium.IE.InternetExplorerOptions.ForceCreateProcessApi">
+      <summary>
+            Gets or sets a value indicating whether to force the use of the Windows CreateProcess API
+            when launching Internet Explorer. The default value is <see langword="false" />.
+            </summary>
+    </member>
+    <member name="P:OpenQA.Selenium.IE.InternetExplorerOptions.BrowserCommandLineArguments">
+      <summary>
+            Gets or sets the command line arguments used in launching Internet Explorer when the 
+            Windows CreateProcess API is used. This property only has an effect when the
+            <see cref="P:OpenQA.Selenium.IE.InternetExplorerOptions.ForceCreateProcessApi" /> is <see langword="true" />.
+            </summary>
+    </member>
+    <member name="P:OpenQA.Selenium.IE.InternetExplorerOptions.Proxy">
+      <summary>
+            Gets or sets the <see cref="P:OpenQA.Selenium.IE.InternetExplorerOptions.Proxy" /> to be used with Internet Explorer. By default,
+            will install the specified proxy to be the system proxy, used by all instances of
+            Internet Explorer. To change this default behavior, change the <see cref="P:OpenQA.Selenium.IE.InternetExplorerOptions.UsePerProcessProxy" />
+            property.
+            </summary>
+    </member>
+    <member name="P:OpenQA.Selenium.IE.InternetExplorerOptions.UsePerProcessProxy">
+      <summary>
+            Gets or sets a value indicating whether to use the supplied <see cref="P:OpenQA.Selenium.IE.InternetExplorerOptions.Proxy" />
+            settings on a per-process basis, not updating the system installed proxy setting.
+            This property is only valid when setting a <see cref="P:OpenQA.Selenium.IE.InternetExplorerOptions.Proxy" />, where the
+            <see cref="P:OpenQA.Selenium.Proxy.Kind" /> property is either <see cref="F:OpenQA.Selenium.ProxyKind.Direct" />,
+            <see cref="F:OpenQA.Selenium.ProxyKind.System" />, or <see cref="F:OpenQA.Selenium.ProxyKind.Manual" />, and is
+            otherwise ignored. Defaults to <see langword="false" />.
+            </summary>
+    </member>
+    <member name="P:OpenQA.Selenium.IE.InternetExplorerOptions.EnsureCleanSession">
+      <summary>
+            Gets or sets a value indicating whether to clear the Internet Explorer cache
+            before launching the browser. When set to <see langword="true" />, clears the
+            system cache for all instances of Internet Explorer, even those already running
+            when the driven instance is launched. Defaults to <see langword="false" />.
             </summary>
     </member>
     <member name="T:OpenQA.Selenium.IE.InternetExplorerWebElement">
@@ -6429,6 +6484,20 @@
             Gets or sets a value indicating whether web security is enabled and forbids cross-domain XHR (default is yes).
             </summary>
     </member>
+    <member name="P:OpenQA.Selenium.PhantomJS.PhantomJSDriverService.GhostDriverPath">
+      <summary>
+            Gets or sets the location where the GhostDriver JavaScript file is located. This
+            allows the use of an external implementation of GhostDriver instead of the
+            implementation embedded inside the PhantomJS executable.
+            </summary>
+    </member>
+    <member name="P:OpenQA.Selenium.PhantomJS.PhantomJSDriverService.LogFile">
+      <summary>
+            Gets or sets the location of the log file to which PhantomJS will write log
+            output. If this value is <see langword="null" /> or an empty string, the log
+            output will be written to the console window.
+            </summary>
+    </member>
     <member name="P:OpenQA.Selenium.PhantomJS.PhantomJSDriverService.AdditionalArguments">
       <summary>
             Gets the list of arguments appended to the PhantomJS command line as a string array.
@@ -6604,6 +6673,11 @@
     <member name="F:OpenQA.Selenium.Remote.CapabilityType.HasNativeEvents">
       <summary>
             Capability name used to indicate whether the browser uses native events.
+            </summary>
+    </member>
+    <member name="F:OpenQA.Selenium.Remote.CapabilityType.UnexpectedAlertBehavior">
+      <summary>
+            Capability name used to indicate how the browser handles unexpected alerts.
             </summary>
     </member>
     <member name="T:OpenQA.Selenium.Remote.Command">
@@ -8078,36 +8152,6 @@
       <param name="writer">JSON Writer instance</param>
       <param name="value">the platform</param>
       <param name="serializer">JSON Serializer Instance</param>
-    </member>
-    <member name="T:OpenQA.Selenium.Remote.ProxyJsonConverter">
-      <summary>
-            Provides a way to convert a <see cref="T:OpenQA.Selenium.Proxy" /> array to JSON
-            </summary>
-    </member>
-    <member name="M:OpenQA.Selenium.Remote.ProxyJsonConverter.CanConvert(System.Type)">
-      <summary>
-            Checks if the object can be converted
-            </summary>
-      <param name="objectType">Type of the object</param>
-      <returns>A value indicating if it can be converted</returns>
-    </member>
-    <member name="M:OpenQA.Selenium.Remote.ProxyJsonConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)">
-      <summary>
-            Get the platform from the JSON reader
-            </summary>
-      <param name="reader">JSON Reader instance</param>
-      <param name="objectType">Object type being read</param>
-      <param name="existingValue">The existing value of the object</param>
-      <param name="serializer">JSON Serializer instance</param>
-      <returns>Platform from JSON reader</returns>
-    </member>
-    <member name="M:OpenQA.Selenium.Remote.ProxyJsonConverter.WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)">
-      <summary>
-            Create a JSON string representation of the Proxy
-            </summary>
-      <param name="writer">The JSON writer with a string</param>
-      <param name="value">Value of the string</param>
-      <param name="serializer">JSON serializer instance</param>
     </member>
     <member name="T:OpenQA.Selenium.Remote.ResponseValueJsonConverter">
       <summary>

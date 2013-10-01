@@ -26,7 +26,6 @@ namespace TMX
             TMX.Commands.CloseTMXTestResultCommand cmdlet =
                 (TMX.Commands.CloseTMXTestResultCommand)this.Cmdlet;
             
-            // 20130330
             cmdlet.ConvertTestResultStatusToTraditionalTestResult();
                 
             cmdlet.WriteVerbose(cmdlet, 
@@ -43,7 +42,6 @@ namespace TMX
             }
             string code = string.Empty;
 
-            // 20121223
             string testResultName = string.Empty;
             if ((null == cmdlet.Name || string.Empty == cmdlet.Name) &&
                 (null != cmdlet.TestResultName && string.Empty != cmdlet.TestResultName)) {
@@ -65,7 +63,6 @@ namespace TMX
             }
 
             TMXHelper.CloseTestResult(
-                // 20121223
                 testResultName,
                 cmdlet.Id, 
                 cmdlet.TestPassed, 
@@ -73,10 +70,6 @@ namespace TMX
                 cmdlet.MyInvocation,
                 null,
                 cmdlet.Description,
-                // 20130322
-                //false);
-                // 20130626
-                //false,
                 cmdlet.TestOrigin,
                 true);
             

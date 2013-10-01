@@ -43,8 +43,6 @@ namespace TMXUnitTests.Commands.Status
             string expectedResult = TMX.TestData.TestStateNotTested;
             Assert.AreEqual(
                 expectedResult,
-                // 20130322
-                //UnitTestingHelper.GetTestSuiteStatus());
                 UnitTestingHelper.GetTestSuiteStatus(true));
         }
         
@@ -58,8 +56,6 @@ namespace TMXUnitTests.Commands.Status
             UnitTestingHelper.GetNewTestSuite("name", "id", "description");
             Assert.AreEqual(
                 expectedResult,
-                // 20130322
-                //UnitTestingHelper.GetTestSuiteStatus());
                 UnitTestingHelper.GetTestSuiteStatus(true));
         }
         
@@ -74,8 +70,6 @@ namespace TMXUnitTests.Commands.Status
 
             Assert.AreEqual(
                 expectedResult,
-                // 20130322
-                //UnitTestingHelper.GetTestSuiteStatus());
                 UnitTestingHelper.GetTestSuiteStatus(true));
         }
         
@@ -88,8 +82,6 @@ namespace TMXUnitTests.Commands.Status
             UnitTestingHelper.CloseTestResult(TestResultStatuses.Failed, false);
             Assert.AreEqual(
                 expectedResult,
-                // 20130322
-                //UnitTestingHelper.GetTestSuiteStatus());
                 UnitTestingHelper.GetTestSuiteStatus(true));
         }
         
@@ -99,14 +91,10 @@ namespace TMXUnitTests.Commands.Status
         public void GetTestSuite_Current_WithPassedKnownIssue()
         {
             // Passed -> KnownIssue
-            // 20130130
-            //string expectedResult = TMX.TestData.TestStatePassed;
             string expectedResult = TMX.TestData.TestStateKnownIssue;
             UnitTestingHelper.CloseTestResult(TestResultStatuses.Passed, true);
             Assert.AreEqual(
                 expectedResult,
-                // 20130322
-                //UnitTestingHelper.GetTestSuiteStatus());
                 UnitTestingHelper.GetTestSuiteStatus(true));
         }
         
@@ -115,7 +103,6 @@ namespace TMXUnitTests.Commands.Status
         [Category("Fast")]
         public void GetTestSuite_Current_WithFailedKnownIssue()
         {
-            //string expectedResult = TMX.TestData.TestStateFailed;
             // KnownIssue supersedes the Failed status.
             
             string expectedResult = TMX.TestData.TestStateKnownIssue;
@@ -123,8 +110,6 @@ namespace TMXUnitTests.Commands.Status
             UnitTestingHelper.CloseTestResult(TestResultStatuses.Failed, true);
             Assert.AreEqual(
                 expectedResult,
-                // 20130322
-                //UnitTestingHelper.GetTestSuiteStatus());
                 UnitTestingHelper.GetTestSuiteStatus(true));
         }
     }

@@ -292,8 +292,6 @@ namespace TMX
 //
 //        }
         
-        // 20121224
-        //public static bool CloseTestResult(
         public static void CloseTestResult(
             string testResultName, 
             string testResultId, 
@@ -302,9 +300,6 @@ namespace TMX
             InvocationInfo myInvocation,
             ErrorRecord error,
             string description,
-            // 20130322
-            //bool generated)
-            //bool generated,
             TestResultOrigins origin,
             bool skipAutomatic)
         {
@@ -324,15 +319,8 @@ namespace TMX
                 myInvocation,
                 error,
                 description,
-                // 20130322
-                //generated);
-                // 20130626
-                //generated,
                 origin,
                 skipAutomatic);
-
-            // 20121224
-            //return result;
         }
         #endregion Actions
         

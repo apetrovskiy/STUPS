@@ -270,10 +270,6 @@ namespace TMX
                                            InvocationInfo myInvocation,
                                            ErrorRecord error,
                                            string testResultDescription,
-                                           // 20130322
-                                           //bool generated)
-                                           // 20130626
-                                           //bool generated,
                                            TestResultOrigins origin,
                                            bool skipAutomatic)
         {
@@ -304,7 +300,6 @@ dumpTestStructure("AddTestResult #2");
 dumpTestStructure("AddTestResult #2b");
             }
 
-            // 20130325
             if (null == currentTestResult.Name ||
                 string.Empty == currentTestResult.Name ||
                 0 == currentTestResult.Name.Length) {
@@ -783,7 +778,11 @@ dumpTestStructure("AddTestResult #46");
                     switch (testResult.enStatus) {
                         case TestResultStatuses.Passed:
                             counterPassedResults++;
-                            TestData.CurrentTestScenario.enStatus = TestScenarioStatuses.Passed;
+                            // 20131001
+                            //TestData.CurrentTestScenario.enStatus = TestScenarioStatuses.Passed;
+                            if (TestScenarioStatuses.Failed != TestData.CurrentTestScenario.enStatus) {
+                                TestData.CurrentTestScenario.enStatus = TestScenarioStatuses.Passed;
+                            }
                             break;
                         case TestResultStatuses.Failed:
                             TestData.CurrentTestScenario.enStatus = TestScenarioStatuses.Failed;
@@ -794,7 +793,11 @@ dumpTestStructure("AddTestResult #46");
                             break;
                         case TestResultStatuses.KnownIssue:
                             counterKnownIssueResults++;
-                            TestData.CurrentTestScenario.enStatus = TestScenarioStatuses.Passed;
+                            // 20131001
+                            //TestData.CurrentTestScenario.enStatus = TestScenarioStatuses.Passed;
+                            if (TestScenarioStatuses.Failed != TestData.CurrentTestScenario.enStatus) {
+                                TestData.CurrentTestScenario.enStatus = TestScenarioStatuses.Passed;
+                            }
                             break;
                         default:
                             throw new Exception("Invalid value for TestResultStatuses");
@@ -805,8 +808,6 @@ dumpTestStructure("AddTestResult #46");
                 }
             
                 // set statistics
-                // 20130322
-                //RefreshScenarioStatistics(TestData.CurrentTestScenario);
                 RefreshScenarioStatistics(TestData.CurrentTestScenario, skipAutomatic);
             }
         }
@@ -817,22 +818,24 @@ dumpTestStructure("AddTestResult #46");
                 TestData.InitCurrentTestScenario();
             }
 
-            // 20130322
-            //TestData.SetScenarioStatus();
             TestData.SetScenarioStatus(skipAutomatic);
-
+            
             int counterPassedResults = 0;
             int counterKnownIssueResults = 0;
             
             if (TestData.CurrentTestSuite != null && 
                 0 < TestData.CurrentTestSuite.TestScenarios.Count) {
-
+                
                 foreach (TestScenario scenario in TestData.CurrentTestSuite.TestScenarios) {
-
+                    
                     switch (scenario.enStatus) {
                         case TestScenarioStatuses.Passed:
                             counterPassedResults++;
-                            TestData.CurrentTestSuite.enStatus = TestSuiteStatuses.Passed;
+                            // 20131001
+                            //TestData.CurrentTestSuite.enStatus = TestSuiteStatuses.Passed;
+                            if (TestSuiteStatuses.Failed != TestData.CurrentTestSuite.enStatus) {
+                                TestData.CurrentTestSuite.enStatus = TestSuiteStatuses.Passed;
+                            }
                             break;
                         case TestScenarioStatuses.Failed:
                             TestData.CurrentTestSuite.enStatus = TestSuiteStatuses.Failed;
@@ -843,7 +846,11 @@ dumpTestStructure("AddTestResult #46");
                             break;
                         case TestScenarioStatuses.KnownIssue:
                             counterKnownIssueResults++;
-                            TestData.CurrentTestSuite.enStatus = TestSuiteStatuses.Passed;
+                            // 20131001
+                            //TestData.CurrentTestSuite.enStatus = TestSuiteStatuses.Passed;
+                            if (TestSuiteStatuses.Failed != TestData.CurrentTestSuite.enStatus) {
+                                TestData.CurrentTestSuite.enStatus = TestSuiteStatuses.Passed;
+                            }
                             break;
                         default:
                             // 20130428
@@ -859,8 +866,6 @@ dumpTestStructure("AddTestResult #46");
                 }
 
                 // set statistics
-                // 20130322
-                //RefreshSuiteStatistics(TestData.CurrentTestSuite);
                 RefreshSuiteStatistics(TestData.CurrentTestSuite, skipAutomatic);
 
             }

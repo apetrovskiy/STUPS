@@ -85,10 +85,15 @@ namespace TMXUnitTests
             return (ITestSuite)(object)PSTestLib.UnitTestOutput.LastOutput[0];
         }
         
+        internal static string GetTestScenarioStatus(bool skipAutomatic)
+        {
+            TestData.SetScenarioStatus(skipAutomatic);
+
+            return TestData.CurrentTestScenario.Status;
+        }
+        
         internal static string GetTestSuiteStatus(bool skipAutomatic)
         {
-            // 20130322
-            //TestData.SetSuiteStatus();
             TestData.SetSuiteStatus(skipAutomatic);
 
             return TestData.CurrentTestSuite.Status;
@@ -144,6 +149,32 @@ namespace TMXUnitTests
             command.Execute();
             
             return (ITestScenario)TMX.TestData.CurrentTestScenario;
+        }
+        
+        internal static ITestScenario GetNewTestScenario(
+            string name,
+            string id,
+            string description)
+        {
+
+            AddScenarioCmdletBase cmdlet =
+                new AddScenarioCmdletBase();
+
+            if (null != name && string.Empty != name) {
+                cmdlet.Name = name;
+            }
+            if (null != id && string.Empty != id) {
+                cmdlet.Id = id;
+            }
+            if (null != description && string.Empty != description) {
+                cmdlet.Description = description;
+            }
+            
+            TMXAddTestScenarioCommand command =
+                new TMXAddTestScenarioCommand(cmdlet);
+            command.Execute();
+            
+            return (ITestScenario)(object)PSTestLib.UnitTestOutput.LastOutput[0];
         }
         
         // more parameters!

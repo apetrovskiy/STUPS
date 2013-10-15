@@ -27,15 +27,18 @@ namespace UIAutomation.Commands
         #endregion Constructor
         
         #region Parameters
-        [ValidateNotNullOrEmpty()]
-        [Parameter(Mandatory = true, 
-            ValueFromPipeline = true, 
-            HelpMessage = "This is usually the output from Get-UIAControl" )] 
-        public System.Windows.Automation.AutomationElement Control { get; set; }
+        //[ValidateNotNullOrEmpty()]
+        //[Parameter(Mandatory = true, 
+        //    ValueFromPipeline = true, 
+        //    HelpMessage = "This is usually the output from Get-UIAControl" )] 
+        //// 20131014
+        ////public System.Windows.Automation.AutomationElement Control { get; set; }
+        //public System.Windows.Automation.AutomationElement[] InputObject { get; set; }
         [Parameter(Mandatory = true)]
         public string Name { get; set; }
         #endregion Parameters
         
+        // 20131014
         System.Windows.Automation.AutomationElement _control = null;
         
         /// <summary>
@@ -43,23 +46,36 @@ namespace UIAutomation.Commands
         /// </summary>
         protected override void ProcessRecord()
         {
+            
             object result = null; // ?
-
+            
             if (!this.CheckControl(this)) { return; }
             
-            this.WriteVerbose(this, _control.Current);
-            this.WriteVerbose(this, 
-                         (_control.GetSupportedPatterns()).Length.ToString());
-            foreach (System.Windows.Automation.AutomationPattern p in _control.GetSupportedPatterns())
-            {
-                this.WriteVerbose(this, p.ProgrammaticName);
+            // 20131014
+            //this.WriteVerbose(this, _control.Current);
+            
+            // 20131014
+            //this.WriteVerbose(this, 
+            //             (_control.GetSupportedPatterns()).Length.ToString());
+            
+            // 20131014
+            //foreach (System.Windows.Automation.AutomationPattern p in _control.GetSupportedPatterns())
+            foreach (System.Windows.Automation.AutomationElement element in this.InputObject) {
+                foreach (System.Windows.Automation.AutomationPattern p in element.GetSupportedPatterns())
+                {
+                    this.WriteVerbose(this, p.ProgrammaticName);
+                }
             }
+            
             System.Windows.Automation.AutomationPattern pattern = 
                 UIAHelper.GetPatternByName(Name);
+            
             result = 
                 UIAHelper.GetCurrentPattern(ref _control,
                                             pattern);
+            
             this.WriteVerbose(this, result);
+            
             this.WriteObject(this, result);
         }
     }

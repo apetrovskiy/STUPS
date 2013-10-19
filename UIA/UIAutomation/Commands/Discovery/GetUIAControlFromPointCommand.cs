@@ -35,7 +35,7 @@ namespace UIAutomation.Commands
             System.Windows.Automation.AutomationElement result = null;
             result = 
                 UIAHelper.GetAutomationElementFromPoint();
-            //WriteObject(this, (object)result);
+            
             this.WriteObject(this, result);
         }
     }

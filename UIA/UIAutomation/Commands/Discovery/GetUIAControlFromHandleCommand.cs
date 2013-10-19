@@ -22,7 +22,6 @@ namespace UIAutomation.Commands
         #region Constructor
         public GetUIAControlFromHandleCommand()
         {
-            //this.InputObject = 0;
         }
         #endregion Constructor
         
@@ -47,22 +46,17 @@ namespace UIAutomation.Commands
         protected override void ProcessRecord()
         {
             System.Windows.Automation.AutomationElement result = null;
-            // 20120824
-            //try{ WriteVerbose(this, "handle = " + this.InputObject.ToString()); } catch {}
             
-            // 20120824
             foreach (int handle in this.InputObject) {
                 result = 
                     UIAHelper.GetAutomationElementFromHandle(
                         this,
-                        // 20120824
-                        //this.InputObject);
                         handle);
                 if (result != null) {
                     WriteVerbose(this, "got the control: " + result.Current.Name);
                 }
                 WriteObject(this, result);
-            } // 20120824
+            }
         }
     }
     
@@ -76,7 +70,6 @@ namespace UIAutomation.Commands
         #region Constructor
         public GetUIAWindowFromHandleCommand()
         {
-            //this.InputObject = 0;
         }
         #endregion Constructor
 
@@ -86,23 +79,18 @@ namespace UIAutomation.Commands
         protected override void ProcessRecord()
         {
             System.Windows.Automation.AutomationElement result = null;
-            // 20120824
-            //try{ WriteVerbose(this, "handle = " + this.InputObject.ToString()); } catch {}
             
-            // 20120824
             foreach (int handle in this.InputObject) {
                 result = 
                     UIAHelper.GetAutomationElementFromHandle(
                         this,
-                        // 20120824
-                        //this.InputObject);
                         handle);
                 if (result != null) {
                     this.WriteVerbose(this, "got the window");
                 }
-                UIAutomation.CurrentData.CurrentWindow = result;  // ????? 20120728
+                UIAutomation.CurrentData.CurrentWindow = result;
                 this.WriteObject(this, result);
-            } // 20120824
+            }
         }
     }
 }

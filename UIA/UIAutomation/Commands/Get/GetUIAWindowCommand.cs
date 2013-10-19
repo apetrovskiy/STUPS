@@ -27,7 +27,6 @@ namespace UIAutomation.Commands
         #region Constructor
         public GetUIAWindowCommand()
         {
-            //WriteVerbose(this, "constructor");
         }
         #endregion Constructor
 
@@ -35,14 +34,11 @@ namespace UIAutomation.Commands
         #endregion Parameters
 
         protected bool TestMode { get; set; }
-//        // 20130529
-//        protected bool WaitNoWindow { get; set; }
         
         protected override void BeginProcessing()
         {
             StartDate = System.DateTime.Now;
             
-            // 20130314
             CurrentData.SetCurrentWindow(null);
         }
         
@@ -57,7 +53,6 @@ namespace UIAutomation.Commands
             WriteVerbose(this, "ProcessName = " + this.ProcessName);
             WriteVerbose(this, "ProcessId = " + this.ProcessId);
             WriteVerbose(this, "Name = " + this.Name);
-            // 20130316
             WriteVerbose(this, "AutomationId = " + this.AutomationId);
             WriteVerbose(this, "Class = " + this.Class);
             WriteVerbose(this, "Recurse = " + this.Recurse.ToString());
@@ -70,7 +65,7 @@ namespace UIAutomation.Commands
                 if (null == this.ProcessName &&
                     (null == this.Name && null == this.AutomationId && null == this.Class) &&
                     null == this.ProcessId &&
-                    null == this.InputObject) { // &&
+                    null == this.InputObject) {
 
                     WriteVerbose(
                         this, 
@@ -83,13 +78,7 @@ namespace UIAutomation.Commands
                         ErrorCategory.InvalidArgument,
                         true);
                     
-                    //return; //// ????????????????
                 } // describe
-//                WriteVerbose(
-//                    this, 
-//                    "timeout countdown started for process: " +
-//                    this.ProcessName + ", name: " + this.Name);
-//                             // this.ProcessName + ", title: " + this.Title);
             } 
             catch (Exception eCheckParameters) {
                 
@@ -102,103 +91,29 @@ namespace UIAutomation.Commands
                     ErrorCategory.InvalidResult,
                     true);
                 
-                //return; //// ????????????????
             } // describe
             
             _returnedWindows =
-                // 20130513
-                //GetWindow(this, this.InputObject, this.ProcessName, this.ProcessId, this.Name, this.AutomationId, this.Class, this.TestMode); //, this.SearchCriteria, this.WithControl);
-                GetWindow(this, this.Win32, this.InputObject, this.ProcessName, this.ProcessId, this.Name, this.AutomationId, this.Class, this.TestMode); //, this.SearchCriteria, this.WithControl);
+                GetWindow(this, this.Win32, this.InputObject, this.ProcessName, this.ProcessId, this.Name, this.AutomationId, this.Class, this.TestMode);
             
             if (null != _returnedWindows && _returnedWindows.Count > 0) {
-
-#region commented
-//                ArrayList filteredWindows = 
-//                    new ArrayList();
-//                if (null != this.SearchCriteria && this.SearchCriteria.Length > 0) {
-//                    filteredWindows = 
-//                        getFiltredElementsCollection(this, _returnedWindows);
-//                    
-//                    if (this.TestMode && null != filteredWindows && 0 < filteredWindows.Count) {
-//                        
-//                        this.WriteObject(this, true);
-//                    } else {
-//                        
-//                        this.WriteObject(this, filteredWindows);
-//                    }
-//                } else {
-//                    
-//                    if (this.TestMode && null != _returnedWindows && 0 < _returnedWindows.Count) {
-//                        
-//                        this.WriteObject(this, true);
-//                    } else {
-//                        
-//                        this.WriteObject(this, _returnedWindows);
-//                    }
-//                }
-//                
-//                // 20130228
-//                if (null != this.WithControl && 0 < this.WithControl.Length) {
-//                    
-//                    
-//                }
-#endregion commented
-      
-#region commented
-//                if (null != this.SearchCriteria && 0 < this.SearchCriteria.Length) {
-//                    
-//                    _returnedWindows =
-//                        getFiltredElementsCollection(
-//                            this,
-//                            _returnedWindows);
-//                }
-//                
-//                if (null != this.WithControl && 0 < this.WithControl.Length) {
-//                    
-//                    ArrayList filteredWindows =
-//                        new ArrayList();
-//    
-//                    foreach (AutomationElement window in _returnedWindows) {
-//                        
-//                        GetUIAControlCommand cmdlet =
-//                            new GetUIAControlCommand();
-//                        cmdlet.SearchCriteria = this.WithControl;
-//                        
-//                        ArrayList controlsList =
-//                            getControl(cmdlet);
-//                        
-//                        if (null != controlsList && 0 < controlsList.Count) {
-//                            filteredWindows.Add(window);
-//                        }
-//                    }
-//                    
-//                    _returnedWindows = filteredWindows;
-//                }
-//                
-//                if (null != _returnedWindows && 0 < _returnedWindows.Count) {
-#endregion commented
-
-                    if (this.TestMode) {
-                        
-                        // 20130529
-                        //this.WriteObject(this, true);
-                        if (this.WaitNoWindow) {
-                            this.WriteObject(this, false);
-                        } else {
-                            this.WriteObject(this, true);
-                        }
-                        
+                
+                if (this.TestMode) {
+                    
+                    if (this.WaitNoWindow) {
+                        this.WriteObject(this, false);
                     } else {
-                        this.WriteObject(this, _returnedWindows);
+                        this.WriteObject(this, true);
                     }
-//                }
+                    
+                } else {
+                    this.WriteObject(this, _returnedWindows);
+                }
                 
             } else {
                 
                 if (this.TestMode) {
                     
-                    // 20130529
-                    // this.WriteObject(this, false);
                     if (this.WaitNoWindow) {
                         this.WriteObject(this, true);
                     } else {
@@ -238,15 +153,16 @@ namespace UIAutomation.Commands
     
                     this.WriteError(
                         this,
-                        "Failed to get the window by:" + 
+                        //"Failed to get window by:" + 
+                        "Failed to get window in " + 
+                        this.Timeout.ToString() +
+                        " seconds by:" +
                         " process name: '" +
                         procName +
                         "', process Id: " + 
                         procId + 
                         ", window title: '" + 
                         name +
-                        // 20130316
-                        //"'",
                         "', automationId: '" +
                         this.AutomationId +
                         "', className: '" +
@@ -261,7 +177,6 @@ namespace UIAutomation.Commands
         
         protected override void EndProcessing()
         {
-            // 20120206 aeForm = null;
             rootElement = null;
         }
         
@@ -271,6 +186,13 @@ namespace UIAutomation.Commands
 //            WriteVerbose(this, "User interrupted");
 //            this.Wait = false;
 //        }
+
+        // 20131019
+        protected override void StopProcessing()
+        {
+            this.WriteVerbose(this, "User interrupted");
+            this.Wait = false;
+        }
         
     }
 }

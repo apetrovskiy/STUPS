@@ -20,7 +20,6 @@ namespace UIAutomation.Commands
     /// Description of GetUIAControl.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UIAControl", DefaultParameterSetName = "UIAWildCard")]
-    // 20120828
     //[OutputType(typeof(object))]
     [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
@@ -52,7 +51,6 @@ namespace UIAutomation.Commands
 
             this.WriteVerbose(this, "getting the control");
             
-            // 20120830
             ArrayList returnCollection = 
                 GetControl(this);
             

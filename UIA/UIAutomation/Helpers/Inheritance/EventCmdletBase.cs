@@ -23,11 +23,6 @@ namespace UIAutomation
         #region Constructor
         public EventCmdletBase()
         {
-            // 20120824
-            //this.InputObject = CurrentData.CurrentWindow;
-            // 20120827
-            //this.InputObject[0] = CurrentData.CurrentWindow;
-
             this.InputObject = 
                 new System.Windows.Automation.AutomationElement[] { CurrentData.CurrentWindow };
             this.AutomationEventType = null;
@@ -41,10 +36,7 @@ namespace UIAutomation
         #region Parameters
         [Parameter(Mandatory = false)]
         internal new SwitchParameter OnErrorScreenShot { get; set; }
-// [Parameter(Mandatory = false)]
-// public new ScriptBlock[] EventAction { get; set; }
 
-        // 20130328
         [Parameter(Mandatory = false)]
         public Hashtable[] SearchCriteria { get; set; }
         #endregion Parameters
@@ -58,16 +50,10 @@ namespace UIAutomation
         protected override void ProcessRecord()
         {
             if (this.InputObject == null) return;
-            //WriteVerbose(this,
-            // "subscribing to the event " + 
-            // this.AutomationEventType.ProgrammaticName);
             
-            // 20120824
             foreach (AutomationElement inputObject in this.InputObject) {
 
             SubscribeToEvents(this,
-                              // 20120824
-                              //this.InputObject, 
                               inputObject,
                               this.AutomationEventType,
                               this.AutomationProperty);

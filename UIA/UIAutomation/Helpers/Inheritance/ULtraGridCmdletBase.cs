@@ -43,8 +43,6 @@ namespace UIAutomation
                 foreach (AutomationElement inputObject in this.InputObject) {
                 
             AutomationElementCollection tableItems = 
-                // 20120824
-                //this.InputObject.FindAll(TreeScope.Children,
                 inputObject.FindAll(
                     TreeScope.Children,
                              new PropertyCondition(
@@ -52,14 +50,11 @@ namespace UIAutomation
                                  ControlType.Custom));
             
             if (tableItems.Count > 0) {
-                // bool notTheFirstChild = false;
                 int currentRowNumber = 0;
                 bool notTheLastChild = true;
                 foreach (AutomationElement child in tableItems) {
                     currentRowNumber++;
                     if (currentRowNumber == tableItems.Count) notTheLastChild = false;
-// if (child.Current.Name.Contains("row") || 
-// child.Current.Name.Contains("Row")) {
                         AutomationElementCollection row = 
                             child.FindAll(TreeScope.Children,
                                           new PropertyCondition(
@@ -70,10 +65,6 @@ namespace UIAutomation
                         foreach (AutomationElement grandchild in row) {
                             
                             string strValue = String.Empty;
-// switch (operation) {
-// case ifUltraGridOperations.selectItems:
-// case ifUltraGridOperations.getItems:
-                                    // WriteVerbose(this, "select items");
                                     ValuePattern valPattern = null;
                                     try {
                                         valPattern =
@@ -104,24 +95,9 @@ namespace UIAutomation
                                     
                                     
                                     
-        // if (strValue == clickString ||
-        // strValue == clickString2) {
                                     if (!alreadyFoundInTheRow && IsInTheList(strValue)) {
                                         alreadyFoundInTheRow = true;
                                         counter++;
-                                        // grandchild.SetFocus(); // fail
-                                        // child.SetFocus();//fail
-        // InvokePattern invPattern = null;
-        // try {
-        // invPattern = 
-        // child.GetCurrentPattern(InvokePattern.Pattern)
-        // as InvokePattern;
-        // invPattern.Invoke();
-        //  // System.Windows.Forms.SendKeys.SendWait(" "); // QMM
-        // WriteVerbose(this, strValue + " selected");
-        // } catch {
-        //  // System.Windows.Forms.SendKeys.SendWait("+ "); // PowerGUI doesn’t react
-        // }
                                         
                                         WriteVerbose(this,
                                                      "this control is of requested value: " + 
@@ -150,10 +126,7 @@ namespace UIAutomation
                                                                  "the " + child.Current.Name + 
                                                                  " added to the output collection");
                                                 }
-                                                // System.Windows.Point p = child.GetClickablePoint();//fail
-                                                // System.Windows.Point p = grandchild.GetClickablePoint();//fail
                                                 
-                                                // keybd_event((byte)VK_LCONTROL, 0x45, KEYEVENTF_KEYUP, 0);
                                                 uint pressed = 0x8000;
                                                 if ((NativeMethods.GetKeyState(NativeMethods.VK_LCONTROL) & pressed) > 0) {
                                                     NativeMethods.keybd_event((byte)NativeMethods.VK_LCONTROL, 0x45, NativeMethods.KEYEVENTF_EXTENDEDKEY | NativeMethods.KEYEVENTF_KEYUP, 0);
@@ -185,24 +158,12 @@ namespace UIAutomation
                                             break;
                                         }
                                     }
-// break;
-// case ifUltraGridOperations.getSelection:
-//  // WriteVerbose(this, "get the selection");
-// 
-// 
-// 
-// break;
-// default:
-// WriteVerbose(this, "default");
-// break;
-// }
                             WriteVerbose(this, "working with " + 
                                          grandchild.Current.Name + "\t" + strValue);
                         }
-// }
                     
                 }
-                // WriteObject(this, true);
+                
                 WriteObject(this, selectedItems);
             } else {
                 WriteVerbose(this, "no elements of type ControlType.Custom were found under the input control");

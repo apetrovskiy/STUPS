@@ -32,30 +32,18 @@ namespace UIAutomation
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public static class UIAHelper
     {
-
-        //        #region getting a control
-        //        [DllImport("user32.dll", EntryPoint="FindWindowEx", CharSet=CharSet.Auto)]
-        //        private static extern IntPtr FindWindowEx(IntPtr hwndParent,
-        //                                          IntPtr hwndChildAfter,
-        //                                          string lpszClass,
-        //                                          string lpszWindow);
-        //        #endregion getting a control
         
         private static Highlighter highlighter = null;
         private static Highlighter highlighterParent = null;
         //private static Highlighter highlighterFirstChild = null;
-        // 20130423
         private static Highlighter highlighterCheckedControl = null;
         
-        // 20130322
         private static Banner banner = null;
         
         private static System.Windows.Automation.AutomationElement element = null;
         
         //internal static CacheRequest CacheRequest = null;
         
-        // 20120827
-        //private static IntPtr GetControlByName(
         private static ArrayList GetControlByName(
             GetControlCmdletBase cmdlet,
             IntPtr containerHandle,
@@ -65,7 +53,6 @@ namespace UIAutomation
             IntPtr resultHandle = IntPtr.Zero;
             IntPtr controlHandle = IntPtr.Zero;
             
-            // 20120827
             ArrayList controlHandles = new ArrayList();
             ArrayList tempControlHandles = new ArrayList();
             
@@ -73,42 +60,20 @@ namespace UIAutomation
             
             //if ("*" == name || string.Empty == name) {
             cmdlet.WriteVerbose(cmdlet, "using null instead of name");
-            //            controlHandle =
-            //                NativeMethods.FindWindowEx(handle, controlHandle, null, null);
-            //                //NativeMethods.FindWindowEx(handle, IntPtr.Zero, null, null);
-            //            //} else {
-            //            //    cmdlet.WriteVerbose(cmdlet, "using name");
-            //            //    controlHandle =
-            //            //        //NativeMethods.FindWindowEx(handle, controlHandle, null, null); //name);
-            //            //        NativeMethods.FindWindowEx(handle, controlHandle, null, name);
-            //            //}
-            //            if (controlHandle != IntPtr.Zero) {
-            //                cmdlet.WriteVerbose(cmdlet, "found the control by its handle");
-            //                // 20120827
-            //                //return controlHandle;
-            //                controlHandles.Add(controlHandle);
-            //            }
-            
             cmdlet.WriteVerbose(cmdlet, "test >>>>>>>>>>>>>>>>>>>>>>>>>");
             try{ cmdlet.WriteVerbose(cmdlet, "name = " + AutomationElement.FromHandle(controlHandle).Current.Name); } catch {}
             try{ cmdlet.WriteVerbose(cmdlet, "automationid = " + AutomationElement.FromHandle(controlHandle).Current.AutomationId); } catch {}
             try{ cmdlet.WriteVerbose(cmdlet, "class = " + AutomationElement.FromHandle(controlHandle).Current.ClassName); } catch {}
             try{ cmdlet.WriteVerbose(cmdlet, "control type = " + AutomationElement.FromHandle(controlHandle).Current.ControlType.ProgrammaticName); } catch {}
             
-            // 20120827
-            //if (controlHandle == IntPtr.Zero) {
-            
             // search at this level
             do {
-                //                cmdlet.WriteVerbose(
-                //                    cmdlet,
-                //                    "performing the recursive search at level " + level.ToString());
                 cmdlet.WriteVerbose(
                     cmdlet,
                     "performing the search at level " + level.ToString());
                 controlHandle =
                     NativeMethods.FindWindowEx(containerHandle, controlHandle, null, null);
-                //NativeMethods.FindWindowEx(handle, IntPtr.Zero, null, null);
+                
                 if (controlHandle != IntPtr.Zero) {
                     
                     controlHandles.Add(controlHandle);
@@ -117,10 +82,8 @@ namespace UIAutomation
                     cmdlet.WriteVerbose(
                         cmdlet,
                         "performing the recursive search at level " + (level + 1).ToString());
-                    // 20120827
-                    //resultHandle =
+                    
                     tempControlHandles =
-                        //controlHandles =
                         GetControlByName(cmdlet, controlHandle, name, level + 1);
                     //break;
                     if (null != tempControlHandles && 0 != tempControlHandles.Count) {
@@ -128,13 +91,6 @@ namespace UIAutomation
                             controlHandles.Add(oneMoreHandle);
                         }
                     }
-                    
-                    // 20120827
-                    //if (resultHandle != IntPtr.Zero) {
-                    //    // 20120827
-                    //    //return resultHandle;
-                    //    controlHandles.Add(resultHandle);
-                    //}
                 }
             } while (controlHandle != IntPtr.Zero);
             
@@ -184,7 +140,7 @@ namespace UIAutomation
                         try {
                             cmdlet.WriteVerbose(cmdlet, "checking a handle");
                             if (IntPtr.Zero != controlHandle) {
-                                //resultCollection.Add
+                                
                                 cmdlet.WriteVerbose(cmdlet, "the handle is not null");
                                 AutomationElement tempElement =
                                     AutomationElement.FromHandle(controlHandle);
@@ -193,23 +149,13 @@ namespace UIAutomation
                                 cmdlet.WriteVerbose(cmdlet, controlTitle);
                                 cmdlet.WriteVerbose(cmdlet, tempElement.Current.Name);
 
-                                // 20130209
                                 if (isMatchWildcardPattern(cmdlet, resultCollection, tempElement, wildcardName, tempElement.Current.Name)) continue;
                                 if (isMatchWildcardPattern(cmdlet, resultCollection, tempElement, wildcardName, tempElement.Current.AutomationId)) continue;
                                 if (isMatchWildcardPattern(cmdlet, resultCollection, tempElement, wildcardName, tempElement.Current.ClassName)) continue;
                                 try {
-                                //if (null != cmdlet.Value && string.Empty != cmdlet.Value) {
                                     string elementValue =
                                         (tempElement.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern).Current.Value;
                                     if (isMatchWildcardPattern(cmdlet, resultCollection, tempElement, wildcardName, elementValue)) continue;
-//                                    if (null != elementValue && string.Empty != elementValue) {
-//                                        if (wildcardName.IsMatch(elementValue)) {
-//                                            cmdlet.WriteVerbose(cmdlet, "value matches!");
-//                                            resultCollection.Add(tempElement);
-//                                            continue;
-//                                        }
-//                                    }
-                                //}
                                 }
                                 catch { //(Exception eValuePattern) {
                                 }
@@ -252,8 +198,7 @@ namespace UIAutomation
             try { if (highlighterParent != null) { highlighterParent.Dispose(); } } catch {}
             //try { if (highlighterFirstChild != null) { highlighterFirstChild.Dispose(); } } catch {}
             if ((element as AutomationElement) != null) {
-                //highlighter = new Highlighter(element, Highlighters.Element);
-                // 20130423
+                
                 highlighter =
                     new Highlighter(
                         element.Current.BoundingRectangle.Height,
@@ -262,15 +207,13 @@ namespace UIAutomation
                         element.Current.BoundingRectangle.Y,
                         element.Current.NativeWindowHandle,
                         Highlighters.Element,
-                        // 20130423
                         Preferences.HighlighterColor);
             }
             if (Preferences.HighlightParent) {
                 AutomationElement parent =
                     UIAHelper.GetParent(element);
-                // 20130423
+                
                 highlighterParent =
-                    //new Highlighter(UIAHelper.GetParent(element), Highlighters.Parent);
                     new Highlighter(
                         parent.Current.BoundingRectangle.Height,
                         parent.Current.BoundingRectangle.Width,
@@ -278,14 +221,8 @@ namespace UIAutomation
                         parent.Current.BoundingRectangle.Y,
                         parent.Current.NativeWindowHandle,
                         Highlighters.Parent,
-                        // 20130423
                         Preferences.HighlighterColorParent);
             }
-
-            //            if (Preferences.HighlightFirstChild) {
-            //                highlighterFirstChild =
-            //                    new Highlighter(UIAHelper.GetFirstChild(element), Highlighters.FirstChild);
-            //            }
         }
         
         internal static void HighlightCheckedControl(AutomationElement element) //, Highlighters control)  //(object obj)
@@ -308,7 +245,6 @@ namespace UIAutomation
         
         internal static void HideHighlighters()
         {
-            // 20130605
             try {
                 highlighter.Dispose();
                 highlighterParent.Dispose();
@@ -316,9 +252,6 @@ namespace UIAutomation
             catch {}
         }
         
-        // 20130322
-        // 20130327
-        //internal static void ShowBanner(string message)
         public static void ShowBanner(string message)
         {
             try { if (null != banner) { banner.Dispose(); } } catch {}
@@ -332,7 +265,6 @@ namespace UIAutomation
                     message);
         }
         
-        // 20130322
         internal static void HideBanner()
         {
             if (null != banner) {
@@ -344,7 +276,6 @@ namespace UIAutomation
             }
         }
         
-        // 20130327
         public static void AppendBanner(string message)
         {
             if (null != banner) {
@@ -364,7 +295,6 @@ namespace UIAutomation
             }
         }
         
-        // 20130327
         public static void ClearBanner()
         {
             if (null != banner) {
@@ -373,31 +303,15 @@ namespace UIAutomation
             }
         }
         
-        //        internal static string GetTimedFileName()
-        //        {
-        //            string result =
-        //                System.DateTime.Now.Year.ToString() +
-        //                System.DateTime.Now.Month.ToString() +
-        //                System.DateTime.Now.Day.ToString() +
-        //                System.DateTime.Now.Hour.ToString() +
-        //                System.DateTime.Now.Minute.ToString() +
-        //                System.DateTime.Now.Second.ToString() +
-        //                System.DateTime.Now.Millisecond.ToString();
-        //            return result;
-        //        }
-        
         private static string getTimedFileNameForScreenShot()
         {
             string result =
-                //"'" +
                 Preferences.ScreenShotFolder +
                 @"\" +
-                PSTestLib.PSTestHelper.GetTimedFileName(); // +
-            //"'";
+                PSTestLib.PSTestHelper.GetTimedFileName();
             return result;
         }
         
-        //internal static void GetScreenshotOfAutomationElement(
         public static void GetScreenshotOfCmdletInput(
             HasControlInputCmdletBase cmdlet,
             string description,
@@ -410,15 +324,6 @@ namespace UIAutomation
             System.Drawing.Imaging.ImageFormat format)
         {
             
-            //            if (Preferences.HideHighlighterOnScreenShotTaking) {
-            //                UIAHelper.HideHighlighters();
-            //            }
-            
-            //if (null == cmdlet) {
-            //    cmdlet = new HasControlInputCmdletBase();
-            //}
-            
-            // 20120824
             if (null == cmdlet.InputObject || 0 == cmdlet.InputObject.Length) {
                 
                 cmdlet.WriteVerbose(cmdlet, "(null == cmdlet.InputObject || 0 == cmdlet.InputObject.Length)");
@@ -430,7 +335,6 @@ namespace UIAutomation
                 cmdlet,
                 "input array consists of " + cmdlet.InputObject.Length.ToString() + " objects");
             
-            // 20120823
             foreach (AutomationElement inputObject in cmdlet.InputObject) {
                 
                 cmdlet.WriteVerbose(cmdlet, "calculating the size");
@@ -490,8 +394,6 @@ namespace UIAutomation
         }
         
         public static void GetScreenshotOfAutomationElement(
-            // 20130322
-            //HasControlInputCmdletBase cmdlet,
             PSCmdletBase cmdlet,
             AutomationElement element,
             string description,
@@ -505,7 +407,7 @@ namespace UIAutomation
         {
             
             cmdlet.WriteVerbose(cmdlet, "hiding highlighter if it's been used");
-            // 20130702
+            
             try {
                 
             if (Preferences.HideHighlighterOnScreenShotTaking &&
@@ -513,17 +415,6 @@ namespace UIAutomation
                 
                 UIAHelper.HideHighlighters();
             }
-            
-            //            // 20120824
-            //            if (null == cmdlet.InputObject || 0 == cmdlet.InputObject.Length) {
-            //                cmdlet.WriteVerbose(cmdlet, "(null == cmdlet.InputObject || 0 == cmdlet.InputObject.Length)");
-            //                cmdlet.InputObject = new AutomationElement[] { AutomationElement.RootElement };
-            //            }
-            //            cmdlet.WriteVerbose(
-            //                cmdlet,
-            //                "input array consists of " + cmdlet.InputObject.Length.ToString() + " objects");
-            //            // 20120823
-            //            foreach (AutomationElement inputObject in cmdlet.InputObject) {
             
             cmdlet.WriteVerbose(cmdlet, "calculating the size");
             int absoluteX = 0;
@@ -646,38 +537,21 @@ namespace UIAutomation
                         
                         fileName =
                             getTimedFileNameForScreenShot() +
-                            //((Commands.SaveUIAScreenshotCommand)cmdlet).Description +
                             description +
-                            //".jpg";
-                            // 20120926
-                            //".bmp";
                             getFileExtensionByImageType(format);
                         
                     } else {  // ??
                         
                         fileName =
                             getTimedFileNameForScreenShot() +
-                            // 20120927
                             description +
-                            //".jpg";
-                            // 20120926
-                            //".bmp";
-                            //getFileExtensionByImageType(Preferences.OnErrorScreenShotFormat);
                             getFileExtensionByImageType(format);
                         
                     }
                 }
-
-                //fileName = "'" + fileName + "'";
-                //string fileName =
-                // getTimedFileNameForScreenShot() +
-                // ((Commands.SaveUIAScreenshotCommand)cmdlet).Description +
-                // ".jpg";
-                myImage.Save(fileName, format);
-                // CurrentData.TestResults[CurrentData.TestResults.Count - 1].Details.Add(fileName);
-                //TMX.TestData.AddTestResultDetail(fileName);
                 
-                //TMX.TMXHelper.AddTestResultScreenshotDetail("'" + fileName + "'");
+                myImage.Save(fileName, format);
+                
                 TMX.TMXHelper.AddTestResultScreenshotDetail(fileName);
             } else {
                 
@@ -2212,7 +2086,6 @@ namespace UIAutomation
         }
         
         private static AutomationElement getSheridanTreeItemFromTreeNode(
-            //SheridanCmdletBase cmdlet,
             CommonCmdletBase cmdlet,
             IntPtr hwndTreeView,
             IntPtr hwndTreeItem,

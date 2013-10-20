@@ -8,14 +8,12 @@
  */
 
 namespace UIAutomation
-//namespace SePSX
 {
     using System;
     using System.Windows.Automation;
     using System.Windows.Forms;
     using System.Runtime.InteropServices;
     using System.Drawing;
-    //using OpenQA.Selenium;
 
     /// <summary>
     /// Description of Highlighter.
@@ -28,18 +26,6 @@ namespace UIAutomation
         internal Side rightSide = null;
         internal Side bottomSide = null;
         internal LabelForm labelForm = null;
-//        internal static KnownColor[] colorTable = {
-//        	KnownColor.Red,
-//        	KnownColor.Green,
-//        	KnownColor.Blue,
-//        	KnownColor.Yellow,
-//        	KnownColor.Pink,
-//        	KnownColor.SeaGreen,
-//        	KnownColor.MediumVioletRed,
-//        	KnownColor.Magenta,
-//        	KnownColor.YellowGreen,
-//        	KnownColor.DarkBlue
-//        };
         
         private void disposeSides()
         {
@@ -66,7 +52,6 @@ namespace UIAutomation
             double Y,
             int intHandle,
             Highlighters control,
-            // 20130423
             System.Nullable<System.Drawing.Color> color)
         {
 			this.disposeSides();
@@ -78,7 +63,6 @@ namespace UIAutomation
         		Y,
         		intHandle,
         		control,
-        	    // 20130423
         	    color);
         }
         
@@ -99,7 +83,6 @@ namespace UIAutomation
         		Y,
         		intHandle,
         		control,
-        	    // 20130423
         	    null);
         	
         	this.PaintLabel(highlighterNumber, highlighterData);
@@ -125,7 +108,6 @@ namespace UIAutomation
             double Y,
             int intHandle,
             Highlighters control,
-            // 20130423
             System.Nullable<System.Drawing.Color> color)
         {
             try {
@@ -230,13 +212,11 @@ namespace UIAutomation
         
         [STAThread]
         private void paintLeftSide(
-            //AutomationElement element, 
             Highlighters control,
             int border,
             NativeMethods.CursorPoint p,
             double height,
             double width,
-            // 20130423
             System.Nullable<System.Drawing.Color> color)
         {
             leftSide = new Side(p.X - (border / 2),
@@ -244,7 +224,6 @@ namespace UIAutomation
                                 border,
                                 height,
                                 control,
-                                // 20130423
                                 color);
         }
         
@@ -255,7 +234,6 @@ namespace UIAutomation
             NativeMethods.CursorPoint p,
             double height,
             double width,
-            // 20130423
             System.Nullable<System.Drawing.Color> color)
         {
             topSide = new Side(p.X,
@@ -263,7 +241,6 @@ namespace UIAutomation
                                width,
                                border,
                                control,
-                               // 20130423
                                color);
         }
         
@@ -274,7 +251,6 @@ namespace UIAutomation
             NativeMethods.CursorPoint p,
             double height,
             double width,
-            // 20130423
             System.Nullable<System.Drawing.Color> color)
         {
             rightSide = new Side(p.X +
@@ -284,7 +260,6 @@ namespace UIAutomation
                                  border,
                                  height,
                                  control,
-                                 // 20130423
                                  color);
         }
         
@@ -295,7 +270,6 @@ namespace UIAutomation
             NativeMethods.CursorPoint p,
             double height,
             double width,
-            // 20130423
             System.Nullable<System.Drawing.Color> color)
         {
             bottomSide = new Side(p.X,
@@ -305,7 +279,6 @@ namespace UIAutomation
                                   width,
                                   border,
                                   control,
-                                  // 20130423
                                   color);
         }
         
@@ -346,43 +319,11 @@ namespace UIAutomation
             string message)
         {
             
-#region commented (from the Side class)
-//            this.TopMost = true;
-//            this.FormBorderStyle = FormBorderStyle.None;
-//            this.Visible = false;
-//            this.Opacity = 0.5;
-//            this.AllowTransparency = true;
-//            this.ControlBox = false;
-//            this.ShowIcon = false;
-//            this.ShowInTaskbar = false;
-//            this.TopLevel = true;
-//            this.UseWaitCursor = false;
-//            this.WindowState = FormWindowState.Normal;
-//            // 20130322
-//            this.Left = (int)left;
-//            this.Top = (int)top;
-//            this.Width = 0;
-//            this.Height = 0;
-//            this.Show();
-//            this.Hide();
-//            this.Left = (int)left;
-//            this.Top = (int)top;
-//            this.Width = (int)width;
-//            this.Height = (int)height;
-//            this.Enabled = false;
-//            this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
-//            this.ShowInTaskbar = false;
-//            this.UseWaitCursor = false;
-//            this.Visible = true;
-//            this.Show();
-#endregion commented (from the Side class)
-
             if (string.Empty == message || 0 == message.Length) {
                 this.Dispose();
                 return;
             }
             
-            // 20130327
             this.left = (int)left;
             this.top = (int)top;
             this.width = (int)width;
@@ -394,15 +335,9 @@ namespace UIAutomation
             // lblMessage
             // 
             this.lblMessage.BackColor = this.BackColor;
-            //this.lblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            // 20130327
-            //this.lblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", (float)Preferences.BannerFontSize, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMessage.Location = new System.Drawing.Point(0, 0);
             this.lblMessage.Name = "lblMessage";
-            //this.lblMessage.Size = new System.Drawing.Size(800, 80);
-            // 20130327
-            //this.lblMessage.Size = new System.Drawing.Size((int)this.width, (int)this.height);
             this.lblMessage.Size = new System.Drawing.Size(this.width, this.height);
             this.lblMessage.TabIndex = 0;
             // replace "&" with "&&"
@@ -413,47 +348,25 @@ namespace UIAutomation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            //this.ClientSize = new System.Drawing.Size(471, 35);
-            // 20130327
-            //this.ClientSize = new System.Drawing.Size((int)this.width, (int)this.height);
             this.ClientSize = new System.Drawing.Size(this.width, this.height);
             this.Controls.Add(this.lblMessage);
             this.Name = "MainForm";
             this.Opacity = 0.7D;
-            //this.Opacity = 0.5D;
-            //this.Opacity = 0.3D;
             this.TopMost = true;
             this.ControlBox = false;
             this.FormBorderStyle = FormBorderStyle.None;
-            //this.Left = 100;
-            // 20130327
-            //this.Left = (int)this.left;
             this.Left = this.left;
-            //this.Top = 100;
-            // 20130327
-            //this.Top = (int)this.top;
             this.Top = this.top;
-            //this.Width = 800;
-            // 20130327
-            //this.Width = (int)this.width;
             this.Width = this.width;
-            //this.Height = 80;
-            // 20130327
-            //this.Height = (int)this.height;
             this.Height = this.height;
-            // 20130327
-            //this.Location = new System.Drawing.Point((int)this.left, (int)this.top);
             this.Location = new System.Drawing.Point(this.left, this.top);
-            // 20130327
             this.Text = "UIABanner";
-            // 20130327
             this.Load += new System.EventHandler(this.MainFormLoad);
             this.ResumeLayout(false);
             
             this.Show();
         }
         
-        // 20130327
         void MainFormLoad(object sender, EventArgs e)
         {
             this.Location = new System.Drawing.Point((int)this.left, (int)this.top);
@@ -466,7 +379,6 @@ namespace UIAutomation
         }
         
         private Label lblMessage;
-        // 20130327
         private int left;
         private int top;
         private int width;
@@ -486,7 +398,7 @@ namespace UIAutomation
             }
             
             this.Message += message;
-            // 20130327
+            
             Application.DoEvents();
         }
         
@@ -495,7 +407,7 @@ namespace UIAutomation
             if (string.Empty != this.originalMessage) {
                 this.Message = this.originalMessage;
             }
-            // 20130327
+            
             Application.DoEvents();
         }
     }
@@ -509,20 +421,14 @@ namespace UIAutomation
             double width, 
             double height, 
             Highlighters control,
-            // 20130423
             System.Nullable<System.Drawing.Color> color)
         {
-            //this.Left = 0;
-            //this.Top = 0;
-            //this.Width = 1;
-            //this.Height = 1;
             this.TopMost = true;
             //this.FormBorderStyle = FormBorderStyle.None;
             this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
             this.Visible = false;
             this.Opacity = 0.5;
             
-            // 20130413
             if (null != color) {
                 this.BackColor = (System.Drawing.Color)color;
                 this.ForeColor = (System.Drawing.Color)color;
@@ -550,7 +456,6 @@ namespace UIAutomation
             this.TopLevel = true;
             this.UseWaitCursor = false;
             this.WindowState = FormWindowState.Normal;
-            // 20130322
             this.Left = (int)left;
             this.Top = (int)top;
             this.Width = 0;
@@ -588,20 +493,10 @@ namespace UIAutomation
             System.Drawing.Color foreColor,
             string tooltipText)
         {
-            //this.Left = 0;
-            //this.Top = 0;
-            //this.Width = 1;
-            //this.Height = 1;
             this.TopMost = true;
             this.FormBorderStyle = FormBorderStyle.None;
-            //this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
             this.Visible = false;
-
             this.Opacity = 0.5;
-
-            //this.Opacity = 0.2;
-            //this.BackColor = System.Drawing.Color.Transparent;
-            
             this.AllowTransparency = true;
             this.ControlBox = false;
             this.ShowIcon = false;
@@ -624,14 +519,12 @@ namespace UIAutomation
                 highlighterNumber = 1;
             }
         	labelNumber.Text = highlighterNumber.ToString();
-        	//labelNumber.BackColor = System.Drawing.Color.Transparent;
         	labelNumber.BackColor = Color.FromKnownColor(KnownColor.DarkGray);
         	labelNumber.ForeColor = foreColor;
         	labelNumber.Dock = DockStyle.Fill;
         	labelNumber.MouseMove += 
         		new System.Windows.Forms.MouseEventHandler(this.labelNumberMouseMove);
         	this.Controls.Add(labelNumber);
-            //this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
             this.FormBorderStyle = FormBorderStyle.None;
             this.ShowInTaskbar = false;
             this.UseWaitCursor = false;

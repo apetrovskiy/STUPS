@@ -23,11 +23,6 @@ namespace UIAutomation
         }
         
         #region Parameters
-//        [Parameter(Mandatory = false)]
-//        public new string[] ControlType { get; set; }
-        
-//        [Parameter(Mandatory = false)]
-//        public SwitchParameter CaseSensitive { get; set; }
         #endregion Parameters
     }
 }

@@ -21,7 +21,6 @@ namespace UIAutomation
         {
         }
         
-        
         #region Parameters
         [Parameter(Mandatory = false)]
         internal new string ContainsText { get; set; }

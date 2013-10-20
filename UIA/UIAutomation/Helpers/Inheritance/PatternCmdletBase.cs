@@ -14,7 +14,6 @@ namespace UIAutomation
     using System.Management.Automation;
     using System.Windows.Automation;
     using System.Windows.Automation.Text;
-    // 20130204
     using System.Collections;
 
     /// <summary>
@@ -23,7 +22,7 @@ namespace UIAutomation
     //[Cmdlet(VerbsCommon.Set, "PatternCmdletBase")]
     //[Cmdlet]
     // 20130204
-    public class PatternCmdletBase : HasControlInputCmdletBase // 20130204 GetControlCmdletBase // HasControlInputCmdletBase
+    public class PatternCmdletBase : HasControlInputCmdletBase
     {
         #region Constructor
         public PatternCmdletBase()
@@ -75,14 +74,10 @@ namespace UIAutomation
             
             System.Windows.Automation.AutomationElement _control = null;
             
-            // 20120824
             foreach (AutomationElement inputObject in this.InputObject) {
                 
                 try {
                     _control =
-                        // 20120824
-                        //(System.Windows.Automation.AutomationElement)InputObject;
-                        //(AutomationElement)InputObject[0];
                         inputObject;
                 } catch (Exception eControlTypeException) {
                     WriteDebug("PatternCmdletBase: Control is not an AutomationElement");
@@ -309,9 +304,6 @@ namespace UIAutomation
             }
         }
 
-        // 20130109
-        //if (this.PassThru && CheckControl(this)) {
-        //writev
         internal void InvokeWindow(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
         {
             try {
@@ -351,11 +343,6 @@ namespace UIAutomation
             }
         }
 
-        // 20130109
-        //if (this.PassThru && CheckControl(this)) {
-        // 20130109
-        //if (this.PassThru && CheckControl(this)) {
-        //writev
         internal void InvokeValueSet(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
         {
             try {
@@ -384,12 +371,6 @@ namespace UIAutomation
             }
         }
 
-        //if (this.PassThru && CheckControl(this)) {
-        //    WriteObject(this, inputObject);
-        //} else {
-        //    //WriteObject(this, true);
-        //}
-        //writev
         internal void InvokeValueGet(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
         {
             try {
@@ -407,9 +388,6 @@ namespace UIAutomation
             }
         }
 
-        // 20130109
-        //if (this.PassThru && CheckControl(this)) {
-        //writev
         internal void InvokeTransformRotate(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
         {
             try {
@@ -429,9 +407,6 @@ namespace UIAutomation
             }
         }
 
-        // 20130109
-        //if (this.PassThru && CheckControl(this)) {
-        //writev
         internal void InvokeTransformResize(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
         {
             try {
@@ -451,9 +426,6 @@ namespace UIAutomation
             }
         }
 
-        // 20130109
-        //if (this.PassThru && CheckControl(this)) {
-        //writev
         internal void InvokeTransformMove(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
         {
             try {
@@ -473,7 +445,6 @@ namespace UIAutomation
             }
         }
 
-        //writev
         internal void InvokeToggleStateGet(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
         {
             try {
@@ -540,9 +511,6 @@ namespace UIAutomation
             }
         }
 
-        // 20130109
-        //if (this.PassThru && CheckControl(this)) {
-        //writev
         internal void InvokeToggle(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
         {
             try {
@@ -562,7 +530,6 @@ namespace UIAutomation
             }
         }
 
-        //writev
         internal void InvokeTextSet(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
         {
             try {
@@ -578,9 +545,6 @@ namespace UIAutomation
             }
         }
 
-        // textPattern.DocumentRange.// temporarily
-        //string resultText = string.Empty;
-        //writev
         internal void InvokeTextGet(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
         {
             try {
@@ -616,8 +580,6 @@ namespace UIAutomation
             }
         }
 
-        //tableItemPattern.Current.
-
         internal void InvokeTableItem(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
         {
             try {
@@ -652,12 +614,6 @@ namespace UIAutomation
             }
         }
 
-        //WriteObject(this, selItemPattern1.Current.IsSelected);
-        //                        else{
-        //                            WriteVerbose(this, "couldn't get SelectionItemPattern");
-        //                            WriteObject(this, false);
-        //                        }
-        //writev
         internal void InvokeSelectedItem(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
         {
             try {
@@ -671,7 +627,6 @@ namespace UIAutomation
             }
         }
 
-        //writev
         internal void InvokeSelectionItemState(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
         {
             try {
@@ -686,9 +641,6 @@ namespace UIAutomation
             }
         }
 
-        // 20130109
-        //if (this.PassThru && CheckControl(this)) {
-        //writev
         internal void InvokeSelectionItem(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
         {
             try {
@@ -764,8 +716,6 @@ namespace UIAutomation
             }
         }
 
-        // 20130109
-        //if (this.PassThru && CheckControl(this)) {
         internal void InvokeScrollItem(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
         {
             try {
@@ -787,9 +737,6 @@ namespace UIAutomation
             }
         }
 
-        // 20130109
-        //if (this.PassThru && CheckControl(this)) {
-        //writev
         internal void InvokeRangeValueSet(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
         {
             try {
@@ -810,12 +757,6 @@ namespace UIAutomation
             }
         }
 
-        // if (this.PassThru && CheckControl(this)) {
-        // WriteObject(inputObject);
-        //} else {
-        // WriteObject(true);
-        //}
-        //writev
         internal void InvokeRangeValueGet(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
         {
             try {
@@ -976,9 +917,6 @@ namespace UIAutomation
             }
         }
 
-        // 20130109
-        //if (this.PassThru && CheckControl(this)) {
-        //writev
         internal void InvokeCollapse(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
         {
             try {
@@ -998,10 +936,6 @@ namespace UIAutomation
             }
         }
 
-        // 20130109
-        //if (this.PassThru && CheckControl(this)) {
-        //writev
-        //writev
         internal void InvokeExpand(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
         {
             try {

@@ -34,7 +34,6 @@ namespace UIAutomation
         [Parameter(Mandatory = false)]
         internal new SwitchParameter PassThru { get; set; }
         
-        
         [Parameter(Mandatory = false)]
         public SwitchParameter WriteCurrentPattern { get; set; }
         [Parameter(Mandatory = false)]
@@ -49,19 +48,12 @@ namespace UIAutomation
         
         internal bool Paused { get; set; }
         
-// protected internal System.Collections.ArrayList lastRecordedItem = 
-// new System.Collections.ArrayList();
         public System.Collections.ArrayList LastRecordedItem = 
             new System.Collections.ArrayList();
 
         // the list of all recorded controls' patterns
-// protected internal System.Collections.ArrayList recordingPatterns = 
-// new System.Collections.ArrayList();
         public System.Collections.ArrayList RecordingPatterns = 
             new System.Collections.ArrayList();
-        
-// internal System.Collections.ArrayList recording = 
-// new System.Collections.ArrayList();
         
         protected internal AutomationElement thePreviouslyUsedElement = null;
         
@@ -132,10 +124,8 @@ namespace UIAutomation
                 if (WriteCurrentPattern) {
                     try {
                         longRecordingString +=
-                            //recordingPatterns[j];
                             recordingItemPatterns;
                         shortRecordingString +=
-                            //recordingPatterns[j];
                             recordingItemPatterns;
                         }
                     catch (Exception eWritingPattern) {

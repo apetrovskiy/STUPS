@@ -414,7 +414,7 @@ rem C:\Distrib\UIAutomation\UIAutomation\copyDebugLibrary.cmd</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release35' ">
     <DebugSymbols>false</DebugSymbols>
-    <DebugType>None</DebugType>
+    <DebugType>PdbOnly</DebugType>
     <StartAction>Program</StartAction>
     <StartProgram>c:\windows\system32\windowspowershell\v1.0\powershell.exe</StartProgram>
     <DefineConstants>TRACE</DefineConstants>

@@ -324,17 +324,23 @@
     <Compile Include="..\UIAutomation\Commands\No\WaitUIANoWindowCommand.cs">
       <Link>Commands\No\WaitUIANoWindowCommand.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Commands\Pattern\GetUIADockPositionCommand.cs">
-      <Link>Commands\Pattern\GetUIADockPositionCommand.cs</Link>
-    </Compile>
     <Compile Include="..\UIAutomation\Commands\Pattern\GetUIASelectedItemCommand.cs">
       <Link>Commands\Pattern\GetUIASelectedItemCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Commands\Pattern\GetUIASelectionItemStateCommand.cs">
+      <Link>Commands\Pattern\GetUIASelectionItemStateCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Commands\Pattern\GetUIASelectionPatternCommand.cs">
+      <Link>Commands\Pattern\GetUIASelectionPatternCommand.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Commands\Pattern\InvokeUIACollapsePatternCommand.cs">
       <Link>Commands\Pattern\InvokeUIACollapsePatternCommand.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Commands\Pattern\InvokeUIADockPatternCommand.cs">
-      <Link>Commands\Pattern\InvokeUIADockPatternCommand.cs</Link>
+    <Compile Include="..\UIAutomation\Commands\Pattern\InvokeUIADockPatternGetCommand.cs">
+      <Link>Commands\Pattern\InvokeUIADockPatternGetCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Commands\Pattern\InvokeUIADockPatternSetCommand.cs">
+      <Link>Commands\Pattern\InvokeUIADockPatternSetCommand.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Commands\Pattern\InvokeUIAExpandPatternCommand.cs">
       <Link>Commands\Pattern\InvokeUIAExpandPatternCommand.cs</Link>
@@ -356,12 +362,6 @@
     </Compile>
     <Compile Include="..\UIAutomation\Commands\Pattern\InvokeUIASelectionItemPatternCommand.cs">
       <Link>Commands\Pattern\InvokeUIASelectionItemPatternCommand.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Commands\Pattern\InvokeUIASelectionItemStateCommand.cs">
-      <Link>Commands\Pattern\InvokeUIASelectionItemStateCommand.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Commands\Pattern\InvokeUIASelectionPatternCommand.cs">
-      <Link>Commands\Pattern\InvokeUIASelectionPatternCommand.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Commands\Pattern\InvokeUIATextPatternGetCommand.cs">
       <Link>Commands\Pattern\InvokeUIATextPatternGetCommand.cs</Link>
@@ -731,6 +731,7 @@
   <ItemGroup>
     <Folder Include="Commands\ExecutionPlan" />
     <Folder Include="Commands\Container" />
+    <Folder Include="Commands\No" />
     <Folder Include="Commands\No" />
     <Folder Include="Commands\Win32" />
     <Folder Include="Commands\RDP" />

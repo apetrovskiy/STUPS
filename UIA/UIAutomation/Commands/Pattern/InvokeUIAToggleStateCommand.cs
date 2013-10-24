@@ -15,7 +15,9 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of InvokeUIAToggleStateGetCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAToggleStateGet")]
+    // 20131024
+    //[Cmdlet(VerbsCommon.Get, "UIAToggleStateGet")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UIAToggleStateGet")]
     public class InvokeUIAToggleStateGetCommand : PatternCmdletBase
     {
         public InvokeUIAToggleStateGetCommand()

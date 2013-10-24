@@ -15,7 +15,9 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of InvokeUIATextPatternSetCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIATextPatternSet")]
+    // 20131024
+    //[Cmdlet(VerbsCommon.Get, "UIATextPatternSet")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UIATextPatternSet")]
     public class InvokeUIATextPatternSetCommand : PatternCmdletBase
     {
         public InvokeUIATextPatternSetCommand()

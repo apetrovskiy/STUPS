@@ -15,7 +15,9 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of InvokeUIATextPatternGetCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIATextPatternGet")]
+    // 20131024
+    //[Cmdlet(VerbsCommon.Get, "UIATextPatternGet")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UIATextPatternGet")]
     public class InvokeUIATextPatternGetCommand : PatternCmdletBase
     { public InvokeUIATextPatternGetCommand() 
         { 
@@ -31,6 +33,16 @@ namespace UIAutomation.Commands
         [Parameter(Mandatory = false)]
         public SwitchParameter VisibleArea { get; set; }
     }
+    
+    // 20131024
+    /// <summary>
+    /// Description of GetUIACustomRangeTextCommand.
+    /// </summary>
+    [Cmdlet(VerbsCommon.Get, "UIACustomRangeText")]
+    //[OutputType(typeof(bool))]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    public class GetUIACustomRangeTextCommand : InvokeUIATextPatternGetCommand
+    { public GetUIACustomRangeTextCommand() { } }
     
     /// <summary>
     /// Description of GetUIADocumentRangeTextCommand.

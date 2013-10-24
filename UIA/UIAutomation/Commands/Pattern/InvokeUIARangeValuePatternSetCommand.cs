@@ -15,7 +15,9 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of InvokeUIARangeValuePatternSetCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Set, "UIARangeValuePatternSet")]
+    // 20131024
+    //[Cmdlet(VerbsCommon.Set, "UIARangeValuePatternSet")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UIARangeValuePatternSet")]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class InvokeUIARangeValuePatternSetCommand : PatternCmdletBase
     {

@@ -15,7 +15,9 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of InvokeUIARangeValuePatternGetCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIARangeValuePatternGet")]
+    // 20131024
+    //[Cmdlet(VerbsCommon.Get, "UIARangeValuePatternGet")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UIARangeValuePatternGet")]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class InvokeUIARangeValuePatternGetCommand : PatternCmdletBase
     { public InvokeUIARangeValuePatternGetCommand() { WhatToDo = "RangeValueGet"; this.PassThru = false; }

@@ -15,7 +15,9 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of InvokeUIAValuePatternGetCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAValuePatternGet")]
+    // 20131024
+    //[Cmdlet(VerbsCommon.Get, "UIAValuePatternGet")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UIAValuePatternGet")]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class InvokeUIAValuePatternGetCommand : PatternCmdletBase
     { public InvokeUIAValuePatternGetCommand() 
@@ -40,7 +42,9 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIAComboBoxTextCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAComboBoxText")]
+    // 20131024
+    //[Cmdlet(VerbsCommon.Get, "UIAComboBoxText")]
+    [Cmdlet(VerbsCommon.Get, "UIAComboBoxValue")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIAComboBoxTextCommand : InvokeUIAValuePatternGetCommand
@@ -49,6 +53,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIACustomTextCommand.
     /// </summary>
+    // 20131024
     [Cmdlet(VerbsCommon.Get, "UIACustomText")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
@@ -58,6 +63,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIADataItemTextCommand.
     /// </summary>
+    // 20131024
     [Cmdlet(VerbsCommon.Get, "UIADataItemText")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
@@ -67,6 +73,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIAEditTextCommand.
     /// </summary>
+    // 20131024
     [Cmdlet(VerbsCommon.Get, "UIAEditText")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
@@ -76,6 +83,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIATextBoxTextCommand.
     /// </summary>
+    // 20131024
     [Cmdlet(VerbsCommon.Get, "UIATextBoxText")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
@@ -85,6 +93,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIAHyperlinkTextCommand.
     /// </summary>
+    // 20131024
     [Cmdlet(VerbsCommon.Get, "UIAHyperlinkText")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
@@ -94,6 +103,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIALinkLabelTextCommand.
     /// </summary>
+    // 20131024
     [Cmdlet(VerbsCommon.Get, "UIALinkLabelText")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
@@ -103,6 +113,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIAListItemTextCommand.
     /// </summary>
+    // 20131024
     [Cmdlet(VerbsCommon.Get, "UIAListItemText")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
@@ -112,6 +123,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIAProgressBarValueCommand.
     /// </summary>
+    // 20131024
     [Cmdlet(VerbsCommon.Get, "UIAProgressBarValue")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
@@ -121,6 +133,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIASliderValueCommand.
     /// </summary>
+    // 20131024
     [Cmdlet(VerbsCommon.Get, "UIASliderValue")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
@@ -130,6 +143,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIASpinnerValueCommand.
     /// </summary>
+    // 20131024
     [Cmdlet(VerbsCommon.Get, "UIASpinnerValue")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
@@ -139,6 +153,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIATextTextCommand.
     /// </summary>
+    // 20131024
     [Cmdlet(VerbsCommon.Get, "UIATextText")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
@@ -148,6 +163,7 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUIALabelTextCommand.
     /// </summary>
+    // 20131024
     [Cmdlet(VerbsCommon.Get, "UIALabelText")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]

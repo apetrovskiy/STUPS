@@ -15,7 +15,9 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of InvokeUIAValuePatternSetCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Set, "UIAValuePatternSet")]
+    // 20131024
+    //[Cmdlet(VerbsCommon.Set, "UIAValuePatternSet")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UIAValuePatternSet")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class InvokeUIAValuePatternSetCommand : PatternCmdletBase

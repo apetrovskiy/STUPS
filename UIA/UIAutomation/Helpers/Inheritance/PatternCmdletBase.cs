@@ -88,7 +88,9 @@ namespace UIAutomation
                 switch (WhatToDo)
                 {
                     case "DockSet":
-                        InvokeDockSet(_control, inputObject, ((InvokeUIADockPatternCommand)this).DockPosition);
+                        // 20131024
+                        //InvokeDockSet(_control, inputObject, ((InvokeUIADockPatternCommand)this).DockPosition);
+                        InvokeDockSet(_control, inputObject, ((InvokeUIADockPatternSetCommand)this).DockPosition);
                         break;
                     case "DockGet":
                         InvokeDockGet(_control, inputObject);

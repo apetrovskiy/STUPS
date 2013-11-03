@@ -166,7 +166,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PSRunner\PSRunner.csproj">
+    <ProjectReference Include="..\..\PS\PSRunner\PSRunner.csproj">
       <Project>{ABA1330C-1E05-41EF-B32C-8F9E1458649F}</Project>
       <Name>PSRunner</Name>
     </ProjectReference>

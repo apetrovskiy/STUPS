@@ -18,10 +18,6 @@ namespace SePSXTest.Commands.Driver
 	[TestFixture] // [TestFixture(Description=" test")]
 	public class StartSeWebDriverCommandTestFixture
 	{
-		public StartSeWebDriverCommandTestFixture()
-		{
-		}
-        
         [SetUp]
         public void PrepareRunspace()
         {

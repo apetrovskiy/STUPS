@@ -18,10 +18,6 @@ namespace TMX
     [Cmdlet(VerbsCommon.Get, "TFProject")]
     public class GetTFProjectCommand : TFProjectCmdletBase
     {
-        public GetTFProjectCommand()
-        {
-        }
-        
         protected override void BeginProcessing()
         {
             this.CheckCmdletParameters();

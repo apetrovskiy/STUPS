@@ -7,6 +7,8 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System.Linq;
+
 namespace UIAutomation.Commands
 {
     using System;
@@ -143,14 +145,19 @@ this.WriteTrace(this, "eventId 002");
         
         private bool IsInArray(string whatToSearch, string[] whereToSearch)
         {
+            return whereToSearch.Any(t => whatToSearch.ToUpper() == t.ToUpper());
+            /*
             bool result = false;
-            for (int i = 0; i < whereToSearch.Length; i++) {
-                if (whatToSearch.ToUpper() == whereToSearch[i].ToUpper()) {
+            for (int i = 0; i < whereToSearch.Length; i++)
+            {
+                if (whatToSearch.ToUpper() == whereToSearch[i].ToUpper())
+                {
                     result = true;
                     break;
                 }
             }
             return result;
+            */
         }
     }
 }

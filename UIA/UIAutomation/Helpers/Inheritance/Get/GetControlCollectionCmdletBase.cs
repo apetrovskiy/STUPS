@@ -628,10 +628,14 @@ namespace UIAutomation
             }
 
             // if all the item are empty strings
-            string tempString = string.Empty;
-            for (int i = 0; i < controlType.Length; i++) {
-            	tempString += controlType[i];
+            string tempString = controlType.Aggregate(string.Empty, (current, t) => current + t);
+            /*
+            for (int i = 0; i < controlType.Length; i++)
+            {
+                tempString += controlType[i];
             }
+            */
+
             if (tempString.Length == 0) {
             	result = true;
             	return result;
@@ -724,9 +728,13 @@ namespace UIAutomation
                                 inputObject.FindAll(scope,
                                                          conditions[i]);
                             if (temporaryResults.Count > 0) {
-                                foreach (AutomationElement element in temporaryResults) {
+                                searchResults.AddRange(temporaryResults.Cast<AutomationElement>());
+                                /*
+                                foreach (AutomationElement element in temporaryResults)
+                                {
                                     searchResults.Add(element);
                                 }
+                                */
                             }
                         }
                     }
@@ -737,14 +745,19 @@ namespace UIAutomation
                         //this.InputObject.FindAll(scope,
                         inputObject.FindAll(scope,
                                                  Condition.TrueCondition);
-                    if (temporaryResults.Count > 0) {
+                    if (temporaryResults.Count > 0)
+                    {
                         WriteVerbose(this, 
                                      "returned " + 
                                      temporaryResults.Count.ToString() + 
                                      " results");
-                        foreach (AutomationElement element in temporaryResults) {
+                        searchResults.AddRange(temporaryResults.Cast<AutomationElement>());
+                        /*
+                        foreach (AutomationElement element in temporaryResults)
+                        {
                             searchResults.Add(element);
                         }
+                        */
                     }
                 }
                 WriteVerbose(this, "results found: " + searchResults.Count.ToString());

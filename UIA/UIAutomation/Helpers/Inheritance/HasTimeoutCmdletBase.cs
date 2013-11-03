@@ -822,27 +822,19 @@ namespace UIAutomation
             WildcardPattern wildcardValue = 
                 new WildcardPattern(textValue, options);
             cmdlet.WriteVerbose(cmdlet, "inside the returnOnlyRightElements method 20");
-                System.Collections.Generic.List<AutomationElement> list =
-                    new System.Collections.Generic.List<AutomationElement>();
-                
-                foreach (AutomationElement elt in results) {
-                
+                System.Collections.Generic.List<AutomationElement> list = results.Cast<AutomationElement>().ToList();
+            /*
+                foreach (AutomationElement elt in results)
+                {
+
                     list.Add(elt);
-                
+
                 }
+            */
 
             try {
                 
                 var query = list
-//                    .Where<AutomationElement>(item => wildcardName.IsMatch(item.Current.Name))
-//                    .Where<AutomationElement>(item => wildcardAutomationId.IsMatch(item.Current.AutomationId))
-//                    .Where<AutomationElement>(item => wildcardClass.IsMatch(item.Current.ClassName))
-//                    .Where<AutomationElement>(item => 
-//                                              item.GetSupportedPatterns().Contains(ValuePattern.Pattern) ? 
-//                                              //(("*" != textValue) ? wildcardValue.IsMatch((item.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern).Current.Value) : false) :
-//                                              (("*" != textValue) ? (positiveMatch(item, wildcardValue, textValue)) : (negativeMatch(textValue))) :
-//                                              true
-//                                              )
                     .Where<AutomationElement>(
                         item => (wildcardName.IsMatch(item.Current.Name) &&
                                  wildcardAutomationId.IsMatch(item.Current.AutomationId) &&

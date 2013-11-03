@@ -1829,15 +1829,20 @@ dumpTestStructure("7");
         
         private static System.Collections.Generic.List<TestScenario> getAllScenarios()
         {
+            return TestData.TestSuites.SelectMany(suite => suite.TestScenarios.Cast<TestScenario>()).ToList();
+            /*
             List<TestScenario> result = new List<TestScenario>();
-            foreach (TestSuite suite in TestData.TestSuites) {
-                foreach (TestScenario scenario in suite.TestScenarios) {
+            foreach (TestSuite suite in TestData.TestSuites)
+            {
+                foreach (TestScenario scenario in suite.TestScenarios)
+                {
                     result.Add(scenario);
                 }
             }
             return result;
+            */
         }
-        
+
         internal static System.Linq.IOrderedEnumerable<TMX.TestScenario> SearchTestScenario(
             Func<TestScenario, bool> query,
             Func<TestScenario, object> ordering,
@@ -1864,17 +1869,23 @@ dumpTestStructure("7");
         
         private static System.Collections.Generic.List<TestResult> getAllTestResults()
         {
+            return (from suite in TestData.TestSuites from TestScenario scenario in suite.TestScenarios from TestResult testResult in scenario.TestResults select testResult).ToList();
+            /*
             List<TestResult> result = new List<TestResult>();
-            foreach (TestSuite suite in TestData.TestSuites) {
-                foreach (TestScenario scenario in suite.TestScenarios) {
-                    foreach (TestResult testResult in scenario.TestResults) {
+            foreach (TestSuite suite in TestData.TestSuites)
+            {
+                foreach (TestScenario scenario in suite.TestScenarios)
+                {
+                    foreach (TestResult testResult in scenario.TestResults)
+                    {
                         result.Add(testResult);
                     }
                 }
             }
             return result;
+            */
         }
-        
+
         internal static System.Linq.IOrderedEnumerable<TMX.TestResult> SearchTestResult(
             Func<TestResult, bool> query,
             Func<TestResult, object> ordering,

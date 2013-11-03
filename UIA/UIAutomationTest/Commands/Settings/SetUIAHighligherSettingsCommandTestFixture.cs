@@ -20,10 +20,6 @@ namespace UIAutomationTest.Commands.Settings
     //[Cmdlet(VerbsCommon.Set, "UIAHighligherSettings")]
     public class SetUIAHighligherSettingsCommandTestFixture
     {
-        public SetUIAHighligherSettingsCommandTestFixture()
-        {
-        }
-        
         [SetUp]
         public void PrepareRunspace()
         {

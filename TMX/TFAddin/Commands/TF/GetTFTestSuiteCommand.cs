@@ -18,10 +18,6 @@ namespace TMX
     [Cmdlet(VerbsCommon.Get, "TFTestSuite")]
     public class GetTFTestSuiteCommand : TFTestSuiteCmdletBase
     {
-        public GetTFTestSuiteCommand()
-        {
-        }
-        
         protected override void BeginProcessing()
         {
             this.CheckCmdletParameters();

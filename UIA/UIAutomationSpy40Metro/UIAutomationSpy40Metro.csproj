@@ -121,13 +121,14 @@
     </Compile>
     <Compile Include="..\UIAutomationSpy\SpyForm.SeleniumCode.cs">
       <Link>SpyForm.SeleniumCode.cs</Link>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="..\UIAutomation\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PSRunner\PSRunner.csproj">
+    <ProjectReference Include="..\..\PS\PSRunner\PSRunner.csproj">
       <Project>{ABA1330C-1E05-41EF-B32C-8F9E1458649F}</Project>
       <Name>PSRunner</Name>
     </ProjectReference>

@@ -291,51 +291,11 @@
     <Compile Include="UnitTests\UnderlyingCode\UnitTestModule.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Commands" />
-    <Folder Include="Commands\Alert" />
-    <Folder Include="Commands\Common" />
-    <Folder Include="Commands\Driver\ChromeOptions" />
-    <Folder Include="Commands\Driver\IEOptions" />
-    <Folder Include="Commands\Driver\FirefoxProfile" />
-    <Folder Include="Commands\Element\Convert" />
-    <Folder Include="Commands\JSExecutor" />
-    <Folder Include="Commands\Module" />
-    <Folder Include="Commands\Driver" />
-    <Folder Include="Commands\Navigation" />
-    <Folder Include="Commands\Element" />
-    <Folder Include="Commands\Select" />
-    <Folder Include="Commands\PageObject" />
-    <Folder Include="Commands\Transcript" />
-    <Folder Include="Helpers" />
-    <Folder Include="Helpers\Recording" />
-    <Folder Include="ParamChecks" />
-    <Folder Include="ParamChecks\Actions" />
-    <Folder Include="ParamChecks\Alert" />
-    <Folder Include="ParamChecks\Common" />
-    <Folder Include="ParamChecks\Convert" />
-    <Folder Include="ParamChecks\Driver" />
-    <Folder Include="ParamChecks\Driver\ChromeOptions" />
-    <Folder Include="ParamChecks\Driver\FirefoxProfile" />
-    <Folder Include="ParamChecks\Driver\IEOptions" />
-    <Folder Include="ParamChecks\Element" />
-    <Folder Include="ParamChecks\Element\Convert" />
-    <Folder Include="ParamChecks\Get" />
-    <Folder Include="ParamChecks\JSExecutor" />
-    <Folder Include="ParamChecks\Module" />
-    <Folder Include="ParamChecks\Navigation" />
-    <Folder Include="ParamChecks\PageObject" />
-    <Folder Include="ParamChecks\Relatives" />
-    <Folder Include="ParamChecks\Rendered" />
-    <Folder Include="ParamChecks\Select" />
-    <Folder Include="ParamChecks\Transcript" />
-    <Folder Include="UnitTests" />
-    <Folder Include="Properties" />
-    <Folder Include="UnitTests\Fakes" />
-    <Folder Include="UnitTests\Asserts" />
-    <Folder Include="UnitTests\Containers" />
-    <Folder Include="UnitTests\Factories" />
-    <Folder Include="UnitTests\Autofac" />
-    <Folder Include="UnitTests\UnderlyingCode" />
+    <Folder Include="Commands\Alert\" />
+    <Folder Include="Commands\JSExecutor\" />
+    <Folder Include="Commands\Module\" />
+    <Folder Include="Commands\PageObject\" />
+    <Folder Include="Commands\Transcript\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">
@@ -350,7 +310,7 @@
       <Project>{A0B50771-4889-46F4-8999-D2830DC9E486}</Project>
       <Name>SePSX</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\TMX\TMX.csproj">
+    <ProjectReference Include="..\..\TMX\TMX\TMX.csproj">
       <Project>{DFFF7F28-CFA4-4EE5-84F0-4A12A415BC0C}</Project>
       <Name>TMX</Name>
     </ProjectReference>

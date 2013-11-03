@@ -488,11 +488,8 @@ Console.WriteLine("WriteSingleObject 00008");
         //protected override bool WriteObjectMethod010CheckOutputObject(object outputObject)
         protected bool WriteObjectMethod010CheckOutputObject(PSCmdletBase cmdlet, object outputObject)
         {
-            bool result = false;
-                
-            if (outputObject != null) {
-                result = true;
-            }
+            bool result = false || outputObject != null;
+
             return result;
         }
         

@@ -56,7 +56,7 @@ namespace TMX.Commands
             TMX.Preferences.Storage = true;
             TMX.Preferences.StorageServer = this.Server;
             TMX.Preferences.StorageDatabase = this.Database;
-            if (null != this.Username && string.Empty != this.Username) {
+            if (!string.IsNullOrEmpty(this.Username)) {
                 TMX.Preferences.StorageUsername = this.Username;
                 TMX.Preferences.StoragePassword = this.Password;
             } else {

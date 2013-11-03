@@ -1632,18 +1632,23 @@ namespace TMX
         
         public static ITestPlatform GetTestPlatformById(string id)
         {
+            return TMX.TestData.TestPlatforms.FirstOrDefault(platform => id == platform.Id);
+            /*
             ITestPlatform resultPlatform = null;
-            
-            foreach (TestPlatform platform in TMX.TestData.TestPlatforms) {
-                
-                if (id == platform.Id) {
-                    
+
+            foreach (TestPlatform platform in TMX.TestData.TestPlatforms)
+            {
+
+                if (id == platform.Id)
+                {
+
                     resultPlatform = platform;
                     break;
                 }
             }
-            
+
             return resultPlatform;
+            */
         }
     }
 }

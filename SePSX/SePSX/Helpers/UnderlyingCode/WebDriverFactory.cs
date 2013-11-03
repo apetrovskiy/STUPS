@@ -353,7 +353,7 @@ namespace SePSX
             SeHelper.CollectDriverProcesses(cmdlet.DriverType);
 
             // driverDirectoryPath
-            if (null == cmdlet.DriverDirectoryPath || string.Empty == cmdlet.DriverDirectoryPath) {
+            if (string.IsNullOrEmpty(cmdlet.DriverDirectoryPath)) {
 
                 cmdlet.WriteVerbose(cmdlet, "using the default driver directory path");
                 driverDirectoryPath =
@@ -533,7 +533,7 @@ namespace SePSX
 			bool deleteSourceOnClean =
                 ((NewSeFirefoxProfileCommand)cmdlet).DeleteSource;
 
-            if (null != profileDirectory && string.Empty != profileDirectory) {
+            if (!string.IsNullOrEmpty(profileDirectory)) {
 
 			    listOfParameters.Add(
 			        new NamedParameter(

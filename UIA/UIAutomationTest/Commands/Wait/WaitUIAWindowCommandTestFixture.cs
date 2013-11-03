@@ -19,10 +19,6 @@ namespace UIAutomationTest.Commands.Get
     [TestFixture]
     public class WaitUIAWindowCommandTestFixture
     {
-        public WaitUIAWindowCommandTestFixture()
-        {
-        }
-        
         [SetUp]
         public void PrepareRunspace()
         {

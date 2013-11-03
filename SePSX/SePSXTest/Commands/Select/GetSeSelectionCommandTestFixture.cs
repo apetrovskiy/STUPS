@@ -19,10 +19,6 @@ namespace SePSXTest.Commands.Select
     [TestFixture] // [TestFixture(Description=" test")]
     public class GetSeSelectionCommandTestFixture
     {
-        public GetSeSelectionCommandTestFixture()
-        {
-        }
-        
         [SetUp]
         public void PrepareRunspace()
         {

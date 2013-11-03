@@ -18,10 +18,6 @@ namespace SePSXTest.Commands.Element
 	[TestFixture] // [TestFixture(Description=" test")]
 	public class GetSeWebElementCommandTestFixture
 	{
-		public GetSeWebElementCommandTestFixture()
-		{
-		}
-		
         [SetUp]
         public void PrepareRunspace()
         {

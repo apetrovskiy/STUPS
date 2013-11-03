@@ -510,8 +510,7 @@ namespace TMX
                         }
                         
                         // test result code
-                        if (tr.Code != null && 
-                            tr.Code != string.Empty && 
+                        if (!string.IsNullOrEmpty(tr.Code) && 
                             tr.Code.Length > 0){
                             resultHTML +=
                                 newLineCS + 

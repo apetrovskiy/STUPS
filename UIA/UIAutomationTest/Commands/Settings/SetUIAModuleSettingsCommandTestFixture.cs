@@ -20,10 +20,6 @@ namespace UIAutomationTest.Commands.Settings
     //public class SetUIAModuleSettingsCommand
     internal class SetUIAModuleSettingsCommandTestFixture
     {
-        public SetUIAModuleSettingsCommandTestFixture()
-        {
-        }
-        
         [SetUp]
         public void PrepareRunspace()
         {

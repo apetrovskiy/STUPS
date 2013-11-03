@@ -18,16 +18,6 @@ namespace TMX
     [Cmdlet(VerbsCommunications.Connect, "TFServer")]
     public class ConnectTFServerCommand : TFSConnectCmdletBase
     {
-        public ConnectTFServerCommand()
-        {
-        }
-        
-//        #region Parameters
-//        [Parameter(Mandatory = true,
-//                   Position = 0)]
-//        public string Server { get; set; }
-//        #endregion Parameters
-        
         protected override void BeginProcessing()
         {
             this.CheckCmdletParameters();

@@ -30,7 +30,7 @@ namespace TMX
             GetTMXTestScenarioStatusCommand cmdlet =
                 (GetTMXTestScenarioStatusCommand)this.Cmdlet;
             
-            if (null != cmdlet.Name && string.Empty != cmdlet.Name) {
+            if (!string.IsNullOrEmpty(cmdlet.Name)) {
                 
                 // 20130322
                 TMXHelper.GetTestScenarioStatus(
@@ -38,7 +38,7 @@ namespace TMX
                     cmdlet,
                     cmdlet.FilterOutAutomaticResults);
                 
-            } else if (null != cmdlet.Id && string.Empty != cmdlet.Id) {
+            } else if (!string.IsNullOrEmpty(cmdlet.Id)) {
                 
                 // 20130322
                 TMXHelper.GetTestScenarioStatus(

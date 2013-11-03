@@ -30,7 +30,7 @@ namespace TMX
             GetTMXTestSuiteStatusCommand cmdlet =
                 (GetTMXTestSuiteStatusCommand)this.Cmdlet;
             
-            if (null != cmdlet.Name && string.Empty != cmdlet.Name) {
+            if (!string.IsNullOrEmpty(cmdlet.Name)) {
                 
                 // 20130322
                 TMXHelper.GetTestSuiteStatusByName(
@@ -41,7 +41,7 @@ namespace TMX
                     cmdlet.TestPlatformId,
                     cmdlet.FilterOutAutomaticResults);
                 
-            } else if (null != cmdlet.Id && string.Empty != cmdlet.Id) {
+            } else if (!string.IsNullOrEmpty(cmdlet.Id)) {
                 
                 // 20130322
                 TMXHelper.GetTestSuiteStatusById(

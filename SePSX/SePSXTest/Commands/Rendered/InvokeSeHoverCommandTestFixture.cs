@@ -18,10 +18,6 @@ namespace SePSXTest.Commands.Rendered
     [TestFixture] // [TestFixture(Description=" test")]
     public class InvokeSeHoverCommandTestFixture
     {
-        public InvokeSeHoverCommandTestFixture()
-        {
-        }
-        
         [SetUp]
         public void PrepareRunspace()
         {

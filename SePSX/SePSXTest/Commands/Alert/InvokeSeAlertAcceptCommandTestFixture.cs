@@ -18,10 +18,6 @@ namespace SePSXTest.Commands.Alert
     [TestFixture] // [TestFixture(Description=" test")]
     public class InvokeSeAlertAcceptCommandTestFixture
     {
-        public InvokeSeAlertAcceptCommandTestFixture()
-        {
-        }
-        
         [SetUp]
         public void PrepareRunspace()
         {

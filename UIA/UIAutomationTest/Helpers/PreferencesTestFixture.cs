@@ -19,10 +19,6 @@ namespace UIAutomationTest.Helpers
     [TestFixture] // [TestFixture(Description="Preferences test")]
     public class PreferencesTestFixture
     {
-        public PreferencesTestFixture()
-        {
-        }
-        
         [SetUp]
         public void PrepareRunspace()
         {

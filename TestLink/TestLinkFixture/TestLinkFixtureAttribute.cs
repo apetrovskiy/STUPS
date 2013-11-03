@@ -168,7 +168,7 @@ namespace Meyn.TestLink
         public bool ConsiderConfigFile(string directory)
         {
 
-            if((configFile == null) || (configFile == string.Empty))
+            if(string.IsNullOrEmpty(configFile))
               return false;
 
             if (Path.IsPathRooted(configFile) == false)

@@ -14,6 +14,9 @@ Application Developer - Anomalist Designs LLC
 //using System.Text;
 
 //namespace DataProtection
+
+using System.Linq;
+
 namespace UIAutomation
 {
     using System;
@@ -51,14 +54,13 @@ namespace UIAutomation
 
         static string GetHex(byte[] byt_text)
         {
-            string ret = string.Empty;
-
+            return byt_text.Aggregate(string.Empty, (current, t) => current + Convert.ToString(t, 16).PadLeft(2, '0').ToUpper());
+            /*
             for (int i = 0; i < byt_text.Length; i++)
             {
                 ret += Convert.ToString(byt_text[i], 16).PadLeft(2, '0').ToUpper();
             }
-
-            return ret;
+            */
         }
 
         static byte[] ToByteArray(String HexString)

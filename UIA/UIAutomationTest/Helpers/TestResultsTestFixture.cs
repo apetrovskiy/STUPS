@@ -24,24 +24,6 @@ namespace UIAutomationTest.Helpers
         {
         }
         
-//        [SetUpFixture]
-//        public void PrepareRunspaceCommon()
-//        {
-//            MiddleLevelCode.PrepareRunspace();
-//            CmdletUnitTest.TestRunspace.RunPSCode(
-//                @"Import-Module '.\TMX.dll' -Force; ");
-//            
-////            CmdletUnitTest.TestRunspace.RunPSCode(
-////                "Show-UIAModuleSettings; ");
-////            
-////            CmdletUnitTest.TestRunspace.RunPSCode(
-////                "Show-UIACurrentData; ");
-//            
-////            CmdletUnitTest.TestRunspace.RunPSCode(
-////                @"[void]([UIAutomation.CurrentData]::ResetData()); ");
-//            
-//        }
-        
         [SetUp]
         public void PrepareRunspace()
         {
@@ -54,19 +36,6 @@ namespace UIAutomationTest.Helpers
             CmdletUnitTest.TestRunspace.RunPSCode(
                 @"[void]([TMX.TestData]::ResetData()); ");
             
-//            CmdletUnitTest.TestRunspace.RunPSCode(
-//                "Show-UIAModuleSettings; ");
-//            
-//            CmdletUnitTest.TestRunspace.RunPSCode(
-//                "Show-UIACurrentData; ");
-            
-            
-            // 20121017
-            // ??
-//            CmdletUnitTest.TestRunspace.RunPSCode(
-//                @"[void]([UIAutomation.CurrentData]::ResetData()); ");
-                
-                
             CmdletUnitTest.TestRunspace.RunPSCode(
                 @"[UIAutomation.Preferences]::EveryCmdletAsTestResult = $false;");
             

@@ -22,9 +22,10 @@ namespace Data
     /// </summary>
     public class DataModule : Autofac.Module
     {
+        /* ReSharper
         public DataModule()
         {
-        }
+        }*/
         
         internal IContainer container = null;
         

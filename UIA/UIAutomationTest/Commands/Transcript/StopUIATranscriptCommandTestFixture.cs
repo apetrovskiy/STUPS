@@ -18,10 +18,6 @@ namespace UIAutomationTest.Commands.Transcript
     [TestFixture] // [TestFixture(Description="Stop-UIATranscriptCommand test")]
     public class StopUIATranscriptCommandTestFixture
     {
-        public StopUIATranscriptCommandTestFixture()
-        {
-        }
-        
         [SetUp]
         public void PrepareRunspace()
         {

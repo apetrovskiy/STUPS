@@ -36,10 +36,7 @@ namespace SePSX
 //                this.Path + @"\" + this.Name,
 //                this.As);
 
-            bool save = false;
-            if (this.Cmdlet.GetType().Name == "SaveSeScreenshotCommand") {
-                save = true;
-            }
+            bool save = this.Cmdlet.GetType().Name == "SaveSeScreenshotCommand";
 
             SeHelper.GetScreenshotOfCmdletInput(
                 this.Cmdlet,

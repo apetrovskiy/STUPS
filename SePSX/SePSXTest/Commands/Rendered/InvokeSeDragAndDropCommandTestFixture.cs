@@ -18,10 +18,6 @@ namespace SePSXTest.Commands.Rendered
     [TestFixture] // [TestFixture(Description=" test")]
     public class InvokeSeDragAndDropCommandTestFixture
     {
-        public InvokeSeDragAndDropCommandTestFixture()
-        {
-        }
-                
         [SetUp]
         public void PrepareRunspace()
         {

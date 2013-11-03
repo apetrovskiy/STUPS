@@ -18,10 +18,6 @@ namespace TestUtils.Commands
     [Cmdlet(VerbsData.Expand, "TuZipArchive")]
     public class ExpandTuZipArchiveCommand : ArchivingCmdletBase
     {
-        public ExpandTuZipArchiveCommand()
-        {
-        }
-        
         #region Parameters
         [Parameter(Mandatory = true,
                    Position = 0,

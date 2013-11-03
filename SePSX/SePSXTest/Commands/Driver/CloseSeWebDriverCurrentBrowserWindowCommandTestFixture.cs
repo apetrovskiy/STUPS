@@ -18,10 +18,6 @@ namespace SePSXTest.Commands.Driver
     [TestFixture] // [TestFixture(Description=" test")]
     public class CloseSeWebDriverCurrentBrowserWindowCommandTestFixture
     {
-        public CloseSeWebDriverCurrentBrowserWindowCommandTestFixture()
-        {
-        }
-        
         [SetUp]
         public void PrepareRunspace()
         {

@@ -19,10 +19,6 @@ namespace UIAutomationTest.Commands.Settings
     [TestFixture] // [TestFixture(Description="Set-UIACurrentDataCommand test")]
     public class ShowUIACurrentDataCommandTestFixture
     {
-        public ShowUIACurrentDataCommandTestFixture()
-        {
-        }
-        
         [SetUp]
         public void PrepareRunspace()
         {

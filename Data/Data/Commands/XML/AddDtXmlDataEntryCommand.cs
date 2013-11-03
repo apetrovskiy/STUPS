@@ -18,10 +18,6 @@ namespace Data.Commands
     [Cmdlet(VerbsCommon.Add, "DtXmlDataEntry")]
     public class AddDtXmlDataEntryCommand : XMLCmdletBase
     {
-        public AddDtXmlDataEntryCommand()
-        {
-        }
-        
         #region Parameters
         [Parameter(Mandatory = true)]
         [ValidateNotNullOrEmpty()]

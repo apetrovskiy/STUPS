@@ -18,10 +18,6 @@ namespace SePSXTest.Commands.Navigation
     [TestFixture] // [TestFixture(Description=" test")]
     public class SwitchSeToDefaultContentCommandTestFixture
     {
-        public SwitchSeToDefaultContentCommandTestFixture()
-        {
-        }
-        
         [SetUp]
         public void PrepareRunspace()
         {

@@ -17,10 +17,6 @@ namespace TestUtils
     /// </summary>
     public static class Win32Helper
     {
-        static Win32Helper()
-        {
-        }
-        
         public static void GrantAccountPrivilege(PrivilegeCmdletBase cmdlet)
         {
             throw new NotImplementedException();

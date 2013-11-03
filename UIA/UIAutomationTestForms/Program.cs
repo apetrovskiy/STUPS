@@ -504,38 +504,8 @@ namespace UIAutomationTestForms
         
     }
     
-//    public enum FormControls {
-//        nothing = 0,
-//        Button = 10,
-//        CheckBox = 20,
-//        ComboBox = 30,
-//        Label = 40,
-//        ListBox = 50,
-//        ListView = 60,
-//        RadioButton = 70,
-//        TextBox = 80,
-//        TreeView = 90
-//    }
-
     public class ControlToForm
     {
-        public ControlToForm()
-        {
-            
-        }
-        
-//        public ControlToForm(
-//           System.Windows.Automation.ControlType controlType,
-//           string controlName,
-//           string controlAutomationId,
-//           TimeoutsAndDelays controlDelay)
-//        {
-//            this.ControlType = controlType;
-//            this.ControlName = controlName;
-//            this.ControlAutomationId = controlAutomationId;
-//            this.ControlDelayEn = controlDelay;
-//        }
-        
         public System.Windows.Automation.ControlType ControlType { get; set; }
         public string ControlName { get; set; }
         public string ControlAutomationId { get; set; }

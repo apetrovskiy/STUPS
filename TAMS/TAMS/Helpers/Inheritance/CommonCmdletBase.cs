@@ -20,24 +20,6 @@ namespace TAMS
     /// </summary>
     public class CommonCmdletBase : PSCmdletBase
     {
-        public CommonCmdletBase()
-        {
-        }
-        
-        // 20130430
-//        protected override void WriteLog(string logRecord)
-//        {
-//            Console.WriteLine("Here should be logging TAMS");
-//        }
-        
-        // 20130430
-//        protected override void WriteLog(string logRecord)
-//        {
-//            if (Preferences.AutoLog) {
-//                TMX.Logger.Info(logRecord);
-//            }
-//        }
-        
         protected override void WriteLog(LogLevels logLevel, string logRecord)
         {
             if (Preferences.AutoLog) {

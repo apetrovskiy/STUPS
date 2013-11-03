@@ -18,10 +18,6 @@ namespace SePSXTest.Commands.Alert
     [TestFixture] // [TestFixture(Description=" test")]
     public class SwitchSeToAlertCommandTestFixture
     {
-        public SwitchSeToAlertCommandTestFixture()
-        {
-        }
-        
         [SetUp]
         public void PrepareRunspace()
         {

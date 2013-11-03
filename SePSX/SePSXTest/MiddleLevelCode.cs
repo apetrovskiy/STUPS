@@ -19,11 +19,6 @@ namespace SePSXTest
     /// </summary>
     public static class MiddleLevelCode
     {
-        static MiddleLevelCode()
-        {
-        }
-        
-        // 20130130
         [STAThread]
         public static void PrepareRunspace()
         {

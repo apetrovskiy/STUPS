@@ -18,10 +18,6 @@ namespace SePSXTest.Commands.Navigation
     [TestFixture] // [TestFixture(Description=" test")]
     public class InvokeSeNavigateForwardCommandTestFixture
     {
-        public InvokeSeNavigateForwardCommandTestFixture()
-        {
-        }
-        
         [SetUp]
         public void PrepareRunspace()
         {

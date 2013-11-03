@@ -7,6 +7,8 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System.Linq;
+
 namespace UIAutomation
 {
     using System;
@@ -86,20 +88,21 @@ namespace UIAutomation
         
         public WizardStep GetStep(string name)
         {
-            WizardStep resultStep = null;
-            
-            foreach (WizardStep step in this.Steps) {
-                
-                if (name.ToUpper() == step.Name.ToUpper()) {
-                    
+            return this.Steps.FirstOrDefault(step => name.ToUpper() == step.Name.ToUpper());
+            /*
+            foreach (WizardStep step in this.Steps)
+            {
+
+                if (name.ToUpper() == step.Name.ToUpper())
+                {
+
                     resultStep = step;
                     break;
                 }
             }
-            
-            return resultStep;
+            */
         }
-        
+
         public WizardStep GetActiveStep()
         {
             this.StopImmediately = false;

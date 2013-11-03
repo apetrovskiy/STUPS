@@ -19,10 +19,6 @@ namespace UIAutomationTest.Commands.Profile
     [Cmdlet(VerbsCommon.Set, "UIACurrentTestProfile")]
     public class SetUIACurrentTestProfileCommandTestFixture
     {
-        public SetUIACurrentTestProfileCommandTestFixture()
-        {
-        }
-        
         [SetUp]
         public void PrepareRunspace()
         {

@@ -18,10 +18,6 @@ namespace SePSXTest.Commands.Element
     [TestFixture] // [TestFixture(Description=" test")]
     public class InvokeSeWebElementClickCommandTestFixture
     {
-        public InvokeSeWebElementClickCommandTestFixture()
-        {
-        }
-        
         [SetUp]
         public void PrepareRunspace()
         {

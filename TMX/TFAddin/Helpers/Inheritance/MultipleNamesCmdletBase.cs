@@ -17,14 +17,12 @@ namespace TMX
     /// </summary>
     public class MultipleNamesCmdletBase : TFSCmdletBase
     {
-        public MultipleNamesCmdletBase()
-        {
-        }
-        
         #region Parameters
         [Parameter(Mandatory = false,
                    Position = 0)]
         [ValidateNotNullOrEmpty()]
+        // 20131102
+        // ReSharper warning
         public new string[] Name { get; set; }
         #endregion Parameters
     }

@@ -18,11 +18,7 @@ namespace SePSXTest.Commands.Element
     [TestFixture] // [TestFixture(Description=" test")]
     public class ReadSeWebElementCssValueCommandTestFixture
     {
-        public ReadSeWebElementCssValueCommandTestFixture()
-        {
-        }
-        
-       [SetUp]
+        [SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();

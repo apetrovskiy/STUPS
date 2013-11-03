@@ -17,8 +17,5 @@ namespace TMX
     /// </summary>
     public class TFTestCaseCmdletBase : MultipleNamesCmdletBase //TFSCmdletBase
     {
-        public TFTestCaseCmdletBase()
-        {
-        }
     }
 }

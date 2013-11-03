@@ -19,10 +19,6 @@ namespace UIAutomationTest.Commands.Wizard
     [TestFixture] // [TestFixture(Description="1")]
     public class NewUIAWizardCommandTestFixture
     {
-        public NewUIAWizardCommandTestFixture()
-        {
-        }
-        
         [SetUp]
         public void PrepareRunspace()
         {

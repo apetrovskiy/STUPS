@@ -25,10 +25,6 @@ namespace Data
     /// </summary>
     public static class XMLHelper
     {
-        static XMLHelper()
-        {
-        }
-        
         public static void CreateXMLComparer(XMLCmdletBase cmdlet)
         {
             cmdlet.WriteVerbose(cmdlet, "creating an XMLComparer object");

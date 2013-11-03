@@ -7,6 +7,8 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System.Linq;
+
 namespace SePSX
 {
     #region using
@@ -447,10 +449,19 @@ Console.WriteLine(codeString);
                                 RecordedWebElement eltWebThatAlreadyCollected =
                                     (lastCollectedCodeSeq.Items[i] as RecordedWebElement);
                                 if (null != eltWebToBeAdded && null != eltWebThatAlreadyCollected) {
-                                    foreach (string key in eltWebToBeAdded.UserData.Keys) {
-                                        if (eltWebToBeAdded.UserData[key] != eltWebThatAlreadyCollected.UserData[key]) {
+                                    /*
+                                    foreach (string key in eltWebToBeAdded.UserData.Keys)
+                                    {
+                                        if (eltWebToBeAdded.UserData[key] != eltWebThatAlreadyCollected.UserData[key])
+                                        {
                                             return true;
                                         }
+                                    }
+                                    */
+
+                                    if (eltWebToBeAdded.UserData.Keys.Any(key => eltWebToBeAdded.UserData[key] != eltWebThatAlreadyCollected.UserData[key]))
+                                    {
+                                        return true;
                                     }
                                 }
                                 break;
@@ -460,10 +471,19 @@ Console.WriteLine(codeString);
                                 RecordedAction eltActThatAlreadyCollected =
                                     (lastCollectedCodeSeq.Items[i] as RecordedAction);
                                 if (null != eltActToBeAdded && null != eltActThatAlreadyCollected) {
-                                    foreach (string key in eltActToBeAdded.UserData.Keys) {
-                                        if (eltActToBeAdded.UserData[key] != eltActThatAlreadyCollected.UserData[key]) {
+                                    /*
+                                    foreach (string key in eltActToBeAdded.UserData.Keys)
+                                    {
+                                        if (eltActToBeAdded.UserData[key] != eltActThatAlreadyCollected.UserData[key])
+                                        {
                                             return true;
                                         }
+                                    }
+                                    */
+
+                                    if (eltActToBeAdded.UserData.Keys.Any(key => eltActToBeAdded.UserData[key] != eltActThatAlreadyCollected.UserData[key]))
+                                    {
+                                        return true;
                                     }
                                 }
                                 break;
@@ -473,11 +493,19 @@ Console.WriteLine(codeString);
                                 RecordedData eltDataThatAlreadyCollected =
                                     (lastCollectedCodeSeq.Items[i] as RecordedData);
                                 if (null != eltDataToBeAdded && null != eltDataThatAlreadyCollected) {
-                                    
-                                    foreach (string key in eltDataToBeAdded.UserData.Keys) {
-                                        if (eltDataToBeAdded.UserData[key] != eltDataThatAlreadyCollected.UserData[key]) {
+                                    /*
+                                    foreach (string key in eltDataToBeAdded.UserData.Keys)
+                                    {
+                                        if (eltDataToBeAdded.UserData[key] != eltDataThatAlreadyCollected.UserData[key])
+                                        {
                                             return true;
                                         }
+                                    }
+                                    */
+
+                                    if (eltDataToBeAdded.UserData.Keys.Any(key => eltDataToBeAdded.UserData[key] != eltDataThatAlreadyCollected.UserData[key]))
+                                    {
+                                        return true;
                                     }
                                 }
                                 break;

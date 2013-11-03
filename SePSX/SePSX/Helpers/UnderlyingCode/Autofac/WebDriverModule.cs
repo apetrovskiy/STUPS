@@ -7,6 +7,8 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System.Linq;
+
 namespace SePSX
 {
     using System;
@@ -92,18 +94,23 @@ namespace SePSX
 #endregion commented
 
         #region SePSX
-            Assembly sepsxAssembly = null;
-            Assembly[] assemblies =
+
+		    Assembly[] assemblies =
                 System.AppDomain.CurrentDomain.GetAssemblies();
-            foreach (Assembly assm in assemblies) {
-                if (assm.FullName.Contains("SePSX,")) { // || assm.FullName.Contains("WebDriver")) {
+		    Assembly sepsxAssembly = assemblies.FirstOrDefault(assm => assm.FullName.Contains("SePSX,"));
+            /*
+            foreach (Assembly assm in assemblies)
+            {
+                if (assm.FullName.Contains("SePSX,"))
+                { // || assm.FullName.Contains("WebDriver")) {
                     sepsxAssembly = assm;
                     break;
                     //builder.RegisterAssemblyTypes(new Assembly[]{ sepsxAssembly });
                 }
             }
-            
-            try {
+            */
+
+		    try {
                 //builder.RegisterAssemblyTypes(new Assembly[]{ sepsxAssembly });
             }
             catch (Exception eRegisterAssembly) {

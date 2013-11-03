@@ -18,10 +18,6 @@ namespace TMX
     /// </summary>
     public class TFSConnectCmdletBase : TFSCmdletBase
     {
-        public TFSConnectCmdletBase()
-        {
-        }
-        
         #region Parameters
         [Parameter(Mandatory = true,
                    Position = 0)]
@@ -33,8 +29,12 @@ namespace TMX
         
         
         [Parameter(Mandatory = false)]
+        // 20131102
+        // ReSharper warning
         internal new string Name { get; set; }
         [Parameter(Mandatory = false)]
+        // 20131102
+        // ReSharper warning
         internal new string Id { get; set; }
         #endregion Parameters
     }

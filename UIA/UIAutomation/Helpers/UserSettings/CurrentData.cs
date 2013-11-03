@@ -7,6 +7,8 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System.Linq;
+
 namespace UIAutomation
 {
     using System;
@@ -100,17 +102,22 @@ public static System.Collections.Generic.List<object> Events { get; set; } // te
         
         internal static Profile GetProfile(string name)
         {
+            return CurrentData.Profiles.FirstOrDefault(profile => name == profile.Name);
+            /*
             Profile result = null;
-            foreach (Profile profile in CurrentData.Profiles) {
-                if (name == profile.Name) {
+            foreach (Profile profile in CurrentData.Profiles)
+            {
+                if (name == profile.Name)
+                {
                     result = profile;
                     break;
                 }
             }
-            
+
             return result;
+            */
         }
-        
+
 // private static void initTestResults()
 // {
 // if (TestResults.Count<1) {

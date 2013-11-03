@@ -19,10 +19,6 @@ namespace SePSXTest.Commands.Driver
     [TestFixture] // [TestFixture(Description=" test")]
     public class ReadSeWebDriverPageSourceCommandTestFixture
     {
-        public ReadSeWebDriverPageSourceCommandTestFixture()
-        {
-        }
-        
         [SetUp]
         public void PrepareRunspace()
         {

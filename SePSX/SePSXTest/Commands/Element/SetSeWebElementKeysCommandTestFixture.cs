@@ -18,10 +18,6 @@ namespace SePSXTest.Commands.Element
     [TestFixture] // [TestFixture(Description=" test")]
     public class SetSeWebElementKeysCommandTestFixture
     {
-        public SetSeWebElementKeysCommandTestFixture()
-        {
-        }
-        
         [Test] //[Test(Description="The WebElement.Clear() method")]
         [Category("Slow")][Category("WebElement")]
         [Category("Slow")][Category("Set_SeWebElementKeys")]

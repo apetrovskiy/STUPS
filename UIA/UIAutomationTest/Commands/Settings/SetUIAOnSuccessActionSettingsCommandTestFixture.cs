@@ -19,10 +19,6 @@ namespace UIAutomationTest.Commands.Settings
     [TestFixture] // [TestFixture(Description="Set-UIAOnSuccessActionSettingsCommand test")]
     public class SetUIAOnSuccessActionSettingsCommandTestFixture
     {
-        public SetUIAOnSuccessActionSettingsCommandTestFixture()
-        {
-        }
-        
         [SetUp]
         public void PrepareRunspace()
         {

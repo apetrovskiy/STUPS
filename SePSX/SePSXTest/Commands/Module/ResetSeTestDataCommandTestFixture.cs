@@ -18,10 +18,6 @@ namespace SePSXTest.Commands.Module
     [TestFixture] // [TestFixture(Description=" test")]
     public class ResetSeTestDataCommandTestFixture
     {
-        public ResetSeTestDataCommandTestFixture()
-        {
-        }
-        
         [SetUp]
         public void PrepareRunspace()
         {

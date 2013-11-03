@@ -43,20 +43,20 @@ namespace TMX
             string code = string.Empty;
 
             string testResultName = string.Empty;
-            if ((null == cmdlet.Name || string.Empty == cmdlet.Name) &&
-                (null != cmdlet.TestResultName && string.Empty != cmdlet.TestResultName)) {
+            if (string.IsNullOrEmpty(cmdlet.Name) &&
+                !string.IsNullOrEmpty(cmdlet.TestResultName)) {
 
                 testResultName = cmdlet.TestResultName;
 
             }
-            if ((null != cmdlet.Name && string.Empty != cmdlet.Name) &&
-                (null == cmdlet.TestResultName || string.Empty == cmdlet.TestResultName)) {
+            if (!string.IsNullOrEmpty(cmdlet.Name) &&
+                string.IsNullOrEmpty(cmdlet.TestResultName)) {
 
                 testResultName = cmdlet.Name;
 
             }
-            if ((null != cmdlet.TestResultName && string.Empty != cmdlet.TestResultName) &&
-                (null != cmdlet.Name && string.Empty != cmdlet.Name)) {
+            if (!string.IsNullOrEmpty(cmdlet.TestResultName) &&
+                !string.IsNullOrEmpty(cmdlet.Name)) {
 
                 testResultName = cmdlet.TestResultName;
 

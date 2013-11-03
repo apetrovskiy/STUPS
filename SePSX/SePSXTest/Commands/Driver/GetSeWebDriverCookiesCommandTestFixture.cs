@@ -18,10 +18,6 @@ namespace SePSXTest.Commands.Driver
     [TestFixture] // [TestFixture(Description=" test")]
     public class GetSeWebDriverCookiesCommandTestFixture
     {
-        public GetSeWebDriverCookiesCommandTestFixture()
-        {
-        }
-        
         [SetUp]
         public void PrepareRunspace()
         {

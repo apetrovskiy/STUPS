@@ -21,8 +21,6 @@ namespace UIAutomationTest
         {
         }
         
-        //public static string RunspaceCommand { get; set; }
-        
         public static string TestFormPath {
             get {
 #if DEBUG

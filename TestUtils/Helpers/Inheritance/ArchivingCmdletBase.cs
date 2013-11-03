@@ -17,10 +17,6 @@ namespace TestUtils
     /// </summary>
     public class ArchivingCmdletBase : CommonCmdletBase
     {
-        public ArchivingCmdletBase()
-        {
-        }
-        
         #region Parameters
 //        [Parameter(Mandatory = true,
 //                   Position = 0,

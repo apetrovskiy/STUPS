@@ -7,6 +7,8 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System.Linq;
+
 namespace UIAutomation
 {
     using System;
@@ -186,16 +188,20 @@ namespace UIAutomation
         
         private bool IsInTheList(string strValue)
         {
+            return this.ItemName.Any(strItem => strValue == strItem);
+            /*
             bool result = false;
-            foreach (string strItem in this.ItemName) {
-                if (strValue == strItem) {
+            foreach (string strItem in this.ItemName)
+            {
+                if (strValue == strItem)
+                {
                     result = true;
                     break;
                 }
             }
             return result;
+            */
         }
-        
     }
     
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "if")]

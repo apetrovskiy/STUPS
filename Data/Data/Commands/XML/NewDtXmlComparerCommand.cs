@@ -18,10 +18,6 @@ namespace Data.Commands
     [Cmdlet(VerbsCommon.New, "DtXmlComparer")]
     public class NewDtXmlComparerCommand : XMLCmdletBase
     {
-        public NewDtXmlComparerCommand()
-        {
-        }
-        
         protected override void BeginProcessing()
         {
             DtNewXmlComparerCommand command =

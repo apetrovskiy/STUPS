@@ -7,6 +7,8 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System.Linq;
+
 namespace UIAutomation
 {
     using System;
@@ -41,11 +43,20 @@ namespace UIAutomation
                 WriteVerbose(this, "wizard name is empty");
                 return result;
             }
-            foreach (Wizard wzd in WizardCollection.Wizards) {
-                if (wzd.Name == name) {
+            /*
+            foreach (Wizard wzd in WizardCollection.Wizards)
+            {
+                if (wzd.Name == name)
+                {
                     WriteVerbose(this, "wizard name is not unique");
                     return result;
                 }
+            }
+            */
+            if (WizardCollection.Wizards.Any(wzd => wzd.Name == name))
+            {
+                WriteVerbose(this, "wizard name is not unique");
+                return result;
             }
             WriteVerbose(this, "wizard name is unique");
             result = true;

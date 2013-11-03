@@ -22,8 +22,15 @@ namespace Data
     {
         public CommonCmdletBase()
         {
-            
-            if (!UnitTestMode && !ModuleAlreadyLoaded) {
+            if (UnitTestMode || ModuleAlreadyLoaded) return;
+            DataFactory.AutofacModule = new DataModule();
+
+            DataFactory.Init();
+
+            ModuleAlreadyLoaded = true;
+            /*
+            if (!UnitTestMode && !ModuleAlreadyLoaded)
+            {
 
                 DataFactory.AutofacModule = new DataModule();
 
@@ -31,7 +38,8 @@ namespace Data
 
                 ModuleAlreadyLoaded = true;
             }
-            
+            */
+
             //CurrentData.Init();
         }
         
@@ -41,20 +49,6 @@ namespace Data
         }
         
         internal static bool ModuleAlreadyLoaded { get; set; }
-        
-        // 20130430
-//        protected override void WriteLog(string logRecord)
-//        {
-//            Console.WriteLine("Here should be logging Data");
-//        }
-        
-        // 20130430
-//        protected override void WriteLog(string logRecord)
-//        {
-//            if (Preferences.AutoLog) {
-//                TMX.Logger.Info(logRecord);
-//            }
-//        }
         
         protected override void WriteLog(LogLevels logLevel, string logRecord)
         {
@@ -85,11 +79,21 @@ namespace Data
         
         protected void WriteLog(LogLevels logLevel, System.Management.Automation.ErrorRecord errorRecord)
         {
-            if (Preferences.AutoLog) {
-                
+            if (!Preferences.AutoLog) return;
+            this.WriteLog(logLevel, errorRecord.Exception.Message);
+            // 20131102
+            //this.WriteLog(logLevel, "Script: '" + errorRecord.InvocationInfo.ScriptName + "', line: " + errorRecord.InvocationInfo.Line.ToString());
+            this.WriteLog(logLevel, "Script: '" + errorRecord.InvocationInfo.ScriptName + "', line: " + errorRecord.InvocationInfo.Line);
+            /*
+            if (Preferences.AutoLog)
+            {
+
                 this.WriteLog(logLevel, errorRecord.Exception.Message);
-                this.WriteLog(logLevel, "Script: '" + errorRecord.InvocationInfo.ScriptName + "', line: " + errorRecord.InvocationInfo.Line.ToString());
+                // 20131102
+                //this.WriteLog(logLevel, "Script: '" + errorRecord.InvocationInfo.ScriptName + "', line: " + errorRecord.InvocationInfo.Line.ToString());
+                this.WriteLog(logLevel, "Script: '" + errorRecord.InvocationInfo.ScriptName + "', line: " + errorRecord.InvocationInfo.Line);
             }
+            */
         }
         
         protected override bool CheckSingleObject(PSCmdletBase cmdlet, object outputObject) { return true; }

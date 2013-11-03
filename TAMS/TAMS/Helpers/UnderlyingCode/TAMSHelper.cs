@@ -19,10 +19,6 @@ namespace TAMS
     /// </summary>
     public static class TAMSHelper
     {
-        static TAMSHelper()
-        {
-        }
-        
         #region Memory Snapshot
         public static void GetMemoryShapshot(MemorySnapshotCmdletBase cmdlet, int[] processIds)
         {

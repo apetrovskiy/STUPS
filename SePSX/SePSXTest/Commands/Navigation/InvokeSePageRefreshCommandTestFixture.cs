@@ -18,10 +18,6 @@ namespace SePSXTest.Commands.Navigation
     [TestFixture] // [TestFixture(Description=" test")]
     public class InvokeSePageRefreshCommandTestFixture
     {
-        public InvokeSePageRefreshCommandTestFixture()
-        {
-        }
-        
         [SetUp]
         public void PrepareRunspace()
         {

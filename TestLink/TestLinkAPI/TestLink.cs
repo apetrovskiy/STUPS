@@ -25,6 +25,7 @@ DEALINGS IN THE SOFTWARE.
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using CookComputing.XmlRpc;
 
@@ -98,7 +99,7 @@ namespace Meyn.TestLink
 				proxy.RequestEvent += new XmlRpcRequestEventHandler(myHandler);
 				proxy.ResponseEvent += new XmlRpcResponseEventHandler(proxy_ResponseEvent);
 			}
-			if ((url != null) && (url != string.Empty))
+			if (!string.IsNullOrEmpty(url))
 				proxy.Url = url;
 		}
 		#endregion
@@ -179,13 +180,36 @@ namespace Meyn.TestLink
 			List<TLErrorMessage> errs = decodeErrors(errorMessage);
 			if (errs.Count > 0) {
 				foreach (TLErrorMessage foundError in errs) {
-					bool matched = false;
-					foreach (int exceptedErrorCode in exceptedErrorCodes)
-						if (foundError.code == exceptedErrorCode) {
-							matched = true;
-							break;
-						}
-					// all must match or we throw an exception
+					bool matched = exceptedErrorCodes.Any(exceptedErrorCode => foundError.code == exceptedErrorCode);
+
+                    /*
+                    List<TLErrorMessage> errs = decodeErrors(errorMessage);
+                    if (errs.Count > 0)
+                    {
+                        foreach (TLErrorMessage foundError in errs)
+                        {
+                            bool matched = false;
+                            foreach (int exceptedErrorCode in exceptedErrorCodes)
+                                if (foundError.code == exceptedErrorCode)
+                                {
+                                    matched = true;
+                                    break;
+                                }
+                            // all must match or we throw an exception
+                            if (!matched)
+                            {
+                                string msg = string.Format("{0}:{1}", errs[0].code, errs[0].message);
+                                throw new TestLinkException(msg, errs);
+                            }
+                        }
+                        return true;
+                        // we have matched the errors to the exceptions
+                    }
+                    return false;
+                        // there were no errors
+                    */
+
+				    // all must match or we throw an exception
 					if (!matched) {
 						string msg = string.Format("{0}:{1}", errs[0].code, errs[0].message);
 						throw new TestLinkException(msg, errs);
@@ -207,16 +231,25 @@ namespace Meyn.TestLink
 		/// </summary>
 		/// <param name="messageList"></param>
 		/// <returns>a TLErrorMessage or null</returns>
-		private List<TLErrorMessage> decodeErrors(object[] messageList)
+		private List<TLErrorMessage> decodeErrors(IEnumerable<object> messageList)
 		{
 			List<TLErrorMessage> result = new List<TLErrorMessage>();
 			if (messageList == null)
 				return result;
-			foreach (XmlRpcStruct message in messageList) {
-				if (message.ContainsKey("code") && message.ContainsKey("message"))
-					result.Add(new TLErrorMessage(message));
-			}
-			return result;
+		    result.AddRange(from XmlRpcStruct message in messageList where message.ContainsKey("code") && message.ContainsKey("message") select new TLErrorMessage(message));
+            /*
+            List<TLErrorMessage> result = new List<TLErrorMessage>();
+            if (messageList == null)
+                return result;
+            foreach (XmlRpcStruct message in messageList)
+            {
+                if (message.ContainsKey("code") && message.ContainsKey("message"))
+                    result.Add(new TLErrorMessage(message));
+            }
+            return result;
+            */
+
+		    return result;
 		}
 		private TLErrorMessage decodeSingleError(XmlRpcStruct message)
 		{
@@ -255,12 +288,17 @@ namespace Meyn.TestLink
 				return retval;
 			object[] oList = response as object[];
 
-			foreach (XmlRpcStruct data in oList) {
+		    retval.AddRange(from XmlRpcStruct data in oList select new Build(data));
+            /*
+            foreach (XmlRpcStruct data in oList)
+            {
 
-				Build b = new Build(data);
-				retval.Add(b);
-			}
-			return retval;
+                Build b = new Build(data);
+                retval.Add(b);
+            }
+            */
+
+		    return retval;
 		}
 
 		/// <summary>

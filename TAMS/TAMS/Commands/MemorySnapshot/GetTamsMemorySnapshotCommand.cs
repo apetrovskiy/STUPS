@@ -19,10 +19,6 @@ namespace TAMS.Commands
     [Cmdlet(VerbsCommon.Get, "TamsMemorySnapshot")]
     public class GetTamsMemorySnapshotCommand : MemorySnapshotCmdletBase
     {
-        public GetTamsMemorySnapshotCommand()
-        {
-        }
-        
         #region Parameters
         [Parameter(Mandatory = false,
                    Position = 0,

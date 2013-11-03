@@ -19,10 +19,6 @@ namespace Data.Commands
     [Cmdlet(VerbsCommon.Get, "DtSomething")]
     public class GetDtSomethingCommand : PSCmdlet
     {
-        public GetDtSomethingCommand()
-        {
-        }
-        
         [Parameter(Mandatory = true,
                    ValueFromPipeline = true,
                    Position = 0)]

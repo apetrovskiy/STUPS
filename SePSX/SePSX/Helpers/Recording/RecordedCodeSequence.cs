@@ -7,6 +7,9 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System.Collections.Generic;
+using System.Linq;
+
 namespace SePSX
 {
     using System;
@@ -54,17 +57,21 @@ namespace SePSX
             return result;
         }
         
-        private string convertListToString(System.Collections.Generic.List<string> list)
+        private string convertListToString(IEnumerable<string> list)
         {
+            return list.Aggregate(string.Empty, (current, listItem) => current + listItem);
+            /*
             string result = string.Empty;
-            
-            foreach (string listItem in list) {
+
+            foreach (string listItem in list)
+            {
                 result += listItem;
             }
-            
+
             return result;
+            */
         }
-        
+
         public string GenerateCode(CodeAmount codeAmount)
         {
             string result = string.Empty;

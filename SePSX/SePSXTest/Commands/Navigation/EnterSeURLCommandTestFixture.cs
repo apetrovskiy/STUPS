@@ -18,10 +18,6 @@ namespace SePSXTest.Commands.Navigation
 	[TestFixture] // [TestFixture(Description=" test")]
 	public class EnterSeURLCommandTestFixture
 	{
-		public EnterSeURLCommandTestFixture()
-		{
-		}
-		
         [SetUp]
         public void PrepareRunspace()
         {

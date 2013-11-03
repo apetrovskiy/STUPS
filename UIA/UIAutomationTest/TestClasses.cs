@@ -15,18 +15,8 @@ namespace UIAutomation.UnitTests
     /// </summary>
     public class AutomationElement
     {
-        public AutomationElement()
-        {
-        }
-        
         public System.Windows.Automation.AutomationElement.AutomationElementInformation Cached
         { get; set; }
-        
-// public System.Windows.Automation.AutomationElementCollection CachedChildren
-// {
-// get { return ((System.Windows.Automation.AutomationElementCollection)(new UIAutomation.UnitTests.AutomationElementCollection())); }
-// set { }
-// }
         
         public System.Windows.Automation.AutomationElement CachedParent
         { get; set; }
@@ -41,15 +31,9 @@ namespace UIAutomation.UnitTests
     
     public class AutomationElementCollection
     {
-        public AutomationElementCollection()
-        {
-            // return ((System.Windows.Automation.AutomationElementCollection)this);
-        }
         public int Count { get; set; }
         public bool IsSynchronized { get; set; }
         public object SyncRoot { get; set; }
-        // public int Count { get; set; }
-        // public int Count { get; set; }
     }
     
     public class AutomationElementInformation

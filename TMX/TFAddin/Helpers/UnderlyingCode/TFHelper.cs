@@ -29,10 +29,6 @@ namespace TMX
     /// </summary>
     internal class TFHelper
     {
-        public TFHelper()
-        {
-        }
-        
         public static void ConnectTFServer(TFSCmdletBase cmdlet, string url, ICredentials credentials)
         {
             try
@@ -368,8 +364,11 @@ namespace TMX
         public static void NewBuild(TFSCmdletBase cmdlet, string name)
         {
             try {
-                
-                IBuildDefinition buildDefinition;
+
+                // 20131102
+                // ReSharper warning
+                //IBuildDefinition buildDefinition;
+
                 BuildTypeInfo buildInfo = new Microsoft.TeamFoundation.Build.Common.BuildTypeInfo("1.2.3");
                 
 //                IBuildDefinition buildDefinition =

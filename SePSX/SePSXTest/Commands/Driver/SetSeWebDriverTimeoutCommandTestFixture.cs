@@ -18,10 +18,6 @@ namespace SePSXTest.Commands.Driver
     [TestFixture] // [TestFixture(Description=" test")]
     public class SetSeWebDriverPageLoadTimeoutCommandTestFixture
     {
-        public SetSeWebDriverPageLoadTimeoutCommandTestFixture()
-        {
-        }
-        
         [SetUp]
         public void PrepareRunspace()
         {

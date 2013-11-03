@@ -23,12 +23,15 @@ namespace UIAutomationSpy
     /// </summary>
     public partial class SpyForm : Form
     {
-        
-        private int tabooPID = 0;
+        // 20131102
+        //private int tabooPID = 0;
+        private readonly int tabooPID = 0;
         private string codeToRun = string.Empty;
         private static Runspace testRunSpace;
 
-        private SpyModes spyMode = SpyModes.uIAutomationSpy;
+        // 20131102
+        //private SpyModes spyMode = SpyModes.uIAutomationSpy;
+        private readonly SpyModes spyMode = SpyModes.uIAutomationSpy;
         
         private void runPowerShellCode()
         {
@@ -324,11 +327,10 @@ namespace UIAutomationSpy
             System.Windows.Automation.TreeWalker walker = 
                 new System.Windows.Automation.TreeWalker(
                     System.Windows.Automation.Condition.TrueCondition);
-            System.Windows.Automation.AutomationElement testparent;
             
             try {
-                testparent = element;
-                //    walker.GetParent(element);
+
+                AutomationElement testparent = element;
                 if (testparent != null && (int)testparent.Current.ProcessId > 0) {
                     listForNodes.Add(getNodeNameFromAutomationElement(testparent));
                     if (testparent != AutomationElement.RootElement) {

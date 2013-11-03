@@ -18,10 +18,6 @@ namespace TAMS.Commands
     [Cmdlet(VerbsData.Compare, "TamsObject")]
     public class CompareTamsObjectCommand : ObjectComparisonCmdletBase
     {
-        public CompareTamsObjectCommand()
-        {
-        }
-        
         #region Parameters
         [Parameter(Mandatory = true,
                    Position = 0)]

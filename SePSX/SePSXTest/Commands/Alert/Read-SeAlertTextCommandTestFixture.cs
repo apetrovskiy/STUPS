@@ -18,10 +18,6 @@ namespace SePSXTest.Commands.Alert
     [TestFixture] // [TestFixture(Description=" test")]
     public class Read_SeAlertTextCommandTestFixture
     {
-        public Read_SeAlertTextCommandTestFixture()
-        {
-        }
-        
         [SetUp]
         public void PrepareRunspace()
         {

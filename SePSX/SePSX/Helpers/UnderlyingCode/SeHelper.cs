@@ -7,6 +7,8 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System.Linq;
+
 namespace SePSX
 {
     #region using
@@ -414,17 +416,20 @@ Console.WriteLine("Highlight 00000000000015");
             Process[] processArray =
                 //Process.GetProcessesByName(GetDriverProcessName(driverCode, (new WebDriverFactory(new WebDriverModule()))));
                 Process.GetProcessesByName(GetDriverProcessName(driverCode));
-            System.Collections.Generic.List<Process> newProcesses =
-                new System.Collections.Generic.List<Process>();
-            foreach (Process process in processArray) {
+            System.Collections.Generic.List<Process> newProcesses = processArray.Where(process => !DriverProcesses.Contains(process) && process.MainWindowHandle.ToInt32() > 0).ToList();
+            /*
+            foreach (Process process in processArray)
+            {
                 if (!DriverProcesses.Contains(process) &&
-                    process.MainWindowHandle.ToInt32() > 0) {
+                    process.MainWindowHandle.ToInt32() > 0)
+                {
                     //SeHelper.DriverProcess = process;
                     //break;
                     newProcesses.Add(process);
                 }
             }
-            
+            */
+
             if (newProcesses.Count == 1) {
                 SeHelper.DriverProcess = newProcesses[0];
             } else {
@@ -449,8 +454,7 @@ Console.WriteLine("Highlight 00000000000015");
         {
             IWebDriver driver = null;
 
-            if (cmdlet.DriverName == null ||
-                cmdlet.DriverName == string.Empty ||
+            if (string.IsNullOrEmpty(cmdlet.DriverName) ||
                 cmdlet.DriverName.Length == 0) {
 
                 cmdlet.WriteError(
@@ -576,8 +580,7 @@ Console.WriteLine("Highlight 00000000000015");
 
                     } catch {}
 
-                    if (currentInstanceName != null &&
-                        currentInstanceName != string.Empty &&
+                    if (!string.IsNullOrEmpty(currentInstanceName) &&
                         currentInstanceName.Length > 0) {
 
                         cmdlet.WriteVerbose(cmdlet, "the name given is appropriate");
@@ -1283,7 +1286,7 @@ Console.WriteLine("Highlight 00000000000015");
                 string errorReport = string.Empty;
                 try {
 //Console.WriteLine("GetWebElement: 00005");
-                    if (cmdletGet.Id != null && cmdletGet.Id != string.Empty && cmdletGet.Id.Length > 0) {
+                    if (!string.IsNullOrEmpty(cmdletGet.Id) && cmdletGet.Id.Length > 0) {
 //Console.WriteLine("GetWebElement: 00006 id");
                         errorReport = "Id = \"" + cmdletGet.Id + "\"";
                         result =
@@ -1296,7 +1299,7 @@ Console.WriteLine("Highlight 00000000000015");
 //Console.WriteLine("GetWebElement: 00007 id");
                     } //else
                     
-                    if (cmdletGet.ClassName != null && cmdletGet.ClassName != string.Empty && cmdletGet.ClassName.Length > 0) {
+                    if (!string.IsNullOrEmpty(cmdletGet.ClassName) && cmdletGet.ClassName.Length > 0) {
 //Console.WriteLine("GetWebElement: 00008 cl");
                         errorReport = "ClassName = \"" + cmdletGet.ClassName + "\"";
                         result =
@@ -1309,7 +1312,7 @@ Console.WriteLine("Highlight 00000000000015");
 //Console.WriteLine("GetWebElement: 00009 cl");
                     } //else
                     
-                    if (cmdletGet.TagName != null && cmdletGet.TagName != string.Empty && cmdletGet.TagName.Length > 0) {
+                    if (!string.IsNullOrEmpty(cmdletGet.TagName) && cmdletGet.TagName.Length > 0) {
 //Console.WriteLine("GetWebElement: 00010 tag");
                         errorReport = "TagName = \"" + cmdletGet.TagName + "\"";
 //Console.WriteLine("GetWebElement: 00010-1 tag");
@@ -1323,7 +1326,7 @@ Console.WriteLine("Highlight 00000000000015");
 //Console.WriteLine("GetWebElement: 00011 tag");
                     } //else
                     
-                    if (cmdletGet.Name != null && cmdletGet.Name != string.Empty && cmdletGet.Name.Length > 0) {
+                    if (!string.IsNullOrEmpty(cmdletGet.Name) && cmdletGet.Name.Length > 0) {
 //Console.WriteLine("GetWebElement: 00012 name");
                         errorReport = "Name = \"" + cmdletGet.Name + "\"";
                         result =
@@ -1336,7 +1339,7 @@ Console.WriteLine("Highlight 00000000000015");
 //Console.WriteLine("GetWebElement: 00013 name");
                     } //else
                     
-                    if (cmdletGet.LinkText != null && cmdletGet.LinkText != string.Empty && cmdletGet.LinkText.Length > 0) {
+                    if (!string.IsNullOrEmpty(cmdletGet.LinkText) && cmdletGet.LinkText.Length > 0) {
 //Console.WriteLine("GetWebElement: 00014 link");
                         errorReport = "LinkText = \"" + cmdletGet.LinkText + "\"";
                         result =
@@ -1349,7 +1352,7 @@ Console.WriteLine("Highlight 00000000000015");
 //Console.WriteLine("GetWebElement: 00015 link");
                     } //else
                     
-                    if (cmdletGet.PartialLinkText != null && cmdletGet.PartialLinkText != string.Empty && cmdletGet.PartialLinkText.Length > 0) {
+                    if (!string.IsNullOrEmpty(cmdletGet.PartialLinkText) && cmdletGet.PartialLinkText.Length > 0) {
 //Console.WriteLine("GetWebElement: 00016 partlink");
                         errorReport = "PartialLinkText = \"" + cmdletGet.PartialLinkText + "\"";
                         result =
@@ -1362,7 +1365,7 @@ Console.WriteLine("Highlight 00000000000015");
 //Console.WriteLine("GetWebElement: 00017 partlink");
                     } //else
                     
-                    if (cmdletGet.CssSelector != null && cmdletGet.CssSelector != string.Empty && cmdletGet.CssSelector.Length > 0) {
+                    if (!string.IsNullOrEmpty(cmdletGet.CssSelector) && cmdletGet.CssSelector.Length > 0) {
 //Console.WriteLine("GetWebElement: 00018 css");
                         errorReport = "CSS = \"" + cmdletGet.CssSelector + "\"";
                         result =
@@ -1375,7 +1378,7 @@ Console.WriteLine("Highlight 00000000000015");
 //Console.WriteLine("GetWebElement: 00019 css");
                     } //else
                     
-                    if (cmdletGet.XPath != null && cmdletGet.XPath != string.Empty && cmdletGet.XPath.Length > 0) {
+                    if (!string.IsNullOrEmpty(cmdletGet.XPath) && cmdletGet.XPath.Length > 0) {
 //Console.WriteLine("GetWebElement: 00020 xpath");
                         errorReport = "XPath = \"" + cmdletGet.XPath + "\"";
                         result =
@@ -1388,7 +1391,7 @@ Console.WriteLine("Highlight 00000000000015");
 //Console.WriteLine("GetWebElement: 00021 xpath");
                     }
                     
-                    if (cmdletGet.JavaScript != null && cmdletGet.JavaScript != string.Empty && cmdletGet.JavaScript.Length > 0) {
+                    if (!string.IsNullOrEmpty(cmdletGet.JavaScript) && cmdletGet.JavaScript.Length > 0) {
 //Console.WriteLine("GetWebElement: 00022 JS");
                         errorReport = "JavaScript = \"" + cmdletGet.JavaScript.Substring(0, 10) + "...\"";
                         result =
@@ -3303,7 +3306,7 @@ Console.WriteLine("NavigatoTo: 00003");
             string pathToBinary =
                 ((SetSeChromeBinaryCommand)cmdlet).BinaryPath;
             
-            if (null != pathToBinary && string.Empty != pathToBinary) {
+            if (!string.IsNullOrEmpty(pathToBinary)) {
                 options.BinaryLocation = pathToBinary;
             }
             

@@ -18,10 +18,6 @@ namespace SePSXTest.Commands.Navigation
     [TestFixture] // [TestFixture(Description=" test")]
     public class SwitchSeToActiveElementCommandTestFixture
     {
-        public SwitchSeToActiveElementCommandTestFixture()
-        {
-        }
-        
         [SetUp]
         public void PrepareRunspace()
         {

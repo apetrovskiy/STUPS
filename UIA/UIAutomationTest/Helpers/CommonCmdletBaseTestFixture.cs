@@ -21,12 +21,6 @@ namespace UIAutomationTest.Commands.Select
     [TestFixture] // [TestFixture(Description="CommonCmdletBase test")]
     public class CommonCmdletBaseTestFixture
     {
-        public CommonCmdletBaseTestFixture()
-        {
-        }
-        
-        // 20130221
-        // UIAutomation.HasControlInputCmdletBase cmdlet = null;
         UIAutomation.GetControlCmdletBase cmdlet = null;
         UIAutomation.CommonCmdletBase cmdletBase = null;
         
@@ -39,15 +33,8 @@ namespace UIAutomationTest.Commands.Select
             cmdlet = 
                 new UIAutomation.Commands.GetUIAControlCommand();
             cmdletBase = 
-                // 20130221
-                // new UIAutomation.CommonCmdletBase();
                 new UIAutomation.GetControlCmdletBase();
             AndCondition condition =
-                // 20130127
-                //cmdlet.getControlConditions(cmdlet, controlType);
-                // 20130128
-                //cmdlet.getControlConditions(cmdlet, controlType, ((GetControlCmdletBase)cmdlet).CaseSensitive);
-                //cmdlet.getControlConditions(cmdlet, controlType, ((GetControlCmdletBase)cmdlet).CaseSensitive, true);
                 cmdlet.getControlConditions(cmdlet, controlType, ((GetControlCmdletBase)cmdlet).CaseSensitive, true) as AndCondition;
             conditions = condition.GetConditions();
             foreach (Condition cond in conditions) {

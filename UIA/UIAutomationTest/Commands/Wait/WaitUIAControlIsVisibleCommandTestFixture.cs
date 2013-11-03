@@ -19,10 +19,6 @@ namespace UIAutomationTest.Commands.Wait
     [TestFixture] // [TestFixture(Description="Wait-UIAControlIsVisibleCommand test")]
     public class WaitUIAControlIsVisibleCommandTestFixture
     {
-        public WaitUIAControlIsVisibleCommandTestFixture()
-        {
-        }
-        
         [SetUp]
         public void PrepareRunspace()
         {

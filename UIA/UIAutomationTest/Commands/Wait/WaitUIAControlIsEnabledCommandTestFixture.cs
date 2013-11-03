@@ -19,10 +19,6 @@ namespace UIAutomationTest.Commands.Wait
     [TestFixture] // [TestFixture(Description="Wait-UIAControlIsEnabledCommand test")]
     public class WaitUIAControlIsEnabledCommandTestFixture
     {
-        public WaitUIAControlIsEnabledCommandTestFixture()
-        {
-        }
-        
         [SetUp]
         public void PrepareRunspace()
         {

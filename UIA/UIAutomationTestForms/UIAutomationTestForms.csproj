@@ -170,7 +170,9 @@
     <Compile Include="FormsCollection\WinForms\WinFormsFull.Designer.cs">
       <DependentUpon>WinFormsFull.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormsCollection\WinForms\WinFormsInner.cs" />
+    <Compile Include="FormsCollection\WinForms\WinFormsInner.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormsCollection\WinForms\WinFormsInner.Designer.cs">
       <DependentUpon>WinFormsInner.cs</DependentUpon>
     </Compile>
@@ -180,7 +182,9 @@
     <Compile Include="FormsCollection\WinForms\WinFormsMaximized.Designer.cs">
       <DependentUpon>WinFormsMaximized.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormsCollection\WinForms\WinFormsMedium.cs" />
+    <Compile Include="FormsCollection\WinForms\WinFormsMedium.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormsCollection\WinForms\WinFormsMedium.Designer.cs">
       <DependentUpon>WinFormsMedium.cs</DependentUpon>
     </Compile>
@@ -196,7 +200,9 @@
     <Compile Include="FormsCollection\WinForms\WinFormsNoTaskBar.Designer.cs">
       <DependentUpon>WinFormsNoTaskBar.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormsCollection\WinForms\WinFormsOuter.cs" />
+    <Compile Include="FormsCollection\WinForms\WinFormsOuter.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormsCollection\WinForms\WinFormsOuter.Designer.cs">
       <DependentUpon>WinFormsOuter.cs</DependentUpon>
     </Compile>
@@ -206,11 +212,15 @@
     <Compile Include="FormsCollection\WinForms\WinFormsRich.Designer.cs">
       <DependentUpon>WinFormsRich.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormsCollection\WinForms\WinFormsSecond.cs" />
+    <Compile Include="FormsCollection\WinForms\WinFormsSecond.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormsCollection\WinForms\WinFormsSecond.Designer.cs">
       <DependentUpon>WinFormsSecond.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormsCollection\WinForms\WinFormsTripled.cs" />
+    <Compile Include="FormsCollection\WinForms\WinFormsTripled.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormsCollection\WinForms\WinFormsTripled.Designer.cs">
       <DependentUpon>WinFormsTripled.cs</DependentUpon>
     </Compile>

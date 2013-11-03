@@ -19,10 +19,6 @@ namespace UIAutomationTest.Commands.Settings
     [TestFixture] // [TestFixture(Description="Set-UIAOnSleepActionSettingsCommand test")]
     public class SetUIAOnSleepActionSettingsCommandTestFixture
     {
-        public SetUIAOnSleepActionSettingsCommandTestFixture()
-        {
-        }
-        
         [SetUp]
         public void PrepareRunspace()
         {

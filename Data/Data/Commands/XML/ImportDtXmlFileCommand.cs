@@ -18,10 +18,6 @@ namespace Data.Commands
     [Cmdlet(VerbsData.Import, "DtXmlFile")]
     public class ImportDtXmlFileCommand : XMLCmdletBase
     {
-        public ImportDtXmlFileCommand()
-        {
-        }
-        
         #region Parameters
         [Parameter(Mandatory = true)]
         [ValidateNotNullOrEmpty()]

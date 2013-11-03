@@ -17,10 +17,6 @@ namespace TestUtils.Commands
     /// </summary>
     public class GrantWin32LocalAccountPrivilegeCommand : PrivilegeCmdletBase
     {
-        public GrantWin32LocalAccountPrivilegeCommand()
-        {
-        }
-        
         protected override void BeginProcessing()
         {
             Win32GrantLocalAccountPrivilegeCommand command =

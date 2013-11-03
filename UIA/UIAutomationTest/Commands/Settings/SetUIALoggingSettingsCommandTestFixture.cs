@@ -19,10 +19,6 @@ namespace UIAutomationTest.Commands.Settings
     [TestFixture] // [TestFixture(Description="Set-UIALoggingSettingsCommand test")]
     public class SetUIALoggingSettingsCommandTestFixture
     {
-        public SetUIALoggingSettingsCommandTestFixture()
-        {
-        }
-        
         [SetUp]
         public void PrepareRunspace()
         {

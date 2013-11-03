@@ -18,10 +18,6 @@ namespace Data.Commands
     [Cmdlet(VerbsData.Compare, "DtXmlData")]
     public class CompareDtXmlDataCommand : XMLCmdletBase
     {
-        public CompareDtXmlDataCommand()
-        {
-        }
-        
         #region Parameters
         [Parameter(Mandatory = true,
                    ValueFromPipeline = true)]

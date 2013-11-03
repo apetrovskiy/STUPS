@@ -19,10 +19,6 @@ namespace UIAutomationTest.Provider
     [TestFixture] // [TestFixture(Description="UIAProvider test")]
     public class UIAProviderTestFixture
     {
-        public UIAProviderTestFixture()
-        {
-        }
-        
         [SetUp]
         public void PrepareRunspace()
         {

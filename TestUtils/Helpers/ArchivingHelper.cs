@@ -19,10 +19,6 @@ namespace TestUtils
     /// </summary>
     public static class ArchivingHelper
     {
-        static ArchivingHelper()
-        {
-        }
-        
         public static void AddFilesToArchive(NewTuZipArchiveCommand cmdlet)
         {
             

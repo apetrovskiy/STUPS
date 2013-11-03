@@ -18,10 +18,6 @@ namespace SePSXTest.Commands.Common
     [TestFixture] // [TestFixture(Description=" test")]
     public class SaveSeScreenshotCommandTestFixture
     {
-        public SaveSeScreenshotCommandTestFixture()
-        {
-        }
-        
         [SetUp]
         public void PrepareRunspace()
         {

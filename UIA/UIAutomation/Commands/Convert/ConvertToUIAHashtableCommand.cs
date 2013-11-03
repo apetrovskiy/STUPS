@@ -7,6 +7,8 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System.Linq;
+
 namespace UIAutomation.Commands
 {
     using System;
@@ -475,6 +477,9 @@ namespace UIAutomation.Commands
         
         private bool IsIncluded(string propertyName)
         {
+            return this.Include.Any(t => t.ToUpper() == propertyName.ToUpper());
+
+            /*
             bool result = false;
             for (int i = 0; i < this.Include.Length; i++) {
                 if (this.Include[i].ToUpper() == propertyName.ToUpper()) {
@@ -483,19 +488,24 @@ namespace UIAutomation.Commands
                 }
             }
             return result;
+            */
         }
-        
+
         private bool IsExcluded(string propertyName)
         {
+            return this.Exclude.Any(t => t.ToUpper() == propertyName.ToUpper());
+            /*
             bool result = false;
-            for (int i = 0; i < this.Exclude.Length; i++) {
-                if (this.Exclude[i].ToUpper() == propertyName.ToUpper()) {
+            for (int i = 0; i < this.Exclude.Length; i++)
+            {
+                if (this.Exclude[i].ToUpper() == propertyName.ToUpper())
+                {
                     result = true;
                     break;
                 }
             }
             return result;
+            */
         }
-        
     }
 }

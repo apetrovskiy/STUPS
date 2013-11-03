@@ -17,11 +17,9 @@ namespace TestUtils
     {
         public Preferences()
         {
-            // 20130430
             AutoLog = false;
         }
         
-        // 20130429
         public static bool AutoLog { get; set; }
     }
 }

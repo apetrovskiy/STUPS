@@ -49,8 +49,7 @@ namespace TMX
                     cmdlet,
                     "The current test result is not null");
 
-                if ((null != TestData.CurrentTestResult.Name &&
-                     string.Empty != TestData.CurrentTestResult.Name) ||
+                if (!string.IsNullOrEmpty(TestData.CurrentTestResult.Name) ||
                     (0 < TestData.CurrentTestResult.Details.Count)) {
                     
                     cmdlet.WriteVerbose(
@@ -103,10 +102,10 @@ namespace TMX
                     TestData.CurrentTestSuite.Id);
             
             // 20130605
-            if (null == TestData.CurrentTestResult.Id || string.Empty == TestData.CurrentTestResult.Id) {
+            if (string.IsNullOrEmpty(TestData.CurrentTestResult.Id)) {
                 
                 // 20130610
-                if (null != cmdlet.Id && string.Empty != cmdlet.Id) {
+                if (!string.IsNullOrEmpty(cmdlet.Id)) {
                     TestData.CurrentTestResult.Id = cmdlet.Id;
                 } else {
                     cmdlet.WriteVerbose(cmdlet, "generating new test result Id for test result '" + TestData.CurrentTestResult.Name + "'");

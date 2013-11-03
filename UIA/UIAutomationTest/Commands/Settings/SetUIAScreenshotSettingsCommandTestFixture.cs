@@ -19,10 +19,6 @@ namespace UIAutomationTest.Commands.Settings
     [TestFixture] // [TestFixture(Description="Set-UIAScreenshotSettingsCommand test")]
     public class SetUIAScreenshotSettingsCommandTestFixture
     {
-        public SetUIAScreenshotSettingsCommandTestFixture()
-        {
-        }
-        
         [SetUp]
         public void PrepareRunspace()
         {

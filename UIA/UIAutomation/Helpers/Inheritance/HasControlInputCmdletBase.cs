@@ -896,6 +896,69 @@ try {
         {
             
             bool result = false;
+            foreach (Hashtable ht in SearchCriteria)
+            {
+                System.Collections.Generic.Dictionary<string, object> dict =
+                    this.ConvertHashtableToDictionary(ht);
+                
+                GetControlCmdletBase cmdlet = 
+                    new GetControlCmdletBase();
+                
+                try{ cmdlet.Class = dict["CLASS"].ToString(); } catch {}
+                try{ cmdlet.AutomationId = dict["AUTOMATIONID"].ToString(); } catch {}
+                try{ cmdlet.ControlType = dict["CONTROLTYPE"].ToString(); } catch {}
+                try{ cmdlet.Name = dict["NAME"].ToString(); } catch {}
+                try{ cmdlet.Value = dict["VALUE"].ToString(); } catch {}
+                
+                cmdlet.Timeout = timeout;
+                
+                if (null != inputElements && null != (inputElements as AutomationElement[]) && 0 < inputElements.Length) {
+                    cmdlet.InputObject = inputElements;
+                } else {
+                    if (UIAutomation.CurrentData.CurrentWindow == null) {
+                        return result;
+                    }
+                    cmdlet.InputObject = new AutomationElement[]{ UIAutomation.CurrentData.CurrentWindow };
+                }
+                
+                WriteVerbose(this, "getting the control");
+                
+                ArrayList elementsToWorkWith = GetControl(cmdlet);
+                
+                if (null == elementsToWorkWith) {
+
+                    WriteVerbose(this, "couldn't get the control(s)");
+                    return result;
+                } else {
+
+                    foreach (AutomationElement elementToWorkWith in elementsToWorkWith) {
+                        
+                        WriteVerbose(this, "found the control:");
+                        try {WriteVerbose(this, "Name = " + elementToWorkWith.Current.Name); }catch {}
+                        try {WriteVerbose(this, "AutomationId = " + elementToWorkWith.Current.AutomationId); }catch {}
+                        try {WriteVerbose(this, "ClassName = " + elementToWorkWith.Current.ClassName); }catch {}
+                        try {WriteVerbose(this, "ControlType = " + elementToWorkWith.Current.ControlType.ProgrammaticName); }catch {}
+                        
+                        bool oneControlResult = 
+                            testControlByPropertiesFromDictionary(
+                                dict,
+                                elementToWorkWith);
+                        
+                        if (oneControlResult) {
+                            
+                            if (Preferences.HighlightCheckedControl) {
+                                UIAHelper.HighlightCheckedControl(elementToWorkWith);
+                            }
+                            
+                        } else { // 20130710
+                            return result;
+                        }
+                    
+                    } // 20120824
+                }
+            }
+
+            /*
             for (int i = 0; i < SearchCriteria.Length; i++) {
                 
                 System.Collections.Generic.Dictionary<string, object> dict =
@@ -957,6 +1020,8 @@ try {
                     } // 20120824
                 }
             }
+            */
+
             result = true;
             
             return result;

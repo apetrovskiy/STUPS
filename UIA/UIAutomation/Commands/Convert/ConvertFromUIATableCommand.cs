@@ -87,6 +87,31 @@ namespace UIAutomation.Commands
                 
                 // temporary!!!
                 // get rows
+                if (tblPattern.Current.RowCount <= 0) continue;
+                // 20130318
+                //RunOnSuccessScriptBlocks(this);
+                RunOnSuccessScriptBlocks(this, null);
+                for (int rowsCounter = 0;
+                    rowsCounter<tblPattern.Current.RowCount;
+                    rowsCounter++) {
+                        if (this.SelectedOnly && selectedItems.Length > 0) {
+                        } else {
+                            // without a selection
+                            string outString = 
+                                UIAHelper.GetOutputStringUsingTableGridPattern<System.Windows.Automation.TablePattern > (
+                                    tblPattern,
+                                    tblPattern.Current.ColumnCount,
+                                    rowsCounter,
+                                    this.Delimiter);
+// getOutputString(ref tblPattern,
+// rowsCounter);
+                            // output a row
+                            this.WriteObject(outString);
+                        }
+                    }
+                //}
+
+                /*
                 if (tblPattern.Current.RowCount > 0) {
                     // 20130318
                     //RunOnSuccessScriptBlocks(this);
@@ -111,15 +136,39 @@ namespace UIAutomation.Commands
                         }
                     //}
                 }
-                
+                */
+
             } catch {
-                
-                
-                
-                
-                
-            
-            
+                if (tblPattern != null) continue;
+                this.WriteVerbose(this, "couldn't get TablePattern");
+                this.WriteVerbose(this, "trying to enumerate columns and rows");
+                    
+                    
+                bool res2 = 
+                    UIAHelper.GetHeaders(ref _control, out strData, this.Delimiter);
+                if (res2) {
+                    this.WriteObject(strData);
+                } else {
+                    this.WriteVerbose(this, strData);
+                }
+                    
+                System.Collections.Generic.List<string >  rows = 
+                    // 20120823
+                    //UIAHelper.GetOutputStringUsingItemsValuePattern(this.InputObject,
+                    UIAHelper.GetOutputStringUsingItemsValuePattern(inputObject,
+                        this.Delimiter);
+                if (rows.Count > 0) {
+                    // 20130318
+                    //RunOnSuccessScriptBlocks(this);
+                    RunOnSuccessScriptBlocks(this, null);
+                    foreach (string row in rows) {
+                        this.WriteObject(row);
+                    }
+                }
+                // WriteObject(this, false);
+                // return;
+
+                /*
                 if (tblPattern == null)
                 {
                     this.WriteVerbose(this, "couldn't get TablePattern");
@@ -150,6 +199,7 @@ namespace UIAutomation.Commands
                     // WriteObject(this, false);
                     // return;
                 }
+                */
             }
             
             } // 20120823

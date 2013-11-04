@@ -7,6 +7,9 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System.Linq;
+using System.Windows.Automation;
+
 namespace UIAutomation.Commands
 {
     using System;
@@ -60,13 +63,20 @@ namespace UIAutomation.Commands
             
             // 20131014
             //foreach (System.Windows.Automation.AutomationPattern p in _control.GetSupportedPatterns())
+            foreach (AutomationPattern p in this.InputObject.SelectMany(element => element.GetSupportedPatterns()))
+            {
+                this.WriteVerbose(this, p.ProgrammaticName);
+            }
+
+            /*
             foreach (System.Windows.Automation.AutomationElement element in this.InputObject) {
                 foreach (System.Windows.Automation.AutomationPattern p in element.GetSupportedPatterns())
                 {
                     this.WriteVerbose(this, p.ProgrammaticName);
                 }
             }
-            
+            */
+
             System.Windows.Automation.AutomationPattern pattern = 
                 UIAHelper.GetPatternByName(Name);
             

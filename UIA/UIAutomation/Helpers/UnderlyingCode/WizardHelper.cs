@@ -7,6 +7,8 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System.Linq;
+
 namespace UIAutomation
 {
     using System;
@@ -415,12 +417,19 @@ namespace UIAutomation
             if (cmdlet.InputObject != null && cmdlet.InputObject is Wizard) {
                 WizardStep stepToRemove = null;
                 //foreach (WizardStep step in InputObject.Steps) {
+                foreach (WizardStep step in cmdlet.InputObject.Steps.Where(step => step.Name == cmdlet.Name))
+                {
+                    stepToRemove = step;
+                }
+
+                /*
                 foreach (WizardStep step in cmdlet.InputObject.Steps) {
                     //if (step.Name == Name) {
                     if (step.Name == cmdlet.Name) {
                         stepToRemove = step;
                     }
                 }
+                */
                 //InputObject.Steps.Remove(stepToRemove);
                 cmdlet.InputObject.Steps.Remove(stepToRemove);
                 //if (PassThru) {
@@ -467,12 +476,20 @@ namespace UIAutomation
                     //WriteVerbose(this, "found step: " + step.Name);
                     cmdlet.WriteVerbose(cmdlet, "found step: " + step.Name);
                     //if (step.Name == Name) {
+                    if (step.Name != cmdlet.Name) continue;
+                    //WriteVerbose(this, "found the step we've been searching for");
+                    cmdlet.WriteVerbose(cmdlet, "found the step we've been searching for");
+                    stepToRun = step;
+                    break;
+
+                    /*
                     if (step.Name == cmdlet.Name) {
                         //WriteVerbose(this, "found the step we've been searching for");
                         cmdlet.WriteVerbose(cmdlet, "found the step we've been searching for");
                         stepToRun = step;
                         break;
                     }
+                    */
                 }
                 if (stepToRun == null) {
                     //                    ErrorRecord err =

@@ -217,6 +217,32 @@ namespace UIAutomation
             bool interrupt = false;
             
             System.DateTime nowDate = System.DateTime.Now;
+            if (!((nowDate - cmdlet.StartDate).TotalSeconds > (Preferences.Timeout/1000))) return interrupt;
+            cmdlet.WriteVerbose(
+                cmdlet,
+                "Timout expired. Running the StopAction scriptblock");
+                
+            // 20130819
+            // cmdlet.RunWizardStopScriptBlocks(cmdlet, wizard, wizard.StopActionParameters);
+            cmdlet.RunWizardStopScriptBlocks(cmdlet, wizard, wizard.StopActionParameters, false);
+                
+            cmdlet.WriteVerbose(
+                cmdlet,
+                "outputting the wizard");
+                
+            if (this.Quiet) {
+                cmdlet.WriteObject(cmdlet, false);
+                // 20130712
+                //return;
+                return interrupt;
+            } else {
+                cmdlet.WriteError(cmdlet, "Timeout expired", "TimeoutExpired", ErrorCategory.OperationTimeout, true);
+            }
+                
+            // 20130712
+            interrupt = true;
+
+            /*
             if ((nowDate - cmdlet.StartDate).TotalSeconds > (Preferences.Timeout / 1000)) {
                 
                 cmdlet.WriteVerbose(
@@ -243,7 +269,8 @@ namespace UIAutomation
                 // 20130712
                 interrupt = true;
             }
-            
+            */
+
             // 20130712
             return interrupt;
         }

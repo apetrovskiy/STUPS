@@ -22,6 +22,20 @@ namespace UIAutomation.Commands
         public StartUIACacheRequestCommand()
         {
             System.Collections.ArrayList defaultPropertiesList = 
+                new System.Collections.ArrayList
+                {
+                    "Name",
+                    "AutomationId",
+                    "ClassName",
+                    "ControlType",
+                    "NativeWindowHandle",
+                    "BoundingRectangle",
+                    "ClickablePoint",
+                    "IsEnabled",
+                    "IsOffscreen"
+                };
+            /*
+            System.Collections.ArrayList defaultPropertiesList =
                 new System.Collections.ArrayList();
             defaultPropertiesList.Add("Name");
             defaultPropertiesList.Add("AutomationId");
@@ -32,9 +46,24 @@ namespace UIAutomation.Commands
             defaultPropertiesList.Add("ClickablePoint");
             defaultPropertiesList.Add("IsEnabled");
             defaultPropertiesList.Add("IsOffscreen");
+            */
+
             this.Property = (string[])defaultPropertiesList.ToArray(typeof(string));
             
             System.Collections.ArrayList defaultPatternsList = 
+                new System.Collections.ArrayList
+                {
+                    "ExpandCollapsePattern",
+                    "InvokePattern",
+                    "ScrollItemPattern",
+                    "SelectionItemPattern",
+                    "SelectionPattern",
+                    "TextPattern",
+                    "TogglePattern",
+                    "ValuePattern"
+                };
+            /*
+            System.Collections.ArrayList defaultPatternsList =
                 new System.Collections.ArrayList();
             defaultPatternsList.Add("ExpandCollapsePattern");
             defaultPatternsList.Add("InvokePattern");
@@ -44,6 +73,8 @@ namespace UIAutomation.Commands
             defaultPatternsList.Add("TextPattern");
             defaultPatternsList.Add("TogglePattern");
             defaultPatternsList.Add("ValuePattern");
+            */
+
             this.Pattern = (string[])defaultPatternsList.ToArray(typeof(string));
             
             this.Scope = "SUBTREE";
@@ -79,8 +110,11 @@ namespace UIAutomation.Commands
                     WriteError(this, err, true);
                 }
                 
+                CurrentData.CacheRequest = new CacheRequest {AutomationElementMode = AutomationElementMode.Full};
+                /*
                 CurrentData.CacheRequest = new CacheRequest();
                 CurrentData.CacheRequest.AutomationElementMode = AutomationElementMode.Full;
+                */
                 switch (this.Filter.ToUpper()) {
                     case "RAW":
                         CurrentData.CacheRequest.TreeFilter = Automation.RawViewCondition;
@@ -126,6 +160,48 @@ namespace UIAutomation.Commands
                     CurrentData.CacheRequest.Add(AutomationElement.IsEnabledProperty);
                     CurrentData.CacheRequest.Add(AutomationElement.IsOffscreenProperty);
                 } else {
+                    foreach (string t in this.Property)
+                    {
+                        switch (t.ToUpper()) {
+                            case "NAME":
+                                CurrentData.CacheRequest.Add(AutomationElement.NameProperty);
+                                break;
+                            case "AUTOMATIONID":
+                                CurrentData.CacheRequest.Add(AutomationElement.AutomationIdProperty);
+                                break;
+                            case "CLASSNAME":
+                            case "CLASS":
+                                CurrentData.CacheRequest.Add(AutomationElement.ClassNameProperty);
+                                break;
+                            case "CONTROLTYPE":
+                                CurrentData.CacheRequest.Add(AutomationElement.ControlTypeProperty);
+                                break;
+                            case "NATIVEWINDOWHANDLE":
+                                CurrentData.CacheRequest.Add(AutomationElement.NativeWindowHandleProperty);
+                                break;
+                            case "BOUNDINGRECTANGLE":
+                            case "RECTANGLE":
+                            case "BOUNDING":
+                                CurrentData.CacheRequest.Add(AutomationElement.BoundingRectangleProperty);
+                                break;
+                            case "CLICKABLEPOINT":
+                            case "POINT":
+                            case "CLICKABLE":
+                                CurrentData.CacheRequest.Add(AutomationElement.ClickablePointProperty);
+                                break;
+                            case "ISENABLED":
+                            case "ENABLED":
+                                CurrentData.CacheRequest.Add(AutomationElement.IsEnabledProperty);
+                                break;
+                            case "ISOFFSCREEN":
+                            case "ISVISIBLE":
+                            case "VISIBLE":
+                                CurrentData.CacheRequest.Add(AutomationElement.IsOffscreenProperty);
+                                break;
+                        }
+                    }
+
+                    /*
                     for (int i = 0; i < this.Property.Length; i++) {
                         switch (this.Property[i].ToUpper()) {
                             case "NAME":
@@ -165,6 +241,7 @@ namespace UIAutomation.Commands
                                 break;
                         }
                     }
+                    */
                 }
                 
                 if (this.Pattern.Length == 0) {
@@ -177,6 +254,88 @@ namespace UIAutomation.Commands
                     CurrentData.CacheRequest.Add(TogglePattern.Pattern);
                     CurrentData.CacheRequest.Add(ValuePattern.Pattern);
                 } else {
+                    foreach (string t in this.Pattern)
+                    {
+                        switch (t.ToUpper()) {
+                            case "DOCK":
+                            case "DOCKPATTERN":
+                                CurrentData.CacheRequest.Add(DockPattern.Pattern);
+                                break;
+                            case "EXPAND":
+                            case "COLLAPSE":
+                            case "EXPANDPATTERN":
+                            case "COLLAPSEPATTERN":
+                            case "EXPANDCOLLAPSEPATTERN":
+                                CurrentData.CacheRequest.Add(ExpandCollapsePattern.Pattern);
+                                break;
+                            case "GRIDITEM":
+                            case "GRIDITEMPATTERN":
+                                CurrentData.CacheRequest.Add(GridItemPattern.Pattern);
+                                break;
+                            case "GRID":
+                            case "GRIDPATTERN":
+                                CurrentData.CacheRequest.Add(GridPattern.Pattern);
+                                break;
+                            case "INVOKE":
+                            case "INVOKEPATTERN":
+                                CurrentData.CacheRequest.Add(InvokePattern.Pattern);
+                                break;
+                            case "MULTIPLEVIEW":
+                            case "MULTIPLEVIEWPATTERN":
+                                CurrentData.CacheRequest.Add(MultipleViewPattern.Pattern);
+                                break;
+                            case "RANGEVALUE":
+                            case "RANGEVALUEPATTERN":
+                                CurrentData.CacheRequest.Add(RangeValuePattern.Pattern);
+                                break;
+                            case "SCROLLITEM":
+                            case "SCROLLITEMPATTERN":
+                                CurrentData.CacheRequest.Add(ScrollItemPattern.Pattern);
+                                break;
+                            case "SCROLL":
+                            case "SCROLLPATTERN":
+                                CurrentData.CacheRequest.Add(ScrollPattern.Pattern);
+                                break;
+                            case "SELECTIONITEM":
+                            case "SELECTIONITEMPATTERN":
+                                CurrentData.CacheRequest.Add(SelectionItemPattern.Pattern);
+                                break;
+                            case "SELECTION":
+                            case "SELECTIONPATTERN":
+                                CurrentData.CacheRequest.Add(SelectionPattern.Pattern);
+                                break;
+                            case "TABLEITEM":
+                            case "TABLEITEMPATTERN":
+                                CurrentData.CacheRequest.Add(TableItemPattern.Pattern);
+                                break;
+                            case "TABLE":
+                            case "TABLEPATTERN":
+                                CurrentData.CacheRequest.Add(TablePattern.Pattern);
+                                break;
+                            case "TEXT":
+                            case "TEXTPATTERN":
+                                CurrentData.CacheRequest.Add(TextPattern.Pattern);
+                                break;
+                            case "TOGGLE":
+                            case "TOGGLEPATTERN":
+                                CurrentData.CacheRequest.Add(TogglePattern.Pattern);
+                                break;
+                            case "TRANSFORM":
+                            case "TRANSFORMPATTERN":
+                                CurrentData.CacheRequest.Add(TransformPattern.Pattern);
+                                break;
+                            case "VALUE":
+                            case "VALUEPATTERN":
+                                CurrentData.CacheRequest.Add(ValuePattern.Pattern);
+                                break;
+                            case "WINDOW":
+                            case "WINDOWPATTERN":
+                                CurrentData.CacheRequest.Add(WindowPattern.Pattern);
+                                break;
+                        }
+                    }
+
+                    /*
                     for (int i = 0; i < this.Pattern.Length; i++) {
                         switch (this.Pattern[i].ToUpper()) {
                             case "DOCK":
@@ -256,6 +415,7 @@ namespace UIAutomation.Commands
                                 break;
                         }
                     }
+                    */
                 }
 
                 Preferences.FromCache = true;

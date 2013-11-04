@@ -553,12 +553,21 @@ namespace UIAutomation
                 TextPattern textPatternGet = _control.GetCurrentPattern(TextPattern.Pattern) as TextPattern;
                 if (textPatternGet != null) {
                     int textLength = ((Commands.InvokeUIATextPatternGetCommand)this).TextLength;
-                    if (((Commands.InvokeUIATextPatternGetCommand)this).VisibleArea) {
+                    if (((Commands.InvokeUIATextPatternGetCommand)this).VisibleArea)
+                    {
                         TextPatternRange[] textRanges = textPatternGet.GetVisibleRanges();
+                        foreach (TextPatternRange tpr in textRanges)
+                        {
+                            WriteObject(this, tpr);
+                        }
+
+                        /*
                         for (int i = 0; i < textRanges.Length; i++) {
                             WriteObject(this, textRanges[i]);
                         }
-                    } else {
+                        */
+                    }
+                    else {
                         string resultText = textPatternGet.DocumentRange.GetText(textLength);
                         WriteObject(this, resultText);
                     }
@@ -620,11 +629,18 @@ namespace UIAutomation
         {
             try {
                 SelectionItemPattern selItemPattern1 = _control.GetCurrentPattern(SelectionItemPattern.Pattern) as SelectionItemPattern;
+                if (selItemPattern1 == null) return;
+                if (selItemPattern1.Current.IsSelected) {
+                    WriteObject(this, InputObject);
+                }
+
+                /*
                 if (selItemPattern1 != null) {
                     if (selItemPattern1.Current.IsSelected) {
                         WriteObject(this, InputObject);
                     }
                 }
+                */
             } catch (Exception eSeleItemStatePatternException) {
             }
         }
@@ -682,6 +698,38 @@ namespace UIAutomation
         {
             try {
                 ScrollPattern scPattern = _control.GetCurrentPattern(ScrollPattern.Pattern) as ScrollPattern;
+                if (scPattern == null) return;
+                try {
+                    bool horizontal = ((InvokeUIAScrollPatternCommand)this).Horizontal;
+                    bool vertical = ((InvokeUIAScrollPatternCommand)this).Vertical;
+                    int horPercent = ((InvokeUIAScrollPatternCommand)this).HorizontalPercent;
+                    int verPercent = ((InvokeUIAScrollPatternCommand)this).VerticalPercent;
+                    System.Windows.Automation.ScrollAmount horAmount, verAmount = System.Windows.Automation.ScrollAmount.NoAmount;
+                    horAmount = (System.Windows.Automation.ScrollAmount)((InvokeUIAScrollPatternCommand)this).HorizontalAmount;
+                    verAmount = (System.Windows.Automation.ScrollAmount)((InvokeUIAScrollPatternCommand)this).VerticalAmount;
+                    if ((horPercent + verPercent) > 0) {
+                        scPattern.SetScrollPercent(horPercent, verPercent);
+                    }
+                    if (horizontal) {
+                        if (horAmount > 0) {
+                            scPattern.ScrollHorizontal(horAmount);
+                        }
+                    }
+                    if (vertical) {
+                        if (verAmount > 0) {
+                            scPattern.ScrollVertical(verAmount);
+                        }
+                    }
+                    if (this.PassThru && null != (inputObject as AutomationElement)) {
+                        WriteObject(this, inputObject);
+                    } else {
+                        WriteObject(this, true);
+                    }
+                } catch {
+                    WriteObject(this, false);
+                }
+
+                /*
                 if (scPattern != null) {
                     try {
                         bool horizontal = ((InvokeUIAScrollPatternCommand)this).Horizontal;
@@ -713,6 +761,7 @@ namespace UIAutomation
                         WriteObject(this, false);
                     }
                 }
+                */
             } catch {
                 WriteObject(this, false);
             }
@@ -722,6 +771,19 @@ namespace UIAutomation
         {
             try {
                 ScrollItemPattern sciPattern = _control.GetCurrentPattern(ScrollItemPattern.Pattern) as ScrollItemPattern;
+                if (sciPattern == null) return;
+                try {
+                    sciPattern.ScrollIntoView();
+                    if (this.PassThru && null != (inputObject as AutomationElement)) {
+                        WriteObject(this, inputObject);
+                    } else {
+                        WriteObject(this, true);
+                    }
+                } catch {
+                    WriteObject(this, false);
+                }
+
+                /*
                 if (sciPattern != null) {
                     try {
                         sciPattern.ScrollIntoView();
@@ -734,6 +796,7 @@ namespace UIAutomation
                         WriteObject(this, false);
                     }
                 }
+                */
             } catch {
                 WriteObject(this, false);
             }
@@ -743,6 +806,19 @@ namespace UIAutomation
         {
             try {
                 RangeValuePattern rvPatternSet = _control.GetCurrentPattern(RangeValuePattern.Pattern) as RangeValuePattern;
+                if (rvPatternSet == null) return;
+                try {
+                    rvPatternSet.SetValue(((Commands.InvokeUIARangeValuePatternSetCommand)Child).Value);
+                    if (this.PassThru && null != (inputObject as AutomationElement)) {
+                        WriteObject(this, inputObject);
+                    } else {
+                        WriteObject(this, true);
+                    }
+                } catch {
+                    WriteObject(this, false);
+                }
+
+                /*
                 if (rvPatternSet != null) {
                     try {
                         rvPatternSet.SetValue(((Commands.InvokeUIARangeValuePatternSetCommand)Child).Value);
@@ -755,6 +831,7 @@ namespace UIAutomation
                         WriteObject(this, false);
                     }
                 }
+                */
             } catch (Exception eRVSetPatternException) {
             }
         }

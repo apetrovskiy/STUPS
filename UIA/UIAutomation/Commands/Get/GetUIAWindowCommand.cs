@@ -99,13 +99,16 @@ namespace UIAutomation.Commands
             if (null != _returnedWindows && _returnedWindows.Count > 0) {
                 
                 if (this.TestMode) {
-                    
+                    this.WriteObject(this, !this.WaitNoWindow);
+
+                    /*
                     if (this.WaitNoWindow) {
                         this.WriteObject(this, false);
                     } else {
                         this.WriteObject(this, true);
                     }
-                    
+                    */
+
                 } else {
                     this.WriteObject(this, _returnedWindows);
                 }
@@ -113,13 +116,16 @@ namespace UIAutomation.Commands
             } else {
                 
                 if (this.TestMode) {
-                    
+                    this.WriteObject(this, this.WaitNoWindow);
+
+                    /*
                     if (this.WaitNoWindow) {
                         this.WriteObject(this, true);
                     } else {
                         this.WriteObject(this, false);
                     }
-    
+                    */
+
                 } else {
                 
                     string name = string.Empty;

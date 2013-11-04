@@ -75,6 +75,14 @@ namespace UIAutomation
 		
 		internal static void DecreaseQueue(int newCount)
 		{
+		    if (newCount >= HighlightersQueue.Count) return;
+		    while (newCount < HighlightersQueue.Count) {
+		        Highlighter highlighterToBeDisposed = 
+		            HighlightersQueue.Dequeue();
+		        highlighterToBeDisposed.Dispose();
+		    }
+
+		    /*
 			if (newCount < HighlightersQueue.Count) {
 				while (newCount < HighlightersQueue.Count) {
 					Highlighter highlighterToBeDisposed = 
@@ -82,9 +90,10 @@ namespace UIAutomation
 					highlighterToBeDisposed.Dispose();
 				}
 			}
+            */
 		}
-		
-		internal static void Enqueue(Highlighter highLighter)
+
+	    internal static void Enqueue(Highlighter highLighter)
 		{
 			if (null == highLighter) {
 				return;
@@ -103,6 +112,26 @@ namespace UIAutomation
 		    string highlighterData)
 		{
 			Highlighter highlighter = null;
+		    if (null == (elementToHighlight as AutomationElement)) return;
+		    if (0 >= highlightersGeneration) {
+		        HighlighterNumber++;
+		    } else {
+		        HighlighterNumber = highlightersGeneration;
+		    }
+				
+		    highlighter =
+		        new Highlighter(
+		            elementToHighlight.Current.BoundingRectangle.Height,
+		            elementToHighlight.Current.BoundingRectangle.Width,
+		            elementToHighlight.Current.BoundingRectangle.X,
+		            elementToHighlight.Current.BoundingRectangle.Y,
+		            elementToHighlight.Current.NativeWindowHandle,
+		            (Highlighters)(HighlighterNumber % 10),
+		            HighlighterNumber,
+		            highlighterData);
+		    ExecutionPlan.Enqueue(highlighter);
+
+		    /*
             if (null != (elementToHighlight as AutomationElement)) {
 
 				if (0 >= highlightersGeneration) {
@@ -123,6 +152,7 @@ namespace UIAutomation
                         highlighterData);
 				ExecutionPlan.Enqueue(highlighter);
 			}
-		}
+            */
+        }
 	}
 }

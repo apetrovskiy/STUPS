@@ -141,7 +141,25 @@ namespace UIAutomation
 	        		
 	        	}
 	        	catch {}
-        		
+
+        	    if (null == controlsList || 0 >= controlsList.Count) continue;
+        	    if (step == this.ActiveStep) {
+	        	        
+        	        // 20130423
+        	        if (Preferences.HighlightCheckedControl) {
+        	            foreach (AutomationElement elementChecked in controlsList) {
+        	                UIAHelper.HighlightCheckedControl(elementChecked);
+        	            }
+        	        }
+	        	        
+        	        continue;
+        	    }
+	        	    
+        	    resultStep = step;
+        	    this.ActiveStep = step;
+        	    break;
+
+        	    /*
 	        	if (null != controlsList && 0 < controlsList.Count) {
 
 	        	    if (step == this.ActiveStep) {
@@ -160,7 +178,8 @@ namespace UIAutomation
 	        		this.ActiveStep = step;
 	        		break;
 	        	}
-        	}
+                */
+            }
         	
         	// 20130515
         	// moving the current step to the end of the step collection

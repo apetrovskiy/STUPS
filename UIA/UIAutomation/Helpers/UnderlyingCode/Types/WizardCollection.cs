@@ -7,6 +7,8 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System.Linq;
+
 namespace UIAutomation
 {
     using System;
@@ -47,13 +49,21 @@ namespace UIAutomation
         {
             Wizard wizard = null;
             
+            foreach (Wizard wzd in WizardCollection.Wizards.Where(wzd => name == wzd.Name))
+            {
+                wizard = wzd;
+                return wizard;
+            }
+
+            /*
             foreach (Wizard wzd in WizardCollection.Wizards) {
                 if (name == wzd.Name) {
                     wizard = wzd;
                     return wizard;
                 }
             }
-            
+            */
+
             return wizard;
         }
     }

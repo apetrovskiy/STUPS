@@ -52,7 +52,8 @@ namespace UIAutomation
             double Y,
             int intHandle,
             Highlighters control,
-            System.Nullable<System.Drawing.Color> color)
+            Color? color)
+            // System.Nullable<System.Drawing.Color> color)
         {
 			this.disposeSides();
 			
@@ -108,10 +109,24 @@ namespace UIAutomation
             double Y,
             int intHandle,
             Highlighters control,
-            System.Nullable<System.Drawing.Color> color)
+            Color? color)
+            // System.Nullable<System.Drawing.Color> color)
         {
             try {
+                if (height == 0 || width == 0) return;
+                int border = getBorder(control);
+                NativeMethods.CursorPoint p = 
+                    getPoint(
+                        X,
+                        Y,
+                        intHandle);;
+                    
+                this.paintLeftSide(control, border, p, height, width, color);
+                this.paintTopSide(control, border, p, height, width, color);
+                this.paintRightSide(control, border, p, height, width, color);
+                this.paintBottomSide(control, border, p, height, width, color);
 
+                /*
                 if (height != 0 && width != 0) {
                     
                     int border = getBorder(control);
@@ -126,6 +141,7 @@ namespace UIAutomation
                     this.paintRightSide(control, border, p, height, width, color);
                     this.paintBottomSide(control, border, p, height, width, color);
                 }
+                */
             }
             catch { //(Exception eHighlighter) {
             }
@@ -186,6 +202,16 @@ namespace UIAutomation
             NativeMethods.CursorPoint p = new NativeMethods.CursorPoint();
             p.X = (int)X;
             p.Y = (int)Y;
+            if (intHandle == 0) return p;
+            try { // Windows Vista or higher only
+                IntPtr handle = 
+                    new IntPtr(intHandle);
+                NativeMethods.PhysicalToLogicalPoint(handle, ref p);
+            } 
+            catch {
+            }
+
+            /*
             if (intHandle != 0) {
                 try { // Windows Vista or higher only
                     IntPtr handle = 
@@ -195,6 +221,7 @@ namespace UIAutomation
                 catch {
             	}
             }
+            */
             return p;
         }
 
@@ -217,7 +244,8 @@ namespace UIAutomation
             NativeMethods.CursorPoint p,
             double height,
             double width,
-            System.Nullable<System.Drawing.Color> color)
+            Color? color)
+            // System.Nullable<System.Drawing.Color> color)
         {
             leftSide = new Side(p.X - (border / 2),
                                 p.Y,
@@ -234,7 +262,8 @@ namespace UIAutomation
             NativeMethods.CursorPoint p,
             double height,
             double width,
-            System.Nullable<System.Drawing.Color> color)
+            Color? color)
+            // System.Nullable<System.Drawing.Color> color)
         {
             topSide = new Side(p.X,
                                p.Y - (border / 2),
@@ -251,7 +280,8 @@ namespace UIAutomation
             NativeMethods.CursorPoint p,
             double height,
             double width,
-            System.Nullable<System.Drawing.Color> color)
+            Color? color)
+            // System.Nullable<System.Drawing.Color> color)
         {
             rightSide = new Side(p.X +
                                  width -
@@ -270,7 +300,8 @@ namespace UIAutomation
             NativeMethods.CursorPoint p,
             double height,
             double width,
-            System.Nullable<System.Drawing.Color> color)
+            Color? color)
+            // System.Nullable<System.Drawing.Color> color)
         {
             bottomSide = new Side(p.X,
                                   p.Y +
@@ -421,7 +452,8 @@ namespace UIAutomation
             double width, 
             double height, 
             Highlighters control,
-            System.Nullable<System.Drawing.Color> color)
+            Color? color)
+            // System.Nullable<System.Drawing.Color> color)
         {
             this.TopMost = true;
             //this.FormBorderStyle = FormBorderStyle.None;
@@ -433,6 +465,27 @@ namespace UIAutomation
                 this.BackColor = (System.Drawing.Color)color;
                 this.ForeColor = (System.Drawing.Color)color;
             } else {
+                switch (control)
+                {
+                    case Highlighters.Parent:
+                        this.BackColor = Preferences.HighlighterColorParent;
+                        this.ForeColor = Preferences.HighlighterColorParent;
+                        break;
+                    case Highlighters.Element:
+                        this.BackColor = Preferences.HighlighterColor;
+                        this.ForeColor = Preferences.HighlighterColor;
+                        break;
+                    default:
+                        this.BackColor = Color.FromKnownColor(ExecutionPlan.colorTable[(int)control]);
+                        this.ForeColor = Color.FromKnownColor(ExecutionPlan.colorTable[(int)control]);
+                        break;
+                }
+    //            else if (control == Highlighters.FirstChild) {
+    //                this.BackColor = Preferences.HighlighterColorFirstChild;
+    //                this.ForeColor = Preferences.HighlighterColorFirstChild;
+    //            }
+
+                /*
                 if (control == Highlighters.Parent) {
                     this.BackColor = Preferences.HighlighterColorParent;
                     this.ForeColor = Preferences.HighlighterColorParent;
@@ -443,10 +496,7 @@ namespace UIAutomation
                 	this.BackColor = Color.FromKnownColor(ExecutionPlan.colorTable[(int)control]);
                 	this.ForeColor = Color.FromKnownColor(ExecutionPlan.colorTable[(int)control]);
                 }
-    //            else if (control == Highlighters.FirstChild) {
-    //                this.BackColor = Preferences.HighlighterColorFirstChild;
-    //                this.ForeColor = Preferences.HighlighterColorFirstChild;
-    //            }
+                */
             }
             
             this.AllowTransparency = true;

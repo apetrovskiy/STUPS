@@ -134,12 +134,18 @@ this.WriteTrace(this, "eventId 002");
                             "Could not catch the event");
                     WriteError(this, err, true);
                 }
-                
+
+                if (notFoundYet) continue;
+                CurrentData.LastEventInfoAdded = false;
+                WriteObject(this, CurrentData.LastEventSource);
+
+                /*
                 if (!notFoundYet) {
                     CurrentData.LastEventInfoAdded = false;
                     WriteObject(this, CurrentData.LastEventSource);
                 }
-                
+                */
+
             } while (notFoundYet);
         }
         

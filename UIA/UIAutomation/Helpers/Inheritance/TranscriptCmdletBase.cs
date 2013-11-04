@@ -96,6 +96,21 @@ namespace UIAutomation
                         // the last in the pipeline
                         longRecordingString += ";";
                     }
+                    if (i != (recordList.Count - 1) && i != 0 && !tempString.Contains("Get-UIAChildWindow") && i != 1 &&
+                        !tempString.Contains("Tree") && !tempString.Contains("Menu") && !tempString.Contains("Tool") &&
+                        !tempString.Contains("Tab") && !tempString.Contains("Table") && !tempString.Contains("List") &&
+                        !tempString.Contains("Grid") && !tempString.Contains("Button") && !tempString.Contains("Combo"))
+                        continue;
+                    shortRecordingString += tempString;
+                    if (i > 0) {
+                        // all but the last in the pipeline
+                        shortRecordingString += " | `\r\n";
+                    } else {
+                        // the last in the pipeline
+                        shortRecordingString += ";";
+                    }
+
+                    /*
                     if (i == (recordList.Count - 1) ||
                         i == 0 || // the last element or invoked event
                         tempString.Contains("Get-UIAChildWindow") ||
@@ -120,6 +135,7 @@ namespace UIAutomation
                             shortRecordingString += ";";
                         }
                     }
+                    */
                 }
                 if (WriteCurrentPattern) {
                     try {

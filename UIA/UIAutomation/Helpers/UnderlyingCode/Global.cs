@@ -62,6 +62,43 @@ namespace UIAutomation
         
         internal static void CreateLogFile()
         {
+            if (!Preferences.Log) return;
+            try {
+                Stream = 
+                    System.IO.File.Open(
+                        Preferences.LogPath,
+                        FileMode.OpenOrCreate | FileMode.Append,
+                        FileAccess.Write,
+                        FileShare.Write);
+                LogStream = 
+                    new StreamWriter(Stream);
+            } catch {
+                Preferences.LogPath = 
+                    "'" +
+                    System.Environment.GetEnvironmentVariable(
+                        "TEMP",
+                        EnvironmentVariableTarget.User) + 
+                    @"\UIAutomation_" +
+                    //UIAHelper.GetTimedFileName() +
+                    PSTestLib.PSTestHelper.GetTimedFileName() +
+                    ".log" +
+                    "'";
+                try {
+                    Stream =
+                        System.IO.File.Open(
+                            Preferences.LogPath,
+                            FileMode.OpenOrCreate | FileMode.Append,
+                            FileAccess.Write,
+                            FileShare.Write);
+                    LogStream = 
+                        new StreamWriter(Stream);
+                } 
+                catch {
+                    Preferences.Log = false;
+                }
+            }
+
+            /*
             if (Preferences.Log) {
                 try {
                     Stream = 
@@ -98,10 +135,21 @@ namespace UIAutomation
                     }
                 }
             }
+            */
         }
-        
+
         internal static void CloseLogFile()
         {
+            if (!Preferences.Log) return;
+            if (LogStream == null) return;
+            try {
+                LogStream.Flush();
+                LogStream.Close();
+            } 
+            catch { }
+            LogStream = null;
+
+            /*
             if (Preferences.Log) {
                 if (LogStream != null) {
                     try {
@@ -112,10 +160,38 @@ namespace UIAutomation
                     LogStream = null;
                 }
             }
+            */
         }
-        
+
         internal static void WriteToLogFile(string record)
         {
+            if (!Preferences.Log) return;
+            if (System.IO.File.Exists(Preferences.LogPath)) {
+                if (LogStream == null) {
+                    Stream = 
+                        System.IO.File.Open(
+                            Preferences.LogPath,
+                            FileMode.OpenOrCreate | FileMode.Append,
+                            FileAccess.Write,
+                            FileShare.Write);
+                    LogStream = 
+                        new StreamWriter(Stream);
+                }
+                // 20130216
+                System.DateTime now = System.DateTime.Now;
+                string dateAndTime = 
+                    now.ToShortDateString() + 
+                    " " +
+                    //System.DateTime.Now.ToShortTimeString();
+                    now.ToLongTimeString() +
+                    " " +
+                    now.Millisecond;
+                LogStream.WriteLine(dateAndTime + "\t" + record);
+                //  //  // LogStream.Flush();
+                //  // 
+            }
+
+            /*
             if (Preferences.Log) {
                 if (System.IO.File.Exists(Preferences.LogPath)) {
                     if (LogStream == null) {
@@ -142,7 +218,9 @@ namespace UIAutomation
                     //  // 
                 }
             }
+            */
         }
+
         #endregion Log
     }
 }

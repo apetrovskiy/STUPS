@@ -47,11 +47,15 @@ namespace UIAutomation
                 System.DateTime nowDate = System.DateTime.Now;
                 try {
                     string tempIsReport = string.Empty;
+                    tempIsReport = isEnabledOrIsVisible ? _control.Current.IsEnabled.ToString() : _control.Current.IsOffscreen.ToString();
+
+                    /*
                     if (isEnabledOrIsVisible) {
                         tempIsReport = _control.Current.IsEnabled.ToString();
                     } else {
                         tempIsReport = _control.Current.IsOffscreen.ToString();
                     }
+                    */
                     WriteVerbose(this,
                                  "AutomationID: " + 
                                  _control.Current.AutomationId +
@@ -98,6 +102,20 @@ namespace UIAutomation
                         ErrorCategory.OperationTimeout,
                         true);
                 }
+                if (_control != null) continue;
+                WriteVerbose(this, "the control is unavailable");
+                    
+                this.WriteError(
+                    this,
+                    CmdletName(this) + ": control is unavailable. AutomationId: " + 
+                    _control.Current.AutomationId +
+                    ", title: " +
+                    _control.Current.Name,
+                    "TimeoutExpired",
+                    ErrorCategory.OperationTimeout,
+                    true);
+
+                /*
                 if (_control == null) {
                     WriteVerbose(this, "the control is unavailable");
                     
@@ -111,6 +129,7 @@ namespace UIAutomation
                         ErrorCategory.OperationTimeout,
                         true);
                 }
+                */
             } while (this.Wait);
         }
     }

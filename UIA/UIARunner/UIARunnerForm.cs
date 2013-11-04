@@ -125,8 +125,25 @@ namespace UIARunner
                 
                 res =
                     PSTestRunner.TestRunner.InitScript();
-                if (!res) {
-                    index = 
+                if (res) return;
+                index = 
+                    this.dgvTestResults.Rows.Add(
+                        System.DateTime.Now.ToString(),
+                        TMX.TestData.TestStateFailed,
+                        "UIARunner.ps1",
+                        string.Empty,
+                        string.Empty,
+                        "UIARunner.ps1");
+
+                setRowStatus(index, TMX.TestData.TestStateFailed);
+                setTestResultsCounters(TMX.TestData.TestStateFailed, 1);
+                setToReadyToRunState();
+                Application.DoEvents();
+                return;
+                /*
+                if (!res)
+                {
+                    index =
                         this.dgvTestResults.Rows.Add(
                             System.DateTime.Now.ToString(),
                             TMX.TestData.TestStateFailed,
@@ -141,6 +158,7 @@ namespace UIARunner
                     Application.DoEvents();
                     return;
                 }
+                */
             }
             catch (Exception eInitException) {
                 index = 
@@ -210,9 +228,13 @@ namespace UIARunner
         {
             
             DataGridViewCellStyle cellStyle = 
+                new DataGridViewCellStyle {BackColor = System.Drawing.Color.Red};
+            /*
+            DataGridViewCellStyle cellStyle =
                 new DataGridViewCellStyle();
             cellStyle.BackColor = System.Drawing.Color.Red;
-            
+            */
+
             string screenShotPath = string.Empty;
             try {
                 screenShotPath = 

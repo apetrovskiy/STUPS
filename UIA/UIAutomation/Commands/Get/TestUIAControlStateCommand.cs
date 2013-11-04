@@ -45,11 +45,15 @@ namespace UIAutomation.Commands
                     this.InputObject,
                     this.SearchCriteria,
                     Preferences.Timeout);
+            this.WriteObject(this, result);
+
+            /*
             if (result) {
                 this.WriteObject(this, true);
             } else {
                 this.WriteObject(this, false);
             }
+            */
         }
     }
 }

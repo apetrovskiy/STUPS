@@ -652,12 +652,22 @@ namespace UIAutomation
             elementControlType =
                 elementControlType.Substring(
                     elementControlType.IndexOf('.') + 1);
+            foreach (string controlTypeName in controlType)
+            {
+                if (controlTypeName.ToUpper() == elementControlType.ToUpper())
+                {
+                    result = true;
+                }
+            }
+
+            /*
             for (int i = 0; i < controlType.Length; i++) {
                 if (controlType[i].ToUpper() == elementControlType.ToUpper()) {
                     result = true;
             	}
             }
-            
+            */
+
             return result;
         }
         
@@ -673,6 +683,9 @@ namespace UIAutomation
             foreach (AutomationElement inputObject in this.InputObject) {
             
                 AutomationElement sibling = null;
+                sibling = nextSibling ? walker.GetNextSibling(inputObject) : walker.GetPreviousSibling(inputObject);
+
+                /*
                 if (nextSibling) {
                     // 20120823
                     //sibling = walker.GetNextSibling(this.InputObject);
@@ -682,6 +695,7 @@ namespace UIAutomation
                     //sibling = walker.GetPreviousSibling(this.InputObject);
                     sibling = walker.GetPreviousSibling(inputObject);
                 }
+                */
                 WriteObject(this, sibling);
             
             } // 20120823
@@ -697,6 +711,9 @@ namespace UIAutomation
                     System.Windows.Automation.Condition.TrueCondition);
             
             AutomationElement sibling = null;
+            sibling = firstChild ? walker.GetFirstChild(inputObject) : walker.GetLastChild(inputObject);
+
+            /*
             if (firstChild) {
                 // 20120824
                 //sibling = walker.GetFirstChild(this.InputObject);
@@ -706,6 +723,7 @@ namespace UIAutomation
                 //sibling = walker.GetLastChild(this.InputObject);
                 sibling = walker.GetLastChild(inputObject);
             }
+            */
             WriteObject(this, sibling);
         }
         
@@ -725,9 +743,51 @@ namespace UIAutomation
                 scope == TreeScope.Descendants) {
                 WriteVerbose(this, "selected TreeScope." + scope.ToString());
                 AndCondition[] conditions = getControlsConditions(this);
-                if (conditions != null && conditions.Length > 0) {
+                if (conditions != null && conditions.Length > 0)
+                {
                     WriteVerbose(this, "conditions number: " +
                                  conditions.Length.ToString());
+                    foreach (AndCondition andCondition in conditions)
+                    {
+                        if (andCondition == null) continue;
+                        WriteVerbose(this, andCondition.GetConditions());
+                        temporaryResults =
+                            // 20120823
+                            //this.InputObject.FindAll(scope,
+                            inputObject.FindAll(scope,
+                                andCondition);
+                        if (temporaryResults.Count > 0) {
+                            searchResults.AddRange(temporaryResults.Cast<AutomationElement>());
+                            /*
+                                foreach (AutomationElement element in temporaryResults)
+                                {
+                                    searchResults.Add(element);
+                                }
+                                */
+                        }
+
+                        /*
+                        if (andCondition != null) {
+                            WriteVerbose(this, andCondition.GetConditions());
+                            temporaryResults =
+                                // 20120823
+                                //this.InputObject.FindAll(scope,
+                                inputObject.FindAll(scope,
+                                    andCondition);
+                            if (temporaryResults.Count > 0) {
+                                searchResults.AddRange(temporaryResults.Cast<AutomationElement>());
+                                //->
+                                foreach (AutomationElement element in temporaryResults)
+                                {
+                                    searchResults.Add(element);
+                                }
+                                -//
+                            }
+                        }
+                        */
+                    }
+
+                    /*
                     for (int i = 0; i < conditions.Length; i++) {
                         if (conditions[i] != null) {
                             WriteVerbose(this, conditions[i].GetConditions());
@@ -738,15 +798,16 @@ namespace UIAutomation
                                                          conditions[i]);
                             if (temporaryResults.Count > 0) {
                                 searchResults.AddRange(temporaryResults.Cast<AutomationElement>());
-                                /*
+                                //->
                                 foreach (AutomationElement element in temporaryResults)
                                 {
                                     searchResults.Add(element);
                                 }
-                                */
-                            }
-                        }
+                                -//
+                }
+                }
                     }
+                    */
                 } else {
                     WriteVerbose(this, "no conditions. Performing search with TrueCondition");
                     temporaryResults =
@@ -773,7 +834,15 @@ namespace UIAutomation
                 WriteObject(this, searchResults.ToArray());
             } // if (scope == TreeScope.Children ||
                 //scope == TreeScope.Descendants)
-            if (scope == TreeScope.Parent ||
+                if (scope != TreeScope.Parent && scope != TreeScope.Ancestors) continue;
+                outResult = 
+                    // 20120823
+                    //UIAHelper.GetParentOrAncestor(this.InputObject, scope);
+                    UIAHelper.GetParentOrAncestor(inputObject, scope);
+                WriteObject(this, outResult);
+
+                /*
+              if (scope == TreeScope.Parent ||
                 scope == TreeScope.Ancestors) {
                 outResult = 
                     // 20120823
@@ -781,6 +850,7 @@ namespace UIAutomation
                     UIAHelper.GetParentOrAncestor(inputObject, scope);
                 WriteObject(this, outResult);
             }
+            */
                 
             } // 20120823
             

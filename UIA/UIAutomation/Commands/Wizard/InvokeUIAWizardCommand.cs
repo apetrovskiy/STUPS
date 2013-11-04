@@ -29,12 +29,18 @@ namespace UIAutomation.Commands
         
         protected override void BeginProcessing()
         {
-            if (null != this.Parameters && 0 < this.Parameters.Length) {
-                
+            if (null != this.Parameters && 0 < this.Parameters.Length)
+            {
                 this.WriteVerbose(
                     this,
                     "converting -Parameters hashtables to dictionaries");
-                
+
+                /*
+                foreach (Dictionary<string, object> dictParameters in this.Parameters.Select(parametersTable => this.ConvertHashtableToDictionary(parametersTable)))
+                {
+                    this.ParametersDictionaries.Add(dictParameters);
+                }
+                */
                 foreach (Hashtable parametersTable in this.Parameters) {
 
                     Dictionary<string, object> dictParameters =
@@ -43,15 +49,21 @@ namespace UIAutomation.Commands
                     this.ParametersDictionaries.Add(dictParameters);
                 }
             }
-            
+
             this.WriteInfo(this, "accepted " + this.ParametersDictionaries.Count.ToString() + " step parameters");
             
-            if (null != this.Directions && 0 < this.Directions.Length) {
-                
+            if (null != this.Directions && 0 < this.Directions.Length)
+            {
                 this.WriteVerbose(
                     this,
                     "converting -Directions hashtables to dictionaries");
-                
+
+                /*
+                foreach (Dictionary<string, object> dictDirections in this.Directions.Select(directionsTable => this.ConvertHashtableToDictionary(directionsTable)))
+                {
+                    this.DirectionsDictionaries.Add(dictDirections);
+                }
+                */
                 foreach (Hashtable directionsTable in this.Directions) {
                     
                     Dictionary<string, object> dictDirections =
@@ -60,7 +72,7 @@ namespace UIAutomation.Commands
                     this.DirectionsDictionaries.Add(dictDirections);
                 }
             }
-            
+
             this.WriteInfo(this, "accepted " + this.DirectionsDictionaries.Count.ToString() + " step directions");
 
         	UIAInvokeWizardCommand command =

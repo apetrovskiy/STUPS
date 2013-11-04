@@ -170,6 +170,105 @@ namespace UIAutomation.Commands
         {
             try {
                 WriteVerbose(this, "preparing results");
+                if (Recording.Count <= 0) return;
+                WriteVerbose(this, "there are " + Recording.Count.ToString() + " records");
+                #region preparing script files
+                // use user's %TEMP%
+                string recordingFileName =
+                    System.Environment.GetEnvironmentVariable(
+                        "TEMP",
+                        System.EnvironmentVariableTarget.User) + 
+                    @"\";
+                string shRecordingFileName = 
+                    recordingFileName;
+//                    // file names from parameters -Long... and -Short...
+//                    if (this.LongRecordingFileName.Length > 0) {
+//                        recordingFileName +=
+//                            this.LongRecordingFileName;
+//                    }
+//                    if (this.ShortRecordingFileName.Length > 0) {
+//                        shRecordingFileName +=
+//                            this.ShortRecordingFileName;
+//                    }
+                // genearated file names
+                if (this.LongRecordingFileName.Length == 0) {
+                    recordingFileName += @"UIAutomation_recording_";
+                }
+                if (this.ShortRecordingFileName.Length == 0) {
+                    shRecordingFileName += 
+                        @"UIAutomation_recording_short_";
+                }
+                string datetime = 
+                    (((((System.DateTime.Now.ToShortDateString().ToString() +
+                         "_" + 
+                         System.DateTime.Now.ToShortTimeString()).Replace(":", "_")).Replace("/", "_")).Replace(";", "_")).Replace(@"\", "_")).Replace(" ", "_");
+                if (this.LongRecordingFileName.Length == 0) {
+                    recordingFileName += datetime;
+                    recordingFileName += ".ps1";
+                }
+                if (this.ShortRecordingFileName.Length == 0) {
+                    shRecordingFileName += datetime;
+                    shRecordingFileName += ".ps1";
+                }
+                    
+                    
+                // file names from parameters -Long... and -Short...
+                if (this.LongRecordingFileName.Length > 0) {
+                    recordingFileName =
+                        this.LongRecordingFileName;
+                }
+                if (this.ShortRecordingFileName.Length > 0) {
+                    shRecordingFileName =
+                        this.ShortRecordingFileName;
+                }
+                    
+                    
+                WriteVerbose(this, "long recording file name " + 
+                                   recordingFileName);
+                WriteVerbose(this, "short recording file name " +
+                                   shRecordingFileName);
+                    
+                System.IO.StreamWriter writerToLongFile = 
+                    new System.IO.StreamWriter(recordingFileName, true);
+                System.IO.StreamWriter writerToShortFile = 
+                    new System.IO.StreamWriter(shRecordingFileName, true);
+                WriteVerbose(this, "log writers created");
+    
+                if (!this.NoScriptHeader) {
+                    WriteVerbose(this, "writing the script header");
+                    writeHeader(ref writerToLongFile, recordingFileName);
+                    writeHeader(ref writerToShortFile, shRecordingFileName);
+                }
+                #endregion preparing script files
+
+                #region writing the script
+                for (int j = 0; j < Recording.Count; j++) {
+                    object patternsInfo = null;
+                    if (this.WriteCurrentPattern) {
+                        patternsInfo = RecordingPatterns[j];
+                    }
+                    WritingRecord(
+                        Recording[j], 
+                        //RecordingPatterns[j],
+                        patternsInfo,
+                        writerToLongFile,
+                        writerToShortFile);
+                    WriteVerbose(this, "the record " + j.ToString() + " has been written");
+                }
+                #endregion writing the script
+                writerToLongFile.Flush(); writerToLongFile.Close();
+                writerToShortFile.Flush(); writerToShortFile.Close();
+                try {
+                    System.Diagnostics.Process.Start("notepad.exe", recordingFileName);
+                    System.Diagnostics.Process.Start("notepad.exe", shRecordingFileName);
+                } catch {
+                    WriteObject(this, "The full script recorded is here: " + 
+                                      recordingFileName);
+                    WriteObject(this, "The short script recorded is here: " + 
+                                      shRecordingFileName);
+                }
+
+                /*
                 if (Recording.Count > 0) {
                     WriteVerbose(this, "there are " + Recording.Count.ToString() + " records");
                     #region preparing script files
@@ -268,6 +367,7 @@ namespace UIAutomation.Commands
                                     shRecordingFileName);
                     }
                 } // the end of if (recording.Count > 0)
+                */
             } catch (Exception eRecording) {
                 WriteObject(this, false);
                 WriteDebug(this, "Could not save the recording");

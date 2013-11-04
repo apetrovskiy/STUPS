@@ -259,7 +259,19 @@ namespace UIAutomation.Commands
         private string getPatternStrings()
         {
             string result = string.Empty;
-            
+
+            if (!this.Full) return result;
+            AutomationPattern[] supportedPatterns =
+                currentInputObject.GetSupportedPatterns();
+            if (null == supportedPatterns || 0 >= supportedPatterns.Length) return result;
+            foreach (AutomationPattern pattern in supportedPatterns) {
+                result += ";Has";
+                result +=
+                    pattern.ProgrammaticName.Substring(0, pattern.ProgrammaticName.Length - 19);
+                result += "=$true";
+            }
+
+            /*
             if (this.Full) {
                 AutomationPattern[] supportedPatterns =
                     currentInputObject.GetSupportedPatterns();
@@ -272,6 +284,7 @@ namespace UIAutomation.Commands
                     }
                 }
             }
+            */
             return result;
         }
         
@@ -462,7 +475,14 @@ namespace UIAutomation.Commands
                         break;
                 }
             }
-            
+
+            if (resultString == null || resultString == string.Empty || resultString.Length <= 0) return result;
+            if (resultString.Substring(resultString.Length - 1) != "{" &&
+                resultString.Substring(resultString.Length - 1) != ";") {
+                    result = ";" + result;
+                }
+
+            /*
             if (resultString != null &&
                      resultString != string.Empty &&
                      resultString.Length > 0) {
@@ -471,7 +491,8 @@ namespace UIAutomation.Commands
                     result = ";" + result;
                 }
             }
-            
+            */
+
             return result;
         }
         

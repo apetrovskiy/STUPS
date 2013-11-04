@@ -99,7 +99,10 @@ namespace UIAutomation
         
         internal static ArrayList GetControlByName(
             GetControlCmdletBase cmdlet,
-            AutomationElement container,
+            // 20131104
+            // refactoring
+            //AutomationElement container,
+            IAutomationElementAdapter container,
             string controlTitle)
         {
 

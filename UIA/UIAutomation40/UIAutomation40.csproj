@@ -628,6 +628,9 @@
     <Compile Include="..\UIAutomation\Helpers\Inheritance\Wizard\WizardStepCmdletBase.cs">
       <Link>Helpers\Inheritance\Wizard\WizardStepCmdletBase.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\AutomationElementAdapter.cs">
+      <Link>Helpers\UnderlyingCode\Adapter\AutomationElementAdapter.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Commands\Container\UIANewContainerCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\Container\UIANewContainerCommand.cs</Link>
     </Compile>
@@ -713,6 +716,9 @@
     <Compile Include="..\UIAutomation\Helpers\UserSettings\UserData.cs">
       <Link>Helpers\UserSettings\UserData.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Interface\IAutomationElementAdapter.cs">
+      <Link>Interface\IAutomationElementAdapter.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
@@ -747,10 +753,12 @@
     <Folder Include="Helpers\UnderlyingCode\Commands\RDP" />
     <Folder Include="Helpers\UnderlyingCode\Commands\Wizard" />
     <Folder Include="Helpers\UnderlyingCode\Commands\Wizard" />
+    <Folder Include="Helpers\UnderlyingCode\Adapter" />
     <Folder Include="Helpers\UnderlyingCode\RDP" />
     <Folder Include="Helpers\UnderlyingCode\Types" />
     <Folder Include="Helpers\UnderlyingCode\Types" />
     <Folder Include="Helpers\UnderlyingCode\Types" />
+    <Folder Include="Interface" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>

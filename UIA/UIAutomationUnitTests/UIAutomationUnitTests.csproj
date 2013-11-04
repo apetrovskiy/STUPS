@@ -92,6 +92,7 @@
     <Compile Include="Commands\Wait\WaitUIAWindowCommandTestFixture.cs" />
     <Compile Include="Commands\Wizard\AddUIAWizardStepCommandTestFixture.cs" />
     <Compile Include="Commands\Wizard\NewUIAWizardCommandTestFixture.cs" />
+    <Compile Include="Fakes\FakeAutomationElement.cs" />
     <Compile Include="Helpers\UnderlyingCode\elementOfPossibleControlTypeTestFixture.cs" />
     <Compile Include="Helpers\UnderlyingCode\GetAutomationElementsViaWildcards_FindAllTestFixture.cs" />
     <Compile Include="Helpers\UnderlyingCode\getControlConditionsTestFixture.cs" />
@@ -146,6 +147,7 @@
     <Folder Include="Helpers" />
     <Folder Include="Helpers\UnderlyingCode" />
     <Folder Include="Interfaces" />
+    <Folder Include="Fakes" />
     <Folder Include="ParamChecks" />
     <Folder Include="ParamChecks\Cache" />
     <Folder Include="ParamChecks\Common" />

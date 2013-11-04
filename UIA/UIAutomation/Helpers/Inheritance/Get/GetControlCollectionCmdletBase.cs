@@ -79,7 +79,10 @@ namespace UIAutomation
         }
         
         protected void GetAutomationElementsViaWildcards_FindAll(
-            AutomationElement inputObject,
+            // 20131104
+            // refactoring
+            //AutomationElement inputObject,
+            IAutomationElementAdapter inputObject,
             AndCondition conditions,
             bool caseSensitive,
             bool onlyOneResult,
@@ -102,7 +105,10 @@ namespace UIAutomation
         
         internal ArrayList GetAutomationElementsViaWildcards_FindAll(
             GetControlCollectionCmdletBase cmdlet,
-            AutomationElement inputObject,
+            // 20131104
+            // refactoring
+            //AutomationElement inputObject,
+            IAutomationElementAdapter inputObject,
             AndCondition conditions,
             bool caseSensitive,
             bool onlyOneResult,
@@ -318,7 +324,10 @@ namespace UIAutomation
         }
         
         private ArrayList getAutomationElementsWithFindAll(
-            AutomationElement element,
+            // 20131104
+            // refactoring
+            //AutomationElement element,
+            IAutomationElementAdapter element,
             string name,
             string automationId,
             string className,

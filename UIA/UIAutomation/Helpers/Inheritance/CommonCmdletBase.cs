@@ -1298,16 +1298,28 @@ namespace UIAutomation
                 tempCmdlet = null;
 
                 foreach (AutomationElement inputObject in cmdlet.InputObject) {
+                    
+                    // 20131104
+                    // refactoring
+                    IAutomationElementAdapter adapterOfInputObject =
+                        new AutomationElementAdapter(inputObject);
 
                     int processId = 0;
                     do {
-
-                        if (inputObject != null &&
-                            (int)inputObject.Current.ProcessId > 0) {
+                        
+                        // 20131104
+                        // refactoring
+                        //if (inputObject != null &&
+                        if (adapterOfInputObject != null &&
+                            //(int)inputObject.Current.ProcessId > 0) {
+                            (int)adapterOfInputObject.Current.ProcessId > 0) {
                             this.WriteVerbose(cmdlet, "CommonCmdletBase: getControl(cmdlet)");
                             this.WriteVerbose(cmdlet, "cmdlet.InputObject != null");
-
-                            processId = inputObject.Current.ProcessId;
+                            
+                            // 20131104
+                            // refactoring
+                            //processId = inputObject.Current.ProcessId;
+                            processId = adapterOfInputObject.Current.ProcessId;
 
                         }
                         // 20130204
@@ -1316,7 +1328,10 @@ namespace UIAutomation
                         if (0 == aeCtrl.Count) {
                             if (!notTextSearch && !cmdlet.Win32) {
                                 
-                                SearchByTextViaUIA(cmdlet, inputObject, conditionsForTextSearch);
+                                // 20131104
+                                // refactoring
+                                //SearchByTextViaUIA(cmdlet, inputObject, conditionsForTextSearch);
+                                SearchByTextViaUIA(cmdlet, adapterOfInputObject, conditionsForTextSearch);
                             }
                         }
                         #endregion text search
@@ -1325,7 +1340,10 @@ namespace UIAutomation
                         if (0 == aeCtrl.Count) {
                             if (!notTextSearch && cmdlet.Win32) {
                                 
-                                SearchByTextViaWin32(cmdlet, inputObject, cmdlet.ControlType);
+                                // 20131104
+                                // refactoring
+                                //SearchByTextViaWin32(cmdlet, inputObject, cmdlet.ControlType);
+                                SearchByTextViaWin32(cmdlet, adapterOfInputObject, cmdlet.ControlType);
                             }
                         }
                         #endregion text search Win32
@@ -1333,8 +1351,11 @@ namespace UIAutomation
                         #region exact search
                         if (0 == aeCtrl.Count && notTextSearch) {
                             if (!Preferences.DisableExactSearch && !cmdlet.Win32 ) {
-
-                                SearchByExactConditionsViaUIA(cmdlet, inputObject, conditions);
+                                
+                                // 20131104
+                                // refactoring
+                                //SearchByExactConditionsViaUIA(cmdlet, inputObject, conditions);
+                                SearchByExactConditionsViaUIA(cmdlet, adapterOfInputObject, conditions);
                                 
                             }
                         }
@@ -1343,8 +1364,11 @@ namespace UIAutomation
                         #region wildcard search
                         if (0 == aeCtrl.Count && notTextSearch) {
                             if (!Preferences.DisableWildCardSearch && !cmdlet.Win32) {
-
-                                SearchByWildcardViaUIA(cmdlet, ref aeCtrl, inputObject, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class, cmdlet.Value, conditionsForWildCards);
+                                
+                                // 20131104
+                                // refactoring
+                                //SearchByWildcardViaUIA(cmdlet, ref aeCtrl, inputObject, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class, cmdlet.Value, conditionsForWildCards);
+                                SearchByWildcardViaUIA(cmdlet, ref aeCtrl, adapterOfInputObject, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class, cmdlet.Value, conditionsForWildCards);
                             }
                         }
                         #endregion wildcard search
@@ -1354,7 +1378,10 @@ namespace UIAutomation
                             
                             if (!Preferences.DisableWin32Search || cmdlet.Win32) {
                                 
-                                SearchByWildcardViaWin32(cmdlet, inputObject);
+                                // 20131104
+                                // refactoring
+                                //SearchByWildcardViaWin32(cmdlet, inputObject);
+                                SearchByWildcardViaWin32(cmdlet, adapterOfInputObject);
                                 
                             } // if (!Preferences.DisableWin32Search || cmdlet.Win32)
                         } // FindWindowEx
@@ -1472,7 +1499,10 @@ namespace UIAutomation
 
         }
 
-        internal void SearchByWildcardViaWin32(GetControlCmdletBase cmdlet, AutomationElement inputObject)
+        // 20131104
+        // refactoring
+        //internal void SearchByWildcardViaWin32(GetControlCmdletBase cmdlet, AutomationElement inputObject)
+        internal void SearchByWildcardViaWin32(GetControlCmdletBase cmdlet, IAutomationElementAdapter inputObject)
         {
             this.WriteVerbose(cmdlet, "[getting the control] using FindWindowEx");
             ArrayList tempListWin32 = new ArrayList();
@@ -1514,7 +1544,10 @@ namespace UIAutomation
         internal void SearchByWildcardViaUIA(
             GetControlCmdletBase cmdlet, // 20130318 // ??
             ref ArrayList resultCollection,
-            AutomationElement inputObject,
+            // 20131104
+            // refactoring
+            //AutomationElement inputObject,
+            IAutomationElementAdapter inputObject,
             string name,
             string automationId,
             string className,
@@ -1606,7 +1639,10 @@ namespace UIAutomation
 
         internal void SearchByExactConditionsViaUIA(
             GetControlCmdletBase cmdlet,
-            AutomationElement inputObject,
+            // 20131104
+            // refactoring
+            //AutomationElement inputObject,
+            IAutomationElementAdapter inputObject,
             System.Windows.Automation.AndCondition conditions)
         {
             #region the -First story
@@ -1649,6 +1685,9 @@ namespace UIAutomation
             
             if (conditions != null) {
                 if (inputObject != null && (int)inputObject.Current.ProcessId > 0) {
+                    // 20131104
+                    // refactoring
+                    //AutomationElementCollection tempCollection = inputObject.FindAll(System.Windows.Automation.TreeScope.Descendants, conditions);
                     AutomationElementCollection tempCollection = inputObject.FindAll(System.Windows.Automation.TreeScope.Descendants, conditions);
                     foreach (AutomationElement tempElement in tempCollection) {
                         if (null == cmdlet.SearchCriteria || 0 == cmdlet.SearchCriteria.Length) {
@@ -1675,7 +1714,10 @@ namespace UIAutomation
 
         internal void SearchByTextViaUIA(
             GetControlCmdletBase cmdlet,
-            AutomationElement inputObject,
+            // 20131104
+            // refactoring
+            //AutomationElement inputObject,
+            IAutomationElementAdapter inputObject,
             System.Windows.Automation.AndCondition conditionsForTextSearch)
         {
             this.WriteVerbose(cmdlet, "Text search");
@@ -1694,7 +1736,10 @@ namespace UIAutomation
         
         internal void SearchByTextViaWin32(
             GetControlCmdletBase cmdlet,
-            AutomationElement inputObject,
+            // 20131104
+            // refactoring
+            //AutomationElement inputObject,
+            IAutomationElementAdapter inputObject,
             string controlType)
         {
 

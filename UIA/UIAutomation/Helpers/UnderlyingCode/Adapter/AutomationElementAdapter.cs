@@ -22,6 +22,10 @@ namespace UIAutomation
 	{
         private AutomationElement elementHolder;
         
+        public AutomationElementAdapter()
+        {
+        }
+        
         public AutomationElementAdapter(AutomationElement element)
         {
             this.elementHolder = element;
@@ -156,6 +160,7 @@ namespace UIAutomation
 		public AutomationElement SourceElement
 		{
 		    get { return this.elementHolder; }
+		    set { this.elementHolder = value; }
 		}
 	}
     

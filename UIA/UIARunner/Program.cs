@@ -11,6 +11,11 @@ namespace UIARunner
 {
     using System;
     using System.Windows.Forms;
+    // 20131105
+    // refactoring
+    using PSTestRunner;
+    using TMX;
+    using PSRunner;
 
     /// <summary>
     /// Class with program entry point.

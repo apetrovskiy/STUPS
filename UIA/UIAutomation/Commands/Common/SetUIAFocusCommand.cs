@@ -23,12 +23,6 @@ namespace UIAutomation.Commands
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class SetUIAFocusCommand : HasControlInputCmdletBase
     {
-        #region Constructor
-        public SetUIAFocusCommand()
-        {
-        }
-        #endregion Constructor
-        
         #region Parameters
         #endregion Parameters
         

@@ -25,12 +25,6 @@ namespace UIAutomation.Commands
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIAControlCommand : GetControlCmdletBase
     {
-        #region Constructor
-        public GetUIAControlCommand()
-        {
-        }
-        #endregion Constructor
-
         #region Parameters
         #endregion Parameters
 

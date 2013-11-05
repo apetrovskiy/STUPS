@@ -297,16 +297,29 @@ namespace UIAutomationTestForms
         private void loadControl<T>(T control, string _controlType)
         {
             try {
+                (control as System.Windows.Forms.Control).GetType()
+                    .GetProperty("Text")
+                    .SetValue(control, this.ControlName != string.Empty ? this.ControlName : _controlType, null);
+
+                /*
                 if (this.ControlName != string.Empty){
                     (control as System.Windows.Forms.Control).GetType().GetProperty("Text").SetValue(control, this.ControlName, null);
                 } else {
                     (control as System.Windows.Forms.Control).GetType().GetProperty("Text").SetValue(control, _controlType, null);
                 }
+                */
+                (control as System.Windows.Forms.Control).GetType()
+                    .GetProperty("Name")
+                    .SetValue(control,
+                        this.ControlAutomationId != string.Empty ? this.ControlAutomationId : _controlType, null);
+
+                /*
                 if (this.ControlAutomationId != string.Empty){
                     (control as System.Windows.Forms.Control).GetType().GetProperty("Name").SetValue(control, this.ControlAutomationId, null);
                 } else {
                     (control as System.Windows.Forms.Control).GetType().GetProperty("Name").SetValue(control, _controlType, null);
                 }
+                */
                 (control as System.Windows.Forms.Control).Visible = false;
                 Random r = new Random();
                 (control as System.Windows.Forms.Control).Left = 
@@ -331,21 +344,39 @@ namespace UIAutomationTestForms
     //            } else {
     //                (control as System.Windows.Forms.Control).GetType().GetProperty("Text").SetValue(control, _controlType, null);
     //            }
+                (control as System.Windows.Forms.Control).GetType()
+                    .GetProperty("Text")
+                    .SetValue(control,
+                        controlToForm.ControlName != string.Empty
+                            ? controlToForm.ControlName
+                            : controlToForm.ControlTypeAsString, null);
+
+                /*
                 if (controlToForm.ControlName != string.Empty){
                     (control as System.Windows.Forms.Control).GetType().GetProperty("Text").SetValue(control, controlToForm.ControlName, null);
                 } else {
                     (control as System.Windows.Forms.Control).GetType().GetProperty("Text").SetValue(control, controlToForm.ControlTypeAsString, null);
                 }
-    //            if (this.ControlAutomationId != string.Empty){
+                */
+                //            if (this.ControlAutomationId != string.Empty){
     //                (control as System.Windows.Forms.Control).GetType().GetProperty("Name").SetValue(control, this.ControlAutomationId, null);
     //            } else {
     //                (control as System.Windows.Forms.Control).GetType().GetProperty("Name").SetValue(control, _controlType, null);
     //            }
+                (control as System.Windows.Forms.Control).GetType()
+                    .GetProperty("Name")
+                    .SetValue(control,
+                        controlToForm.ControlAutomationId != string.Empty
+                            ? controlToForm.ControlAutomationId
+                            : controlToForm.ControlTypeAsString, null);
+
+                /*
                 if (controlToForm.ControlAutomationId != string.Empty) {
                     (control as System.Windows.Forms.Control).GetType().GetProperty("Name").SetValue(control, controlToForm.ControlAutomationId, null);
                 } else {
                     (control as System.Windows.Forms.Control).GetType().GetProperty("Name").SetValue(control, controlToForm.ControlTypeAsString, null);
                 }
+                */
                 (control as System.Windows.Forms.Control).Visible = false;
                 Random r = new Random();
                 (control as System.Windows.Forms.Control).Left = 

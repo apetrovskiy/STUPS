@@ -18,10 +18,6 @@ namespace UIAutomation.Commands
     [Cmdlet(VerbsCommon.Show, "UIAStartRun")]
     public class ShowUIAStartRunCommand : HotkeyCmdletBase
     {
-        public ShowUIAStartRunCommand()
-        {
-        }
-        
         protected override void BeginProcessing()
         {
             this.keyCodes.Add(0xE0);

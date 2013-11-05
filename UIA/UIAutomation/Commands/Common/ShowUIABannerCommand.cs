@@ -18,10 +18,6 @@ namespace UIAutomation.Commands
     [Cmdlet(VerbsCommon.Show, "UIABanner")]
     public class ShowUIABannerCommand : CommonCmdletBase
     {
-        public ShowUIABannerCommand()
-        {
-        }
-        
         #region Parameters
         [Parameter(Mandatory = true,
                    Position = 0)]

@@ -39,10 +39,17 @@ namespace UIAutomation
         protected internal bool ValidateWizardName(string name)
         {
             bool result = false;
+            if (string.IsNullOrEmpty(name)) {
+                WriteVerbose(this, "wizard name is empty");
+                return result;
+            }
+
+            /*
             if (name == null || name == string.Empty) {
                 WriteVerbose(this, "wizard name is empty");
                 return result;
             }
+            */
             /*
             foreach (Wizard wzd in WizardCollection.Wizards)
             {
@@ -67,9 +74,15 @@ namespace UIAutomation
         {
             Wizard result = null;
             
+            if (string.IsNullOrEmpty(name)) {
+                return result;
+            }
+
+            /*
             if (name == null || name == string.Empty) {
                 return result;
             }
+            */
             foreach (Wizard wzd in WizardCollection.Wizards.Where(wzd => wzd.Name == name))
             {
                 result = wzd;

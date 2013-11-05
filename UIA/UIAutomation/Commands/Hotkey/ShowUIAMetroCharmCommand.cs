@@ -18,10 +18,6 @@ namespace UIAutomation.Commands
     [Cmdlet(VerbsCommon.Show, "UIAMetroCharm")]
     public class ShowUIAMetroCharmCommand : HotkeyCmdletBase
     {
-        public ShowUIAMetroCharmCommand()
-        {
-        }
-        
         protected override void BeginProcessing()
         {
             this.keyCodes.Add(0xE0);

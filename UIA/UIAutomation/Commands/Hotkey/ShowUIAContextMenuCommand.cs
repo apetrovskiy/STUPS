@@ -18,10 +18,6 @@ namespace UIAutomation.Commands
     [Cmdlet(VerbsCommon.Show, "UIAContextMenu")]
     public class ShowUIAContextMenuCommand : HotkeyCmdletBase
     {
-        public ShowUIAContextMenuCommand()
-        {
-        }
-        
         protected override void BeginProcessing()
         {
             this.keyCodes.Add(0x10);

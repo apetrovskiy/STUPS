@@ -143,7 +143,7 @@ namespace UIAutomation
                     try
                     {
                         int bytesSize = optionalEntropy.Length;
-                        entropyBlob.pbData = Marshal.AllocHGlobal(optionalEntropy.Length); ;
+                        entropyBlob.pbData = Marshal.AllocHGlobal(optionalEntropy.Length); //;
                         if (IntPtr.Zero == entropyBlob.pbData)
                         {
                             throw new Exception("Unable to allocate entropy data buffer.");

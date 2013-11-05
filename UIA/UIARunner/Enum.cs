@@ -13,7 +13,7 @@ namespace UIARunner
     
     public enum RunModes
     {
-        GUI = 1,
+        Gui = 1,
         Unattended = 2
     }
 }

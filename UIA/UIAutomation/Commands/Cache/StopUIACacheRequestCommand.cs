@@ -19,10 +19,6 @@ namespace UIAutomation.Commands
     [Cmdlet(VerbsLifecycle.Stop, "UIACacheRequest")]
     public class StopUIACacheRequestCommand : CacheRequestCmdletBase
     {
-        public StopUIACacheRequestCommand()
-        {
-        }
-        
         protected override void BeginProcessing()
         {
             try {

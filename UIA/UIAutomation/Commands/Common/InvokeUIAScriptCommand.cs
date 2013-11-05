@@ -21,12 +21,6 @@ namespace UIAutomation.Commands
     [Cmdlet(VerbsLifecycle.Invoke, "UIAScript")]
     internal class InvokeUIAScriptCommand : HasTimeoutCmdletBase
     {
-        #region Constructor
-        public InvokeUIAScriptCommand()
-        {
-        }
-        #endregion Constructor
-        
         #region Parameters
         [Parameter(Mandatory = true)]
         public ScriptBlock[] ScriptBlock { get; set; }

@@ -21,12 +21,6 @@ namespace UIAutomation.Commands
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIAActiveWindowCommand : HasScriptBlockCmdletBase
     {
-        #region constructor
-        public GetUIAActiveWindowCommand()
-        {
-        }
-        #endregion constructor
-        
         protected override void BeginProcessing()
         {
             AutomationElement element = 

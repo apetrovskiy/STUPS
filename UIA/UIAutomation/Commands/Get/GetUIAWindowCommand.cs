@@ -23,13 +23,6 @@ namespace UIAutomation.Commands
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIAWindowCommand : GetWindowCmdletBase
     {
-        
-        #region Constructor
-        public GetUIAWindowCommand()
-        {
-        }
-        #endregion Constructor
-
         #region Parameters
         #endregion Parameters
 

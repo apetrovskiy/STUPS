@@ -21,10 +21,6 @@ namespace UIAutomation.Commands
     [Cmdlet(VerbsCommon.Clear, "UIAControlText")]
     public class ClearUIAControlTextCommand : HasControlInputCmdletBase
     {
-        public ClearUIAControlTextCommand()
-        {
-        }
-        
         protected override void ProcessRecord()
         {
             if (!this.CheckControl(this)) { return; }

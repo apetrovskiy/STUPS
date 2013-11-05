@@ -99,6 +99,8 @@ namespace UIAutomation.Commands
                 //CurrentData.CacheRequest = new CacheRequest();
                 
                 if (CurrentData.CacheRequest != null) {
+                    
+                    // 20131105
                     ErrorRecord err = 
                         new ErrorRecord(
                             new Exception("There is already active CacheRequest"),
@@ -108,6 +110,8 @@ namespace UIAutomation.Commands
                     err.ErrorDetails = 
                         new ErrorDetails("There is already active CacheRequest. Please close it first");
                     WriteError(this, err, true);
+
+                    //
                 }
                 
                 CurrentData.CacheRequest = new CacheRequest {AutomationElementMode = AutomationElementMode.Full};

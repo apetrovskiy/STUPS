@@ -20,12 +20,6 @@ namespace UIAutomation.Commands
     // disabled in the current release
     internal class ConvertFromUIAListCommand : ConvertCmdletBase
     {
-        #region Constructor
-        public ConvertFromUIAListCommand()
-        {
-        }
-        #endregion Constructor
-        
         #region Parameters
         #endregion Parameters
         

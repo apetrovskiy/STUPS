@@ -18,10 +18,6 @@ namespace UIAutomation.Commands
 	[Cmdlet(VerbsCommon.Hide, "UIAExecutionPlan")]
 	public class HideUIAExecutionPlanCommand : ExecutionPlanCmdletBase
 	{
-		public HideUIAExecutionPlanCommand()
-		{
-		}
-		
 		protected override void BeginProcessing()
 		{
 			UIAutomation.ExecutionPlan.DisposeHighlighers();

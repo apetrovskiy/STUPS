@@ -18,10 +18,6 @@ namespace UIAutomation.Commands
     [Cmdlet(VerbsCommon.Show, "UIATaskManager")]
     public class ShowUIATaskManagerCommand : HotkeyCmdletBase
     {
-        public ShowUIATaskManagerCommand()
-        {
-        }
-        
         protected override void BeginProcessing()
         {
             this.keyCodes.Add(0x11);

@@ -21,12 +21,6 @@ namespace UIAutomation.Commands
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIAControlContextMenuCommand : HasControlInputCmdletBase
     {
-        #region Constructor
-        public GetUIAControlContextMenuCommand()
-        {
-        }
-        #endregion Constructor
-        
         /// <summary>
         /// Processes the pipeline.
         /// </summary>

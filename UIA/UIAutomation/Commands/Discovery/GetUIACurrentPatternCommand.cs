@@ -23,12 +23,6 @@ namespace UIAutomation.Commands
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIACurrentPatternCommand : DiscoveryCmdletBase
     {
-        #region Constructor
-        public GetUIACurrentPatternCommand()
-        {
-        }
-        #endregion Constructor
-        
         #region Parameters
         //[ValidateNotNullOrEmpty()]
         //[Parameter(Mandatory = true, 

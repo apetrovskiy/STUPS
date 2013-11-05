@@ -21,12 +21,6 @@ namespace UIAutomation.Commands
     [Cmdlet(VerbsCommon.Get, "UIAFocus")]
     public class GetUIAFocusCommand : HasControlInputCmdletBase
     {
-        #region Constructor
-        public GetUIAFocusCommand()
-        {
-        }
-        #endregion Constructor
-        
         #region Parameters
         [Parameter(Mandatory = false)]
         internal new AutomationElement InputObject { get; set; }

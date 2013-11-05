@@ -19,10 +19,6 @@ namespace UIAutomation.Commands.Common
     [Cmdlet(VerbsCommon.Show, "UIADesktop")]
     internal class ShowUIADesktopCommand : HasScriptBlockCmdletBase
     {
-        public ShowUIADesktopCommand()
-        {
-        }
-        
         protected override void BeginProcessing()
         {
             try{

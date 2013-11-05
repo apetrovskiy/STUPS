@@ -452,10 +452,12 @@ namespace UIAutomation
             try {
                 TogglePattern togglePattern1 = _control.GetCurrentPattern(TogglePattern.Pattern) as TogglePattern;
                 if (togglePattern1 != null) {
-                    bool toggleState = false;
+                    bool toggleState = togglePattern1.Current.ToggleState == ToggleState.On;
+                    /*
                     if (togglePattern1.Current.ToggleState == ToggleState.On) {
                         toggleState = true;
                     }
+                    */
                     WriteObject(this, toggleState);
                 } else {
                     WriteVerbose(this, "couldn't get TogglePattern");

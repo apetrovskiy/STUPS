@@ -22,10 +22,6 @@ namespace UIAutomation.Commands
     [Cmdlet(VerbsCommon.Set, "UIAControlKeys")]
     public class SetUIAControlKeysCommand : HasControlInputCmdletBase
     {
-        public SetUIAControlKeysCommand()
-        {
-        }
-        
         #region Parameters
         [Parameter(Mandatory = true,
                    Position = 0)]

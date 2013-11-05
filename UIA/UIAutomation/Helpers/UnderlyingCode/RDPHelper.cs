@@ -85,6 +85,17 @@ drivestoredirect:s:
         //public static void CreateRDPFile(NewUIARemoteDesktopProtocolFileCommand cmdlet)
         public static void CreateRDPFile(RDPCmdletBase cmdlet)
         {
+            if (!string.IsNullOrEmpty(cmdlet.Template)) {
+                
+                cmdlet.WriteVerbose(cmdlet, "Using the external template");
+                RDPFileTemplate = cmdlet.Template;
+            } else {
+                
+                cmdlet.WriteVerbose(cmdlet, "Using the default template");
+                RDPFileTemplate = rDPProtocolFile;
+            }
+
+            /*
             if (null != cmdlet.Template && string.Empty != cmdlet.Template) {
                 
                 cmdlet.WriteVerbose(cmdlet, "Using the external template");
@@ -94,7 +105,8 @@ drivestoredirect:s:
                 cmdlet.WriteVerbose(cmdlet, "Using the default template");
                 RDPFileTemplate = rDPProtocolFile;
             }
-            
+            */
+
             RDPFileTemplate +=
                 "full address:s:" +
                 cmdlet.Hostname +
@@ -120,6 +132,16 @@ drivestoredirect:s:
                         "remoteapplicationmode:i:1");
             }
             
+            if (!string.IsNullOrEmpty(cmdlet.RemoteAppProgram)) {
+                
+                RDPFileTemplate =
+                    RDPFileTemplate.Replace(
+                        "remoteapplicationprogram:s:",
+                        "remoteapplicationprogram:s:" +
+                        cmdlet.RemoteAppProgram);
+            }
+
+            /*
             if (null != cmdlet.RemoteAppProgram && string.Empty != cmdlet.RemoteAppProgram) {
                 
                 RDPFileTemplate =
@@ -128,7 +150,18 @@ drivestoredirect:s:
                         "remoteapplicationprogram:s:" +
                         cmdlet.RemoteAppProgram);
             }
-            
+            */
+
+            if (!string.IsNullOrEmpty(cmdlet.RemoteAppCmdline)) {
+                
+                RDPFileTemplate =
+                    RDPFileTemplate.Replace(
+                        "remoteapplicationcmdline:s:",
+                        "remoteapplicationcmdline:s:" +
+                        cmdlet.RemoteAppCmdline);
+            }
+
+            /*
             if (null != cmdlet.RemoteAppCmdline && string.Empty != cmdlet.RemoteAppCmdline) {
                 
                 RDPFileTemplate =
@@ -137,7 +170,18 @@ drivestoredirect:s:
                         "remoteapplicationcmdline:s:" +
                         cmdlet.RemoteAppCmdline);
             }
-            
+            */
+
+            if (!string.IsNullOrEmpty(cmdlet.AlternateShell)) {
+                
+                RDPFileTemplate =
+                    RDPFileTemplate.Replace(
+                        "alternate shell:s:",
+                        "alternate shell:s:" +
+                        cmdlet.AlternateShell);
+            }
+
+            /*
             if (null != cmdlet.AlternateShell && string.Empty != cmdlet.AlternateShell) {
                 
                 RDPFileTemplate =
@@ -146,7 +190,18 @@ drivestoredirect:s:
                         "alternate shell:s:" +
                         cmdlet.AlternateShell);
             }
-            
+            */
+
+            if (!string.IsNullOrEmpty(cmdlet.ShellWorkingDir)) {
+                
+                RDPFileTemplate =
+                    RDPFileTemplate.Replace(
+                        "shell working directory:s:",
+                        "shell working directory:s:" +
+                        cmdlet.ShellWorkingDir);
+            }
+
+            /*
             if (null != cmdlet.ShellWorkingDir && string.Empty != cmdlet.ShellWorkingDir) {
                 
                 RDPFileTemplate =
@@ -155,7 +210,8 @@ drivestoredirect:s:
                         "shell working directory:s:" +
                         cmdlet.ShellWorkingDir);
             }
-            
+            */
+
             if (null != cmdlet.AuthenticationLevel) {
                 
                 RDPFileTemplate =
@@ -235,6 +291,16 @@ drivestoredirect:s:
                         redirectClipboard);
             }
             
+            if (!string.IsNullOrEmpty(cmdlet.DriveStoreRedirect)) {
+                
+                RDPFileTemplate =
+                    RDPFileTemplate.Replace(
+                        "drivestoredirect:s:",
+                        "drivestoredirect:s:" +
+                        cmdlet.DriveStoreRedirect);
+            }
+
+            /*
             if (null != cmdlet.DriveStoreRedirect && string.Empty != cmdlet.DriveStoreRedirect) {
                 
                 RDPFileTemplate =
@@ -243,7 +309,8 @@ drivestoredirect:s:
                         "drivestoredirect:s:" +
                         cmdlet.DriveStoreRedirect);
             }
-            
+            */
+
             try {
                 System.IO.StreamWriter writer =
                     new System.IO.StreamWriter(((NewUIARemoteDesktopProtocolFileCommand)cmdlet).Path);

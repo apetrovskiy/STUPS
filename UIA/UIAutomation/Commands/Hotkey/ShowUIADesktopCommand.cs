@@ -18,10 +18,6 @@ namespace UIAutomation.Commands
     [Cmdlet(VerbsCommon.Show, "UIADesktop")]
     public class ShowUIADesktopCommand : HotkeyCmdletBase
     {
-        public ShowUIADesktopCommand()
-        {
-        }
-        
         protected override void BeginProcessing()
         {
             this.keyCodes.Add(0xE0);

@@ -18,10 +18,6 @@ namespace UIAutomation.Commands
 	[Cmdlet(VerbsCommon.Show, "UIAExecutionPlan")]
 	public class ShowUIAExecutionPlanCommand : ExecutionPlanCmdletBase
 	{
-		public ShowUIAExecutionPlanCommand()
-		{
-		}
-		
 		#region Parameters
 		[Parameter(Mandatory = false)]
 		public int MaxControlsHighlighted { get; set; }

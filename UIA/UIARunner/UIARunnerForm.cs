@@ -21,9 +21,9 @@ namespace UIARunner
     /// <summary>
     /// Description of UIARunnerForm.
     /// </summary>
-    public partial class UIARunnerForm : Form
+    public partial class UiaRunnerForm : Form
     {
-        public UIARunnerForm()
+        public UiaRunnerForm()
         {
             //
             // The InitializeComponent() call is required for Windows Forms designer support.
@@ -57,22 +57,22 @@ namespace UIARunner
         
         private const string rowStateOutput = "OUTPUT";
         
-        void UIARunnerFormLeave(object sender, EventArgs e)
+        void UiaRunnerFormLeave(object sender, EventArgs e)
         {
             this.TopMost = true;
         }
         
-        void UIARunnerFormDeactivate(object sender, EventArgs e)
+        void UiaRunnerFormDeactivate(object sender, EventArgs e)
         {
             this.TopMost = true;
         }
         
-        void UIARunnerFormResize(object sender, EventArgs e)
+        void UiaRunnerFormResize(object sender, EventArgs e)
         {
             this.TopMost = true;
         }
         
-        void UIARunnerFormLoad(object sender, EventArgs e)
+        void UiaRunnerFormLoad(object sender, EventArgs e)
         {
             this.TopMost = true;
         }
@@ -96,9 +96,13 @@ namespace UIARunner
             }
         }
         
+        // 20131105
+        // refactoring
+        /*
         void RunToolStripMenuItemClick(object sender, EventArgs e)
         {
         }
+        */
         
         internal void OnRunScript(object sender, EventArgs e)
         {
@@ -573,7 +577,7 @@ namespace UIARunner
             Application.Exit();
         }
         
-        void UIARunnerFormMouseMove(object sender, MouseEventArgs e)
+        void UiaRunnerFormMouseMove(object sender, MouseEventArgs e)
         {
             Application.DoEvents();
         }

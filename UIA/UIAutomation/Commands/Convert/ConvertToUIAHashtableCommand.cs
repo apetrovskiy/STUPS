@@ -23,12 +23,6 @@ namespace UIAutomation.Commands
     [Cmdlet(VerbsData.ConvertTo, "UIAHashtable")]
     public class ConvertToUIAHashtableCommand : ConvertCmdletBase
     {
-        /// <summary>
-        ///  /// </summary>
-        public ConvertToUIAHashtableCommand()
-        {
-        }
-        
         #region Parameters
         #endregion Parameters
         
@@ -167,7 +161,6 @@ namespace UIAutomation.Commands
         [Parameter(Mandatory = false)]
         public SwitchParameter Full { get; set; }
         #endregion Parameters
-        
         
         // 20120823
         private AutomationElement currentInputObject = null;

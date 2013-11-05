@@ -18,10 +18,6 @@ namespace UIAutomation.Commands
     [Cmdlet(VerbsCommon.Show, "UIAMetroMenu")]
     public class ShowUIAMetroMenuCommand : HotkeyCmdletBase
     {
-        public ShowUIAMetroMenuCommand()
-        {
-        }
-        
         protected override void BeginProcessing()
         {
             this.keyCodes.Add(0xE0);

@@ -102,23 +102,31 @@ namespace UIAutomationTestForms.FormsCollection.WinForms
         void CheckBox1CheckedChanged(object sender, EventArgs e)
         {
             this.listBox1.Items.Clear();
+            this.listBox1.Items.Add(this.checkBox1.Checked ? "Checked" : "Unchecked");
+
+            /*
             if (this.checkBox1.Checked) {
                 this.listBox1.Items.Add("Checked");
             } else {
                 this.listBox1.Items.Add("Unchecked");
             }
+            */
         }
-        
+
         void CheckBox1Click(object sender, EventArgs e)
         {
             //this.listBox1.Items.Clear();
+            this.listBox1.Items.Add(this.checkBox1.Checked ? "Clicked" : "Unclicked");
+
+            /*
             if (this.checkBox1.Checked) {
                 this.listBox1.Items.Add("Clicked");
             } else {
                 this.listBox1.Items.Add("Unclicked");
             }
+            */
         }
-        
+
         void CheckedListBox1SelectedIndexChanged(object sender, EventArgs e)
         {
             this.listBox1.Items.Clear();

@@ -10,7 +10,7 @@
 
 namespace UIARunner
 {
-    partial class UIARunnerForm
+    partial class UiaRunnerForm
     {
         /// <summary>
         /// Designer variable used to keep track of non-visual components.
@@ -39,7 +39,7 @@ namespace UIARunner
         //private void InitializeComponent(RunModes mode, string path)
         private void InitializeComponent() //RunModes mode, string path)
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UIARunnerForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UiaRunnerForm));
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.menuStripMain = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -386,13 +386,13 @@ namespace UIARunner
             this.MainMenuStrip = this.menuStripMain;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "UIARunnerForm";
+            this.Name = "UiaRunnerForm";
             this.Text = "UIARunner";
-            this.Deactivate += new System.EventHandler(this.UIARunnerFormDeactivate);
-            this.Load += new System.EventHandler(this.UIARunnerFormLoad);
-            this.Leave += new System.EventHandler(this.UIARunnerFormLeave);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.UIARunnerFormMouseMove);
-            this.Resize += new System.EventHandler(this.UIARunnerFormResize);
+            this.Deactivate += new System.EventHandler(this.UiaRunnerFormDeactivate);
+            this.Load += new System.EventHandler(this.UiaRunnerFormLoad);
+            this.Leave += new System.EventHandler(this.UiaRunnerFormLeave);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.UiaRunnerFormMouseMove);
+            this.Resize += new System.EventHandler(this.UiaRunnerFormResize);
             this.menuStripMain.ResumeLayout(false);
             this.menuStripMain.PerformLayout();
             this.statusStripResults.ResumeLayout(false);

@@ -133,8 +133,12 @@ namespace UIAutomation
             if (null == container) { return resultCollection; }
             cmdlet.WriteVerbose(cmdlet, "checking the Name parameter");
 
+            if (string.IsNullOrEmpty(controlTitle) || 0 == controlTitle.Length) { controlTitle = "*"; }
+
+            /*
             if (null == controlTitle || string.Empty == controlTitle || 0 == controlTitle.Length) { controlTitle = "*"; }
-            
+            */
+
             try {
                 System.IntPtr containerHandle =
                     new System.IntPtr(container.Current.NativeWindowHandle);
@@ -237,9 +241,15 @@ namespace UIAutomation
         {
             bool result = false;
             
+            if (string.IsNullOrEmpty(dataToCheck)) {
+                return result;
+            }
+
+            /*
             if (null == dataToCheck || string.Empty == dataToCheck) {
                 return result;
             }
+            */
 
             if (!wcPattern.IsMatch(dataToCheck)) return result;
             result = true;
@@ -593,6 +603,15 @@ namespace UIAutomation
             NativeMethods.ReleaseDC(desktopHandle, dc2);
             //  // 
             if (save) {
+                if (!string.IsNullOrEmpty(description) &&
+                    description.Length > 0) {
+                    
+                    description =
+                        "_" +
+                        description;
+                }
+
+                /*
                 if (description != null &&
                     description != string.Empty &&
                     description.Length > 0) {
@@ -601,8 +620,47 @@ namespace UIAutomation
                         "_" +
                         description;
                 }
-                
+                */
+
                 string fileName = string.Empty;
+                if (!string.IsNullOrEmpty(path) &&
+                    path.Length > 0 &&
+                    path != @"\") { // && ! System.IO.File.Exists(path)) {
+                    
+                    if (System.IO.File.Exists(path)) {
+                        
+                        cmdlet.WriteError(
+                            cmdlet,
+                            "File '" +
+                            path +
+                            "' already exists",
+                            "FileAlreadyExists",
+                            ErrorCategory.InvalidArgument,
+                            true);
+                    }
+                    
+                    //                        if (System.IO.File.Open(
+                    fileName = path;
+                } else {
+                    
+                    if (cmdlet is Commands.SaveUIAScreenshotCommand) {
+                        
+                        fileName =
+                            getTimedFileNameForScreenShot() +
+                            description +
+                            getFileExtensionByImageType(format);
+                        
+                    } else {  // ??
+                        
+                        fileName =
+                            getTimedFileNameForScreenShot() +
+                            description +
+                            getFileExtensionByImageType(format);
+                        
+                    }
+                }
+
+                /*
                 if (path != null && path != string.Empty &&
                     path.Length > 0 &&
                     path != @"\") { // && ! System.IO.File.Exists(path)) {
@@ -639,7 +697,8 @@ namespace UIAutomation
                         
                     }
                 }
-                
+                */
+
                 myImage.Save(fileName, format);
                 
                 TMX.TMXHelper.AddTestResultScreenshotDetail(fileName);
@@ -851,10 +910,16 @@ namespace UIAutomation
                     // 20130207
                     string elementControlType =
                         getElementControlTypeString(element);
+                    if (string.IsNullOrEmpty(elementControlType)) {
+                        return result;
+                    }
+
+                    /*
                     if (null == elementControlType || string.Empty == elementControlType) {
                         return result;
                     }
-                    
+                    */
+
                     string elementVerbosity = String.Empty; // ?
 
                     elementVerbosity =
@@ -1159,6 +1224,20 @@ namespace UIAutomation
                     	break;
                 }
             }
+            if (string.IsNullOrEmpty(tempString)) {
+                return string.Empty;
+            } else {
+                if ("Win32" == propertyName) {
+                    tempString =
+                        " -" + propertyName;
+                } else {
+                    tempString =
+                        " -" + propertyName + " '" + tempString + "'";
+                }
+                return tempString;
+            }
+
+            /*
             if (null == tempString || string.Empty == tempString) {
                 return string.Empty;
             } else {
@@ -1171,6 +1250,7 @@ namespace UIAutomation
                 }
                 return tempString;
             }
+            */
         }
 
         /// <summary>

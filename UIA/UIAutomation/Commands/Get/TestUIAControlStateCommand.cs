@@ -22,12 +22,6 @@ namespace UIAutomation.Commands
     [OutputType(new[] { typeof(object) })]
     public class TestUIAControlStateCommand : GetControlStateCmdletBase
     {
-        #region Constructor
-        public TestUIAControlStateCommand()
-        {
-        }
-        #endregion Constructor
-        
         #region Parameters
         [Parameter]
         internal new int Timeout { get; set; }

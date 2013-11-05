@@ -20,12 +20,6 @@ namespace UIAutomation.Commands
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class UnregisterUIAEventCommand : EventCmdletBase
     {
-        #region Constructor
-        public UnregisterUIAEventCommand()
-        {
-        }
-        #endregion Constructor
-        
         #region Parameters
         [Parameter(Mandatory = false)]
         public SwitchParameter All { get; set; }

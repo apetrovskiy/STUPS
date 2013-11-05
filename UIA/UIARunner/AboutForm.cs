@@ -29,7 +29,7 @@ namespace UIARunner
             //
         }
         
-        void BtnOKClick(object sender, EventArgs e)
+        void BtnOkClick(object sender, EventArgs e)
         {
             this.Close();
         }

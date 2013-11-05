@@ -18,10 +18,6 @@ namespace UIAutomation.Commands
     [Cmdlet(VerbsCommon.Show, "UIAMetroStartScreen")]
     public class ShowUIAMetroStartScreenCommand : HotkeyCmdletBase
     {
-        public ShowUIAMetroStartScreenCommand()
-        {
-        }
-        
         protected override void BeginProcessing()
         {
             this.keyCodes.Add(0xE0);

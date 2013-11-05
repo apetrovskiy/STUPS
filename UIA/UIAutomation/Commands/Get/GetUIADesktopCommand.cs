@@ -20,10 +20,6 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     public class GetUIADesktopCommand : GetCmdletBase
     {
-        public GetUIADesktopCommand()
-        {
-        }
-        
         protected override void BeginProcessing()
         {
             UIAutomation.CurrentData.CurrentWindow = 

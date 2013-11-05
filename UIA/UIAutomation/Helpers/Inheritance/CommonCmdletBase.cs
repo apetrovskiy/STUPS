@@ -194,11 +194,15 @@ namespace UIAutomation
         protected bool WriteObjectMethod010CheckOutputObject(object outputObject)
         {
             
+            bool result = false || null != outputObject;
+
+            /*
             bool result = false;
             
             if (null != outputObject) {
                 result = true;
             }
+            */
             return result;
         }
 
@@ -1448,6 +1452,18 @@ namespace UIAutomation
                 (GetControlCmdletBase)cmdlet1;
             
             // the TextSearch mode
+            if (null != (cmdlet as GetControlCmdletBase) && !string.IsNullOrEmpty(cmdlet.ContainsText) &&
+                !AndVsOr) {
+
+                cmdlet.Name =
+                    (cmdlet as GetControlCmdletBase).AutomationId =
+                    (cmdlet as GetControlCmdletBase).Class =
+                    (cmdlet as GetControlCmdletBase).Value =
+                    (cmdlet as GetControlCmdletBase).ContainsText;
+
+            }
+
+            /*
             if (null != (cmdlet as GetControlCmdletBase) && null != cmdlet.ContainsText &&
                 string.Empty != cmdlet.ContainsText &&
                 !AndVsOr) {
@@ -1459,7 +1475,19 @@ namespace UIAutomation
                     (cmdlet as GetControlCmdletBase).ContainsText;
 
             }
-            
+            */
+
+            if (!string.IsNullOrEmpty(controlType)) {
+
+                WriteVerbose(this,
+                             "getting control with control type = " +
+                             controlType);
+                ctrlType =
+                    UIAHelper.GetControlTypeByTypeName(controlType);
+                WriteVerbose(cmdlet, "ctrlType = " + ctrlType.ProgrammaticName);
+            }
+
+            /*
             if (controlType != null && controlType.Length > 0) {
 
                 WriteVerbose(this,
@@ -1469,6 +1497,7 @@ namespace UIAutomation
                     UIAHelper.GetControlTypeByTypeName(controlType);
                 WriteVerbose(cmdlet, "ctrlType = " + ctrlType.ProgrammaticName);
             }
+            */
             System.Windows.Automation.PropertyCondition ctrlTypeCondition = null,
             classCondition = null, titleCondition = null, autoIdCondition = null;
             System.Windows.Automation.PropertyCondition valueCondition = null;
@@ -1486,6 +1515,21 @@ namespace UIAutomation
                 //conditionsCounter++;
             }
             // 20120828
+            if (!string.IsNullOrEmpty(cmdlet.Class))
+                //if (null != cmdlet.Class && cmdlet.Class.Length > 0) {
+            {
+
+                classCondition =
+                    new System.Windows.Automation.PropertyCondition(
+                        System.Windows.Automation.AutomationElement.ClassNameProperty,
+                        cmdlet.Class,
+                        flags);
+                WriteVerbose(cmdlet, "ClassNameProperty '" +
+                             cmdlet.Class + "' is used");
+                conditionsCounter++;
+            }
+
+            /*
             if (cmdlet.Class != null && cmdlet.Class != "")
                 //if (null != cmdlet.Class && cmdlet.Class.Length > 0) {
             {
@@ -1499,6 +1543,21 @@ namespace UIAutomation
                              cmdlet.Class + "' is used");
                 conditionsCounter++;
             }
+            */
+            if (!string.IsNullOrEmpty(cmdlet.AutomationId))
+            {
+
+                autoIdCondition =
+                    new System.Windows.Automation.PropertyCondition(
+                        System.Windows.Automation.AutomationElement.AutomationIdProperty,
+                        cmdlet.AutomationId,
+                        flags);
+                WriteVerbose(cmdlet, "AutomationIdProperty '" +
+                             cmdlet.AutomationId + "' is used");
+                conditionsCounter++;
+            }
+
+            /*
             if (cmdlet.AutomationId != null && cmdlet.AutomationId != "")
             {
 
@@ -1511,6 +1570,21 @@ namespace UIAutomation
                              cmdlet.AutomationId + "' is used");
                 conditionsCounter++;
             }
+            */
+            if (!string.IsNullOrEmpty(cmdlet.Name)) // allow empty name
+            {
+
+                titleCondition =
+                    new System.Windows.Automation.PropertyCondition(
+                        System.Windows.Automation.AutomationElement.NameProperty,
+                        cmdlet.Name,
+                        flags);
+                WriteVerbose(cmdlet, "NameProperty '" +
+                             cmdlet.Name + "' is used");
+                conditionsCounter++;
+            }
+
+            /*
             if (cmdlet.Name != null && cmdlet.Name != "") // allow empty name
             {
 
@@ -1523,7 +1597,22 @@ namespace UIAutomation
                              cmdlet.Name + "' is used");
                 conditionsCounter++;
             }
-            
+            */
+
+            if (!string.IsNullOrEmpty(cmdlet.Value))
+            {
+
+                valueCondition =
+                    new System.Windows.Automation.PropertyCondition(
+                        System.Windows.Automation.ValuePattern.ValueProperty,
+                        cmdlet.Value,
+                        flags);
+                WriteVerbose(cmdlet, "ValueProperty '" +
+                             cmdlet.Value + "' is used");
+                conditionsCounter++;
+            }
+
+            /*
             if (cmdlet.Value != null && cmdlet.Value != "")
             {
 
@@ -1536,7 +1625,8 @@ namespace UIAutomation
                              cmdlet.Value + "' is used");
                 conditionsCounter++;
             }
-            
+            */
+
             // if there is more than one condition excepting ctrlTypeCondition
             if (1 < conditionsCounter)
             {
@@ -1733,6 +1823,38 @@ namespace UIAutomation
                 tempCmdlet.ControlType = cmdlet.ControlType;
 
                 bool notTextSearch = true;
+                if (!string.IsNullOrEmpty(cmdlet.ContainsText)) {
+                    tempCmdlet.ContainsText = cmdlet.ContainsText;
+                    notTextSearch = false;
+                    
+                    conditionsForTextSearch =
+                        this.getControlConditions(
+                            tempCmdlet,
+                            tempCmdlet.ControlType,
+                            cmdlet.CaseSensitive,
+                            false) as AndCondition;
+                    
+                    // display conditions for text search
+                    this.WriteVerbose(cmdlet, "these conditions are used for text search:");
+                    displayConditions(cmdlet, conditionsForTextSearch, "for text search");
+
+                } else {
+                    
+                    conditions = this.getControlConditions(cmdlet, cmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive, true) as AndCondition;
+                    // display conditions for a regular search
+                    this.WriteVerbose(cmdlet, "these conditions are used for an exact search:");
+                    displayConditions(cmdlet, conditions, "for exact search");
+                    
+                    conditionsForWildCards =
+                        this.getControlConditions(tempCmdlet, tempCmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive, true) as AndCondition;
+                    
+                    // display conditions for wildcard search
+                    this.WriteVerbose(cmdlet, "these conditions are used for wildcard search:");
+                    displayConditions(cmdlet, conditionsForWildCards, "for wildcard search");
+
+                }
+
+                /*
                 if (null != cmdlet.ContainsText && string.Empty != cmdlet.ContainsText) {
                     tempCmdlet.ContainsText = cmdlet.ContainsText;
                     notTextSearch = false;
@@ -1763,7 +1885,8 @@ namespace UIAutomation
                     displayConditions(cmdlet, conditionsForWildCards, "for wildcard search");
 
                 }
-                
+                */
+
                 tempCmdlet = null;
 
                 foreach (AutomationElement inputObject in cmdlet.InputObject) {
@@ -1975,21 +2098,44 @@ namespace UIAutomation
         {
             this.WriteVerbose(cmdlet, "[getting the control] using FindWindowEx");
             ArrayList tempListWin32 = new ArrayList();
+            if (!string.IsNullOrEmpty(cmdlet.Name)) {
+                this.WriteVerbose(cmdlet, "collecting controls by name (Win32)");
+                tempListWin32.AddRange(UIAHelper.GetControlByName(cmdlet, inputObject, cmdlet.Name));
+            }
+
+            /*
             if (null != cmdlet.Name && string.Empty != cmdlet.Name) {
                 this.WriteVerbose(cmdlet, "collecting controls by name (Win32)");
                 tempListWin32.AddRange(UIAHelper.GetControlByName(cmdlet, inputObject, cmdlet.Name));
             }
+            */
+            if (!string.IsNullOrEmpty(cmdlet.Value)) {
+                this.WriteVerbose(cmdlet, "collecting controls by value (Win32)");
+                tempListWin32.AddRange(UIAHelper.GetControlByName(cmdlet, inputObject, cmdlet.Value));
+            }
+
+            /*
             if (null != cmdlet.Value && string.Empty != cmdlet.Value) {
                 this.WriteVerbose(cmdlet, "collecting controls by value (Win32)");
                 tempListWin32.AddRange(UIAHelper.GetControlByName(cmdlet, inputObject, cmdlet.Value));
             }
+            */
             foreach (AutomationElement tempElement3 in tempListWin32) {
+                if (!string.IsNullOrEmpty(cmdlet.ControlType)) {
+                    if (!tempElement3.Current.ControlType.ProgrammaticName.ToUpper().Contains(cmdlet.ControlType.ToUpper()) || 
+                        !(tempElement3.Current.ControlType.ProgrammaticName.ToUpper().Substring(12).Length == cmdlet.ControlType.ToUpper().Length)) {
+                        continue;
+                    }
+                }
+
+                /*
                 if (null != cmdlet.ControlType && 0 < cmdlet.ControlType.Length) {
                     if (!tempElement3.Current.ControlType.ProgrammaticName.ToUpper().Contains(cmdlet.ControlType.ToUpper()) || 
                         !(tempElement3.Current.ControlType.ProgrammaticName.ToUpper().Substring(12).Length == cmdlet.ControlType.ToUpper().Length)) {
                         continue;
                     }
                 }
+                */
                 if (null == cmdlet.SearchCriteria || 0 == cmdlet.SearchCriteria.Length) {
                     aeCtrl.Add(tempElement3);
                     cmdlet.WriteVerbose(cmdlet, "Win32Search: element added to the result collection");
@@ -2287,6 +2433,22 @@ namespace UIAutomation
                 this.WriteVerbose(cmdlet, "There are " + textSearchWin32List.Count.ToString() + " elements");
                 foreach (AutomationElement elementToChoose in textSearchWin32List) {
                     
+                    if (!string.IsNullOrEmpty(controlType) && 0 < controlType.Length) {
+
+                        if (!elementToChoose.Current.ControlType.ProgrammaticName.ToUpper().Contains(controlType.ToUpper()) || 
+                            elementToChoose.Current.ControlType.ProgrammaticName.ToUpper().Substring(12).Length != controlType.ToUpper().Length) {
+                            
+                            continue;
+                        } else {
+                            
+                            aeCtrl.Add(elementToChoose);
+                        }
+                    } else {
+                        
+                        aeCtrl.Add(elementToChoose);
+                    }
+
+                    /*
                     if (null != controlType && string.Empty != controlType && 0 < controlType.Length) {
 
                         if (!elementToChoose.Current.ControlType.ProgrammaticName.ToUpper().Contains(controlType.ToUpper()) || 
@@ -2301,6 +2463,7 @@ namespace UIAutomation
                         
                         aeCtrl.Add(elementToChoose);
                     }
+                    */
                 }
             }
 

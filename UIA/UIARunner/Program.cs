@@ -28,7 +28,7 @@ namespace UIARunner
         [STAThread]
         private static void Main(string[] args)
         {
-            RunModes mode = RunModes.GUI;
+            RunModes mode = RunModes.Gui;
             
             if (args == null || args.Length > 0) {
                 if (System.IO.File.Exists(args[0])) {
@@ -45,8 +45,8 @@ namespace UIARunner
             Application.SetCompatibleTextRenderingDefault(false);
             
             if (mode == RunModes.Unattended) {
-                UIARunnerForm runnerForm =
-                    new UIARunnerForm();
+                UiaRunnerForm runnerForm =
+                    new UiaRunnerForm();
                 PSTestRunner.TestRunner.InitScript();
                 TMX.TestData.TMXNewTestResultClosed += 
                     new TMX.TMXStructureChangedEventHandler(
@@ -59,7 +59,7 @@ namespace UIARunner
                         runnerForm.PSOutputArrived);
                 PSTestRunner.TestRunner.RunScript(args[0], true);
             } else {
-                Application.Run(new UIARunnerForm());
+                Application.Run(new UiaRunnerForm());
             }
         }
         

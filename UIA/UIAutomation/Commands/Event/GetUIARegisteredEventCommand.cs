@@ -20,10 +20,6 @@ namespace UIAutomation.Commands
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIARegisteredEventCommand : CommonCmdletBase //EventCmdletBase
     {
-        public GetUIARegisteredEventCommand()
-        {
-        }
-        
         #region Parameters
 //        [Parameter(Mandatory = false)] 
 //        internal new System.Windows.Automation.AutomationElement[] InputObject { get; set; }

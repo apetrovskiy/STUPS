@@ -18,10 +18,6 @@ namespace UIAutomation.Commands
     [Cmdlet(VerbsCommon.Hide, "UIACurrentHighlighter")]
     public class HideUIACurrentHighlighterCommand : CommonCmdletBase
     {
-        public HideUIACurrentHighlighterCommand()
-        {
-        }
-        
         protected override void BeginProcessing()
         {
             UIAHelper.HideHighlighters();

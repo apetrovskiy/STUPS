@@ -20,12 +20,6 @@ namespace UIAutomation.Commands
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIAControlChildrenCommand : GetRelativesCmdletBase
     {
-        #region Constructor
-        public GetUIAControlChildrenCommand()
-        {
-        }
-        #endregion Constructor
-
         /// <summary>
         /// Processes the pipeline.
         /// </summary>
@@ -42,12 +36,6 @@ namespace UIAutomation.Commands
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIAControlDescendantsCommand : GetRelativesCmdletBase
     {
-        #region Constructor
-        public GetUIAControlDescendantsCommand()
-        {
-        }
-        #endregion Constructor
-
         /// <summary>
         /// Processes the pipeline.
         /// </summary>
@@ -64,12 +52,6 @@ namespace UIAutomation.Commands
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIAControlParentCommand : GetRelativesCmdletBase
     {
-        #region Constructor
-        public GetUIAControlParentCommand()
-        {
-        }
-        #endregion Constructor
-
         /// <summary>
         /// Processes the pipeline.
         /// </summary>
@@ -86,12 +68,6 @@ namespace UIAutomation.Commands
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIAControlAncestorsCommand : GetRelativesCmdletBase
     {
-        #region Constructor
-        public GetUIAControlAncestorsCommand()
-        {
-        }
-        #endregion Constructor
-
         /// <summary>
         /// Processes the pipeline.
         /// </summary>
@@ -108,12 +84,6 @@ namespace UIAutomation.Commands
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIAControlNextSiblingCommand : GetRelativesCmdletBase
     {
-        #region Constructor
-        public GetUIAControlNextSiblingCommand()
-        {
-        }
-        #endregion Constructor
-
         /// <summary>
         /// Processes the pipeline.
         /// </summary>
@@ -130,12 +100,6 @@ namespace UIAutomation.Commands
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIAControlPreviousSiblingCommand : GetRelativesCmdletBase
     {
-        #region Constructor
-        public GetUIAControlPreviousSiblingCommand()
-        {
-        }
-        #endregion Constructor
-
         /// <summary>
         /// Processes the pipeline.
         /// </summary>
@@ -152,12 +116,6 @@ namespace UIAutomation.Commands
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIAControlFirstChildCommand : GetRelativesCmdletBase
     {
-        #region Constructor
-        public GetUIAControlFirstChildCommand()
-        {
-        }
-        #endregion Constructor
-
         /// <summary>
         /// Processes the pipeline.
         /// </summary>
@@ -179,12 +137,6 @@ namespace UIAutomation.Commands
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class GetUIAControlLastChildCommand : GetRelativesCmdletBase
     {
-        #region Constructor
-        public GetUIAControlLastChildCommand()
-        {
-        }
-        #endregion Constructor
-
         /// <summary>
         /// Processes the pipeline.
         /// </summary>

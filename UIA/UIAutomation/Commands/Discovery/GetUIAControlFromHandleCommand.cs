@@ -19,12 +19,6 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     public class GetUIAControlFromHandleCommand : DiscoveryCmdletBase
     {
-        #region Constructor
-        public GetUIAControlFromHandleCommand()
-        {
-        }
-        #endregion Constructor
-        
         #region Parameters
 //        [Parameter(Mandatory = true,
 //                   ValueFromPipeline = true)]
@@ -68,9 +62,13 @@ namespace UIAutomation.Commands
     public class GetUIAWindowFromHandleCommand : GetUIAControlFromHandleCommand
     {
         #region Constructor
+        // 20131105
+        // refactoring
+        /*
         public GetUIAWindowFromHandleCommand()
         {
         }
+        */
         #endregion Constructor
 
         /// <summary>

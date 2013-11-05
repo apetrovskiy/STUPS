@@ -22,9 +22,13 @@ namespace UIAutomation.Commands
     public class ConvertFromUIADataGridCommand : ConvertCmdletBase
     {
         #region Constructor
+        // 20131105
+        // refactoring
+        /*
         public ConvertFromUIADataGridCommand()
         {
         }
+        */
         #endregion Constructor
         
         #region Parameters

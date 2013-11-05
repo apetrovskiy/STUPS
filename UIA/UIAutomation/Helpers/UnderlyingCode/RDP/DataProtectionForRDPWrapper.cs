@@ -52,7 +52,10 @@ namespace UIAutomation
             return enc.GetString(byt);
         }
 
+        static string GetHex(IEnumerable<byte> byt_text)
+        /*
         static string GetHex(byte[] byt_text)
+        */
         {
             return byt_text.Aggregate(string.Empty, (current, t) => current + Convert.ToString(t, 16).PadLeft(2, '0').ToUpper());
             /*

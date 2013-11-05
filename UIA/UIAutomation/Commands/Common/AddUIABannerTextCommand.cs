@@ -18,10 +18,6 @@ namespace UIAutomation.Commands
     [Cmdlet(VerbsCommon.Add, "UIABannerText")]
     public class AddUIABannerTextCommand : CommonCmdletBase
     {
-        public AddUIABannerTextCommand()
-        {
-        }
-        
         #region Parameters
         [Parameter(Mandatory = true,
                    Position = 0)]

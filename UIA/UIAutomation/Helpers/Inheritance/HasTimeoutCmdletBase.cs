@@ -127,10 +127,15 @@ namespace UIAutomation
                     aeWndCollection = getWindowCollectionByProcessName(processNames, cmdlet.First, cmdlet.Recurse, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class);
 
                 } else if ((null != windowNames && windowNames.Length > 0) ||
-                           (null != automationId && 0 < automationId.Length) ||
-                           (null != className && 0 < className.Length)) {
+                           !string.IsNullOrEmpty(automationId) ||
+                           !string.IsNullOrEmpty(className)) {
 
-                    cmdlet.WriteVerbose(cmdlet, "getting a window by name, automationId, className");
+                    /*
+                            (null != automationId && 0 < automationId.Length) ||
+                            (null != className && 0 < className.Length)) {
+                    */
+
+                               cmdlet.WriteVerbose(cmdlet, "getting a window by name, automationId, className");
                     aeWndCollection = getWindowCollectionByName(windowNames, automationId, className, cmdlet.Recurse);
                 }
                 
@@ -317,7 +322,12 @@ namespace UIAutomation
         }
 
         private ArrayList getWindowCollectionByProcessName(
+            // 20131105
+            // refactoring
+            IEnumerable<string> processNames,
+            /*
             string[] processNames,
+            */
             bool first,
             bool recurse,
             string[] name,
@@ -357,7 +367,12 @@ namespace UIAutomation
         }
         
         private ArrayList getWindowCollectionByPID(
+            // 20131105
+            // refactoring
+            IEnumerable<int> processIds,
+            /*
             int[] processIds,
+            */
             bool first,
             bool recurse,
             string[] name,
@@ -370,12 +385,21 @@ namespace UIAutomation
                 new ArrayList();
             
             if ((null != name && 0 < name.Length) ||
+                !string.IsNullOrEmpty(automationId) ||
+                !string.IsNullOrEmpty(className)) {
+                
+                recurse = true;
+            }
+
+            /*
+            if ((null != name && 0 < name.Length) ||
                 (null != automationId && string.Empty != automationId) ||
                 (null != className && string.Empty != className)) {
                 
                 recurse = true;
             }
-            
+            */
+
             foreach (int processId in processIds) {
             
                 try {
@@ -554,8 +578,14 @@ namespace UIAutomation
             
             // 20130225
             if (!recurse ||
+                ((null == name || 0 >= name.Length) && string.IsNullOrEmpty(automationId) &&
+                 string.IsNullOrEmpty(className))) return aeWndCollectionByProcessId;
+
+            /*
+            if (!recurse ||
                 ((null == name || 0 >= name.Length) && (null == automationId || string.Empty == automationId) &&
                  (null == className || string.Empty == className))) return aeWndCollectionByProcessId;
+            */
             ArrayList resultList =
                 new ArrayList();
                 
@@ -658,7 +688,10 @@ namespace UIAutomation
         }
         
         private ArrayList getWindowCollectionFromProcess(
+            IEnumerable<Process> processes,
+            /*
             Process[] processes,
+            */
             bool first,
             bool recurse,
             string[] name,
@@ -942,11 +975,18 @@ namespace UIAutomation
                     WildcardOptions.Compiled;
             }
             
+            if (string.IsNullOrEmpty(name) || 0 == name.Length) { name = "*"; }
+            if (string.IsNullOrEmpty(automationId) || 0 == automationId.Length) { automationId = "*"; }
+            if (string.IsNullOrEmpty(className) || 0 == className.Length) { className = "*"; }
+            if (string.IsNullOrEmpty(textValue) || 0 == textValue.Length) { textValue = "*"; }
+
+            /*
             if (null == name || string.Empty == name || 0 == name.Length) { name = "*"; }
             if (null == automationId || string.Empty == automationId || 0 == automationId.Length) { automationId = "*"; }
             if (null == className || string.Empty == className || 0 == className.Length) { className = "*"; }
             if (null == textValue || string.Empty == textValue || 0 == textValue.Length) { textValue = "*"; }
-            
+            */
+
             WildcardPattern wildcardName = 
                 new WildcardPattern(name, options);
             WildcardPattern wildcardAutomationId = 

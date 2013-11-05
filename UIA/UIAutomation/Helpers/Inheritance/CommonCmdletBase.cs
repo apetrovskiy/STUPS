@@ -2337,7 +2337,10 @@ namespace UIAutomation
                 // 20131104
                 // refactoring
                 //AutomationElementCollection tempCollection = inputObject.FindAll(System.Windows.Automation.TreeScope.Descendants, conditions);
-                AutomationElementCollection tempCollection = inputObject.FindAll(System.Windows.Automation.TreeScope.Descendants, conditions);
+                // 20131105
+                // refactoring
+                //AutomationElementCollection tempCollection = inputObject.FindAll(System.Windows.Automation.TreeScope.Descendants, conditions);
+                IAutomationElementCollection tempCollection = inputObject.FindAll(System.Windows.Automation.TreeScope.Descendants, conditions);
                 foreach (AutomationElement tempElement in tempCollection) {
                     if (null == cmdlet.SearchCriteria || 0 == cmdlet.SearchCriteria.Length) {
                         aeCtrl.Add(tempElement);
@@ -2399,7 +2402,10 @@ namespace UIAutomation
             System.Windows.Automation.AndCondition conditionsForTextSearch)
         {
             this.WriteVerbose(cmdlet, "Text search");
-            AutomationElementCollection textSearchCollection = inputObject.FindAll(TreeScope.Descendants, conditionsForTextSearch);
+            // 20131105
+            // refactoring
+            //AutomationElementCollection textSearchCollection = inputObject.FindAll(TreeScope.Descendants, conditionsForTextSearch);
+            IAutomationElementCollection textSearchCollection = inputObject.FindAll(TreeScope.Descendants, conditionsForTextSearch);
             if (null != textSearchCollection && 0 < textSearchCollection.Count) {
                 this.WriteVerbose(cmdlet, "There are " + textSearchCollection.Count.ToString() + " elements");
                 foreach (AutomationElement element in textSearchCollection) {

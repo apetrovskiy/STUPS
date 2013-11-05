@@ -83,6 +83,9 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ninject">
+      <HintPath>..\..\packages\Ninject.3.0.1.10\lib\net40\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="NLog">
       <HintPath>..\..\binaries\NLog\40\NLog.dll</HintPath>
     </Reference>
@@ -631,6 +634,9 @@
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\AutomationElementAdapter.cs">
       <Link>Helpers\UnderlyingCode\Adapter\AutomationElementAdapter.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\AutomationElementCollectionAdapter.cs">
+      <Link>Helpers\UnderlyingCode\Adapter\AutomationElementCollectionAdapter.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Commands\Container\UIANewContainerCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\Container\UIANewContainerCommand.cs</Link>
     </Compile>
@@ -719,6 +725,9 @@
     <Compile Include="..\UIAutomation\Interface\IAutomationElementAdapter.cs">
       <Link>Interface\IAutomationElementAdapter.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Interface\IAutomationElementCollection.cs">
+      <Link>Interface\IAutomationElementCollection.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
@@ -759,6 +768,9 @@
     <Folder Include="Helpers\UnderlyingCode\Types" />
     <Folder Include="Helpers\UnderlyingCode\Types" />
     <Folder Include="Interface" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>

@@ -55,6 +55,9 @@
     <Reference Include="MbUnit">
       <HintPath>..\..\..\..\..\Program Files\Gallio\bin\MbUnit.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\..\packages\Ninject.3.0.1.10\lib\net35\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="NSubstitute">
       <HintPath>..\..\binaries\NSubstitute-1.5.0.0\lib\NET35\NSubstitute.dll</HintPath>
     </Reference>
@@ -166,6 +169,9 @@
     <Folder Include="ParamChecks\Search" />
     <Folder Include="ParamChecks\Profile" />
     <Folder Include="ParamChecks\Pattern" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>

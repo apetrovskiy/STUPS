@@ -342,7 +342,10 @@ namespace UIAutomation
 
             try {
                 
-                AutomationElementCollection results = 
+                // 20131105
+                // refactoring
+                //AutomationElementCollection results =
+                IAutomationElementCollection results =
                     element.FindAll(
                         TreeScope.Descendants,
                         conditions);

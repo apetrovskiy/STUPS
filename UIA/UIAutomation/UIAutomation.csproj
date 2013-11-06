@@ -273,6 +273,7 @@
     <Compile Include="Helpers\UnderlyingCode\Commands\Wizard\UIAInvokeWizardCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Wizard\UIARemoveWizardStepCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Wizard\UIAStepWizardCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\ExtensionMethods.cs" />
     <Compile Include="Helpers\UnderlyingCode\RDPHelper.cs" />
     <Compile Include="Helpers\UnderlyingCode\RDP\DataProtectionForRDPWrapper.cs" />
     <Compile Include="Helpers\UnderlyingCode\RDP\DataProtector.cs" />

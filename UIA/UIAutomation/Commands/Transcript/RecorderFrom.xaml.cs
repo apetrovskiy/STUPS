@@ -43,6 +43,9 @@ namespace UIAutomation.Commands
                 System.DateTime.Now;
             do{
                 //Application.DoEvents();
+                // 20131107
+                counter++;
+                //
                 bool res = 
                     UIAHelper.ProcessingTranscriptOnce(cmdlet, counter);
                 if (!res) break;

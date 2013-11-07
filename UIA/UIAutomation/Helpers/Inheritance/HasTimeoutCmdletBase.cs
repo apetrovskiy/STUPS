@@ -375,7 +375,8 @@ namespace UIAutomation
             */
             bool first,
             bool recurse,
-            string[] name,
+            ICollection<string> name,
+            //string[] name,
             string automationId,
             string className)
         {
@@ -384,7 +385,7 @@ namespace UIAutomation
             ArrayList aeWndCollectionByProcessId = 
                 new ArrayList();
             
-            if ((null != name && 0 < name.Length) ||
+            if ((null != name && 0 < name.Count) ||
                 !string.IsNullOrEmpty(automationId) ||
                 !string.IsNullOrEmpty(className)) {
                 
@@ -578,7 +579,7 @@ namespace UIAutomation
             
             // 20130225
             if (!recurse ||
-                ((null == name || 0 >= name.Length) && string.IsNullOrEmpty(automationId) &&
+                ((null == name || 0 >= name.Count) && string.IsNullOrEmpty(automationId) &&
                  string.IsNullOrEmpty(className))) return aeWndCollectionByProcessId;
 
             /*
@@ -589,7 +590,7 @@ namespace UIAutomation
             ArrayList resultList =
                 new ArrayList();
                 
-            if (null != name && 0 < name.Length) {
+            if (null != name && 0 < name.Count) {
                 foreach (string n in name) {
                         
                     resultList.AddRange(

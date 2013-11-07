@@ -73,11 +73,14 @@ namespace UIAutomation.Commands
         {
             //if (this.InputObject == null ||
             // !(this.InputObject is AutomationElement)) {
+            bool save = this.GetType().Name == "SaveUIAScreenshotCommand";
+            /*
             bool save = false;
             if (this.GetType().Name == "SaveUIAScreenshotCommand") {
                 save = true;
             }
-            
+            */
+
             //UIAHelper.GetScreenshotOfAutomationElement(
             UIAHelper.GetScreenshotOfCmdletInput(
                 this,

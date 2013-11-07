@@ -7,6 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System.Collections.Generic;
 using System.Linq;
 
 namespace UIAutomation.Commands
@@ -149,9 +150,10 @@ this.WriteTrace(this, "eventId 002");
             } while (notFoundYet);
         }
         
-        private bool IsInArray(string whatToSearch, string[] whereToSearch)
+        //private bool IsInArray(string whatToSearch, string[] whereToSearch)
+        private bool IsInArray(string whatToSearch, IEnumerable<string> whereToSearch)
         {
-            return whereToSearch.Any(t => whatToSearch.ToUpper() == t.ToUpper());
+            return whereToSearch.Any(t => String.Equals(whatToSearch, t, StringComparison.CurrentCultureIgnoreCase));
             /*
             bool result = false;
             for (int i = 0; i < whereToSearch.Length; i++)

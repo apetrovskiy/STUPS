@@ -26,6 +26,17 @@ namespace UIAutomation.Commands
         {
             Profile checkProfile = null;
             
+            if (!string.IsNullOrEmpty(this.Name) &&
+                this.Name.Length > 0) {
+                checkProfile = 
+                    CurrentData.GetProfile(this.Name);
+            } else if (this.InputObject != null &&
+                this.InputObject is Profile) {
+                checkProfile = 
+                    this.InputObject;
+            }
+
+            /*
             if (this.Name != null &&
                 this.Name != string.Empty &&
                 this.Name.Length > 0) {
@@ -36,7 +47,8 @@ namespace UIAutomation.Commands
                 checkProfile = 
                     this.InputObject;
             }
-            
+            */
+
             WriteObject(this, checkProfile);
         }
     }

@@ -7,6 +7,8 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System.Collections.Generic;
+
 namespace UIAutomation
 {
     using System;
@@ -891,7 +893,8 @@ try {
         protected internal bool TestControlByPropertiesFromHashtable(
             // 20130315
             AutomationElement[] inputElements,
-            System.Collections.Hashtable[] SearchCriteria,
+            IEnumerable<Hashtable> SearchCriteria,
+            //System.Collections.Hashtable[] SearchCriteria,
             int timeout)
         {
             

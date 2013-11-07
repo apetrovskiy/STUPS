@@ -7,6 +7,8 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System.Collections.Generic;
+
 namespace UIAutomation
 {
     using System;
@@ -2123,7 +2125,7 @@ namespace UIAutomation
             foreach (AutomationElement tempElement3 in tempListWin32) {
                 if (!string.IsNullOrEmpty(cmdlet.ControlType)) {
                     if (!tempElement3.Current.ControlType.ProgrammaticName.ToUpper().Contains(cmdlet.ControlType.ToUpper()) || 
-                        !(tempElement3.Current.ControlType.ProgrammaticName.ToUpper().Substring(12).Length == cmdlet.ControlType.ToUpper().Length)) {
+                        tempElement3.Current.ControlType.ProgrammaticName.ToUpper().Substring(12).Length != cmdlet.ControlType.ToUpper().Length) {
                         continue;
                     }
                 }
@@ -2496,10 +2498,15 @@ namespace UIAutomation
                 this.WriteVerbose(this, "Key = " + key + "; Value = " + dict[key].ToString());
                 string keyValue = dict[key].ToString();
                 
+                const WildcardOptions options = WildcardOptions.IgnoreCase |
+                                                WildcardOptions.Compiled;
+
+                /*
                 WildcardOptions options =
                     WildcardOptions.IgnoreCase |
                     WildcardOptions.Compiled;
-                
+                */
+
                 switch (key) {
                     case "ACCELERATORKEY":
                         if ( !(new WildcardPattern(
@@ -2703,7 +2710,8 @@ namespace UIAutomation
         
         protected internal bool TestControlWithAllSearchCriteria(
             GetCmdletBase cmdlet,
-            Hashtable[] hashtables,
+            IEnumerable<Hashtable> hashtables,
+            //Hashtable[] hashtables,
             AutomationElement element)
         {
             bool result = false;

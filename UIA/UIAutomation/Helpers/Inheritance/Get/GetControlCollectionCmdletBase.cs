@@ -635,9 +635,15 @@ namespace UIAutomation
             if (null == controlType || 0 == controlType.Length) {
                 return result;
             }
+            if (string.IsNullOrEmpty(elementControlType)) {
+                return result;
+            }
+
+            /*
             if (null == elementControlType || string.Empty == elementControlType) {
                 return result;
             }
+            */
 
             // if all the item are empty strings
             string tempString = controlType.Aggregate(string.Empty, (current, t) => current + t);
@@ -740,9 +746,9 @@ namespace UIAutomation
             System.Collections.Generic.List<AutomationElement >  searchResults = 
                 new System.Collections.Generic.List<AutomationElement > ();
             AutomationElementCollection temporaryResults = null;
-            AutomationElement[] outResult;
-            
-            if (scope == TreeScope.Children ||
+            //AutomationElement[] outResult;
+
+                if (scope == TreeScope.Children ||
                 scope == TreeScope.Descendants) {
                 WriteVerbose(this, "selected TreeScope." + scope.ToString());
                 AndCondition[] conditions = getControlsConditions(this);
@@ -838,10 +844,7 @@ namespace UIAutomation
             } // if (scope == TreeScope.Children ||
                 //scope == TreeScope.Descendants)
                 if (scope != TreeScope.Parent && scope != TreeScope.Ancestors) continue;
-                outResult = 
-                    // 20120823
-                    //UIAHelper.GetParentOrAncestor(this.InputObject, scope);
-                    UIAHelper.GetParentOrAncestor(inputObject, scope);
+                AutomationElement[] outResult = UIAHelper.GetParentOrAncestor(inputObject, scope);
                 WriteObject(this, outResult);
 
                 /*

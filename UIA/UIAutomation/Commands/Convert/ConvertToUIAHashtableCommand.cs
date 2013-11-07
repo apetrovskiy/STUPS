@@ -469,7 +469,7 @@ namespace UIAutomation.Commands
                 }
             }
 
-            if (resultString == null || resultString == string.Empty || resultString.Length <= 0) return result;
+            if (string.IsNullOrEmpty(resultString) || resultString.Length <= 0) return result;
             if (resultString.Substring(resultString.Length - 1) != "{" &&
                 resultString.Substring(resultString.Length - 1) != ";") {
                     result = ";" + result;
@@ -491,7 +491,7 @@ namespace UIAutomation.Commands
         
         private bool IsIncluded(string propertyName)
         {
-            return this.Include.Any(t => t.ToUpper() == propertyName.ToUpper());
+            return this.Include.Any(t => String.Equals(t, propertyName, StringComparison.CurrentCultureIgnoreCase));
 
             /*
             bool result = false;
@@ -507,7 +507,7 @@ namespace UIAutomation.Commands
 
         private bool IsExcluded(string propertyName)
         {
-            return this.Exclude.Any(t => t.ToUpper() == propertyName.ToUpper());
+            return this.Exclude.Any(t => String.Equals(t, propertyName, StringComparison.CurrentCultureIgnoreCase));
             /*
             bool result = false;
             for (int i = 0; i < this.Exclude.Length; i++)

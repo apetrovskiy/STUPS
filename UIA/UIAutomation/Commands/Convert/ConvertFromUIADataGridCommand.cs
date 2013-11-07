@@ -76,7 +76,12 @@ namespace UIAutomation.Commands
                     System.Windows.Automation.AutomationElement[] selectedItems = null;
                     if (this.SelectedOnly) {
                         // if there's a selection, get items in the selection
-                        try {
+                        try
+                        {
+                            SelectionPattern selPattern = inputObject.GetCurrentPattern(
+                                System.Windows.Automation.SelectionPattern.Pattern)
+                                as System.Windows.Automation.SelectionPattern;
+                            /*
                             System.Windows.Automation.SelectionPattern selPattern;
                             selPattern = 
                                 // 20120823
@@ -84,9 +89,11 @@ namespace UIAutomation.Commands
                                 inputObject.GetCurrentPattern(
                                     System.Windows.Automation.SelectionPattern.Pattern)
                                     as System.Windows.Automation.SelectionPattern;
+                            */
                             selectedItems = 
                                 selPattern.Current.GetSelection();
-                        } catch (Exception eSelection) {
+                        }
+                        catch (Exception eSelection) {
                             this.WriteDebug(this, eSelection.Message);
                             this.WriteVerbose(this, "there wasn't a selection");
                         }

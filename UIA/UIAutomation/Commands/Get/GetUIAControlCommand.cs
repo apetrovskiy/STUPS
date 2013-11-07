@@ -9,10 +9,12 @@
 
 namespace UIAutomation.Commands
 {
-    using System;
+    // 20131107
+    // refactoring
+    //using System;
     using System.Management.Automation;
-    using System.Windows.Automation;
-    using System.Xml.Serialization.Configuration;
+    //using System.Windows.Automation;
+    //using System.Xml.Serialization.Configuration;
     
     using System.Collections;
 

@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-using System.Collections.Generic;
+//using System.Collections.Generic;
 
 namespace UIAutomation
 {
@@ -18,6 +18,7 @@ namespace UIAutomation
     using System.Threading;
     using System.Management.Automation.Runspaces;
     using System.Windows.Automation;
+    using System.Collections.Generic;
     
     using PSTestLib;
     
@@ -224,11 +225,25 @@ namespace UIAutomation
             //try{
             AutomationElement element = null;
 
-            if (cmdlet != null && !(cmdlet is WizardCmdletBase)) {
+            //if (cmdlet != null && !(cmdlet is WizardCmdletBase)) {
+            if (cmdlet == null || cmdlet is WizardCmdletBase) return;
+            try {
 
-                try {
+                element = outputObject as AutomationElement;
+                if (null != element &&
+                    (int)element.Current.ProcessId > 0) {
 
-                    element = outputObject as AutomationElement;
+                        this.WriteVerbose(this, "current cmdlet: " + this.GetType().Name);
+                        this.WriteVerbose(this, "highlighting the following element:");
+                        this.WriteVerbose(this, "Name = " + element.Current.Name);
+                        this.WriteVerbose(this, "AutomationId = " + element.Current.AutomationId);
+                        this.WriteVerbose(this, "ControlType = " + element.Current.ControlType.ProgrammaticName);
+                        this.WriteVerbose(this, "X = " + element.Current.BoundingRectangle.X.ToString());
+                        this.WriteVerbose(this, "Y = " + element.Current.BoundingRectangle.Y.ToString());
+                        this.WriteVerbose(this, "Width = " + element.Current.BoundingRectangle.Width.ToString());
+                        this.WriteVerbose(this, "Height = " + element.Current.BoundingRectangle.Height.ToString());
+                    }
+                /*
                     if (element is AutomationElement &&
                         (int)element.Current.ProcessId > 0) {
 
@@ -242,42 +257,42 @@ namespace UIAutomation
                             this.WriteVerbose(this, "Width = " + element.Current.BoundingRectangle.Width.ToString());
                             this.WriteVerbose(this, "Height = " + element.Current.BoundingRectangle.Height.ToString());
                         }
-                } catch { //(Exception eee) {
-                    // nothing to do
-                    // just failed to highlight
-                }
-                //  // 
-                if (element != null && element is AutomationElement &&
-                    (int)element.Current.ProcessId > 0) {
+                    */
+            } catch { //(Exception eee) {
+                // nothing to do
+                // just failed to highlight
+            }
+            //  // 
+            if (element != null && element is AutomationElement &&
+                (int)element.Current.ProcessId > 0) {
                         
-                        this.WriteVerbose(this, "as it is an AutomationElement, it should be highlighted");
+                    this.WriteVerbose(this, "as it is an AutomationElement, it should be highlighted");
                         
-                        // 20121002
-                        //if (Preferences.Highlight || ((HasScriptBlockCmdletBase)cmdlet).Highlight) {
-                        try {
-                            this.WriteVerbose(this, "run Highlighter");
-                            if (Preferences.ShowExecutionPlan) {
-                                if (Preferences.ShowInfoToolTip) {
-                                    ExecutionPlan.Enqueue(element, CommonCmdletBase.HighlighterGeneration, "name: " + element.Current.Name);
-                                } else {
-                                    ExecutionPlan.Enqueue(element, CommonCmdletBase.HighlighterGeneration, string.Empty);
-                                }
-                                //this.Enqueue(element);
+                    // 20121002
+                    //if (Preferences.Highlight || ((HasScriptBlockCmdletBase)cmdlet).Highlight) {
+                    try {
+                        this.WriteVerbose(this, "run Highlighter");
+                        if (Preferences.ShowExecutionPlan) {
+                            if (Preferences.ShowInfoToolTip) {
+                                ExecutionPlan.Enqueue(element, CommonCmdletBase.HighlighterGeneration, "name: " + element.Current.Name);
                             } else {
+                                ExecutionPlan.Enqueue(element, CommonCmdletBase.HighlighterGeneration, string.Empty);
+                            }
+                            //this.Enqueue(element);
+                        } else {
 //                                if (Preferences.ShowInfoToolTip) {
-                                UIAHelper.Highlight(element);
+                            UIAHelper.Highlight(element);
 //                                } else {
 //                                    UIAHelper.Highlight(element);
 //                                }
-                            }
-                            this.WriteVerbose(this, "after running the Highlighter");
-                        } catch (Exception ee) {
-                            this.WriteVerbose(this, "unable to highlight: " + ee.Message);
-                            this.WriteVerbose(this, outputObject.ToString());
                         }
-                        //}
-                    } // if (element != null && element is AutomationElement &&
-            } // if (cmdlet != null && !(cmdlet is WizardCmdletBase)) {
+                        this.WriteVerbose(this, "after running the Highlighter");
+                    } catch (Exception ee) {
+                        this.WriteVerbose(this, "unable to highlight: " + ee.Message);
+                        this.WriteVerbose(this, outputObject.ToString());
+                    }
+                    //}
+                } // if (element != null && element is AutomationElement &&
 
             /*
             if (Preferences.Highlight || ((HasScriptBlockCmdletBase)cmdlet).Highlight) {
@@ -355,7 +370,7 @@ namespace UIAutomation
             } else if (outputObject is bool && ((bool)outputObject) == false) {
                 this.WriteVerbose(this, "run OnError script blocks (false)");
                 RunOnErrorScriptBlocks(((HasScriptBlockCmdletBase)cmdlet), null);
-            } else if (outputObject != null) {
+            } else {
                 this.WriteVerbose(this, "run OnSuccess script blocks");
                 RunOnSuccessScriptBlocks(((HasScriptBlockCmdletBase)cmdlet), null);
             }
@@ -401,7 +416,25 @@ namespace UIAutomation
                             true);
 
                     } else {
+                        if (!Preferences.EveryCmdletAsTestResult) return;
+                        ((HasScriptBlockCmdletBase)cmdlet).TestResultName =
+                            GetGeneratedTestResultNameByPosition(
+                                this.MyInvocation.Line,
+                                this.MyInvocation.PipelinePosition);
+                        ((HasScriptBlockCmdletBase)cmdlet).TestResultId = string.Empty;
+                        ((HasScriptBlockCmdletBase)cmdlet).TestPassed = true;
 
+                        TMX.TMXHelper.CloseTestResult(((HasScriptBlockCmdletBase)cmdlet).TestResultName,
+                            string.Empty, //((HasScriptBlockCmdletBase)cmdlet).TestResultId, // empty, to be generated
+                            ((HasScriptBlockCmdletBase)cmdlet).TestPassed,
+                            ((HasScriptBlockCmdletBase)cmdlet).KnownIssue, //false, // isKnownIssue
+                            this.MyInvocation,
+                            null, // Error
+                            string.Empty,
+                            TMX.TestResultOrigins.Automatic,
+                            false);
+
+                        /*
                         if (Preferences.EveryCmdletAsTestResult) {
 
                             ((HasScriptBlockCmdletBase)cmdlet).TestResultName =
@@ -421,6 +454,7 @@ namespace UIAutomation
                                 TMX.TestResultOrigins.Automatic,
                                 false);
                         }
+                        */
                     }
             }
             catch (Exception eeee) {
@@ -897,7 +931,26 @@ namespace UIAutomation
                             false);
                         
                     } else {
-                        
+                        if (!Preferences.EveryCmdletAsTestResult) return;
+                        ((HasScriptBlockCmdletBase)cmdlet).TestResultName =
+                            GetGeneratedTestResultNameByPosition(
+                                this.MyInvocation.Line,
+                                this.MyInvocation.PipelinePosition);
+                            
+                        ((HasScriptBlockCmdletBase)cmdlet).TestResultId = string.Empty;
+                        ((HasScriptBlockCmdletBase)cmdlet).TestPassed = false;
+                            
+                        TMX.TMXHelper.CloseTestResult(((HasScriptBlockCmdletBase)cmdlet).TestResultName,
+                            string.Empty, //((HasScriptBlockCmdletBase)cmdlet).TestResultId, // empty, to be generated
+                            ((HasScriptBlockCmdletBase)cmdlet).TestPassed,
+                            false, // isKnownIssue
+                            this.MyInvocation,
+                            errorRecord,
+                            string.Empty,
+                            TMX.TestResultOrigins.Automatic,
+                            false);
+
+                        /*
                         if (Preferences.EveryCmdletAsTestResult) {
                             
                             ((HasScriptBlockCmdletBase)cmdlet).TestResultName =
@@ -919,6 +972,7 @@ namespace UIAutomation
                                 false);
                             
                         }
+                        */
                     }
             }
             catch {
@@ -987,12 +1041,19 @@ namespace UIAutomation
         {
             // set the Turbo timeout
             if ((!(cmdlet is HasTimeoutCmdletBase)) || (cmdlet as HasTimeoutCmdletBase) == null) return;
-            if (terminating && (
-                ( null == CurrentData.LastResult &&  // i.e., no window was caught
-                  null == CurrentData.CurrentWindow) ||
-                ( null == CurrentData.LastResult && // i.e., this command was critical
-                  ((HasTimeoutCmdletBase)cmdlet).IsCritical))) {
+            if (!terminating ||
+                ((null != CurrentData.LastResult || null != CurrentData.CurrentWindow) &&
+                 (null != CurrentData.LastResult || !((HasTimeoutCmdletBase) cmdlet).IsCritical))) return;
+            if (Preferences.TimeoutSetByCustomer != (true &&
+                                                     0 == Preferences.StoredDefaultTimeout)) return;
+            int timeoutToStore = Preferences.Timeout;
+            Preferences.Timeout = Preferences.AfterFailTurboTimeout;
+            Preferences.TimeoutSetByCustomer = false;
+            Preferences.StoredDefaultTimeout = timeoutToStore;
 
+            this.WriteVerbose(this, "Preferences.StoredDefaultTimeout = " + Preferences.StoredDefaultTimeout.ToString());
+
+            /*
                       if (Preferences.TimeoutSetByCustomer = true &&
                                                              0 == Preferences.StoredDefaultTimeout) {
                                                                  int timeoutToStore = Preferences.Timeout;
@@ -1002,7 +1063,7 @@ namespace UIAutomation
 
                                                                  this.WriteVerbose(this, "Preferences.StoredDefaultTimeout = " + Preferences.StoredDefaultTimeout.ToString());
                                                              }
-                  }
+                        */
 
             /*
             if ((cmdlet is HasTimeoutCmdletBase) &&
@@ -1966,6 +2027,18 @@ namespace UIAutomation
                             }
                         }
                         #endregion wildcard search
+                        
+                        #region Regex search
+                        //if (0 == aeCtrl.Count && notTextSearch) {
+                        //    if (!Preferences.DisableWildCardSearch && !cmdlet.Win32) {
+                        //        
+                        //        // 20131104
+                        //        // refactoring
+                        //        //SearchByWildcardViaUIA(cmdlet, ref aeCtrl, inputObject, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class, cmdlet.Value, conditionsForWildCards);
+                        //        SearchByWildcardViaUIA(cmdlet, ref aeCtrl, adapterOfInputObject, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class, cmdlet.Value, conditionsForWildCards);
+                        //    }
+                        //}
+                        #endregion Regex search
 
                         #region Win32 search
                         if (0 == aeCtrl.Count && notTextSearch) {

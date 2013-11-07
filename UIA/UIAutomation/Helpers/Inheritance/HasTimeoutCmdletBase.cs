@@ -747,7 +747,7 @@ namespace UIAutomation
         {
             System.Windows.Automation.OrCondition conditionsSet = null;
             
-            System.Collections.ArrayList aeWndCollectionByTitle = 
+            System.Collections.ArrayList windowCollectionByProperties = 
                 new System.Collections.ArrayList();
             System.Collections.ArrayList resultCollection = 
                 new System.Collections.ArrayList();
@@ -783,8 +783,8 @@ namespace UIAutomation
                 WriteVerbose(this, "trying to get window: by title = " +
                              windowTitle);
                 
-                AutomationElementCollection aeWndCollection = null;
-                aeWndCollection = rootElement.FindAll(recurse ? TreeScope.Descendants : TreeScope.Children, conditionsSet);
+                AutomationElementCollection windowCollection = null;
+                windowCollection = rootElement.FindAll(recurse ? TreeScope.Descendants : TreeScope.Children, conditionsSet);
 
                 /*
                 if (recurse) {
@@ -800,12 +800,12 @@ namespace UIAutomation
                 */
 
                 this.WriteVerbose(this, "trying to run the returnOnlyRightElements method");
-                this.WriteVerbose(this, "collected " + aeWndCollection.Count.ToString() + " elements for further selection");
+                this.WriteVerbose(this, "collected " + windowCollection.Count.ToString() + " elements for further selection");
                 
-                aeWndCollectionByTitle =
+                windowCollectionByProperties =
                     HasTimeoutCmdletBase.ReturnOnlyRightElements(
                         this,
-                        aeWndCollection,
+                        windowCollection,
                         windowTitle,
                         automationId,
                         className,
@@ -814,11 +814,11 @@ namespace UIAutomation
                         false);
                 
                 this.WriteVerbose(this, "after running the returnOnlyRightElements method");
-                this.WriteVerbose(this, "collected " + aeWndCollectionByTitle.Count.ToString() + " elements");
+                this.WriteVerbose(this, "collected " + windowCollectionByProperties.Count.ToString() + " elements");
                 
-                if (null != aeWndCollectionByTitle && 0 < aeWndCollectionByTitle.Count) {
+                if (null != windowCollectionByProperties && 0 < windowCollectionByProperties.Count) {
                     
-                    foreach (AutomationElement aeWndByTitle in aeWndCollectionByTitle.Cast<AutomationElement>().Where(aeWndByTitle => aeWndByTitle != null &&
+                    foreach (AutomationElement aeWndByTitle in windowCollectionByProperties.Cast<AutomationElement>().Where(aeWndByTitle => aeWndByTitle != null &&
                                                                                                                                       (int)aeWndByTitle.Current.ProcessId > 0))
                     {
                         WriteVerbose(this, "aeWndByTitle: " +
@@ -955,7 +955,7 @@ namespace UIAutomation
         
         internal static ArrayList ReturnOnlyRightElements(
             HasTimeoutCmdletBase cmdlet,
-            IEnumerable results,
+            IEnumerable inputCollection,
             string name,
             string automationId,
             string className,
@@ -976,18 +976,25 @@ namespace UIAutomation
                     WildcardOptions.Compiled;
             }
             
+            name = string.IsNullOrEmpty(name) ? "*" : name;
+            automationId = string.IsNullOrEmpty(automationId) ? "*" : automationId;
+            className = string.IsNullOrEmpty(className) ? "*" : className;
+            textValue = string.IsNullOrEmpty(textValue) ? "*" : textValue;
+            
+            /*
             if (string.IsNullOrEmpty(name) || 0 == name.Length) { name = "*"; }
             if (string.IsNullOrEmpty(automationId) || 0 == automationId.Length) { automationId = "*"; }
             if (string.IsNullOrEmpty(className) || 0 == className.Length) { className = "*"; }
             if (string.IsNullOrEmpty(textValue) || 0 == textValue.Length) { textValue = "*"; }
-
+            */
+            
             /*
             if (null == name || string.Empty == name || 0 == name.Length) { name = "*"; }
             if (null == automationId || string.Empty == automationId || 0 == automationId.Length) { automationId = "*"; }
             if (null == className || string.Empty == className || 0 == className.Length) { className = "*"; }
             if (null == textValue || string.Empty == textValue || 0 == textValue.Length) { textValue = "*"; }
             */
-
+            
             WildcardPattern wildcardName = 
                 new WildcardPattern(name, options);
             WildcardPattern wildcardAutomationId = 
@@ -996,8 +1003,26 @@ namespace UIAutomation
                 new WildcardPattern(className, options);
             WildcardPattern wildcardValue = 
                 new WildcardPattern(textValue, options);
-            cmdlet.WriteVerbose(cmdlet, "inside the returnOnlyRightElements method 20");
-                System.Collections.Generic.List<AutomationElement> list = results.Cast<AutomationElement>().ToList();
+            
+            /*
+            WildcardPattern wildcardName = 
+                new WildcardPattern(string.IsNullOrEmpty(name) ? "*" : name, options);
+            WildcardPattern wildcardAutomationId = 
+                new WildcardPattern(string.IsNullOrEmpty(automationId) ? "*" : automationId, options);
+            WildcardPattern wildcardClass = 
+                new WildcardPattern(string.IsNullOrEmpty(className) ? "*" : className, options);
+            WildcardPattern wildcardValue = 
+                new WildcardPattern(string.IsNullOrEmpty(textValue) ? "*" : textValue, options);
+            */
+            //cmdlet.WriteVerbose(cmdlet, "inside the returnOnlyRightElements method 20");
+            System.Collections.Generic.List<AutomationElement> inputList = inputCollection.Cast<AutomationElement>().ToList();
+            
+            cmdlet.WriteVerbose(
+                    cmdlet,
+                    "ReturnOnlyRightElements: there are " +
+                    inputList.Count.ToString() +
+                    " elements");
+            
             /*
                 foreach (AutomationElement elt in results)
                 {
@@ -1009,7 +1034,7 @@ namespace UIAutomation
 
             try {
                 
-                var query = list
+                var query = inputList
                     .Where<AutomationElement>(
                         item => (wildcardName.IsMatch(item.Current.Name) &&
                                  wildcardAutomationId.IsMatch(item.Current.AutomationId) &&
@@ -1023,15 +1048,15 @@ namespace UIAutomation
                                 )
                        )
                     .ToArray<AutomationElement>();
-
+                
                 cmdlet.WriteVerbose(
                         cmdlet,
                         "There are " +
                         query.Count().ToString() +
                         " elements");
-
+                
                 resultCollection.AddRange(query);
-
+                
                 cmdlet.WriteVerbose(
                     cmdlet,
                     "There are " +

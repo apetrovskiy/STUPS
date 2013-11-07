@@ -116,7 +116,7 @@ namespace UIAutomation
         {
             cmdlet.WriteVerbose(cmdlet, "in the GetAutomationElementsViaWildcards_FindAll method");
             
-            if (!cmdlet.CheckControl(cmdlet)) { return null; }
+            if (!cmdlet.CheckControl(cmdlet)) { return null; } // ?? 20131107
             
             cmdlet.WriteVerbose(cmdlet, "still in the GetAutomationElementsViaWildcards_FindAll method");
 

@@ -1461,7 +1461,7 @@ namespace UIAutomation
         
         protected internal System.DateTime StartDate { get; set; }
         protected AutomationElement _window { get; set; }
-        protected ArrayList aeCtrl;
+        protected ArrayList resultArrayListOfControls;
         protected internal AutomationElement rootElement { get; set; }
         
         /// <summary>
@@ -1875,8 +1875,12 @@ namespace UIAutomation
         protected internal ArrayList GetControl(GetControlCmdletBase cmdlet)
         {
             try {
-
-                aeCtrl = new ArrayList();
+                
+                // 20131107
+                //aeCtrl = new ArrayList();
+                resultArrayListOfControls = new ArrayList();
+                
+                #region conditions
                 System.Windows.Automation.AndCondition conditions = null;
                 System.Windows.Automation.AndCondition conditionsForWildCards = null;
                 System.Windows.Automation.AndCondition conditionsForTextSearch = null;
@@ -1916,7 +1920,9 @@ namespace UIAutomation
                     displayConditions(cmdlet, conditionsForWildCards, "for wildcard search");
 
                 }
-
+                #endregion conditions
+                
+                #region commented
                 /*
                 if (null != cmdlet.ContainsText && string.Empty != cmdlet.ContainsText) {
                     tempCmdlet.ContainsText = cmdlet.ContainsText;
@@ -1949,7 +1955,8 @@ namespace UIAutomation
 
                 }
                 */
-
+                #endregion commented
+                
                 tempCmdlet = null;
 
                 foreach (AutomationElement inputObject in cmdlet.InputObject) {
@@ -1961,7 +1968,7 @@ namespace UIAutomation
 
                     int processId = 0;
                     do {
-                        
+                        #region checking processId
                         // 20131104
                         // refactoring
                         //if (inputObject != null &&
@@ -1977,10 +1984,12 @@ namespace UIAutomation
                             processId = adapterOfInputObject.Current.ProcessId;
 
                         }
+                        #endregion checking processId
+                        
                         // 20130204
                         // don't change the order! (text->exact->wildcard->win32 to win32->text->exact->wildcard)
                         #region text search
-                        if (0 == aeCtrl.Count) {
+                        if (0 == resultArrayListOfControls.Count) {
                             if (!notTextSearch && !cmdlet.Win32) {
                                 
                                 // 20131104
@@ -1992,7 +2001,7 @@ namespace UIAutomation
                         #endregion text search
 
                         #region text search Win32
-                        if (0 == aeCtrl.Count) {
+                        if (0 == resultArrayListOfControls.Count) {
                             if (!notTextSearch && cmdlet.Win32) {
                                 
                                 // 20131104
@@ -2004,7 +2013,7 @@ namespace UIAutomation
                         #endregion text search Win32
 
                         #region exact search
-                        if (0 == aeCtrl.Count && notTextSearch) {
+                        if (0 == resultArrayListOfControls.Count && notTextSearch) {
                             if (!Preferences.DisableExactSearch && !cmdlet.Win32 ) {
                                 
                                 // 20131104
@@ -2017,13 +2026,13 @@ namespace UIAutomation
                         #endregion exact search
 
                         #region wildcard search
-                        if (0 == aeCtrl.Count && notTextSearch) {
+                        if (0 == resultArrayListOfControls.Count && notTextSearch) {
                             if (!Preferences.DisableWildCardSearch && !cmdlet.Win32) {
                                 
                                 // 20131104
                                 // refactoring
                                 //SearchByWildcardViaUIA(cmdlet, ref aeCtrl, inputObject, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class, cmdlet.Value, conditionsForWildCards);
-                                SearchByWildcardViaUIA(cmdlet, ref aeCtrl, adapterOfInputObject, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class, cmdlet.Value, conditionsForWildCards);
+                                SearchByWildcardViaUIA(cmdlet, ref resultArrayListOfControls, adapterOfInputObject, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class, cmdlet.Value, conditionsForWildCards);
                             }
                         }
                         #endregion wildcard search
@@ -2041,7 +2050,7 @@ namespace UIAutomation
                         #endregion Regex search
 
                         #region Win32 search
-                        if (0 == aeCtrl.Count && notTextSearch) {
+                        if (0 == resultArrayListOfControls.Count && notTextSearch) {
                             
                             if (!Preferences.DisableWin32Search || cmdlet.Win32) {
                                 
@@ -2054,11 +2063,10 @@ namespace UIAutomation
                         } // FindWindowEx
                         #endregion Win32 search
 
-                        if (null != aeCtrl && aeCtrl.Count > 0) {
+                        if (null != resultArrayListOfControls && resultArrayListOfControls.Count > 0) {
                             
                             break;
                         }
-                        
                         
                         cmdlet.WriteVerbose(cmdlet, "going to sleep 99999999999");
                         
@@ -2088,7 +2096,7 @@ namespace UIAutomation
                         
                         if ((nowDate - StartDate).TotalSeconds > cmdlet.Timeout / 1000) {
                             
-                            if (null == aeCtrl || 0 == aeCtrl.Count) {
+                            if (null == resultArrayListOfControls || 0 == resultArrayListOfControls.Count) {
 
                                 return null;
                             }
@@ -2148,7 +2156,7 @@ namespace UIAutomation
                     
                 } // 20120823
 
-                return aeCtrl;
+                return resultArrayListOfControls;
 
             }
             catch (Exception eGetControlException) {
@@ -2195,13 +2203,25 @@ namespace UIAutomation
                 tempListWin32.AddRange(UIAHelper.GetControlByName(cmdlet, inputObject, cmdlet.Value));
             }
             */
+            
+            if (null == cmdlet.SearchCriteria || 0 == cmdlet.SearchCriteria.Length) {
+                
+               resultArrayListOfControls.AddRange(tempListWin32);
+            }
+            
             foreach (AutomationElement tempElement3 in tempListWin32) {
+                if (string.IsNullOrEmpty(cmdlet.ControlType)) continue;
+                if (!tempElement3.Current.ControlType.ProgrammaticName.ToUpper().Contains(cmdlet.ControlType.ToUpper())) continue;
+                if (tempElement3.Current.ControlType.ProgrammaticName.ToUpper().Substring(12).Length != cmdlet.ControlType.ToUpper().Length) continue;
+                
+                /*
                 if (!string.IsNullOrEmpty(cmdlet.ControlType)) {
                     if (!tempElement3.Current.ControlType.ProgrammaticName.ToUpper().Contains(cmdlet.ControlType.ToUpper()) || 
                         tempElement3.Current.ControlType.ProgrammaticName.ToUpper().Substring(12).Length != cmdlet.ControlType.ToUpper().Length) {
                         continue;
                     }
                 }
+                */
 
                 /*
                 if (null != cmdlet.ControlType && 0 < cmdlet.ControlType.Length) {
@@ -2211,24 +2231,43 @@ namespace UIAutomation
                     }
                 }
                 */
-                if (null == cmdlet.SearchCriteria || 0 == cmdlet.SearchCriteria.Length) {
-                    aeCtrl.Add(tempElement3);
-                    cmdlet.WriteVerbose(cmdlet, "Win32Search: element added to the result collection");
-                } else {
+//                if (null == cmdlet.SearchCriteria || 0 == cmdlet.SearchCriteria.Length) {
+//                    resultArrayListOfControls.Add(tempElement3);
+//                    cmdlet.WriteVerbose(cmdlet, "Win32Search: element added to the result collection");
+//                } else {
+//                    cmdlet.WriteVerbose(cmdlet, "Win32Search: checking search criteria");
+//                    if (!TestControlWithAllSearchCriteria(cmdlet, cmdlet.SearchCriteria, tempElement3)) continue;
+//                    cmdlet.WriteVerbose(cmdlet, "Win32Search: the control matches the search criteria");
+//                    resultArrayListOfControls.Add(tempElement3);
+//                    cmdlet.WriteVerbose(cmdlet, "Win32Search: element added to the result collection");
+//
+//                    /*
+//                    if (TestControlWithAllSearchCriteria(cmdlet, cmdlet.SearchCriteria, tempElement3)) {
+//                        cmdlet.WriteVerbose(cmdlet, "Win32Search: the control matches the search criteria");
+//                        aeCtrl.Add(tempElement3);
+//                        cmdlet.WriteVerbose(cmdlet, "Win32Search: element added to the result collection");
+//                    }
+//                    */
+//                }
+
+                //if (null == cmdlet.SearchCriteria || 0 == cmdlet.SearchCriteria.Length) {
+                //    resultArrayListOfControls.Add(tempElement3);
+                //    cmdlet.WriteVerbose(cmdlet, "Win32Search: element added to the result collection");
+                //} else {
                     cmdlet.WriteVerbose(cmdlet, "Win32Search: checking search criteria");
                     if (!TestControlWithAllSearchCriteria(cmdlet, cmdlet.SearchCriteria, tempElement3)) continue;
                     cmdlet.WriteVerbose(cmdlet, "Win32Search: the control matches the search criteria");
-                    aeCtrl.Add(tempElement3);
+                    resultArrayListOfControls.Add(tempElement3);
                     cmdlet.WriteVerbose(cmdlet, "Win32Search: element added to the result collection");
-
-                    /*
-                    if (TestControlWithAllSearchCriteria(cmdlet, cmdlet.SearchCriteria, tempElement3)) {
-                        cmdlet.WriteVerbose(cmdlet, "Win32Search: the control matches the search criteria");
-                        aeCtrl.Add(tempElement3);
-                        cmdlet.WriteVerbose(cmdlet, "Win32Search: element added to the result collection");
-                    }
-                    */
-                }
+                //
+                //    /*
+                //    if (TestControlWithAllSearchCriteria(cmdlet, cmdlet.SearchCriteria, tempElement3)) {
+                //        cmdlet.WriteVerbose(cmdlet, "Win32Search: the control matches the search criteria");
+                //        aeCtrl.Add(tempElement3);
+                //        cmdlet.WriteVerbose(cmdlet, "Win32Search: element added to the result collection");
+                //    }
+                //    */
+                //}
             }
             
             // 20130608
@@ -2300,34 +2339,50 @@ namespace UIAutomation
                         tempList.Count.ToString() +
                         " elements that match the conditions");
                     
-                    foreach (AutomationElement tempElement2 in tempList) {
-
-                        if (null == cmdlet.SearchCriteria || 0 == cmdlet.SearchCriteria.Length) {
-
-                            resultCollection.Add(tempElement2);
-                            cmdlet.WriteVerbose(cmdlet, "WildCardSearch: element added to the result collection (no SearchCriteria)");
-                        } else {
-
+                    if (null == cmdlet.SearchCriteria || 0 == cmdlet.SearchCriteria.Length) {
+                        
+                        resultCollection.AddRange(tempList);
+                    } else {
+                        
+                        foreach (AutomationElement tempElement2 in tempList) {
+                            
                             cmdlet.WriteVerbose(cmdlet, "WildCardSearch: checking search criteria");
                             if (!TestControlWithAllSearchCriteria(cmdlet, cmdlet.SearchCriteria, tempElement2))
                                 continue;
                             cmdlet.WriteVerbose(cmdlet, "WildCardSearch: the control matches the search criteria");
                             resultCollection.Add(tempElement2);
                             cmdlet.WriteVerbose(cmdlet, "WildCardSearch: element added to the result collection (SearchCriteria)");
-
-                            /*
-                            if (TestControlWithAllSearchCriteria(cmdlet, cmdlet.SearchCriteria, tempElement2)) {
-
-                                cmdlet.WriteVerbose(cmdlet, "WildCardSearch: the control matches the search criteria");
-                                resultCollection.Add(tempElement2);
-                                cmdlet.WriteVerbose(cmdlet, "WildCardSearch: element added to the result collection (SearchCriteria)");
-                            }
-                            */
-
-                            // cmdlet.WriteVerbose(cmdlet, "WildCardSearch: element added to the result collection (SearchCriteria) (2)");
                         }
-                        // cmdlet.WriteVerbose(cmdlet, "WildCardSearch: element added to the result collection (SearchCriteria) (3)");
                     }
+                    
+//                    foreach (AutomationElement tempElement2 in tempList) {
+//
+//                        if (null == cmdlet.SearchCriteria || 0 == cmdlet.SearchCriteria.Length) {
+//
+//                            resultCollection.Add(tempElement2);
+//                            cmdlet.WriteVerbose(cmdlet, "WildCardSearch: element added to the result collection (no SearchCriteria)");
+//                        } else {
+//
+//                            cmdlet.WriteVerbose(cmdlet, "WildCardSearch: checking search criteria");
+//                            if (!TestControlWithAllSearchCriteria(cmdlet, cmdlet.SearchCriteria, tempElement2))
+//                                continue;
+//                            cmdlet.WriteVerbose(cmdlet, "WildCardSearch: the control matches the search criteria");
+//                            resultCollection.Add(tempElement2);
+//                            cmdlet.WriteVerbose(cmdlet, "WildCardSearch: element added to the result collection (SearchCriteria)");
+//
+//                            /*
+//                            if (TestControlWithAllSearchCriteria(cmdlet, cmdlet.SearchCriteria, tempElement2)) {
+//
+//                                cmdlet.WriteVerbose(cmdlet, "WildCardSearch: the control matches the search criteria");
+//                                resultCollection.Add(tempElement2);
+//                                cmdlet.WriteVerbose(cmdlet, "WildCardSearch: element added to the result collection (SearchCriteria)");
+//                            }
+//                            */
+//
+//                            // cmdlet.WriteVerbose(cmdlet, "WildCardSearch: element added to the result collection (SearchCriteria) (2)");
+//                        }
+//                        // cmdlet.WriteVerbose(cmdlet, "WildCardSearch: element added to the result collection (SearchCriteria) (3)");
+//                    }
                     
                     if (null != tempList) {
                         tempList.Clear();
@@ -2418,13 +2473,13 @@ namespace UIAutomation
                 IAutomationElementCollection tempCollection = inputObject.FindAll(System.Windows.Automation.TreeScope.Descendants, conditions);
                 foreach (AutomationElement tempElement in tempCollection) {
                     if (null == cmdlet.SearchCriteria || 0 == cmdlet.SearchCriteria.Length) {
-                        aeCtrl.Add(tempElement);
+                        resultArrayListOfControls.Add(tempElement);
                         cmdlet.WriteVerbose(cmdlet, "ExactSearch: element added to the result collection");
                     } else {
                         cmdlet.WriteVerbose(cmdlet, "ExactSearch: checking search criteria");
                         if (TestControlWithAllSearchCriteria(cmdlet, cmdlet.SearchCriteria, tempElement)) {
                             cmdlet.WriteVerbose(cmdlet, "ExactSearch: the control matches the search criteria");
-                            aeCtrl.Add(tempElement);
+                            resultArrayListOfControls.Add(tempElement);
                             cmdlet.WriteVerbose(cmdlet, "ExactSearch: element added to the result collection");
                         }
                     }
@@ -2484,7 +2539,7 @@ namespace UIAutomation
             if (null != textSearchCollection && 0 < textSearchCollection.Count) {
                 this.WriteVerbose(cmdlet, "There are " + textSearchCollection.Count.ToString() + " elements");
                 foreach (AutomationElement element in textSearchCollection) {
-                    aeCtrl.Add(element);
+                    resultArrayListOfControls.Add(element);
                 }
             }
             // 20130608
@@ -2522,11 +2577,11 @@ namespace UIAutomation
                             continue;
                         } else {
                             
-                            aeCtrl.Add(elementToChoose);
+                            resultArrayListOfControls.Add(elementToChoose);
                         }
                     } else {
                         
-                        aeCtrl.Add(elementToChoose);
+                        resultArrayListOfControls.Add(elementToChoose);
                     }
 
                     /*

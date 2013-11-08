@@ -170,21 +170,19 @@ namespace UIAutomation
 
         protected override void WriteSingleObject(PSCmdletBase cmdlet, object outputObject)
         {
-
             WriteObjectMethod020Highlight(cmdlet, outputObject);
-
+            
             WriteObjectMethod030RunScriptBlocks(cmdlet, outputObject);
-
+            
             WriteObjectMethod040SetTestResult(cmdlet, outputObject);
-
+            
             WriteObjectMethod045OnSuccessScreenshot(cmdlet, outputObject);
-
+            
             WriteObjectMethod050OnSuccessDelay(cmdlet, outputObject);
-
+            
             WriteObjectMethod060OutputResult(cmdlet, outputObject);
-
+            
             WriteObjectMethod070Report(cmdlet, outputObject);
-
         }
         
         protected override void AfterWriteSingleObject(PSCmdletBase cmdlet, object outputObject) {}
@@ -233,6 +231,7 @@ namespace UIAutomation
 
                 element = outputObject as AutomationElement;
                 if (null != element &&
+                //if (element is AutomationElement &&
                     (int)element.Current.ProcessId > 0) {
 
                         this.WriteVerbose(this, "current cmdlet: " + this.GetType().Name);
@@ -265,7 +264,7 @@ namespace UIAutomation
                 // just failed to highlight
             }
             //  // 
-            if (element != null &&
+            if (element != null && element is AutomationElement &&
                 (int)element.Current.ProcessId > 0) {
                         
                 this.WriteVerbose(this, "as it is an AutomationElement, it should be highlighted");
@@ -621,16 +620,21 @@ namespace UIAutomation
                 //this.WriteVerbose(this, (element as AutomationElement).ToString());
                 if (!(cmdlet is WizardCmdletBase) &&
                     (null != element)) {
+                    //(element is AutomationElement)){
 
                     this.WriteVerbose(this, "returning the object");
                     this.WriteObject(outputObject);
                 } else if ((cmdlet is WizardCmdletBase)) {
                     this.WriteVerbose(this, "returning the wizard or step");
                     this.WriteObject(outputObject);
-                } else {
-                    this.WriteVerbose("returning true");
-                    this.WriteObject(true);
-                }
+                // 20131108
+                } else { //if (!(outputObject is bool)) {
+                    this.WriteVerbose("returning as is");
+                    this.WriteObject(outputObject);
+                } //else {
+                //    this.WriteVerbose("returning true");
+                //    this.WriteObject(true);
+                //}
 
                 /*
                 if (!(cmdlet is WizardCmdletBase) &&

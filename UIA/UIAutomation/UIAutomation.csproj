@@ -46,6 +46,7 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
     <RegisterForComInterop>False</RegisterForComInterop>
@@ -58,11 +59,13 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>Full</DebugType>
     <StartAction>Program</StartAction>
-    <StartProgram>c:\windows\system32\windowspowershell\v1.0\powershell.exe</StartProgram>
+    <StartProgram>c:\windows\syswow64\windowspowershell\v1.0\powershell.exe</StartProgram>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <Optimize>False</Optimize>
     <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
     <OutputPath>bin\Debug\</OutputPath>
+    <StartArguments>-sta -executionpolicy unrestricted -command "&amp; { C:\Projects\PS\STUPS\pre-samples\UIA-tests\QuickTestReadCmdlets.ps1 }"</StartArguments>
+    <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <DebugSymbols>false</DebugSymbols>
@@ -424,13 +427,14 @@ rem C:\Distrib\UIAutomation\UIAutomation\copyDebugLibrary.cmd</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release35' ">
     <DebugSymbols>false</DebugSymbols>
-    <DebugType>PdbOnly</DebugType>
+    <DebugType>None</DebugType>
     <StartAction>Program</StartAction>
-    <StartProgram>c:\windows\system32\windowspowershell\v1.0\powershell.exe</StartProgram>
+    <StartProgram>C:\Windows\Syswow64\WindowsPowerShell\v1.0\powershell.exe</StartProgram>
     <DefineConstants>TRACE</DefineConstants>
     <Optimize>True</Optimize>
     <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
     <OutputPath>bin\Release35\</OutputPath>
+    <StartArguments>-sta -executionpolicy unrestricted -command "&amp; { C:\Projects\PS\STUPS\pre-samples\UIA-tests\QuickTestReadCmdlets.ps1 }"</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release35|x86' ">
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
@@ -444,6 +448,7 @@ rem C:\Distrib\UIAutomation\UIAutomation\copyDebugLibrary.cmd</PostBuildEvent>
     <BaseAddress>4194304</BaseAddress>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <FileAlignment>4096</FileAlignment>
+    <Prefer32Bit>False</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|Release35' ">
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>

@@ -166,7 +166,7 @@ namespace UIAutomation.Commands
                         this.AutomationId +
                         "', className: '" +
                         this.Class +
-                        ",",
+                        "'",
                         "FailedToGetWindow",
                         ErrorCategory.InvalidResult,
                         true);

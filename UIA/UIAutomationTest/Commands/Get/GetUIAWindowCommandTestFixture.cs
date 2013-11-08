@@ -46,8 +46,9 @@ namespace UIAutomationTest.Commands.Get
                 "CmdletInvocationException",
                 // 20130318
                 //"Failed to get the window by: process name: 'wrong process name' process Id:  window title: ''");
-                "Failed to get the window by: process name: 'wrong process name', process Id: , window title: '', automationId: '', className: ',");
-
+                // 20131108
+                //"Failed to get the window by: process name: 'wrong process name', process Id: , window title: '', automationId: '', className: ',");
+                "Failed to get window in 2000 seconds by: process name: 'wrong process name', process Id: , window title: '', automationId: '', className: ''");
         }
         
         [Test] //[Test(Description="TBD")]
@@ -106,7 +107,9 @@ namespace UIAutomationTest.Commands.Get
                 "CmdletInvocationException",
                 // 20130318
                 //"Failed to get the window by: process name: 'UIAutomationTestForms' process Id:  window title: ''");
-                "Failed to get the window by: process name: 'UIAutomationTestForms', process Id: , window title: '', automationId: '', className: ',");
+                // 20131108
+                //"Failed to get the window by: process name: 'UIAutomationTestForms', process Id: , window title: '', automationId: '', className: ',");
+                "Failed to get window in 3000 seconds by: process name: 'UIAutomationTestForms', process Id: , window title: '', automationId: '', className: ''");
         }
         
         [Test] //[Test(Description="TBD")]
@@ -152,8 +155,9 @@ namespace UIAutomationTest.Commands.Get
                 "CmdletInvocationException",
                 // 20130318
                 //"Failed to get the window by: process name: 'UIAutomationTestForms' process Id:  window title: ''");
-                "Failed to get the window by: process name: 'UIAutomationTestForms', process Id: , window title: '', automationId: '', className: ',");
-
+                // 20131108
+                //"Failed to get the window by: process name: 'UIAutomationTestForms', process Id: , window title: '', automationId: '', className: ',");
+                "Failed to get window in 3000 seconds by: process name: 'UIAutomationTestForms', process Id: , window title: '', automationId: '', className: ''");
         }
         
         [Test] //[Test(Description="TBD")]
@@ -185,7 +189,9 @@ namespace UIAutomationTest.Commands.Get
                 "CmdletInvocationException",
                 // 20130318
                 //"Failed to get the window by: process name: '' process Id:  window title: 'wrong name'");
-                "Failed to get the window by: process name: '', process Id: , window title: 'wrong name', automationId: '', className: ',");
+                // 20131108
+                //"Failed to get the window by: process name: '', process Id: , window title: 'wrong name', automationId: '', className: ',");
+                "Failed to get window in 2000 seconds by: process name: '', process Id: , window title: 'wrong name', automationId: '', className: ''");
 
         }
         
@@ -341,8 +347,9 @@ namespace UIAutomationTest.Commands.Get
                 "CmdletInvocationException",
                 // 20130318
                 //"Failed to get the window by: process name: '' process Id:  window title: 'WinFormsEmpty'");
-                "Failed to get the window by: process name: '', process Id: , window title: 'WinFormsEmpty', automationId: '', className: ',");
-
+                // 20131108
+                //"Failed to get the window by: process name: '', process Id: , window title: 'WinFormsEmpty', automationId: '', className: ',");
+                "Failed to get window in 3000 seconds by: process name: '', process Id: , window title: 'WinFormsEmpty', automationId: '', className: ''");
 
 
         }
@@ -398,8 +405,9 @@ namespace UIAutomationTest.Commands.Get
                 "CmdletInvocationException",
                 // 20130318
                 //"Failed to get the window by: process name: '' process Id: 12345678 window title: ''");
-                "Failed to get the window by: process name: '', process Id: 12345678, window title: '', automationId: '', className: ',");
-
+                // 20131108
+                //"Failed to get the window by: process name: '', process Id: 12345678, window title: '', automationId: '', className: ',");
+                "Failed to get window in 2000 seconds by: process name: '', process Id: 12345678, window title: '', automationId: '', className: ''");
         }
         
         [Test] //[Test(Description="TBD")]

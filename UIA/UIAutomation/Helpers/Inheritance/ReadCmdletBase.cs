@@ -32,6 +32,7 @@ namespace UIAutomation
             if (!this.CheckControl(this)) { return; }
             
             foreach (AutomationElement inputObject in InputObject) {
+                
                 if (this.GetType().Name == "ReadUIAControlAutomationIdCommand") {
                     this.WriteObject(this, inputObject.Current.AutomationId);
                 }

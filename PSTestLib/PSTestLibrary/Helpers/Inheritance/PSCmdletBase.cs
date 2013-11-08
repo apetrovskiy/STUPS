@@ -154,9 +154,9 @@ namespace PSTestLib
             }
 
             for (int i = 0; i < outputObjectCollection.Length; i++) {
-
+                
                 this.writeSingleObject(cmdlet, outputObjectCollection[i]);
-
+                
             }
             
             AfterWriteCollection(cmdlet, outputObjectCollection);
@@ -175,6 +175,7 @@ namespace PSTestLib
             // 20121117
             //for (int i = 0; i < outputObjectCollection.Count; i++) {
             foreach (var item in outputObjectCollection) {
+                
                 this.writeSingleObject(cmdlet, item);
             }
             //}
@@ -196,6 +197,7 @@ namespace PSTestLib
             }
 
             for (int i = 0; i < outputObjectCollection.Count; i++) {
+                
                 this.WriteObject(cmdlet, outputObjectCollection[i]);
             }
             
@@ -215,6 +217,7 @@ namespace PSTestLib
             }
 
             foreach (object item in outputObjectCollection) {
+                
                 this.writeSingleObject(cmdlet, item);
             }
             
@@ -234,13 +237,13 @@ namespace PSTestLib
             }
             IEnumerator en = outputObjectCollection.GetEnumerator();
             while (en.MoveNext()) {
+                
                 this.writeSingleObject(cmdlet, en.Current);
             }
             
             AfterWriteCollection(cmdlet, outputObjectCollection);
         }
         
-        // 20121112
         public virtual void WriteObject(PSCmdletBase cmdlet, string outputObject)
         {
             if (PSCmdletBase.UnitTestMode) {
@@ -249,6 +252,7 @@ namespace PSTestLib
 
                 UnitTestOutput.StartAddingOutput();
             }
+            
             this.writeSingleObject(cmdlet, outputObject);
         }
         
@@ -265,6 +269,7 @@ namespace PSTestLib
             foreach (var outputObject in outputObjectCollection) {
 this.WriteVerbose(this, "something to output!!!!!!!!!!1");
                 //WriteObject(cmdlet, outputObject);
+                
                 this.writeSingleObject(cmdlet, outputObject);
             }
             
@@ -281,6 +286,7 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
 
                 UnitTestOutput.StartAddingOutput();
             }
+            
             this.writeSingleObject(cmdlet, outputObjectCollection);
             
             AfterWriteCollection(cmdlet, outputObjectCollection);
@@ -288,7 +294,6 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
         
         private void writeSingleObject(PSCmdletBase cmdlet, object outputObject)
         {
-            //if (WriteObjectMethod010CheckOutputObject(outputObject)) {
             if (CheckSingleObject(cmdlet, outputObject)) {
                 
                 cmdlet.WriteVerbose(cmdlet, "the output object is not null");
@@ -304,35 +309,33 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
 //                WriteObjectMethod050OnSuccessDelay(cmdlet, outputObject);
                 
                 BeforeWriteSingleObject(cmdlet, outputObject);
-
+                
                 //WriteSingleObject(cmdlet, outputObject);
                 
                 try {
 
                     if (PSCmdletBase.UnitTestMode) {
-
+                        
                         UnitTestOutput.Add(outputObject);
 
                     } else {
-
+                        
 //                        WriteObjectMethod060OutputResult(cmdlet, outputObject);
                         WriteSingleObject(cmdlet, outputObject);
-
                     }
                 }
                 catch {}
                 
-                
                 //WriteObjectMethod060OutputResult(cmdlet, outputObject);
-
+                
                 AfterWriteSingleObject(cmdlet, outputObject);
-
+                
 //                WriteObjectMethod070Report(cmdlet, outputObject);
-
+                
                 //WriteObjectMethod080ReportFailure();
             
             } else {
-
+                
             }
         }
         

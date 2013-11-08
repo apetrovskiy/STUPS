@@ -63,10 +63,16 @@ namespace TMX
             if (null != cmdlet.TestScenarioName || null != cmdlet.TestScenarioId) {
                 
                 testScenarioToAddTestResult =
+                    TestData.GetTestScenario(testSuiteToAddTestResult, cmdlet.TestScenarioName, cmdlet.TestScenarioId, cmdlet.TestSuiteName, cmdlet.TestSuiteId, cmdlet.TestPlatformId) ??
+                    TestData.CurrentTestScenario;
+
+                /*
+                testScenarioToAddTestResult =
                     TestData.GetTestScenario(testSuiteToAddTestResult, cmdlet.TestScenarioName, cmdlet.TestScenarioId, cmdlet.TestSuiteName, cmdlet.TestSuiteId, cmdlet.TestPlatformId);
                 if (null == testScenarioToAddTestResult) {
                     testScenarioToAddTestResult = TestData.CurrentTestScenario;
                 }
+                */
             } else {
                 testScenarioToAddTestResult = TestData.CurrentTestScenario;
             }

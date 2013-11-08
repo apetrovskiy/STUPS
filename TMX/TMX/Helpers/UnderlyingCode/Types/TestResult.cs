@@ -149,43 +149,42 @@ namespace TMX
             ITestResultDetail[] detailsList = null;
             
             cmdlet.WriteVerbose(cmdlet, "trying to enumerate details");
-            
-            if (null != this.Details && 0 < this.Details.Count) {
-                
-                // 20130402
-                //if (null == cmdlet.TestResultStatus) {
-                if (TestResultStatuses.NotTested == cmdlet.TestResultStatus) {
+
+            if (null == this.Details || 0 >= this.Details.Count) return detailsList;
+            // if (null != this.Details && 0 < this.Details.Count) {
+
+            // 20130402
+            //if (null == cmdlet.TestResultStatus) {
+            if (TestResultStatuses.NotTested == cmdlet.TestResultStatus) {
                     
-                    var testResultDetailsNonFiltered = 
-                        from detail in this.Details
-                        select detail;
+                var testResultDetailsNonFiltered = 
+                    from detail in this.Details
+                    select detail;
                     
-                    try {
-                        detailsList = testResultDetailsNonFiltered.ToArray();
-                    }
-                    catch {}
-                    
-                } else {
-                    
-                    var testResultDetailFiltered =
-                        from detail in this.Details
-                        where detail.DetailStatus == TestResultStatuses.Failed || detail.DetailStatus == TestResultStatuses.KnownIssue
-                        select detail;
-                    
-                    try {
-                        detailsList = testResultDetailFiltered.ToArray();
-                    }
-                    catch {}
-                    
+                try {
+                    detailsList = testResultDetailsNonFiltered.ToArray();
                 }
+                catch {}
+                    
+            } else {
+                    
+                var testResultDetailFiltered =
+                    from detail in this.Details
+                    where detail.DetailStatus == TestResultStatuses.Failed || detail.DetailStatus == TestResultStatuses.KnownIssue
+                    select detail;
+                    
+                try {
+                    detailsList = testResultDetailFiltered.ToArray();
+                }
+                catch {}
+                    
+            }
                 
 //                foreach (TestResultDetail detail in this.Details) {
 //                    
 //                    detailsList.Add(detail.Name);
 //                }
-                
-            }
-            
+
             // 20130402
             //return detailsList.ToArray();
             return detailsList;

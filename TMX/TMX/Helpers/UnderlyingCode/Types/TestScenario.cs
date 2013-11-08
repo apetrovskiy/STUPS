@@ -68,13 +68,18 @@ namespace TMX
             this.Statistics = new TestStat();
             this.enStatus = TestScenarioStatuses.NotTested;
             this.Name = testScenarioName;
-            if (testScenarioId != string.Empty && testScenarioId != null) {
+            this.Id = !string.IsNullOrEmpty(testScenarioId) ? testScenarioId : TestData.GetTestScenarioId();
+
+            /*
+            if (!string.IsNullOrEmpty(testScenarioId)) {
+            // if (testScenarioId != string.Empty && testScenarioId != null) {
                 this.Id = testScenarioId;
             } else {
                 this.Id = 
                     TestData.GetTestScenarioId();
             }
-            
+            */
+
             // suiteId
             this.SuiteId = testSuiteId;
             

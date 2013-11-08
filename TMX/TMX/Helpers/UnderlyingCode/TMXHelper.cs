@@ -96,6 +96,17 @@ namespace TMX
             
             TMX.TestData.CurrentTestSuite = 
                 TMX.TestData.GetTestSuite(testSuiteName, testSuiteId, testPlatformId);
+            if (TMX.TestData.CurrentTestSuite == null) return result;
+            //TMX.TestData.FireTMXTestSuiteOpened(TMX.TestData.CurrentTestSuite, null);
+                
+            // 20130301
+            // set the initial time for this suite's session
+            TMX.TestData.CurrentTestSuite.SetNow();
+
+            TMX.TestData.OnTMXTestSuiteOpened(TMX.TestData.CurrentTestSuite, null);
+            result = true;
+
+            /*
             if (TMX.TestData.CurrentTestSuite != null) {
                 //TMX.TestData.FireTMXTestSuiteOpened(TMX.TestData.CurrentTestSuite, null);
                 
@@ -106,7 +117,8 @@ namespace TMX
                 TMX.TestData.OnTMXTestSuiteOpened(TMX.TestData.CurrentTestSuite, null);
                 result = true;
             }
-            
+            */
+
             return result;
         }
         
@@ -198,6 +210,25 @@ namespace TMX
                                              cmdlet.TestSuiteId,
                                              cmdlet.TestPlatformId);
 
+            if (TMX.TestData.CurrentTestScenario == null) return result;
+            TMX.TestData.CurrentTestScenario.TestResults.Add(
+                new TestResult(
+                    TMX.TestData.CurrentTestScenario.Id,
+                    TMX.TestData.CurrentTestScenario.SuiteId));
+
+            TMX.TestData.CurrentTestResult =
+                TMX.TestData.CurrentTestScenario.TestResults[TMX.TestData.CurrentTestScenario.TestResults.Count - 1];
+
+            // 20130301
+            // set the initial time for this scenario's session
+            TMX.TestData.CurrentTestScenario.SetNow();
+
+            //TMX.TestData.FireTMXTestScenarioOpened(TMX.TestData.CurrentTestResult, null);
+            TMX.TestData.OnTMXTestScenarioOpened(TMX.TestData.CurrentTestScenario, null);
+
+            result = true;
+
+            /*
             if (TMX.TestData.CurrentTestScenario != null) {
 
                 TMX.TestData.CurrentTestScenario.TestResults.Add(
@@ -217,6 +248,7 @@ namespace TMX
 
                 result = true;
             }
+            */
             return result;
         }
         
@@ -387,9 +419,15 @@ namespace TMX
                 where scenario.SuiteId == suite.Id
                 select scenario;
 
+            if (!testScenariosFiltered.Any()) {
+                return null;
+            }
+
+            /*
             if (0 == testScenariosFiltered.Count()) {
                 return null;
             }
+            */
 
             XElement scenariosElement = 
                  new XElement(xmlStruct.ScenariosNode,
@@ -449,9 +487,15 @@ namespace TMX
                 testResult.Name != null
                 select testResult;
 
+            if (!testResultsFiltered.Any()) {
+                return null;
+            }
+
+            /*
             if (0 == testResultsFiltered.Count()) {
                 return null;
             }
+            */
 
             XElement testResultsElement =
                 new XElement(xmlStruct.TestResultsNode,
@@ -593,25 +637,35 @@ namespace TMX
 //                new List<Func<TestSuite, bool>>();
 //            queriesList.Add(query);
             
-            if (cmdlet.FilterNameContains != null && cmdlet.FilterNameContains.Length > 0) {
+            if (!string.IsNullOrEmpty(cmdlet.FilterNameContains)) {
+            // if (cmdlet.FilterNameContains != null && cmdlet.FilterNameContains.Length > 0) {
                 // 20130203
                 query = suite => suite.Name.Contains(cmdlet.FilterNameContains);
                 //queriesList.Add((suite => suite.Name.Contains(cmdlet.FilterNameContains)));
                 cmdlet.FilterAll = false;
-            } else if (cmdlet.FilterIdContains != null && cmdlet.FilterIdContains.Length > 0) {
+            } else if (!string.IsNullOrEmpty(cmdlet.FilterIdContains)) {
+            // } else if (cmdlet.FilterIdContains != null && cmdlet.FilterIdContains.Length > 0) {
                 // 20130203
                 query = suite => suite.Id.Contains(cmdlet.FilterIdContains);
                 //queriesList.Add((suite => suite.Id.Contains(cmdlet.FilterIdContains)));
                 cmdlet.FilterAll = false;
-            } else if (cmdlet.FilterDescriptionContains != null && cmdlet.FilterDescriptionContains.Length > 0) {
+            } else if (!string.IsNullOrEmpty(cmdlet.FilterDescriptionContains)) {
+            // } else if (cmdlet.FilterDescriptionContains != null && cmdlet.FilterDescriptionContains.Length > 0) {
                 // 20130203
-                query = suite =>
-                    {
-                        if (suite.Description != null) {
-                            return suite.Description.Contains(cmdlet.FilterDescriptionContains);
-                        }
-                        return false;
-                    };
+                query = suite => suite.Description != null && suite.Description.Contains(cmdlet.FilterDescriptionContains);
+
+                //query = suite =>
+                //{
+                //    return suite.Description != null && suite.Description.Contains(cmdlet.FilterDescriptionContains);
+
+                //    /*
+                //        if (suite.Description != null) {
+                //            return suite.Description.Contains(cmdlet.FilterDescriptionContains);
+                //        }
+                //        return false;
+                //        */
+                //};
+
 //                queriesList.Add((suite =>
 //                    {
 //                        if (suite.Description != null) {
@@ -704,11 +758,19 @@ namespace TMX
             IOrderedEnumerable<TestSuite> suites =
                 SearchForSuites(cmdlet);
             
+            if (suites.Any()) {
+                cmdlet.WriteObject(suites, true);
+            } else {
+                cmdlet.WriteObject(null);
+            }
+
+            /*
             if (suites.Count<TMX.TestSuite>() > 0) {
                 cmdlet.WriteObject(suites, true);
             } else {
                 cmdlet.WriteObject(null);
             }
+            */
         }
         
 //        public static Func<TInput, bool> Combine<TInput, Tout>
@@ -737,20 +799,29 @@ namespace TMX
             // default result
             Func<TestScenario, bool> query = scenario => true;
             
-            if (cmdlet.FilterNameContains != null && cmdlet.FilterNameContains.Length > 0) {
+            if (!string.IsNullOrEmpty(cmdlet.FilterNameContains)) {
+            // if (cmdlet.FilterNameContains != null && cmdlet.FilterNameContains.Length > 0) {
                 query = scenario => scenario.Name.Contains(cmdlet.FilterNameContains);
                 cmdlet.FilterAll = false;
-            } else if (cmdlet.FilterIdContains != null && cmdlet.FilterIdContains.Length > 0) {
+            } else if (!string.IsNullOrEmpty(cmdlet.FilterIdContains)) {
+            // } else if (cmdlet.FilterIdContains != null && cmdlet.FilterIdContains.Length > 0) {
                 query = scenario => scenario.Id.Contains(cmdlet.FilterIdContains);
                 cmdlet.FilterAll = false;
-            } else if (cmdlet.FilterDescriptionContains != null && cmdlet.FilterDescriptionContains.Length > 0) {
-                query = scenario => 
-                    {
-                        if (scenario.Description != null) {
-                            return scenario.Description.Contains(cmdlet.FilterDescriptionContains);
-                        }
-                        return false;
-                    };
+            } else if (!string.IsNullOrEmpty(cmdlet.FilterDescriptionContains)) {
+            // } else if (cmdlet.FilterDescriptionContains != null && cmdlet.FilterDescriptionContains.Length > 0) {
+                query = scenario => scenario.Description != null && scenario.Description.Contains(cmdlet.FilterDescriptionContains);
+
+                //query = scenario =>
+                //{
+                //    return scenario.Description != null && scenario.Description.Contains(cmdlet.FilterDescriptionContains);
+
+                //    /*
+                //        if (scenario.Description != null) {
+                //            return scenario.Description.Contains(cmdlet.FilterDescriptionContains);
+                //        }
+                //        return false;
+                //        */
+                //};
                 cmdlet.FilterAll = false;
             } else if (cmdlet.FilterPassed) {
                 query = scenario => scenario.enStatus == TestScenarioStatuses.Passed;
@@ -813,11 +884,19 @@ namespace TMX
             IOrderedEnumerable<TestScenario> scenarios =
                 SearchForScenarios(cmdlet);
             
+            if (scenarios.Any()) {
+                cmdlet.WriteObject(scenarios, true);
+            } else {
+                cmdlet.WriteObject(null);
+            }
+
+            /*
             if (scenarios.Count<TMX.TestScenario>() > 0) {
                 cmdlet.WriteObject(scenarios, true);
             } else {
                 cmdlet.WriteObject(null);
             }
+            */
         }
         
         /// <summary>
@@ -834,32 +913,56 @@ namespace TMX
             // default result
             Func<TestResult, bool> query = testResult => true;
             
-            if (cmdlet.FilterNameContains != null && cmdlet.FilterNameContains.Length > 0) {
-                query = testResult => 
-                    {
-                        if (testResult.Name != null) {
-                            return testResult.Name.Contains(cmdlet.FilterNameContains);
-                        }
-                        return false;
-                    };
+            if (!string.IsNullOrEmpty(cmdlet.FilterNameContains)) {
+            // if (cmdlet.FilterNameContains != null && cmdlet.FilterNameContains.Length > 0) {
+                query = testResult => testResult.Name != null && testResult.Name.Contains(cmdlet.FilterNameContains);
+
+                //query = testResult =>
+                //{
+                //    return testResult.Name != null && testResult.Name.Contains(cmdlet.FilterNameContains);
+
+                //    /*
+                //        if (testResult.Name != null) {
+                //            return testResult.Name.Contains(cmdlet.FilterNameContains);
+                //        }
+                //        return false;
+                //        */
+                //};
+
                 cmdlet.FilterAll = false;
-            } else if (cmdlet.FilterIdContains != null && cmdlet.FilterIdContains.Length > 0) {
-                query = testResult => 
-                    {
-                        if (testResult.Id != null) {
-                            return testResult.Id.Contains(cmdlet.FilterIdContains);
-                        }
-                        return false;
-                    };
+            } else if (!string.IsNullOrEmpty(cmdlet.FilterIdContains)) {
+            // } else if (cmdlet.FilterIdContains != null && cmdlet.FilterIdContains.Length > 0) {
+                query = testResult => testResult.Id != null && testResult.Id.Contains(cmdlet.FilterIdContains);
+
+                //query = testResult =>
+                //{
+                //    return testResult.Id != null && testResult.Id.Contains(cmdlet.FilterIdContains);
+
+                //    /*
+                //        if (testResult.Id != null) {
+                //            return testResult.Id.Contains(cmdlet.FilterIdContains);
+                //        }
+                //        return false;
+                //        */
+                //};
+
                 cmdlet.FilterAll = false;
-            } else if (cmdlet.FilterDescriptionContains != null && cmdlet.FilterDescriptionContains.Length > 0) {
-                query = testResult => 
-                    {
-                        if (testResult.Description != null) {
-                            return testResult.Description.Contains(cmdlet.FilterDescriptionContains);
-                        }
-                        return false;
-                    };
+            } else if (!string.IsNullOrEmpty(cmdlet.FilterDescriptionContains)) {
+            // } else if (cmdlet.FilterDescriptionContains != null && cmdlet.FilterDescriptionContains.Length > 0) {
+                query = testResult => testResult.Description != null && testResult.Description.Contains(cmdlet.FilterDescriptionContains);
+
+                //query = testResult =>
+                //{
+                //    return testResult.Description != null && testResult.Description.Contains(cmdlet.FilterDescriptionContains);
+
+                //    /*
+                //        if (testResult.Description != null) {
+                //            return testResult.Description.Contains(cmdlet.FilterDescriptionContains);
+                //        }
+                //        return false;
+                //        */
+                //};
+
                 cmdlet.FilterAll = false;
             } else if (cmdlet.FilterPassed) {
                 query = testResult => testResult.enStatus == TestResultStatuses.Passed;
@@ -923,11 +1026,19 @@ namespace TMX
             IOrderedEnumerable<TestResult> testResults =
                 SearchForTestResults(cmdlet);
             
+            if (testResults.Any()) {
+                cmdlet.WriteObject(testResults, true);
+            } else {
+                cmdlet.WriteObject(null);
+            }
+
+            /*
             if (testResults.Count<TMX.TestResult>() > 0) {
                 cmdlet.WriteObject(testResults, true);
             } else {
                 cmdlet.WriteObject(null);
             }
+            */
         }
         
         internal static XAttribute CreateXAttribute(string name, object valueObject)
@@ -971,13 +1082,24 @@ namespace TMX
                     PSVariable variable = 
                         cmdlet.SessionState.PSVariable.Get(variableName);
                     try {
-                        if (null != variable.Name && string.Empty != variable.Name) {
+                        if (string.IsNullOrEmpty(variable.Name)) continue;
+                        // if (null != variable.Name && string.Empty != variable.Name) {
+                        XElement variableElement =
+                            new XElement("variable",
+                                new XAttribute("name", variable.Name),
+                                new XAttribute("value", variable.Value));
+                        rootElement.Add(variableElement);
+
+                        /*
+                        if (!string.IsNullOrEmpty(variable.Name)) {
+                        // if (null != variable.Name && string.Empty != variable.Name) {
                             XElement variableElement =
                                 new XElement("variable",
                                              new XAttribute("name", variable.Name),
                                              new XAttribute("value", variable.Value));
                             rootElement.Add(variableElement);
                         }
+                        */
                     }
                     catch (Exception eVariable) {
                         cmdlet.WriteError(
@@ -1021,11 +1143,18 @@ namespace TMX
             Func<IEnumerable<string>, XElement, bool> query = (variableNamesCollection, variableElement) => true;
             
             cmdlet.WriteVerbose(cmdlet, "checking the VariableName list");
+            if (null != variableNames && variableNames.Any()) {
+                cmdlet.WriteVerbose(cmdlet, "the VariableName list is not empty");
+                query = (variableNamesCollection, variableElement) => variableNamesCollection.Contains(variableElement.Attribute((XName)"name").Value);
+            }
+
+            /*
             if (null != variableNames && 0 < variableNames.Count()) {
                 cmdlet.WriteVerbose(cmdlet, "the VariableName list is not empty");
                 query = (variableNamesCollection, variableElement) => variableNamesCollection.Contains(variableElement.Attribute((XName)"name").Value);
             }
-            
+            */
+
             cmdlet.WriteVerbose(cmdlet, "getting the variables collection");
             var variablesCollection = 
                 from variableElement in wholeXML.Elements()
@@ -1034,11 +1163,18 @@ namespace TMX
             
             cmdlet.WriteVerbose(cmdlet, "collection created");
             
+            if (null == variablesCollection || !variablesCollection.Any()) {
+                cmdlet.WriteVerbose(cmdlet, "there are no variables to import");
+                return;
+            }
+
+            /*
             if (null == variablesCollection || 0 == variablesCollection.Count()) {
                 cmdlet.WriteVerbose(cmdlet, "there are no variables to import");
                 return;
             }
-            
+            */
+
             TMXHelper.ImportVariables(cmdlet, variablesCollection);
         }
         
@@ -1143,6 +1279,13 @@ namespace TMX
         
         public static void GetCurrentTestSuiteStatus(OpenSuiteCmdletBase cmdlet, bool skipAutomatic)
         {
+            if (null == TestData.CurrentTestSuite) return;
+            // 20130322
+            //TestData.RefreshSuiteStatistics(TestData.CurrentTestSuite);
+            TestData.RefreshSuiteStatistics(TestData.CurrentTestSuite, skipAutomatic);
+            cmdlet.WriteObject(cmdlet, TestData.CurrentTestSuite.Status);
+
+            /*
             if (null != TestData.CurrentTestSuite) {
                 
                 // 20130322
@@ -1150,6 +1293,7 @@ namespace TMX
                 TestData.RefreshSuiteStatistics(TestData.CurrentTestSuite, skipAutomatic);
                 cmdlet.WriteObject(cmdlet, TestData.CurrentTestSuite.Status);
             }
+            */
         }
         
         public static void GetTestSuiteStatusByName(OpenSuiteCmdletBase cmdlet, string name, string testPlatformId, bool skipAutomatic)
@@ -1158,6 +1302,13 @@ namespace TMX
                 name,
                 string.Empty,
                 testPlatformId);
+            if (null == TestData.CurrentTestSuite) return;
+            // 20130322
+            //TestData.RefreshSuiteStatistics(TestData.CurrentTestSuite);
+            TestData.RefreshSuiteStatistics(TestData.CurrentTestSuite, skipAutomatic);
+            cmdlet.WriteObject(cmdlet, TestData.CurrentTestSuite.Status);
+
+            /*
             if (null != TestData.CurrentTestSuite) {
                 
                 // 20130322
@@ -1165,6 +1316,7 @@ namespace TMX
                 TestData.RefreshSuiteStatistics(TestData.CurrentTestSuite, skipAutomatic);
                 cmdlet.WriteObject(cmdlet, TestData.CurrentTestSuite.Status);
             }
+            */
         }
         
         public static void GetTestSuiteStatusById(OpenSuiteCmdletBase cmdlet, string id, string testPlatformId, bool skipAutomatic)
@@ -1173,6 +1325,13 @@ namespace TMX
                 string.Empty,
                 id,
                 testPlatformId);
+            if (null == TestData.CurrentTestSuite) return;
+            // 20130322
+            //TestData.RefreshSuiteStatistics(TestData.CurrentTestSuite);
+            TestData.RefreshSuiteStatistics(TestData.CurrentTestSuite, skipAutomatic);
+            cmdlet.WriteObject(cmdlet, TestData.CurrentTestSuite.Status);
+
+            /*
             if (null != TestData.CurrentTestSuite) {
                 
                 // 20130322
@@ -1180,10 +1339,18 @@ namespace TMX
                 TestData.RefreshSuiteStatistics(TestData.CurrentTestSuite, skipAutomatic);
                 cmdlet.WriteObject(cmdlet, TestData.CurrentTestSuite.Status);
             }
+            */
         }
         
         public static void GetCurrentTestScenarioStatus(OpenScenarioCmdletBase cmdlet, bool skipAutomatic)
         {
+            if (null == TestData.CurrentTestScenario) return;
+            // 20130322
+            //TestData.RefreshScenarioStatistics(TestData.CurrentTestScenario);
+            TestData.RefreshScenarioStatistics(TestData.CurrentTestScenario, skipAutomatic);
+            cmdlet.WriteObject(cmdlet, TestData.CurrentTestScenario.Status);
+
+            /*
             if (null != TestData.CurrentTestScenario) {
                 
                 // 20130322
@@ -1191,11 +1358,19 @@ namespace TMX
                 TestData.RefreshScenarioStatistics(TestData.CurrentTestScenario, skipAutomatic);
                 cmdlet.WriteObject(cmdlet, TestData.CurrentTestScenario.Status);
             }
+            */
         }
         
         public static void GetTestScenarioStatus(OpenScenarioCmdletBase cmdlet, bool skipAutomatic)
         {
             TMXHelper.OpenTestScenario(cmdlet);
+            if (null == TestData.CurrentTestScenario) return;
+            // 201330322
+            //TestData.RefreshScenarioStatistics(TestData.CurrentTestScenario);
+            TestData.RefreshScenarioStatistics(TestData.CurrentTestScenario, skipAutomatic);
+            cmdlet.WriteObject(cmdlet, TestData.CurrentTestScenario.Status);
+
+            /*
             if (null != TestData.CurrentTestScenario) {
                 
                 // 201330322
@@ -1203,13 +1378,18 @@ namespace TMX
                 TestData.RefreshScenarioStatistics(TestData.CurrentTestScenario, skipAutomatic);
                 cmdlet.WriteObject(cmdlet, TestData.CurrentTestScenario.Status);
             }
+            */
         }
         
         public static void SetCurrentTestResult(TestResultCmdletBase cmdlet)
         {
             if (null != TestData.CurrentTestResult) {
 
-                if (null != cmdlet.TestResultName && 0 < cmdlet.TestResultName.Length) {
+                TestData.CurrentTestResult.Name = !string.IsNullOrEmpty(cmdlet.TestResultName) ? cmdlet.TestResultName : "this test result is not provided with name";
+
+                /*
+                if (!string.IsNullOrEmpty(cmdlet.TestResultName)) {
+                // if (null != cmdlet.TestResultName && 0 < cmdlet.TestResultName.Length) {
 
                     TestData.CurrentTestResult.Name = cmdlet.TestResultName;
                 } else {
@@ -1221,8 +1401,10 @@ namespace TMX
                     // 20130918
                     TestData.CurrentTestResult.Name = "this test result is not provided with name";
                 }
-                
-                if (null != cmdlet.Id && 0 < cmdlet.Id.Length) {
+                */
+
+                if (!string.IsNullOrEmpty(cmdlet.Id)) {
+                // if (null != cmdlet.Id && 0 < cmdlet.Id.Length) {
 
                     TestData.CurrentTestResult.Id = cmdlet.Id;
                 } else {
@@ -1230,7 +1412,8 @@ namespace TMX
                     TestData.GetTestResultId();
                 }
                 
-                if (null != cmdlet.Description && 0 < cmdlet.Description.Length) {
+                if (!string.IsNullOrEmpty(cmdlet.Description)) {
+                // if (null != cmdlet.Description && 0 < cmdlet.Description.Length) {
 
                     TestData.CurrentTestResult.Description = cmdlet.Description;
                 }
@@ -1261,7 +1444,8 @@ namespace TMX
             
             cmdlet.WriteVerbose(cmdlet, "Getting test result with Id = " + testResultId);
             
-            if (null != testResultId && string.Empty != testResultId && 0 < testResultId.Length) {
+            if (!string.IsNullOrEmpty(testResultId)) {
+            // if (null != testResultId && string.Empty != testResultId && 0 < testResultId.Length) {
             
 //                if (null != TestData.CurrentTestResult) {
 //                    cmdlet.WriteObject(cmdlet, TestData.CurrentTestResult.Status);
@@ -1285,8 +1469,26 @@ namespace TMX
                     from testResult in TestData.CurrentTestScenario.TestResults
                     where testResult.Id == testResultId
                     select testResult;
-                
-                if (null != testResultWithIdCollection  && 0 < testResultWithIdCollection.Count()) {
+
+                if (null == testResultWithIdCollection || !testResultWithIdCollection.Any()) return;
+                // if (null != testResultWithIdCollection  && 0 < testResultWithIdCollection.Count()) {
+                    
+                foreach (ITestResult testResultWithId in testResultWithIdCollection) {
+                        
+                    cmdlet.WriteVerbose(cmdlet, "Trying the test result '" + ((ITestResult)testResultWithId).Name + "'");
+                    try {
+                        // if the result is null, there's the try-catch construction
+                        cmdlet.WriteObject(cmdlet, ((ITestResult)testResultWithId).Status);
+                    }
+                    catch {
+                        //cmdlet.WriteObject(cmdlet, (new object[] { null }));
+                        cmdlet.WriteObject(cmdlet, "NOT TESTED");
+                    }
+                }
+
+                /*
+                if (null != testResultWithIdCollection  && testResultWithIdCollection.Any()) {
+                // if (null != testResultWithIdCollection  && 0 < testResultWithIdCollection.Count()) {
                     
                     foreach (ITestResult testResultWithId in testResultWithIdCollection) {
                         
@@ -1301,17 +1503,24 @@ namespace TMX
                         }
                     }
                 }
-                
+                */
+
             } else {
                 
                 cmdlet.WriteVerbose(cmdlet, "Trying the current test result");
-                
+
+                if (null == TestData.CurrentTestResult) return;
+                cmdlet.WriteVerbose(cmdlet, "The current test result");
+                cmdlet.WriteObject(cmdlet, TestData.CurrentTestResult.Status);
+
+                /*
                 if (null != TestData.CurrentTestResult) {
                     
                     cmdlet.WriteVerbose(cmdlet, "The current test result");
                     cmdlet.WriteObject(cmdlet, TestData.CurrentTestResult.Status);
                 }
-                
+                */
+
             }
         }
         
@@ -1321,7 +1530,8 @@ namespace TMX
             
             cmdlet.WriteVerbose(cmdlet, "Getting test result with Id = " + testResultId);
             
-            if (null != testResultId && string.Empty != testResultId && 0 < testResultId.Length) {
+            if (!string.IsNullOrEmpty(testResultId)) {
+            // if (null != testResultId && string.Empty != testResultId && 0 < testResultId.Length) {
                 
                 cmdlet.WriteVerbose(cmdlet, "Trying to get a test result with Id = " + testResultId);
                 
@@ -1329,8 +1539,27 @@ namespace TMX
                     from testResult in TestData.CurrentTestScenario.TestResults
                     where testResult.Id == testResultId
                     select testResult;
-                
-                if (null != testResultWithIdCollection  && 0 < testResultWithIdCollection.Count()) {
+
+                if (null == testResultWithIdCollection || !testResultWithIdCollection.Any()) return;
+                // if (null != testResultWithIdCollection  && 0 < testResultWithIdCollection.Count()) {
+                    
+                foreach (ITestResult testResultWithId in testResultWithIdCollection) {
+                        
+                    cmdlet.WriteVerbose(cmdlet, "Trying the test result '" + ((ITestResult)testResultWithId).Name + "'");
+                    try {
+                        // if the result is null, there's the try-catch construction
+                        foreach (ITestResultDetail singleDetail in ((ITestResult)testResultWithId).ListDetailNames(cmdlet)) {
+                            cmdlet.WriteObject(cmdlet, singleDetail.Name);
+                        }
+                    }
+                    catch {
+                        cmdlet.WriteObject(cmdlet, (new object[] { null }));
+                    }
+                }
+
+                /*
+                if (null != testResultWithIdCollection  && testResultWithIdCollection.Any()) {
+                // if (null != testResultWithIdCollection  && 0 < testResultWithIdCollection.Count()) {
                     
                     foreach (ITestResult testResultWithId in testResultWithIdCollection) {
                         
@@ -1346,16 +1575,23 @@ namespace TMX
                         }
                     }
                 }
-                
+                */
+
             } else {
                 
                 cmdlet.WriteVerbose(cmdlet, "Trying the current test result");
-                
+
+                if (null == TestData.CurrentTestResult) return;
+                cmdlet.WriteVerbose(cmdlet, "The current test result");
+                cmdlet.WriteObject(cmdlet, TestData.CurrentTestResult.ListDetailNames(cmdlet));
+
+                /*
                 if (null != TestData.CurrentTestResult) {
                     
                     cmdlet.WriteVerbose(cmdlet, "The current test result");
                     cmdlet.WriteObject(cmdlet, TestData.CurrentTestResult.ListDetailNames(cmdlet));
                 }
+                */
             }
         }
         
@@ -1534,8 +1770,48 @@ namespace TMX
                                 
                                 var testResultDetails = from testResultDetail in singleTestResult.Descendants("detail")
                                     select testResultDetail;
-                                
-                                if (null != testResultDetails && 0 < testResultDetails.Count()) {
+
+                                if (null == testResultDetails || !testResultDetails.Any()) continue;
+                                // if (null != testResultDetails && 0 < testResultDetails.Count()) {
+                                foreach (var singleDetail in testResultDetails) {
+                                        
+                                    cmdlet.WriteVerbose(cmdlet, "importing test result detail '" + singleDetail.Attribute("name").Value + "', status = '" + singleDetail.Attribute("status").Value + "'");
+                                    lastTestResultDetailName = singleDetail.Attribute("name").Value;
+                                        
+                                    TestResultDetail detail = new TestResultDetail
+                                    {
+                                        TextDetail = singleDetail.Attribute("name").Value
+                                    };
+                                    // TestResultDetail detail = new TestResultDetail();
+                                    // detail.TextDetail = singleDetail.Attribute("name").Value;
+                                    string detailStatus = singleDetail.Attribute("status").Value;
+                                    switch (detailStatus.ToUpper()) {
+                                        case "FAILED":
+                                            detail.DetailStatus = TestResultStatuses.Failed;
+                                            break;
+                                        case "PASSED":
+                                            detail.DetailStatus = TestResultStatuses.Passed;
+                                            break;
+                                        case "KNOWNISSUE":
+                                            detail.DetailStatus = TestResultStatuses.KnownIssue;
+                                            break;
+                                        case "NOTTESTED":
+                                            detail.DetailStatus = TestResultStatuses.NotTested;
+                                            break;
+                                        default:
+                                            detail.DetailStatus = TestResultStatuses.NotTested;
+                                            break;
+                                    }
+                                        
+                                    cmdlet.WriteVerbose(cmdlet, "the current test result is name = '" + currentlyAddedTestResult.Name + "', id ='" + currentlyAddedTestResult.Id + "'");
+                                        
+                                    currentlyAddedTestResult.Details.Add(detail);
+                                        
+                                }
+
+                                /*
+                                if (null != testResultDetails && testResultDetails.Any()) {
+                                // if (null != testResultDetails && 0 < testResultDetails.Count()) {
                                     foreach (var singleDetail in testResultDetails) {
                                         
                                         cmdlet.WriteVerbose(cmdlet, "importing test result detail '" + singleDetail.Attribute("name").Value + "', status = '" + singleDetail.Attribute("status").Value + "'");
@@ -1568,6 +1844,7 @@ namespace TMX
                                         
                                     }
                                 }
+                                */
                             }
                             catch (Exception eImportDetails) {
                                 cmdlet.WriteVerbose(cmdlet, eImportDetails);

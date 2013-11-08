@@ -80,6 +80,17 @@ namespace TMX
 //        }
 //        #endregion
 
+//		public string SuitesNode { get; internal set; }
+//		public string SuiteNode { get; internal set; }
+//		public string ScenariosNode { get; internal set; }
+//		public string ScenarioNode { get; internal set; }
+//		public string TestResultsNode { get; internal set; }
+//		public string TestResultNode { get; internal set; }
+//		public string FailedAttribute { get; internal set; }
+//
+//		public string TimeSpentAttribute { get; internal set; }
+//		public string TimeStampAttribute { get; internal set; }
+
 		public string SuitesNode { get { return this.suitesNode; } }
 		public string SuiteNode { get { return this.suiteNode; } }
 		public string ScenariosNode { get { return this.scenariosNode; } }

@@ -276,11 +276,14 @@ namespace TMX
             //TestData.InitCurrentTestScenario();
             
             // 20130626
-            bool generated = false;
+            bool generated = TestResultOrigins.Automatic == origin;
+
+            /*
             if (TestResultOrigins.Automatic == origin) {
                 generated = true;
             }
-            
+            */
+
             // 20130429
             TMX.Logger.TMXLogger.Info("Test result: '" + closingTestResultName + "'\tPassed:" + passed.ToString() + "\tKnown issue:" + isKnownIssue.ToString());
 
@@ -300,11 +303,15 @@ dumpTestStructure("AddTestResult #2");
 dumpTestStructure("AddTestResult #2b");
             }
 
+            if (string.IsNullOrEmpty(currentTestResult.Name)) {
+
+            /*
             if (null == currentTestResult.Name ||
                 string.Empty == currentTestResult.Name ||
                 0 == currentTestResult.Name.Length) {
-                
-dumpTestStructure("AddTestResult #3");
+            */
+
+                    dumpTestStructure("AddTestResult #3");
                 // 20130610
 //                if (closingTestResultName != null &&
 //                    closingTestResultName != string.Empty &&
@@ -312,14 +319,21 @@ dumpTestStructure("AddTestResult #3");
 //                    TMX.TestData.CurrentTestResult != null && 
 //                     closingTestResultName != TMX.TestData.CurrentTestResult.Name) {
 
+                if (!string.IsNullOrEmpty(closingTestResultName) &&
+                    ((TMX.TestData.CurrentTestResult != null && 
+                      closingTestResultName != TMX.TestData.CurrentTestResult.Name) ||
+                      null == TMX.TestData.CurrentTestResult)) {
+
+                /*
                 if (closingTestResultName != null &&
                     closingTestResultName != string.Empty &&
                     closingTestResultName.Length > 0 &&
                     ((TMX.TestData.CurrentTestResult != null && 
-                      closingTestResultName != TMX.TestData.CurrentTestResult.Name) ||
-                      null == TMX.TestData.CurrentTestResult)) {
-                    
-dumpTestStructure("AddTestResult #3b");
+                    closingTestResultName != TMX.TestData.CurrentTestResult.Name) ||
+                    null == TMX.TestData.CurrentTestResult)) {
+                */
+
+                          dumpTestStructure("AddTestResult #3b");
                     currentTestResult.Name = closingTestResultName;
 
                 } else {
@@ -353,11 +367,15 @@ dumpTestStructure("AddTestResult #7");
             }
 
             // 20130325
+            if (string.IsNullOrEmpty(currentTestResult.Id)) {
+
+            /*
             if (null == currentTestResult.Id ||
                 string.Empty == currentTestResult.Id ||
                 0 == currentTestResult.Id.Length) {
-                
-dumpTestStructure("AddTestResult #8");
+            */
+
+                    dumpTestStructure("AddTestResult #8");
                 // 20130610
 //                if (closingTestResultId != null &&
 //                    closingTestResultId != string.Empty &&
@@ -365,14 +383,21 @@ dumpTestStructure("AddTestResult #8");
 //                    null != TMX.TestData.CurrentTestResult &&
 //                    closingTestResultId != TMX.TestData.CurrentTestResult.Id) {
 
+                if (!string.IsNullOrEmpty(closingTestResultId) &&
+                    ((null != TMX.TestData.CurrentTestResult &&
+                      closingTestResultId != TMX.TestData.CurrentTestResult.Id) ||
+                      null == TMX.TestData.CurrentTestResult)) {
+
+                /*
                 if (closingTestResultId != null &&
                     closingTestResultId != string.Empty &&
                     closingTestResultId.Length > 0 &&
                     ((null != TMX.TestData.CurrentTestResult &&
-                      closingTestResultId != TMX.TestData.CurrentTestResult.Id) ||
-                      null == TMX.TestData.CurrentTestResult)) {
-                    
-dumpTestStructure("AddTestResult #9");
+                    closingTestResultId != TMX.TestData.CurrentTestResult.Id) ||
+                    null == TMX.TestData.CurrentTestResult)) {
+                */
+
+                          dumpTestStructure("AddTestResult #9");
                     currentTestResult.Id = closingTestResultId;
 
                 } else {
@@ -435,7 +460,14 @@ dumpTestStructure("AddTestResult #19");
                 }
 
             }
-dumpTestStructure("AddTestResult #20");
+            
+            if (!string.IsNullOrEmpty(testResultDescription)) {
+                
+                currentTestResult.Description = testResultDescription;
+            }
+
+
+            /*
             if (testResultDescription != null &&
                 testResultDescription != string.Empty &&
                 testResultDescription.Length > 0){
@@ -443,6 +475,7 @@ dumpTestStructure("AddTestResult #21");
                 currentTestResult.Description = testResultDescription;
 
             }
+            */
 
             if (generated) {
 dumpTestStructure("AddTestResult #23");
@@ -476,6 +509,19 @@ dumpTestStructure("AddTestResult #29");
             if (null != TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1] &&
                 TestResultOrigins.Logical == TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1].Origin &&
                 TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1] != TestData.CurrentTestResult &&
+                !string.IsNullOrEmpty(TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1].Name)) {
+dumpTestStructure("AddTestResult #30");
+                
+                TMXHelper.TestCaseStarted =
+                    System.DateTime.Now;
+                TestData.CurrentTestScenario.TestResults.Add(new TestResult(TestData.CurrentTestScenario.Id, TestData.CurrentTestSuite.Id));
+               
+            }
+
+            /*
+            if (null != TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1] &&
+                TestResultOrigins.Logical == TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1].Origin &&
+                TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1] != TestData.CurrentTestResult &&
                 null != TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1].Name &&
                 0 < TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1].Name.Length) {
 dumpTestStructure("AddTestResult #30");
@@ -485,7 +531,8 @@ dumpTestStructure("AddTestResult #30");
                 TestData.CurrentTestScenario.TestResults.Add(new TestResult(TestData.CurrentTestScenario.Id, TestData.CurrentTestSuite.Id));
                
             }
-            
+            */
+
             TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1] = 
                 TestData.CurrentTestResult;
             
@@ -1135,11 +1182,18 @@ dumpTestStructure("AddTestResult #46");
             // 20130429
             TMX.Logger.TMXLogger.Info("Test platform: '" + testPlatformName + "'");
             
+            if (string.IsNullOrEmpty(testPlatformId)) {
+                testPlatformId = 
+                    GetTestPlatformId();
+            }
+
+            /*
             if (testPlatformId == null || testPlatformId == string.Empty) {
                 testPlatformId = 
                     GetTestPlatformId();
             }
-            
+            */
+
             // 20121219
             if (null != GetTestPlatform(testPlatformName, testPlatformId)) {
                 // the suite requested won't be duplicated, exit
@@ -1147,11 +1201,18 @@ dumpTestStructure("AddTestResult #46");
             }
             
             TestPlatforms.Add(new TestPlatform(testPlatformName, testPlatformId));
+            if (!string.IsNullOrEmpty(testPlatformDesctiption)) {
+                TestData.TestPlatforms[TestPlatforms.Count - 1].Description = 
+                    testPlatformDesctiption;
+            }
+
+            /*
             if (testPlatformDesctiption != null && testPlatformDesctiption != string.Empty) {
                 TestData.TestPlatforms[TestPlatforms.Count - 1].Description = 
                     testPlatformDesctiption;
             }
-            
+            */
+
             TestData.TestPlatforms[TestPlatforms.Count - 1].OperatingSystem = testPlatformOS;
             TestData.TestPlatforms[TestPlatforms.Count - 1].Version = testPlatformVersion;
             TestData.TestPlatforms[TestPlatforms.Count - 1].Architecture = testPlatformArchitecture;
@@ -1191,11 +1252,18 @@ dumpTestStructure("AddTestResult #46");
             // 20130429
             TMX.Logger.TMXLogger.Info("Test suite: '" + testSuiteName + "'");
             
+            if (string.IsNullOrEmpty(testSuiteId)) {
+                testSuiteId = 
+                    GetTestSuiteId();
+            }
+
+            /*
             if (testSuiteId == null || testSuiteId == string.Empty) {
                 testSuiteId = 
                     GetTestSuiteId();
             }
-            
+            */
+
             // 20121219
             if (null != GetTestSuite(testSuiteName, testSuiteId, testPlatformId)) {
                 // the suite requested won't be duplicated, exit
@@ -1238,11 +1306,18 @@ dumpTestStructure("AddTestResult #46");
             }
             
             TestSuites.Add(new TestSuite(testSuiteName, testSuiteId));
+            if (!string.IsNullOrEmpty(testSuiteDesctiption)) {
+                TestData.TestSuites[TestSuites.Count - 1].Description = 
+                    testSuiteDesctiption;
+            }
+
+            /*
             if (testSuiteDesctiption != null && testSuiteDesctiption != string.Empty) {
                 TestData.TestSuites[TestSuites.Count - 1].Description = 
                     testSuiteDesctiption;
             }
-            
+            */
+
             TestData.CurrentTestSuite = 
                 TestData.TestSuites[TestSuites.Count - 1];
             
@@ -1256,13 +1331,22 @@ dumpTestStructure("AddTestResult #46");
 //                catch {}
                 
                 // 20131612
+                if (!string.IsNullOrEmpty(testPlatformId)) {
+                    TestData.CurrentTestSuite.PlatformId = testPlatformId;
+                } else {
+                    TestData.CurrentTestSuite.PlatformId =
+                        TestData.CurrentTestPlatform.Id;
+                }
+
+                /*
                 if (null != testPlatformId && string.Empty != testPlatformId) {
                     TestData.CurrentTestSuite.PlatformId = testPlatformId;
                 } else {
                     TestData.CurrentTestSuite.PlatformId =
                         TestData.CurrentTestPlatform.Id;
                 }
-                
+                */
+
                 // 20130615
                 TMX.TestData.CurrentTestSuite.BeforeScenario = testSuiteBeforeScenario;
                 TMX.TestData.CurrentTestSuite.AfterScenario = testSuiteAfterScenario;
@@ -1293,11 +1377,20 @@ dumpTestStructure("AddTestResult #46");
             TestPlatform result = null;
 
             // 20121219
-            if (null != testPlatformName && string.Empty != testPlatformName) {
+            if (!string.IsNullOrEmpty(testPlatformName)) {
+            // if (null != testPlatformName && string.Empty != testPlatformName) {
                 foreach (TestPlatform testPlatform in TestPlatforms) {
                     if (testPlatform.Name == testPlatformName) {
                         
                         // id does not match
+                        if (!string.IsNullOrEmpty(testPlatformId) &&
+                            testPlatformId != testPlatform.Id) {
+
+                            // 201212119
+                            continue;
+                        }
+
+                        /*
                         if (testPlatformId != string.Empty && 
                             testPlatformId != null &&
                             testPlatformId != testPlatform.Id) {
@@ -1305,16 +1398,32 @@ dumpTestStructure("AddTestResult #46");
                             // 201212119
                             continue;
                         }
+                        */
+                        if (!string.IsNullOrEmpty(testPlatformId) &&
+                            testPlatformId == testPlatform.Id) {
+
+                            result = testPlatform;
+                        }
+
+                        /*
                         if (testPlatformId != string.Empty && 
                             testPlatformId != null &&
                             testPlatformId == testPlatform.Id) {
 
                             result = testPlatform;
                         }
+                        */
+                        if (string.IsNullOrEmpty(testPlatformId)) {
+
+                            result = testPlatform;
+                        }
+
+                        /*
                         if (testPlatformId == string.Empty || testPlatformId == null) {
 
                             result = testPlatform;
                         }
+                        */
                         if (result != null) {
 
                             return result;
@@ -1324,6 +1433,15 @@ dumpTestStructure("AddTestResult #46");
             }
             
             // 20121219
+            if (!string.IsNullOrEmpty(testPlatformId)) {
+                foreach (TestPlatform testPlatform in TestPlatforms.Where(testPlatform => testPlatform.Id == testPlatformId))
+                {
+                    result = testPlatform;
+                    return result;
+                }
+            }
+
+            /*
             if (null != testPlatformId && string.Empty != testPlatformId) {
                 foreach (TestPlatform testPlatform in TestPlatforms) {
                     if (testPlatform.Id == testPlatformId) {
@@ -1333,6 +1451,7 @@ dumpTestStructure("AddTestResult #46");
                     }
                 }
             }
+            */
             return result;
         }
         
@@ -1341,11 +1460,20 @@ dumpTestStructure("AddTestResult #46");
             TestSuite result = null;
             
             // 20121219
-            if (null != testSuiteName && string.Empty != testSuiteName) {
+            if (!string.IsNullOrEmpty(testSuiteName)) {
+            // if (null != testSuiteName && string.Empty != testSuiteName) {
                 foreach (TestSuite testSuite in TestSuites) {
                     if (testSuite.Name == testSuiteName) {
                         
                         // id does not match
+                        if (!string.IsNullOrEmpty(testSuiteId) &&
+                            testSuiteId != testSuite.Id) {
+                            
+                            // 201212119
+                            continue;
+                        }
+
+                        /*
                         if (testSuiteId != string.Empty && 
                             testSuiteId != null &&
                             testSuiteId != testSuite.Id) {
@@ -1353,6 +1481,18 @@ dumpTestStructure("AddTestResult #46");
                             // 201212119
                             continue;
                         }
+                        */
+                        if (!string.IsNullOrEmpty(testSuiteId) &&
+                            testSuiteId == testSuite.Id) {
+                            
+                            if (testPlatformId != testSuite.PlatformId) {
+                                continue;
+                            } else {
+                                result = testSuite;
+                            }
+                        }
+
+                        /*
                         if (testSuiteId != string.Empty && 
                             testSuiteId != null &&
                             testSuiteId == testSuite.Id) {
@@ -1363,6 +1503,20 @@ dumpTestStructure("AddTestResult #46");
                                 result = testSuite;
                             }
                         }
+                        */
+                        if (string.IsNullOrEmpty(testSuiteId)) {
+                            
+                            // does this code ever work?
+                            if (testPlatformId != testSuite.PlatformId) {
+                                
+                                continue;
+                            } else {
+                                
+                                result = testSuite;
+                            }
+                        }
+
+                        /*
                         if (testSuiteId == string.Empty || testSuiteId == null) {
                             
                             // does this code ever work?
@@ -1374,6 +1528,7 @@ dumpTestStructure("AddTestResult #46");
                                 result = testSuite;
                             }
                         }
+                        */
                         if (result != null) {
                             
                             return result;
@@ -1383,7 +1538,8 @@ dumpTestStructure("AddTestResult #46");
             }
             
             // 20121219
-            if (null != testSuiteId && string.Empty != testSuiteId) {
+            if (!string.IsNullOrEmpty(testSuiteId)) {
+            // if (null != testSuiteId && string.Empty != testSuiteId) {
                 foreach (TestSuite testSuite in TestSuites) {
                     if (testSuite.Id == testSuiteId) {
                         
@@ -1395,12 +1551,21 @@ dumpTestStructure("AddTestResult #46");
                             // 20130621
                             // 20130912
                             //if (testSuiteName != testSuite.Name) {
+                            if (testSuiteName != testSuite.Name && !string.IsNullOrEmpty(testSuiteName)) {
+                                continue;
+                            } else {
+                                result = testSuite;
+                                return result;
+                            }
+
+                            /*
                             if (testSuiteName != testSuite.Name && null != testSuiteName && string.Empty != testSuiteName) {
                                 continue;
                             } else {
                                 result = testSuite;
                                 return result;
                             }
+                            */
                         }
                     }
                 }
@@ -1440,14 +1605,16 @@ internal static void dumpTestStructure(string strNumber)
                 TestData.GetTestSuite(
                     testSuiteName,
                     testSuiteId,
-                    testPlatformId);
-            
+                    testPlatformId) ?? TestData.CurrentTestSuite;
+
+            /*
             if (null == testSuite) { // ?? mistaken behavior ??
                 
                 testSuite = TestData.CurrentTestSuite;
             }
-            
-//Console.WriteLine("test suite: " + testSuite.Name + "\t" + testSuite.Id);
+            */
+
+            //Console.WriteLine("test suite: " + testSuite.Name + "\t" + testSuite.Id);
             
             TestScenario testScenario =
                 TestData.GetTestScenario(
@@ -1542,21 +1709,29 @@ dumpTestStructure("2");
             if (testSuite != null) {
                 
                 TestData.CurrentTestSuite = testSuite;
+            } else if (!string.IsNullOrEmpty(testSuiteName)) {
+
+            /*
             } else if (testSuite == null && 
-                       testSuiteName != string.Empty &&
-                       testSuiteName != null) {
-                
+                        testSuiteName != string.Empty &&
+                        testSuiteName != null) {
+            */
+
                 TestSuite testSuite2 = 
                     GetTestSuite(testSuiteName, testSuiteId, testPlatformId);
                 if (testSuite2 != null) {
                     
                     TestData.CurrentTestSuite = testSuite2;
                 }
+            } else if (!string.IsNullOrEmpty(testSuiteId)) {
+
+            /*
             } else if (testSuite == null && 
-                       testSuiteId != string.Empty &&
-                       testSuiteId != null) {
-                
-                TestSuite testSuite3 = 
+                        testSuiteId != string.Empty &&
+                        testSuiteId != null) {
+            */
+
+                           TestSuite testSuite3 = 
                     GetTestSuite(testSuiteName, testSuiteId, testPlatformId);
                 if (testSuite3 != null) {
                     
@@ -1569,13 +1744,21 @@ dumpTestStructure("2");
                 return result;
             }
             
+            if (string.IsNullOrEmpty(testScenarioId)) {
+                
+                testScenarioId = 
+                    GetTestScenarioId();
+            }
+
+            /*
             if (testScenarioId == null || testScenarioId == string.Empty) {
                 
                 testScenarioId = 
                     GetTestScenarioId();
             }
-            
-dumpTestStructure("4");
+            */
+
+            dumpTestStructure("4");
             
 //            // 20130405
 //            if (null != TestData.TestSuites && 0 < TestData.TestSuites.Count) {
@@ -1599,13 +1782,21 @@ dumpTestStructure("4.4");
             
 dumpTestStructure("4.5");
             // description
+            if (!string.IsNullOrEmpty(testScenarioDescription)) {
+                
+                TestData.CurrentTestSuite.TestScenarios[CurrentTestSuite.TestScenarios.Count - 1].Description = 
+                    testScenarioDescription;
+            }
+
+            /*
             if (testScenarioDescription != null && testScenarioDescription != string.Empty) {
                 
                 TestData.CurrentTestSuite.TestScenarios[CurrentTestSuite.TestScenarios.Count - 1].Description = 
                     testScenarioDescription;
             }
-            
-dumpTestStructure("4.6");
+            */
+
+            dumpTestStructure("4.6");
             TestData.CurrentTestScenario = 
                 (TestScenario)TestData.CurrentTestSuite.TestScenarios[CurrentTestSuite.TestScenarios.Count - 1];
             
@@ -1625,6 +1816,9 @@ dumpTestStructure("4.6");
 //            }
             
             // 20130612
+            TestData.CurrentTestScenario.PlatformId = !string.IsNullOrEmpty(testPlatformId) ? testPlatformId : TestData.CurrentTestSuite.PlatformId;
+
+            /*
             if (null != testPlatformId && string.Empty != testPlatformId) {
                 TestData.CurrentTestScenario.PlatformId = testPlatformId;
             } else {
@@ -1632,7 +1826,8 @@ dumpTestStructure("4.6");
                     //TestData.CurrentTestPlatform.Id;
                     TestData.CurrentTestSuite.PlatformId;
             }
-            
+            */
+
             // 20130301
             // set the initial time for this scenario's session
             CurrentTestScenario.SetNow();
@@ -1717,12 +1912,23 @@ dumpTestStructure("7");
                     //    (null == testCaseId && testCaseName == testCase.TestCaseName)){
                     if ((testCaseName == testCase.TestCaseName &&
                         testCaseId == testCase.TestCaseId) ||
+                        (string.IsNullOrEmpty(testCaseName) && testCaseId == testCase.TestCaseId) ||
+                        (string.IsNullOrEmpty(testCaseId) && testCaseName == testCase.TestCaseName)){
+                        
+                        result = testCase;
+                        break;
+                    }
+
+                    /*
+                    if ((testCaseName == testCase.TestCaseName &&
+                        testCaseId == testCase.TestCaseId) ||
                         ((null == testCaseName || string.Empty == testCaseName) && testCaseId == testCase.TestCaseId) ||
                         ((null == testCaseId || string.Empty == testCaseId) && testCaseName == testCase.TestCaseName)){
                         
                         result = testCase;
                         break;
                     }
+                    */
                 }
             }
             
@@ -1741,18 +1947,24 @@ dumpTestStructure("7");
 
             if (testSuite != null) {
                 TestData.CurrentTestSuite = testSuite;
+            } else if (!string.IsNullOrEmpty(testSuiteName)) {
+            /*
             } else if (testSuite == null && 
-                       testSuiteName != string.Empty &&
-                       testSuiteName != null) {
+                        testSuiteName != string.Empty &&
+                        testSuiteName != null) {
+            */
                 TestSuite testSuite2 = 
                     GetTestSuite(testSuiteName, testSuiteId, testPlatformId);
                 if (testSuite2 != null) {
                     TestData.CurrentTestSuite = testSuite2;
                 }
+            } else if (!string.IsNullOrEmpty(testSuiteId)) {
+            /*
             } else if (testSuite == null && 
-                       testSuiteId != string.Empty &&
-                       testSuiteId != null) {
-                TestSuite testSuite3 = 
+                        testSuiteId != string.Empty &&
+                        testSuiteId != null) {
+            */
+                           TestSuite testSuite3 = 
                     GetTestSuite(testSuiteName, testSuiteId, testPlatformId);
                 if (testSuite3 != null) {
                     TestData.CurrentTestSuite = testSuite3;
@@ -1763,6 +1975,21 @@ dumpTestStructure("7");
                 return result;
             }
             
+            if (!string.IsNullOrEmpty(testScenarioName)) {
+                
+                foreach (TestScenario testScenario in TestData.CurrentTestSuite.TestScenarios) {
+                    
+                    if (testScenario.Name == testScenarioName) {
+                        
+                        TestData.CurrentTestScenario = testScenario;
+                        // 20130912
+                        //return testScenario;
+                        return TestData.CurrentTestScenario;
+                    }
+                }
+            }
+
+            /*
             if (testScenarioName != null && testScenarioName != string.Empty) {
                 
                 foreach (TestScenario testScenario in TestData.CurrentTestSuite.TestScenarios) {
@@ -1776,28 +2003,28 @@ dumpTestStructure("7");
                     }
                 }
             }
-            
-            if (testScenarioId != null && testScenarioId != string.Empty) {
-                foreach (TestScenario testScenario in TestData.CurrentTestSuite.TestScenarios) {
-                    if (testScenario.Id == testScenarioId) {
-                        
-                        // 20130621
-                        if (testPlatformId != testScenario.PlatformId) {
+            */
+
+            if (!string.IsNullOrEmpty(testScenarioId)) {
+            // if (testScenarioId != null && testScenarioId != string.Empty) {
+                foreach (TestScenario testScenario in TestData.CurrentTestSuite.TestScenarios.Cast<TestScenario>().Where(testScenario => testScenario.Id == testScenarioId))
+                {
+                    // 20130621
+                    if (testPlatformId != testScenario.PlatformId) {
+                        continue;
+                    } else {
+                        // 20130912
+                        //if (testScenarioName != testScenario.Name) {
+                        if (testScenarioName != testScenario.Name && !string.IsNullOrEmpty(testScenarioName)) {
                             continue;
                         } else {
-                            // 20130912
-                            //if (testScenarioName != testScenario.Name) {
-                            if (testScenarioName != testScenario.Name && null != testScenarioName && string.Empty != testScenarioName) {
-                                continue;
-                            } else {
-                                TestData.CurrentTestScenario = testScenario;
-                                return testScenario;
-                            }
+                            TestData.CurrentTestScenario = testScenario;
+                            return testScenario;
                         }
-                        // 20130621
+                    }
+                    // 20130621
 //                        TestData.CurrentTestScenario = testScenario;
 //                        return testScenario;
-                    }
                 }
             }
 
@@ -1826,8 +2053,9 @@ dumpTestStructure("7");
             }
             return result;
         }
-        
-        private static System.Collections.Generic.List<TestScenario> getAllScenarios()
+
+        private static IEnumerable<TestScenario> getAllScenarios()
+        //private static System.Collections.Generic.List<TestScenario> getAllScenarios()
         {
             return TestData.TestSuites.SelectMany(suite => suite.TestScenarios.Cast<TestScenario>()).ToList();
             /*
@@ -1867,7 +2095,8 @@ dumpTestStructure("7");
             return result;
         }
         
-        private static System.Collections.Generic.List<TestResult> getAllTestResults()
+        private static IEnumerable<TestResult> getAllTestResults()
+        // private static System.Collections.Generic.List<TestResult> getAllTestResults()
         {
             return (from suite in TestData.TestSuites from TestScenario scenario in suite.TestScenarios from TestResult testResult in scenario.TestResults select testResult).ToList();
             /*

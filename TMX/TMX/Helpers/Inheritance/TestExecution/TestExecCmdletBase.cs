@@ -7,6 +7,8 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System.Linq;
+
 namespace TMX
 {
     using System;
@@ -25,55 +27,50 @@ namespace TMX
         	TestSuiteExecCmdletBase cmdlet,
         	ITestSuite testSuite)
         {
-        	
-        	foreach (ITestScenario testScenario in testSuite.TestScenarios) {
-        		
-	        	// run BeforeScenario scriptblocks
-				//if (null != testScenario) {
-				if (null != testScenario.TestCases && 0 < testScenario.TestCases.Count) {
-					cmdlet.runTwoScriptBlockCollections(
-						testSuite.BeforeScenario,
-						null, // alternate scriptblocks
-						cmdlet,
-						testSuite.BeforeScenarioParameters);
-				//}
+            foreach (ITestScenario testScenario in testSuite.TestScenarios.Where(testScenario => null != testScenario.TestCases && 0 < testScenario.TestCases.Count))
+            {
+                cmdlet.runTwoScriptBlockCollections(
+                    testSuite.BeforeScenario,
+                    null, // alternate scriptblocks
+                    cmdlet,
+                    testSuite.BeforeScenarioParameters);
+                //}
 	        	
-	        	//if (null != testScenario.TestCases && 0 < testScenario.TestCases.Count) {
+                //if (null != testScenario.TestCases && 0 < testScenario.TestCases.Count) {
 	        	    
-		        	foreach (ITestCase testCase in testScenario.TestCases) {
+                foreach (ITestCase testCase in testScenario.TestCases) {
 	        	        
-		        		cmdlet.runTwoScriptBlockCollections(
-							testScenario.BeforeTest,
-							null, // alternate scriptblocks
-							cmdlet,
-							testScenario.BeforeTestParameters);
+                    cmdlet.runTwoScriptBlockCollections(
+                        testScenario.BeforeTest,
+                        null, // alternate scriptblocks
+                        cmdlet,
+                        testScenario.BeforeTestParameters);
 		        		
-		        		cmdlet.runTwoScriptBlockCollections(
-		        			testCase.TestCode,
-		        			null,
-		        			cmdlet,
-		        			testCase.TestCodeParameters);
+                    cmdlet.runTwoScriptBlockCollections(
+                        testCase.TestCode,
+                        null,
+                        cmdlet,
+                        testCase.TestCodeParameters);
 		        		
-		        		cmdlet.runTwoScriptBlockCollections(
-							testScenario.AfterTest,
-							null, // alternate scriptblocks
-							cmdlet,
-							testScenario.AfterTestParameters);
+                    cmdlet.runTwoScriptBlockCollections(
+                        testScenario.AfterTest,
+                        null, // alternate scriptblocks
+                        cmdlet,
+                        testScenario.AfterTestParameters);
 		        		
-		        	}
-	        	//}
+                }
+                //}
 	        	
-				// run AfterScenario scriptblocks
-				//if (null != testScenario) {
-					cmdlet.runTwoScriptBlockCollections(
-						testSuite.AfterScenario,
-						null, // alternate scriptblocks
-						cmdlet,
-						testSuite.AfterScenarioParameters);
-				}
-        	}
+                // run AfterScenario scriptblocks
+                //if (null != testScenario) {
+                cmdlet.runTwoScriptBlockCollections(
+                    testSuite.AfterScenario,
+                    null, // alternate scriptblocks
+                    cmdlet,
+                    testSuite.AfterScenarioParameters);
+            }
         }
-        
+
         public void RunTestScenario(
         	TestScenarioExecCmdletBase cmdlet,
         	ITestSuite testSuite,
@@ -81,43 +78,44 @@ namespace TMX
         {
         	// run BeforeScenario scriptblocks
 			//if (null != testSuite) {
-			if (null != testSuite && null != testScenario && 0 < testScenario.TestCases.Count) {
-				cmdlet.runTwoScriptBlockCollections(
-					testSuite.BeforeScenario,
-					null, // alternate scriptblocks
-					cmdlet,
-					testSuite.BeforeScenarioParameters);
-			//}
+            if (null == testSuite || null == testScenario || 0 >= testScenario.TestCases.Count) return;
+            // if (null != testSuite && null != testScenario && 0 < testScenario.TestCases.Count) {
+
+            cmdlet.runTwoScriptBlockCollections(
+                testSuite.BeforeScenario,
+                null, // alternate scriptblocks
+                cmdlet,
+                testSuite.BeforeScenarioParameters);
+            //}
         	
-        	foreach (ITestCase testCase in testScenario.TestCases) {
-        		cmdlet.runTwoScriptBlockCollections(
-					testScenario.BeforeTest,
-					null, // alternate scriptblocks
-					cmdlet,
-					testScenario.BeforeTestParameters);
+            foreach (ITestCase testCase in testScenario.TestCases) {
+                cmdlet.runTwoScriptBlockCollections(
+                    testScenario.BeforeTest,
+                    null, // alternate scriptblocks
+                    cmdlet,
+                    testScenario.BeforeTestParameters);
         		
-        		cmdlet.runTwoScriptBlockCollections(
-        			testCase.TestCode,
-        			null,
-        			cmdlet,
-        			testCase.TestCodeParameters);
+                cmdlet.runTwoScriptBlockCollections(
+                    testCase.TestCode,
+                    null,
+                    cmdlet,
+                    testCase.TestCodeParameters);
         		
-        		cmdlet.runTwoScriptBlockCollections(
-					testScenario.AfterTest,
-					null, // alternate scriptblocks
-					cmdlet,
-					testScenario.AfterTestParameters);
-        	}
+                cmdlet.runTwoScriptBlockCollections(
+                    testScenario.AfterTest,
+                    null, // alternate scriptblocks
+                    cmdlet,
+                    testScenario.AfterTestParameters);
+            }
 			
-			// run AfterScenario scriptblocks
-			//if (null != testSuite) {
-			//if (null != testSuite && null != testScenario && 0 < testScenario.TestCases.Count) {
-				cmdlet.runTwoScriptBlockCollections(
-					testSuite.AfterScenario,
-					null, // alternate scriptblocks
-					cmdlet,
-					testSuite.AfterScenarioParameters);
-			}
+            // run AfterScenario scriptblocks
+            //if (null != testSuite) {
+            //if (null != testSuite && null != testScenario && 0 < testScenario.TestCases.Count) {
+            cmdlet.runTwoScriptBlockCollections(
+                testSuite.AfterScenario,
+                null, // alternate scriptblocks
+                cmdlet,
+                testSuite.AfterScenarioParameters);
         }
         
         public void RunTestCase(

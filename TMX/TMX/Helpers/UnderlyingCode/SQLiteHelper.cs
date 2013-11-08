@@ -7,6 +7,8 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System.Linq;
+
 namespace TMX
 {
     using System;
@@ -63,10 +65,16 @@ namespace TMX
                         conn.Open();
 
                         // 20120918
+                        if (string.IsNullOrEmpty(cmdlet.Name)) {
+                            cmdlet.Name = fileName;
+                        }
+
+                        /*
                         if (null == cmdlet.Name ||
                             0 == cmdlet.Name.Length) {
                             cmdlet.Name = fileName;
                         }
+                        */
 
                         IDatabase database = 
                             new Database(
@@ -218,20 +226,31 @@ namespace TMX
             PSCmdletBase cmdlet, 
             string databaseName)
         {
-            IDatabase database = null;
+            //IDatabase database = null;
+
+            if (null == TMX.SQLiteData.Databases || 0 >= TMX.SQLiteData.Databases.Count) return null; //database;
+
+            return TMX.SQLiteData.Databases.FirstOrDefault(db => db.Name == databaseName);
+
+            //if (null != TMX.SQLiteData.Databases &&
+            //    0 < TMX.SQLiteData.Databases.Count) {
+            //    foreach (IDatabase db in TMX.SQLiteData.Databases) {
+            //        if (db.Name != databaseName) continue;
+            //        //return db;
+            //        database = db;
+            //        break;
+
+            //        /*
+            //        if (db.Name == databaseName) {
+            //            //return db;
+            //            database = db;
+            //            break;
+            //        }
+            //        */
+            //    }
+            //}
             
-            if (null != TMX.SQLiteData.Databases &&
-                0 < TMX.SQLiteData.Databases.Count) {
-                foreach (IDatabase db in TMX.SQLiteData.Databases) {
-                    if (db.Name == databaseName) {
-                        //return db;
-                        database = db;
-                        break;
-                    }
-                }
-            }
-            
-            return database;
+            //return database;
         }
         
         public static void OpenDatabase(
@@ -247,7 +266,51 @@ namespace TMX
                 string absolutePath = 
                     System.IO.Path.GetFullPath(fileName);
                 cmdlet.WriteVerbose(cmdlet, absolutePath);
-                
+
+                if (!System.IO.File.Exists(absolutePath)) return;
+                string connectionString =
+                    "Data Source='" + 
+                    absolutePath + 
+                    "';Version=3;Max Pool Size=100;UseUTF16Encoding=True;";
+                cmdlet.WriteVerbose(cmdlet, connectionString);
+                    
+                using (SQLiteConnection conn = new SQLiteConnection(connectionString)) {
+                        
+                    conn.Open();
+                        
+                    IDatabase database = 
+                        new Database(
+                            ((DatabaseFileCmdletBase)cmdlet).Name,
+                            fileName,
+                            conn);
+                        
+                        
+                    // check structure DB
+                        
+                        
+                    // check repository DB
+                        
+                    // check data DB
+                        
+                        
+                    conn.Close();
+                        
+                    if (structureDB) {
+                        TestData.CurrentStructureDB = database;
+                    }
+                    if (repositoryDB) {
+                        TestData.CurrentRepositoryDB = database;
+                    }
+                    if (resultsDB) {
+                        TestData.CurrentResultsDB = database;
+                    }
+                        
+                    SQLiteData.Databases.Add(database);
+                        
+                    cmdlet.WriteObject(cmdlet, database);
+                }
+
+                /*
                 if (System.IO.File.Exists(absolutePath)) {
                     string connectionString =
                         "Data Source='" + 
@@ -291,6 +354,7 @@ namespace TMX
                         cmdlet.WriteObject(cmdlet, database);
                     }
                 }
+                */
             }
             catch (Exception eOpenDB) {
                 cmdlet.WriteError(
@@ -316,7 +380,34 @@ namespace TMX
                 for (int i = 0; i < SQLiteData.Databases.Count; i++) {
                     
                     cmdlet.WriteVerbose(cmdlet, "check the database name");
-                    
+
+                    if (databaseName != SQLiteData.Databases[i].Name) continue;
+                    cmdlet.WriteVerbose(cmdlet, "close the database");
+                        
+                    try {
+                        if (null != SQLiteData.Databases[i].Connection &&
+                            SQLiteData.Databases[i].Connection.State == ConnectionState.Open) {
+                                SQLiteData.Databases[i].Connection.Close();
+                            }
+                    }
+                    catch {}
+                        
+                    if (SQLiteData.Databases[i].IsResultsDB) {
+                        TestData.CurrentResultsDB = null;
+                    }
+                    if (SQLiteData.Databases[i].IsRepositoryDB) {
+                        TestData.CurrentRepositoryDB = null;
+                    }
+                    if (SQLiteData.Databases[i].IsStructureDB) {
+                        TestData.CurrentStructureDB = null;
+                    }
+                    //SQLiteData.Databases[i].Connection.Close();
+                        
+                    SQLiteData.Databases.RemoveAt(i);
+                        
+                    break;
+
+                    /*
                     if (databaseName == SQLiteData.Databases[i].Name) {
                         
                         cmdlet.WriteVerbose(cmdlet, "close the database");
@@ -344,6 +435,7 @@ namespace TMX
                         
                         break;
                     }
+                    */
                 }
 
             }
@@ -407,7 +499,8 @@ namespace TMX
             runSQLCommand(cmdlet, db, SQLCode);
         }
         
-        private static void checkConnection(SQLiteConnection connection)
+        private static void checkConnection(IDbConnection connection)
+        // private static void checkConnection(SQLiteConnection connection)
         {
             if (connection.State == ConnectionState.Closed) {
                 connection.Open();
@@ -446,6 +539,21 @@ namespace TMX
                 return connection;
             }
             
+            if (string.IsNullOrEmpty(database.ConnectionString)) {
+
+                cmdlet.WriteError(
+                    cmdlet,
+                    "Could not find the connectionString to the database with name '" +
+                    database.Name +
+                    "'.",
+                    "CouldNotFindConnString",
+                    ErrorCategory.InvalidArgument,
+                    true);
+                return connection;
+            }
+
+
+            /*
             if (null == database.ConnectionString ||
                 string.Empty == database.ConnectionString) {
 
@@ -459,6 +567,7 @@ namespace TMX
                     true);
                 return connection;
             }
+            */
 
             try {
                 if (null == database.Connection) {
@@ -544,6 +653,20 @@ namespace TMX
                                 adp1.Fill(tbl1);
                                 //for (int n = 0; n < 10000; n++) {
                                 cmdlet.WriteVerbose(cmdlet, "8");
+                                foreach (TestSuite tSuite in TestData.TestSuites)
+                                {
+                                    cmdlet.WriteVerbose(cmdlet, "9");
+                                    DataRow row1 = tbl1.NewRow();
+                                    //row[1] = n;
+                                    //(Id INTEGER PRIMARY KEY, SuiteId TEXT, SuiteName TEXT, StatusId NUMERIC, Description TEXT);");
+                                    row1["SuiteId"] = SQLiteHelper.PrepareEscapedString(tSuite.Id);
+                                    row1["SuiteName"] = SQLiteHelper.PrepareEscapedString(tSuite.Name);
+                                    row1["StatusId"] = (int)tSuite.enStatus;
+                                    row1["Description"] = SQLiteHelper.PrepareEscapedString(tSuite.Description);
+                                    tbl1.Rows.Add(row1);
+                                }
+
+                                /*
                                 for (int suiteCounter = 0; suiteCounter < TestData.TestSuites.Count; suiteCounter++) {
                                     cmdlet.WriteVerbose(cmdlet, "9");
                                     DataRow row1 = tbl1.NewRow();
@@ -555,6 +678,7 @@ namespace TMX
                                     row1["Description"] = SQLiteHelper.PrepareEscapedString(TestData.TestSuites[suiteCounter].Description);
                                     tbl1.Rows.Add(row1);
                                 }
+                                */
                                 cmdlet.WriteVerbose(cmdlet, "12");
                                 cmdlet.WriteVerbose(cmdlet, tbl1.Rows.Count.ToString() + " rows");
                                 adp1.Update(tbl1);
@@ -589,6 +713,20 @@ namespace TMX
                                 adp2.Fill(tbl2);
                                 //for (int n = 0; n < 10000; n++) {
                                 foreach (TestSuite testSuite in TestData.TestSuites) {
+                                    foreach (ITestScenario tScenario in testSuite.TestScenarios)
+                                    {
+                                        DataRow row2 = tbl2.NewRow();
+                                        //row[1] = n;
+                                        //Id INTEGER PRIMARY KEY, SuiteId TEXT, ScenarioId TEXT, ScenarioName TEXT, StatusId NUMERIC, Description TEXT);");
+                                        row2["SuiteId"] = SQLiteHelper.PrepareEscapedString(tScenario.SuiteId);
+                                        row2["ScenarioId"] = SQLiteHelper.PrepareEscapedString(tScenario.Id);
+                                        row2["ScenarioName"] = SQLiteHelper.PrepareEscapedString(tScenario.Name);
+                                        //row["StatusId"] = (int)testSuite.TestScenarios[scenarioCounter].
+                                        row2["Description"] = SQLiteHelper.PrepareEscapedString(tScenario.Description);
+                                        tbl2.Rows.Add(row2);
+                                    }
+
+                                    /*
                                     for (int scenarioCounter = 0; scenarioCounter < testSuite.TestScenarios.Count; scenarioCounter++) {
                                         DataRow row2 = tbl2.NewRow();
                                         //row[1] = n;
@@ -600,6 +738,7 @@ namespace TMX
                                         row2["Description"] = SQLiteHelper.PrepareEscapedString(testSuite.TestScenarios[scenarioCounter].Description);
                                         tbl2.Rows.Add(row2);
                                     }
+                                    */
                                 }
                                 cmdlet.WriteVerbose(cmdlet, "27");
                                 adp2.Update(tbl2);
@@ -633,6 +772,50 @@ namespace TMX
                                 cmdlet.WriteVerbose(cmdlet, "37");
                                 adp3.Fill(tbl3);
                                 //for (int n = 0; n < 10000; n++) {
+                                foreach (TestScenario testScenario in TestData.TestSuites.SelectMany(testSuite => testSuite.TestScenarios.Cast<TestScenario>()))
+                                {
+                                    foreach (ITestResult tResult in testScenario.TestResults)
+                                    {
+                                        DataRow row3= tbl3.NewRow();
+                                        //row[1] = n;
+                                        //Id INTEGER PRIMARY KEY, TestResultId TEXT, TestResultName TEXT, " +
+                                        //"StatusId NUMERIC, Description TEXT, ScriptName TEXT, LineNumber NUMERIC, " +
+                                        //"Position NUMERIC, Error BLOB, Code TEXT, Description TEXT, Parameters BLOB, " +
+                                        //"SuiteId TEXT, ScenarioId TEXT, Timestamp TEXT, TimeSpent NUMERIC, Generated NUMERIC, Screenshot TEXT);");
+                                        row3["SuiteId"] = SQLiteHelper.PrepareEscapedString(tResult.SuiteId);
+                                        row3["ScenarioId"] = SQLiteHelper.PrepareEscapedString(tResult.ScenarioId);
+
+                                        row3["TestResultId"] = SQLiteHelper.PrepareEscapedString(tResult.Id);
+                                        row3["TestResultName"] = SQLiteHelper.PrepareEscapedString(SQLiteHelper.PrepareEscapedString(tResult.Name));
+                                        row3["ScriptName"] = SQLiteHelper.PrepareEscapedString(tResult.ScriptName);
+                                        row3["LineNumber"] = tResult.LineNumber.ToString();
+                                        row3["Position"] = tResult.Position.ToString();
+                                        if (null != tResult.Error)
+                                        {
+                                            row3["Error"] = tResult.Error;
+                                        }
+                                        row3["Code"] = SQLiteHelper.PrepareEscapedString(tResult.Code);
+                                        row3["Parameters"] = tResult.Parameters;
+                                        row3["Timestamp"] = tResult.Timestamp;
+                                        row3["TimeSpent"] = tResult.TimeSpent;
+                                        row3["Generated"] = Convert.ToInt32(tResult.Generated);
+                                        //row3["Screenshot"] = testScenario.TestResults[trCounter].Screenshot;
+                                        if (null != tResult.Screenshot)
+                                        {
+                                            byte[] screenshot = 
+                                                GetScreenshotFromFileSystem(
+                                                    tResult.Screenshot);
+                                            row3["Screenshot"] = screenshot;
+                                        }
+                                        row3["StatusId"] = (int)tResult.enStatus;
+
+                                        row3["Description"] = SQLiteHelper.PrepareEscapedString(tResult.Description);
+                                            
+                                        tbl3.Rows.Add(row3);
+                                    }
+                                }
+
+                                /*
                                 foreach (TestSuite testSuite in TestData.TestSuites) {
                                     foreach (TestScenario testScenario in testSuite.TestScenarios) {
                                         for (int trCounter = 0; trCounter < testScenario.TestResults.Count; trCounter++) {
@@ -673,6 +856,7 @@ namespace TMX
                                         }
                                     }
                                 }
+                                */
                                 cmdlet.WriteVerbose(cmdlet, "38");
                                 adp3.Update(tbl3);
                                 cmdlet.WriteVerbose(cmdlet, "39");
@@ -707,6 +891,22 @@ namespace TMX
                                 cmdlet.WriteVerbose(cmdlet, "49");
                                 adp4.Fill(tbl4);
                                 //for (int n = 0; n < 10000; n++) {
+                                foreach (TestResult testResult in from testSuite in TestData.TestSuites from TestScenario testScenario in testSuite.TestScenarios from TestResult testResult in testScenario.TestResults select testResult)
+                                {
+                                    foreach (ITestResultDetail tResultDetail in testResult.Details)
+                                    {
+                                        DataRow row4 = tbl4.NewRow();
+                                        //Id INTEGER PRIMARY KEY, TestResultId TEXT, TestResultDetailName TEXT, " +
+                                        //"TestResultDetail BLOB);"
+                                        row4["TestResultId"] = SQLiteHelper.PrepareEscapedString(testResult.Id);
+                                        row4["TestResultDetailName"] = SQLiteHelper.PrepareEscapedString(tResultDetail.Name);
+                                        row4["Timestamp"] = tResultDetail.Timestamp;
+                                        row4["TestResultDetail"] = SQLiteHelper.PrepareEscapedString(tResultDetail.GetDetail().ToString());
+                                        tbl4.Rows.Add(row4);
+                                    }
+                                }
+
+                                /*
                                 foreach (TestSuite testSuite in TestData.TestSuites) {
                                     foreach (TestScenario testScenario in testSuite.TestScenarios) {
                                         foreach (TestResult testResult in testScenario.TestResults) {
@@ -723,6 +923,7 @@ namespace TMX
                                         }
                                     }
                                 }
+                                */
                                 adp4.Update(tbl4);
                                 dbTrans.Commit();
                             }

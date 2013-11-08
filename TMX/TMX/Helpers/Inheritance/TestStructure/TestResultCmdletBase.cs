@@ -94,6 +94,27 @@ namespace TMX
         
         public void ConvertTestResultStatusToTraditionalTestResult()
         {
+            if (TestResultStatuses.NotTested == this.TestResultStatus) return;
+            switch (this.TestResultStatus) {
+                case TestResultStatuses.Passed:
+                    this.TestPassed = true;
+                    break;
+                case TestResultStatuses.Failed:
+                    this.TestPassed = false;
+                    break;
+                case TestResultStatuses.NotTested:
+                    // nothing to do
+                    // the impossible combination
+                    break;
+                case TestResultStatuses.KnownIssue:
+                    this.KnownIssue = true;
+                    break;
+                default:
+                    //throw new Exception("Invalid value for TestResultStatuses");
+                    break;
+            }
+
+            /*
             if (TestResultStatuses.NotTested != this.TestResultStatus) {
                 
                 switch (this.TestResultStatus) {
@@ -115,6 +136,7 @@ namespace TMX
                         break;
                 }
             }
+            */
         }
     }
 }

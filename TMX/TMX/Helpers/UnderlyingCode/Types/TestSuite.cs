@@ -34,13 +34,17 @@ namespace TMX
             this.Statistics = new TestStat();
             this.enStatus = TestSuiteStatuses.NotTested;
             this.Name = testSuiteName;
+            this.Id = testSuiteId != string.Empty ? testSuiteId : TestData.GetTestSuiteId();
+
+            /*
             if (testSuiteId != string.Empty) {
                 this.Id = testSuiteId;
             } else {
                 this.Id = 
                     TestData.GetTestSuiteId();
             }
-            
+            */
+
             // 20130301
             this.SetNow();
         }

@@ -10,11 +10,14 @@
 namespace UIAutomationSpy
 {
     using System;
-    using System.Collections.Generic;
-    using System.Drawing;
+    // test it
+    //using System.Collections.Generic;
+    // test it
+    //using System.Drawing;
     using System.Windows.Forms;
     using System.Windows.Automation;
-    using System.Windows;
+    // test it
+    //using System.Windows;
     using System.Management.Automation;
     using System.Management.Automation.Runspaces;
     
@@ -801,7 +804,8 @@ namespace UIAutomationSpy
 //                        //	UIACOM3.UIACOMHelper.GetAutomationElementFromPoint();
                         
                     // 20120618 UIACOMWrapper
-                    if (element != null && ((element as AutomationElement) != null)) { // && (int)element.Current.ProcessId > 0)
+                    if (null != element) { // && (int)element.Current.ProcessId > 0)
+                    // if (element != null && ((element as AutomationElement) != null)) { // && (int)element.Current.ProcessId > 0)
                         //if (element != null && ((element as UIACOM::System.Windows.Automation.AutomationElement) != null)) { // && (int)element.Current.ProcessId > 0)
                         cmdlet = 
                             this.createTranscriptingCmdlet();

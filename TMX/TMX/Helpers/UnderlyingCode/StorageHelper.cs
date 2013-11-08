@@ -34,9 +34,10 @@ namespace TMX
         
         public static void InitializeStorage(CommonCmdletBase cmdlet)
         {
-Console.WriteLine("-0005");
-            if (null != TMX.Preferences.StorageUsername && string.Empty != TMX.Preferences.StorageUsername) {
-Console.WriteLine("-0004");
+//Console.WriteLine("-0005");
+            if (!string.IsNullOrEmpty(TMX.Preferences.StorageUsername)) {
+            // if (null != TMX.Preferences.StorageUsername && string.Empty != TMX.Preferences.StorageUsername) {
+//Console.WriteLine("-0004");
                 TMX.Preferences.StorageConnectionString =
                     //@"Data Source=" + 
                     @"Server=" + 
@@ -50,7 +51,7 @@ Console.WriteLine("-0004");
                     TMX.Preferences.StoragePassword +
                     ";";
             } else {
-Console.WriteLine("-0003");
+//Console.WriteLine("-0003");
                 TMX.Preferences.StorageConnectionString =
                     //@"Data Source=" + 
                     @"Server=" + 
@@ -63,11 +64,11 @@ Console.WriteLine("-0003");
             
             try {
                 
-Console.WriteLine("-0002");
+//Console.WriteLine("-0002");
                 
                 cmdlet.WriteVerbose("building configuration...");
-Console.WriteLine("-0001");
-Console.WriteLine(TMX.Preferences.StorageConnectionString);
+//Console.WriteLine("-0001");
+//Console.WriteLine(TMX.Preferences.StorageConnectionString);
 if (null == Fluently.Configure()) {
     
     Console.WriteLine("Fluently == null");

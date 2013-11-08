@@ -812,7 +812,8 @@ namespace TMX
             return resultHTML;
         }
 
-        private string getStatisticsStringTestResult(TestResult testResult)
+        private string getStatisticsStringTestResult(ITestResult testResult)
+        // private string getStatisticsStringTestResult(TestResult testResult)
         {
             string result = string.Empty;
             result += @"<div id=""testresultstat"">Time spent:";

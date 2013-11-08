@@ -44,11 +44,13 @@ namespace TMX
         public virtual string Name
         {
             get {
-                if (this.TextDetail != null && this.TextDetail.Length > 0) {
+                if (!string.IsNullOrEmpty(this.TextDetail)) {
+                // if (this.TextDetail != null && this.TextDetail.Length > 0) {
                     return this.TextDetail;
                 } else if (this.ErrorDetail != null) {
                     return this.ErrorDetail.Exception.Message;
-                } else if (this.ScreenshotDetail != null && this.ScreenshotDetail.Length > 0) {
+                } else if (!string.IsNullOrEmpty(this.ScreenshotDetail)) {
+                // } else if (this.ScreenshotDetail != null && this.ScreenshotDetail.Length > 0) {
                     return this.ScreenshotDetail;
                 } else {
                     return string.Empty;
@@ -104,10 +106,14 @@ namespace TMX
             if (null != this.ScreenshotDetail) {
                 return this.ScreenshotDetail;
             }
+            return this.TextDetail ?? null;
+
+            /*
             if (null != this.TextDetail) {
                 return this.TextDetail;
             }
             return null;
+            */
         }
         
         public virtual TestResultStatuses DetailStatus { get; set; }

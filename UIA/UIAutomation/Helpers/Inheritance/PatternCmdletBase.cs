@@ -706,9 +706,14 @@ namespace UIAutomation
                     bool vertical = ((InvokeUIAScrollPatternCommand)this).Vertical;
                     int horPercent = ((InvokeUIAScrollPatternCommand)this).HorizontalPercent;
                     int verPercent = ((InvokeUIAScrollPatternCommand)this).VerticalPercent;
-                    System.Windows.Automation.ScrollAmount horAmount, verAmount = System.Windows.Automation.ScrollAmount.NoAmount;
+                    System.Windows.Automation.ScrollAmount horAmount = System.Windows.Automation.ScrollAmount.NoAmount;
+                    System.Windows.Automation.ScrollAmount verAmount = System.Windows.Automation.ScrollAmount.NoAmount;
                     horAmount = (System.Windows.Automation.ScrollAmount)((InvokeUIAScrollPatternCommand)this).HorizontalAmount;
                     verAmount = (System.Windows.Automation.ScrollAmount)((InvokeUIAScrollPatternCommand)this).VerticalAmount;
+                    // for refactoring
+                    //System.Windows.Automation.ScrollAmount horAmount, verAmount = System.Windows.Automation.ScrollAmount.NoAmount;
+                    //horAmount = (System.Windows.Automation.ScrollAmount)((InvokeUIAScrollPatternCommand)this).HorizontalAmount;
+                    //verAmount = (System.Windows.Automation.ScrollAmount)((InvokeUIAScrollPatternCommand)this).VerticalAmount;
                     if ((horPercent + verPercent) > 0) {
                         scPattern.SetScrollPercent(horPercent, verPercent);
                     }

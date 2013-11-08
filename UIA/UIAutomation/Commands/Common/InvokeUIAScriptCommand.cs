@@ -10,10 +10,13 @@
 
 namespace UIAutomation.Commands
 {
-    using System;
+    // test it
+    //using System;
     using System.Management.Automation;
-    using System.Collections;
-    using System.Collections.ObjectModel;
+    // test it
+    //using System.Collections;
+    // test it
+    //using System.Collections.ObjectModel;
 
     /// <summary>
     /// Description of InvokeUIAScriptCommand.

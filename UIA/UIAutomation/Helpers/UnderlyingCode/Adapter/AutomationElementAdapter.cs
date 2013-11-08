@@ -9,9 +9,6 @@
 
 namespace UIAutomation
 {
-    /// <summary>
-    /// Description of AutomationElementAdapter.
-    /// </summary>
     using System;
     using System.Windows.Automation;
 

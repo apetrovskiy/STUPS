@@ -333,8 +333,9 @@ namespace UIAutomation
             string className,
             string textValue,
             string[] controlType,
-            AndCondition conditions,
-            bool caseSensitive,
+            Condition conditions,
+            // AndCondition conditions,
+            bool caseSensitiveParam,
             bool onlyOneResult,
             bool onlyTopLevel)
         {
@@ -365,7 +366,7 @@ namespace UIAutomation
                         className,
                         textValue,
                         controlType,
-                        caseSensitive);
+                        caseSensitiveParam);
                 
                 // 20130608
                 results = null;
@@ -661,13 +662,21 @@ namespace UIAutomation
             elementControlType =
                 elementControlType.Substring(
                     elementControlType.IndexOf('.') + 1);
+            foreach (string controlTypeName in controlType.Where(controlTypeName => String.Equals(controlTypeName, elementControlType, StringComparison.CurrentCultureIgnoreCase)))
+            {
+                result = true;
+            }
+
+            /*
             foreach (string controlTypeName in controlType)
             {
                 if (controlTypeName.ToUpper() == elementControlType.ToUpper())
                 {
                     result = true;
                 }
+
             }
+            */
 
             /*
             for (int i = 0; i < controlType.Length; i++) {

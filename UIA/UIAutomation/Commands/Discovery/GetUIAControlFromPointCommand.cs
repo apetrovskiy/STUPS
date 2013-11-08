@@ -9,9 +9,11 @@
 
 namespace UIAutomation.Commands
 {
-    using System;
+    // test it
+    //using System;
     using System.Management.Automation;
-    using System.Runtime.CompilerServices;
+    // test it
+    //using System.Runtime.CompilerServices;
 
     /// <summary>
     /// Description of GetUIAControlFromPoint.

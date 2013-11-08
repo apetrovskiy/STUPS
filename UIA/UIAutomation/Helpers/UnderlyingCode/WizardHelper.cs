@@ -64,7 +64,8 @@ namespace UIAutomation
         //public static void AddWizardStep(WizardConstructionCmdletBase cmdlet)
         public static void AddWizardStep(WizardStepCmdletBase cmdlet)
         {
-            if (null != cmdlet.InputObject && cmdlet.InputObject is Wizard) {
+            if (null != cmdlet.InputObject && null != cmdlet.InputObject) {
+            // if (null != cmdlet.InputObject && cmdlet.InputObject is Wizard) {
                 
                 WizardStep probeTheSameStep = cmdlet.InputObject.GetStep(cmdlet.Name);
                 if (null != probeTheSameStep) {
@@ -414,7 +415,8 @@ namespace UIAutomation
         {
             
             //if (InputObject != null && InputObject is Wizard) {
-            if (cmdlet.InputObject != null && cmdlet.InputObject is Wizard) {
+            if (cmdlet.InputObject != null && null != cmdlet.InputObject) {
+            // if (cmdlet.InputObject != null && cmdlet.InputObject is Wizard) {
                 WizardStep stepToRemove = null;
                 //foreach (WizardStep step in InputObject.Steps) {
                 foreach (WizardStep step in cmdlet.InputObject.Steps.Where(step => step.Name == cmdlet.Name))
@@ -467,7 +469,8 @@ namespace UIAutomation
         {
             // getting the step the user ordered to run
             //if (InputObject != null && InputObject is Wizard) {
-            if (cmdlet.InputObject != null && cmdlet.InputObject is Wizard) {
+            if (cmdlet.InputObject != null && null != cmdlet.InputObject) {
+            // if (cmdlet.InputObject != null && cmdlet.InputObject is Wizard) {
                 WizardStep stepToRun = null;
                 //WriteVerbose(this, "searching for a step");
                 cmdlet.WriteVerbose(cmdlet, "searching for a step");

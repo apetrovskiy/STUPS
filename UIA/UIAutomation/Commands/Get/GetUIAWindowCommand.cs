@@ -11,8 +11,8 @@ namespace UIAutomation.Commands
 {
     using System;
     using System.Management.Automation;
-    
-    using System.Windows.Automation;
+    // test it
+    //using System.Windows.Automation;
     using System.Collections;
 
     /// <summary>

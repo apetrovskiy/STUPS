@@ -225,10 +225,10 @@ namespace UIAutomation
                            (((new IntPtr(relativeY)).ToInt32() & 0xFFFF) << 16));
             
             // PostMessage's (keydown/keyup) fourth parameter
-            uint uCtrlDown = 0x401D;
-            uint uCtrlUp = 0xC01D;
-            uint uShiftDown = 0x402A;
-            uint uShiftUp = 0xC02A;
+            const uint uCtrlDown = 0x401D;
+            const uint uCtrlUp = 0xC01D;
+            const uint uShiftDown = 0x402A;
+            const uint uShiftUp = 0xC02A;
             System.IntPtr lParamKeyDown = IntPtr.Zero;
             System.IntPtr lParamKeyUp = IntPtr.Zero;
             

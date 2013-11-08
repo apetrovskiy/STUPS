@@ -265,6 +265,38 @@ namespace UIAutomation
                 // just failed to highlight
             }
             //  // 
+            if (element != null &&
+                (int)element.Current.ProcessId > 0) {
+                        
+                this.WriteVerbose(this, "as it is an AutomationElement, it should be highlighted");
+                        
+                // 20121002
+                //if (Preferences.Highlight || ((HasScriptBlockCmdletBase)cmdlet).Highlight) {
+                try {
+                    this.WriteVerbose(this, "run Highlighter");
+                    if (Preferences.ShowExecutionPlan) {
+                        if (Preferences.ShowInfoToolTip) {
+                            ExecutionPlan.Enqueue(element, CommonCmdletBase.HighlighterGeneration, "name: " + element.Current.Name);
+                        } else {
+                            ExecutionPlan.Enqueue(element, CommonCmdletBase.HighlighterGeneration, string.Empty);
+                        }
+                        //this.Enqueue(element);
+                    } else {
+//                                if (Preferences.ShowInfoToolTip) {
+                        UIAHelper.Highlight(element);
+//                                } else {
+//                                    UIAHelper.Highlight(element);
+//                                }
+                    }
+                    this.WriteVerbose(this, "after running the Highlighter");
+                } catch (Exception ee) {
+                    this.WriteVerbose(this, "unable to highlight: " + ee.Message);
+                    this.WriteVerbose(this, outputObject.ToString());
+                }
+                //}
+            } // if (element != null && element is AutomationElement &&
+
+            /*
             if (element != null && element is AutomationElement &&
                 (int)element.Current.ProcessId > 0) {
                         
@@ -295,6 +327,7 @@ namespace UIAutomation
                     }
                     //}
                 } // if (element != null && element is AutomationElement &&
+            */
 
             /*
             if (Preferences.Highlight || ((HasScriptBlockCmdletBase)cmdlet).Highlight) {
@@ -585,7 +618,21 @@ namespace UIAutomation
             try {
                 element = outputObject as AutomationElement;
                 this.WriteVerbose(this, "getting the element again to ensure that it still exists");
-                this.WriteVerbose(this, (element as AutomationElement).ToString());
+                //this.WriteVerbose(this, (element as AutomationElement).ToString());
+                if (!(cmdlet is WizardCmdletBase) &&
+                    (null != element)) {
+
+                    this.WriteVerbose(this, "returning the object");
+                    this.WriteObject(outputObject);
+                } else if ((cmdlet is WizardCmdletBase)) {
+                    this.WriteVerbose(this, "returning the wizard or step");
+                    this.WriteObject(outputObject);
+                } else {
+                    this.WriteVerbose("returning true");
+                    this.WriteObject(true);
+                }
+
+                /*
                 if (!(cmdlet is WizardCmdletBase) &&
                     (element is AutomationElement)){
                         this.WriteVerbose(this, "returning the object");
@@ -597,6 +644,7 @@ namespace UIAutomation
                         this.WriteVerbose("returning true");
                         this.WriteObject(true);
                     }
+                */
             } catch { // (Exception eeeee) {
                 // test
                 this.WriteVerbose(this, "failed to issue the result object of AutomationElement type");

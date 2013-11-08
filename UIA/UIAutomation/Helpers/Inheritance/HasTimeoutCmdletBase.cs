@@ -330,7 +330,8 @@ namespace UIAutomation
             */
             bool first,
             bool recurse,
-            string[] name,
+            ICollection<string> name,
+            //string[] name,
             string automationId,
             string className)
         {
@@ -695,7 +696,8 @@ namespace UIAutomation
             */
             bool first,
             bool recurse,
-            string[] name,
+            ICollection<string> name,
+            //string[] name,
             string automationId,
             string className)
         {
@@ -881,7 +883,8 @@ namespace UIAutomation
         }
         
         private void checkTimeout(GetWindowCmdletBase cmdlet,
-                                  ArrayList aeWindowList,
+                                  ICollection aeWindowList,
+                                  //ArrayList aeWindowList,
                                   bool fromCmdlet)
         {
             SleepAndRunScriptBlocks(this);

@@ -35,7 +35,8 @@ namespace UIAutomation
 
         #region Parameters
         [Parameter(Mandatory = false)]
-        internal new SwitchParameter OnErrorScreenShot { get; set; }
+        internal SwitchParameter OnErrorScreenShot { get; set; }
+        // internal new SwitchParameter OnErrorScreenShot { get; set; }
 
         [Parameter(Mandatory = false)]
         public Hashtable[] SearchCriteria { get; set; }

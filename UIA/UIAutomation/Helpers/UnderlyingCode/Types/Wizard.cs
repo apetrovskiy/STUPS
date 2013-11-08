@@ -88,7 +88,8 @@ namespace UIAutomation
         
         public WizardStep GetStep(string name)
         {
-            return this.Steps.FirstOrDefault(step => name.ToUpper() == step.Name.ToUpper());
+            return this.Steps.FirstOrDefault(step => String.Equals(name, step.Name, StringComparison.CurrentCultureIgnoreCase));
+            // return this.Steps.FirstOrDefault(step => name.ToUpper() == step.Name.ToUpper());
             /*
             foreach (WizardStep step in this.Steps)
             {

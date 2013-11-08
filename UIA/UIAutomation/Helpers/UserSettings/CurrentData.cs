@@ -93,11 +93,19 @@ public static System.Collections.Generic.List<object> Events { get; set; } // te
         
         public static void SetCurrentWindow(AutomationElement window)
         {
+            if (window != null) {
+                CurrentData.CurrentWindow = window;
+            } else {
+                CurrentData.CurrentWindow = null;
+            }
+
+            /*
             if (window is AutomationElement) {
                 CurrentData.CurrentWindow = window;
             } else {
                 CurrentData.CurrentWindow = null;
             }
+            */
         }
         
         internal static Profile GetProfile(string name)

@@ -126,7 +126,8 @@ namespace UIAutomation
                                                         " added to the output collection");
                                                 }
                                                 
-                                            uint pressed = 0x8000;
+                                            const uint pressed = 0x8000;
+                                            // uint pressed = 0x8000;
                                             if ((NativeMethods.GetKeyState(NativeMethods.VK_LCONTROL) & pressed) > 0) {
                                                 NativeMethods.keybd_event((byte)NativeMethods.VK_LCONTROL, 0x45, NativeMethods.KEYEVENTF_EXTENDEDKEY | NativeMethods.KEYEVENTF_KEYUP, 0);
                                             }

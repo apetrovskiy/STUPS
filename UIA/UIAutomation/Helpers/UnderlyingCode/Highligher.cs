@@ -119,7 +119,7 @@ namespace UIAutomation
                     getPoint(
                         X,
                         Y,
-                        intHandle);;
+                        intHandle); //;
                     
                 this.paintLeftSide(control, border, p, height, width, color);
                 this.paintTopSide(control, border, p, height, width, color);

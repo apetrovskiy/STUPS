@@ -11,7 +11,8 @@ namespace UIAutomation.Commands
 {
     using System;
     using System.Management.Automation;
-    using System.Runtime.InteropServices;
+    // test it
+    //using System.Runtime.InteropServices;
     
     // 20120823
     using System.Windows.Automation;

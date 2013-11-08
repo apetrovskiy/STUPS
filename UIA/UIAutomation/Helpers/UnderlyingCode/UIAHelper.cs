@@ -155,11 +155,17 @@ namespace UIAutomation
                 handlesCollection =
                     GetControlByName(cmdlet, containerHandle, controlTitle, 1);
 
+                const WildcardOptions options =
+                    WildcardOptions.IgnoreCase |
+                    WildcardOptions.Compiled;
+
+                /*
                 WildcardOptions options;
                 options =
                     WildcardOptions.IgnoreCase |
                     WildcardOptions.Compiled;
-                
+                */
+
                 WildcardPattern wildcardName =
                     new WildcardPattern(controlTitle,options);
                 
@@ -241,7 +247,13 @@ namespace UIAutomation
             }
         }
         
-        private static bool isMatchWildcardPattern(GetControlCmdletBase cmdlet, ArrayList resultCollection, AutomationElement element, WildcardPattern wcPattern, string dataToCheck)
+        private static bool isMatchWildcardPattern(
+            GetControlCmdletBase cmdlet,
+            IList resultCollection,
+            // ArrayList resultCollection,
+            AutomationElement elementInput,
+            WildcardPattern wcPattern,
+            string dataToCheck)
         {
             bool result = false;
             
@@ -258,13 +270,16 @@ namespace UIAutomation
             if (!wcPattern.IsMatch(dataToCheck)) return result;
             result = true;
             cmdlet.WriteVerbose(cmdlet, "name '" + dataToCheck + "' matches!");
-            resultCollection.Add(element);
+            resultCollection.Add(elementInput);
+
+            // 20131108
+            result = true;
 
             /*
             if (wcPattern.IsMatch(dataToCheck)) {
                 result = true;
                 cmdlet.WriteVerbose(cmdlet, "name '" + dataToCheck + "' matches!");
-                resultCollection.Add(element);
+                resultCollection.Add(elementInput);
             }
             */
 
@@ -786,6 +801,10 @@ namespace UIAutomation
                 System.DateTime.Now;
             do
             {
+                // 20131108
+                // refactoring
+                // experimental
+                counter++;
                 bool res = ProcessingTranscriptOnce(cmdlet, counter);
                 if (!res) break;
                 
@@ -1155,6 +1174,7 @@ namespace UIAutomation
         /// <param name="element">The element properties taken from</param>
         /// <param name="propertyName">The name of property</param>
         /// <param name="pattern">an object of the ValuePattern type</param>
+        /// <param name="hasName">an object has Name</param>
         /// <returns></returns>
         private static string getElementPropertyString(TranscriptCmdletBase cmdlet, AutomationElement element, string propertyName, ValuePattern pattern, ref bool hasName)
         {
@@ -1180,10 +1200,17 @@ namespace UIAutomation
                         }
                         break;
                     case "Value":
+                        if (!string.IsNullOrEmpty(pattern.Current.Value)) {
+                            tempString = pattern.Current.Value;
+                            hasName = true;
+                        }
+
+                        /*
                         if (null != pattern.Current.Value && string.Empty != pattern.Current.Value) {
                             tempString = pattern.Current.Value;
                             hasName = true;
                         }
+                        */
                         break;
                     case "Win32":
                         if (0 < element.Current.NativeWindowHandle) {
@@ -1213,10 +1240,17 @@ namespace UIAutomation
                         }
                         break;
                     case "Value":
+                        if (!string.IsNullOrEmpty(pattern.Cached.Value)) {
+                            tempString = pattern.Cached.Value;
+                            hasName = true;
+                        }
+
+                        /*
                         if (null != pattern.Cached.Value && string.Empty != pattern.Cached.Value) {
                             tempString = pattern.Cached.Value;
                             hasName = true;
                         }
+                        */
                         break;
                     case "Win32":
                         if (0 < element.Cached.NativeWindowHandle) {
@@ -1689,6 +1723,7 @@ namespace UIAutomation
         
         /// <summary>
         ///  /// </summary>
+        /// <param name="cmdlet"></param>
         /// <param name="handle"></param>
         /// <returns></returns>
         // 20121011

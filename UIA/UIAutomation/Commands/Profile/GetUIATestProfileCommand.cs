@@ -30,8 +30,7 @@ namespace UIAutomation.Commands
                 this.Name.Length > 0) {
                 checkProfile = 
                     CurrentData.GetProfile(this.Name);
-            } else if (this.InputObject != null &&
-                this.InputObject is Profile) {
+            } else if (this.InputObject != null) {
                 checkProfile = 
                     this.InputObject;
             }

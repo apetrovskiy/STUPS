@@ -9,9 +9,11 @@
 
 namespace UIAutomation.Commands
 {
-    using System;
+    // test it
+    //using System;
     using System.Management.Automation;
-    using System.Runtime.InteropServices;
+    // test it
+    //using System.Runtime.InteropServices;
     using System.Windows.Automation;
 
     /// <summary>
@@ -66,7 +68,7 @@ namespace UIAutomation.Commands
                 
             } // 20120823
                 
-            return;
+            //return;
         }
     }
 }

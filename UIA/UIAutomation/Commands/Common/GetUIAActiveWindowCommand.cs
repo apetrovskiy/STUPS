@@ -9,7 +9,8 @@
 
 namespace UIAutomation.Commands
 {
-    using System;
+    // test it
+    //using System;
     using System.Management.Automation;
     // using System.Runtime.InteropServices;
     using System.Windows.Automation;
@@ -25,7 +26,8 @@ namespace UIAutomation.Commands
         {
             AutomationElement element = 
                 GetActiveWindow();
-            UIAutomation.CurrentData.CurrentWindow = element;
+            //UIAutomation.CurrentData.CurrentWindow = element;
+            CurrentData.CurrentWindow = element;
             this.WriteObject(this, element);
         }
     }

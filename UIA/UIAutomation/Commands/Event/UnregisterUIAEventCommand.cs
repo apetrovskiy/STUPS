@@ -9,7 +9,8 @@
 
 namespace UIAutomation.Commands
 {
-    using System;
+    // test it
+    //using System;
     using System.Management.Automation;
     using System.Windows.Automation;
 
@@ -75,7 +76,8 @@ namespace UIAutomation.Commands
                 try {
 
                     if (this.InputObject != null && 
-                        (int)this.InputObject.Current.ProcessId > 0 &&
+                        this.InputObject.Current.ProcessId > 0 &&
+                        // (int)this.InputObject.Current.ProcessId > 0 &&
                         this.EventHandler != null) {
 
                         Automation.RemoveAutomationEventHandler(

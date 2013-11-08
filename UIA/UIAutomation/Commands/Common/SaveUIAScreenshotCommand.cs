@@ -9,10 +9,13 @@
 
 namespace UIAutomation.Commands
 {
-    using System;
+    // test it
+    //using System;
     using System.Management.Automation;
-    using System.Runtime.InteropServices;
-    using System.Windows.Automation;
+    // test it
+    //using System.Runtime.InteropServices;
+    // test it
+    //using System.Windows.Automation;
     
     /// <summary>
     /// Description of SaveUIAScreenshotCommand.
@@ -39,8 +42,8 @@ namespace UIAutomation.Commands
         // 20130702
         [Parameter(Mandatory = false,
                    ParameterSetName = "File")]
-        [AllowNull()]
-        [AllowEmptyString()]
+        [AllowNull]// test it()]
+        [AllowEmptyString]// test it()]
         public string Description { get; set; }
         [Parameter(Mandatory = false)] //,
         //           ParameterSetName = "Screenshot")]

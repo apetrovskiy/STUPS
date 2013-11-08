@@ -9,7 +9,8 @@
 
 namespace UIAutomation.Commands
 {
-    using System;
+    // test it
+    //using System;
     using System.Management.Automation;
     
     /// <summary>
@@ -21,7 +22,7 @@ namespace UIAutomation.Commands
         #region Parameters
         [Parameter(Mandatory = true,
                    Position = 0)]
-        [ValidateNotNullOrEmpty()]
+        [ValidateNotNullOrEmpty]// test it()]
         public string Message { get; set; }
         #endregion Parameters
         

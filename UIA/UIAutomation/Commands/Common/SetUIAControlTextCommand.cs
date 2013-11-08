@@ -11,8 +11,10 @@ namespace UIAutomation.Commands
 {
     using System;
     using System.Management.Automation;
-    using System.Runtime.InteropServices;
-    using System.Text;
+    // test it
+    //using System.Runtime.InteropServices;
+    // test it
+    //using System.Text;
     
     
     // 20120823

@@ -9,7 +9,8 @@
 
 namespace UIAutomation.Commands
 {
-    using System;
+    // test it
+    //using System;
     using System.Management.Automation;
 
 	/// <summary>
@@ -29,7 +30,8 @@ namespace UIAutomation.Commands
 			UIAutomation.ExecutionPlan.Init();
 			CommonCmdletBase.HighlighterGeneration = 0;
 			if (0 != this.MaxControlsHighlighted) {
-				UIAutomation.ExecutionPlan.DecreaseMaxCount(
+				ExecutionPlan.DecreaseMaxCount(
+                // UIAutomation.ExecutionPlan.DecreaseMaxCount(
 					this.MaxControlsHighlighted);
 			}
 			UIAutomation.Preferences.ShowExecutionPlan = true;

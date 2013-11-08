@@ -147,7 +147,8 @@ namespace AVG.Automation.Cmdlets
             }
 
             // write data to process
-            uint wrotelen = 0;
+            const uint wrotelen = 0;
+            // uint wrotelen = 0;
             NativeMethods.WriteProcessMemory(hndProc, lpAddress, buffer, (uint)buffer.Length, (UIntPtr)wrotelen);
 
             if (Marshal.GetLastWin32Error() != 0)

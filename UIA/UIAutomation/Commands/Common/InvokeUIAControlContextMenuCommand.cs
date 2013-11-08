@@ -9,9 +9,11 @@
 
 namespace UIAutomation.Commands
 {
-    using System;
+    // test it
+    //using System;
     using System.Management.Automation;
-    using System.Security.Principal;
+    // test it
+    //using System.Security.Principal;
     using System.Windows.Automation;
     
     /// <summary>

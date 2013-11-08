@@ -9,7 +9,8 @@
 
 namespace UIAutomation.Commands
 {
-    using System;
+    // test it
+    //using System;
     using System.Management.Automation;
 
     /// <summary>
@@ -24,7 +25,7 @@ namespace UIAutomation.Commands
 //                   ValueFromPipeline = true)]
 //        [Alias("Handle")]
 //        public new int InputObject { get; set; }
-        [ValidateNotNullOrEmpty()]
+        [ValidateNotNullOrEmpty]// test it()]
         [Alias ("Handle")]
         [Parameter(Mandatory = false, 
             ValueFromPipeline = true, 

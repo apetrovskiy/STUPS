@@ -16,11 +16,16 @@ namespace UIAutomation
 	//public class AutomationElementCollection : ICollection, IEnumerable, IAutomationElementCollection
 	public class AutomationElementCollectionAdapter : IAutomationElementCollection
 	{
-	    private AutomationElementCollection collectionHolder;
+	    //private AutomationElementCollection collectionHolder;
+	    private ICollection collectionHolder;
 	    
 		//private AutomationElement[] _elements;
-		public AutomationElement this[int index] {
-		    get { return this.collectionHolder[index]; } //return this._elements[index]; }
+		// 20131108
+		//public AutomationElement this[int index] {
+		public IAutomationElementAdapter this[int index] {
+		    //get { return this.collectionHolder[index]; } //return this._elements[index]; }
+		    //get { return ((AutomationElementCollection)this.collectionHolder)[index]; } //return this._elements[index]; }
+		    get { return new AutomationElementAdapter(((AutomationElementCollection)this.collectionHolder)[index]); } //return this._elements[index]; }
 		}
 		public int Count {
 		    get { return this.collectionHolder.Count; } //return this._elements.Length; }
@@ -37,6 +42,14 @@ namespace UIAutomation
 		    //this._elements = elements as AutomationElement[];
 		    this.collectionHolder = elements;
 		}
+		
+		//
+		internal AutomationElementCollectionAdapter(ICollection elements)
+		{
+		    this.collectionHolder = elements;
+		}
+		//
+		
 		public virtual void CopyTo(Array array, int index)
 		{
 			//this._elements.CopyTo(array, index);
@@ -55,7 +68,10 @@ namespace UIAutomation
 		
 		public AutomationElementCollection SourceCollection
 		{
-		    get { return this.collectionHolder; }
+		    //get { return this.collectionHolder; }
+		    get { return ((AutomationElementCollection)this.collectionHolder); }
+		    //internal 
+		    set { this.collectionHolder = value; }
 		}
 	}
 }

@@ -20,6 +20,8 @@ namespace UIAutomation
     using System.Windows.Automation;
     using System.Collections.Generic;
     
+    using System.Linq;
+    
     using PSTestLib;
     
     /// <summary>
@@ -1958,8 +1960,13 @@ namespace UIAutomation
                 #endregion commented
                 
                 tempCmdlet = null;
-
-                foreach (AutomationElement inputObject in cmdlet.InputObject) {
+                
+                // 20131108
+                IAutomationElementCollection inputCollection = cmdlet.InputObject.ConvertCmdletInputToCollectionAdapter();
+                
+                // 20131108
+                //foreach (AutomationElement inputObject in cmdlet.InputObject) {
+                foreach (AutomationElement inputObject in inputCollection) {
                     
                     // 20131104
                     // refactoring
@@ -1968,6 +1975,7 @@ namespace UIAutomation
 
                     int processId = 0;
                     do {
+                        
                         #region checking processId
                         // 20131104
                         // refactoring
@@ -2204,25 +2212,28 @@ namespace UIAutomation
             }
             */
             
-            if (null == cmdlet.SearchCriteria || 0 == cmdlet.SearchCriteria.Length) {
-                
-               resultArrayListOfControls.AddRange(tempListWin32);
-            }
+            // 20131108
+//            if (null == cmdlet.SearchCriteria || 0 == cmdlet.SearchCriteria.Length) {
+//                
+//               resultArrayListOfControls.AddRange(tempListWin32);
+//            }
             
             foreach (AutomationElement tempElement3 in tempListWin32) {
+                
+                // 20131108
+                /*
                 if (string.IsNullOrEmpty(cmdlet.ControlType)) continue;
                 if (!tempElement3.Current.ControlType.ProgrammaticName.ToUpper().Contains(cmdlet.ControlType.ToUpper())) continue;
                 if (tempElement3.Current.ControlType.ProgrammaticName.ToUpper().Substring(12).Length != cmdlet.ControlType.ToUpper().Length) continue;
+                */
                 
-                /*
                 if (!string.IsNullOrEmpty(cmdlet.ControlType)) {
                     if (!tempElement3.Current.ControlType.ProgrammaticName.ToUpper().Contains(cmdlet.ControlType.ToUpper()) || 
                         tempElement3.Current.ControlType.ProgrammaticName.ToUpper().Substring(12).Length != cmdlet.ControlType.ToUpper().Length) {
                         continue;
                     }
                 }
-                */
-
+                
                 /*
                 if (null != cmdlet.ControlType && 0 < cmdlet.ControlType.Length) {
                     if (!tempElement3.Current.ControlType.ProgrammaticName.ToUpper().Contains(cmdlet.ControlType.ToUpper()) || 
@@ -2231,34 +2242,37 @@ namespace UIAutomation
                     }
                 }
                 */
-//                if (null == cmdlet.SearchCriteria || 0 == cmdlet.SearchCriteria.Length) {
-//                    resultArrayListOfControls.Add(tempElement3);
-//                    cmdlet.WriteVerbose(cmdlet, "Win32Search: element added to the result collection");
-//                } else {
-//                    cmdlet.WriteVerbose(cmdlet, "Win32Search: checking search criteria");
-//                    if (!TestControlWithAllSearchCriteria(cmdlet, cmdlet.SearchCriteria, tempElement3)) continue;
-//                    cmdlet.WriteVerbose(cmdlet, "Win32Search: the control matches the search criteria");
-//                    resultArrayListOfControls.Add(tempElement3);
-//                    cmdlet.WriteVerbose(cmdlet, "Win32Search: element added to the result collection");
-//
-//                    /*
-//                    if (TestControlWithAllSearchCriteria(cmdlet, cmdlet.SearchCriteria, tempElement3)) {
-//                        cmdlet.WriteVerbose(cmdlet, "Win32Search: the control matches the search criteria");
-//                        aeCtrl.Add(tempElement3);
-//                        cmdlet.WriteVerbose(cmdlet, "Win32Search: element added to the result collection");
-//                    }
-//                    */
-//                }
-
-                //if (null == cmdlet.SearchCriteria || 0 == cmdlet.SearchCriteria.Length) {
-                //    resultArrayListOfControls.Add(tempElement3);
-                //    cmdlet.WriteVerbose(cmdlet, "Win32Search: element added to the result collection");
-                //} else {
+                
+               // 20131108
+                if (null == cmdlet.SearchCriteria || 0 == cmdlet.SearchCriteria.Length) {
+                    resultArrayListOfControls.Add(tempElement3);
+                    cmdlet.WriteVerbose(cmdlet, "Win32Search: element added to the result collection");
+                } else {
                     cmdlet.WriteVerbose(cmdlet, "Win32Search: checking search criteria");
                     if (!TestControlWithAllSearchCriteria(cmdlet, cmdlet.SearchCriteria, tempElement3)) continue;
                     cmdlet.WriteVerbose(cmdlet, "Win32Search: the control matches the search criteria");
                     resultArrayListOfControls.Add(tempElement3);
                     cmdlet.WriteVerbose(cmdlet, "Win32Search: element added to the result collection");
+
+                    /*
+                    if (TestControlWithAllSearchCriteria(cmdlet, cmdlet.SearchCriteria, tempElement3)) {
+                        cmdlet.WriteVerbose(cmdlet, "Win32Search: the control matches the search criteria");
+                        aeCtrl.Add(tempElement3);
+                        cmdlet.WriteVerbose(cmdlet, "Win32Search: element added to the result collection");
+                    }
+                    */
+                }
+
+                //if (null == cmdlet.SearchCriteria || 0 == cmdlet.SearchCriteria.Length) {
+                //    resultArrayListOfControls.Add(tempElement3);
+                //    cmdlet.WriteVerbose(cmdlet, "Win32Search: element added to the result collection");
+                //} else {
+// 20131108
+//                    cmdlet.WriteVerbose(cmdlet, "Win32Search: checking search criteria");
+//                    if (!TestControlWithAllSearchCriteria(cmdlet, cmdlet.SearchCriteria, tempElement3)) continue;
+//                    cmdlet.WriteVerbose(cmdlet, "Win32Search: the control matches the search criteria");
+//                    resultArrayListOfControls.Add(tempElement3);
+//                    cmdlet.WriteVerbose(cmdlet, "Win32Search: element added to the result collection");
                 //
                 //    /*
                 //    if (TestControlWithAllSearchCriteria(cmdlet, cmdlet.SearchCriteria, tempElement3)) {

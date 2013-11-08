@@ -50,8 +50,38 @@ namespace UIAutomation.Commands
             ArrayList returnCollection = 
                 GetControl(this);
             
-            if (null == returnCollection || 0 == returnCollection.Count) {
+//            if (null == returnCollection || 0 == returnCollection.Count) {
+//                
+//                this.WriteError(
+//                    this,
+//                    CmdletSignature(this) + "timeout expired for control with class: + '" +
+//                    this.Class + 
+//                    "', control type: '" + 
+//                    this.ControlType + 
+//                    "', title: '" +
+//                    this.Name +
+//                    "', automationId: '" +
+//                    this.AutomationId +
+//                    "', value: '" +
+//                    this.Value +
+//                    "'",
+//                    "ControlIsNull",
+//                    ErrorCategory.OperationTimeout,
+//                    true);
+//
+//                return; // ?
+//
+//            }
+
+            if (null != returnCollection && 0 < returnCollection.Count) {
+
+                this.WriteObject(this, returnCollection);
                 
+            } else {
+                // 20120830
+                //WriteObject(this, (object)null);
+                
+                // 20131108
                 this.WriteError(
                     this,
                     CmdletSignature(this) + "timeout expired for control with class: + '" +
@@ -68,19 +98,6 @@ namespace UIAutomation.Commands
                     "ControlIsNull",
                     ErrorCategory.OperationTimeout,
                     true);
-
-                return; // ?
-
-            }
-
-            if (null != returnCollection && 0 < returnCollection.Count) {
-
-                this.WriteObject(this, returnCollection);
-                
-            } else {
-                // 20120830
-                //WriteObject(this, (object)null);
-                
             }
         }
     }

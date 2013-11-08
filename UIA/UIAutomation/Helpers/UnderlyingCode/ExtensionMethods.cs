@@ -68,5 +68,25 @@ namespace UIAutomation
             
             return query2;
         }
+        
+        // 20131108
+        public static IAutomationElementCollection ConvertCmdletInputToCollectionAdapter(this AutomationElement[] inputArray)
+        {
+            IAutomationElementCollection resultCollection =
+                new AutomationElementCollectionAdapter(inputArray);
+                //new AutomationElementCollectionAdapter(); //inputArray.Cast<IAutomationElementAdapter>().ToList());
+            //resultCollection.SourceCollection = inputArray;
+//            foreach (AutomationElement element in inputArray) {
+//                
+//            }
+            return resultCollection;
+        }
+        
+//        public static IAutomationElementCollection ConvertCmdletInputToCollectionAdapter(this object[] inputArray)
+//        {
+//            IAutomationElementCollection resultCollection =
+//                new AutomationElementCollectionAdapter(inputArray);
+//            return resultCollection;
+//        }
     }
 }

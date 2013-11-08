@@ -22,5 +22,7 @@ namespace UIAutomation
 		int Count { get; }
 		object SyncRoot { get; }
 		bool IsSynchronized { get; }
+		
+		AutomationElementCollection SourceCollection { get; set; }
 	}
 }

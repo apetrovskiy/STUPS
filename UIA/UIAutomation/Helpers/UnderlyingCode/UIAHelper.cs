@@ -132,8 +132,10 @@ namespace UIAutomation
 
             if (null == container) { return resultCollection; }
             cmdlet.WriteVerbose(cmdlet, "checking the Name parameter");
-
-            if (string.IsNullOrEmpty(controlTitle) || 0 == controlTitle.Length) { controlTitle = "*"; }
+            
+            // 20131108
+            //if (string.IsNullOrEmpty(controlTitle) || 0 == controlTitle.Length) { controlTitle = "*"; }
+            controlTitle = string.IsNullOrEmpty(controlTitle) ? "*" : controlTitle;
 
             /*
             if (null == controlTitle || string.Empty == controlTitle || 0 == controlTitle.Length) { controlTitle = "*"; }
@@ -160,8 +162,10 @@ namespace UIAutomation
                 
                 WildcardPattern wildcardName =
                     new WildcardPattern(controlTitle,options);
-
-                if (null == handlesCollection || handlesCollection.Count <= 0) return resultCollection;
+                
+                // 20131108
+                //if (null == handlesCollection || handlesCollection.Count <= 0) return resultCollection;
+                if (null == handlesCollection || 0 == handlesCollection.Count) return resultCollection;
                 cmdlet.WriteVerbose(cmdlet, "handles.Count = " + handlesCollection.Count.ToString());
                 foreach (System.IntPtr controlHandle in handlesCollection) {
                     try {

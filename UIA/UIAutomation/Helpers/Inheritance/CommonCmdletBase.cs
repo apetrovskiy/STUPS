@@ -39,8 +39,25 @@ namespace UIAutomation
             } catch { }
             #endregion creating the log file
             CurrentData.LastCmdlet = this.CmdletName(this);
+            
+            // ??
+            if (!UnitTestMode && !ModuleAlreadyLoaded) {
+
+                //WebDriverFactory.AutofacModule = new WebDriverModule();
+                ObjectsFactory.NinjecctModule = new ObjectLifecycleModule();
+
+                //WebDriverFactory.Init();
+                
+
+                ModuleAlreadyLoaded = true;
+            }
+            
+            //CurrentData.Init();
+            ObjectsFactory.Init();
         }
         #endregion Constructor
+        
+        internal static bool ModuleAlreadyLoaded { get; set; }
         
         protected override void EndProcessing()
         {

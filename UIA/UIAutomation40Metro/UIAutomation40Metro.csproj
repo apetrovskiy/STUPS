@@ -683,6 +683,12 @@
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NativeMethods.cs">
       <Link>Helpers\UnderlyingCode\NativeMethods.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Ninject\ObjectLifecycleModule.cs">
+      <Link>Helpers\UnderlyingCode\Ninject\ObjectLifecycleModule.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Ninject\ObjectsFactory.cs">
+      <Link>Helpers\UnderlyingCode\Ninject\ObjectsFactory.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\RDPHelper.cs">
       <Link>Helpers\UnderlyingCode\RDPHelper.cs</Link>
     </Compile>
@@ -767,6 +773,7 @@
     <Folder Include="Helpers\UnderlyingCode\Commands\Wizard" />
     <Folder Include="Helpers\UnderlyingCode\Commands\Wizard" />
     <Folder Include="Helpers\UnderlyingCode\Adapter" />
+    <Folder Include="Helpers\UnderlyingCode\Ninject" />
     <Folder Include="Helpers\UnderlyingCode\RDP" />
     <Folder Include="Helpers\UnderlyingCode\Types" />
     <Folder Include="Helpers\UnderlyingCode\Types" />

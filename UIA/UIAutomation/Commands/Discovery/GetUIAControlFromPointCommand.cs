@@ -28,8 +28,11 @@ namespace UIAutomation.Commands
         
         protected override void BeginProcessing()
         {
-            System.Windows.Automation.AutomationElement result = null;
-            result = 
+            // 20131109
+            //System.Windows.Automation.AutomationElement result = null;
+            //result = 
+            //    UIAHelper.GetAutomationElementFromPoint();
+            IMySuperWrapper result =
                 UIAHelper.GetAutomationElementFromPoint();
             
             this.WriteObject(this, result);

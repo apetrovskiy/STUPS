@@ -34,7 +34,7 @@ namespace UIAutomation.Commands
         /// </summary>
         protected override void ProcessRecord()
         {
-            if (!this.CheckControl(this)) { return; }
+            if (!this.CheckAndPrepareInput(this)) { return; }
             
             ifUltraGridProcessing(ifUltraGridOperations.selectItems);
         }

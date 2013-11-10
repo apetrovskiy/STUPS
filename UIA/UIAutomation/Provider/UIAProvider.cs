@@ -449,13 +449,17 @@ namespace UIAutomation
     
     internal class UIADriveInfo : PSDriveInfo
     {
-        private System.Windows.Automation.AutomationElement _driveWindow = null;
+        // 20131109
+        //private System.Windows.Automation.AutomationElement _driveWindow = null;
+        private IMySuperWrapper _driveWindow = null;
         private string _windowName = string.Empty;
         private string _processName = string.Empty;
         private int _processId = 0;
 //        private System.Diagnostics.Process _process;
         
-        public System.Windows.Automation.AutomationElement Window
+        // 20131109
+        //public System.Windows.Automation.AutomationElement Window
+        public IMySuperWrapper Window
         {
             get { return _driveWindow; }
             internal set {_driveWindow = value; }
@@ -485,8 +489,10 @@ namespace UIAutomation
             PSDriveInfo drive) : base(drive)
         {
             try{
-                _driveWindow = 
-                    AutomationElement.RootElement;
+                _driveWindow =
+                    // 20131109
+                    //AutomationElement.RootElement;
+                    MySuperWrapper.RootElement; //.SourceElement;
             }
             catch (Exception e) {
                 //WriteVerbose(e.Message);

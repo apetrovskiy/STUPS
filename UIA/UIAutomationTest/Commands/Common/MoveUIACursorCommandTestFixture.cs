@@ -19,10 +19,6 @@ namespace UIAutomationTest.Commands.Common
     [TestFixture] // [TestFixture(Description="Move-UIACursorCommand test")]
     public class MoveUIACursorCommandTestFixture
     {
-        public MoveUIACursorCommandTestFixture()
-        {
-        }
-        
         [SetUp]
         public void PrepareRunspace()
         {
@@ -32,7 +28,7 @@ namespace UIAutomationTest.Commands.Common
         [Test] //[Test(Description="InputObject ProcessRecord test Null via pipeline")]
         [Category("Slow")]
         [Category("NoForms")]
-        public void TestPipelineInput()
+        public void MoveUIACursor_TestPipelineInput()
         {
             CmdletUnitTest.TestRunspace.RunAndEvaluateIsTrue(
                 @"if ( ($null | Move-UIACursor -X 1 -Y 1) ) { 1; } else { 0; }",
@@ -42,7 +38,7 @@ namespace UIAutomationTest.Commands.Common
         [Test] //[Test(Description="ProcessRecord test Null via parameter")]
         [Category("Slow")]
         [Category("NoForms")]
-        public void TestParameterInputNull()
+        public void MoveUIACursor_TestParameterInputNull()
         {
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateIsNull(
 //                @"if ((Move-UIACursor -InputObject $null -X 1 -Y 1)) { 1; } else { 0; }");
@@ -68,7 +64,7 @@ namespace UIAutomationTest.Commands.Common
         [Test] //[Test(Description="ProcessRecord test Is Not AutomationElement")]
         [Category("Slow")]
         [Category("NoForms")]
-        public void TestParameterInputOtherType()
+        public void MoveUIACursor_TestParameterInputOtherType()
         {
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateIsNull(
 //                @"if ((Move-UIACursor -InputObject (New-Object System.Windows.forms.Label) -X 1 -Y 1)) { 1; }else{ 0; }");
@@ -76,7 +72,8 @@ namespace UIAutomationTest.Commands.Common
             CmdletUnitTest.TestRunspace.RunAndGetTheException(
                 @"if ((Move-UIACursor -InputObject (New-Object System.Windows.forms.Label) -X 1 -Y 1)) { 1; } else { 0; }",
                 @"ParameterBindingException",
-                @"Cannot bind parameter 'InputObject'. Cannot convert the ""System.Windows.Forms.Label, Text: "" value of type ""System.Windows.Forms.Label"" to type ""System.Windows.Automation.AutomationElement"".");
+                //@"Cannot bind parameter 'InputObject'. Cannot convert the ""System.Windows.Forms.Label, Text: "" value of type ""System.Windows.Forms.Label"" to type ""System.Windows.Automation.AutomationElement"".");
+                @"Cannot bind parameter 'InputObject'. Cannot convert the ""System.Windows.Forms.Label, Text: "" value of type ""System.Windows.Forms.Label"" to type ""UIAutomation.IMySuperWrapper"".");
             
 //            UIAutomationTest.Commands.Common.MoveUIACursorCommandTestFixture.TestParameterInputOtherType:
 //System.Management.Automation.ParameterBindingException : Cannot bind parameter 'InputObject'. Cannot convert the "System.Windows.Forms.Label, Text: " value of type "System.Windows.Forms.Label" to type "System.Windows.Automation.AutomationElement".
@@ -86,7 +83,7 @@ namespace UIAutomationTest.Commands.Common
         [Test] //[Test(Description="ProcessRecord test Is AutomationElement")]
         [Category("Slow")]
         [Category("WinForms")]
-        public void TestParameterInputAutomationElement()
+        public void MoveUIACursor_TestParameterInputAutomationElement()
         {
             MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual1(@"if ((Get-UIAWindow -pn " + 

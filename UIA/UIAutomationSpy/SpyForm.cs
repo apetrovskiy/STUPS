@@ -21,6 +21,8 @@ namespace UIAutomationSpy
     using System.Management.Automation;
     using System.Management.Automation.Runspaces;
     
+    using UIAutomation;
+    
     /// <summary>
     /// Description of SpyForm.
     /// </summary>
@@ -250,7 +252,9 @@ namespace UIAutomationSpy
             }
         }
         
-        private string getNodeNameFromAutomationElement(AutomationElement element)
+        // 20131109
+        //private string getNodeNameFromAutomationElement(AutomationElement element)
+        private string getNodeNameFromAutomationElement(IMySuperWrapper element)
         {
             string result = string.Empty;
                 
@@ -288,7 +292,9 @@ namespace UIAutomationSpy
         }
         
         private string getCodeFromAutomationElement(
-            AutomationElement element,
+            // 20131109
+            //IMySuperWrapper element,
+            IMySuperWrapper element,
             System.Windows.Automation.TreeWalker walker)
         {
             string result = string.Empty;
@@ -304,7 +310,9 @@ namespace UIAutomationSpy
             // since Get-UIAPane is unable to get something more than
             // a window's child pane control 
             if (elementControlType == "Pane" || elementControlType == "Menu") {
-                if (walker.GetParent(element) == AutomationElement.RootElement) {
+                // 20131109
+                //if (walker.GetParent(element) == AutomationElement.RootElement) {
+                if ((new MySuperWrapper(walker.GetParent(element.SourceElement))) == MySuperWrapper.RootElement) {
                     elementControlType = "Window";
                 }
             }
@@ -340,7 +348,9 @@ namespace UIAutomationSpy
         private void collectAncestry(
             ref System.Collections.Generic.List<string> listForNodes,
             ref System.Collections.Generic.List<string> listForCode,
-            AutomationElement element)
+            // 20131109
+            //IMySuperWrapper element)
+            IMySuperWrapper element)
         {
             this.cleanAncestry();
             
@@ -349,21 +359,29 @@ namespace UIAutomationSpy
                     System.Windows.Automation.Condition.TrueCondition);
             
             try {
-
-                AutomationElement testparent = element;
+                
+                // 20131109
+                //AutomationElementIMySuperWrapper testparent = element;
+                IMySuperWrapper testparent = element;
                 if (testparent != null && (int)testparent.Current.ProcessId > 0) {
                     listForNodes.Add(getNodeNameFromAutomationElement(testparent));
-                    if (testparent != AutomationElement.RootElement) {
+                    // 20131109
+                    //if (testparent != AutomationElement.RootElement) {
+                    if (testparent != MySuperWrapper.RootElement) {
                         listForCode.Add(getCodeFromAutomationElement(testparent, walker));
                     }
                 }
                 
                 while (testparent != null && (int)testparent.Current.ProcessId > 0) {
-                    testparent = 
-                        walker.GetParent(testparent);
+                    testparent =
+                        // 20131109
+                        //walker.GetParent(testparent);
+                        new MySuperWrapper(walker.GetParent(testparent.SourceElement));
                     if (testparent == null || (int) testparent.Current.ProcessId <= 0) continue;
                     listForNodes.Add(getNodeNameFromAutomationElement(testparent));
-                    if (testparent != AutomationElement.RootElement) {
+                    // 20131109
+                    //if (testparent != AutomationElement.RootElement) {
+                    if (testparent != MySuperWrapper.RootElement) {
                         listForCode.Add(getCodeFromAutomationElement(testparent, walker));
                     }
 
@@ -452,7 +470,9 @@ namespace UIAutomationSpy
             return cmdlet;
         }
         
-        private void writingAvailablePatterns(AutomationElement element)
+        // 20131109
+        //private void writingAvailablePatterns(AutomationElement element)
+        private void writingAvailablePatterns(IMySuperWrapper element)
         {
             try {
                 this.richPatterns.Text = "available patterns";
@@ -489,16 +509,22 @@ namespace UIAutomationSpy
             catch {}
         }
         
-        private AutomationElement getElementFromPoint()
+        // 20131109
+        //privaIMySuperWrapperperWrapperperWrapper getElementFromPoint()
+        private IMySuperWrapper getElementFromPoint()
         {
-            AutomationElement element = null;
+            // 20131109
+            //AutomatIMySuperWrapper element = null;
+            IMySuperWrapper element = null;
             
             // use Windows forms mouse code instead of WPF
             System.Drawing.Point mouse = System.Windows.Forms.Cursor.Position;
 
             // commented 20120618 to switch to UIACOMWrapper
             element =
-                System.Windows.Automation.AutomationElement.FromPoint(
+                // 20131109
+                //System.Windows.Automation.AutomationElement.FromPoint(
+                MySuperWrapper.FromPoint(
                     new System.Windows.Point(mouse.X, mouse.Y));
             //element = 
             //	//(UIANET::System.Windows.Automation.AutomationElement)
@@ -507,7 +533,9 @@ namespace UIAutomationSpy
             return element;
         }
         
-        private void writingAutomationElementToPropertyGridControl(AutomationElement element)
+        // 20131109
+        //private void writingAutomationElementToPropertyGridControl(AutomationElement element)
+        private void writingAutomationElementToPropertyGridControl(IMySuperWrapper element)
         {
             try {
                 this.pGridElement.SelectedObject = 
@@ -772,11 +800,16 @@ namespace UIAutomationSpy
             this.menuAutomationState_RunSpy();
 
             // 20120618 UIACOMWrapper
-            AutomationElement rootElement = 
-                System.Windows.Automation.AutomationElement.RootElement;
+            // 20131109
+            //AutomationElement rootElement = 
+            //    System.Windows.AutomIMySuperWrapperperWrapper rootElement = 
+            IMySuperWrapper rootElement =
+                MySuperWrapper.RootElement;
                 
             UIAutomation.TranscriptCmdletBase cmdlet = null;
-            System.Windows.Automation.AutomationElement element = null;
+            // 20131109
+            //System.Windows.Automation.AutomatIMySuperWrapper element = null;
+            IMySuperWrapper element = null;
 
 //				UIANET::System.Windows.Automation.AutomationElement rootElement =
 //                    UIANET::System.Windows.Automation.AutomationElement.RootElement;

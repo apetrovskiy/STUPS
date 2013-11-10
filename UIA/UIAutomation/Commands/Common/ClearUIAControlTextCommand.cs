@@ -23,9 +23,11 @@ namespace UIAutomation.Commands
     {
         protected override void ProcessRecord()
         {
-            if (!this.CheckControl(this)) { return; }
+            if (!this.CheckAndPrepareInput(this)) { return; }
             
-            foreach (AutomationElement inputObject in this.InputObject) {
+            // 20131109
+            //foreach (AutomationElement inputObject in this.InputObject) {
+            foreach (IMySuperWrapper inputObject in this.InputObject) {
                 
                 if (0 == inputObject.Current.NativeWindowHandle) {
                         

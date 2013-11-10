@@ -14,7 +14,7 @@ namespace UIAutomation
     using System.ComponentModel;
     using System.Windows.Automation;
 
-	public interface IAutomationElementAdapter
+	public interface IMySuperWrapper
 	{
 		bool Equals(object obj);
 		int GetHashCode();
@@ -29,9 +29,9 @@ namespace UIAutomation
 		bool TryGetCachedPattern(AutomationPattern pattern, out object patternObject);
 		AutomationElement GetUpdatedCache(CacheRequest request);
 		//AutomationElement FindFirst(TreeScope scope, Condition condition);
-		IAutomationElementAdapter FindFirst(TreeScope scope, Condition condition);
+		IMySuperWrapper FindFirst(TreeScope scope, Condition condition);
 		//AutomationElementCollection FindAll(TreeScope scope, Condition condition);
-		IAutomationElementCollection FindAll(TreeScope scope, Condition condition);
+		IMySuperCollection FindAll(TreeScope scope, Condition condition);
 		AutomationProperty[] GetSupportedProperties();
 		AutomationPattern[] GetSupportedPatterns();
 		void SetFocus();
@@ -44,7 +44,10 @@ namespace UIAutomation
 		AutomationElement CachedParent { get; }
 		AutomationElementCollection CachedChildren { get; }
 		
-		AutomationElement SourceElement { get; }
+		//static IMySuperWrapper RootElement { get; }
+		
+		//AutomationElement SourceElement { get; }
+		AutomationElement SourceElement { get; set; }
 	    
 //		bool Equals(object obj);
 //		int GetHashCode();
@@ -59,7 +62,7 @@ namespace UIAutomation
 //		bool TryGetCachedPattern(AutomationPattern pattern, out object patternObject);
 //		AutomationElement GetUpdatedCache(CacheRequest request);
 //		//AutomationElement FindFirst(TreeScope scope, Condition condition);
-//		IAutomationElementAdapter FindFirst(TreeScope scope, System.Windows.Automation.Condition condition);
+//		IMySuperWrapper FindFirst(TreeScope scope, System.Windows.Automation.Condition condition);
 //		//AutomationElementCollection FindAll(TreeScope scope, Condition condition);
 //		AutomationElementCollection FindAll(TreeScope scope, System.Windows.Automation.Condition condition);
 //		AutomationProperty[] GetSupportedProperties();

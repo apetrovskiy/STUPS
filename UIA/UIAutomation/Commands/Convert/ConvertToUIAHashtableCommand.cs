@@ -32,10 +32,12 @@ namespace UIAutomation.Commands
         protected override void ProcessRecord()
         {
             // if (!this.CheckControl(this)) { return; }
-            if (!this.CheckControl(this)) { return; }
+            if (!this.CheckAndPrepareInput(this)) { return; }
             
             // 20120823
-            foreach (AutomationElement inputObject in this.InputObject) {
+            // 20131109
+            //foreach (AutomationElement inputObject in this.InputObject) {
+            foreach (IMySuperWrapper inputObject in this.InputObject) {
 
             System.Collections.Hashtable hashtable = 
                 new System.Collections.Hashtable();
@@ -163,17 +165,21 @@ namespace UIAutomation.Commands
         #endregion Parameters
         
         // 20120823
-        private AutomationElement currentInputObject = null;
+        // 20131109
+        //private AutomationElement currentInputObject = null;
+        private IMySuperWrapper currentInputObject = null;
         
         /// <summary>
         /// Processes the pipeline.
         /// </summary>
         protected override void ProcessRecord()
         {
-            if (!this.CheckControl(this)) { return; }
+            if (!this.CheckAndPrepareInput(this)) { return; }
             
             // 20120823
-            foreach (AutomationElement inputObject in this.InputObject) {
+            // 20131109
+            //foreach (AutomationElement inputObject in this.InputObject) {
+            foreach (IMySuperWrapper inputObject in this.InputObject) {
                 // 20120823
                 currentInputObject = inputObject;
             

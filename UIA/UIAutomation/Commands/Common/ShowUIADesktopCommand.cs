@@ -22,8 +22,12 @@ namespace UIAutomation.Commands.Common
         protected override void BeginProcessing()
         {
             try{
-                AutomationElement showDesktopButton = 
-                    AutomationElement.RootElement.FindFirst(
+                // 20131109
+                //AutomationElement showDesktopButton =
+                IMySuperWrapper showDesktopButton =
+                    // 20131109
+                    //AutomationElement.RootElement.FindFirst(
+                    MySuperWrapper.RootElement.FindFirst(
                         TreeScope.Children,
                         new PropertyCondition(
                             AutomationElement.NameProperty,

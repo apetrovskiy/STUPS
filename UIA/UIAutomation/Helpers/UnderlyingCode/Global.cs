@@ -19,7 +19,9 @@ namespace UIAutomation
         internal static System.Drawing.Rectangle GRectangle;
     
         internal static void _PaintRectangle(
-            System.Windows.Automation.AutomationElement element)
+            // 20131109
+            //System.Windows.Automation.AutomationElement element)
+            IMySuperWrapper element)
         {
             if (element == null) {
                 return;

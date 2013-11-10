@@ -30,7 +30,9 @@ namespace UIAutomation.Commands
         [Parameter(Mandatory = false)]
         internal new SwitchParameter PassThru { get; set; }
         [Parameter(Mandatory = false)]
-        internal new System.Windows.Automation.AutomationElement InputObject { get; set; }
+        // 20131109
+        //internal new System.Windows.Automation.AutomationElement InputObject { get; set; }
+        internal new IMySuperWrapper InputObject { get; set; }
         #endregion Parameters
         
         protected override void BeginProcessing()
@@ -82,7 +84,9 @@ namespace UIAutomation.Commands
 
                         Automation.RemoveAutomationEventHandler(
                             null,
-                            this.InputObject,
+                            // 20131109
+                            //this.InputObject,
+                            this.InputObject.SourceElement,
                             this.EventHandler);
 
                     }

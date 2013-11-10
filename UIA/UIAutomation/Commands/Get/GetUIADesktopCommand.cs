@@ -23,9 +23,14 @@ namespace UIAutomation.Commands
     {
         protected override void BeginProcessing()
         {
-            UIAutomation.CurrentData.CurrentWindow = 
-                AutomationElement.RootElement;
-            this.WriteObject(this, AutomationElement.RootElement);
+            // 20131109
+            //UIAutomation.CurrentData.CurrentWindow = 
+            //    AutomationElement.RootElement;
+            UIAutomation.CurrentData.CurrentWindow =
+                MySuperWrapper.RootElement;
+            // 20131109
+            //this.WriteObject(this, AutomationElement.RootElement);
+            this.WriteObject(this, MySuperWrapper.RootElement);
         }
     }
 }

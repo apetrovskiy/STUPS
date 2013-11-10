@@ -139,8 +139,11 @@ namespace SePSX
 
             int[] driverCoordinates = new int[2];
 //Console.WriteLine("getWebElementCoordinates 000001");
-            AutomationElement driverElement =
-                System.Windows.Automation.AutomationElement.RootElement.FindFirst(
+            // 20131109
+            //AutomationElement driverElement =
+            //    System.Windows.Automation.AutomationElement.RootElement.FindFirst(
+            IMySuperWrapper driverElement =
+                MySuperWrapper.RootElement.FindFirst(
                     TreeScope.Children,
                     new PropertyCondition(
                         AutomationElement.ProcessIdProperty,
@@ -179,7 +182,9 @@ namespace SePSX
                         //                                break;
                 }
 //Console.WriteLine("getWebElementCoordinates 000005");
-                AutomationElement internalPaneElement =
+                // 20131109
+                //AutomationElement internalPaneElement =
+      IMySuperWrapper internalPaneElement =
                     driverElement.FindFirst(
                         TreeScope.Descendants,
                         internalPaneCondition);
@@ -303,8 +308,11 @@ Console.WriteLine("Highlight 00000000000015");
             //System.Windows.Forms.MessageBox.Show(title);
             
             try {
-                AutomationElement element =
-                    System.Windows.Automation.AutomationElement.RootElement.FindFirst(
+                // 20131109
+                //AutomationElement element =
+                //    System.Windows.Automation.AutomationElement.RootElement.FindFirst(
+      IMySuperWrapper element =
+          MySuperWrapper.RootElement.FindFirst(
                         TreeScope.Children,
                         new AndCondition(
                             new PropertyCondition(
@@ -913,22 +921,32 @@ Console.WriteLine("Highlight 00000000000015");
         #endregion Actions
         
         #region Convert
-        public static List<AutomationElement> ConvertWebDriverOrWebElementToAutomationElement(
+        // 20131109
+        //public static List<AutomationElement> ConvertWebDriverOrWebElementToAutomationElement(
+        public static List<IMySuperWrapper> ConvertWebDriverOrWebElementToAutomationElement(
             HasWebElementInputCmdletBase cmdlet,
             //IWebDriver[] drivers)
             object[] drivers)
         {
-            System.Collections.Generic.List<AutomationElement> resultElements =
-                new System.Collections.Generic.List<AutomationElement>();
+            // 20131109
+            //System.Collections.Generic.List<AutomationElement> resultElements =
+            //    new System.Collections.Generic.List<AutomationElement>();
+            System.Collections.Generic.List<IMySuperWrapper> resultElements =
+                new System.Collections.Generic.List<IMySuperWrapper>();
             
             //foreach (IWebDriver driver in drivers) {
             foreach (object webDriverOrElement in drivers) {
-                AutomationElement resultElement = null;
+                
+                // 20131109
+                //AutomationElement resultElement = null;
+      IMySuperWrapper resultElement = null;
                 
                 if (null != (webDriverOrElement as IWebDriver)) {
                     
                     resultElement =
-                        System.Windows.Automation.AutomationElement.RootElement.FindFirst(
+                        // 20131109
+                        //System.Windows.Automation.AutomationElement.RootElement.FindFirst(
+                        MySuperWrapper.RootElement.FindFirst(
                             TreeScope.Children,
                             new PropertyCondition(
                                 AutomationElement.ProcessIdProperty,
@@ -955,7 +973,9 @@ Console.WriteLine("Highlight 00000000000015");
                         //getWebElementCoordinates((webDriverOrElement as RemoteWebElement));
                         getWebElementCoordinates((webDriverOrElement as WebElementDecorator));
                     resultElement =
-                        System.Windows.Automation.AutomationElement.FromPoint(
+                        // 20131109
+                        //System.Windows.Automation.AutomationElement.FromPoint(
+                        MySuperWrapper.FromPoint(
                             new System.Windows.Point(
                                 absoluteCoordinates[0],
                                 absoluteCoordinates[1]));
@@ -1115,7 +1135,11 @@ Console.WriteLine("Highlight 00000000000015");
                                     processId));
                         
                         if (null != driverWindows) {
-                            foreach (AutomationElement wnd in driverWindows) {
+                            
+                            // 20131109
+                            //foreach (AutomationElement wnd in driverWindows) {
+                           foreach (IMySuperWrapper wnd in driverWindows) {
+                                
                                 cmdlet.WriteObject(cmdlet, wnd.Current.NativeWindowHandle);
                             }
                         }
@@ -2809,7 +2833,9 @@ Console.WriteLine("NavigatoTo: 00003");
                     
                     UIAutomation.UIAHelper.GetScreenshotOfAutomationElement(
                         (new HasControlInputCmdletBase()),
-                        AutomationElement.RootElement,
+                        // 20131109
+                        //AutomationElement.RootElement,
+                        MySuperWrapper.RootElement,
                         cmdlet.CmdletName(cmdlet),
                         true,
                         0,
@@ -2833,7 +2859,9 @@ Console.WriteLine("NavigatoTo: 00003");
                 
                 UIAutomation.UIAHelper.GetScreenshotOfAutomationElement(
                     (new HasControlInputCmdletBase()),
-                    AutomationElement.RootElement,
+                    // 20131109
+                    //AutomationElement.RootElement,
+                    MySuperWrapper.RootElement,
                     cmdlet.CmdletName(cmdlet),
                     true,
                     0,
@@ -3064,7 +3092,9 @@ Console.WriteLine("NavigatoTo: 00003");
             if (null == elementToTakeScreenShot) {
                 UIAutomation.UIAHelper.GetScreenshotOfAutomationElement(
                     (new HasControlInputCmdletBase()),
-                    AutomationElement.RootElement,
+                    // 20131109
+                    //AutomationElement.RootElement,
+                    MySuperWrapper.RootElement,
                     cmdlet.CmdletName(cmdlet),
                     true,
                     0,

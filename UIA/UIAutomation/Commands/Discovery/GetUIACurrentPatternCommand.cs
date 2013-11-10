@@ -7,14 +7,14 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-using System.Linq;
-using System.Windows.Automation;
-
 namespace UIAutomation.Commands
 {
     // test it
     //using System;
     using System.Management.Automation;
+    
+    using System.Linq;
+    using System.Windows.Automation;
 
     /// <summary>
     /// Description of GetUIACurrentPatternCommand.
@@ -37,7 +37,9 @@ namespace UIAutomation.Commands
         #endregion Parameters
         
         // 20131014
-        System.Windows.Automation.AutomationElement _control = null;
+        // 20131109
+        //System.Windows.Automation.AutomationElement _control = null;
+        IMySuperWrapper _control = null;
         
         /// <summary>
         /// Processes the pipeline.
@@ -47,7 +49,7 @@ namespace UIAutomation.Commands
             
             object result = null; // ?
             
-            if (!this.CheckControl(this)) { return; }
+            if (!this.CheckAndPrepareInput(this)) { return; }
             
             // 20131014
             //this.WriteVerbose(this, _control.Current);
@@ -56,12 +58,23 @@ namespace UIAutomation.Commands
             //this.WriteVerbose(this, 
             //             (_control.GetSupportedPatterns()).Length.ToString());
             
+            // 20131109
+            //foreach (System.Windows.Automation.AutomationElement element in this.InputObject) {
+            foreach (IMySuperWrapper element in this.InputObject) {
+                foreach (System.Windows.Automation.AutomationPattern p in element.GetSupportedPatterns())
+                {
+                    this.WriteVerbose(this, p.ProgrammaticName);
+                }
+            }
+            
             // 20131014
             //foreach (System.Windows.Automation.AutomationPattern p in _control.GetSupportedPatterns())
+            /*
             foreach (AutomationPattern p in this.InputObject.SelectMany(element => element.GetSupportedPatterns()))
             {
                 this.WriteVerbose(this, p.ProgrammaticName);
             }
+            */
 
             /*
             foreach (System.Windows.Automation.AutomationElement element in this.InputObject) {

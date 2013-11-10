@@ -18,7 +18,7 @@ namespace UIAutomation.Commands
     // 20131024
     //[Cmdlet(VerbsCommon.Get, "UIASelectionPattern")]
     [Cmdlet(VerbsLifecycle.Invoke, "UIASelectionPattern")]
-    ////[OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    ////[OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
     public class InvokeUIASelectionPatternCommand : PatternCmdletBase
     { public InvokeUIASelectionPatternCommand() { WhatToDo = "Selection"; this.PassThru = false; }

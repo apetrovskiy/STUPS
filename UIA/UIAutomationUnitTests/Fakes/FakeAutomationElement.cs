@@ -18,7 +18,7 @@ namespace UIAutomationUnitTests
     /// <summary>
     /// Description of FakeAutomationElement.
     /// </summary>
-//    public class FakeAutomationElement : IAutomationElementAdapter
+//    public class FakeAutomationElement : IMySuperWrapper
 //    {
 //        public FakeAutomationElement()
 //        {
@@ -86,10 +86,10 @@ namespace UIAutomationUnitTests
 //		}
 //		
 //		//public AutomationElement FindFirst(TreeScope scope, Condition condition)
-//		public IAutomationElementAdapter FindFirst(TreeScope scope, Condition condition)
+//		public IMySuperWrapper FindFirst(TreeScope scope, Condition condition)
 //		{
-//		    //IAutomationElementAdapter adapterElement =
-//		    //    new AutomationElementAdapter(this.elementHolder.FindFirst(scope, condition));
+//		    //IMySuperWrapper adapterElement =
+//		    //    new MySuperWrapper(this.elementHolder.FindFirst(scope, condition));
 //		    //return adapterElement;
 //		}
 //		

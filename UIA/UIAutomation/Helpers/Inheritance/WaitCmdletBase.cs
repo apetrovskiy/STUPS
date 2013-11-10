@@ -12,6 +12,8 @@ namespace UIAutomation
     using System;
     using System.Management.Automation;
     using System.Windows.Automation;
+    
+    using System.Linq;
 
     /// <summary>
     /// Description of WaitCmdletBase.
@@ -30,10 +32,14 @@ namespace UIAutomation
         #endregion Parameters
         
         protected void WaitIfCondition(
-            AutomationElement _control,
+            // 20131109
+            //AutomationElement _control,
+            IMySuperWrapper _control,
             bool isEnabledOrIsVisible)
         {
-            _control = this.InputObject[0];
+            // 20131109
+            //_control = this.InputObject[0];
+            _control = this.InputObject.Cast<IMySuperWrapper>().ToArray()[0];
             
             if (isEnabledOrIsVisible) {
                 this.Wait = !(_control.Current).IsEnabled;
@@ -66,7 +72,7 @@ namespace UIAutomation
                                  ", seconds: " + 
                                  ((nowDate - StartDate).TotalSeconds).ToString());
                 } catch { }
-                if (!this.CheckControl(this))
+                if (!this.CheckAndPrepareInput(this))
                 {
                     WriteObject(this, false);
                     

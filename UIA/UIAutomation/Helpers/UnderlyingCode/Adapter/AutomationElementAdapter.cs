@@ -9,162 +9,168 @@
 
 namespace UIAutomation
 {
-    using System;
-    using System.Windows.Automation;
+	using System;
+	using System.Windows.Automation;
 
-    /// <summary>
-    /// Description of AutomationElementAdapter.
-    /// </summary>
-    public class AutomationElementAdapter : IAutomationElementAdapter
+	/// <summary>
+	/// Description of MySuperWrapper.
+	/// </summary>
+	public class MySuperWrapper : IMySuperWrapper
 	{
-        private AutomationElement elementHolder;
-        
-        public AutomationElementAdapter()
-        {
-        }
-        
-        public AutomationElementAdapter(AutomationElement element)
-        {
-            this.elementHolder = element;
-        }
-        
-		public bool Equals(object obj)
+		private AutomationElement elementHolder;
+
+		public MySuperWrapper()
 		{
-		    return this.elementHolder.Equals(obj);
 		}
-		
-		public int GetHashCode()
+
+		public MySuperWrapper(AutomationElement element)
 		{
-		    return this.elementHolder.GetHashCode();
+			this.elementHolder = element;
 		}
-		
+
+		public override bool Equals(object obj)
+		{
+			return this.elementHolder.Equals(obj);
+		}
+
+		public override int GetHashCode()
+		{
+			return this.elementHolder.GetHashCode();
+		}
+
 		public int[] GetRuntimeId()
 		{
-		    return this.elementHolder.GetRuntimeId();
+			return this.elementHolder.GetRuntimeId();
 		}
-		
+
 		public object GetCurrentPropertyValue(AutomationProperty property)
 		{
-		    return this.elementHolder.GetCurrentPropertyValue(property);
+			return this.elementHolder.GetCurrentPropertyValue(property);
 		}
-		
+
 		public object GetCurrentPropertyValue(AutomationProperty property, bool ignoreDefaultValue)
 		{
-		    return this.elementHolder.GetCurrentPropertyValue(property, ignoreDefaultValue);
+			return this.elementHolder.GetCurrentPropertyValue(property, ignoreDefaultValue);
 		}
-		
+
 		public object GetCurrentPattern(AutomationPattern pattern)
 		{
-		    return this.elementHolder.GetCurrentPattern(pattern);
+			return this.elementHolder.GetCurrentPattern(pattern);
 		}
-		
+
 		public bool TryGetCurrentPattern(AutomationPattern pattern, out object patternObject)
 		{
-		    return this.elementHolder.TryGetCurrentPattern(pattern, out patternObject);
+			return this.elementHolder.TryGetCurrentPattern(pattern, out patternObject);
 		}
-		
+
 		public object GetCachedPropertyValue(AutomationProperty property)
 		{
-		    return this.elementHolder.GetCachedPropertyValue(property);
+			return this.elementHolder.GetCachedPropertyValue(property);
 		}
-		
+
 		public object GetCachedPropertyValue(AutomationProperty property, bool ignoreDefaultValue)
 		{
-		    return this.elementHolder.GetCachedPropertyValue(property, ignoreDefaultValue);
+			return this.elementHolder.GetCachedPropertyValue(property, ignoreDefaultValue);
 		}
-		
+
 		public object GetCachedPattern(AutomationPattern pattern)
 		{
-		    return this.elementHolder.GetCachedPattern(pattern);
+			return this.elementHolder.GetCachedPattern(pattern);
 		}
-		
+
 		public bool TryGetCachedPattern(AutomationPattern pattern, out object patternObject)
 		{
-		    return this.elementHolder.TryGetCachedPattern(pattern, out patternObject);
+			return this.elementHolder.TryGetCachedPattern(pattern, out patternObject);
 		}
-		
+
 		public AutomationElement GetUpdatedCache(CacheRequest request)
 		{
-		    return this.elementHolder.GetUpdatedCache(request);
+			return this.elementHolder.GetUpdatedCache(request);
 		}
-		
+
 		//public AutomationElement FindFirst(TreeScope scope, Condition condition)
-		public IAutomationElementAdapter FindFirst(TreeScope scope, Condition condition)
+		public IMySuperWrapper FindFirst(TreeScope scope, Condition condition)
 		{
-		    IAutomationElementAdapter adapterElement =
-		        new AutomationElementAdapter(this.elementHolder.FindFirst(scope, condition));
-		    return adapterElement;
+			IMySuperWrapper adapterElement = new MySuperWrapper(this.elementHolder.FindFirst(scope, condition));
+			return adapterElement;
 		}
-		
+
 		//public AutomationElementCollection FindAll(TreeScope scope, Condition condition)
-		public IAutomationElementCollection FindAll(TreeScope scope, Condition condition)
+		public IMySuperCollection FindAll(TreeScope scope, Condition condition)
 		{
-		    //return this.elementHolder.FindAll(scope, condition);
-		    IAutomationElementCollection adapterColleciton =
-		        new AutomationElementCollectionAdapter(
-		            this.elementHolder.FindAll(scope, condition));
-		    return adapterColleciton;
+			//return this.elementHolder.FindAll(scope, condition);
+			IMySuperCollection adapterCollection = new MySuperCollection(this.elementHolder.FindAll(scope, condition));
+			return adapterCollection;
 		}
-		
+
 		public AutomationProperty[] GetSupportedProperties()
 		{
-		    return this.elementHolder.GetSupportedProperties();
+			return this.elementHolder.GetSupportedProperties();
 		}
-		
+
 		public AutomationPattern[] GetSupportedPatterns()
 		{
-		    return this.elementHolder.GetSupportedPatterns();
+			return this.elementHolder.GetSupportedPatterns();
 		}
-		
+
 		public void SetFocus()
 		{
-		    this.elementHolder.SetFocus();
+			this.elementHolder.SetFocus();
 		}
-		
+
 		//public bool TryGetClickablePoint(out Point pt)
 		public bool TryGetClickablePoint(out System.Windows.Point pt)
 		{
-		    return this.elementHolder.TryGetClickablePoint(out pt);
+			return this.elementHolder.TryGetClickablePoint(out pt);
 		}
-		
+
 		//public Point GetClickablePoint()
 		public System.Windows.Point GetClickablePoint()
 		{
-		    return this.elementHolder.GetClickablePoint();
+			return this.elementHolder.GetClickablePoint();
+		}
+
+		public AutomationElement.AutomationElementInformation Cached {
+			get { return this.elementHolder.Cached; }
+		}
+
+		public AutomationElement.AutomationElementInformation Current {
+			get { return this.elementHolder.Current; }
+		}
+
+		public AutomationElement CachedParent {
+			get { return this.elementHolder.CachedParent; }
+		}
+
+		public AutomationElementCollection CachedChildren {
+			get { return this.elementHolder.CachedChildren; }
+		}
+
+		// static methods and properties
+		public static IMySuperWrapper RootElement {
+			get { return new MySuperWrapper(AutomationElement.RootElement); }
 		}
 		
-		public AutomationElement.AutomationElementInformation Cached
+		public static IMySuperWrapper FromPoint(System.Windows.Point pt)
 		{
-		    get { return this.elementHolder.Cached; }
+		    return new MySuperWrapper(AutomationElement.FromPoint(pt));
 		}
 		
-		public AutomationElement.AutomationElementInformation Current
+		public static IMySuperWrapper FromHandle(IntPtr controlHandle)
 		{
-		    get { return this.elementHolder.Current; }
+		    return new MySuperWrapper(AutomationElement.FromHandle(controlHandle));
 		}
-		
-		public AutomationElement CachedParent
-		{
-		    get { return this.elementHolder.CachedParent; }
-		}
-		
-		public AutomationElementCollection CachedChildren
-		{
-		    get { return this.elementHolder.CachedChildren; }
-		}
-		
-		
-		public AutomationElement SourceElement
-		{
-		    get { return this.elementHolder; }
-		    set { this.elementHolder = value; }
+
+		public AutomationElement SourceElement {
+			get { return this.elementHolder; }
+			set { this.elementHolder = value; }
 		}
 	}
-    
-    /*
-    public class AutomationElementAdapter : IAutomationElementAdapter
+
+	/*
+    public class MySuperWrapper : IMySuperWrapper
 	{
-        public AutomationElementAdapter(AutomationElement element)
+        public MySuperWrapper(AutomationElement element)
         {
             if (null != element) {
                 this.SourceElement = element;
@@ -234,10 +240,10 @@ namespace UIAutomation
 		}
 		
 		//public AutomationElement FindFirst(TreeScope scope, Condition condition)
-		public IAutomationElementAdapter FindFirst(TreeScope scope, Condition condition)
+		public IMySuperWrapper FindFirst(TreeScope scope, Condition condition)
 		{
-		    IAutomationElementAdapter adapterElement =
-		        new AutomationElementAdapter(this.SourceElement.FindFirst(scope, condition));
+		    IMySuperWrapper adapterElement =
+		        new MySuperWrapper(this.SourceElement.FindFirst(scope, condition));
 		    return adapterElement;
 		}
 		

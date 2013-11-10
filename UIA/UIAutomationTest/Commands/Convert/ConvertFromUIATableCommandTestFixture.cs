@@ -19,10 +19,6 @@ namespace UIAutomationTest.Commands.Convert
     [TestFixture] // [TestFixture(Description="ConvertFrom-UIATableCommand test")]
     public class ConvertFromUIATableCommandTestFixture
     {
-        public ConvertFromUIATableCommandTestFixture()
-        {
-        }
-        
         [SetUp]
         public void PrepareRunspace()
         {
@@ -32,7 +28,7 @@ namespace UIAutomationTest.Commands.Convert
         [Test] //[Test(Description="InputObject ProcessRecord test Null via pipeline")]
         [Category("Slow")]
         [Category("NoForms")]
-        public void TestPipelineInput()
+        public void ConvertFromUIATable_TestPipelineInput()
         {
             string codeSnippet = 
                 @"if ( ($null | ConvertFrom-UIATable) ) { 1; }else{ 0; }";
@@ -44,7 +40,7 @@ namespace UIAutomationTest.Commands.Convert
         [Test] //[Test(Description="ProcessRecord test Null via parameter")]
         [Category("Slow")]
         [Category("NoForms")]
-        public void TestParameterInputNull()
+        public void ConvertFromUIATable_TestParameterInputNull()
         {
 //            string codeSnippet = 
 //                @"if ((ConvertFrom-UIATable -InputObject $null)) { 1; }else{ 0; }";
@@ -65,7 +61,7 @@ namespace UIAutomationTest.Commands.Convert
         [Test] //[Test(Description="ProcessRecord test Is Not AutomationElement")]
         [Category("Slow")]
         [Category("NoForms")]
-        public void TestParameterInputOtherType()
+        public void ConvertFromUIATable_TestParameterInputOtherType()
         {
 //            string codeSnippet = 
 //                @"if ((ConvertFrom-UIATable -InputObject (New-Object System.Windows.forms.Label))) { 1; }else{ 0; }";
@@ -76,7 +72,8 @@ namespace UIAutomationTest.Commands.Convert
             CmdletUnitTest.TestRunspace.RunAndGetTheException(
                 @"if ((ConvertFrom-UIATable -InputObject (New-Object System.Windows.forms.Label))) { 1; } else { 0; }",
                 "ParameterBindingException",
-                @"Cannot bind parameter 'InputObject'. Cannot convert the ""System.Windows.Forms.Label, Text: "" value of type ""System.Windows.Forms.Label"" to type ""System.Windows.Automation.AutomationElement"".");
+                //@"Cannot bind parameter 'InputObject'. Cannot convert the ""System.Windows.Forms.Label, Text: "" value of type ""System.Windows.Forms.Label"" to type ""System.Windows.Automation.AutomationElement"".");
+                @"Cannot bind parameter 'InputObject'. Cannot convert the ""System.Windows.Forms.Label, Text: "" value of type ""System.Windows.Forms.Label"" to type ""UIAutomation.IMySuperWrapper"".");
             
 //            UIAutomationTest.Commands.Convert.ConvertFromUIATableCommandTestFixture.TestParameterInputOtherType:
 //System.Management.Automation.ParameterBindingException : Cannot bind parameter 'InputObject'. Cannot convert the "System.Windows.Forms.Label, Text: " value of type "System.Windows.Forms.Label" to type "System.Windows.Automation.AutomationElement".

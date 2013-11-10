@@ -15,6 +15,7 @@ namespace UIAutomation
     using System.Windows.Automation;
     using System.Windows.Automation.Text;
     using System.Collections;
+    using System.Linq;
 
     /// <summary>
     /// Description of PatternCmdletBase.
@@ -43,7 +44,7 @@ namespace UIAutomation
         /// </summary>
         protected override void ProcessRecord()
         {
-            if (!this.CheckControl(this)) { return; }
+            if (!this.CheckAndPrepareInput(this)) { return; }
             
             // 20130204
             // search for controls to apply the pattern to
@@ -72,9 +73,13 @@ namespace UIAutomation
 //            }
 #endregion "Pattern + search"
             
-            System.Windows.Automation.AutomationElement _control = null;
+            // 20131109
+            //System.Windows.Automation.AutomationElement _control = null;
+            IMySuperWrapper _control = null;
             
-            foreach (AutomationElement inputObject in this.InputObject) {
+            // 20131109
+            //foreach (AutomationElement inputObject in this.InputObject) {
+            foreach (IMySuperWrapper inputObject in this.InputObject) {
                 
                 try {
                     _control =
@@ -267,7 +272,9 @@ namespace UIAutomation
             } //20120824
         }
         
-        internal void InvokeDockGet(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        // 20131109
+        //internal void InvokeDockGet(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        internal void InvokeDockGet(IMySuperWrapper _control, IMySuperWrapper inputObject)
         {
             //dockPattern.Current.DockPosition
             try {
@@ -284,14 +291,18 @@ namespace UIAutomation
             }
         }
         
-        internal void InvokeDockSet(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject, DockPosition position)
+        // 20131109
+        //internal void InvokeDockSet(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject, DockPosition position)
+        internal void InvokeDockSet(IMySuperWrapper _control, IMySuperWrapper inputObject, DockPosition position)
         {
             try {
                 DockPattern dockPattern = _control.GetCurrentPattern(DockPattern.Pattern) as DockPattern;
                 if (null != dockPattern) {
                     dockPattern.SetDockPosition(position);
                     
-                    if (this.PassThru && null != (inputObject as AutomationElement)) {
+                    // 20131109
+                    //if (this.PassThru && null != (inputObject as AutomationElement)) {
+                    if (this.PassThru && null != (inputObject as IMySuperWrapper)) {
                         WriteObject(this, inputObject);
                     } else {
                         WriteObject(this, true);
@@ -306,7 +317,9 @@ namespace UIAutomation
             }
         }
 
-        internal void InvokeWindow(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        // 20131109
+        //internal void InvokeWindow(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        internal void InvokeWindow(IMySuperWrapper _control, IMySuperWrapper inputObject)
         {
             try {
                 WindowPattern windowPattern = _control.GetCurrentPattern(WindowPattern.Pattern) as WindowPattern;
@@ -332,7 +345,9 @@ namespace UIAutomation
                     windowPattern.SetWindowVisualState(WindowVisualState.Minimized);
                     System.Threading.Thread.Sleep(1000);
                     windowPattern.SetWindowVisualState(WindowVisualState.Normal);
-                    if (this.PassThru && null != (inputObject as AutomationElement)) {
+                    // 20131109
+                    if (this.PassThru && null != (inputObject as IMySuperWrapper)) {
+                    //if (this.PassThru && null != (inputObject as AutomationElement)) {
                         WriteObject(this, inputObject);
                     } else {
                         WriteObject(this, true);
@@ -345,7 +360,9 @@ namespace UIAutomation
             }
         }
 
-        internal void InvokeValueSet(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        // 20131109
+        //internal void InvokeValueSet(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        internal void InvokeValueSet(IMySuperWrapper _control, IMySuperWrapper inputObject)
         {
             try {
                 ValuePattern valuePatternSet = _control.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern;
@@ -353,7 +370,9 @@ namespace UIAutomation
                     
                     this.WriteVerbose(this, "using ValuePattern");
                     valuePatternSet.SetValue(((Commands.InvokeUIAValuePatternSetCommand)Child).Text);
-                    if (this.PassThru && null != (inputObject as AutomationElement)) {
+                    // 20131109
+                    if (this.PassThru && null != (inputObject as IMySuperWrapper)) {
+                    //if (this.PassThru && null != (inputObject as AutomationElement)) {
                         WriteObject(this, inputObject);
                     } else {
                         WriteObject(this, true);
@@ -363,7 +382,9 @@ namespace UIAutomation
                     WriteVerbose(this, "couldn't get ValuePattern. SendKeys is used");
                     _control.SetFocus();
                     System.Windows.Forms.SendKeys.SendWait(((Commands.InvokeUIAValuePatternSetCommand)Child).Text);
-                    if (this.PassThru && null != (inputObject as AutomationElement)) {
+                    // 20131109
+                    if (this.PassThru && null != (inputObject as IMySuperWrapper)) {
+                    //if (this.PassThru && null != (inputObject as AutomationElement)) {
                         WriteObject(this, inputObject);
                     } else {
                         WriteObject(this, true);
@@ -373,7 +394,9 @@ namespace UIAutomation
             }
         }
 
-        internal void InvokeValueGet(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        // 20131109
+        //internal void InvokeValueGet(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        internal void InvokeValueGet(IMySuperWrapper _control, IMySuperWrapper inputObject)
         {
             try {
                 ValuePattern valuePatternGet = _control.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern;
@@ -390,13 +413,17 @@ namespace UIAutomation
             }
         }
 
-        internal void InvokeTransformRotate(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        // 20131109
+        //internal void InvokeTransformRotate(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        internal void InvokeTransformRotate(IMySuperWrapper _control, IMySuperWrapper inputObject)
         {
             try {
                 TransformPattern transformRotatePattern = _control.GetCurrentPattern(TransformPattern.Pattern) as TransformPattern;
                 if (transformRotatePattern != null) {
                     transformRotatePattern.Rotate(((Commands.InvokeUIATransformPatternRotateCommand)Child).TransformRotateDegrees);
-                    if (this.PassThru && null != (inputObject as AutomationElement)) {
+                    // 20131109
+                    if (this.PassThru && null != (inputObject as IMySuperWrapper)) {
+                    //if (this.PassThru && null != (inputObject as AutomationElement)) {
                         WriteObject(this, inputObject);
                     } else {
                         WriteObject(this, true);
@@ -409,13 +436,17 @@ namespace UIAutomation
             }
         }
 
-        internal void InvokeTransformResize(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        // 20131109
+        //internal void InvokeTransformResize(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        internal void InvokeTransformResize(IMySuperWrapper _control, IMySuperWrapper inputObject)
         {
             try {
                 TransformPattern transformResizePattern = _control.GetCurrentPattern(TransformPattern.Pattern) as TransformPattern;
                 if (transformResizePattern != null) {
                     transformResizePattern.Resize(((Commands.InvokeUIATransformPatternResizeCommand)Child).TransformResizeWidth, ((Commands.InvokeUIATransformPatternResizeCommand)Child).TransformResizeHeight);
-                    if (this.PassThru && null != (inputObject as AutomationElement)) {
+                    // 20131109
+                    if (this.PassThru && null != (inputObject as IMySuperWrapper)) {
+                    //if (this.PassThru && null != (inputObject as AutomationElement)) {
                         WriteObject(this, inputObject);
                     } else {
                         WriteObject(this, true);
@@ -428,13 +459,17 @@ namespace UIAutomation
             }
         }
 
-        internal void InvokeTransformMove(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        // 20131109
+        //internal void InvokeTransformMove(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        internal void InvokeTransformMove(IMySuperWrapper _control, IMySuperWrapper inputObject)
         {
             try {
                 TransformPattern transformMovePattern = _control.GetCurrentPattern(TransformPattern.Pattern) as TransformPattern;
                 if (transformMovePattern != null) {
                     transformMovePattern.Move(((Commands.InvokeUIATransformPatternMoveCommand)Child).TransformMoveX, ((Commands.InvokeUIATransformPatternMoveCommand)Child).TransformMoveY);
-                    if (this.PassThru && null != (inputObject as AutomationElement)) {
+                    // 20131109
+                    if (this.PassThru && null != (inputObject as IMySuperWrapper)) {
+                    //if (this.PassThru && null != (inputObject as AutomationElement)) {
                         WriteObject(this, inputObject);
                     } else {
                         WriteObject(this, true);
@@ -447,7 +482,9 @@ namespace UIAutomation
             }
         }
 
-        internal void InvokeToggleStateGet(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        // 20131109
+        //internal void InvokeToggleStateGet(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        internal void InvokeToggleStateGet(IMySuperWrapper _control, IMySuperWrapper inputObject)
         {
             try {
                 TogglePattern togglePattern1 = _control.GetCurrentPattern(TogglePattern.Pattern) as TogglePattern;
@@ -467,7 +504,9 @@ namespace UIAutomation
             }
         }
         
-        internal void InvokeToggleStateSet(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject, bool on)
+        // 20131109
+        //internal void InvokeToggleStateSet(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject, bool on)
+        internal void InvokeToggleStateSet(IMySuperWrapper _control, IMySuperWrapper inputObject, bool on)
         {
             try {
                 TogglePattern togglePattern1 = _control.GetCurrentPattern(TogglePattern.Pattern) as TogglePattern;
@@ -486,7 +525,9 @@ namespace UIAutomation
 //                        toggleState = true;
 //                    }
 //                    WriteObject(this, toggleState);
-                    if (this.PassThru && null != (inputObject as AutomationElement)) {
+                    // 20131109
+                    if (this.PassThru && null != (inputObject as IMySuperWrapper)) {
+                    //if (this.PassThru && null != (inputObject as AutomationElement)) {
                         WriteObject(this, inputObject);
                     } else {
                         WriteObject(this, true);
@@ -501,8 +542,10 @@ namespace UIAutomation
 
                     ClickControl(this, _control, false, false, false, false, false, false, false, 0,
                                  0);
-
-                    if (this.PassThru && null != (inputObject as AutomationElement)) {
+                    
+                    // 20131109
+                    if (this.PassThru && null != (inputObject as IMySuperWrapper)) {
+                    //if (this.PassThru && null != (inputObject as AutomationElement)) {
 
                         this.WriteObject(this, inputObject);
 
@@ -515,13 +558,17 @@ namespace UIAutomation
             }
         }
 
-        internal void InvokeToggle(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        // 20131109
+        //internal void InvokeToggle(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        internal void InvokeToggle(IMySuperWrapper _control, IMySuperWrapper inputObject)
         {
             try {
                 TogglePattern togglePattern = _control.GetCurrentPattern(TogglePattern.Pattern) as TogglePattern;
                 if (togglePattern != null) {
                     togglePattern.Toggle();
-                    if (this.PassThru && null != (inputObject as AutomationElement)) {
+                    // 20131109
+                    if (this.PassThru && null != (inputObject as IMySuperWrapper)) {
+                    //if (this.PassThru && null != (inputObject as AutomationElement)) {
                         WriteObject(this, inputObject);
                     } else {
                         WriteObject(this, true);
@@ -534,7 +581,9 @@ namespace UIAutomation
             }
         }
 
-        internal void InvokeTextSet(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        // 20131109
+        //internal void InvokeTextSet(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        internal void InvokeTextSet(IMySuperWrapper _control, IMySuperWrapper inputObject)
         {
             try {
                 TextPattern textPatternSet = _control.GetCurrentPattern(TextPattern.Pattern) as TextPattern;
@@ -549,7 +598,9 @@ namespace UIAutomation
             }
         }
 
-        internal void InvokeTextGet(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        // 20131109
+        //internal void InvokeTextGet(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        internal void InvokeTextGet(IMySuperWrapper _control, IMySuperWrapper inputObject)
         {
             try {
                 TextPattern textPatternGet = _control.GetCurrentPattern(TextPattern.Pattern) as TextPattern;
@@ -583,7 +634,9 @@ namespace UIAutomation
 
         //tablePattern.GetItem
 
-        internal void InvokeTable(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        // 20131109
+        //internal void InvokeTable(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        internal void InvokeTable(IMySuperWrapper _control, IMySuperWrapper inputObject)
         {
             try {
                 TablePattern tablePattern = _control.GetCurrentPattern(TablePattern.Pattern) as TablePattern;
@@ -593,7 +646,9 @@ namespace UIAutomation
             }
         }
 
-        internal void InvokeTableItem(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        // 20131109
+        //internal void InvokeTableItem(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        internal void InvokeTableItem(IMySuperWrapper _control, IMySuperWrapper inputObject)
         {
             try {
                 TableItemPattern tableItemPattern = _control.GetCurrentPattern(TableItemPattern.Pattern) as TableItemPattern;
@@ -612,12 +667,17 @@ namespace UIAutomation
         //                            // WriteObject(this, true);
         //                            }
         //writev
-        internal void InvokeSelection(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        // 20131109
+        //internal void InvokeSelection(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        internal void InvokeSelection(IMySuperWrapper _control, IMySuperWrapper inputObject)
         {
             try {
                 SelectionPattern selPattern = _control.GetCurrentPattern(SelectionPattern.Pattern) as SelectionPattern;
                 if (selPattern != null) {
-                    System.Windows.Automation.AutomationElement[] selection = selPattern.Current.GetSelection();
+                    
+                    // 20131109
+                    //System.Windows.Automation.AutomationElement[] selection = selPattern.Current.GetSelection();
+                    IMySuperWrapper[] selection = new MySuperCollection(selPattern.Current.GetSelection()).Cast<MySuperWrapper>().ToArray();
                     WriteObject(this, selection);
                 } else {
                     WriteVerbose(this, "couldn't get SelectionPattern");
@@ -627,7 +687,9 @@ namespace UIAutomation
             }
         }
 
-        internal void InvokeSelectedItem(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        // 20131109
+        //internal void InvokeSelectedItem(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        internal void InvokeSelectedItem(IMySuperWrapper _control, IMySuperWrapper inputObject)
         {
             try {
                 SelectionItemPattern selItemPattern1 = _control.GetCurrentPattern(SelectionItemPattern.Pattern) as SelectionItemPattern;
@@ -647,7 +709,9 @@ namespace UIAutomation
             }
         }
 
-        internal void InvokeSelectionItemState(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        // 20131109
+        //internal void InvokeSelectionItemState(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        internal void InvokeSelectionItemState(IMySuperWrapper _control, IMySuperWrapper inputObject)
         {
             try {
                 SelectionItemPattern selItemPattern1 = _control.GetCurrentPattern(SelectionItemPattern.Pattern) as SelectionItemPattern;
@@ -661,17 +725,24 @@ namespace UIAutomation
             }
         }
 
-        internal void InvokeSelectionItem(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        // 20131109
+        //internal void InvokeSelectionItem(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        internal void InvokeSelectionItem(IMySuperWrapper _control, IMySuperWrapper inputObject)
         {
             try {
                 SelectionItemPattern selItemPattern = _control.GetCurrentPattern(SelectionItemPattern.Pattern) as SelectionItemPattern;
                 if (selItemPattern != null) {
                     selItemPattern.Select();
-                    if (this.PassThru && null != (inputObject as AutomationElement)) {
+                    // 20131109
+                    if (this.PassThru && null != (inputObject as IMySuperWrapper)) {
+                    //if (this.PassThru && null != (inputObject as AutomationElement)) {
                         try {
                             SelectionPattern selPatternTemp = _control.GetCurrentPattern(SelectionPattern.Pattern) as SelectionPattern;
                             if (selPatternTemp != null) {
-                                AutomationElement[] selection = selPatternTemp.Current.GetSelection();
+                                
+                                // 20131109
+                                //AutomationElement[] selection = selPatternTemp.Current.GetSelection();
+                                IMySuperWrapper[] selection = new MySuperCollection(selPatternTemp.Current.GetSelection()).Cast<MySuperWrapper>().ToArray();
                                 WriteObject(this, selection);
                             } else {
                                 WriteObject(this, true);
@@ -696,7 +767,9 @@ namespace UIAutomation
         //                                }
         // 20130109
         //if (this.PassThru && CheckControl(this)) {
-        internal void InvokeScroll(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        // 20131109
+        //internal void InvokeScroll(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        internal void InvokeScroll(IMySuperWrapper _control, IMySuperWrapper inputObject)
         {
             try {
                 ScrollPattern scPattern = _control.GetCurrentPattern(ScrollPattern.Pattern) as ScrollPattern;
@@ -727,7 +800,9 @@ namespace UIAutomation
                             scPattern.ScrollVertical(verAmount);
                         }
                     }
-                    if (this.PassThru && null != (inputObject as AutomationElement)) {
+                    // 20131109
+                    //if (this.PassThru && null != (inputObject as AutomationElement)) {
+                    if (this.PassThru && null != (inputObject as IMySuperWrapper)) {
                         WriteObject(this, inputObject);
                     } else {
                         WriteObject(this, true);
@@ -774,14 +849,17 @@ namespace UIAutomation
             }
         }
 
-        internal void InvokeScrollItem(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        // 20131109
+        //internal void InvokeScrollItem(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        internal void InvokeScrollItem(IMySuperWrapper _control, IMySuperWrapper inputObject)
         {
             try {
                 ScrollItemPattern sciPattern = _control.GetCurrentPattern(ScrollItemPattern.Pattern) as ScrollItemPattern;
                 if (sciPattern == null) return;
                 try {
                     sciPattern.ScrollIntoView();
-                    if (this.PassThru && null != (inputObject as AutomationElement)) {
+                    //if (this.PassThru && null != (inputObject as AutomationElement)) {
+                    if (this.PassThru && null != (inputObject as IMySuperWrapper)) {
                         WriteObject(this, inputObject);
                     } else {
                         WriteObject(this, true);
@@ -809,14 +887,18 @@ namespace UIAutomation
             }
         }
 
-        internal void InvokeRangeValueSet(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        // 20131109
+        //internal void InvokeRangeValueSet(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        internal void InvokeRangeValueSet(IMySuperWrapper _control, IMySuperWrapper inputObject)
         {
             try {
                 RangeValuePattern rvPatternSet = _control.GetCurrentPattern(RangeValuePattern.Pattern) as RangeValuePattern;
                 if (rvPatternSet == null) return;
                 try {
                     rvPatternSet.SetValue(((Commands.InvokeUIARangeValuePatternSetCommand)Child).Value);
-                    if (this.PassThru && null != (inputObject as AutomationElement)) {
+                    // 20131109
+                    if (this.PassThru && null != (inputObject as IMySuperWrapper)) {
+                    //if (this.PassThru && null != (inputObject as AutomationElement)) {
                         WriteObject(this, inputObject);
                     } else {
                         WriteObject(this, true);
@@ -843,7 +925,9 @@ namespace UIAutomation
             }
         }
 
-        internal void InvokeRangeValueGet(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        // 20131109
+        //internal void InvokeRangeValueGet(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        internal void InvokeRangeValueGet(IMySuperWrapper _control, IMySuperWrapper inputObject)
         {
             try {
                 RangeValuePattern rvPatternGet = _control.GetCurrentPattern(RangeValuePattern.Pattern) as RangeValuePattern;
@@ -890,7 +974,9 @@ namespace UIAutomation
         //if (this.PassThru) {
         // 20130109
         //if (this.PassThru && CheckControl(this)) {
-        internal void InvokeInvoke(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        // 20131109
+        //internal void InvokeInvoke(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        internal void InvokeInvoke(IMySuperWrapper _control, IMySuperWrapper inputObject)
         {
             try {
                 InvokePattern invokePattern = _control.GetCurrentPattern(InvokePattern.Pattern) as InvokePattern;
@@ -898,7 +984,9 @@ namespace UIAutomation
 
                     invokePattern.Invoke();
 
-                    if (this.PassThru && null != (inputObject as AutomationElement)) {
+                    // 20131109
+                    if (this.PassThru && null != (inputObject as IMySuperWrapper)) {
+                    //if (this.PassThru && null != (inputObject as AutomationElement)) {
 
                         WriteObject(this, inputObject);
 
@@ -914,7 +1002,9 @@ namespace UIAutomation
                         ClickControl(this, _control, false, false, false, false, false, false, false, 0,
                                      0);
 
-                        if (this.PassThru && null != (inputObject as AutomationElement)) {
+                        // 20131109
+                        if (this.PassThru && null != (inputObject as IMySuperWrapper)) {
+                        //if (this.PassThru && null != (inputObject as AutomationElement)) {
 
                             this.WriteObject(this, inputObject);
 
@@ -940,7 +1030,9 @@ namespace UIAutomation
                     ClickControl(this, _control, false, false, false, false, false, false, false, 0,
                                  0);
 
-                    if (this.PassThru && null != (inputObject as AutomationElement)) {
+                    // 20131109
+                    if (this.PassThru && null != (inputObject as IMySuperWrapper)) {
+                    //if (this.PassThru && null != (inputObject as AutomationElement)) {
 
                         this.WriteObject(this, inputObject);
 
@@ -974,7 +1066,9 @@ namespace UIAutomation
         // WriteVerbose(this, "couldn't get GridPattern");
         // WriteObject(false);
         // }
-        internal void InvokeGrid(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        // 20131109
+        //internal void InvokeGrid(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        internal void InvokeGrid(IMySuperWrapper _control, IMySuperWrapper inputObject)
         {
             try {
                 GridPattern gridPattern = _control.GetCurrentPattern(GridPattern.Pattern) as GridPattern;
@@ -992,7 +1086,9 @@ namespace UIAutomation
         // as GridItemPattern;
         // 
         // giPattern.Current.
-        internal void InvokeGridItem(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        // 20131109
+        //internal void InvokeGridItem(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        internal void InvokeGridItem(IMySuperWrapper _control, IMySuperWrapper inputObject)
         {
             try {
                 GridItemPattern gridItemPattern = _control.GetCurrentPattern(GridItemPattern.Pattern) as GridItemPattern;
@@ -1003,13 +1099,17 @@ namespace UIAutomation
             }
         }
 
-        internal void InvokeCollapse(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        // 20131109
+        //internal void InvokeCollapse(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        internal void InvokeCollapse(IMySuperWrapper _control, IMySuperWrapper inputObject)
         {
             try {
                 ExpandCollapsePattern collapsePattern = _control.GetCurrentPattern(ExpandCollapsePattern.Pattern) as ExpandCollapsePattern;
                 if (collapsePattern != null) {
                     collapsePattern.Collapse();
-                    if (this.PassThru && null != (inputObject as AutomationElement)) {
+                    // 20131109
+                    if (this.PassThru && null != (inputObject as IMySuperWrapper)) {
+                    //if (this.PassThru && null != (inputObject as AutomationElement)) {
                         WriteObject(this, inputObject);
                     } else {
                         WriteObject(this, true);
@@ -1022,13 +1122,17 @@ namespace UIAutomation
             }
         }
 
-        internal void InvokeExpand(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        // 20131109
+        //internal void InvokeExpand(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
+        internal void InvokeExpand(IMySuperWrapper _control, IMySuperWrapper inputObject)
         {
             try {
                 ExpandCollapsePattern expandPattern = _control.GetCurrentPattern(ExpandCollapsePattern.Pattern) as ExpandCollapsePattern;
                 if (expandPattern != null) {
                     expandPattern.Expand();
-                    if (this.PassThru && null != (inputObject as AutomationElement)) {
+                    // 20131109
+                    if (this.PassThru && null != (inputObject as IMySuperWrapper)) {
+                    //if (this.PassThru && null != (inputObject as AutomationElement)) {
                         WriteObject(this, inputObject);
                     } else {
                         WriteObject(this, true);

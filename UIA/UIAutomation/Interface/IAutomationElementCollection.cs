@@ -11,9 +11,10 @@ namespace UIAutomation
 {
     using System;
     using System.Collections;
+    using System.Collections.Generic;
     using System.Windows.Automation;
     
-    public interface IAutomationElementCollection : ICollection, IEnumerable
+    public interface IMySuperCollection : ICollection, IEnumerable
 	{
 		void CopyTo(Array array, int index);
 		void CopyTo(AutomationElement[] array, int index);
@@ -23,6 +24,9 @@ namespace UIAutomation
 		object SyncRoot { get; }
 		bool IsSynchronized { get; }
 		
-		AutomationElementCollection SourceCollection { get; set; }
+		//AutomationElementCollection SourceCollection { get; set; }
+		//AutomationElementCollection SourceCollection { get; }
+		//IMySuperCollection SourceCollection { get; }
+		List<IMySuperWrapper> SourceCollection { get; }
 	}
 }

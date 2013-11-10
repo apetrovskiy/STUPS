@@ -378,8 +378,11 @@ namespace UIAutomation.Commands
         
         #region getControlTypeNameOfAutomationElement
         private string getControlTypeNameOfAutomationElement(
-            AutomationElement element,
-            AutomationElement element2)
+            // 20131109
+            //AutomationElement element,
+            //AutomationElement element2)
+            IMySuperWrapper element,
+            IMySuperWrapper element2)
         {
             string result = String.Empty;
             if (element != null && (int)element.Current.ProcessId > 0 && 

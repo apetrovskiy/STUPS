@@ -92,16 +92,18 @@ namespace UIAutomation
                 new ArrayList();
             
             cmdlet.WriteVerbose(cmdlet, "getting the root element");
-            rootElement =
-                System.Windows.Automation.AutomationElement.RootElement;
-            if (rootElement == null)
+            oddRootElement =
+                // 20131109
+                //System.Windows.Automation.AutomationElement.RootElement;
+                MySuperWrapper.RootElement;
+            if (oddRootElement == null)
             {
                 cmdlet.WriteVerbose(cmdlet, "rootElement == null");
                 return aeWndCollection;
             }
             else
             {
-                cmdlet.WriteVerbose(cmdlet, "rootElement: " + rootElement.Current);
+                cmdlet.WriteVerbose(cmdlet, "rootElement: " + oddRootElement.Current);
             }
             
             bool wasFound = false;
@@ -171,7 +173,9 @@ namespace UIAutomation
                         
                         bool exitInnerCycle = false;
                         
-                        foreach (AutomationElement window in aeWndCollection) {
+                        // 20131109
+                        //foreach (AutomationElement window in aeWndCollection) {
+                        foreach (IMySuperWrapper window in aeWndCollection) {
                             
                             cmdlet.WriteVerbose(cmdlet, "Window: name='" + window.Current.Name + "', automaitonId='" + window.Current.AutomationId + "'");
                             
@@ -184,7 +188,9 @@ namespace UIAutomation
                             GetControlCmdletBase cmdletCtrl =
                                 new GetControlCmdletBase();
                             cmdletCtrl.InputObject =
-                                new AutomationElement[]{ window };
+                                // 20131109
+                                //new AutomationElement[]{ window };
+                                new MySuperWrapper[]{ (MySuperWrapper)window };
                             cmdletCtrl.Timeout = 0;
                             
                             
@@ -287,33 +293,50 @@ namespace UIAutomation
                     cmdlet.WriteVerbose(cmdlet, "aeWndCollection != null");
                     
                 }
+                
+//cmdlet.WriteVerbose(cmdlet, "0000000000000001");
                 checkTimeout(cmdlet, aeWndCollection, true);
+                
+//cmdlet.WriteVerbose(cmdlet, "0000000000000002");
                 
                 System.Threading.Thread.Sleep(Preferences.OnSleepDelay);
                 
             } while (cmdlet.Wait);
             try {
-
-                if (null != aeWndCollection && (int)((AutomationElement)aeWndCollection[0]).Current.ProcessId > 0) {
-
+                
+                // 20131109
+                //if (null != aeWndCollection && (int)((AutomationElement)aeWndCollection[0]).Current.ProcessId > 0) {
+                if (null != aeWndCollection && (int)((IMySuperWrapper)aeWndCollection[0]).Current.ProcessId > 0) {
+                    
                     cmdlet.WriteVerbose(cmdlet, "" + aeWndCollection.ToString());
+                    
                     cmdlet.WriteVerbose(cmdlet, 
                                         "aeWnd.Current.GetType() = " +
-                                        ((AutomationElement)aeWndCollection[0]).GetType().Name);
-
+                                        // 20131109
+                                        //((AutomationElement)aeWndCollection[0]).GetType().Name);
+                                        ((IMySuperWrapper)aeWndCollection[0]).GetType().Name);
+                    
                 } // 20120127
-
-                CurrentData.CurrentWindow = (AutomationElement)aeWndCollection[aeWndCollection.Count -1];
+                
+                // 20131109
+                //CurrentData.CurrentWindow = (AutomationElement)aeWndCollection[aeWndCollection.Count -1];
+                CurrentData.CurrentWindow = (IMySuperWrapper)aeWndCollection[aeWndCollection.Count -1];
                 
             } catch (Exception eEvaluatingWindowAndWritingToPipeline) {
+                
+//cmdlet.WriteVerbose(cmdlet, "0000000000000008");
                 
                 cmdlet.WriteVerbose(
                     cmdlet,
                     "exception: " +
                     eEvaluatingWindowAndWritingToPipeline.Message);
-
+                
+//cmdlet.WriteVerbose(cmdlet, "0000000000000009");
+                
                 cmdlet.WriteVerbose(this, "<<<< ==  ==  writing/nullifying CurrentWindow  ==  == >>>>>");
-
+                
+//cmdlet.WriteVerbose(cmdlet, "0000000000000010");
+                
                 CurrentData.CurrentWindow = null;
                 
             }
@@ -478,8 +501,10 @@ namespace UIAutomation
                         
                         if (first) {
                             
-                            AutomationElement rootWindowElement =
-                                rootElement.FindFirst(
+                            // 20131109
+                            //AutomationElement rootWindowElement =
+                            IMySuperWrapper rootWindowElement =
+                                oddRootElement.FindFirst(
                                     TreeScope.Children,
                                     conditionsProcessId);
                             
@@ -498,9 +523,11 @@ namespace UIAutomation
                             }
                             
                         } else {
-                        
-                            AutomationElementCollection rootCollection =
-                                rootElement.FindAll(
+                            
+                            // 20131109
+                            //AutomationElementCollection rootCollection =
+                            IMySuperCollection rootCollection =
+                                oddRootElement.FindAll(
                                     TreeScope.Children,
                                     conditionsProcessId);
                             
@@ -509,12 +536,22 @@ namespace UIAutomation
                                 aeWndCollectionByProcessId.AddRange(rootCollection);
 
                                 //foreach (AutomationElementCollection tempCollection in from AutomationElement rootWindowElement in rootCollection let tempCollection = null select rootWindowElement.FindAll(
+                                // 20131109
+                                foreach (IMySuperCollection tempCollection in from IMySuperWrapper rootWindowElement in rootCollection select rootWindowElement.FindAll(
+                                    TreeScope.Descendants,
+                                    conditionsForRecurseSearch) into tempCollection where null != tempCollection && 0 < tempCollection.Count select tempCollection)
+                                {
+                                    aeWndCollectionByProcessId.AddRange(tempCollection);
+                                }
+                                
+                                /*
                                 foreach (AutomationElementCollection tempCollection in from AutomationElement rootWindowElement in rootCollection select rootWindowElement.FindAll(
                                     TreeScope.Descendants,
                                     conditionsForRecurseSearch) into tempCollection where null != tempCollection && 0 < tempCollection.Count select tempCollection)
                                 {
                                     aeWndCollectionByProcessId.AddRange(tempCollection);
                                 }
+                                */
 
                                 /*
                                 foreach (AutomationElement rootWindowElement in rootCollection) {
@@ -537,8 +574,10 @@ namespace UIAutomation
                         
                         if (first) {
                             
-                            AutomationElement tempElement =
-                                rootElement.FindFirst(TreeScope.Children,
+                            // 20131109
+                            //AutomationElement tempElement =
+                            IMySuperWrapper tempElement =
+                                oddRootElement.FindFirst(TreeScope.Children,
                                                       conditionsProcessId);
                             
                             if (null != tempElement) {
@@ -546,16 +585,23 @@ namespace UIAutomation
                             }
                         } else {
                             
-                            AutomationElementCollection tempCollection =
-                                rootElement.FindAll(TreeScope.Children,
+                            // 20131109
+                            //AutomationElementCollection tempCollection =
+                            IMySuperCollection tempCollection =
+                                oddRootElement.FindAll(TreeScope.Children,
                                                     conditionsProcessId);
                             
+
+                            
                             if (null != tempCollection && 0 < tempCollection.Count) {
-                                aeWndCollectionByProcessId.AddRange(tempCollection);
+                                
+                                //aeWndCollectionByProcessId.AddRange(tempCollection);
+                                foreach (IMySuperWrapper newElement in tempCollection) {
+                                    aeWndCollectionByProcessId.Add(newElement);
+                                }
                             }
                         }
                     }
-                    
                 } catch (Exception eGetFirstChildOfRootByProcessId) {
                     
                     // 20130225
@@ -712,7 +758,7 @@ namespace UIAutomation
             int[] processIds = null;
             
             foreach (Process process in processes) {
-            
+                
             try {
                 processId = process.Id;
                 if (0 != processId) {
@@ -729,7 +775,10 @@ namespace UIAutomation
                 
                 tempCollection = getWindowCollectionByPID(processIds, first, recurse, name, automationId, className);
                 
-                foreach (AutomationElement tempElement in tempCollection) {
+                // 20131109
+                //foreach (AutomationElement tempElement in tempCollection) {
+                foreach (IMySuperWrapper tempElement in tempCollection) {
+                    
                     aeWndCollectionByProcId.Add(tempElement);
                 }
             }
@@ -785,8 +834,11 @@ namespace UIAutomation
                 WriteVerbose(this, "trying to get window: by title = " +
                              windowTitle);
                 
-                AutomationElementCollection windowCollection = null;
-                windowCollection = rootElement.FindAll(recurse ? TreeScope.Descendants : TreeScope.Children, conditionsSet);
+                // 20131109
+                //AutomationElementCollection windowCollection = null;
+                //windowCollection = rootElement.FindAll(recurse ? TreeScope.Descendants : TreeScope.Children, conditionsSet);
+                IMySuperCollection windowCollection =
+                    oddRootElement.FindAll(recurse ? TreeScope.Descendants : TreeScope.Children, conditionsSet);
 
                 /*
                 if (recurse) {
@@ -820,6 +872,18 @@ namespace UIAutomation
                 
                 if (null != windowCollectionByProperties && 0 < windowCollectionByProperties.Count) {
                     
+                    // 20131109
+                    foreach (IMySuperWrapper aeWndByTitle in windowCollectionByProperties.Cast<IMySuperWrapper>().Where(aeWndByTitle => aeWndByTitle != null &&
+                                                                                                                                      (int)aeWndByTitle.Current.ProcessId > 0))
+                    {
+                        WriteVerbose(this, "aeWndByTitle: " +
+                                           aeWndByTitle.Current.Name +
+                                           " is caught be title = " + windowTitle);
+                                
+                        resultCollection.Add(aeWndByTitle);
+                    }
+                    
+                    /*
                     foreach (AutomationElement aeWndByTitle in windowCollectionByProperties.Cast<AutomationElement>().Where(aeWndByTitle => aeWndByTitle != null &&
                                                                                                                                       (int)aeWndByTitle.Current.ProcessId > 0))
                     {
@@ -829,6 +893,7 @@ namespace UIAutomation
                                 
                         resultCollection.Add(aeWndByTitle);
                     }
+                    */
 
                     /*
                     foreach (AutomationElement aeWndByTitle in aeWndCollectionByTitle) {
@@ -848,14 +913,18 @@ namespace UIAutomation
 
                 } else {
                     
-                    AutomationElement tempElement = null;
+                    // 20131109
+                    //AutomationElement tempElement = null;
+                    IMySuperWrapper tempElement = null;
                     
                     // one more attempt using the FindWindow function
                     System.IntPtr wndHandle =
                         FindWindowByCaption(System.IntPtr.Zero, windowTitle);
                     if (wndHandle != null && wndHandle != System.IntPtr.Zero) {
                         tempElement =
-                            AutomationElement.FromHandle(wndHandle);
+                            // 20131109
+                            //AutomationElement.FromHandle(wndHandle);
+                            MySuperWrapper.FromHandle(wndHandle);
                     }
 
                     if (null == tempElement || (int) tempElement.Current.ProcessId <= 0) continue;
@@ -887,6 +956,7 @@ namespace UIAutomation
                                   //ArrayList aeWindowList,
                                   bool fromCmdlet)
         {
+            cmdlet.WriteVerbose(cmdlet, "OnSleep scriptblocks");
             SleepAndRunScriptBlocks(this);
             System.DateTime nowDate = System.DateTime.Now;
             WriteVerbose(this, "process: " +
@@ -1018,7 +1088,10 @@ namespace UIAutomation
                 new WildcardPattern(string.IsNullOrEmpty(textValue) ? "*" : textValue, options);
             */
             //cmdlet.WriteVerbose(cmdlet, "inside the returnOnlyRightElements method 20");
-            System.Collections.Generic.List<AutomationElement> inputList = inputCollection.Cast<AutomationElement>().ToList();
+            
+            // 20131109
+            //System.Collections.Generic.List<AutomationElement> inputList = inputCollection.Cast<AutomationElement>().ToList();
+            System.Collections.Generic.List<IMySuperWrapper> inputList = inputCollection.Cast<IMySuperWrapper>().ToList();
             
             cmdlet.WriteVerbose(
                     cmdlet,
@@ -1037,8 +1110,24 @@ namespace UIAutomation
 
             try {
                 
+               // 20131109
+//                var query = inputList
+//                    .Where<AutomationElement>(
+//                        item => (wildcardName.IsMatch(item.Current.Name) &&
+//                                 wildcardAutomationId.IsMatch(item.Current.AutomationId) &&
+//                                 wildcardClass.IsMatch(item.Current.ClassName) &&
+//                                 // check whether a control has or hasn't ValuePattern
+//                                 (item.GetSupportedPatterns().Contains(ValuePattern.Pattern) ?
+//                                  cmdlet.testRealValueAndValueParameter(item, name, automationId, className, textValue, wildcardValue) :
+//                                  // check whether the -Value parameter has or hasn't value
+//                                  ("*" == textValue ? true : false)
+//                                 )
+//                                )
+//                       )
+//                    .ToArray<AutomationElement>();
+                
                 var query = inputList
-                    .Where<AutomationElement>(
+                    .Where<IMySuperWrapper>(
                         item => (wildcardName.IsMatch(item.Current.Name) &&
                                  wildcardAutomationId.IsMatch(item.Current.AutomationId) &&
                                  wildcardClass.IsMatch(item.Current.ClassName) &&
@@ -1050,7 +1139,7 @@ namespace UIAutomation
                                  )
                                 )
                        )
-                    .ToArray<AutomationElement>();
+                    .ToArray<IMySuperWrapper>();
                 
                 cmdlet.WriteVerbose(
                         cmdlet,
@@ -1075,7 +1164,9 @@ namespace UIAutomation
         }
         
         private bool testRealValueAndValueParameter(
-            AutomationElement item,
+            // 20131109
+            //AutomationElement item,
+            IMySuperWrapper item,
             string name,
             string automationId,
             string className,

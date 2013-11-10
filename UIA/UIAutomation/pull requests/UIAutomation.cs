@@ -1,17 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Management.Automation;
-using System.Windows.Automation;
-using System.Text.RegularExpressions;
-using System.Runtime.InteropServices;
-using System.Collections;
-using System.Diagnostics;
-using AVG.Automation.Cmdlets.NativeTypes;
-
+﻿
 namespace AVG.Automation.Cmdlets
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Management.Automation;
+    using System.Windows.Automation;
+    using System.Text.RegularExpressions;
+    using System.Runtime.InteropServices;
+    using System.Collections;
+    using System.Diagnostics;
+    using AVG.Automation.Cmdlets.NativeTypes;
+    using UIAutomation;
+
     /// <summary>
     /// Invokes selected WindowPattern on AutomationElement
     /// </summary>
@@ -22,7 +24,9 @@ namespace AVG.Automation.Cmdlets
         /// Parent object that is target for pattern
         /// </summary>
         [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true)]
-        public AutomationElement InputObject { get; set; }
+        // 20131109
+        //public AutomationElement InputObject { get; set; }
+        public IMySuperWrapper InputObject { get; set; }
 
         /// <summary>
         /// Pattern name to be invoked
@@ -84,7 +88,9 @@ namespace AVG.Automation.Cmdlets
         /// Window to be set to foreground
         /// </summary>
         [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true)]
-        public AutomationElement InputObject { get; set; }
+        // 20131109
+        //public AutomationElement InputObject { get; set; }
+        public IMySuperWrapper InputObject { get; set; }
 
         protected override void ProcessRecord()
         {
@@ -113,7 +119,9 @@ namespace AVG.Automation.Cmdlets
         /// DateTimePicker input object
         /// </summary>
         [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true)]
-        public AutomationElement InputObject { get; set; }
+        // 20131109
+        //public AutomationElement InputObject { get; set; }
+        public IMySuperWrapper InputObject { get; set; }
 
         /// <summary>
         /// DateTime to bet set

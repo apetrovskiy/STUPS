@@ -24,12 +24,16 @@ namespace UIAutomation.Commands
     {
         #region Parameters
         [Parameter(Mandatory = false)]
-        internal new AutomationElement InputObject { get; set; }
+        // 20131109
+        //internal new AutomationElement InputObject { get; set; }
+        internal new IMySuperWrapper InputObject { get; set; }
         #endregion Parameters
         
         protected override void BeginProcessing()
         {
-            this.WriteObject(this, AutomationElement.FocusedElement);
+            // 20131109
+            //this.WriteObject(this, AutomationElement.FocusedElement);
+            this.WriteObject(this, new MySuperWrapper(AutomationElement.FocusedElement));
         }
     }
 }

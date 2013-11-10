@@ -44,14 +44,19 @@ namespace UIAutomation.Commands
         protected override void ProcessRecord()
         {
             // 20120823
-            foreach (AutomationElement inputObject in this.InputObject) {
+            // 20131109
+            //foreach (AutomationElement inputObject in this.InputObject) {
+            foreach (IMySuperWrapper inputObject in this.InputObject) {
             
-            if (!this.CheckControl(this)) { // return;
+            if (!this.CheckAndPrepareInput(this)) { // return;
                 // move to a position that is relative to the desktop
                 System.Windows.Forms.Cursor.Position = 
                     new System.Drawing.Point(
-                        ((int)AutomationElement.RootElement.Current.BoundingRectangle.Left + this.X),
-                        ((int)AutomationElement.RootElement.Current.BoundingRectangle.Top + this.Y));
+                        // 20131109
+                        //((int)AutomationElement.RootElement.Current.BoundingRectangle.Left + this.X),
+                        //((int)AutomationElement.RootElement.Current.BoundingRectangle.Top + this.Y));
+                        ((int)MySuperWrapper.RootElement.Current.BoundingRectangle.Left + this.X),
+                        ((int)MySuperWrapper.RootElement.Current.BoundingRectangle.Top + this.Y));
                 this.WriteObject(this, true);
             }
             else {

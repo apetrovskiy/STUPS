@@ -28,8 +28,10 @@ namespace UIAutomation
             this.ControlType = string.Empty;
             this.AutomationId = string.Empty;
             this.Value = string.Empty;
-            this.InputObject = 
-                new System.Windows.Automation.AutomationElement[] { CurrentData.CurrentWindow };
+            this.InputObject =
+                // 20131109
+                //new System.Windows.Automation.AutomationElement[] { CurrentData.CurrentWindow };
+                new MySuperWrapper[] { (MySuperWrapper)CurrentData.CurrentWindow };
             
             // CacheRequest
             this.FromCache = Preferences.FromCache;

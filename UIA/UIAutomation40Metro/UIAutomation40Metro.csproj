@@ -156,14 +156,20 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\UIAutomation\Commands\Banner\AddUIABannerTextCommand.cs">
+      <Link>Commands\Banner\AddUIABannerTextCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Commands\Banner\HideUIABannerCommand.cs">
+      <Link>Commands\Banner\HideUIABannerCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Commands\Banner\ShowUIABannerCommand.cs">
+      <Link>Commands\Banner\ShowUIABannerCommand.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Commands\Cache\StartUIACacheRequestCommand.cs">
       <Link>Commands\Cache\StartUIACacheRequestCommand.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Commands\Cache\StopUIACacheRequestCommand.cs">
       <Link>Commands\Cache\StopUIACacheRequestCommand.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Commands\Common\AddUIABannerTextCommand.cs">
-      <Link>Commands\Common\AddUIABannerTextCommand.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Commands\Common\ClearUIAControlTextCommand.cs">
       <Link>Commands\Common\ClearUIAControlTextCommand.cs</Link>
@@ -173,9 +179,6 @@
     </Compile>
     <Compile Include="..\UIAutomation\Commands\Common\GetUIAFocusCommand.cs">
       <Link>Commands\Common\GetUIAFocusCommand.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Commands\Common\HideUIABannerCommand.cs">
-      <Link>Commands\Common\HideUIABannerCommand.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Commands\Common\HideUIACurrentHighlighterCommand.cs">
       <Link>Commands\Common\HideUIACurrentHighlighterCommand.cs</Link>
@@ -203,9 +206,6 @@
     </Compile>
     <Compile Include="..\UIAutomation\Commands\Common\SetUIAFocusCommand.cs">
       <Link>Commands\Common\SetUIAFocusCommand.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Commands\Common\ShowUIABannerCommand.cs">
-      <Link>Commands\Common\ShowUIABannerCommand.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Commands\Common\ShowUIADesktopCommand.cs">
       <Link>Commands\Common\ShowUIADesktopCommand.cs</Link>
@@ -749,6 +749,7 @@
   <ItemGroup>
     <Folder Include="Commands\ExecutionPlan" />
     <Folder Include="Commands\Container" />
+    <Folder Include="Commands\Banner" />
     <Folder Include="Commands\No" />
     <Folder Include="Commands\No" />
     <Folder Include="Commands\Win32" />

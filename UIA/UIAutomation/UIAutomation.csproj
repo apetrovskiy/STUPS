@@ -131,13 +131,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\Banner\AddUIABannerTextCommand.cs" />
+    <Compile Include="Commands\Banner\HideUIABannerCommand.cs" />
+    <Compile Include="Commands\Banner\ShowUIABannerCommand.cs" />
     <Compile Include="Commands\Cache\StartUIACacheRequestCommand.cs" />
     <Compile Include="Commands\Cache\StopUIACacheRequestCommand.cs" />
-    <Compile Include="Commands\Common\AddUIABannerTextCommand.cs" />
     <Compile Include="Commands\Common\ClearUIAControlTextCommand.cs" />
     <Compile Include="Commands\Common\GetUIAActiveWindowCommand.cs" />
     <Compile Include="Commands\Common\GetUIAFocusCommand.cs" />
-    <Compile Include="Commands\Common\HideUIABannerCommand.cs" />
     <Compile Include="Commands\Common\HideUIACurrentHighlighterCommand.cs" />
     <Compile Include="Commands\Common\InvokeUIAControlContextMenuCommand.cs" />
     <Compile Include="Commands\Common\SaveUIAScreenshotCommand.cs" />
@@ -147,7 +148,6 @@
     <Compile Include="Commands\Common\SetUIAControlKeysCommand.cs" />
     <Compile Include="Commands\Common\SetUIAControlTextCommand.cs" />
     <Compile Include="Commands\Common\SetUIAFocusCommand.cs" />
-    <Compile Include="Commands\Common\ShowUIABannerCommand.cs" />
     <Compile Include="Commands\Common\ShowUIADesktopCommand.cs" />
     <Compile Include="Commands\Container\NewUIAContainerCommand.cs" />
     <Compile Include="Commands\Convert\ConvertFromUIADataGridCommand.cs" />
@@ -395,6 +395,7 @@
   <ItemGroup>
     <Folder Include="Commands\ExecutionPlan" />
     <Folder Include="Commands\Container" />
+    <Folder Include="Commands\Banner" />
     <Folder Include="Commands\No" />
     <Folder Include="Commands\Win32" />
     <Folder Include="Commands\RDP" />

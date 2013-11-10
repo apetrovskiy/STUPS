@@ -123,7 +123,9 @@ namespace UIAutomation.Commands
         protected override void ProcessRecord()
         {
             // 20120824
-            foreach (AutomationElement inputObject in this.InputObject) {
+            // 20131109
+            //foreach (AutomationElement inputObject in this.InputObject) {
+            foreach (IMySuperWrapper inputObject in this.InputObject) {
             
                 GetAutomationElementsChildren(inputObject, true);
             
@@ -144,7 +146,10 @@ namespace UIAutomation.Commands
         protected override void ProcessRecord()
         {
             // 20120824
-            foreach (AutomationElement inputObject in this.InputObject) {
+            // 20131109
+            //foreach (AutomationElement inputObject in this.InputObject) {
+            foreach (IMySuperWrapper inputObject in this.InputObject) {
+                
                 GetAutomationElementsChildren(inputObject, false);
             } // 20120824
             

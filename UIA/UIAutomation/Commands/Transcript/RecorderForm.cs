@@ -38,8 +38,10 @@ namespace UIAutomation.Commands
             // UIAHelper.ProcessingTranscript(cmdlet);
             Global.GTranscript = true;
             int counter = 0;
-            cmdlet.rootElement = 
-                System.Windows.Automation.AutomationElement.RootElement;
+            cmdlet.oddRootElement =
+                // 20131109
+                //System.Windows.Automation.AutomationElement.RootElement;
+                MySuperWrapper.RootElement;
             cmdlet.StartDate =
                 System.DateTime.Now;
             do{

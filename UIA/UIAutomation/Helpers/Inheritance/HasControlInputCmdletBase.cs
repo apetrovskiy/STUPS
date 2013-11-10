@@ -7,8 +7,6 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-using System.Collections.Generic;
-
 namespace UIAutomation
 {
     using System;
@@ -17,6 +15,8 @@ namespace UIAutomation
     using System.Runtime.InteropServices;
     
     using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
 
     #region declarations
         [StructLayout(LayoutKind.Sequential)]
@@ -92,7 +92,9 @@ namespace UIAutomation
         [Parameter(Mandatory = false, 
             ValueFromPipeline = true,
             HelpMessage = "This is usually the output from Get-UIAControl" )] 
-        public System.Windows.Automation.AutomationElement[] InputObject { get; set; }
+        //public System.Windows.Automation.AutomationElement[] InputObject { get; set; }
+        //public ICollection InputObject { get; set; }
+        public IMySuperWrapper[] InputObject { get; set; }
         [Parameter(Mandatory = false)]
         public virtual SwitchParameter PassThru { get; set; }
         
@@ -116,7 +118,9 @@ namespace UIAutomation
         #endregion Properties
         
         protected bool GetColorProbe(HasControlInputCmdletBase cmdlet,
-                                     AutomationElement element)
+                                     // 20131109
+                                     //AutomationElement element)
+                                     IMySuperWrapper element)
         {
             bool result = false;
             
@@ -128,7 +132,9 @@ namespace UIAutomation
         }
         
         protected bool ClickControl(HasControlInputCmdletBase cmdlet,
-                                    AutomationElement element,
+                                    // 20131109
+                                    //AutomationElement element,
+                                    IMySuperWrapper element,
                                     bool RightClick,
                                     bool MidClick,
                                     bool Alt,
@@ -148,12 +154,18 @@ namespace UIAutomation
                 RelativeY = Preferences.ClickOnControlByCoordY;
             }
             
-            AutomationElement whereToClick = 
+            // 20131109
+            //AutomationElement whereToClick = 
+            //    element;
+            IMySuperWrapper whereToClick = 
                 element;
             WriteVerbose(cmdlet, 
                          "where the click will be performed: " +
                          element.Current.Name);
-            AutomationElement whereTheHandle = 
+            // 20131109
+            //AutomationElement whereTheHandle = 
+            //    whereToClick;
+            IMySuperWrapper whereTheHandle = 
                 whereToClick;
             
             if (whereToClick.Current.NativeWindowHandle == 0) {
@@ -404,13 +416,19 @@ namespace UIAutomation
             return result;
         }
         
-        internal bool CheckControl(HasControlInputCmdletBase cmdlet)
+        // 20131109
+        //internal bool CheckControl(HasControlInputCmdletBase cmdlet)
+        internal bool CheckAndPrepareInput(HasControlInputCmdletBase cmdlet)
         {
             bool result = false;
             
+            // 20131109
+            //ICollection newInputCollection =
+            //    new MySuperCollection
+            
             if (null == cmdlet.InputObject) {
                 
-                this.WriteVerbose(cmdlet, "[checking the control] Control(s) are null");
+                this.WriteVerbose(cmdlet, "[checking the input] Control(s) are null");
                 cmdlet.WriteError(
                     cmdlet,
                     "The pipeline input is null",
@@ -419,11 +437,13 @@ namespace UIAutomation
                     true);
             }
             
-            foreach (AutomationElement inputObject in cmdlet.InputObject) {
+            // 20131109
+            //foreach (AutomationElement inputObject in cmdlet.InputObject) {
+            foreach (var inputObject in cmdlet.InputObject) {
                 
                 if (null == inputObject) {
                     
-                    this.WriteVerbose(cmdlet, "[checking the control] Control is null");
+                    this.WriteVerbose(cmdlet, "[checking the input] Control is null");
                     if (this.PassThru) {
                         this.WriteObject(this, inputObject);
                     } else {
@@ -433,25 +453,48 @@ namespace UIAutomation
                     
                     result = false;
                     
+                    // 20131109
+                    // experimental
+//                    cmdlet.WriteError(
+//                        cmdlet,
+//                        "The pipeline input is null",
+//                        "InputIsNull",
+//                        ErrorCategory.InvalidArgument,
+//                        true);
                     cmdlet.WriteError(
                         cmdlet,
-                        "The pipeline input is null",
-                        "InputIsNull",
+                        "A part of the pipeline input is null",
+                        "PartOfInputIsNull",
                         ErrorCategory.InvalidArgument,
-                        true);
+                        false);
                 }
-                System.Windows.Automation.AutomationElement _control = null;
+                
+                // 20131109
+                //System.Windows.Automation.AutomationElement _control = null;
+                //IMySuperWrapper _controlAdapter = null;
+                var _controlAdapter = inputObject;
+                
                 try {
                     
-                    _control = 
-                        (AutomationElement)inputObject;
+                    // 20131109
+                    //_control = 
+                    //    (AutomationElement)inputObject;
                     
-                    this.WriteVerbose(cmdlet,
-                                 "[checking the control] the input control is of the " + 
-                                 inputObject.Current.ControlType.ProgrammaticName +
-                                 " type");
+                    // 20131109
+//                    this.WriteVerbose(
+//                        cmdlet,
+//                        "[checking the input] the input control is of the " +
+//                        inputObject.Current.ControlType.ProgrammaticName +
+//                        " type");
                     
-                    cmdlet._window = _control;
+                    // 20131109
+                    //cmdlet._window = _control;
+                    if (inputObject is IMySuperWrapper) {
+                        cmdlet._window = (IMySuperWrapper)_controlAdapter;
+                    }
+//                    if (inputObject is AutomationElement) {
+//                        cmdlet._window = new MySuperWrapper((AutomationElement)inputObject);
+//                    }
                     
                     result = true;
                     // there's no need to output the True value
@@ -459,11 +502,13 @@ namespace UIAutomation
                     // (some part of AutomationElement, as an example)
                 } catch (Exception eControlTypeException) {
                     
-                    this.WriteDebug(cmdlet, "[checking the control] Control is not an AutomationElement");
-                    this.WriteDebug(cmdlet, "[checking the control] " + eControlTypeException.Message);
+                    this.WriteDebug(cmdlet, "[checking the input] Control is not an AutomationElement");
+                    this.WriteDebug(cmdlet, "[checking the input] " + eControlTypeException.Message);
                     if (this.PassThru) {
                         
-                        WriteObject(this, _control);
+                        // 20131109
+                        //WriteObject(this, _control);
+                        WriteObject(this, _controlAdapter);
                     } else {
                         
                         result = false;
@@ -480,7 +525,9 @@ namespace UIAutomation
         
         #region subscribe to events
         protected internal void SubscribeToEvents(HasControlInputCmdletBase cmdlet,
-                                                  AutomationElement inputObject,
+                                                  // 20131109
+                                                  //AutomationElement inputObject,
+                                                  IMySuperWrapper inputObject,
                                                   AutomationEvent eventType,
                                                   AutomationProperty prop)
         {
@@ -513,7 +560,7 @@ namespace UIAutomation
                         this.WriteVerbose(cmdlet, "subscribing to the InvokedEvent handler");
                         Automation.AddAutomationEventHandler(
                             InvokePattern.InvokedEvent,
-                            inputObject, 
+                            inputObject.SourceElement, 
                             TreeScope.Element, // TreeScope.Subtree, // TreeScope.Element,
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
                         UIAHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
@@ -523,7 +570,7 @@ namespace UIAutomation
                         this.WriteVerbose(cmdlet, "subscribing to the TextChangedEvent handler");
                         Automation.AddAutomationEventHandler(
                             TextPattern.TextChangedEvent,
-                            inputObject, 
+                            inputObject.SourceElement, 
                             TreeScope.Element,
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
                         UIAHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
@@ -533,7 +580,7 @@ namespace UIAutomation
                         this.WriteVerbose(cmdlet, "subscribing to the TextSelectionChangedEvent handler");
                         Automation.AddAutomationEventHandler(
                             TextPattern.TextSelectionChangedEvent,
-                            inputObject, 
+                            inputObject.SourceElement, 
                             TreeScope.Element,
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
                         UIAHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
@@ -543,7 +590,7 @@ namespace UIAutomation
                         this.WriteVerbose(cmdlet, "subscribing to the WindowOpenedEvent handler");
                         Automation.AddAutomationEventHandler(
                             WindowPattern.WindowOpenedEvent,
-                            inputObject, 
+                            inputObject.SourceElement, 
                             TreeScope.Subtree,
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
                         UIAHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
@@ -553,7 +600,7 @@ namespace UIAutomation
                         if (prop != null) {
                             this.WriteVerbose(cmdlet, "subscribing to the AutomationPropertyChangedEvent handler");
                             Automation.AddAutomationPropertyChangedEventHandler(
-                                inputObject, 
+                                inputObject.SourceElement, 
                                 TreeScope.Subtree,
                                 uiaPropertyChangedEventHandler = 
                                     new AutomationPropertyChangedEventHandler(cmdlet.AutomationPropertyChangedEventHandler),
@@ -565,7 +612,7 @@ namespace UIAutomation
                     case "AutomationElementIdentifiers.StructureChangedEvent":
                         this.WriteVerbose(cmdlet, "subscribing to the StructureChangedEvent handler");
                         Automation.AddStructureChangedEventHandler(
-                            inputObject,
+                            inputObject.SourceElement,
                             TreeScope.Subtree,
                             uiaStructureChangedEventHandler = 
                             new StructureChangedEventHandler(cmdlet.StructureChangedEventHandler));
@@ -576,7 +623,7 @@ namespace UIAutomation
                         this.WriteVerbose(cmdlet, "subscribing to the WindowClosedEvent handler");
                         Automation.AddAutomationEventHandler(
                             WindowPattern.WindowClosedEvent,
-                            inputObject, 
+                            inputObject.SourceElement, 
                             TreeScope.Subtree,
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
                         UIAHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
@@ -586,7 +633,7 @@ namespace UIAutomation
                         this.WriteVerbose(cmdlet, "subscribing to the MenuClosedEvent handler");
                         Automation.AddAutomationEventHandler(
                             AutomationElement.MenuClosedEvent,
-                            inputObject, 
+                            inputObject.SourceElement, 
                             TreeScope.Subtree,
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
                         UIAHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
@@ -596,7 +643,7 @@ namespace UIAutomation
                         this.WriteVerbose(cmdlet, "subscribing to the MenuOpenedEvent handler");
                         Automation.AddAutomationEventHandler(
                             AutomationElement.MenuOpenedEvent,
-                            inputObject, 
+                            inputObject.SourceElement, 
                             TreeScope.Subtree,
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
                         UIAHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
@@ -606,7 +653,7 @@ namespace UIAutomation
                         this.WriteVerbose(cmdlet, "subscribing to the ToolTipClosedEvent handler");
                         Automation.AddAutomationEventHandler(
                             AutomationElement.ToolTipClosedEvent,
-                            inputObject, 
+                            inputObject.SourceElement, 
                             TreeScope.Subtree,
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
                         UIAHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
@@ -616,7 +663,7 @@ namespace UIAutomation
                         this.WriteVerbose(cmdlet, "subscribing to the ToolTipOpenedEvent handler");
                         Automation.AddAutomationEventHandler(
                             AutomationElement.ToolTipOpenedEvent,
-                            inputObject, 
+                            inputObject.SourceElement, 
                             TreeScope.Subtree,
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
                         UIAHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
@@ -715,18 +762,23 @@ try {
         #endregion OnUIWindowClosedEvent
         
         #region Event handling for recording
-        protected internal void OnUIRecordingAutomationEvent(object src, 
-                                                             AutomationEventArgs e)
+        protected internal void OnUIRecordingAutomationEvent(
+            object src,
+            AutomationEventArgs e)
         {
             try { // experimental
-        
-            AutomationElement sourceElement;
+            
+            // 20131109
+            //AutomationElement sourceElement;
+            IMySuperWrapper sourceElement;
             string elementTitle = String.Empty;
             string elementType = String.Empty;
             AutomationEvent eventId = null;
             
             try {
-                sourceElement = src as AutomationElement;
+                // 20131109
+                //sourceElement = src as AutomationElement;
+                sourceElement = src as IMySuperWrapper;
                 try { elementTitle = sourceElement.Cached.Name; } catch { }
                 try {
                     elementType =
@@ -868,7 +920,9 @@ try {
                 WriteDebug(this, eUnknown.Message);
             } // experimental
             try {
+                // 20131109
                 WriteVerbose(this, e.EventId + "on " + (src as AutomationElement) + " fired");
+                WriteVerbose(this, e.EventId + "on " + (src as IMySuperWrapper) + " fired");
             } catch { }
         }
         #endregion Event handling for recording
@@ -877,10 +931,16 @@ try {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "check")]
         protected bool checkNotNull(object objectToTest, AutomationEventArgs e)
         {
-            AutomationElement sourceElement;
+            // 20131109
+            //AutomationElement sourceElement;
+            IMySuperWrapper sourceElement;
             try {
-                sourceElement = objectToTest as AutomationElement;
-                this.EventSource = sourceElement;
+                // 20131109
+                //sourceElement = objectToTest as AutomationElement;
+                sourceElement = objectToTest as IMySuperWrapper;
+                // 20131109
+                //this.EventSource = sourceElement;
+                this.EventSource = sourceElement.SourceElement;
                 this.EventArgs = e;
             } 
             catch { //(ElementNotAvailableException eNotAvailable) {
@@ -892,7 +952,10 @@ try {
 
         protected internal bool TestControlByPropertiesFromHashtable(
             // 20130315
-            AutomationElement[] inputElements,
+            // 20131109
+            //AutomationElement[] inputElements,
+            //ICollection inputElements,
+            IMySuperWrapper[] inputElements,
             IEnumerable<Hashtable> SearchCriteria,
             //System.Collections.Hashtable[] SearchCriteria,
             int timeout)
@@ -915,13 +978,22 @@ try {
                 
                 cmdlet.Timeout = timeout;
                 
-                if (null != inputElements && null != (inputElements as AutomationElement[]) && 0 < inputElements.Length) {
-                    cmdlet.InputObject = inputElements;
+                //if (null != inputElements && null != (inputElements as AutomationElement[]) && 0 < inputElements.Length) {
+                // 20131109
+                //if (null != inputElements && null != (inputElements as AutomationElement[]) && 0 < inputElements.Count) {
+                if (null != inputElements && null != (inputElements as IMySuperWrapper[]) && 0 < inputElements.Count()) {
+                    
+                    // 20131109
+                    //cmdlet.InputObject = inputElements;
+                    cmdlet.InputObject = inputElements; //.ConvertCmdletInputToCollectionAdapter();
                 } else {
                     if (UIAutomation.CurrentData.CurrentWindow == null) {
                         return result;
                     }
-                    cmdlet.InputObject = new AutomationElement[]{ UIAutomation.CurrentData.CurrentWindow };
+                    
+                    // 20131109
+                    //cmdlet.InputObject = new AutomationElement[]{ UIAutomation.CurrentData.CurrentWindow };
+                    cmdlet.InputObject = new MySuperWrapper[]{ (MySuperWrapper)UIAutomation.CurrentData.CurrentWindow };
                 }
                 
                 WriteVerbose(this, "getting the control");
@@ -933,8 +1005,10 @@ try {
                     WriteVerbose(this, "couldn't get the control(s)");
                     return result;
                 } else {
-
-                    foreach (AutomationElement elementToWorkWith in elementsToWorkWith) {
+                    
+                    // 20131109
+                    //foreach (AutomationElement elementToWorkWith in elementsToWorkWith) {
+                    foreach (IMySuperWrapper elementToWorkWith in elementsToWorkWith) {
                         
                         WriteVerbose(this, "found the control:");
                         try {WriteVerbose(this, "Name = " + elementToWorkWith.Current.Name); }catch {}

@@ -19,10 +19,6 @@ namespace UIAutomationTest.Commands.Convert
     [TestFixture] // [TestFixture(Description="ConvertFrom-UIADataGridCommand test")]
     public class ConvertFromUIADataGridCommandTestFixture
     {
-        public ConvertFromUIADataGridCommandTestFixture()
-        {
-        }
-        
         [SetUp]
         public void PrepareRunspace()
         {
@@ -35,7 +31,7 @@ namespace UIAutomationTest.Commands.Convert
         [Test] //[Test(Description="InputObject ProcessRecord test Null via pipeline")]
         [Category("Slow")]
         [Category("NoForms")]
-        public void TestPipelineInput()
+        public void ConvertFromUIADataGrid_TestPipelineInput()
         {
             string codeSnippet = 
                 @"if ( ($null | ConvertFrom-UIADataGrid) ) { 1; }else{ 0; }";
@@ -47,7 +43,7 @@ namespace UIAutomationTest.Commands.Convert
         [Test] //[Test(Description="ProcessRecord test Null via parameter")]
         [Category("Slow")]
         [Category("NoForms")]
-        public void TestParameterInputNull()
+        public void ConvertFromUIADataGrid_TestParameterInputNull()
         {
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateIsNull(
 //                @"if ((ConvertFrom-UIADataGrid -InputObject $null)) { 1; }else{ 0; }");
@@ -65,7 +61,7 @@ namespace UIAutomationTest.Commands.Convert
         [Test] //[Test(Description="ProcessRecord test Is Not AutomationElement")]
         [Category("Slow")]
         [Category("NoForms")]
-        public void TestParameterInputOtherType()
+        public void ConvertFromUIADataGrid_TestParameterInputOtherType()
         {
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateIsNull(
 //                @"if ((ConvertFrom-UIADataGrid -InputObject (New-Object System.Windows.forms.Label))) { 1; }else{ 0; }");
@@ -73,7 +69,8 @@ namespace UIAutomationTest.Commands.Convert
             CmdletUnitTest.TestRunspace.RunAndGetTheException(
                 @"if ((ConvertFrom-UIADataGrid -InputObject (New-Object System.Windows.forms.Label))) { 1; }else{ 0; }",
                 "ParameterBindingException",
-                @"Cannot bind parameter 'InputObject'. Cannot convert the ""System.Windows.Forms.Label, Text: "" value of type ""System.Windows.Forms.Label"" to type ""System.Windows.Automation.AutomationElement"".");
+                //@"Cannot bind parameter 'InputObject'. Cannot convert the ""System.Windows.Forms.Label, Text: "" value of type ""System.Windows.Forms.Label"" to type ""System.Windows.Automation.AutomationElement"".");
+                @"Cannot bind parameter 'InputObject'. Cannot convert the ""System.Windows.Forms.Label, Text: "" value of type ""System.Windows.Forms.Label"" to type ""UIAutomation.IMySuperWrapper"".");
             
 //            UIAutomationTest.Commands.Convert.ConvertFromUIADataGridCommandTestFixture.TestParameterInputOtherType:
 //System.Management.Automation.ParameterBindingException : Cannot bind parameter 'InputObject'. Cannot convert the "System.Windows.Forms.Label, Text: " value of type "System.Windows.Forms.Label" to type "System.Windows.Automation.AutomationElement".

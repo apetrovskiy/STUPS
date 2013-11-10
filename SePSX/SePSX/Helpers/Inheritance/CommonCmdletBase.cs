@@ -817,7 +817,9 @@ Console.WriteLine("WriteSingleObject 00008");
                 
                 UIAutomation.UIAHelper.GetScreenshotOfAutomationElement(
                     (new HasControlInputCmdletBase()),
-                    AutomationElement.RootElement,
+                    // 20131109
+                    //AutomationElement.RootElement,
+                    MySuperWrapper.RootElement,
                     CmdletName(cmdlet),
                     true,
                     0,

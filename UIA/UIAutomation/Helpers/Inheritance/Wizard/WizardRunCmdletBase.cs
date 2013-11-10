@@ -91,7 +91,9 @@ namespace UIAutomation
 
             while (cmdlet.RunWizardGetWindowScriptBlocks(cmdlet, wizard, null)) {
                 
-                if (null != (CurrentData.CurrentWindow as AutomationElement)) {
+                // 20131109
+                //if (null != (CurrentData.CurrentWindow as AutomationElement)) {
+                if (null != (CurrentData.CurrentWindow as IMySuperWrapper)) {
                     
                     cmdlet.WriteVerbose(
                         cmdlet,

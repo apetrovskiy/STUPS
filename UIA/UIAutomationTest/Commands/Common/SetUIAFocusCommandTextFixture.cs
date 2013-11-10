@@ -19,10 +19,6 @@ namespace UIAutomationTest.Commands.Common
     [TestFixture] // [TestFixture(Description="Set-UIAFocusCommand test")]
     public class SetUIAFocusCommandTestFixture
     {
-        public SetUIAFocusCommandTestFixture()
-        {
-        }
-        
         [SetUp]
         public void PrepareRunspace()
         {
@@ -32,7 +28,7 @@ namespace UIAutomationTest.Commands.Common
         [Test] //[Test(Description="InputObject ProcessRecord test Null via pipeline")]
         [Category("Slow")]
         [Category("NoForms")]
-        public void TestPipelineInput()
+        public void SetUIAFocus_TestPipelineInput()
         {
             CmdletUnitTest.TestRunspace.RunAndEvaluateIsTrue(
                 @"if ( ($null | Set-UIAFocus) ) { 1; } else { 0; }",
@@ -42,7 +38,7 @@ namespace UIAutomationTest.Commands.Common
         [Test] //[Test(Description="ProcessRecord test Null via parameter")]
         [Category("Slow")]
         [Category("NoForms")]
-        public void TestParameterInputNull()
+        public void SetUIAFocus_TestParameterInputNull()
         {
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateIsNull(
 //                @"if ((Set-UIAFocus -InputObject $null)) { 1; } else { 0; }");
@@ -60,7 +56,7 @@ namespace UIAutomationTest.Commands.Common
         [Test] //[Test(Description="ProcessRecord test Is Not AutomationElement")]
         [Category("Slow")]
         [Category("NoForms")]
-        public void TestParameterInputOtherType()
+        public void SetUIAFocus_TestParameterInputOtherType()
         {
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateIsNull(
 //                @"if ((Set-UIAFocus -InputObject (New-Object System.Windows.forms.Label))) { 1; } else { 0; }");
@@ -68,7 +64,8 @@ namespace UIAutomationTest.Commands.Common
             CmdletUnitTest.TestRunspace.RunAndGetTheException(
                 @"if ((Set-UIAFocus -InputObject (New-Object System.Windows.forms.Label))) { 1; } else { 0; }",
                 "ParameterBindingException", 
-                @"Cannot bind parameter 'InputObject'. Cannot convert the ""System.Windows.Forms.Label, Text: "" value of type ""System.Windows.Forms.Label"" to type ""System.Windows.Automation.AutomationElement"".");
+                //@"Cannot bind parameter 'InputObject'. Cannot convert the ""System.Windows.Forms.Label, Text: "" value of type ""System.Windows.Forms.Label"" to type ""System.Windows.Automation.AutomationElement"".");
+                @"Cannot bind parameter 'InputObject'. Cannot convert the ""System.Windows.Forms.Label, Text: "" value of type ""System.Windows.Forms.Label"" to type ""UIAutomation.IMySuperWrapper"".");
             
 //            UIAutomationTest.Commands.Common.SetUIAFocusCommandTestFixture.TestParameterInputOtherType:
 //System.Management.Automation.ParameterBindingException : Cannot bind parameter 'InputObject'. Cannot convert the "System.Windows.Forms.Label, Text: " value of type "System.Windows.Forms.Label" to type "System.Windows.Automation.AutomationElement".

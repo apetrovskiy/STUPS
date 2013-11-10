@@ -14,6 +14,7 @@ namespace UIAutomation.Commands
     // test it
     //using System.Runtime.InteropServices;
     using System.Windows.Automation;
+    using System.Linq;
 
     /// <summary>
     /// Description of ConvertFromUIADataGridCommand.
@@ -42,13 +43,17 @@ namespace UIAutomation.Commands
         /// </summary>
         protected override void ProcessRecord()
         {
-            if (!this.CheckControl(this)) { return; }
+            if (!this.CheckAndPrepareInput(this)) { return; }
             
             // 20120823
-            foreach (AutomationElement inputObject in this.InputObject) {
+            // 20131109
+            //foreach (AutomationElement inputObject in this.InputObject) {
+            foreach (IMySuperWrapper inputObject in this.InputObject) {
 
             string strData = String.Empty;
-            System.Windows.Automation.AutomationElement _control = 
+            // 20131109
+            //System.Windows.Automation.AutomationElement _control = 
+            IMySuperWrapper _control = 
                 // 20120823
                 //this.InputObject;
                 inputObject;
@@ -74,7 +79,9 @@ namespace UIAutomation.Commands
                     
                     // temporary!!!
                     // Selection
-                    System.Windows.Automation.AutomationElement[] selectedItems = null;
+                    // 20131109
+                    //System.Windows.Automation.AutomationElement[] selectedItems = null;
+                    IMySuperWrapper[] selectedItems = null;
                     if (this.SelectedOnly) {
                         // if there's a selection, get items in the selection
                         try
@@ -91,8 +98,10 @@ namespace UIAutomation.Commands
                                     System.Windows.Automation.SelectionPattern.Pattern)
                                     as System.Windows.Automation.SelectionPattern;
                             */
-                            selectedItems = 
-                                selPattern.Current.GetSelection();
+                            selectedItems =
+                                // 20131109
+                                //selPattern.Current.GetSelection();
+                                new MySuperCollection(selPattern.Current.GetSelection()).Cast<IMySuperWrapper>().ToArray();
                         }
                         catch (Exception eSelection) {
                             this.WriteDebug(this, eSelection.Message);

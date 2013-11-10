@@ -55,7 +55,9 @@ namespace UIAutomation
         public System.Collections.ArrayList RecordingPatterns = 
             new System.Collections.ArrayList();
         
-        protected internal AutomationElement thePreviouslyUsedElement = null;
+        // 20131109
+        //protected internal AutomationElement thePreviouslyUsedElement = null;
+        protected internal IMySuperWrapper thePreviouslyUsedElement = null;
         
         internal new void StopProcessing()
         {

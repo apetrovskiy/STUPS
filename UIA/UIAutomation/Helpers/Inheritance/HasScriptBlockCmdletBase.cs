@@ -44,7 +44,9 @@ namespace UIAutomation
         public string Banner { get; set; }
         #endregion Parameters
         
-        protected internal AutomationElement ElementToSubscribe;
+        // 20131109
+        //protected internal AutomationElement ElementToSubscribe;
+        protected internal IMySuperWrapper ElementToSubscribe;
         // list of all subscribed events
         protected internal System.Collections.ArrayList subscribedEvents = 
             new System.Collections.ArrayList();
@@ -57,9 +59,13 @@ namespace UIAutomation
         #endregion for script recording
         
         #region get active window
-        protected AutomationElement GetActiveWindow()
+        // 20131109
+        //protected AutomationElement GetActiveWindow()
+        protected IMySuperWrapper GetActiveWindow()
         {
-            AutomationElement result = null;
+            // 20131109
+            //AutomationElement result = null;
+            IMySuperWrapper result = null;
             try {
                 IntPtr _hWnd = 
                     NativeMethods.GetForegroundWindow();
@@ -67,8 +73,11 @@ namespace UIAutomation
                              "the handle to the active window is " + 
                              _hWnd.ToInt32().ToString());
                 if (_hWnd == IntPtr.Zero) return result;
-                result = 
-                    AutomationElement.FromHandle(_hWnd);
+                // 20131109
+                //result = 
+                //    AutomationElement.FromHandle(_hWnd);
+                result =
+                    new MySuperWrapper(AutomationElement.FromHandle(_hWnd));
                 WriteVerbose(this, 
                              "the active window element is " + 
                              result.Current.Name);

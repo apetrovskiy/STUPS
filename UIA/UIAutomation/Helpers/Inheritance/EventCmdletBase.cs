@@ -23,8 +23,10 @@ namespace UIAutomation
         #region Constructor
         public EventCmdletBase()
         {
-            this.InputObject = 
-                new System.Windows.Automation.AutomationElement[] { CurrentData.CurrentWindow };
+            this.InputObject =
+                // 20131109
+                //new System.Windows.Automation.AutomationElement[] { CurrentData.CurrentWindow };
+                new MySuperWrapper[] { (MySuperWrapper)CurrentData.CurrentWindow };
             this.AutomationEventType = null;
             this.AutomationProperty = null;
             this.AutomationEventHandler = null;
@@ -52,7 +54,9 @@ namespace UIAutomation
         {
             if (this.InputObject == null) return;
             
-            foreach (AutomationElement inputObject in this.InputObject) {
+            // 20131109
+            //foreach (AutomationElement inputObject in this.InputObject) {
+            foreach (IMySuperWrapper inputObject in this.InputObject) {
 
             SubscribeToEvents(this,
                               inputObject,

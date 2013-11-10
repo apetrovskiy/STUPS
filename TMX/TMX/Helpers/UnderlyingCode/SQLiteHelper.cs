@@ -195,7 +195,7 @@ namespace TMX
                             TestData.CurrentResultsDB = database;
 
                         }
-                        cmdlet.WriteVerbose(cmdlet, "adding the database to the colleciton");
+                        cmdlet.WriteVerbose(cmdlet, "adding the database to the collection");
 
                         SQLiteData.Databases.Add(database);
 

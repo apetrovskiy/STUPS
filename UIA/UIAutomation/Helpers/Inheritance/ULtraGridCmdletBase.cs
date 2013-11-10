@@ -7,13 +7,13 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-using System.Linq;
-
 namespace UIAutomation
 {
     using System;
     using System.Management.Automation;
     using System.Windows.Automation;
+    
+    using System.Linq;
 
     /// <summary>
     /// Description of ULtraGridCmdletBase.
@@ -36,32 +36,54 @@ namespace UIAutomation
             ifUltraGridOperations operation)
         {
             
-            // colleciton of the selected rows
-            System.Collections.Generic.List<AutomationElement> selectedItems = 
-                new System.Collections.Generic.List<AutomationElement>();
+            // collection of the selected rows
+            // 20131109
+            //System.Collections.Generic.List<AutomationElement> selectedItems = 
+            //    new System.Collections.Generic.List<AutomationElement>();
+            System.Collections.Generic.List<IMySuperWrapper> selectedItems = 
+                new System.Collections.Generic.List<IMySuperWrapper>();
             
             try {
                 
-                foreach (AutomationElementCollection tableItems in this.InputObject.Select(inputObject => inputObject.FindAll(
-                    TreeScope.Children,
-                    new PropertyCondition(
-                        AutomationElement.ControlTypeProperty,
-                        ControlType.Custom))))
-                {
+                // 20131109
+                //foreach (AutomationElement inputObject in this.InputObject) {
+                foreach (IMySuperWrapper inputObject in this.InputObject) {
+                    
+                    // 20131109
+                    //AutomationElementCollection tableItems = 
+                    IMySuperCollection tableItems =
+                        inputObject.FindAll(
+                            TreeScope.Children,
+                                     new PropertyCondition(
+                                         AutomationElement.ControlTypeProperty,
+                                         ControlType.Custom));
+                
+//                foreach (AutomationElementCollection tableItems in ((IAutomationElementCollection)this.InputObject).Select(inputObject => inputObject.FindAll(
+//                    TreeScope.Children,
+//                    new PropertyCondition(
+//                        AutomationElement.ControlTypeProperty,
+//                        ControlType.Custom))))
+//                {
                     if (tableItems.Count > 0) {
                         int currentRowNumber = 0;
                         bool notTheLastChild = true;
-                        foreach (AutomationElement child in tableItems) {
+                        // 20131109
+                        //foreach (AutomationElement child in tableItems) {
+                        foreach (IMySuperWrapper child in tableItems) {
                             currentRowNumber++;
                             if (currentRowNumber == tableItems.Count) notTheLastChild = false;
-                            AutomationElementCollection row = 
+                            // 20131109
+                            //AutomationElementCollection row = 
+                            IMySuperCollection row =
                                 child.FindAll(TreeScope.Children,
                                     new PropertyCondition(
                                         AutomationElement.ControlTypeProperty,
                                         ControlType.Custom));
                             bool alreadyFoundInTheRow = false;
                             int counter = 0;
-                            foreach (AutomationElement grandchild in row) {
+                            // 20131109
+                            //foreach (AutomationElement grandchild in row) {
+                            foreach (IMySuperWrapper grandchild in row) {
                             
                                 string strValue = String.Empty;
                                 ValuePattern valPattern = null;

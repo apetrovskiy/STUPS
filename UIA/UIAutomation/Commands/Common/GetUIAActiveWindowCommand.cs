@@ -24,7 +24,9 @@ namespace UIAutomation.Commands
     {
         protected override void BeginProcessing()
         {
-            AutomationElement element = 
+            // 20131109
+            //AutomationElement element = 
+            IMySuperWrapper element =
                 GetActiveWindow();
             //UIAutomation.CurrentData.CurrentWindow = element;
             CurrentData.CurrentWindow = element;

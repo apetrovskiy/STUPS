@@ -29,9 +29,11 @@ namespace UIAutomation
         /// </summary>
         protected override void ProcessRecord()
         {
-            if (!this.CheckControl(this)) { return; }
+            if (!this.CheckAndPrepareInput(this)) { return; }
             
-            foreach (AutomationElement inputObject in InputObject) {
+            // 20131109
+            //foreach (AutomationElement inputObject in InputObject) {
+            foreach (IMySuperWrapper inputObject in InputObject) {
                 
                 if (this.GetType().Name == "ReadUIAControlAutomationIdCommand") {
                     this.WriteObject(this, inputObject.Current.AutomationId);

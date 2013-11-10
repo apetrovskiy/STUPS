@@ -23,8 +23,8 @@ namespace UIAutomation
     public static class ExtensionsMethods
     {
         //public static void GetByWildcard(this IAutomationElementCollection collection, string wildcard)
-        //public static void GetByWildcard(this AutomationElementCollectionAdapter collection, string wildcard)
-        public static IEnumerable GetByWildcard(this AutomationElementCollectionAdapter collection, string wildcard)
+        //public static void GetByWildcard(this MySuperCollection collection, string wildcard)
+        public static IEnumerable GetByWildcard(this MySuperCollection collection, string wildcard)
         {
             WildcardOptions options;
             //if (caseSensitive) {
@@ -36,7 +36,9 @@ namespace UIAutomation
                     WildcardOptions.Compiled;
             //}
             
-            System.Collections.Generic.List<AutomationElement> list = collection.Cast<AutomationElement>().ToList();
+            // 20131109
+            //System.Collections.Generic.List<AutomationElement> list = collection.Cast<AutomationElement>().ToList();
+            System.Collections.Generic.List<IMySuperWrapper> list = collection.Cast<IMySuperWrapper>().ToList();
 
             /*
             foreach (AutomationElement element in collection) {
@@ -61,20 +63,22 @@ namespace UIAutomation
             
             foreach (var element in query2) {
                 
-                Console.WriteLine("//////////////////////////////////////////");
-                Console.WriteLine(element.Current.Name);
-                Console.WriteLine(element.Current.AutomationId);
+                //Console.WriteLine("//////////////////////////////////////////");
+                //Console.WriteLine(element.Current.Name);
+                //Console.WriteLine(element.Current.AutomationId);
             }
             
             return query2;
         }
         
         // 20131108
-        public static IAutomationElementCollection ConvertCmdletInputToCollectionAdapter(this AutomationElement[] inputArray)
+        // 20131109
+        //public static IAutomationElementCollection ConvertCmdletInputToCollectionAdapter(this AutomationElement[] inputArray)
+        public static IMySuperCollection ConvertCmdletInputToCollectionAdapter(this ICollection inputArray)
         {
-            IAutomationElementCollection resultCollection =
-                new AutomationElementCollectionAdapter(inputArray);
-                //new AutomationElementCollectionAdapter(); //inputArray.Cast<IAutomationElementAdapter>().ToList());
+            IMySuperCollection resultCollection =
+                new MySuperCollection(inputArray);
+                //new MySuperCollection(); //inputArray.Cast<IMySuperWrapper>().ToList());
             //resultCollection.SourceCollection = inputArray;
 //            foreach (AutomationElement element in inputArray) {
 //                
@@ -85,7 +89,7 @@ namespace UIAutomation
 //        public static IAutomationElementCollection ConvertCmdletInputToCollectionAdapter(this object[] inputArray)
 //        {
 //            IAutomationElementCollection resultCollection =
-//                new AutomationElementCollectionAdapter(inputArray);
+//                new MySuperCollection(inputArray);
 //            return resultCollection;
 //        }
     }

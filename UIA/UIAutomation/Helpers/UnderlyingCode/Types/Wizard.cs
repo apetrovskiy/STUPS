@@ -116,7 +116,9 @@ namespace UIAutomation
         	    new UIAutomation.Commands.GetUIAControlCommand();
 
         	cmdletCtrl.InputObject =
-        		new AutomationElement[]{ CurrentData.CurrentWindow };
+        	    // 20131109
+        		//new AutomationElement[]{ CurrentData.CurrentWindow };
+        	    new MySuperWrapper[]{ (MySuperWrapper)CurrentData.CurrentWindow };
 
         	cmdletCtrl.Timeout = 0;
         	
@@ -148,7 +150,10 @@ namespace UIAutomation
 	        	        
         	        // 20130423
         	        if (Preferences.HighlightCheckedControl) {
-        	            foreach (AutomationElement elementChecked in controlsList) {
+        	            
+        	            // 20131109
+        	            //foreach (AutomationElement elementChecked in controlsList) {
+        	            foreach (IMySuperWrapper elementChecked in controlsList) {
         	                UIAHelper.HighlightCheckedControl(elementChecked);
         	            }
         	        }

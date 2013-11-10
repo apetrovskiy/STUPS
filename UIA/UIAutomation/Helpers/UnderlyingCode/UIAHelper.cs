@@ -42,7 +42,9 @@ namespace UIAutomation
         
         private static Banner banner = null;
         
-        private static System.Windows.Automation.AutomationElement element = null;
+        // 20131109
+        //private static System.Windows.Automation.AutomationElement element = null;
+        private static IMySuperWrapper element = null;
         
         //internal static CacheRequest CacheRequest = null;
         
@@ -63,10 +65,15 @@ namespace UIAutomation
             //if ("*" == name || string.Empty == name) {
             cmdlet.WriteVerbose(cmdlet, "using null instead of name");
             cmdlet.WriteVerbose(cmdlet, "test >>>>>>>>>>>>>>>>>>>>>>>>>");
-            try{ cmdlet.WriteVerbose(cmdlet, "name = " + AutomationElement.FromHandle(controlHandle).Current.Name); } catch {}
-            try{ cmdlet.WriteVerbose(cmdlet, "automationid = " + AutomationElement.FromHandle(controlHandle).Current.AutomationId); } catch {}
-            try{ cmdlet.WriteVerbose(cmdlet, "class = " + AutomationElement.FromHandle(controlHandle).Current.ClassName); } catch {}
-            try{ cmdlet.WriteVerbose(cmdlet, "control type = " + AutomationElement.FromHandle(controlHandle).Current.ControlType.ProgrammaticName); } catch {}
+            // 20131109
+            //try{ cmdlet.WriteVerbose(cmdlet, "name = " + AutomationElement.FromHandle(controlHandle).Current.Name); } catch {}
+            //try{ cmdlet.WriteVerbose(cmdlet, "automationid = " + AutomationElement.FromHandle(controlHandle).Current.AutomationId); } catch {}
+            //try{ cmdlet.WriteVerbose(cmdlet, "class = " + AutomationElement.FromHandle(controlHandle).Current.ClassName); } catch {}
+            //try{ cmdlet.WriteVerbose(cmdlet, "control type = " + AutomationElement.FromHandle(controlHandle).Current.ControlType.ProgrammaticName); } catch {}
+            try{ cmdlet.WriteVerbose(cmdlet, "name = " + MySuperWrapper.FromHandle(controlHandle).Current.Name); } catch {}
+            try{ cmdlet.WriteVerbose(cmdlet, "automationid = " + MySuperWrapper.FromHandle(controlHandle).Current.AutomationId); } catch {}
+            try{ cmdlet.WriteVerbose(cmdlet, "class = " + MySuperWrapper.FromHandle(controlHandle).Current.ClassName); } catch {}
+            try{ cmdlet.WriteVerbose(cmdlet, "control type = " + MySuperWrapper.FromHandle(controlHandle).Current.ControlType.ProgrammaticName); } catch {}
             
             // search at this level
             do {
@@ -122,7 +129,7 @@ namespace UIAutomation
             // 20131104
             // refactoring
             //AutomationElement container,
-            IAutomationElementAdapter container,
+            IMySuperWrapper container,
             string controlTitle)
         {
 
@@ -179,8 +186,11 @@ namespace UIAutomation
                         if (IntPtr.Zero != controlHandle) {
                                 
                             cmdlet.WriteVerbose(cmdlet, "the handle is not null");
-                            AutomationElement tempElement =
-                                AutomationElement.FromHandle(controlHandle);
+                            // 20131109
+                            //AutomationElement tempElement =
+                            //    AutomationElement.FromHandle(controlHandle);
+                            IMySuperWrapper tempElement =
+                                MySuperWrapper.FromHandle(controlHandle);
                             cmdlet.WriteVerbose(cmdlet, "adding the handle to the collection");
                                 
                             cmdlet.WriteVerbose(cmdlet, controlTitle);
@@ -251,7 +261,9 @@ namespace UIAutomation
             GetControlCmdletBase cmdlet,
             IList resultCollection,
             // ArrayList resultCollection,
-            AutomationElement elementInput,
+            // 20131109
+            //AutomationElement elementInput,
+            IMySuperWrapper elementInput,
             WildcardPattern wcPattern,
             string dataToCheck)
         {
@@ -286,12 +298,17 @@ namespace UIAutomation
             return result;
         }
         
-        internal static void Highlight(AutomationElement element) //, Highlighters control)  //(object obj)
+        // 20131109
+        //internal static void Highlight(AutomationElement element) //, Highlighters control)  //(object obj)
+        internal static void Highlight(IMySuperWrapper element)
         {
             try { if (highlighter != null) { highlighter.Dispose(); } } catch {}
             try { if (highlighterParent != null) { highlighterParent.Dispose(); } } catch {}
             //try { if (highlighterFirstChild != null) { highlighterFirstChild.Dispose(); } } catch {}
-            if ((element as AutomationElement) != null) {
+            
+            // 20131109
+            //if ((element as AutomationElement) != null) {
+            if ((element as IMySuperWrapper) != null) {
                 
                 highlighter =
                     new Highlighter(
@@ -304,7 +321,10 @@ namespace UIAutomation
                         Preferences.HighlighterColor);
             }
             if (!Preferences.HighlightParent) return;
-            AutomationElement parent =
+            
+            // 20131109
+            //AutomationElement parent =
+            IMySuperWrapper parent =
                 UIAHelper.GetParent(element);
                 
             highlighterParent =
@@ -335,11 +355,15 @@ namespace UIAutomation
             */
         }
         
-        internal static void HighlightCheckedControl(AutomationElement element) //, Highlighters control)  //(object obj)
+        // 20131109
+        //internal static void HighlightCheckedControl(AutomationElement element) //, Highlighters control)  //(object obj)
+        internal static void HighlightCheckedControl(IMySuperWrapper element)
         {
             try { if (highlighterCheckedControl != null) { highlighterCheckedControl.Dispose(); } } catch {}
-
-            if ((element as AutomationElement) != null) {
+            
+            // 20131109
+            //if ((element as AutomationElement) != null) {
+            if ((element as IMySuperWrapper) != null) {
 
                 highlighterCheckedControl =
                     new Highlighter(
@@ -443,18 +467,24 @@ namespace UIAutomation
             System.Drawing.Imaging.ImageFormat format)
         {
             
-            if (null == cmdlet.InputObject || 0 == cmdlet.InputObject.Length) {
+            //if (null == cmdlet.InputObject || 0 == cmdlet.InputObject.Length) {
+            if (null == cmdlet.InputObject || 0 == cmdlet.InputObject.Count()) {
                 
                 cmdlet.WriteVerbose(cmdlet, "(null == cmdlet.InputObject || 0 == cmdlet.InputObject.Length)");
                 
-                cmdlet.InputObject = new AutomationElement[] { AutomationElement.RootElement };
+                // 20131109
+                //cmdlet.InputObject = new AutomationElement[] { AutomationElement.RootElement };
+                cmdlet.InputObject = new MySuperWrapper[] { (MySuperWrapper)MySuperWrapper.RootElement };
             }
             
             cmdlet.WriteVerbose(
                 cmdlet,
-                "input array consists of " + cmdlet.InputObject.Length.ToString() + " objects");
+                //"input array consists of " + cmdlet.InputObject.Length.ToString() + " objects");
+                "input array consists of " + cmdlet.InputObject.Count().ToString() + " objects");
             
-            foreach (AutomationElement inputObject in cmdlet.InputObject) {
+            // 20131109
+            //foreach (AutomationElement inputObject in cmdlet.InputObject) {
+            foreach (IMySuperWrapper inputObject in cmdlet.InputObject) {
                 
                 cmdlet.WriteVerbose(cmdlet, "calculating the size");
                 int absoluteX = 0;
@@ -514,7 +544,9 @@ namespace UIAutomation
         
         public static void GetScreenshotOfAutomationElement(
             PSCmdletBase cmdlet,
-            AutomationElement element,
+            // 20131109
+            //AutomationElement element,
+            IMySuperWrapper element,
             string description,
             bool save,
             int Left,
@@ -794,8 +826,10 @@ namespace UIAutomation
             Global.GTranscript = true;
             int counter = 0;
             
-            cmdlet.rootElement =
-                System.Windows.Automation.AutomationElement.RootElement;
+            cmdlet.oddRootElement =
+                // 20131109
+                //System.Windows.Automation.AutomationElement.RootElement;
+                MySuperWrapper.RootElement;
 
             cmdlet.StartDate =
                 System.DateTime.Now;
@@ -834,8 +868,12 @@ namespace UIAutomation
             try {
                 // use Windows forms mouse code instead of WPF
                 System.Drawing.Point mouse = System.Windows.Forms.Cursor.Position;
-                System.Windows.Automation.AutomationElement element =
-                    System.Windows.Automation.AutomationElement.FromPoint(
+                // 20131109
+                //System.Windows.Automation.AutomationElement element =
+                //    System.Windows.Automation.AutomationElement.FromPoint(
+                //        new System.Windows.Point(mouse.X, mouse.Y));
+                IMySuperWrapper element =
+                    MySuperWrapper.FromPoint(
                         new System.Windows.Point(mouse.X, mouse.Y));
                 if (element != null && (int)element.Current.ProcessId > 0)
                 {
@@ -867,7 +905,9 @@ namespace UIAutomation
         /// <param name="element"></param>
         public static bool ProcessingElement(
             TranscriptCmdletBase cmdlet,
-            AutomationElement element)
+            // 20131109
+            //AutomationElement element)
+            IMySuperWrapper element)
             // 20120618 UIACOMWrapper
             //UIACOM::System.Windows.Automation.AutomationElement element)
         {
@@ -1176,7 +1216,14 @@ namespace UIAutomation
         /// <param name="pattern">an object of the ValuePattern type</param>
         /// <param name="hasName">an object has Name</param>
         /// <returns></returns>
-        private static string getElementPropertyString(TranscriptCmdletBase cmdlet, AutomationElement element, string propertyName, ValuePattern pattern, ref bool hasName)
+        // 20131109
+        //private static string getElementPropertyString(TranscriptCmdletBase cmdlet, AutomationElement element, string propertyName, ValuePattern pattern, ref bool hasName)
+        private static string getElementPropertyString(
+            TranscriptCmdletBase cmdlet,
+            IMySuperWrapper element,
+            string propertyName,
+            ValuePattern pattern,
+            ref bool hasName)
         {
             cmdlet.WriteVerbose(cmdlet, "getting " + propertyName);
             string tempString = string.Empty;
@@ -1296,7 +1343,9 @@ namespace UIAutomation
         /// </summary>
         /// <param name="element">AutomationElement</param>
         /// <returns>string</returns>
-        private static string getElementControlTypeString(AutomationElement element)
+        // 20131109
+        //private static string getElementControlTypeString(AutomationElement element)
+        private static string getElementControlTypeString(IMySuperWrapper element)
         {
             string elementControlType = String.Empty;
             try {
@@ -1316,32 +1365,44 @@ namespace UIAutomation
         #endregion working with an element
         
         #region collect ancestors
-        internal static AutomationElement GetParent(AutomationElement element)
+        // 20131109
+        //internal static AutomationElement GetParent(AutomationElement element)
+        internal static IMySuperWrapper GetParent(IMySuperWrapper element)
         {
-            AutomationElement result = null;
+            // 20131109
+            //AutomationElement result = null;
+            IMySuperWrapper result = null;
             
             System.Windows.Automation.TreeWalker walker =
                 new System.Windows.Automation.TreeWalker(
                     System.Windows.Automation.Condition.TrueCondition);
             
             try {
-                result = walker.GetParent(element);
+                // 20131109
+                //result = walker.GetParent(element);
+                result = new MySuperWrapper(walker.GetParent(element.SourceElement));
             }
             catch {}
             
             return result;
         }
         
-        internal static AutomationElement GetFirstChild(AutomationElement element)
+        // 20131109
+        //internal static AutomationElement GetFirstChild(AutomationElement element)
+        internal static IMySuperWrapper GetFirstChild(IMySuperWrapper element)
         {
-            AutomationElement result = null;
+            // 20131109
+            //AutomationElement result = null;
+            IMySuperWrapper result = null;
             
             System.Windows.Automation.TreeWalker walker =
                 new System.Windows.Automation.TreeWalker(
                     System.Windows.Automation.Condition.TrueCondition);
             
             try {
-                result = walker.GetFirstChild(element);
+                // 20131109
+                //result = walker.GetFirstChild(element);
+                result = new MySuperWrapper(walker.GetFirstChild(element.SourceElement));
             }
             catch {}
             
@@ -1353,34 +1414,42 @@ namespace UIAutomation
         /// </summary>
         /// <param name="cmdlet"></param>
         /// <param name="element"></param>
-        private static void collectAncestors(TranscriptCmdletBase cmdlet, AutomationElement element)
+        // 20131109
+        //private static void collectAncestors(TranscriptCmdletBase cmdlet, AutomationElement element)
+        private static void collectAncestors(TranscriptCmdletBase cmdlet, IMySuperWrapper element)
         {
             System.Windows.Automation.TreeWalker walker =
                 new System.Windows.Automation.TreeWalker(
                     System.Windows.Automation.Condition.TrueCondition);
-            System.Windows.Automation.AutomationElement testparent;
+            // 20131109
+            //System.Windows.Automation.AutomationElement testparent;
+            IMySuperWrapper testParent;
             
             try {
                 
                 // commented out 201206210
                 //testparent =
                 //    walker.GetParent(element);
-                testparent = element;
+                testParent = element;
                 
-                while (testparent != null && (int)testparent.Current.ProcessId > 0) {
-                    testparent =
-                        walker.GetParent(testparent);
-                    if (testparent == null || (int) testparent.Current.ProcessId <= 0) continue;
-                    if (testparent == cmdlet.rootElement)
-                    { testparent = null; }
+                while (testParent != null && (int)testParent.Current.ProcessId > 0) {
+                    
+                    testParent =
+                        // 20131109
+                        //walker.GetParent(testParent);
+                        new MySuperWrapper(walker.GetParent(testParent.SourceElement));
+                    
+                    if (testParent == null || (int) testParent.Current.ProcessId <= 0) continue;
+                    if (testParent == cmdlet.oddRootElement)
+                    { testParent = null; }
                     else{
                         string parentControlType =
                             // getControlTypeNameOfAutomationElement(testparent, element);
                             // testparent.Current.ControlType.ProgrammaticName.Substring(
                             // element.Current.ControlType.ProgrammaticName.IndexOf('.') + 1);
                             //  // experimental
-                            testparent.Current.ControlType.ProgrammaticName.Substring(
-                                testparent.Current.ControlType.ProgrammaticName.IndexOf('.') + 1);
+                            testParent.Current.ControlType.ProgrammaticName.Substring(
+                                testParent.Current.ControlType.ProgrammaticName.IndexOf('.') + 1);
                         //  // if (parentControlType.Length == 0) {
                         // break;
                         //}
@@ -1392,7 +1461,10 @@ namespace UIAutomation
                         // since Get-UIAPane is unable to get something more than
                         // a window's child pane control
                         if (parentControlType == "Pane" || parentControlType == "Menu") {
-                            if (walker.GetParent(testparent) == cmdlet.rootElement) {
+                            
+                            // 20131109
+                            //if (walker.GetParent(testParent) == cmdlet.rootElement) {
+                            if ((new MySuperWrapper(walker.GetParent(testParent.SourceElement))) == cmdlet.oddRootElement) {
                                 parentControlType = "Window";
                             }
                         }
@@ -1400,24 +1472,24 @@ namespace UIAutomation
                         string parentVerbosity =
                             @"Get-UIA" + parentControlType;
                         try {
-                            if (testparent.Current.AutomationId.Length > 0) {
-                                parentVerbosity += (" -AutomationId '" + testparent.Current.AutomationId + "'");
+                            if (testParent.Current.AutomationId.Length > 0) {
+                                parentVerbosity += (" -AutomationId '" + testParent.Current.AutomationId + "'");
                             }
                         }
                         catch {
                         }
                         if (!cmdlet.NoClassInformation) {
                             try {
-                                if (testparent.Current.ClassName.Length > 0) {
-                                    parentVerbosity += (" -Class '" + testparent.Current.ClassName + "'");
+                                if (testParent.Current.ClassName.Length > 0) {
+                                    parentVerbosity += (" -Class '" + testParent.Current.ClassName + "'");
                                 }
                             }
                             catch {
                             }
                         }
                         try {
-                            if (testparent.Current.Name.Length > 0) {
-                                parentVerbosity += (" -Name '" + testparent.Current.Name + "'");
+                            if (testParent.Current.Name.Length > 0) {
+                                parentVerbosity += (" -Name '" + testParent.Current.Name + "'");
                             }
                         }
                         catch {
@@ -1499,7 +1571,9 @@ namespace UIAutomation
             }
         }
         
-        public static void CollectAncestors(TranscriptCmdletBase cmdlet, AutomationElement element)
+        // 20131109
+        //public static void CollectAncestors(TranscriptCmdletBase cmdlet, AutomationElement element)
+        public static void CollectAncestors(TranscriptCmdletBase cmdlet, IMySuperWrapper element)
         {
             collectAncestors(cmdlet, element);
         }
@@ -1514,7 +1588,9 @@ namespace UIAutomation
         /// <param name="element"></param>
         /// <param name="supportedPatterns"></param>
         internal static void subscribeToEventsDuringRecording(HasControlInputCmdletBase cmdlet,
-                                                              AutomationElement element,
+                                                              // 20131109
+                                                              //AutomationElement element,
+                                                              IMySuperWrapper element,
                                                               AutomationPattern[] supportedPatterns)
         {
             try { // experimental
@@ -1695,7 +1771,9 @@ namespace UIAutomation
                 for (int i = 0; i < cmdlet.subscribedEvents.Count; i++) {
                     Automation.RemoveAutomationEventHandler(
                         (AutomationEvent)cmdlet.subscribedEventsIds[i],
-                        cmdlet.thePreviouslyUsedElement,
+                        // 20131109
+                        //cmdlet.thePreviouslyUsedElement,
+                        cmdlet.thePreviouslyUsedElement.SourceElement,
                         (AutomationEventHandler)cmdlet.subscribedEvents[i]);
                 }
 
@@ -1728,14 +1806,19 @@ namespace UIAutomation
         /// <returns></returns>
         // 20121011
         //internal static AutomationElement GetAutomationElementFromHandle(
-        public static AutomationElement GetAutomationElementFromHandle(
+        //public static AutomationElement GetAutomationElementFromHandle(
+        // 20131109
+        public static IMySuperWrapper GetAutomationElementFromHandle(
             // 20130513
             //DiscoveryCmdletBase cmdlet,
             PSCmdletBase cmdlet,
             int handle)
         {
-            System.Windows.Automation.AutomationElement result =
-                null;
+            // 20131109
+            //System.Windows.Automation.AutomationElement result =
+            //    null;
+            IMySuperWrapper result = null;
+            
             if (handle == 0) {
                 cmdlet.WriteVerbose(cmdlet, "handle == 0");
                 return result;
@@ -1744,8 +1827,11 @@ namespace UIAutomation
                 //System.IntPtr pHwnd = IntPtr.Zero;
                 System.IntPtr pHwnd = new IntPtr(handle);
                 cmdlet.WriteVerbose(cmdlet, "getting the control");
+                // 20131109
+                //element =
+                //    AutomationElement.FromHandle(pHwnd);
                 element =
-                    AutomationElement.FromHandle(pHwnd);
+                    new MySuperWrapper(AutomationElement.FromHandle(pHwnd));
                 if (element != null) {
                     cmdlet.WriteVerbose(cmdlet, element.Current.Name);
                 }
@@ -1775,15 +1861,25 @@ namespace UIAutomation
         /// <summary>
         ///  /// </summary>
         /// <returns></returns>
-        public static System.Windows.Automation.AutomationElement GetAutomationElementFromPoint()
+        // 20131109
+        //public static System.Windows.Automation.AutomationElement GetAutomationElementFromPoint()
+        public static IMySuperWrapper GetAutomationElementFromPoint()
         {
-            System.Windows.Automation.AutomationElement result =
-                null;
+            // 20131109
+            //System.Windows.Automation.AutomationElement result =
+            //    null;
+            IMySuperWrapper result = null;
+            
             try {
                 element =
-                    AutomationElement.FromPoint(new System.Windows.Point(
-                        Cursor.Position.X,
-                        Cursor.Position.Y));
+                    // 20131109
+                    //AutomationElement.FromPoint(new System.Windows.Point(
+                    //    Cursor.Position.X,
+                    //    Cursor.Position.Y));
+                    MySuperWrapper.FromPoint(
+                        new System.Windows.Point(
+                            Cursor.Position.X,
+                            Cursor.Position.Y));
                 result = element;
             }
             catch { }
@@ -1807,36 +1903,60 @@ namespace UIAutomation
         /// <param name="element"></param>
         /// <param name="scope"></param>
         /// <returns></returns>
-        internal static AutomationElement[] GetParentOrAncestor(AutomationElement element, TreeScope scope)
+        // 20131109
+        //internal static AutomationElement[] GetParentOrAncestor(AutomationElement element, TreeScope scope)
+        internal static IMySuperWrapper[] GetParentOrAncestor(IMySuperWrapper element, TreeScope scope)
         {
             System.Windows.Automation.TreeWalker walker =
                 new System.Windows.Automation.TreeWalker(
                     System.Windows.Automation.Condition.TrueCondition);
-            System.Windows.Automation.AutomationElement testparent;
-            System.Collections.Generic.List<AutomationElement >  ancestors =
-                new System.Collections.Generic.List<AutomationElement > ();
+            // 20131109
+            //System.Windows.Automation.AutomationElement testparent;
+            IMySuperWrapper testParent;
+            // 20131109
+            //System.Collections.Generic.List<AutomationElement> ancestors =
+            //    new System.Collections.Generic.List<AutomationElement>();
+            System.Collections.Generic.List<IMySuperWrapper> ancestors =
+                new System.Collections.Generic.List<IMySuperWrapper>();
             
             try {
-                testparent =
-                    walker.GetParent(element);
+                
+                // 20131109
+                testParent =
+                    //walker.GetParent(element);
+                    new MySuperWrapper(walker.GetParent(element.SourceElement));
+                    
                 if (scope == TreeScope.Parent || scope == TreeScope.Ancestors) {
-                    if (testparent != AutomationElement.RootElement) {
-                        ancestors.Add(testparent);
+                    
+                    // 20131109
+                    //if (testparent != AutomationElement.RootElement) {
+                    if (testParent != MySuperWrapper.RootElement) {
+                        ancestors.Add(testParent);
                     }
-                    if (testparent == AutomationElement.RootElement ||
+                    
+                    // 20131109
+                    //if (testparent == AutomationElement.RootElement ||
+                    if (testParent == MySuperWrapper.RootElement ||
                         scope == TreeScope.Parent) {
                         return ancestors.ToArray();
                     }
                 }
-                while (testparent != null &&
-                       (int)testparent.Current.ProcessId > 0 &&
-                       testparent != AutomationElement.RootElement) {
-                    testparent =
-                        walker.GetParent(testparent);
-                    if (testparent != null &&
-                        (int)testparent.Current.ProcessId > 0 &&
-                        testparent != AutomationElement.RootElement) {
-                        ancestors.Add(testparent);
+                while (testParent != null &&
+                       (int)testParent.Current.ProcessId > 0 &&
+                       // 20131109
+                       //testparent != AutomationElement.RootElement) {
+                       testParent != MySuperWrapper.RootElement) {
+                    
+                    testParent =
+                        // 20131109
+                        //walker.GetParent(testParent);
+                        new MySuperWrapper(walker.GetParent(testParent.SourceElement));
+                    if (testParent != null &&
+                        (int)testParent.Current.ProcessId > 0 &&
+                        // 20131109
+                        //testparent != AutomationElement.RootElement) {
+                        testParent != MySuperWrapper.RootElement) {
+                        ancestors.Add(testParent);
                     }
                 }
                 return ancestors.ToArray();
@@ -1851,20 +1971,30 @@ namespace UIAutomation
         ///  /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
-        internal static AutomationElement GetAncestorWithHandle(AutomationElement element)
+        // 20131109
+        //internal static AutomationElement GetAncestorWithHandle(AutomationElement element)
+        internal static IMySuperWrapper GetAncestorWithHandle(IMySuperWrapper element)
         {
             System.Windows.Automation.TreeWalker walker =
                 new System.Windows.Automation.TreeWalker(
                     System.Windows.Automation.Condition.TrueCondition);
-            System.Windows.Automation.AutomationElement testparent;
+            
+            // 20131109
+            //System.Windows.Automation.AutomationElement testparent;
+            IMySuperWrapper testparent;
             
             try {
+                
                 testparent =
-                    walker.GetParent(element);
+                    // 20131109
+                    //walker.GetParent(element);
+                    new MySuperWrapper(walker.GetParent(element.SourceElement));
                 while (testparent != null &&
                        testparent.Current.NativeWindowHandle == 0) {
                     testparent =
-                        walker.GetParent(testparent);
+                        // 20131109
+                        //walker.GetParent(testparent);
+                        new MySuperWrapper(walker.GetParent(testparent.SourceElement));
                     if (testparent != null &&
                         (int)testparent.Current.ProcessId > 0 &&
                         testparent.Current.NativeWindowHandle != 0) {
@@ -1988,7 +2118,9 @@ namespace UIAutomation
         /// <param name="patternType"></param>
         /// <returns></returns>
         internal static object GetCurrentPattern(
-            ref System.Windows.Automation.AutomationElement element,
+            // 20131109
+            //ref System.Windows.Automation.AutomationElement element,
+            ref IMySuperWrapper element,
             System.Windows.Automation.AutomationPattern patternType)
         {
             object result =
@@ -2106,11 +2238,15 @@ namespace UIAutomation
         /// <param name="delimiter"></param>
         /// <returns></returns>
         internal static bool GetHeaderItems(
-            ref System.Windows.Automation.AutomationElement element,
+            // 20131109
+            //ref System.Windows.Automation.AutomationElement element,
+            ref IMySuperWrapper element,
             out string strResultString,
             char delimiter)
         {
-            System.Windows.Automation.AutomationElementCollection headerItems =
+            // 20131109
+            //System.Windows.Automation.AutomationElementCollection headerItems =
+            IMySuperCollection headerItems =
                 element.FindAll(
                     System.Windows.Automation.TreeScope.Descendants,
                     new System.Windows.Automation.PropertyCondition(
@@ -2126,6 +2262,35 @@ namespace UIAutomation
                 string headersRow = String.Empty;
                 // foreach (System.Windows.Automation.AutomationElement elt in
                 // headerItems)
+                // 20131109
+                int headersCounter = 0;
+                foreach (IMySuperWrapper headerItem in headerItems) {
+                    headersCounter++;
+                    headersRow += '"';
+                    // headersRow += elt.Current.Name;
+                    headersRow +=
+                        headerItem.Current.Name;
+                    headersRow += '"';
+                    if (headersCounter < (headerItems.Count)) {
+                        headersRow += delimiter;
+                    }
+                }
+//                for (int headersCounter = 0;
+//                     headersCounter < headerItems.Count;
+//                     headersCounter++)
+//                {
+//                    headersRow += '"';
+//                    // headersRow += elt.Current.Name;
+//                    headersRow +=
+//                        headerItems[headersCounter].Current.Name;
+//                    headersRow += '"';
+//                    if (headersCounter < (headerItems.Count - 1)) {
+//                        headersRow += delimiter;
+//                    }
+//                }
+                
+                /*
+                // my refactoring
                 for (int headersCounter = 0;
                      headersCounter < headerItems.Count;
                      headersCounter++)
@@ -2139,6 +2304,7 @@ namespace UIAutomation
                         headersRow += delimiter;
                     }
                 }
+                */
                 // output headers
                 // WriteObject(headersRow);
                 strResultString = headersRow;
@@ -2153,11 +2319,15 @@ namespace UIAutomation
         /// <param name="delimiter"></param>
         /// <returns></returns>
         internal static bool GetHeaders(
-            ref System.Windows.Automation.AutomationElement element,
+            // 20131109
+            //ref System.Windows.Automation.AutomationElement element,
+            ref IMySuperWrapper element,
             out string strResultString,
             char delimiter)
         {
-            System.Windows.Automation.AutomationElementCollection headerItems =
+            // 20131109
+            //System.Windows.Automation.AutomationElementCollection headerItems =
+            IMySuperCollection headerItems =
                 element.FindAll(
                     System.Windows.Automation.TreeScope.Descendants,
                     new System.Windows.Automation.PropertyCondition(
@@ -2173,6 +2343,38 @@ namespace UIAutomation
                 string headersRow = String.Empty;
                 // foreach (System.Windows.Automation.AutomationElement elt in
                 // headerItems)
+                // 20131109
+                int headersCounter = 0;
+                foreach (IMySuperWrapper headerItem in headerItems) {
+                    
+                    headersCounter++;
+                    headersRow += '"';
+                    // headersRow += elt.Current.Name;
+                    headersRow +=
+                        headerItem.Current.Name;
+                    headersRow += '"';
+                    if (headersCounter < (headerItems.Count)) {
+                        headersRow += delimiter;
+                    }
+                }
+                
+//                for (int headersCounter = 0;
+//                     headersCounter < headerItems.Count;
+//                     headersCounter++)
+//                {
+//                    headersRow += '"';
+//                    // headersRow += elt.Current.Name;
+//                    headersRow +=
+//                        headerItems[headersCounter].Current.Name;
+//                    headersRow += '"';
+//                    if (headersCounter < (headerItems.Count - 1)) {
+//                        headersRow += delimiter;
+//                    }
+//                }
+                
+                
+                /*
+                // my refactoring
                 for (int headersCounter = 0;
                      headersCounter < headerItems.Count;
                      headersCounter++)
@@ -2186,6 +2388,7 @@ namespace UIAutomation
                         headersRow += delimiter;
                     }
                 }
+                */
                 // output headers
                 // WriteObject(headersRow);
                 strResultString = headersRow;
@@ -2215,7 +2418,9 @@ namespace UIAutomation
                 object[] coordinates =
                 { rowsCounter, columnsCounter };
                 onerow +=
-                    ((System.Windows.Automation.AutomationElement)
+                    // 20131109
+                    //((System.Windows.Automation.AutomationElement)
+                    ((IMySuperWrapper)
                      pattern.GetType().GetMethod(
                          "GetItem").Invoke(
                          pattern,
@@ -2242,26 +2447,80 @@ namespace UIAutomation
         /// <returns></returns>
         internal static System.Collections.Generic.List<string >
             GetOutputStringUsingItemsValuePattern(
-                AutomationElement control,
+                // 20131109
+                //AutomationElement control,
+                IMySuperWrapper control,
                 char delimiter)
         {
             System.Collections.Generic.List<string >  rowsCollection =
                 new System.Collections.Generic.List<string > ();
             
-            AutomationElementCollection rows =
+            // 20131109
+            //AutomationElementCollection rows =
+            IMySuperCollection rows =
                 control.FindAll(TreeScope.Children,
                                 new PropertyCondition(
                                     AutomationElement.ControlTypeProperty,
                                     ControlType.Custom));
             if (rows.Count > 0) {
-                foreach ( AutomationElement row in rows) {
-                    AutomationElementCollection rowItems =
+                
+                // 20131109
+                //foreach ( AutomationElement row in rows) {
+                foreach(IMySuperWrapper row in rows) {
+                    
+                    // 20131109
+                    //AutomationElementCollection rowItems =
+                    IMySuperCollection rowItems =
                         row.FindAll(TreeScope.Children,
                                     new PropertyCondition(
                                         AutomationElement.ControlTypeProperty,
                                         ControlType.Custom));
                     if (rowItems.Count <= 0) continue;
                     string onerow = String.Empty;
+                    
+                    // 20131109
+                    int rowCounter = 0;
+                    foreach (IMySuperWrapper rowItem in rowItems) {
+                        
+                        rowCounter++;
+                        ValuePattern valPattern = null;
+                        string strValue = String.Empty;
+                        strValue += '"';
+                        try {
+                            valPattern =
+                                rowItem.GetCurrentPattern(ValuePattern.Pattern)
+                                    as ValuePattern;
+                            strValue += valPattern.Current.Value;
+                        } catch {
+                            // nothing to do
+                        }
+                        strValue += '"';
+                        onerow += strValue;
+                        if (rowCounter < rowItems.Count) {
+                            onerow += delimiter;
+                        }
+                    }
+//                    for (int i = 0; i < rowItems.Count; i++) {
+//                        ValuePattern valPattern = null;
+//                        string strValue = String.Empty;
+//                        strValue += '"';
+//                        try {
+//                            valPattern =
+//                                rowItems[i].GetCurrentPattern(ValuePattern.Pattern)
+//                                    as ValuePattern;
+//                            strValue += valPattern.Current.Value;
+//                        } catch {
+//                            // nothing to do
+//                        }
+//                        strValue += '"';
+//                        onerow += strValue;
+//                        if (i < (rowItems.Count - 1)) {
+//                            onerow += delimiter;
+//                        }
+//                    }
+                    
+                    /*
+                    // my refactoring
                     for (int i = 0; i < rowItems.Count; i++) {
                         ValuePattern valPattern = null;
                         string strValue = String.Empty;
@@ -2280,6 +2539,7 @@ namespace UIAutomation
                             onerow += delimiter;
                         }
                     }
+                    */
                     if (onerow.Length > 2) {
                         rowsCollection.Add(onerow);
                     }
@@ -2378,12 +2638,16 @@ namespace UIAutomation
             return result;
         }
         
-        public static AutomationElement GetSheridanTreeItemByName(
+        // 20131109
+        //public static AutomationElement GetSheridanTreeItemByName(
+        public static IMySuperWrapper GetSheridanTreeItemByName(
             SheridanCmdletBase cmdlet,
             IntPtr hwndTreeView,
             string treeItemName)
         {
-            AutomationElement resultElement = null;
+            // 20131109
+            //AutomationElement resultElement = null;
+            IMySuperWrapper resultElement = null;
             
             //IntPtr hwndTreeViewRoot = IntPtr.Zero;
             int hwndTreeViewRoot = 0; //IntPtr.Zero;
@@ -2443,13 +2707,17 @@ namespace UIAutomation
             return resultElement;
         }
         
-        private static AutomationElement getSheridanTreeItemFromTreeNode(
+        // 20131109
+        //private static AutomationElement getSheridanTreeItemFromTreeNode(
+        private static IMySuperWrapper getSheridanTreeItemFromTreeNode(
             CommonCmdletBase cmdlet,
             IntPtr hwndTreeView,
             IntPtr hwndTreeItem,
             string treeItemName)
         {
-            AutomationElement resultElement = null;
+            // 20131109
+            //AutomationElement resultElement = null;
+            IMySuperWrapper resultElement = null;
             
             //IntPtr resultHandle = IntPtr.Zero;
             int resultHandle = 0; //IntPtr.Zero;
@@ -2623,7 +2891,9 @@ namespace UIAutomation
                 try {
                     
                     //System.Windows.Automation.Automation.
-                    AutomationElement element =
+                    // 20131109
+                    //AutomationElement element =
+                    IMySuperWrapper element =
                         GetAutomationElementFromHandle(cmdlet, handle.ToInt32());
                     
                     automationElements.Add(element);
@@ -2633,8 +2903,6 @@ namespace UIAutomation
                 }
                 catch {}
             }
-            
-//Console.WriteLine("elements: " + automationElements.Count.ToString());
             
             if (null == cmdlet.Name || 0 == cmdlet.Name.Length) {
                 cmdlet.Name = new string[] { "*" };
@@ -2661,7 +2929,6 @@ namespace UIAutomation
             //
             
             //};
-//Console.WriteLine("result elements: " + resultElements.Count.ToString());
             
             //return automationElements;
             return resultElements;

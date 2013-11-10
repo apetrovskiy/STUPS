@@ -107,12 +107,16 @@ namespace UIAutomation
 		}
 		
 		public static void Enqueue(
-			AutomationElement elementToHighlight,
+	        // 20131109
+			//AutomationElement elementToHighlight,
+			IMySuperWrapper elementToHighlight,
 			int highlightersGeneration,
 		    string highlighterData)
 		{
 			Highlighter highlighter = null;
-		    if (null == (elementToHighlight as AutomationElement)) return;
+			// 20131109
+		    //if (null == (elementToHighlight as AutomationElement)) return;
+		    if (null == (elementToHighlight as IMySuperWrapper)) return;
 		    if (0 >= highlightersGeneration) {
 		        HighlighterNumber++;
 		    } else {

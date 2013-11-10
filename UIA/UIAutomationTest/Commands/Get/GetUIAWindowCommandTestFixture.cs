@@ -19,10 +19,6 @@ namespace UIAutomationTest.Commands.Get
     [TestFixture] // [TestFixture(Description="Get-UIAWindowCommand test")]
     public class GetUIAWindowCommandTestFixture
     {
-        public GetUIAWindowCommandTestFixture()
-        {
-        }
-        
         public System.Diagnostics.Process process;
         
         [SetUp]
@@ -220,7 +216,8 @@ namespace UIAutomationTest.Commands.Get
                 "; " +
                 @"if (([uiautomation.currentdata]::currentwindow.current.name" +
                 ")) { 0; } else { 1; }",
-                "System.Windows.Automation.AutomationElement");
+                //"System.Windows.Automation.AutomationElement");
+                "UIAutomation.MySuperWrapper");
         }
         
         [Test] //[Test(Description="TBD")]

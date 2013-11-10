@@ -28,12 +28,16 @@ namespace UIAutomation.Commands
         /// </summary>
         protected override void ProcessRecord()
         {
-            if (!this.CheckControl(this)) { return; }
+            if (!this.CheckAndPrepareInput(this)) { return; }
             
             // 20120823
-            foreach (AutomationElement inputObject in this.InputObject) {
-
-            AutomationElement resultElement = null;
+            // 20131109
+            //foreach (AutomationElement inputObject in this.InputObject) {
+            foreach (IMySuperWrapper inputObject in this.InputObject) {
+            
+            // 20131109
+            //AutomationElement resultElement = null;
+            IMySuperWrapper resultElement = null;
             
             // preform a right click on the control
             if (!ClickControl(this,
@@ -95,14 +99,18 @@ namespace UIAutomation.Commands
                 //this.InputObject.Current.ProcessId;
                 inputObject.Current.ProcessId;
             WriteVerbose(this, "process Id = " + processId.ToString());
-            AutomationElementCollection windowsByPID = null;
+            // 20131109
+            //AutomationElementCollection windowsByPID = null;
+            IMySuperCollection windowsByPID = null;
             StartDate = System.DateTime.Now;
             bool breakSearch = false;
             do {
                 // getting all menus in this process
                 if (processId != 0) {
-                    windowsByPID = 
-                        AutomationElement.RootElement.FindAll(TreeScope.Children,
+                    windowsByPID =
+                        // 20131109
+                        //AutomationElement.RootElement.FindAll(TreeScope.Children,
+                        MySuperWrapper.RootElement.FindAll(TreeScope.Children,
                                                               new AndCondition(
                                                                   new PropertyCondition(
                                                                       AutomationElement.ProcessIdProperty,
@@ -159,7 +167,11 @@ namespace UIAutomation.Commands
                     System.Threading.Thread.Sleep(200);
                     continue;
                 }
-                foreach (AutomationElement element in windowsByPID) {
+                
+                // 20131109
+                //foreach (AutomationElement element in windowsByPID) {
+                foreach (IMySuperWrapper element in windowsByPID) {
+                    
                     WriteVerbose(this, element.Current.Name);
                     WriteVerbose(this, element.Current.BoundingRectangle.ToString());
                     try {

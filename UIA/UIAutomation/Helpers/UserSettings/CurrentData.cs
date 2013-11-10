@@ -34,7 +34,9 @@ namespace UIAutomation
             InitializeData();
         }
         
-        public static AutomationElement CurrentWindow { get; internal set; }
+        // 20131109
+        //public static AutomationElement CurrentWindow { get; internal set; }
+        public static IMySuperWrapper CurrentWindow { get; internal set; }
         public static System.Collections.ArrayList Error { get; set; }
         public static string LastCmdlet { get; internal set; }
         public static object LastResult { get; internal set; }
@@ -45,7 +47,9 @@ public static System.Collections.Generic.List<object> Events { get; set; } // te
         
         internal static Commands.RecorderForm formRecorder { get; set; }
         
-        public static AutomationElement LastEventSource { get; set; }
+        // 20131109
+        //public static AutomationElement LastEventSource { get; set; }
+        public static IMySuperWrapper LastEventSource { get; set; }
         //internal static EventArgs LastEventArgs { get; set; }
         public static EventArgs LastEventArgs { get; set; }
         //internal static string LastEventType { get; set; }
@@ -91,7 +95,9 @@ public static System.Collections.Generic.List<object> Events { get; set; } // te
             }
         }
         
-        public static void SetCurrentWindow(AutomationElement window)
+        // 20131109
+        //public static void SetCurrentWindow(AutomationElement window)
+        public static void SetCurrentWindow(IMySuperWrapper window)
         {
             if (window != null) {
                 CurrentData.CurrentWindow = window;

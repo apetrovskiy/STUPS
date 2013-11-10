@@ -176,7 +176,7 @@ namespace UIAutomation.Commands
         
         protected override void EndProcessing()
         {
-            rootElement = null;
+            oddRootElement = null;
         }
         
 //        protected override void StopProcessing()

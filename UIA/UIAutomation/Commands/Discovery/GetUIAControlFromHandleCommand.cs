@@ -40,7 +40,9 @@ namespace UIAutomation.Commands
         /// </summary>
         protected override void ProcessRecord()
         {
-            System.Windows.Automation.AutomationElement result = null;
+            // 20131109
+            //System.Windows.Automation.AutomationElement result = null;
+            IMySuperWrapper result = null;
             
             foreach (int handle in this.InputObject) {
                 result = 
@@ -77,13 +79,21 @@ namespace UIAutomation.Commands
         /// </summary>
         protected override void ProcessRecord()
         {
-            System.Windows.Automation.AutomationElement result = null;
+            // 20131109
+            //System.Windows.Automation.AutomationElement result = null;
             
             foreach (int handle in this.InputObject) {
-                result = 
+                
+                // 20131109
+                //result = 
+                //    UIAHelper.GetAutomationElementFromHandle(
+                //        this,
+                //        handle);
+                IMySuperWrapper result =
                     UIAHelper.GetAutomationElementFromHandle(
                         this,
                         handle);
+                
                 if (result != null) {
                     this.WriteVerbose(this, "got the window");
                 }

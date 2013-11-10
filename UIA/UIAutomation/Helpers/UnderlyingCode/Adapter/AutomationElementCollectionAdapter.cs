@@ -11,21 +11,28 @@ namespace UIAutomation
 {
     using System;
     using System.Collections;
+    using System.Collections.Generic;
     using System.Windows.Automation;
     
+    using System.Linq;
+    
 	//public class AutomationElementCollection : ICollection, IEnumerable, IAutomationElementCollection
-	public class AutomationElementCollectionAdapter : IAutomationElementCollection
+	public class MySuperCollection : IMySuperCollection
 	{
 	    //private AutomationElementCollection collectionHolder;
-	    private ICollection collectionHolder;
+	    //private ICollection collectionHolder;
+	    private List<IMySuperWrapper> collectionHolder =
+	        new List<IMySuperWrapper>();
 	    
 		//private AutomationElement[] _elements;
 		// 20131108
 		//public AutomationElement this[int index] {
-		public IAutomationElementAdapter this[int index] {
+		public IMySuperWrapper this[int index] {
 		    //get { return this.collectionHolder[index]; } //return this._elements[index]; }
 		    //get { return ((AutomationElementCollection)this.collectionHolder)[index]; } //return this._elements[index]; }
-		    get { return new AutomationElementAdapter(((AutomationElementCollection)this.collectionHolder)[index]); } //return this._elements[index]; }
+		    //get { return new MySuperWrapper(((AutomationElementCollection)this.collectionHolder)[index]); } //return this._elements[index]; }
+		    //get { return new MySuperWrapper(this.collectionHolder[index]); } //return this._elements[index]; }
+		    get { return this.collectionHolder[index]; }
 		}
 		public int Count {
 		    get { return this.collectionHolder.Count; } //return this._elements.Length; }
@@ -36,26 +43,44 @@ namespace UIAutomation
 		public virtual bool IsSynchronized {
 			get { return false; }
 		}
-		//internal AutomationElementCollectionAdapter(AutomationElement[] elements)
-		internal AutomationElementCollectionAdapter(AutomationElementCollection elements)
+		//internal MySuperCollection(AutomationElement[] elements)
+		internal MySuperCollection(AutomationElementCollection elements)
 		{
-		    //this._elements = elements as AutomationElement[];
-		    this.collectionHolder = elements;
+		    foreach (AutomationElement element in elements) {
+		        
+		        this.collectionHolder.Add(new MySuperWrapper(element));
+		    }
+		}
+		
+		internal MySuperCollection(IMySuperCollection elements)
+		{
+		    foreach (IMySuperWrapper element in elements) {
+		        
+		        this.collectionHolder.Add(element);
+		    }
 		}
 		
 		//
-		internal AutomationElementCollectionAdapter(ICollection elements)
+		internal MySuperCollection(ICollection elements)
 		{
-		    this.collectionHolder = elements;
+		    foreach (var element in elements) {
+		        
+		        this.collectionHolder.Add((IMySuperWrapper)element);
+		    }
 		}
 		//
 		
 		public virtual void CopyTo(Array array, int index)
 		{
 			//this._elements.CopyTo(array, index);
-			this.collectionHolder.CopyTo(array, index);
+			//this.collectionHolder.CopyTo(array, index);
 		}
 		public void CopyTo(AutomationElement[] array, int index)
+		{
+			//((ICollection)this).CopyTo(array, index);
+			//this.collectionHolder.CopyTo(array, index);
+		}
+		public void CopyTo(IMySuperWrapper[] array, int index)
 		{
 			//((ICollection)this).CopyTo(array, index);
 			this.collectionHolder.CopyTo(array, index);
@@ -66,12 +91,22 @@ namespace UIAutomation
 			return this.collectionHolder.GetEnumerator();
 		}
 		
-		public AutomationElementCollection SourceCollection
+		public void AddElement(IMySuperWrapper element)
+		{
+		    this.collectionHolder.Add(element);
+		}
+		
+		//public AutomationElementCollection SourceCollection
+		//public IMySuperCollection SourceCollection
+		public List<IMySuperWrapper> SourceCollection
 		{
 		    //get { return this.collectionHolder; }
-		    get { return ((AutomationElementCollection)this.collectionHolder); }
+		    //get { return ((AutomationElementCollection)this.collectionHolder); }
+		    //get { return (IMySuperCollection)this.collectionHolder.Cast<IMySuperWrapper>(); }
+		    //get { return (IMySuperCollection)this.collectionHolder.AsEnumerable<IMySuperWrapper>(); }
+		    get { return this.collectionHolder; }
 		    //internal 
-		    set { this.collectionHolder = value; }
+		    //set { this.collectionHolder = value; }
 		}
 	}
 }

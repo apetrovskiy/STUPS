@@ -533,7 +533,11 @@ namespace UIAutomation
                             
                             if (null != rootCollection && 0 < rootCollection.Count)
                             {
-                                aeWndCollectionByProcessId.AddRange(rootCollection);
+                                // 20131111
+                                //aeWndCollectionByProcessId.AddRange(rootCollection);
+                                foreach (IMySuperWrapper singleElement in rootCollection) {
+                                    aeWndCollectionByProcessId.Add(singleElement);
+                                }
 
                                 //foreach (AutomationElementCollection tempCollection in from AutomationElement rootWindowElement in rootCollection let tempCollection = null select rootWindowElement.FindAll(
                                 // 20131109
@@ -541,7 +545,11 @@ namespace UIAutomation
                                     TreeScope.Descendants,
                                     conditionsForRecurseSearch) into tempCollection where null != tempCollection && 0 < tempCollection.Count select tempCollection)
                                 {
-                                    aeWndCollectionByProcessId.AddRange(tempCollection);
+                                    // 20131111
+                                    //aeWndCollectionByProcessId.AddRange(tempCollection);
+                                    foreach (IMySuperWrapper singleElement in rootCollection) {
+                                        aeWndCollectionByProcessId.Add(singleElement);
+                                    }
                                 }
                                 
                                 /*
@@ -1156,8 +1164,8 @@ namespace UIAutomation
                     " elements");
                 
             }
-            catch {
-                
+            catch (Exception eProcessing) {
+                cmdlet.WriteVerbose(eProcessing.Message);
             }
             
             return resultCollection;

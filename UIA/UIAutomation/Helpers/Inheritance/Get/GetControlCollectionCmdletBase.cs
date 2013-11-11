@@ -813,7 +813,11 @@ namespace UIAutomation
                             
                             // 20131109
                             //searchResults.AddRange(temporaryResults.Cast<AutomationElement>());
-                            searchResults.AddRange(temporaryResults.Cast<IMySuperWrapper>());
+                            // 20131111
+                            //searchResults.AddRange(temporaryResults.Cast<IMySuperWrapper>());
+                            foreach (IMySuperWrapper singleElement in temporaryResults) {
+                                searchResults.Add(singleElement);
+                            }
                             /*
                                 foreach (AutomationElement element in temporaryResults)
                                 {
@@ -879,7 +883,11 @@ namespace UIAutomation
                                      " results");
                         // 20131109
                         //searchResults.AddRange(temporaryResults.Cast<AutomationElement>());
-                        searchResults.AddRange(temporaryResults.Cast<IMySuperWrapper>());
+                        // 20131111
+                        //searchResults.AddRange(temporaryResults.Cast<IMySuperWrapper>());
+                        foreach (IMySuperWrapper singleElement in temporaryResults) {
+                            searchResults.Add(singleElement);
+                        }
                         /*
                         foreach (AutomationElement element in temporaryResults)
                         {

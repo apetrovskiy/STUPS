@@ -37,155 +37,130 @@ namespace UIAutomation.Commands
             // 20131109
             //foreach (AutomationElement inputObject in this.InputObject) {
             foreach (IMySuperWrapper inputObject in this.InputObject) {
-            
-            string strData = String.Empty;
-            // 20131109
-            //System.Windows.Automation.AutomationElement _control = 
-            IMySuperWrapper _control =
-                // 20120823
-                //this.InputObject;
-                inputObject;
-            TablePattern tblPattern = null;
-            
-            try {
-                tblPattern =
-                    // 20120823
-                    //this.InputObject.GetCurrentPattern(TablePattern.Pattern)
-                    inputObject.GetCurrentPattern(TablePattern.Pattern)
-                    as TablePattern;
-            
-                bool res1 = 
-                    UIAHelper.GetHeaderItems(ref _control, out strData, this.Delimiter);
-                if (res1) {
-                    this.WriteObject(strData);
-                } else {
-                    this.WriteVerbose(this, strData);
-                }
                 
-                // temporary!!!
-                // Selection
+                string strData = String.Empty;
                 // 20131109
-                //System.Windows.Automation.AutomationElement[] selectedItems = null;
-                IMySuperWrapper[] selectedItems = null;
-                if (this.SelectedOnly) {
-                    // if there's a selection, get items in the selection
-                    try
-                    {
-                        SelectionPattern selPattern = inputObject.GetCurrentPattern(
-                            System.Windows.Automation.SelectionPattern.Pattern)
-                            as System.Windows.Automation.SelectionPattern;
-
-                        /*
-                        System.Windows.Automation.SelectionPattern selPattern;
-                        selPattern = 
-                            // 20120823
-                            //this.InputObject.GetCurrentPattern(
-                            inputObject.GetCurrentPattern(
+                //System.Windows.Automation.AutomationElement _control = 
+                IMySuperWrapper _control =
+                    // 20120823
+                    //this.InputObject;
+                    inputObject;
+                TablePattern tblPattern = null;
+                
+                try {
+                    tblPattern =
+                        // 20120823
+                        //this.InputObject.GetCurrentPattern(TablePattern.Pattern)
+                        inputObject.GetCurrentPattern(TablePattern.Pattern)
+                        as TablePattern;
+                    
+                    bool res1 = 
+                        UIAHelper.GetHeaderItems(ref _control, out strData, this.Delimiter);
+                    
+                    if (res1) {
+                        this.WriteObject(strData);
+                    } else {
+                        this.WriteVerbose(this, strData);
+                    }
+                    
+                    // temporary!!!
+                    // Selection
+                    // 20131109
+                    //System.Windows.Automation.AutomationElement[] selectedItems = null;
+                    IMySuperWrapper[] selectedItems = null;
+                    if (this.SelectedOnly) {
+                        
+                        // if there's a selection, get items in the selection
+                        try
+                        {
+                            
+                            SelectionPattern selPattern = inputObject.GetCurrentPattern(
                                 System.Windows.Automation.SelectionPattern.Pattern)
                                 as System.Windows.Automation.SelectionPattern;
-                        */
-                        selectedItems =
-                            // 20131109
-                            //selPattern.Current.GetSelection();
-                            new MySuperCollection(selPattern.Current.GetSelection()).Cast<MySuperWrapper>().ToArray();
-                    }
-                    catch (Exception eSelection) {
-                        this.WriteDebug(this, eSelection.Message);
-                        this.WriteVerbose(this, "there wasn't a selection");
-                    }
-                }
-                
-                
-                // temporary!!!
-                // get rows
-                if (tblPattern.Current.RowCount <= 0) continue;
-                // 20130318
-                //RunOnSuccessScriptBlocks(this);
-                RunOnSuccessScriptBlocks(this, null);
-                for (int rowsCounter = 0;
-                    rowsCounter<tblPattern.Current.RowCount;
-                    rowsCounter++) {
-                        if (this.SelectedOnly && selectedItems.Length > 0) {
-                        } else {
-                            // without a selection
-                            string outString = 
-                                UIAHelper.GetOutputStringUsingTableGridPattern<System.Windows.Automation.TablePattern > (
-                                    tblPattern,
-                                    tblPattern.Current.ColumnCount,
-                                    rowsCounter,
-                                    this.Delimiter);
-// getOutputString(ref tblPattern,
-// rowsCounter);
-                            // output a row
-                            this.WriteObject(outString);
+                            
+                            /*
+                            System.Windows.Automation.SelectionPattern selPattern;
+                            selPattern = 
+                                // 20120823
+                                //this.InputObject.GetCurrentPattern(
+                                inputObject.GetCurrentPattern(
+                                    System.Windows.Automation.SelectionPattern.Pattern)
+                                    as System.Windows.Automation.SelectionPattern;
+                            */
+                            selectedItems =
+                                // 20131109
+                                //selPattern.Current.GetSelection();
+                                new MySuperCollection(selPattern.Current.GetSelection()).Cast<MySuperWrapper>().ToArray();
+                        }
+                        catch (Exception eSelection) {
+                            this.WriteDebug(this, eSelection.Message);
+                            this.WriteVerbose(this, "there wasn't a selection");
                         }
                     }
-                //}
-
-                /*
-                if (tblPattern.Current.RowCount > 0) {
+                    
+                    
+                    // temporary!!!
+                    // get rows
+                    if (tblPattern.Current.RowCount <= 0) continue;
                     // 20130318
                     //RunOnSuccessScriptBlocks(this);
                     RunOnSuccessScriptBlocks(this, null);
-                        for (int rowsCounter = 0;
-                             rowsCounter<tblPattern.Current.RowCount;
-                             rowsCounter++) {
+                    
+                    for (int rowsCounter = 0;
+                        rowsCounter < tblPattern.Current.RowCount;
+                        rowsCounter++) {
+                        
                             if (this.SelectedOnly && selectedItems.Length > 0) {
+                                
                             } else {
+                                
                                 // without a selection
                                 string outString = 
-                                    UIAHelper.GetOutputStringUsingTableGridPattern<System.Windows.Automation.TablePattern > (
+                                    UIAHelper.GetOutputStringUsingTableGridPattern<System.Windows.Automation.TablePattern>(
                                         tblPattern,
                                         tblPattern.Current.ColumnCount,
                                         rowsCounter,
                                         this.Delimiter);
-// getOutputString(ref tblPattern,
-// rowsCounter);
+    // getOutputString(ref tblPattern,
+    // rowsCounter);
                                 // output a row
                                 this.WriteObject(outString);
                             }
                         }
                     //}
-                }
-                */
-
-            } catch {
-                if (tblPattern != null) continue;
-                this.WriteVerbose(this, "couldn't get TablePattern");
-                this.WriteVerbose(this, "trying to enumerate columns and rows");
-                    
-                    
-                bool res2 = 
-                    UIAHelper.GetHeaders(ref _control, out strData, this.Delimiter);
-                if (res2) {
-                    this.WriteObject(strData);
-                } else {
-                    this.WriteVerbose(this, strData);
-                }
-                    
-                System.Collections.Generic.List<string >  rows = 
-                    // 20120823
-                    //UIAHelper.GetOutputStringUsingItemsValuePattern(this.InputObject,
-                    UIAHelper.GetOutputStringUsingItemsValuePattern(inputObject,
-                        this.Delimiter);
-                if (rows.Count > 0) {
-                    // 20130318
-                    //RunOnSuccessScriptBlocks(this);
-                    RunOnSuccessScriptBlocks(this, null);
-                    foreach (string row in rows) {
-                        this.WriteObject(row);
+    
+                    /*
+                    if (tblPattern.Current.RowCount > 0) {
+                        // 20130318
+                        //RunOnSuccessScriptBlocks(this);
+                        RunOnSuccessScriptBlocks(this, null);
+                            for (int rowsCounter = 0;
+                                 rowsCounter<tblPattern.Current.RowCount;
+                                 rowsCounter++) {
+                                if (this.SelectedOnly && selectedItems.Length > 0) {
+                                } else {
+                                    // without a selection
+                                    string outString = 
+                                        UIAHelper.GetOutputStringUsingTableGridPattern<System.Windows.Automation.TablePattern>(
+                                            tblPattern,
+                                            tblPattern.Current.ColumnCount,
+                                            rowsCounter,
+                                            this.Delimiter);
+    // getOutputString(ref tblPattern,
+    // rowsCounter);
+                                    // output a row
+                                    this.WriteObject(outString);
+                                }
+                            }
+                        //}
                     }
-                }
-                // WriteObject(this, false);
-                // return;
-
-                /*
-                if (tblPattern == null)
-                {
+                    */
+                } catch {
+                    if (tblPattern != null) continue;
                     this.WriteVerbose(this, "couldn't get TablePattern");
                     this.WriteVerbose(this, "trying to enumerate columns and rows");
-                    
-                    
+                        
+                        
                     bool res2 = 
                         UIAHelper.GetHeaders(ref _control, out strData, this.Delimiter);
                     if (res2) {
@@ -193,12 +168,12 @@ namespace UIAutomation.Commands
                     } else {
                         this.WriteVerbose(this, strData);
                     }
-                    
-                    System.Collections.Generic.List<string >  rows = 
+                        
+                    System.Collections.Generic.List<string> rows = 
                         // 20120823
                         //UIAHelper.GetOutputStringUsingItemsValuePattern(this.InputObject,
                         UIAHelper.GetOutputStringUsingItemsValuePattern(inputObject,
-                                                                        this.Delimiter);
+                            this.Delimiter);
                     if (rows.Count > 0) {
                         // 20130318
                         //RunOnSuccessScriptBlocks(this);
@@ -209,9 +184,40 @@ namespace UIAutomation.Commands
                     }
                     // WriteObject(this, false);
                     // return;
+    
+                    /*
+                    if (tblPattern == null)
+                    {
+                        this.WriteVerbose(this, "couldn't get TablePattern");
+                        this.WriteVerbose(this, "trying to enumerate columns and rows");
+                        
+                        
+                        bool res2 = 
+                            UIAHelper.GetHeaders(ref _control, out strData, this.Delimiter);
+                        if (res2) {
+                            this.WriteObject(strData);
+                        } else {
+                            this.WriteVerbose(this, strData);
+                        }
+                        
+                        System.Collections.Generic.List<string> rows = 
+                            // 20120823
+                            //UIAHelper.GetOutputStringUsingItemsValuePattern(this.InputObject,
+                            UIAHelper.GetOutputStringUsingItemsValuePattern(inputObject,
+                                                                            this.Delimiter);
+                        if (rows.Count > 0) {
+                            // 20130318
+                            //RunOnSuccessScriptBlocks(this);
+                            RunOnSuccessScriptBlocks(this, null);
+                            foreach (string row in rows) {
+                                this.WriteObject(row);
+                            }
+                        }
+                        // WriteObject(this, false);
+                        // return;
+                    }
+                    */
                 }
-                */
-            }
             
             } // 20120823
 

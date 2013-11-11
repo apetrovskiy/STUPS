@@ -4,7 +4,7 @@
     Title="UIAutomation.Commands"
     Height="300"
     Width="300" > 
-    <Grid > 
+    <Grid>
         <!--<Button
             Content="Button"
             Grid.Column="0"

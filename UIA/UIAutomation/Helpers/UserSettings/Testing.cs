@@ -20,12 +20,12 @@ namespace UIAutomation
         {
         }
         
-//  //public static System.Collections.Generic.List<TestResult >  TestSuites { get; internal set; }
-//  //internal static System.Collections.Generic.List<TestResult >  TestScenarios { get; internal set; }
-//  //public static System.Collections.Generic.List<TestResult >  TestResults { get; internal set; }
+//  //public static System.Collections.Generic.List<TestResult> TestSuites { get; internal set; }
+//  //internal static System.Collections.Generic.List<TestResult> TestScenarios { get; internal set; }
+//  //public static System.Collections.Generic.List<TestResult> TestResults { get; internal set; }
 // 
 // 
-// public static System.Collections.Generic.List<TestSuite >  TestResults { get; internal set; }
+// public static System.Collections.Generic.List<TestSuite> TestResults { get; internal set; }
 // 
 // internal static void AddTestResult(string previousTestResultLabel,
 // bool passed)
@@ -78,12 +78,12 @@ namespace UIAutomation
 // }
 // 
 // public string Name { get; internal set; }
-// public System.Collections.Generic.List<TestResult >  TestResults {get; internal set; }
+// public System.Collections.Generic.List<TestResult> TestResults {get; internal set; }
 //  //public System.Collections.ArrayList Details { get; internal set; }
 //  //public bool Passed { get; internal set; }
 // }
 // 
-// public class TestSuite : System.Collections.Generic.List<TestScenario > 
+// public class TestSuite : System.Collections.Generic.List<TestScenario>
 // {
 // public TestSuite()
 // {
@@ -93,7 +93,7 @@ namespace UIAutomation
 // }
 // 
 // public string Name { get; internal set; }
-// public System.Collections.Generic.List<TestScenario >  TestScenarios {get; internal set; }
+// public System.Collections.Generic.List<TestScenario> TestScenarios {get; internal set; }
 //  //public System.Collections.ArrayList Details { get; internal set; }
 //  //public bool Passed { get; internal set; }
     }

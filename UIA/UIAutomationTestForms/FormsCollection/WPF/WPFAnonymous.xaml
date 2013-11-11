@@ -4,5 +4,5 @@
     Height="300"
     Width="300"
     Title="" > 
-    <Grid > </Grid > 
+    <Grid></Grid > 
 </Window > 

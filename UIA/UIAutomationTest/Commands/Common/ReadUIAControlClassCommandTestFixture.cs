@@ -82,7 +82,7 @@ namespace UIAutomationTest.Commands.Common
 // @"Get-UIAWindow -Name '" + 
 // CmdletUnitTest.TestRunspace.NUnitTitle + 
 // "' | Read-UIAControlClass";
-// System.Collections.ObjectModel.Collection<PSObject >  coll =
+// System.Collections.ObjectModel.Collection<PSObject> coll =
 // CmdletUnitTest.TestRunspace.RunPSCode(codeSnippet);
 // Assert.AreEqual(CmdletUnitTest.TestRunspace.NUnitClass, coll[0].ToString());
 // }

@@ -24,7 +24,7 @@ namespace UIAutomation
             // 20130109
 //            Error = new System.Collections.ArrayList(Preferences.MaximumErrorCount);
 //            //TestResults = 
-//            // new System.Collections.Generic.List<TestResult > ();
+//            // new System.Collections.Generic.List<TestResult>();
 //            ////initTestResults();
 //            Profiles = new System.Collections.Generic.List<Profile>();
 //            

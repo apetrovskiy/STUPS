@@ -1356,8 +1356,8 @@ namespace UIAutomation
         #region Invoke-UIAScript
         protected internal void RunEventScriptBlocks(HasControlInputCmdletBase cmdlet)
         {
-            System.Collections.Generic.List<ScriptBlock >  blocks =
-                new System.Collections.Generic.List<ScriptBlock > ();
+            System.Collections.Generic.List<ScriptBlock> blocks =
+                new System.Collections.Generic.List<ScriptBlock>();
             this.WriteVerbose(cmdlet,
                               blocks.Count.ToString() +
                               " events to fire");
@@ -1585,8 +1585,8 @@ namespace UIAutomation
         #region Get-UIAControl
         public AndCondition[] getControlsConditions(GetControlCollectionCmdletBase cmdlet)
         {
-            System.Collections.Generic.List<AndCondition >  conditions =
-                new System.Collections.Generic.List<AndCondition > ();
+            System.Collections.Generic.List<AndCondition> conditions =
+                new System.Collections.Generic.List<AndCondition>();
 
             if (null != cmdlet.ControlType && 0 < cmdlet.ControlType.Length) {
                 foreach (string controlTypeName in cmdlet.ControlType)

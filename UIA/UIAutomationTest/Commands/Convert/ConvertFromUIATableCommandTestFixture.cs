@@ -44,7 +44,7 @@ namespace UIAutomationTest.Commands.Convert
         {
 //            string codeSnippet = 
 //                @"if ((ConvertFrom-UIATable -InputObject $null)) { 1; }else{ 0; }";
-//            System.Collections.ObjectModel.Collection<PSObject >  coll =
+//            System.Collections.ObjectModel.Collection<PSObject> coll =
 //                CmdletUnitTest.TestRunspace.RunPSCode(codeSnippet);
 //            Assert.IsNull(coll);
             
@@ -65,7 +65,7 @@ namespace UIAutomationTest.Commands.Convert
         {
 //            string codeSnippet = 
 //                @"if ((ConvertFrom-UIATable -InputObject (New-Object System.Windows.forms.Label))) { 1; }else{ 0; }";
-//            System.Collections.ObjectModel.Collection<PSObject >  coll =
+//            System.Collections.ObjectModel.Collection<PSObject> coll =
 //                CmdletUnitTest.TestRunspace.RunPSCode(codeSnippet);
 //            Assert.IsNull(coll);
             

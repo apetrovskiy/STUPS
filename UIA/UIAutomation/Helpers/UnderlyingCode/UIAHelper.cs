@@ -2403,7 +2403,7 @@ namespace UIAutomation
         /// <param name="rowsCounter"></param>
         /// <param name="delimiter"></param>
         /// <returns></returns>
-        internal static string GetOutputStringUsingTableGridPattern<T > (
+        internal static string GetOutputStringUsingTableGridPattern<T>(
             T pattern,
             int columnsNumber,
             int rowsCounter,
@@ -2420,11 +2420,19 @@ namespace UIAutomation
                 onerow +=
                     // 20131109
                     //((System.Windows.Automation.AutomationElement)
-                    ((IMySuperWrapper)
-                     pattern.GetType().GetMethod(
-                         "GetItem").Invoke(
-                         pattern,
-                         coordinates)).Current.Name;
+                    // 20131111
+                    //((IMySuperWrapper)
+                    // pattern.GetType().GetMethod(
+                    //     "GetItem").Invoke(
+                    //     pattern,
+                    //     coordinates)).Current.Name;
+                    (new MySuperWrapper(
+                        ((System.Windows.Automation.AutomationElement)
+                        pattern.GetType().GetMethod(
+                            "GetItem").Invoke(
+                            pattern,
+                            coordinates)))).Current.Name;
+                
                 //{ coordinates)).Current.Name;
                 // pattern.GetType().InvokeMember(
                 // "GetItem",
@@ -2445,15 +2453,15 @@ namespace UIAutomation
         /// <param name="control"></param>
         /// <param name="delimiter"></param>
         /// <returns></returns>
-        internal static System.Collections.Generic.List<string >
+        internal static System.Collections.Generic.List<string>
             GetOutputStringUsingItemsValuePattern(
                 // 20131109
                 //AutomationElement control,
                 IMySuperWrapper control,
                 char delimiter)
         {
-            System.Collections.Generic.List<string >  rowsCollection =
-                new System.Collections.Generic.List<string > ();
+            System.Collections.Generic.List<string> rowsCollection =
+                new System.Collections.Generic.List<string>();
             
             // 20131109
             //AutomationElementCollection rows =

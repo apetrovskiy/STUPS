@@ -5,5 +5,5 @@
     Height="300"
     Width="300"
     WindowState="Minimized" > 
-    <Grid > </Grid > 
+    <Grid></Grid > 
 </Window > 

@@ -34,7 +34,7 @@
 //        {
 //            string codeSnippet = 
 //                @"if ( ($null | ConvertFrom-UIAList) ) { 1; }else{ 0; }";
-//            System.Collections.ObjectModel.Collection<PSObject >  coll = 
+//            System.Collections.ObjectModel.Collection<PSObject> coll = 
 //                CmdletUnitTest.TestRunspace.RunPSCode(codeSnippet);
 //            Assert.IsTrue(coll[0].ToString() == "0");
 //        }
@@ -45,7 +45,7 @@
 //        {
 //            string codeSnippet = 
 //                @"if ((ConvertFrom-UIAList -InputObject $null)) { 1; }else{ 0; }";
-//            System.Collections.ObjectModel.Collection<PSObject >  coll =
+//            System.Collections.ObjectModel.Collection<PSObject> coll =
 //                CmdletUnitTest.TestRunspace.RunPSCode(codeSnippet);
 //            Assert.IsNull(coll);
 //        }
@@ -56,7 +56,7 @@
 //        {
 //            string codeSnippet = 
 //                @"if ((ConvertFrom-UIAList -InputObject (New-Object System.Windows.forms.Label))) { 1; }else{ 0; }";
-//            System.Collections.ObjectModel.Collection<PSObject >  coll =
+//            System.Collections.ObjectModel.Collection<PSObject> coll =
 //                CmdletUnitTest.TestRunspace.RunPSCode(codeSnippet);
 //            Assert.IsNull(coll);
 //        }

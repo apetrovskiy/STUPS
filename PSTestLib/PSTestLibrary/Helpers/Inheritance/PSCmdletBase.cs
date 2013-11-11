@@ -895,7 +895,7 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
 //                //WriteVerbose(this, "failed to register an event in the collection");
 //            }
             
-            // 20120206 Collection<PSObject >  psObjects = null;
+            // 20120206 Collection<PSObject> psObjects = null;
             try {
                 System.Management.Automation.Runspaces.Runspace.DefaultRunspace =
                     RunspaceFactory.CreateRunspace();

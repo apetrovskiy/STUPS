@@ -34,21 +34,19 @@ namespace UIAutomation
         public CommonCmdletBase()
         {
             #region creating the log file
-            try {
-                Global.CreateLogFile();
-            } catch { }
+            // 20131112
+            //try {
+            //    Global.CreateLogFile();
+            //} catch { }
             #endregion creating the log file
-            CurrentData.LastCmdlet = this.CmdletName(this);
             
+            CurrentData.LastCmdlet = this.CmdletName(this);
             // ??
             if (!UnitTestMode && !ModuleAlreadyLoaded) {
-
                 //WebDriverFactory.AutofacModule = new WebDriverModule();
-                ObjectsFactory.NinjecctModule = new ObjectLifecycleModule();
-
+                //ObjectsFactory.NinjecctModule = new ObjectLifecycleModule();
                 //WebDriverFactory.Init();
                 
-
                 ModuleAlreadyLoaded = true;
             }
             

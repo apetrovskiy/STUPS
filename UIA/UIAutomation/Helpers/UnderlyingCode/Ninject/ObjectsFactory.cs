@@ -21,13 +21,18 @@ namespace UIAutomation
     {
         static ObjectsFactory()
         {
+            if (!CommonCmdletBase.UnitTestMode && !CommonCmdletBase.ModuleAlreadyLoaded) {
+
+                ninjectModule = new ObjectLifecycleModule();
+                CommonCmdletBase.ModuleAlreadyLoaded = true;
+            }
         }
         
 		private static INinjectModule ninjectModule;
 		internal static INinjectModule NinjecctModule
 		{ 
 		    get { return ninjectModule; }
-		    set{ ninjectModule = value; initFlag = false; }
+		    set { ninjectModule = value; initFlag = false; }
 		}
 		
 		private static bool initFlag = false;
@@ -47,8 +52,8 @@ namespace UIAutomation
     		    catch (Exception eInitFailure) {
 		            // TODO
 			        // write error to error object!!!
-			        Console.WriteLine("Init Kernel");
-    		        Console.WriteLine(eInitFailure.Message);
+			        //Console.WriteLine("Init Kernel");
+    		        //Console.WriteLine(eInitFailure.Message);
     		    }
 
 		        initFlag = true;
@@ -57,6 +62,9 @@ namespace UIAutomation
 		
 		internal static IMySuperWrapper GetMySuperWrapper(AutomationElement element)
 		{
+	        if (null == element) {
+	            return null;
+	        }
 			try {
     			var singleElement = new Ninject.Parameters.ConstructorArgument("element", element);
     			IMySuperWrapper adapterElement = ObjectsFactory.Kernel.Get<IMySuperWrapper>(singleElement);
@@ -65,14 +73,17 @@ namespace UIAutomation
 			catch (Exception eFailedToIssueElement) {
 			    // TODO
 			    // write error to error object!!!
-			    Console.WriteLine("Element");
-			    Console.WriteLine(eFailedToIssueElement.Message);
+//			    Console.WriteLine("Element");
+//			    Console.WriteLine(eFailedToIssueElement.Message);
 			    return null;
 			}
 		}
 		
 		internal static IMySuperCollection GetMySuperCollection(AutomationElementCollection elements)
 		{
+	        if (null == elements) {
+	            return null;
+	        }
 			try {
     			var manyElements = new Ninject.Parameters.ConstructorArgument("elements", elements);
 	      		IMySuperCollection adapterCollection = ObjectsFactory.Kernel.Get<IMySuperCollection>(manyElements);
@@ -81,8 +92,8 @@ namespace UIAutomation
 			catch (Exception eFailedToIssueCollection) {
 			    // TODO
 			    // write error to error object!!!
-			    Console.WriteLine("Collection");
-			    Console.WriteLine(eFailedToIssueCollection.Message);
+//			    Console.WriteLine("Collection");
+//			    Console.WriteLine(eFailedToIssueCollection.Message);
 			    return null;
 			}
 		}

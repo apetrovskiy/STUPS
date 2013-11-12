@@ -22,9 +22,9 @@ namespace PSTestLib
     /// </summary>
     public abstract class PSCmdletBase : PSCmdlet //, ICommonCmdletBase
     {
-        public PSCmdletBase()
-        {
-        }
+        //public PSCmdletBase()
+        //{
+        //}
         
         #region Parameters
             #region Actions

@@ -19,10 +19,6 @@ namespace UIAutomation
     /// </summary>
     public class ObjectLifecycleModule : NinjectModule
     {
-        public ObjectLifecycleModule()
-        {
-        }
-        
         public override void Load()
         {
             Bind<IMySuperWrapper>().To<MySuperWrapper>().InCallScope();

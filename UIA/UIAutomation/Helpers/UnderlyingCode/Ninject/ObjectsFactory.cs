@@ -43,7 +43,8 @@ namespace UIAutomation
 		    if (!initFlag) {
     		    try {
 		            
-                    kernel = new StandardKernel(new ObjectLifecycleModule());
+                    //kernel = new StandardKernel(new ObjectLifecycleModule());
+                    kernel = new StandardKernel(ninjectModule);
     		    }
     		    catch (Exception efgh) {
     		        Console.WriteLine(efgh.Message);

@@ -1556,7 +1556,9 @@ namespace UIAutomation
             try {
                 // 20131109
                 //CurrentData.LastEventSource = src; //.SourceElement; // as AutomationElement;
-                CurrentData.LastEventSource = new MySuperWrapper(src);
+                // 20131112
+                //CurrentData.LastEventSource = new MySuperWrapper(src);
+                CurrentData.LastEventSource = ObjectsFactory.GetMySuperWrapper(src);
                 CurrentData.LastEventArgs = e; // as AutomationEventArgs;
                 CurrentData.LastEventType = programmaticName;
                 CurrentData.LastEventInfoAdded = infoAdded;
@@ -2083,7 +2085,9 @@ namespace UIAutomation
                     // 20131104
                     // refactoring
                     IMySuperWrapper adapterOfInputObject =
-                        new MySuperWrapper(inputObject.SourceElement);
+                        // 20131112
+                        //new MySuperWrapper(inputObject.SourceElement);
+                        ObjectsFactory.GetMySuperWrapper(inputObject.SourceElement);
 
                     int processId = 0;
                     do {

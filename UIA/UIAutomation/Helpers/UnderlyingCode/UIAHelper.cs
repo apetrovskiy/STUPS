@@ -1380,7 +1380,9 @@ namespace UIAutomation
             try {
                 // 20131109
                 //result = walker.GetParent(element);
-                result = new MySuperWrapper(walker.GetParent(element.SourceElement));
+                // 20131112
+                //result = new MySuperWrapper(walker.GetParent(element.SourceElement));
+                result = ObjectsFactory.GetMySuperWrapper(walker.GetParent(element.SourceElement));
             }
             catch {}
             
@@ -1402,7 +1404,9 @@ namespace UIAutomation
             try {
                 // 20131109
                 //result = walker.GetFirstChild(element);
-                result = new MySuperWrapper(walker.GetFirstChild(element.SourceElement));
+                // 20131112
+                //result = new MySuperWrapper(walker.GetFirstChild(element.SourceElement));
+                result = ObjectsFactory.GetMySuperWrapper(walker.GetFirstChild(element.SourceElement));
             }
             catch {}
             
@@ -1437,7 +1441,9 @@ namespace UIAutomation
                     testParent =
                         // 20131109
                         //walker.GetParent(testParent);
-                        new MySuperWrapper(walker.GetParent(testParent.SourceElement));
+                        // 20131112
+                        //new MySuperWrapper(walker.GetParent(testParent.SourceElement));
+                        ObjectsFactory.GetMySuperWrapper(walker.GetParent(testParent.SourceElement));
                     
                     if (testParent == null || (int) testParent.Current.ProcessId <= 0) continue;
                     if (testParent == cmdlet.oddRootElement)
@@ -1464,7 +1470,9 @@ namespace UIAutomation
                             
                             // 20131109
                             //if (walker.GetParent(testParent) == cmdlet.rootElement) {
-                            if ((new MySuperWrapper(walker.GetParent(testParent.SourceElement))) == cmdlet.oddRootElement) {
+                            // 20131112
+                            //if ((new MySuperWrapper(walker.GetParent(testParent.SourceElement))) == cmdlet.oddRootElement) {
+                            if (ObjectsFactory.GetMySuperWrapper(walker.GetParent(testParent.SourceElement)) == cmdlet.oddRootElement) {
                                 parentControlType = "Window";
                             }
                         }
@@ -1830,8 +1838,11 @@ namespace UIAutomation
                 // 20131109
                 //element =
                 //    AutomationElement.FromHandle(pHwnd);
+                // 20131112
+                //element =
+                //    new MySuperWrapper(AutomationElement.FromHandle(pHwnd));
                 element =
-                    new MySuperWrapper(AutomationElement.FromHandle(pHwnd));
+                    ObjectsFactory.GetMySuperWrapper(AutomationElement.FromHandle(pHwnd));
                 if (element != null) {
                     cmdlet.WriteVerbose(cmdlet, element.Current.Name);
                 }
@@ -1924,7 +1935,9 @@ namespace UIAutomation
                 // 20131109
                 testParent =
                     //walker.GetParent(element);
-                    new MySuperWrapper(walker.GetParent(element.SourceElement));
+                    // 20131112
+                    //new MySuperWrapper(walker.GetParent(element.SourceElement));
+                    ObjectsFactory.GetMySuperWrapper(walker.GetParent(element.SourceElement));
                     
                 if (scope == TreeScope.Parent || scope == TreeScope.Ancestors) {
                     
@@ -1950,7 +1963,9 @@ namespace UIAutomation
                     testParent =
                         // 20131109
                         //walker.GetParent(testParent);
-                        new MySuperWrapper(walker.GetParent(testParent.SourceElement));
+                        // 20131112
+                        //new MySuperWrapper(walker.GetParent(testParent.SourceElement));
+                        ObjectsFactory.GetMySuperWrapper(walker.GetParent(testParent.SourceElement));
                     if (testParent != null &&
                         (int)testParent.Current.ProcessId > 0 &&
                         // 20131109
@@ -1988,13 +2003,17 @@ namespace UIAutomation
                 testparent =
                     // 20131109
                     //walker.GetParent(element);
-                    new MySuperWrapper(walker.GetParent(element.SourceElement));
+                    // 20131112
+                    //new MySuperWrapper(walker.GetParent(element.SourceElement));
+                    ObjectsFactory.GetMySuperWrapper(walker.GetParent(element.SourceElement));
                 while (testparent != null &&
                        testparent.Current.NativeWindowHandle == 0) {
                     testparent =
                         // 20131109
                         //walker.GetParent(testparent);
-                        new MySuperWrapper(walker.GetParent(testparent.SourceElement));
+                        // 20131112
+                        //new MySuperWrapper(walker.GetParent(testparent.SourceElement));
+                        ObjectsFactory.GetMySuperWrapper(walker.GetParent(testparent.SourceElement));
                     if (testparent != null &&
                         (int)testparent.Current.ProcessId > 0 &&
                         testparent.Current.NativeWindowHandle != 0) {
@@ -2426,13 +2445,19 @@ namespace UIAutomation
                     //     "GetItem").Invoke(
                     //     pattern,
                     //     coordinates)).Current.Name;
-                    (new MySuperWrapper(
+                    // 20131112
+//                    (new MySuperWrapper(
+//                        ((System.Windows.Automation.AutomationElement)
+//                        pattern.GetType().GetMethod(
+//                            "GetItem").Invoke(
+//                            pattern,
+//                            coordinates)))).Current.Name;
+                    (ObjectsFactory.GetMySuperWrapper(
                         ((System.Windows.Automation.AutomationElement)
                         pattern.GetType().GetMethod(
                             "GetItem").Invoke(
                             pattern,
                             coordinates)))).Current.Name;
-                
                 //{ coordinates)).Current.Name;
                 // pattern.GetType().InvokeMember(
                 // "GetItem",

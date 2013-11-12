@@ -93,16 +93,44 @@ namespace UIAutomation
 		//public AutomationElement FindFirst(TreeScope scope, Condition condition)
 		public IMySuperWrapper FindFirst(TreeScope scope, Condition condition)
 		{
-			IMySuperWrapper adapterElement = new MySuperWrapper(this.elementHolder.FindFirst(scope, condition));
-			return adapterElement;
+		    // 20131112
+			//IMySuperWrapper adapterElement = new MySuperWrapper(this.elementHolder.FindFirst(scope, condition));
+//			try {
+////Console.WriteLine("000000000000001");
+//			var arg = new Ninject.Parameters.ConstructorArgument("element", this.elementHolder.FindFirst(scope, condition));
+////Console.WriteLine("000000000000002");
+//			IMySuperWrapper adapterElement = ObjectsFactory.Kernel.Get<IMySuperWrapper>(arg);
+////Console.WriteLine("000000000000003");
+//			return adapterElement;
+//			}
+//			catch (Exception eeee) {
+//			    Console.WriteLine(eeee.Message);
+//			    return null;
+//			}
+			
+			return ObjectsFactory.GetMySuperWrapper(this.elementHolder.FindFirst(scope, condition));
 		}
 
 		//public AutomationElementCollection FindAll(TreeScope scope, Condition condition)
 		public IMySuperCollection FindAll(TreeScope scope, Condition condition)
 		{
 			//return this.elementHolder.FindAll(scope, condition);
-			IMySuperCollection adapterCollection = new MySuperCollection(this.elementHolder.FindAll(scope, condition));
-			return adapterCollection;
+			// 20131112
+			//IMySuperCollection adapterCollection = new MySuperCollection(this.elementHolder.FindAll(scope, condition));
+//			try {
+////Console.WriteLine("000000000000101");
+//			var args = new Ninject.Parameters.ConstructorArgument("elements", this.elementHolder.FindAll(scope, condition));
+////Console.WriteLine("000000000000102");
+//			IMySuperCollection adapterCollection = ObjectsFactory.Kernel.Get<IMySuperCollection>(args);
+////Console.WriteLine("000000000000103");
+//			return adapterCollection;
+//			}
+//			catch (Exception eee) {
+//			    Console.WriteLine(eee.Message);
+//			    return null;
+//			}
+			
+			return ObjectsFactory.GetMySuperCollection(this.elementHolder.FindAll(scope, condition));
 		}
 
 		public AutomationProperty[] GetSupportedProperties()
@@ -150,21 +178,29 @@ namespace UIAutomation
 
 		// static methods and properties
 		public static IMySuperWrapper RootElement {
-			get { return new MySuperWrapper(AutomationElement.RootElement); }
+		    // 20131112
+			//get { return new MySuperWrapper(AutomationElement.RootElement); }
+			get { return ObjectsFactory.GetMySuperWrapper(AutomationElement.RootElement); }
 		}
 		
 		public static IMySuperWrapper FocusedElement {
-		    get { return new MySuperWrapper(AutomationElement.FocusedElement); }
+		    // 20131112
+		    //get { return new MySuperWrapper(AutomationElement.FocusedElement); }
+		    get { return ObjectsFactory.GetMySuperWrapper(AutomationElement.FocusedElement); }
 		}
 		
 		public static IMySuperWrapper FromPoint(System.Windows.Point pt)
 		{
-		    return new MySuperWrapper(AutomationElement.FromPoint(pt));
+		    // 20131112
+		    //return new MySuperWrapper(AutomationElement.FromPoint(pt));
+		    return ObjectsFactory.GetMySuperWrapper(AutomationElement.FromPoint(pt));
 		}
 		
 		public static IMySuperWrapper FromHandle(IntPtr controlHandle)
 		{
-		    return new MySuperWrapper(AutomationElement.FromHandle(controlHandle));
+		    // 20131112
+		    //return new MySuperWrapper(AutomationElement.FromHandle(controlHandle));
+		    return ObjectsFactory.GetMySuperWrapper(AutomationElement.FromHandle(controlHandle));
 		}
 
 		public AutomationElement SourceElement {

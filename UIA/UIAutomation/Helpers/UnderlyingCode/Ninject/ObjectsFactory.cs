@@ -12,6 +12,7 @@ namespace UIAutomation
     using System;
     using Ninject;
     using Ninject.Modules;
+    using System.Windows.Automation;
     
     /// <summary>
     /// Description of ObjectsFactory.
@@ -41,29 +42,43 @@ namespace UIAutomation
 		{
 		    if (!initFlag) {
     		    try {
-
-                    //builder = new ContainerBuilder();
-                    // 20131111
-                    var kernel = new StandardKernel(new ObjectLifecycleModule());
-                    //Kernel = new StandardKernel(new ObjectLifecycleModule());
-                    
-                    
-                    //builder.RegisterModule(WebDriverFactory.AutofacModule);
-
-                    //WebDriverFactory.Container = null;
-
-                    //var container = builder.Build(ContainerBuildOptions.Default);
-
-                    //WebDriverFactory.Container = container;
-
+		            
+                    kernel = new StandardKernel(new ObjectLifecycleModule());
     		    }
     		    catch (Exception efgh) {
-
     		        Console.WriteLine(efgh.Message);
     		    }
 
 		        initFlag = true;
 		    }
+		}
+		
+		internal static IMySuperWrapper GetMySuperWrapper(AutomationElement element)
+		{
+			try {
+    			var singleElement = new Ninject.Parameters.ConstructorArgument("element", element);
+    			IMySuperWrapper adapterElement = ObjectsFactory.Kernel.Get<IMySuperWrapper>(singleElement);
+    			return adapterElement;
+			}
+			catch (Exception eFailedToIssueElement) {
+			    // TODO
+			    // write error to error object!!!
+			    return null;
+			}
+		}
+		
+		internal static IMySuperCollection GetMySuperCollection(AutomationElementCollection elements)
+		{
+			try {
+    			var manyElements = new Ninject.Parameters.ConstructorArgument("elements", elements);
+	      		IMySuperCollection adapterCollection = ObjectsFactory.Kernel.Get<IMySuperCollection>(manyElements);
+	       		return adapterCollection;
+			}
+			catch (Exception eFailedToIssueCollection) {
+			    // TODO
+			    // write error to error object!!!
+			    return null;
+			}
 		}
     }
 }

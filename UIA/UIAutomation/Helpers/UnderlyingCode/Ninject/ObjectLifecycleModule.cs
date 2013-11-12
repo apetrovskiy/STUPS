@@ -12,6 +12,7 @@ namespace UIAutomation
     using System;
     using Ninject;
     using Ninject.Modules;
+    using Ninject.Extensions.NamedScope;
     
     /// <summary>
     /// Description of ObjectLifecycleModule.
@@ -24,7 +25,8 @@ namespace UIAutomation
         
         public override void Load()
         {
-            Bind<IMySuperWrapper>().To<MySuperWrapper>();
+            Bind<IMySuperWrapper>().To<MySuperWrapper>().InCallScope();
+            Bind<IMySuperCollection>().To<MySuperCollection>().InCallScope();
         }
         
         

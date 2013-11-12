@@ -45,11 +45,14 @@ namespace UIAutomation
 		}
 		//internal MySuperCollection(AutomationElement[] elements)
 		[Inject]
-		internal MySuperCollection(AutomationElementCollection elements)
+		//internal MySuperCollection(AutomationElementCollection elements)
+		public MySuperCollection(AutomationElementCollection elements)
 		{
 		    foreach (AutomationElement element in elements) {
 		        
-		        this.collectionHolder.Add(new MySuperWrapper(element));
+		        // 20131112
+		        //this.collectionHolder.Add(new MySuperWrapper(element));
+		        this.collectionHolder.Add(ObjectsFactory.GetMySuperWrapper(element));
 		    }
 		}
 		

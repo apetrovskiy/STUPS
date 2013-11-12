@@ -86,6 +86,9 @@
     <Reference Include="Ninject">
       <HintPath>..\..\packages\Ninject.3.0.1.10\lib\net40\Ninject.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject.Extensions.NamedScope">
+      <HintPath>..\..\packages\Ninject.Extensions.NamedScope.3.0.0.5\lib\net40\Ninject.Extensions.NamedScope.dll</HintPath>
+    </Reference>
     <Reference Include="NLog">
       <HintPath>..\..\binaries\NLog\40\NLog.dll</HintPath>
     </Reference>

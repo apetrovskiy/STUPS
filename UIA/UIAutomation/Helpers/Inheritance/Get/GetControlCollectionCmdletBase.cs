@@ -265,7 +265,9 @@ namespace UIAutomation
                 oneMoreElement =
                     // 20131109
                     //walker.GetFirstChild(element);
-                    new MySuperWrapper(walker.GetFirstChild(element.SourceElement));
+                    // 20131112
+                    //new MySuperWrapper(walker.GetFirstChild(element.SourceElement));
+                    ObjectsFactory.GetMySuperWrapper(walker.GetFirstChild(element.SourceElement));
 
                 try{
                     WriteVerbose(
@@ -301,7 +303,9 @@ namespace UIAutomation
                     
                     // 20131109
                     //oneMoreElement = walker.GetNextSibling(oneMoreElement.SourceElement);
-                    oneMoreElement = new MySuperWrapper(walker.GetNextSibling(oneMoreElement.SourceElement));
+                    // 20131112
+                    //oneMoreElement = new MySuperWrapper(walker.GetNextSibling(oneMoreElement.SourceElement));
+                    oneMoreElement = ObjectsFactory.GetMySuperWrapper(walker.GetNextSibling(oneMoreElement.SourceElement));
 
                     try{
                         WriteVerbose(
@@ -724,7 +728,9 @@ namespace UIAutomation
                 //AutomationElement sibling = null;
                 //sibling = nextSibling ? walker.GetNextSibling(inputObject) : walker.GetPreviousSibling(inputObject);
                 IMySuperWrapper sibling = null;
-                sibling = nextSibling ? (new MySuperWrapper(walker.GetNextSibling(inputObject.SourceElement))) : (new MySuperWrapper(walker.GetPreviousSibling(inputObject.SourceElement)));
+                // 20131112
+                //sibling = nextSibling ? (new MySuperWrapper(walker.GetNextSibling(inputObject.SourceElement))) : (new MySuperWrapper(walker.GetPreviousSibling(inputObject.SourceElement)));
+                sibling = nextSibling ? ObjectsFactory.GetMySuperWrapper(walker.GetNextSibling(inputObject.SourceElement)) : ObjectsFactory.GetMySuperWrapper(walker.GetPreviousSibling(inputObject.SourceElement));
 
                 /*
                 if (nextSibling) {
@@ -757,7 +763,9 @@ namespace UIAutomation
             //AutomationElement sibling = null;
             //sibling = firstChild ? walker.GetFirstChild(inputObject) : walker.GetLastChild(inputObject);
             IMySuperWrapper sibling = null;
-            sibling = firstChild ? (new MySuperWrapper(walker.GetFirstChild(inputObject.SourceElement))) : (new MySuperWrapper(walker.GetLastChild(inputObject.SourceElement)));
+            // 20131112
+            //sibling = firstChild ? (new MySuperWrapper(walker.GetFirstChild(inputObject.SourceElement))) : (new MySuperWrapper(walker.GetLastChild(inputObject.SourceElement)));
+            sibling = firstChild ? ObjectsFactory.GetMySuperWrapper(walker.GetFirstChild(inputObject.SourceElement)) : ObjectsFactory.GetMySuperWrapper(walker.GetLastChild(inputObject.SourceElement));
 
             /*
             if (firstChild) {

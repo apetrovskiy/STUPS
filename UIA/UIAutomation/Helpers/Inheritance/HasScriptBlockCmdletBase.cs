@@ -76,8 +76,11 @@ namespace UIAutomation
                 // 20131109
                 //result = 
                 //    AutomationElement.FromHandle(_hWnd);
+                // 20131112
+                //result =
+                //    new MySuperWrapper(AutomationElement.FromHandle(_hWnd));
                 result =
-                    new MySuperWrapper(AutomationElement.FromHandle(_hWnd));
+                    ObjectsFactory.GetMySuperWrapper(AutomationElement.FromHandle(_hWnd));
                 WriteVerbose(this, 
                              "the active window element is " + 
                              result.Current.Name);

@@ -88,8 +88,14 @@ namespace UIAutomation
             string className,
             bool testMode)
         {
-            ArrayList aeWndCollection = 
-                new ArrayList();
+            
+            // 20131112
+//            using (ArrayList aeWndCollection = new ArrayList())
+//            using (oddRootElement = MySuperWrapper.RootElement) {
+//            using (var aeWndCollection = new ArrayList())
+//            using (oddRootElement = MySuperWrapper.RootElement) {
+            
+            ArrayList aeWndCollection = new ArrayList();
             
             cmdlet.WriteVerbose(cmdlet, "getting the root element");
             oddRootElement =
@@ -294,10 +300,7 @@ namespace UIAutomation
                     
                 }
                 
-//cmdlet.WriteVerbose(cmdlet, "0000000000000001");
                 checkTimeout(cmdlet, aeWndCollection, true);
-                
-//cmdlet.WriteVerbose(cmdlet, "0000000000000002");
                 
                 System.Threading.Thread.Sleep(Preferences.OnSleepDelay);
                 
@@ -324,24 +327,20 @@ namespace UIAutomation
                 
             } catch (Exception eEvaluatingWindowAndWritingToPipeline) {
                 
-//cmdlet.WriteVerbose(cmdlet, "0000000000000008");
-                
                 cmdlet.WriteVerbose(
                     cmdlet,
                     "exception: " +
                     eEvaluatingWindowAndWritingToPipeline.Message);
                 
-//cmdlet.WriteVerbose(cmdlet, "0000000000000009");
-                
                 cmdlet.WriteVerbose(this, "<<<< ==  ==  writing/nullifying CurrentWindow  ==  == >>>>>");
-                
-//cmdlet.WriteVerbose(cmdlet, "0000000000000010");
-                
+                    
                 CurrentData.CurrentWindow = null;
                 
             }
             
             return aeWndCollection;
+            
+//            }
         }
 
         private ArrayList getWindowCollectionByProcessName(
@@ -358,12 +357,12 @@ namespace UIAutomation
             string automationId,
             string className)
         {
+            // 20131112
+//            using (ArrayList aeWndCollectionByProcId = new ArrayList())
+//            using (System.Collections.ArrayList processIdList = new System.Collections.ArrayList()) {
 
-            ArrayList aeWndCollectionByProcId = 
-                new ArrayList();
-            
-            System.Collections.ArrayList processIdList = 
-                new System.Collections.ArrayList();
+            ArrayList aeWndCollectionByProcId = new ArrayList();
+            System.Collections.ArrayList processIdList = new System.Collections.ArrayList();
             
             foreach (string processName in processNames) {
             
@@ -388,6 +387,7 @@ namespace UIAutomation
             aeWndCollectionByProcId = getWindowCollectionByPID(processIds, first, recurse, name, automationId, className);
             
             return aeWndCollectionByProcId;
+            
         }
         
         private ArrayList getWindowCollectionByPID(
@@ -404,8 +404,12 @@ namespace UIAutomation
             string automationId,
             string className)
         {
+            // 20131112
+//            using (System.Windows.Automation.AndCondition conditionsProcessId = null)
+//            using (System.Windows.Automation.AndCondition conditionsForRecurseSearch = null) {
             System.Windows.Automation.AndCondition conditionsProcessId = null;
             System.Windows.Automation.AndCondition conditionsForRecurseSearch = null;
+            
             ArrayList aeWndCollectionByProcessId = 
                 new ArrayList();
             
@@ -720,6 +724,8 @@ namespace UIAutomation
             */
 
             return aeWndCollectionByProcessId;
+            
+//            }
         }
         
         private ArrayList getWindowCollectionViaWin32(
@@ -730,10 +736,11 @@ namespace UIAutomation
             string className)
         {
             
-            ArrayList aeWndCollectionViaWin32 = 
-                new ArrayList();
-            ArrayList tempCollection = 
-                new ArrayList();
+            // 20131112
+//            using (ArrayList aeWndCollectionViaWin32 = new ArrayList();)
+//            using (ArrayList tempCollection = new ArrayList();) {
+            ArrayList aeWndCollectionViaWin32 = new ArrayList();
+            //ArrayList tempCollection = new ArrayList();
             
             aeWndCollectionViaWin32 =
                 UIAHelper.EnumChildWindowsFromHandle(
@@ -741,6 +748,8 @@ namespace UIAutomation
                     IntPtr.Zero);
             
             return aeWndCollectionViaWin32;
+            
+//            }
         }
         
         private ArrayList getWindowCollectionFromProcess(
@@ -756,10 +765,11 @@ namespace UIAutomation
             string className)
         {
             int processId = 0;
-            ArrayList aeWndCollectionByProcId = 
-                new ArrayList();
-            ArrayList tempCollection = 
-                new ArrayList();
+            // 20131112
+//            using (ArrayList aeWndCollectionByProcId = new ArrayList())
+//            using (ArrayList tempCollection = new ArrayList()) {
+            ArrayList aeWndCollectionByProcId = new ArrayList();
+            ArrayList tempCollection = new ArrayList();
             
             System.Collections.ArrayList processIdList = 
                 new System.Collections.ArrayList();
@@ -800,6 +810,8 @@ namespace UIAutomation
             } // 20120824
 
             return aeWndCollectionByProcId;
+            
+//            }
         }
         
         private ArrayList getWindowCollectionByName(string[] windowNames, string automationId, string className, bool recurse)

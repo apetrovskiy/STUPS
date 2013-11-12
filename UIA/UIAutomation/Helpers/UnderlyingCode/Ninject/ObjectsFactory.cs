@@ -47,6 +47,7 @@ namespace UIAutomation
     		    catch (Exception eInitFailure) {
 		            // TODO
 			        // write error to error object!!!
+			        Console.WriteLine("Init Kernel");
     		        Console.WriteLine(eInitFailure.Message);
     		    }
 
@@ -64,6 +65,7 @@ namespace UIAutomation
 			catch (Exception eFailedToIssueElement) {
 			    // TODO
 			    // write error to error object!!!
+			    Console.WriteLine("Element");
 			    Console.WriteLine(eFailedToIssueElement.Message);
 			    return null;
 			}
@@ -79,6 +81,7 @@ namespace UIAutomation
 			catch (Exception eFailedToIssueCollection) {
 			    // TODO
 			    // write error to error object!!!
+			    Console.WriteLine("Collection");
 			    Console.WriteLine(eFailedToIssueCollection.Message);
 			    return null;
 			}

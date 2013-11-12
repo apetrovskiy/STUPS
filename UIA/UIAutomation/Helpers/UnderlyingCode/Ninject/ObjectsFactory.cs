@@ -42,12 +42,12 @@ namespace UIAutomation
 		{
 		    if (!initFlag) {
     		    try {
-		            
-                    //kernel = new StandardKernel(new ObjectLifecycleModule());
                     kernel = new StandardKernel(ninjectModule);
     		    }
-    		    catch (Exception efgh) {
-    		        Console.WriteLine(efgh.Message);
+    		    catch (Exception eInitFailure) {
+		            // TODO
+			        // write error to error object!!!
+    		        Console.WriteLine(eInitFailure.Message);
     		    }
 
 		        initFlag = true;
@@ -64,6 +64,7 @@ namespace UIAutomation
 			catch (Exception eFailedToIssueElement) {
 			    // TODO
 			    // write error to error object!!!
+			    Console.WriteLine(eFailedToIssueElement.Message);
 			    return null;
 			}
 		}
@@ -78,6 +79,7 @@ namespace UIAutomation
 			catch (Exception eFailedToIssueCollection) {
 			    // TODO
 			    // write error to error object!!!
+			    Console.WriteLine(eFailedToIssueCollection.Message);
 			    return null;
 			}
 		}

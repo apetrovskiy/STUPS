@@ -16,6 +16,9 @@ namespace UIAutomation.Commands
     using System.Windows.Automation;
     //using UIAutomationClient;
     
+    using Ninject;
+    using Ninject.Parameters;
+    
     /// <summary>
     /// Description of GetUIAFocusCommand.
     /// </summary>
@@ -33,7 +36,11 @@ namespace UIAutomation.Commands
         {
             // 20131109
             //this.WriteObject(this, AutomationElement.FocusedElement);
-            this.WriteObject(this, new MySuperWrapper(AutomationElement.FocusedElement));
+            // 20131111
+            //this.WriteObject(this, new MySuperWrapper(AutomationElement.FocusedElement));
+            // 20131112
+            //this.WriteObject(this, ObjectsFactory.Kernel.Get<IMySuperWrapper>( new MySuperWrapper[] { MySuperWrapper.FocusedElement } ));
+            this.WriteObject(this, MySuperWrapper.FocusedElement);
         }
     }
 }

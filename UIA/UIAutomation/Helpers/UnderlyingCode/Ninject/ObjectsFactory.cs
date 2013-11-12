@@ -31,13 +31,21 @@ namespace UIAutomation
 		
 		private static bool initFlag = false;
 		
+		private static StandardKernel kernel;
+		internal static StandardKernel Kernel
+		{
+		    get { return kernel; }
+		}
+		
 		internal static void Init()
 		{
 		    if (!initFlag) {
     		    try {
 
                     //builder = new ContainerBuilder();
+                    // 20131111
                     var kernel = new StandardKernel(new ObjectLifecycleModule());
+                    //Kernel = new StandardKernel(new ObjectLifecycleModule());
                     
                     
                     //builder.RegisterModule(WebDriverFactory.AutofacModule);

@@ -24,7 +24,7 @@ namespace UIAutomation
         
         public override void Load()
         {
-            //Bind<IMySuperWrapper>().To<MySuperWrapper>();
+            Bind<IMySuperWrapper>().To<MySuperWrapper>();
         }
         
         

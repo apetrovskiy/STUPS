@@ -11,6 +11,7 @@ namespace UIAutomation
 {
 	using System;
 	using System.Windows.Automation;
+	using Ninject;
 
 	/// <summary>
 	/// Description of MySuperWrapper.
@@ -22,7 +23,8 @@ namespace UIAutomation
 		public MySuperWrapper()
 		{
 		}
-
+        
+		[Inject]
 		public MySuperWrapper(AutomationElement element)
 		{
 			this.elementHolder = element;
@@ -149,6 +151,10 @@ namespace UIAutomation
 		// static methods and properties
 		public static IMySuperWrapper RootElement {
 			get { return new MySuperWrapper(AutomationElement.RootElement); }
+		}
+		
+		public static IMySuperWrapper FocusedElement {
+		    get { return new MySuperWrapper(AutomationElement.FocusedElement); }
 		}
 		
 		public static IMySuperWrapper FromPoint(System.Windows.Point pt)

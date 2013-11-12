@@ -13,8 +13,8 @@ namespace UIAutomation
     using System.Collections;
     using System.Collections.Generic;
     using System.Windows.Automation;
-    
     using System.Linq;
+    using Ninject;
     
 	//public class AutomationElementCollection : ICollection, IEnumerable, IAutomationElementCollection
 	public class MySuperCollection : IMySuperCollection
@@ -44,6 +44,7 @@ namespace UIAutomation
 			get { return false; }
 		}
 		//internal MySuperCollection(AutomationElement[] elements)
+		[Inject]
 		internal MySuperCollection(AutomationElementCollection elements)
 		{
 		    foreach (AutomationElement element in elements) {

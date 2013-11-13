@@ -429,12 +429,14 @@ namespace UIAutomation
             if (null == cmdlet.InputObject) {
                 
                 this.WriteVerbose(cmdlet, "[checking the input] Control(s) are null");
+                
                 cmdlet.WriteError(
                     cmdlet,
                     "The pipeline input is null",
                     "InputIsNull",
                     ErrorCategory.InvalidArgument,
                     true);
+                
             }
             
             // 20131109
@@ -445,8 +447,10 @@ namespace UIAutomation
                     
                     this.WriteVerbose(cmdlet, "[checking the input] Control is null");
                     if (this.PassThru) {
+                        
                         this.WriteObject(this, inputObject);
                     } else {
+                        
                         result = false;
                         this.WriteObject(this, result);
                     }
@@ -467,6 +471,7 @@ namespace UIAutomation
                         "PartOfInputIsNull",
                         ErrorCategory.InvalidArgument,
                         false);
+                    
                 }
                 
                 // 20131109
@@ -490,6 +495,9 @@ namespace UIAutomation
                     // 20131109
                     //cmdlet._window = _control;
                     if (inputObject is IMySuperWrapper) {
+                        
+Console.WriteLine("00000000000-000013");
+                        
                         cmdlet._window = (IMySuperWrapper)_controlAdapter;
                     }
 //                    if (inputObject is AutomationElement) {
@@ -497,28 +505,48 @@ namespace UIAutomation
 //                    }
                     
                     result = true;
+                    
+Console.WriteLine("00000000000-000014");
+                    
                     // there's no need to output the True value
                     // since the output will be what we want 
                     // (some part of AutomationElement, as an example)
                 } catch (Exception eControlTypeException) {
                     
+Console.WriteLine("00000000000-000015");
+                    
                     this.WriteDebug(cmdlet, "[checking the input] Control is not an AutomationElement");
                     this.WriteDebug(cmdlet, "[checking the input] " + eControlTypeException.Message);
+                    
+Console.WriteLine("00000000000-000016");
+                    
                     if (this.PassThru) {
+                        
+Console.WriteLine("00000000000-000017");
                         
                         // 20131109
                         //WriteObject(this, _control);
                         WriteObject(this, _controlAdapter);
+                        
+Console.WriteLine("00000000000-000018");
+                        
                     } else {
+                        
+Console.WriteLine("00000000000-000019");
                         
                         result = false;
                         this.WriteObject(this, result);
+                        
+Console.WriteLine("00000000000-000020");
+                        
                     }
                     result = false;
                     return result;
                 }
             
             } // 20120823
+            
+Console.WriteLine("00000000000-000021");
             
             return result;
         }

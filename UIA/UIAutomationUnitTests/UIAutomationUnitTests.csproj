@@ -55,11 +55,23 @@
     <Reference Include="MbUnit">
       <HintPath>..\..\..\..\..\Program Files\Gallio\bin\MbUnit.dll</HintPath>
     </Reference>
+    <Reference Include="Moq">
+      <HintPath>..\..\packages\Moq.4.0.10827\lib\NET35\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject">
       <HintPath>..\..\packages\Ninject.3.0.1.10\lib\net35\Ninject.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject.MockingKernel">
+      <HintPath>..\..\packages\Ninject.MockingKernel.3.0.0.5\lib\net35-full\Ninject.MockingKernel.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.MockingKernel.Moq">
+      <HintPath>..\..\packages\Ninject.MockingKernel.Moq.3.0.0.5\lib\net35-full\Ninject.MockingKernel.Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.MockingKernel.NSubstitute">
+      <HintPath>..\..\packages\Ninject.MockingKernel.NSubstitute.3.0.0.5\lib\net35-full\Ninject.MockingKernel.NSubstitute.dll</HintPath>
+    </Reference>
     <Reference Include="NSubstitute">
-      <HintPath>..\..\binaries\NSubstitute-1.5.0.0\lib\NET35\NSubstitute.dll</HintPath>
+      <HintPath>..\..\packages\NSubstitute.1.3.0.0\lib\NET35\NSubstitute.dll</HintPath>
     </Reference>
     <Reference Include="PresentationFramework">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
@@ -101,7 +113,6 @@
     <Compile Include="Helpers\UnderlyingCode\GetAutomationElementsViaWildcards_FindAllTestFixture.cs" />
     <Compile Include="Helpers\UnderlyingCode\getControlConditionsTestFixture.cs" />
     <Compile Include="Helpers\UnitTestingHelper.cs" />
-    <Compile Include="Interfaces\IAutomationElement.cs" />
     <Compile Include="ParamChecks\Common\HideUIACurrentHighlighterCommandTestFixture.cs" />
     <Compile Include="ParamChecks\Common\InvokeUIAControlClickCommandTestFixture.cs" />
     <Compile Include="ParamChecks\Container\NewUIAContainerCommandTestFixture.cs" />
@@ -150,8 +161,8 @@
     <Folder Include="Commands\Pattern" />
     <Folder Include="Helpers" />
     <Folder Include="Helpers\UnderlyingCode" />
-    <Folder Include="Interfaces" />
     <Folder Include="Fakes" />
+    <Folder Include="Ninject" />
     <Folder Include="ParamChecks" />
     <Folder Include="ParamChecks\Cache" />
     <Folder Include="ParamChecks\Common" />

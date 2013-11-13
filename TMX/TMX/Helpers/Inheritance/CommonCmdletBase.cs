@@ -222,6 +222,26 @@ namespace TMX
         protected override void AfterWriteCollection(PSCmdletBase cmdlet, IEnumerable outputObjectCollection) {}
         protected override void AfterWriteCollection(PSCmdletBase cmdlet, ICollection outputObjectCollection) {}
         protected override void AfterWriteCollection(PSCmdletBase cmdlet, Hashtable outputObjectCollection) {}
+        
+        // 20131113
+        protected override void WriteSingleError(PSCmdletBase cmdlet, ErrorRecord errorRecord, bool terminating)
+        {
+            WriteErrorMethod010RunScriptBlocks(cmdlet);
+            
+            WriteErrorMethod020SetTestResult(cmdlet, errorRecord);
+            
+            WriteErrorMethod030ChangeTimeoutSettings(cmdlet, terminating);
+            
+            WriteErrorMethod040AddErrorToErrorList(cmdlet, errorRecord);
+            
+            WriteErrorMethod045OnErrorScreenshot(cmdlet);
+            
+            WriteErrorMethod050OnErrorDelay(cmdlet);
+            
+            WriteErrorMethod060OutputError(cmdlet, errorRecord, terminating);
+            
+            WriteErrorMethod070Report(cmdlet);
+        }
 
         protected override void WriteErrorMethod010RunScriptBlocks(PSCmdletBase cmdlet)
         {

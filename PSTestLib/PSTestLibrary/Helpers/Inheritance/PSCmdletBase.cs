@@ -339,9 +339,59 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
             }
         }
         
+        //private void writeSingleError(PSCmdletBase cmdlet, object outputObject)
+        private void writeSingleError(PSCmdletBase cmdlet, ErrorRecord errorRecord, bool terminating)
+        {
+//            if (CheckSingleObject(cmdlet, outputObject)) {
+                
+//                cmdlet.WriteVerbose(cmdlet, "the output object is not null");
 
+//                WriteObjectMethod020Highlight(cmdlet, outputObject);
+//
+//                WriteObjectMethod030RunScriptBlocks(cmdlet, outputObject);
+//
+//                WriteObjectMethod040SetTestResult(cmdlet, outputObject);
+//
+//                WriteObjectMethod045OnSuccessScreenshot(cmdlet, outputObject);
+//
+//                WriteObjectMethod050OnSuccessDelay(cmdlet, outputObject);
+                
+                // TODO
+                // single error
+                //BeforeWriteSingleObject(cmdlet, outputObject);
+                
+                //WriteSingleObject(cmdlet, outputObject);
+                
+                try {
 
+                    if (PSCmdletBase.UnitTestMode) {
+                        
+                        UnitTestOutput.Add(errorRecord);
 
+                    } else {
+                        
+//                        WriteObjectMethod060OutputResult(cmdlet, outputObject);
+                        WriteSingleError(cmdlet, errorRecord, terminating);
+                    }
+                }
+                catch {}
+                
+                //WriteObjectMethod060OutputResult(cmdlet, outputObject);
+                
+                // TODO
+                // single error
+                //AfterWriteSingleObject(cmdlet, outputObject);
+                
+//                WriteObjectMethod070Report(cmdlet, outputObject);
+                
+                //WriteObjectMethod080ReportFailure();
+            
+//            } else {
+//                
+//            }
+        }
+
+        protected abstract void WriteSingleError(PSCmdletBase cmdlet, ErrorRecord errorRecord, bool terminating);
         protected abstract void WriteErrorMethod010RunScriptBlocks(PSCmdletBase cmdlet);
         protected abstract void WriteErrorMethod020SetTestResult(PSCmdletBase cmdlet, ErrorRecord errorRecord);
         protected abstract void WriteErrorMethod030ChangeTimeoutSettings(PSCmdletBase cmdlet, bool terminating);
@@ -396,6 +446,15 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
         
         public void WriteError(PSCmdletBase cmdlet, string message, string errorId, ErrorCategory category, bool terminating)
         {
+            // 20131113
+            if (PSCmdletBase.UnitTestMode) {
+                
+                UnitTestOutput.CheckInitialized();
+
+                UnitTestOutput.StartAddingOutput();
+
+            }
+            
             ErrorRecord err = 
                 new ErrorRecord(
                     new Exception(message),
@@ -405,7 +464,8 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
             err.ErrorDetails = 
                 new ErrorDetails(message);
             
-            WriteError(cmdlet, err, terminating);
+            //WriteError(cmdlet, err, terminating);
+            this.writeSingleError(cmdlet, err, terminating);
         }
         
         // temporary
@@ -450,7 +510,15 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
         
         public void WriteVerbose(PSCmdletBase cmdlet, object obj)
         {
+            // 20131113
+            if (PSCmdletBase.UnitTestMode) {
+                
+                UnitTestOutput.CheckInitialized();
 
+                UnitTestOutput.StartAddingOutput();
+
+            }
+            
             string cmdletName = "? : ";
             string objectString = string.Empty;
             try {

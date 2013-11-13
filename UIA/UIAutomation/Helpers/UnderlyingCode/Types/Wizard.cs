@@ -113,6 +113,14 @@ namespace UIAutomation
         	//GetControlCmdletBase cmdletCtrl =
         	//	new GetControlCmdletBase();
         	UIAutomation.Commands.GetUIAControlCommand cmdletCtrl =
+        	    new UIAutomation.Commands.GetUIAControlCommand
+        	    {
+        	        InputObject = new MySuperWrapper[] {(MySuperWrapper) CurrentData.CurrentWindow},
+        	        Timeout = 0
+        	    };
+
+            /*
+        	UIAutomation.Commands.GetUIAControlCommand cmdletCtrl =
         	    new UIAutomation.Commands.GetUIAControlCommand();
 
         	cmdletCtrl.InputObject =
@@ -121,8 +129,9 @@ namespace UIAutomation
         	    new MySuperWrapper[]{ (MySuperWrapper)CurrentData.CurrentWindow };
 
         	cmdletCtrl.Timeout = 0;
-        	
-        	foreach (WizardStep step in this.Steps) {
+            */
+
+            foreach (WizardStep step in this.Steps) {
 
         	    if (this.StopImmediately) {
         	        resultStep = step;

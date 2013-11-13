@@ -47,7 +47,10 @@ namespace UIAutomation
 		[Inject]
 		//internal MySuperCollection(AutomationElementCollection elements)
 		public MySuperCollection(AutomationElementCollection elements)
-		{
+        /*
+        public MySuperCollection(AutomationElementCollection elements)
+        */
+        {
 		    foreach (AutomationElement element in elements) {
 		        
 		        // 20131112
@@ -65,7 +68,10 @@ namespace UIAutomation
 		}
 		
 		//
-		internal MySuperCollection(ICollection elements)
+		internal MySuperCollection(IEnumerable elements)
+        /*
+        internal MySuperCollection(ICollection elements)
+        */
 		{
 		    foreach (var element in elements) {
 		        

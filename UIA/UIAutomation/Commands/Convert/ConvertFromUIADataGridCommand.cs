@@ -112,7 +112,10 @@ namespace UIAutomation.Commands
                         
                     // temporary!!!
                     // get rows
+                    if (gridPattern != null && gridPattern.Current.RowCount <= 0) continue;
+                    /*
                     if (gridPattern.Current.RowCount <= 0) continue;
+                    */
                     // 20130318
                     //RunOnSuccessScriptBlocks(this);
                     RunOnSuccessScriptBlocks(this, null);
@@ -187,6 +190,17 @@ namespace UIAutomation.Commands
                         //UIAHelper.GetOutputStringUsingItemsValuePattern(this.InputObject,
                         UIAHelper.GetOutputStringUsingItemsValuePattern(inputObject,
                             this.Delimiter);
+                    if (rows.Count <= 0) continue;
+                    // RunScriptBlocks(this);
+                    // 20130318
+                    //RunOnSuccessScriptBlocks(this);
+                    RunOnSuccessScriptBlocks(this, null);
+                    foreach (string row in rows) {
+                        this.WriteObject(row);
+                    }
+
+
+                    /*
                     if (rows.Count > 0) {
                         // RunScriptBlocks(this);
                         // 20130318
@@ -196,7 +210,8 @@ namespace UIAutomation.Commands
                             this.WriteObject(row);
                         }
                     }
-    
+                    */
+
                     /*
                     if (gridPattern == null)
                     {

@@ -111,6 +111,9 @@ namespace UIAutomation.Commands
                         new ErrorDetails("There is already active CacheRequest. Please close it first");
                     WriteError(this, err, true);
 
+                    // TODO
+                    //this.WriteError();
+
                     //
                 }
                 
@@ -438,6 +441,9 @@ namespace UIAutomation.Commands
                         "Failed to start a cache request\r\n" +
                         eCacheRequest.Message);
                 WriteError(this, err, true);
+
+                // TODO
+                //this.WriteError();
             }
         }
     }

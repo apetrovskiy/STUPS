@@ -134,7 +134,10 @@ namespace UIAutomation.Commands
                 }
                 
                 // 
+                if (windowsByPID != null && windowsByPID.Count <= 0) continue;
+                /*
                 if (windowsByPID.Count <= 0) continue;
+                */
                 WriteVerbose(this, 
                     "there are " +
                     windowsByPID.Count.ToString() + 

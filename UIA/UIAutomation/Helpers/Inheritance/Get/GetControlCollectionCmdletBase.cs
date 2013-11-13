@@ -732,20 +732,49 @@ namespace UIAutomation
                 //sibling = nextSibling ? (new MySuperWrapper(walker.GetNextSibling(inputObject.SourceElement))) : (new MySuperWrapper(walker.GetPreviousSibling(inputObject.SourceElement)));
                 sibling = nextSibling ? ObjectsFactory.GetMySuperWrapper(walker.GetNextSibling(inputObject.SourceElement)) : ObjectsFactory.GetMySuperWrapper(walker.GetPreviousSibling(inputObject.SourceElement));
 
-                /*
-                if (nextSibling) {
-                    // 20120823
-                    //sibling = walker.GetNextSibling(this.InputObject);
-                    sibling = walker.GetNextSibling(inputObject);
-                } else {
-                    // 20120823
-                    //sibling = walker.GetPreviousSibling(this.InputObject);
-                    sibling = walker.GetPreviousSibling(inputObject);
-                }
-                */
+                
+                //if (nextSibling) {
+                //    // 20120823
+                //    //sibling = walker.GetNextSibling(this.InputObject);
+                //    sibling = walker.GetNextSibling(inputObject);
+                //} else {
+                //    // 20120823
+                //    //sibling = walker.GetPreviousSibling(this.InputObject);
+                //    sibling = walker.GetPreviousSibling(inputObject);
+                //}
+                
+                // 20131113
+                WriteObject(this, sibling);
+                this.WriteObject(this, sibling);
+            
+            } // 20120823
+            
+            /*
+            foreach (IMySuperWrapper inputObject in this.InputObject) {
+                
+                // 20131109
+                //AutomationElement sibling = null;
+                //sibling = nextSibling ? walker.GetNextSibling(inputObject) : walker.GetPreviousSibling(inputObject);
+                IMySuperWrapper sibling = null;
+                // 20131112
+                //sibling = nextSibling ? (new MySuperWrapper(walker.GetNextSibling(inputObject.SourceElement))) : (new MySuperWrapper(walker.GetPreviousSibling(inputObject.SourceElement)));
+                sibling = nextSibling ? ObjectsFactory.GetMySuperWrapper(walker.GetNextSibling(inputObject.SourceElement)) : ObjectsFactory.GetMySuperWrapper(walker.GetPreviousSibling(inputObject.SourceElement));
+
+                
+                //if (nextSibling) {
+                //    // 20120823
+                //    //sibling = walker.GetNextSibling(this.InputObject);
+                //    sibling = walker.GetNextSibling(inputObject);
+                //} else {
+                //    // 20120823
+                //    //sibling = walker.GetPreviousSibling(this.InputObject);
+                //    sibling = walker.GetPreviousSibling(inputObject);
+                //}
+                
                 WriteObject(this, sibling);
             
             } // 20120823
+            */
             
         }
         
@@ -808,9 +837,8 @@ namespace UIAutomation
                 {
                     WriteVerbose(this, "conditions number: " +
                                  conditions.Length.ToString());
-                    foreach (AndCondition andCondition in conditions)
+                    foreach (AndCondition andCondition in conditions.Where(andCondition => andCondition != null))
                     {
-                        if (andCondition == null) continue;
                         WriteVerbose(this, andCondition.GetConditions());
                         temporaryResults =
                             // 20120823
@@ -833,27 +861,30 @@ namespace UIAutomation
                                 }
                                 */
                         }
+                    }
 
-                        /*
-                        if (andCondition != null) {
-                            WriteVerbose(this, andCondition.GetConditions());
-                            temporaryResults =
-                                // 20120823
-                                //this.InputObject.FindAll(scope,
-                                inputObject.FindAll(scope,
-                                    andCondition);
-                            if (temporaryResults.Count > 0) {
-                                searchResults.AddRange(temporaryResults.Cast<AutomationElement>());
-                                //->
-                                foreach (AutomationElement element in temporaryResults)
-                                {
-                                    searchResults.Add(element);
-                                }
-                                -//
+                    /*
+                    foreach (AndCondition andCondition in conditions)
+                    {
+                        if (andCondition == null) continue;
+                        WriteVerbose(this, andCondition.GetConditions());
+                        temporaryResults =
+                            // 20120823
+                            //this.InputObject.FindAll(scope,
+                            inputObject.FindAll(scope,
+                                andCondition);
+                        if (temporaryResults.Count > 0) {
+                            
+                            // 20131109
+                            //searchResults.AddRange(temporaryResults.Cast<AutomationElement>());
+                            // 20131111
+                            //searchResults.AddRange(temporaryResults.Cast<IMySuperWrapper>());
+                            foreach (IMySuperWrapper singleElement in temporaryResults) {
+                                searchResults.Add(singleElement);
                             }
                         }
-                        */
                     }
+                    */
 
                     /*
                     for (int i = 0; i < conditions.Length; i++) {
@@ -876,7 +907,8 @@ namespace UIAutomation
                 }
                     }
                     */
-                } else {
+                }
+                else {
                     WriteVerbose(this, "no conditions. Performing search with TrueCondition");
                     temporaryResults =
                         // 20120823

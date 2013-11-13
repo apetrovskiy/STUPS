@@ -101,7 +101,10 @@ namespace UIAutomation.Commands
                     
                     // temporary!!!
                     // get rows
+                    if (tblPattern != null && tblPattern.Current.RowCount <= 0) continue;
+                    /*
                     if (tblPattern.Current.RowCount <= 0) continue;
+                    */
                     // 20130318
                     //RunOnSuccessScriptBlocks(this);
                     RunOnSuccessScriptBlocks(this, null);
@@ -174,6 +177,15 @@ namespace UIAutomation.Commands
                         //UIAHelper.GetOutputStringUsingItemsValuePattern(this.InputObject,
                         UIAHelper.GetOutputStringUsingItemsValuePattern(inputObject,
                             this.Delimiter);
+                    if (rows.Count <= 0) continue;
+                    // 20130318
+                    //RunOnSuccessScriptBlocks(this);
+                    RunOnSuccessScriptBlocks(this, null);
+                    foreach (string row in rows) {
+                        this.WriteObject(row);
+                    }
+
+                    /*
                     if (rows.Count > 0) {
                         // 20130318
                         //RunOnSuccessScriptBlocks(this);
@@ -182,6 +194,8 @@ namespace UIAutomation.Commands
                             this.WriteObject(row);
                         }
                     }
+                    */
+
                     // WriteObject(this, false);
                     // return;
     

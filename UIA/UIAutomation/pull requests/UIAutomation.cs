@@ -159,11 +159,17 @@ namespace AVG.Automation.Cmdlets
             // uint wrotelen = 0;
             NativeMethods.WriteProcessMemory(hndProc, lpAddress, buffer, (uint)buffer.Length, (UIntPtr)wrotelen);
 
+            if (Marshal.GetLastWin32Error() == 0) return;
+            AccessViolationException ex2 = new AccessViolationException("Unable to write memory to process with an id " + procId);
+            ThrowTerminatingError(new ErrorRecord(ex2, "AccessDenined", ErrorCategory.SecurityError, null));
+
+            /*
             if (Marshal.GetLastWin32Error() != 0)
             {
                 AccessViolationException ex = new AccessViolationException("Unable to write memory to process with an id " + procId);
                 ThrowTerminatingError(new ErrorRecord(ex, "AccessDenined", ErrorCategory.SecurityError, null));
             }
+            */
         }
 
         protected override void ProcessRecord()

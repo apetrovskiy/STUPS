@@ -35,6 +35,11 @@ namespace UIAutomation.Commands.Common
                 InvokePattern invPtrn = 
                     showDesktopButton.GetCurrentPattern(InvokePattern.Pattern) as InvokePattern;
                 invPtrn.Invoke();
+                /*
+                InvokePattern invPtrn = 
+                    showDesktopButton.GetCurrentPattern(InvokePattern.Pattern) as InvokePattern;
+                invPtrn.Invoke();
+                */
                 this.WriteObject(this, true);
             }
             catch (Exception ee) {

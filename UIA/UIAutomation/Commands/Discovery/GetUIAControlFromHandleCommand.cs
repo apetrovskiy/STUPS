@@ -7,6 +7,8 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System.Linq;
+
 namespace UIAutomation.Commands
 {
     // test it
@@ -81,7 +83,19 @@ namespace UIAutomation.Commands
         {
             // 20131109
             //System.Windows.Automation.AutomationElement result = null;
-            
+            // 20131113
+            foreach (IMySuperWrapper result in this.InputObject.Select(handle => UIAHelper.GetAutomationElementFromHandle(
+                this,
+                handle)))
+            {
+                if (result != null) {
+                    this.WriteVerbose(this, "got the window");
+                }
+                UIAutomation.CurrentData.CurrentWindow = result;
+                this.WriteObject(this, result);
+            }
+
+            /*
             foreach (int handle in this.InputObject) {
                 
                 // 20131109
@@ -100,6 +114,7 @@ namespace UIAutomation.Commands
                 UIAutomation.CurrentData.CurrentWindow = result;
                 this.WriteObject(this, result);
             }
+            */
         }
     }
 }

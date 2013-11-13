@@ -60,13 +60,21 @@ namespace UIAutomation.Commands
             
             // 20131109
             //foreach (System.Windows.Automation.AutomationElement element in this.InputObject) {
+            // 20131113
+            foreach (AutomationPattern p in this.InputObject.SelectMany(element => element.GetSupportedPatterns()))
+            {
+                this.WriteVerbose(this, p.ProgrammaticName);
+            }
+
+            /*
             foreach (IMySuperWrapper element in this.InputObject) {
                 foreach (System.Windows.Automation.AutomationPattern p in element.GetSupportedPatterns())
                 {
                     this.WriteVerbose(this, p.ProgrammaticName);
                 }
             }
-            
+            */
+
             // 20131014
             //foreach (System.Windows.Automation.AutomationPattern p in _control.GetSupportedPatterns())
             /*

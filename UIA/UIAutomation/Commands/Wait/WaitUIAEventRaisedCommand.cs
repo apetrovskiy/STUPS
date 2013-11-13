@@ -134,6 +134,9 @@ this.WriteTrace(this, "eventId 002");
                         new ErrorDetails(
                             "Could not catch the event");
                     WriteError(this, err, true);
+
+                    // TODO
+                    // this.WriteError();
                 }
 
                 if (notFoundYet) continue;

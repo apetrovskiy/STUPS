@@ -40,6 +40,9 @@ namespace UIAutomation.Commands
                         "Failed to stop a cache request\r\n" +
                         eCacheRequest.Message);
                 WriteError(this, err, true);
+
+                // TODO
+                //this.WriteError();
             }
         }
     }

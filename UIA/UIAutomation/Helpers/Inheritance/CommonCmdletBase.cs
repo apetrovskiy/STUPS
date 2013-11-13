@@ -287,6 +287,37 @@ namespace UIAutomation
             //  // 
             // 20131109
             //if (element != null && element is AutomationElement &&
+            if (element == null || !(element is IMySuperWrapper) || (int) element.Current.ProcessId <= 0) return;
+            // 20131109
+            //this.WriteVerbose(this, "as it is an AutomationElement, it should be highlighted");
+            this.WriteVerbose(this, "as it is an IMySuperWrapper, it should be highlighted");
+                        
+            // 20121002
+            //if (Preferences.Highlight || ((HasScriptBlockCmdletBase)cmdlet).Highlight) {
+            try {
+                this.WriteVerbose(this, "run Highlighter");
+                if (Preferences.ShowExecutionPlan) {
+                    if (Preferences.ShowInfoToolTip) {
+                        ExecutionPlan.Enqueue(element, CommonCmdletBase.HighlighterGeneration, "name: " + element.Current.Name);
+                    } else {
+                        ExecutionPlan.Enqueue(element, CommonCmdletBase.HighlighterGeneration, string.Empty);
+                    }
+                    //this.Enqueue(element);
+                } else {
+//                                if (Preferences.ShowInfoToolTip) {
+                    UIAHelper.Highlight(element);
+//                                } else {
+//                                    UIAHelper.Highlight(element);
+//                                }
+                }
+                this.WriteVerbose(this, "after running the Highlighter");
+            } catch (Exception ee) {
+                this.WriteVerbose(this, "unable to highlight: " + ee.Message);
+                this.WriteVerbose(this, outputObject.ToString());
+            }
+            //}
+
+            /*
             if (element != null && element is IMySuperWrapper &&
                 (int)element.Current.ProcessId > 0) {
                 
@@ -319,6 +350,7 @@ namespace UIAutomation
                 }
                 //}
             } // if (element != null && element is AutomationElement &&
+            */
 
             /*
             if (element != null && element is AutomationElement &&
@@ -2601,6 +2633,38 @@ namespace UIAutomation
             //{
 
             if (conditions == null) return;
+            if (inputObject == null || (int) inputObject.Current.ProcessId <= 0) return;
+            // 20131104
+            // refactoring
+            //AutomationElementCollection tempCollection = inputObject.FindAll(System.Windows.Automation.TreeScope.Descendants, conditions);
+            // 20131105
+            // refactoring
+            //AutomationElementCollection tempCollection = inputObject.FindAll(System.Windows.Automation.TreeScope.Descendants, conditions);
+            IMySuperCollection tempCollection = inputObject.FindAll(System.Windows.Automation.TreeScope.Descendants, conditions);
+                
+            // 20131109
+            //foreach (AutomationElement tempElement in tempCollection) {
+            foreach (IMySuperWrapper tempElement in tempCollection) {
+                if (null == cmdlet.SearchCriteria || 0 == cmdlet.SearchCriteria.Length) {
+                    resultArrayListOfControls.Add(tempElement);
+                    cmdlet.WriteVerbose(cmdlet, "ExactSearch: element added to the result collection");
+                } else {
+                    cmdlet.WriteVerbose(cmdlet, "ExactSearch: checking search criteria");
+                    if (TestControlWithAllSearchCriteria(cmdlet, cmdlet.SearchCriteria, tempElement)) {
+                        cmdlet.WriteVerbose(cmdlet, "ExactSearch: the control matches the search criteria");
+                        resultArrayListOfControls.Add(tempElement);
+                        cmdlet.WriteVerbose(cmdlet, "ExactSearch: element added to the result collection");
+                    }
+                }
+            }
+                    
+            // 20130608
+            if (null != tempCollection) {
+
+                tempCollection = null;
+            }
+
+            /*
             if (inputObject != null && (int)inputObject.Current.ProcessId > 0) {
                 // 20131104
                 // refactoring
@@ -2632,6 +2696,7 @@ namespace UIAutomation
                     tempCollection = null;
                 }
             }
+            */
 
             /*
             if (conditions != null) {

@@ -168,6 +168,31 @@ namespace UIAutomation
         internal static void WriteToLogFile(string record)
         {
             if (!Preferences.Log) return;
+            if (!System.IO.File.Exists(Preferences.LogPath)) return;
+            if (LogStream == null) {
+                Stream = 
+                    System.IO.File.Open(
+                        Preferences.LogPath,
+                        FileMode.OpenOrCreate | FileMode.Append,
+                        FileAccess.Write,
+                        FileShare.Write);
+                LogStream = 
+                    new StreamWriter(Stream);
+            }
+            // 20130216
+            System.DateTime now = System.DateTime.Now;
+            string dateAndTime = 
+                now.ToShortDateString() + 
+                " " +
+                //System.DateTime.Now.ToShortTimeString();
+                now.ToLongTimeString() +
+                " " +
+                now.Millisecond;
+            LogStream.WriteLine(dateAndTime + "\t" + record);
+            //  //  // LogStream.Flush();
+            //  // 
+
+            /*
             if (System.IO.File.Exists(Preferences.LogPath)) {
                 if (LogStream == null) {
                     Stream = 
@@ -192,6 +217,7 @@ namespace UIAutomation
                 //  //  // LogStream.Flush();
                 //  // 
             }
+            */
 
             /*
             if (Preferences.Log) {

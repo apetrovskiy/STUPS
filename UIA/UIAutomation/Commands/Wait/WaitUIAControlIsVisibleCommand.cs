@@ -68,6 +68,19 @@ namespace UIAutomation.Commands
             
             // 20120823
             //if (this.ControlType != this.InputObject.Current.ControlType) {
+            if (!Equals(this.ControlType, inputObject.Current.ControlType)) {
+                
+                this.WriteError(
+                    this,
+                    "Control is not of " +
+                    this.ControlType.ProgrammaticName +
+                    " type",
+                    "WrongControlType",
+                    ErrorCategory.InvalidArgument,
+                    true);
+            }
+
+            /*
             if (this.ControlType != inputObject.Current.ControlType) {
                 
                 this.WriteError(
@@ -79,6 +92,7 @@ namespace UIAutomation.Commands
                     ErrorCategory.InvalidArgument,
                     true);
             }
+            */
 
             //this.WaitIfCondition(_control, false);
             // 20120823

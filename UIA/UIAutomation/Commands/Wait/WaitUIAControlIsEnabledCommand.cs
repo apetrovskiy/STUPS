@@ -63,6 +63,20 @@ namespace UIAutomation.Commands
             
             //System.Windows.Automation.AutomationElement _control = null;
             
+            if (!Equals(this.ControlType, inputObject.Current.ControlType)) {
+                
+                this.WriteError(
+                    this,
+                    "Control is not of " +
+                     this.ControlType.ProgrammaticName +
+                     " type",
+                    "WrongControlType",
+                    ErrorCategory.InvalidArgument,
+                    true);
+                
+            }
+
+            /*
             if (this.ControlType != inputObject.Current.ControlType) {
                 
                 this.WriteError(
@@ -75,10 +89,9 @@ namespace UIAutomation.Commands
                     true);
                 
             }
-            
+            */
 
-          
-          // moved 20120620
+            // moved 20120620
             //this.WaitIfCondition(_control, true);
             // 20120823
             //this.WaitIfCondition(this.InputObject, true);

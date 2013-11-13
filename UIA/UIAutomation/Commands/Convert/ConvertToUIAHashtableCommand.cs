@@ -40,10 +40,35 @@ namespace UIAutomation.Commands
             foreach (IMySuperWrapper inputObject in this.InputObject) {
 
             System.Collections.Hashtable hashtable = 
-                new System.Collections.Hashtable();
-            
-#region commented
-//            hashtable.Add("Name", this.InputObject.Current.Name);
+                new System.Collections.Hashtable
+                {
+                    {"Name", inputObject.Current.Name},
+                    {"AutomationId", inputObject.Current.AutomationId},
+                    {"ControlType", inputObject.Current.ControlType.ProgrammaticName},
+                    {"Class", inputObject.Current.ClassName},
+                    {"AcceleratorKey", inputObject.Current.AcceleratorKey},
+                    {"AccessKey", inputObject.Current.AccessKey},
+                    {"BoundingRectangle", inputObject.Current.BoundingRectangle.ToString()},
+                    {"FrameworkId", inputObject.Current.FrameworkId},
+                    {"HasKeyboardFocus", inputObject.Current.HasKeyboardFocus.ToString()},
+                    {"HelpText", inputObject.Current.HelpText},
+                    {"IsContentElement", inputObject.Current.IsContentElement.ToString()},
+                    {"IsControlElement", inputObject.Current.IsControlElement.ToString()},
+                    {"IsEnabled", inputObject.Current.IsEnabled.ToString()},
+                    {"IsKeyboardFocusable", inputObject.Current.IsKeyboardFocusable.ToString()},
+                    {"IsOffscreen", inputObject.Current.IsOffscreen.ToString()},
+                    {"IsPassword", inputObject.Current.IsPassword.ToString()},
+                    {"IsRequiredForForm", inputObject.Current.IsRequiredForForm.ToString()},
+                    {"ItemStatus", inputObject.Current.ItemStatus},
+                    {"ItemType", inputObject.Current.ItemType},
+                    {"LocalizedControlType", inputObject.Current.LocalizedControlType},
+                    {"NativeWindowHandle", inputObject.Current.NativeWindowHandle.ToString()},
+                    {"Orientation", inputObject.Current.Orientation.ToString()},
+                    {"ProcessId", inputObject.Current.ProcessId.ToString()}
+                };
+
+            #region commented
+            //            hashtable.Add("Name", this.InputObject.Current.Name);
 //            hashtable.Add("AutomationId", this.InputObject.Current.AutomationId);
 //            hashtable.Add("ControlType", this.InputObject.Current.ControlType.ProgrammaticName);
 //            hashtable.Add("Class", this.InputObject.Current.ClassName);
@@ -70,6 +95,13 @@ namespace UIAutomation.Commands
 #endregion commented
 
             // 20120823
+                //hashtable.Add("LabeledBy", inputObject.Current.LabeledBy);
+
+                /*
+            System.Collections.Hashtable hashtable = 
+                new System.Collections.Hashtable();
+            
+            // 20120823
             hashtable.Add("Name", inputObject.Current.Name);
             hashtable.Add("AutomationId", inputObject.Current.AutomationId);
             hashtable.Add("ControlType", inputObject.Current.ControlType.ProgrammaticName);
@@ -94,7 +126,8 @@ namespace UIAutomation.Commands
             hashtable.Add("NativeWindowHandle", inputObject.Current.NativeWindowHandle.ToString());
             hashtable.Add("Orientation", inputObject.Current.Orientation.ToString());
             hashtable.Add("ProcessId", inputObject.Current.ProcessId.ToString());
-            
+            */
+
             // 20120831
             this.WriteObject(this, hashtable);
             //this.WriteObject(this, hashtable, true);
@@ -113,16 +146,24 @@ namespace UIAutomation.Commands
         public ConvertToUIASearchCriteriaCommand()
         {
             System.Collections.ArrayList defaultExcludeList = 
+                new System.Collections.ArrayList {"LabeledBy", "NativeWindowHandle", "ProcessId"};
+            /*
+            System.Collections.ArrayList defaultExcludeList = 
                 new System.Collections.ArrayList();
             defaultExcludeList.Add("LabeledBy");
             defaultExcludeList.Add("NativeWindowHandle");
             defaultExcludeList.Add("ProcessId");
+            */
             this.Exclude = (string[])defaultExcludeList.ToArray(typeof(string));
+            System.Collections.ArrayList defaultIncludeList = 
+                new System.Collections.ArrayList {"Name", "AutomationId", "ControlType"};
+            /*
             System.Collections.ArrayList defaultIncludeList = 
                 new System.Collections.ArrayList();
             defaultIncludeList.Add("Name");
             defaultIncludeList.Add("AutomationId");
             defaultIncludeList.Add("ControlType");
+            */
             this.Include = (string[])defaultIncludeList.ToArray(typeof(string));
             this.Full = false;
             

@@ -183,6 +183,31 @@ namespace UIAutomation
                 foreach (System.IntPtr controlHandle in handlesCollection) {
                     try {
                         cmdlet.WriteVerbose(cmdlet, "checking a handle");
+                        if (IntPtr.Zero == controlHandle) continue;
+                        cmdlet.WriteVerbose(cmdlet, "the handle is not null");
+                        // 20131109
+                        //AutomationElement tempElement =
+                        //    AutomationElement.FromHandle(controlHandle);
+                        IMySuperWrapper tempElement =
+                            MySuperWrapper.FromHandle(controlHandle);
+                        cmdlet.WriteVerbose(cmdlet, "adding the handle to the collection");
+                                
+                        cmdlet.WriteVerbose(cmdlet, controlTitle);
+                        cmdlet.WriteVerbose(cmdlet, tempElement.Current.Name);
+
+                        if (isMatchWildcardPattern(cmdlet, resultCollection, tempElement, wildcardName, tempElement.Current.Name)) continue;
+                        if (isMatchWildcardPattern(cmdlet, resultCollection, tempElement, wildcardName, tempElement.Current.AutomationId)) continue;
+                        if (isMatchWildcardPattern(cmdlet, resultCollection, tempElement, wildcardName, tempElement.Current.ClassName)) continue;
+                        try {
+                            string elementValue =
+                                (tempElement.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern).Current.Value;
+                            if (isMatchWildcardPattern(cmdlet, resultCollection, tempElement, wildcardName, elementValue)) continue;
+                        }
+                        catch { //(Exception eValuePattern) {
+                        }
+                        //resultCollection.Add(tempElement);
+
+                        /*
                         if (IntPtr.Zero != controlHandle) {
                                 
                             cmdlet.WriteVerbose(cmdlet, "the handle is not null");
@@ -208,6 +233,7 @@ namespace UIAutomation
                             }
                             //resultCollection.Add(tempElement);
                         }
+                        */
                     }
                     catch (Exception eGetAutomationElementFromHandle) {
                         cmdlet.WriteVerbose(cmdlet, eGetAutomationElementFromHandle.Message);
@@ -468,8 +494,11 @@ namespace UIAutomation
         {
             
             //if (null == cmdlet.InputObject || 0 == cmdlet.InputObject.Length) {
+            if (null == cmdlet.InputObject || !cmdlet.InputObject.Any()) {
+            /*
             if (null == cmdlet.InputObject || 0 == cmdlet.InputObject.Count()) {
-                
+            */
+
                 cmdlet.WriteVerbose(cmdlet, "(null == cmdlet.InputObject || 0 == cmdlet.InputObject.Length)");
                 
                 // 20131109
@@ -1503,10 +1532,17 @@ namespace UIAutomation
                         catch {
                         }
 
+                        if (cmdlet.LastRecordedItem[cmdlet.LastRecordedItem.Count - 1].ToString() == parentVerbosity)
+                            continue;
+                        cmdlet.LastRecordedItem.Add(parentVerbosity);
+                        cmdlet.WriteVerbose(parentVerbosity);
+
+                        /*
                         if (cmdlet.LastRecordedItem[cmdlet.LastRecordedItem.Count - 1].ToString() != parentVerbosity) {
                             cmdlet.LastRecordedItem.Add(parentVerbosity);
                             cmdlet.WriteVerbose(parentVerbosity);
                         }
+                        */
                     }
 
                     /*
@@ -1612,6 +1648,28 @@ namespace UIAutomation
                     CacheRequest cacheRequest = null;
                     
                     try {
+                        cacheRequest = new CacheRequest
+                        {
+                            AutomationElementMode = AutomationElementMode.None,
+                            TreeFilter = Automation.RawViewCondition
+                        };
+                        cacheRequest.Add(AutomationElement.NameProperty);
+                        // cacheRequest.Add(AutomationElement.AutomationIdProperty);
+                        cacheRequest.Add(AutomationElement.ControlTypeProperty);
+                        // cacheRequest.Add(AutomationElement.ClassNameProperty);
+                        // cacheRequest.Push();
+                        cacheRequest.Activate();
+                        // element.FindFirst(TreeScope.Element, Condition.TrueCondition);
+                    } catch (Exception eCacheRequest) {
+                        cmdlet.WriteVerbose(cmdlet, "Cache request failed for " + element.Current.Name);
+                        cmdlet.WriteVerbose(cmdlet, eCacheRequest.Message);
+                    }
+
+                    /*
+                    // cache requiest object for collecting properties
+                    CacheRequest cacheRequest = null;
+                    
+                    try {
                         cacheRequest = new CacheRequest();
                         cacheRequest.AutomationElementMode = AutomationElementMode.None;
                         cacheRequest.TreeFilter = Automation.RawViewCondition;
@@ -1626,7 +1684,8 @@ namespace UIAutomation
                         cmdlet.WriteVerbose(cmdlet, "Cache request failed for " + element.Current.Name);
                         cmdlet.WriteVerbose(cmdlet, eCacheRequest.Message);
                     }
-                    
+                    */
+
                     foreach (AutomationPattern pattern in supportedPatterns) {
                         try {
                             if (element == null) { break; }
@@ -2153,6 +2212,19 @@ namespace UIAutomation
                     return result;
                 }
                 object pattern = null;
+                /*
+                foreach (AutomationPattern ptrn in supportedPatterns.Where(ptrn => patternType.ProgrammaticName == ptrn.ProgrammaticName ||
+                                                                                   patternType == null).Where(ptrn => element.TryGetCurrentPattern(
+                                                                                       ptrn, out pattern)))
+                {
+                    object resPattern =
+                        element.GetCurrentPattern(ptrn);
+                    // as System.Windows.Automation.AutomationPattern;
+                    result = resPattern;
+                    return result;
+                }
+                */
+
                 foreach (AutomationPattern ptrn in supportedPatterns.Where(ptrn => patternType.ProgrammaticName == ptrn.ProgrammaticName ||
                                                                                    patternType == null))
                 {
@@ -2788,6 +2860,27 @@ namespace UIAutomation
                             (IntPtr)resultHandle);
                         
                     //if (IntPtr.Zero != childHandle) {
+                    if (0 == childHandle) continue;
+                    resultElement =
+                        GetAutomationElementFromHandle(
+                            (DiscoveryCmdletBase)cmdlet,
+                            childHandle);
+                    if (treeItemName == resultElement.Current.Name) {
+                        return resultElement;
+                    }
+                            
+                    // gettting children
+                    resultElement =
+                        getSheridanTreeItemFromTreeNode(
+                            cmdlet,
+                            hwndTreeView,
+                            (IntPtr)childHandle,
+                            treeItemName);
+                    if (treeItemName == resultElement.Current.Name) {
+                        return resultElement;
+                    }
+
+                    /*
                     if (0 != childHandle) {
                             
                         resultElement =
@@ -2810,6 +2903,7 @@ namespace UIAutomation
                         }
                             
                     }
+                    */
 
                     /*
                     if (0 != resultHandle) {

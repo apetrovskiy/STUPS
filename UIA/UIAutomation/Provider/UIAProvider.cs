@@ -52,8 +52,11 @@ namespace UIAutomation
                 dynamicParameters =
                     new RuntimeDefinedParameterDictionary();
                 Collection<Attribute> atts1 = new Collection<Attribute>();
+                ParameterAttribute parameterAttribute1 = new ParameterAttribute {Mandatory = true};
+                /*
                 ParameterAttribute parameterAttribute1 = new ParameterAttribute();
                 parameterAttribute1.Mandatory = true;
+                */
                 //parameterAttribute1.ParameterSetName = "WindowNameParameterSet";
                 atts1.Add(parameterAttribute1);
                 AllowEmptyStringAttribute attr1 = new AllowEmptyStringAttribute();
@@ -66,8 +69,11 @@ namespace UIAutomation
                         atts1));
                 
                 Collection<Attribute> atts2 = new Collection<Attribute>();
+                ParameterAttribute parameterAttribute2 = new ParameterAttribute {Mandatory = true};
+                /*
                 ParameterAttribute parameterAttribute2 = new ParameterAttribute();
                 parameterAttribute2.Mandatory = true;
+                */
                 //parameterAttribute2.ParameterSetName = "ProcessNameParameterSet";
                 atts2.Add(parameterAttribute2);
                 AllowEmptyStringAttribute attr2 = new AllowEmptyStringAttribute();
@@ -80,8 +86,11 @@ namespace UIAutomation
                         atts2));
                 
                 Collection<Attribute> atts3 = new Collection<Attribute>();
+                ParameterAttribute parameterAttribute3 = new ParameterAttribute {Mandatory = true};
+                /*
                 ParameterAttribute parameterAttribute3 = new ParameterAttribute();
                 parameterAttribute3.Mandatory = true;
+                */
                 //parameterAttribute3.ParameterSetName = "ProcessIdParameterSet";
                 atts3.Add(parameterAttribute3);
                 AllowEmptyStringAttribute attr3 = new AllowEmptyStringAttribute();
@@ -194,6 +203,9 @@ namespace UIAutomation
                             "The PSDriveInfo argument is null");
                     //ThrowTerminatingError(err);
                     this.ThrowTerminatingError(err);
+
+                    // TODO
+                    // this.WriteError();
                 }
 
                 UIADriveInfo driveInfo = drive as UIADriveInfo;

@@ -99,11 +99,15 @@ public static System.Collections.Generic.List<object> Events { get; set; } // te
         //public static void SetCurrentWindow(AutomationElement window)
         public static void SetCurrentWindow(IMySuperWrapper window)
         {
+            CurrentData.CurrentWindow = window ?? null;
+
+            /*
             if (window != null) {
                 CurrentData.CurrentWindow = window;
             } else {
                 CurrentData.CurrentWindow = null;
             }
+            */
 
             /*
             if (window is AutomationElement) {
@@ -113,7 +117,7 @@ public static System.Collections.Generic.List<object> Events { get; set; } // te
             }
             */
         }
-        
+
         internal static Profile GetProfile(string name)
         {
             return CurrentData.Profiles.FirstOrDefault(profile => name == profile.Name);

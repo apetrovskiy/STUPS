@@ -78,6 +78,19 @@ namespace UIAutomation
                         true);
                 }
                 
+                WizardStep step = new WizardStep(cmdlet.Name, cmdlet.Order)
+                {
+                    SearchCriteria = cmdlet.SearchCriteria,
+                    StepForwardAction = cmdlet.StepForwardAction,
+                    StepBackwardAction = cmdlet.StepBackwardAction,
+                    StepCancelAction = cmdlet.StepCancelAction,
+                    Description = cmdlet.Description,
+                    Parent = cmdlet.InputObject
+                };
+                // 20130319
+                //step.StepGetWindowAction = cmdlet.StepGetWindowAction;
+
+                /*
                 WizardStep step = new WizardStep(cmdlet.Name, cmdlet.Order);
                 step.SearchCriteria = cmdlet.SearchCriteria;
                 step.StepForwardAction = cmdlet.StepForwardAction;
@@ -87,6 +100,7 @@ namespace UIAutomation
                 //step.StepGetWindowAction = cmdlet.StepGetWindowAction;
                 step.Description = cmdlet.Description;
                 step.Parent = cmdlet.InputObject;
+                */
 
                 cmdlet.WriteVerbose(cmdlet, "adding the step");
                 cmdlet.InputObject.Steps.Add(step);

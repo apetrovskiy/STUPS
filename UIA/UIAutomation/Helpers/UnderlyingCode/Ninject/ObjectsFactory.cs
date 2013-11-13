@@ -21,11 +21,17 @@ namespace UIAutomation
     {
         static ObjectsFactory()
         {
+            if (CommonCmdletBase.UnitTestMode || CommonCmdletBase.ModuleAlreadyLoaded) return;
+            ninjectModule = new ObjectLifecycleModule();
+            CommonCmdletBase.ModuleAlreadyLoaded = true;
+
+            /*
             if (!CommonCmdletBase.UnitTestMode && !CommonCmdletBase.ModuleAlreadyLoaded) {
 
                 ninjectModule = new ObjectLifecycleModule();
                 CommonCmdletBase.ModuleAlreadyLoaded = true;
             }
+            */
         }
         
 		private static INinjectModule ninjectModule;
@@ -45,6 +51,20 @@ namespace UIAutomation
 		
 		internal static void Init()
 		{
+		    if (initFlag) return;
+		    try {
+		        kernel = new StandardKernel(ninjectModule);
+		    }
+		    catch (Exception eInitFailure) {
+		        // TODO
+		        // write error to error object!!!
+		        //Console.WriteLine("Init Kernel");
+		        //Console.WriteLine(eInitFailure.Message);
+		    }
+
+		    initFlag = true;
+
+		    /*
 		    if (!initFlag) {
     		    try {
                     kernel = new StandardKernel(ninjectModule);
@@ -58,7 +78,8 @@ namespace UIAutomation
 
 		        initFlag = true;
 		    }
-		}
+            */
+        }
 		
 		internal static IMySuperWrapper GetMySuperWrapper(AutomationElement element)
 		{

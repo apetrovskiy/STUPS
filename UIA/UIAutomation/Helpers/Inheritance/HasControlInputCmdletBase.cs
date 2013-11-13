@@ -981,8 +981,12 @@ try {
                 //if (null != inputElements && null != (inputElements as AutomationElement[]) && 0 < inputElements.Length) {
                 // 20131109
                 //if (null != inputElements && null != (inputElements as AutomationElement[]) && 0 < inputElements.Count) {
+                if (null != inputElements && null != (inputElements as IMySuperWrapper[]) && inputElements.Any()) {
+
+                /*
                 if (null != inputElements && null != (inputElements as IMySuperWrapper[]) && 0 < inputElements.Count()) {
-                    
+                */
+
                     // 20131109
                     //cmdlet.InputObject = inputElements;
                     cmdlet.InputObject = inputElements; //.ConvertCmdletInputToCollectionAdapter();

@@ -44,7 +44,7 @@ namespace UIAutomation
             // ??
             if (!UnitTestMode && !ModuleAlreadyLoaded) {
                 //WebDriverFactory.AutofacModule = new WebDriverModule();
-                //ObjectsFactory.NinjecctModule = new ObjectLifecycleModule();
+                //ObjectsFactory.NinjectModule = new ObjectLifecycleModule();
                 //WebDriverFactory.Init();
                 
                 ModuleAlreadyLoaded = true;

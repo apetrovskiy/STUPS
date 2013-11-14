@@ -10,17 +10,10 @@
 namespace UIAutomationSpy
 {
     using System;
-    // test it
-    //using System.Collections.Generic;
-    // test it
-    //using System.Drawing;
     using System.Windows.Forms;
     using System.Windows.Automation;
-    // test it
-    //using System.Windows;
     using System.Management.Automation;
     using System.Management.Automation.Runspaces;
-    
     using UIAutomation;
     
     /// <summary>
@@ -96,7 +89,8 @@ namespace UIAutomationSpy
         }
         private System.Collections.ObjectModel.Collection<PSObject> processScript(string codeSnippet)
         {
-            System.Collections.ObjectModel.Collection<PSObject> result = null;
+            // 20131114
+            //System.Collections.ObjectModel.Collection<PSObject> result = null;
             System.Collections.Generic.List<PSObject> resultList = 
                 new System.Collections.Generic.List<PSObject>();
 
@@ -107,6 +101,7 @@ namespace UIAutomationSpy
                     testRunSpace.CreatePipeline(codeSnippet);
                 System.Collections.ObjectModel.Collection<PSObject> resultObject = 
                     cmd.Invoke();
+                
                 if (resultObject.Count <= 0) return resultObject;
                 if (resultObject.Count == 1) {
                     this.pGridElement.SelectedObject = resultObject[0];
@@ -121,7 +116,7 @@ namespace UIAutomationSpy
                 }
                 this.pGridElement.SelectedObjects = 
                     resultList.ToArray();
-
+                
                 /*
                 if (resultObject.Count > 0) {
                     if (resultObject.Count == 1) {
@@ -511,21 +506,26 @@ namespace UIAutomationSpy
         
         // 20131109
         //privaIMySuperWrapperperWrapperperWrapper getElementFromPoint()
-        private IMySuperWrapper getElementFromPoint()
+        // 20131114
+        //private IMySuperWrapper getElementFromPoint()
+        private IMySuperWrapper getElementFromPoint(System.Drawing.Point mousePoint)
         {
             // 20131109
             //AutomatIMySuperWrapper element = null;
             IMySuperWrapper element = null;
             
             // use Windows forms mouse code instead of WPF
-            System.Drawing.Point mouse = System.Windows.Forms.Cursor.Position;
+            // 20131114
+            //System.Drawing.Point mouse = System.Windows.Forms.Cursor.Position;
 
             // commented 20120618 to switch to UIACOMWrapper
             element =
                 // 20131109
                 //System.Windows.Automation.AutomationElement.FromPoint(
                 MySuperWrapper.FromPoint(
-                    new System.Windows.Point(mouse.X, mouse.Y));
+                    // 20131114
+                    //new System.Windows.Point(mouse.X, mouse.Y));
+                    new System.Windows.Point(mousePoint.X, mousePoint.Y));
             //element = 
             //	//(UIANET::System.Windows.Automation.AutomationElement)
             //	UIACOM3.UIACOMHelper.GetAutomationElementFromPoint();
@@ -822,8 +822,10 @@ namespace UIAutomationSpy
                     
                 try {
                         
-                    element = 
-                        this.getElementFromPoint();
+                    element =
+                        // 20131114
+                        //this.getElementFromPoint();
+                        this.getElementFromPoint(System.Windows.Forms.Cursor.Position);
                         
 //                        // use Windows forms mouse code instead of WPF
 //                        System.Drawing.Point mouse = System.Windows.Forms.Cursor.Position;

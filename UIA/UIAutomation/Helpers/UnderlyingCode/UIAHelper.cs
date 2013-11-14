@@ -868,7 +868,9 @@ namespace UIAutomation
                 // refactoring
                 // experimental
                 counter++;
-                bool res = ProcessingTranscriptOnce(cmdlet, counter);
+                // 20131114
+                //bool res = ProcessingTranscriptOnce(cmdlet, counter);
+                bool res = ProcessingTranscriptOnce(cmdlet, counter, System.Windows.Forms.Cursor.Position);
                 if (!res) break;
                 
             } while (Global.GTranscript);
@@ -883,7 +885,10 @@ namespace UIAutomation
         /// <returns></returns>
         public static bool ProcessingTranscriptOnce(
             TranscriptCmdletBase cmdlet,
-            int counter)
+            // 20131114
+            //int counter)
+            int counter,
+            System.Drawing.Point mousePoint)
         {
             // 20130318
             //cmdlet.RunOnSleepScriptBlocks(cmdlet);
@@ -896,14 +901,17 @@ namespace UIAutomation
             
             try {
                 // use Windows forms mouse code instead of WPF
-                System.Drawing.Point mouse = System.Windows.Forms.Cursor.Position;
+                // 20131114
+                // System.Drawing.Point mouse = System.Windows.Forms.Cursor.Position;
                 // 20131109
                 //System.Windows.Automation.AutomationElement element =
                 //    System.Windows.Automation.AutomationElement.FromPoint(
                 //        new System.Windows.Point(mouse.X, mouse.Y));
                 IMySuperWrapper element =
                     MySuperWrapper.FromPoint(
-                        new System.Windows.Point(mouse.X, mouse.Y));
+                        // 20131114
+                        //new System.Windows.Point(mouse.X, mouse.Y));
+                        new System.Windows.Point(mousePoint.X, mousePoint.Y));
                 if (element != null && (int)element.Current.ProcessId > 0)
                 {
                     ProcessingElement(cmdlet, element);

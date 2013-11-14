@@ -11,6 +11,7 @@ namespace UIAutomationSpy
 {
     using System;
     using System.Windows.Forms;
+    using UIAutomation;
 
     /// <summary>
     /// Class with program entry point.
@@ -23,6 +24,9 @@ namespace UIAutomationSpy
         [STAThread]
         private static void Main(string[] args)
         {
+            // 20131114
+            ObjectsFactory.Init();
+            
             // 20121003
             SpyModes currentMode = SpyModes.uIAutomationSpy;
             if (null != args && 0 < args.Length) {

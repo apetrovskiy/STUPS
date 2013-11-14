@@ -35,7 +35,7 @@ namespace UIAutomation
         }
         
 		private static INinjectModule ninjectModule;
-		internal static INinjectModule NinjecctModule
+		internal static INinjectModule NinjectModule
 		{ 
 		    get { return ninjectModule; }
 		    set { ninjectModule = value; initFlag = false; }
@@ -49,7 +49,9 @@ namespace UIAutomation
 		    get { return kernel; }
 		}
 		
-		internal static void Init()
+		// 20131114
+		//internal static void Init()
+		public static void Init()
 		{
 		    if (initFlag) return;
 		    try {

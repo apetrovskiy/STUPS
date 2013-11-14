@@ -763,7 +763,7 @@ Console.WriteLine("00000000000-0-0006");
                 //}
                 
                 // 20131113
-                WriteObject(this, sibling);
+                // WriteObject(this, sibling);
                 this.WriteObject(this, sibling);
             
             } // 20120823

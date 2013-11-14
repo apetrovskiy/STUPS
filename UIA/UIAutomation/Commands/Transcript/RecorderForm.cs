@@ -49,8 +49,10 @@ namespace UIAutomation.Commands
                 // 20131107
                 counter++;
                 //
-                bool res = 
-                    UIAHelper.ProcessingTranscriptOnce(cmdlet, counter);
+                bool res =
+                    // 20131114
+                    //UIAHelper.ProcessingTranscriptOnce(cmdlet, counter);
+                    UIAHelper.ProcessingTranscriptOnce(cmdlet, counter, System.Windows.Forms.Cursor.Position);
                 if (!res) break;
             } while (Global.GTranscript);
             

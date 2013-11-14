@@ -59,7 +59,8 @@ namespace UIAutomation
 		    }
 		}
 		
-		internal MySuperCollection(IMySuperCollection elements)
+		//internal MySuperCollection(IMySuperCollection elements)
+		public MySuperCollection(IMySuperCollection elements)
 		{
 		    foreach (IMySuperWrapper element in elements) {
 		        
@@ -68,7 +69,8 @@ namespace UIAutomation
 		}
 		
 		//
-		internal MySuperCollection(IEnumerable elements)
+		//internal MySuperCollection(IEnumerable elements)
+		public MySuperCollection(IEnumerable elements)
         /*
         internal MySuperCollection(ICollection elements)
         */
@@ -85,12 +87,12 @@ namespace UIAutomation
 			//this._elements.CopyTo(array, index);
 			//this.collectionHolder.CopyTo(array, index);
 		}
-		public void CopyTo(AutomationElement[] array, int index)
+		public virtual void CopyTo(AutomationElement[] array, int index)
 		{
 			//((ICollection)this).CopyTo(array, index);
 			//this.collectionHolder.CopyTo(array, index);
 		}
-		public void CopyTo(IMySuperWrapper[] array, int index)
+		public virtual void CopyTo(IMySuperWrapper[] array, int index)
 		{
 			//((ICollection)this).CopyTo(array, index);
 			this.collectionHolder.CopyTo(array, index);
@@ -101,14 +103,14 @@ namespace UIAutomation
 			return this.collectionHolder.GetEnumerator();
 		}
 		
-		public void AddElement(IMySuperWrapper element)
+		public virtual void AddElement(IMySuperWrapper element)
 		{
 		    this.collectionHolder.Add(element);
 		}
 		
 		//public AutomationElementCollection SourceCollection
 		//public IMySuperCollection SourceCollection
-		public List<IMySuperWrapper> SourceCollection
+		public virtual List<IMySuperWrapper> SourceCollection
 		{
 		    //get { return this.collectionHolder; }
 		    //get { return ((AutomationElementCollection)this.collectionHolder); }

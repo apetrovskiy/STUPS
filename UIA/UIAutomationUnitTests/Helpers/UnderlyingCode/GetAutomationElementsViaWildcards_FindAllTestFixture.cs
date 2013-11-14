@@ -15,9 +15,9 @@ namespace UIAutomationUnitTests
     using UIAutomation;
     using MbUnit.Framework;
     using Ninject.MockingKernel;
-    using Ninject.MockingKernel.NSubstitute;
+    //using Ninject.MockingKernel.NSubstitute;
     using Ninject.MockingKernel.Moq;
-    using NSubstitute;
+    //using NSubstitute;
     using Moq;
     
     /// <summary>
@@ -34,8 +34,9 @@ namespace UIAutomationUnitTests
             //this.kernel = new NSubstituteMockingKernel();
             this.kernel = new MoqMockingKernel();
             
-            kernel.Bind<IMySuperWrapper>().ToMock();
+            kernel.Bind<IMySuperWrapper>().ToMock(); //.WithConstructorArgument("element", ObjectsFactory.GetMySuperWrapper(AutomationElement.RootElement));
             kernel.Bind<IMySuperCollection>().ToMock();
+            kernel.Bind<IMySuperWrapperInformation>().ToMock();
             
 //            kernel.Bind(x => x.FromAssembliesMatching("UIAutomation*")
 //                            .SelectAllClasses()
@@ -63,8 +64,21 @@ namespace UIAutomationUnitTests
             GetControlCollectionCmdletBase cmdlet = new GetControlCollectionCmdletBase();
             cmdlet.Timeout = 20;
             cmdlet.AutomationId = "1";
+            cmdlet.ControlType = new string[] { "Button" };
             
-            IMySuperWrapper element = kernel.GetMock<IMySuperWrapper>().Object;
+            var childElementMock = kernel.GetMock<IMySuperWrapper>();
+            MySuperWrapper childElement = childElementMock.Object as MySuperWrapper;
+            //childElementMock.SetupProperty(p => p.Current);
+            
+//                var mockingKernel = new MoqMockingKernel();
+//                var serviceMock = mockingKernel.GetMock<IService>();
+//                serviceMock.Setup(m => m.GetGreetings()).Returns("World");
+//                var sut = mockingKernel.Get<MyClass>();
+//                Assert.AreEqual("Hello World", sut.SayHello());   
+            
+            //IMySuperWrapper element = kernel.GetMock<IMySuperWrapper>().Object;
+            var elementMock = kernel.GetMock<IMySuperWrapper>();
+            //elementMock.SetupProperty(p => p.Current); //..Returns(ObjectsFactory.GetMySuperWrapperInformation(AutomationElement.RootElement.Current));
             
             AndCondition condition =
                 new AndCondition(
@@ -74,6 +88,13 @@ namespace UIAutomationUnitTests
                     new PropertyCondition(
                         AutomationElement.HelpTextProperty,
                         "bbb"));
+            
+            elementMock.Setup(m => m.FindAll(TreeScope.Descendants, condition))
+                .Returns( new MySuperCollection(new MySuperWrapper[] { childElement, (MySuperWrapper)childElement, (MySuperWrapper)childElement }));
+            
+            var element = elementMock.Object;
+            
+            cmdlet.InputObject = new IMySuperWrapper[] { element };
             
             cmdlet.GetAutomationElementsViaWildcards_FindAll(
                 cmdlet,

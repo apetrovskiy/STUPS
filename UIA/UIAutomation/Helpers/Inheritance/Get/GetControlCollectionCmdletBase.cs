@@ -125,8 +125,6 @@ namespace UIAutomation
 
             ArrayList resultCollection = new ArrayList();
             
-Console.WriteLine("00000000000-0-0001");
-            
             resultCollection =
                 getAutomationElementsWithFindAll(
                     inputObject,
@@ -140,15 +138,10 @@ Console.WriteLine("00000000000-0-0001");
                     onlyOneResult,
                     onlyTopLevel);
             
-Console.WriteLine("00000000000-0-0002");
-            
             cmdlet.WriteVerbose(cmdlet, "with some resultCollection");
-            
-Console.WriteLine("00000000000-0-0003");
             
             if (null == resultCollection || resultCollection.Count == 0) {
                 
-Console.WriteLine("00000000000-0-0004");
 if (null == inputObject) {
     Console.WriteLine("inputObject == null");
 }
@@ -178,10 +171,7 @@ Console.WriteLine("inputObject.Current.Name = " + inputObject.Current.Name);
                     "," +
                     onlyTopLevel.ToString() +
                     ") returned null");
-Console.WriteLine("00000000000-0-0005");
             }
-            
-Console.WriteLine("00000000000-0-0006");
             
             return resultCollection;
         }

@@ -496,8 +496,6 @@ namespace UIAutomation
                     //cmdlet._window = _control;
                     if (inputObject is IMySuperWrapper) {
                         
-Console.WriteLine("00000000000-000013");
-                        
                         cmdlet._window = (IMySuperWrapper)_controlAdapter;
                     }
 //                    if (inputObject is AutomationElement) {
@@ -506,38 +504,24 @@ Console.WriteLine("00000000000-000013");
                     
                     result = true;
                     
-Console.WriteLine("00000000000-000014");
-                    
                     // there's no need to output the True value
                     // since the output will be what we want 
                     // (some part of AutomationElement, as an example)
                 } catch (Exception eControlTypeException) {
                     
-Console.WriteLine("00000000000-000015");
-                    
                     this.WriteDebug(cmdlet, "[checking the input] Control is not an AutomationElement");
                     this.WriteDebug(cmdlet, "[checking the input] " + eControlTypeException.Message);
                     
-Console.WriteLine("00000000000-000016");
-                    
                     if (this.PassThru) {
-                        
-Console.WriteLine("00000000000-000017");
                         
                         // 20131109
                         //WriteObject(this, _control);
                         WriteObject(this, _controlAdapter);
                         
-Console.WriteLine("00000000000-000018");
-                        
                     } else {
-                        
-Console.WriteLine("00000000000-000019");
                         
                         result = false;
                         this.WriteObject(this, result);
-                        
-Console.WriteLine("00000000000-000020");
                         
                     }
                     result = false;
@@ -545,8 +529,6 @@ Console.WriteLine("00000000000-000020");
                 }
             
             } // 20120823
-            
-Console.WriteLine("00000000000-000021");
             
             return result;
         }

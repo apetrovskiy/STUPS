@@ -930,8 +930,12 @@ namespace UIAutomationSpy
                                     this.writeCodeGenerated();
  
                                 }
-                                catch {
+                                catch (Exception eInner) {
                                     // 
+                                    // 20131114
+                                    this.txtFullCode.Text += 
+                                        "Inner cycle (eInner):\r\n" + 
+                                        eInner.Message; // 
                                 }
                             }
                                 

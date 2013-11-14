@@ -102,6 +102,25 @@ namespace UIAutomation
 			}
 		}
 		
+		internal static IMySuperWrapperInformation GetMySuperWrapperInformation(AutomationElement.AutomationElementInformation information)
+		{
+//	        if (null == information) {
+//	            return null;
+//	        }
+			try {
+    			var singleInfo = new Ninject.Parameters.ConstructorArgument("information", information);
+    			IMySuperWrapperInformation adapterInformation = ObjectsFactory.Kernel.Get<IMySuperWrapperInformation>(singleInfo);
+    			return adapterInformation;
+			}
+			catch (Exception eFailedToIssueInformation) {
+			    // TODO
+			    // write error to error object!!!
+//			    Console.WriteLine("Information");
+//			    Console.WriteLine(eFailedToIssueInformation.Message);
+			    return null;
+			}
+		}
+		
 		internal static IMySuperCollection GetMySuperCollection(AutomationElementCollection elements)
 		{
 	        if (null == elements) {

@@ -1146,6 +1146,24 @@ namespace UIAutomation
 //                       )
 //                    .ToArray<AutomationElement>();
                 
+                cmdlet.WriteVerbose(cmdlet, "querying the input collection");
+                
+                cmdlet.WriteVerbose(cmdlet, "inputList.Count = " + inputList.Count.ToString());
+                foreach (IMySuperWrapper wrp in inputList) {
+                    if (null == wrp) {
+                        cmdlet.WriteVerbose(cmdlet, "item is null");
+                    }
+                    if (null == wrp.Current) {
+                        cmdlet.WriteVerbose(cmdlet, "item.Current is null");
+                    }
+                    cmdlet.WriteVerbose(cmdlet, wrp.Current.Name);
+                    cmdlet.WriteVerbose(cmdlet, wrp.Current.AutomationId);
+                    cmdlet.WriteVerbose(cmdlet, wrp.Current.ClassName);
+                    cmdlet.WriteVerbose(cmdlet, wrp.Current.ControlType.ProgrammaticName);
+                }
+                
+                
+                
                 var query = inputList
                     .Where<IMySuperWrapper>(
                         item => (wildcardName.IsMatch(item.Current.Name) &&
@@ -1160,6 +1178,8 @@ namespace UIAutomation
                                 )
                        )
                     .ToArray<IMySuperWrapper>();
+                
+cmdlet.WriteVerbose(cmdlet, "query has been completed");
                 
                 cmdlet.WriteVerbose(
                         cmdlet,
@@ -1201,7 +1221,9 @@ namespace UIAutomation
                 realValue =
                     (item.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern).Current.Value;
             }
-            catch {}
+            catch (Exception eGetCurrentPattern) {
+                //
+            }
             
             // if a control's ValuePattern has no value
             if (string.Empty == realValue) {

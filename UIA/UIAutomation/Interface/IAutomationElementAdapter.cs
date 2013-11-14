@@ -39,12 +39,18 @@ namespace UIAutomation
 		bool TryGetClickablePoint(out System.Windows.Point pt);
 		//Point GetClickablePoint();
 		System.Windows.Point GetClickablePoint();
-		AutomationElement.AutomationElementInformation Cached { get; }
-		AutomationElement.AutomationElementInformation Current { get; }
-		AutomationElement CachedParent { get; }
-		AutomationElementCollection CachedChildren { get; }
-		
-		//static IMySuperWrapper RootElement { get; }
+		// 20131114
+		//AutomationElement.AutomationElementInformation Cached { get; }
+		IMySuperWrapperInformation Cached { get; }
+		// 20131114
+		//AutomationElement.AutomationElementInformation Current { get; }
+		IMySuperWrapperInformation Current { get; }
+		// 20131114
+		//AutomationElement CachedParent { get; }
+		IMySuperWrapper CachedParent { get; }
+		// 20131114
+		//AutomationElementCollection CachedChildren { get; }
+		IMySuperCollection CachedChildren { get; }
 		
 		//AutomationElement SourceElement { get; }
 		AutomationElement SourceElement { get; set; }

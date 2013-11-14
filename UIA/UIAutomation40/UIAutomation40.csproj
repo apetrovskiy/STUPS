@@ -640,6 +640,9 @@
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\AutomationElementCollectionAdapter.cs">
       <Link>Helpers\UnderlyingCode\Adapter\AutomationElementCollectionAdapter.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\AutomationElementInformationAdapter.cs">
+      <Link>Helpers\UnderlyingCode\Adapter\AutomationElementInformationAdapter.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Commands\Container\UIANewContainerCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\Container\UIANewContainerCommand.cs</Link>
     </Compile>
@@ -739,6 +742,9 @@
     </Compile>
     <Compile Include="..\UIAutomation\Interface\IAutomationElementCollection.cs">
       <Link>Interface\IAutomationElementCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\IAutomationElementInformationAdapter.cs">
+      <Link>Interface\IAutomationElementInformationAdapter.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>

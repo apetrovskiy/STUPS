@@ -12,14 +12,17 @@ namespace UIAutomation
 	using System;
 	using System.Windows;
 	using System.Windows.Automation;
+	using Ninject;
     
     public struct MySuperWrapperInformation : IMySuperWrapperInformation
+    //public class MySuperWrapperInformation : IMySuperWrapperInformation
     {
     	//private AutomationElement _el;
     	//private bool _useCache;
     	
     	private AutomationElement.AutomationElementInformation infoHolder;
     	//
+    	[Inject]
     	public MySuperWrapperInformation(AutomationElement.AutomationElementInformation information)
     	{
     	    this.infoHolder = information;

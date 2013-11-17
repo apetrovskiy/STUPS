@@ -82,6 +82,11 @@ namespace UIAutomation
 		}
 		//
 		
+		internal MySuperCollection()
+		{
+		    
+		}
+		
 		public virtual void CopyTo(Array array, int index)
 		{
 			//this._elements.CopyTo(array, index);

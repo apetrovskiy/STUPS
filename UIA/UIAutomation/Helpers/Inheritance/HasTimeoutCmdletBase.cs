@@ -407,7 +407,6 @@ namespace UIAutomation
             // 20131112
 //            using (System.Windows.Automation.AndCondition conditionsProcessId = null)
 //            using (System.Windows.Automation.AndCondition conditionsForRecurseSearch = null) {
-            System.Windows.Automation.AndCondition conditionsProcessId = null;
             System.Windows.Automation.AndCondition conditionsForRecurseSearch = null;
             
             ArrayList aeWndCollectionByProcessId = 
@@ -430,7 +429,7 @@ namespace UIAutomation
             */
 
             foreach (int processId in processIds) {
-            
+                System.Windows.Automation.AndCondition conditionsProcessId = null;
                 try {
                     
                     conditionsProcessId =
@@ -764,7 +763,6 @@ namespace UIAutomation
             string automationId,
             string className)
         {
-            int processId = 0;
             // 20131112
 //            using (ArrayList aeWndCollectionByProcId = new ArrayList())
 //            using (ArrayList tempCollection = new ArrayList()) {
@@ -773,19 +771,18 @@ namespace UIAutomation
             
             System.Collections.ArrayList processIdList = 
                 new System.Collections.ArrayList();
-            int[] processIds = null;
-            
+
             foreach (Process process in processes) {
                 
             try {
-                processId = process.Id;
+                int processId = process.Id;
                 if (0 != processId) {
                     processIdList.Add(processId);
                 }
                 
                 WriteVerbose(this, "processId = " + processId.ToString());
 
-                processIds = (int[])processIdList.ToArray(typeof(int));
+                int[] processIds = (int[])processIdList.ToArray(typeof(int));
                 
                 if (null == processIds) {
                     WriteVerbose(this, "!!!!!!!!!!!!!!!!!!!! null == processIds !!!!!!!!!");
@@ -816,8 +813,9 @@ namespace UIAutomation
         
         private ArrayList getWindowCollectionByName(string[] windowNames, string automationId, string className, bool recurse)
         {
+            /*
             System.Windows.Automation.OrCondition conditionsSet = null;
-            
+            */
             System.Collections.ArrayList windowCollectionByProperties = 
                 new System.Collections.ArrayList();
             System.Collections.ArrayList resultCollection = 
@@ -830,7 +828,8 @@ namespace UIAutomation
             foreach (string windowTitle in windowNames) {
             
                 WriteVerbose(this, "processName.Length == 0");
-                
+
+                System.Windows.Automation.OrCondition conditionsSet = null;
                 if (recurse) {
                     conditionsSet =
                         new System.Windows.Automation.OrCondition(

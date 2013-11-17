@@ -18,7 +18,7 @@ namespace UIAutomation.Commands
     
     
     // 20120823
-    using System.Windows.Automation;
+    //using System.Windows.Automation;
     
     /// <summary>
     /// Description of SetUIAControlTextCommand.
@@ -88,13 +88,12 @@ namespace UIAutomation.Commands
                 // 20130208
                 // clean up the box
                 NativeMethods.SendMessage3(handle, NativeMethods.WM_SETTEXT, IntPtr.Zero, "");
-                    
-                char c1;
+
                 foreach (char c in this.Text) {
     // if (c  > = 65 && c <= 122) {
     // c1 = c. - System.Char. (char)32;
     // } else {
-                    c1 = c;
+                    char c1 = c;
     // }
                     NativeMethods.SendMessage1(handle, 
                                  NativeMethods.WM_KEYDOWN, 

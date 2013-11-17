@@ -13,7 +13,7 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
     
     // 20120823
-    using System.Windows.Automation;
+    //using System.Windows.Automation;
     
     
     /// <summary>

@@ -49,8 +49,6 @@ namespace UIAutomation
 		    get { return kernel; }
 		}
 		
-		// 20131114
-		//internal static void Init()
 		public static void Init()
 		{
 		    if (initFlag) return;
@@ -83,6 +81,20 @@ namespace UIAutomation
             */
         }
 		
+		internal static void InitUnitTests()
+		{
+		    try {
+		        ninjectModule = new ObjectLifecycleModule();
+		        kernel = new StandardKernel(ninjectModule);
+		    }
+		    catch (Exception eInitFailure) {
+		        // TODO
+		        // write error to error object!!!
+		        // Console.WriteLine("Init Kernel");
+		        // Console.WriteLine(eInitFailure.Message);
+		    }
+		}
+		
 		internal static IMySuperWrapper GetMySuperWrapper(AutomationElement element)
 		{
 	        if (null == element) {
@@ -96,8 +108,8 @@ namespace UIAutomation
 			catch (Exception eFailedToIssueElement) {
 			    // TODO
 			    // write error to error object!!!
-//			    Console.WriteLine("Element");
-//			    Console.WriteLine(eFailedToIssueElement.Message);
+			    Console.WriteLine("Element");
+			    Console.WriteLine(eFailedToIssueElement.Message);
 			    return null;
 			}
 		}
@@ -115,8 +127,8 @@ namespace UIAutomation
 			catch (Exception eFailedToIssueInformation) {
 			    // TODO
 			    // write error to error object!!!
-//			    Console.WriteLine("Information");
-//			    Console.WriteLine(eFailedToIssueInformation.Message);
+			    // Console.WriteLine("Information");
+			    // Console.WriteLine(eFailedToIssueInformation.Message);
 			    return null;
 			}
 		}

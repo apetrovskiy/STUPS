@@ -19,10 +19,6 @@ namespace UIAutomation
 	public class MySuperWrapper : IMySuperWrapper
 	{
 		private AutomationElement elementHolder;
-
-		public MySuperWrapper()
-		{
-		}
         
 		[Inject]
 		public MySuperWrapper(AutomationElement element)
@@ -40,96 +36,96 @@ namespace UIAutomation
 			return this.elementHolder.GetHashCode();
 		}
 
-		public virtual int[] GetRuntimeId()
+		public int[] GetRuntimeId()
 		{
 			return this.elementHolder.GetRuntimeId();
 		}
 
-		public virtual object GetCurrentPropertyValue(AutomationProperty property)
+		public object GetCurrentPropertyValue(AutomationProperty property)
 		{
 			return this.elementHolder.GetCurrentPropertyValue(property);
 		}
 
-		public virtual object GetCurrentPropertyValue(AutomationProperty property, bool ignoreDefaultValue)
+		public object GetCurrentPropertyValue(AutomationProperty property, bool ignoreDefaultValue)
 		{
 			return this.elementHolder.GetCurrentPropertyValue(property, ignoreDefaultValue);
 		}
 
-		public virtual object GetCurrentPattern(AutomationPattern pattern)
+		public object GetCurrentPattern(AutomationPattern pattern)
 		{
 			return this.elementHolder.GetCurrentPattern(pattern);
 		}
 
-		public virtual bool TryGetCurrentPattern(AutomationPattern pattern, out object patternObject)
+		public bool TryGetCurrentPattern(AutomationPattern pattern, out object patternObject)
 		{
 			return this.elementHolder.TryGetCurrentPattern(pattern, out patternObject);
 		}
 
-		public virtual object GetCachedPropertyValue(AutomationProperty property)
+		public object GetCachedPropertyValue(AutomationProperty property)
 		{
 			return this.elementHolder.GetCachedPropertyValue(property);
 		}
 
-		public virtual object GetCachedPropertyValue(AutomationProperty property, bool ignoreDefaultValue)
+		public object GetCachedPropertyValue(AutomationProperty property, bool ignoreDefaultValue)
 		{
 			return this.elementHolder.GetCachedPropertyValue(property, ignoreDefaultValue);
 		}
 
-		public virtual object GetCachedPattern(AutomationPattern pattern)
+		public object GetCachedPattern(AutomationPattern pattern)
 		{
 			return this.elementHolder.GetCachedPattern(pattern);
 		}
 
-		public virtual bool TryGetCachedPattern(AutomationPattern pattern, out object patternObject)
+		public bool TryGetCachedPattern(AutomationPattern pattern, out object patternObject)
 		{
 			return this.elementHolder.TryGetCachedPattern(pattern, out patternObject);
 		}
 
-		public virtual AutomationElement GetUpdatedCache(CacheRequest request)
+		public AutomationElement GetUpdatedCache(CacheRequest request)
 		{
 			return this.elementHolder.GetUpdatedCache(request);
 		}
 
-		public virtual IMySuperWrapper FindFirst(TreeScope scope, Condition condition)
+		public IMySuperWrapper FindFirst(TreeScope scope, Condition condition)
 		{
 			return ObjectsFactory.GetMySuperWrapper(this.elementHolder.FindFirst(scope, condition));
 		}
 
-		public virtual IMySuperCollection FindAll(TreeScope scope, Condition condition)
+		public IMySuperCollection FindAll(TreeScope scope, Condition condition)
 		{
 			return ObjectsFactory.GetMySuperCollection(this.elementHolder.FindAll(scope, condition));
 		}
 
-		public virtual AutomationProperty[] GetSupportedProperties()
+		public AutomationProperty[] GetSupportedProperties()
 		{
 			return this.elementHolder.GetSupportedProperties();
 		}
 
-		public virtual AutomationPattern[] GetSupportedPatterns()
+		public AutomationPattern[] GetSupportedPatterns()
 		{
 			return this.elementHolder.GetSupportedPatterns();
 		}
 
-		public virtual void SetFocus()
+		public void SetFocus()
 		{
 			this.elementHolder.SetFocus();
 		}
 
 		//public bool TryGetClickablePoint(out Point pt)
-		public virtual bool TryGetClickablePoint(out System.Windows.Point pt)
+		public bool TryGetClickablePoint(out System.Windows.Point pt)
 		{
 			return this.elementHolder.TryGetClickablePoint(out pt);
 		}
 
 		//public Point GetClickablePoint()
-		public virtual System.Windows.Point GetClickablePoint()
+		public System.Windows.Point GetClickablePoint()
 		{
 			return this.elementHolder.GetClickablePoint();
 		}
 
 		// 20131114
 		//public AutomationElement.AutomationElementInformation Cached {
-		public virtual IMySuperWrapperInformation Cached {
+		public IMySuperWrapperInformation Cached {
 		    // 20131114
 			//get { return this.elementHolder.Cached; }
 			get { return ObjectsFactory.GetMySuperWrapperInformation(this.elementHolder.Cached); }
@@ -137,7 +133,7 @@ namespace UIAutomation
 
 		// 20131114
 		//public AutomationElement.AutomationElementInformation Current {
-		public virtual IMySuperWrapperInformation Current {
+		public IMySuperWrapperInformation Current {
 			// 20131114
 		    //get { return this.elementHolder.Current; }
 		    get { return ObjectsFactory.GetMySuperWrapperInformation(this.elementHolder.Current); }
@@ -145,7 +141,7 @@ namespace UIAutomation
 
 		// 20131114
 		//public AutomationElement CachedParent {
-		public virtual IMySuperWrapper CachedParent {
+		public IMySuperWrapper CachedParent {
 		    // 20131114
 			//get { return this.elementHolder.CachedParent; }
 			get { return ObjectsFactory.GetMySuperWrapper(this.elementHolder.CachedParent); }
@@ -153,7 +149,7 @@ namespace UIAutomation
 
 		// 20131114
 		//public AutomationElementCollection CachedChildren {
-		public virtual IMySuperCollection CachedChildren {
+		public IMySuperCollection CachedChildren {
 		    // 20131114
 			//get { return this.elementHolder.CachedChildren; }
 			get { return ObjectsFactory.GetMySuperCollection(this.elementHolder.CachedChildren); }
@@ -186,7 +182,7 @@ namespace UIAutomation
 		    return ObjectsFactory.GetMySuperWrapper(AutomationElement.FromHandle(controlHandle));
 		}
 
-		public virtual AutomationElement SourceElement {
+		public AutomationElement SourceElement {
 			get { return this.elementHolder; }
 			set { this.elementHolder = value; }
 		}

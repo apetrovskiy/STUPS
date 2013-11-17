@@ -268,15 +268,9 @@ Console.WriteLine("inputObject.Current.Name = " + inputObject.Current.Name);
                     System.Windows.Automation.Condition.TrueCondition);
             // 20131109
             //System.Windows.Automation.AutomationElement oneMoreElement;
-            IMySuperWrapper oneMoreElement;
-            
+
             try {
-                oneMoreElement =
-                    // 20131109
-                    //walker.GetFirstChild(element);
-                    // 20131112
-                    //new MySuperWrapper(walker.GetFirstChild(element.SourceElement));
-                    ObjectsFactory.GetMySuperWrapper(walker.GetFirstChild(element.SourceElement));
+                IMySuperWrapper oneMoreElement = ObjectsFactory.GetMySuperWrapper(walker.GetFirstChild(element.SourceElement));
 
                 try{
                     WriteVerbose(
@@ -352,7 +346,9 @@ Console.WriteLine("inputObject.Current.Name = " + inputObject.Current.Name);
             return resultCollection;
         }
         
-        private ArrayList getAutomationElementsWithFindAll(
+        // 20131117
+        //private ArrayList getAutomationElementsWithFindAll(
+        internal ArrayList getAutomationElementsWithFindAll(
             // 20131104
             // refactoring
             //AutomationElement element,
@@ -384,7 +380,14 @@ Console.WriteLine("inputObject.Current.Name = " + inputObject.Current.Name);
                     "There are roughly " +
                     results.Count.ToString() +
                     " elements");
-
+                
+if (null == results) {
+    Console.WriteLine("getAutomationElementsWithFindAll: null == results");
+}
+foreach (IMySuperWrapper element1 in results) {
+    Console.WriteLine("getAutomationElementsWithFindAll: " + element1.Current.ClassName);
+}
+                
                 resultCollection =
                     ReturnOnlyRightElements(
                         // 20130513
@@ -396,6 +399,14 @@ Console.WriteLine("inputObject.Current.Name = " + inputObject.Current.Name);
                         textValue,
                         controlType,
                         caseSensitiveParam);
+                
+if (null == resultCollection) {
+    Console.WriteLine("getAutomationElementsWithFindAll: null == resultCollections");
+}
+foreach (IMySuperWrapper element2 in resultCollection) {
+    Console.WriteLine("getAutomationElementsWithFindAll: " + element2.Current.ClassName);
+}
+                
                 
                 // 20130608
                 results = null;
@@ -835,14 +846,14 @@ Console.WriteLine("inputObject.Current.Name = " + inputObject.Current.Name);
                     new System.Collections.Generic.List<IMySuperWrapper>();
             // 20131109
             //AutomationElementCollection temporaryResults = null;
-            IMySuperCollection temporaryResults = null;
-            //AutomationElement[] outResult;
+                //AutomationElement[] outResult;
 
                 if (scope == TreeScope.Children ||
                 scope == TreeScope.Descendants) {
                 WriteVerbose(this, "selected TreeScope." + scope.ToString());
                 AndCondition[] conditions = getControlsConditions(this);
-                if (conditions != null && conditions.Length > 0)
+                    IMySuperCollection temporaryResults = null;
+                    if (conditions != null && conditions.Length > 0)
                 {
                     WriteVerbose(this, "conditions number: " +
                                  conditions.Length.ToString());

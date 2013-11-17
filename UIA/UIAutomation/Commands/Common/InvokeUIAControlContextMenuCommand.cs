@@ -7,6 +7,8 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System.Globalization;
+
 namespace UIAutomation.Commands
 {
     // test it
@@ -90,9 +92,13 @@ namespace UIAutomation.Commands
             int y = 
                 System.Windows.Forms.Cursor.Position.Y;
             
+            WriteVerbose(this, "cursor coordinate X = " + x.ToString(CultureInfo.InvariantCulture));
+            WriteVerbose(this, "cursor coordinate Y = " + y.ToString(CultureInfo.InvariantCulture));
+            /*
             WriteVerbose(this, "cursor coordinate X = " + x.ToString());
             WriteVerbose(this, "cursor coordinate Y = " + y.ToString());
-            
+            */
+
             // get the context menu window
             int processId = 
                 // 20120823

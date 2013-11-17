@@ -6,17 +6,17 @@
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
-using System;
-
-namespace PSTestLib.Commands
-{
-    /// <summary>
-    /// Description of NewPSClassCommand.
-    /// </summary>
-    public class NewPSClassCommand
-    {
-        public NewPSClassCommand()
-        {
-        }
-    }
-}
+//using System;
+//
+//namespace PSTestLib.Commands
+//{
+//    /// <summary>
+//    /// Description of NewPSClassCommand.
+//    /// </summary>
+//    public class NewPSClassCommand
+//    {
+//        public NewPSClassCommand()
+//        {
+//        }
+//    }
+//}

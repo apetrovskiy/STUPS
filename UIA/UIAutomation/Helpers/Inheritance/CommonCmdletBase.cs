@@ -493,8 +493,11 @@ namespace UIAutomation
                 CurrentData.LastResult = outputObject;
 
                 string iInfo = string.Empty;
+                if (!string.IsNullOrEmpty(((HasScriptBlockCmdletBase)cmdlet).TestResultName)) {
+                /*
                 if (((HasScriptBlockCmdletBase)cmdlet).TestResultName != null &&
                     ((HasScriptBlockCmdletBase)cmdlet).TestResultName.Length > 0) {
+                */
 
                         TMX.TMXHelper.CloseTestResult(((HasScriptBlockCmdletBase)cmdlet).TestResultName,
                             ((HasScriptBlockCmdletBase)cmdlet).TestResultId,
@@ -1063,9 +1066,12 @@ namespace UIAutomation
                 CurrentData.LastResult = null;
                     
                 string iInfo = string.Empty;
+                if (!string.IsNullOrEmpty(((HasScriptBlockCmdletBase)cmdlet).TestResultName)) {
+                /*
                 if (((HasScriptBlockCmdletBase)cmdlet).TestResultName != null &&
                     ((HasScriptBlockCmdletBase)cmdlet).TestResultName.Length > 0) {
-                        
+                */
+
                         TMX.TMXHelper.CloseTestResult(((HasScriptBlockCmdletBase)cmdlet).TestResultName,
                             ((HasScriptBlockCmdletBase)cmdlet).TestResultId,
                             false, // the only result: FAILED //((HasScriptBlockCmdletBase)cmdlet).TestPassed,

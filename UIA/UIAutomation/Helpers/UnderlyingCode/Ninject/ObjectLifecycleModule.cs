@@ -25,7 +25,5 @@ namespace UIAutomation
             Bind<IMySuperCollection>().To<MySuperCollection>().InCallScope();
             Bind<IMySuperWrapperInformation>().To<MySuperWrapperInformation>().InCallScope();
         }
-        
-        
     }
 }

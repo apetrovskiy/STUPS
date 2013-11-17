@@ -2976,7 +2976,10 @@ namespace UIAutomation
 //    public static extern bool EnumChildWindows(IntPtr window, EnumWindowProc callback, IntPtr i);
 
         //public static List<IntPtr> GetChildWindows(IntPtr parent)
+        internal static IEnumerable<IntPtr> GetChildWindows(IntPtr parent)
+        /*
         internal static List<IntPtr> GetChildWindows(IntPtr parent)
+        */
         {
             List<IntPtr> result = new List<IntPtr>();
             GCHandle listHandle = GCHandle.Alloc(result);
@@ -3009,7 +3012,7 @@ namespace UIAutomation
         //private static ArrayList EnumChildWindowsFromHandle(PSCmdletBase cmdlet, IntPtr parentHandle)
         internal static ArrayList EnumChildWindowsFromHandle(GetWindowCmdletBase cmdlet, IntPtr parentHandle)
         {
-            System.Collections.Generic.List<IntPtr> list =
+            IEnumerable<IntPtr> list =
                 GetChildWindows(parentHandle);
             
             System.Collections.ArrayList resultElements =

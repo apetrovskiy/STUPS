@@ -9,7 +9,7 @@
 
 namespace PSTestLibraryTest
 {
-    using System;
+    //using System;
     // using NUnit;
     //using System.Diagnostics;
     //using System.Management.Automation;
@@ -19,11 +19,6 @@ namespace PSTestLibraryTest
     /// </summary>
     public static class MiddleLevelCode
     {
-        static MiddleLevelCode()
-        {
-        }
-        
-        
         public static void PrepareRunspace() //string command)
         {
             CmdletUnitTest.TestRunspace.IitializeRunspace(Settings.RunspaceCommand);

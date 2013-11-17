@@ -15,7 +15,7 @@ namespace UIAutomation.Commands
     //using System.Runtime.InteropServices;
     
     // 20120823
-    using System.Windows.Automation;
+    //using System.Windows.Automation;
     
     /// <summary>
     /// Description of SetUIAFocusCommand.

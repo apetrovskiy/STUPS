@@ -75,12 +75,14 @@ namespace UIAutomation
             
             // 20131109
             //System.Windows.Automation.AutomationElement _control = null;
+            /*
             IMySuperWrapper _control = null;
-            
+            */
+
             // 20131109
             //foreach (AutomationElement inputObject in this.InputObject) {
             foreach (IMySuperWrapper inputObject in this.InputObject) {
-                
+                IMySuperWrapper _control = null;
                 try {
                     _control =
                         inputObject;

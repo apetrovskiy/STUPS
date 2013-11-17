@@ -14,7 +14,7 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
     // test it
     //using System.Runtime.InteropServices;
-    using System.Windows.Automation;
+    //using System.Windows.Automation;
 
     /// <summary>
     /// Description of MoveUIACursorCommand.

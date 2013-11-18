@@ -275,6 +275,7 @@
     <Compile Include="Helpers\UnderlyingCode\Adapter\AutomationElementAdapter.cs" />
     <Compile Include="Helpers\UnderlyingCode\Adapter\AutomationElementCollectionAdapter.cs" />
     <Compile Include="Helpers\UnderlyingCode\Adapter\AutomationElementInformationAdapter.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Adapter\Enums.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\RDP\UIANewRemoteDesktopProtocolFileCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Wizard\UIAGetWizardCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Wizard\UIAInvokeWizardCommand.cs" />

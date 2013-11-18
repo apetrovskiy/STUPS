@@ -168,6 +168,7 @@
     <Folder Include="Helpers\UnderlyingCode" />
     <Folder Include="Fakes" />
     <Folder Include="Ninject" />
+    <Folder Include="Ninject" />
     <Folder Include="ParamChecks" />
     <Folder Include="ParamChecks\Cache" />
     <Folder Include="ParamChecks\Common" />

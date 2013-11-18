@@ -643,6 +643,9 @@
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\AutomationElementInformationAdapter.cs">
       <Link>Helpers\UnderlyingCode\Adapter\AutomationElementInformationAdapter.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\Enums.cs">
+      <Link>Helpers\UnderlyingCode\Adapter\Enums.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Commands\Container\UIANewContainerCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\Container\UIANewContainerCommand.cs</Link>
     </Compile>

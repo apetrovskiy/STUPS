@@ -14,7 +14,7 @@ namespace UIAutomation
     using System.ComponentModel;
     using System.Windows.Automation;
 
-	public interface IMySuperWrapper
+	public interface IMySuperWrapper //<T>
 	{
 		bool Equals(object obj);
 		int GetHashCode();
@@ -53,7 +53,13 @@ namespace UIAutomation
 		IMySuperCollection CachedChildren { get; }
 		
 		//AutomationElement SourceElement { get; }
-		AutomationElement SourceElement { get; set; }
+		//AutomationElement SourceElement { get; set; }
+		//T GetSourceElement<T>();
+		//void SetSourceElement<T>(T element);
+		AutomationElement GetSourceElement();
+		void SetSourceElement(AutomationElement element);
+		//IMySuperWrapper GetSourceElement();
+		//void SetSourceElement(IMySuperWrapper element);
 	    
 //		bool Equals(object obj);
 //		int GetHashCode();

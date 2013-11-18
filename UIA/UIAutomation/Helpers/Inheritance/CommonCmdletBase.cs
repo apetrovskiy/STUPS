@@ -2143,7 +2143,10 @@ namespace UIAutomation
                     IMySuperWrapper adapterOfInputObject =
                         // 20131112
                         //new MySuperWrapper(inputObject.SourceElement);
-                        ObjectsFactory.GetMySuperWrapper(inputObject.SourceElement);
+                        // 20131118
+                        // property to method
+                        //ObjectsFactory.GetMySuperWrapper(inputObject.SourceElement);
+                        ObjectsFactory.GetMySuperWrapper(inputObject.GetSourceElement());
 
                     int processId = 0;
                     do {

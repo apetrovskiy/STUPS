@@ -102,14 +102,35 @@ namespace UIAutomation
 	        }
 			try {
     			var singleElement = new Ninject.Parameters.ConstructorArgument("element", element);
-    			IMySuperWrapper adapterElement = ObjectsFactory.Kernel.Get<IMySuperWrapper>(singleElement);
+    			//IMySuperWrapper adapterElement = ObjectsFactory.Kernel.Get<IMySuperWrapper>(singleElement);
+    			IMySuperWrapper adapterElement = ObjectsFactory.Kernel.Get<IMySuperWrapper>("AutomationElement.NET", singleElement);
     			return adapterElement;
 			}
 			catch (Exception eFailedToIssueElement) {
 			    // TODO
 			    // write error to error object!!!
-			    Console.WriteLine("Element");
-			    Console.WriteLine(eFailedToIssueElement.Message);
+			    //Console.WriteLine("Element");
+			    //Console.WriteLine(eFailedToIssueElement.Message);
+			    return null;
+			}
+		}
+		
+		internal static IMySuperWrapper GetMySuperWrapper(IMySuperWrapper element)
+		{
+	        if (null == element) {
+	            return null;
+	        }
+			try {
+    			var singleElement = new Ninject.Parameters.ConstructorArgument("element", element);
+    			//IMySuperWrapper adapterElement = ObjectsFactory.Kernel.Get<IMySuperWrapper>(singleElement);
+    			IMySuperWrapper adapterElement = ObjectsFactory.Kernel.Get<IMySuperWrapper>("MySuperWrapper", singleElement);
+    			return adapterElement;
+			}
+			catch (Exception eFailedToIssueElement) {
+			    // TODO
+			    // write error to error object!!!
+			    //Console.WriteLine("Element");
+			    //Console.WriteLine(eFailedToIssueElement.Message);
 			    return null;
 			}
 		}

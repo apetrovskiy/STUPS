@@ -14,7 +14,7 @@ namespace UIAutomation
     using System.Collections.Generic;
     using System.Windows.Automation;
     
-    public interface IMySuperCollection : ICollection, IEnumerable
+    public interface IMySuperCollection : ICollection, IEnumerable, IDisposable
 	{
 		void CopyTo(Array array, int index);
 		void CopyTo(AutomationElement[] array, int index);
@@ -23,6 +23,8 @@ namespace UIAutomation
 		int Count { get; }
 		object SyncRoot { get; }
 		bool IsSynchronized { get; }
+		
+		void Dispose();
 		
 		//AutomationElementCollection SourceCollection { get; set; }
 		//AutomationElementCollection SourceCollection { get; }

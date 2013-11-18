@@ -135,6 +135,24 @@ namespace UIAutomation
 			}
 		}
 		
+		internal static IMySuperWrapper GetMySuperWrapper()
+		{
+//	        if (null == element) {
+//	            return null;
+//	        }
+			try {
+    			IMySuperWrapper adapterElement = ObjectsFactory.Kernel.Get<IMySuperWrapper>();
+    			return adapterElement;
+			}
+			catch (Exception eFailedToIssueElement) {
+			    // TODO
+			    // write error to error object!!!
+			    //Console.WriteLine("Element");
+			    //Console.WriteLine(eFailedToIssueElement.Message);
+			    return null;
+			}
+		}
+		
 		internal static IMySuperWrapperInformation GetMySuperWrapperInformation(AutomationElement.AutomationElementInformation information)
 		{
 //	        if (null == information) {

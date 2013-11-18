@@ -10,6 +10,7 @@
 namespace UIAutomation
 {
     public enum InnerElementTypes {
+        Empty,
         AutomationElementNet,
         AutomationElementCom,
         MySuperWrapper

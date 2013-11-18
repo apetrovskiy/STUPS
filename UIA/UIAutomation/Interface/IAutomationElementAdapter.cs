@@ -14,7 +14,7 @@ namespace UIAutomation
     using System.ComponentModel;
     using System.Windows.Automation;
 
-	public interface IMySuperWrapper //<T>
+    public interface IMySuperWrapper : IDisposable
 	{
 		bool Equals(object obj);
 		int GetHashCode();
@@ -61,6 +61,8 @@ namespace UIAutomation
 		//IMySuperWrapper GetSourceElement();
 		//void SetSourceElement(IMySuperWrapper element);
 	    
+		void Dispose();
+		
 //		bool Equals(object obj);
 //		int GetHashCode();
 //		int[] GetRuntimeId();

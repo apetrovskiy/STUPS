@@ -23,7 +23,7 @@ namespace UIAutomation
 		private IMySuperWrapper elementHolderAdapter;
 		//private T elementHolder;
 		//private InnerElementTypes innerElementType = InnerElementTypes.AutomationElementNet;
-		private static InnerElementTypes innerElementType = InnerElementTypes.AutomationElementNet;
+		private static InnerElementTypes innerElementType = InnerElementTypes.Empty;
         
 		[Inject]
 		public MySuperWrapper(AutomationElement element)
@@ -43,6 +43,12 @@ namespace UIAutomation
 		{
 			this.elementHolderAdapter = element;
 			innerElementType = InnerElementTypes.MySuperWrapper;
+		}
+		
+		[Inject]
+		public MySuperWrapper()
+		{
+			innerElementType = InnerElementTypes.Empty;
 		}
 
 		public override bool Equals(object obj)
@@ -692,5 +698,16 @@ namespace UIAutomation
 //		{
 //		    this.elementHolderAdapter = element;
 //		}
+		
+		public void Dispose()
+		{
+		    this.elementHolderNet = null;
+		    // this.elementHolderCom = null;
+		    this.elementHolderAdapter = null;
+//		    this.Cached = null;
+//		    this.CachedChildren = null;
+//		    this.CachedParent = null;
+//		    this.Current = null;
+		}
 	}
 }

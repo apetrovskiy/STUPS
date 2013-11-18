@@ -33,6 +33,7 @@ namespace UIAutomation
                     x =>
                     new MySuperWrapper(x.Inject<IMySuperWrapper>()))
                 .Named("MySuperWrapper");
+            Bind<IMySuperWrapper>().To<MySuperWrapper>().InCallScope();
             Bind<IMySuperCollection>().To<MySuperCollection>().InCallScope();
             Bind<IMySuperWrapperInformation>().To<MySuperWrapperInformation>().InCallScope();
             

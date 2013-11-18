@@ -125,5 +125,14 @@ namespace UIAutomation
 		    //internal 
 		    //set { this.collectionHolder = value; }
 		}
+		
+		public void Dispose()
+		{
+		    if (null != this.collectionHolder) {
+		        for (int i = 0; i < this.collectionHolder.Count; i++) {
+		            this.collectionHolder[i].Dispose();
+		        }
+		    }
+		}
 	}
 }

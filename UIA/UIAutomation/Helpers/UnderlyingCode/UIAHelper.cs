@@ -1419,7 +1419,10 @@ namespace UIAutomation
                 //result = walker.GetParent(element);
                 // 20131112
                 //result = new MySuperWrapper(walker.GetParent(element.SourceElement));
-                result = ObjectsFactory.GetMySuperWrapper(walker.GetParent(element.SourceElement));
+                // 20131118
+                // property to method
+                //result = ObjectsFactory.GetMySuperWrapper(walker.GetParent(element.SourceElement));
+                result = ObjectsFactory.GetMySuperWrapper(walker.GetParent(element.GetSourceElement()));
             }
             catch {}
             
@@ -1443,7 +1446,10 @@ namespace UIAutomation
                 //result = walker.GetFirstChild(element);
                 // 20131112
                 //result = new MySuperWrapper(walker.GetFirstChild(element.SourceElement));
-                result = ObjectsFactory.GetMySuperWrapper(walker.GetFirstChild(element.SourceElement));
+                // 20131118
+                // property to method
+                //result = ObjectsFactory.GetMySuperWrapper(walker.GetFirstChild(element.SourceElement));
+                result = ObjectsFactory.GetMySuperWrapper(walker.GetFirstChild(element.GetSourceElement()));
             }
             catch {}
             
@@ -1480,7 +1486,10 @@ namespace UIAutomation
                         //walker.GetParent(testParent);
                         // 20131112
                         //new MySuperWrapper(walker.GetParent(testParent.SourceElement));
-                        ObjectsFactory.GetMySuperWrapper(walker.GetParent(testParent.SourceElement));
+                        // 20131118
+                        // property to method
+                        //ObjectsFactory.GetMySuperWrapper(walker.GetParent(testParent.SourceElement));
+                        ObjectsFactory.GetMySuperWrapper(walker.GetParent(testParent.GetSourceElement()));
                     
                     if (testParent == null || (int) testParent.Current.ProcessId <= 0) continue;
                     if (testParent == cmdlet.oddRootElement)
@@ -1509,7 +1518,10 @@ namespace UIAutomation
                             //if (walker.GetParent(testParent) == cmdlet.rootElement) {
                             // 20131112
                             //if ((new MySuperWrapper(walker.GetParent(testParent.SourceElement))) == cmdlet.oddRootElement) {
-                            if (ObjectsFactory.GetMySuperWrapper(walker.GetParent(testParent.SourceElement)) == cmdlet.oddRootElement) {
+                            // 20131118
+                            // property to method
+                            //if (ObjectsFactory.GetMySuperWrapper(walker.GetParent(testParent.SourceElement)) == cmdlet.oddRootElement) {
+                            if (ObjectsFactory.GetMySuperWrapper(walker.GetParent(testParent.GetSourceElement())) == cmdlet.oddRootElement) {
                                 parentControlType = "Window";
                             }
                         }
@@ -1848,7 +1860,10 @@ namespace UIAutomation
                         (AutomationEvent)cmdlet.subscribedEventsIds[i],
                         // 20131109
                         //cmdlet.thePreviouslyUsedElement,
-                        cmdlet.thePreviouslyUsedElement.SourceElement,
+                        // 20131118
+                        // property to method
+                        //cmdlet.thePreviouslyUsedElement.SourceElement,
+                        cmdlet.thePreviouslyUsedElement.GetSourceElement(),
                         (AutomationEventHandler)cmdlet.subscribedEvents[i]);
                 }
 
@@ -2004,7 +2019,10 @@ namespace UIAutomation
                     //walker.GetParent(element);
                     // 20131112
                     //new MySuperWrapper(walker.GetParent(element.SourceElement));
-                    ObjectsFactory.GetMySuperWrapper(walker.GetParent(element.SourceElement));
+                    // 20131118
+                    // property to method
+                    //ObjectsFactory.GetMySuperWrapper(walker.GetParent(element.SourceElement));
+                    ObjectsFactory.GetMySuperWrapper(walker.GetParent(element.GetSourceElement()));
                     
                 if (scope == TreeScope.Parent || scope == TreeScope.Ancestors) {
                     
@@ -2032,7 +2050,10 @@ namespace UIAutomation
                         //walker.GetParent(testParent);
                         // 20131112
                         //new MySuperWrapper(walker.GetParent(testParent.SourceElement));
-                        ObjectsFactory.GetMySuperWrapper(walker.GetParent(testParent.SourceElement));
+                        // 20131118
+                        // property to method
+                        //ObjectsFactory.GetMySuperWrapper(walker.GetParent(testParent.SourceElement));
+                        ObjectsFactory.GetMySuperWrapper(walker.GetParent(testParent.GetSourceElement()));
                     if (testParent != null &&
                         (int)testParent.Current.ProcessId > 0 &&
                         // 20131109
@@ -2072,7 +2093,10 @@ namespace UIAutomation
                     //walker.GetParent(element);
                     // 20131112
                     //new MySuperWrapper(walker.GetParent(element.SourceElement));
-                    ObjectsFactory.GetMySuperWrapper(walker.GetParent(element.SourceElement));
+                    // 20131118
+                    // property to method
+                    //ObjectsFactory.GetMySuperWrapper(walker.GetParent(element.SourceElement));
+                    ObjectsFactory.GetMySuperWrapper(walker.GetParent(element.GetSourceElement()));
                 while (testparent != null &&
                        testparent.Current.NativeWindowHandle == 0) {
                     testparent =
@@ -2080,7 +2104,10 @@ namespace UIAutomation
                         //walker.GetParent(testparent);
                         // 20131112
                         //new MySuperWrapper(walker.GetParent(testparent.SourceElement));
-                        ObjectsFactory.GetMySuperWrapper(walker.GetParent(testparent.SourceElement));
+                        // 20131118
+                        // property to method
+                        //ObjectsFactory.GetMySuperWrapper(walker.GetParent(testparent.SourceElement));
+                        ObjectsFactory.GetMySuperWrapper(walker.GetParent(testparent.GetSourceElement()));
                     if (testparent != null &&
                         (int)testparent.Current.ProcessId > 0 &&
                         testparent.Current.NativeWindowHandle != 0) {

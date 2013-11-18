@@ -307,7 +307,10 @@ namespace UIAutomationSpy
             if (elementControlType == "Pane" || elementControlType == "Menu") {
                 // 20131109
                 //if (walker.GetParent(element) == AutomationElement.RootElement) {
-                if ((new MySuperWrapper(walker.GetParent(element.SourceElement))) == MySuperWrapper.RootElement) {
+                // 20131118
+                // property to method
+                //if ((new MySuperWrapper(walker.GetParent(element.SourceElement))) == MySuperWrapper.RootElement) {
+                if ((new MySuperWrapper(walker.GetParent(element.GetSourceElement()))) == MySuperWrapper.RootElement) {
                     elementControlType = "Window";
                 }
             }
@@ -371,7 +374,10 @@ namespace UIAutomationSpy
                     testparent =
                         // 20131109
                         //walker.GetParent(testparent);
-                        new MySuperWrapper(walker.GetParent(testparent.SourceElement));
+                        // 20131118
+                        // property to method
+                        //new MySuperWrapper(walker.GetParent(testparent.SourceElement));
+                        new MySuperWrapper(walker.GetParent(testparent.GetSourceElement()));
                     if (testparent == null || (int) testparent.Current.ProcessId <= 0) continue;
                     listForNodes.Add(getNodeNameFromAutomationElement(testparent));
                     // 20131109

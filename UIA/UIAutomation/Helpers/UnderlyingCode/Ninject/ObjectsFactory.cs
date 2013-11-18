@@ -141,7 +141,8 @@ namespace UIAutomation
 //	            return null;
 //	        }
 			try {
-    			IMySuperWrapper adapterElement = ObjectsFactory.Kernel.Get<IMySuperWrapper>();
+    			//IMySuperWrapper adapterElement = ObjectsFactory.Kernel.Get<IMySuperWrapper>();
+    			IMySuperWrapper adapterElement = ObjectsFactory.Kernel.Get<IMySuperWrapper>("Empty", null);
     			return adapterElement;
 			}
 			catch (Exception eFailedToIssueElement) {

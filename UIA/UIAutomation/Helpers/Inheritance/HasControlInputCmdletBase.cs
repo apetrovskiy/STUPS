@@ -976,17 +976,23 @@ try {
         {
             // 20131109
             //AutomationElement sourceElement;
-            IMySuperWrapper sourceElement;
+            // 20131118
+            //IMySuperWrapper sourceElement;
+            AutomationElement sourceElement;
             try {
                 // 20131109
                 //sourceElement = objectToTest as AutomationElement;
-                sourceElement = objectToTest as IMySuperWrapper;
+                // 20131118
+                //sourceElement = objectToTest as IMySuperWrapper;
+                sourceElement = objectToTest as AutomationElement;
                 // 20131109
                 //this.EventSource = sourceElement;
                 // 20131118
                 // property to method
                 //this.EventSource = sourceElement.SourceElement;
-                this.EventSource = sourceElement.GetSourceElement();
+                // 20131118
+                //this.EventSource = sourceElement.GetSourceElement();
+                this.EventSource = sourceElement;
                 this.EventArgs = e;
             } 
             catch { //(ElementNotAvailableException eNotAvailable) {

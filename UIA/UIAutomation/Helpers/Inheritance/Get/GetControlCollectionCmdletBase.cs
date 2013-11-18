@@ -112,7 +112,10 @@ namespace UIAutomation
             // refactoring
             //AutomationElement inputObject,
             IMySuperWrapper inputObject,
-            AndCondition conditions,
+            // 20131118
+            // object -> Condition
+            //AndCondition conditions,
+            Condition conditions,
             bool caseSensitive,
             bool onlyOneResult,
             bool onlyTopLevel)
@@ -869,7 +872,10 @@ foreach (IMySuperWrapper element2 in resultCollection) {
                 if (scope == TreeScope.Children ||
                 scope == TreeScope.Descendants) {
                 WriteVerbose(this, "selected TreeScope." + scope.ToString());
-                AndCondition[] conditions = getControlsConditions(this);
+                // 20131118
+                // object -> Condition
+                //AndCondition[] conditions = getControlsConditions(this);
+                Condition[] conditions = getControlsConditions(this);
                     IMySuperCollection temporaryResults = null;
                     if (conditions != null && conditions.Length > 0)
                 {

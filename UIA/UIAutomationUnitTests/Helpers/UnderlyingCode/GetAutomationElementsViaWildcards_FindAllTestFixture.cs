@@ -60,6 +60,7 @@ namespace UIAutomationUnitTests
         }
         
         [Test]
+        [Ignore("just a probe")]
         public void aaaa()
         {
             GetControlCollectionCmdletBase cmdlet = new GetControlCollectionCmdletBase();

@@ -34,9 +34,14 @@ namespace UIAutomationTest.Commands.Select
                 new UIAutomation.Commands.GetUIAControlCommand();
             cmdletBase = 
                 new UIAutomation.GetControlCmdletBase();
-            AndCondition condition =
-                cmdlet.getControlConditions(cmdlet, controlType, ((GetControlCmdletBase)cmdlet).CaseSensitive, true) as AndCondition;
-            conditions = condition.GetConditions();
+            // 20131118
+            // object -> Condition
+            //AndCondition condition =
+            Condition condition =
+                // 20131118
+                // object -> Condition
+                cmdlet.GetControlConditions(cmdlet, controlType, ((GetControlCmdletBase)cmdlet).CaseSensitive, true); // as AndCondition;
+            conditions = ((AndCondition)condition).GetConditions();
             foreach (Condition cond in conditions) {
                 if ((cond as PropertyCondition) != null) {
                     Assert.AreEqual(

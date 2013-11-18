@@ -16,12 +16,12 @@ namespace UIAutomationUnitTests
     using MbUnit.Framework;
     
     /// <summary>
-    /// Description of getControlConditionsTestFixture.
+    /// Description of GetControlConditionsTestFixture.
     /// </summary>
     [TestFixture]
-    public class getControlConditionsTestFixture
+    public class GetControlConditionsTestFixture
     {
-        public getControlConditionsTestFixture()
+        public GetControlConditionsTestFixture()
         {
         }
         
@@ -36,7 +36,10 @@ namespace UIAutomationUnitTests
         {
         }
         
-        private AndCondition ResultCondition { get; set; }
+        // 20131118
+        // object -> Condition
+        //private AndCondition ResultCondition { get; set; }
+        private Condition ResultCondition { get; set; }
 
         private void getConditions(string name, string automationId, string className, string controlType)
         {
@@ -52,12 +55,15 @@ namespace UIAutomationUnitTests
                 new UIAutomation.CommonCmdletBase();
             
             this.ResultCondition =
-                (common.getControlConditions(cmdlet, controlType, cmdlet.CaseSensitive, true) as AndCondition);
+                // 20131118
+                // object -> Condition
+                //(common.GetControlConditions(cmdlet, controlType, cmdlet.CaseSensitive, true) as AndCondition);
+                common.GetControlConditions(cmdlet, controlType, cmdlet.CaseSensitive, true);
 
         }
         
         [Test]
-        [Description("CommonCmdletBase.getControlConditions(HasControlInputCmdletBase, string)")]
+        [Description("CommonCmdletBase.GetControlConditions(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void ControlType()
         {
@@ -65,15 +71,15 @@ namespace UIAutomationUnitTests
             
             Assert.AreEqual(
                 System.Windows.Automation.ControlType.Button.Id,
-                (this.ResultCondition.GetConditions()[0] as PropertyCondition).Value);
+                (((AndCondition)this.ResultCondition).GetConditions()[0] as PropertyCondition).Value);
                 
             Assert.AreEqual(
                 Condition.TrueCondition,
-                (this.ResultCondition.GetConditions()[1]));
+                (((AndCondition)this.ResultCondition).GetConditions()[1]));
         }
         
         [Test]
-        [Description("CommonCmdletBase.getControlConditions(HasControlInputCmdletBase, string)")]
+        [Description("CommonCmdletBase.GetControlConditions(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void ControlType_Name()
         {
@@ -83,15 +89,15 @@ namespace UIAutomationUnitTests
             
             Assert.AreEqual(
                 System.Windows.Automation.ControlType.Button.Id,
-                (this.ResultCondition.GetConditions()[1] as PropertyCondition).Value);
+                (((AndCondition)this.ResultCondition).GetConditions()[1] as PropertyCondition).Value);
             
             Assert.AreEqual(
                 expectedName,
-                (this.ResultCondition.GetConditions()[0] as PropertyCondition).Value);
+                (((AndCondition)this.ResultCondition).GetConditions()[0] as PropertyCondition).Value);
         }
         
         [Test]
-        [Description("CommonCmdletBase.getControlConditions(HasControlInputCmdletBase, string)")]
+        [Description("CommonCmdletBase.GetControlConditions(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void ControlType_AutomationId()
         {
@@ -101,15 +107,15 @@ namespace UIAutomationUnitTests
             
             Assert.AreEqual(
                 System.Windows.Automation.ControlType.Button.Id,
-                (this.ResultCondition.GetConditions()[1] as PropertyCondition).Value);
+                (((AndCondition)this.ResultCondition).GetConditions()[1] as PropertyCondition).Value);
             
             Assert.AreEqual(
                 expectedAutomationId,
-                (this.ResultCondition.GetConditions()[0] as PropertyCondition).Value);
+                (((AndCondition)this.ResultCondition).GetConditions()[0] as PropertyCondition).Value);
         }
         
         [Test]
-        [Description("CommonCmdletBase.getControlConditions(HasControlInputCmdletBase, string)")]
+        [Description("CommonCmdletBase.GetControlConditions(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void ControlType_ClassName()
         {
@@ -119,15 +125,15 @@ namespace UIAutomationUnitTests
 
             Assert.AreEqual(
                 expectedClassName,
-                (this.ResultCondition.GetConditions()[0] as PropertyCondition).Value);
+                (((AndCondition)this.ResultCondition).GetConditions()[0] as PropertyCondition).Value);
             
             Assert.AreEqual(
                 System.Windows.Automation.ControlType.Button.Id,
-                (this.ResultCondition.GetConditions()[1] as PropertyCondition).Value);
+                (((AndCondition)this.ResultCondition).GetConditions()[1] as PropertyCondition).Value);
         }
         
         [Test]
-        [Description("CommonCmdletBase.getControlConditions(HasControlInputCmdletBase, string)")]
+        [Description("CommonCmdletBase.GetControlConditions(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void ControlType_Name_AutomationId()
         {
@@ -138,19 +144,19 @@ namespace UIAutomationUnitTests
 
             Assert.AreEqual(
                 System.Windows.Automation.ControlType.Button.Id,
-                (this.ResultCondition.GetConditions()[0] as PropertyCondition).Value);
+                (((AndCondition)this.ResultCondition).GetConditions()[0] as PropertyCondition).Value);
             
             Assert.AreEqual(
                 expectedName,
-                ((this.ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
+                ((((AndCondition)this.ResultCondition).GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
 
             Assert.AreEqual(
                 expectedAutomationId,
-                ((this.ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
+                ((((AndCondition)this.ResultCondition).GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
         }
         
         [Test]
-        [Description("CommonCmdletBase.getControlConditions(HasControlInputCmdletBase, string)")]
+        [Description("CommonCmdletBase.GetControlConditions(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void ControlType_Name_ClassName()
         {
@@ -161,19 +167,19 @@ namespace UIAutomationUnitTests
 
             Assert.AreEqual(
                 expectedClassName,
-                ((this.ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
+                ((((AndCondition)this.ResultCondition).GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
 
             Assert.AreEqual(
                 System.Windows.Automation.ControlType.Button.Id,
-                (this.ResultCondition.GetConditions()[0] as PropertyCondition).Value);
+                (((AndCondition)this.ResultCondition).GetConditions()[0] as PropertyCondition).Value);
             
             Assert.AreEqual(
                 expectedName,
-                ((this.ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
+                ((((AndCondition)this.ResultCondition).GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
         }
         
         [Test]
-        [Description("CommonCmdletBase.getControlConditions(HasControlInputCmdletBase, string)")]
+        [Description("CommonCmdletBase.GetControlConditions(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void ControlType_AutomationId_ClassName()
         {
@@ -184,19 +190,19 @@ namespace UIAutomationUnitTests
 
             Assert.AreEqual(
                 expectedClassName,
-                ((this.ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
+                ((((AndCondition)this.ResultCondition).GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
 
             Assert.AreEqual(
                 System.Windows.Automation.ControlType.Button.Id,
-                (this.ResultCondition.GetConditions()[0] as PropertyCondition).Value);
+                (((AndCondition)this.ResultCondition).GetConditions()[0] as PropertyCondition).Value);
             
             Assert.AreEqual(
                 expectedAutomationId,
-                ((this.ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
+                ((((AndCondition)this.ResultCondition).GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
         }
         
         [Test]
-        [Description("CommonCmdletBase.getControlConditions(HasControlInputCmdletBase, string)")]
+        [Description("CommonCmdletBase.GetControlConditions(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void ControlType_Name_AutomationId_ClassName()
         {
@@ -208,25 +214,25 @@ namespace UIAutomationUnitTests
 
             Assert.AreEqual(
                 expectedClassName,
-                ((this.ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
+                ((((AndCondition)this.ResultCondition).GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
 
             Assert.AreEqual(
                 System.Windows.Automation.ControlType.Button.Id,
-                (this.ResultCondition.GetConditions()[0] as PropertyCondition).Value);
+                (((AndCondition)this.ResultCondition).GetConditions()[0] as PropertyCondition).Value);
             
             Assert.AreEqual(
                 expectedName,
-                ((this.ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
+                ((((AndCondition)this.ResultCondition).GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
             
             Assert.AreEqual(
                 expectedAutomationId,
-                ((this.ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[2] as PropertyCondition).Value);
+                ((((AndCondition)this.ResultCondition).GetConditions()[1] as AndCondition).GetConditions()[2] as PropertyCondition).Value);
         }
 
         // =========================
         
         [Test]
-        [Description("CommonCmdletBase.getControlConditions(HasControlInputCmdletBase, string)")]
+        [Description("CommonCmdletBase.GetControlConditions(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void No_conditions()
         {
@@ -234,11 +240,11 @@ namespace UIAutomationUnitTests
             
             Assert.AreEqual(
                 Condition.TrueCondition,
-                (this.ResultCondition.GetConditions()[0]));
+                (((AndCondition)this.ResultCondition).GetConditions()[0]));
         }
         
         [Test]
-        [Description("CommonCmdletBase.getControlConditions(HasControlInputCmdletBase, string)")]
+        [Description("CommonCmdletBase.GetControlConditions(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void Name()
         {
@@ -248,11 +254,11 @@ namespace UIAutomationUnitTests
             
             Assert.AreEqual(
                 expectedName,
-                (this.ResultCondition.GetConditions()[0] as PropertyCondition).Value);
+                (((AndCondition)this.ResultCondition).GetConditions()[0] as PropertyCondition).Value);
         }
         
         [Test]
-        [Description("CommonCmdletBase.getControlConditions(HasControlInputCmdletBase, string)")]
+        [Description("CommonCmdletBase.GetControlConditions(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void AutomationId()
         {
@@ -262,11 +268,11 @@ namespace UIAutomationUnitTests
             
             Assert.AreEqual(
                 expectedAutomationId,
-                (this.ResultCondition.GetConditions()[0] as PropertyCondition).Value);
+                (((AndCondition)this.ResultCondition).GetConditions()[0] as PropertyCondition).Value);
         }
         
         [Test]
-        [Description("CommonCmdletBase.getControlConditions(HasControlInputCmdletBase, string)")]
+        [Description("CommonCmdletBase.GetControlConditions(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void ClassName()
         {
@@ -276,11 +282,11 @@ namespace UIAutomationUnitTests
 
             Assert.AreEqual(
                 expectedClassName,
-                (this.ResultCondition.GetConditions()[0] as PropertyCondition).Value);
+                (((AndCondition)this.ResultCondition).GetConditions()[0] as PropertyCondition).Value);
         }
         
         [Test]
-        [Description("CommonCmdletBase.getControlConditions(HasControlInputCmdletBase, string)")]
+        [Description("CommonCmdletBase.GetControlConditions(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void Name_AutomationId()
         {
@@ -291,15 +297,15 @@ namespace UIAutomationUnitTests
             
             Assert.AreEqual(
                 expectedName,
-                ((this.ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
+                ((((AndCondition)this.ResultCondition).GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
 
             Assert.AreEqual(
                 expectedAutomationId,
-                ((this.ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
+                ((((AndCondition)this.ResultCondition).GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
         }
         
         [Test]
-        [Description("CommonCmdletBase.getControlConditions(HasControlInputCmdletBase, string)")]
+        [Description("CommonCmdletBase.GetControlConditions(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void Name_ClassName()
         {
@@ -310,15 +316,15 @@ namespace UIAutomationUnitTests
 
             Assert.AreEqual(
                 expectedClassName,
-                ((this.ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
+                ((((AndCondition)this.ResultCondition).GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
 
             Assert.AreEqual(
                 expectedName,
-                ((this.ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
+                ((((AndCondition)this.ResultCondition).GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
         }
         
         [Test]
-        [Description("CommonCmdletBase.getControlConditions(HasControlInputCmdletBase, string)")]
+        [Description("CommonCmdletBase.GetControlConditions(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void AutomationId_ClassName()
         {
@@ -329,15 +335,15 @@ namespace UIAutomationUnitTests
 
             Assert.AreEqual(
                 expectedClassName,
-                ((this.ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
+                ((((AndCondition)this.ResultCondition).GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
 
             Assert.AreEqual(
                 expectedAutomationId,
-                ((this.ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
+                ((((AndCondition)this.ResultCondition).GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
         }
         
         [Test]
-        [Description("CommonCmdletBase.getControlConditions(HasControlInputCmdletBase, string)")]
+        [Description("CommonCmdletBase.GetControlConditions(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void Name_AutomationId_ClassName()
         {
@@ -349,15 +355,15 @@ namespace UIAutomationUnitTests
             
             Assert.AreEqual(
                 expectedClassName,
-                ((this.ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
+                ((((AndCondition)this.ResultCondition).GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
 
             Assert.AreEqual(
                 expectedName,
-                ((this.ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
+                ((((AndCondition)this.ResultCondition).GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
             
             Assert.AreEqual(
                 expectedAutomationId,
-                ((this.ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[2] as PropertyCondition).Value);
+                ((((AndCondition)this.ResultCondition).GetConditions()[1] as AndCondition).GetConditions()[2] as PropertyCondition).Value);
         }
         
     }

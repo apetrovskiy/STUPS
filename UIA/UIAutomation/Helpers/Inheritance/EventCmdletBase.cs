@@ -57,12 +57,12 @@ namespace UIAutomation
             // 20131109
             //foreach (AutomationElement inputObject in this.InputObject) {
             foreach (IMySuperWrapper inputObject in this.InputObject) {
-
-            SubscribeToEvents(this,
-                              inputObject,
-                              this.AutomationEventType,
-                              this.AutomationProperty);
-
+                
+                SubscribeToEvents(this,
+                                  inputObject,
+                                  this.AutomationEventType,
+                                  this.AutomationProperty);
+                
             } // 20120824
         }
     }

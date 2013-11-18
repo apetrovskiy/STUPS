@@ -27,14 +27,23 @@ namespace UIAutomation
                 .ToConstructor(
                     x =>
                     new MySuperWrapper(x.Inject<AutomationElement>()))
+                .InCallScope()
                 .Named("AutomationElement.NET");
+            
             Bind<IMySuperWrapper>()
                 .ToConstructor(
                     x =>
                     new MySuperWrapper(x.Inject<IMySuperWrapper>()))
+                .InCallScope()
                 .Named("MySuperWrapper");
-            Bind<IMySuperWrapper>().To<MySuperWrapper>().InCallScope();
+            
+            Bind<IMySuperWrapper>()
+                .To<MySuperWrapper>()
+                .InCallScope()
+                .Named("Empty");
+            
             Bind<IMySuperCollection>().To<MySuperCollection>().InCallScope();
+            
             Bind<IMySuperWrapperInformation>().To<MySuperWrapperInformation>().InCallScope();
             
             /*

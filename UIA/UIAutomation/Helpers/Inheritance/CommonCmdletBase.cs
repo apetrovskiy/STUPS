@@ -66,6 +66,11 @@ namespace UIAutomation
             #endregion close the log
         }
         
+        // 20131118
+        // just experimental
+//        protected AutomationElement EventSource { get; set; }
+//        protected AutomationEventArgs EventArgs { get; set; }
+        
         #region Write methods
         protected override void WriteLog(LogLevels logLevel, string logRecord)
         {
@@ -1641,16 +1646,25 @@ namespace UIAutomation
         protected bool caseSensitive { get; set; }
         
         #region Get-UIAControl
-        public AndCondition[] getControlsConditions(GetControlCollectionCmdletBase cmdlet)
+        // 20131118
+        // object -> Condition
+        //public AndCondition[] getControlsConditions(GetControlCollectionCmdletBase cmdlet)
+        public Condition[] getControlsConditions(GetControlCollectionCmdletBase cmdlet)
         {
-            System.Collections.Generic.List<AndCondition> conditions =
-                new System.Collections.Generic.List<AndCondition>();
+            // 20131118
+            // object -> Condition
+            //System.Collections.Generic.List<AndCondition> conditions =
+            //    new System.Collections.Generic.List<AndCondition>();
+            System.Collections.Generic.List<Condition> conditions =
+                new System.Collections.Generic.List<Condition>();
 
             if (null != cmdlet.ControlType && 0 < cmdlet.ControlType.Length) {
                 foreach (string controlTypeName in cmdlet.ControlType)
                 {
                     WriteVerbose(this, "control type: " + controlTypeName);
-                    conditions.Add(getControlConditions(((GetControlCmdletBase)cmdlet), controlTypeName, cmdlet.CaseSensitive, true) as AndCondition);
+                    // 20131118
+                    // object -> Condition
+                    conditions.Add(GetControlConditions(((GetControlCmdletBase)cmdlet), controlTypeName, cmdlet.CaseSensitive, true)); // as AndCondition);
                 }
 
                 /*
@@ -1662,20 +1676,30 @@ namespace UIAutomation
                 */
             } else{
                 WriteVerbose(this, "without control type");
-                conditions.Add(getControlConditions(((GetControlCmdletBase)cmdlet), "", cmdlet.CaseSensitive, true) as AndCondition);
+                // 20131118
+                // object -> Condition
+                //conditions.Add(GetControlConditions(((GetControlCmdletBase)cmdlet), "", cmdlet.CaseSensitive, true) as AndCondition);
+                conditions.Add(GetControlConditions(((GetControlCmdletBase)cmdlet), "", cmdlet.CaseSensitive, true));
             }
             return conditions.ToArray();
         }
         
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "get")]
-        public object getControlConditions(GetCmdletBase cmdlet1, string controlType, bool caseSensitive, bool AndVsOr)
+        // 20131118
+        //public object getControlConditions(GetCmdletBase cmdlet1, string controlType, bool caseSensitive, bool AndVsOr)
+        //internal object GetControlConditions(GetCmdletBase cmdlet1, string controlType, bool caseSensitive, bool AndVsOr)
+        //internal Condition GetControlConditions(GetCmdletBase cmdlet1, string controlType, bool caseSensitive, bool AndVsOr)
+        public Condition GetControlConditions(GetCmdletBase cmdlet1, string controlType, bool caseSensitive, bool AndVsOr)
         {
             System.Windows.Automation.ControlType ctrlType = null;
             System.Windows.Automation.AndCondition andConditions = null;
             System.Windows.Automation.OrCondition orConditions = null;
             System.Windows.Automation.PropertyCondition condition = null;
             System.Windows.Automation.AndCondition allConditions = null;
-            object conditionsToReturn = null;
+            // 20131118
+            // object -> Condition
+            //object conditionsToReturn = null;
+            Condition conditionsToReturn = null;
             PropertyConditionFlags flags = PropertyConditionFlags.None;
             if (!caseSensitive) {
                 flags = PropertyConditionFlags.IgnoreCase;
@@ -2011,35 +2035,39 @@ namespace UIAutomation
                 return conditionsToReturn;
             }
         }
-        
-        protected void displayConditions(
-            GetControlCmdletBase cmdlet,
-            AndCondition conditions,
-            string description)
-        {
-            try
-            {
-                Condition[] conds = conditions.GetConditions();
-                foreach (Condition propertyCondition in conds)
-                {
-                    cmdlet.WriteVerbose(cmdlet, "<<<< displaying conditions '" + description + "' >>>>");
-                    cmdlet.WriteVerbose(cmdlet, (propertyCondition as PropertyCondition).Property.ProgrammaticName);
-                    cmdlet.WriteVerbose(cmdlet, (propertyCondition as PropertyCondition).Value.ToString());
-                    cmdlet.WriteVerbose(cmdlet, (propertyCondition as PropertyCondition).Flags.ToString());
-                }
-
-                /*
-                for (int i = 0; i < conds.Length; i++) {
-                    cmdlet.WriteVerbose(cmdlet, "<<<< displaying conditions '" + description + "' >>>>");
-                    cmdlet.WriteVerbose(cmdlet, (conds[i] as PropertyCondition).Property.ProgrammaticName);
-                    cmdlet.WriteVerbose(cmdlet, (conds[i] as PropertyCondition).Value.ToString());
-                    cmdlet.WriteVerbose(cmdlet, (conds[i] as PropertyCondition).Flags.ToString());
-
-                }
-                */
-            }
-            catch {}
-        }
+        // 20131118
+        // object -> Condition
+//        protected void displayConditions(
+//            GetControlCmdletBase cmdlet,
+//            // 20131118
+//            // object -> Condition
+//            //AndCondition conditions,
+//            Condition conditions,
+//            string description)
+//        {
+//            try
+//            {
+//                Condition[] conds = conditions.GetConditions();
+//                foreach (Condition propertyCondition in conds)
+//                {
+//                    cmdlet.WriteVerbose(cmdlet, "<<<< displaying conditions '" + description + "' >>>>");
+//                    cmdlet.WriteVerbose(cmdlet, (propertyCondition as PropertyCondition).Property.ProgrammaticName);
+//                    cmdlet.WriteVerbose(cmdlet, (propertyCondition as PropertyCondition).Value.ToString());
+//                    cmdlet.WriteVerbose(cmdlet, (propertyCondition as PropertyCondition).Flags.ToString());
+//                }
+//
+//                /*
+//                for (int i = 0; i < conds.Length; i++) {
+//                    cmdlet.WriteVerbose(cmdlet, "<<<< displaying conditions '" + description + "' >>>>");
+//                    cmdlet.WriteVerbose(cmdlet, (conds[i] as PropertyCondition).Property.ProgrammaticName);
+//                    cmdlet.WriteVerbose(cmdlet, (conds[i] as PropertyCondition).Value.ToString());
+//                    cmdlet.WriteVerbose(cmdlet, (conds[i] as PropertyCondition).Flags.ToString());
+//
+//                }
+//                */
+//            }
+//            catch {}
+//        }
         
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "get")]
         protected internal ArrayList GetControl(GetControlCmdletBase cmdlet)
@@ -2051,9 +2079,18 @@ namespace UIAutomation
                 resultArrayListOfControls = new ArrayList();
                 
                 #region conditions
-                System.Windows.Automation.AndCondition conditions = null;
-                System.Windows.Automation.AndCondition conditionsForWildCards = null;
-                System.Windows.Automation.AndCondition conditionsForTextSearch = null;
+                // 20131118
+                // object -> Condition
+                //System.Windows.Automation.AndCondition conditions = null;
+                System.Windows.Automation.Condition conditions = null;
+                // 20131118
+                // object -> Condition
+                //System.Windows.Automation.AndCondition conditionsForWildCards = null;
+                System.Windows.Automation.Condition conditionsForWildCards = null;
+                // 20131118
+                // object -> Condition
+                //System.Windows.Automation.AndCondition conditionsForTextSearch = null;
+                System.Windows.Automation.Condition conditionsForTextSearch = null;
                 
                 GetControlCmdletBase tempCmdlet =
                     new GetControlCmdletBase();
@@ -2065,29 +2102,41 @@ namespace UIAutomation
                     notTextSearch = false;
                     
                     conditionsForTextSearch =
-                        this.getControlConditions(
+                        // 20131118
+                        // object -> Condition
+                        this.GetControlConditions(
                             tempCmdlet,
                             tempCmdlet.ControlType,
                             cmdlet.CaseSensitive,
-                            false) as AndCondition;
+                            false); // as AndCondition;
                     
                     // display conditions for text search
                     this.WriteVerbose(cmdlet, "these conditions are used for text search:");
-                    displayConditions(cmdlet, conditionsForTextSearch, "for text search");
+                    // 20131118
+                    // object -> Condition
+                    //displayConditions(cmdlet, conditionsForTextSearch, "for text search");
 
                 } else {
                     
-                    conditions = this.getControlConditions(cmdlet, cmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive, true) as AndCondition;
+                    // 20131118
+                    // object -> Condition
+                    conditions = this.GetControlConditions(cmdlet, cmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive, true); // as AndCondition;
                     // display conditions for a regular search
                     this.WriteVerbose(cmdlet, "these conditions are used for an exact search:");
-                    displayConditions(cmdlet, conditions, "for exact search");
+                    // 20131118
+                    // object -> Condition
+                    //displayConditions(cmdlet, conditions, "for exact search");
                     
                     conditionsForWildCards =
-                        this.getControlConditions(tempCmdlet, tempCmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive, true) as AndCondition;
+                        // 20131118
+                        // object -> Condition
+                        this.GetControlConditions(tempCmdlet, tempCmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive, true); // as AndCondition;
                     
                     // display conditions for wildcard search
                     this.WriteVerbose(cmdlet, "these conditions are used for wildcard search:");
-                    displayConditions(cmdlet, conditionsForWildCards, "for wildcard search");
+                    // 20131118
+                    // object -> Condition
+                    //displayConditions(cmdlet, conditionsForWildCards, "for wildcard search");
 
                 }
                 #endregion conditions
@@ -2489,7 +2538,10 @@ namespace UIAutomation
             string automationId,
             string className,
             string strValue,
-            System.Windows.Automation.AndCondition conditionsForWildCards)
+            // 20131118
+            // object -> Condition
+            //System.Windows.Automation.AndCondition conditionsForWildCards)
+            System.Windows.Automation.Condition conditionsForWildCards)
         {
             this.WriteVerbose((cmdlet as PSTestLib.PSCmdletBase), "[getting the control] using WildCard search");
             try {
@@ -2621,7 +2673,10 @@ namespace UIAutomation
             // refactoring
             //AutomationElement inputObject,
             IMySuperWrapper inputObject,
-            System.Windows.Automation.AndCondition conditions)
+            // 20131118
+            // object -> Condition
+            //System.Windows.Automation.AndCondition conditions)
+            System.Windows.Automation.Condition conditions)
         {
             #region the -First story
             // 20120824
@@ -2764,7 +2819,10 @@ namespace UIAutomation
             // refactoring
             //AutomationElement inputObject,
             IMySuperWrapper inputObject,
-            System.Windows.Automation.AndCondition conditionsForTextSearch)
+            // 20131118
+            // object -> Condition
+            //System.Windows.Automation.AndCondition conditionsForTextSearch)
+            System.Windows.Automation.Condition conditionsForTextSearch)
         {
             this.WriteVerbose(cmdlet, "Text search");
             // 20131105
@@ -3111,5 +3169,391 @@ namespace UIAutomation
             return result;
         }
         #endregion Get-UIAControl
+        
+        // 20131118
+        // just experimental
+//        protected virtual void SaveEventInput(
+//            AutomationElement src,
+//            AutomationEventArgs e,
+//            string programmaticName,
+//            bool infoAdded)
+//        {
+//            
+//        }
+//        
+//        #region Event delegate
+//        private void runSBEvent(ScriptBlock sb, 
+//                                AutomationElement src,
+//                                AutomationEventArgs e)
+//        {
+//            
+//            // inform the Wait-UIAEventRaised cmdlet
+//            SaveEventInput(
+//                src,
+//                e,
+//                e.EventId.ProgrammaticName,
+//                true);
+////            try {
+////                CurrentData.LastEventSource = src; // as AutomationElement;
+////                CurrentData.LastEventArgs = e; // as AutomationEventArgs;
+////                CurrentData.LastEventType = e.EventId.ProgrammaticName;
+////                CurrentData.LastEventInfoAdded = true;
+////            }
+////            catch {
+////                //WriteVerbose(this, "failed to register an event in the collection");
+////            }
+//            
+//            // 20120206 Collection<PSObject> psObjects = null;
+//            try {
+//                System.Management.Automation.Runspaces.Runspace.DefaultRunspace =
+//                    RunspaceFactory.CreateRunspace();
+//                try {
+//                    System.Management.Automation.Runspaces.Runspace.DefaultRunspace.Open();
+//                } catch (Exception e1) {
+//                    // 20130318
+////                    ErrorRecord err = 
+////                        new ErrorRecord(e1,
+////                                        "ErrorOnOpeningRunspace",
+////                                        ErrorCategory.InvalidOperation,
+////                                        sb);
+////                    err.ErrorDetails = 
+////                        new ErrorDetails(
+////                            "Unable to run a scriptblock:\r\n" + 
+////                            sb.ToString());
+////                    WriteError(this, err, false);
+//                    
+//                    this.WriteError(
+//                        this,
+//                        "Unable to run a scriptblock:\r\n" + 
+//                        sb.ToString() +
+//                        "." +
+//                        e1.Message,
+//                        "ErrorOnOpeningRunspace",
+//                        ErrorCategory.InvalidOperation,
+//                        // 20130318
+//                        //false);
+//                        true);
+//                }
+//                try {
+//                    System.Collections.Generic.List<object> inputParams = 
+//                        new System.Collections.Generic.List<object>();
+//                    inputParams.Add(src);
+//                    inputParams.Add(e);
+//                    object[] inputParamsArray = inputParams.ToArray();
+//                    // psObjects = 
+//                        sb.InvokeReturnAsIs(inputParamsArray);
+//                        // sb.Invoke(inputParamsArray);
+//                    
+//                } catch (Exception e2) {
+//                    // 20130318
+////                    ErrorRecord err = 
+////                        new ErrorRecord(e2,
+////                                        "ErrorInOpenedRunspace",
+////                                        ErrorCategory.InvalidOperation,
+////                                        sb);
+////                    err.ErrorDetails = 
+////                        new ErrorDetails("Unable to run a scriptblock");
+////                    WriteError(this, err, true);
+//                    
+//                    this.WriteError(
+//                        this,
+//                        "Unable to run a scriptblock." + 
+//                        e2.Message,
+//                        "ErrorInOpenedRunspace",
+//                        ErrorCategory.InvalidOperation,
+//                        true);
+//                }
+//// psObjects =
+//// sb.Invoke();
+//            } catch (Exception eOuter) {
+//                // 20130318
+////                ErrorRecord err = 
+////                    new ErrorRecord(eOuter,
+////                                    "ErrorInInvokingScriptBlock", //"ErrorinCreatingRunspace",
+////                                    ErrorCategory.InvalidOperation,
+////                                    System.Management.Automation.Runspaces.Runspace.DefaultRunspace);
+////                err.ErrorDetails = 
+////                    new ErrorDetails("Unable to issue the following command:\r\n" + 
+////                                     "System.Management.Automation.Runspaces.Runspace.DefaultRunspace = RunspaceFactory.CreateRunspace();" +
+////                                     "\r\nException raised is\r\n" +
+////                                     eOuter.Message);
+//                
+//                this.WriteError(
+//                    this,
+//                    "Unable to issue the following command:\r\n" + 
+//                     "System.Management.Automation.Runspaces.Runspace.DefaultRunspace = RunspaceFactory.CreateRunspace();" +
+//                     "\r\nException raised is\r\n" +
+//                     eOuter.Message,
+//                    "ErrorInInvokingScriptBlock",
+//                    ErrorCategory.InvalidOperation,
+//                    true);
+//            }
+//        }
+//        #endregion Event delegate
+//        
+//        #region Action delegate
+//        private void runSBAction(ScriptBlock sb, 
+//                                 AutomationElement src,
+//                                 AutomationEventArgs e)
+//        {
+//            Collection<PSObject> psObjects = null;
+//            try {
+//                psObjects =
+//                    sb.Invoke();
+//// int counter = 0;
+//// foreach (PSObject pso in psObjects) {
+////  //if pso.
+//// counter++;
+//// WriteVerbose("result " + counter.ToString() + ":");
+//// WriteVerbose(pso.ToString());
+////  //WriteObject(pso.TypeNames
+//// foreach ( string typeName in pso.TypeNames) {
+//// WriteVerbose(typeName);
+//// }
+//// }
+//            } catch (Exception eOuter) {
+//                // 20130318
+////                ErrorRecord err = 
+////                    new ErrorRecord(eOuter,
+////                                    "ErrorInInvokingScriptBlock",
+////                                    ErrorCategory.InvalidOperation,
+////                                    System.Management.Automation.Runspaces.Runspace.DefaultRunspace);
+////                err.ErrorDetails = 
+////                    new ErrorDetails(
+////                        "Unable to issue the following command:\r\n" +
+////                        sb.ToString() + 
+////                        "\r\nThe exception raised is\r\n" + 
+////                        eOuter.Message);
+////                                     //"System.Management.Automation.Runspaces.Runspace.DefaultRunspace = RunspaceFactory.CreateRunspace();");
+////                WriteError(err);
+//                
+//                this.WriteError(
+//                    this,
+//                    "Unable to issue the following command:\r\n" +
+//                    sb.ToString() + 
+//                    "\r\nThe exception raised is\r\n" + 
+//                    eOuter.Message,
+//                    "ErrorInInvokingScriptBlock",
+//                    ErrorCategory.InvalidOperation,
+//                    // 20130318
+//                    //false);
+//                    true);
+//            }
+//        }
+//        #endregion Action delegate
+//        
+//        // 20120816
+//        public void runScriptBlocks(
+//            System.Collections.Generic.List<ScriptBlock> scriptblocks,
+//            PSCmdletBase cmdlet,
+//            // 20130318
+//            //bool eventHandlers)
+//            bool eventHandlers,
+//            object[] parameters)
+//        {
+//            
+//            try {
+//
+//                if (scriptblocks != null &&
+//                    scriptblocks.Count > 0) {
+//                    
+//                    cmdlet.WriteVerbose(cmdlet, "there are " + scriptblocks.Count.ToString() + " scriptblock(s) to run");
+//                    
+//                    foreach (ScriptBlock sb in scriptblocks) {
+//
+//                        if (sb != null) {
+//
+//                            try {
+//                                if (eventHandlers) {
+//
+//                                    cmdlet.WriteVerbose(cmdlet, "run event handler");
+//                                    
+//                                    runScriptBlock runner = new runScriptBlock(runSBEvent);
+//
+//                                    runner(sb, cmdlet.EventSource, cmdlet.EventArgs);
+//
+//                                } else {
+//                                    
+//                                    cmdlet.WriteVerbose(cmdlet, "run action with parameters");
+//
+//                                    // 20130318
+//                                    //runScriptBlock runner = new runScriptBlock(runSBAction);
+//                                    //runner(sb, cmdlet.EventSource, cmdlet.EventArgs);
+//                                    runScriptBlockWithParameters runnerWithParams = new runScriptBlockWithParameters(runSBActionWithParams);
+//                                    
+//                                    cmdlet.WriteVerbose(cmdlet, "the scriptblock runner has been created");
+//                                    
+//                                    // 20130606
+//                                    try {
+//                                        cmdlet.WriteVerbose(cmdlet, "listing parameters");
+//                                        if (null == parameters || 0 == parameters.Length) {
+//                                            cmdlet.WriteVerbose(cmdlet, "there are no parameters");
+//                                        } else {
+//                                            foreach (var singleParam in parameters) {
+//                                                cmdlet.WriteVerbose(cmdlet, singleParam);
+//                                            }
+//                                        }
+//                                    }
+//                                    catch (Exception eListParameters) {
+//                                        cmdlet.WriteVerbose(cmdlet, eListParameters.Message);
+//                                    }
+//                                    
+//                                    runnerWithParams(sb, parameters);
+//                                    
+//                                    cmdlet.WriteVerbose(cmdlet, "the scriptblock runner has finished");
+//                                }
+//                            } catch (Exception eInner) {
+//
+//                                // 20130318
+////                                ErrorRecord err = 
+////                                    new ErrorRecord(
+////                                        eInner,
+////                                        "InvokeException",
+////                                        ErrorCategory.OperationStopped,
+////                                        sb);
+////                                err.ErrorDetails = 
+////                                    new ErrorDetails("Error in " +
+////                                                     sb.ToString());
+////                                WriteError(this, err, false);
+//                                
+////                                this.WriteError(
+////                                    this,
+////                                    "Error in " +
+////                                    sb.ToString() +
+////                                    ". " +
+////                                    eInner.Message,
+////                                    "InvokeException",
+////                                    ErrorCategory.OperationStopped,
+////                                    // 20130318
+////                                    //false);
+////                                    true);
+//                                    
+//                                    // 20130606
+//                                    cmdlet.WriteVerbose(cmdlet, eInner.Message);
+//                                    //throw;
+//                                    throw new Exception("Failed to run scriptblock");
+//                            }
+//                        }
+//                    }
+//                }
+//            } catch (Exception eOuter) {
+//                // 20130318
+////                WriteError(this, 
+////                           new ErrorRecord(eOuter, "runScriptBlocks", ErrorCategory.InvalidArgument, null),
+////                           true);
+//                
+////                this.WriteError(
+////                    this,
+////                    eOuter.Message,
+////                    "runScriptBlocks",
+////                    ErrorCategory.InvalidArgument,
+////                    true);
+//                    
+//                // 20130606
+//                cmdlet.WriteVerbose(cmdlet, eOuter.Message);
+//                //throw;
+//                throw new Exception("Failed to run scriptblocks");
+//            }
+//        }
+//        
+//        protected internal void runTwoScriptBlockCollections(
+//            ScriptBlock[] scriptblocksSet1,
+//            ScriptBlock[] scriptblocksSet2,
+//            // 20130318
+//            //PSCmdletBase cmdlet)
+//            PSCmdletBase cmdlet,
+//            object[] parameters)
+//        {
+//            
+//            cmdlet.WriteVerbose(cmdlet, "preparing scriptblocks");
+//            
+//            System.Collections.Generic.List<ScriptBlock> scriptblocks =
+//                new System.Collections.Generic.List<ScriptBlock>();
+//
+//            try {
+//                if (scriptblocksSet1 != null &&
+//                    scriptblocksSet1.Length > 0) {
+//    
+//                    foreach (ScriptBlock sb in scriptblocksSet1) {
+//    
+//                        scriptblocks.Add(sb);
+//                    }
+//                }
+//    
+//                if (scriptblocksSet2 != null &&
+//                    scriptblocksSet2.Length > 0) {
+//    
+//                    foreach (ScriptBlock sb in scriptblocksSet2) {
+//    
+//                        scriptblocks.Add(sb);
+//                    }
+//                }
+//                
+////                if (null == scriptblocks || 0 == scriptblocks.Count) {
+////                    
+////                    cmdlet.WriteVerbose(cmdlet, "there is no any StopAction scriptblock");
+////                    
+////                    //throw new Exception("There are no StopAction scriptblocks, define at least one");
+////                    cmdlet.WriteError(
+////                        cmdlet,
+////                        "There are no StopAction scriptblocks, define at least one",
+////                        "NoStopActionScriptblocks",
+////                        ErrorCategory.InvalidArgument,
+////                        true);
+////                }
+//                
+//                cmdlet.WriteVerbose(cmdlet, "scriptblocks were prepared");
+//            }
+//            catch (Exception eScriptblocksPreparation) {
+//                
+//                cmdlet.WriteVerbose(cmdlet, "Scriptblocks are not going to be run");
+//                
+//                cmdlet.WriteVerbose(cmdlet, eScriptblocksPreparation.Message);
+//                
+//                cmdlet.WriteError(
+//                    cmdlet,
+//                    eScriptblocksPreparation.Message,
+//                    "ScriptblocksNotPrepared",
+//                    ErrorCategory.InvalidOperation,
+//                    true);
+//            }
+//
+//            // 20130318
+//            //runScriptBlocks(scriptblocks, cmdlet, false);
+//            // 20130319
+//            try {
+//                
+//                cmdlet.WriteVerbose(cmdlet, "running scriptblocks");
+//                
+//                // 20130712
+//                //runScriptBlocks(scriptblocks, cmdlet, false, parameters);
+//                if (null != scriptblocks && 0 < scriptblocks.Count) {
+//                    runScriptBlocks(scriptblocks, cmdlet, false, parameters);
+//                }
+//                
+//                cmdlet.WriteVerbose(cmdlet, "Scriptblocks finished successfully");
+//            }
+//            catch (Exception eScriptBlocks) {
+//                
+//                cmdlet.WriteVerbose(cmdlet, "Scriptblocks failed");
+//                
+//                cmdlet.WriteVerbose(cmdlet, eScriptBlocks.Message);
+//                
+//                cmdlet.WriteError(
+//                    cmdlet,
+//                    eScriptBlocks.Message,
+//                    "ScriptblocksFailed",
+//                    ErrorCategory.InvalidResult,
+//                    true);
+//            }
+//        }
     }
+    
+    // 20131118
+    // just experimental
+//    #region Action delegate
+//    delegate void runScriptBlock(ScriptBlock sb, 
+//                                 AutomationElement src, 
+//                                 AutomationEventArgs e);
+//    #endregion Action delegate
 }

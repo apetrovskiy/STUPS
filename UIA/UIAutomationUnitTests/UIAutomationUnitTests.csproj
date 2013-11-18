@@ -111,6 +111,7 @@
     <Compile Include="Fakes\FakeAutomationElement.cs" />
     <Compile Include="Fakes\FakeDataHolder.cs" />
     <Compile Include="Helpers\Inheritance\getAutomationElementsWithFindAllTestFixture.cs" />
+    <Compile Include="Helpers\Inheritance\GetControlTestFixture.cs" />
     <Compile Include="Helpers\Inheritance\ReturnOnlyRightElementsTestFixture.cs" />
     <Compile Include="Helpers\Inheritance\SearchByWildcardViaUIATestFixtrure.cs" />
     <Compile Include="Helpers\UnderlyingCode\elementOfPossibleControlTypeTestFixture.cs" />

@@ -53,18 +53,28 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         [Test]
         public void InputIsCollectionOfThree()
         {
-            AndCondition condition =
-                new AndCondition(
-                    new PropertyCondition(
-                        AutomationElement.NameProperty,
-                        "aaa"),
-                    new PropertyCondition(
-                        AutomationElement.ClassNameProperty,
-                        "bbb"));
+            //CommonCmdletBase cmdlet = new CommonCmdletBase();
+            GetControlCollectionCmdletBase cmdlet = new GetControlCollectionCmdletBase();
+            // 20131118
+            // object -> Condition
+            //AndCondition condition =
+            Condition condition =
+                // 20131118
+                // object -> Condition
+                cmdlet.GetControlConditions((GetControlCmdletBase)cmdlet, "Button", false, true); // as AndCondition;
+            
+//            AndCondition condition =
+//                new AndCondition(
+//                    new PropertyCondition(
+//                        AutomationElement.NameProperty,
+//                        "aaa"),
+//                    new PropertyCondition(
+//                        AutomationElement.ClassNameProperty,
+//                        "bbb"));
             
             IMySuperWrapper element = getPreparedElement(3, condition);
             
-            GetControlCollectionCmdletBase cmdlet = new GetControlCollectionCmdletBase();
+            //GetControlCollectionCmdletBase cmdlet = new GetControlCollectionCmdletBase();
             ArrayList resultList =
                 cmdlet.getAutomationElementsWithFindAll(
                     element,

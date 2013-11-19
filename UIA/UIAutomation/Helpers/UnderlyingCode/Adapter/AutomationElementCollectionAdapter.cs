@@ -19,17 +19,11 @@ namespace UIAutomation
     
     using Ninject;
     
-	//public class AutomationElementCollection : ICollection, IEnumerable, IAutomationElementCollection
 	public class MySuperCollection : IMySuperCollection
 	{
-	    //private AutomationElementCollection collectionHolder;
-	    //private ICollection collectionHolder;
 	    private List<IMySuperWrapper> collectionHolder =
 	        new List<IMySuperWrapper>();
 	    
-		//private AutomationElement[] _elements;
-		// 20131108
-		//public AutomationElement this[int index] {
 		public IMySuperWrapper this[int index] {
 		    //get { return this.collectionHolder[index]; } //return this._elements[index]; }
 		    //get { return ((AutomationElementCollection)this.collectionHolder)[index]; } //return this._elements[index]; }
@@ -46,13 +40,8 @@ namespace UIAutomation
 		public virtual bool IsSynchronized {
 			get { return false; }
 		}
-		//internal MySuperCollection(AutomationElement[] elements)
-		//[Inject]
-		//internal MySuperCollection(AutomationElementCollection elements)
+        
 		public MySuperCollection(AutomationElementCollection elements)
-        /*
-        public MySuperCollection(AutomationElementCollection elements)
-        */
         {
 		    foreach (AutomationElement element in elements) {
 		        
@@ -62,7 +51,6 @@ namespace UIAutomation
 		    }
 		}
 		
-		//internal MySuperCollection(IMySuperCollection elements)
 		public MySuperCollection(IMySuperCollection elements)
 		{
 		    foreach (IMySuperWrapper element in elements) {
@@ -71,24 +59,16 @@ namespace UIAutomation
 		    }
 		}
 		
-		//
-		//internal MySuperCollection(IEnumerable elements)
 		public MySuperCollection(IEnumerable elements)
-        /*
-        internal MySuperCollection(ICollection elements)
-        */
 		{
 		    foreach (var element in elements) {
 		        
 		        this.collectionHolder.Add((IMySuperWrapper)element);
 		    }
 		}
-		//
 		
-		//internal MySuperCollection()
 		[Inject]
-		//public MySuperCollection(bool fake)
-		internal MySuperCollection(bool fake)
+		public MySuperCollection(bool fake)
 		{
 		}
 		
@@ -118,17 +98,9 @@ namespace UIAutomation
 		    this.collectionHolder.Add(element);
 		}
 		
-		//public AutomationElementCollection SourceCollection
-		//public IMySuperCollection SourceCollection
 		public virtual List<IMySuperWrapper> SourceCollection
 		{
-		    //get { return this.collectionHolder; }
-		    //get { return ((AutomationElementCollection)this.collectionHolder); }
-		    //get { return (IMySuperCollection)this.collectionHolder.Cast<IMySuperWrapper>(); }
-		    //get { return (IMySuperCollection)this.collectionHolder.AsEnumerable<IMySuperWrapper>(); }
 		    get { return this.collectionHolder; }
-		    //internal 
-		    //set { this.collectionHolder = value; }
 		}
 		
 		public void Dispose()

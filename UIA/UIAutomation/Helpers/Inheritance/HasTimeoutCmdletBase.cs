@@ -1055,7 +1055,6 @@ namespace UIAutomation
             string[] controlType,
             bool caseSensitive)
         {
-            
             ArrayList resultCollection = new ArrayList();
 
             WildcardOptions options;
@@ -1145,24 +1144,28 @@ namespace UIAutomation
 //                       )
 //                    .ToArray<AutomationElement>();
                 
-                cmdlet.WriteVerbose(cmdlet, "querying the input collection");
+//cmdlet.WriteVerbose(cmdlet, "querying the input collection");
+//Console.WriteLine("Return...: 00007");
+//cmdlet.WriteVerbose(cmdlet, "inputList.Count = " + inputList.Count.ToString());
+//Console.WriteLine("Return...: 00008 inputList.Count = " + inputList.Count.ToString());
+//foreach (IMySuperWrapper wrp in inputList) {
+//    if (null == wrp) {
+//        cmdlet.WriteVerbose(cmdlet, "item is null");
+//        Console.WriteLine("Return...: 00009 item is null");
+//    }
+//    if (null == wrp.Current) {
+//        cmdlet.WriteVerbose(cmdlet, "item.Current is null");
+//        Console.WriteLine("Return...: 00010 item.Current is null");
+//    }
+//    Console.WriteLine("Return...: 00011 " + wrp.Current.Name);
+//    cmdlet.WriteVerbose(cmdlet, wrp.Current.Name);
+//    cmdlet.WriteVerbose(cmdlet, wrp.Current.AutomationId);
+//    cmdlet.WriteVerbose(cmdlet, wrp.Current.ClassName);
+//    cmdlet.WriteVerbose(cmdlet, wrp.Current.ControlType.ProgrammaticName);
+//}
                 
-                cmdlet.WriteVerbose(cmdlet, "inputList.Count = " + inputList.Count.ToString());
-                foreach (IMySuperWrapper wrp in inputList) {
-                    if (null == wrp) {
-                        cmdlet.WriteVerbose(cmdlet, "item is null");
-                    }
-                    if (null == wrp.Current) {
-                        cmdlet.WriteVerbose(cmdlet, "item.Current is null");
-                    }
-                    cmdlet.WriteVerbose(cmdlet, wrp.Current.Name);
-                    cmdlet.WriteVerbose(cmdlet, wrp.Current.AutomationId);
-                    cmdlet.WriteVerbose(cmdlet, wrp.Current.ClassName);
-                    cmdlet.WriteVerbose(cmdlet, wrp.Current.ControlType.ProgrammaticName);
-                }
                 
-                
-                
+//try {
                 var query = inputList
                     .Where<IMySuperWrapper>(
                         item => (wildcardName.IsMatch(item.Current.Name) &&
@@ -1178,7 +1181,12 @@ namespace UIAutomation
                        )
                     .ToArray<IMySuperWrapper>();
                 
-cmdlet.WriteVerbose(cmdlet, "query has been completed");
+//cmdlet.WriteVerbose(cmdlet, "query has been completed");
+//Console.WriteLine("Return...: 00012");
+//foreach (IMySuperWrapper elt1 in query) {
+//    Console.WriteLine("elt1: " + elt1.Current.Name);
+//}
+                
                 
                 cmdlet.WriteVerbose(
                         cmdlet,
@@ -1187,6 +1195,11 @@ cmdlet.WriteVerbose(cmdlet, "query has been completed");
                         " elements");
                 
                 resultCollection.AddRange(query);
+                
+//}
+//catch (Exception eeeeeeeeeeeeeee) {
+//    Console.WriteLine(eeeeeeeeeeeeeee.Message);
+//}
                 
                 cmdlet.WriteVerbose(
                     cmdlet,

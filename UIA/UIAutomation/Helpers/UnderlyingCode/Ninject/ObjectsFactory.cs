@@ -25,14 +25,6 @@ namespace UIAutomation
             if (CommonCmdletBase.UnitTestMode || CommonCmdletBase.ModuleAlreadyLoaded) return;
             ninjectModule = new ObjectLifecycleModule();
             CommonCmdletBase.ModuleAlreadyLoaded = true;
-
-            /*
-            if (!CommonCmdletBase.UnitTestMode && !CommonCmdletBase.ModuleAlreadyLoaded) {
-
-                ninjectModule = new ObjectLifecycleModule();
-                CommonCmdletBase.ModuleAlreadyLoaded = true;
-            }
-            */
         }
         
 		private static INinjectModule ninjectModule;
@@ -59,27 +51,11 @@ namespace UIAutomation
 		    catch (Exception eInitFailure) {
 		        // TODO
 		        // write error to error object!!!
-		        //Console.WriteLine("Init Kernel");
-		        //Console.WriteLine(eInitFailure.Message);
+//		        Console.WriteLine("Init Kernel");
+//		        Console.WriteLine(eInitFailure.Message);
 		    }
 
 		    initFlag = true;
-
-		    /*
-		    if (!initFlag) {
-    		    try {
-                    kernel = new StandardKernel(ninjectModule);
-    		    }
-    		    catch (Exception eInitFailure) {
-		            // TODO
-			        // write error to error object!!!
-			        //Console.WriteLine("Init Kernel");
-    		        //Console.WriteLine(eInitFailure.Message);
-    		    }
-
-		        initFlag = true;
-		    }
-            */
         }
 		
 		internal static void InitUnitTests()
@@ -91,8 +67,8 @@ namespace UIAutomation
 		    catch (Exception eInitFailure) {
 		        // TODO
 		        // write error to error object!!!
-		        // Console.WriteLine("Init Kernel");
-		        // Console.WriteLine(eInitFailure.Message);
+//		         Console.WriteLine("Init Kernel");
+//		         Console.WriteLine(eInitFailure.Message);
 		    }
 		}
 		
@@ -109,8 +85,8 @@ namespace UIAutomation
 			catch (Exception eFailedToIssueElement) {
 			    // TODO
 			    // write error to error object!!!
-			    //Console.WriteLine("Element");
-			    //Console.WriteLine(eFailedToIssueElement.Message);
+//			    Console.WriteLine("Element");
+//			    Console.WriteLine(eFailedToIssueElement.Message);
 			    return null;
 			}
 		}
@@ -229,10 +205,10 @@ namespace UIAutomation
 			}
 		}
 		
-		internal static IMySuperCollection GetMySuperCollection(bool? fake)
+		internal static IMySuperCollection GetMySuperCollection()
 		{
 			try {
-		        var boolArgument = new Ninject.Parameters.ConstructorArgument("fake", fake);
+		        var boolArgument = new Ninject.Parameters.ConstructorArgument("fake", true);
 	      		IMySuperCollection adapterCollection = ObjectsFactory.Kernel.Get<IMySuperCollection>("Empty", boolArgument);
 	       		return adapterCollection;
 			}

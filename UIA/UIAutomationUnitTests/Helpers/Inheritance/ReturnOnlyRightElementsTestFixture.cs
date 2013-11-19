@@ -27,8 +27,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         [SetUp]
         public void SetUp()
         {
-            UnitTestingHelper.PrepareUnitTestDataStore();
-            ObjectsFactory.InitUnitTests();
+//            UnitTestingHelper.PrepareUnitTestDataStore();
+//            ObjectsFactory.InitUnitTests();
+            FakeFactory.Init();
         }
         
         [TearDown]

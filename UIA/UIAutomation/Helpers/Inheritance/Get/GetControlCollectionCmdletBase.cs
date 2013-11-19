@@ -64,7 +64,7 @@ namespace UIAutomation
         }
         
         [Parameter(Mandatory = false)]
-        public new string[] ControlType { get; set; }
+        public virtual new string[] ControlType { get; set; }
         
         [Parameter(Mandatory = false)]
         internal new SwitchParameter PassThru { get; set; }
@@ -392,11 +392,12 @@ namespace UIAutomation
                     results.Count.ToString() +
                     " elements");
                 
+                
 //if (null == results) {
-//    Console.WriteLine("getAutomationElementsWithFindAll: null == results");
+//    Console.WriteLine("getAutomationElementsWithFindAll 01: null == results");
 //}
 //foreach (IMySuperWrapper element1 in results) {
-//    Console.WriteLine("getAutomationElementsWithFindAll: " + element1.Current.ClassName);
+//    Console.WriteLine("getAutomationElementsWithFindAll 02: " + element1.Current.Name);
 //}
                 
                 resultCollection =
@@ -412,10 +413,10 @@ namespace UIAutomation
                         caseSensitiveParam);
                 
 //if (null == resultCollection) {
-//    Console.WriteLine("getAutomationElementsWithFindAll: null == resultCollections");
+//    Console.WriteLine("getAutomationElementsWithFindAll 03: null == resultCollections");
 //}
 //foreach (IMySuperWrapper element2 in resultCollection) {
-//    Console.WriteLine("getAutomationElementsWithFindAll: " + element2.Current.ClassName);
+//    Console.WriteLine("getAutomationElementsWithFindAll 04: " + element2.Current.Name);
 //}
                 
                 

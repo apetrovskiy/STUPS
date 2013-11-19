@@ -24,7 +24,7 @@ namespace UIAutomation
     {
         public override void Load()
         {
-            //Bind<IMySuperWrapper>().To<MySuperWrapper>().InCallScope();
+            // IMySuperWrapper
             Bind<IMySuperWrapper>()
                 .ToConstructor(
                     x =>
@@ -44,8 +44,7 @@ namespace UIAutomation
                 .InCallScope()
                 .Named("Empty");
             
-            //Bind<IMySuperCollection>().To<MySuperCollection>().InCallScope();
-            
+            // IMySuperCollection
             Bind<IMySuperCollection>()
                 .ToConstructor(
                     x => 
@@ -67,18 +66,6 @@ namespace UIAutomation
                 .InCallScope()
                 .Named("AnyCollection");
             
-//            Bind<IMySuperCollection>()
-//                .To<MySuperCollection>()
-//                .InCallScope()
-//                .Named("Empty");
-
-//            Bind<IMySuperCollection>()
-//                .ToConstructor(
-//                    _ =>
-//                    new MySuperCollection())
-//                .InCallScope()
-//                .Named("Empty");
-            
             Bind<IMySuperCollection>()
                 .ToConstructor(
                     x =>
@@ -86,41 +73,8 @@ namespace UIAutomation
                 .InCallScope()
                 .Named("Empty");
             
+            // IMySuperWrapperInformation
             Bind<IMySuperWrapperInformation>().To<MySuperWrapperInformation>().InCallScope();
-            
-            /*
-            //Dependencies for the "StandAloneUser" Object
-            Bind<IUserDataMappingDAO>().To<UserDataMappingMSSQLDAO>();
-            Bind<IRoles>().To<RolesMockImpl>();
-            Bind<IUserGroupAssociationDAO>().To<UserGroupAssociationDAO>();
-            Bind<IGroupDAO>().To<GroupMSSQLDAO>();
-            Bind<IEmailDAO>().To<EmailMSSQLDAO>();
-            
-            //Bindings for StandAloneUser
-            Bind<StandAloneUser>()
-                .ToConstructor(
-                    x =>
-                    new StandAloneUser(x.Inject<MembershipUser>(), x.Inject<IUserDataMappingDAO>(), x.Inject<IRoles>(),
-                                       x.Inject<IUserGroupAssociationDAO>(), x.Inject<IGroupDAO>(),
-                                       x.Inject<APortalLogger>(), x.Inject<IEmailDAO>()))
-                .Named("FromMembershipUser");
-            Bind<StandAloneUser>()
-                .ToConstructor(
-                    x =>
-                    new StandAloneUser(x.Inject<PortableStandAloneUser>(), x.Inject<IUserDataMappingDAO>(), x.Inject<IRoles>(),
-                                       x.Inject<IUserGroupAssociationDAO>(), x.Inject<IGroupDAO>(),
-                                       x.Inject<APortalLogger>(), x.Inject<IEmailDAO>()))
-                .Named("FromPortableStandAloneUser");
-            
-            //Things we can use to build a "StandAloneUser" Object
-            Bind<MembershipUser>().ToSelf();
-            Bind<PortableStandAloneUser>().ToSelf();
-            */
-            /*
-            StandardKernel _kernel = new StandardKernel(new NinjectTestModule());
-            _kernel.Get<StandAloneUser>(new ConstructorArgument("user", new MembershipUser()));
-            _kernel.Get<StandAloneUser>(new ConstructorArgument("portableStandAloneUser", new PortableStandAloneUser()));
-            */
         }
     }
 }

@@ -46,7 +46,7 @@ namespace UIAutomation
         [Parameter(Mandatory = false,
                    Position = 0,
                    ParameterSetName = "UIASearch")]
-        public string ContainsText { get; set; }
+        public virtual string ContainsText { get; set; }
         
         [Parameter(Mandatory = false,
                    ParameterSetName = "UIAWildCard")]
@@ -55,7 +55,7 @@ namespace UIAutomation
         [Parameter(Mandatory = false,
                    ParameterSetName = "UIAClassic")]
         [Alias("Title")]
-        public string Name { get; set; }
+        public virtual string Name { get; set; }
         
         [Parameter(Mandatory = false,
                    ParameterSetName = "UIAWildCard")]
@@ -63,7 +63,7 @@ namespace UIAutomation
                    ParameterSetName = "Win32")]
         [Parameter(Mandatory = false,
                    ParameterSetName = "UIAClassic")]
-        public string Value { get; set; }
+        public virtual string Value { get; set; }
         
         [Parameter(Mandatory = false,
                    ParameterSetName = "UIAWildCard")]
@@ -72,7 +72,7 @@ namespace UIAutomation
                    ParameterSetName = "Win32")]
         [Parameter(Mandatory = false,
                    ParameterSetName = "UIAClassic")]
-        public string AutomationId { get; set; }
+        public virtual string AutomationId { get; set; }
         
         [Parameter(Mandatory = false,
                    ParameterSetName = "UIAWildCard")]
@@ -82,7 +82,7 @@ namespace UIAutomation
         [Parameter(Mandatory = false,
                    ParameterSetName = "UIAClassic")]
         [Alias("ClassName")]
-        public string Class { get; set; }
+        public virtual string Class { get; set; }
         
         [Parameter(Mandatory = false,
                    ParameterSetName = "UIAWildCard")]
@@ -91,19 +91,19 @@ namespace UIAutomation
                    ParameterSetName = "Win32")]
         [Parameter(Mandatory = false,
                    ParameterSetName = "UIAClassic")]
-        public string ControlType { get; set; }
+        public virtual string ControlType { get; set; }
         
         [Parameter(Mandatory = false,
                    ParameterSetName = "Win32")]
         [Parameter(Mandatory = false,
                    ParameterSetName = "UIASearch")]
-        public SwitchParameter Win32 { get; set; }
+        public virtual SwitchParameter Win32 { get; set; }
         
         [Parameter (Mandatory = false,
                    ParameterSetName = "UIAWildCard")]
         [Parameter(Mandatory = false,
                    ParameterSetName = "UIAClassic")]
-        public SwitchParameter FromCache { get; set; }
+        public virtual SwitchParameter FromCache { get; set; }
         
         //[Parameter(Mandatory = false,
         //           ParameterSetName = "First")]

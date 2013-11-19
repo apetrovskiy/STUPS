@@ -19,10 +19,6 @@ namespace UIAutomationTest.Commands.Get
     [TestFixture] // [TestFixture(Description="Get-UIAControl[Relatives] test")]
     public class GetUIAControlRelativesTestFixture
     {
-        public GetUIAControlRelativesTestFixture()
-        {
-        }
-        
         [SetUp]
         public void PrepareRunspace()
         {
@@ -30,9 +26,10 @@ namespace UIAutomationTest.Commands.Get
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
-        [Category("Slow")][Category("Get_UIAControlRelatives")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
+        [Category("Get_UIAControlRelatives")]
         public void GetControlParent()
         {
             string auId = "Button111";
@@ -54,9 +51,10 @@ namespace UIAutomationTest.Commands.Get
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
-        [Category("Slow")][Category("Get_UIAControlRelatives")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
+        [Category("Get_UIAControlRelatives")]
         public void GetControlParent_OnlyOne()
         {
             string name = "ccc";
@@ -76,9 +74,10 @@ namespace UIAutomationTest.Commands.Get
         
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
-        [Category("Slow")][Category("Get_UIAControlRelatives")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
+        [Category("Get_UIAControlRelatives")]
         public void GetControlAncestors()
         {
             string auId = "Button111";
@@ -100,9 +99,10 @@ namespace UIAutomationTest.Commands.Get
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
-        [Category("Slow")][Category("Get_UIAControlRelatives")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
+        [Category("Get_UIAControlRelatives")]
         public void GetControlAncestors_MoreThanOne()
         {
             MiddleLevelCode.StartProcessWithFormAndControl(
@@ -120,9 +120,10 @@ namespace UIAutomationTest.Commands.Get
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
-        [Category("Slow")][Category("Get_UIAControlRelatives")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
+        [Category("Get_UIAControlRelatives")]
         public void GetControlChildren()
         {
             string auId = "Button111";
@@ -143,9 +144,10 @@ namespace UIAutomationTest.Commands.Get
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
-        [Category("Slow")][Category("Get_UIAControlRelatives")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
+        [Category("Get_UIAControlRelatives")]
         public void GetControlDescendants()
         {
             string auId = "Button111";
@@ -166,9 +168,10 @@ namespace UIAutomationTest.Commands.Get
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
-        [Category("Slow")][Category("Get_UIAControlRelatives")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
+        [Category("Get_UIAControlRelatives")]
         public void GetControlNextSibling()
         {
             string name1 = "Button111";
@@ -206,9 +209,10 @@ namespace UIAutomationTest.Commands.Get
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
-        [Category("Slow")][Category("Get_UIAControlRelatives")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
+        [Category("Get_UIAControlRelatives")]
         public void GetControlPreviousSibling()
         {
             string name1 = "Button111";
@@ -246,9 +250,10 @@ namespace UIAutomationTest.Commands.Get
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
-        [Category("Slow")][Category("Get_UIAControlRelatives")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
+        [Category("Get_UIAControlRelatives")]
         public void GetControlFirstChild()
         {
             string name1 = "Button111";
@@ -284,9 +289,10 @@ namespace UIAutomationTest.Commands.Get
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
-        [Category("Slow")][Category("Get_UIAControlRelatives")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
+        [Category("Get_UIAControlRelatives")]
         public void GetControlLastChild()
         {
             string name1 = "Button111";

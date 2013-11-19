@@ -28,8 +28,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         [SetUp]
         public void SetUp()
         {
-            UnitTestingHelper.PrepareUnitTestDataStore();
-            ObjectsFactory.InitUnitTests();
+            FakeFactory.Init();
         }
         
         [TearDown]
@@ -37,28 +36,12 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         {
         }
         
-        private IMySuperWrapper getPreparedElement(int childrenCount, Condition condition)
-        {
-            IMySuperCollection descendants = ObjectsFactory.GetMySuperCollection(true);
-            for (int i = 0; i < childrenCount; i++) {
-                //descendants.SourceCollection.Add(new MySuperWrapper(AutomationElement.RootElement));
-                //descendants.SourceCollection.Add(ObjectsFactory.GetMySuperWrapper(AutomationElement.RootElement));
-                
-                //var elt = ObjectsFactory.GetMySuperWrapper(AutomationElement.RootElement);
-                //descendants.SourceCollection.Add(elt);
-            }
-            
-            IMySuperWrapper element = Substitute.For<IMySuperWrapper>();
-            element.FindAll(TreeScope.Descendants, Arg.Any<Condition>()).Returns(descendants);
-            return element;
-        }
-        
         [Test]
-        public void InputIsCollectionOfThree()
+        public void TestPrototype_InputIsCollectionOfThree()
         {
-            //CommonCmdletBase cmdlet = new CommonCmdletBase();
-            GetControlCollectionCmdletBase cmdlet = new GetControlCollectionCmdletBase();
-            cmdlet.Name = "aaa";
+            string name = "aaa";
+            var cmdlet =
+                FakeFactory.Get_GetControlCollectionCmdletBase(ControlType.Button, name, string.Empty, string.Empty, string.Empty);
             // 20131118
             // object -> Condition
             AndCondition condition =
@@ -67,59 +50,42 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 // object -> Condition
                 //cmdlet.GetControlConditions((GetControlCmdletBase)cmdlet, "Button", false, true); // as AndCondition;
                 cmdlet.GetControlConditions((GetControlCmdletBase)cmdlet, "Button", false, true) as AndCondition;
+            IMySuperWrapper element =
+                FakeFactory.GetElement_ForFindAll(
+                    new [] {
+                        FakeFactory.GetAutomationElement(ControlType.Button, name, string.Empty, string.Empty, string.Empty),
+                        FakeFactory.GetAutomationElement(ControlType.Button, name, string.Empty, string.Empty, string.Empty),
+                        FakeFactory.GetAutomationElement(ControlType.Button, name, string.Empty, string.Empty, string.Empty)
+                    }
+                   );
             
-//            AndCondition condition =
-//                new AndCondition(
-//                    new PropertyCondition(
-//                        AutomationElement.NameProperty,
-//                        "aaa"),
-//                    new PropertyCondition(
-//                        AutomationElement.ClassNameProperty,
-//                        "bbb"));
+            GetControlCollectionCmdletBase cmdletDerived = new GetControlCollectionCmdletBase();
             
-            IMySuperWrapper element = getPreparedElement(3, condition);
-            
-            //GetControlCollectionCmdletBase cmdlet = new GetControlCollectionCmdletBase();
             ArrayList resultList =
-                cmdlet.getAutomationElementsWithFindAll(
+                cmdletDerived.getAutomationElementsWithFindAll(
                     element,
-                    "name",
-                    "auId",
-                    "class",
-                    "value",
-                    new string[] { "Button", "Text" },
+                    cmdlet.Name,
+                    cmdlet.AutomationId,
+                    cmdlet.Class,
+                    cmdlet.Value,
+                    cmdlet.ControlType,
                     condition,
                     false,
                     false,
                     false);
             
-            //resultList.any
-            //var rrr = resultList.AsQueryable();
-            //rrr.Any(x => Console.WriteLine(x));
-            //resultList.Any(x => Console.WriteLine(x));
-            //resultList.fore
-            foreach (IMySuperWrapper nnn in resultList) {
-                Console.WriteLine(nnn.Current.ClassName);
-            }
+//            if (null == resultList) {
+//                Console.WriteLine("null == resultList");
+//            } else {
+//                if (0 == resultList.Count) {
+//                    Console.WriteLine("0 == resultList.Count");
+//                }
+//            }
+//            foreach (IMySuperWrapper nnn in resultList) {
+//                Console.WriteLine("finally: " + nnn.Current.Name);
+//            }
+            
+            Assert.ForAll<IMySuperWrapper>(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.Name == name);
         }
-        
-//        [Test]
-//        public void NewInfo()
-//        {
-//            IMySuperWrapperInformation info =
-//                new MySuperWrapperInformation(AutomationElement.RootElement.Current);
-//            Console.WriteLine("new Info");
-//            Console.WriteLine(info.ClassName);
-//            
-//            IMySuperWrapper element =
-//                ObjectsFactory.GetMySuperWrapper(AutomationElement.RootElement);
-//            Console.WriteLine("get element");
-//            Console.WriteLine(element.Current.ClassName);
-//            
-//            IMySuperWrapperInformation info2 =
-//                ObjectsFactory.GetMySuperWrapperInformation(AutomationElement.RootElement.Current);
-//            Console.WriteLine("new Info");
-//            Console.WriteLine(info2.ClassName);
-//        }
     }
 }

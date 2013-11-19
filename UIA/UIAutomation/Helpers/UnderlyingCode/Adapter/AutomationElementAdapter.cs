@@ -33,7 +33,7 @@ namespace UIAutomation
 		}
 		
 		//[Inject]
-		//public MySuperWrapper(AutomationElement element)
+		//public MySuperWrapper(::AutomationElement element)
 		//{
 		//	this.elementHolderCom = element;
 		//}

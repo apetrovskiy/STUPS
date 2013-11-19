@@ -103,7 +103,6 @@ namespace UIAutomation
 	        }
 			try {
     			var singleElement = new Ninject.Parameters.ConstructorArgument("element", element);
-    			//IMySuperWrapper adapterElement = ObjectsFactory.Kernel.Get<IMySuperWrapper>(singleElement);
     			IMySuperWrapper adapterElement = ObjectsFactory.Kernel.Get<IMySuperWrapper>("AutomationElement.NET", singleElement);
     			return adapterElement;
 			}
@@ -123,7 +122,6 @@ namespace UIAutomation
 	        }
 			try {
     			var singleElement = new Ninject.Parameters.ConstructorArgument("element", element);
-    			//IMySuperWrapper adapterElement = ObjectsFactory.Kernel.Get<IMySuperWrapper>(singleElement);
     			IMySuperWrapper adapterElement = ObjectsFactory.Kernel.Get<IMySuperWrapper>("MySuperWrapper", singleElement);
     			return adapterElement;
 			}
@@ -181,8 +179,6 @@ namespace UIAutomation
 	        }
 			try {
     			var manyElements = new Ninject.Parameters.ConstructorArgument("elements", elements);
-    			// 20131119
-	      		//IMySuperCollection adapterCollection = ObjectsFactory.Kernel.Get<IMySuperCollection>(manyElements);
 	      		IMySuperCollection adapterCollection = ObjectsFactory.Kernel.Get<IMySuperCollection>("AutomationElementCollection.NET", manyElements);
 	       		return adapterCollection;
 			}
@@ -233,13 +229,11 @@ namespace UIAutomation
 			}
 		}
 		
-		internal static IMySuperCollection GetMySuperCollection()
+		internal static IMySuperCollection GetMySuperCollection(bool? fake)
 		{
-//	        if (null == elements) {
-//	            return null;
-//	        }
 			try {
-	      		IMySuperCollection adapterCollection = ObjectsFactory.Kernel.Get<IMySuperCollection>("Empty", null);
+		        var boolArgument = new Ninject.Parameters.ConstructorArgument("fake", fake);
+	      		IMySuperCollection adapterCollection = ObjectsFactory.Kernel.Get<IMySuperCollection>("Empty", boolArgument);
 	       		return adapterCollection;
 			}
 			catch (Exception eFailedToIssueCollection) {

@@ -67,8 +67,22 @@ namespace UIAutomation
                 .InCallScope()
                 .Named("AnyCollection");
             
+//            Bind<IMySuperCollection>()
+//                .To<MySuperCollection>()
+//                .InCallScope()
+//                .Named("Empty");
+
+//            Bind<IMySuperCollection>()
+//                .ToConstructor(
+//                    _ =>
+//                    new MySuperCollection())
+//                .InCallScope()
+//                .Named("Empty");
+            
             Bind<IMySuperCollection>()
-                .To<MySuperCollection>()
+                .ToConstructor(
+                    x =>
+                    new MySuperCollection(x.Inject<bool>()))
                 .InCallScope()
                 .Named("Empty");
             

@@ -47,7 +47,7 @@ namespace UIAutomation
 			get { return false; }
 		}
 		//internal MySuperCollection(AutomationElement[] elements)
-		[Inject]
+		//[Inject]
 		//internal MySuperCollection(AutomationElementCollection elements)
 		public MySuperCollection(AutomationElementCollection elements)
         /*
@@ -85,9 +85,11 @@ namespace UIAutomation
 		}
 		//
 		
-		internal MySuperCollection()
+		//internal MySuperCollection()
+		[Inject]
+		//public MySuperCollection(bool fake)
+		internal MySuperCollection(bool fake)
 		{
-		    
 		}
 		
 		public virtual void CopyTo(Array array, int index)

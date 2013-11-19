@@ -114,8 +114,8 @@ namespace UIAutomation
             IMySuperWrapper inputObject,
             // 20131118
             // object -> Condition
-            //AndCondition conditions,
-            Condition conditions,
+            AndCondition conditions,
+            //Condition conditions,
             bool caseSensitive,
             bool onlyOneResult,
             bool onlyTopLevel)
@@ -145,15 +145,15 @@ namespace UIAutomation
             
             if (null == resultCollection || resultCollection.Count == 0) {
                 
-if (null == inputObject) {
-    Console.WriteLine("inputObject == null");
-}
+//if (null == inputObject) {
+//    Console.WriteLine("inputObject == null");
+//}
 //var aaa = inputObject.Current;
 //if (null == aaa) {
 //    Console.WriteLine("inputObject.Current == null");
 //}
-Console.WriteLine("inputObject.Current = " + inputObject.Current);
-Console.WriteLine("inputObject.Current.Name = " + inputObject.Current.Name);
+//Console.WriteLine("inputObject.Current = " + inputObject.Current);
+//Console.WriteLine("inputObject.Current.Name = " + inputObject.Current.Name);
                 
                 WriteVerbose(
                     cmdlet, 
@@ -383,19 +383,21 @@ Console.WriteLine("inputObject.Current.Name = " + inputObject.Current.Name);
                 IMySuperCollection results =
                     element.FindAll(
                         TreeScope.Descendants,
-                        conditions);
+                        // 20131119
+                        //conditions);
+                        (AndCondition)conditions);
                 this.WriteVerbose(
                     this,
                     "There are roughly " +
                     results.Count.ToString() +
                     " elements");
                 
-if (null == results) {
-    Console.WriteLine("getAutomationElementsWithFindAll: null == results");
-}
-foreach (IMySuperWrapper element1 in results) {
-    Console.WriteLine("getAutomationElementsWithFindAll: " + element1.Current.ClassName);
-}
+//if (null == results) {
+//    Console.WriteLine("getAutomationElementsWithFindAll: null == results");
+//}
+//foreach (IMySuperWrapper element1 in results) {
+//    Console.WriteLine("getAutomationElementsWithFindAll: " + element1.Current.ClassName);
+//}
                 
                 resultCollection =
                     ReturnOnlyRightElements(
@@ -409,12 +411,12 @@ foreach (IMySuperWrapper element1 in results) {
                         controlType,
                         caseSensitiveParam);
                 
-if (null == resultCollection) {
-    Console.WriteLine("getAutomationElementsWithFindAll: null == resultCollections");
-}
-foreach (IMySuperWrapper element2 in resultCollection) {
-    Console.WriteLine("getAutomationElementsWithFindAll: " + element2.Current.ClassName);
-}
+//if (null == resultCollection) {
+//    Console.WriteLine("getAutomationElementsWithFindAll: null == resultCollections");
+//}
+//foreach (IMySuperWrapper element2 in resultCollection) {
+//    Console.WriteLine("getAutomationElementsWithFindAll: " + element2.Current.ClassName);
+//}
                 
                 
                 // 20130608
@@ -874,8 +876,8 @@ foreach (IMySuperWrapper element2 in resultCollection) {
                 WriteVerbose(this, "selected TreeScope." + scope.ToString());
                 // 20131118
                 // object -> Condition
-                //AndCondition[] conditions = getControlsConditions(this);
-                Condition[] conditions = getControlsConditions(this);
+                AndCondition[] conditions = getControlsConditions(this);
+                //Condition[] conditions = getControlsConditions(this);
                     IMySuperCollection temporaryResults = null;
                     if (conditions != null && conditions.Length > 0)
                 {

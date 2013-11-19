@@ -39,7 +39,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         
         private IMySuperWrapper getPreparedElement(int childrenCount, Condition condition)
         {
-            IMySuperCollection descendants = new MySuperCollection();
+            // 20131119
+            //IMySuperCollection descendants = new MySuperCollection();
+            IMySuperCollection descendants = ObjectsFactory.GetMySuperCollection();
             for (int i = 0; i < childrenCount; i++) {
                 descendants.SourceCollection.Add(new MySuperWrapper(AutomationElement.RootElement));
             }
@@ -57,11 +59,12 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             GetControlCollectionCmdletBase cmdlet = new GetControlCollectionCmdletBase();
             // 20131118
             // object -> Condition
-            //AndCondition condition =
-            Condition condition =
+            AndCondition condition =
+            //Condition condition =
                 // 20131118
                 // object -> Condition
-                cmdlet.GetControlConditions((GetControlCmdletBase)cmdlet, "Button", false, true); // as AndCondition;
+                //cmdlet.GetControlConditions((GetControlCmdletBase)cmdlet, "Button", false, true); // as AndCondition;
+                cmdlet.GetControlConditions((GetControlCmdletBase)cmdlet, "Button", false, true) as AndCondition;
             
 //            AndCondition condition =
 //                new AndCondition(

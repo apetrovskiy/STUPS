@@ -1,5 +1,4 @@
-﻿using System.Windows.Automation;
-/*
+﻿/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
  * Date: 11/10/2013
@@ -14,6 +13,9 @@ namespace UIAutomation
     using Ninject;
     using Ninject.Modules;
     using Ninject.Extensions.NamedScope;
+    
+    using System.Collections;
+    using System.Windows.Automation;
     
     /// <summary>
     /// Description of ObjectLifecycleModule.
@@ -42,7 +44,33 @@ namespace UIAutomation
                 .InCallScope()
                 .Named("Empty");
             
-            Bind<IMySuperCollection>().To<MySuperCollection>().InCallScope();
+            //Bind<IMySuperCollection>().To<MySuperCollection>().InCallScope();
+            
+            Bind<IMySuperCollection>()
+                .ToConstructor(
+                    x => 
+                    new MySuperCollection(x.Inject<AutomationElementCollection>()))
+                .InCallScope()
+                .Named("AutomationElementCollection.NET");
+            
+            Bind<IMySuperCollection>()
+                .ToConstructor(
+                    x =>
+                    new MySuperCollection(x.Inject<IMySuperCollection>()))
+                .InCallScope()
+                .Named("MySuperCollection");
+            
+            Bind<IMySuperCollection>()
+                .ToConstructor(
+                    x =>
+                    new MySuperCollection(x.Inject<IEnumerable>()))
+                .InCallScope()
+                .Named("AnyCollection");
+            
+            Bind<IMySuperCollection>()
+                .To<MySuperCollection>()
+                .InCallScope()
+                .Named("Empty");
             
             Bind<IMySuperWrapperInformation>().To<MySuperWrapperInformation>().InCallScope();
             

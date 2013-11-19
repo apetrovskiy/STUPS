@@ -274,6 +274,11 @@ namespace UIAutomation.Commands
             // WriteObject(this, false);
             //}
             
+            // 20131119
+            // disposal
+            windowsByPID.Dispose();
+            windowsByPID = null;
+            
             } // 20120823
         }
     }

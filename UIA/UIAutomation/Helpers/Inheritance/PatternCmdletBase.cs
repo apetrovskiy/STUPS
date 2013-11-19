@@ -690,7 +690,9 @@ namespace UIAutomation
                     
                     // 20131109
                     //System.Windows.Automation.AutomationElement[] selection = selPattern.Current.GetSelection();
-                    IMySuperWrapper[] selection = new MySuperCollection(selPattern.Current.GetSelection()).Cast<MySuperWrapper>().ToArray();
+                    // 20131119
+                    //IMySuperWrapper[] selection = new MySuperCollection(selPattern.Current.GetSelection()).Cast<MySuperWrapper>().ToArray();
+                    IMySuperWrapper[] selection = ObjectsFactory.GetMySuperCollection(selPattern.Current.GetSelection()).Cast<MySuperWrapper>().ToArray();
                     WriteObject(this, selection);
                 } else {
                     WriteVerbose(this, "couldn't get SelectionPattern");
@@ -755,7 +757,9 @@ namespace UIAutomation
                                 
                                 // 20131109
                                 //AutomationElement[] selection = selPatternTemp.Current.GetSelection();
-                                IMySuperWrapper[] selection = new MySuperCollection(selPatternTemp.Current.GetSelection()).Cast<MySuperWrapper>().ToArray();
+                                // 20131119
+                                //IMySuperWrapper[] selection = new MySuperCollection(selPatternTemp.Current.GetSelection()).Cast<MySuperWrapper>().ToArray();
+                                IMySuperWrapper[] selection = ObjectsFactory.GetMySuperCollection(selPatternTemp.Current.GetSelection()).Cast<MySuperWrapper>().ToArray();
                                 WriteObject(this, selection);
                             } else {
                                 WriteObject(this, true);

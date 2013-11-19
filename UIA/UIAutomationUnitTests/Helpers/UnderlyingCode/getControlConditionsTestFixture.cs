@@ -38,8 +38,8 @@ namespace UIAutomationUnitTests
         
         // 20131118
         // object -> Condition
-        //private AndCondition ResultCondition { get; set; }
-        private Condition ResultCondition { get; set; }
+        private AndCondition ResultCondition { get; set; }
+        //private Condition ResultCondition { get; set; }
 
         private void getConditions(string name, string automationId, string className, string controlType)
         {
@@ -57,8 +57,8 @@ namespace UIAutomationUnitTests
             this.ResultCondition =
                 // 20131118
                 // object -> Condition
-                //(common.GetControlConditions(cmdlet, controlType, cmdlet.CaseSensitive, true) as AndCondition);
-                common.GetControlConditions(cmdlet, controlType, cmdlet.CaseSensitive, true);
+                (common.GetControlConditions(cmdlet, controlType, cmdlet.CaseSensitive, true) as AndCondition);
+                //common.GetControlConditions(cmdlet, controlType, cmdlet.CaseSensitive, true);
 
         }
         

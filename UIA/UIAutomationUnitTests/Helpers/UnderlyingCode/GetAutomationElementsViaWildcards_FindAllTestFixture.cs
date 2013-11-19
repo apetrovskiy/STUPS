@@ -93,7 +93,9 @@ namespace UIAutomationUnitTests
                         "bbb"));
             
             elementMock.Setup(m => m.FindAll(TreeScope.Descendants, condition))
-                .Returns( new MySuperCollection(new MySuperWrapper[] { (MySuperWrapper)childElement, (MySuperWrapper)childElement, (MySuperWrapper)childElement }));
+                // 20131119
+                //.Returns( new MySuperCollection(new MySuperWrapper[] { (MySuperWrapper)childElement, (MySuperWrapper)childElement, (MySuperWrapper)childElement }));
+                .Returns( ObjectsFactory.GetMySuperCollection(new MySuperWrapper[] { (MySuperWrapper)childElement, (MySuperWrapper)childElement, (MySuperWrapper)childElement }));
             
             //var element = elementMock.Object;
             var element = this.kernel.Get<IMySuperWrapper>();

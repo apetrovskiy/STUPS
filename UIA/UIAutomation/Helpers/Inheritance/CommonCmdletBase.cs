@@ -1648,15 +1648,15 @@ namespace UIAutomation
         #region Get-UIAControl
         // 20131118
         // object -> Condition
-        //public AndCondition[] getControlsConditions(GetControlCollectionCmdletBase cmdlet)
-        public Condition[] getControlsConditions(GetControlCollectionCmdletBase cmdlet)
+        public AndCondition[] getControlsConditions(GetControlCollectionCmdletBase cmdlet)
+        //public Condition[] getControlsConditions(GetControlCollectionCmdletBase cmdlet)
         {
             // 20131118
             // object -> Condition
-            //System.Collections.Generic.List<AndCondition> conditions =
-            //    new System.Collections.Generic.List<AndCondition>();
-            System.Collections.Generic.List<Condition> conditions =
-                new System.Collections.Generic.List<Condition>();
+            System.Collections.Generic.List<AndCondition> conditions =
+                new System.Collections.Generic.List<AndCondition>();
+            //System.Collections.Generic.List<Condition> conditions =
+            //    new System.Collections.Generic.List<Condition>();
 
             if (null != cmdlet.ControlType && 0 < cmdlet.ControlType.Length) {
                 foreach (string controlTypeName in cmdlet.ControlType)
@@ -1664,7 +1664,8 @@ namespace UIAutomation
                     WriteVerbose(this, "control type: " + controlTypeName);
                     // 20131118
                     // object -> Condition
-                    conditions.Add(GetControlConditions(((GetControlCmdletBase)cmdlet), controlTypeName, cmdlet.CaseSensitive, true)); // as AndCondition);
+                    //conditions.Add(GetControlConditions(((GetControlCmdletBase)cmdlet), controlTypeName, cmdlet.CaseSensitive, true)); // as AndCondition);
+                    conditions.Add((GetControlConditions(((GetControlCmdletBase)cmdlet), controlTypeName, cmdlet.CaseSensitive, true)) as AndCondition);
                 }
 
                 /*
@@ -1678,8 +1679,8 @@ namespace UIAutomation
                 WriteVerbose(this, "without control type");
                 // 20131118
                 // object -> Condition
-                //conditions.Add(GetControlConditions(((GetControlCmdletBase)cmdlet), "", cmdlet.CaseSensitive, true) as AndCondition);
-                conditions.Add(GetControlConditions(((GetControlCmdletBase)cmdlet), "", cmdlet.CaseSensitive, true));
+                conditions.Add(GetControlConditions(((GetControlCmdletBase)cmdlet), "", cmdlet.CaseSensitive, true) as AndCondition);
+                //conditions.Add(GetControlConditions(((GetControlCmdletBase)cmdlet), "", cmdlet.CaseSensitive, true));
             }
             return conditions.ToArray();
         }
@@ -1689,7 +1690,9 @@ namespace UIAutomation
         //public object getControlConditions(GetCmdletBase cmdlet1, string controlType, bool caseSensitive, bool AndVsOr)
         //internal object GetControlConditions(GetCmdletBase cmdlet1, string controlType, bool caseSensitive, bool AndVsOr)
         //internal Condition GetControlConditions(GetCmdletBase cmdlet1, string controlType, bool caseSensitive, bool AndVsOr)
-        public Condition GetControlConditions(GetCmdletBase cmdlet1, string controlType, bool caseSensitive, bool AndVsOr)
+        //public Condition GetControlConditions(GetCmdletBase cmdlet1, string controlType, bool caseSensitive, bool AndVsOr)
+        //public AndCondition GetControlConditions(GetCmdletBase cmdlet1, string controlType, bool caseSensitive, bool AndVsOr)
+        public object GetControlConditions(GetCmdletBase cmdlet1, string controlType, bool caseSensitive, bool AndVsOr)
         {
             System.Windows.Automation.ControlType ctrlType = null;
             System.Windows.Automation.AndCondition andConditions = null;
@@ -1698,8 +1701,9 @@ namespace UIAutomation
             System.Windows.Automation.AndCondition allConditions = null;
             // 20131118
             // object -> Condition
-            //object conditionsToReturn = null;
-            Condition conditionsToReturn = null;
+            object conditionsToReturn = null;
+            //Condition conditionsToReturn = null;
+            //AndCondition conditionsToReturn = null;
             PropertyConditionFlags flags = PropertyConditionFlags.None;
             if (!caseSensitive) {
                 flags = PropertyConditionFlags.IgnoreCase;
@@ -1997,7 +2001,9 @@ namespace UIAutomation
                     conditionsToReturn = andConditions;
 
                 } else if (null != orConditions) {
-
+                    
+                    // 20131118/20131119
+                    // object -> Condition
                     tempConditions = orConditions.GetConditions();
                     conditionsToReturn = orConditions;
 
@@ -2037,37 +2043,37 @@ namespace UIAutomation
         }
         // 20131118
         // object -> Condition
-//        protected void displayConditions(
-//            GetControlCmdletBase cmdlet,
-//            // 20131118
-//            // object -> Condition
-//            //AndCondition conditions,
-//            Condition conditions,
-//            string description)
-//        {
-//            try
-//            {
-//                Condition[] conds = conditions.GetConditions();
-//                foreach (Condition propertyCondition in conds)
-//                {
-//                    cmdlet.WriteVerbose(cmdlet, "<<<< displaying conditions '" + description + "' >>>>");
-//                    cmdlet.WriteVerbose(cmdlet, (propertyCondition as PropertyCondition).Property.ProgrammaticName);
-//                    cmdlet.WriteVerbose(cmdlet, (propertyCondition as PropertyCondition).Value.ToString());
-//                    cmdlet.WriteVerbose(cmdlet, (propertyCondition as PropertyCondition).Flags.ToString());
-//                }
-//
-//                /*
-//                for (int i = 0; i < conds.Length; i++) {
-//                    cmdlet.WriteVerbose(cmdlet, "<<<< displaying conditions '" + description + "' >>>>");
-//                    cmdlet.WriteVerbose(cmdlet, (conds[i] as PropertyCondition).Property.ProgrammaticName);
-//                    cmdlet.WriteVerbose(cmdlet, (conds[i] as PropertyCondition).Value.ToString());
-//                    cmdlet.WriteVerbose(cmdlet, (conds[i] as PropertyCondition).Flags.ToString());
-//
-//                }
-//                */
-//            }
-//            catch {}
-//        }
+        protected void displayConditions(
+            GetControlCmdletBase cmdlet,
+            // 20131118
+            // object -> Condition
+            AndCondition conditions,
+            //Condition conditions,
+            string description)
+        {
+            try
+            {
+                Condition[] conds = conditions.GetConditions();
+                foreach (Condition propertyCondition in conds)
+                {
+                    cmdlet.WriteVerbose(cmdlet, "<<<< displaying conditions '" + description + "' >>>>");
+                    cmdlet.WriteVerbose(cmdlet, (propertyCondition as PropertyCondition).Property.ProgrammaticName);
+                    cmdlet.WriteVerbose(cmdlet, (propertyCondition as PropertyCondition).Value.ToString());
+                    cmdlet.WriteVerbose(cmdlet, (propertyCondition as PropertyCondition).Flags.ToString());
+                }
+
+                /*
+                for (int i = 0; i < conds.Length; i++) {
+                    cmdlet.WriteVerbose(cmdlet, "<<<< displaying conditions '" + description + "' >>>>");
+                    cmdlet.WriteVerbose(cmdlet, (conds[i] as PropertyCondition).Property.ProgrammaticName);
+                    cmdlet.WriteVerbose(cmdlet, (conds[i] as PropertyCondition).Value.ToString());
+                    cmdlet.WriteVerbose(cmdlet, (conds[i] as PropertyCondition).Flags.ToString());
+
+                }
+                */
+            }
+            catch {}
+        }
         
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "get")]
         protected internal ArrayList GetControl(GetControlCmdletBase cmdlet)
@@ -2081,16 +2087,16 @@ namespace UIAutomation
                 #region conditions
                 // 20131118
                 // object -> Condition
-                //System.Windows.Automation.AndCondition conditions = null;
-                System.Windows.Automation.Condition conditions = null;
+                System.Windows.Automation.AndCondition conditions = null;
+                //System.Windows.Automation.Condition conditions = null;
                 // 20131118
                 // object -> Condition
-                //System.Windows.Automation.AndCondition conditionsForWildCards = null;
-                System.Windows.Automation.Condition conditionsForWildCards = null;
+                System.Windows.Automation.AndCondition conditionsForWildCards = null;
+                //System.Windows.Automation.Condition conditionsForWildCards = null;
                 // 20131118
                 // object -> Condition
-                //System.Windows.Automation.AndCondition conditionsForTextSearch = null;
-                System.Windows.Automation.Condition conditionsForTextSearch = null;
+                System.Windows.Automation.AndCondition conditionsForTextSearch = null;
+                //System.Windows.Automation.Condition conditionsForTextSearch = null;
                 
                 GetControlCmdletBase tempCmdlet =
                     new GetControlCmdletBase();
@@ -2104,39 +2110,51 @@ namespace UIAutomation
                     conditionsForTextSearch =
                         // 20131118
                         // object -> Condition
+                        // 20131119
                         this.GetControlConditions(
+                        //(AndCondition)this.GetControlConditions(
                             tempCmdlet,
                             tempCmdlet.ControlType,
                             cmdlet.CaseSensitive,
-                            false); // as AndCondition;
+                            //false); // as AndCondition;
+                            false) as AndCondition;
                     
                     // display conditions for text search
-                    this.WriteVerbose(cmdlet, "these conditions are used for text search:");
+                    // 20131119
+                    //this.WriteVerbose(cmdlet, "these conditions are used for text search:");
                     // 20131118
                     // object -> Condition
-                    //displayConditions(cmdlet, conditionsForTextSearch, "for text search");
+                    displayConditions(cmdlet, conditionsForTextSearch, "for text search");
 
                 } else {
                     
                     // 20131118
                     // object -> Condition
-                    conditions = this.GetControlConditions(cmdlet, cmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive, true); // as AndCondition;
+                    // 20131119
+                    //conditions = this.GetControlConditions(cmdlet, cmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive, true); // as AndCondition;
+                    conditions = this.GetControlConditions(cmdlet, cmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive, true) as AndCondition;
+                    //conditions = (AndCondition)this.GetControlConditions(cmdlet, cmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive, true); // as AndCondition;
                     // display conditions for a regular search
-                    this.WriteVerbose(cmdlet, "these conditions are used for an exact search:");
+                    // 20131119
+                    //this.WriteVerbose(cmdlet, "these conditions are used for an exact search:");
                     // 20131118
                     // object -> Condition
-                    //displayConditions(cmdlet, conditions, "for exact search");
+                    displayConditions(cmdlet, conditions, "for exact search");
                     
                     conditionsForWildCards =
                         // 20131118
                         // object -> Condition
-                        this.GetControlConditions(tempCmdlet, tempCmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive, true); // as AndCondition;
+                        // 20131119
+                        //this.GetControlConditions(tempCmdlet, tempCmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive, true); // as AndCondition;
+                        this.GetControlConditions(tempCmdlet, tempCmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive, true) as AndCondition;
+                        //(AndCondition)this.GetControlConditions(tempCmdlet, tempCmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive, true); // as AndCondition;
                     
                     // display conditions for wildcard search
-                    this.WriteVerbose(cmdlet, "these conditions are used for wildcard search:");
+                    // 20131119
+                    //this.WriteVerbose(cmdlet, "these conditions are used for wildcard search:");
                     // 20131118
                     // object -> Condition
-                    //displayConditions(cmdlet, conditionsForWildCards, "for wildcard search");
+                    displayConditions(cmdlet, conditionsForWildCards, "for wildcard search");
 
                 }
                 #endregion conditions
@@ -2540,8 +2558,8 @@ namespace UIAutomation
             string strValue,
             // 20131118
             // object -> Condition
-            //System.Windows.Automation.AndCondition conditionsForWildCards)
-            System.Windows.Automation.Condition conditionsForWildCards)
+            System.Windows.Automation.AndCondition conditionsForWildCards)
+            //System.Windows.Automation.Condition conditionsForWildCards)
         {
             this.WriteVerbose((cmdlet as PSTestLib.PSCmdletBase), "[getting the control] using WildCard search");
             try {
@@ -2675,8 +2693,8 @@ namespace UIAutomation
             IMySuperWrapper inputObject,
             // 20131118
             // object -> Condition
-            //System.Windows.Automation.AndCondition conditions)
-            System.Windows.Automation.Condition conditions)
+            System.Windows.Automation.AndCondition conditions)
+            //System.Windows.Automation.Condition conditions)
         {
             #region the -First story
             // 20120824
@@ -2724,7 +2742,9 @@ namespace UIAutomation
             // 20131105
             // refactoring
             //AutomationElementCollection tempCollection = inputObject.FindAll(System.Windows.Automation.TreeScope.Descendants, conditions);
-            IMySuperCollection tempCollection = inputObject.FindAll(System.Windows.Automation.TreeScope.Descendants, conditions);
+            // 20131119
+            //IMySuperCollection tempCollection = inputObject.FindAll(System.Windows.Automation.TreeScope.Descendants, conditions);
+            IMySuperCollection tempCollection = inputObject.FindAll(System.Windows.Automation.TreeScope.Descendants, (AndCondition)conditions);
                 
             // 20131109
             //foreach (AutomationElement tempElement in tempCollection) {
@@ -2821,14 +2841,16 @@ namespace UIAutomation
             IMySuperWrapper inputObject,
             // 20131118
             // object -> Condition
-            //System.Windows.Automation.AndCondition conditionsForTextSearch)
-            System.Windows.Automation.Condition conditionsForTextSearch)
+            System.Windows.Automation.AndCondition conditionsForTextSearch)
+            //System.Windows.Automation.Condition conditionsForTextSearch)
         {
             this.WriteVerbose(cmdlet, "Text search");
             // 20131105
             // refactoring
             //AutomationElementCollection textSearchCollection = inputObject.FindAll(TreeScope.Descendants, conditionsForTextSearch);
-            IMySuperCollection textSearchCollection = inputObject.FindAll(TreeScope.Descendants, conditionsForTextSearch);
+            // 20131119
+            //IMySuperCollection textSearchCollection = inputObject.FindAll(TreeScope.Descendants, conditionsForTextSearch);
+            IMySuperCollection textSearchCollection = inputObject.FindAll(TreeScope.Descendants, (AndCondition)conditionsForTextSearch);
             if (null != textSearchCollection && 0 < textSearchCollection.Count) {
                 this.WriteVerbose(cmdlet, "There are " + textSearchCollection.Count.ToString() + " elements");
                 

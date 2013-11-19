@@ -68,6 +68,10 @@ namespace UIAutomation
                 //Console.WriteLine(element.Current.AutomationId);
             }
             
+            // 20131119
+            // disposal
+            list = null;
+            
             return query2;
         }
         
@@ -77,7 +81,9 @@ namespace UIAutomation
         public static IMySuperCollection ConvertCmdletInputToCollectionAdapter(this ICollection inputArray)
         {
             IMySuperCollection resultCollection =
-                new MySuperCollection(inputArray);
+                // 20131119
+                //new MySuperCollection(inputArray);
+                ObjectsFactory.GetMySuperCollection();
                 //new MySuperCollection(); //inputArray.Cast<IMySuperWrapper>().ToList());
             //resultCollection.SourceCollection = inputArray;
 //            foreach (AutomationElement element in inputArray) {

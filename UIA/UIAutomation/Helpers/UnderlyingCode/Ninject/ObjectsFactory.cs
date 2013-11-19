@@ -13,6 +13,7 @@ namespace UIAutomation
     using Ninject;
     using Ninject.Modules;
     using System.Windows.Automation;
+    using System.Collections;
     
     /// <summary>
     /// Description of ObjectsFactory.
@@ -180,7 +181,65 @@ namespace UIAutomation
 	        }
 			try {
     			var manyElements = new Ninject.Parameters.ConstructorArgument("elements", elements);
-	      		IMySuperCollection adapterCollection = ObjectsFactory.Kernel.Get<IMySuperCollection>(manyElements);
+    			// 20131119
+	      		//IMySuperCollection adapterCollection = ObjectsFactory.Kernel.Get<IMySuperCollection>(manyElements);
+	      		IMySuperCollection adapterCollection = ObjectsFactory.Kernel.Get<IMySuperCollection>("AutomationElementCollection.NET", manyElements);
+	       		return adapterCollection;
+			}
+			catch (Exception eFailedToIssueCollection) {
+			    // TODO
+			    // write error to error object!!!
+//			    Console.WriteLine("Collection");
+//			    Console.WriteLine(eFailedToIssueCollection.Message);
+			    return null;
+			}
+		}
+		
+		internal static IMySuperCollection GetMySuperCollection(IMySuperCollection elements)
+		{
+	        if (null == elements) {
+	            return null;
+	        }
+			try {
+    			var manyElements = new Ninject.Parameters.ConstructorArgument("elements", elements);
+	      		IMySuperCollection adapterCollection = ObjectsFactory.Kernel.Get<IMySuperCollection>("MySuperCollection", manyElements);
+	       		return adapterCollection;
+			}
+			catch (Exception eFailedToIssueCollection) {
+			    // TODO
+			    // write error to error object!!!
+//			    Console.WriteLine("Collection");
+//			    Console.WriteLine(eFailedToIssueCollection.Message);
+			    return null;
+			}
+		}
+		
+		internal static IMySuperCollection GetMySuperCollection(IEnumerable elements)
+		{
+	        if (null == elements) {
+	            return null;
+	        }
+			try {
+    			var manyElements = new Ninject.Parameters.ConstructorArgument("elements", elements);
+	      		IMySuperCollection adapterCollection = ObjectsFactory.Kernel.Get<IMySuperCollection>("AnyCollection", manyElements);
+	       		return adapterCollection;
+			}
+			catch (Exception eFailedToIssueCollection) {
+			    // TODO
+			    // write error to error object!!!
+//			    Console.WriteLine("Collection");
+//			    Console.WriteLine(eFailedToIssueCollection.Message);
+			    return null;
+			}
+		}
+		
+		internal static IMySuperCollection GetMySuperCollection()
+		{
+//	        if (null == elements) {
+//	            return null;
+//	        }
+			try {
+	      		IMySuperCollection adapterCollection = ObjectsFactory.Kernel.Get<IMySuperCollection>("Empty", null);
 	       		return adapterCollection;
 			}
 			catch (Exception eFailedToIssueCollection) {

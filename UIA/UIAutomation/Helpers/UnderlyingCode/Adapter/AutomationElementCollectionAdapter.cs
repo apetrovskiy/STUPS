@@ -14,6 +14,9 @@ namespace UIAutomation
     using System.Collections.Generic;
     using System.Windows.Automation;
     using System.Linq;
+    
+    //using System.Linq.Expressions;
+    
     using Ninject;
     
 	//public class AutomationElementCollection : ICollection, IEnumerable, IAutomationElementCollection

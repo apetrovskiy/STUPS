@@ -90,7 +90,9 @@ namespace UIAutomation.Commands
                             selectedItems =
                                 // 20131109
                                 //selPattern.Current.GetSelection();
-                                new MySuperCollection(selPattern.Current.GetSelection()).Cast<MySuperWrapper>().ToArray();
+                                // 20131119
+                                //new MySuperCollection(selPattern.Current.GetSelection()).Cast<MySuperWrapper>().ToArray();
+                                ObjectsFactory.GetMySuperCollection(selPattern.Current.GetSelection()).Cast<MySuperWrapper>().ToArray();
                         }
                         catch (Exception eSelection) {
                             this.WriteDebug(this, eSelection.Message);
@@ -184,7 +186,11 @@ namespace UIAutomation.Commands
                     foreach (string row in rows) {
                         this.WriteObject(row);
                     }
-
+                    
+                    // 20131119
+                    // disposal
+                    rows = null;
+                    
                     /*
                     if (rows.Count > 0) {
                         // 20130318

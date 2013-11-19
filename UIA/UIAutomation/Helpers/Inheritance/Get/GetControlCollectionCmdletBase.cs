@@ -385,7 +385,7 @@ namespace UIAutomation
                         TreeScope.Descendants,
                         // 20131119
                         //conditions);
-                        (AndCondition)conditions);
+                        conditions); //(AndCondition)conditions);
                 this.WriteVerbose(
                     this,
                     "There are roughly " +

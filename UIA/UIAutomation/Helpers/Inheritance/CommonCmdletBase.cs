@@ -1665,7 +1665,7 @@ namespace UIAutomation
                     // 20131118
                     // object -> Condition
                     //conditions.Add(GetControlConditions(((GetControlCmdletBase)cmdlet), controlTypeName, cmdlet.CaseSensitive, true)); // as AndCondition);
-                    conditions.Add((GetControlConditions(((GetControlCmdletBase)cmdlet), controlTypeName, cmdlet.CaseSensitive, true)) as AndCondition);
+                    conditions.Add(GetControlConditions(((GetControlCmdletBase)cmdlet), controlTypeName, cmdlet.CaseSensitive, true) as AndCondition);
                 }
 
                 /*
@@ -1679,7 +1679,7 @@ namespace UIAutomation
                 WriteVerbose(this, "without control type");
                 // 20131118
                 // object -> Condition
-                conditions.Add(GetControlConditions(((GetControlCmdletBase)cmdlet), "", cmdlet.CaseSensitive, true) as AndCondition);
+                conditions.Add(this.GetControlConditions(((GetControlCmdletBase)cmdlet), "", cmdlet.CaseSensitive, true) as AndCondition);
                 //conditions.Add(GetControlConditions(((GetControlCmdletBase)cmdlet), "", cmdlet.CaseSensitive, true));
             }
             return conditions.ToArray();
@@ -2121,7 +2121,7 @@ namespace UIAutomation
                     
                     // display conditions for text search
                     // 20131119
-                    //this.WriteVerbose(cmdlet, "these conditions are used for text search:");
+                    this.WriteVerbose(cmdlet, "these conditions are used for text search:");
                     // 20131118
                     // object -> Condition
                     displayConditions(cmdlet, conditionsForTextSearch, "for text search");
@@ -2136,7 +2136,7 @@ namespace UIAutomation
                     //conditions = (AndCondition)this.GetControlConditions(cmdlet, cmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive, true); // as AndCondition;
                     // display conditions for a regular search
                     // 20131119
-                    //this.WriteVerbose(cmdlet, "these conditions are used for an exact search:");
+                    this.WriteVerbose(cmdlet, "these conditions are used for an exact search:");
                     // 20131118
                     // object -> Condition
                     displayConditions(cmdlet, conditions, "for exact search");
@@ -2151,7 +2151,7 @@ namespace UIAutomation
                     
                     // display conditions for wildcard search
                     // 20131119
-                    //this.WriteVerbose(cmdlet, "these conditions are used for wildcard search:");
+                    this.WriteVerbose(cmdlet, "these conditions are used for wildcard search:");
                     // 20131118
                     // object -> Condition
                     displayConditions(cmdlet, conditionsForWildCards, "for wildcard search");
@@ -2744,7 +2744,7 @@ namespace UIAutomation
             //AutomationElementCollection tempCollection = inputObject.FindAll(System.Windows.Automation.TreeScope.Descendants, conditions);
             // 20131119
             //IMySuperCollection tempCollection = inputObject.FindAll(System.Windows.Automation.TreeScope.Descendants, conditions);
-            IMySuperCollection tempCollection = inputObject.FindAll(System.Windows.Automation.TreeScope.Descendants, (AndCondition)conditions);
+            IMySuperCollection tempCollection = inputObject.FindAll(System.Windows.Automation.TreeScope.Descendants, conditions);
                 
             // 20131109
             //foreach (AutomationElement tempElement in tempCollection) {
@@ -2850,7 +2850,7 @@ namespace UIAutomation
             //AutomationElementCollection textSearchCollection = inputObject.FindAll(TreeScope.Descendants, conditionsForTextSearch);
             // 20131119
             //IMySuperCollection textSearchCollection = inputObject.FindAll(TreeScope.Descendants, conditionsForTextSearch);
-            IMySuperCollection textSearchCollection = inputObject.FindAll(TreeScope.Descendants, (AndCondition)conditionsForTextSearch);
+            IMySuperCollection textSearchCollection = inputObject.FindAll(TreeScope.Descendants, conditionsForTextSearch);
             if (null != textSearchCollection && 0 < textSearchCollection.Count) {
                 this.WriteVerbose(cmdlet, "There are " + textSearchCollection.Count.ToString() + " elements");
                 

@@ -41,13 +41,21 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         {
             // 20131119
             //IMySuperCollection descendants = new MySuperCollection();
+Console.WriteLine("gPE: 000001");
             IMySuperCollection descendants = ObjectsFactory.GetMySuperCollection();
+Console.WriteLine("gPE: 000002");
             for (int i = 0; i < childrenCount; i++) {
-                descendants.SourceCollection.Add(new MySuperWrapper(AutomationElement.RootElement));
+                //descendants.SourceCollection.Add(new MySuperWrapper(AutomationElement.RootElement));
+                descendants.SourceCollection.Add(ObjectsFactory.GetMySuperWrapper(AutomationElement.RootElement));
             }
             
+Console.WriteLine("gPE: 000005");
+            
             IMySuperWrapper element = Substitute.For<IMySuperWrapper>();
+Console.WriteLine("gPE: 000006");
             element.FindAll(TreeScope.Descendants, Arg.Any<Condition>()).Returns(descendants);
+            
+Console.WriteLine("gPE: 000007");
             
             return element;
         }
@@ -57,6 +65,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         {
             //CommonCmdletBase cmdlet = new CommonCmdletBase();
             GetControlCollectionCmdletBase cmdlet = new GetControlCollectionCmdletBase();
+            cmdlet.Name = "aaa";
             // 20131118
             // object -> Condition
             AndCondition condition =

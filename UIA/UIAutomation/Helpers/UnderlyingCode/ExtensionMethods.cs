@@ -83,7 +83,7 @@ namespace UIAutomation
             IMySuperCollection resultCollection =
                 // 20131119
                 //new MySuperCollection(inputArray);
-                ObjectsFactory.GetMySuperCollection();
+                ObjectsFactory.GetMySuperCollection(inputArray);
                 //new MySuperCollection(); //inputArray.Cast<IMySuperWrapper>().ToList());
             //resultCollection.SourceCollection = inputArray;
 //            foreach (AutomationElement element in inputArray) {

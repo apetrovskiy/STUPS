@@ -61,7 +61,7 @@ namespace UIAutomation
 		//IMySuperWrapper GetSourceElement();
 		//void SetSourceElement(IMySuperWrapper element);
 	    
-		void Dispose();
+		//void Dispose();
 		
 //		bool Equals(object obj);
 //		int GetHashCode();

@@ -2305,10 +2305,52 @@ namespace UIAutomation
         public static System.Windows.Automation.ControlType
             GetControlTypeByTypeName(string controlType)
         {
-            System.Windows.Automation.ControlType ctrlType = null;
+            // 20131119
+            //System.Windows.Automation.ControlType ctrlType = null;
             string _controlType = controlType.ToUpper();
             switch (_controlType)
             {
+                    // 20131119
+                    case "BUTTON": { return System.Windows.Automation.ControlType.Button; }
+                    case "CALENDAR": { return System.Windows.Automation.ControlType.Calendar; }
+                    case "CHECKBOX": { return System.Windows.Automation.ControlType.CheckBox; }
+                    case "COMBOBOX": { return System.Windows.Automation.ControlType.ComboBox; }
+                    case "CUSTOM": { return System.Windows.Automation.ControlType.Custom; }
+                    case "DATAGRID": { return System.Windows.Automation.ControlType.DataGrid; }
+                    case "DATAITEM": { return System.Windows.Automation.ControlType.DataItem; }
+                    case "DOCUMENT": { return System.Windows.Automation.ControlType.Document; }
+                    case "EDIT": { return System.Windows.Automation.ControlType.Edit; }
+                    case "GROUP": { return System.Windows.Automation.ControlType.Group; }
+                    case "HEADER": { return System.Windows.Automation.ControlType.Header; }
+                    case "HEADERITEM": { return System.Windows.Automation.ControlType.HeaderItem; }
+                    case "HYPERLINK": { return System.Windows.Automation.ControlType.Hyperlink; }
+                    case "IMAGE": { return System.Windows.Automation.ControlType.Image; }
+                    case "LIST": { return System.Windows.Automation.ControlType.List; }
+                    case "LISTITEM": { return System.Windows.Automation.ControlType.ListItem; }
+                    case "MENU": { return System.Windows.Automation.ControlType.Menu; }
+                    case "MENUBAR": { return System.Windows.Automation.ControlType.MenuBar; }
+                    case "MENUITEM": { return System.Windows.Automation.ControlType.MenuItem; }
+                    case "PANE": { return System.Windows.Automation.ControlType.Pane; }
+                    case "PROGRESSBAR": { return System.Windows.Automation.ControlType.ProgressBar; }
+                    case "RADIOBUTTON": { return System.Windows.Automation.ControlType.RadioButton; }
+                    case "SCROLLBAR": { return System.Windows.Automation.ControlType.ScrollBar; }
+                    case "SEPARATOR": { return System.Windows.Automation.ControlType.Separator; }
+                    case "SLIDER": { return System.Windows.Automation.ControlType.Slider; }
+                    case "SPINNER": { return System.Windows.Automation.ControlType.Spinner; }
+                    case "SPLITBUTTON": { return System.Windows.Automation.ControlType.SplitButton; }
+                    case "STATUSBAR": { return System.Windows.Automation.ControlType.StatusBar; }
+                    case "TAB": { return System.Windows.Automation.ControlType.Tab; }
+                    case "TABITEM": { return System.Windows.Automation.ControlType.TabItem; }
+                    case "TABLE": { return System.Windows.Automation.ControlType.Table; }
+                    case "TEXT": { return System.Windows.Automation.ControlType.Text; }
+                    case "THUMB": { return System.Windows.Automation.ControlType.Thumb; }
+                    case "TITLEBAR": { return System.Windows.Automation.ControlType.TitleBar; }
+                    case "TOOLBAR": { return System.Windows.Automation.ControlType.ToolBar; }
+                    case "TOOLTIP": { return System.Windows.Automation.ControlType.ToolTip; }
+                    case "TREE": { return System.Windows.Automation.ControlType.Tree; }
+                    case "TREEITEM": { return System.Windows.Automation.ControlType.TreeItem; }
+                    case "WINDOW": { return System.Windows.Automation.ControlType.Window; }
+                    /*
                     case "BUTTON": { ctrlType = System.Windows.Automation.ControlType.Button; break; }
                     case "CALENDAR": { ctrlType = System.Windows.Automation.ControlType.Calendar; break; }
                     case "CHECKBOX": { ctrlType = System.Windows.Automation.ControlType.CheckBox; break; }
@@ -2348,12 +2390,16 @@ namespace UIAutomation
                     case "TREE": { ctrlType = System.Windows.Automation.ControlType.Tree; break; }
                     case "TREEITEM": { ctrlType = System.Windows.Automation.ControlType.TreeItem; break; }
                     case "WINDOW": { ctrlType = System.Windows.Automation.ControlType.Window; break; }
+                    */
                 default:
                     // WriteVerbose(this, "there's no ControlType value.");
-                    ctrlType = null;
-                    break;
+                    // 20131119
+                    //ctrlType = null;
+                    //break;
+                    return null;
             }
-            return ctrlType;
+            // 20131119
+            //return ctrlType;
         }
         
         /// <summary>

@@ -3,13 +3,14 @@
   <testPackage shadowCopy="false" debug="false">
     <files>
       <file>UIA\UIAutomationUnitTests\bin\Release35\UIAutomationUnitTests.dll</file>
+      <file>UIA\UIAutomationUnitTests40\bin\Release35\UIAutomationUnitTests40.dll</file>
     </files>
     <hintDirectories />
     <excludedFrameworkIds />
     <properties />
   </testPackage>
   <testFilters>
-    <testFilter filterName="AutoSave" filterExpr="Namespace: UIAutomationUnitTests.Helpers.Inheritance" />
+    <testFilter filterName="AutoSave" filterExpr="(Id: 11b639e20daeae11 or Id: c6b71993d494e160)" />
   </testFilters>
   <extensionSpecifications />
   <reportDirectory>..\..\..\Users\Alexander\AppData\Roaming\Gallio\Icarus\Reports</reportDirectory>

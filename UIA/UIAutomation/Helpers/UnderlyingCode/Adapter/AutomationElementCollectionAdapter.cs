@@ -110,6 +110,9 @@ namespace UIAutomation
 		            this.collectionHolder[i].Dispose();
 		        }
 		    }
+		    
+		    // 20131120
+		    GC.SuppressFinalize(this);
 		}
 	}
 }

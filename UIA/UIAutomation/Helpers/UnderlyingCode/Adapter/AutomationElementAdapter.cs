@@ -708,6 +708,9 @@ namespace UIAutomation
 //		    this.CachedChildren = null;
 //		    this.CachedParent = null;
 //		    this.Current = null;
+		    
+		    // 20131120
+		    GC.SuppressFinalize(this);
 		}
 	}
 }

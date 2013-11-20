@@ -27,6 +27,7 @@ using System.Runtime.CompilerServices;
 [assembly: ComVisible(false)]
 
 [assembly: InternalsVisibleTo("UIAutomationUnitTests")]
+[assembly: InternalsVisibleTo("UIAutomationUnitTests40")]
 [assembly: InternalsVisibleTo("IRAddinUnitTests")]
 
 // The assembly version has following format :

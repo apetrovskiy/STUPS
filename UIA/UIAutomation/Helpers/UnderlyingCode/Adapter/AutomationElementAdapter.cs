@@ -699,6 +699,8 @@ namespace UIAutomation
 //		    this.elementHolderAdapter = element;
 //		}
 		
+		public string Tag { get; set; }
+		
 		public void Dispose()
 		{
 		    this.elementHolderNet = null;

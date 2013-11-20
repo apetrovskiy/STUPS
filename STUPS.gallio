@@ -10,13 +10,14 @@
       <file>UIA\UIAutomationTest\bin\Release35\UIAutomationTest.dll</file>
       <file>SePSX\SePSXUnitTests\bin\Release35\SePSXUnitTests.dll</file>
       <file>SePSX\SePSXTest\bin\Release35\SePSXTest.dll</file>
+      <file>UIA\UIAutomationUnitTests40\bin\Release35\UIAutomationUnitTests40.dll</file>
     </files>
     <hintDirectories />
     <excludedFrameworkIds />
     <properties />
   </testPackage>
   <testFilters>
-    <testFilter filterName="AutoSave" filterExpr="Namespace: UIAutomationTest.Commands.Profile" />
+    <testFilter filterName="AutoSave" filterExpr="" />
     <testFilter filterName="LastRun" filterExpr="Namespace: UIAutomationTest.Commands.Profile" />
   </testFilters>
   <extensionSpecifications />

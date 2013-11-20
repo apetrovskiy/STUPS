@@ -106,6 +106,27 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\UIAutomationUnitTests\Commands\Common\HideUIACurrentHighlighterCommandTestFixture.cs">
+      <Link>Commands\Common\HideUIACurrentHighlighterCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Commands\Container\NewUIAContainerCommandTestFixture.cs">
+      <Link>Commands\Container\NewUIAContainerCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Commands\No\WaitUIANoWindowCommandTestFixture.cs">
+      <Link>Commands\No\WaitUIANoWindowCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Commands\Pattern\InvokeUIAToggleStateSetCommandTestFixture.cs">
+      <Link>Commands\Pattern\InvokeUIAToggleStateSetCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Commands\Wait\WaitUIAWindowCommandTestFixture.cs">
+      <Link>Commands\Wait\WaitUIAWindowCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Commands\Wizard\AddUIAWizardStepCommandTestFixture.cs">
+      <Link>Commands\Wizard\AddUIAWizardStepCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Commands\Wizard\NewUIAWizardCommandTestFixture.cs">
+      <Link>Commands\Wizard\NewUIAWizardCommandTestFixture.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomationUnitTests\Fakes\FakeAutomationElement.cs">
       <Link>Fakes\FakeAutomationElement.cs</Link>
     </Compile>
@@ -142,71 +163,119 @@
     <Compile Include="..\UIAutomationUnitTests\Helpers\UnitTestingHelper.cs">
       <Link>Helpers\UnitTestingHelper.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomationUnitTests\ParamChecks\Common\HideUIACurrentHighlighterCommandTestFixture.cs">
+      <Link>ParamChecks\Common\HideUIACurrentHighlighterCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\ParamChecks\Common\InvokeUIAControlClickCommandTestFixture.cs">
+      <Link>ParamChecks\Common\InvokeUIAControlClickCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\ParamChecks\Container\NewUIAContainerCommandTestFixture.cs">
+      <Link>ParamChecks\Container\NewUIAContainerCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\ParamChecks\Get\GetUIAControlCommandTestFixture.cs">
+      <Link>ParamChecks\Get\GetUIAControlCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\ParamChecks\Get\GetUIAWindowCommandTestFixture.cs">
+      <Link>ParamChecks\Get\GetUIAWindowCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\ParamChecks\MiddleLevelCode.cs">
+      <Link>ParamChecks\MiddleLevelCode.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\ParamChecks\No\WaitUIANoWindowCommandTestFixture.cs">
+      <Link>ParamChecks\No\WaitUIANoWindowCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\ParamChecks\Pattern\GetUIAEditTextCommandTestFixture.cs">
+      <Link>ParamChecks\Pattern\GetUIAEditTextCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\ParamChecks\Pattern\InvokeUIAButtonClickCommandTestFixture.cs">
+      <Link>ParamChecks\Pattern\InvokeUIAButtonClickCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\ParamChecks\Pattern\InvokeUIAInvokePatternCommandTestFixture.cs">
+      <Link>ParamChecks\Pattern\InvokeUIAInvokePatternCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\ParamChecks\Pattern\InvokeUIAToggleStateSetCommandTestFixture.cs">
+      <Link>ParamChecks\Pattern\InvokeUIAToggleStateSetCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\ParamChecks\Pattern\SetUIAEditTextCommandTestFixture.cs">
+      <Link>ParamChecks\Pattern\SetUIAEditTextCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\ParamChecks\Settings.cs">
+      <Link>ParamChecks\Settings.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\ParamChecks\Wait\WaitUIAWindowCommandTestFixture.cs">
+      <Link>ParamChecks\Wait\WaitUIAWindowCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\ParamChecks\Wizard\AddUIAWizardStepCommandTestFixture.cs">
+      <Link>ParamChecks\Wizard\AddUIAWizardStepCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\ParamChecks\Wizard\NewUIAWizardCommandTestFixture.cs">
+      <Link>ParamChecks\Wizard\NewUIAWizardCommandTestFixture.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Commands\Common\HideUIACurrentHighlighterCommandTestFixture.cs" />
-    <Compile Include="Commands\Container\NewUIAContainerCommandTestFixture.cs" />
-    <Compile Include="Commands\No\WaitUIANoWindowCommandTestFixture.cs" />
-    <Compile Include="Commands\Pattern\InvokeUIAToggleStateSetCommandTestFixture.cs" />
-    <Compile Include="Commands\Wait\WaitUIAWindowCommandTestFixture.cs" />
-    <Compile Include="Commands\Wizard\AddUIAWizardStepCommandTestFixture.cs" />
-    <Compile Include="Commands\Wizard\NewUIAWizardCommandTestFixture.cs" />
-    <Compile Include="ParamChecks\Common\HideUIACurrentHighlighterCommandTestFixture.cs" />
-    <Compile Include="ParamChecks\Common\InvokeUIAControlClickCommandTestFixture.cs" />
-    <Compile Include="ParamChecks\Container\NewUIAContainerCommandTestFixture.cs" />
-    <Compile Include="ParamChecks\Get\GetUIAControlCommandTestFixture.cs" />
-    <Compile Include="ParamChecks\Get\GetUIAWindowCommandTestFixture.cs" />
-    <Compile Include="ParamChecks\MiddleLevelCode.cs" />
-    <Compile Include="ParamChecks\No\WaitUIANoWindowCommandTestFixture.cs" />
-    <Compile Include="ParamChecks\Pattern\GetUIAEditTextCommandTestFixture.cs" />
-    <Compile Include="ParamChecks\Pattern\InvokeUIAButtonClickCommandTestFixture.cs" />
-    <Compile Include="ParamChecks\Pattern\InvokeUIAInvokePatternCommandTestFixture.cs" />
-    <Compile Include="ParamChecks\Pattern\InvokeUIAToggleStateSetCommandTestFixture.cs" />
-    <Compile Include="ParamChecks\Pattern\SetUIAEditTextCommandTestFixture.cs" />
-    <Compile Include="ParamChecks\Settings.cs" />
-    <Compile Include="ParamChecks\Wait\WaitUIAWindowCommandTestFixture.cs" />
-    <Compile Include="ParamChecks\Wizard\AddUIAWizardStepCommandTestFixture.cs" />
-    <Compile Include="ParamChecks\Wizard\NewUIAWizardCommandTestFixture.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands" />
     <Folder Include="Commands\Cache" />
+    <Folder Include="Commands\Cache" />
     <Folder Include="Commands\Common" />
     <Folder Include="Commands\Container" />
     <Folder Include="Commands\Convert" />
+    <Folder Include="Commands\Convert" />
+    <Folder Include="Commands\Discovery" />
     <Folder Include="Commands\Discovery" />
     <Folder Include="Commands\Event" />
+    <Folder Include="Commands\Event" />
+    <Folder Include="Commands\ExecutionPlan" />
     <Folder Include="Commands\ExecutionPlan" />
     <Folder Include="Commands\Get" />
+    <Folder Include="Commands\Get" />
+    <Folder Include="Commands\Hotkey" />
     <Folder Include="Commands\Hotkey" />
     <Folder Include="Commands\No" />
     <Folder Include="Commands\Pattern" />
     <Folder Include="Commands\Wait" />
     <Folder Include="Commands\Wizard" />
     <Folder Include="Fakes" />
+    <Folder Include="Fakes" />
+    <Folder Include="Helpers" />
     <Folder Include="Helpers" />
     <Folder Include="Helpers\Inheritance" />
+    <Folder Include="Helpers\Inheritance" />
+    <Folder Include="Helpers\UnderlyingCode" />
     <Folder Include="Helpers\UnderlyingCode" />
     <Folder Include="Ninject" />
+    <Folder Include="Ninject" />
     <Folder Include="ParamChecks" />
+    <Folder Include="ParamChecks\Cache" />
     <Folder Include="ParamChecks\Cache" />
     <Folder Include="ParamChecks\Common" />
     <Folder Include="ParamChecks\Container" />
     <Folder Include="ParamChecks\Convert" />
+    <Folder Include="ParamChecks\Convert" />
+    <Folder Include="ParamChecks\Discovery" />
     <Folder Include="ParamChecks\Discovery" />
     <Folder Include="ParamChecks\Event" />
+    <Folder Include="ParamChecks\Event" />
+    <Folder Include="ParamChecks\ExecutionPlan" />
     <Folder Include="ParamChecks\ExecutionPlan" />
     <Folder Include="ParamChecks\Get" />
+    <Folder Include="ParamChecks\Hotkey" />
     <Folder Include="ParamChecks\Hotkey" />
     <Folder Include="ParamChecks\No" />
     <Folder Include="ParamChecks\Pattern" />
     <Folder Include="ParamChecks\Profile" />
+    <Folder Include="ParamChecks\Profile" />
+    <Folder Include="ParamChecks\Search" />
     <Folder Include="ParamChecks\Search" />
     <Folder Include="ParamChecks\Transcript" />
+    <Folder Include="ParamChecks\Transcript" />
+    <Folder Include="ParamChecks\UltraGrid" />
     <Folder Include="ParamChecks\UltraGrid" />
     <Folder Include="ParamChecks\Wait" />
     <Folder Include="ParamChecks\Wizard" />
+    <Folder Include="Properties" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -61,6 +61,7 @@ namespace UIAutomation
 		//IMySuperWrapper GetSourceElement();
 		//void SetSourceElement(IMySuperWrapper element);
 	    
+		string Tag { get; set; }
 		//void Dispose();
 		
 //		bool Equals(object obj);

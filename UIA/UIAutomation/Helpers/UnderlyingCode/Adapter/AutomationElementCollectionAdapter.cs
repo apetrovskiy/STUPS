@@ -45,9 +45,11 @@ namespace UIAutomation
         {
 		    foreach (AutomationElement element in elements) {
 		        
-		        // 20131112
-		        //this.collectionHolder.Add(new MySuperWrapper(element));
-		        this.collectionHolder.Add(ObjectsFactory.GetMySuperWrapper(element));
+		        if (null != element) {
+    		        // 20131112
+    		        //this.collectionHolder.Add(new MySuperWrapper(element));
+    		        this.collectionHolder.Add(ObjectsFactory.GetMySuperWrapper(element));
+		        }
 		    }
 		}
 		
@@ -55,7 +57,9 @@ namespace UIAutomation
 		{
 		    foreach (IMySuperWrapper element in elements) {
 		        
-		        this.collectionHolder.Add(element);
+		        if (null != element) {
+		          this.collectionHolder.Add(element);
+		        }
 		    }
 		}
 		
@@ -63,7 +67,9 @@ namespace UIAutomation
 		{
 		    foreach (var element in elements) {
 		        
-		        this.collectionHolder.Add((IMySuperWrapper)element);
+		        if (null != element) {
+		          this.collectionHolder.Add((IMySuperWrapper)element);
+		        }
 		    }
 		}
 		

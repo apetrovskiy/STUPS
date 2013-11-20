@@ -47,11 +47,13 @@ namespace UIAutomationUnitTests
         public static GetControlCollectionCmdletBase Get_GetControlCollectionCmdletBase(ControlType controlType, string name, string automationId, string className, string txtValue)
         {
             GetControlCollectionCmdletBase cmdlet = Substitute.For<GetControlCollectionCmdletBase>();
-            cmdlet.ControlType.Returns(
-                new string[] {
-                    controlType.ProgrammaticName.Substring(controlType.ProgrammaticName.IndexOf('.') + 1)
-                }
-               );
+            if (null != controlType) {
+                cmdlet.ControlType.Returns(
+                    new string[] {
+                        controlType.ProgrammaticName.Substring(controlType.ProgrammaticName.IndexOf('.') + 1)
+                    }
+                   );
+            }
             cmdlet.Name.Returns(!string.IsNullOrEmpty(name) ? name : string.Empty);
             cmdlet.AutomationId.Returns(!string.IsNullOrEmpty(automationId) ? automationId : string.Empty);
             cmdlet.Class.Returns(!string.IsNullOrEmpty(className) ? className : string.Empty);
@@ -59,14 +61,92 @@ namespace UIAutomationUnitTests
             return cmdlet;
         }
         
-        public static IMySuperWrapper GetElement_ForFindAll(IMySuperWrapper[] elements)
+        public static IMySuperWrapper GetElement_ForFindAll(IMySuperWrapper[] elements, AndCondition conditions)
         {
             IMySuperWrapper element = Substitute.For<IMySuperWrapper>();
             IMySuperCollection descendants = ObjectsFactory.GetMySuperCollection();
             foreach (IMySuperWrapper descendant in elements) {
                 descendants.SourceCollection.Add(descendant);
             }
-            element.FindAll(TreeScope.Descendants, Arg.Any<Condition>()).Returns(descendants);
+            
+            Condition[] conds = conditions.GetConditions();
+            
+            foreach (Condition cond in conds) {
+                
+try { Console.WriteLine("condition type is " + (cond as PropertyCondition).GetType().Name); } catch {}
+try { Console.WriteLine("condition type is " + (cond as PropertyCondition).Value); } catch {}
+try { Console.WriteLine("condition type is " + (cond as PropertyCondition).Value.GetType().Name); } catch {}
+                
+                if (cond is PropertyCondition && (cond as PropertyCondition).Property == AutomationElement.NameProperty) {
+                    foreach (IMySuperWrapper element1 in descendants) {
+                        if ("null" != element1.Tag && element1.Current.Name != (cond as PropertyCondition).Value.ToString()) {
+Console.WriteLine("nullifying name 01");
+                            element1.Tag = "null";
+                        }
+                    }
+                }
+                
+                if (cond is PropertyCondition && (cond as PropertyCondition).Property == AutomationElement.AutomationIdProperty) {
+                    foreach (IMySuperWrapper element2 in descendants) {
+                        if ("null" != element2.Tag && element2.Current.AutomationId != (cond as PropertyCondition).Value.ToString()) {
+Console.WriteLine("nullifying auId 02");
+                            element2.Tag = "null";
+                        }
+                    }
+                }
+                
+                if (cond is PropertyCondition && (cond as PropertyCondition).Property == AutomationElement.ClassNameProperty) {
+                    foreach (IMySuperWrapper element3 in descendants) {
+                        if ("null" != element3.Tag && element3.Current.ClassName != (cond as PropertyCondition).Value.ToString()) {
+Console.WriteLine("nullifying class 03");
+                            element3.Tag = "null";
+                        }
+                    }
+                }
+                
+//                if (cond is PropertyCondition && (cond as PropertyCondition).Property == AutomationElement.ControlTypeProperty) {
+//                    //foreach (IMySuperWrapper element in descendants) {
+//                    for (int i = 0; i < descendants.Count; i++) {
+//                        if (null != descendants[i] && descendants[i].Current.ControlType != (cond as PropertyCondition).Value) {
+//                            descendants[i] = null;
+//                        }
+//                    }
+//                }
+                
+                if (cond is PropertyCondition && (cond as PropertyCondition).Property == AutomationElement.ControlTypeProperty) {
+                    foreach (IMySuperWrapper element5 in descendants) {
+                        if ("null" != element5.Tag && 
+                            //null != ((cond as PropertyCondition).Value as ControlType) && 
+                            (cond as PropertyCondition).Value is ControlType &&
+                            //element5.Current.ControlType.ProgrammaticName != ((cond as PropertyCondition).Value as ControlType).ProgrammaticName) {
+                            element5.Current.ControlType.ProgrammaticName != ((ControlType)(cond as PropertyCondition).Value).ProgrammaticName) {
+                            
+Console.WriteLine("====================================================");
+Console.WriteLine(element5.Current.Name);
+Console.WriteLine(element5.Current.AutomationId);
+Console.WriteLine(element5.Current.ClassName);
+Console.WriteLine(element5.Current.ControlType.ProgrammaticName);
+Console.WriteLine("----------------------------------------------------");
+                            
+Console.WriteLine("nullifying controlType 05");
+                            
+                            element5.Tag = "null";
+                        }
+                    }
+                }
+                
+            }
+            
+            IMySuperCollection descendants2 = ObjectsFactory.GetMySuperCollection();
+            foreach (IMySuperWrapper elt in descendants) {
+                //if (null != elt && null != elt.GetSourceElement()) {
+                if ("null" != elt.Tag) {
+                    descendants2.SourceCollection.Add(elt);
+                }
+            }
+            
+            //element.FindAll(TreeScope.Descendants, Arg.Any<Condition>()).Returns(descendants);
+            element.FindAll(TreeScope.Descendants, Arg.Any<Condition>()).Returns(descendants2);
             return element;
         }
     }

@@ -140,13 +140,13 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             AndCondition condition =
                 cmdlet.GetControlConditions((GetControlCmdletBase)cmdlet, "Button", false, true) as AndCondition;
             
-            Condition[] conds = condition.GetConditions();
-            foreach (Condition cond in conds) {
-                Console.WriteLine(cond.GetType().Name);
-                try { Console.WriteLine((cond as PropertyCondition).Property.ProgrammaticName + " = " + (cond as PropertyCondition).Value.ToString()); } catch {}
-                try { Console.WriteLine((cond as AndCondition).ToString()); } catch {}
-                try { Console.WriteLine((cond as OrCondition).ToString()); } catch {}
-            }
+//            Condition[] conds = condition.GetConditions();
+//            foreach (Condition cond in conds) {
+//Console.WriteLine(cond.GetType().Name);
+//                try { Console.WriteLine((cond as PropertyCondition).Property.ProgrammaticName + " = " + (cond as PropertyCondition).Value.ToString()); } catch {}
+//                try { Console.WriteLine((cond as AndCondition).ToString()); } catch {}
+//                try { Console.WriteLine((cond as OrCondition).ToString()); } catch {}
+//            }
             
             IMySuperWrapper element =
                 FakeFactory.GetElement_ForFindAll(
@@ -175,11 +175,11 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             AndCondition condition =
                 cmdlet.GetControlConditions((GetControlCmdletBase)cmdlet, "Button", false, true) as AndCondition;
             
-            Condition[] conds = condition.GetConditions();
-            foreach (Condition cond in conds) {
-                Console.WriteLine(cond.GetType().Name);
-                try { Console.WriteLine((cond as PropertyCondition).Property.ProgrammaticName + " = " + (cond as PropertyCondition).Value.ToString()); } catch {}
-            }
+//            Condition[] conds = condition.GetConditions();
+//            foreach (Condition cond in conds) {
+//                Console.WriteLine(cond.GetType().Name);
+//                try { Console.WriteLine((cond as PropertyCondition).Property.ProgrammaticName + " = " + (cond as PropertyCondition).Value.ToString()); } catch {}
+//            }
             
             IMySuperWrapper element =
                 FakeFactory.GetElement_ForFindAll(

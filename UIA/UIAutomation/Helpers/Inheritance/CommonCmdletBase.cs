@@ -1709,12 +1709,6 @@ namespace UIAutomation
                 flags = PropertyConditionFlags.IgnoreCase;
             }
             
-Console.WriteLine("controlType = " + controlType);
-Console.WriteLine("name = " + (cmdlet1 as GetControlCmdletBase).Name);
-Console.WriteLine("auId = " + (cmdlet1 as GetControlCmdletBase).AutomationId);
-Console.WriteLine("class = " + (cmdlet1 as GetControlCmdletBase).Class);
-Console.WriteLine("value = " + (cmdlet1 as GetControlCmdletBase).Value);
-            
             GetControlCmdletBase cmdlet =
                 (GetControlCmdletBase)cmdlet1;
             
@@ -1746,15 +1740,11 @@ Console.WriteLine("value = " + (cmdlet1 as GetControlCmdletBase).Value);
 
             if (!string.IsNullOrEmpty(controlType)) {
                 
-Console.WriteLine("000000001");
-               
                 WriteVerbose(this,
                              "getting control with control type = " +
                              controlType);
                 ctrlType =
                     UIAHelper.GetControlTypeByTypeName(controlType);
-                
-Console.WriteLine(ctrlType.ProgrammaticName);
                 
                 WriteVerbose(cmdlet, "ctrlType = " + ctrlType.ProgrammaticName);
             }
@@ -1777,17 +1767,10 @@ Console.WriteLine(ctrlType.ProgrammaticName);
             int conditionsCounter = 0;
             if (ctrlType != null) {
                 
-Console.WriteLine("000000003");
-                
                 ctrlTypeCondition =
                     new System.Windows.Automation.PropertyCondition(
                         System.Windows.Automation.AutomationElement.ControlTypeProperty,
                         ctrlType); //,
-                
-Console.WriteLine(controlType);
-Console.WriteLine(ctrlType.ProgrammaticName);
-Console.WriteLine(ctrlTypeCondition.Property.ProgrammaticName);
-Console.WriteLine(ctrlTypeCondition.Value.ToString());
                 
                 WriteVerbose(cmdlet, "ControlTypeProperty '" +
                              ctrlType.ProgrammaticName + "' is used");
@@ -1798,8 +1781,6 @@ Console.WriteLine(ctrlTypeCondition.Value.ToString());
             if (!string.IsNullOrEmpty(cmdlet.Class))
                 //if (null != cmdlet.Class && cmdlet.Class.Length > 0) {
             {
-                
-Console.WriteLine("000000005");
                 
                 classCondition =
                     new System.Windows.Automation.PropertyCondition(
@@ -1829,8 +1810,6 @@ Console.WriteLine("000000005");
             if (!string.IsNullOrEmpty(cmdlet.AutomationId))
             {
                 
-Console.WriteLine("000000007");
-                
                 autoIdCondition =
                     new System.Windows.Automation.PropertyCondition(
                         System.Windows.Automation.AutomationElement.AutomationIdProperty,
@@ -1857,8 +1836,6 @@ Console.WriteLine("000000007");
             */
             if (!string.IsNullOrEmpty(cmdlet.Name)) // allow empty name
             {
-                
-Console.WriteLine("000000009");
                 
                 titleCondition =
                     new System.Windows.Automation.PropertyCondition(
@@ -1887,8 +1864,6 @@ Console.WriteLine("000000009");
 
             if (!string.IsNullOrEmpty(cmdlet.Value))
             {
-                
-Console.WriteLine("000000011");
                 
                 valueCondition =
                     new System.Windows.Automation.PropertyCondition(
@@ -1919,8 +1894,6 @@ Console.WriteLine("000000011");
             if (1 < conditionsCounter)
             {
                 
-Console.WriteLine("000000015");
-                
                 try {
                     System.Collections.ArrayList l = new System.Collections.ArrayList();
                     if (classCondition != null)l.Add(classCondition);
@@ -1933,21 +1906,15 @@ Console.WriteLine("000000015");
                     
                     if (AndVsOr) {
                         
-Console.WriteLine("000000021");
-                        
                         andConditions =
                             new System.Windows.Automation.AndCondition(conds);
                     } else {
-                        
-Console.WriteLine("000000023");
                         
                         orConditions =
                             new System.Windows.Automation.OrCondition(conds);
                     }
                     
                     if (null != andConditions) {
-                        
-Console.WriteLine("000000025");
                         
                         allConditions =
                             new System.Windows.Automation.AndCondition(
@@ -1965,8 +1932,6 @@ Console.WriteLine("000000025");
 
                     }
                     if (null != orConditions) {
-                        
-Console.WriteLine("000000027");
                         
                         allConditions =
                             new System.Windows.Automation.AndCondition(
@@ -1998,8 +1963,6 @@ Console.WriteLine("000000027");
                 
             } else if (1 == conditionsCounter && null != ctrlTypeCondition) {
                 
-Console.WriteLine("000000031");
-                
                 if (classCondition != null) { allConditions = new AndCondition(classCondition, ctrlTypeCondition); }
                 else if (titleCondition != null) { allConditions = new AndCondition(titleCondition, ctrlTypeCondition); }
                 else if (autoIdCondition != null) { allConditions = new AndCondition(autoIdCondition, ctrlTypeCondition); }
@@ -2008,8 +1971,6 @@ Console.WriteLine("000000031");
                 
             } else if ((0 == conditionsCounter && null != ctrlTypeCondition) ||
                        (1 == conditionsCounter && null == ctrlTypeCondition)) {
-                
-Console.WriteLine("000000033");
                 
                 if (classCondition != null) { condition = classCondition; }
                 else if (ctrlTypeCondition != null) { condition = ctrlTypeCondition; }
@@ -2024,8 +1985,6 @@ Console.WriteLine("000000033");
             else if (0 == conditionsCounter && null == ctrlTypeCondition)
             {
                 
-Console.WriteLine("000000035");
-                
                 WriteVerbose(cmdlet, "neither ControlType nor Class nor Name are present");
 
                 return (new AndCondition(Condition.TrueCondition,
@@ -2036,8 +1995,6 @@ Console.WriteLine("000000035");
                 Condition[] tempConditions = null;
                 if (null != allConditions) {
                     
-Console.WriteLine("000000037");
-                    
                     tempConditions = allConditions.GetConditions();
                     conditionsToReturn = allConditions;
 
@@ -2045,15 +2002,11 @@ Console.WriteLine("000000037");
 
                 else if (null != andConditions) {
                     
-Console.WriteLine("000000039");
-                    
                     tempConditions = andConditions.GetConditions();
 
                     conditionsToReturn = andConditions;
 
                 } else if (null != orConditions) {
-                    
-Console.WriteLine("000000041");
                     
                     // 20131118/20131119
                     // object -> Condition
@@ -2061,8 +2014,6 @@ Console.WriteLine("000000041");
                     conditionsToReturn = orConditions;
 
                 } else if (condition != null) {
-                    
-Console.WriteLine("000000043");
                     
                     WriteVerbose(cmdlet, "conditions (only one): " +
                                  condition.Property.ProgrammaticName +

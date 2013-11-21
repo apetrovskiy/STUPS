@@ -6,8 +6,6 @@
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
-// test it
-//using System;
 
 namespace UIAutomation.Commands.Container
 {

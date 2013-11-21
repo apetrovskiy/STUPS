@@ -9,15 +9,10 @@
 
 namespace UIAutomationUnitTests
 {
-    using System;
-    using System.Collections;
     using System.Windows.Automation;
-    using PSTestLib;
     using UIAutomation;
-    using MbUnit.Framework;
     using NSubstitute;
     using System.Linq;
-    using System.Linq.Expressions;
     
     /// <summary>
     /// Description of FakeFactory.
@@ -38,9 +33,11 @@ namespace UIAutomationUnitTests
             element.Current.Name.Returns(!string.IsNullOrEmpty(name) ? name : string.Empty);
             element.Current.AutomationId.Returns(!string.IsNullOrEmpty(automationId) ? automationId : string.Empty);
             element.Current.ClassName.Returns(!string.IsNullOrEmpty(className) ? className : string.Empty);
+            element.GetSupportedPatterns().Returns(new[] { SelectionItemPattern.Pattern });
+            /*
             element.GetSupportedPatterns().Returns<AutomationPattern[]>(new AutomationPattern[] { SelectionItemPattern.Pattern });
+            */
             // value
-            //return element as MySuperWrapper;
             return element;
         }
         
@@ -49,7 +46,10 @@ namespace UIAutomationUnitTests
             GetControlCollectionCmdletBase cmdlet = Substitute.For<GetControlCollectionCmdletBase>();
             if (null != controlType) {
                 cmdlet.ControlType.Returns(
+                    new[] {
+                    /*
                     new string[] {
+                    */
                         controlType.ProgrammaticName.Substring(controlType.ProgrammaticName.IndexOf('.') + 1)
                     }
                    );
@@ -65,45 +65,72 @@ namespace UIAutomationUnitTests
         {
             IMySuperWrapper element = Substitute.For<IMySuperWrapper>();
             IMySuperCollection descendants = ObjectsFactory.GetMySuperCollection(elements);
-//            IMySuperCollection descendants = ObjectsFactory.GetMySuperCollection();
-//            foreach (IMySuperWrapper descendant in elements) {
-//                descendants.SourceCollection.Add(descendant);
-//            }
             
-            Condition[] conds = conditions.GetConditions();
+            //Condition[] conds = conditions.GetConditions();
             
-            foreach (Condition cond in conds) {
+            foreach (Condition cond in conditions.GetConditions()) { //conds) {
                 
-//Console.WriteLine("mmmmmmmmmmmmmmm ForEach mmmmmmmmmmmmmmmmmmm");
-//try { Console.WriteLine("condition type is " + (cond as PropertyCondition).GetType().Name); } catch {}
-//try { Console.WriteLine("condition type is " + (cond as PropertyCondition).Value); } catch {}
-//try { Console.WriteLine("condition type is " + (cond as PropertyCondition).Value.GetType().Name); } catch {}
-                
+                if (cond is PropertyCondition &&
+                    Equals((cond as PropertyCondition).Property, AutomationElement.NameProperty)) {
+                /*
                 if (cond is PropertyCondition && (cond as PropertyCondition).Property == AutomationElement.NameProperty) {
+                */
+                    foreach (IMySuperWrapper element1 in descendants
+                        .Cast<IMySuperWrapper>()
+                        .Where(element1 => "null" != element1.Tag &&
+                            element1.Current.Name != (cond as PropertyCondition).Value.ToString()))
+                    {
+                        element1.Tag = "null";
+                    }
+                    /*
                     foreach (IMySuperWrapper element1 in descendants) {
                         if ("null" != element1.Tag && element1.Current.Name != (cond as PropertyCondition).Value.ToString()) {
-//Console.WriteLine("nullifying name 01");
                             element1.Tag = "null";
                         }
                     }
+                    */
                 }
                 
+                if (cond is PropertyCondition &&
+                    Equals((cond as PropertyCondition).Property, AutomationElement.AutomationIdProperty)) {
+                /*
                 if (cond is PropertyCondition && (cond as PropertyCondition).Property == AutomationElement.AutomationIdProperty) {
+                */
+                    foreach (IMySuperWrapper element2 in descendants
+                        .Cast<IMySuperWrapper>()
+                        .Where(element2 => "null" != element2.Tag &&
+                            element2.Current.AutomationId != (cond as PropertyCondition).Value.ToString()))
+                    {
+                        element2.Tag = "null";
+                    }
+                    /*
                     foreach (IMySuperWrapper element2 in descendants) {
                         if ("null" != element2.Tag && element2.Current.AutomationId != (cond as PropertyCondition).Value.ToString()) {
-//Console.WriteLine("nullifying auId 02");
                             element2.Tag = "null";
                         }
                     }
+                    */
                 }
                 
+                if (cond is PropertyCondition &&
+                    Equals((cond as PropertyCondition).Property, AutomationElement.ClassNameProperty)) {
+                /*
                 if (cond is PropertyCondition && (cond as PropertyCondition).Property == AutomationElement.ClassNameProperty) {
+                */
+                    foreach (IMySuperWrapper element3 in descendants
+                        .Cast<IMySuperWrapper>()
+                        .Where(element3 => "null" != element3.Tag &&
+                            element3.Current.ClassName != (cond as PropertyCondition).Value.ToString()))
+                    {
+                        element3.Tag = "null";
+                    }
+                    /*
                     foreach (IMySuperWrapper element3 in descendants) {
                         if ("null" != element3.Tag && element3.Current.ClassName != (cond as PropertyCondition).Value.ToString()) {
-//Console.WriteLine("nullifying class 03");
                             element3.Tag = "null";
                         }
                     }
+                    */
                 }
                 
 //                if (cond is PropertyCondition && (cond as PropertyCondition).Property == AutomationElement.ControlTypeProperty) {
@@ -114,65 +141,51 @@ namespace UIAutomationUnitTests
 //                        }
 //                    }
 //                }
-                
-//Console.WriteLine("///////////////////// ControlType //////////////////////////////");
-                
+
+                if (!(cond is PropertyCondition) ||
+                    !Equals((cond as PropertyCondition).Property, AutomationElement.ControlTypeProperty)) continue;
+                /*
+                if (!(cond is PropertyCondition) ||
+                    (cond as PropertyCondition).Property != AutomationElement.ControlTypeProperty) continue;
+                */
+                foreach (IMySuperWrapper element5 in descendants
+                    .Cast<IMySuperWrapper>()
+                    .Where(element5 => "null" != element5.Tag &&
+                        element5.Current.ControlType.Id.ToString() != (cond as PropertyCondition).Value.ToString()))
+                {
+                    element5.Tag = "null";
+                }
+                /*
                 if (cond is PropertyCondition && (cond as PropertyCondition).Property == AutomationElement.ControlTypeProperty) {
-                    
-//Console.WriteLine("if");
                     
                     foreach (IMySuperWrapper element5 in descendants) {
                         
-//Console.WriteLine("foreach");
-//Console.WriteLine("tag = " + element5.Tag);
-//if ("null" != element5.Tag) {
-//    Console.WriteLine("001 'null' != element5.Tag");
-//}
-//if ("AutomationElementIdentifiers.ControlTypeProperty" == (cond as PropertyCondition).Property.ProgrammaticName) {
-//    Console.WriteLine("002 (cond as PropertyCondition).Property.ProgrammaticName");
-//    Console.WriteLine((cond as PropertyCondition).Property.ProgrammaticName);
-//    Console.WriteLine((cond as PropertyCondition).Value.ToString());
-//}
-//Console.WriteLine("003 element5.Current.ControlType.ProgrammaticName = " + element5.Current.ControlType.ProgrammaticName);
-//Console.WriteLine("003 element5.Current.ControlType.ProgrammaticName = " + element5.Current.ControlType.Id);
-                        
                         if ("null" != element5.Tag && 
                             element5.Current.ControlType.Id.ToString() != (cond as PropertyCondition).Value.ToString()) {
-                            
-//Console.WriteLine("====================================================");
-//Console.WriteLine(element5.Current.Name);
-//Console.WriteLine(element5.Current.AutomationId);
-//Console.WriteLine(element5.Current.ClassName);
-//Console.WriteLine(element5.Current.ControlType.ProgrammaticName);
-//Console.WriteLine("----------------------------------------------------");
-//                            
-//Console.WriteLine("nullifying controlType 05");
                             
                             element5.Tag = "null";
                         }
                     }
                 }
-                
+                */
+
             }
             
             IMySuperCollection descendants2 = ObjectsFactory.GetMySuperCollection();
+            foreach (IMySuperWrapper elt in descendants
+                .Cast<IMySuperWrapper>()
+                .Where(elt => "null" != elt.Tag))
+            {
+                descendants2.SourceCollection.Add(elt);
+            }
+            /*
             foreach (IMySuperWrapper elt in descendants) {
-                //if (null != elt && null != elt.GetSourceElement()) {
                 if ("null" != elt.Tag) {
                     descendants2.SourceCollection.Add(elt);
                 }
             }
-            
-//Console.WriteLine("FindAll:");
-//foreach (IMySuperWrapper elt2 in descendants2) {
-//    Console.WriteLine("==================element========================");
-//    Console.WriteLine(elt2.Current.Name);
-//    Console.WriteLine(elt2.Current.AutomationId);
-//    Console.WriteLine(elt2.Current.ClassName);
-//    Console.WriteLine(elt2.Current.ControlType.ProgrammaticName);
-//}
-            
-            //element.FindAll(TreeScope.Descendants, Arg.Any<Condition>()).Returns(descendants);
+            */
+
             element.FindAll(TreeScope.Descendants, Arg.Any<Condition>()).Returns(descendants2);
             return element;
         }

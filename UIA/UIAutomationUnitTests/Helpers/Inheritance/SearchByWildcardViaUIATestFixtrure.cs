@@ -1,5 +1,4 @@
-﻿using System.Windows.Automation;
-/*
+﻿/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
  * Date: 11/17/2013
@@ -10,13 +9,9 @@
 
 namespace UIAutomationUnitTests.Helpers.Inheritance
 {
-    using System;
     //using System.Windows.Automation;
-    using PSTestLib;
-    using UIAutomation;
     using MbUnit.Framework;
-    using NSubstitute;
-    
+
     /// <summary>
     /// Description of SearchByWildcardViaUIATestFixtrure.
     /// </summary>

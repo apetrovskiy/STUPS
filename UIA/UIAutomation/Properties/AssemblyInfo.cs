@@ -1,7 +1,5 @@
 ﻿#region Using directives
 
-// test it
-//using System;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Runtime.CompilerServices;

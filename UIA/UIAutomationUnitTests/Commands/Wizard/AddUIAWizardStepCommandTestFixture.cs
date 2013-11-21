@@ -9,11 +9,8 @@
 
 namespace UIAutomationUnitTests.Commands.Wizard
 {
-    using System;
     using MbUnit.Framework;
-    using PSTestLib;
     using UIAutomation;
-    using System.Management.Automation;
     
 	/// <summary>
 	/// Description of AddUIAWizardStepCommandTestFixture.
@@ -21,11 +18,7 @@ namespace UIAutomationUnitTests.Commands.Wizard
 	[TestFixture]
 	public class AddUIAWizardStepCommandTestFixture
 	{
-		public AddUIAWizardStepCommandTestFixture()
-		{
-		}
-		
-        [SetUp]
+	    [SetUp]
         public void SetUp()
         {
             UnitTestingHelper.PrepareUnitTestDataStore();
@@ -43,7 +36,7 @@ namespace UIAutomationUnitTests.Commands.Wizard
         [Category("Wizard")]
         public void AddWizardStep_StandardName()
         {
-            string expectedName = "name";
+            const string expectedName = "name";
             UnitTestingHelper.AddWizardStep(expectedName, null, null);
 
             Assert.AreEqual(
@@ -57,7 +50,7 @@ namespace UIAutomationUnitTests.Commands.Wizard
         [Category("Wizard")]
         public void AddWizardStep_ComplexName()
         {
-            string expectedName = @"\\st//ep`` name;;";
+            const string expectedName = @"\\st//ep`` name;;";
             UnitTestingHelper.AddWizardStep(expectedName, null, null);
 
             Assert.AreEqual(

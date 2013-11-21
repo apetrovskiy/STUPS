@@ -75,20 +75,10 @@ namespace UIAutomation
             return query2;
         }
         
-        // 20131108
-        // 20131109
-        //public static IAutomationElementCollection ConvertCmdletInputToCollectionAdapter(this AutomationElement[] inputArray)
         public static IMySuperCollection ConvertCmdletInputToCollectionAdapter(this ICollection inputArray)
         {
             IMySuperCollection resultCollection =
-                // 20131119
-                //new MySuperCollection(inputArray);
                 ObjectsFactory.GetMySuperCollection(inputArray);
-                //new MySuperCollection(); //inputArray.Cast<IMySuperWrapper>().ToList());
-            //resultCollection.SourceCollection = inputArray;
-//            foreach (AutomationElement element in inputArray) {
-//                
-//            }
             return resultCollection;
         }
         

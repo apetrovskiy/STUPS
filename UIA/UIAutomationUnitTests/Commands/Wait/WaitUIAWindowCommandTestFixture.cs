@@ -6,7 +6,6 @@
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
-using System;
 
 namespace UIAutomationUnitTests.Commands.Get
 {
@@ -15,8 +14,5 @@ namespace UIAutomationUnitTests.Commands.Get
     /// </summary>
     public class WaitUIAWindowCommandTestFixture
     {
-        public WaitUIAWindowCommandTestFixture()
-        {
-        }
     }
 }

@@ -9,11 +9,8 @@
 
 namespace UIAutomationUnitTests.Commands.Wizard
 {
-    using System;
     using MbUnit.Framework;
-    using PSTestLib;
     using UIAutomation;
-    using System.Management.Automation;
     
     /// <summary>
     /// Description of NewUIAWizardCommandTestFixture.
@@ -21,10 +18,6 @@ namespace UIAutomationUnitTests.Commands.Wizard
     [TestFixture]
     public class NewUIAWizardCommandTestFixture
     {
-        public NewUIAWizardCommandTestFixture()
-        {
-        }
-        
         [SetUp]
         public void SetUp()
         {
@@ -43,7 +36,7 @@ namespace UIAutomationUnitTests.Commands.Wizard
         [Category("Wizard")]
         public void NewWizard_StandardName()
         {
-            string expectedName = "name";
+            const string expectedName = "name";
             UnitTestingHelper.CreateWizard(expectedName, null);
             
             Assert.AreEqual(
@@ -57,7 +50,7 @@ namespace UIAutomationUnitTests.Commands.Wizard
         [Category("Wizard")]
         public void NewWizard_ComplexName()
         {
-            string expectedName = @"\\aa//bb``cc";
+            const string expectedName = @"\\aa//bb``cc";
             UnitTestingHelper.CreateWizard(expectedName, null);
             
             Assert.AreEqual(
@@ -72,7 +65,7 @@ namespace UIAutomationUnitTests.Commands.Wizard
         [Ignore]
         public void NewWizard_DuplicatedName()
         {
-            string expectedName = "name";
+            const string expectedName = "name";
             UnitTestingHelper.CreateWizard(expectedName, null);
             
             //Assert.Throws<Type>(UnitTestingHelper.CreateWizard(expectedName, null));

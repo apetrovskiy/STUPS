@@ -9,16 +9,8 @@
 
 namespace UIAutomationUnitTests.Helpers.Inheritance
 {
-    using System;
-    using System.Collections;
-    using System.Windows.Automation;
-    using PSTestLib;
-    using UIAutomation;
     using MbUnit.Framework;
-    using NSubstitute;
-    using System.Linq;
-    using System.Linq.Expressions;
-    
+
     /// <summary>
     /// Description of SearchByWildcardViaUIATestFixture.
     /// </summary>

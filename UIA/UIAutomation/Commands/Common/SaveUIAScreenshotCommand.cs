@@ -9,13 +9,7 @@
 
 namespace UIAutomation.Commands
 {
-    // test it
-    //using System;
     using System.Management.Automation;
-    // test it
-    //using System.Runtime.InteropServices;
-    // test it
-    //using System.Windows.Automation;
     
     /// <summary>
     /// Description of SaveUIAScreenshotCommand.
@@ -42,8 +36,8 @@ namespace UIAutomation.Commands
         // 20130702
         [Parameter(Mandatory = false,
                    ParameterSetName = "File")]
-        [AllowNull]// test it()]
-        [AllowEmptyString]// test it()]
+        [AllowNull]
+        [AllowEmptyString]
         public string Description { get; set; }
         [Parameter(Mandatory = false)] //,
         //           ParameterSetName = "Screenshot")]
@@ -84,7 +78,6 @@ namespace UIAutomation.Commands
             }
             */
 
-            //UIAHelper.GetScreenshotOfAutomationElement(
             UIAHelper.GetScreenshotOfCmdletInput(
                 this,
                 this.Description,
@@ -95,10 +88,6 @@ namespace UIAutomation.Commands
                 Width,
                 this.Path + @"\" + this.Name,
                 this.As);
-            //TMX.
-            //} else {
-            // UIAHelper.GetControlScreenshot(this.InputObject, this.Description);
-            //}
         }
     }
     
@@ -110,13 +99,6 @@ namespace UIAutomation.Commands
     public class SaveUIAScreenshotCommand : ScreenshotCmdletBase
     {
         #region Constructor
-        // 20131105
-        // refactoring
-        /*
-        public SaveUIAScreenshotCommand()
-        {
-        }
-        */
         #endregion Constructor
     }
     

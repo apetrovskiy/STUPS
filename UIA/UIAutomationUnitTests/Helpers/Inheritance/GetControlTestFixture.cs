@@ -6,7 +6,6 @@
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
-using System;
 
 namespace UIAutomationUnitTests.Helpers.Inheritance
 {
@@ -15,8 +14,5 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
     /// </summary>
     public class GetControlTestFixture
     {
-        public GetControlTestFixture()
-        {
-        }
     }
 }

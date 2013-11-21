@@ -9,9 +9,6 @@
 
 namespace UIAutomationUnitTests
 {
-    using System;
-    using System.Windows.Automation;
-    using PSTestLib;
     using UIAutomation;
     using MbUnit.Framework;
     
@@ -21,10 +18,6 @@ namespace UIAutomationUnitTests
     [TestFixture]
     public class elementOfPossibleControlTypeTestFixture
     {
-        public elementOfPossibleControlTypeTestFixture()
-        {
-        }
-        
         [SetUp]
         public void SetUp()
         {
@@ -73,7 +66,7 @@ namespace UIAutomationUnitTests
             Assert.AreEqual(
                 false,
                 getClass().elementOfPossibleControlType(
-                    (new string[]{ "Button" }),
+                    (new[]{ "Button" }),
                     null));
         }
         
@@ -85,7 +78,7 @@ namespace UIAutomationUnitTests
             Assert.AreEqual(
                 true,
                 getClass().elementOfPossibleControlType(
-                    (new string[]{ "Button" }),
+                    (new[]{ "Button" }),
                     "Button"));
         }
         
@@ -97,7 +90,7 @@ namespace UIAutomationUnitTests
             Assert.AreEqual(
                 false,
                 getClass().elementOfPossibleControlType(
-                    (new string[]{ "Button" }),
+                    (new[]{ "Button" }),
                     "CheckBox"));
         }
         
@@ -109,7 +102,7 @@ namespace UIAutomationUnitTests
             Assert.AreEqual(
                 true,
                 getClass().elementOfPossibleControlType(
-                    (new string[]{ "TreeItem", "Button", "Edit" }),
+                    (new[]{ "TreeItem", "Button", "Edit" }),
                     "Button"));
         }
         
@@ -121,7 +114,7 @@ namespace UIAutomationUnitTests
             Assert.AreEqual(
                 false,
                 getClass().elementOfPossibleControlType(
-                    (new string[]{ "TreeItem", "ComboBox", "Edit" }),
+                    (new[]{ "TreeItem", "ComboBox", "Edit" }),
                     "Button"));
         }
     }

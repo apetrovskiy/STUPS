@@ -11,11 +11,7 @@ using System.Globalization;
 
 namespace UIAutomation.Commands
 {
-    // test it
-    //using System;
     using System.Management.Automation;
-    // test it
-    //using System.Security.Principal;
     using System.Windows.Automation;
     
     /// <summary>

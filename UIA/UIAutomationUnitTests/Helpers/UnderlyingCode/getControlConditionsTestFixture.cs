@@ -9,9 +9,7 @@
 
 namespace UIAutomationUnitTests
 {
-    using System;
     using System.Windows.Automation;
-    using PSTestLib;
     using UIAutomation;
     using MbUnit.Framework;
     
@@ -21,10 +19,6 @@ namespace UIAutomationUnitTests
     [TestFixture]
     public class GetControlConditionsTestFixture
     {
-        public GetControlConditionsTestFixture()
-        {
-        }
-        
         [SetUp]
         public void SetUp()
         {
@@ -43,18 +37,15 @@ namespace UIAutomationUnitTests
 
         private void getConditions(string name, string automationId, string className, string controlType)
         {
-            this.ResultCondition = null;
+            ResultCondition = null;
             
             GetControlCmdletBase cmdlet =
-                new GetControlCmdletBase();
-            cmdlet.Name = name;
-            cmdlet.AutomationId = automationId;
-            cmdlet.Class = className;
+                new GetControlCmdletBase {Name = name, AutomationId = automationId, Class = className, CaseSensitive = false };
+
+            CommonCmdletBase common =
+                new CommonCmdletBase();
             
-            UIAutomation.CommonCmdletBase common =
-                new UIAutomation.CommonCmdletBase();
-            
-            this.ResultCondition =
+            ResultCondition =
                 // 20131118
                 // object -> Condition
                 (common.GetControlConditions(cmdlet, controlType, cmdlet.CaseSensitive, true) as AndCondition);
@@ -67,15 +58,24 @@ namespace UIAutomationUnitTests
         [Category("Fast")]
         public void ControlType()
         {
-            this.getConditions(null, null, null, "button");
-            
+            getConditions(null, null, null, "button");
+
+            PropertyCondition propertyCondition = ResultCondition.GetConditions()[0] as PropertyCondition;
+            if (propertyCondition != null)
+                Assert.AreEqual(
+                    System.Windows.Automation.ControlType.Button.Id,
+                    propertyCondition.Value);
+            /*
             Assert.AreEqual(
                 System.Windows.Automation.ControlType.Button.Id,
-                (((AndCondition)this.ResultCondition).GetConditions()[0] as PropertyCondition).Value);
-                
+                (ResultCondition.GetConditions()[0] as PropertyCondition).Value);
+            */
+
             Assert.AreEqual(
                 Condition.TrueCondition,
-                (((AndCondition)this.ResultCondition).GetConditions()[1]));
+                (ResultCondition.GetConditions()[1]));
+           
+           Assert.ForAll(ResultCondition.GetConditions(), x => x is PropertyCondition | ((x as PropertyCondition).Value as ControlType).Id == System.Windows.Automation.ControlType.Button.Id | (x as Condition) == Condition.TrueCondition);
         }
         
         [Test]
@@ -85,15 +85,15 @@ namespace UIAutomationUnitTests
         {
             string expectedName = "name1";
             
-            this.getConditions(expectedName, null, null, "button");
+            getConditions(expectedName, null, null, "button");
             
             Assert.AreEqual(
                 System.Windows.Automation.ControlType.Button.Id,
-                (((AndCondition)this.ResultCondition).GetConditions()[1] as PropertyCondition).Value);
+                (ResultCondition.GetConditions()[1] as PropertyCondition).Value);
             
             Assert.AreEqual(
                 expectedName,
-                (((AndCondition)this.ResultCondition).GetConditions()[0] as PropertyCondition).Value);
+                (ResultCondition.GetConditions()[0] as PropertyCondition).Value);
         }
         
         [Test]
@@ -101,17 +101,17 @@ namespace UIAutomationUnitTests
         [Category("Fast")]
         public void ControlType_AutomationId()
         {
-            string expectedAutomationId = "au1";
+            const string expectedAutomationId = "au1";
             
-            this.getConditions(null, expectedAutomationId, null, "button");
+            getConditions(null, expectedAutomationId, null, "button");
             
             Assert.AreEqual(
                 System.Windows.Automation.ControlType.Button.Id,
-                (((AndCondition)this.ResultCondition).GetConditions()[1] as PropertyCondition).Value);
+                (ResultCondition.GetConditions()[1] as PropertyCondition).Value);
             
             Assert.AreEqual(
                 expectedAutomationId,
-                (((AndCondition)this.ResultCondition).GetConditions()[0] as PropertyCondition).Value);
+                (ResultCondition.GetConditions()[0] as PropertyCondition).Value);
         }
         
         [Test]
@@ -119,17 +119,17 @@ namespace UIAutomationUnitTests
         [Category("Fast")]
         public void ControlType_ClassName()
         {
-            string expectedClassName = "className1";
+            const string expectedClassName = "className1";
             
-            this.getConditions(null, null, expectedClassName, "button");
+            getConditions(null, null, expectedClassName, "button");
 
             Assert.AreEqual(
                 expectedClassName,
-                (((AndCondition)this.ResultCondition).GetConditions()[0] as PropertyCondition).Value);
+                (ResultCondition.GetConditions()[0] as PropertyCondition).Value);
             
             Assert.AreEqual(
                 System.Windows.Automation.ControlType.Button.Id,
-                (((AndCondition)this.ResultCondition).GetConditions()[1] as PropertyCondition).Value);
+                (ResultCondition.GetConditions()[1] as PropertyCondition).Value);
         }
         
         [Test]
@@ -140,19 +140,19 @@ namespace UIAutomationUnitTests
             string expectedName = "name1";
             string expectedAutomationId = "au1";
             
-            this.getConditions(expectedName, expectedAutomationId, null, "button");
+            getConditions(expectedName, expectedAutomationId, null, "button");
 
             Assert.AreEqual(
                 System.Windows.Automation.ControlType.Button.Id,
-                (((AndCondition)this.ResultCondition).GetConditions()[0] as PropertyCondition).Value);
+                (ResultCondition.GetConditions()[0] as PropertyCondition).Value);
             
             Assert.AreEqual(
                 expectedName,
-                ((((AndCondition)this.ResultCondition).GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
+                ((ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
 
             Assert.AreEqual(
                 expectedAutomationId,
-                ((((AndCondition)this.ResultCondition).GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
+                ((ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
         }
         
         [Test]
@@ -163,19 +163,19 @@ namespace UIAutomationUnitTests
             string expectedName = "name1";
             string expectedClassName = "className1";
             
-            this.getConditions(expectedName, null, expectedClassName, "button");
+            getConditions(expectedName, null, expectedClassName, "button");
 
             Assert.AreEqual(
                 expectedClassName,
-                ((((AndCondition)this.ResultCondition).GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
+                ((ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
 
             Assert.AreEqual(
                 System.Windows.Automation.ControlType.Button.Id,
-                (((AndCondition)this.ResultCondition).GetConditions()[0] as PropertyCondition).Value);
+                (ResultCondition.GetConditions()[0] as PropertyCondition).Value);
             
             Assert.AreEqual(
                 expectedName,
-                ((((AndCondition)this.ResultCondition).GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
+                ((ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
         }
         
         [Test]
@@ -184,21 +184,21 @@ namespace UIAutomationUnitTests
         public void ControlType_AutomationId_ClassName()
         {
             string expectedAutomationId = "au1";
-            string expectedClassName = "className1";
+            const string expectedClassName = "className1";
             
-            this.getConditions(null, expectedAutomationId, expectedClassName, "button");
+            getConditions(null, expectedAutomationId, expectedClassName, "button");
 
             Assert.AreEqual(
                 expectedClassName,
-                ((((AndCondition)this.ResultCondition).GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
+                ((ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
 
             Assert.AreEqual(
                 System.Windows.Automation.ControlType.Button.Id,
-                (((AndCondition)this.ResultCondition).GetConditions()[0] as PropertyCondition).Value);
+                (ResultCondition.GetConditions()[0] as PropertyCondition).Value);
             
             Assert.AreEqual(
                 expectedAutomationId,
-                ((((AndCondition)this.ResultCondition).GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
+                ((ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
         }
         
         [Test]
@@ -210,23 +210,23 @@ namespace UIAutomationUnitTests
             string expectedAutomationId = "au1";
             string expectedClassName = "className1";
             
-            this.getConditions(expectedName, expectedAutomationId, expectedClassName, "button");
+            getConditions(expectedName, expectedAutomationId, expectedClassName, "button");
 
             Assert.AreEqual(
                 expectedClassName,
-                ((((AndCondition)this.ResultCondition).GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
+                ((ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
 
             Assert.AreEqual(
                 System.Windows.Automation.ControlType.Button.Id,
-                (((AndCondition)this.ResultCondition).GetConditions()[0] as PropertyCondition).Value);
+                (ResultCondition.GetConditions()[0] as PropertyCondition).Value);
             
             Assert.AreEqual(
                 expectedName,
-                ((((AndCondition)this.ResultCondition).GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
+                ((ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
             
             Assert.AreEqual(
                 expectedAutomationId,
-                ((((AndCondition)this.ResultCondition).GetConditions()[1] as AndCondition).GetConditions()[2] as PropertyCondition).Value);
+                ((ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[2] as PropertyCondition).Value);
         }
 
         // =========================
@@ -236,11 +236,11 @@ namespace UIAutomationUnitTests
         [Category("Fast")]
         public void No_conditions()
         {
-            this.getConditions(null, null, null, "");
+            getConditions(null, null, null, "");
             
             Assert.AreEqual(
                 Condition.TrueCondition,
-                (((AndCondition)this.ResultCondition).GetConditions()[0]));
+                (ResultCondition.GetConditions()[0]));
         }
         
         [Test]
@@ -250,11 +250,11 @@ namespace UIAutomationUnitTests
         {
             string expectedName = "name1";
             
-            this.getConditions(expectedName, null, null, "");
+            getConditions(expectedName, null, null, "");
             
             Assert.AreEqual(
                 expectedName,
-                (((AndCondition)this.ResultCondition).GetConditions()[0] as PropertyCondition).Value);
+                (ResultCondition.GetConditions()[0] as PropertyCondition).Value);
         }
         
         [Test]
@@ -262,13 +262,13 @@ namespace UIAutomationUnitTests
         [Category("Fast")]
         public void AutomationId()
         {
-            string expectedAutomationId = "au1";
+            const string expectedAutomationId = "au1";
             
-            this.getConditions(null, expectedAutomationId, null, "");
+            getConditions(null, expectedAutomationId, null, "");
             
             Assert.AreEqual(
                 expectedAutomationId,
-                (((AndCondition)this.ResultCondition).GetConditions()[0] as PropertyCondition).Value);
+                (ResultCondition.GetConditions()[0] as PropertyCondition).Value);
         }
         
         [Test]
@@ -278,11 +278,11 @@ namespace UIAutomationUnitTests
         {
             string expectedClassName = "className1";
             
-            this.getConditions(null, null, expectedClassName, "");
+            getConditions(null, null, expectedClassName, "");
 
             Assert.AreEqual(
                 expectedClassName,
-                (((AndCondition)this.ResultCondition).GetConditions()[0] as PropertyCondition).Value);
+                (ResultCondition.GetConditions()[0] as PropertyCondition).Value);
         }
         
         [Test]
@@ -290,18 +290,18 @@ namespace UIAutomationUnitTests
         [Category("Fast")]
         public void Name_AutomationId()
         {
-            string expectedName = "name1";
-            string expectedAutomationId = "au1";
+            const string expectedName = "name1";
+            const string expectedAutomationId = "au1";
             
-            this.getConditions(expectedName, expectedAutomationId, null, "");
+            getConditions(expectedName, expectedAutomationId, null, "");
             
             Assert.AreEqual(
                 expectedName,
-                ((((AndCondition)this.ResultCondition).GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
+                ((ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
 
             Assert.AreEqual(
                 expectedAutomationId,
-                ((((AndCondition)this.ResultCondition).GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
+                ((ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
         }
         
         [Test]
@@ -309,18 +309,18 @@ namespace UIAutomationUnitTests
         [Category("Fast")]
         public void Name_ClassName()
         {
-            string expectedName = "name1";
-            string expectedClassName = "className1";
+            const string expectedName = "name1";
+            const string expectedClassName = "className1";
             
-            this.getConditions(expectedName, null, expectedClassName, "");
+            getConditions(expectedName, null, expectedClassName, "");
 
             Assert.AreEqual(
                 expectedClassName,
-                ((((AndCondition)this.ResultCondition).GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
+                ((ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
 
             Assert.AreEqual(
                 expectedName,
-                ((((AndCondition)this.ResultCondition).GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
+                ((ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
         }
         
         [Test]
@@ -328,18 +328,18 @@ namespace UIAutomationUnitTests
         [Category("Fast")]
         public void AutomationId_ClassName()
         {
-            string expectedAutomationId = "au1";
-            string expectedClassName = "className1";
+            const string expectedAutomationId = "au1";
+            const string expectedClassName = "className1";
             
-            this.getConditions(null, expectedAutomationId, expectedClassName, "");
+            getConditions(null, expectedAutomationId, expectedClassName, "");
 
             Assert.AreEqual(
                 expectedClassName,
-                ((((AndCondition)this.ResultCondition).GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
+                ((ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
 
             Assert.AreEqual(
                 expectedAutomationId,
-                ((((AndCondition)this.ResultCondition).GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
+                ((ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
         }
         
         [Test]
@@ -347,23 +347,23 @@ namespace UIAutomationUnitTests
         [Category("Fast")]
         public void Name_AutomationId_ClassName()
         {
-            string expectedName = "name1";
-            string expectedAutomationId = "au1";
-            string expectedClassName = "className1";
+            const string expectedName = "name1";
+            const string expectedAutomationId = "au1";
+            const string expectedClassName = "className1";
             
-            this.getConditions(expectedName, expectedAutomationId, expectedClassName, "");
+            getConditions(expectedName, expectedAutomationId, expectedClassName, "");
             
             Assert.AreEqual(
                 expectedClassName,
-                ((((AndCondition)this.ResultCondition).GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
+                ((ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
 
             Assert.AreEqual(
                 expectedName,
-                ((((AndCondition)this.ResultCondition).GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
+                ((ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
             
             Assert.AreEqual(
                 expectedAutomationId,
-                ((((AndCondition)this.ResultCondition).GetConditions()[1] as AndCondition).GetConditions()[2] as PropertyCondition).Value);
+                ((ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[2] as PropertyCondition).Value);
         }
         
     }

@@ -1919,8 +1919,9 @@ namespace UIAutomation
                         allConditions =
                             new System.Windows.Automation.AndCondition(
                                 // 20131120
-                                //ctrlTypeCondition ?? Condition.TrueCondition,
-                                ctrlTypeCondition,
+                                // that was experimental
+                                ctrlTypeCondition ?? Condition.TrueCondition,
+                                //ctrlTypeCondition,
                                 andConditions);
 
                         /*
@@ -1936,8 +1937,9 @@ namespace UIAutomation
                         allConditions =
                             new System.Windows.Automation.AndCondition(
                                 // 20131120
-                                //ctrlTypeCondition ?? Condition.TrueCondition,
-                                ctrlTypeCondition,
+                                // that was experimental
+                                ctrlTypeCondition ?? Condition.TrueCondition,
+                                //ctrlTypeCondition,
                                 orConditions);
 
                         /*
@@ -2023,9 +2025,10 @@ namespace UIAutomation
                     allConditions =
                         new AndCondition(condition,
                                          // 20131120
-                                         //Condition.TrueCondition);
+                                         // that was experimental
+                                         Condition.TrueCondition);
                                          //Condition.FalseCondition);
-                                         condition);
+                                         //condition);
                     conditionsToReturn = allConditions;
 
                 }

@@ -9,8 +9,6 @@
 
 namespace UIAutomation.Commands
 {
-    // test it
-    //using System;
     using System.Management.Automation;
 
 	/// <summary>

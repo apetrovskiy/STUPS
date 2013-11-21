@@ -11,8 +11,6 @@ using System.Linq;
 
 namespace UIAutomation.Commands
 {
-    // test it
-    //using System;
     using System.Management.Automation;
 
     /// <summary>
@@ -27,7 +25,7 @@ namespace UIAutomation.Commands
 //                   ValueFromPipeline = true)]
 //        [Alias("Handle")]
 //        public new int InputObject { get; set; }
-        [ValidateNotNullOrEmpty]// test it()]
+        [ValidateNotNullOrEmpty]
         [Alias ("Handle")]
         [Parameter(Mandatory = false, 
             ValueFromPipeline = true, 

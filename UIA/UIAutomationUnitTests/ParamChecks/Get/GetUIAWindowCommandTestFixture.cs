@@ -9,10 +9,6 @@
 
 namespace UIAutomationUnitTests.CheckCmdletParameters
 {
-    using System;
-    using System.Windows.Automation;
-    using PSTestLib;
-    using UIAutomation;
     using MbUnit.Framework;
     
     /// <summary>
@@ -20,10 +16,6 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
     /// </summary>
     public class GetUIAWindowCommandTestFixture
     {
-        public GetUIAWindowCommandTestFixture()
-        {
-        }
-        
         [SetUp]
         public void PrepareRunspace()
         {

@@ -6,7 +6,6 @@
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
-using System;
 
 namespace UIAutomationUnitTests.ParamChecks.Container
 {
@@ -15,8 +14,5 @@ namespace UIAutomationUnitTests.ParamChecks.Container
     /// </summary>
     public class NewUIAContainerCommandTestFixture
     {
-        public NewUIAContainerCommandTestFixture()
-        {
-        }
     }
 }

@@ -6,7 +6,6 @@
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
-using System;
 
 namespace UIAutomationUnitTests.ParamChecks.Pattern
 {
@@ -15,8 +14,5 @@ namespace UIAutomationUnitTests.ParamChecks.Pattern
     /// </summary>
     public class InvokeUIAToggleStateSetCommandTestFixture
     {
-        public InvokeUIAToggleStateSetCommandTestFixture()
-        {
-        }
     }
 }

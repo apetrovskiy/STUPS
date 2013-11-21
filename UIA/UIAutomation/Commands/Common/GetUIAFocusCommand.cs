@@ -9,15 +9,7 @@
 
 namespace UIAutomation.Commands
 {
-    // test it
-    //using System;
     using System.Management.Automation;
-    //using System.Runtime.InteropServices;
-    //using System.Windows.Automation;
-    //using UIAutomationClient;
-    
-    //using Ninject;
-    //using Ninject.Parameters;
     
     /// <summary>
     /// Description of GetUIAFocusCommand.

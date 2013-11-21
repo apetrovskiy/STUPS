@@ -9,11 +9,7 @@
 
 namespace UIAutomation.Commands
 {
-    // test it
-    //using System;
     using System.Management.Automation;
-    // test it
-    //using System.Runtime.InteropServices;
 
     /// <summary>
     /// Description of ConvertFromUIAListCommand.

@@ -54,7 +54,7 @@ namespace UIAutomation.Commands
             //foreach (AutomationElement inputObject in this.InputObject) {
             foreach (IMySuperWrapper inputObject in this.InputObject) {
                 
-                UIAHelper.GetSheridanTreeItemByName(
+                UiaHelper.GetSheridanTreeItemByName(
                     this, 
                     (IntPtr)inputObject.Current.NativeWindowHandle,
                     this.Name);

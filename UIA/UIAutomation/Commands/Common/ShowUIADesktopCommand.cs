@@ -14,10 +14,10 @@ namespace UIAutomation.Commands.Common
     using System.Windows.Automation;
     
     /// <summary>
-    /// Description of ShowUIADesktopCommand.
+    /// Description of ShowUiaDesktopCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Show, "UIADesktop")]
-    internal class ShowUIADesktopCommand : HasScriptBlockCmdletBase
+    [Cmdlet(VerbsCommon.Show, "UiaDesktop")]
+    internal class ShowUiaDesktopCommand : HasScriptBlockCmdletBase
     {
         protected override void BeginProcessing()
         {

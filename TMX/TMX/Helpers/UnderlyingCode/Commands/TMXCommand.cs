@@ -13,11 +13,11 @@ namespace TMX
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of TMXCommand.
+    /// Description of TmxCommand.
     /// </summary>
-    internal abstract class TMXCommand
+    internal abstract class TmxCommand
     {
-        internal TMXCommand(CommonCmdletBase cmdlet)
+        internal TmxCommand(CommonCmdletBase cmdlet)
         {
             this.Cmdlet = cmdlet;
         }

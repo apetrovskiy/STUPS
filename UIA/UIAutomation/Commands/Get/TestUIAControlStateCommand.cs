@@ -14,13 +14,13 @@ namespace UIAutomation.Commands
     using System.Windows.Automation;
 
     /// <summary>
-    /// Description of TestUIAControlStateCommand.
+    /// Description of TestUiaControlStateCommand.
     /// </summary>
     // 20130130
-    //[Cmdlet(VerbsDiagnostic.Test, "UIAControlState")]
-    [Cmdlet(VerbsDiagnostic.Test, "UIAControlState", DefaultParameterSetName = "Search")]
+    //[Cmdlet(VerbsDiagnostic.Test, "UiaControlState")]
+    [Cmdlet(VerbsDiagnostic.Test, "UiaControlState", DefaultParameterSetName = "Search")]
     [OutputType(new[] { typeof(object) })]
-    public class TestUIAControlStateCommand : GetControlStateCmdletBase
+    public class TestUiaControlStateCommand : GetControlStateCmdletBase
     {
         #region Parameters
         [Parameter]

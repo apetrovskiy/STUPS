@@ -51,7 +51,7 @@ namespace SePSX
             
             //TMX.
             //} else {
-            // UIAHelper.GetControlScreenshot(this.InputObject, this.Description);
+            // UiaHelper.GetControlScreenshot(this.InputObject, this.Description);
             //}
         }
     }

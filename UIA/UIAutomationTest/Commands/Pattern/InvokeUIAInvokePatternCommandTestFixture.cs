@@ -16,12 +16,12 @@ namespace UIAutomationTest.Commands.Pattern
     using System.Collections.ObjectModel;
     
     /// <summary>
-    /// Description of InvokeUIAInvokePatternCommandTestFixture.
+    /// Description of InvokeUiaInvokePatternCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Invoke-UIAInvokePatternCommand test")]
-    public class InvokeUIAInvokePatternCommandTestFixture
+    [TestFixture] // [TestFixture(Description="Invoke-UiaInvokePatternCommand test")]
+    public class InvokeUiaInvokePatternCommandTestFixture
     {
-        public InvokeUIAInvokePatternCommandTestFixture()
+        public InvokeUiaInvokePatternCommandTestFixture()
         {
         }
         
@@ -44,15 +44,15 @@ namespace UIAutomationTest.Commands.Pattern
                 UIAutomationTestForms.Forms.WinFormsFull, 
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = Get-UIAWindow -pn " + 
+                @"$null = Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAButton -Name button1 | Invoke-UIAButtonClick;" + 
-                @"Get-UIAWindow -pn " + 
+                " | Get-UiaButton -Name button1 | Invoke-UiaButtonClick;" + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAList -AutomationId listBox1 | " + 
-                "Get-UIAListItem -Name " + 
+                " | Get-UiaList -AutomationId listBox1 | " + 
+                "Get-UiaListItem -Name " + 
                 expectedResult +
-                " | Read-UIAControlName;",
+                " | Read-UiaControlName;",
                 expectedResult);
         }
         
@@ -66,15 +66,15 @@ namespace UIAutomationTest.Commands.Pattern
                 UIAutomationTestForms.Forms.WinFormsFull, 
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = Get-UIAWindow -pn " + 
+                @"$null = Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAButton -Name button* | Invoke-UIAButtonClick;" + 
-                @"Get-UIAWindow -pn " + 
+                " | Get-UiaButton -Name button* | Invoke-UiaButtonClick;" + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAList -AutomationId listBox1 | " + 
-                "Get-UIAListItem -Name " + 
+                " | Get-UiaList -AutomationId listBox1 | " + 
+                "Get-UiaListItem -Name " + 
                 expectedResult +
-                " | Read-UIAControlName;",
+                " | Read-UiaControlName;",
                 new Collection<PSObject>{new PSObject("Invoked2"),new PSObject("Invoked")});
         }
         
@@ -93,16 +93,16 @@ namespace UIAutomationTest.Commands.Pattern
                 UIAutomationTestForms.Forms.WinFormsFull, 
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = Get-UIAWindow -pn " + 
+                @"$null = Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAHyperlink -Name linkLabel1 | Invoke-UIAHyperlinkClick;" + 
+                " | Get-UiaHyperlink -Name linkLabel1 | Invoke-UiaHyperlinkClick;" + 
                 
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAList -AutomationId listBox1 | " + 
-                "Get-UIAListItem -Name " + 
+                " | Get-UiaList -AutomationId listBox1 | " + 
+                "Get-UiaListItem -Name " + 
                 expectedResult +
-                " | Read-UIAControlName;",
+                " | Read-UiaControlName;",
                 expectedResult);
         }
         [Test] //[Test(Description="TBD")]
@@ -115,15 +115,15 @@ namespace UIAutomationTest.Commands.Pattern
                 UIAutomationTestForms.Forms.WinFormsFull, 
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = Get-UIAWindow -pn " + 
+                @"$null = Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIALinkLabel -Name linkLabel1 | Invoke-UIALinkLabelClick;" + 
-                @"Get-UIAWindow -pn " + 
+                " | Get-UiaLinkLabel -Name linkLabel1 | Invoke-UiaLinkLabelClick;" + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAList -AutomationId listBox1 | " + 
-                "Get-UIAListItem -Name " + 
+                " | Get-UiaList -AutomationId listBox1 | " + 
+                "Get-UiaListItem -Name " + 
                 expectedResult +
-                " | Read-UIAControlName;",
+                " | Read-UiaControlName;",
                 expectedResult);
         }
         
@@ -142,12 +142,12 @@ namespace UIAutomationTest.Commands.Pattern
                 UIAutomationTestForms.Forms.WinFormsFull, 
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAMenuItem -Name toolStripDropDownButton2 | Invoke-UIAMenuItemClick " + 
-                " | Get-UIAMenuItem -Name '" + 
+                " | Get-UiaMenuItem -Name toolStripDropDownButton2 | Invoke-UiaMenuItemClick " + 
+                " | Get-UiaMenuItem -Name '" + 
                 expectedResult + 
-                @"' | Read-UIAControlName;",
+                @"' | Read-UiaControlName;",
                 expectedResult);
         }
         
@@ -163,13 +163,13 @@ namespace UIAutomationTest.Commands.Pattern
 //                UIAutomationTestForms.Forms.WinFormsFull, 
 //                0);
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-//                @"$null = Get-UIAWindow -pn " + 
+//                @"$null = Get-UiaWindow -pn " + 
 //                MiddleLevelCode.TestFormProcess +
-//                " | Get-UIASplitButton -Name toolStripSplitButton2 | Invoke-UIASplitButtonClick;" + 
-//                @"(Get-UIAWindow -pn " + 
+//                " | Get-UiaSplitButton -Name toolStripSplitButton2 | Invoke-UiaSplitButtonClick;" + 
+//                @"(Get-UiaWindow -pn " + 
 //                MiddleLevelCode.TestFormProcess +
-//                " | Get-UIAList -AutomationId listBox1 | " + 
-//                "Get-UIAListItem -Name " + 
+//                " | Get-UiaList -AutomationId listBox1 | " + 
+//                "Get-UiaListItem -Name " + 
 //                expectedResult +
 //                ").Current.Name;",
 //                expectedResult);
@@ -187,13 +187,13 @@ namespace UIAutomationTest.Commands.Pattern
 //                UIAutomationTestForms.Forms.WinFormsFull, 
 //                0);
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-//                @"$null = Get-UIAWindow -pn " + 
+//                @"$null = Get-UiaWindow -pn " + 
 //                MiddleLevelCode.TestFormProcess +
-//                " | Get-UIATabItem -Name tabPage2 | Invoke-UIATabItemClick;" + 
-//                @"(Get-UIAWindow -pn " + 
+//                " | Get-UiaTabItem -Name tabPage2 | Invoke-UiaTabItemClick;" + 
+//                @"(Get-UiaWindow -pn " + 
 //                MiddleLevelCode.TestFormProcess +
-//                " | Get-UIAList -AutomationId listBox1 | " + 
-//                "Get-UIAListItem -Name " + 
+//                " | Get-UiaList -AutomationId listBox1 | " + 
+//                "Get-UiaListItem -Name " + 
 //                expectedResult +
 //                ").Current.Name;",
 //                expectedResult);
@@ -211,13 +211,13 @@ namespace UIAutomationTest.Commands.Pattern
 //                UIAutomationTestForms.Forms.WinFormsFull, 
 //                0);
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-//                @"$null = Get-UIAWindow -pn " + 
+//                @"$null = Get-UiaWindow -pn " + 
 //                MiddleLevelCode.TestFormProcess +
-//                " | Get-UIATreeItem -Name Node0 | Invoke-UIATreeItemClick;" + 
-//                @"(Get-UIAWindow -pn " + 
+//                " | Get-UiaTreeItem -Name Node0 | Invoke-UiaTreeItemClick;" + 
+//                @"(Get-UiaWindow -pn " + 
 //                MiddleLevelCode.TestFormProcess +
-//                " | Get-UIAList -AutomationId listBox1 | " + 
-//                "Get-UIAListItem -Name " + 
+//                " | Get-UiaList -AutomationId listBox1 | " + 
+//                "Get-UiaListItem -Name " + 
 //                expectedResult +
 //                ").Current.Name;",
 //                expectedResult);

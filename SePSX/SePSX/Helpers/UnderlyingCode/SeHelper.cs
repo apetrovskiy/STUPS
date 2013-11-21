@@ -2831,7 +2831,7 @@ Console.WriteLine("NavigatoTo: 00003");
                     cmdlet.WriteVerbose(cmdlet, eWebDriver.Message);
                     cmdlet.WriteVerbose(cmdlet, "taking the desktop for screenshot");
                     
-                    UIAutomation.UIAHelper.GetScreenshotOfAutomationElement(
+                    UIAutomation.UiaHelper.GetScreenshotOfAutomationElement(
                         (new HasControlInputCmdletBase()),
                         // 20131109
                         //AutomationElement.RootElement,
@@ -2857,7 +2857,7 @@ Console.WriteLine("NavigatoTo: 00003");
 
                 cmdlet.WriteVerbose(cmdlet, "taking the desktop for screenshot");
                 
-                UIAutomation.UIAHelper.GetScreenshotOfAutomationElement(
+                UIAutomation.UiaHelper.GetScreenshotOfAutomationElement(
                     (new HasControlInputCmdletBase()),
                     // 20131109
                     //AutomationElement.RootElement,
@@ -3052,7 +3052,7 @@ Console.WriteLine("NavigatoTo: 00003");
                 //                    }
                 //                }
 
-                UIAutomation.UIAHelper.GetScreenshotOfSquare(
+                UIAutomation.UiaHelper.GetScreenshotOfSquare(
                     cmdlet,
                     description,
                     save,
@@ -3090,7 +3090,7 @@ Console.WriteLine("NavigatoTo: 00003");
                 
             }
             if (null == elementToTakeScreenShot) {
-                UIAutomation.UIAHelper.GetScreenshotOfAutomationElement(
+                UIAutomation.UiaHelper.GetScreenshotOfAutomationElement(
                     (new HasControlInputCmdletBase()),
                     // 20131109
                     //AutomationElement.RootElement,
@@ -3159,7 +3159,7 @@ Console.WriteLine("NavigatoTo: 00003");
             //                    }
             //                }
 
-            UIAutomation.UIAHelper.GetScreenshotOfSquare(
+            UIAutomation.UiaHelper.GetScreenshotOfSquare(
                 cmdlet,
                 description,
                 save,
@@ -3184,12 +3184,12 @@ Console.WriteLine("NavigatoTo: 00003");
         {
             if (Preferences.SetBrowserWindowForeground) {
                 try {
-                    UIAutomation.UIAHelper.GetAutomationElementFromHandle(
+                    UIAutomation.UiaHelper.GetAutomationElementFromHandle(
                         (new UIAutomation.DiscoveryCmdletBase()),
                         CurrentData.CurrentWebDriverHandle.ToInt32()).SetFocus();
                     
                     bool result =
-                        UIAutomation.UIAHelper.SetFocus(
+                        UIAutomation.UiaHelper.SetFocus(
                             CurrentData.CurrentWebDriverHandle);
                     
                     if (!result) {

@@ -14,13 +14,13 @@ namespace UIAutomation.Commands
     using System.Windows.Automation;
 
     /// <summary>
-    /// Description of NewUIAWizardCommand.
+    /// Description of NewUiaWizardCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.New, "UIAWizard")]
+    [Cmdlet(VerbsCommon.New, "UiaWizard")]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class NewUIAWizardCommand : WizardContainerCmdletBase
+    public class NewUiaWizardCommand : WizardContainerCmdletBase
     {
-        public NewUIAWizardCommand()
+        public NewUiaWizardCommand()
         {
         }
         
@@ -49,8 +49,8 @@ namespace UIAutomation.Commands
         
         protected override void BeginProcessing()
         {
-            UIANewWizardCommand command =
-                new UIANewWizardCommand(this);
+            UiaNewWizardCommand command =
+                new UiaNewWizardCommand(this);
             command.Execute();
         }
         

@@ -42,7 +42,7 @@ namespace PSTestRunner
                 @"\UIAutomation.dll" +
                 @"';" + 
                 "\r\n";
-            string strTMXPath = 
+            string strTmxPath = 
                 @"ipmo '" +
                 currDir +
                 @"\TMX.dll" +
@@ -51,7 +51,7 @@ namespace PSTestRunner
             string strInitScriptPath = 
                 @"& '" +
                 currDir +
-                @"\UIARunner.ps1" +
+                @"\UiaRunner.ps1" +
                 @"'";
             try {
                 //result = Runner.ResetRunspace();
@@ -67,7 +67,7 @@ namespace PSTestRunner
                 result = 
                     Runner.IitializeRunspace(
                         strUIAutomationPath + 
-                        strTMXPath +
+                        strTmxPath +
                         strInitScriptPath);
             }
             catch (Exception eInitRunspace) {
@@ -88,7 +88,7 @@ namespace PSTestRunner
 //            // load the initialization script
 //            string strInitScriptPath = 
 //                currDir +
-//                @"\UIARunner.ps1";
+//                @"\UiaRunner.ps1";
 //            
 //            try {
 //                result = Runner.IitializeRunspaceAsync(strInitScriptPath);
@@ -168,7 +168,7 @@ namespace PSTestRunner
 //            // load the initialization script
 //            string strInitScriptPath = 
 //                currDir +
-//                @"\UIARunner.ps1";
+//                @"\UiaRunner.ps1";
 //            
 //            try {
 //                result = Runner.IitializeRunspace(strInitScriptPath);
@@ -182,7 +182,7 @@ namespace PSTestRunner
             StartTestLogger();
 //                try {
 //                    testLogWriter = 
-//                        new System.IO.StreamWriter(@".\UIARunner_report.csv");
+//                        new System.IO.StreamWriter(@".\UiaRunner_report.csv");
 //                    string quote = @"""";
 //                    string quotesWithComma = @""",""";
 //                    
@@ -410,7 +410,7 @@ namespace PSTestRunner
         {
             try {
                 testLogWriter = 
-                    new System.IO.StreamWriter(@".\UIARunner_report.csv");
+                    new System.IO.StreamWriter(@".\UiaRunner_report.csv");
                 string quote = @"""";
                 string quotesWithComma = @""",""";
                 

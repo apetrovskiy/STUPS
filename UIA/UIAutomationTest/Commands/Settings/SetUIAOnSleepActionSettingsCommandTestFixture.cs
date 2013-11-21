@@ -14,10 +14,10 @@ namespace UIAutomationTest.Commands.Settings
     using System.Management.Automation;
 
     /// <summary>
-    /// Description of SetUIAOnSleepActionSettingsCommandTestFixture.
+    /// Description of SetUiaOnSleepActionSettingsCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Set-UIAOnSleepActionSettingsCommand test")]
-    public class SetUIAOnSleepActionSettingsCommandTestFixture
+    [TestFixture] // [TestFixture(Description="Set-UiaOnSleepActionSettingsCommand test")]
+    public class SetUiaOnSleepActionSettingsCommandTestFixture
     {
         [SetUp]
         public void PrepareRunspace()

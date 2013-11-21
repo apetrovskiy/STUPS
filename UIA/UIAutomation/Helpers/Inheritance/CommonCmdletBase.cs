@@ -27,7 +27,7 @@ namespace UIAutomation
     /// <summary>
     /// The CommonCmdletBase class in the top of cmdlet hierarchy.
     /// </summary>
-    //    [Cmdlet(VerbsCommon.Show, "UIAModuleSettings")]
+    //    [Cmdlet(VerbsCommon.Show, "UiaModuleSettings")]
     public class CommonCmdletBase : PSCmdletBase
     {
         #region Constructor
@@ -239,7 +239,7 @@ namespace UIAutomation
             
             if (string.Empty != ((HasScriptBlockCmdletBase)cmdlet).Banner) {
 
-                UIAHelper.ShowBanner(((HasScriptBlockCmdletBase)cmdlet).Banner);
+                UiaHelper.ShowBanner(((HasScriptBlockCmdletBase)cmdlet).Banner);
 
             }
 
@@ -310,9 +310,9 @@ namespace UIAutomation
                     //this.Enqueue(element);
                 } else {
 //                                if (Preferences.ShowInfoToolTip) {
-                    UIAHelper.Highlight(element);
+                    UiaHelper.Highlight(element);
 //                                } else {
-//                                    UIAHelper.Highlight(element);
+//                                    UiaHelper.Highlight(element);
 //                                }
                 }
                 this.WriteVerbose(this, "after running the Highlighter");
@@ -343,9 +343,9 @@ namespace UIAutomation
                         //this.Enqueue(element);
                     } else {
 //                                if (Preferences.ShowInfoToolTip) {
-                        UIAHelper.Highlight(element);
+                        UiaHelper.Highlight(element);
 //                                } else {
-//                                    UIAHelper.Highlight(element);
+//                                    UiaHelper.Highlight(element);
 //                                }
                     }
                     this.WriteVerbose(this, "after running the Highlighter");
@@ -376,9 +376,9 @@ namespace UIAutomation
                             //this.Enqueue(element);
                         } else {
 //                                if (Preferences.ShowInfoToolTip) {
-                            UIAHelper.Highlight(element);
+                            UiaHelper.Highlight(element);
 //                                } else {
-//                                    UIAHelper.Highlight(element);
+//                                    UiaHelper.Highlight(element);
 //                                }
                         }
                         this.WriteVerbose(this, "after running the Highlighter");
@@ -436,9 +436,9 @@ namespace UIAutomation
                                 //this.Enqueue(element);
                             } else {
 //                                if (Preferences.ShowInfoToolTip) {
-                                    UIAHelper.Highlight(element);
+                                    UiaHelper.Highlight(element);
 //                                } else {
-//                                    UIAHelper.Highlight(element);
+//                                    UiaHelper.Highlight(element);
 //                                }
                             }
                             this.WriteVerbose(this, "after running the Highlighter");
@@ -504,7 +504,7 @@ namespace UIAutomation
                     ((HasScriptBlockCmdletBase)cmdlet).TestResultName.Length > 0) {
                 */
 
-                        TMX.TMXHelper.CloseTestResult(((HasScriptBlockCmdletBase)cmdlet).TestResultName,
+                        TMX.TmxHelper.CloseTestResult(((HasScriptBlockCmdletBase)cmdlet).TestResultName,
                             ((HasScriptBlockCmdletBase)cmdlet).TestResultId,
                             ((HasScriptBlockCmdletBase)cmdlet).TestPassed,
                             ((HasScriptBlockCmdletBase)cmdlet).KnownIssue, //false, // isKnownIssue
@@ -523,7 +523,7 @@ namespace UIAutomation
                         ((HasScriptBlockCmdletBase)cmdlet).TestResultId = string.Empty;
                         ((HasScriptBlockCmdletBase)cmdlet).TestPassed = true;
 
-                        TMX.TMXHelper.CloseTestResult(((HasScriptBlockCmdletBase)cmdlet).TestResultName,
+                        TMX.TmxHelper.CloseTestResult(((HasScriptBlockCmdletBase)cmdlet).TestResultName,
                             string.Empty, //((HasScriptBlockCmdletBase)cmdlet).TestResultId, // empty, to be generated
                             ((HasScriptBlockCmdletBase)cmdlet).TestPassed,
                             ((HasScriptBlockCmdletBase)cmdlet).KnownIssue, //false, // isKnownIssue
@@ -543,7 +543,7 @@ namespace UIAutomation
                             ((HasScriptBlockCmdletBase)cmdlet).TestResultId = string.Empty;
                             ((HasScriptBlockCmdletBase)cmdlet).TestPassed = true;
 
-                            TMX.TMXHelper.CloseTestResult(((HasScriptBlockCmdletBase)cmdlet).TestResultName,
+                            TMX.TmxHelper.CloseTestResult(((HasScriptBlockCmdletBase)cmdlet).TestResultName,
                                 string.Empty, //((HasScriptBlockCmdletBase)cmdlet).TestResultId, // empty, to be generated
                                 ((HasScriptBlockCmdletBase)cmdlet).TestPassed,
                                 ((HasScriptBlockCmdletBase)cmdlet).KnownIssue, //false, // isKnownIssue
@@ -570,7 +570,7 @@ namespace UIAutomation
                     if (((HasScriptBlockCmdletBase)cmdlet).TestResultName != null &&
                         ((HasScriptBlockCmdletBase)cmdlet).TestResultName.Length > 0) {
 
-                        TMX.TMXHelper.CloseTestResult(((HasScriptBlockCmdletBase)cmdlet).TestResultName,
+                        TMX.TmxHelper.CloseTestResult(((HasScriptBlockCmdletBase)cmdlet).TestResultName,
                                                       ((HasScriptBlockCmdletBase)cmdlet).TestResultId,
                                                       ((HasScriptBlockCmdletBase)cmdlet).TestPassed,
                                                       ((HasScriptBlockCmdletBase)cmdlet).KnownIssue, //false, // isKnownIssue
@@ -591,7 +591,7 @@ namespace UIAutomation
                             ((HasScriptBlockCmdletBase)cmdlet).TestResultId = string.Empty;
                             ((HasScriptBlockCmdletBase)cmdlet).TestPassed = true;
 
-                            TMX.TMXHelper.CloseTestResult(((HasScriptBlockCmdletBase)cmdlet).TestResultName,
+                            TMX.TmxHelper.CloseTestResult(((HasScriptBlockCmdletBase)cmdlet).TestResultName,
                                                           string.Empty, //((HasScriptBlockCmdletBase)cmdlet).TestResultId, // empty, to be generated
                                                           ((HasScriptBlockCmdletBase)cmdlet).TestPassed,
                                                           ((HasScriptBlockCmdletBase)cmdlet).KnownIssue, //false, // isKnownIssue
@@ -617,10 +617,10 @@ namespace UIAutomation
             if (UIAutomation.Preferences.OnSuccessScreenShot) {
                 
                 //                if (Preferences.HideHighlighterOnScreenShotTaking) {
-                //                    UIAHelper.HideHighlighters();
+                //                    UiaHelper.HideHighlighters();
                 //                }
                 
-                UIAHelper.GetScreenshotOfAutomationElement(
+                UiaHelper.GetScreenshotOfAutomationElement(
                     (cmdlet as HasControlInputCmdletBase),
                     // 20131109
                     //(outputObject as AutomationElement), //(cmdlet as HasControlInputCmdletBase),
@@ -837,7 +837,7 @@ namespace UIAutomation
                             reportString +=
                                 this.ConvertHashtablesArrayToString(hashtables);
                         }
-                        if (cmdlet is Commands.WaitUIAWindowCommand) {
+                        if (cmdlet is Commands.WaitUiaWindowCommand) {
                                 
                             reportString +=
                                 "Name: '" +
@@ -940,7 +940,7 @@ namespace UIAutomation
                                 reportString +=
                                     this.ConvertHashtablesArrayToString(hashtables);
                             }
-                            if (cmdlet is Commands.WaitUIAWindowCommand) {
+                            if (cmdlet is Commands.WaitUiaWindowCommand) {
                                 
                                 reportString +=
                                     "Name: '" +
@@ -1063,7 +1063,7 @@ namespace UIAutomation
         {
             if (cmdlet == null) return;
             // write error to the test results collection
-            TMX.TMXHelper.AddTestResultErrorDetail(errorRecord);
+            TMX.TmxHelper.AddTestResultErrorDetail(errorRecord);
                 
             // write test result label
             try {
@@ -1077,7 +1077,7 @@ namespace UIAutomation
                     ((HasScriptBlockCmdletBase)cmdlet).TestResultName.Length > 0) {
                 */
 
-                        TMX.TMXHelper.CloseTestResult(((HasScriptBlockCmdletBase)cmdlet).TestResultName,
+                        TMX.TmxHelper.CloseTestResult(((HasScriptBlockCmdletBase)cmdlet).TestResultName,
                             ((HasScriptBlockCmdletBase)cmdlet).TestResultId,
                             false, // the only result: FAILED //((HasScriptBlockCmdletBase)cmdlet).TestPassed,
                             false, // because of failure //((HasScriptBlockCmdletBase)cmdlet).KnownIssue,
@@ -1097,7 +1097,7 @@ namespace UIAutomation
                         ((HasScriptBlockCmdletBase)cmdlet).TestResultId = string.Empty;
                         ((HasScriptBlockCmdletBase)cmdlet).TestPassed = false;
                             
-                        TMX.TMXHelper.CloseTestResult(((HasScriptBlockCmdletBase)cmdlet).TestResultName,
+                        TMX.TmxHelper.CloseTestResult(((HasScriptBlockCmdletBase)cmdlet).TestResultName,
                             string.Empty, //((HasScriptBlockCmdletBase)cmdlet).TestResultId, // empty, to be generated
                             ((HasScriptBlockCmdletBase)cmdlet).TestPassed,
                             false, // isKnownIssue
@@ -1118,7 +1118,7 @@ namespace UIAutomation
                             ((HasScriptBlockCmdletBase)cmdlet).TestResultId = string.Empty;
                             ((HasScriptBlockCmdletBase)cmdlet).TestPassed = false;
                             
-                            TMX.TMXHelper.CloseTestResult(((HasScriptBlockCmdletBase)cmdlet).TestResultName,
+                            TMX.TmxHelper.CloseTestResult(((HasScriptBlockCmdletBase)cmdlet).TestResultName,
                                 string.Empty, //((HasScriptBlockCmdletBase)cmdlet).TestResultId, // empty, to be generated
                                 ((HasScriptBlockCmdletBase)cmdlet).TestPassed,
                                 false, // isKnownIssue
@@ -1140,7 +1140,7 @@ namespace UIAutomation
             if (cmdlet != null) {
                 
                 // write error to the test results collection
-                TMX.TMXHelper.AddTestResultErrorDetail(errorRecord);
+                TMX.TmxHelper.AddTestResultErrorDetail(errorRecord);
                 
                 // write test result label
                 try {
@@ -1151,7 +1151,7 @@ namespace UIAutomation
                     if (((HasScriptBlockCmdletBase)cmdlet).TestResultName != null &&
                         ((HasScriptBlockCmdletBase)cmdlet).TestResultName.Length > 0) {
                         
-                        TMX.TMXHelper.CloseTestResult(((HasScriptBlockCmdletBase)cmdlet).TestResultName,
+                        TMX.TmxHelper.CloseTestResult(((HasScriptBlockCmdletBase)cmdlet).TestResultName,
                                                       ((HasScriptBlockCmdletBase)cmdlet).TestResultId,
                                                       false, // the only result: FAILED //((HasScriptBlockCmdletBase)cmdlet).TestPassed,
                                                       false, // because of failure //((HasScriptBlockCmdletBase)cmdlet).KnownIssue,
@@ -1173,7 +1173,7 @@ namespace UIAutomation
                             ((HasScriptBlockCmdletBase)cmdlet).TestResultId = string.Empty;
                             ((HasScriptBlockCmdletBase)cmdlet).TestPassed = false;
                             
-                            TMX.TMXHelper.CloseTestResult(((HasScriptBlockCmdletBase)cmdlet).TestResultName,
+                            TMX.TmxHelper.CloseTestResult(((HasScriptBlockCmdletBase)cmdlet).TestResultName,
                                                           string.Empty, //((HasScriptBlockCmdletBase)cmdlet).TestResultId, // empty, to be generated
                                                           ((HasScriptBlockCmdletBase)cmdlet).TestPassed,
                                                           false, // isKnownIssue
@@ -1268,8 +1268,8 @@ namespace UIAutomation
             WriteVerbose(this, "WriteErrorMethod045OnErrorScreenshot UIAutomation");
 
             if (!UIAutomation.Preferences.OnErrorScreenShot) return;
-            //UIAHelper.GetScreenshotOfAutomationElement(
-            //                UIAHelper.GetScreenshotOfCmdletInput(
+            //UiaHelper.GetScreenshotOfAutomationElement(
+            //                UiaHelper.GetScreenshotOfCmdletInput(
             //                    (cmdlet as HasControlInputCmdletBase),
             //                    CmdletName(cmdlet), //string.Empty,
             //                    true,
@@ -1281,7 +1281,7 @@ namespace UIAutomation
             //                    UIAutomation.Preferences.OnErrorScreenShotFormat);
 
             //                if (Preferences.HideHighlighterOnScreenShotTaking) {
-            //                    UIAHelper.HideHighlighters();
+            //                    UiaHelper.HideHighlighters();
             //                }
                 
             // 20131109
@@ -1311,7 +1311,7 @@ namespace UIAutomation
             }
                 
             cmdlet.WriteVerbose(cmdlet, "taking screenshot");
-            UIAHelper.GetScreenshotOfAutomationElement(
+            UiaHelper.GetScreenshotOfAutomationElement(
                 cmdlet,
                 elementToTakeScreenShot,
                 CmdletName(cmdlet),
@@ -1327,8 +1327,8 @@ namespace UIAutomation
 
             /*
             if (UIAutomation.Preferences.OnErrorScreenShot) {
-                //UIAHelper.GetScreenshotOfAutomationElement(
-                //                UIAHelper.GetScreenshotOfCmdletInput(
+                //UiaHelper.GetScreenshotOfAutomationElement(
+                //                UiaHelper.GetScreenshotOfCmdletInput(
                 //                    (cmdlet as HasControlInputCmdletBase),
                 //                    CmdletName(cmdlet), //string.Empty,
                 //                    true,
@@ -1340,7 +1340,7 @@ namespace UIAutomation
                 //                    UIAutomation.Preferences.OnErrorScreenShotFormat);
 
                 //                if (Preferences.HideHighlighterOnScreenShotTaking) {
-                //                    UIAHelper.HideHighlighters();
+                //                    UiaHelper.HideHighlighters();
                 //                }
                 
                 AutomationElement elementToTakeScreenShot = null;
@@ -1363,7 +1363,7 @@ namespace UIAutomation
                 }
                 
                 cmdlet.WriteVerbose(cmdlet, "taking screenshot");
-                UIAHelper.GetScreenshotOfAutomationElement(
+                UiaHelper.GetScreenshotOfAutomationElement(
                     cmdlet,
                     elementToTakeScreenShot,
                     CmdletName(cmdlet),
@@ -1414,7 +1414,7 @@ namespace UIAutomation
         }
         #endregion sleep and run scripts
         
-        #region Invoke-UIAScript
+        #region Invoke-UiaScript
         protected internal void RunEventScriptBlocks(HasControlInputCmdletBase cmdlet)
         {
             System.Collections.Generic.List<ScriptBlock> blocks =
@@ -1613,7 +1613,7 @@ namespace UIAutomation
             string programmaticName,
             bool infoAdded)
         {
-            // inform the Wait-UIAEventRaised cmdlet
+            // inform the Wait-UiaEventRaised cmdlet
             try {
                 // 20131109
                 //CurrentData.LastEventSource = src; //.SourceElement; // as AutomationElement;
@@ -1628,7 +1628,7 @@ namespace UIAutomation
                 //WriteVerbose(this, "failed to register an event in the collection");
             }
         }
-        #endregion Invoke-UIAScript
+        #endregion Invoke-UiaScript
         
         protected internal System.DateTime StartDate { get; set; }
         // 20131109
@@ -1645,7 +1645,7 @@ namespace UIAutomation
         /// </summary>
         protected bool caseSensitive { get; set; }
         
-        #region Get-UIAControl
+        #region Get-UiaControl
         // 20131118
         // object -> Condition
         public AndCondition[] getControlsConditions(GetControlCollectionCmdletBase cmdlet)
@@ -1744,7 +1744,7 @@ namespace UIAutomation
                              "getting control with control type = " +
                              controlType);
                 ctrlType =
-                    UIAHelper.GetControlTypeByTypeName(controlType);
+                    UiaHelper.GetControlTypeByTypeName(controlType);
                 
                 WriteVerbose(cmdlet, "ctrlType = " + ctrlType.ProgrammaticName);
             }
@@ -1756,7 +1756,7 @@ namespace UIAutomation
                              "getting control with control type = " +
                              controlType);
                 ctrlType =
-                    UIAHelper.GetControlTypeByTypeName(controlType);
+                    UiaHelper.GetControlTypeByTypeName(controlType);
                 WriteVerbose(cmdlet, "ctrlType = " + ctrlType.ProgrammaticName);
             }
             */
@@ -2449,24 +2449,24 @@ namespace UIAutomation
             ArrayList tempListWin32 = new ArrayList();
             if (!string.IsNullOrEmpty(cmdlet.Name)) {
                 this.WriteVerbose(cmdlet, "collecting controls by name (Win32)");
-                tempListWin32.AddRange(UIAHelper.GetControlByName(cmdlet, inputObject, cmdlet.Name));
+                tempListWin32.AddRange(UiaHelper.GetControlByName(cmdlet, inputObject, cmdlet.Name));
             }
 
             /*
             if (null != cmdlet.Name && string.Empty != cmdlet.Name) {
                 this.WriteVerbose(cmdlet, "collecting controls by name (Win32)");
-                tempListWin32.AddRange(UIAHelper.GetControlByName(cmdlet, inputObject, cmdlet.Name));
+                tempListWin32.AddRange(UiaHelper.GetControlByName(cmdlet, inputObject, cmdlet.Name));
             }
             */
             if (!string.IsNullOrEmpty(cmdlet.Value)) {
                 this.WriteVerbose(cmdlet, "collecting controls by value (Win32)");
-                tempListWin32.AddRange(UIAHelper.GetControlByName(cmdlet, inputObject, cmdlet.Value));
+                tempListWin32.AddRange(UiaHelper.GetControlByName(cmdlet, inputObject, cmdlet.Value));
             }
 
             /*
             if (null != cmdlet.Value && string.Empty != cmdlet.Value) {
                 this.WriteVerbose(cmdlet, "collecting controls by value (Win32)");
-                tempListWin32.AddRange(UIAHelper.GetControlByName(cmdlet, inputObject, cmdlet.Value));
+                tempListWin32.AddRange(UiaHelper.GetControlByName(cmdlet, inputObject, cmdlet.Value));
             }
             */
             
@@ -2889,7 +2889,7 @@ namespace UIAutomation
 
             this.WriteVerbose(cmdlet, "Text search Win32");
             ArrayList textSearchWin32List =
-                UIAHelper.GetControlByName(
+                UiaHelper.GetControlByName(
                     cmdlet,
                     inputObject,
                     cmdlet.ContainsText);
@@ -3191,7 +3191,7 @@ namespace UIAutomation
                 if (result) {
                     
                     if (Preferences.HighlightCheckedControl) {
-                        UIAHelper.HighlightCheckedControl(element);
+                        UiaHelper.HighlightCheckedControl(element);
                     }
                     
                     return result;
@@ -3202,7 +3202,7 @@ namespace UIAutomation
             
             return result;
         }
-        #endregion Get-UIAControl
+        #endregion Get-UiaControl
         
         // 20131118
         // just experimental
@@ -3221,7 +3221,7 @@ namespace UIAutomation
 //                                AutomationEventArgs e)
 //        {
 //            
-//            // inform the Wait-UIAEventRaised cmdlet
+//            // inform the Wait-UiaEventRaised cmdlet
 //            SaveEventInput(
 //                src,
 //                e,

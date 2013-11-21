@@ -7,18 +7,18 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMXTest.Commands.Database
+namespace TmxTest.Commands.Database
 {
     using System;
     using MbUnit.Framework; // using MbUnit.Framework;
     
     /// <summary>
-    /// Description of CloseTMXTestDBCommandTestFixture.
+    /// Description of CloseTmxTestDBCommandTestFixture.
     /// </summary>
     [TestFixture] // [TestFixture(Description=" test")]
-    public class CloseTMXTestDBCommandTestFixture
+    public class CloseTmxTestDBCommandTestFixture
     {
-        public CloseTMXTestDBCommandTestFixture()
+        public CloseTmxTestDBCommandTestFixture()
         {
         }
         
@@ -28,13 +28,13 @@ namespace TMXTest.Commands.Database
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [Test] //[Test(Description="The New-TMXTestDB test")]
+        [Test] //[Test(Description="The New-TmxTestDB test")]
         [Category("Slow")]
-        [Category("Close_TMXTestDB")]
+        [Category("Close_TmxTestDB")]
         public void CloseTestDB_Simple()
         {
             CmdletUnitTest.TestRunspace.RunPSCode(
-                @"$null = New-TMXTestDB -FileName '" + 
+                @"$null = New-TmxTestDB -FileName '" + 
                 Settings.FileName + 
                 @"' -Name '" + 
                 Settings.DatabaseName +
@@ -42,7 +42,7 @@ namespace TMXTest.Commands.Database
                 //@"';");
                 @"' -StructureDB -RepositoryDB -ResultsDB;");
             CmdletUnitTest.TestRunspace.RunPSCode(
-                @"Close-TMXTestDB -Name '" +
+                @"Close-TmxTestDB -Name '" +
                 Settings.DatabaseName +
                 @"';");
             // 20130130

@@ -17,8 +17,8 @@ namespace AVG.Automation.Cmdlets
     /// <summary>
     /// Invokes selected WindowPattern on AutomationElement
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAWindowPattern")]
-    public class InvokeUIAWindowPattern : Cmdlet
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaWindowPattern")]
+    public class InvokeUiaWindowPattern : Cmdlet
     {
         /// <summary>
         /// Parent object that is target for pattern
@@ -81,8 +81,8 @@ namespace AVG.Automation.Cmdlets
     /// <summary>
     /// Sets control to foreground
     /// </summary>
-    [Cmdlet(VerbsCommon.Set, "UIAControlForeground")]
-    public class SetUIAControlForeground : Cmdlet
+    [Cmdlet(VerbsCommon.Set, "UiaControlForeground")]
+    public class SetUiaControlForeground : Cmdlet
     {
         /// <summary>
         /// Window to be set to foreground
@@ -112,8 +112,8 @@ namespace AVG.Automation.Cmdlets
     /// <summary>
     /// Puts DateTime into DateTimePicker Win32 object
     /// </summary>
-    [Cmdlet(VerbsCommon.Set, "UIADateTimePickerDate")]
-    public class SetUIADateTimePickerDate : Cmdlet
+    [Cmdlet(VerbsCommon.Set, "UiaDateTimePickerDate")]
+    public class SetUiaDateTimePickerDate : Cmdlet
     {
         /// <summary>
         /// DateTimePicker input object

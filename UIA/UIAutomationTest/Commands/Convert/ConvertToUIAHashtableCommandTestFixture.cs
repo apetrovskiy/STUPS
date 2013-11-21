@@ -14,14 +14,14 @@ namespace UIAutomationTest.Commands.Convert
     using System.Management.Automation;
 
     /// <summary>
-    /// Description of ConvertToUIAHashtableCommandTestFixture.
+    /// Description of ConvertToUiaHashtableCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="ConvertTo-UIAHashtable test")]
-    public class ConvertToUIAHashtableCommandTestFixture
+    [TestFixture] // [TestFixture(Description="ConvertTo-UiaHashtable test")]
+    public class ConvertToUiaHashtableCommandTestFixture
     {
         /// <summary>
         ///  /// </summary>
-        public ConvertToUIAHashtableCommandTestFixture()
+        public ConvertToUiaHashtableCommandTestFixture()
         {
         }
         
@@ -35,7 +35,7 @@ namespace UIAutomationTest.Commands.Convert
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("ConvertTo_UIAHashtable")]
+        [Category("ConvertTo_UiaHashtable")]
         public void ConvertToHashtable_AutomationId()
         {
             string auId = "Button111";
@@ -47,11 +47,11 @@ namespace UIAutomationTest.Commands.Convert
                 auId,
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$hashtable = Get-UIAWindow -pn " + 
+                @"$hashtable = Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAControl -AutomationId " + 
+                " | Get-UiaControl -AutomationId " + 
                 auId + 
-                " | ConvertTo-UIAHashtable; " + 
+                " | ConvertTo-UiaHashtable; " + 
                 // 20120831 // ??
                 "$hashtable['AutomationId'];",
                 //"$hashtable[4].Value;",
@@ -62,7 +62,7 @@ namespace UIAutomationTest.Commands.Convert
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("ConvertTo_UIAHashtable")]
+        [Category("ConvertTo_UiaHashtable")]
         public void ConvertToHashtable_Name()
         {
             string auId = "Button111";
@@ -75,11 +75,11 @@ namespace UIAutomationTest.Commands.Convert
                 auId,
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$hashtable = Get-UIAWindow -pn " + 
+                @"$hashtable = Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAControl -AutomationId " + 
+                " | Get-UiaControl -AutomationId " + 
                 auId + 
-                " | ConvertTo-UIAHashtable; " + 
+                " | ConvertTo-UiaHashtable; " + 
                 // 20120831 // ??
                 "$hashtable['Name'];",
                 //"$hashtable[2].Value;",
@@ -114,7 +114,7 @@ namespace UIAutomationTest.Commands.Convert
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("ConvertTo_UIAHashtable")]
+        [Category("ConvertTo_UiaHashtable")]
         public void ConvertToHashtable_IsEnabled()
         {
             string auId = "Button111";
@@ -128,11 +128,11 @@ namespace UIAutomationTest.Commands.Convert
                 auId,
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$hashtable = Get-UIAWindow -pn " + 
+                @"$hashtable = Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAControl -AutomationId " + 
+                " | Get-UiaControl -AutomationId " + 
                 auId + 
-                " | ConvertTo-UIAHashtable; " + 
+                " | ConvertTo-UiaHashtable; " + 
                 // 20120831 // ??
                 "$hashtable['IsEnabled'];",
                 //"$hashtable[6].Value;",
@@ -143,7 +143,7 @@ namespace UIAutomationTest.Commands.Convert
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("ConvertTo_UIAHashtable")]
+        [Category("ConvertTo_UiaHashtable")]
         public void ConvertToHashtable_ControlType()
         {
             string auId = "Button111";
@@ -157,11 +157,11 @@ namespace UIAutomationTest.Commands.Convert
                 auId,
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$hashtable = Get-UIAWindow -pn " + 
+                @"$hashtable = Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAControl -AutomationId " + 
+                " | Get-UiaControl -AutomationId " + 
                 auId + 
-                " | ConvertTo-UIAHashtable; " + 
+                " | ConvertTo-UiaHashtable; " + 
                 // 20120831 // ??
                 "$hashtable['ControlType'];",
                 //"$hashtable[1].Value;",
@@ -172,7 +172,7 @@ namespace UIAutomationTest.Commands.Convert
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("ConvertTo_UIAHashtable")]
+        [Category("ConvertTo_UiaHashtable")]
         public void ConvertToHashtable_ProcessId()
         {
             string auId = "Button111";
@@ -188,11 +188,11 @@ namespace UIAutomationTest.Commands.Convert
                 System.Diagnostics.Process.GetProcessesByName(
                     MiddleLevelCode.TestFormProcess)[0].Id.ToString();
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$hashtable = Get-UIAWindow -pn " + 
+                @"$hashtable = Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAControl -AutomationId " + 
+                " | Get-UiaControl -AutomationId " + 
                 auId + 
-                " | ConvertTo-UIAHashtable; " + 
+                " | ConvertTo-UiaHashtable; " + 
                 // 20120831 // ??
                 "$hashtable['ProcessId'];",
                 //"$hashtable[10].Value;",
@@ -207,14 +207,14 @@ namespace UIAutomationTest.Commands.Convert
     }
     
     /// <summary>
-    /// Description of ConvertToUIASearchCriteriaCommandTestFixture.
+    /// Description of ConvertToUiaSearchCriteriaCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="ConvertTo-UIASearchCriteria test")]
-    public class ConvertToUIASearchCriteriaCommandTestFixture
+    [TestFixture] // [TestFixture(Description="ConvertTo-UiaSearchCriteria test")]
+    public class ConvertToUiaSearchCriteriaCommandTestFixture
     {
         /// <summary>
         ///  /// </summary>
-        public ConvertToUIASearchCriteriaCommandTestFixture()
+        public ConvertToUiaSearchCriteriaCommandTestFixture()
         {
         }
         
@@ -228,7 +228,7 @@ namespace UIAutomationTest.Commands.Convert
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("ConvertTo_UIASearchCriteria")]
+        [Category("ConvertTo_UiaSearchCriteria")]
         public void ConvertToSearchCriteria_Default_AutomationId()
         {
             string auId = "Button111";
@@ -241,11 +241,11 @@ namespace UIAutomationTest.Commands.Convert
                 auId,
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$hashtable = Get-UIAWindow -pn " + 
+                @"$hashtable = Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAControl -AutomationId " + 
+                " | Get-UiaControl -AutomationId " + 
                 auId + 
-                " | ConvertTo-UIASearchCriteria; " + 
+                " | ConvertTo-UiaSearchCriteria; " + 
                 @"$hashtable.Contains('AutomationId=""" + 
                 auId +
                 @"""');",
@@ -256,7 +256,7 @@ namespace UIAutomationTest.Commands.Convert
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("ConvertTo_UIASearchCriteria")]
+        [Category("ConvertTo_UiaSearchCriteria")]
         public void ConvertToSearchCriteria_Default_Name()
         {
             string auId = "Button111";
@@ -270,11 +270,11 @@ namespace UIAutomationTest.Commands.Convert
                 auId,
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$hashtable = Get-UIAWindow -pn " + 
+                @"$hashtable = Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAControl -AutomationId " + 
+                " | Get-UiaControl -AutomationId " + 
                 auId + 
-                " | ConvertTo-UIASearchCriteria; " + 
+                " | ConvertTo-UiaSearchCriteria; " + 
                 @"$hashtable.Contains('Name=""" +
                 name +
                 @"""');",
@@ -285,7 +285,7 @@ namespace UIAutomationTest.Commands.Convert
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("ConvertTo_UIASearchCriteria")]
+        [Category("ConvertTo_UiaSearchCriteria")]
         public void ConvertToSearchCriteria_Default_ControlType()
         {
             string auId = "Button111";
@@ -300,11 +300,11 @@ namespace UIAutomationTest.Commands.Convert
                 auId,
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$hashtable = Get-UIAWindow -pn " + 
+                @"$hashtable = Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAControl -AutomationId " + 
+                " | Get-UiaControl -AutomationId " + 
                 auId + 
-                " | ConvertTo-UIASearchCriteria; " + 
+                " | ConvertTo-UiaSearchCriteria; " + 
                 @"$hashtable.Contains('ControlType=""" +
                 controlType +
                 @"""');",
@@ -315,7 +315,7 @@ namespace UIAutomationTest.Commands.Convert
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("ConvertTo_UIASearchCriteria")]
+        [Category("ConvertTo_UiaSearchCriteria")]
         public void ConvertToSearchCriteria_Include_IsEnabled()
         {
             string auId = "Button111";
@@ -330,11 +330,11 @@ namespace UIAutomationTest.Commands.Convert
                 auId,
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$hashtable = Get-UIAWindow -pn " + 
+                @"$hashtable = Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAControl -AutomationId " + 
+                " | Get-UiaControl -AutomationId " + 
                 auId + 
-                " | ConvertTo-UIASearchCriteria -Include IsEnabled; " + 
+                " | ConvertTo-UiaSearchCriteria -Include IsEnabled; " + 
                 @"$hashtable.Contains('IsEnabled=" +
                 psTrue +
                 @"');",
@@ -345,7 +345,7 @@ namespace UIAutomationTest.Commands.Convert
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("ConvertTo_UIASearchCriteria")]
+        [Category("ConvertTo_UiaSearchCriteria")]
         public void ConvertToSearchCriteria_Exclude_ControlType()
         {
             string auId = "Button111";
@@ -360,11 +360,11 @@ namespace UIAutomationTest.Commands.Convert
                 auId,
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$hashtable = Get-UIAWindow -pn " + 
+                @"$hashtable = Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAControl -AutomationId " + 
+                " | Get-UiaControl -AutomationId " + 
                 auId + 
-                " | ConvertTo-UIASearchCriteria -Exclude ControlType; " + 
+                " | ConvertTo-UiaSearchCriteria -Exclude ControlType; " + 
                 @"$hashtable.Contains('ControlType=""" +
                 controlType +
                 @"""');",
@@ -375,7 +375,7 @@ namespace UIAutomationTest.Commands.Convert
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("ConvertTo_UIASearchCriteria")]
+        [Category("ConvertTo_UiaSearchCriteria")]
         public void ConvertToSearchCriteria_ProcessId()
         {
             string auId = "Button111";
@@ -392,11 +392,11 @@ namespace UIAutomationTest.Commands.Convert
                 System.Diagnostics.Process.GetProcessesByName(
                     MiddleLevelCode.TestFormProcess)[0].Id.ToString();
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$hashtable = Get-UIAWindow -pn " + 
+                @"$hashtable = Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAControl -AutomationId " + 
+                " | Get-UiaControl -AutomationId " + 
                 auId + 
-                " | ConvertTo-UIASearchCriteria -Full; " + 
+                " | ConvertTo-UiaSearchCriteria -Full; " + 
                 @"$hashtable.Contains('ProcessId=""" +
                 processId +
                 @"""');",

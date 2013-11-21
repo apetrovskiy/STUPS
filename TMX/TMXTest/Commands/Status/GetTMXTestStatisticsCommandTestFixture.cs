@@ -8,14 +8,14 @@
  */
 using System;
 
-namespace TMXTest.Commands.Status
+namespace TmxTest.Commands.Status
 {
     /// <summary>
-    /// Description of GetTMXTestStatisticsCommandTestFixture.
+    /// Description of GetTmxTestStatisticsCommandTestFixture.
     /// </summary>
-    public class GetTMXTestStatisticsCommandTestFixture
+    public class GetTmxTestStatisticsCommandTestFixture
     {
-        public GetTMXTestStatisticsCommandTestFixture()
+        public GetTmxTestStatisticsCommandTestFixture()
         {
         }
     }

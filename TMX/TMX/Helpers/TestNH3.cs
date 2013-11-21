@@ -33,7 +33,7 @@
 ////        public static void Init()
 ////        {
 ////            try {
-////            SQLiteHelper.OpenDatabase((new OpenTMXTestDBCommand()), @"C:\1\nnn.db3", false, false, false);
+////            SQLiteHelper.OpenDatabase((new OpenTmxTestDBCommand()), @"C:\1\nnn.db3", false, false, false);
 ////            
 ////            //var sessionFactory = FluentNHibernate.Cfg.
 ////            //ISessionFactory sessionFactory = SessionFactoryObjectFactory.

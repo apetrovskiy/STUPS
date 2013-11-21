@@ -13,11 +13,11 @@ namespace TMX
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of TMXAddTestResultDetailCommand.
+    /// Description of TmxAddTestResultDetailCommand.
     /// </summary>
-    internal class TMXAddTestResultDetailCommand : TMXCommand
+    internal class TmxAddTestResultDetailCommand : TmxCommand
     {
-        internal TMXAddTestResultDetailCommand(CommonCmdletBase cmdlet) : base (cmdlet)
+        internal TmxAddTestResultDetailCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         

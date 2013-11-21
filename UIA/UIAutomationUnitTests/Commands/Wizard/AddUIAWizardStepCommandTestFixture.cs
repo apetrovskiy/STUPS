@@ -13,10 +13,10 @@ namespace UIAutomationUnitTests.Commands.Wizard
     using UIAutomation;
     
 	/// <summary>
-	/// Description of AddUIAWizardStepCommandTestFixture.
+	/// Description of AddUiaWizardStepCommandTestFixture.
 	/// </summary>
 	[TestFixture]
-	public class AddUIAWizardStepCommandTestFixture
+	public class AddUiaWizardStepCommandTestFixture
 	{
 	    [SetUp]
         public void SetUp()
@@ -31,7 +31,7 @@ namespace UIAutomationUnitTests.Commands.Wizard
         }
         
         [Test]
-        [Description("Add-UIAWizardStep")]
+        [Description("Add-UiaWizardStep")]
         [Category("Fast")]
         [Category("Wizard")]
         public void AddWizardStep_StandardName()
@@ -45,7 +45,7 @@ namespace UIAutomationUnitTests.Commands.Wizard
         }
         
         [Test]
-        [Description("Add-UIAWizardStep")]
+        [Description("Add-UiaWizardStep")]
         [Category("Fast")]
         [Category("Wizard")]
         public void AddWizardStep_ComplexName()

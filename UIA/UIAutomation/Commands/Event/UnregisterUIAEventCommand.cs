@@ -13,11 +13,11 @@ namespace UIAutomation.Commands
     using System.Windows.Automation;
 
     /// <summary>
-    /// Description of UnregisterUIAEventCommand.
+    /// Description of UnregisterUiaEventCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Unregister, "UIAEvent")]
+    [Cmdlet(VerbsLifecycle.Unregister, "UiaEvent")]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class UnregisterUIAEventCommand : EventCmdletBase
+    public class UnregisterUiaEventCommand : EventCmdletBase
     {
         #region Parameters
         [Parameter(Mandatory = false)]

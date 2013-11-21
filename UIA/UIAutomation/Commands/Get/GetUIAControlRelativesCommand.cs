@@ -13,11 +13,11 @@ namespace UIAutomation.Commands
     using System.Windows.Automation;
 
     /// <summary>
-    /// Description of GetUIAControlChildrenCommand.
+    /// Description of GetUiaControlChildrenCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAControlChildren", DefaultParameterSetName = "UIAWildCard")]
+    [Cmdlet(VerbsCommon.Get, "UiaControlChildren", DefaultParameterSetName = "UiaWildCard")]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIAControlChildrenCommand : GetRelativesCmdletBase
+    public class GetUiaControlChildrenCommand : GetRelativesCmdletBase
     {
         /// <summary>
         /// Processes the pipeline.
@@ -29,11 +29,11 @@ namespace UIAutomation.Commands
     }
     
     /// <summary>
-    /// Description of GetUIAControlDescendantsCommand.
+    /// Description of GetUiaControlDescendantsCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAControlDescendants", DefaultParameterSetName = "UIAWildCard")]
+    [Cmdlet(VerbsCommon.Get, "UiaControlDescendants", DefaultParameterSetName = "UiaWildCard")]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIAControlDescendantsCommand : GetRelativesCmdletBase
+    public class GetUiaControlDescendantsCommand : GetRelativesCmdletBase
     {
         /// <summary>
         /// Processes the pipeline.
@@ -45,11 +45,11 @@ namespace UIAutomation.Commands
     }
     
     /// <summary>
-    /// Description of GetUIAControlParentCommand.
+    /// Description of GetUiaControlParentCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAControlParent", DefaultParameterSetName = "UIAWildCard")]
+    [Cmdlet(VerbsCommon.Get, "UiaControlParent", DefaultParameterSetName = "UiaWildCard")]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIAControlParentCommand : GetRelativesCmdletBase
+    public class GetUiaControlParentCommand : GetRelativesCmdletBase
     {
         /// <summary>
         /// Processes the pipeline.
@@ -61,11 +61,11 @@ namespace UIAutomation.Commands
     }
     
     /// <summary>
-    /// Description of GetUIAControlAncestorsCommand.
+    /// Description of GetUiaControlAncestorsCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAControlAncestors", DefaultParameterSetName = "UIAWildCard")]
+    [Cmdlet(VerbsCommon.Get, "UiaControlAncestors", DefaultParameterSetName = "UiaWildCard")]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIAControlAncestorsCommand : GetRelativesCmdletBase
+    public class GetUiaControlAncestorsCommand : GetRelativesCmdletBase
     {
         /// <summary>
         /// Processes the pipeline.
@@ -77,11 +77,11 @@ namespace UIAutomation.Commands
     }
     
     /// <summary>
-    /// Description of GetUIAControlNextSiblingCommand.
+    /// Description of GetUiaControlNextSiblingCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAControlNextSibling", DefaultParameterSetName = "UIAWildCard")]
+    [Cmdlet(VerbsCommon.Get, "UiaControlNextSibling", DefaultParameterSetName = "UiaWildCard")]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIAControlNextSiblingCommand : GetRelativesCmdletBase
+    public class GetUiaControlNextSiblingCommand : GetRelativesCmdletBase
     {
         /// <summary>
         /// Processes the pipeline.
@@ -93,11 +93,11 @@ namespace UIAutomation.Commands
     }
     
     /// <summary>
-    /// Description of GetUIAControlPreviousSiblingCommand.
+    /// Description of GetUiaControlPreviousSiblingCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAControlPreviousSibling", DefaultParameterSetName = "UIAWildCard")]
+    [Cmdlet(VerbsCommon.Get, "UiaControlPreviousSibling", DefaultParameterSetName = "UiaWildCard")]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIAControlPreviousSiblingCommand : GetRelativesCmdletBase
+    public class GetUiaControlPreviousSiblingCommand : GetRelativesCmdletBase
     {
         /// <summary>
         /// Processes the pipeline.
@@ -109,11 +109,11 @@ namespace UIAutomation.Commands
     }
     
     /// <summary>
-    /// Description of GetUIAControlFirstChildCommand.
+    /// Description of GetUiaControlFirstChildCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAControlFirstChild", DefaultParameterSetName = "UIAWildCard")]
+    [Cmdlet(VerbsCommon.Get, "UiaControlFirstChild", DefaultParameterSetName = "UiaWildCard")]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIAControlFirstChildCommand : GetRelativesCmdletBase
+    public class GetUiaControlFirstChildCommand : GetRelativesCmdletBase
     {
         /// <summary>
         /// Processes the pipeline.
@@ -132,11 +132,11 @@ namespace UIAutomation.Commands
     }
     
     /// <summary>
-    /// Description of GetUIAControlLastChildCommand.
+    /// Description of GetUiaControlLastChildCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAControlLastChild", DefaultParameterSetName = "UIAWildCard")]
+    [Cmdlet(VerbsCommon.Get, "UiaControlLastChild", DefaultParameterSetName = "UiaWildCard")]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIAControlLastChildCommand : GetRelativesCmdletBase
+    public class GetUiaControlLastChildCommand : GetRelativesCmdletBase
     {
         /// <summary>
         /// Processes the pipeline.

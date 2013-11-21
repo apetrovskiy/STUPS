@@ -14,12 +14,12 @@ namespace UIAutomationTest.Commands.Get
     using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
     
     /// <summary>
-    /// Description of GetUIADesktopCommandTestFixture.
+    /// Description of GetUiaDesktopCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Get-UIADesktopCommand test")]
-    public class GetUIADesktopCommandTestFixture
+    [TestFixture] // [TestFixture(Description="Get-UiaDesktopCommand test")]
+    public class GetUiaDesktopCommandTestFixture
     {
-        public GetUIADesktopCommandTestFixture()
+        public GetUiaDesktopCommandTestFixture()
         {
         }
         
@@ -31,42 +31,42 @@ namespace UIAutomationTest.Commands.Get
         
         [Test] //[Test(Description="TBD")]
         [Category("Slow")]
-        [Category("Get_UIADesktop")]
+        [Category("Get_UiaDesktop")]
         public void GetDesktop_ClassName()
         {
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"(Get-UIADesktop).Current.ClassName;",
+                @"(Get-UiaDesktop).Current.ClassName;",
                 @"#32769");
         }
         
         [Test] //[Test(Description="TBD")]
         [Category("Slow")]
-        [Category("Get_UIADesktop")]
+        [Category("Get_UiaDesktop")]
         public void GetDesktop_ControlType()
         {
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"(Get-UIADesktop).Current.ControlType.ProgrammaticName;",
+                @"(Get-UiaDesktop).Current.ControlType.ProgrammaticName;",
                 @"ControlType.Pane");
         }
         
         [Test] //[Test(Description="TBD")]
         [Category("Slow")]
-        [Category("Get_UIADesktop")]
+        [Category("Get_UiaDesktop")]
         public void GetDesktop_Stored_ClassName()
         {
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = Get-UIADesktop; " +
+                @"$null = Get-UiaDesktop; " +
                 @"[UIAutomation.CurrentData]::CurrentWindow.Current.ClassName;",
                 @"#32769");
         }
         
         [Test] //[Test(Description="TBD")]
         [Category("Slow")]
-        [Category("Get_UIADesktop")]
+        [Category("Get_UiaDesktop")]
         public void GetDesktop_Stored_ControlType()
         {
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = Get-UIADesktop; " +
+                @"$null = Get-UiaDesktop; " +
                 @"[UIAutomation.CurrentData]::CurrentWindow.Current.ControlType.ProgrammaticName;",
                 @"ControlType.Pane");
         }

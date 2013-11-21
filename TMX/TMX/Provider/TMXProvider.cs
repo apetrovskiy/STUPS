@@ -17,21 +17,21 @@ namespace TMX
     using System.Text.RegularExpressions;
     
     /// <summary>
-    /// Description of TMXProvider.
+    /// Description of TmxProvider.
     /// </summary>
-    [CmdletProvider("TMXProvider", ProviderCapabilities.None)]
+    [CmdletProvider("TmxProvider", ProviderCapabilities.None)]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class TMXProvider : ItemCmdletProvider // ContainerCmdletProvider // DriveCmdletProvider // CmdletProvider
+    public class TmxProvider : ItemCmdletProvider // ContainerCmdletProvider // DriveCmdletProvider // CmdletProvider
     {
 
-        //private TMXDriveInfo uIAPSDriveInfo; // ???????????????
-        private TMXDriveInfo rootDrive;
+        //private TmxDriveInfo uIAPSDriveInfo; // ???????????????
+        private TmxDriveInfo rootDrive;
         private RuntimeDefinedParameterDictionary dynamicParameters;
         
         #region CmdletProvider Overrides
         protected override ProviderInfo Start(ProviderInfo providerInfo)
         {
-            WriteVerbose("TMXProvider::Start()");
+            WriteVerbose("TmxProvider::Start()");
             return providerInfo;
         } 
         
@@ -45,7 +45,7 @@ namespace TMX
         protected override object NewDriveDynamicParameters()
         {
             try{
-                WriteVerbose("TMXProvider::NewDriveDynamicParameters()");
+                WriteVerbose("TmxProvider::NewDriveDynamicParameters()");
                 dynamicParameters =
                     new RuntimeDefinedParameterDictionary();
                 Collection<Attribute> atts1 = new Collection<Attribute>();
@@ -97,7 +97,7 @@ namespace TMX
             }
             catch (Exception e) {
                 WriteVerbose(e.Message);
-                WriteVerbose("TMXProvider::NewDriveDynamicParameters()");
+                WriteVerbose("TmxProvider::NewDriveDynamicParameters()");
                 return null;
             }
         }
@@ -113,16 +113,16 @@ namespace TMX
                     new PSDriveInfo(
                         "TMX",
                         this.ProviderInfo,
-                        @"TMX\TMXProvider::\",
+                        @"TMX\TmxProvider::\",
                         "This is the TMX root drive",
                         null);
-                rootDrive = new TMXDriveInfo(drive);
+                rootDrive = new TmxDriveInfo(drive);
                 result.Add(rootDrive);
                 return result;
             }
             catch (Exception e) {
                 WriteVerbose(e.Message);
-                WriteVerbose("TMXProvider::InitializeDefaultDrives()");
+                WriteVerbose("TmxProvider::InitializeDefaultDrives()");
                 return null;
             }
         }
@@ -134,7 +134,7 @@ namespace TMX
                 string id = string.Empty;
                 string name = string.Empty;
             
-                WriteVerbose("TMXProvider::NewDrive()");
+                WriteVerbose("TmxProvider::NewDrive()");
                 RuntimeDefinedParameterDictionary dynamicParameters = 
                     base.DynamicParameters as RuntimeDefinedParameterDictionary;
                 try{id = dynamicParameters["Id"].Value.ToString();} 
@@ -148,16 +148,16 @@ namespace TMX
                     // there might not be a parameter
                 }
                 if (id.Length > 0) {
-                    return new TMXDriveInfo(id, drive);
+                    return new TmxDriveInfo(id, drive);
                 } else if (name.Length > 0) {
-                    return new TMXDriveInfo(name, drive);
+                    return new TmxDriveInfo(name, drive);
                 } else {
-                    return new TMXDriveInfo(drive);
+                    return new TmxDriveInfo(drive);
                 }
             }
             catch (Exception e) {
                 WriteVerbose(e.Message);
-                WriteVerbose("TMXProvider::NewDrive()");
+                WriteVerbose("TmxProvider::NewDrive()");
                 return null;
             }
         }
@@ -189,7 +189,7 @@ namespace TMX
                     ThrowTerminatingError(err);
                 }
         
-                TMXDriveInfo driveInfo = drive as TMXDriveInfo;
+                TmxDriveInfo driveInfo = drive as TmxDriveInfo;
                 
                 return driveInfo ?? null;
 
@@ -204,7 +204,7 @@ namespace TMX
             }
             catch (Exception e) {
                 WriteVerbose(e.Message);
-                WriteVerbose("TMXProvider::RemoveDrive()");
+                WriteVerbose("TmxProvider::RemoveDrive()");
                 return null;
             }
         } // End RemoveDrive.
@@ -219,7 +219,7 @@ namespace TMX
         protected override bool ItemExists(string path)
         {
             bool result = false;
-            WriteVerbose(string.Format("TMXProvider::ItemExists(Path = '{0}')",path));
+            WriteVerbose(string.Format("TmxProvider::ItemExists(Path = '{0}')",path));
             
             string relativePath = this.GetTheRestOfPathWihoutProvider(path);
             relativePath = this.GetTheRestOfPathWihoutDrive(relativePath);
@@ -252,7 +252,7 @@ namespace TMX
         protected override bool IsValidPath(string path)
         {
             bool result = false;
-            WriteVerbose(string.Format("TMXProvider::IsValidPath(Path = '{0}')", path));
+            WriteVerbose(string.Format("TmxProvider::IsValidPath(Path = '{0}')", path));
 
             // Check if the path is null or empty.
             if (string.IsNullOrEmpty(path))
@@ -284,11 +284,11 @@ namespace TMX
 #region commented
 //            // provider-qualified paths
 //            if (path.ToUpper().Contains(
-//                @"UIAUTOMATION::\" + 
+//                @"UiaUTOMATION::\" + 
 //                uIAPSDriveInfo.Name.ToUpper())) { return true; }
 //            
 //            if (path.ToUpper().Contains(
-//                @"UIAUTOMATION::" + 
+//                @"UiaUTOMATION::" + 
 //                uIAPSDriveInfo.Name.ToUpper())) { return true; }
 //            
 //            // provider-direct paths
@@ -323,11 +323,11 @@ namespace TMX
 //            
 //            // provider-qualified paths
 //            if (path.ToUpper().Contains(
-//                @"UIAUTOMATION::\" + 
+//                @"UiaUTOMATION::\" + 
 //                uIAPSDriveInfo.Name.ToUpper())) { return true; }
 //            
 //            if (path.ToUpper().Contains(
-//                @"UIAUTOMATION::" + 
+//                @"UiaUTOMATION::" + 
 //                uIAPSDriveInfo.Name.ToUpper())) { return true; }
 //            
 //            // provider-direct paths
@@ -393,7 +393,7 @@ namespace TMX
         
     }
     
-    internal class TMXDriveInfo : PSDriveInfo
+    internal class TmxDriveInfo : PSDriveInfo
     {
 //        private string _name = string.Empty;
         private string _id = string.Empty;
@@ -408,7 +408,7 @@ namespace TMX
             get { return _id; }
         }
         
-        public TMXDriveInfo(
+        public TmxDriveInfo(
             PSDriveInfo drive) : base(drive)
         {
             try{
@@ -417,11 +417,11 @@ namespace TMX
             }
             catch (Exception e) {
                 //WriteVerbose(e.Message);
-                //WriteVerbose("TMXDriveInfo(PSDriveInfo)");
+                //WriteVerbose("TmxDriveInfo(PSDriveInfo)");
             }
         }
         
-        public TMXDriveInfo(
+        public TmxDriveInfo(
             string nameOrId,
             PSDriveInfo drive) : base(drive)
         {
@@ -429,9 +429,9 @@ namespace TMX
 //                this._name = nameOrId;
                 this._id = nameOrId;
     
-//                GetUIAWindowCommand cmd;
+//                GetUiaWindowCommand cmd;
 //                _driveWindow = 
-//                    ((cmd = new GetUIAWindowCommand())).GetWindow(
+//                    ((cmd = new GetUiaWindowCommand())).GetWindow(
 //                        cmd, 
 //                        null, 
 //                        processNameOrWindowTitle,
@@ -440,7 +440,7 @@ namespace TMX
             }
             catch (Exception e){
                 //WriteVerbose(e.Message);
-                //WriteVerbose("TMXDriveInfo(string, PSDriveInfo)");
+                //WriteVerbose("TmxDriveInfo(string, PSDriveInfo)");
             }
         }
     }

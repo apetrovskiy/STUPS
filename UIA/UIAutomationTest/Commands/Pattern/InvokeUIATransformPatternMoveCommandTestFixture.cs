@@ -14,12 +14,12 @@ namespace UIAutomationTest.Commands.Pattern
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of InvokeUIATransformPatternMoveCommandTestFixture.
+    /// Description of InvokeUiaTransformPatternMoveCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Invoke-UIATransformPatternMoveCommand test")]
-    public class InvokeUIATransformPatternMoveCommandTestFixture
+    [TestFixture] // [TestFixture(Description="Invoke-UiaTransformPatternMoveCommand test")]
+    public class InvokeUiaTransformPatternMoveCommandTestFixture
     {
-        public InvokeUIATransformPatternMoveCommandTestFixture()
+        public InvokeUiaTransformPatternMoveCommandTestFixture()
         {
         }
         

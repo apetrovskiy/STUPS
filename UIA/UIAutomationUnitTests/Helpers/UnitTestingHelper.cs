@@ -37,26 +37,26 @@ namespace UIAutomationUnitTests
         public static void CreateWizard(string name, ScriptBlock[] sb)
         {
 Console.WriteLine("CreateWizard 00001");
-            NewUIAWizardCommand cmdlet =
-                new NewUIAWizardCommand {Name = name};
+            NewUiaWizardCommand cmdlet =
+                new NewUiaWizardCommand {Name = name};
 Console.WriteLine("CreateWizard 00002");
             // the -StartAction parameter could not be $null
             cmdlet.StartAction = new ScriptBlock[]{ };
-            UIANewWizardCommand command =
-                new UIANewWizardCommand(cmdlet);
+            UiaNewWizardCommand command =
+                new UiaNewWizardCommand(cmdlet);
 Console.WriteLine("CreateWizard 00003");
             command.Execute();
 Console.WriteLine("CreateWizard 00004");
             /*
 Console.WriteLine("CreateWizard 00001");
-            UIAutomation.Commands.NewUIAWizardCommand cmdlet =
-                new UIAutomation.Commands.NewUIAWizardCommand();
+            UIAutomation.Commands.NewUiaWizardCommand cmdlet =
+                new UIAutomation.Commands.NewUiaWizardCommand();
             cmdlet.Name = name;
 Console.WriteLine("CreateWizard 00002");
             // the -StartAction parameter could not be $null
             cmdlet.StartAction = new ScriptBlock[]{ };
-            UIANewWizardCommand command =
-                new UIANewWizardCommand(cmdlet);
+            UiaNewWizardCommand command =
+                new UiaNewWizardCommand(cmdlet);
 Console.WriteLine("CreateWizard 00003");
             command.Execute();
 Console.WriteLine("CreateWizard 00004");
@@ -71,16 +71,16 @@ Console.WriteLine("AddWizardStep 00002");
         	Wizard wizard =
         	    (Wizard)UnitTestOutput.LastOutput[0];
 Console.WriteLine("AddWizardStep 00003");
-        	AddUIAWizardStepCommand cmdlet =
-        	    new AddUIAWizardStepCommand();
+        	AddUiaWizardStepCommand cmdlet =
+        	    new AddUiaWizardStepCommand();
 Console.WriteLine("AddWizardStep 00004");
         	cmdlet.InputObject = wizard;
         	cmdlet.Name = name;
         	cmdlet.StepForwardAction = forwardAction;
         	cmdlet.StepBackwardAction = backwardAction;
 Console.WriteLine("AddWizardStep 00005");
-        	UIAAddWizardStepCommand command =
-        	    new UIAAddWizardStepCommand(cmdlet);
+        	UiaAddWizardStepCommand command =
+        	    new UiaAddWizardStepCommand(cmdlet);
 Console.WriteLine("AddWizardStep 00006");
         	command.Execute();
 Console.WriteLine("AddWizardStep 00007");

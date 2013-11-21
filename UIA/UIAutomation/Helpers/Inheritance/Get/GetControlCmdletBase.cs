@@ -45,64 +45,64 @@ namespace UIAutomation
         #region Parameters
         [Parameter(Mandatory = false,
                    Position = 0,
-                   ParameterSetName = "UIASearch")]
+                   ParameterSetName = "UiaSearch")]
         public virtual string ContainsText { get; set; }
         
         [Parameter(Mandatory = false,
-                   ParameterSetName = "UIAWildCard")]
+                   ParameterSetName = "UiaWildCard")]
         [Parameter(Mandatory = false,
                    ParameterSetName = "Win32")]
         [Parameter(Mandatory = false,
-                   ParameterSetName = "UIAClassic")]
+                   ParameterSetName = "UiaClassic")]
         [Alias("Title")]
         public virtual string Name { get; set; }
         
         [Parameter(Mandatory = false,
-                   ParameterSetName = "UIAWildCard")]
+                   ParameterSetName = "UiaWildCard")]
         [Parameter(Mandatory = false,
                    ParameterSetName = "Win32")]
         [Parameter(Mandatory = false,
-                   ParameterSetName = "UIAClassic")]
+                   ParameterSetName = "UiaClassic")]
         public virtual string Value { get; set; }
         
         [Parameter(Mandatory = false,
-                   ParameterSetName = "UIAWildCard")]
+                   ParameterSetName = "UiaWildCard")]
         // 20130218
         [Parameter(Mandatory = false,
                    ParameterSetName = "Win32")]
         [Parameter(Mandatory = false,
-                   ParameterSetName = "UIAClassic")]
+                   ParameterSetName = "UiaClassic")]
         public virtual string AutomationId { get; set; }
         
         [Parameter(Mandatory = false,
-                   ParameterSetName = "UIAWildCard")]
+                   ParameterSetName = "UiaWildCard")]
         // 20130218
         [Parameter(Mandatory = false,
                    ParameterSetName = "Win32")]
         [Parameter(Mandatory = false,
-                   ParameterSetName = "UIAClassic")]
+                   ParameterSetName = "UiaClassic")]
         [Alias("ClassName")]
         public virtual string Class { get; set; }
         
         [Parameter(Mandatory = false,
-                   ParameterSetName = "UIAWildCard")]
+                   ParameterSetName = "UiaWildCard")]
         // 20130218
         [Parameter(Mandatory = false,
                    ParameterSetName = "Win32")]
         [Parameter(Mandatory = false,
-                   ParameterSetName = "UIAClassic")]
+                   ParameterSetName = "UiaClassic")]
         public virtual string ControlType { get; set; }
         
         [Parameter(Mandatory = false,
                    ParameterSetName = "Win32")]
         [Parameter(Mandatory = false,
-                   ParameterSetName = "UIASearch")]
+                   ParameterSetName = "UiaSearch")]
         public virtual SwitchParameter Win32 { get; set; }
         
         [Parameter (Mandatory = false,
-                   ParameterSetName = "UIAWildCard")]
+                   ParameterSetName = "UiaWildCard")]
         [Parameter(Mandatory = false,
-                   ParameterSetName = "UIAClassic")]
+                   ParameterSetName = "UiaClassic")]
         public virtual SwitchParameter FromCache { get; set; }
         
         //[Parameter(Mandatory = false,

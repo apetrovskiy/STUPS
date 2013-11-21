@@ -14,10 +14,10 @@ namespace UIAutomationTest.Commands.Profile
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of SetUIACurrentTestProfileCommandTestFixture.
+    /// Description of SetUiaCurrentTestProfileCommandTestFixture.
     /// </summary>
-    [Cmdlet(VerbsCommon.Set, "UIACurrentTestProfile")]
-    public class SetUIACurrentTestProfileCommandTestFixture
+    [Cmdlet(VerbsCommon.Set, "UiaCurrentTestProfile")]
+    public class SetUiaCurrentTestProfileCommandTestFixture
     {
         [SetUp]
         public void PrepareRunspace()

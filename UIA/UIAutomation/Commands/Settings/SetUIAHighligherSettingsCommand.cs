@@ -13,12 +13,12 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
 
     /// <summary>
-    /// Description of SetUIAHighligherSettingsCommand.
+    /// Description of SetUiaHighligherSettingsCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Set, "UIAHighligherSettings")]
-    public class SetUIAHighligherSettingsCommand : ModuleSettingsCmdletBase
+    [Cmdlet(VerbsCommon.Set, "UiaHighligherSettings")]
+    public class SetUiaHighligherSettingsCommand : ModuleSettingsCmdletBase
     {
-        public SetUIAHighligherSettingsCommand()
+        public SetUiaHighligherSettingsCommand()
         {
             this.Highlight = Preferences.Highlight;
             this.Color = Preferences.HighlighterColor;

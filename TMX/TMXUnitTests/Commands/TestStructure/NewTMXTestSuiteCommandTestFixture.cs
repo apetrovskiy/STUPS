@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMXUnitTests.Commands.TestStructure
+namespace TmxUnitTests.Commands.TestStructure
 {
     using System;
     using MbUnit.Framework;
@@ -15,12 +15,12 @@ namespace TMXUnitTests.Commands.TestStructure
     using TMX;
     
     /// <summary>
-    /// Description of NewTMXTestSuiteCommandTestFixture.
+    /// Description of NewTmxTestSuiteCommandTestFixture.
     /// </summary>
     [TestFixture]
-    public class NewTMXTestSuiteCommandTestFixture
+    public class NewTmxTestSuiteCommandTestFixture
     {
-        public NewTMXTestSuiteCommandTestFixture()
+        public NewTmxTestSuiteCommandTestFixture()
         {
         }
         
@@ -36,7 +36,7 @@ namespace TMXUnitTests.Commands.TestStructure
         }
         
         [Test]
-        [Description("New-TMXTestSuite -Name name")]
+        [Description("New-TmxTestSuite -Name name")]
         [Category("Fast")]
         public void NewTestSuite_Name()
         {
@@ -48,7 +48,7 @@ namespace TMXUnitTests.Commands.TestStructure
         }
         
         [Test]
-        [Description("New-TMXTestSuite -Name name -Description description")]
+        [Description("New-TmxTestSuite -Name name -Description description")]
         [Category("Fast")]
         public void NewTestSuite_Name_Description()
         {
@@ -65,7 +65,7 @@ namespace TMXUnitTests.Commands.TestStructure
         }
         
         [Test]
-        [Description("New-TMXTestSuite -Name name -Id id")]
+        [Description("New-TmxTestSuite -Name name -Id id")]
         [Category("Fast")]
         public void NewTestSuite_Name_Id()
         {
@@ -82,7 +82,7 @@ namespace TMXUnitTests.Commands.TestStructure
         }
         
         [Test]
-        [Description("New-TMXTestSuite -Name name -Id id -Description description")]
+        [Description("New-TmxTestSuite -Name name -Id id -Description description")]
         [Category("Fast")]
         public void NewTestSuite_Name_Id_Description()
         {
@@ -104,7 +104,7 @@ namespace TMXUnitTests.Commands.TestStructure
         }
         
         [Test]
-        [Description("New-TMXTestSuite -Name name; New-TMXTestSuite -Name name")]
+        [Description("New-TmxTestSuite -Name name; New-TmxTestSuite -Name name")]
         [Category("Fast")]
         /// <summary>
         /// Allows duplicated names if ids are generated.
@@ -127,7 +127,7 @@ namespace TMXUnitTests.Commands.TestStructure
         }
         
         [Test]
-        [Description("New-TMXTestSuite -Name name -Id id; New-TMXTestSuite -Name name -Id id")]
+        [Description("New-TmxTestSuite -Name name -Id id; New-TmxTestSuite -Name name -Id id")]
         [Category("Fast")]
         /// <summary>
         /// Disallows duplicated names if ids are the same.

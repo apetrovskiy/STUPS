@@ -13,11 +13,11 @@ namespace UIAutomation.Commands
     using System.Windows.Automation;
     
     /// <summary>
-    /// Description of GetUIADesktopCommand.
+    /// Description of GetUiaDesktopCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIADesktop")]
+    [Cmdlet(VerbsCommon.Get, "UiaDesktop")]
     [OutputType(typeof(object))]
-    public class GetUIADesktopCommand : GetCmdletBase
+    public class GetUiaDesktopCommand : GetCmdletBase
     {
         protected override void BeginProcessing()
         {

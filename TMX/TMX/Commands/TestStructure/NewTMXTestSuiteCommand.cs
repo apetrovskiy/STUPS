@@ -13,12 +13,12 @@ namespace TMX.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of NewTMXTestSuiteCommand.
+    /// Description of NewTmxTestSuiteCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.New, "TMXTestSuite")]
-    public class NewTMXTestSuiteCommand : NewSuiteCmdletBase
+    [Cmdlet(VerbsCommon.New, "TmxTestSuite")]
+    public class NewTmxTestSuiteCommand : NewSuiteCmdletBase
     {
-        public NewTMXTestSuiteCommand()
+        public NewTmxTestSuiteCommand()
         {
         }
         
@@ -29,8 +29,8 @@ namespace TMX.Commands
         {
             this.CheckCmdletParameters();
             
-            TMXNewTestSuiteCommand command =
-                new TMXNewTestSuiteCommand(this);
+            TmxNewTestSuiteCommand command =
+                new TmxNewTestSuiteCommand(this);
             command.Execute();
         }
     }

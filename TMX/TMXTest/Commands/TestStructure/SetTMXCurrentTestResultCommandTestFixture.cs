@@ -7,19 +7,19 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMXTest.Commands.TestStructure
+namespace TmxTest.Commands.TestStructure
 {
     using System;
     using MbUnit.Framework;
     using TMX;
     
     /// <summary>
-    /// Description of SetTMXCurrentTestResultCommandTestFixture.
+    /// Description of SetTmxCurrentTestResultCommandTestFixture.
     /// </summary>
     [TestFixture]
-    public class SetTMXCurrentTestResultCommandTestFixture
+    public class SetTmxCurrentTestResultCommandTestFixture
     {
-        public SetTMXCurrentTestResultCommandTestFixture()
+        public SetTmxCurrentTestResultCommandTestFixture()
         {
         }
         
@@ -38,12 +38,12 @@ namespace TMXTest.Commands.TestStructure
         [Test]
         [Category("Slow")]
         [Category("TestResultLevel")]
-        [Category("Set-TMXCurrentTestResult")]
-        public void SetTMXCurrentTestResult_Name()
+        [Category("Set-TmxCurrentTestResult")]
+        public void SetTmxCurrentTestResult_Name()
         {
             string testResultName = "result1";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Set-TMXCurrentTestResult -Name " + 
+                @"Set-TmxCurrentTestResult -Name " + 
                 testResultName + 
                 ";" + 
                 "[TMX.TestData]::CurrentTestResult.Name;",
@@ -53,12 +53,12 @@ namespace TMXTest.Commands.TestStructure
         [Test]
         [Category("Slow")]
         [Category("TestResultLevel")]
-        [Category("Set-TMXCurrentTestResult")]
-        public void SetTMXCurrentTestResult_Id()
+        [Category("Set-TmxCurrentTestResult")]
+        public void SetTmxCurrentTestResult_Id()
         {
             string testResultId = "1";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Set-TMXCurrentTestResult -Id " + 
+                @"Set-TmxCurrentTestResult -Id " + 
                 testResultId + 
                 ";" + 
                 "[TMX.TestData]::CurrentTestResult.Id;",
@@ -68,12 +68,12 @@ namespace TMXTest.Commands.TestStructure
         [Test]
         [Category("Slow")]
         [Category("TestResultLevel")]
-        [Category("Set-TMXCurrentTestResult")]
-        public void SetTMXCurrentTestResult_NameId_1()
+        [Category("Set-TmxCurrentTestResult")]
+        public void SetTmxCurrentTestResult_NameId_1()
         {
             string testResultName = "result1";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Set-TMXCurrentTestResult -Name " + 
+                @"Set-TmxCurrentTestResult -Name " + 
                 testResultName + 
                 " -Id 1;" + 
                 "[TMX.TestData]::CurrentTestResult.Name;",
@@ -83,13 +83,13 @@ namespace TMXTest.Commands.TestStructure
         [Test]
         [Category("Slow")]
         [Category("TestResultLevel")]
-        [Category("Set-TMXCurrentTestResult")]
-        public void SetTMXCurrentTestResult_NameId_2()
+        [Category("Set-TmxCurrentTestResult")]
+        public void SetTmxCurrentTestResult_NameId_2()
         {
             string testResultName = "result1";
             string testResultId = "1";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Set-TMXCurrentTestResult -Name " + 
+                @"Set-TmxCurrentTestResult -Name " + 
                 testResultName + 
                 " -Id '" +
                 testResultId +
@@ -101,13 +101,13 @@ namespace TMXTest.Commands.TestStructure
         [Test]
         [Category("Slow")]
         [Category("TestResultLevel")]
-        [Category("Set-TMXCurrentTestResult")]
-        public void SetTMXCurrentTestResult_TestResultStatus()
+        [Category("Set-TmxCurrentTestResult")]
+        public void SetTmxCurrentTestResult_TestResultStatus()
         {
             string testResultName = "result1";
             TestResultStatuses expectedTestResultStatus = TestResultStatuses.NotTested;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Set-TMXCurrentTestResult -Name " + 
+                @"Set-TmxCurrentTestResult -Name " + 
                 testResultName + 
                 ";" + 
                 "[TMX.TestData]::CurrentTestResult.enStatus;",
@@ -119,13 +119,13 @@ namespace TMXTest.Commands.TestStructure
         [Test]
         [Category("Slow")]
         [Category("TestResultLevel")]
-        [Category("Set-TMXCurrentTestResult")]
-        public void SetTMXCurrentTestResult_AddTMXTestResultDetail_TestResultStatus_NotTested()
+        [Category("Set-TmxCurrentTestResult")]
+        public void SetTmxCurrentTestResult_AddTmxTestResultDetail_TestResultStatus_NotTested()
         {
             TestResultStatuses expectedTestResultStatus = TestResultStatuses.NotTested;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Set-TMXCurrentTestResult -Name 'tr1'; " + 
-                @"Add-TMXTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus NotTested; " +
+                @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
+                @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus NotTested; " +
                 "[TMX.TestData]::CurrentTestResult.enStatus;",
                 expectedTestResultStatus.ToString());
         }
@@ -133,13 +133,13 @@ namespace TMXTest.Commands.TestStructure
         [Test]
         [Category("Slow")]
         [Category("TestResultLevel")]
-        [Category("Set-TMXCurrentTestResult")]
-        public void SetTMXCurrentTestResult_AddTMXTestResultDetail_TestResultStatus_Passed()
+        [Category("Set-TmxCurrentTestResult")]
+        public void SetTmxCurrentTestResult_AddTmxTestResultDetail_TestResultStatus_Passed()
         {
             TestResultStatuses expectedTestResultStatus = TestResultStatuses.Passed;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Set-TMXCurrentTestResult -Name 'tr1'; " + 
-                @"Add-TMXTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus Passed; " +
+                @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
+                @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus Passed; " +
                 "[TMX.TestData]::CurrentTestResult.enStatus;",
                 expectedTestResultStatus.ToString());
         }
@@ -147,13 +147,13 @@ namespace TMXTest.Commands.TestStructure
         [Test]
         [Category("Slow")]
         [Category("TestResultLevel")]
-        [Category("Set-TMXCurrentTestResult")]
-        public void SetTMXCurrentTestResult_AddTMXTestResultDetail_TestResultStatus_Failed()
+        [Category("Set-TmxCurrentTestResult")]
+        public void SetTmxCurrentTestResult_AddTmxTestResultDetail_TestResultStatus_Failed()
         {
             TestResultStatuses expectedTestResultStatus = TestResultStatuses.Failed;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Set-TMXCurrentTestResult -Name 'tr1'; " + 
-                @"Add-TMXTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus Failed; " +
+                @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
+                @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus Failed; " +
                 "[TMX.TestData]::CurrentTestResult.enStatus;",
                 expectedTestResultStatus.ToString());
         }
@@ -161,13 +161,13 @@ namespace TMXTest.Commands.TestStructure
         [Test]
         [Category("Slow")]
         [Category("TestResultLevel")]
-        [Category("Set-TMXCurrentTestResult")]
-        public void SetTMXCurrentTestResult_AddTMXTestResultDetail_TestResultStatus_KnownIssue()
+        [Category("Set-TmxCurrentTestResult")]
+        public void SetTmxCurrentTestResult_AddTmxTestResultDetail_TestResultStatus_KnownIssue()
         {
             TestResultStatuses expectedTestResultStatus = TestResultStatuses.KnownIssue;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Set-TMXCurrentTestResult -Name 'tr1'; " + 
-                @"Add-TMXTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus KnownIssue; " +
+                @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
+                @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus KnownIssue; " +
                 "[TMX.TestData]::CurrentTestResult.enStatus;",
                 expectedTestResultStatus.ToString());
         }
@@ -177,14 +177,14 @@ namespace TMXTest.Commands.TestStructure
         [Test]
         [Category("Slow")]
         [Category("TestResultLevel")]
-        [Category("Set-TMXCurrentTestResult")]
-        public void SetTMXCurrentTestResult_CloseTMXTestResult_TestResultStatus_ImplicitlyFailed()
+        [Category("Set-TmxCurrentTestResult")]
+        public void SetTmxCurrentTestResult_CloseTmxTestResult_TestResultStatus_ImplicitlyFailed()
         {
             TestResultStatuses expectedTestResultStatus = TestResultStatuses.Failed;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Set-TMXCurrentTestResult -Name 'tr1'; " + 
-                //@"Add-TMXTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus NotTested; " +
-                @"Close-TMXTestResult -Name 'tr1'; " + 
+                @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
+                //@"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus NotTested; " +
+                @"Close-TmxTestResult -Name 'tr1'; " + 
                 //"[TMX.TestData]::CurrentTestResult.enStatus;",
                 "[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].enStatus;",
                 expectedTestResultStatus.ToString());
@@ -193,14 +193,14 @@ namespace TMXTest.Commands.TestStructure
         [Test]
         [Category("Slow")]
         [Category("TestResultLevel")]
-        [Category("Set-TMXCurrentTestResult")]
-        public void SetTMXCurrentTestResult_CloseTMXTestResult_TestResultStatus_Passed()
+        [Category("Set-TmxCurrentTestResult")]
+        public void SetTmxCurrentTestResult_CloseTmxTestResult_TestResultStatus_Passed()
         {
             TestResultStatuses expectedTestResultStatus = TestResultStatuses.Passed;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Set-TMXCurrentTestResult -Name 'tr1'; " + 
-                //@"Add-TMXTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus Passed; " +
-                @"Close-TMXTestResult -Name 'tr1' -TestPassed; " + 
+                @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
+                //@"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus Passed; " +
+                @"Close-TmxTestResult -Name 'tr1' -TestPassed; " + 
                 //"[TMX.TestData]::CurrentTestResult.enStatus;",
                 "[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].enStatus;",
                 expectedTestResultStatus.ToString());
@@ -209,14 +209,14 @@ namespace TMXTest.Commands.TestStructure
         [Test]
         [Category("Slow")]
         [Category("TestResultLevel")]
-        [Category("Set-TMXCurrentTestResult")]
-        public void SetTMXCurrentTestResult_CloseTMXTestResult_TestResultStatus_Failed()
+        [Category("Set-TmxCurrentTestResult")]
+        public void SetTmxCurrentTestResult_CloseTmxTestResult_TestResultStatus_Failed()
         {
             TestResultStatuses expectedTestResultStatus = TestResultStatuses.Failed;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Set-TMXCurrentTestResult -Name 'tr1'; " + 
-                //@"Add-TMXTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus Failed; " +
-                @"Close-TMXTestResult -Name 'tr1' -TestPassed:$false; " + 
+                @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
+                //@"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus Failed; " +
+                @"Close-TmxTestResult -Name 'tr1' -TestPassed:$false; " + 
                 //"[TMX.TestData]::CurrentTestResult.enStatus;",
                 "[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].enStatus;",
                 expectedTestResultStatus.ToString());
@@ -225,14 +225,14 @@ namespace TMXTest.Commands.TestStructure
         [Test]
         [Category("Slow")]
         [Category("TestResultLevel")]
-        [Category("Set-TMXCurrentTestResult")]
-        public void SetTMXCurrentTestResult_CloseTMXTestResult_TestResultStatus_KnownIssue()
+        [Category("Set-TmxCurrentTestResult")]
+        public void SetTmxCurrentTestResult_CloseTmxTestResult_TestResultStatus_KnownIssue()
         {
             TestResultStatuses expectedTestResultStatus = TestResultStatuses.KnownIssue;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Set-TMXCurrentTestResult -Name 'tr1'; " + 
-                //@"Add-TMXTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus KnownIssue; " +
-                @"Close-TMXTestResult -Name 'tr1' -KnownIssue; " + 
+                @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
+                //@"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus KnownIssue; " +
+                @"Close-TmxTestResult -Name 'tr1' -KnownIssue; " + 
                 //"[TMX.TestData]::CurrentTestResult.enStatus;",
                 "[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].enStatus;",
                 expectedTestResultStatus.ToString());
@@ -243,14 +243,14 @@ namespace TMXTest.Commands.TestStructure
         [Test]
         [Category("Slow")]
         [Category("TestResultLevel")]
-        [Category("Set-TMXCurrentTestResult")]
-        public void SetTMXCurrentTestResult_AddTMXTestResultDetail_CloseTMXTestResult_TestResultStatus_NotTested_Passed()
+        [Category("Set-TmxCurrentTestResult")]
+        public void SetTmxCurrentTestResult_AddTmxTestResultDetail_CloseTmxTestResult_TestResultStatus_NotTested_Passed()
         {
             TestResultStatuses expectedTestResultStatus = TestResultStatuses.Passed;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Set-TMXCurrentTestResult -Name 'tr1'; " + 
-                @"Add-TMXTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus NotTested; " +
-                @"Close-TMXTestResult -Name 'tr1' -TestPassed; " + 
+                @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
+                @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus NotTested; " +
+                @"Close-TmxTestResult -Name 'tr1' -TestPassed; " + 
                 "[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].enStatus;",
                 expectedTestResultStatus.ToString());
         }
@@ -258,14 +258,14 @@ namespace TMXTest.Commands.TestStructure
         [Test]
         [Category("Slow")]
         [Category("TestResultLevel")]
-        [Category("Set-TMXCurrentTestResult")]
-        public void SetTMXCurrentTestResult_AddTMXTestResultDetail_CloseTMXTestResult_TestResultStatus_NotTested_Failed()
+        [Category("Set-TmxCurrentTestResult")]
+        public void SetTmxCurrentTestResult_AddTmxTestResultDetail_CloseTmxTestResult_TestResultStatus_NotTested_Failed()
         {
             TestResultStatuses expectedTestResultStatus = TestResultStatuses.Failed;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Set-TMXCurrentTestResult -Name 'tr1'; " + 
-                @"Add-TMXTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus NotTested; " +
-                @"Close-TMXTestResult -Name 'tr1' -TestPassed:$false; " + 
+                @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
+                @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus NotTested; " +
+                @"Close-TmxTestResult -Name 'tr1' -TestPassed:$false; " + 
                 "[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].enStatus;",
                 expectedTestResultStatus.ToString());
         }
@@ -273,14 +273,14 @@ namespace TMXTest.Commands.TestStructure
         [Test]
         [Category("Slow")]
         [Category("TestResultLevel")]
-        [Category("Set-TMXCurrentTestResult")]
-        public void SetTMXCurrentTestResult_AddTMXTestResultDetail_CloseTMXTestResult_TestResultStatus_NotTested_KnownIssue()
+        [Category("Set-TmxCurrentTestResult")]
+        public void SetTmxCurrentTestResult_AddTmxTestResultDetail_CloseTmxTestResult_TestResultStatus_NotTested_KnownIssue()
         {
             TestResultStatuses expectedTestResultStatus = TestResultStatuses.KnownIssue;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Set-TMXCurrentTestResult -Name 'tr1'; " + 
-                @"Add-TMXTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus NotTested; " +
-                @"Close-TMXTestResult -Name 'tr1' -KnownIssue; " + 
+                @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
+                @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus NotTested; " +
+                @"Close-TmxTestResult -Name 'tr1' -KnownIssue; " + 
                 "[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].enStatus;",
                 expectedTestResultStatus.ToString());
         }
@@ -288,14 +288,14 @@ namespace TMXTest.Commands.TestStructure
         [Test]
         [Category("Slow")]
         [Category("TestResultLevel")]
-        [Category("Set-TMXCurrentTestResult")]
-        public void SetTMXCurrentTestResult_AddTMXTestResultDetail_CloseTMXTestResult_TestResultStatus_Passed_Passed()
+        [Category("Set-TmxCurrentTestResult")]
+        public void SetTmxCurrentTestResult_AddTmxTestResultDetail_CloseTmxTestResult_TestResultStatus_Passed_Passed()
         {
             TestResultStatuses expectedTestResultStatus = TestResultStatuses.Passed;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Set-TMXCurrentTestResult -Name 'tr1'; " + 
-                @"Add-TMXTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus Passed; " +
-                @"Close-TMXTestResult -Name 'tr1' -TestPassed; " + 
+                @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
+                @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus Passed; " +
+                @"Close-TmxTestResult -Name 'tr1' -TestPassed; " + 
                 "[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].enStatus;",
                 expectedTestResultStatus.ToString());
         }
@@ -303,14 +303,14 @@ namespace TMXTest.Commands.TestStructure
         [Test]
         [Category("Slow")]
         [Category("TestResultLevel")]
-        [Category("Set-TMXCurrentTestResult")]
-        public void SetTMXCurrentTestResult_AddTMXTestResultDetail_CloseTMXTestResult_TestResultStatus_Passed_Failed()
+        [Category("Set-TmxCurrentTestResult")]
+        public void SetTmxCurrentTestResult_AddTmxTestResultDetail_CloseTmxTestResult_TestResultStatus_Passed_Failed()
         {
             TestResultStatuses expectedTestResultStatus = TestResultStatuses.Failed;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Set-TMXCurrentTestResult -Name 'tr1'; " + 
-                @"Add-TMXTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus Passed; " +
-                @"Close-TMXTestResult -Name 'tr1' -TestPassed:$false; " + 
+                @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
+                @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus Passed; " +
+                @"Close-TmxTestResult -Name 'tr1' -TestPassed:$false; " + 
                 "[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].enStatus;",
                 expectedTestResultStatus.ToString());
         }
@@ -318,14 +318,14 @@ namespace TMXTest.Commands.TestStructure
         [Test]
         [Category("Slow")]
         [Category("TestResultLevel")]
-        [Category("Set-TMXCurrentTestResult")]
-        public void SetTMXCurrentTestResult_AddTMXTestResultDetail_CloseTMXTestResult_TestResultStatus_Passed_KnownIssue()
+        [Category("Set-TmxCurrentTestResult")]
+        public void SetTmxCurrentTestResult_AddTmxTestResultDetail_CloseTmxTestResult_TestResultStatus_Passed_KnownIssue()
         {
             TestResultStatuses expectedTestResultStatus = TestResultStatuses.KnownIssue;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Set-TMXCurrentTestResult -Name 'tr1'; " + 
-                @"Add-TMXTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus Passed; " +
-                @"Close-TMXTestResult -Name 'tr1' -KnownIssue; " + 
+                @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
+                @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus Passed; " +
+                @"Close-TmxTestResult -Name 'tr1' -KnownIssue; " + 
                 "[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].enStatus;",
                 expectedTestResultStatus.ToString());
         }
@@ -333,14 +333,14 @@ namespace TMXTest.Commands.TestStructure
         [Test]
         [Category("Slow")]
         [Category("TestResultLevel")]
-        [Category("Set-TMXCurrentTestResult")]
-        public void SetTMXCurrentTestResult_AddTMXTestResultDetail_CloseTMXTestResult_TestResultStatus_Failed_Passed()
+        [Category("Set-TmxCurrentTestResult")]
+        public void SetTmxCurrentTestResult_AddTmxTestResultDetail_CloseTmxTestResult_TestResultStatus_Failed_Passed()
         {
             TestResultStatuses expectedTestResultStatus = TestResultStatuses.Passed;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Set-TMXCurrentTestResult -Name 'tr1'; " + 
-                @"Add-TMXTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus Failed; " +
-                @"Close-TMXTestResult -Name 'tr1' -TestPassed; " + 
+                @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
+                @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus Failed; " +
+                @"Close-TmxTestResult -Name 'tr1' -TestPassed; " + 
                 "[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].enStatus;",
                 expectedTestResultStatus.ToString());
         }
@@ -348,14 +348,14 @@ namespace TMXTest.Commands.TestStructure
         [Test]
         [Category("Slow")]
         [Category("TestResultLevel")]
-        [Category("Set-TMXCurrentTestResult")]
-        public void SetTMXCurrentTestResult_AddTMXTestResultDetail_CloseTMXTestResult_TestResultStatus_Failed_Failed()
+        [Category("Set-TmxCurrentTestResult")]
+        public void SetTmxCurrentTestResult_AddTmxTestResultDetail_CloseTmxTestResult_TestResultStatus_Failed_Failed()
         {
             TestResultStatuses expectedTestResultStatus = TestResultStatuses.Failed;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Set-TMXCurrentTestResult -Name 'tr1'; " + 
-                @"Add-TMXTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus Failed; " +
-                @"Close-TMXTestResult -Name 'tr1' -TestPassed:$false; " + 
+                @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
+                @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus Failed; " +
+                @"Close-TmxTestResult -Name 'tr1' -TestPassed:$false; " + 
                 "[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].enStatus;",
                 expectedTestResultStatus.ToString());
         }
@@ -363,14 +363,14 @@ namespace TMXTest.Commands.TestStructure
         [Test]
         [Category("Slow")]
         [Category("TestResultLevel")]
-        [Category("Set-TMXCurrentTestResult")]
-        public void SetTMXCurrentTestResult_AddTMXTestResultDetail_CloseTMXTestResult_TestResultStatus_Failed_KnownIssue()
+        [Category("Set-TmxCurrentTestResult")]
+        public void SetTmxCurrentTestResult_AddTmxTestResultDetail_CloseTmxTestResult_TestResultStatus_Failed_KnownIssue()
         {
             TestResultStatuses expectedTestResultStatus = TestResultStatuses.KnownIssue;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Set-TMXCurrentTestResult -Name 'tr1'; " + 
-                @"Add-TMXTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus Failed; " +
-                @"Close-TMXTestResult -Name 'tr1' -KnownIssue; " + 
+                @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
+                @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus Failed; " +
+                @"Close-TmxTestResult -Name 'tr1' -KnownIssue; " + 
                 "[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].enStatus;",
                 expectedTestResultStatus.ToString());
         }
@@ -378,14 +378,14 @@ namespace TMXTest.Commands.TestStructure
         [Test]
         [Category("Slow")]
         [Category("TestResultLevel")]
-        [Category("Set-TMXCurrentTestResult")]
-        public void SetTMXCurrentTestResult_AddTMXTestResultDetail_CloseTMXTestResult_TestResultStatus_KnownIssue_Passed()
+        [Category("Set-TmxCurrentTestResult")]
+        public void SetTmxCurrentTestResult_AddTmxTestResultDetail_CloseTmxTestResult_TestResultStatus_KnownIssue_Passed()
         {
             TestResultStatuses expectedTestResultStatus = TestResultStatuses.Passed;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Set-TMXCurrentTestResult -Name 'tr1'; " + 
-                @"Add-TMXTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus KnownIssue; " +
-                @"Close-TMXTestResult -Name 'tr1' -TestPassed; " + 
+                @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
+                @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus KnownIssue; " +
+                @"Close-TmxTestResult -Name 'tr1' -TestPassed; " + 
                 "[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].enStatus;",
                 expectedTestResultStatus.ToString());
         }
@@ -393,14 +393,14 @@ namespace TMXTest.Commands.TestStructure
         [Test]
         [Category("Slow")]
         [Category("TestResultLevel")]
-        [Category("Set-TMXCurrentTestResult")]
-        public void SetTMXCurrentTestResult_AddTMXTestResultDetail_CloseTMXTestResult_TestResultStatus_KnownIssue_Failed()
+        [Category("Set-TmxCurrentTestResult")]
+        public void SetTmxCurrentTestResult_AddTmxTestResultDetail_CloseTmxTestResult_TestResultStatus_KnownIssue_Failed()
         {
             TestResultStatuses expectedTestResultStatus = TestResultStatuses.Failed;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Set-TMXCurrentTestResult -Name 'tr1'; " + 
-                @"Add-TMXTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus KnownIssue; " +
-                @"Close-TMXTestResult -Name 'tr1' -TestPassed:$false; " + 
+                @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
+                @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus KnownIssue; " +
+                @"Close-TmxTestResult -Name 'tr1' -TestPassed:$false; " + 
                 "[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].enStatus;",
                 expectedTestResultStatus.ToString());
         }
@@ -408,14 +408,14 @@ namespace TMXTest.Commands.TestStructure
         [Test]
         [Category("Slow")]
         [Category("TestResultLevel")]
-        [Category("Set-TMXCurrentTestResult")]
-        public void SetTMXCurrentTestResult_AddTMXTestResultDetail_CloseTMXTestResult_TestResultStatus_KnownIssue_KnownIssue()
+        [Category("Set-TmxCurrentTestResult")]
+        public void SetTmxCurrentTestResult_AddTmxTestResultDetail_CloseTmxTestResult_TestResultStatus_KnownIssue_KnownIssue()
         {
             TestResultStatuses expectedTestResultStatus = TestResultStatuses.KnownIssue;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Set-TMXCurrentTestResult -Name 'tr1'; " + 
-                @"Add-TMXTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus KnownIssue; " +
-                @"Close-TMXTestResult -Name 'tr1' -KnownIssue; " + 
+                @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
+                @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus KnownIssue; " +
+                @"Close-TmxTestResult -Name 'tr1' -KnownIssue; " + 
                 "[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].enStatus;",
                 expectedTestResultStatus.ToString());
         }
@@ -425,18 +425,18 @@ namespace TMXTest.Commands.TestStructure
         [Test]
         [Category("Slow")]
         [Category("TestResultLevel")]
-        [Category("Set-TMXCurrentTestResult")]
+        [Category("Set-TmxCurrentTestResult")]
         // 20130408
-        //public void SetTMXCurrentTestResult_AddTMXTestResultDetail_SetTMXCurrentTestResult_TestResultStatus_ImplicitlyFailed()
-        public void SetTMXCurrentTestResult_AddTMXTestResultDetail_SetTMXCurrentTestResult_TestResultStatus_NotTested()
+        //public void SetTmxCurrentTestResult_AddTmxTestResultDetail_SetTmxCurrentTestResult_TestResultStatus_ImplicitlyFailed()
+        public void SetTmxCurrentTestResult_AddTmxTestResultDetail_SetTmxCurrentTestResult_TestResultStatus_NotTested()
         {
             // 20130408
             //TestResultStatuses expectedTestResultStatus = TestResultStatuses.Failed;
             TestResultStatuses expectedTestResultStatus = TestResultStatuses.NotTested;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Set-TMXCurrentTestResult -Name 'tr1'; " + 
-                @"Add-TMXTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus NotTested; " +
-                @"Set-TMXCurrentTestResult -Name 'tr2'; " + 
+                @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
+                @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus NotTested; " +
+                @"Set-TmxCurrentTestResult -Name 'tr2'; " + 
                 "[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults.Count - 1].enStatus;",
                 expectedTestResultStatus.ToString());
         }
@@ -444,14 +444,14 @@ namespace TMXTest.Commands.TestStructure
         [Test]
         [Category("Slow")]
         [Category("TestResultLevel")]
-        [Category("Set-TMXCurrentTestResult")]
-        public void SetTMXCurrentTestResult_AddTMXTestResultDetail_SetTMXCurrentTestResult_TestResultStatus_Passed()
+        [Category("Set-TmxCurrentTestResult")]
+        public void SetTmxCurrentTestResult_AddTmxTestResultDetail_SetTmxCurrentTestResult_TestResultStatus_Passed()
         {
             TestResultStatuses expectedTestResultStatus = TestResultStatuses.Passed;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Set-TMXCurrentTestResult -Name 'tr1'; " + 
-                @"Add-TMXTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus Passed; " +
-                @"Set-TMXCurrentTestResult -Name 'tr2'; " + 
+                @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
+                @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus Passed; " +
+                @"Set-TmxCurrentTestResult -Name 'tr2'; " + 
                 "[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults.Count - 1].enStatus;",
                 expectedTestResultStatus.ToString());
         }
@@ -459,14 +459,14 @@ namespace TMXTest.Commands.TestStructure
         [Test]
         [Category("Slow")]
         [Category("TestResultLevel")]
-        [Category("Set-TMXCurrentTestResult")]
-        public void SetTMXCurrentTestResult_AddTMXTestResultDetail_SetTMXCurrentTestResult_TestResultStatus_Failed()
+        [Category("Set-TmxCurrentTestResult")]
+        public void SetTmxCurrentTestResult_AddTmxTestResultDetail_SetTmxCurrentTestResult_TestResultStatus_Failed()
         {
             TestResultStatuses expectedTestResultStatus = TestResultStatuses.Failed;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Set-TMXCurrentTestResult -Name 'tr1'; " + 
-                @"Add-TMXTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus Failed; " +
-                @"Set-TMXCurrentTestResult -Name 'tr2'; " + 
+                @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
+                @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus Failed; " +
+                @"Set-TmxCurrentTestResult -Name 'tr2'; " + 
                 "[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults.Count - 1].enStatus;",
                 expectedTestResultStatus.ToString());
         }
@@ -474,14 +474,14 @@ namespace TMXTest.Commands.TestStructure
         [Test]
         [Category("Slow")]
         [Category("TestResultLevel")]
-        [Category("Set-TMXCurrentTestResult")]
-        public void SetTMXCurrentTestResult_AddTMXTestResultDetail_SetTMXCurrentTestResult_TestResultStatus_KnownIssue()
+        [Category("Set-TmxCurrentTestResult")]
+        public void SetTmxCurrentTestResult_AddTmxTestResultDetail_SetTmxCurrentTestResult_TestResultStatus_KnownIssue()
         {
             TestResultStatuses expectedTestResultStatus = TestResultStatuses.KnownIssue;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Set-TMXCurrentTestResult -Name 'tr1'; " + 
-                @"Add-TMXTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus KnownIssue; " +
-                @"Set-TMXCurrentTestResult -Name 'tr2'; " + 
+                @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
+                @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus KnownIssue; " +
+                @"Set-TmxCurrentTestResult -Name 'tr2'; " + 
                 "[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults.Count - 1].enStatus;",
                 expectedTestResultStatus.ToString());
         }

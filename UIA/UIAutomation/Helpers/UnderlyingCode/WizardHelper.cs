@@ -28,7 +28,7 @@ namespace UIAutomation
         }
         
         //public static void CreateWizard(WizardContainerCmdletBase cmdlet)
-        public static void CreateWizard(NewUIAWizardCommand cmdlet)
+        public static void CreateWizard(NewUiaWizardCommand cmdlet)
         {
             if (!cmdlet.ValidateWizardName(cmdlet.Name)) {
                 
@@ -404,7 +404,7 @@ namespace UIAutomation
             }
         }
         
-        public static void GetWizard(GetUIAWizardCommand cmdlet)
+        public static void GetWizard(GetUiaWizardCommand cmdlet)
         {
             //Wizard wzd = GetWizard(Name);
             Wizard wzd = cmdlet.GetWizard(cmdlet.Name);
@@ -425,7 +425,7 @@ namespace UIAutomation
             }
         }
         
-        public static void RemoveWizardStep(RemoveUIAWizardStepCommand cmdlet)
+        public static void RemoveWizardStep(RemoveUiaWizardStepCommand cmdlet)
         {
             
             //if (InputObject != null && InputObject is Wizard) {
@@ -479,7 +479,7 @@ namespace UIAutomation
             // if (SearchCriteria != null && SearchCriteria.Length > 0) {
         }
         
-        public static void StepWizardStep(StepUIAWizardCommand cmdlet)
+        public static void StepWizardStep(StepUiaWizardCommand cmdlet)
         {
             // getting the step the user ordered to run
             //if (InputObject != null && InputObject is Wizard) {

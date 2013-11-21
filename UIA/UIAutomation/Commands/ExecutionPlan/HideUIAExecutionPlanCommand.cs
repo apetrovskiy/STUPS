@@ -12,10 +12,10 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
 
 	/// <summary>
-	/// Description of HideUIAExecutionPlanCommand.
+	/// Description of HideUiaExecutionPlanCommand.
 	/// </summary>
-	[Cmdlet(VerbsCommon.Hide, "UIAExecutionPlan")]
-	public class HideUIAExecutionPlanCommand : ExecutionPlanCmdletBase
+	[Cmdlet(VerbsCommon.Hide, "UiaExecutionPlan")]
+	public class HideUiaExecutionPlanCommand : ExecutionPlanCmdletBase
 	{
 		protected override void BeginProcessing()
 		{

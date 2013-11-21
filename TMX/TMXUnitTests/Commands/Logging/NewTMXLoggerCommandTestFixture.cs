@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMXUnitTests.Commands.Logging
+namespace TmxUnitTests.Commands.Logging
 {
     using System;
     using MbUnit.Framework;
@@ -15,12 +15,12 @@ namespace TMXUnitTests.Commands.Logging
     using TMX;
     
     /// <summary>
-    /// Description of NewTMXLoggerCommandTestFixture.
+    /// Description of NewTmxLoggerCommandTestFixture.
     /// </summary>
     [TestFixture]
-    public class NewTMXLoggerCommandTestFixture
+    public class NewTmxLoggerCommandTestFixture
     {
-        public NewTMXLoggerCommandTestFixture()
+        public NewTmxLoggerCommandTestFixture()
         {
         }
         

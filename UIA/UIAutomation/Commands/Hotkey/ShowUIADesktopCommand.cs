@@ -13,10 +13,10 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of ShowUIADesktopCommand.
+    /// Description of ShowUiaDesktopCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Show, "UIADesktop")]
-    public class ShowUIADesktopCommand : HotkeyCmdletBase
+    [Cmdlet(VerbsCommon.Show, "UiaDesktop")]
+    public class ShowUiaDesktopCommand : HotkeyCmdletBase
     {
         protected override void BeginProcessing()
         {

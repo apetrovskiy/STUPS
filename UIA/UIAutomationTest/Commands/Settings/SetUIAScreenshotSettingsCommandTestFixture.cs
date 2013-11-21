@@ -14,10 +14,10 @@ namespace UIAutomationTest.Commands.Settings
     using System.Management.Automation;
 
     /// <summary>
-    /// Description of SetUIAScreenshotSettingsCommandTestFixture.
+    /// Description of SetUiaScreenshotSettingsCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Set-UIAScreenshotSettingsCommand test")]
-    public class SetUIAScreenshotSettingsCommandTestFixture
+    [TestFixture] // [TestFixture(Description="Set-UiaScreenshotSettingsCommand test")]
+    public class SetUiaScreenshotSettingsCommandTestFixture
     {
         [SetUp]
         public void PrepareRunspace()

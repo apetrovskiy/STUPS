@@ -12,14 +12,14 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
 
     /// <summary>
-    /// Description of InvokeUIAControlClickCommand.
+    /// Description of InvokeUiaControlClickCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAControlClick")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaControlClick")]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAControlClickCommand : HasControlInputCmdletBase
+    public class InvokeUiaControlClickCommand : HasControlInputCmdletBase
     {
         #region Constructor
-        public InvokeUIAControlClickCommand()
+        public InvokeUiaControlClickCommand()
         {
             RightClick = false;
             MidClick = false;

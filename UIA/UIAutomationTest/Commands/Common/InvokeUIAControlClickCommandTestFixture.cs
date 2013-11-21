@@ -14,12 +14,12 @@ namespace UIAutomationTest.Commands.Common
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of InvokeUIAControlClickCommandTestFixture.
+    /// Description of InvokeUiaControlClickCommandTestFixture.
     /// </summary>
     [TestFixture] // [TestFixture(Description="1")]
-    public class InvokeUIAControlClickCommandTestFixture
+    public class InvokeUiaControlClickCommandTestFixture
     {
-        public InvokeUIAControlClickCommandTestFixture()
+        public InvokeUiaControlClickCommandTestFixture()
         {
         }
         
@@ -41,15 +41,15 @@ namespace UIAutomationTest.Commands.Common
                 UIAutomationTestForms.Forms.WinFormsFull, 
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = Get-UIAWindow -pn " + 
+                @"$null = Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAButton -Name button1 | Invoke-UIAControlClick;" + 
-                @"Get-UIAWindow -pn " + 
+                " | Get-UiaButton -Name button1 | Invoke-UiaControlClick;" + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAList -AutomationId listBox1 | " + 
-                "Get-UIAListItem -Name " + 
+                " | Get-UiaList -AutomationId listBox1 | " + 
+                "Get-UiaListItem -Name " + 
                 expectedResult +
-                " | Read-UIAControlName;",
+                " | Read-UiaControlName;",
                 expectedResult);
         }
         

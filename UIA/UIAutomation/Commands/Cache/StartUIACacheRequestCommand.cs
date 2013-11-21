@@ -14,12 +14,12 @@ namespace UIAutomation.Commands
     using System.Windows.Automation;
     
     /// <summary>
-    /// Description of StartUIACacheRequestCommand.
+    /// Description of StartUiaCacheRequestCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Start, "UIACacheRequest")]
-    public class StartUIACacheRequestCommand : CacheRequestCmdletBase
+    [Cmdlet(VerbsLifecycle.Start, "UiaCacheRequest")]
+    public class StartUiaCacheRequestCommand : CacheRequestCmdletBase
     {
-        public StartUIACacheRequestCommand()
+        public StartUiaCacheRequestCommand()
         {
             System.Collections.ArrayList defaultPropertiesList = 
                 new System.Collections.ArrayList

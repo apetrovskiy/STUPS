@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace UIARunner
+namespace UiaRunner
 {
     using System;
     using System.Windows.Forms;
@@ -48,8 +48,8 @@ namespace UIARunner
                 UiaRunnerForm runnerForm =
                     new UiaRunnerForm();
                 PSTestRunner.TestRunner.InitScript();
-                TMX.TestData.TMXNewTestResultClosed += 
-                    new TMX.TMXStructureChangedEventHandler(
+                TMX.TestData.TmxNewTestResultClosed += 
+                    new TMX.TmxStructureChangedEventHandler(
                         PSTestRunner.TestRunner.NewTestResultClosed);
                 PSRunner.Runner.PSErrorThrown +=
                     new PSRunner.PSStateChangedEventHandler(

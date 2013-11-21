@@ -301,8 +301,8 @@ namespace UIAutomationSpy
             // in case this element is an upper-level Pane 
             // residing directrly under the RootElement
             // change type to window
-            // i.e. Get-UIAPane - >  Get-UIAWindow
-            // since Get-UIAPane is unable to get something more than
+            // i.e. Get-UiaPane - >  Get-UiaWindow
+            // since Get-UiaPane is unable to get something more than
             // a window's child pane control 
             if (elementControlType == "Pane" || elementControlType == "Menu") {
                 // 20131109
@@ -479,10 +479,10 @@ namespace UIAutomationSpy
                 this.richPatterns.Text = "available patterns";
                 this.richPatterns.Text += "\r\n";
                 
-                // 20120618 UIACOMWrapper
+                // 20120618 UiaCOMWrapper
                 AutomationPattern[] supportedPatterns =
                     element.GetSupportedPatterns();
-                //UIACOM::System.Windows.Automation.AutomationPattern[] supportedPatterns =
+                //UiaCOM::System.Windows.Automation.AutomationPattern[] supportedPatterns =
                 //    element.GetSupportedPatterns();                                    
 
                 if (supportedPatterns == null || supportedPatterns.Length <= 0) return;
@@ -524,7 +524,7 @@ namespace UIAutomationSpy
             // 20131114
             //System.Drawing.Point mouse = System.Windows.Forms.Cursor.Position;
 
-            // commented 20120618 to switch to UIACOMWrapper
+            // commented 20120618 to switch to UiaCOMWrapper
             element =
                 // 20131109
                 //System.Windows.Automation.AutomationElement.FromPoint(
@@ -533,8 +533,8 @@ namespace UIAutomationSpy
                     //new System.Windows.Point(mouse.X, mouse.Y));
                     new System.Windows.Point(mousePoint.X, mousePoint.Y));
             //element = 
-            //	//(UIANET::System.Windows.Automation.AutomationElement)
-            //	UIACOM3.UIACOMHelper.GetAutomationElementFromPoint();
+            //	//(UiaNET::System.Windows.Automation.AutomationElement)
+            //	UiaCOM3.UiaCOMHelper.GetAutomationElementFromPoint();
             
             return element;
         }
@@ -805,7 +805,7 @@ namespace UIAutomationSpy
 
             this.menuAutomationState_RunSpy();
 
-            // 20120618 UIACOMWrapper
+            // 20120618 UiaCOMWrapper
             // 20131109
             //AutomationElement rootElement = 
             //    System.Windows.AutomIMySuperWrapperperWrapper rootElement = 
@@ -817,11 +817,11 @@ namespace UIAutomationSpy
             //System.Windows.Automation.AutomatIMySuperWrapper element = null;
             IMySuperWrapper element = null;
 
-//				UIANET::System.Windows.Automation.AutomationElement rootElement =
-//                    UIANET::System.Windows.Automation.AutomationElement.RootElement;
+//				UiaNET::System.Windows.Automation.AutomationElement rootElement =
+//                    UiaNET::System.Windows.Automation.AutomationElement.RootElement;
 //                
 //                UIAutomation.TranscriptCmdletBase cmdlet = null;
-//                UIACOM::System.Windows.Automation.AutomationElement element = null;
+//                UiaCOM::System.Windows.Automation.AutomationElement element = null;
 
             do{
                 System.Windows.Forms.Application.DoEvents();
@@ -836,26 +836,26 @@ namespace UIAutomationSpy
 //                        // use Windows forms mouse code instead of WPF
 //                        System.Drawing.Point mouse = System.Windows.Forms.Cursor.Position;
 //
-//                        // commented 20120618 to switch to UIACOMWrapper
+//                        // commented 20120618 to switch to UiaCOMWrapper
 //                        element =
 //                            System.Windows.Automation.AutomationElement.FromPoint(
 //                                new System.Windows.Point(mouse.X, mouse.Y));
 //                        //element = 
-//                        //	//(UIANET::System.Windows.Automation.AutomationElement)
-//                        //	UIACOM3.UIACOMHelper.GetAutomationElementFromPoint();
+//                        //	//(UiaNET::System.Windows.Automation.AutomationElement)
+//                        //	UiaCOM3.UiaCOMHelper.GetAutomationElementFromPoint();
                         
-                    // 20120618 UIACOMWrapper
+                    // 20120618 UiaCOMWrapper
                     if (null != element) { // && (int)element.Current.ProcessId > 0)
                     // if (element != null && ((element as AutomationElement) != null)) { // && (int)element.Current.ProcessId > 0)
-                        //if (element != null && ((element as UIACOM::System.Windows.Automation.AutomationElement) != null)) { // && (int)element.Current.ProcessId > 0)
+                        //if (element != null && ((element as UiaCOM::System.Windows.Automation.AutomationElement) != null)) { // && (int)element.Current.ProcessId > 0)
                         cmdlet = 
                             this.createTranscriptingCmdlet();
 
                         try{
                             bool res =
-                                UIAutomation.UIAHelper.ProcessingElement(
+                                UIAutomation.UiaHelper.ProcessingElement(
                                     cmdlet, 
-                                    element); // as UIANET::System.Windows.Automation.AutomationElement);
+                                    element); // as UiaNET::System.Windows.Automation.AutomationElement);
                             if (!res) {
 // 
                             }
@@ -972,18 +972,18 @@ namespace UIAutomationSpy
 
                 this.menuAutomationState_RunSpy();
 
-                // 20120618 UIACOMWrapper
+                // 20120618 UiaCOMWrapper
                 AutomationElement rootElement = 
                     System.Windows.Automation.AutomationElement.RootElement;
                 
                 UIAutomation.TranscriptCmdletBase cmdlet = null;
                 System.Windows.Automation.AutomationElement element = null;
 
-//				UIANET::System.Windows.Automation.AutomationElement rootElement =
-//                    UIANET::System.Windows.Automation.AutomationElement.RootElement;
+//				UiaNET::System.Windows.Automation.AutomationElement rootElement =
+//                    UiaNET::System.Windows.Automation.AutomationElement.RootElement;
 //                
 //                UIAutomation.TranscriptCmdletBase cmdlet = null;
-//                UIACOM::System.Windows.Automation.AutomationElement element = null;
+//                UiaCOM::System.Windows.Automation.AutomationElement element = null;
 
                 do{
                     System.Windows.Forms.Application.DoEvents();
@@ -996,25 +996,25 @@ namespace UIAutomationSpy
 //                        // use Windows forms mouse code instead of WPF
 //                        System.Drawing.Point mouse = System.Windows.Forms.Cursor.Position;
 //
-//                        // commented 20120618 to switch to UIACOMWrapper
+//                        // commented 20120618 to switch to UiaCOMWrapper
 //                        element =
 //                            System.Windows.Automation.AutomationElement.FromPoint(
 //                                new System.Windows.Point(mouse.X, mouse.Y));
 //                        //element = 
-//                        //	//(UIANET::System.Windows.Automation.AutomationElement)
-//                        //	UIACOM3.UIACOMHelper.GetAutomationElementFromPoint();
+//                        //	//(UiaNET::System.Windows.Automation.AutomationElement)
+//                        //	UiaCOM3.UiaCOMHelper.GetAutomationElementFromPoint();
                         
-                        // 20120618 UIACOMWrapper
+                        // 20120618 UiaCOMWrapper
                         if (element != null && ((element as AutomationElement) != null)) { // && (int)element.Current.ProcessId > 0)
-                        //if (element != null && ((element as UIACOM::System.Windows.Automation.AutomationElement) != null)) { // && (int)element.Current.ProcessId > 0)
+                        //if (element != null && ((element as UiaCOM::System.Windows.Automation.AutomationElement) != null)) { // && (int)element.Current.ProcessId > 0)
                                 cmdlet = 
                                     this.createTranscriptingCmdlet();
 
                                 try{
                                     bool res =
-                                        UIAutomation.UIAHelper.ProcessingElement(
+                                        UIAutomation.UiaHelper.ProcessingElement(
                                             cmdlet, 
-                                            element); // as UIANET::System.Windows.Automation.AutomationElement);
+                                            element); // as UiaNET::System.Windows.Automation.AutomationElement);
                                     if (!res) {
 // 
                                     }

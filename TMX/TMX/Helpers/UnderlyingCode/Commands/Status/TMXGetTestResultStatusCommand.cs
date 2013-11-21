@@ -14,20 +14,20 @@ namespace TMX
     using TMX.Commands;
     
     /// <summary>
-    /// Description of TMXGetTestResultStatusCommand.
+    /// Description of TmxGetTestResultStatusCommand.
     /// </summary>
-    internal class TMXGetTestResultStatusCommand : TMXCommand
+    internal class TmxGetTestResultStatusCommand : TmxCommand
     {
-        internal TMXGetTestResultStatusCommand(CommonCmdletBase cmdlet) : base (cmdlet)
+        internal TmxGetTestResultStatusCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         
         internal override void Execute()
         {
-            GetTMXTestResultStatusCommand cmdlet =
-                (GetTMXTestResultStatusCommand)this.Cmdlet;
+            GetTmxTestResultStatusCommand cmdlet =
+                (GetTmxTestResultStatusCommand)this.Cmdlet;
             
-            TMXHelper.GetCurrentTestResultStatus(cmdlet);
+            TmxHelper.GetCurrentTestResultStatus(cmdlet);
         }
     }
 }

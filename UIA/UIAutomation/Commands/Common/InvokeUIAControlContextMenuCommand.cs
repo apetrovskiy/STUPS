@@ -15,11 +15,11 @@ namespace UIAutomation.Commands
     using System.Windows.Automation;
     
     /// <summary>
-    /// Description of GetUIAControlContextMenuCommand.
+    /// Description of GetUiaControlContextMenuCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAControlContextMenu")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaControlContextMenu")]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIAControlContextMenuCommand : HasControlInputCmdletBase
+    public class GetUiaControlContextMenuCommand : HasControlInputCmdletBase
     {
         /// <summary>
         /// Processes the pipeline.

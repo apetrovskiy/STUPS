@@ -14,11 +14,11 @@ namespace TMX
     using TMX.Commands;
     
     /// <summary>
-    /// Description of TMXGetTestSuiteStatusCommand.
+    /// Description of TmxGetTestSuiteStatusCommand.
     /// </summary>
-    internal class TMXGetTestSuiteStatusCommand : TMXCommand
+    internal class TmxGetTestSuiteStatusCommand : TmxCommand
     {
-        internal TMXGetTestSuiteStatusCommand(CommonCmdletBase cmdlet) : base (cmdlet)
+        internal TmxGetTestSuiteStatusCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         
@@ -27,13 +27,13 @@ namespace TMX
             // 20130322
             //OpenSuiteCmdletBase cmdlet =
             //    (OpenSuiteCmdletBase)this.Cmdlet;
-            GetTMXTestSuiteStatusCommand cmdlet =
-                (GetTMXTestSuiteStatusCommand)this.Cmdlet;
+            GetTmxTestSuiteStatusCommand cmdlet =
+                (GetTmxTestSuiteStatusCommand)this.Cmdlet;
             
             if (!string.IsNullOrEmpty(cmdlet.Name)) {
                 
                 // 20130322
-                TMXHelper.GetTestSuiteStatusByName(
+                TmxHelper.GetTestSuiteStatusByName(
                     cmdlet,
                     // 20130322
                     //cmdlet.Name);
@@ -44,7 +44,7 @@ namespace TMX
             } else if (!string.IsNullOrEmpty(cmdlet.Id)) {
                 
                 // 20130322
-                TMXHelper.GetTestSuiteStatusById(
+                TmxHelper.GetTestSuiteStatusById(
                     cmdlet,
                     // 20130322
                     //cmdlet.Id);
@@ -56,7 +56,7 @@ namespace TMX
                 
                 // 20130322
                 // 20130918
-                //TMXHelper.GetCurrentTestSuiteStatus(
+                //TmxHelper.GetCurrentTestSuiteStatus(
                 //    // 20130322
                 //    //cmdlet);
                 //    cmdlet,

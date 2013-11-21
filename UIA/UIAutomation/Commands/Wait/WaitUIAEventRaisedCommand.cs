@@ -16,12 +16,12 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of WaitUIAEventRaisedCommand.
+    /// Description of WaitUiaEventRaisedCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Wait, "UIAEventRaised")]
-    public class WaitUIAEventRaisedCommand : WaitCmdletBase
+    [Cmdlet(VerbsLifecycle.Wait, "UiaEventRaised")]
+    public class WaitUiaEventRaisedCommand : WaitCmdletBase
     {
-        public WaitUIAEventRaisedCommand()
+        public WaitUiaEventRaisedCommand()
         {
         }
         

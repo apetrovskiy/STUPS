@@ -13,13 +13,13 @@ namespace TMX.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of GetTMXTestBucketCommand.
+    /// Description of GetTmxTestBucketCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "TMXTestBucket")]
+    [Cmdlet(VerbsCommon.Get, "TmxTestBucket")]
     [OutputType(typeof(ITestBucket))]
-    public class GetTMXTestBucketCommand : TestBucketCmdletBase
+    public class GetTmxTestBucketCommand : TestBucketCmdletBase
     {
-        public GetTMXTestBucketCommand()
+        public GetTmxTestBucketCommand()
         {
             this.checkDatabaseInput(this.InputObject);
             

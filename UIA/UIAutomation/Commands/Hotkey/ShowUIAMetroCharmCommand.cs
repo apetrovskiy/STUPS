@@ -13,10 +13,10 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of ShowUIAMetroCharmCommand.
+    /// Description of ShowUiaMetroCharmCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Show, "UIAMetroCharm")]
-    public class ShowUIAMetroCharmCommand : HotkeyCmdletBase
+    [Cmdlet(VerbsCommon.Show, "UiaMetroCharm")]
+    public class ShowUiaMetroCharmCommand : HotkeyCmdletBase
     {
         protected override void BeginProcessing()
         {

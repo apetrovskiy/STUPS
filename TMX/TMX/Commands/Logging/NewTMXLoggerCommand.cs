@@ -13,12 +13,12 @@ namespace TMX.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of NewTMXLoggerCommand.
+    /// Description of NewTmxLoggerCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.New, "TMXLogger")]
-    public class NewTMXLoggerCommand
+    [Cmdlet(VerbsCommon.New, "TmxLogger")]
+    public class NewTmxLoggerCommand
     {
-        public NewTMXLoggerCommand()
+        public NewTmxLoggerCommand()
         {
         }
     }

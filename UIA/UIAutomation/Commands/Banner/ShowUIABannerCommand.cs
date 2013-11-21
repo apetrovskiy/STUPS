@@ -12,10 +12,10 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of ShowUIABannerCommand.
+    /// Description of ShowUiaBannerCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Show, "UIABanner")]
-    public class ShowUIABannerCommand : CommonCmdletBase
+    [Cmdlet(VerbsCommon.Show, "UiaBanner")]
+    public class ShowUiaBannerCommand : CommonCmdletBase
     {
         #region Parameters
         [Parameter(Mandatory = true,
@@ -26,7 +26,7 @@ namespace UIAutomation.Commands
         
         protected override void BeginProcessing()
         {
-            UIAHelper.ShowBanner(this.Message);
+            UiaHelper.ShowBanner(this.Message);
         }
     }
 }

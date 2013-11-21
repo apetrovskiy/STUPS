@@ -13,10 +13,10 @@ namespace UIAutomationUnitTests.Commands.Wizard
     using UIAutomation;
     
     /// <summary>
-    /// Description of NewUIAWizardCommandTestFixture.
+    /// Description of NewUiaWizardCommandTestFixture.
     /// </summary>
     [TestFixture]
-    public class NewUIAWizardCommandTestFixture
+    public class NewUiaWizardCommandTestFixture
     {
         [SetUp]
         public void SetUp()
@@ -31,7 +31,7 @@ namespace UIAutomationUnitTests.Commands.Wizard
         }
         
         [Test]
-        [Description("New-UIAWizard")]
+        [Description("New-UiaWizard")]
         [Category("Fast")]
         [Category("Wizard")]
         public void NewWizard_StandardName()
@@ -45,7 +45,7 @@ namespace UIAutomationUnitTests.Commands.Wizard
         }
         
         [Test]
-        [Description("New-UIAWizard")]
+        [Description("New-UiaWizard")]
         [Category("Fast")]
         [Category("Wizard")]
         public void NewWizard_ComplexName()
@@ -59,7 +59,7 @@ namespace UIAutomationUnitTests.Commands.Wizard
         }
         
         [Test]
-        [Description("New-UIAWizard")]
+        [Description("New-UiaWizard")]
         [Category("Fast")]
         [Category("Wizard")]
         [Ignore]

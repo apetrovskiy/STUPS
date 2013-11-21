@@ -91,7 +91,7 @@ namespace UIAutomation
         [ValidateNotNullOrEmpty()]
         [Parameter(Mandatory = false, 
             ValueFromPipeline = true,
-            HelpMessage = "This is usually the output from Get-UIAControl" )] 
+            HelpMessage = "This is usually the output from Get-UiaControl" )] 
         //public System.Windows.Automation.AutomationElement[] InputObject { get; set; }
         //public ICollection InputObject { get; set; }
         public IMySuperWrapper[] InputObject { get; set; }
@@ -114,7 +114,7 @@ namespace UIAutomation
         protected internal AutomationEventHandler AutomationEventHandler { get; set; }
         protected internal AutomationPropertyChangedEventHandler AutomationPropertyChangedEventHandler { get; set; }
         protected internal StructureChangedEventHandler StructureChangedEventHandler { get; set; }
-        protected Commands.RegisterUIAStructureChangedEventCommand Child { get; set; }
+        protected Commands.RegisterUiaStructureChangedEventCommand Child { get; set; }
         #endregion Properties
         
         protected bool GetColorProbe(HasControlInputCmdletBase cmdlet,
@@ -174,7 +174,7 @@ namespace UIAutomation
                 WriteVerbose(cmdlet, "trying to use one of its ancestors");
                 
                 whereTheHandle = 
-                    UIAHelper.GetAncestorWithHandle(whereToClick);
+                    UiaHelper.GetAncestorWithHandle(whereToClick);
                 if (whereTheHandle.Current.NativeWindowHandle == 0) {
                     ErrorRecord err = 
                         new ErrorRecord(new Exception("The handle of this control equals to zero"),
@@ -576,7 +576,7 @@ namespace UIAutomation
                             inputObject.GetSourceElement(),
                             TreeScope.Element, // TreeScope.Subtree, // TreeScope.Element,
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
-                        UIAHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
+                        UiaHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
                         if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "TextPatternIdentifiers.TextChangedEvent":
@@ -589,7 +589,7 @@ namespace UIAutomation
                             inputObject.GetSourceElement(),
                             TreeScope.Element,
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
-                        UIAHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
+                        UiaHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
                         if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "TextPatternIdentifiers.TextSelectionChangedEvent":
@@ -602,7 +602,7 @@ namespace UIAutomation
                             inputObject.GetSourceElement(),
                             TreeScope.Element,
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
-                        UIAHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
+                        UiaHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
                         if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "WindowPatternIdentifiers.WindowOpenedProperty":
@@ -615,7 +615,7 @@ namespace UIAutomation
                             inputObject.GetSourceElement(),
                             TreeScope.Subtree,
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
-                        UIAHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
+                        UiaHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
                         if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "AutomationElementIdentifiers.AutomationPropertyChangedEvent":
@@ -630,7 +630,7 @@ namespace UIAutomation
                                 uiaPropertyChangedEventHandler = 
                                     new AutomationPropertyChangedEventHandler(cmdlet.AutomationPropertyChangedEventHandler),
                                 prop);
-                            UIAHelper.WriteEventToCollection(cmdlet, uiaPropertyChangedEventHandler);
+                            UiaHelper.WriteEventToCollection(cmdlet, uiaPropertyChangedEventHandler);
                             if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaPropertyChangedEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         }
                         break;
@@ -644,7 +644,7 @@ namespace UIAutomation
                             TreeScope.Subtree,
                             uiaStructureChangedEventHandler = 
                             new StructureChangedEventHandler(cmdlet.StructureChangedEventHandler));
-                        UIAHelper.WriteEventToCollection(cmdlet, uiaStructureChangedEventHandler);
+                        UiaHelper.WriteEventToCollection(cmdlet, uiaStructureChangedEventHandler);
                         if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaStructureChangedEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "WindowPatternIdentifiers.WindowClosedProperty":
@@ -657,7 +657,7 @@ namespace UIAutomation
                             inputObject.GetSourceElement(),
                             TreeScope.Subtree,
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
-                        UIAHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
+                        UiaHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
                         if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "AutomationElementIdentifiers.MenuClosedEvent":
@@ -670,7 +670,7 @@ namespace UIAutomation
                             inputObject.GetSourceElement(),
                             TreeScope.Subtree,
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
-                        UIAHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
+                        UiaHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
                         if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "AutomationElementIdentifiers.MenuOpenedEvent":
@@ -683,7 +683,7 @@ namespace UIAutomation
                             inputObject.GetSourceElement(),
                             TreeScope.Subtree,
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
-                        UIAHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
+                        UiaHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
                         if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "AutomationElementIdentifiers.ToolTipClosedEvent":
@@ -696,7 +696,7 @@ namespace UIAutomation
                             inputObject.GetSourceElement(),
                             TreeScope.Subtree,
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
-                        UIAHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
+                        UiaHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
                         if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "AutomationElementIdentifiers.ToolTipOpenedEvent":
@@ -709,14 +709,14 @@ namespace UIAutomation
                             inputObject.GetSourceElement(),
                             TreeScope.Subtree,
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
-                        UIAHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
+                        UiaHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
                         if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "AutomationElementIdentifiers.AutomationFocusChangedEvent":
                         WriteVerbose(cmdlet, "subscribing to the AutomationFocusChangedEvent handler");
                         Automation.AddAutomationFocusChangedEventHandler(
                             uiaFocusChangedEventHandler = new AutomationFocusChangedEventHandler(cmdlet.AutomationEventHandler));
-                        UIAHelper.WriteEventToCollection(cmdlet, uiaFocusChangedEventHandler);
+                        UiaHelper.WriteEventToCollection(cmdlet, uiaFocusChangedEventHandler);
                         if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaFocusChangedEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     default:
@@ -1080,7 +1080,7 @@ try {
                         if (oneControlResult) {
                             
                             if (Preferences.HighlightCheckedControl) {
-                                UIAHelper.HighlightCheckedControl(elementToWorkWith);
+                                UiaHelper.HighlightCheckedControl(elementToWorkWith);
                             }
                             
                         } else { // 20130710
@@ -1143,7 +1143,7 @@ try {
                         if (oneControlResult) {
                             
                             if (Preferences.HighlightCheckedControl) {
-                                UIAHelper.HighlightCheckedControl(elementToWorkWith);
+                                UiaHelper.HighlightCheckedControl(elementToWorkWith);
                             }
                             
                         } else { // 20130710

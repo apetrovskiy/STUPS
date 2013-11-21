@@ -13,12 +13,12 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of ShowUIACurrentDataCommand.
+    /// Description of ShowUiaCurrentDataCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Show, "UIACurrentData")]
-    public class ShowUIACurrentDataCommand : CommonCmdletBase
+    [Cmdlet(VerbsCommon.Show, "UiaCurrentData")]
+    public class ShowUiaCurrentDataCommand : CommonCmdletBase
     {
-        public ShowUIACurrentDataCommand()
+        public ShowUiaCurrentDataCommand()
         {
         }
         

@@ -14,12 +14,12 @@ namespace UIAutomationTest.Commands.Pattern
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of InvokeUIAScrollPatternCommandTestFixture.
+    /// Description of InvokeUiaScrollPatternCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Invoke-UIAScrollPatternCommand test")]
-    public class InvokeUIAScrollPatternCommandTestFixture
+    [TestFixture] // [TestFixture(Description="Invoke-UiaScrollPatternCommand test")]
+    public class InvokeUiaScrollPatternCommandTestFixture
     {
-        public InvokeUIAScrollPatternCommandTestFixture()
+        public InvokeUiaScrollPatternCommandTestFixture()
         {
         }
         

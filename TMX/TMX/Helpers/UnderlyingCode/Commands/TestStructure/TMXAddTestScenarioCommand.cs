@@ -13,11 +13,11 @@ namespace TMX
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of TMXAddTestScenarioCommand.
+    /// Description of TmxAddTestScenarioCommand.
     /// </summary>
-    internal class TMXAddTestScenarioCommand : TMXCommand
+    internal class TmxAddTestScenarioCommand : TmxCommand
     {
-        internal TMXAddTestScenarioCommand(CommonCmdletBase cmdlet) : base (cmdlet)
+        internal TmxAddTestScenarioCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         
@@ -27,10 +27,10 @@ namespace TMX
                 (AddScenarioCmdletBase)this.Cmdlet;
             
             bool result = 
-                TMX.TMXHelper.AddTestScenario(cmdlet);
+                TMX.TmxHelper.AddTestScenario(cmdlet);
             
             // 20130429
-            TMX.Logger.TMXLogger.Info("Test scenario: '" + cmdlet.Name + "'");
+            TMX.Logger.TmxLogger.Info("Test scenario: '" + cmdlet.Name + "'");
             
             if (result) {
                 

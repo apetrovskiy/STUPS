@@ -13,88 +13,88 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
 
     /// <summary>
-    /// Description of InvokeUIARangeValuePatternGetCommand.
+    /// Description of InvokeUiaRangeValuePatternGetCommand.
     /// </summary>
     // 20131024
-    //[Cmdlet(VerbsCommon.Get, "UIARangeValuePatternGet")]
-    [Cmdlet(VerbsLifecycle.Invoke, "UIARangeValuePatternGet")]
+    //[Cmdlet(VerbsCommon.Get, "UiaRangeValuePatternGet")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaRangeValuePatternGet")]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIARangeValuePatternGetCommand : PatternCmdletBase
-    { public InvokeUIARangeValuePatternGetCommand() { WhatToDo = "RangeValueGet"; this.PassThru = false; }
+    public class InvokeUiaRangeValuePatternGetCommand : PatternCmdletBase
+    { public InvokeUiaRangeValuePatternGetCommand() { WhatToDo = "RangeValueGet"; this.PassThru = false; }
         
         [Parameter]
         internal new SwitchParameter PassThru {get; set; }
     }
     
     /// <summary>
-    /// Description of GetUIACustomRangeValueCommand.
+    /// Description of GetUiaCustomRangeValueCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIACustomRangeValue")]
+    [Cmdlet(VerbsCommon.Get, "UiaCustomRangeValue")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIACustomRangeValueCommand : InvokeUIARangeValuePatternGetCommand
-    { public GetUIACustomRangeValueCommand() { } }
+    public class GetUiaCustomRangeValueCommand : InvokeUiaRangeValuePatternGetCommand
+    { public GetUiaCustomRangeValueCommand() { } }
 
     /// <summary>
-    /// Description of GetUIAEditRangeValueCommand.
+    /// Description of GetUiaEditRangeValueCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAEditRangeValue")]
+    [Cmdlet(VerbsCommon.Get, "UiaEditRangeValue")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIAEditRangeValueCommand : InvokeUIARangeValuePatternGetCommand
-    { public GetUIAEditRangeValueCommand() { } }
+    public class GetUiaEditRangeValueCommand : InvokeUiaRangeValuePatternGetCommand
+    { public GetUiaEditRangeValueCommand() { } }
     
     /// <summary>
-    /// Description of GetUIATextBoxRangeValueCommand.
+    /// Description of GetUiaTextBoxRangeValueCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIATextBoxRangeValue")]
+    [Cmdlet(VerbsCommon.Get, "UiaTextBoxRangeValue")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIATextBoxRangeValueCommand : GetUIAEditRangeValueCommand
-    { public GetUIATextBoxRangeValueCommand() { } }
+    public class GetUiaTextBoxRangeValueCommand : GetUiaEditRangeValueCommand
+    { public GetUiaTextBoxRangeValueCommand() { } }
     
     /// <summary>
-    /// Description of GetUIAProgressBarRangeValueCommand.
+    /// Description of GetUiaProgressBarRangeValueCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAProgressBarRangeValue")]
+    [Cmdlet(VerbsCommon.Get, "UiaProgressBarRangeValue")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIAProgressBarRangeValueCommand : InvokeUIARangeValuePatternGetCommand
-    { public GetUIAProgressBarRangeValueCommand() { } }
+    public class GetUiaProgressBarRangeValueCommand : InvokeUiaRangeValuePatternGetCommand
+    { public GetUiaProgressBarRangeValueCommand() { } }
     
     /// <summary>
-    /// Description of GetUIAScrollBarRangeValueCommand.
+    /// Description of GetUiaScrollBarRangeValueCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAScrollBarRangeValue")]
+    [Cmdlet(VerbsCommon.Get, "UiaScrollBarRangeValue")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIAScrollBarRangeValueCommand : InvokeUIARangeValuePatternGetCommand
-    { public GetUIAScrollBarRangeValueCommand() { } }
+    public class GetUiaScrollBarRangeValueCommand : InvokeUiaRangeValuePatternGetCommand
+    { public GetUiaScrollBarRangeValueCommand() { } }
     
     /// <summary>
-    /// Description of GetUIASliderRangeValueCommand.
+    /// Description of GetUiaSliderRangeValueCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIASliderRangeValue")]
+    [Cmdlet(VerbsCommon.Get, "UiaSliderRangeValue")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIASliderRangeValueCommand : InvokeUIARangeValuePatternGetCommand
-    { public GetUIASliderRangeValueCommand() { } }
+    public class GetUiaSliderRangeValueCommand : InvokeUiaRangeValuePatternGetCommand
+    { public GetUiaSliderRangeValueCommand() { } }
     
     /// <summary>
-    /// Description of GetUIASpinnerRangeValueCommand.
+    /// Description of GetUiaSpinnerRangeValueCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIASpinnerRangeValue")]
+    [Cmdlet(VerbsCommon.Get, "UiaSpinnerRangeValue")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIASpinnerRangeValueCommand : InvokeUIARangeValuePatternGetCommand
-    { public GetUIASpinnerRangeValueCommand() { } }
+    public class GetUiaSpinnerRangeValueCommand : InvokeUiaRangeValuePatternGetCommand
+    { public GetUiaSpinnerRangeValueCommand() { } }
     
     /// <summary>
-    /// Description of GetUIATextRangeValueCommand.
+    /// Description of GetUiaTextRangeValueCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIATextRangeValue")]
+    [Cmdlet(VerbsCommon.Get, "UiaTextRangeValue")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIATextRangeValueCommand : InvokeUIARangeValuePatternGetCommand
-    { public GetUIATextRangeValueCommand() { } }
+    public class GetUiaTextRangeValueCommand : InvokeUiaRangeValuePatternGetCommand
+    { public GetUiaTextRangeValueCommand() { } }
 }

@@ -13,16 +13,16 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of ShowUIAModuleSettingsCommand.
+    /// Description of ShowUiaModuleSettingsCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Show, "UIAModuleSettings")]
-    public class ShowUIAModuleSettingsCommand : CommonCmdletBase
+    [Cmdlet(VerbsCommon.Show, "UiaModuleSettings")]
+    public class ShowUiaModuleSettingsCommand : CommonCmdletBase
     {
-        public ShowUIAModuleSettingsCommand()
+        public ShowUiaModuleSettingsCommand()
         {
         }
         
-        #region Show-UIAModuleSettings
+        #region Show-UiaModuleSettings
         //protected override void BeginProcessing()
         protected sealed override void BeginProcessing()
         {
@@ -105,6 +105,6 @@ namespace UIAutomation.Commands
             WriteObject("[UIAutomation.Preferences]::HighlighterColorCheckedControl = " + 
                         Preferences.HighlighterColorCheckedControl.ToString());
         }
-        #endregion Show-UIAModuleSettings
+        #endregion Show-UiaModuleSettings
     }
 }

@@ -12,12 +12,12 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of GetUIAControlFromPoint.
+    /// Description of GetUiaControlFromPoint.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAControlFromPoint")]
+    [Cmdlet(VerbsCommon.Get, "UiaControlFromPoint")]
     [OutputType(typeof(object))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIAControlFromPointCommand : DiscoveryCmdletBase
+    public class GetUiaControlFromPointCommand : DiscoveryCmdletBase
     {
         #region Parameters
         #endregion Parameters
@@ -27,9 +27,9 @@ namespace UIAutomation.Commands
             // 20131109
             //System.Windows.Automation.AutomationElement result = null;
             //result = 
-            //    UIAHelper.GetAutomationElementFromPoint();
+            //    UiaHelper.GetAutomationElementFromPoint();
             IMySuperWrapper result =
-                UIAHelper.GetAutomationElementFromPoint();
+                UiaHelper.GetAutomationElementFromPoint();
             
             this.WriteObject(this, result);
         }

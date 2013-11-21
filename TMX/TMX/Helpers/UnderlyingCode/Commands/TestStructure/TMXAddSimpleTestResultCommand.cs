@@ -14,19 +14,19 @@ namespace TMX
     using TMX.Commands;
     
 	/// <summary>
-	/// Description of TMXAddSimpleTestResultCommand.
+	/// Description of TmxAddSimpleTestResultCommand.
 	/// </summary>
-    internal class TMXAddSimpleTestResultCommand : TMXCommand
+    internal class TmxAddSimpleTestResultCommand : TmxCommand
     {
-        internal TMXAddSimpleTestResultCommand(CommonCmdletBase cmdlet) : base (cmdlet)
+        internal TmxAddSimpleTestResultCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         
         internal override void Execute()
         {
            
-            AddTMXSimpleTestResultCommand cmdlet =
-                (AddTMXSimpleTestResultCommand)this.Cmdlet;
+            AddTmxSimpleTestResultCommand cmdlet =
+                (AddTmxSimpleTestResultCommand)this.Cmdlet;
             
             // 20130330
             cmdlet.ConvertTestResultStatusToTraditionalTestResult();
@@ -100,7 +100,7 @@ namespace TMX
                         //testScenarioToAddTestResult.Id));
                 
                 // 20130429
-                TMX.Logger.TMXLogger.Info("Test result: '" + cmdlet.TestResultName + "'\t" + cmdlet.TestResultStatus.ToString());
+                TMX.Logger.TmxLogger.Info("Test result: '" + cmdlet.TestResultName + "'\t" + cmdlet.TestResultStatus.ToString());
                 
             //} else {
             
@@ -150,7 +150,7 @@ namespace TMX
 //
 //                    // 20130326
 //
-//                    TMXHelper.TestCaseStarted =
+//                    TmxHelper.TestCaseStarted =
 //                        System.DateTime.Now;
 //                    TestData.CurrentTestScenario.TestResults.Add(new TestResult(TestData.CurrentTestScenario.Id, TestData.CurrentTestSuite.Id));
 //                    TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1] = 
@@ -181,12 +181,12 @@ namespace TMX
 //                cmdlet,
 //                "Writing data to the current test result");
 //
-//            TMXHelper.SetCurrentTestResult(cmdlet);
+//            TmxHelper.SetCurrentTestResult(cmdlet);
             
             // 20130327
             //if (null != cmdlet.Banner && string.Empty != cmdlet.Banner && 0 < cmdlet.Banner.Length) {
-                //UIAutomation.UIAHelper.ShowBanner(cmdlet.TestResultName);
-                //TMXHelper.BannerForm
+                //UIAutomation.UiaHelper.ShowBanner(cmdlet.TestResultName);
+                //TmxHelper.BannerForm
             //}
         }
     }

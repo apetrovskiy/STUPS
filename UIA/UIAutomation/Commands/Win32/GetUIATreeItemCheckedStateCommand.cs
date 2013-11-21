@@ -15,12 +15,12 @@ namespace UIAutomation.Commands
     //using System.Xml.Serialization.Configuration;
 
     /// <summary>
-    /// Description of GetUIATreeItemCheckedStateCommand.
+    /// Description of GetUiaTreeItemCheckedStateCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIATreeItemCheckedState")]
-    public class GetUIATreeItemCheckedStateCommand : Win32CmdletBase //GetControlCmdletBase
+    [Cmdlet(VerbsCommon.Get, "UiaTreeItemCheckedState")]
+    public class GetUiaTreeItemCheckedStateCommand : Win32CmdletBase //GetControlCmdletBase
     {
-        public GetUIATreeItemCheckedStateCommand()
+        public GetUiaTreeItemCheckedStateCommand()
         {
         }
         

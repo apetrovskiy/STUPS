@@ -13,14 +13,14 @@ namespace UIAutomation.Commands
     using System.Windows.Automation;
 
     /// <summary>
-    /// Description of RegisterUIAWindowClosedEventCommand.
+    /// Description of RegisterUiaWindowClosedEventCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Register, "UIAWindowClosedEvent")]
+    [Cmdlet(VerbsLifecycle.Register, "UiaWindowClosedEvent")]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class RegisterUIAWindowClosedEventCommand : EventCmdletBase
+    public class RegisterUiaWindowClosedEventCommand : EventCmdletBase
     {
         #region Constructor
-        public RegisterUIAWindowClosedEventCommand()
+        public RegisterUiaWindowClosedEventCommand()
         {
             // base.AutomationEventType = 
             this.AutomationEventType = 

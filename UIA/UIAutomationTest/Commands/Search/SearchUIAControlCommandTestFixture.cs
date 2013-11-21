@@ -14,12 +14,12 @@
 //    using System.Management.Automation;
 //    
 //    /// <summary>
-//    /// Description of SearchUIAControlCommandTestFixture.
+//    /// Description of SearchUiaControlCommandTestFixture.
 //    /// </summary>
-//    [TestFixture] // [TestFixture(Description="Search-UIAControl test")]
-//    public class SearchUIAControlCommandTestFixture
+//    [TestFixture] // [TestFixture(Description="Search-UiaControl test")]
+//    public class SearchUiaControlCommandTestFixture
 //    {
-//        public SearchUIAControlCommandTestFixture()
+//        public SearchUiaControlCommandTestFixture()
 //        {
 //        }
 //        
@@ -32,7 +32,7 @@
 //        [Test] //[Test(Description="TBD")]
 //        [Category("Slow")][Category("WinForms")]
 //        [Category("Slow")][Category("Control")]
-//        [Category("Slow")][Category("Search_UIAControl")]
+//        [Category("Slow")][Category("Search_UiaControl")]
 //        public void SearchControl_Name_NoControlType()
 //        {
 //            string name = "Button111";
@@ -45,18 +45,18 @@
 //                "aaa",
 //                0);
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-//                @"Get-UIAWindow -pn " + 
+//                @"Get-UiaWindow -pn " + 
 //                MiddleLevelCode.TestFormProcess +
-//                " | Search-UIAControl -Name '" +
+//                " | Search-UiaControl -Name '" +
 //                name +
-//                "' | Read-UIAControlName;",
+//                "' | Read-UiaControlName;",
 //                name);
 //        }
 //        
 //        [Test] //[Test(Description="TBD")]
 //        [Category("Slow")][Category("WinForms")]
 //        [Category("Slow")][Category("Control")]
-//        [Category("Slow")][Category("Search_UIAControl")]
+//        [Category("Slow")][Category("Search_UiaControl")]
 //        public void SearchControl_Name_ControlTypeButton()
 //        {
 //            string name = "Button111";
@@ -69,18 +69,18 @@
 //                "aaa",
 //                0);
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-//                @"Get-UIAWindow -pn " + 
+//                @"Get-UiaWindow -pn " + 
 //                MiddleLevelCode.TestFormProcess +
-//                " | Search-UIAControl -ControlType Button -Name '" +
+//                " | Search-UiaControl -ControlType Button -Name '" +
 //                name +
-//                "' | Read-UIAControlName;",
+//                "' | Read-UiaControlName;",
 //                name);
 //        }
 //        
 //        [Test] //[Test(Description="TBD")]
 //        [Category("Slow")][Category("WinForms")]
 //        [Category("Slow")][Category("Control")]
-//        [Category("Slow")][Category("Search_UIAControl")]
+//        [Category("Slow")][Category("Search_UiaControl")]
 //        public void SearchControl_Name_ControlTypeButtonButLabel()
 //        {
 //            string name = "Label111";
@@ -93,17 +93,17 @@
 //                "aaa",
 //                0);
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateIsEmpty(
-//                @"Get-UIAWindow -pn " + 
+//                @"Get-UiaWindow -pn " + 
 //                MiddleLevelCode.TestFormProcess +
-//                " | Search-UIAControl -ControlType Button -Name '" +
+//                " | Search-UiaControl -ControlType Button -Name '" +
 //                name +
-//                "' | Read-UIAControlName;");
+//                "' | Read-UiaControlName;");
 //        }
 //        
 //        [Test] //[Test(Description="TBD")]
 //        [Category("Slow")][Category("WinForms")]
 //        [Category("Slow")][Category("Control")]
-//        [Category("Slow")][Category("Search_UIAControl")]
+//        [Category("Slow")][Category("Search_UiaControl")]
 //        public void SearchControl_Name_ControlTypeButtonX2_1()
 //        {
 //            string name = "Button???";
@@ -126,16 +126,16 @@
 //                0,
 //                controlToForm);
 ////            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-////                @"Get-UIAWindow -pn " + 
+////                @"Get-UiaWindow -pn " + 
 ////                MiddleLevelCode.TestFormProcess +
-////                " | Search-UIAControl -ControlType Button -Name '" +
+////                " | Search-UiaControl -ControlType Button -Name '" +
 ////                name +
-////                "' | Read-UIAControlName;",
+////                "' | Read-UiaControlName;",
 ////                name1);
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-//                @"(Get-UIAWindow -pn " + 
+//                @"(Get-UiaWindow -pn " + 
 //                MiddleLevelCode.TestFormProcess +
-//                " | Search-UIAControl -ControlType Button -Name '" +
+//                " | Search-UiaControl -ControlType Button -Name '" +
 //                name +
 //                "').Count;",
 //                "2");
@@ -144,7 +144,7 @@
 //        [Test] //[Test(Description="TBD")]
 //        [Category("Slow")][Category("WinForms")]
 //        [Category("Slow")][Category("Control")]
-//        [Category("Slow")][Category("Search_UIAControl")]
+//        [Category("Slow")][Category("Search_UiaControl")]
 //        public void SearchControl_Name_ControlTypeButtonX2_2()
 //        {
 //            string name = "*ton???";
@@ -167,9 +167,9 @@
 //                0,
 //                controlToForm);
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-//                @"(Get-UIAWindow -pn " + 
+//                @"(Get-UiaWindow -pn " + 
 //                MiddleLevelCode.TestFormProcess +
-//                " | Search-UIAControl -ControlType Button -Name '" +
+//                " | Search-UiaControl -ControlType Button -Name '" +
 //                name +
 //                "').Count;",
 //                "2");
@@ -178,7 +178,7 @@
 //        [Test] //[Test(Description="TBD")]
 //        [Category("Slow")][Category("WinForms")]
 //        [Category("Slow")][Category("Control")]
-//        [Category("Slow")][Category("Search_UIAControl")]
+//        [Category("Slow")][Category("Search_UiaControl")]
 //        public void SearchControl_Name_ControlTypeButton_CaseSensitive1()
 //        {
 //            string name = "Button111";
@@ -191,18 +191,18 @@
 //                "aaa",
 //                0);
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-//                @"Get-UIAWindow -pn " + 
+//                @"Get-UiaWindow -pn " + 
 //                MiddleLevelCode.TestFormProcess +
-//                " | Search-UIAControl -ControlType Button -Name '" +
+//                " | Search-UiaControl -ControlType Button -Name '" +
 //                name +
-//                "' -CaseSensitive | Read-UIAControlName;",
+//                "' -CaseSensitive | Read-UiaControlName;",
 //                name);
 //        }
 //        
 //        [Test] //[Test(Description="TBD")]
 //        [Category("Slow")][Category("WinForms")]
 //        [Category("Slow")][Category("Control")]
-//        [Category("Slow")][Category("Search_UIAControl")]
+//        [Category("Slow")][Category("Search_UiaControl")]
 //        public void SearchControl_Name_ControlTypeButton_CaseSensitive2()
 //        {
 //            string name = "Button111";
@@ -215,18 +215,18 @@
 //                "aaa",
 //                0);
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-//                @"Get-UIAWindow -pn " + 
+//                @"Get-UiaWindow -pn " + 
 //                MiddleLevelCode.TestFormProcess +
-//                " | Search-UIAControl -ControlType Button -Name '" +
+//                " | Search-UiaControl -ControlType Button -Name '" +
 //                name +
-//                "' -CaseSensitive:$true | Read-UIAControlName;",
+//                "' -CaseSensitive:$true | Read-UiaControlName;",
 //                name);
 //        }
 //        
 //        [Test] //[Test(Description="TBD")]
 //        [Category("Slow")][Category("WinForms")]
 //        [Category("Slow")][Category("Control")]
-//        [Category("Slow")][Category("Search_UIAControl")]
+//        [Category("Slow")][Category("Search_UiaControl")]
 //        public void SearchControl_Name_ControlTypeButton_CaseInsensitive1()
 //        {
 //            string name = "Button111";
@@ -239,18 +239,18 @@
 //                "aaa",
 //                0);
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-//                @"Get-UIAWindow -pn " + 
+//                @"Get-UiaWindow -pn " + 
 //                MiddleLevelCode.TestFormProcess +
-//                " | Search-UIAControl -ControlType Button -Name '" +
+//                " | Search-UiaControl -ControlType Button -Name '" +
 //                name +
-//                "' | Read-UIAControlName;",
+//                "' | Read-UiaControlName;",
 //                name);
 //        }
 //        
 //        [Test] //[Test(Description="TBD")]
 //        [Category("Slow")][Category("WinForms")]
 //        [Category("Slow")][Category("Control")]
-//        [Category("Slow")][Category("Search_UIAControl")]
+//        [Category("Slow")][Category("Search_UiaControl")]
 //        public void SearchControl_Name_ControlTypeButton_CaseInsensitive2()
 //        {
 //            string name = "Button111";
@@ -263,18 +263,18 @@
 //                "aaa",
 //                0);
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-//                @"Get-UIAWindow -pn " + 
+//                @"Get-UiaWindow -pn " + 
 //                MiddleLevelCode.TestFormProcess +
-//                " | Search-UIAControl -ControlType Button -Name '" +
+//                " | Search-UiaControl -ControlType Button -Name '" +
 //                name +
-//                "' -CaseSensitive:$false | Read-UIAControlName;",
+//                "' -CaseSensitive:$false | Read-UiaControlName;",
 //                name);
 //        }
 //        
 //        [Test] //[Test(Description="TBD")]
 //        [Category("Slow")][Category("WinForms")]
 //        [Category("Slow")][Category("Control")]
-//        [Category("Slow")][Category("Search_UIAControl")]
+//        [Category("Slow")][Category("Search_UiaControl")]
 //        public void SearchControl_Name_ControlTypeButton_CaseSensitive_Failed()
 //        {
 //            string name = "Button111";
@@ -288,17 +288,17 @@
 //                "aaa",
 //                0);
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateIsEmpty(
-//                @"Get-UIAWindow -pn " + 
+//                @"Get-UiaWindow -pn " + 
 //                MiddleLevelCode.TestFormProcess +
-//                " | Search-UIAControl -ControlType Button -Name '" +
+//                " | Search-UiaControl -ControlType Button -Name '" +
 //                nameToCheck +
-//                "' -CaseSensitive:$true | Read-UIAControlName;");
+//                "' -CaseSensitive:$true | Read-UiaControlName;");
 //        }
 //        
 //        [Test] //[Test(Description="TBD")]
 //        [Category("Slow")][Category("WinForms")]
 //        [Category("Slow")][Category("Control")]
-//        [Category("Slow")][Category("Search_UIAControl")]
+//        [Category("Slow")][Category("Search_UiaControl")]
 //        public void SearchControl_Name_ControlTypeButton_CaseInsensitive_Success()
 //        {
 //            string name = "Button111";
@@ -312,11 +312,11 @@
 //                "aaa",
 //                0);
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-//                @"Get-UIAWindow -pn " + 
+//                @"Get-UiaWindow -pn " + 
 //                MiddleLevelCode.TestFormProcess +
-//                " | Search-UIAControl -ControlType Button -Name '" +
+//                " | Search-UiaControl -ControlType Button -Name '" +
 //                nameToCheck +
-//                "' -CaseSensitive:$false | Read-UIAControlName;",
+//                "' -CaseSensitive:$false | Read-UiaControlName;",
 //                name);
 //        }
 //        

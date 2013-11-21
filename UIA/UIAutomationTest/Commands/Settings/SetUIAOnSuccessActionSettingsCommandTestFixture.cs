@@ -14,10 +14,10 @@ namespace UIAutomationTest.Commands.Settings
     using System.Management.Automation;
 
     /// <summary>
-    /// Description of SetUIAOnSuccessActionSettingsCommandTestFixture.
+    /// Description of SetUiaOnSuccessActionSettingsCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Set-UIAOnSuccessActionSettingsCommand test")]
-    public class SetUIAOnSuccessActionSettingsCommandTestFixture
+    [TestFixture] // [TestFixture(Description="Set-UiaOnSuccessActionSettingsCommand test")]
+    public class SetUiaOnSuccessActionSettingsCommandTestFixture
     {
         [SetUp]
         public void PrepareRunspace()

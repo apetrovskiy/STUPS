@@ -14,11 +14,11 @@ namespace UIAutomation
     using UIAutomation.Commands;
     
     /// <summary>
-    /// Description of UIAInvokeWizardCommand.
+    /// Description of UiaInvokeWizardCommand.
     /// </summary>
-    internal class UIAInvokeWizardCommand : UIACommand
+    internal class UiaInvokeWizardCommand : UiaCommand
     {
-        internal UIAInvokeWizardCommand(CommonCmdletBase cmdlet) : base (cmdlet)
+        internal UiaInvokeWizardCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         

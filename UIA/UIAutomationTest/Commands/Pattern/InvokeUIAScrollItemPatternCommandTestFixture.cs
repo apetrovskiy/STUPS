@@ -14,12 +14,12 @@ namespace UIAutomationTest.Commands.Pattern
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of InvokeUIAScrollItemPatternCommandTestFixture.
+    /// Description of InvokeUiaScrollItemPatternCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Invoke-UIAScrollItemPatternCommand test")]
-    public class InvokeUIAScrollItemPatternCommandTestFixture
+    [TestFixture] // [TestFixture(Description="Invoke-UiaScrollItemPatternCommand test")]
+    public class InvokeUiaScrollItemPatternCommandTestFixture
     {
-        public InvokeUIAScrollItemPatternCommandTestFixture()
+        public InvokeUiaScrollItemPatternCommandTestFixture()
         {
         }
         
@@ -45,27 +45,27 @@ namespace UIAutomationTest.Commands.Pattern
                 UIAutomationTestForms.Forms.WinFormsFull, 
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"if ((Get-UIAWindow -pn " + 
+                @"if ((Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAList -AutomationId '" + 
+                " | Get-UiaList -AutomationId '" + 
                 auId1 + 
-                "' | Get-UIAListItem -Name '" + 
+                "' | Get-UiaListItem -Name '" + 
                 name2 +
-                "' | Read-UIAControlIsOffscreen)) {" +
-                "$null = Get-UIAWindow -pn " + 
+                "' | Read-UiaControlIsOffscreen)) {" +
+                "$null = Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAList -AutomationId '" + 
+                " | Get-UiaList -AutomationId '" + 
                 auId1 + 
-                "' | Get-UIAListItem -Name '" + 
+                "' | Get-UiaListItem -Name '" + 
                 name2 +
-                "' | Invoke-UIAListItemScrollItem; " +
-                @"Get-UIAWindow -pn " + 
+                "' | Invoke-UiaListItemScrollItem; " +
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAList -AutomationId '" + 
+                " | Get-UiaList -AutomationId '" + 
                 auId1 + 
-                "' | Get-UIAListItem -Name '" + 
+                "' | Get-UiaListItem -Name '" + 
                 name2 +
-                "' | Read-UIAControlIsOffscreen;}",
+                "' | Read-UiaControlIsOffscreen;}",
                 expectedResult);
         }
         

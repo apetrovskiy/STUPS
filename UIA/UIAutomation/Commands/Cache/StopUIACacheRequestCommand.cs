@@ -13,10 +13,10 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of StopUIACacheRequestCommand.
+    /// Description of StopUiaCacheRequestCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Stop, "UIACacheRequest")]
-    public class StopUIACacheRequestCommand : CacheRequestCmdletBase
+    [Cmdlet(VerbsLifecycle.Stop, "UiaCacheRequest")]
+    public class StopUiaCacheRequestCommand : CacheRequestCmdletBase
     {
         protected override void BeginProcessing()
         {

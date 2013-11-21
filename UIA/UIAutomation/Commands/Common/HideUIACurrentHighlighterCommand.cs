@@ -12,14 +12,14 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of HideUIACurrentHighlighterCommand.
+    /// Description of HideUiaCurrentHighlighterCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Hide, "UIACurrentHighlighter")]
-    public class HideUIACurrentHighlighterCommand : CommonCmdletBase
+    [Cmdlet(VerbsCommon.Hide, "UiaCurrentHighlighter")]
+    public class HideUiaCurrentHighlighterCommand : CommonCmdletBase
     {
         protected override void BeginProcessing()
         {
-            UIAHelper.HideHighlighters();
+            UiaHelper.HideHighlighters();
         }
     }
 }

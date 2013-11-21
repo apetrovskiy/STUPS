@@ -13,12 +13,12 @@ namespace TMX.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of ExportTMXTestSummaryCommand.
+    /// Description of ExportTmxTestSummaryCommand.
     /// </summary>
-    [Cmdlet(VerbsData.Export, "TMXTestSummary")]
-    public class ExportTMXTestSummaryCommand : ImportExportCmdletBase //ExportCmdletBase //CmdletBase
+    [Cmdlet(VerbsData.Export, "TmxTestSummary")]
+    public class ExportTmxTestSummaryCommand : ImportExportCmdletBase //ExportCmdletBase //CmdletBase
     {
-        public ExportTMXTestSummaryCommand()
+        public ExportTmxTestSummaryCommand()
         {
         }
         

@@ -12,14 +12,14 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
 
     /// <summary>
-    /// Description of MoveUIACursorCommand.
+    /// Description of MoveUiaCursorCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Move, "UIACursor")]
+    [Cmdlet(VerbsCommon.Move, "UiaCursor")]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class MoveUIACursorCommand : HasControlInputCmdletBase
+    public class MoveUiaCursorCommand : HasControlInputCmdletBase
     {
         #region Constructor
-        public MoveUIACursorCommand()
+        public MoveUiaCursorCommand()
         {
             this.X = 0;
             this.Y = 0;

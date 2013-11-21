@@ -13,14 +13,14 @@ namespace UIAutomation.Commands
     using System.Windows.Automation;
 
     /// <summary>
-    /// Description of RegisterUIAStructureChangedEventCommand.
+    /// Description of RegisterUiaStructureChangedEventCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Register, "UIAStructureChangedEvent")]
+    [Cmdlet(VerbsLifecycle.Register, "UiaStructureChangedEvent")]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class RegisterUIAStructureChangedEventCommand : EventCmdletBase
+    public class RegisterUiaStructureChangedEventCommand : EventCmdletBase
     {
         #region Constructor
-        public RegisterUIAStructureChangedEventCommand()
+        public RegisterUiaStructureChangedEventCommand()
         {
             base.AutomationEventType = 
                 AutomationElement.StructureChangedEvent;

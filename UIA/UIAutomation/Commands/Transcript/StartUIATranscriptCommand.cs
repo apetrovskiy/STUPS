@@ -14,15 +14,15 @@ namespace UIAutomation.Commands
     using System.Windows.Automation;
 
     /// <summary>
-    /// Description of StartUIATranscriptCommand.
+    /// Description of StartUiaTranscriptCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Start, "UIATranscript")]
+    [Cmdlet(VerbsLifecycle.Start, "UiaTranscript")]
     //[OutputType(new[]{ typeof(object) })]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class StartUIATranscriptCommand : TranscriptCmdletBase
+    public class StartUiaTranscriptCommand : TranscriptCmdletBase
     {
         #region Constructor
-        public StartUIATranscriptCommand()
+        public StartUiaTranscriptCommand()
         {
             LongRecordingFileName = String.Empty;
             ShortRecordingFileName = String.Empty;
@@ -66,7 +66,7 @@ namespace UIAutomation.Commands
                 CurrentData.formRecorder.ShowDialog();
                 return;
             } else {
-                UIAHelper.ProcessingTranscript(this);
+                UiaHelper.ProcessingTranscript(this);
             }
 #region old
 // Global.GTranscript = true;
@@ -396,11 +396,11 @@ namespace UIAutomation.Commands
     }
     
     /// <summary>
-    /// Description of StartUIARecorderCommand.
+    /// Description of StartUiaRecorderCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Start, "UIARecorder")]
+    [Cmdlet(VerbsLifecycle.Start, "UiaRecorder")]
     //[OutputType(new[]{ typeof(object) })]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class StartUIARecorderCommand : StartUIATranscriptCommand
-    { public StartUIARecorderCommand() { } }
+    public class StartUiaRecorderCommand : StartUiaTranscriptCommand
+    { public StartUiaRecorderCommand() { } }
 }

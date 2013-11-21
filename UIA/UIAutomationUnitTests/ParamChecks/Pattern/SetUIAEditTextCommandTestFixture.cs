@@ -12,10 +12,10 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
     using MbUnit.Framework;
     
     /// <summary>
-    /// Description of SetUIAEditTextCommandTestFixture.
+    /// Description of SetUiaEditTextCommandTestFixture.
     /// </summary>
     [TestFixture]
-    public class SetUIAEditTextCommandTestFixture
+    public class SetUiaEditTextCommandTestFixture
     {
         [SetUp]
         public void PrepareRunspace()
@@ -32,21 +32,21 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         [Test]
         [Category("Fast")]
         [Ignore("It's difficult to learn now what is the problem with it")]
-        [Description("Set-UIAEditText -Text 'text' -InputObject $obj")]
-        public void Set_UIAEditText_Text()
+        [Description("Set-UiaEditText -Text 'text' -InputObject $obj")]
+        public void Set_UiaEditText_Text()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsAccepted(
-        		"Set-UIAEditText -Text 'text' -InputObject $obj;");
+        		"Set-UiaEditText -Text 'text' -InputObject $obj;");
         }
         
         [Test]
         [Category("Fast")]
         [Ignore("It's difficult to learn now what is the problem with it")]
-        [Description("Set-UIAEditText 'text' -InputObject $obj")]
-        public void Set_UIAEditText_Text_Position0()
+        [Description("Set-UiaEditText 'text' -InputObject $obj")]
+        public void Set_UiaEditText_Text_Position0()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsAccepted(
-        		"Set-UIAEditText 'text' -InputObject $obj;");
+        		"Set-UiaEditText 'text' -InputObject $obj;");
         }
     }
 }

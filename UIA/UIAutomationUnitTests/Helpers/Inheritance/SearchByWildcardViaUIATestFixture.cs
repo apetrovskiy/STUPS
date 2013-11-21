@@ -12,10 +12,10 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
     using MbUnit.Framework;
 
     /// <summary>
-    /// Description of SearchByWildcardViaUIATestFixture.
+    /// Description of SearchByWildcardViaUiaTestFixture.
     /// </summary>
     [TestFixture]
-    public class SearchByWildcardViaUIATestFixture
+    public class SearchByWildcardViaUiaTestFixture
     {
         [SetUp]
         public void SetUp()

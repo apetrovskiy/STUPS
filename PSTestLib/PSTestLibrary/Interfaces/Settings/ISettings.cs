@@ -123,7 +123,7 @@ namespace PSTestLib
         
 //        /// <summary>
 //        /// This property defines an interval
-//        /// the Start-UIARecorer cmdlet queries the element
+//        /// the Start-UiaRecorer cmdlet queries the element
 //        /// beneath the cursor. Usually, the default value meets
 //        /// better conditions. Exceptions may be needed in highly 
 //        /// load environments.

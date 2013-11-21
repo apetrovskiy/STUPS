@@ -14,11 +14,11 @@ namespace UIAutomationAliases.Commands
     using UIAutomation.Commands;
     
 //    /// <summary>
-//    /// Description of GetUIAWindowCommand.
+//    /// Description of GetUiaWindowCommand.
 //    /// </summary>
-//    public class GetUIAWindowCommand
+//    public class GetUiaWindowCommand
 //    {
-//        public GetUIAWindowCommand()
+//        public GetUiaWindowCommand()
 //        {
 //        }
 //    }
@@ -30,7 +30,7 @@ namespace UIAutomationAliases.Commands
     [Cmdlet(VerbsCommon.Get, "Window")]
     [OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetWindowCommand : UIAutomation.Commands.GetUIAWindowCommand
+    public class GetWindowCommand : UIAutomation.Commands.GetUiaWindowCommand
     { public GetWindowCommand() { } }
     
     //===========================================================================
@@ -40,7 +40,7 @@ namespace UIAutomationAliases.Commands
     [Cmdlet(@"Получить", @"Окно")]
     [OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetWindowCommand1 : UIAutomation.Commands.GetUIAWindowCommand
+    public class GetWindowCommand1 : UIAutomation.Commands.GetUiaWindowCommand
     { public GetWindowCommand1() { } }
     //===========================================================================
 }

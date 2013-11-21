@@ -12,10 +12,10 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of GetUIAFocusCommand.
+    /// Description of GetUiaFocusCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAFocus")]
-    public class GetUIAFocusCommand : HasControlInputCmdletBase
+    [Cmdlet(VerbsCommon.Get, "UiaFocus")]
+    public class GetUiaFocusCommand : HasControlInputCmdletBase
     {
         #region Parameters
         [Parameter(Mandatory = false)]

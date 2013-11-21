@@ -13,10 +13,10 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
 
     /// <summary>
-    /// Description of InvokeUIAScriptCommand.
+    /// Description of InvokeUiaScriptCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAScript")]
-    internal class InvokeUIAScriptCommand : HasTimeoutCmdletBase
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaScript")]
+    internal class InvokeUiaScriptCommand : HasTimeoutCmdletBase
     {
         #region Parameters
         [Parameter(Mandatory = true)]

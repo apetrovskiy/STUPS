@@ -89,7 +89,7 @@ namespace SePSX.Commands
 //            
 //            //TMX.
 //            //} else {
-//            // UIAHelper.GetControlScreenshot(this.InputObject, this.Description);
+//            // UiaHelper.GetControlScreenshot(this.InputObject, this.Description);
 //            //}
             SeSaveScreenshotCommand command =
                 new SeSaveScreenshotCommand(this);

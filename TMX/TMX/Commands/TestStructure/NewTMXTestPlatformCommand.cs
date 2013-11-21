@@ -13,12 +13,12 @@ namespace TMX.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of NewTMXTestPlatformCommand.
+    /// Description of NewTmxTestPlatformCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.New, "TMXTestPlatform")]
-    public class NewTMXTestPlatformCommand : NewPlatformCmdletBase
+    [Cmdlet(VerbsCommon.New, "TmxTestPlatform")]
+    public class NewTmxTestPlatformCommand : NewPlatformCmdletBase
     {
-        public NewTMXTestPlatformCommand()
+        public NewTmxTestPlatformCommand()
         {
         }
         
@@ -26,8 +26,8 @@ namespace TMX.Commands
         {
             this.CheckCmdletParameters();
             
-            TMXNewTestPlatformCommand command =
-                new TMXNewTestPlatformCommand(this);
+            TmxNewTestPlatformCommand command =
+                new TmxNewTestPlatformCommand(this);
             command.Execute();
         }
     }

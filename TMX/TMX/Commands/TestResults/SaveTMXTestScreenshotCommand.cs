@@ -13,13 +13,13 @@ namespace TMX.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of SaveTMXTestScreenshotCommand.
+    /// Description of SaveTmxTestScreenshotCommand.
     /// </summary>
-    [Cmdlet(VerbsData.Save, "TMXTestScreenshot")]
+    [Cmdlet(VerbsData.Save, "TmxTestScreenshot")]
     [OutputType(typeof(bool))]
-    public class SaveTMXTestScreenshotCommand : CommonCmdletBase
+    public class SaveTmxTestScreenshotCommand : CommonCmdletBase
     {
-        public SaveTMXTestScreenshotCommand()
+        public SaveTmxTestScreenshotCommand()
         {
         }
     }

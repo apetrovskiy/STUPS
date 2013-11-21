@@ -13,12 +13,12 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
 
     /// <summary>
-    /// Description of SetUIAScreenshotSettingsCommand.
+    /// Description of SetUiaScreenshotSettingsCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Set, "UIAScreenshotSettings")]
-    public class SetUIAScreenshotSettingsCommand : ModuleSettingsCmdletBase
+    [Cmdlet(VerbsCommon.Set, "UiaScreenshotSettings")]
+    public class SetUiaScreenshotSettingsCommand : ModuleSettingsCmdletBase
     {
-        public SetUIAScreenshotSettingsCommand()
+        public SetUiaScreenshotSettingsCommand()
         {
             this.Screenshot = Preferences.OnErrorScreenShot;
             this.ScreenshotFolder = Preferences.ScreenShotFolder;

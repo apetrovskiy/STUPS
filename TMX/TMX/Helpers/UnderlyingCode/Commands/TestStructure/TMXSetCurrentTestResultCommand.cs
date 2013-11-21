@@ -14,11 +14,11 @@ namespace TMX
     using TMX.Commands;
     
     /// <summary>
-    /// Description of TMXSetCurrentTestResultCommand.
+    /// Description of TmxSetCurrentTestResultCommand.
     /// </summary>
-    internal class TMXSetCurrentTestResultCommand : TMXCommand
+    internal class TmxSetCurrentTestResultCommand : TmxCommand
     {
-        internal TMXSetCurrentTestResultCommand(CommonCmdletBase cmdlet) : base (cmdlet)
+        internal TmxSetCurrentTestResultCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         
@@ -28,8 +28,8 @@ namespace TMX
             //TestResultCmdletBase cmdlet =
             //    (TestResultCmdletBase)this.Cmdlet;
             
-            SetTMXCurrentTestResultCommand cmdlet =
-                (SetTMXCurrentTestResultCommand)this.Cmdlet;
+            SetTmxCurrentTestResultCommand cmdlet =
+                (SetTmxCurrentTestResultCommand)this.Cmdlet;
             
             // 20130330
             cmdlet.ConvertTestResultStatusToTraditionalTestResult();
@@ -58,8 +58,8 @@ namespace TMX
                     
                     // 20130401
                     TestData.CurrentTestResult.SetTimeSpent(
-                        //(TestData.CurrentTestResult.Timestamp - TMXHelper.TestCaseStarted).TotalSeconds);
-                        //(System.DateTime.Now - TMXHelper.TestCaseStarted).TotalSeconds);
+                        //(TestData.CurrentTestResult.Timestamp - TmxHelper.TestCaseStarted).TotalSeconds);
+                        //(System.DateTime.Now - TmxHelper.TestCaseStarted).TotalSeconds);
                         (System.DateTime.Now - TestData.CurrentTestResult.Timestamp).TotalSeconds);
                     
                     cmdlet.WriteVerbose(
@@ -76,7 +76,7 @@ namespace TMX
 
                     // 20130326
 
-                    TMXHelper.TestCaseStarted =
+                    TmxHelper.TestCaseStarted =
                         System.DateTime.Now;
                     TestData.CurrentTestScenario.TestResults.Add(new TestResult(TestData.CurrentTestScenario.Id, TestData.CurrentTestSuite.Id));
                     TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1] = 
@@ -125,15 +125,15 @@ namespace TMX
                 "Writing data to the current test result");
             
             // 20130429
-            TMX.Logger.TMXLogger.Info("Test result: '" + cmdlet.TestResultName + "'");
+            TMX.Logger.TmxLogger.Info("Test result: '" + cmdlet.TestResultName + "'");
 
-            TMXHelper.SetCurrentTestResult(cmdlet);
+            TmxHelper.SetCurrentTestResult(cmdlet);
             
             // 20130403
             TestData.SetScenarioStatus(true); // skipAutomatic
             TestData.SetSuiteStatus(true); // skipAutomatic
             try {
-                TestData.OnTMXNewTestResultClosed(
+                TestData.OnTmxNewTestResultClosed(
                     TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1],
                     null);
             }
@@ -141,8 +141,8 @@ namespace TMX
             
             // 20130327
             //if (null != cmdlet.Banner && string.Empty != cmdlet.Banner && 0 < cmdlet.Banner.Length) {
-                //UIAutomation.UIAHelper.ShowBanner(cmdlet.TestResultName);
-                //TMXHelper.BannerForm
+                //UIAutomation.UiaHelper.ShowBanner(cmdlet.TestResultName);
+                //TmxHelper.BannerForm
             //}
         }
     }

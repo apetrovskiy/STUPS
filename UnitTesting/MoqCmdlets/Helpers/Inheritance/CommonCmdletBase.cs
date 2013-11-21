@@ -204,7 +204,7 @@ namespace MoqCmdlets
         {
             //WriteVerbose(this, "WriteErrorMethod045OnErrorScreenshot Moq");
 //            if (SePSX.Preferences.OnErrorScreenShot) {
-//                UIAutomation.UIAHelper.GetDesktopScreenshot(
+//                UIAutomation.UiaHelper.GetDesktopScreenshot(
 //                    this,
 //                    string.Empty,
 //                    true,

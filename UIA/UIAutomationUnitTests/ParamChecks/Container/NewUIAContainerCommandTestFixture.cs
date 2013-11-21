@@ -10,9 +10,9 @@
 namespace UIAutomationUnitTests.ParamChecks.Container
 {
     /// <summary>
-    /// Description of NewUIAContainerCommandTestFixture.
+    /// Description of NewUiaContainerCommandTestFixture.
     /// </summary>
-    public class NewUIAContainerCommandTestFixture
+    public class NewUiaContainerCommandTestFixture
     {
     }
 }

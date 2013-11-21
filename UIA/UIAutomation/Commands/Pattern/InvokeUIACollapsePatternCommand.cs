@@ -13,120 +13,120 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
 
     /// <summary>
-    /// Description of InvokeUIACollapsePatternCommand.
+    /// Description of InvokeUiaCollapsePatternCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIACollapsePattern")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaCollapsePattern")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIACollapsePatternCommand : PatternCmdletBase
-    { public InvokeUIACollapsePatternCommand() { WhatToDo = "Collapse"; }
+    public class InvokeUiaCollapsePatternCommand : PatternCmdletBase
+    { public InvokeUiaCollapsePatternCommand() { WhatToDo = "Collapse"; }
     }
     
     /// <summary>
-    /// Description of InvokeUIAButtonCollapseCommand.
+    /// Description of InvokeUiaButtonCollapseCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAButtonCollapse")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaButtonCollapse")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAButtonCollapseCommand : InvokeUIACollapsePatternCommand
-    { public InvokeUIAButtonCollapseCommand() { } }
+    public class InvokeUiaButtonCollapseCommand : InvokeUiaCollapsePatternCommand
+    { public InvokeUiaButtonCollapseCommand() { } }
     
     /// <summary>
-    /// Description of InvokeUIAComboBoxCollapseCommand.
+    /// Description of InvokeUiaComboBoxCollapseCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAComboBoxCollapse")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaComboBoxCollapse")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAComboBoxCollapseCommand : InvokeUIACollapsePatternCommand
-    { public InvokeUIAComboBoxCollapseCommand() { } }
+    public class InvokeUiaComboBoxCollapseCommand : InvokeUiaCollapsePatternCommand
+    { public InvokeUiaComboBoxCollapseCommand() { } }
     
     /// <summary>
-    /// Description of InvokeUIACustomCollapseCommand.
+    /// Description of InvokeUiaCustomCollapseCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIACustomCollapse")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaCustomCollapse")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIACustomCollapseCommand : InvokeUIACollapsePatternCommand
-    { public InvokeUIACustomCollapseCommand() { } }
+    public class InvokeUiaCustomCollapseCommand : InvokeUiaCollapsePatternCommand
+    { public InvokeUiaCustomCollapseCommand() { } }
     
     /// <summary>
-    /// Description of InvokeUIADataItemCollapseCommand.
+    /// Description of InvokeUiaDataItemCollapseCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIADataItemCollapse")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaDataItemCollapse")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIADataItemCollapseCommand : InvokeUIACollapsePatternCommand
-    { public InvokeUIADataItemCollapseCommand() { } }
+    public class InvokeUiaDataItemCollapseCommand : InvokeUiaCollapsePatternCommand
+    { public InvokeUiaDataItemCollapseCommand() { } }
     
     /// <summary>
-    /// Description of InvokeUIAGroupCollapseCommand.
+    /// Description of InvokeUiaGroupCollapseCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAGroupCollapse")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaGroupCollapse")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAGroupCollapseCommand : InvokeUIACollapsePatternCommand
-    { public InvokeUIAGroupCollapseCommand() { } }
+    public class InvokeUiaGroupCollapseCommand : InvokeUiaCollapsePatternCommand
+    { public InvokeUiaGroupCollapseCommand() { } }
     
     /// <summary>
-    /// Description of InvokeUIAGroupBoxCollapseCommand.
+    /// Description of InvokeUiaGroupBoxCollapseCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAGroupBoxCollapse")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaGroupBoxCollapse")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAGroupBoxCollapseCommand : InvokeUIAGroupCollapseCommand
-    { public InvokeUIAGroupBoxCollapseCommand() { } }
+    public class InvokeUiaGroupBoxCollapseCommand : InvokeUiaGroupCollapseCommand
+    { public InvokeUiaGroupBoxCollapseCommand() { } }
     
     /// <summary>
-    /// Description of InvokeUIAListItemCollapseCommand.
+    /// Description of InvokeUiaListItemCollapseCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAListItemCollapse")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaListItemCollapse")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAListItemCollapseCommand : InvokeUIACollapsePatternCommand
-    { public InvokeUIAListItemCollapseCommand() { } }
+    public class InvokeUiaListItemCollapseCommand : InvokeUiaCollapsePatternCommand
+    { public InvokeUiaListItemCollapseCommand() { } }
     
     /// <summary>
-    /// Description of InvokeUIAMenuBarCollapseCommand.
+    /// Description of InvokeUiaMenuBarCollapseCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAMenuBarCollapse")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaMenuBarCollapse")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAMenuBarCollapseCommand : InvokeUIACollapsePatternCommand
-    { public InvokeUIAMenuBarCollapseCommand() { } }
+    public class InvokeUiaMenuBarCollapseCommand : InvokeUiaCollapsePatternCommand
+    { public InvokeUiaMenuBarCollapseCommand() { } }
     
     /// <summary>
-    /// Description of InvokeUIAMenuItemCollapseCommand.
+    /// Description of InvokeUiaMenuItemCollapseCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAMenuItemCollapse")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaMenuItemCollapse")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAMenuItemCollapseCommand : InvokeUIACollapsePatternCommand
-    { public InvokeUIAMenuItemCollapseCommand() { } }
+    public class InvokeUiaMenuItemCollapseCommand : InvokeUiaCollapsePatternCommand
+    { public InvokeUiaMenuItemCollapseCommand() { } }
     
     /// <summary>
-    /// Description of InvokeUIASplitButtonCollapseCommand.
+    /// Description of InvokeUiaSplitButtonCollapseCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIASplitButtonCollapse")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaSplitButtonCollapse")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIASplitButtonCollapseCommand : InvokeUIACollapsePatternCommand
-    { public InvokeUIASplitButtonCollapseCommand() { } }
+    public class InvokeUiaSplitButtonCollapseCommand : InvokeUiaCollapsePatternCommand
+    { public InvokeUiaSplitButtonCollapseCommand() { } }
     
     /// <summary>
-    /// Description of InvokeUIAToolBarCollapseCommand.
+    /// Description of InvokeUiaToolBarCollapseCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAToolBarCollapse")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaToolBarCollapse")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAToolBarCollapseCommand : InvokeUIACollapsePatternCommand
-    { public InvokeUIAToolBarCollapseCommand() { } }
+    public class InvokeUiaToolBarCollapseCommand : InvokeUiaCollapsePatternCommand
+    { public InvokeUiaToolBarCollapseCommand() { } }
     
     /// <summary>
-    /// Description of InvokeUIATreeItemCollapseCommand.
+    /// Description of InvokeUiaTreeItemCollapseCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIATreeItemCollapse")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaTreeItemCollapse")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIATreeItemCollapseCommand : InvokeUIACollapsePatternCommand
-    { public InvokeUIATreeItemCollapseCommand() { } }
+    public class InvokeUiaTreeItemCollapseCommand : InvokeUiaCollapsePatternCommand
+    { public InvokeUiaTreeItemCollapseCommand() { } }
 }

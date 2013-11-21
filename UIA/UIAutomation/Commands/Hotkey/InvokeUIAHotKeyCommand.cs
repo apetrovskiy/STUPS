@@ -13,13 +13,13 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of InvokeUIAHotKeyCommand.
+    /// Description of InvokeUiaHotKeyCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAHotKey")]
-    public class InvokeUIAHotKeyCommand : HasScriptBlockCmdletBase
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaHotKey")]
+    public class InvokeUiaHotKeyCommand : HasScriptBlockCmdletBase
     {
         #region Constructor
-        public InvokeUIAHotKeyCommand()
+        public InvokeUiaHotKeyCommand()
         {
             this.Key = string.Empty;
         }

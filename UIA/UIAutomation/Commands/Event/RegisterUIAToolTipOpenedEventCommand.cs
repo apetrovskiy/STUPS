@@ -13,12 +13,12 @@ namespace UIAutomation.Commands
     using System.Windows.Automation;
 
     /// <summary>
-    /// Description of RegisterUIAToolTipOpenedEventCommand.
+    /// Description of RegisterUiaToolTipOpenedEventCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Register, "UIAToolTipOpenedEvent")]
-    public class RegisterUIAToolTipOpenedEventCommand : EventCmdletBase
+    [Cmdlet(VerbsLifecycle.Register, "UiaToolTipOpenedEvent")]
+    public class RegisterUiaToolTipOpenedEventCommand : EventCmdletBase
     {
-        public RegisterUIAToolTipOpenedEventCommand()
+        public RegisterUiaToolTipOpenedEventCommand()
         {
             this.AutomationEventType = AutomationElement.ToolTipOpenedEvent;
             this.AutomationEventHandler = OnUIAutomationEvent;

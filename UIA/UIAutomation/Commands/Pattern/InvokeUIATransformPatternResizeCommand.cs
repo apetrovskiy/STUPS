@@ -13,14 +13,14 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
 
     /// <summary>
-    /// Description of InvokeUIATransformPatternResizeCommand.
+    /// Description of InvokeUiaTransformPatternResizeCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIATransformPatternResize")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaTransformPatternResize")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIATransformPatternResizeCommand : PatternCmdletBase
+    public class InvokeUiaTransformPatternResizeCommand : PatternCmdletBase
     {    
-        public InvokeUIATransformPatternResizeCommand()
+        public InvokeUiaTransformPatternResizeCommand()
         {
             WhatToDo = "TransformResize";
             TransformResizeWidth = 1;
@@ -35,84 +35,84 @@ namespace UIAutomation.Commands
     }
     
     /// <summary>
-    /// Description of InvokeUIACustomTransformResizeCommand.
+    /// Description of InvokeUiaCustomTransformResizeCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIACustomTransformResize")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaCustomTransformResize")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIACustomTransformResizeCommand : InvokeUIATransformPatternResizeCommand
-    { public InvokeUIACustomTransformResizeCommand() { } }
+    public class InvokeUiaCustomTransformResizeCommand : InvokeUiaTransformPatternResizeCommand
+    { public InvokeUiaCustomTransformResizeCommand() { } }
 
     /// <summary>
-    /// Description of InvokeUIAHeaderTransformResizeCommand.
+    /// Description of InvokeUiaHeaderTransformResizeCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAHeaderTransformResize")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaHeaderTransformResize")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAHeaderTransformResizeCommand : InvokeUIATransformPatternResizeCommand
-    { public InvokeUIAHeaderTransformResizeCommand() { } }
+    public class InvokeUiaHeaderTransformResizeCommand : InvokeUiaTransformPatternResizeCommand
+    { public InvokeUiaHeaderTransformResizeCommand() { } }
         
     /// <summary>
-    /// Description of InvokeUIAHeaderItemTransformResizeCommand.
+    /// Description of InvokeUiaHeaderItemTransformResizeCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAHeaderItemTransformResize")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaHeaderItemTransformResize")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAHeaderItemTransformResizeCommand : InvokeUIATransformPatternResizeCommand
-    { public InvokeUIAHeaderItemTransformResizeCommand() { } }
+    public class InvokeUiaHeaderItemTransformResizeCommand : InvokeUiaTransformPatternResizeCommand
+    { public InvokeUiaHeaderItemTransformResizeCommand() { } }
         
     /// <summary>
-    /// Description of InvokeUIAMenuBarTransformResizeCommand.
+    /// Description of InvokeUiaMenuBarTransformResizeCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAMenuBarTransformResize")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaMenuBarTransformResize")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAMenuBarTransformResizeCommand : InvokeUIATransformPatternResizeCommand
-    { public InvokeUIAMenuBarTransformResizeCommand() { } }
+    public class InvokeUiaMenuBarTransformResizeCommand : InvokeUiaTransformPatternResizeCommand
+    { public InvokeUiaMenuBarTransformResizeCommand() { } }
         
     /// <summary>
-    /// Description of InvokeUIAPaneTransformResizeCommand.
+    /// Description of InvokeUiaPaneTransformResizeCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAPaneTransformResize")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaPaneTransformResize")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAPaneTransformResizeCommand : InvokeUIATransformPatternResizeCommand
-    { public InvokeUIAPaneTransformResizeCommand() { } }
+    public class InvokeUiaPaneTransformResizeCommand : InvokeUiaTransformPatternResizeCommand
+    { public InvokeUiaPaneTransformResizeCommand() { } }
         
     /// <summary>
-    /// Description of InvokeUIAThumbTransformResizeCommand.
+    /// Description of InvokeUiaThumbTransformResizeCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAThumbTransformResize")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaThumbTransformResize")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAThumbTransformResizeCommand : InvokeUIATransformPatternResizeCommand
-    { public InvokeUIAThumbTransformResizeCommand() { } }
+    public class InvokeUiaThumbTransformResizeCommand : InvokeUiaTransformPatternResizeCommand
+    { public InvokeUiaThumbTransformResizeCommand() { } }
         
     /// <summary>
-    /// Description of InvokeUIAToolBarTransformResizeCommand.
+    /// Description of InvokeUiaToolBarTransformResizeCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAToolBarTransformResize")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaToolBarTransformResize")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAToolBarTransformResizeCommand : InvokeUIATransformPatternResizeCommand
-    { public InvokeUIAToolBarTransformResizeCommand() { } }
+    public class InvokeUiaToolBarTransformResizeCommand : InvokeUiaTransformPatternResizeCommand
+    { public InvokeUiaToolBarTransformResizeCommand() { } }
         
     /// <summary>
-    /// Description of InvokeUIAWindowTransformResizeCommand.
+    /// Description of InvokeUiaWindowTransformResizeCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAWindowTransformResize")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaWindowTransformResize")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAWindowTransformResizeCommand : InvokeUIATransformPatternResizeCommand
-    { public InvokeUIAWindowTransformResizeCommand() { } }
+    public class InvokeUiaWindowTransformResizeCommand : InvokeUiaTransformPatternResizeCommand
+    { public InvokeUiaWindowTransformResizeCommand() { } }
         
     /// <summary>
-    /// Description of InvokeUIAChildWindowTransformResizeCommand.
+    /// Description of InvokeUiaChildWindowTransformResizeCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAChildWindowTransformResize")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaChildWindowTransformResize")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAChildWindowTransformResizeCommand : InvokeUIAWindowTransformResizeCommand
-    { public InvokeUIAChildWindowTransformResizeCommand() { } }
+    public class InvokeUiaChildWindowTransformResizeCommand : InvokeUiaWindowTransformResizeCommand
+    { public InvokeUiaChildWindowTransformResizeCommand() { } }
     
 }

@@ -15,8 +15,8 @@ namespace TMX
     using System.ComponentModel;
     using System.Linq;
 	
-    public delegate void TMXStructureChangedEventHandler(object sender, EventArgs e);
-    public delegate void TMXDatabaseOperationCompletedEventHandler(object sender, EventArgs e);
+    public delegate void TmxStructureChangedEventHandler(object sender, EventArgs e);
+    public delegate void TmxDatabaseOperationCompletedEventHandler(object sender, EventArgs e);
     
     /// <summary>
     /// Description of TestSuitesCollection.
@@ -86,154 +86,154 @@ namespace TMX
 
         
         // ------------------ Events -----------------------------
-        public static event TMXStructureChangedEventHandler TMXNewTestSuiteCreated;
-        public static event TMXStructureChangedEventHandler TMXTestSuiteOpened;
-        public static event TMXStructureChangedEventHandler TMXNewTestScenarioAdded;
-        public static event TMXStructureChangedEventHandler TMXTestScenarioOpened;
-        public static event TMXStructureChangedEventHandler TMXNewTestResultClosed;
-        public static event TMXStructureChangedEventHandler TMXNewTestResultDetailAdded;
+        public static event TmxStructureChangedEventHandler TmxNewTestSuiteCreated;
+        public static event TmxStructureChangedEventHandler TmxTestSuiteOpened;
+        public static event TmxStructureChangedEventHandler TmxNewTestScenarioAdded;
+        public static event TmxStructureChangedEventHandler TmxTestScenarioOpened;
+        public static event TmxStructureChangedEventHandler TmxNewTestResultClosed;
+        public static event TmxStructureChangedEventHandler TmxNewTestResultDetailAdded;
         // 20130531
-        public static event TMXStructureChangedEventHandler TMXNewTestPlatformCreated;
+        public static event TmxStructureChangedEventHandler TmxNewTestPlatformCreated;
         
-        public static event TMXDatabaseOperationCompletedEventHandler TMXBackUpTestResultsCompleted;
-        public static event TMXDatabaseOperationCompletedEventHandler TMXRestoreTestResultsCompleted;
+        public static event TmxDatabaseOperationCompletedEventHandler TmxBackUpTestResultsCompleted;
+        public static event TmxDatabaseOperationCompletedEventHandler TmxRestoreTestResultsCompleted;
         
-        public static event TMXDatabaseOperationCompletedEventHandler TMXTestBucketAdded;
-        public static event TMXDatabaseOperationCompletedEventHandler TMXTestBucketRemoved;
-        public static event TMXDatabaseOperationCompletedEventHandler TMXTestBucketChanged;
+        public static event TmxDatabaseOperationCompletedEventHandler TmxTestBucketAdded;
+        public static event TmxDatabaseOperationCompletedEventHandler TmxTestBucketRemoved;
+        public static event TmxDatabaseOperationCompletedEventHandler TmxTestBucketChanged;
         
-        public static event TMXDatabaseOperationCompletedEventHandler TMXTestConstantAdded;
-        public static event TMXDatabaseOperationCompletedEventHandler TMXTestConstantRemoved;
-        public static event TMXDatabaseOperationCompletedEventHandler TMXTestConstantChanged;
+        public static event TmxDatabaseOperationCompletedEventHandler TmxTestConstantAdded;
+        public static event TmxDatabaseOperationCompletedEventHandler TmxTestConstantRemoved;
+        public static event TmxDatabaseOperationCompletedEventHandler TmxTestConstantChanged;
         
-        public static event TMXDatabaseOperationCompletedEventHandler TMXTestCaseAdded;
-        public static event TMXDatabaseOperationCompletedEventHandler TMXTestCaseRemoved;
-        public static event TMXDatabaseOperationCompletedEventHandler TMXTestCaseChanged;
+        public static event TmxDatabaseOperationCompletedEventHandler TmxTestCaseAdded;
+        public static event TmxDatabaseOperationCompletedEventHandler TmxTestCaseRemoved;
+        public static event TmxDatabaseOperationCompletedEventHandler TmxTestCaseChanged;
         
-        internal static void OnTMXNewTestSuiteCreated(object sender, EventArgs e) 
+        internal static void OnTmxNewTestSuiteCreated(object sender, EventArgs e) 
         {
-            if (TMXNewTestSuiteCreated != null) {
-                TMXNewTestSuiteCreated(sender, e);
+            if (TmxNewTestSuiteCreated != null) {
+                TmxNewTestSuiteCreated(sender, e);
             }
         }
         
-        internal static void OnTMXTestSuiteOpened(object sender, EventArgs e) 
+        internal static void OnTmxTestSuiteOpened(object sender, EventArgs e) 
         {
-            if (TMXTestSuiteOpened != null) {
-                TMXTestSuiteOpened(sender, e);
+            if (TmxTestSuiteOpened != null) {
+                TmxTestSuiteOpened(sender, e);
             }
         }
         
-        internal static void OnTMXNewTestScenarioAdded(object sender, EventArgs e) 
+        internal static void OnTmxNewTestScenarioAdded(object sender, EventArgs e) 
         {
-            if (TMXNewTestScenarioAdded != null) {
-                TMXNewTestScenarioAdded(sender, e);
+            if (TmxNewTestScenarioAdded != null) {
+                TmxNewTestScenarioAdded(sender, e);
             }
         }
         
-        internal static void OnTMXTestScenarioOpened(object sender, EventArgs e) 
+        internal static void OnTmxTestScenarioOpened(object sender, EventArgs e) 
         {
-            if (TMXTestScenarioOpened != null) {
-                TMXTestScenarioOpened(sender, e);
+            if (TmxTestScenarioOpened != null) {
+                TmxTestScenarioOpened(sender, e);
             }
         }
         
-        internal static void OnTMXNewTestResultClosed(object sender, EventArgs e) 
+        internal static void OnTmxNewTestResultClosed(object sender, EventArgs e) 
         {
-            if (TMXNewTestResultClosed != null) {
-                TMXNewTestResultClosed(sender, e);
+            if (TmxNewTestResultClosed != null) {
+                TmxNewTestResultClosed(sender, e);
             }
         }
         
-        internal static void OnTMXNewTestResultDetailAdded(object sender, EventArgs e) 
+        internal static void OnTmxNewTestResultDetailAdded(object sender, EventArgs e) 
         {
-            if (TMXNewTestResultDetailAdded != null) {
-                TMXNewTestResultDetailAdded(sender, e);
+            if (TmxNewTestResultDetailAdded != null) {
+                TmxNewTestResultDetailAdded(sender, e);
             }
         }
         
-        internal static void OnTMXBackUpTestResultsCompleted(object sender, EventArgs e) 
+        internal static void OnTmxBackUpTestResultsCompleted(object sender, EventArgs e) 
         {
-            if (TMXBackUpTestResultsCompleted != null) {
-                TMXBackUpTestResultsCompleted(sender, e);
+            if (TmxBackUpTestResultsCompleted != null) {
+                TmxBackUpTestResultsCompleted(sender, e);
             }
         }
         
-        internal static void OnTMXRestoreTestResultsCompleted(object sender, EventArgs e) 
+        internal static void OnTmxRestoreTestResultsCompleted(object sender, EventArgs e) 
         {
-            if (TMXRestoreTestResultsCompleted != null) {
-                TMXRestoreTestResultsCompleted(sender, e);
+            if (TmxRestoreTestResultsCompleted != null) {
+                TmxRestoreTestResultsCompleted(sender, e);
             }
         }
         
         // 20130531
-        internal static void OnTMXNewTestPlatformCreated(object sender, EventArgs e) 
+        internal static void OnTmxNewTestPlatformCreated(object sender, EventArgs e) 
         {
-            if (TMXNewTestPlatformCreated != null) {
-                TMXNewTestPlatformCreated(sender, e);
+            if (TmxNewTestPlatformCreated != null) {
+                TmxNewTestPlatformCreated(sender, e);
             }
         }
         
-        internal static void OnTMXTestBucketAdded(object sender, EventArgs e) 
+        internal static void OnTmxTestBucketAdded(object sender, EventArgs e) 
         {
-            if (TMXTestBucketAdded != null) {
-                TMXTestBucketAdded(sender, e);
+            if (TmxTestBucketAdded != null) {
+                TmxTestBucketAdded(sender, e);
             }
         }
         
-        internal static void OnTMXTestBucketRemoved(object sender, EventArgs e) 
+        internal static void OnTmxTestBucketRemoved(object sender, EventArgs e) 
         {
-            if (TMXTestBucketRemoved != null) {
-                TMXTestBucketRemoved(sender, e);
+            if (TmxTestBucketRemoved != null) {
+                TmxTestBucketRemoved(sender, e);
             }
         }
         
-        internal static void OnTMXTestBucketChanged(object sender, EventArgs e) 
+        internal static void OnTmxTestBucketChanged(object sender, EventArgs e) 
         {
-            if (TMXTestBucketChanged != null) {
-                TMXTestBucketChanged(sender, e);
+            if (TmxTestBucketChanged != null) {
+                TmxTestBucketChanged(sender, e);
             }
         }
         
-        internal static void OnTMXTestConstantAdded(object sender, EventArgs e) 
+        internal static void OnTmxTestConstantAdded(object sender, EventArgs e) 
         {
-            if (TMXTestConstantAdded != null) {
-                TMXTestConstantAdded(sender, e);
+            if (TmxTestConstantAdded != null) {
+                TmxTestConstantAdded(sender, e);
             }
         }
         
-        internal static void OnTMXTestConstantRemoved(object sender, EventArgs e) 
+        internal static void OnTmxTestConstantRemoved(object sender, EventArgs e) 
         {
-            if (TMXTestConstantRemoved != null) {
-                TMXTestConstantRemoved(sender, e);
+            if (TmxTestConstantRemoved != null) {
+                TmxTestConstantRemoved(sender, e);
             }
         }
         
-        internal static void OnTMXTestConstantChanged(object sender, EventArgs e) 
+        internal static void OnTmxTestConstantChanged(object sender, EventArgs e) 
         {
-            if (TMXTestConstantChanged != null) {
-                TMXTestConstantChanged(sender, e);
+            if (TmxTestConstantChanged != null) {
+                TmxTestConstantChanged(sender, e);
             }
         }
         
-        internal static void OnTMXTestCaseAdded(object sender, EventArgs e) 
+        internal static void OnTmxTestCaseAdded(object sender, EventArgs e) 
         {
-            if (TMXTestCaseAdded != null) {
-                TMXTestCaseAdded(sender, e);
+            if (TmxTestCaseAdded != null) {
+                TmxTestCaseAdded(sender, e);
             }
         }
         
-        internal static void OnTMXTestCaseRemoved(object sender, EventArgs e) 
+        internal static void OnTmxTestCaseRemoved(object sender, EventArgs e) 
         {
-            if (TMXTestCaseRemoved != null) {
-                TMXTestCaseRemoved(sender, e);
+            if (TmxTestCaseRemoved != null) {
+                TmxTestCaseRemoved(sender, e);
             }
         }
         
-        internal static void OnTMXTestCaseChanged(object sender, EventArgs e) 
+        internal static void OnTmxTestCaseChanged(object sender, EventArgs e) 
         {
-            if (TMXTestCaseChanged != null) {
-                TMXTestCaseChanged(sender, e);
+            if (TmxTestCaseChanged != null) {
+                TmxTestCaseChanged(sender, e);
             }
         }
         
@@ -285,7 +285,7 @@ namespace TMX
             */
 
             // 20130429
-            TMX.Logger.TMXLogger.Info("Test result: '" + closingTestResultName + "'\tPassed:" + passed.ToString() + "\tKnown issue:" + isKnownIssue.ToString());
+            TMX.Logger.TmxLogger.Info("Test result: '" + closingTestResultName + "'\tPassed:" + passed.ToString() + "\tKnown issue:" + isKnownIssue.ToString());
 
             ITestResult currentTestResult;
             if (null != TestData.CurrentTestResult) {
@@ -483,15 +483,15 @@ dumpTestStructure("AddTestResult #23");
 
             }
 
-            if (TMXHelper.TestCaseStarted == System.DateTime.MinValue) {
+            if (TmxHelper.TestCaseStarted == System.DateTime.MinValue) {
 dumpTestStructure("AddTestResult #25");
-                TMXHelper.TestCaseStarted = System.DateTime.Now;
+                TmxHelper.TestCaseStarted = System.DateTime.Now;
             }
 
             currentTestResult.SetNow();
 dumpTestStructure("AddTestResult #27");
             currentTestResult.SetTimeSpent(
-                (currentTestResult.Timestamp - TMXHelper.TestCaseStarted).TotalSeconds);
+                (currentTestResult.Timestamp - TmxHelper.TestCaseStarted).TotalSeconds);
 dumpTestStructure("AddTestResult #29");
             
             TestData.CurrentTestResult = currentTestResult;
@@ -512,7 +512,7 @@ dumpTestStructure("AddTestResult #29");
                 !string.IsNullOrEmpty(TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1].Name)) {
 dumpTestStructure("AddTestResult #30");
                 
-                TMXHelper.TestCaseStarted =
+                TmxHelper.TestCaseStarted =
                     System.DateTime.Now;
                 TestData.CurrentTestScenario.TestResults.Add(new TestResult(TestData.CurrentTestScenario.Id, TestData.CurrentTestSuite.Id));
                
@@ -526,7 +526,7 @@ dumpTestStructure("AddTestResult #30");
                 0 < TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1].Name.Length) {
 dumpTestStructure("AddTestResult #30");
                 
-                TMXHelper.TestCaseStarted =
+                TmxHelper.TestCaseStarted =
                     System.DateTime.Now;
                 TestData.CurrentTestScenario.TestResults.Add(new TestResult(TestData.CurrentTestScenario.Id, TestData.CurrentTestSuite.Id));
                
@@ -539,11 +539,11 @@ dumpTestStructure("AddTestResult #30");
             #region Test Result's PowerShell data
             if (myInvocation != null) {
                 
-                TestData.CurrentTestResult.SetScriptName(TMXHelper.GetScriptName(myInvocation));
+                TestData.CurrentTestResult.SetScriptName(TmxHelper.GetScriptName(myInvocation));
 
-                TestData.CurrentTestResult.SetLineNumber(TMXHelper.GetScriptLineNumber(myInvocation));
+                TestData.CurrentTestResult.SetLineNumber(TmxHelper.GetScriptLineNumber(myInvocation));
 
-                TestData.CurrentTestResult.SetPosition(TMXHelper.GetPipelinePosition(myInvocation));
+                TestData.CurrentTestResult.SetPosition(TmxHelper.GetPipelinePosition(myInvocation));
 
                 // 20130329
                 try {
@@ -601,7 +601,7 @@ dumpTestStructure("AddTestResult #30");
             if (generateNextResult) {
 dumpTestStructure("AddTestResult #40");
                 // write current time
-                TMXHelper.TestCaseStarted =
+                TmxHelper.TestCaseStarted =
                     System.DateTime.Now;
                 TestData.CurrentTestScenario.TestResults.Add(
                     new TestResult(
@@ -613,7 +613,7 @@ dumpTestStructure("AddTestResult #45");
             } else {
 dumpTestStructure("AddTestResult #46");
                 // write zero time
-                TMXHelper.TestCaseStarted =
+                TmxHelper.TestCaseStarted =
                     System.DateTime.MinValue;
                 TestData.CurrentTestResult = null;
             }
@@ -626,14 +626,14 @@ dumpTestStructure("AddTestResult #46");
     			}
             }
 
-            OnTMXNewTestResultClosed(sourceTestResult, null);
+            OnTmxNewTestResultClosed(sourceTestResult, null);
         }
         
 
         
         internal static void InitTestData()
         {
-            TMXHelper.TestCaseStarted =
+            TmxHelper.TestCaseStarted =
                 System.DateTime.Now;
             
             if (null == TestData.TestSuites) {
@@ -648,7 +648,7 @@ dumpTestStructure("AddTestResult #46");
             // 20130531
             // check that at least one platform exists
             if (0 == TestData.TestPlatforms.Count) {
-                TMXHelper.NewTestPlatform(
+                TmxHelper.NewTestPlatform(
                     "autogenerated",
                     GetTestPlatformId(),
                     "This platform has been created automatically",
@@ -660,7 +660,7 @@ dumpTestStructure("AddTestResult #46");
             
             // check that at least one suite exists
             if (TestData.TestSuites.Count == 0) {
-                TMXHelper.NewTestSuite(
+                TmxHelper.NewTestSuite(
                     "autogenerated",
                     GetTestSuiteId(),
                     TestData.CurrentTestPlatform.Id,
@@ -671,8 +671,8 @@ dumpTestStructure("AddTestResult #46");
             
             // check that at least one scenario exists
             if (TestData.CurrentTestSuite.TestScenarios.Count == 0) {
-                TMX.Commands.AddTMXTestScenarioCommand cmdlet = 
-                    new TMX.Commands.AddTMXTestScenarioCommand();
+                TMX.Commands.AddTmxTestScenarioCommand cmdlet = 
+                    new TMX.Commands.AddTmxTestScenarioCommand();
                 cmdlet.Name = "autogenerated";
                 cmdlet.Id = GetTestScenarioId();
                 cmdlet.Description = 
@@ -681,7 +681,7 @@ dumpTestStructure("AddTestResult #46");
                     TestData.CurrentTestSuite.Name;
                 cmdlet.TestSuiteId =
                     TestData.CurrentTestSuite.Id;
-                TMXHelper.AddTestScenario(cmdlet);
+                TmxHelper.AddTestScenario(cmdlet);
             }
         }
         
@@ -1111,12 +1111,12 @@ dumpTestStructure("AddTestResult #46");
                 	break;
             }
             
-            OnTMXNewTestResultDetailAdded(testResultDetail, null);
+            OnTmxNewTestResultDetailAdded(testResultDetail, null);
             
             // 20130402
             if (cmdlet.Finished) {
                 
-                TMXHelper.TestCaseStarted =
+                TmxHelper.TestCaseStarted =
                     System.DateTime.Now;
                 
                 // 20130621                
@@ -1126,11 +1126,11 @@ dumpTestStructure("AddTestResult #46");
                 // 20130621
                 ITestResult newTestResult = new TestResult(TestData.CurrentTestScenario.Id, TestData.CurrentTestSuite.Id);
                 if (TestData.CurrentTestResult == TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1]) {
-                    // autogeneration + Close-TMXTestResult
+                    // autogeneration + Close-TmxTestResult
                     TestData.CurrentTestScenario.TestResults.Add(newTestResult);
                     TestData.CurrentTestResult = TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1];
                 } else {
-                    // Set-TMXCurrentTestResult + any closing
+                    // Set-TmxCurrentTestResult + any closing
                     TestData.CurrentTestScenario.TestResults.Add(TestData.CurrentTestResult);
                     TestData.CurrentTestResult = newTestResult;
                 }
@@ -1180,7 +1180,7 @@ dumpTestStructure("AddTestResult #46");
             bool result = false;
             
             // 20130429
-            TMX.Logger.TMXLogger.Info("Test platform: '" + testPlatformName + "'");
+            TMX.Logger.TmxLogger.Info("Test platform: '" + testPlatformName + "'");
             
             if (string.IsNullOrEmpty(testPlatformId)) {
                 testPlatformId = 
@@ -1223,7 +1223,7 @@ dumpTestStructure("AddTestResult #46");
             
             if (TestData.CurrentTestPlatform != null) {
 
-                OnTMXNewTestPlatformCreated(TestData.CurrentTestPlatform, new EventArgs()); //null);
+                OnTmxNewTestPlatformCreated(TestData.CurrentTestPlatform, new EventArgs()); //null);
             } else {
                 //
             }
@@ -1250,7 +1250,7 @@ dumpTestStructure("AddTestResult #46");
             bool result = false;
             
             // 20130429
-            TMX.Logger.TMXLogger.Info("Test suite: '" + testSuiteName + "'");
+            TMX.Logger.TmxLogger.Info("Test suite: '" + testSuiteName + "'");
             
             if (string.IsNullOrEmpty(testSuiteId)) {
                 testSuiteId = 
@@ -1355,7 +1355,7 @@ dumpTestStructure("AddTestResult #46");
                 // set the initial time for this suite's session
                 TestData.CurrentTestSuite.SetNow();
 
-                OnTMXNewTestSuiteCreated(TestData.CurrentTestSuite, new EventArgs()); //null);
+                OnTmxNewTestSuiteCreated(TestData.CurrentTestSuite, new EventArgs()); //null);
             } else {
                 //
             }
@@ -1684,7 +1684,7 @@ internal static void dumpTestStructure(string strNumber)
 //                if ((null != TestData.CurrentTestResult.Name &&
 //                     string.Empty != TestData.CurrentTestResult.Name) ||
 //                    (0 < TestData.CurrentTestResult.Details.Count)) {
-//                    //TMXHelper.TestCaseStarted =
+//                    //TmxHelper.TestCaseStarted =
 //                    //    System.DateTime.Now;
 //                    TestData.CurrentTestScenario.TestResults.Add(new TestResult(TestData.CurrentTestScenario.Id, TestData.CurrentTestSuite.Id));
 //                    TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1] =
@@ -1832,7 +1832,7 @@ dumpTestStructure("4.5");
             // set the initial time for this scenario's session
             CurrentTestScenario.SetNow();
             
-            OnTMXNewTestScenarioAdded(TestData.CurrentTestScenario, null);
+            OnTmxNewTestScenarioAdded(TestData.CurrentTestScenario, null);
             
             if (TMX.Preferences.Storage) {
                 

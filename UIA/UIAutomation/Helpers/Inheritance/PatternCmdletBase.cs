@@ -99,8 +99,8 @@ namespace UIAutomation
                 {
                     case "DockSet":
                         // 20131024
-                        //InvokeDockSet(_control, inputObject, ((InvokeUIADockPatternCommand)this).DockPosition);
-                        InvokeDockSet(this, _control, inputObject, ((InvokeUIADockPatternSetCommand)this).DockPosition);
+                        //InvokeDockSet(_control, inputObject, ((InvokeUiaDockPatternCommand)this).DockPosition);
+                        InvokeDockSet(this, _control, inputObject, ((InvokeUiaDockPatternSetCommand)this).DockPosition);
                         break;
                     case "DockGet":
                         InvokeDockGet(this, _control, inputObject);
@@ -181,7 +181,7 @@ namespace UIAutomation
                         InvokeToggleStateGet(this, _control, inputObject);
                         break;
                     case "ToggleStateSet":
-                        InvokeToggleStateSet(this, _control, inputObject, ((InvokeUIAToggleStateSetCommand)this).On);
+                        InvokeToggleStateSet(this, _control, inputObject, ((InvokeUiaToggleStateSetCommand)this).On);
                         break;
                     case "TransformMove":
                         InvokeTransformMove(this, _control, inputObject);
@@ -374,7 +374,7 @@ namespace UIAutomation
                 if (valuePatternSet != null) {
                     
                     this.WriteVerbose(this, "using ValuePattern");
-                    valuePatternSet.SetValue(((Commands.InvokeUIAValuePatternSetCommand)Child).Text);
+                    valuePatternSet.SetValue(((Commands.InvokeUiaValuePatternSetCommand)Child).Text);
                     // 20131109
                     if (this.PassThru && null != (inputObject as IMySuperWrapper)) {
                     //if (this.PassThru && null != (inputObject as AutomationElement)) {
@@ -386,7 +386,7 @@ namespace UIAutomation
                     
                     WriteVerbose(this, "couldn't get ValuePattern. SendKeys is used");
                     _control.SetFocus();
-                    System.Windows.Forms.SendKeys.SendWait(((Commands.InvokeUIAValuePatternSetCommand)Child).Text);
+                    System.Windows.Forms.SendKeys.SendWait(((Commands.InvokeUiaValuePatternSetCommand)Child).Text);
                     // 20131109
                     if (this.PassThru && null != (inputObject as IMySuperWrapper)) {
                     //if (this.PassThru && null != (inputObject as AutomationElement)) {
@@ -425,7 +425,7 @@ namespace UIAutomation
             try {
                 TransformPattern transformRotatePattern = _control.GetCurrentPattern(TransformPattern.Pattern) as TransformPattern;
                 if (transformRotatePattern != null) {
-                    transformRotatePattern.Rotate(((Commands.InvokeUIATransformPatternRotateCommand)Child).TransformRotateDegrees);
+                    transformRotatePattern.Rotate(((Commands.InvokeUiaTransformPatternRotateCommand)Child).TransformRotateDegrees);
                     // 20131109
                     if (this.PassThru && null != (inputObject as IMySuperWrapper)) {
                     //if (this.PassThru && null != (inputObject as AutomationElement)) {
@@ -448,7 +448,7 @@ namespace UIAutomation
             try {
                 TransformPattern transformResizePattern = _control.GetCurrentPattern(TransformPattern.Pattern) as TransformPattern;
                 if (transformResizePattern != null) {
-                    transformResizePattern.Resize(((Commands.InvokeUIATransformPatternResizeCommand)Child).TransformResizeWidth, ((Commands.InvokeUIATransformPatternResizeCommand)Child).TransformResizeHeight);
+                    transformResizePattern.Resize(((Commands.InvokeUiaTransformPatternResizeCommand)Child).TransformResizeWidth, ((Commands.InvokeUiaTransformPatternResizeCommand)Child).TransformResizeHeight);
                     // 20131109
                     if (this.PassThru && null != (inputObject as IMySuperWrapper)) {
                     //if (this.PassThru && null != (inputObject as AutomationElement)) {
@@ -471,7 +471,7 @@ namespace UIAutomation
             try {
                 TransformPattern transformMovePattern = _control.GetCurrentPattern(TransformPattern.Pattern) as TransformPattern;
                 if (transformMovePattern != null) {
-                    transformMovePattern.Move(((Commands.InvokeUIATransformPatternMoveCommand)Child).TransformMoveX, ((Commands.InvokeUIATransformPatternMoveCommand)Child).TransformMoveY);
+                    transformMovePattern.Move(((Commands.InvokeUiaTransformPatternMoveCommand)Child).TransformMoveX, ((Commands.InvokeUiaTransformPatternMoveCommand)Child).TransformMoveY);
                     // 20131109
                     if (this.PassThru && null != (inputObject as IMySuperWrapper)) {
                     //if (this.PassThru && null != (inputObject as AutomationElement)) {
@@ -601,7 +601,7 @@ namespace UIAutomation
             try {
                 TextPattern textPatternSet = _control.GetCurrentPattern(TextPattern.Pattern) as TextPattern;
                 if (textPatternSet != null) {
-                    textPatternSet.GetSelection().SetValue(((Commands.InvokeUIATextPatternSetCommand)this).Text, 0);
+                    textPatternSet.GetSelection().SetValue(((Commands.InvokeUiaTextPatternSetCommand)this).Text, 0);
                     WriteObject(this, true);
                 } else {
                     WriteVerbose(this, "couldn't get TextPattern");
@@ -618,8 +618,8 @@ namespace UIAutomation
             try {
                 TextPattern textPatternGet = _control.GetCurrentPattern(TextPattern.Pattern) as TextPattern;
                 if (textPatternGet != null) {
-                    int textLength = ((Commands.InvokeUIATextPatternGetCommand)this).TextLength;
-                    if (((Commands.InvokeUIATextPatternGetCommand)this).VisibleArea)
+                    int textLength = ((Commands.InvokeUiaTextPatternGetCommand)this).TextLength;
+                    if (((Commands.InvokeUiaTextPatternGetCommand)this).VisibleArea)
                     {
                         TextPatternRange[] textRanges = textPatternGet.GetVisibleRanges();
                         foreach (TextPatternRange tpr in textRanges)
@@ -777,7 +777,7 @@ namespace UIAutomation
             }
         }
 
-        //                                if (((InvokeUIAScrollPatternCommand)this).Large) {
+        //                                if (((InvokeUiaScrollPatternCommand)this).Large) {
         //                                    System.Windows.Automation.ScrollAmount.LargeIncrement = (System.Windows.Automation.ScrollAmount)10;
         //                                } else {
         //                                    System.Windows.Automation.ScrollAmount.SmallIncrement = (System.Windows.Automation.ScrollAmount)1;
@@ -792,18 +792,18 @@ namespace UIAutomation
                 ScrollPattern scPattern = _control.GetCurrentPattern(ScrollPattern.Pattern) as ScrollPattern;
                 if (scPattern == null) return;
                 try {
-                    bool horizontal = ((InvokeUIAScrollPatternCommand)this).Horizontal;
-                    bool vertical = ((InvokeUIAScrollPatternCommand)this).Vertical;
-                    int horPercent = ((InvokeUIAScrollPatternCommand)this).HorizontalPercent;
-                    int verPercent = ((InvokeUIAScrollPatternCommand)this).VerticalPercent;
+                    bool horizontal = ((InvokeUiaScrollPatternCommand)this).Horizontal;
+                    bool vertical = ((InvokeUiaScrollPatternCommand)this).Vertical;
+                    int horPercent = ((InvokeUiaScrollPatternCommand)this).HorizontalPercent;
+                    int verPercent = ((InvokeUiaScrollPatternCommand)this).VerticalPercent;
                     System.Windows.Automation.ScrollAmount horAmount = System.Windows.Automation.ScrollAmount.NoAmount;
                     System.Windows.Automation.ScrollAmount verAmount = System.Windows.Automation.ScrollAmount.NoAmount;
-                    horAmount = (System.Windows.Automation.ScrollAmount)((InvokeUIAScrollPatternCommand)this).HorizontalAmount;
-                    verAmount = (System.Windows.Automation.ScrollAmount)((InvokeUIAScrollPatternCommand)this).VerticalAmount;
+                    horAmount = (System.Windows.Automation.ScrollAmount)((InvokeUiaScrollPatternCommand)this).HorizontalAmount;
+                    verAmount = (System.Windows.Automation.ScrollAmount)((InvokeUiaScrollPatternCommand)this).VerticalAmount;
                     // for refactoring
                     //System.Windows.Automation.ScrollAmount horAmount, verAmount = System.Windows.Automation.ScrollAmount.NoAmount;
-                    //horAmount = (System.Windows.Automation.ScrollAmount)((InvokeUIAScrollPatternCommand)this).HorizontalAmount;
-                    //verAmount = (System.Windows.Automation.ScrollAmount)((InvokeUIAScrollPatternCommand)this).VerticalAmount;
+                    //horAmount = (System.Windows.Automation.ScrollAmount)((InvokeUiaScrollPatternCommand)this).HorizontalAmount;
+                    //verAmount = (System.Windows.Automation.ScrollAmount)((InvokeUiaScrollPatternCommand)this).VerticalAmount;
                     if ((horPercent + verPercent) > 0) {
                         scPattern.SetScrollPercent(horPercent, verPercent);
                     }
@@ -831,13 +831,13 @@ namespace UIAutomation
                 /*
                 if (scPattern != null) {
                     try {
-                        bool horizontal = ((InvokeUIAScrollPatternCommand)this).Horizontal;
-                        bool vertical = ((InvokeUIAScrollPatternCommand)this).Vertical;
-                        int horPercent = ((InvokeUIAScrollPatternCommand)this).HorizontalPercent;
-                        int verPercent = ((InvokeUIAScrollPatternCommand)this).VerticalPercent;
+                        bool horizontal = ((InvokeUiaScrollPatternCommand)this).Horizontal;
+                        bool vertical = ((InvokeUiaScrollPatternCommand)this).Vertical;
+                        int horPercent = ((InvokeUiaScrollPatternCommand)this).HorizontalPercent;
+                        int verPercent = ((InvokeUiaScrollPatternCommand)this).VerticalPercent;
                         System.Windows.Automation.ScrollAmount horAmount, verAmount = System.Windows.Automation.ScrollAmount.NoAmount;
-                        horAmount = (System.Windows.Automation.ScrollAmount)((InvokeUIAScrollPatternCommand)this).HorizontalAmount;
-                        verAmount = (System.Windows.Automation.ScrollAmount)((InvokeUIAScrollPatternCommand)this).VerticalAmount;
+                        horAmount = (System.Windows.Automation.ScrollAmount)((InvokeUiaScrollPatternCommand)this).HorizontalAmount;
+                        verAmount = (System.Windows.Automation.ScrollAmount)((InvokeUiaScrollPatternCommand)this).VerticalAmount;
                         if ((horPercent + verPercent) > 0) {
                             scPattern.SetScrollPercent(horPercent, verPercent);
                         }
@@ -912,7 +912,7 @@ namespace UIAutomation
                 RangeValuePattern rvPatternSet = _control.GetCurrentPattern(RangeValuePattern.Pattern) as RangeValuePattern;
                 if (rvPatternSet == null) return;
                 try {
-                    rvPatternSet.SetValue(((Commands.InvokeUIARangeValuePatternSetCommand)Child).Value);
+                    rvPatternSet.SetValue(((Commands.InvokeUiaRangeValuePatternSetCommand)Child).Value);
                     // 20131109
                     if (this.PassThru && null != (inputObject as IMySuperWrapper)) {
                     //if (this.PassThru && null != (inputObject as AutomationElement)) {
@@ -927,7 +927,7 @@ namespace UIAutomation
                 /*
                 if (rvPatternSet != null) {
                     try {
-                        rvPatternSet.SetValue(((Commands.InvokeUIARangeValuePatternSetCommand)Child).Value);
+                        rvPatternSet.SetValue(((Commands.InvokeUiaRangeValuePatternSetCommand)Child).Value);
                         if (this.PassThru && null != (inputObject as AutomationElement)) {
                             WriteObject(this, inputObject);
                         } else {

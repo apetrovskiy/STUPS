@@ -7,18 +7,18 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMXTest.Commands.Repository
+namespace TmxTest.Commands.Repository
 {
     using System;
     using MbUnit.Framework; // using MbUnit.Framework;
     
     /// <summary>
-    /// Description of GetTMXTestConstantValueCommandTestFixture.
+    /// Description of GetTmxTestConstantValueCommandTestFixture.
     /// </summary>
     [TestFixture] // [TestFixture(Description=" test")]
-    public class GetTMXTestConstantValueCommandTestFixture
+    public class GetTmxTestConstantValueCommandTestFixture
     {
-        public GetTMXTestConstantValueCommandTestFixture()
+        public GetTmxTestConstantValueCommandTestFixture()
         {
         }
         
@@ -28,16 +28,16 @@ namespace TMXTest.Commands.Repository
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [Test] //[Test(Description="The New-TMXTestDB test")]
+        [Test] //[Test(Description="The New-TmxTestDB test")]
         [Category("Slow")]
-        [Category("New_TMXTestDB")]
+        [Category("New_TmxTestDB")]
         [Ignore("Not implemented yet")]
         public void CreateTestDB_Simple()
         {
             string fileName = @".\test.db3";
             string answer = @"True";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = New-TMXTestDB -FileName '" + 
+                @"$null = New-TmxTestDB -FileName '" + 
                 fileName + 
                 @"'; " +
                 @"Test-File '" + 

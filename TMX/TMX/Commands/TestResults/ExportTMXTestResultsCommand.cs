@@ -13,12 +13,12 @@ namespace TMX.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of ExportTMXTestResultsCommand.
+    /// Description of ExportTmxTestResultsCommand.
     /// </summary>
-    [Cmdlet(VerbsData.Export, "TMXTestResults")]
-    public class ExportTMXTestResultsCommand : ImportExportCmdletBase //ExportCmdletBase //CmdletBase
+    [Cmdlet(VerbsData.Export, "TmxTestResults")]
+    public class ExportTmxTestResultsCommand : ImportExportCmdletBase //ExportCmdletBase //CmdletBase
     {
-        public ExportTMXTestResultsCommand()
+        public ExportTmxTestResultsCommand()
         {
             //this.Name = string.Empty;
         }
@@ -48,11 +48,11 @@ namespace TMX.Commands
             string reportFormat = this.As.ToUpper();
             switch (reportFormat){
                 case "XML":
-                    TMXHelper.ExportResultsToXML(this, this.Path);
+                    TmxHelper.ExportResultsToXML(this, this.Path);
                     break;
                 case "JUNIT":
                 case "JUNITXML":
-                    TMXHelper.ExportResultsToJUnitXML(this, this.Path);
+                    TmxHelper.ExportResultsToJUnitXML(this, this.Path);
                     break;
                 case "HTML":
                     // 20130322

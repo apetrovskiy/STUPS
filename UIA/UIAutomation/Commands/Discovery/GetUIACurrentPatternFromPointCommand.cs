@@ -12,12 +12,12 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
 
     /// <summary>
-    /// Description of GetUIACurrentPatternFromPointCommand.
+    /// Description of GetUiaCurrentPatternFromPointCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIACurrentPatternFromPoint")]
+    [Cmdlet(VerbsCommon.Get, "UiaCurrentPatternFromPoint")]
     [OutputType(typeof(object))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIACurrentPatternFromPointCommand : DiscoveryCmdletBase
+    public class GetUiaCurrentPatternFromPointCommand : DiscoveryCmdletBase
     {
         #region Parameters
         #endregion Parameters
@@ -25,7 +25,7 @@ namespace UIAutomation.Commands
         protected override void BeginProcessing()
         {
             object result = null;
-            result = UIAHelper.GetCurrentPatternFromPoint();
+            result = UiaHelper.GetCurrentPatternFromPoint();
             WriteObject(this, result);
         }
     }

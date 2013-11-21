@@ -12,11 +12,11 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
 
     /// <summary>
-    /// Description of ConvertFromUIAListCommand.
+    /// Description of ConvertFromUiaListCommand.
     /// </summary>
-    [Cmdlet(VerbsData.ConvertFrom, "UIAList")]
+    [Cmdlet(VerbsData.ConvertFrom, "UiaList")]
     // disabled in the current release
-    internal class ConvertFromUIAListCommand : ConvertCmdletBase
+    internal class ConvertFromUiaListCommand : ConvertCmdletBase
     {
         #region Parameters
         #endregion Parameters

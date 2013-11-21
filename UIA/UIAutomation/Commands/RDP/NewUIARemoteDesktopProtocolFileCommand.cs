@@ -13,12 +13,12 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of NewUIARemoteDesktopProtocolFileCommand.
+    /// Description of NewUiaRemoteDesktopProtocolFileCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.New, "UIARemoteDesktopProtocolFile")]
-    public class NewUIARemoteDesktopProtocolFileCommand : RDPCmdletBase
+    [Cmdlet(VerbsCommon.New, "UiaRemoteDesktopProtocolFile")]
+    public class NewUiaRemoteDesktopProtocolFileCommand : RDPCmdletBase
     {
-        public NewUIARemoteDesktopProtocolFileCommand()
+        public NewUiaRemoteDesktopProtocolFileCommand()
         {
         }
         
@@ -93,8 +93,8 @@ namespace UIAutomation.Commands
         
         protected override void BeginProcessing()
         {
-            UIANewRemoteDesktopProtocolFileCommand command =
-                new UIANewRemoteDesktopProtocolFileCommand(this);
+            UiaNewRemoteDesktopProtocolFileCommand command =
+                new UiaNewRemoteDesktopProtocolFileCommand(this);
             command.Execute();
             
 //            this.rDPProtocolFile +=

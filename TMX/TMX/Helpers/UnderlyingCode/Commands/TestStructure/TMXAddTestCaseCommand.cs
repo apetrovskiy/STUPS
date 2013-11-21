@@ -13,11 +13,11 @@ namespace TMX
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of TMXAddTestCaseCommand.
+    /// Description of TmxAddTestCaseCommand.
     /// </summary>
-    internal class TMXAddTestCaseCommand : TMXCommand
+    internal class TmxAddTestCaseCommand : TmxCommand
     {
-        internal TMXAddTestCaseCommand(CommonCmdletBase cmdlet) : base (cmdlet)
+        internal TmxAddTestCaseCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         
@@ -27,10 +27,10 @@ namespace TMX
                 (AddTestCaseCmdletBase)this.Cmdlet;
             
             bool result = 
-                TMX.TMXHelper.AddTestCase(cmdlet);
+                TMX.TmxHelper.AddTestCase(cmdlet);
             
             // 20130616
-            TMX.Logger.TMXLogger.Info("Test case: '" + cmdlet.Name + "'");
+            TMX.Logger.TmxLogger.Info("Test case: '" + cmdlet.Name + "'");
             
             if (result) {
                 

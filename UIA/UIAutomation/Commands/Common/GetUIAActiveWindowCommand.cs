@@ -12,11 +12,11 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of GetUIAActiveWindowCommand.
+    /// Description of GetUiaActiveWindowCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAActiveWindow")]
+    [Cmdlet(VerbsCommon.Get, "UiaActiveWindow")]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIAActiveWindowCommand : HasScriptBlockCmdletBase
+    public class GetUiaActiveWindowCommand : HasScriptBlockCmdletBase
     {
         protected override void BeginProcessing()
         {

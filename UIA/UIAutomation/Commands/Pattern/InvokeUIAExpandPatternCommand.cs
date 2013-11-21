@@ -13,120 +13,120 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of InvokeUIAExpandPatternCommand.
+    /// Description of InvokeUiaExpandPatternCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAExpandPattern")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaExpandPattern")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAExpandPatternCommand : PatternCmdletBase
-    { public InvokeUIAExpandPatternCommand() { WhatToDo = "Expand"; }
+    public class InvokeUiaExpandPatternCommand : PatternCmdletBase
+    { public InvokeUiaExpandPatternCommand() { WhatToDo = "Expand"; }
     }
     
     /// <summary>
-    /// Description of InvokeUIAButtonExpandCommand.
+    /// Description of InvokeUiaButtonExpandCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAButtonExpand")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaButtonExpand")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAButtonExpandCommand : InvokeUIAExpandPatternCommand
-    { public InvokeUIAButtonExpandCommand() { } }
+    public class InvokeUiaButtonExpandCommand : InvokeUiaExpandPatternCommand
+    { public InvokeUiaButtonExpandCommand() { } }
     
     /// <summary>
-    /// Description of InvokeUIAComboBoxExpandCommand.
+    /// Description of InvokeUiaComboBoxExpandCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAComboBoxExpand")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaComboBoxExpand")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAComboBoxExpandCommand : InvokeUIAExpandPatternCommand
-    { public InvokeUIAComboBoxExpandCommand() { } }
+    public class InvokeUiaComboBoxExpandCommand : InvokeUiaExpandPatternCommand
+    { public InvokeUiaComboBoxExpandCommand() { } }
     
     /// <summary>
-    /// Description of InvokeUIACustomExpandCommand.
+    /// Description of InvokeUiaCustomExpandCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIACustomExpand")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaCustomExpand")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIACustomExpandCommand : InvokeUIAExpandPatternCommand
-    { public InvokeUIACustomExpandCommand() { } }
+    public class InvokeUiaCustomExpandCommand : InvokeUiaExpandPatternCommand
+    { public InvokeUiaCustomExpandCommand() { } }
     
     /// <summary>
-    /// Description of InvokeUIADataItemExpandCommand.
+    /// Description of InvokeUiaDataItemExpandCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIADataItemExpand")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaDataItemExpand")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIADataItemExpandCommand : InvokeUIAExpandPatternCommand
-    { public InvokeUIADataItemExpandCommand() { } }
+    public class InvokeUiaDataItemExpandCommand : InvokeUiaExpandPatternCommand
+    { public InvokeUiaDataItemExpandCommand() { } }
     
     /// <summary>
-    /// Description of InvokeUIAGroupExpandCommand.
+    /// Description of InvokeUiaGroupExpandCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAGroupExpand")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaGroupExpand")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAGroupExpandCommand : InvokeUIAExpandPatternCommand
-    { public InvokeUIAGroupExpandCommand() { } }
+    public class InvokeUiaGroupExpandCommand : InvokeUiaExpandPatternCommand
+    { public InvokeUiaGroupExpandCommand() { } }
     
     /// <summary>
-    /// Description of InvokeUIAGroupBoxExpandCommand.
+    /// Description of InvokeUiaGroupBoxExpandCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAGroupBoxExpand")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaGroupBoxExpand")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAGroupBoxExpandCommand : InvokeUIAGroupExpandCommand
-    { public InvokeUIAGroupBoxExpandCommand() { } }
+    public class InvokeUiaGroupBoxExpandCommand : InvokeUiaGroupExpandCommand
+    { public InvokeUiaGroupBoxExpandCommand() { } }
     
     /// <summary>
-    /// Description of InvokeUIAListItemExpandCommand.
+    /// Description of InvokeUiaListItemExpandCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAListItemExpand")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaListItemExpand")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAListItemExpandCommand : InvokeUIAExpandPatternCommand
-    { public InvokeUIAListItemExpandCommand() { } }
+    public class InvokeUiaListItemExpandCommand : InvokeUiaExpandPatternCommand
+    { public InvokeUiaListItemExpandCommand() { } }
     
     /// <summary>
-    /// Description of InvokeUIAMenuBarExpandCommand.
+    /// Description of InvokeUiaMenuBarExpandCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAMenuBarExpand")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaMenuBarExpand")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAMenuBarExpandCommand : InvokeUIAExpandPatternCommand
-    { public InvokeUIAMenuBarExpandCommand() { } }
+    public class InvokeUiaMenuBarExpandCommand : InvokeUiaExpandPatternCommand
+    { public InvokeUiaMenuBarExpandCommand() { } }
     
     /// <summary>
-    /// Description of InvokeUIAMenuItemExpandCommand.
+    /// Description of InvokeUiaMenuItemExpandCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAMenuItemExpand")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaMenuItemExpand")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAMenuItemExpandCommand : InvokeUIAExpandPatternCommand
-    { public InvokeUIAMenuItemExpandCommand() { } }
+    public class InvokeUiaMenuItemExpandCommand : InvokeUiaExpandPatternCommand
+    { public InvokeUiaMenuItemExpandCommand() { } }
     
     /// <summary>
-    /// Description of InvokeUIASplitButtonExpandCommand.
+    /// Description of InvokeUiaSplitButtonExpandCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIASplitButtonExpand")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaSplitButtonExpand")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIASplitButtonExpandCommand : InvokeUIAExpandPatternCommand
-    { public InvokeUIASplitButtonExpandCommand() { } }
+    public class InvokeUiaSplitButtonExpandCommand : InvokeUiaExpandPatternCommand
+    { public InvokeUiaSplitButtonExpandCommand() { } }
     
     /// <summary>
-    /// Description of InvokeUIAToolBarExpandCommand.
+    /// Description of InvokeUiaToolBarExpandCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAToolBarExpand")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaToolBarExpand")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAToolBarExpandCommand : InvokeUIAExpandPatternCommand
-    { public InvokeUIAToolBarExpandCommand() { } }
+    public class InvokeUiaToolBarExpandCommand : InvokeUiaExpandPatternCommand
+    { public InvokeUiaToolBarExpandCommand() { } }
     
     /// <summary>
-    /// Description of InvokeUIATreeItemExpandCommand.
+    /// Description of InvokeUiaTreeItemExpandCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIATreeItemExpand")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaTreeItemExpand")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIATreeItemExpandCommand : InvokeUIAExpandPatternCommand
-    { public InvokeUIATreeItemExpandCommand() { } }
+    public class InvokeUiaTreeItemExpandCommand : InvokeUiaExpandPatternCommand
+    { public InvokeUiaTreeItemExpandCommand() { } }
 }

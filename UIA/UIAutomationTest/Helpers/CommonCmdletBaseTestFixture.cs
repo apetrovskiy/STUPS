@@ -31,7 +31,7 @@ namespace UIAutomationTest.Commands.Select
         {
             Condition[] conditions = null;
             cmdlet = 
-                new UIAutomation.Commands.GetUIAControlCommand();
+                new UIAutomation.Commands.GetUiaControlCommand();
             cmdletBase = 
                 new UIAutomation.GetControlCmdletBase();
             // 20131118

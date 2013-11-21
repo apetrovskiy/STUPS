@@ -14,13 +14,13 @@ namespace TMX.Commands
     using System.Data.SQLite;
     
     /// <summary>
-    /// Description of BackupTMXTestResultsCommand.
+    /// Description of BackupTmxTestResultsCommand.
     /// </summary>
-    [Cmdlet(VerbsData.Backup, "TMXTestResults")]
+    [Cmdlet(VerbsData.Backup, "TmxTestResults")]
     [OutputType(typeof(bool))]
-    public class BackupTMXTestResultsCommand : TestResultCmdletBase //DatabaseCmdletBase
+    public class BackupTmxTestResultsCommand : TestResultCmdletBase //DatabaseCmdletBase
     {
-        public BackupTMXTestResultsCommand()
+        public BackupTmxTestResultsCommand()
         {
         }
         

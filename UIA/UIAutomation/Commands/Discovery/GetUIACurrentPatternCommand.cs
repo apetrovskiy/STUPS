@@ -15,18 +15,18 @@ namespace UIAutomation.Commands
     using System.Windows.Automation;
 
     /// <summary>
-    /// Description of GetUIACurrentPatternCommand.
+    /// Description of GetUiaCurrentPatternCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIACurrentPattern")]
+    [Cmdlet(VerbsCommon.Get, "UiaCurrentPattern")]
     [OutputType(typeof(object))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIACurrentPatternCommand : DiscoveryCmdletBase
+    public class GetUiaCurrentPatternCommand : DiscoveryCmdletBase
     {
         #region Parameters
         //[ValidateNotNullOrEmpty()]
         //[Parameter(Mandatory = true, 
         //    ValueFromPipeline = true, 
-        //    HelpMessage = "This is usually the output from Get-UIAControl" )] 
+        //    HelpMessage = "This is usually the output from Get-UiaControl" )] 
         //// 20131014
         ////public System.Windows.Automation.AutomationElement Control { get; set; }
         //public System.Windows.Automation.AutomationElement[] InputObject { get; set; }
@@ -92,10 +92,10 @@ namespace UIAutomation.Commands
             */
 
             System.Windows.Automation.AutomationPattern pattern = 
-                UIAHelper.GetPatternByName(Name);
+                UiaHelper.GetPatternByName(Name);
             
             result = 
-                UIAHelper.GetCurrentPattern(ref _control,
+                UiaHelper.GetCurrentPattern(ref _control,
                                             pattern);
             
             this.WriteVerbose(this, result);

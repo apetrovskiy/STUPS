@@ -29,10 +29,10 @@ namespace UIAutomation
     using UIAutomation.Commands;
 
     /// <summary>
-    /// Description of UIAHelper.
+    /// Description of UiaHelper.
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public static class UIAHelper
+    public static class UiaHelper
     {
         
         private static Highlighter highlighter = null;
@@ -277,7 +277,7 @@ namespace UIAutomation
                 */
                 return resultCollection;
             } catch (Exception eWin32Control) {
-                cmdlet.WriteVerbose(cmdlet, "UIAHelper.GetControlByName() failed");
+                cmdlet.WriteVerbose(cmdlet, "UiaHelper.GetControlByName() failed");
                 cmdlet.WriteVerbose(cmdlet, eWin32Control.Message);
                 return resultCollection;
             }
@@ -351,7 +351,7 @@ namespace UIAutomation
             // 20131109
             //AutomationElement parent =
             IMySuperWrapper parent =
-                UIAHelper.GetParent(element);
+                UiaHelper.GetParent(element);
                 
             highlighterParent =
                 new Highlighter(
@@ -366,7 +366,7 @@ namespace UIAutomation
             /*
             if (Preferences.HighlightParent) {
                 AutomationElement parent =
-                    UIAHelper.GetParent(element);
+                    UiaHelper.GetParent(element);
                 
                 highlighterParent =
                     new Highlighter(
@@ -593,7 +593,7 @@ namespace UIAutomation
             if (Preferences.HideHighlighterOnScreenShotTaking &&
                 ! Preferences.ShowExecutionPlan) {
                 
-                UIAHelper.HideHighlighters();
+                UiaHelper.HideHighlighters();
             }
             
             cmdlet.WriteVerbose(cmdlet, "calculating the size");
@@ -723,7 +723,7 @@ namespace UIAutomation
                     fileName = path;
                 } else {
                     
-                    if (cmdlet is Commands.SaveUIAScreenshotCommand) {
+                    if (cmdlet is Commands.SaveUiaScreenshotCommand) {
                         
                         fileName =
                             getTimedFileNameForScreenShot() +
@@ -761,7 +761,7 @@ namespace UIAutomation
                     fileName = path;
                 } else {
                     
-                    if (cmdlet is Commands.SaveUIAScreenshotCommand) {
+                    if (cmdlet is Commands.SaveUiaScreenshotCommand) {
                         
                         fileName =
                             getTimedFileNameForScreenShot() +
@@ -781,7 +781,7 @@ namespace UIAutomation
 
                 myImage.Save(fileName, format);
                 
-                TMX.TMXHelper.AddTestResultScreenshotDetail(fileName);
+                TMX.TmxHelper.AddTestResultScreenshotDetail(fileName);
             } else {
                 
                 cmdlet.WriteObject(cmdlet, myImage);
@@ -839,7 +839,7 @@ namespace UIAutomation
             return result;
         }
         
-        #region Start-UIATranscript
+        #region Start-UiaTranscript
         
         private static string errorMessageInTheGatheringCycle = String.Empty;
         private static bool errorInTheGatheringCycle = false;
@@ -945,11 +945,11 @@ namespace UIAutomation
             // 20131109
             //AutomationElement element)
             IMySuperWrapper element)
-            // 20120618 UIACOMWrapper
-            //UIACOM::System.Windows.Automation.AutomationElement element)
+            // 20120618 UiaCOMWrapper
+            //UiaCOM::System.Windows.Automation.AutomationElement element)
         {
             bool result = false;
-            // UIAHelper.Highlight(element);
+            // UiaHelper.Highlight(element);
             try {
                 CacheRequest cacheRequest = new CacheRequest();
                 //cacheRequest.AutomationElementMode = AutomationElementMode.None;
@@ -1060,7 +1060,7 @@ namespace UIAutomation
                         }
                         
                         try{
-                            UIAHelper.Highlight(element);
+                            UiaHelper.Highlight(element);
                         }
                         catch {
                         }
@@ -1509,8 +1509,8 @@ namespace UIAutomation
                         // in case this element is an upper-level Pane
                         // residing directrly under the RootElement
                         // change type to window
-                        // i.e. Get-UIAPane - >  Get-UIAWindow
-                        // since Get-UIAPane is unable to get something more than
+                        // i.e. Get-UiaPane - >  Get-UiaWindow
+                        // since Get-UiaPane is unable to get something more than
                         // a window's child pane control
                         if (parentControlType == "Pane" || parentControlType == "Menu") {
                             
@@ -1584,8 +1584,8 @@ namespace UIAutomation
                             // in case this element is an upper-level Pane
                             // residing directrly under the RootElement
                             // change type to window
-                            // i.e. Get-UIAPane - >  Get-UIAWindow
-                            // since Get-UIAPane is unable to get something more than
+                            // i.e. Get-UiaPane - >  Get-UiaWindow
+                            // since Get-UiaPane is unable to get something more than
                             // a window's child pane control
                             if (parentControlType == "Pane" || parentControlType == "Menu") {
                                 if (walker.GetParent(testparent) == cmdlet.rootElement) {
@@ -1887,7 +1887,7 @@ namespace UIAutomation
         }
         #endregion Unsubscribe from events during the recording session
         
-        #endregion Start-UIATranscript
+        #endregion Start-UiaTranscript
         
         /// <summary>
         ///  /// </summary>
@@ -3148,7 +3148,7 @@ namespace UIAutomation
         public static ArrayList Enum1ChildWindows(IntPtr parentHandle)
         {
             
-            //PSCmdletBase cmdlet = new GetUIAWindowCommand();
+            //PSCmdletBase cmdlet = new GetUiaWindowCommand();
             GetWindowCmdletBase cmdlet = new GetWindowCmdletBase();
             System.Collections.ArrayList resultList =
                 EnumChildWindowsFromHandle(cmdlet, parentHandle);
@@ -3159,7 +3159,7 @@ namespace UIAutomation
         public static ArrayList Enum2ChildWindows(IntPtr parentHandle)
         {
             
-            //PSCmdletBase cmdlet = new GetUIAWindowCommand();
+            //PSCmdletBase cmdlet = new GetUiaWindowCommand();
             GetWindowCmdletBase cmdlet = new GetWindowCmdletBase();
             System.Collections.ArrayList resultList =
                 EnumChildWindowsFromHandle(cmdlet, IntPtr.Zero);

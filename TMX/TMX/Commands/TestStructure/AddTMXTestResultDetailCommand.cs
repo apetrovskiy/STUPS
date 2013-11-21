@@ -13,12 +13,12 @@ namespace TMX.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of AddTMXTestResultDetailCommand.
+    /// Description of AddTmxTestResultDetailCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Add, "TMXTestResultDetail")]
-    public class AddTMXTestResultDetailCommand : TestResultDetailCmdletBase //CommonCmdletBase
+    [Cmdlet(VerbsCommon.Add, "TmxTestResultDetail")]
+    public class AddTmxTestResultDetailCommand : TestResultDetailCmdletBase //CommonCmdletBase
     {
-        public AddTMXTestResultDetailCommand()
+        public AddTmxTestResultDetailCommand()
         {
             // 20130605
 //            if (null == TestData.TestSuites || 0 == TestData.TestSuites.Count) {
@@ -49,7 +49,7 @@ namespace TMX.Commands
             this.CheckCmdletParameters();
             
             this.WriteVerbose(this, this.TestResultDetail);
-            TMX.Logger.TMXLogger.Info(this.TestResultDetail);
+            TMX.Logger.TmxLogger.Info(this.TestResultDetail);
             if (this.Echo) {
 
                 WriteObject(this.TestResultDetail);

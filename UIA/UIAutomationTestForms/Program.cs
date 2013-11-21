@@ -84,7 +84,7 @@ namespace UIAutomationTestForms
 //                    // string _controlType = String.Empty;
 //                    //_controlType = args[2].ToUpper();
 //                    ctrlType = 
-//                        UIAHelper.GetControlTypeByTypeName(args[2]);
+//                        UiaHelper.GetControlTypeByTypeName(args[2]);
 //                }
 //                
 //                int controlDelay = 0;
@@ -209,7 +209,7 @@ namespace UIAutomationTestForms
                     // the third command-line argument ControlType
                     if (args[i] != null && args[i] != "") {
                         ctrlType = 
-                            UIAHelper.GetControlTypeByTypeName(args[i]);
+                            UiaHelper.GetControlTypeByTypeName(args[i]);
                         controlToForm.ControlType = ctrlType;
                     }
                 
@@ -383,7 +383,7 @@ namespace UIAutomationTestForms
 //                    // string _controlType = String.Empty;
 //                    //_controlType = args[2].ToUpper();
 //                    ctrlType = 
-//                        UIAHelper.GetControlTypeByTypeName(args[2]);
+//                        UiaHelper.GetControlTypeByTypeName(args[2]);
 //                
 //                
 //                try {
@@ -404,8 +404,8 @@ namespace UIAutomationTestForms
         
         private static void dumpTypes(string path)
         {
-            UIAutomation.ReadUIAControlIsOffscreenCommand ccc = 
-                new ReadUIAControlIsOffscreenCommand();
+            UIAutomation.ReadUiaControlIsOffscreenCommand ccc = 
+                new ReadUiaControlIsOffscreenCommand();
             
             Assembly[] allAssms = 
                 System.AppDomain.CurrentDomain.GetAssemblies();

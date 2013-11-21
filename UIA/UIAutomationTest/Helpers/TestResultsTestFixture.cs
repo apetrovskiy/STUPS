@@ -59,11 +59,11 @@ namespace UIAutomationTest.Helpers
             CmdletUnitTest.TestRunspace.RunPSCode(
                 @"#expected FAILED: no -TestResult parameter");
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = Get-UIAWindow -n '" + 
+                @"$null = Get-UiaWindow -n '" + 
                 MiddleLevelCode.TestFormNameEmpty +
-                @"' | Get-UIAButton -n '" + 
+                @"' | Get-UiaButton -n '" + 
                 name +
-                "' | Invoke-UIAButtonClick -TestResultName '" + 
+                "' | Invoke-UiaButtonClick -TestResultName '" + 
                 resultName + 
                 "'; " +
                 @"[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;",
@@ -91,11 +91,11 @@ namespace UIAutomationTest.Helpers
             CmdletUnitTest.TestRunspace.RunPSCode(
                 @"#expected PASSED: the -TestResult parameter");
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = Get-UIAWindow -n '" + 
+                @"$null = Get-UiaWindow -n '" + 
                 MiddleLevelCode.TestFormNameEmpty +
-                @"' | Get-UIAButton -n '" + 
+                @"' | Get-UiaButton -n '" + 
                 name +
-                "' | Invoke-UIAButtonClick -TestResultName '" + 
+                "' | Invoke-UiaButtonClick -TestResultName '" + 
                 resultName + 
                 "' -TestPassed; " +
                 @"[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;",
@@ -123,11 +123,11 @@ namespace UIAutomationTest.Helpers
             CmdletUnitTest.TestRunspace.RunPSCode(
                 @"#expected PASSED: the -TestResult:$true parameter");
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = Get-UIAWindow -n '" + 
+                @"$null = Get-UiaWindow -n '" + 
                 MiddleLevelCode.TestFormNameEmpty +
-                @"' | Get-UIAButton -n '" + 
+                @"' | Get-UiaButton -n '" + 
                 name +
-                "' | Invoke-UIAButtonClick -TestResultName '" + 
+                "' | Invoke-UiaButtonClick -TestResultName '" + 
                 resultName + 
                 "' -TestPassed:$true; " +
                 @"[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;",
@@ -155,11 +155,11 @@ namespace UIAutomationTest.Helpers
             CmdletUnitTest.TestRunspace.RunPSCode(
                 @"#expected FAILED: the -TestResult:$false parameter");
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = Get-UIAWindow -n '" + 
+                @"$null = Get-UiaWindow -n '" + 
                 MiddleLevelCode.TestFormNameEmpty +
-                @"' | Get-UIAButton -n '" + 
+                @"' | Get-UiaButton -n '" + 
                 name +
-                "' | Invoke-UIAButtonClick -TestResultName '" + 
+                "' | Invoke-UiaButtonClick -TestResultName '" + 
                 resultName + 
                 "' -TestPassed:$false; " +
                 @"[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;",
@@ -188,9 +188,9 @@ namespace UIAutomationTest.Helpers
             CmdletUnitTest.TestRunspace.RunPSCode(
                 @"#expected FAILED: the -TestResult:$true parameter and cmdlet failure");
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"try { $null = Get-UIAWindow -n '" + 
+                @"try { $null = Get-UiaWindow -n '" + 
                 MiddleLevelCode.TestFormNameEmpty +
-                @"' | Get-UIAButton -n '" + 
+                @"' | Get-UiaButton -n '" + 
                 wrongName +
                 "' -Timeout 500 -TestResultName '" + 
                 resultName + 
@@ -221,9 +221,9 @@ namespace UIAutomationTest.Helpers
             CmdletUnitTest.TestRunspace.RunPSCode(
                 @"#expected FAILED: the -TestResult:$false parameter and cmdlet failure");
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"try { $null = Get-UIAWindow -n '" + 
+                @"try { $null = Get-UiaWindow -n '" + 
                 MiddleLevelCode.TestFormNameEmpty +
-                @"' | Get-UIAButton -n '" + 
+                @"' | Get-UiaButton -n '" + 
                 wrongName +
                 "' -Timeout 500 -TestResultName '" + 
                 resultName + 
@@ -253,11 +253,11 @@ namespace UIAutomationTest.Helpers
             //CmdletUnitTest.TestRunspace.RunPSCode(
             //    @"#expected KNOWN ISSUE: the -KnownIssue parameter");
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = Get-UIAWindow -n '" + 
+                @"$null = Get-UiaWindow -n '" + 
                 MiddleLevelCode.TestFormNameEmpty +
-                @"' | Get-UIAButton -n '" + 
+                @"' | Get-UiaButton -n '" + 
                 name +
-                "' | Invoke-UIAButtonClick -TestResultName '" + 
+                "' | Invoke-UiaButtonClick -TestResultName '" + 
                 resultName + 
                 "' -KnownIssue; " +
                 @"[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;",
@@ -285,11 +285,11 @@ namespace UIAutomationTest.Helpers
             //CmdletUnitTest.TestRunspace.RunPSCode(
             //    @"#expected KNOWN ISSUE: the -KnownIssue:$true parameter");
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = Get-UIAWindow -n '" + 
+                @"$null = Get-UiaWindow -n '" + 
                 MiddleLevelCode.TestFormNameEmpty +
-                @"' | Get-UIAButton -n '" + 
+                @"' | Get-UiaButton -n '" + 
                 name +
-                "' | Invoke-UIAButtonClick -TestResultName '" + 
+                "' | Invoke-UiaButtonClick -TestResultName '" + 
                 resultName + 
                 "' -KnownIssue:$true; " +
                 @"[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;",
@@ -317,11 +317,11 @@ namespace UIAutomationTest.Helpers
             CmdletUnitTest.TestRunspace.RunPSCode(
                 @"#expected FAILED: the -KnownIssue:$false and no -TestPassed parameters");
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = Get-UIAWindow -n '" + 
+                @"$null = Get-UiaWindow -n '" + 
                 MiddleLevelCode.TestFormNameEmpty +
-                @"' | Get-UIAButton -n '" + 
+                @"' | Get-UiaButton -n '" + 
                 name +
-                "' | Invoke-UIAButtonClick -TestResultName '" + 
+                "' | Invoke-UiaButtonClick -TestResultName '" + 
                 resultName + 
                 "' -KnownIssue:$false; " +
                 @"[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;",
@@ -349,11 +349,11 @@ namespace UIAutomationTest.Helpers
             CmdletUnitTest.TestRunspace.RunPSCode(
                 @"#expected KNOWN ISSUE: the -KnownIssue parameter");
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = Get-UIAWindow -n '" + 
+                @"$null = Get-UiaWindow -n '" + 
                 MiddleLevelCode.TestFormNameEmpty +
-                @"' | Get-UIAButton -n '" + 
+                @"' | Get-UiaButton -n '" + 
                 name +
-                "' | Invoke-UIAButtonClick -TestResultName '" + 
+                "' | Invoke-UiaButtonClick -TestResultName '" + 
                 resultName + 
                 "' -TestPassed:$true -KnownIssue; " +
                 @"[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;",
@@ -381,11 +381,11 @@ namespace UIAutomationTest.Helpers
             CmdletUnitTest.TestRunspace.RunPSCode(
                 @"#expected KNOWN ISSUE: the -KnownIssue parameter");
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = Get-UIAWindow -n '" + 
+                @"$null = Get-UiaWindow -n '" + 
                 MiddleLevelCode.TestFormNameEmpty +
-                @"' | Get-UIAButton -n '" + 
+                @"' | Get-UiaButton -n '" + 
                 name +
-                "' | Invoke-UIAButtonClick -TestResultName '" + 
+                "' | Invoke-UiaButtonClick -TestResultName '" + 
                 resultName + 
                 "' -TestPassed:$false -KnownIssue; " +
                 @"[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;",
@@ -414,11 +414,11 @@ namespace UIAutomationTest.Helpers
             CmdletUnitTest.TestRunspace.RunPSCode(
                 @"#expected PASSED: the -KnownIssue:$false and -TestPassed:$true parameters");
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = Get-UIAWindow -n '" + 
+                @"$null = Get-UiaWindow -n '" + 
                 MiddleLevelCode.TestFormNameEmpty +
-                @"' | Get-UIAButton -n '" + 
+                @"' | Get-UiaButton -n '" + 
                 name +
-                "' | Invoke-UIAButtonClick -TestResultName '" + 
+                "' | Invoke-UiaButtonClick -TestResultName '" + 
                 resultName + 
                 "' -TestPassed:$true -KnownIssue:$false; " +
                 @"[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;",
@@ -446,11 +446,11 @@ namespace UIAutomationTest.Helpers
             CmdletUnitTest.TestRunspace.RunPSCode(
                 @"#expected FAILED: the -KnownIssue:$false and -TestPassed:$false parameters");
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = Get-UIAWindow -n '" + 
+                @"$null = Get-UiaWindow -n '" + 
                 MiddleLevelCode.TestFormNameEmpty +
-                @"' | Get-UIAButton -n '" + 
+                @"' | Get-UiaButton -n '" + 
                 name +
-                "' | Invoke-UIAButtonClick -TestResultName '" + 
+                "' | Invoke-UiaButtonClick -TestResultName '" + 
                 resultName + 
                 "' -TestPassed:$false -KnownIssue:$false; " +
                 @"[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;",
@@ -481,9 +481,9 @@ namespace UIAutomationTest.Helpers
             CmdletUnitTest.TestRunspace.RunPSCode(
                 @"#expected FAILED: the -KnownIssue:$true parameter and cmdlet failure");
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"try { $null = Get-UIAWindow -n '" + 
+                @"try { $null = Get-UiaWindow -n '" + 
                 MiddleLevelCode.TestFormNameEmpty +
-                @"' | Get-UIAButton -n '" + 
+                @"' | Get-UiaButton -n '" + 
                 wrongName +
                 "' -Timeout 500 -TestResultName '" + 
                 resultName + 
@@ -514,9 +514,9 @@ namespace UIAutomationTest.Helpers
             CmdletUnitTest.TestRunspace.RunPSCode(
                 @"#expected FAILED: the -KnownIssue:$true parameter and cmdlet failure");
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"try { $null = Get-UIAWindow -n '" + 
+                @"try { $null = Get-UiaWindow -n '" + 
                 MiddleLevelCode.TestFormNameEmpty +
-                @"' | Get-UIAButton -n '" + 
+                @"' | Get-UiaButton -n '" + 
                 wrongName +
                 "' -Timeout 500 -TestResultName '" + 
                 resultName + 
@@ -548,9 +548,9 @@ namespace UIAutomationTest.Helpers
             CmdletUnitTest.TestRunspace.RunPSCode(
                 @"#expected FAILED: the -KnownIssue::$false parameter and cmdlet failure");
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"try { $null = Get-UIAWindow -n '" + 
+                @"try { $null = Get-UiaWindow -n '" + 
                 MiddleLevelCode.TestFormNameEmpty +
-                @"' | Get-UIAButton -n '" + 
+                @"' | Get-UiaButton -n '" + 
                 wrongName +
                 "' -Timeout 500 -TestResultName '" + 
                 resultName + 
@@ -581,9 +581,9 @@ namespace UIAutomationTest.Helpers
             CmdletUnitTest.TestRunspace.RunPSCode(
                 @"#expected FAILED: the -KnownIssue::$false parameter and cmdlet failure");
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"try { $null = Get-UIAWindow -n '" + 
+                @"try { $null = Get-UiaWindow -n '" + 
                 MiddleLevelCode.TestFormNameEmpty +
-                @"' | Get-UIAButton -n '" + 
+                @"' | Get-UiaButton -n '" + 
                 wrongName +
                 "' -Timeout 500 -TestResultName '" + 
                 resultName + 

@@ -13,11 +13,11 @@ namespace TMX.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of StartTMXLoggingCommand.
+    /// Description of StartTmxLoggingCommand.
     /// </summary>
-    public class StartTMXLoggingCommand
+    public class StartTmxLoggingCommand
     {
-        public StartTMXLoggingCommand()
+        public StartTmxLoggingCommand()
         {
         }
     }

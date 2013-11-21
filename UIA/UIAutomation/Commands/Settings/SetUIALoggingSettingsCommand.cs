@@ -13,12 +13,12 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
 
     /// <summary>
-    /// Description of SetUIALoggingSettingsCommand.
+    /// Description of SetUiaLoggingSettingsCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Set, "UIALoggingSettings")]
-    public class SetUIALoggingSettingsCommand : ModuleSettingsCmdletBase
+    [Cmdlet(VerbsCommon.Set, "UiaLoggingSettings")]
+    public class SetUiaLoggingSettingsCommand : ModuleSettingsCmdletBase
     {
-        public SetUIALoggingSettingsCommand()
+        public SetUiaLoggingSettingsCommand()
         {
             this.Log = Preferences.Log;
             this.Path = Preferences.LogPath;

@@ -23,7 +23,7 @@ using System.Runtime.CompilerServices;
 // If you need to expose a type to COM, use [ComVisible(true)] on that type.
 [assembly: ComVisible(false)]
 
-[assembly: InternalsVisibleTo("TMXUnitTests")]
+[assembly: InternalsVisibleTo("TmxUnitTests")]
 [assembly: InternalsVisibleTo("TLAddinUnitTests")]
 [assembly: InternalsVisibleTo("TFAddinUnitTests")]
 [assembly: InternalsVisibleTo("BDDAddinUnitTests")]

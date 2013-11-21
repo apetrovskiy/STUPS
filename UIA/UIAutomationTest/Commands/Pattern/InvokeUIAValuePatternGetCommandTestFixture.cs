@@ -14,12 +14,12 @@ namespace UIAutomationTest.Commands.Pattern
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of InvokeUIAValuePatternInvokeCommandTestFixture.
+    /// Description of InvokeUiaValuePatternInvokeCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Invoke-UIAValuePatternInvokeCommand test")]
-    public class InvokeUIAValuePatternInvokeCommandTestFixture
+    [TestFixture] // [TestFixture(Description="Invoke-UiaValuePatternInvokeCommand test")]
+    public class InvokeUiaValuePatternInvokeCommandTestFixture
     {
-        public InvokeUIAValuePatternInvokeCommandTestFixture()
+        public InvokeUiaValuePatternInvokeCommandTestFixture()
         {
         }
         

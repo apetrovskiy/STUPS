@@ -14,12 +14,12 @@ namespace UIAutomationTest.Commands.Get
     using System.Management.Automation;
 
     /// <summary>
-    /// Description of GetUIAControlCommandTestFixture.
+    /// Description of GetUiaControlCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Get-UIAControlCommand test")]
-    public class GetUIAControlCommandTestFixture
+    [TestFixture] // [TestFixture(Description="Get-UiaControlCommand test")]
+    public class GetUiaControlCommandTestFixture
     {
-        public GetUIAControlCommandTestFixture()
+        public GetUiaControlCommandTestFixture()
         {
         }
         
@@ -35,7 +35,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControlByAutomationIDTimeoutDefault()
         {
             string auId = "Button111";
@@ -47,12 +47,12 @@ namespace UIAutomationTest.Commands.Get
                 auId,
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAControl -AutomationId " + 
+                " | Get-UiaControl -AutomationId " + 
                 auId + 
                 " | " +
-                "Read-UIAControlAutomationId",
+                "Read-UiaControlAutomationId",
                 auId);
         }
         
@@ -60,7 +60,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControlByAutomationIDTimeout2000()
         {
             string auId = "Button111";
@@ -72,12 +72,12 @@ namespace UIAutomationTest.Commands.Get
                 auId,
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAControl -AutomationId " + 
+                " | Get-UiaControl -AutomationId " + 
                 auId + 
                 " -timeout 2000 | " +
-                "Read-UIAControlAutomationId",
+                "Read-UiaControlAutomationId",
                 auId);
         }
         
@@ -85,7 +85,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControlByAutomationIDTimeout3000Delay500()
         {
             string auId = "Button111";
@@ -97,12 +97,12 @@ namespace UIAutomationTest.Commands.Get
                 auId,
                 TimeoutsAndDelays.Control_Timeout3000Delay500_Delay);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAControl -AutomationId " + 
+                " | Get-UiaControl -AutomationId " + 
                 auId + 
                 " -timeout 3000 | " +
-                "Read-UIAControlAutomationId",
+                "Read-UiaControlAutomationId",
                 auId);
         }
         
@@ -110,7 +110,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControlByAutomationIDTimeout2000Delay4000()
         {
             string auId = "Button111";
@@ -122,12 +122,12 @@ namespace UIAutomationTest.Commands.Get
                 auId,
                 TimeoutsAndDelays.Control_Timeout2000Delay4000_Delay);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAControl -AutomationId " + 
+                " | Get-UiaControl -AutomationId " + 
                 auId + 
                 " -timeout 2000 | " +
-                "Read-UIAControlAutomationId",
+                "Read-UiaControlAutomationId",
                 auId);
         }
         
@@ -135,7 +135,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControlByTitleTimeoutDefault()
         {
             string name = "Button222";
@@ -147,11 +147,11 @@ namespace UIAutomationTest.Commands.Get
                 "btn",
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAControl -Name " + 
+                " | Get-UiaControl -Name " + 
                 name + " | " +
-                "Read-UIAControlName",
+                "Read-UiaControlName",
                 name);
         }
         
@@ -159,7 +159,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControlByTitleTimeout2000()
         {
             string name = "Button222";
@@ -171,11 +171,11 @@ namespace UIAutomationTest.Commands.Get
                 "btn",
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAControl -Name " + 
+                " | Get-UiaControl -Name " + 
                 name + " -timeout 2000 | " +
-                "Read-UIAControlName",
+                "Read-UiaControlName",
                 name);
         }
         
@@ -183,7 +183,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControlByTitleTimeout3000Delay500()
         {
             string name = "Button222";
@@ -195,11 +195,11 @@ namespace UIAutomationTest.Commands.Get
                 "btn",
                 TimeoutsAndDelays.Control_Timeout3000Delay500_Delay);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAControl -Name " + 
+                " | Get-UiaControl -Name " + 
                 name + " -timeout 3000 | " +
-                "Read-UIAControlName",
+                "Read-UiaControlName",
                 name);
         }
         
@@ -207,7 +207,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControlByTitleTimeout2000Delay4000()
         {
             string name = "Button222";
@@ -219,11 +219,11 @@ namespace UIAutomationTest.Commands.Get
                 "btn",
                 TimeoutsAndDelays.Control_Timeout2000Delay4000_Delay);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAControl -Name " + 
+                " | Get-UiaControl -Name " + 
                 name + " -timeout 2000 | " +
-                "Read-UIAControlName",
+                "Read-UiaControlName",
                 name);
         }
         
@@ -231,7 +231,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControlByControlTypeTimeoutDefault()
         {
             MiddleLevelCode.StartProcessWithFormAndControl(
@@ -242,9 +242,9 @@ namespace UIAutomationTest.Commands.Get
                 "ddd",
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAControl -ControlType Button | Read-UIAControlType",
+                " | Get-UiaControl -ControlType Button | Read-UiaControlType",
                 "ControlType.Button");
         }
         
@@ -252,7 +252,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControlByControlTypeTimeout2000()
         {
             MiddleLevelCode.StartProcessWithFormAndControl(
@@ -263,9 +263,9 @@ namespace UIAutomationTest.Commands.Get
                 "ddd",
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAControl -ControlType Button -timeout 2000 | Read-UIAControlType",
+                " | Get-UiaControl -ControlType Button -timeout 2000 | Read-UiaControlType",
                 "ControlType.Button");
         }
         
@@ -273,7 +273,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControlByControlTypeTimeout3000Delay500()
         {
             MiddleLevelCode.StartProcessWithFormAndControl(
@@ -284,9 +284,9 @@ namespace UIAutomationTest.Commands.Get
                 "ddd",
                 TimeoutsAndDelays.Control_Timeout3000Delay500_Delay);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAControl -ControlType Button -timeout 3000 | Read-UIAControlType",
+                " | Get-UiaControl -ControlType Button -timeout 3000 | Read-UiaControlType",
                 "ControlType.Button");
         }
         
@@ -294,7 +294,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControlByControlTypeTimeout2000Delay4000()
         {
             MiddleLevelCode.StartProcessWithFormAndControl(
@@ -305,9 +305,9 @@ namespace UIAutomationTest.Commands.Get
                 "ddd",
                 TimeoutsAndDelays.Control_Timeout2000Delay4000_Delay);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAControl -ControlType Button -timeout 2000 | Read-UIAControlType",
+                " | Get-UiaControl -ControlType Button -timeout 2000 | Read-UiaControlType",
                 "ControlType.Button");
         }
         
@@ -322,10 +322,10 @@ namespace UIAutomationTest.Commands.Get
 // System.Windows.Automation.ControlType.Button,
 // 0);
 // CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-// @"Get-UIAWindow -pn " + 
+// @"Get-UiaWindow -pn " + 
 // MiddleLevelCode.TestFormProcess +
-// " | Get-UIAControl -Class 'WindowsForms10.BUTTON.app.0.141b42a_r15_ad1' | " + 
-// "Read-UIAControlClass",
+// " | Get-UiaControl -Class 'WindowsForms10.BUTTON.app.0.141b42a_r15_ad1' | " + 
+// "Read-UiaControlClass",
 // "WindowsForms10.BUTTON.app.0.141b42a_r15_ad1");
 // } // WindowsForms10.BUTTON.app.0.378734a
 
@@ -334,7 +334,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControlByName_WildCard1_Timeout2000Delay4000()
         {
             string name = "ccc";
@@ -354,11 +354,11 @@ namespace UIAutomationTest.Commands.Get
                 0,
                 (ControlToForm[])arrList.ToArray(typeof(ControlToForm)));
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -n " + 
+                @"Get-UiaWindow -n " + 
                 MiddleLevelCode.TestFormNameEmpty +
-                " | Get-UIAControl -ControlType Button -Name " + 
+                " | Get-UiaControl -ControlType Button -Name " + 
                 nameToSearch +
-                " -timeout 2000 | Read-UIAControlName;",
+                " -timeout 2000 | Read-UiaControlName;",
                 name);
         }
         
@@ -366,7 +366,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControlByName_WildCard2_Timeout2000Delay4000()
         {
             string name = "co?ntro*NaME";
@@ -386,11 +386,11 @@ namespace UIAutomationTest.Commands.Get
                 0,
                 (ControlToForm[])arrList.ToArray(typeof(ControlToForm)));
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -n " + 
+                @"Get-UiaWindow -n " + 
                 MiddleLevelCode.TestFormNameEmpty +
-                " | Get-UIAControl -ControlType Button -Name " + 
+                " | Get-UiaControl -ControlType Button -Name " + 
                 nameToSearch +
-                " -timeout 2000 | Read-UIAControlName;",
+                " -timeout 2000 | Read-UiaControlName;",
                 name);
         }
         
@@ -398,7 +398,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControlByName_WildCard3_Timeout2000Delay4000()
         {
             string name = "co?ntro*NaME";
@@ -418,11 +418,11 @@ namespace UIAutomationTest.Commands.Get
                 0,
                 (ControlToForm[])arrList.ToArray(typeof(ControlToForm)));
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -n " + 
+                @"Get-UiaWindow -n " + 
                 MiddleLevelCode.TestFormNameEmpty +
-                " | Get-UIAButton -Name " + 
+                " | Get-UiaButton -Name " + 
                 nameToSearch +
-                " -timeout 2000 | Read-UIAControlName;",
+                " -timeout 2000 | Read-UiaControlName;",
                 name);
         }
         
@@ -430,7 +430,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControlByName_WildCard4_Timeout2000Delay4000()
         {
             string name = "co?ntro*NaME";
@@ -450,11 +450,11 @@ namespace UIAutomationTest.Commands.Get
                 0,
                 (ControlToForm[])arrList.ToArray(typeof(ControlToForm)));
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -n " + 
+                @"Get-UiaWindow -n " + 
                 MiddleLevelCode.TestFormNameEmpty +
-                " | Get-UIALabel -Name " + 
+                " | Get-UiaLabel -Name " + 
                 nameToSearch +
-                " -timeout 2000 | Read-UIAControlName;",
+                " -timeout 2000 | Read-UiaControlName;",
                 name);
         }
         
@@ -462,7 +462,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControlByAutomationId_WildCard1_Timeout2000Delay4000()
         {
             string name = "ccc";
@@ -482,11 +482,11 @@ namespace UIAutomationTest.Commands.Get
                 0,
                 (ControlToForm[])arrList.ToArray(typeof(ControlToForm)));
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -n " + 
+                @"Get-UiaWindow -n " + 
                 MiddleLevelCode.TestFormNameEmpty +
-                " | Get-UIAControl -ControlType Button -AutomationId " + 
+                " | Get-UiaControl -ControlType Button -AutomationId " + 
                 auIdToSearch +
-                " -timeout 2000 | Read-UIAControlAutomationId;",
+                " -timeout 2000 | Read-UiaControlAutomationId;",
                 auId);
         }
         
@@ -494,7 +494,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControlByAutomationId_WildCard2_Timeout2000Delay4000()
         {
             string name = "controlN[a-z]me";
@@ -514,11 +514,11 @@ namespace UIAutomationTest.Commands.Get
                 0,
                 (ControlToForm[])arrList.ToArray(typeof(ControlToForm)));
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -n " + 
+                @"Get-UiaWindow -n " + 
                 MiddleLevelCode.TestFormNameEmpty +
-                " | Get-UIAControl -ControlType Button -AutomationId " + 
+                " | Get-UiaControl -ControlType Button -AutomationId " + 
                 auIdToSearch +
-                " -timeout 2000 | Read-UIAControlAutomationId;",
+                " -timeout 2000 | Read-UiaControlAutomationId;",
                 auId);
         }
         
@@ -530,7 +530,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("WinForms")]
         [Category("Control")]
         [Category("Win32")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControlByTitle_Win32_TimeoutDefault()
         {
             string name = "Button222";
@@ -542,11 +542,11 @@ namespace UIAutomationTest.Commands.Get
                 "btn",
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAControl -Name " + 
+                " | Get-UiaControl -Name " + 
                 name + " -Win32 | " +
-                "Read-UIAControlName",
+                "Read-UiaControlName",
                 name);
         }
         
@@ -555,7 +555,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("WinForms")]
         [Category("Control")]
         [Category("Win32")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControlByTitle_Win32_Timeout2000()
         {
             string name = "Button222";
@@ -567,11 +567,11 @@ namespace UIAutomationTest.Commands.Get
                 "btn",
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAControl -Name " + 
+                " | Get-UiaControl -Name " + 
                 name + " -Win32 -timeout 2000 | " +
-                "Read-UIAControlName",
+                "Read-UiaControlName",
                 name);
         }
         
@@ -580,7 +580,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("WinForms")]
         [Category("Control")]
         [Category("Win32")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControlByTitle_Win32_Timeout3000Delay500()
         {
             string name = "Button222";
@@ -592,11 +592,11 @@ namespace UIAutomationTest.Commands.Get
                 "btn",
                 TimeoutsAndDelays.Control_Timeout3000Delay500_Delay);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAControl -Name " + 
+                " | Get-UiaControl -Name " + 
                 name + " -Win32 -timeout 3000 | " +
-                "Read-UIAControlName",
+                "Read-UiaControlName",
                 name);
         }
         
@@ -605,7 +605,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("WinForms")]
         [Category("Control")]
         [Category("Win32")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControlByTitle_Win32_Timeout2000Delay4000()
         {
             string name = "Button222";
@@ -617,11 +617,11 @@ namespace UIAutomationTest.Commands.Get
                 "btn",
                 TimeoutsAndDelays.Control_Timeout2000Delay4000_Delay);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAControl -Name " + 
+                " | Get-UiaControl -Name " + 
                 name + " -Win32 -timeout 2000 | " +
-                "Read-UIAControlName",
+                "Read-UiaControlName",
                 name);
         }
         
@@ -630,7 +630,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetAllButtons_TimeoutDefault()
         {
             string answer = "34";
@@ -638,9 +638,9 @@ namespace UIAutomationTest.Commands.Get
                 UIAutomationTestForms.Forms.WinFormsFull, 
                 TimeoutsAndDelays.Form_Delay0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"(Get-UIAWindow -pn " + 
+                @"(Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAButton -Name *).Count;",
+                " | Get-UiaButton -Name *).Count;",
                 answer);
         }
         
@@ -648,7 +648,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControlByHashtable_Name_TimeoutDefault()
         {
             string name = "Button222";
@@ -660,11 +660,11 @@ namespace UIAutomationTest.Commands.Get
                 "btn",
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAControl -SearchCriteria @{name=\"" + 
+                " | Get-UiaControl -SearchCriteria @{name=\"" + 
                 name + "\"} | " +
-                "Read-UIAControlName",
+                "Read-UiaControlName",
                 name);
         }
         
@@ -672,7 +672,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControlByHashtable_AutomationId_TimeoutDefault()
         {
             string name = "Button222";
@@ -685,11 +685,11 @@ namespace UIAutomationTest.Commands.Get
                 automationId,
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAControl -SearchCriteria @{automationid=\"" + 
+                " | Get-UiaControl -SearchCriteria @{automationid=\"" + 
                 automationId + "\"} | " +
-                "Read-UIAControlName",
+                "Read-UiaControlName",
                 name);
         }
         
@@ -697,7 +697,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControlByHashtable_ControlType_TimeoutDefault()
         {
             string name = "Button222";
@@ -709,10 +709,10 @@ namespace UIAutomationTest.Commands.Get
                 "btn",
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAControl -SearchCriteria @{controltype=\"button\"} | " +
-                "Read-UIAControlName",
+                " | Get-UiaControl -SearchCriteria @{controltype=\"button\"} | " +
+                "Read-UiaControlName",
                 name);
         }
         
@@ -720,7 +720,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControlByHashtable_IsKeyboardFocusable_TimeoutDefault()
         {
             string name = "Button222";
@@ -732,10 +732,10 @@ namespace UIAutomationTest.Commands.Get
                 "btn",
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAControl -SearchCriteria @{iskeyboardfocusable=\"true\"} | " +
-                "Read-UIAControlName",
+                " | Get-UiaControl -SearchCriteria @{iskeyboardfocusable=\"true\"} | " +
+                "Read-UiaControlName",
                 name);
         }
         
@@ -743,7 +743,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControlByHashtable_WrongName_TimeoutDefault()
         {
             string name = "Button222";
@@ -755,22 +755,22 @@ namespace UIAutomationTest.Commands.Get
                 "btn",
                 0);
             CmdletUnitTest.TestRunspace.RunAndGetTheException(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAControl -SearchCriteria @{name=\"" + 
+                " | Get-UiaControl -SearchCriteria @{name=\"" + 
                 "nope" + "\"} | " +
-                "Read-UIAControlName",
+                "Read-UiaControlName",
                 "CmdletInvocationException",
                 // 20130219
-                //"Get-UIAControl: timeout expired for class: ' + , control type: , title: ");
-                @"Get-UIAControl: timeout expired for control with class: + '', control type: '', title: '', automationId: '', value: ''");
+                //"Get-UiaControl: timeout expired for class: ' + , control type: , title: ");
+                @"Get-UiaControl: timeout expired for control with class: + '', control type: '', title: '', automationId: '', value: ''");
         }
         
         [Test] //[Test(Description="TBD")]
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControlByHashtable_WrongAutomationId_TimeoutDefault()
         {
             string name = "Button222";
@@ -783,26 +783,26 @@ namespace UIAutomationTest.Commands.Get
                 "btn",
                 0);
             CmdletUnitTest.TestRunspace.RunAndGetTheException(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAControl -Name '" + 
+                " | Get-UiaControl -Name '" + 
                 name +
                 "' -SearchCriteria @{automationid=\"" +
                 // 20121120
                 //name + "\"} | " +
                 automationId + 
                 "\"} | " +
-                "Read-UIAControlName",
+                "Read-UiaControlName",
                 "CmdletInvocationException",
                 // 20130219
-                //"Get-UIAControl: timeout expired for class: ' + , control type: , title: Button222");
-                @"Get-UIAControl: timeout expired for control with class: + '', control type: '', title: 'Button222', automationId: '', value: ''");
+                //"Get-UiaControl: timeout expired for class: ' + , control type: , title: Button222");
+                @"Get-UiaControl: timeout expired for control with class: + '', control type: '', title: 'Button222', automationId: '', value: ''");
         }
         
 //        [Test] //[Test(Description="TBD")]
 //        [Category("Slow")][Category("WinForms")]
 //        [Category("Slow")][Category("Control")]
-//        [Category("Slow")][Category("Get_UIAControl")]
+//        [Category("Slow")][Category("Get_UiaControl")]
 //        public void GetControlByHashtable_WildCard1_TimeoutDefault()
 //        {
 //            string name = "ccc";
@@ -822,11 +822,11 @@ namespace UIAutomationTest.Commands.Get
 //                0,
 //                (ControlToForm[])arrList.ToArray(typeof(ControlToForm)));
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-//                @"Get-UIAWindow -n " + 
+//                @"Get-UiaWindow -n " + 
 //                MiddleLevelCode.TestFormNameEmpty +
-//                " | Get-UIAControl -ControlType Button -Name " + 
+//                " | Get-UiaControl -ControlType Button -Name " + 
 //                nameToSearch +
-//                " -timeout 2000 | Read-UIAControlName;",
+//                " -timeout 2000 | Read-UiaControlName;",
 //                name);
 //        }
         
@@ -834,7 +834,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControlByHashtable_Name_AutomationId_TimeoutDefault()
         {
             string name1 = "Button111";
@@ -868,21 +868,21 @@ namespace UIAutomationTest.Commands.Get
                 0,
                 ctf);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                @" | Get-UIAButton -SearchCriteria @{Name='" +
+                @" | Get-UiaButton -SearchCriteria @{Name='" +
                 name1 + 
                 "'},@{automationid='" + 
                 auId2 +
                 "'} | " +
-                "Read-UIAControlName;",
+                "Read-UiaControlName;",
                 coll);
         }
         
 //        [Test] //[Test(Description="TBD")]
 //        [Category("Slow")][Category("WinForms")]
 //        [Category("Slow")][Category("Control")]
-//        [Category("Slow")][Category("Get_UIAControl")]
+//        [Category("Slow")][Category("Get_UiaControl")]
 //        public void GetControlByHashtable_WildCard1_TimeoutDefault()
 //        {
 //            string name = "ccc";
@@ -902,11 +902,11 @@ namespace UIAutomationTest.Commands.Get
 //                0,
 //                (ControlToForm[])arrList.ToArray(typeof(ControlToForm)));
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-//                @"Get-UIAWindow -n " + 
+//                @"Get-UiaWindow -n " + 
 //                MiddleLevelCode.TestFormNameEmpty +
-//                " | Get-UIAControl -ControlType Button -Name " + 
+//                " | Get-UiaControl -ControlType Button -Name " + 
 //                nameToSearch +
-//                " -timeout 2000 | Read-UIAControlName;",
+//                " -timeout 2000 | Read-UiaControlName;",
 //                name);
 //        }
 
@@ -918,7 +918,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControlByTextSearch_AutomationId_Timeout2000()
         {
             string auId = "Button111";
@@ -930,12 +930,12 @@ namespace UIAutomationTest.Commands.Get
                 auId,
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAControl " + 
+                " | Get-UiaControl " + 
                 auId + 
                 " -timeout 2000 | " +
-                "Read-UIAControlAutomationId",
+                "Read-UiaControlAutomationId",
                 auId);
         }
         
@@ -943,7 +943,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControlByTextSearch_Title_Timeout2000()
         {
             string name = "Button222";
@@ -955,11 +955,11 @@ namespace UIAutomationTest.Commands.Get
                 "btn",
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAControl " + 
+                " | Get-UiaControl " + 
                 name + " -timeout 2000 | " +
-                "Read-UIAControlName",
+                "Read-UiaControlName",
                 name);
         }
         
@@ -967,7 +967,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControlByTextSearch_Win32_Title_Timeout2000()
         {
             string name = "Button222";
@@ -979,11 +979,11 @@ namespace UIAutomationTest.Commands.Get
                 "btn",
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAControl " + 
+                " | Get-UiaControl " + 
                 name + " -Win32 -timeout 2000 | " +
-                "Read-UIAControlName",
+                "Read-UiaControlName",
                 name);
         }
         
@@ -991,7 +991,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControlByTextSearch_Value_Timeout2000()
         {
             string auId = "Edit222";
@@ -1004,17 +1004,17 @@ namespace UIAutomationTest.Commands.Get
                 auId,
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = Get-UIAWindow -pn " + 
+                @"$null = Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAControl -AutomationId '" + 
+                " | Get-UiaControl -AutomationId '" + 
                 auId + "' | " +
-                "Clear-UIAControlText | " +
-                "Set-UIAControlText '" +
+                "Clear-UiaControlText | " +
+                "Set-UiaControlText '" +
                 expectedString +
                 "'; " +
-                "Get-UIAControl '" +
+                "Get-UiaControl '" +
                 expectedString +
-                "' -timeout 2000 | Read-UIAControlAutomationId;",
+                "' -timeout 2000 | Read-UiaControlAutomationId;",
                 auId);
         }
         
@@ -1022,7 +1022,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControlByTextSearch_Win32_Value_Timeout2000()
         {
             string auId = "Edit222";
@@ -1035,17 +1035,17 @@ namespace UIAutomationTest.Commands.Get
                 auId,
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = Get-UIAWindow -pn " + 
+                @"$null = Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAControl -AutomationId '" + 
+                " | Get-UiaControl -AutomationId '" + 
                 auId + "' | " +
-                "Clear-UIAControlText | " +
-                "Set-UIAControlText '" +
+                "Clear-UiaControlText | " +
+                "Set-UiaControlText '" +
                 expectedString +
                 "'; " +
-                "Get-UIAControl '" +
+                "Get-UiaControl '" +
                 expectedString +
-                "' -Win32 -timeout 2000 | Read-UIAControlAutomationId;",
+                "' -Win32 -timeout 2000 | Read-UiaControlAutomationId;",
                 auId);
         }
         
@@ -1054,7 +1054,7 @@ namespace UIAutomationTest.Commands.Get
 //        [Category("Slow")]
 //        [Category("WinForms")]
 //        [Category("Control")]
-//        [Category("Get_UIAControl")]
+//        [Category("Get_UiaControl")]
 //        public void GetControlByTextSearch_ControlType_Timeout2000()
 //        {
 //            MiddleLevelCode.StartProcessWithFormAndControl(
@@ -1065,9 +1065,9 @@ namespace UIAutomationTest.Commands.Get
 //                "ddd",
 //                0);
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-//                @"Get-UIAWindow -pn " + 
+//                @"Get-UiaWindow -pn " + 
 //                MiddleLevelCode.TestFormProcess +
-//                " | Get-UIAControl -ControlType Button -timeout 2000 | Read-UIAControlType",
+//                " | Get-UiaControl -ControlType Button -timeout 2000 | Read-UiaControlType",
 //                "ControlType.Button");
 //        }
 
@@ -1078,7 +1078,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControlByValue_WildCard_TimeoutDefault() //Timeout2000()
         {
             string auId1 = "Edit1";
@@ -1091,18 +1091,18 @@ namespace UIAutomationTest.Commands.Get
                 auId1,
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = Get-UIAWindow -pn " + 
+                @"$null = Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAControl -AutomationId " + 
+                " | Get-UiaControl -AutomationId " + 
                 auId1 + 
                 " | " +
                 //"Set-UIAcontrolText -Text '" +
-                "Set-UIAEditText -Text '" +
+                "Set-UiaEditText -Text '" +
                 expectedValue +
-                "'; Get-UIAEdit -Value '" +
+                "'; Get-UiaEdit -Value '" +
                 expectedValue +
-                //"' -timeout 2000 | Get-UIAEditText;",
-                "' | Get-UIAEditText;",
+                //"' -timeout 2000 | Get-UiaEditText;",
+                "' | Get-UiaEditText;",
                 expectedValue);
         }
 
@@ -1110,7 +1110,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControlByValue_Win32_WildCard_TimeoutDefault() //Timeout2000()
         {
             string auId1 = "Edit1";
@@ -1123,18 +1123,18 @@ namespace UIAutomationTest.Commands.Get
                 auId1,
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = Get-UIAWindow -pn " + 
+                @"$null = Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAControl -AutomationId " + 
+                " | Get-UiaControl -AutomationId " + 
                 auId1 + 
                 " | " +
                 //"Set-UIAcontrolText -Text '" +
-                "Set-UIAEditText -Text '" +
+                "Set-UiaEditText -Text '" +
                 expectedValue +
-                "'; Get-UIAEdit -Value '" +
+                "'; Get-UiaEdit -Value '" +
                 expectedValue +
-                //"' -timeout 2000 | Get-UIAEditText;",
-                "' -Win32 | Get-UIAEditText;",
+                //"' -timeout 2000 | Get-UiaEditText;",
+                "' -Win32 | Get-UiaEditText;",
                 expectedValue);
         }
 
@@ -1142,7 +1142,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControlByValueX2_WildCard_TimeoutDefault()
         {
             string auId1 = "Edit1";
@@ -1170,13 +1170,13 @@ namespace UIAutomationTest.Commands.Get
                 0,
                 (ControlToForm[])arrList.ToArray(typeof(ControlToForm)));
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = Get-UIAWindow -n " + 
+                @"$null = Get-UiaWindow -n " + 
                 MiddleLevelCode.TestFormNameEmpty +
-                " | Get-UIAControl -AutomationId Edit* | Set-UIAEditText -Text '" + 
+                " | Get-UiaControl -AutomationId Edit* | Set-UiaEditText -Text '" + 
                 expectedValue +
-                "'; Get-UIAEdit -Value '" +
+                "'; Get-UiaEdit -Value '" +
                 expectedValue +
-                "' | Get-UIAEditText;",
+                "' | Get-UiaEditText;",
                 expectedValue);
         }
 
@@ -1184,7 +1184,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControlByValueAndAutomationId_WildCard_TimeoutDefault()
         {
             string auId1 = "Edit1";
@@ -1197,18 +1197,18 @@ namespace UIAutomationTest.Commands.Get
                 auId1,
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = Get-UIAWindow -pn " + 
+                @"$null = Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAControl -AutomationId " + 
+                " | Get-UiaControl -AutomationId " + 
                 auId1 + 
                 " | " +
-                "Set-UIAEditText -Text '" +
+                "Set-UiaEditText -Text '" +
                 expectedValue +
-                "'; Get-UIAEdit -Value '" +
+                "'; Get-UiaEdit -Value '" +
                 expectedValue +
                 "' -AutomationId '" +
                 auId1 +
-                "' | Get-UIAEditText;",
+                "' | Get-UiaEditText;",
                 expectedValue);
         }
         
@@ -1216,7 +1216,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControlByNoValueAndAutomationId_WildCard_Timeout2000()
         {
             string auId1 = "Button1";
@@ -1229,17 +1229,17 @@ namespace UIAutomationTest.Commands.Get
                 auId1,
                 0);
             CmdletUnitTest.TestRunspace.RunAndGetTheException(
-                @"$null = Get-UIAWindow -pn " + 
+                @"$null = Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAButton -Value '" +
+                " | Get-UiaButton -Value '" +
                 expectedValue +
                 "' -AutomationId '" +
                 auId1 +
                 "' -timeout 2000;",
                 "CmdletInvocationException",
                 // 20130219
-                //@"Get-UIAButton: timeout expired for class: ' + , control type: Button, title:");
-                @"Get-UIAButton: timeout expired for control with class: + '', control type: 'Button', title: '', automationId: 'Button1', value: 'my text'");
+                //@"Get-UiaButton: timeout expired for class: ' + , control type: Button, title:");
+                @"Get-UiaButton: timeout expired for control with class: + '', control type: 'Button', title: '', automationId: 'Button1', value: 'my text'");
         }
 
 // =========================================================

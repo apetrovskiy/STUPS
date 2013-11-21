@@ -34,7 +34,7 @@ namespace UIAutomation.Commands
         delegate void StartRecording(TranscriptCmdletBase cmdlet);
         private void startRecording(TranscriptCmdletBase cmdlet)
         {
-            // UIAHelper.ProcessingTranscript(cmdlet);
+            // UiaHelper.ProcessingTranscript(cmdlet);
             Global.GTranscript = true;
             int counter = 0;
             cmdlet.oddRootElement =
@@ -50,8 +50,8 @@ namespace UIAutomation.Commands
                 //
                 bool res =
                     // 20131114
-                    //UIAHelper.ProcessingTranscriptOnce(cmdlet, counter);
-                    UIAHelper.ProcessingTranscriptOnce(cmdlet, counter, System.Windows.Forms.Cursor.Position);
+                    //UiaHelper.ProcessingTranscriptOnce(cmdlet, counter);
+                    UiaHelper.ProcessingTranscriptOnce(cmdlet, counter, System.Windows.Forms.Cursor.Position);
                 if (!res) break;
             } while (Global.GTranscript);
             
@@ -78,7 +78,7 @@ namespace UIAutomation.Commands
             
             
             //// this.Cmdlet.NoUI = true;
-            //// UIAHelper.ProcessingTranscript(this.Cmdlet)
+            //// UiaHelper.ProcessingTranscript(this.Cmdlet)
             if (!this.Cmdlet.Paused) {
                 ////StartRecording startRec = new RecorderFrom.StartRecording(startRecording);
                 ////this.Invoke(startRec, this.Cmdlet);

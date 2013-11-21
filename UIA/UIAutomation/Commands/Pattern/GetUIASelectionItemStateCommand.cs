@@ -13,86 +13,86 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of InvokeUIASelectionItemStateCommand.
+    /// Description of InvokeUiaSelectionItemStateCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIASelectionItemState")]
-    public class InvokeUIASelectionItemStateCommand : PatternCmdletBase
+    [Cmdlet(VerbsCommon.Get, "UiaSelectionItemState")]
+    public class InvokeUiaSelectionItemStateCommand : PatternCmdletBase
     {
-        public InvokeUIASelectionItemStateCommand()
+        public InvokeUiaSelectionItemStateCommand()
         {
             WhatToDo = "SelectionItemState";
         }
     }
     
     /// <summary>
-    /// Description of InvokeUIACustomSelectionItemStateCommand.
+    /// Description of InvokeUiaCustomSelectionItemStateCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIACustomSelectionItemState")]
+    [Cmdlet(VerbsCommon.Get, "UiaCustomSelectionItemState")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIACustomSelectionItemStateCommand : InvokeUIASelectionItemStateCommand
-    { public InvokeUIACustomSelectionItemStateCommand() { } }
+    public class InvokeUiaCustomSelectionItemStateCommand : InvokeUiaSelectionItemStateCommand
+    { public InvokeUiaCustomSelectionItemStateCommand() { } }
     
     /// <summary>
-    /// Description of InvokeUIADataItemSelectionItemStateCommand.
+    /// Description of InvokeUiaDataItemSelectionItemStateCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIADataItemSelectionItemState")]
+    [Cmdlet(VerbsCommon.Get, "UiaDataItemSelectionItemState")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIADataItemSelectionItemStateCommand : InvokeUIASelectionItemStateCommand
-    { public InvokeUIADataItemSelectionItemStateCommand() { } }
+    public class InvokeUiaDataItemSelectionItemStateCommand : InvokeUiaSelectionItemStateCommand
+    { public InvokeUiaDataItemSelectionItemStateCommand() { } }
         
     /// <summary>
-    /// Description of InvokeUIAImageSelectionItemStateCommand.
+    /// Description of InvokeUiaImageSelectionItemStateCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAImageSelectionItemState")]
+    [Cmdlet(VerbsCommon.Get, "UiaImageSelectionItemState")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAImageSelectionItemStateCommand : InvokeUIASelectionItemStateCommand
-    { public InvokeUIAImageSelectionItemStateCommand() { } }
+    public class InvokeUiaImageSelectionItemStateCommand : InvokeUiaSelectionItemStateCommand
+    { public InvokeUiaImageSelectionItemStateCommand() { } }
     
     /// <summary>
-    /// Description of InvokeUIAListItemSelectionItemStateCommand.
+    /// Description of InvokeUiaListItemSelectionItemStateCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAListItemSelectionItemState")]
+    [Cmdlet(VerbsCommon.Get, "UiaListItemSelectionItemState")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAListItemSelectionItemStateCommand : InvokeUIASelectionItemStateCommand
-    { public InvokeUIAListItemSelectionItemStateCommand() { } }
+    public class InvokeUiaListItemSelectionItemStateCommand : InvokeUiaSelectionItemStateCommand
+    { public InvokeUiaListItemSelectionItemStateCommand() { } }
     
     /// <summary>
-    /// Description of InvokeUIAMenuItemSelectionItemStateCommand.
+    /// Description of InvokeUiaMenuItemSelectionItemStateCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAMenuItemSelectionItemState")]
+    [Cmdlet(VerbsCommon.Get, "UiaMenuItemSelectionItemState")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAMenuItemSelectionItemStateCommand : InvokeUIASelectionItemStateCommand
-    { public InvokeUIAMenuItemSelectionItemStateCommand() { } }
+    public class InvokeUiaMenuItemSelectionItemStateCommand : InvokeUiaSelectionItemStateCommand
+    { public InvokeUiaMenuItemSelectionItemStateCommand() { } }
     
     /// <summary>
-    /// Description of InvokeUIARadioButtonSelectionItemStateCommand.
+    /// Description of InvokeUiaRadioButtonSelectionItemStateCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIARadioButtonSelectionItemState")]
+    [Cmdlet(VerbsCommon.Get, "UiaRadioButtonSelectionItemState")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIARadioButtonSelectionItemStateCommand : InvokeUIASelectionItemStateCommand
-    { public InvokeUIARadioButtonSelectionItemStateCommand() { } }
+    public class InvokeUiaRadioButtonSelectionItemStateCommand : InvokeUiaSelectionItemStateCommand
+    { public InvokeUiaRadioButtonSelectionItemStateCommand() { } }
     
     /// <summary>
-    /// Description of InvokeUIATabItemSelectionItemStateCommand.
+    /// Description of InvokeUiaTabItemSelectionItemStateCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIATabItemSelectionItemState")]
+    [Cmdlet(VerbsCommon.Get, "UiaTabItemSelectionItemState")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIATabItemSelectionItemStateCommand : InvokeUIASelectionItemStateCommand
-    { public InvokeUIATabItemSelectionItemStateCommand() { } }
+    public class InvokeUiaTabItemSelectionItemStateCommand : InvokeUiaSelectionItemStateCommand
+    { public InvokeUiaTabItemSelectionItemStateCommand() { } }
     
     /// <summary>
-    /// Description of InvokeUIATreeItemSelectionItemStateCommand.
+    /// Description of InvokeUiaTreeItemSelectionItemStateCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIATreeItemSelectionItemState")]
+    [Cmdlet(VerbsCommon.Get, "UiaTreeItemSelectionItemState")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIATreeItemSelectionItemStateCommand : InvokeUIASelectionItemStateCommand
-    { public InvokeUIATreeItemSelectionItemStateCommand() { } }
+    public class InvokeUiaTreeItemSelectionItemStateCommand : InvokeUiaSelectionItemStateCommand
+    { public InvokeUiaTreeItemSelectionItemStateCommand() { } }
 }

@@ -13,12 +13,12 @@ namespace TMX.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of ImportTMXTestSettingsCommand.
+    /// Description of ImportTmxTestSettingsCommand.
     /// </summary>
-    [Cmdlet(VerbsData.Import, "TMXTestSettings")]
-    public class ImportTMXTestSettingsCommand : SettingsCmdletBase
+    [Cmdlet(VerbsData.Import, "TmxTestSettings")]
+    public class ImportTmxTestSettingsCommand : SettingsCmdletBase
     {
-        public ImportTMXTestSettingsCommand()
+        public ImportTmxTestSettingsCommand()
         {
         }
         
@@ -33,7 +33,7 @@ namespace TMX.Commands
             
             this.CheckInputFile(this.Path);
             
-            TMXHelper.ImportTestSettings(this, this.Path, this.VariableName);
+            TmxHelper.ImportTestSettings(this, this.Path, this.VariableName);
         }
     }
 }

@@ -13,10 +13,10 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of ShowUIAContextMenuCommand.
+    /// Description of ShowUiaContextMenuCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Show, "UIAContextMenu")]
-    public class ShowUIAContextMenuCommand : HotkeyCmdletBase
+    [Cmdlet(VerbsCommon.Show, "UiaContextMenu")]
+    public class ShowUiaContextMenuCommand : HotkeyCmdletBase
     {
         protected override void BeginProcessing()
         {

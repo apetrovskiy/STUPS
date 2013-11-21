@@ -13,13 +13,13 @@ namespace TMX.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of RestoreTMXTestResultsCommand.
+    /// Description of RestoreTmxTestResultsCommand.
     /// </summary>
-    [Cmdlet(VerbsData.Restore, "TMXTestResults")]
+    [Cmdlet(VerbsData.Restore, "TmxTestResults")]
     [OutputType(typeof(bool))]
-    public class RestoreTMXTestResultsCommand : TestResultCmdletBase
+    public class RestoreTmxTestResultsCommand : TestResultCmdletBase
     {
-        public RestoreTMXTestResultsCommand()
+        public RestoreTmxTestResultsCommand()
         {
         }
     }

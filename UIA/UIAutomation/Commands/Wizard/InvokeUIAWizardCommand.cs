@@ -15,12 +15,12 @@ namespace UIAutomation.Commands
     using System.Collections.Generic;
 
     /// <summary>
-    /// Description of InvokeUIAWizardCommand.
+    /// Description of InvokeUiaWizardCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAWizard")]
-    public class InvokeUIAWizardCommand : WizardRunCmdletBase
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaWizard")]
+    public class InvokeUiaWizardCommand : WizardRunCmdletBase
     {
-        public InvokeUIAWizardCommand()
+        public InvokeUiaWizardCommand()
         {
         }
         
@@ -75,8 +75,8 @@ namespace UIAutomation.Commands
 
             this.WriteInfo(this, "accepted " + this.DirectionsDictionaries.Count.ToString() + " step directions");
 
-        	UIAInvokeWizardCommand command =
-        		new UIAInvokeWizardCommand(this);
+        	UiaInvokeWizardCommand command =
+        		new UiaInvokeWizardCommand(this);
         	command.Execute();
         }
     }

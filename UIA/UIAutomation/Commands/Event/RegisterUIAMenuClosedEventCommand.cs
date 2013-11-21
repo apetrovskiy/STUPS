@@ -13,12 +13,12 @@ namespace UIAutomation.Commands
     using System.Windows.Automation;
 
     /// <summary>
-    /// Description of RegisterUIAMenuClosedEventCommand.
+    /// Description of RegisterUiaMenuClosedEventCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Register, "UIAMenuClosedEvent")]
-    public class RegisterUIAMenuClosedEventCommand : EventCmdletBase
+    [Cmdlet(VerbsLifecycle.Register, "UiaMenuClosedEvent")]
+    public class RegisterUiaMenuClosedEventCommand : EventCmdletBase
     {
-        public RegisterUIAMenuClosedEventCommand()
+        public RegisterUiaMenuClosedEventCommand()
         {
             this.AutomationEventType = AutomationElement.MenuClosedEvent;
             this.AutomationEventHandler = OnUIAutomationEvent;

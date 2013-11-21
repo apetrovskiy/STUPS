@@ -13,12 +13,12 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of NewUIATestProfileCommand.
+    /// Description of NewUiaTestProfileCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.New, "UIATestProfile")]
-    public class NewUIATestProfileCommand : ProfileCmdletBase
+    [Cmdlet(VerbsCommon.New, "UiaTestProfile")]
+    public class NewUiaTestProfileCommand : ProfileCmdletBase
     {
-        public NewUIATestProfileCommand()
+        public NewUiaTestProfileCommand()
         {
         }
         

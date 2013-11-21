@@ -13,13 +13,13 @@ namespace TMX.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of AddTMXTestCaseCommand.
+    /// Description of AddTmxTestCaseCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Add, "TMXTestCase")]
+    [Cmdlet(VerbsCommon.Add, "TmxTestCase")]
     [OutputType(typeof(ITestCase))]
-    public class AddTMXTestCaseCommand : AddTestCaseCmdletBase //TestCaseCmdletBase
+    public class AddTmxTestCaseCommand : AddTestCaseCmdletBase //TestCaseCmdletBase
     {
-        public AddTMXTestCaseCommand()
+        public AddTmxTestCaseCommand()
         {
         }
         
@@ -30,8 +30,8 @@ namespace TMX.Commands
         
         protected override void ProcessRecord()
         {
-            TMXAddTestCaseCommand command =
-                new TMXAddTestCaseCommand(this);
+            TmxAddTestCaseCommand command =
+                new TmxAddTestCaseCommand(this);
             command.Execute();
         }
     }

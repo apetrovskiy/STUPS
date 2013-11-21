@@ -13,12 +13,12 @@ namespace TMX.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of AddTMXTestScenarioCommand.
+    /// Description of AddTmxTestScenarioCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Add, "TMXTestScenario")]
-    public class AddTMXTestScenarioCommand : AddScenarioCmdletBase
+    [Cmdlet(VerbsCommon.Add, "TmxTestScenario")]
+    public class AddTmxTestScenarioCommand : AddScenarioCmdletBase
     {
-        public AddTMXTestScenarioCommand()
+        public AddTmxTestScenarioCommand()
         {
             // 20130605
 //            if (null == TestData.TestSuites || 0 == TestData.TestSuites.Count) {
@@ -34,8 +34,8 @@ namespace TMX.Commands
         /// </summary>
         protected override void ProcessRecord()
         {
-            TMXAddTestScenarioCommand command =
-                new TMXAddTestScenarioCommand(this);
+            TmxAddTestScenarioCommand command =
+                new TmxAddTestScenarioCommand(this);
             command.Execute();
         }
     }

@@ -7,18 +7,18 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMXTest.Commands.TestStructure
+namespace TmxTest.Commands.TestStructure
 {
     using System;
     using MbUnit.Framework; // using MbUnit.Framework;
     
     /// <summary>
-    /// Description of AddTMXTestResultDetailCommandTestFixture.
+    /// Description of AddTmxTestResultDetailCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Add-TMXTestResultDetail test")]
-    public class AddTMXTestResultDetailCommandTestFixture
+    [TestFixture] // [TestFixture(Description="Add-TmxTestResultDetail test")]
+    public class AddTmxTestResultDetailCommandTestFixture
     {
-        public AddTMXTestResultDetailCommandTestFixture()
+        public AddTmxTestResultDetailCommandTestFixture()
         {
         }
         
@@ -31,12 +31,12 @@ namespace TMXTest.Commands.TestStructure
         [Test] //[Test(Description="The -TestResultDetail parameter test: simple string")]
         [Category("Slow")]
         [Category("TestResultDetailLevel")]
-        [Category("Add_TMXTestResultDetail")]
+        [Category("Add_TmxTestResultDetail")]
         public void TestPrm_TestResultDetail_Simple()
         {
             string testResultDetail = "detail";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Add-TMXTestResultDetail -TestResultDetail " + 
+                @"Add-TmxTestResultDetail -TestResultDetail " + 
                 testResultDetail + 
                 ";" + 
                 "[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Details[0].Name;",
@@ -46,12 +46,12 @@ namespace TMXTest.Commands.TestStructure
         [Test] //[Test(Description="The -TestResultDetail parameter test: complex string")]
         [Category("Slow")]
         [Category("TestResultDetailLevel")]
-        [Category("Add_TMXTestResultDetail")]
+        [Category("Add_TmxTestResultDetail")]
         public void TestPrm_TestResultDetail_Complex()
         {
             string testResultDetail = @"""\\d//e::t`'`'a`""i`""l`<`<`>`>""";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Add-TMXTestResultDetail -TestResultDetail (" + 
+                @"Add-TmxTestResultDetail -TestResultDetail (" + 
                 testResultDetail + 
                 @");" + 
                 "[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Details[0].Name;",
@@ -61,12 +61,12 @@ namespace TMXTest.Commands.TestStructure
         [Test] //[Test(Description="The -Echo parameter test: simple string")]
         [Category("Slow")]
         [Category("TestResultDetailLevel")]
-        [Category("Add_TMXTestResultDetail")]
+        [Category("Add_TmxTestResultDetail")]
         public void TestPrm_Echo_Simple()
         {
             string testResultDetail = "detail";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Add-TMXTestResultDetail -TestResultDetail " + 
+                @"Add-TmxTestResultDetail -TestResultDetail " + 
                 testResultDetail + 
                 " -Echo;" + 
                 "[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Details[0].Name;",
@@ -76,12 +76,12 @@ namespace TMXTest.Commands.TestStructure
         [Test] //[Test(Description="The -Echo parameter test: complex string")]
         [Category("Slow")]
         [Category("TestResultDetailLevel")]
-        [Category("Add_TMXTestResultDetail")]
+        [Category("Add_TmxTestResultDetail")]
         public void TestPrm_Echo_Complex()
         {
             string testResultDetail = @"""\\d//e::t`'`'a`""i`""l`<`<`>`>""";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Add-TMXTestResultDetail -TestResultDetail (" + 
+                @"Add-TmxTestResultDetail -TestResultDetail (" + 
                 testResultDetail + 
                 @") -Echo;" + 
                 "[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Details[0].Name;",

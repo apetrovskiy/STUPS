@@ -582,7 +582,7 @@ namespace UIAutomation
         #endregion declarations
         #endregion the click
         
-        #region Set-UIAControlText
+        #region Set-UiaControlText
         #region declarations
         internal static uint WM_CHAR                        = 0x0102;
         // 20120206 uint WM_SETTEXT                        = 0x000C;
@@ -595,22 +595,22 @@ namespace UIAutomation
         internal static extern bool SendMessage1(IntPtr hWnd, uint Msg,
                                         int wParam, int lParam);
         #endregion declarations
-        #endregion Set-UIAControlText
-        #region Clear-UIAControlText
+        #endregion Set-UiaControlText
+        #region Clear-UiaControlText
         [return: MarshalAs (UnmanagedType.Bool)]
         //[DllImport ("user32.dll", SetLastError = true)]
         [DllImport("user32.dll", EntryPoint="SendMessage", CharSet=CharSet.Auto, SetLastError = true)]
         internal static extern bool SendMessage3 (IntPtr hWnd, uint Msg, IntPtr wParam, string s);  
         //const uint WM_SETTEXT = 0x000c;
         internal static uint WM_SETTEXT                        = 0x000c;
-        #endregion Clear-UIAControlText
+        #endregion Clear-UiaControlText
         
-        #region Get-UIAActiveWindow
+        #region Get-UiaActiveWindow
         #region declarations
         [DllImport("user32.dll")]
         internal static extern IntPtr GetForegroundWindow();
         #endregion declarations
-        #endregion Get-UIAActiveWindow
+        #endregion Get-UiaActiveWindow
         
         #region Sheridan
         #region declarations

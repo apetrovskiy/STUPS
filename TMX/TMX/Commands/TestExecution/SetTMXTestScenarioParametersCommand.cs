@@ -13,12 +13,12 @@ namespace TMX.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of SetTMXTestScenarioParametersCommand.
+    /// Description of SetTmxTestScenarioParametersCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Set, "TMXTestScenarioParameters")]
-    public class SetTMXTestScenarioParametersCommand : InvokeTMXTestScenarioCommand
+    [Cmdlet(VerbsCommon.Set, "TmxTestScenarioParameters")]
+    public class SetTmxTestScenarioParametersCommand : InvokeTmxTestScenarioCommand
     {
-        public SetTMXTestScenarioParametersCommand()
+        public SetTmxTestScenarioParametersCommand()
         {
             this.OnlySetParameters = true;
         }

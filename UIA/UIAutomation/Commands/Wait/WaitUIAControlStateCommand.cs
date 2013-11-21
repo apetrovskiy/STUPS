@@ -13,13 +13,13 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
 
     /// <summary>
-    /// Description of WaitUIAControlStateCommand.
+    /// Description of WaitUiaControlStateCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Wait, "UIAControlState")]
+    [Cmdlet(VerbsLifecycle.Wait, "UiaControlState")]
     [OutputType(new[] { typeof(object) })]
-    public class WaitUIAControlStateCommand : GetControlStateCmdletBase
+    public class WaitUiaControlStateCommand : GetControlStateCmdletBase
     {
-        public WaitUIAControlStateCommand()
+        public WaitUiaControlStateCommand()
         {
         }
         

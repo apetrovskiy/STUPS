@@ -7,19 +7,19 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMXTest.Provider
+namespace TmxTest.Provider
 {
     using System;
     using MbUnit.Framework; // using MbUnit.Framework;
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of TMXProviderTestFixture.
+    /// Description of TmxProviderTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="TMXProvider test")]
-    public class TMXProviderTestFixture
+    [TestFixture] // [TestFixture(Description="TmxProvider test")]
+    public class TmxProviderTestFixture
     {
-        public TMXProviderTestFixture()
+        public TmxProviderTestFixture()
         {
         }
         
@@ -34,7 +34,7 @@ namespace TMXTest.Provider
         [Category("Provider")]
         public void CheckProvider()
         {
-            string name = "TMXProvider";
+            string name = "TmxProvider";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"(Get-PSProvider -PSProvider " + 
                 name + 
@@ -61,8 +61,8 @@ namespace TMXTest.Provider
         public void CheckNewDriveByWindowName()
         {
             string driveName = "TMX1";
-            string providerName = "TMXProvider";
-            string rootpath = @"TMX\TMXProvider::suite1";
+            string providerName = "TmxProvider";
+            string rootpath = @"TMX\TmxProvider::suite1";
             string windowName = "suite1";
             string processName = @"""""";
             int processId = 0;
@@ -91,8 +91,8 @@ namespace TMXTest.Provider
         public void CheckNewDrivebyProcessName()
         {
             string driveName = "TMX2";
-            string providerName = "TMXProvider";
-            string rootpath = @"TMX\TMXProvider::suite2";
+            string providerName = "TmxProvider";
+            string rootpath = @"TMX\TmxProvider::suite2";
             string windowName = @"""""";
             string processName = "mmc";
             int processId = 0;
@@ -121,8 +121,8 @@ namespace TMXTest.Provider
         public void CheckNewDriveByProcessId()
         {
             string driveName = "TMX3";
-            string providerName = "TMXProvider";
-            string rootpath = @"TMX\TMXProvider::suite3";
+            string providerName = "TmxProvider";
+            string rootpath = @"TMX\TmxProvider::suite3";
             string windowName = @"""""";
             string processName = @"""""";
             int processId = 1024;

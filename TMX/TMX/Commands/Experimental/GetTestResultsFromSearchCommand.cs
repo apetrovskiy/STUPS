@@ -33,12 +33,12 @@ namespace TMX.Commands
             cmdlet.FilterAll = true;
 
             IOrderedEnumerable<TestSuite> suites =
-                TMXHelper.SearchForSuites(cmdlet);
+                TmxHelper.SearchForSuites(cmdlet);
             
 cmdlet.FilterNone = true;
 
             IOrderedEnumerable<TestScenario> scenarios = 
-                TMXHelper.SearchForScenarios(cmdlet);
+                TmxHelper.SearchForScenarios(cmdlet);
 
             //cmdlet.FilterAll = false;
             //cmdlet.FilterPassedWithBadSmell = true;
@@ -46,10 +46,10 @@ cmdlet.FilterNone = true;
             
             
             IOrderedEnumerable<TestResult> testResults = 
-                TMXHelper.SearchForTestResults(cmdlet);
+                TmxHelper.SearchForTestResults(cmdlet);
             
             XElement suitesElement = 
-                TMXHelper.CreateSuitesXElementWithParameters(
+                TmxHelper.CreateSuitesXElementWithParameters(
                     suites,
                     scenarios,
                     testResults,

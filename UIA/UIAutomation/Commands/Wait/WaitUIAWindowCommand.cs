@@ -16,12 +16,12 @@ namespace UIAutomation.Commands
     using System.Collections;
     
     /// <summary>
-    /// Description of WaitUIAWindowCommand.
+    /// Description of WaitUiaWindowCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Wait, "UIAWindow", DefaultParameterSetName = "UIA")]
-    public class WaitUIAWindowCommand : GetUIAWindowCommand
+    [Cmdlet(VerbsLifecycle.Wait, "UiaWindow", DefaultParameterSetName = "UIA")]
+    public class WaitUiaWindowCommand : GetUiaWindowCommand
     {
-        public WaitUIAWindowCommand()
+        public WaitUiaWindowCommand()
         {
             this.TestMode = true;
         }

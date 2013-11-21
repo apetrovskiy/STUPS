@@ -13,18 +13,18 @@ namespace TMX.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of ExportTMXTestSettingsCommand.
+    /// Description of ExportTmxTestSettingsCommand.
     /// </summary>
-    [Cmdlet(VerbsData.Export, "TMXTestSettings")]
-    public class ExportTMXTestSettingsCommand : SettingsCmdletBase
+    [Cmdlet(VerbsData.Export, "TmxTestSettings")]
+    public class ExportTmxTestSettingsCommand : SettingsCmdletBase
     {
-        public ExportTMXTestSettingsCommand()
+        public ExportTmxTestSettingsCommand()
         {
         }
         
         protected override void ProcessRecord()
         {
-            TMXHelper.ExportTestSettings(this, this.Path, this.VariableName);
+            TmxHelper.ExportTestSettings(this, this.Path, this.VariableName);
         }
     }
 }

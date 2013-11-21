@@ -13,12 +13,12 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of DisconnectUIARemoteDesktopSessionCommand.
+    /// Description of DisconnectUiaRemoteDesktopSessionCommand.
     /// </summary>
-    [Cmdlet(VerbsCommunications.Disconnect, "UIARemoteDesktopSession")]
-    public class DisconnectUIARemoteDesktopSessionCommand
+    [Cmdlet(VerbsCommunications.Disconnect, "UiaRemoteDesktopSession")]
+    public class DisconnectUiaRemoteDesktopSessionCommand
     {
-        public DisconnectUIARemoteDesktopSessionCommand()
+        public DisconnectUiaRemoteDesktopSessionCommand()
         {
         }
     }

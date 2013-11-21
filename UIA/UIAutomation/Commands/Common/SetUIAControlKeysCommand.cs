@@ -17,10 +17,10 @@ namespace UIAutomation.Commands
     
     
     /// <summary>
-    /// Description of SetUIAControlKeysCommand.
+    /// Description of SetUiaControlKeysCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Set, "UIAControlKeys")]
-    public class SetUIAControlKeysCommand : HasControlInputCmdletBase
+    [Cmdlet(VerbsCommon.Set, "UiaControlKeys")]
+    public class SetUiaControlKeysCommand : HasControlInputCmdletBase
     {
         #region Parameters
         [Parameter(Mandatory = true,

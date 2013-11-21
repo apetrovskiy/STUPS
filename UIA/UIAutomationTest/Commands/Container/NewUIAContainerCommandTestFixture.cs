@@ -11,11 +11,11 @@ using System;
 namespace UIAutomationTest.Commands.Container
 {
     /// <summary>
-    /// Description of NewUIAContainerCommandTestFixture.
+    /// Description of NewUiaContainerCommandTestFixture.
     /// </summary>
-    public class NewUIAContainerCommandTestFixture
+    public class NewUiaContainerCommandTestFixture
     {
-        public NewUIAContainerCommandTestFixture()
+        public NewUiaContainerCommandTestFixture()
         {
         }
     }

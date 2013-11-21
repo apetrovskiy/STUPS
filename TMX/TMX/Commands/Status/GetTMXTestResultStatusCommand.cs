@@ -13,19 +13,19 @@ namespace TMX.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of GetTMXTestResultStatusCommand.
+    /// Description of GetTmxTestResultStatusCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "TMXTestResultStatus")]
-    public class GetTMXTestResultStatusCommand : TestResultStatusCmdletBase //TestResultCmdletBase
+    [Cmdlet(VerbsCommon.Get, "TmxTestResultStatus")]
+    public class GetTmxTestResultStatusCommand : TestResultStatusCmdletBase //TestResultCmdletBase
     {
-        public GetTMXTestResultStatusCommand()
+        public GetTmxTestResultStatusCommand()
         {
         }
         
         protected override void BeginProcessing()
         {
-            TMXGetTestResultStatusCommand command =
-                new TMXGetTestResultStatusCommand(this);
+            TmxGetTestResultStatusCommand command =
+                new TmxGetTestResultStatusCommand(this);
             command.Execute();
         }
     }

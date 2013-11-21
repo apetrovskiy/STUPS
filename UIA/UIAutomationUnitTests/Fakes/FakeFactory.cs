@@ -29,7 +29,7 @@ namespace UIAutomationUnitTests
         {
             IMySuperWrapper element = Substitute.For<IMySuperWrapper>();
             element.Current.ControlType.Returns(controlType);
-            //UIAHelper.GetControlTypeByTypeName(controlType.ProgrammaticName.Substring(controlType.ProgrammaticName.IndexOf('.')));
+            //UiaHelper.GetControlTypeByTypeName(controlType.ProgrammaticName.Substring(controlType.ProgrammaticName.IndexOf('.')));
             element.Current.Name.Returns(!string.IsNullOrEmpty(name) ? name : string.Empty);
             element.Current.AutomationId.Returns(!string.IsNullOrEmpty(automationId) ? automationId : string.Empty);
             element.Current.ClassName.Returns(!string.IsNullOrEmpty(className) ? className : string.Empty);

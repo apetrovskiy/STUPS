@@ -10,9 +10,9 @@
 namespace UIAutomationUnitTests.ParamChecks.No
 {
     /// <summary>
-    /// Description of WaitUIANoWindowCommandTestFixture.
+    /// Description of WaitUiaNoWindowCommandTestFixture.
     /// </summary>
-    public class WaitUIANoWindowCommandTestFixture
+    public class WaitUiaNoWindowCommandTestFixture
     {
     }
 }

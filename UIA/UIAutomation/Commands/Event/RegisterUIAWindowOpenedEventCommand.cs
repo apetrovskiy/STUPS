@@ -13,14 +13,14 @@ namespace UIAutomation.Commands
     using System.Windows.Automation;
 
     /// <summary>
-    /// Description of RegisterUIAWindowOpenedEventCommand.
+    /// Description of RegisterUiaWindowOpenedEventCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Register, "UIAWindowOpenedEvent")]
+    [Cmdlet(VerbsLifecycle.Register, "UiaWindowOpenedEvent")]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class RegisterUIAWindowOpenedEventCommand : EventCmdletBase
+    public class RegisterUiaWindowOpenedEventCommand : EventCmdletBase
     {
         #region Constructor
-        public RegisterUIAWindowOpenedEventCommand()
+        public RegisterUiaWindowOpenedEventCommand()
         {
             base.AutomationEventType = 
                 WindowPattern.WindowOpenedEvent;

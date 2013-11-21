@@ -13,14 +13,14 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
 
     /// <summary>
-    /// Description of InvokeUIATransformPatternRotateCommand.
+    /// Description of InvokeUiaTransformPatternRotateCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIATransformPatternRotate")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaTransformPatternRotate")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIATransformPatternRotateCommand : PatternCmdletBase
+    public class InvokeUiaTransformPatternRotateCommand : PatternCmdletBase
     {
-        public InvokeUIATransformPatternRotateCommand()
+        public InvokeUiaTransformPatternRotateCommand()
         {
             WhatToDo = "TransformRotate";
             TransformRotateDegrees = 1;
@@ -32,84 +32,84 @@ namespace UIAutomation.Commands
     }
     
     /// <summary>
-    /// Description of InvokeUIACustomTransformRotateCommand.
+    /// Description of InvokeUiaCustomTransformRotateCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIACustomTransformRotate")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaCustomTransformRotate")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIACustomTransformRotateCommand : InvokeUIATransformPatternRotateCommand
-    { public InvokeUIACustomTransformRotateCommand() { } }
+    public class InvokeUiaCustomTransformRotateCommand : InvokeUiaTransformPatternRotateCommand
+    { public InvokeUiaCustomTransformRotateCommand() { } }
 
     /// <summary>
-    /// Description of InvokeUIAHeaderTransformRotateCommand.
+    /// Description of InvokeUiaHeaderTransformRotateCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAHeaderTransformRotate")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaHeaderTransformRotate")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAHeaderTransformRotateCommand : InvokeUIATransformPatternRotateCommand
-    { public InvokeUIAHeaderTransformRotateCommand() { } }
+    public class InvokeUiaHeaderTransformRotateCommand : InvokeUiaTransformPatternRotateCommand
+    { public InvokeUiaHeaderTransformRotateCommand() { } }
         
     /// <summary>
-    /// Description of InvokeUIAHeaderItemTransformRotateCommand.
+    /// Description of InvokeUiaHeaderItemTransformRotateCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAHeaderItemTransformRotate")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaHeaderItemTransformRotate")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAHeaderItemTransformRotateCommand : InvokeUIATransformPatternRotateCommand
-    { public InvokeUIAHeaderItemTransformRotateCommand() { } }
+    public class InvokeUiaHeaderItemTransformRotateCommand : InvokeUiaTransformPatternRotateCommand
+    { public InvokeUiaHeaderItemTransformRotateCommand() { } }
         
     /// <summary>
-    /// Description of InvokeUIAMenuBarTransformRotateCommand.
+    /// Description of InvokeUiaMenuBarTransformRotateCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAMenuBarTransformRotate")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaMenuBarTransformRotate")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAMenuBarTransformRotateCommand : InvokeUIATransformPatternRotateCommand
-    { public InvokeUIAMenuBarTransformRotateCommand() { } }
+    public class InvokeUiaMenuBarTransformRotateCommand : InvokeUiaTransformPatternRotateCommand
+    { public InvokeUiaMenuBarTransformRotateCommand() { } }
         
     /// <summary>
-    /// Description of InvokeUIAPaneTransformRotateCommand.
+    /// Description of InvokeUiaPaneTransformRotateCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAPaneTransformRotate")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaPaneTransformRotate")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAPaneTransformRotateCommand : InvokeUIATransformPatternRotateCommand
-    { public InvokeUIAPaneTransformRotateCommand() { } }
+    public class InvokeUiaPaneTransformRotateCommand : InvokeUiaTransformPatternRotateCommand
+    { public InvokeUiaPaneTransformRotateCommand() { } }
         
     /// <summary>
-    /// Description of InvokeUIAThumbTransformRotateCommand.
+    /// Description of InvokeUiaThumbTransformRotateCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAThumbTransformRotate")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaThumbTransformRotate")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAThumbTransformRotateCommand : InvokeUIATransformPatternRotateCommand
-    { public InvokeUIAThumbTransformRotateCommand() { } }
+    public class InvokeUiaThumbTransformRotateCommand : InvokeUiaTransformPatternRotateCommand
+    { public InvokeUiaThumbTransformRotateCommand() { } }
         
     /// <summary>
-    /// Description of InvokeUIAToolBarTransformRotateCommand.
+    /// Description of InvokeUiaToolBarTransformRotateCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAToolBarTransformRotate")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaToolBarTransformRotate")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAToolBarTransformRotateCommand : InvokeUIATransformPatternRotateCommand
-    { public InvokeUIAToolBarTransformRotateCommand() { } }
+    public class InvokeUiaToolBarTransformRotateCommand : InvokeUiaTransformPatternRotateCommand
+    { public InvokeUiaToolBarTransformRotateCommand() { } }
         
     /// <summary>
-    /// Description of InvokeUIAWindowTransformRotateCommand.
+    /// Description of InvokeUiaWindowTransformRotateCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAWindowTransformRotate")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaWindowTransformRotate")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAWindowTransformRotateCommand : InvokeUIATransformPatternRotateCommand
-    { public InvokeUIAWindowTransformRotateCommand() { } }
+    public class InvokeUiaWindowTransformRotateCommand : InvokeUiaTransformPatternRotateCommand
+    { public InvokeUiaWindowTransformRotateCommand() { } }
         
     /// <summary>
-    /// Description of InvokeUIAChildWindowTransformRotateCommand.
+    /// Description of InvokeUiaChildWindowTransformRotateCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAChildWindowTransformRotate")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaChildWindowTransformRotate")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAChildWindowTransformRotateCommand : InvokeUIAWindowTransformRotateCommand
-    { public InvokeUIAChildWindowTransformRotateCommand() { } }
+    public class InvokeUiaChildWindowTransformRotateCommand : InvokeUiaWindowTransformRotateCommand
+    { public InvokeUiaChildWindowTransformRotateCommand() { } }
     
 }

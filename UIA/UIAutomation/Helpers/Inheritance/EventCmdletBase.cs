@@ -17,7 +17,7 @@ namespace UIAutomation
     /// <summary>
     /// Description of HasScriptBlockCmdletBase.
     /// </summary>
-    //[Cmdlet(VerbsLifecycle.Register, "UIADummyEvent")]
+    //[Cmdlet(VerbsLifecycle.Register, "UiaDummyEvent")]
     public class EventCmdletBase : HasControlInputCmdletBase
     {
         #region Constructor

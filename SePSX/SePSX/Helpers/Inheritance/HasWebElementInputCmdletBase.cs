@@ -35,7 +35,7 @@ namespace SePSX
 //        [Parameter(Mandatory = false, 
 //            ValueFromPipeline = true, 
 //            Position = 0,
-//            HelpMessage = "This is usually the output from Get-UIAControl" )] 
+//            HelpMessage = "This is usually the output from Get-UiaControl" )] 
 //        public virtual System.Windows.Automation.AutomationElement InputObject { get; set; }
         
         [Parameter(Mandatory = false, 

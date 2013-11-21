@@ -81,7 +81,7 @@ namespace UIAutomation
                         "TEMP",
                         EnvironmentVariableTarget.User) + 
                     @"\UIAutomation_" +
-                    //UIAHelper.GetTimedFileName() +
+                    //UiaHelper.GetTimedFileName() +
                     PSTestLib.PSTestHelper.GetTimedFileName() +
                     ".log" +
                     "'";
@@ -118,7 +118,7 @@ namespace UIAutomation
                             "TEMP",
                             EnvironmentVariableTarget.User) + 
                             @"\UIAutomation_" +
-                            //UIAHelper.GetTimedFileName() +
+                            //UiaHelper.GetTimedFileName() +
                         PSTestLib.PSTestHelper.GetTimedFileName() +
                             ".log" +
                             "'";

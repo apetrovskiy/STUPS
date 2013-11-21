@@ -13,11 +13,11 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
 
     /// <summary>
-    /// Description of GetUIARegisteredEventCommand.
+    /// Description of GetUiaRegisteredEventCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIARegisteredEvent")]
+    [Cmdlet(VerbsCommon.Get, "UiaRegisteredEvent")]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIARegisteredEventCommand : CommonCmdletBase //EventCmdletBase
+    public class GetUiaRegisteredEventCommand : CommonCmdletBase //EventCmdletBase
     {
         #region Parameters
 //        [Parameter(Mandatory = false)] 

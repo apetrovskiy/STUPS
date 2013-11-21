@@ -67,7 +67,7 @@ namespace UIAutomation
         
         // 20130529
         /// <summary>
-        /// This variable is used in 'negative result' cmdlets like Wait-UIANoWindow
+        /// This variable is used in 'negative result' cmdlets like Wait-UiaNoWindow
         /// </summary>
         protected bool WaitNoWindow { get; set; }
         
@@ -742,7 +742,7 @@ namespace UIAutomation
             //ArrayList tempCollection = new ArrayList();
             
             aeWndCollectionViaWin32 =
-                UIAHelper.EnumChildWindowsFromHandle(
+                UiaHelper.EnumChildWindowsFromHandle(
                     (GetWindowCmdletBase)this,
                     IntPtr.Zero);
             

@@ -15,11 +15,11 @@ namespace UIAutomation.Commands
     using System.Linq;
 
     /// <summary>
-    /// Description of ConvertFromUIATableCommand.
+    /// Description of ConvertFromUiaTableCommand.
     /// </summary>
-    [Cmdlet(VerbsData.ConvertFrom, "UIATable")]
+    [Cmdlet(VerbsData.ConvertFrom, "UiaTable")]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class ConvertFromUIATableCommand : ConvertCmdletBase
+    public class ConvertFromUiaTableCommand : ConvertCmdletBase
     {
         #region Parameters
         #endregion Parameters
@@ -53,7 +53,7 @@ namespace UIAutomation.Commands
                         as TablePattern;
                     
                     bool res1 = 
-                        UIAHelper.GetHeaderItems(ref _control, out strData, this.Delimiter);
+                        UiaHelper.GetHeaderItems(ref _control, out strData, this.Delimiter);
                     
                     if (res1) {
                         this.WriteObject(strData);
@@ -119,7 +119,7 @@ namespace UIAutomation.Commands
                                 
                                 // without a selection
                                 string outString = 
-                                    UIAHelper.GetOutputStringUsingTableGridPattern<System.Windows.Automation.TablePattern>(
+                                    UiaHelper.GetOutputStringUsingTableGridPattern<System.Windows.Automation.TablePattern>(
                                         tblPattern,
                                         tblPattern.Current.ColumnCount,
                                         rowsCounter,
@@ -144,7 +144,7 @@ namespace UIAutomation.Commands
                                 } else {
                                     // without a selection
                                     string outString = 
-                                        UIAHelper.GetOutputStringUsingTableGridPattern<System.Windows.Automation.TablePattern>(
+                                        UiaHelper.GetOutputStringUsingTableGridPattern<System.Windows.Automation.TablePattern>(
                                             tblPattern,
                                             tblPattern.Current.ColumnCount,
                                             rowsCounter,
@@ -165,7 +165,7 @@ namespace UIAutomation.Commands
                         
                         
                     bool res2 = 
-                        UIAHelper.GetHeaders(ref _control, out strData, this.Delimiter);
+                        UiaHelper.GetHeaders(ref _control, out strData, this.Delimiter);
                     if (res2) {
                         this.WriteObject(strData);
                     } else {
@@ -174,8 +174,8 @@ namespace UIAutomation.Commands
                         
                     System.Collections.Generic.List<string> rows = 
                         // 20120823
-                        //UIAHelper.GetOutputStringUsingItemsValuePattern(this.InputObject,
-                        UIAHelper.GetOutputStringUsingItemsValuePattern(inputObject,
+                        //UiaHelper.GetOutputStringUsingItemsValuePattern(this.InputObject,
+                        UiaHelper.GetOutputStringUsingItemsValuePattern(inputObject,
                             this.Delimiter);
                     if (rows.Count <= 0) continue;
                     // 20130318
@@ -211,7 +211,7 @@ namespace UIAutomation.Commands
                         
                         
                         bool res2 = 
-                            UIAHelper.GetHeaders(ref _control, out strData, this.Delimiter);
+                            UiaHelper.GetHeaders(ref _control, out strData, this.Delimiter);
                         if (res2) {
                             this.WriteObject(strData);
                         } else {
@@ -220,8 +220,8 @@ namespace UIAutomation.Commands
                         
                         System.Collections.Generic.List<string> rows = 
                             // 20120823
-                            //UIAHelper.GetOutputStringUsingItemsValuePattern(this.InputObject,
-                            UIAHelper.GetOutputStringUsingItemsValuePattern(inputObject,
+                            //UiaHelper.GetOutputStringUsingItemsValuePattern(this.InputObject,
+                            UiaHelper.GetOutputStringUsingItemsValuePattern(inputObject,
                                                                             this.Delimiter);
                         if (rows.Count > 0) {
                             // 20130318

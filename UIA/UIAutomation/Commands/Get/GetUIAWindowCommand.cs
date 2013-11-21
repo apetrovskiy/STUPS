@@ -14,12 +14,12 @@ namespace UIAutomation.Commands
     using System.Collections;
 
     /// <summary>
-    /// Description of GetUIAWindow.
+    /// Description of GetUiaWindow.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAWindow", DefaultParameterSetName = "UIA")]
+    [Cmdlet(VerbsCommon.Get, "UiaWindow", DefaultParameterSetName = "UIA")]
     [OutputType(typeof(object))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIAWindowCommand : GetWindowCmdletBase
+    public class GetUiaWindowCommand : GetWindowCmdletBase
     {
         #region Parameters
         #endregion Parameters

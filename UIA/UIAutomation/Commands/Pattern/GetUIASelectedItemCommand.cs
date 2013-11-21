@@ -13,12 +13,12 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of GetUIASelectedItemCommand.
+    /// Description of GetUiaSelectedItemCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIASelectedItem")]
-    public class GetUIASelectedItemCommand : PatternCmdletBase
+    [Cmdlet(VerbsCommon.Get, "UiaSelectedItem")]
+    public class GetUiaSelectedItemCommand : PatternCmdletBase
     {
-        public GetUIASelectedItemCommand()
+        public GetUiaSelectedItemCommand()
         {
             WhatToDo = "SelectedItem";
         }

@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMXUnitTests.Commands.TestStructure
+namespace TmxUnitTests.Commands.TestStructure
 {
     using System;
     using MbUnit.Framework;
@@ -15,12 +15,12 @@ namespace TMXUnitTests.Commands.TestStructure
     using TMX;
     
     /// <summary>
-    /// Description of AddTMXTestScenarioCommandTestFixture.
+    /// Description of AddTmxTestScenarioCommandTestFixture.
     /// </summary>
     [TestFixture]
-    public class AddTMXTestScenarioCommandTestFixture
+    public class AddTmxTestScenarioCommandTestFixture
     {
-        public AddTMXTestScenarioCommandTestFixture()
+        public AddTmxTestScenarioCommandTestFixture()
         {
         }
         
@@ -36,7 +36,7 @@ namespace TMXUnitTests.Commands.TestStructure
         }
         
         [Test]
-        [Description("Add-TMXTestScenario -Name name")]
+        [Description("Add-TmxTestScenario -Name name")]
         [Category("Fast")]
         public void AddTestScenario_NoTestSuites_Name()
         {
@@ -50,7 +50,7 @@ namespace TMXUnitTests.Commands.TestStructure
         }
         
         [Test]
-        [Description("Add-TMXTestScenario -Id id")]
+        [Description("Add-TmxTestScenario -Id id")]
         [Category("Fast")]
         public void AddTestScenario_NoTestSuites_Id()
         {
@@ -64,7 +64,7 @@ namespace TMXUnitTests.Commands.TestStructure
         }
         
         [Test]
-        [Description("Add-TMXTestScenario -Name name -Description descr")]
+        [Description("Add-TmxTestScenario -Name name -Description descr")]
         [Category("Fast")]
         public void AddTestScenario_NoTestSuites_Name_Description()
         {
@@ -83,7 +83,7 @@ namespace TMXUnitTests.Commands.TestStructure
         }
         
         [Test]
-        [Description("Add-TMXTestScenario -Id id -Description descr")]
+        [Description("Add-TmxTestScenario -Id id -Description descr")]
         [Category("Fast")]
         public void AddTestScenario_NoTestSuites_Id_Description()
         {
@@ -102,7 +102,7 @@ namespace TMXUnitTests.Commands.TestStructure
         }
         
         [Test]
-        [Description("New-TMXTestSuite -Name suite -Id id; Add-TMXTestScenario -Name name")]
+        [Description("New-TmxTestSuite -Name suite -Id id; Add-TmxTestScenario -Name name")]
         [Category("Fast")]
         public void AddTestScenario_CurrentTestSuite_Name()
         {
@@ -117,7 +117,7 @@ namespace TMXUnitTests.Commands.TestStructure
         }
         
         [Test]
-        [Description("New-TMXTestSuite -Name suite -Id id; Add-TMXTestScenario -Id id")]
+        [Description("New-TmxTestSuite -Name suite -Id id; Add-TmxTestScenario -Id id")]
         [Category("Fast")]
         public void AddTestScenario_CurrentTestSuite_Id()
         {
@@ -132,7 +132,7 @@ namespace TMXUnitTests.Commands.TestStructure
         }
         
         [Test]
-        [Description("New-TMXTestSuite -Name suite -Id id | Add-TMXTestScenario -Name name")]
+        [Description("New-TmxTestSuite -Name suite -Id id | Add-TmxTestScenario -Name name")]
         [Category("Fast")]
         public void AddTestScenario_TestSuiteInPipeline_Name()
         {
@@ -148,7 +148,7 @@ namespace TMXUnitTests.Commands.TestStructure
         }
         
         [Test]
-        [Description("New-TMXTestSuite -Name suite -Id id | Add-TMXTestScenario -Id id")]
+        [Description("New-TmxTestSuite -Name suite -Id id | Add-TmxTestScenario -Id id")]
         [Category("Fast")]
         public void AddTestScenario_TestSuiteInPipeline_Id()
         {
@@ -164,7 +164,7 @@ namespace TMXUnitTests.Commands.TestStructure
         }
         
         [Test]
-        [Description("New-TMXTestSuite -Name suite -Id id; Add-TMXTestScenario -Name name -TestSuiteName suite")]
+        [Description("New-TmxTestSuite -Name suite -Id id; Add-TmxTestScenario -Name name -TestSuiteName suite")]
         [Category("Fast")]
         public void AddTestScenario_TestSuiteName_Name()
         {
@@ -180,7 +180,7 @@ namespace TMXUnitTests.Commands.TestStructure
         }
         
         [Test]
-        [Description("New-TMXTestSuite -Name suite -Id id; Add-TMXTestScenario -Id id -TestSuiteName suite")]
+        [Description("New-TmxTestSuite -Name suite -Id id; Add-TmxTestScenario -Id id -TestSuiteName suite")]
         [Category("Fast")]
         public void AddTestScenario_TestSuiteName_Id()
         {
@@ -196,7 +196,7 @@ namespace TMXUnitTests.Commands.TestStructure
         }
         
         [Test]
-        [Description("New-TMXTestSuite -Name suite -Id id; Add-TMXTestScenario -Name name -TestSuiteId id")]
+        [Description("New-TmxTestSuite -Name suite -Id id; Add-TmxTestScenario -Name name -TestSuiteId id")]
         [Category("Fast")]
         public void AddTestScenario_TestSuiteId_Name()
         {
@@ -212,7 +212,7 @@ namespace TMXUnitTests.Commands.TestStructure
         }
         
         [Test]
-        [Description("New-TMXTestSuite -Name suite -Id id; Add-TMXTestScenario -Id id -TestSuiteId id")]
+        [Description("New-TmxTestSuite -Name suite -Id id; Add-TmxTestScenario -Id id -TestSuiteId id")]
         [Category("Fast")]
         public void AddTestScenario_TestSuiteId_Id()
         {

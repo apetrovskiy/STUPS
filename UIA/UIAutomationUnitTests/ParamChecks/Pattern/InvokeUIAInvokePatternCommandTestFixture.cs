@@ -12,10 +12,10 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
     using MbUnit.Framework;
     
     /// <summary>
-    /// Description of InvokeUIAInvokePatternCommandTestFixture.
+    /// Description of InvokeUiaInvokePatternCommandTestFixture.
     /// </summary>
     [TestFixture]
-    public class InvokeUIAInvokePatternCommandTestFixture
+    public class InvokeUiaInvokePatternCommandTestFixture
     {
         [SetUp]
         public void PrepareRunspace()
@@ -31,101 +31,101 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         
         [Test]
         [Category("Fast")]
-        [Description("Invoke-UIAInvokePattern")]
-        public void Invoke_UIAInvokePattern_NoParameters()
+        [Description("Invoke-UiaInvokePattern")]
+        public void Invoke_UiaInvokePattern_NoParameters()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		"Invoke-UIAInvokePattern;");
+        		"Invoke-UiaInvokePattern;");
         }
         
         [Test]
         [Category("Fast")]
-        [Description("Invoke-UIAInvokePattern -PassThru")]
-        public void Invoke_UIAInvokePattern_PassThru()
+        [Description("Invoke-UiaInvokePattern -PassThru")]
+        public void Invoke_UiaInvokePattern_PassThru()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		"Invoke-UIAInvokePattern -PassThru;");
+        		"Invoke-UiaInvokePattern -PassThru;");
         }
         
 //        [Test]
 //        [Category("Fast")]
-//        [Description("Invoke-UIAInvokePattern 'text'")]
-//        public void Invoke_UIAInvokePattern_ContainsText_Position0()
+//        [Description("Invoke-UiaInvokePattern 'text'")]
+//        public void Invoke_UiaInvokePattern_ContainsText_Position0()
 //        {
 //            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
-//        		"Invoke-UIAInvokePattern 'text';");
+//        		"Invoke-UiaInvokePattern 'text';");
 //        }
 //        
 //        [Test]
 //        [Category("Fast")]
-//        [Description("Invoke-UIAInvokePattern -ContainsText 'text'")]
-//        public void Invoke_UIAInvokePattern_ContainsText()
+//        [Description("Invoke-UiaInvokePattern -ContainsText 'text'")]
+//        public void Invoke_UiaInvokePattern_ContainsText()
 //        {
 //            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
-//        		"Invoke-UIAInvokePattern -ContainsText 'text';");
+//        		"Invoke-UiaInvokePattern -ContainsText 'text';");
 //        }
 //        
 //        [Test]
 //        [Category("Fast")]
-//        [Description("Invoke-UIAInvokePattern -ContainsText 'text' -PassThru")]
-//        public void Invoke_UIAInvokePattern_ContainsText_PassThru()
+//        [Description("Invoke-UiaInvokePattern -ContainsText 'text' -PassThru")]
+//        public void Invoke_UiaInvokePattern_ContainsText_PassThru()
 //        {
 //            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
-//        		"Invoke-UIAInvokePattern -ContainsText 'text' -PassThru;");
+//        		"Invoke-UiaInvokePattern -ContainsText 'text' -PassThru;");
 //        }
 //        
 //        [Test]
 //        [Category("Fast")]
-//        [Description("Invoke-UIAInvokePattern -Name 'text'")]
-//        public void Invoke_UIAInvokePattern_Name()
+//        [Description("Invoke-UiaInvokePattern -Name 'text'")]
+//        public void Invoke_UiaInvokePattern_Name()
 //        {
 //            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
-//        		"Invoke-UIAInvokePattern -Name 'text';");
+//        		"Invoke-UiaInvokePattern -Name 'text';");
 //        }
 //        
 //        [Test]
 //        [Category("Fast")]
-//        [Description("Invoke-UIAInvokePattern -Name 'text' -Win32")]
-//        public void Invoke_UIAInvokePattern_Name_Win32()
+//        [Description("Invoke-UiaInvokePattern -Name 'text' -Win32")]
+//        public void Invoke_UiaInvokePattern_Name_Win32()
 //        {
 //            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
-//        		"Invoke-UIAInvokePattern -Name 'text' -Win32;");
+//        		"Invoke-UiaInvokePattern -Name 'text' -Win32;");
 //        }
 //        
 //        [Test]
 //        [Category("Fast")]
-//        [Description("Invoke-UIAInvokePattern -AutomationId 'text'")]
-//        public void Invoke_UIAInvokePattern_AutomationId()
+//        [Description("Invoke-UiaInvokePattern -AutomationId 'text'")]
+//        public void Invoke_UiaInvokePattern_AutomationId()
 //        {
 //            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
-//        		"Invoke-UIAInvokePattern -AutomationId 'text';");
+//        		"Invoke-UiaInvokePattern -AutomationId 'text';");
 //        }
 //        
 //        [Test]
 //        [Category("Fast")]
-//        [Description("Invoke-UIAInvokePattern -Class 'text'")]
-//        public void Invoke_UIAInvokePattern_Class()
+//        [Description("Invoke-UiaInvokePattern -Class 'text'")]
+//        public void Invoke_UiaInvokePattern_Class()
 //        {
 //            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
-//        		"Invoke-UIAInvokePattern -Class 'text';");
+//        		"Invoke-UiaInvokePattern -Class 'text';");
 //        }
 //        
 //        [Test]
 //        [Category("Fast")]
-//        [Description("Invoke-UIAInvokePattern -Value 'text'")]
-//        public void Invoke_UIAInvokePattern_Value()
+//        [Description("Invoke-UiaInvokePattern -Value 'text'")]
+//        public void Invoke_UiaInvokePattern_Value()
 //        {
 //            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
-//        		"Invoke-UIAInvokePattern -Value 'text';");
+//        		"Invoke-UiaInvokePattern -Value 'text';");
 //        }
 //        
 //        [Test]
 //        [Category("Fast")]
-//        [Description("Invoke-UIAInvokePattern -Name 'text' -AutomationId 'text2' -Class 'text3' -Value 'text4' -PassThru")]
-//        public void Invoke_UIAInvokePattern_Name_AutomationId_Class_Value_PassThru()
+//        [Description("Invoke-UiaInvokePattern -Name 'text' -AutomationId 'text2' -Class 'text3' -Value 'text4' -PassThru")]
+//        public void Invoke_UiaInvokePattern_Name_AutomationId_Class_Value_PassThru()
 //        {
 //            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
-//        		"Invoke-UIAInvokePattern -Name 'text' -AutomationId 'text2' -Class 'text3' -Value 'text4' -PassThru;");
+//        		"Invoke-UiaInvokePattern -Name 'text' -AutomationId 'text2' -Class 'text3' -Value 'text4' -PassThru;");
 //        }
     }
 }

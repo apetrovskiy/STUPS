@@ -13,12 +13,12 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of ConnectUIARemoteDesktopSessionCommand.
+    /// Description of ConnectUiaRemoteDesktopSessionCommand.
     /// </summary>
-    [Cmdlet(VerbsCommunications.Connect, "UIARemoteDesktopSession")]
-    public class ConnectUIARemoteDesktopSessionCommand : RDPCmdletBase
+    [Cmdlet(VerbsCommunications.Connect, "UiaRemoteDesktopSession")]
+    public class ConnectUiaRemoteDesktopSessionCommand : RDPCmdletBase
     {
-        public ConnectUIARemoteDesktopSessionCommand()
+        public ConnectUiaRemoteDesktopSessionCommand()
         {
         }
     }

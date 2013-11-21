@@ -7,18 +7,18 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMXTest.TestData
+namespace TmxTest.TestData
 {
     using System;
     using MbUnit.Framework; // using MbUnit.Framework;
     
     /// <summary>
-    /// Description of TMXEventsTestFixture.
+    /// Description of TmxEventsTestFixture.
     /// </summary>
     [TestFixture] // [TestFixture(Description="123")]
-    public class TMXEventsTestFixture
+    public class TmxEventsTestFixture
     {
-        public TMXEventsTestFixture()
+        public TmxEventsTestFixture()
         {
         }
         
@@ -29,24 +29,24 @@ namespace TMXTest.TestData
         }
         
         
-//        public static event EventHandler TMXNewTestSuiteCreated;
-//        public static event EventHandler TMXTestSuiteOpened;
+//        public static event EventHandler TmxNewTestSuiteCreated;
+//        public static event EventHandler TmxTestSuiteOpened;
 
 
-        [Test] //[Test(Description="The TMXNewTestSuiteCreated event")]
+        [Test] //[Test(Description="The TmxNewTestSuiteCreated event")]
         [Category("Slow")]
         [Category("TMX_Events")]
-        public void TMXEvents_TMXNewTestSuiteCreated()
+        public void TmxEvents_TmxNewTestSuiteCreated()
         {
             string name = "suite1";
-            string eventName = @"""TMXNewTestSuiteCreated""";
+            string eventName = @"""TmxNewTestSuiteCreated""";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"[string]$global:name = ''; " +
                 @"$null = Register-ObjectEvent -InputObject $([TMX.TestData]) " + 
                 @"-EventName " + 
                 eventName +
                 @" -Action {param($src, $e) $global:name = $src.Name;}; " +
-                @"$null = New-TMXTestSuite -Name '" + 
+                @"$null = New-TmxTestSuite -Name '" + 
                 name + 
                 "'; " + 
                 @"sleep -Seconds 2; " + 
@@ -54,24 +54,24 @@ namespace TMXTest.TestData
                 name);
         }
         
-        [Test] //[Test(Description="The TMXTestSuiteOpened event")]
+        [Test] //[Test(Description="The TmxTestSuiteOpened event")]
         [Category("Slow")]
         [Category("TMX_Events")]
-        public void TMXEvents_TMXTestSuiteOpened()
+        public void TmxEvents_TmxTestSuiteOpened()
         {
             string name = "suite1";
-            string eventName = @"""TMXTestSuiteOpened""";
+            string eventName = @"""TmxTestSuiteOpened""";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"[string]$global:name = ''; " +
                 @"$null = Register-ObjectEvent -InputObject $([TMX.TestData]) " + 
                 @"-EventName " + 
                 eventName +
                 @" -Action {param($src, $e) $global:name = $src.Name;}; " +
-                @"$null = New-TMXTestSuite -Name '" + 
+                @"$null = New-TmxTestSuite -Name '" + 
                 name + 
                 "'; " + 
-                @"$null = New-TMXTestSuite -Name 'aaa'; " + 
-                @"$null = Open-TMXTestSuite -Name '" + 
+                @"$null = New-TmxTestSuite -Name 'aaa'; " + 
+                @"$null = Open-TmxTestSuite -Name '" + 
                 name +
                 "'; " + 
                 @"sleep -Seconds 2; " + 
@@ -79,24 +79,24 @@ namespace TMXTest.TestData
                 name);
         }
         
-//        public static event EventHandler TMXNewTestScenarioAdded;
-//        public static event EventHandler TMXTestScenarioOpened;
+//        public static event EventHandler TmxNewTestScenarioAdded;
+//        public static event EventHandler TmxTestScenarioOpened;
 
-        [Test] //[Test(Description="The TMXNewTestScenarioAdded event")]
+        [Test] //[Test(Description="The TmxNewTestScenarioAdded event")]
         [Category("Slow")]
         [Category("TMX_Events")]
-        public void TMXEvents_TMXNewTestScenarioAdded()
+        public void TmxEvents_TmxNewTestScenarioAdded()
         {
             string name = "scenario1";
-            string eventName = @"""TMXNewTestScenarioAdded""";
+            string eventName = @"""TmxNewTestScenarioAdded""";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"[string]$global:name = ''; " +
                 @"$null = Register-ObjectEvent -InputObject $([TMX.TestData]) " + 
                 @"-EventName " + 
                 eventName +
                 @" -Action {param($src, $e) $global:name = $src.Name;}; " +
-                @"$null = New-TMXTestSuite -Name 'aaaa'; " + 
-                @"$null = Add-TMXTestScenario -Name '" +
+                @"$null = New-TmxTestSuite -Name 'aaaa'; " + 
+                @"$null = Add-TmxTestScenario -Name '" +
                 name + 
                 @"'; " +
                 @"sleep -Seconds 2; " + 
@@ -104,25 +104,25 @@ namespace TMXTest.TestData
                 name);
         }
         
-        [Test] //[Test(Description="The TMXTestScenarioOpened event")]
+        [Test] //[Test(Description="The TmxTestScenarioOpened event")]
         [Category("Slow")]
         [Category("TMX_Events")]
-        public void TMXEvents_TMXTestScenarioOpened()
+        public void TmxEvents_TmxTestScenarioOpened()
         {
             string name = "scenario1";
-            string eventName = @"""TMXTestScenarioOpened""";
+            string eventName = @"""TmxTestScenarioOpened""";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"[string]$global:name = ''; " +
                 @"$null = Register-ObjectEvent -InputObject $([TMX.TestData]) " + 
                 @"-EventName " + 
                 eventName +
                 @" -Action {param($src, $e) $global:name = $src.Name;}; " +
-                @"$null = New-TMXTestSuite -Name 'aaaa'; " + 
-                @"$null = Add-TMXTestScenario -Name '" +
+                @"$null = New-TmxTestSuite -Name 'aaaa'; " + 
+                @"$null = Add-TmxTestScenario -Name '" +
                 name + 
                 @"'; " +
-                @"$null = Add-TMXTestScenario -Name 'aaaaa'; " +
-                @"$null = Open-TMXTestScenario -Name '" + 
+                @"$null = Add-TmxTestScenario -Name 'aaaaa'; " +
+                @"$null = Open-TmxTestScenario -Name '" + 
                 name + 
                 @"'; " +
                 @"sleep -Seconds 2; " + 
@@ -130,26 +130,26 @@ namespace TMXTest.TestData
                 name);
         }
 
-//        public static event EventHandler TMXNewTestResultClosed;
-//        public static event EventHandler TMXNewTestResultDetailAdded;
+//        public static event EventHandler TmxNewTestResultClosed;
+//        public static event EventHandler TmxNewTestResultDetailAdded;
 
 
-        [Test] //[Test(Description="The TMXNewTestResultDetailAdded event")]
+        [Test] //[Test(Description="The TmxNewTestResultDetailAdded event")]
         [Category("Slow")]
         [Category("TMX_Events")]
-        public void TMXEvents_TMXNewTestResultDetailAdded()
+        public void TmxEvents_TmxNewTestResultDetailAdded()
         {
             string name = "res1";
-            string eventName = @"""TMXNewTestResultDetailAdded""";
+            string eventName = @"""TmxNewTestResultDetailAdded""";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"[string]$global:name = ''; " +
                 @"$null = Register-ObjectEvent -InputObject $([TMX.TestData]) " + 
                 @"-EventName " + 
                 eventName +
                 @" -Action {param($src, $e) $global:name = $src.Name;}; " +
-                @"$null = New-TMXTestSuite -Name 'aaaa'; " + 
-                @"$null = Add-TMXTestScenario -Name 'bbbb'; " +
-                @"$null = Add-TMXTestResultDetail -TestResultDetail '" + 
+                @"$null = New-TmxTestSuite -Name 'aaaa'; " + 
+                @"$null = Add-TmxTestScenario -Name 'bbbb'; " +
+                @"$null = Add-TmxTestResultDetail -TestResultDetail '" + 
                 name +
                 @"'; " +
                 @"sleep -Seconds 2; " + 
@@ -157,23 +157,23 @@ namespace TMXTest.TestData
                 name);
         }
         
-        [Test] //[Test(Description="The TMXNewTestResultClosed event")]
+        [Test] //[Test(Description="The TmxNewTestResultClosed event")]
         [Category("Slow")]
         [Category("TMX_Events")]
-        public void TMXEvents_TMXNewTestResultClosed()
+        public void TmxEvents_TmxNewTestResultClosed()
         {
             string name = "res1";
-            string eventName = @"""TMXNewTestResultClosed""";
+            string eventName = @"""TmxNewTestResultClosed""";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"[string]$global:name = ''; " +
                 @"$null = Register-ObjectEvent -InputObject $([TMX.TestData]) " + 
                 @"-EventName " + 
                 eventName +
                 @" -Action {param($src, $e) $global:name = $src.Name;}; " +
-                @"$null = New-TMXTestSuite -Name 'aaaa'; " + 
-                @"$null = Add-TMXTestScenario -Name 'bbbb'; " +
-                @"$null = Add-TMXTestResultDetail -TestResultDetail 'cccc'; " +
-                @"$null = Close-TMXTestResult -Name '" +
+                @"$null = New-TmxTestSuite -Name 'aaaa'; " + 
+                @"$null = Add-TmxTestScenario -Name 'bbbb'; " +
+                @"$null = Add-TmxTestResultDetail -TestResultDetail 'cccc'; " +
+                @"$null = Close-TmxTestResult -Name '" +
                 name +
                 @"' -TestPassed; " +
                 @"sleep -Seconds 2; " + 

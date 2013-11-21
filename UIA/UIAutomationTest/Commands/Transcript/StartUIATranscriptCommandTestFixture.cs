@@ -13,10 +13,10 @@ using System.Management.Automation;
 namespace UIAutomationTest.Commands.Transcript
 {
     /// <summary>
-    /// Description of StartUIATranscriptCommandTestFixture.
+    /// Description of StartUiaTranscriptCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Start-UIATranscriptCommand test")]
-    public class StartUIATranscriptCommandTestFixture
+    [TestFixture] // [TestFixture(Description="Start-UiaTranscriptCommand test")]
+    public class StartUiaTranscriptCommandTestFixture
     {
         [SetUp]
         public void PrepareRunspace()

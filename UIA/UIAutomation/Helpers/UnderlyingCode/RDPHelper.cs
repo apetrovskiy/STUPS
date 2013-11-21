@@ -82,7 +82,7 @@ drivestoredirect:s:
         
         public static string RDPFileTemplate { get; set; }
         
-        //public static void CreateRDPFile(NewUIARemoteDesktopProtocolFileCommand cmdlet)
+        //public static void CreateRDPFile(NewUiaRemoteDesktopProtocolFileCommand cmdlet)
         public static void CreateRDPFile(RDPCmdletBase cmdlet)
         {
             if (!string.IsNullOrEmpty(cmdlet.Template)) {
@@ -313,12 +313,12 @@ drivestoredirect:s:
 
             try {
                 System.IO.StreamWriter writer =
-                    new System.IO.StreamWriter(((NewUIARemoteDesktopProtocolFileCommand)cmdlet).Path);
+                    new System.IO.StreamWriter(((NewUiaRemoteDesktopProtocolFileCommand)cmdlet).Path);
                 writer.Write(RDPFileTemplate);
                 writer.Flush();
                 writer.Close();
                 
-                cmdlet.WriteObject(cmdlet, ((NewUIARemoteDesktopProtocolFileCommand)cmdlet).Path);
+                cmdlet.WriteObject(cmdlet, ((NewUiaRemoteDesktopProtocolFileCommand)cmdlet).Path);
             }
             catch (Exception eWriter) {
                 cmdlet.WriteError(

@@ -15,17 +15,17 @@ namespace UIAutomation.Commands
     using System.Linq;
 
     /// <summary>
-    /// Description of ConvertFromUIADataGridCommand.
+    /// Description of ConvertFromUiaDataGridCommand.
     /// </summary>
-    [Cmdlet(VerbsData.ConvertFrom, "UIADataGrid")]
+    [Cmdlet(VerbsData.ConvertFrom, "UiaDataGrid")]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class ConvertFromUIADataGridCommand : ConvertCmdletBase
+    public class ConvertFromUiaDataGridCommand : ConvertCmdletBase
     {
         #region Constructor
         // 20131105
         // refactoring
         /*
-        public ConvertFromUIADataGridCommand()
+        public ConvertFromUiaDataGridCommand()
         {
         }
         */
@@ -67,7 +67,7 @@ namespace UIAutomation.Commands
                     
                 
                     bool res1 = 
-                        UIAHelper.GetHeaderItems(ref _control, out strData, this.Delimiter);
+                        UiaHelper.GetHeaderItems(ref _control, out strData, this.Delimiter);
                     if (res1) {
                         // WriteObject(this, strData);
                         this.WriteObject(strData);
@@ -129,7 +129,7 @@ namespace UIAutomation.Commands
                             } else {
                                 // without a selection
                                 string outString = 
-                                    UIAHelper.GetOutputStringUsingTableGridPattern<System.Windows.Automation.GridPattern>(
+                                    UiaHelper.GetOutputStringUsingTableGridPattern<System.Windows.Automation.GridPattern>(
                                         gridPattern,
                                         gridPattern.Current.ColumnCount,
                                         rowsCounter,
@@ -155,7 +155,7 @@ namespace UIAutomation.Commands
                                 } else {
                                     // without a selection
                                     string outString = 
-                                        UIAHelper.GetOutputStringUsingTableGridPattern<System.Windows.Automation.GridPattern>(
+                                        UiaHelper.GetOutputStringUsingTableGridPattern<System.Windows.Automation.GridPattern>(
                                             gridPattern,
                                             gridPattern.Current.ColumnCount,
                                             rowsCounter,
@@ -177,7 +177,7 @@ namespace UIAutomation.Commands
                         
                         
                     bool res2 = 
-                        UIAHelper.GetHeaders(ref _control, out strData, this.Delimiter);
+                        UiaHelper.GetHeaders(ref _control, out strData, this.Delimiter);
                     if (res2) {
                         this.WriteObject(strData);
                     } else {
@@ -187,8 +187,8 @@ namespace UIAutomation.Commands
                         
                     System.Collections.Generic.List<string> rows = 
                         // 20120823
-                        //UIAHelper.GetOutputStringUsingItemsValuePattern(this.InputObject,
-                        UIAHelper.GetOutputStringUsingItemsValuePattern(inputObject,
+                        //UiaHelper.GetOutputStringUsingItemsValuePattern(this.InputObject,
+                        UiaHelper.GetOutputStringUsingItemsValuePattern(inputObject,
                             this.Delimiter);
                     if (rows.Count <= 0) continue;
                     // RunScriptBlocks(this);
@@ -223,7 +223,7 @@ namespace UIAutomation.Commands
                         
                         
                         bool res2 = 
-                            UIAHelper.GetHeaders(ref _control, out strData, this.Delimiter);
+                            UiaHelper.GetHeaders(ref _control, out strData, this.Delimiter);
                         if (res2) {
                             this.WriteObject(strData);
                         } else {
@@ -233,8 +233,8 @@ namespace UIAutomation.Commands
                         
                         System.Collections.Generic.List<string> rows = 
                             // 20120823
-                            //UIAHelper.GetOutputStringUsingItemsValuePattern(this.InputObject,
-                            UIAHelper.GetOutputStringUsingItemsValuePattern(inputObject,
+                            //UiaHelper.GetOutputStringUsingItemsValuePattern(this.InputObject,
+                            UiaHelper.GetOutputStringUsingItemsValuePattern(inputObject,
                                                                             this.Delimiter);
                         if (rows.Count > 0) {
                             // RunScriptBlocks(this);

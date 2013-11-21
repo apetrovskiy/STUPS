@@ -13,11 +13,11 @@ namespace TMX
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of TMXNewTestSuiteCommand.
+    /// Description of TmxNewTestSuiteCommand.
     /// </summary>
-    internal class TMXNewTestSuiteCommand : TMXCommand
+    internal class TmxNewTestSuiteCommand : TmxCommand
     {
-        internal TMXNewTestSuiteCommand(CommonCmdletBase cmdlet) : base (cmdlet)
+        internal TmxNewTestSuiteCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         
@@ -27,7 +27,7 @@ namespace TMX
                 (NewSuiteCmdletBase)this.Cmdlet;
             
             bool result = 
-                TMX.TMXHelper.NewTestSuite(
+                TMX.TmxHelper.NewTestSuite(
                     cmdlet.Name,
                     cmdlet.Id,
                     cmdlet.TestPlatformId,

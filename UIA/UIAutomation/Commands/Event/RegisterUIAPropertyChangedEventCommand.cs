@@ -13,14 +13,14 @@ namespace UIAutomation.Commands
     using System.Windows.Automation;
 
     /// <summary>
-    /// Description of RegisterUIAPropertyChangedEventCommand.
+    /// Description of RegisterUiaPropertyChangedEventCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Register, "UIAPropertyChangedEvent")]
+    [Cmdlet(VerbsLifecycle.Register, "UiaPropertyChangedEvent")]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class RegisterUIAPropertyChangedEventCommand : EventCmdletBase
+    public class RegisterUiaPropertyChangedEventCommand : EventCmdletBase
     {
         #region Constructor
-        public RegisterUIAPropertyChangedEventCommand()
+        public RegisterUiaPropertyChangedEventCommand()
         {
 //            base.AutomationEventType = 
 //                AutomationElement.AutomationPropertyChangedEvent;
@@ -38,14 +38,14 @@ namespace UIAutomation.Commands
     
     
     /// <summary>
-    /// Description of RegisterUIAGridRowCountChangedEventCommand.
+    /// Description of RegisterUiaGridRowCountChangedEventCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Register, "UIAGridRowCountChangedEvent")]
+    [Cmdlet(VerbsLifecycle.Register, "UiaGridRowCountChangedEvent")]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class RegisterUIAGridRowCountChangedEventCommand : RegisterUIAPropertyChangedEventCommand
+    public class RegisterUiaGridRowCountChangedEventCommand : RegisterUiaPropertyChangedEventCommand
     {
         #region Constructor
-        public RegisterUIAGridRowCountChangedEventCommand()
+        public RegisterUiaGridRowCountChangedEventCommand()
         {
             base.AutomationProperty = 
                 TablePattern.RowCountProperty;
@@ -54,14 +54,14 @@ namespace UIAutomation.Commands
     }
     
     /// <summary>
-    /// Description of RegisterUIAGridColumnCountChangedEventCommand.
+    /// Description of RegisterUiaGridColumnCountChangedEventCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Register, "UIAGridColumnCountChangedEvent")]
+    [Cmdlet(VerbsLifecycle.Register, "UiaGridColumnCountChangedEvent")]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class RegisterUIAGridColumnCountChangedEventCommand : RegisterUIAPropertyChangedEventCommand
+    public class RegisterUiaGridColumnCountChangedEventCommand : RegisterUiaPropertyChangedEventCommand
     {
         #region Constructor
-        public RegisterUIAGridColumnCountChangedEventCommand()
+        public RegisterUiaGridColumnCountChangedEventCommand()
         {
             base.AutomationProperty = 
                 TablePattern.ColumnCountProperty;
@@ -70,14 +70,14 @@ namespace UIAutomation.Commands
     }
     
     /// <summary>
-    /// Description of RegisterUIARangeValueChangedEventCommand.
+    /// Description of RegisterUiaRangeValueChangedEventCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Register, "UIARangeValueChangedEvent")]
+    [Cmdlet(VerbsLifecycle.Register, "UiaRangeValueChangedEvent")]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class RegisterUIARangeValueChangedEventCommand : RegisterUIAPropertyChangedEventCommand
+    public class RegisterUiaRangeValueChangedEventCommand : RegisterUiaPropertyChangedEventCommand
     {
         #region Constructor
-        public RegisterUIARangeValueChangedEventCommand()
+        public RegisterUiaRangeValueChangedEventCommand()
         {
             base.AutomationProperty = 
                 RangeValuePattern.ValueProperty;
@@ -86,14 +86,14 @@ namespace UIAutomation.Commands
     }
     
     /// <summary>
-    /// Description of RegisterUIATableRowCountChangedEventCommand.
+    /// Description of RegisterUiaTableRowCountChangedEventCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Register, "UIATableRowCountChangedEvent")]
+    [Cmdlet(VerbsLifecycle.Register, "UiaTableRowCountChangedEvent")]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class RegisterUIATableRowCountChangedEventCommand : RegisterUIAPropertyChangedEventCommand
+    public class RegisterUiaTableRowCountChangedEventCommand : RegisterUiaPropertyChangedEventCommand
     {
         #region Constructor
-        public RegisterUIATableRowCountChangedEventCommand()
+        public RegisterUiaTableRowCountChangedEventCommand()
         {
             base.AutomationProperty = 
                 TablePattern.RowCountProperty;
@@ -102,14 +102,14 @@ namespace UIAutomation.Commands
     }
     
     /// <summary>
-    /// Description of RegisterUIATableColumnCountChangedEventCommand.
+    /// Description of RegisterUiaTableColumnCountChangedEventCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Register, "UIATableColumnCountChangedEvent")]
+    [Cmdlet(VerbsLifecycle.Register, "UiaTableColumnCountChangedEvent")]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class RegisterUIATableColumnCountChangedEventCommand : RegisterUIAPropertyChangedEventCommand
+    public class RegisterUiaTableColumnCountChangedEventCommand : RegisterUiaPropertyChangedEventCommand
     {
         #region Constructor
-        public RegisterUIATableColumnCountChangedEventCommand()
+        public RegisterUiaTableColumnCountChangedEventCommand()
         {
             base.AutomationProperty = 
                 TablePattern.ColumnCountProperty;
@@ -118,14 +118,14 @@ namespace UIAutomation.Commands
     }
     
     /// <summary>
-    /// Description of RegisterUIAToggleStateChangedEventCommand.
+    /// Description of RegisterUiaToggleStateChangedEventCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Register, "UIAToggleStateChangedEvent")]
+    [Cmdlet(VerbsLifecycle.Register, "UiaToggleStateChangedEvent")]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class RegisterUIAToggleStateChangedEventCommand : RegisterUIAPropertyChangedEventCommand
+    public class RegisterUiaToggleStateChangedEventCommand : RegisterUiaPropertyChangedEventCommand
     {
         #region Constructor
-        public RegisterUIAToggleStateChangedEventCommand()
+        public RegisterUiaToggleStateChangedEventCommand()
         {
             base.AutomationProperty = 
                 TogglePattern.ToggleStateProperty;
@@ -134,14 +134,14 @@ namespace UIAutomation.Commands
     }
     
     /// <summary>
-    /// Description of RegisterUIAValueChangedEventCommand.
+    /// Description of RegisterUiaValueChangedEventCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Register, "UIAValueChangedEvent")]
+    [Cmdlet(VerbsLifecycle.Register, "UiaValueChangedEvent")]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class RegisterUIAValueChangedEventCommand : RegisterUIAPropertyChangedEventCommand
+    public class RegisterUiaValueChangedEventCommand : RegisterUiaPropertyChangedEventCommand
     {
         #region Constructor
-        public RegisterUIAValueChangedEventCommand()
+        public RegisterUiaValueChangedEventCommand()
         {
             base.AutomationProperty = 
                 ValuePattern.ValueProperty;

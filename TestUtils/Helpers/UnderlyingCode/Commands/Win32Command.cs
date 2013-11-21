@@ -13,7 +13,7 @@ namespace TestUtils
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of TMXCommand.
+    /// Description of TmxCommand.
     /// </summary>
     internal abstract class Win32Command
     {

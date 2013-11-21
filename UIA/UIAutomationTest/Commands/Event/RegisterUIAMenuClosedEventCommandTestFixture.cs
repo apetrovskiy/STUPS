@@ -14,12 +14,12 @@ namespace UIAutomationTest.Commands.Event
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of RegisterUIAMenuClosedEventCommandTestFixture.
+    /// Description of RegisterUiaMenuClosedEventCommandTestFixture.
     /// </summary>
     [TestFixture] // [TestFixture(Description="1")]
-    public class RegisterUIAMenuClosedEventCommandTestFixture
+    public class RegisterUiaMenuClosedEventCommandTestFixture
     {
-        public RegisterUIAMenuClosedEventCommandTestFixture()
+        public RegisterUiaMenuClosedEventCommandTestFixture()
         {
         }
         
@@ -38,7 +38,7 @@ namespace UIAutomationTest.Commands.Event
         [Category("WinForms")]
         [Category("Control")]
         [Category("Event")]
-        [Category("Register_UIAMenuClosedEvent")]
+        [Category("Register_UiaMenuClosedEvent")]
         public void RegisterMenuClosedEvent()
         {
             //string name = "FileDropDown";
@@ -50,19 +50,19 @@ namespace UIAutomationTest.Commands.Event
                 UIAutomationTestForms.Forms.WinFormsFull, 
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = Get-UIAWindow -pn " +
+                @"$null = Get-UiaWindow -pn " +
                 MiddleLevelCode.TestFormProcess +
-                @" | Register-UIAMenuClosedEvent " + 
+                @" | Register-UiaMenuClosedEvent " + 
                 @"-EventAction {$i = 1;}; " + 
-                @"$null = Get-UIAMenuItem -Name '" + 
+                @"$null = Get-UiaMenuItem -Name '" + 
                 text +
-                @"' | Invoke-UIAMenuItemClick -PassThru | Invoke-UIAMenuItemClick; " + 
-                @"$null = Get-UIAWindow -pn " +
+                @"' | Invoke-UiaMenuItemClick -PassThru | Invoke-UiaMenuItemClick; " + 
+                @"$null = Get-UiaWindow -pn " +
                 MiddleLevelCode.TestFormProcess +
-                @" | Invoke-UIAControlClick; " +
-                @"$null = Get-UIAWindow -n " +
+                @" | Invoke-UiaControlClick; " +
+                @"$null = Get-UiaWindow -n " +
                 MiddleLevelCode.TestFormNameFull +
-                @" | Get-UIAButton -Name b*; " +
+                @" | Get-UiaButton -Name b*; " +
                 @"[UIAutomation.CurrentData]::LastEventType",
                 eventType);
         }

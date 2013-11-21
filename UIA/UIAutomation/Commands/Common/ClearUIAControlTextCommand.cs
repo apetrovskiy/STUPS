@@ -16,10 +16,10 @@ namespace UIAutomation.Commands
     //using System.Windows.Automation;
     
     /// <summary>
-    /// Description of ClearUIAControlTextCommand.
+    /// Description of ClearUiaControlTextCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Clear, "UIAControlText")]
-    public class ClearUIAControlTextCommand : HasControlInputCmdletBase
+    [Cmdlet(VerbsCommon.Clear, "UiaControlText")]
+    public class ClearUiaControlTextCommand : HasControlInputCmdletBase
     {
         protected override void ProcessRecord()
         {

@@ -22,9 +22,9 @@ namespace PSRunner
     using System.Windows.Forms;
     
     /// <summary>
-    /// Description of UIAPSHost.
+    /// Description of UiaPSHost.
     /// </summary>
-    public sealed class UIAPSHost : PSHost
+    public sealed class UiaPSHost : PSHost
     {
         
         // private data
@@ -35,8 +35,8 @@ namespace PSRunner
         private Form gui;
         //private Runspace runspace;
 
-        //public UIAPSHost(PSGUIForm form)
-        public UIAPSHost(Form form)
+        //public UiaPSHost(PSGUIForm form)
+        public UiaPSHost(Form form)
             : base()
         {
             gui = form;
@@ -56,7 +56,7 @@ namespace PSRunner
         
         //private psguifo
         
-//        public UIAPSHost()
+//        public UiaPSHost()
 //        {
 //        }
 

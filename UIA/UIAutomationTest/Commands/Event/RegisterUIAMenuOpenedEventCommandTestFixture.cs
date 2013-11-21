@@ -14,12 +14,12 @@ namespace UIAutomationTest.Commands.Event
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of RegisterUIAMenuOpenedEventCommandTestFixture.
+    /// Description of RegisterUiaMenuOpenedEventCommandTestFixture.
     /// </summary>
     [TestFixture] // [TestFixture(Description="1")]
-    public class RegisterUIAMenuOpenedEventCommandTestFixture
+    public class RegisterUiaMenuOpenedEventCommandTestFixture
     {
-        public RegisterUIAMenuOpenedEventCommandTestFixture()
+        public RegisterUiaMenuOpenedEventCommandTestFixture()
         {
         }
         
@@ -38,7 +38,7 @@ namespace UIAutomationTest.Commands.Event
         [Category("WinForms")]
         [Category("Control")]
         [Category("Event")]
-        [Category("Register_UIAMenuOpenedEvent")]
+        [Category("Register_UiaMenuOpenedEvent")]
         public void RegisterMenuOpenedEvent()
         {
             string text = "File";
@@ -49,16 +49,16 @@ namespace UIAutomationTest.Commands.Event
                 UIAutomationTestForms.Forms.WinFormsFull, 
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = Get-UIAWindow -pn " +
+                @"$null = Get-UiaWindow -pn " +
                 MiddleLevelCode.TestFormProcess +
-                @" | Register-UIAMenuOpenedEvent " + 
+                @" | Register-UiaMenuOpenedEvent " + 
                 @"-EventAction {$i = 1;}; " + 
-                @"$null = Get-UIAMenuItem -Name '" + 
+                @"$null = Get-UiaMenuItem -Name '" + 
                 text +
-                @"' | Invoke-UIAMenuItemClick -PassThru | Invoke-UIAMenuItemClick; " + 
-                @"$null = Get-UIAWindow -pn " +
+                @"' | Invoke-UiaMenuItemClick -PassThru | Invoke-UiaMenuItemClick; " + 
+                @"$null = Get-UiaWindow -pn " +
                 MiddleLevelCode.TestFormProcess +
-                @" | Invoke-UIAControlClick; " +
+                @" | Invoke-UiaControlClick; " +
                 @"[UIAutomation.CurrentData]::LastEventType",
                 eventType);
         }

@@ -10,9 +10,9 @@
 namespace UIAutomationUnitTests.Commands.Get
 {
     /// <summary>
-    /// Description of WaitUIAWindowCommandTestFixture.
+    /// Description of WaitUiaWindowCommandTestFixture.
     /// </summary>
-    public class WaitUIAWindowCommandTestFixture
+    public class WaitUiaWindowCommandTestFixture
     {
     }
 }

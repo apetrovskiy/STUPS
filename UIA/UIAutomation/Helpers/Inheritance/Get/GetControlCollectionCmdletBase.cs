@@ -989,8 +989,8 @@ namespace UIAutomation
                 //scope == TreeScope.Descendants)
                 if (scope != TreeScope.Parent && scope != TreeScope.Ancestors) continue;
                 // 20131109
-                //AutomationElement[] outResult = UIAHelper.GetParentOrAncestor(inputObject, scope);
-                IMySuperWrapper[] outResult = UIAHelper.GetParentOrAncestor(inputObject, scope);
+                //AutomationElement[] outResult = UiaHelper.GetParentOrAncestor(inputObject, scope);
+                IMySuperWrapper[] outResult = UiaHelper.GetParentOrAncestor(inputObject, scope);
                 WriteObject(this, outResult);
 
                 /*
@@ -998,8 +998,8 @@ namespace UIAutomation
                 scope == TreeScope.Ancestors) {
                 outResult = 
                     // 20120823
-                    //UIAHelper.GetParentOrAncestor(this.InputObject, scope);
-                    UIAHelper.GetParentOrAncestor(inputObject, scope);
+                    //UiaHelper.GetParentOrAncestor(this.InputObject, scope);
+                    UiaHelper.GetParentOrAncestor(inputObject, scope);
                 WriteObject(this, outResult);
             }
             */

@@ -13,14 +13,14 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
 
     /// <summary>
-    /// Description of InvokeUIATransformPatternMoveCommand.
+    /// Description of InvokeUiaTransformPatternMoveCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIATransformPatternMove")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaTransformPatternMove")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIATransformPatternMoveCommand : PatternCmdletBase
+    public class InvokeUiaTransformPatternMoveCommand : PatternCmdletBase
     {
-        public InvokeUIATransformPatternMoveCommand()
+        public InvokeUiaTransformPatternMoveCommand()
         {
             WhatToDo = "TransformMove";
             TransformMoveX = 1;
@@ -36,84 +36,84 @@ namespace UIAutomation.Commands
     }
 
     /// <summary>
-    /// Description of InvokeUIACustomTransformMoveCommand.
+    /// Description of InvokeUiaCustomTransformMoveCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIACustomTransformMove")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaCustomTransformMove")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIACustomTransformMoveCommand : InvokeUIATransformPatternMoveCommand
-    { public InvokeUIACustomTransformMoveCommand() { } }
+    public class InvokeUiaCustomTransformMoveCommand : InvokeUiaTransformPatternMoveCommand
+    { public InvokeUiaCustomTransformMoveCommand() { } }
     
     /// <summary>
-    /// Description of InvokeUIAHeaderTransformMoveCommand.
+    /// Description of InvokeUiaHeaderTransformMoveCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAHeaderTransformMove")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaHeaderTransformMove")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAHeaderTransformMoveCommand : InvokeUIATransformPatternMoveCommand
-    { public InvokeUIAHeaderTransformMoveCommand() { } }
+    public class InvokeUiaHeaderTransformMoveCommand : InvokeUiaTransformPatternMoveCommand
+    { public InvokeUiaHeaderTransformMoveCommand() { } }
         
     /// <summary>
-    /// Description of InvokeUIAHeaderItemTransformMoveCommand.
+    /// Description of InvokeUiaHeaderItemTransformMoveCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAHeaderItemTransformMove")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaHeaderItemTransformMove")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAHeaderItemTransformMoveCommand : InvokeUIATransformPatternMoveCommand
-    { public InvokeUIAHeaderItemTransformMoveCommand() { } }
+    public class InvokeUiaHeaderItemTransformMoveCommand : InvokeUiaTransformPatternMoveCommand
+    { public InvokeUiaHeaderItemTransformMoveCommand() { } }
         
     /// <summary>
-    /// Description of InvokeUIAMenuBarTransformMoveCommand.
+    /// Description of InvokeUiaMenuBarTransformMoveCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAMenuBarTransformMove")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaMenuBarTransformMove")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAMenuBarTransformMoveCommand : InvokeUIATransformPatternMoveCommand
-    { public InvokeUIAMenuBarTransformMoveCommand() { } }
+    public class InvokeUiaMenuBarTransformMoveCommand : InvokeUiaTransformPatternMoveCommand
+    { public InvokeUiaMenuBarTransformMoveCommand() { } }
         
     /// <summary>
-    /// Description of InvokeUIAPaneTransformMoveCommand.
+    /// Description of InvokeUiaPaneTransformMoveCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAPaneTransformMove")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaPaneTransformMove")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAPaneTransformMoveCommand : InvokeUIATransformPatternMoveCommand
-    { public InvokeUIAPaneTransformMoveCommand() { } }
+    public class InvokeUiaPaneTransformMoveCommand : InvokeUiaTransformPatternMoveCommand
+    { public InvokeUiaPaneTransformMoveCommand() { } }
         
     /// <summary>
-    /// Description of InvokeUIAThumbTransformMoveCommand.
+    /// Description of InvokeUiaThumbTransformMoveCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAThumbTransformMove")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaThumbTransformMove")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAThumbTransformMoveCommand : InvokeUIATransformPatternMoveCommand
-    { public InvokeUIAThumbTransformMoveCommand() { } }
+    public class InvokeUiaThumbTransformMoveCommand : InvokeUiaTransformPatternMoveCommand
+    { public InvokeUiaThumbTransformMoveCommand() { } }
         
     /// <summary>
-    /// Description of InvokeUIAToolBarTransformMoveCommand.
+    /// Description of InvokeUiaToolBarTransformMoveCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAToolBarTransformMove")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaToolBarTransformMove")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAToolBarTransformMoveCommand : InvokeUIATransformPatternMoveCommand
-    { public InvokeUIAToolBarTransformMoveCommand() { } }
+    public class InvokeUiaToolBarTransformMoveCommand : InvokeUiaTransformPatternMoveCommand
+    { public InvokeUiaToolBarTransformMoveCommand() { } }
         
     /// <summary>
-    /// Description of InvokeUIAWindowTransformMoveCommand.
+    /// Description of InvokeUiaWindowTransformMoveCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAWindowTransformMove")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaWindowTransformMove")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAWindowTransformMoveCommand : InvokeUIATransformPatternMoveCommand
-    { public InvokeUIAWindowTransformMoveCommand() { } }
+    public class InvokeUiaWindowTransformMoveCommand : InvokeUiaTransformPatternMoveCommand
+    { public InvokeUiaWindowTransformMoveCommand() { } }
         
     /// <summary>
-    /// Description of InvokeUIAChildWindowTransformMoveCommand.
+    /// Description of InvokeUiaChildWindowTransformMoveCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAChildWindowTransformMove")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaChildWindowTransformMove")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAChildWindowTransformMoveCommand : InvokeUIAWindowTransformMoveCommand
-    { public InvokeUIAChildWindowTransformMoveCommand() { } }
+    public class InvokeUiaChildWindowTransformMoveCommand : InvokeUiaWindowTransformMoveCommand
+    { public InvokeUiaChildWindowTransformMoveCommand() { } }
     
 }

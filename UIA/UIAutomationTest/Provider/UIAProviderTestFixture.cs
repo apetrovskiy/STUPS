@@ -14,10 +14,10 @@ namespace UIAutomationTest.Provider
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of UIAProviderTestFixture.
+    /// Description of UiaProviderTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="UIAProvider test")]
-    public class UIAProviderTestFixture
+    [TestFixture] // [TestFixture(Description="UiaProvider test")]
+    public class UiaProviderTestFixture
     {
         [SetUp]
         public void PrepareRunspace()
@@ -29,7 +29,7 @@ namespace UIAutomationTest.Provider
         [Category("Slow")][Category("Provider")]
         public void CheckProvider()
         {
-            string name = "UIAProvider";
+            string name = "UiaProvider";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"(Get-PSProvider -PSProvider " + 
                 name + 
@@ -54,8 +54,8 @@ namespace UIAutomationTest.Provider
         public void CheckNewDriveByWindowName()
         {
             string driveName = "UIA1";
-            string providerName = "UIAProvider";
-            string rootpath = @"UIAutomation\UIAProvider::Services";
+            string providerName = "UiaProvider";
+            string rootpath = @"UIAutomation\UiaProvider::Services";
             string windowName = "Services";
             string processName = @"""""";
             int processId = 0;
@@ -83,8 +83,8 @@ namespace UIAutomationTest.Provider
         public void CheckNewDrivebyProcessName()
         {
             string driveName = "UIA2";
-            string providerName = "UIAProvider";
-            string rootpath = @"UIAutomation\UIAProvider::Services";
+            string providerName = "UiaProvider";
+            string rootpath = @"UIAutomation\UiaProvider::Services";
             string windowName = @"""""";
             string processName = "mmc";
             int processId = 0;
@@ -112,8 +112,8 @@ namespace UIAutomationTest.Provider
         public void CheckNewDriveByProcessId()
         {
             string driveName = "UIA3";
-            string providerName = "UIAProvider";
-            string rootpath = @"UIAutomation\UIAProvider::Services";
+            string providerName = "UiaProvider";
+            string rootpath = @"UIAutomation\UiaProvider::Services";
             string windowName = @"""""";
             string processName = @"""""";
             int processId = 1024;

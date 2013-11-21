@@ -929,7 +929,7 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
                 throw new Exception("Failed to run scriptblocks");
             }
         }
-        //#endregion Invoke-UIAScript
+        //#endregion Invoke-UiaScript
         
         
         protected virtual void SaveEventInput(
@@ -947,7 +947,7 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
                                 AutomationEventArgs e)
         {
             
-            // inform the Wait-UIAEventRaised cmdlet
+            // inform the Wait-UiaEventRaised cmdlet
             SaveEventInput(
                 src,
                 e,

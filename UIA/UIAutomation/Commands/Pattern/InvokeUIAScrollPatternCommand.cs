@@ -13,13 +13,13 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of InvokeUIAScrollPatternCommand.
+    /// Description of InvokeUiaScrollPatternCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAScrollPattern")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaScrollPattern")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAScrollPatternCommand : PatternCmdletBase
-    { public InvokeUIAScrollPatternCommand() 
+    public class InvokeUiaScrollPatternCommand : PatternCmdletBase
+    { public InvokeUiaScrollPatternCommand() 
       { 
             WhatToDo = "Scroll"; 
             this.Vertical = false;
@@ -53,94 +53,94 @@ namespace UIAutomation.Commands
         #endregion Parameters
 
     /// <summary>
-    /// Description of InvokeUIACalendarScrollCommand.
+    /// Description of InvokeUiaCalendarScrollCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIACalendarScroll")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaCalendarScroll")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIACalendarScrollCommand : InvokeUIAScrollPatternCommand
-    { public InvokeUIACalendarScrollCommand() { } }
+    public class InvokeUiaCalendarScrollCommand : InvokeUiaScrollPatternCommand
+    { public InvokeUiaCalendarScrollCommand() { } }
         
     /// <summary>
-    /// Description of InvokeUIAComboBoxScrollCommand.
+    /// Description of InvokeUiaComboBoxScrollCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAComboBoxScroll")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaComboBoxScroll")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAComboBoxScrollCommand : InvokeUIAScrollPatternCommand
-    { public InvokeUIAComboBoxScrollCommand() { } }
+    public class InvokeUiaComboBoxScrollCommand : InvokeUiaScrollPatternCommand
+    { public InvokeUiaComboBoxScrollCommand() { } }
     
     /// <summary>
-    /// Description of InvokeUIACustomScrollCommand.
+    /// Description of InvokeUiaCustomScrollCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIACustomScroll")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaCustomScroll")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIACustomScrollCommand : InvokeUIAScrollPatternCommand
-    { public InvokeUIACustomScrollCommand() { } }
+    public class InvokeUiaCustomScrollCommand : InvokeUiaScrollPatternCommand
+    { public InvokeUiaCustomScrollCommand() { } }
     
     /// <summary>
-    /// Description of InvokeUIADataGridScrollCommand.
+    /// Description of InvokeUiaDataGridScrollCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIADataGridScroll")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaDataGridScroll")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIADataGridScrollCommand : InvokeUIAScrollPatternCommand
-    { public InvokeUIADataGridScrollCommand() { } }
+    public class InvokeUiaDataGridScrollCommand : InvokeUiaScrollPatternCommand
+    { public InvokeUiaDataGridScrollCommand() { } }
     
     /// <summary>
-    /// Description of InvokeUIADocumentScrollCommand.
+    /// Description of InvokeUiaDocumentScrollCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIADocumentScroll")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaDocumentScroll")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIADocumentScrollCommand : InvokeUIAScrollPatternCommand
-    { public InvokeUIADocumentScrollCommand() { } }
+    public class InvokeUiaDocumentScrollCommand : InvokeUiaScrollPatternCommand
+    { public InvokeUiaDocumentScrollCommand() { } }
     
     /// <summary>
-    /// Description of InvokeUIAListScrollCommand.
+    /// Description of InvokeUiaListScrollCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAListScroll")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaListScroll")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAListScrollCommand : InvokeUIAScrollPatternCommand
-    { public InvokeUIAListScrollCommand() { } }
+    public class InvokeUiaListScrollCommand : InvokeUiaScrollPatternCommand
+    { public InvokeUiaListScrollCommand() { } }
     
     /// <summary>
-    /// Description of InvokeUIAPaneScrollCommand.
+    /// Description of InvokeUiaPaneScrollCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAPaneScroll")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaPaneScroll")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAPaneScrollCommand : InvokeUIAScrollPatternCommand
-    { public InvokeUIAPaneScrollCommand() { } }
+    public class InvokeUiaPaneScrollCommand : InvokeUiaScrollPatternCommand
+    { public InvokeUiaPaneScrollCommand() { } }
     
     /// <summary>
-    /// Description of InvokeUIAScrollBarScrollCommand.
+    /// Description of InvokeUiaScrollBarScrollCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAScrollBarScroll")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaScrollBarScroll")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAScrollBarScrollCommand : InvokeUIAScrollPatternCommand
-    { public InvokeUIAScrollBarScrollCommand() { } }
+    public class InvokeUiaScrollBarScrollCommand : InvokeUiaScrollPatternCommand
+    { public InvokeUiaScrollBarScrollCommand() { } }
     
     /// <summary>
-    /// Description of InvokeUIATabScrollCommand.
+    /// Description of InvokeUiaTabScrollCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIATabScroll")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaTabScroll")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIATabScrollCommand : InvokeUIAScrollPatternCommand
-    { public InvokeUIATabScrollCommand() { } }
+    public class InvokeUiaTabScrollCommand : InvokeUiaScrollPatternCommand
+    { public InvokeUiaTabScrollCommand() { } }
     
     /// <summary>
-    /// Description of InvokeUIATreeScrollCommand.
+    /// Description of InvokeUiaTreeScrollCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIATreeScroll")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaTreeScroll")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIATreeScrollCommand : InvokeUIAScrollPatternCommand
-    { public InvokeUIATreeScrollCommand() { } }
+    public class InvokeUiaTreeScrollCommand : InvokeUiaScrollPatternCommand
+    { public InvokeUiaTreeScrollCommand() { } }
         
     }
 }

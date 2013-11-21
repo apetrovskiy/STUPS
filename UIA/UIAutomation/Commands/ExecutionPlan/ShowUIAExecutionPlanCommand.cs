@@ -12,10 +12,10 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
 
 	/// <summary>
-	/// Description of ShowUIAExecutionPlanCommand.
+	/// Description of ShowUiaExecutionPlanCommand.
 	/// </summary>
-	[Cmdlet(VerbsCommon.Show, "UIAExecutionPlan")]
-	public class ShowUIAExecutionPlanCommand : ExecutionPlanCmdletBase
+	[Cmdlet(VerbsCommon.Show, "UiaExecutionPlan")]
+	public class ShowUiaExecutionPlanCommand : ExecutionPlanCmdletBase
 	{
 		#region Parameters
 		[Parameter(Mandatory = false)]

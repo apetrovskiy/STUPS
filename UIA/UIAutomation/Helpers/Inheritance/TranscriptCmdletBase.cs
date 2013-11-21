@@ -81,10 +81,10 @@ namespace UIAutomation
                     tempString = String.Empty;
                     tempString += recordList[i];
                     if (i < (recordList.Count - 1)) {
-                        if (tempString.Contains("Get-UIAWindow")) {
+                        if (tempString.Contains("Get-UiaWindow")) {
                             tempString = 
-                                tempString.Replace("Get-UIAWindow",
-                                                      "Get-UIAChildWindow");
+                                tempString.Replace("Get-UiaWindow",
+                                                      "Get-UiaChildWindow");
                         }
                         // if the second or further in the pipeline
                         tempString = 
@@ -98,7 +98,7 @@ namespace UIAutomation
                         // the last in the pipeline
                         longRecordingString += ";";
                     }
-                    if (i != (recordList.Count - 1) && i != 0 && !tempString.Contains("Get-UIAChildWindow") && i != 1 &&
+                    if (i != (recordList.Count - 1) && i != 0 && !tempString.Contains("Get-UiaChildWindow") && i != 1 &&
                         !tempString.Contains("Tree") && !tempString.Contains("Menu") && !tempString.Contains("Tool") &&
                         !tempString.Contains("Tab") && !tempString.Contains("Table") && !tempString.Contains("List") &&
                         !tempString.Contains("Grid") && !tempString.Contains("Button") && !tempString.Contains("Combo"))
@@ -115,7 +115,7 @@ namespace UIAutomation
                     /*
                     if (i == (recordList.Count - 1) ||
                         i == 0 || // the last element or invoked event
-                        tempString.Contains("Get-UIAChildWindow") ||
+                        tempString.Contains("Get-UiaChildWindow") ||
                         i == 1 || //) // the last element in case of having invoked event
                         tempString.Contains("Tree") ||
                         tempString.Contains("Menu") ||

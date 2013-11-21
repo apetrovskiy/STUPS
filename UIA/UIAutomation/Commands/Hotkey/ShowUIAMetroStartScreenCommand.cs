@@ -13,10 +13,10 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of ShowUIAMetroStartScreenCommand.
+    /// Description of ShowUiaMetroStartScreenCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Show, "UIAMetroStartScreen")]
-    public class ShowUIAMetroStartScreenCommand : HotkeyCmdletBase
+    [Cmdlet(VerbsCommon.Show, "UiaMetroStartScreen")]
+    public class ShowUiaMetroStartScreenCommand : HotkeyCmdletBase
     {
         protected override void BeginProcessing()
         {

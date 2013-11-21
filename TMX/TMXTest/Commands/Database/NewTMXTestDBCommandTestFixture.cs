@@ -7,18 +7,18 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMXTest.Commands.Database
+namespace TmxTest.Commands.Database
 {
     using System;
     using MbUnit.Framework; // using MbUnit.Framework;
     
     /// <summary>
-    /// Description of NewTMXTestDBCommandTestFixture.
+    /// Description of NewTmxTestDBCommandTestFixture.
     /// </summary>
     [TestFixture] // [TestFixture(Description=" test")]
-    public class NewTMXTestDBCommandTestFixture
+    public class NewTmxTestDBCommandTestFixture
     {
-        public NewTMXTestDBCommandTestFixture()
+        public NewTmxTestDBCommandTestFixture()
         {
         }
         
@@ -28,14 +28,14 @@ namespace TMXTest.Commands.Database
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [Test] //[Test(Description="The New-TMXTestDB test")]
+        [Test] //[Test(Description="The New-TmxTestDB test")]
         [Category("Slow")]
-        [Category("New_TMXTestDB")]
+        [Category("New_TmxTestDB")]
         public void CreateTestDB_Simple()
         {
             string answer = @"True";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = New-TMXTestDB -FileName '" + 
+                @"$null = New-TmxTestDB -FileName '" + 
                 Settings.FileName + 
                 @"' -Name '" +
                 Settings.DatabaseName +
@@ -48,7 +48,7 @@ namespace TMXTest.Commands.Database
             // additional checks here
             
             CmdletUnitTest.TestRunspace.RunPSCode(
-                @"Close-TMXTestDB -Name '" +
+                @"Close-TmxTestDB -Name '" +
                 Settings.DatabaseName + 
                 "';");
             CmdletUnitTest.TestRunspace.RunPSCode(

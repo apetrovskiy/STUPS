@@ -391,7 +391,7 @@ namespace UIAutomation
             this.Width = this.width;
             this.Height = this.height;
             this.Location = new System.Drawing.Point(this.left, this.top);
-            this.Text = "UIABanner";
+            this.Text = "UiaBanner";
             this.Load += new System.EventHandler(this.MainFormLoad);
             this.ResumeLayout(false);
             

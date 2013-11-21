@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMXUnitTests.Commands.Status
+namespace TmxUnitTests.Commands.Status
 {
     using System;
     using MbUnit.Framework;
@@ -15,12 +15,12 @@ namespace TMXUnitTests.Commands.Status
     using TMX;
     
     /// <summary>
-    /// Description of GetTMXTestSuiteStatusCommandTestFixture.
+    /// Description of GetTmxTestSuiteStatusCommandTestFixture.
     /// </summary>
     [TestFixture]
-    public class GetTMXTestSuiteStatusCommandTestFixture
+    public class GetTmxTestSuiteStatusCommandTestFixture
     {
-        public GetTMXTestSuiteStatusCommandTestFixture()
+        public GetTmxTestSuiteStatusCommandTestFixture()
         {
         }
         
@@ -36,7 +36,7 @@ namespace TMXUnitTests.Commands.Status
         }
         
         [Test]
-        [Description("Get-TMXTestSuiteStatus")]
+        [Description("Get-TmxTestSuiteStatus")]
         [Category("Fast")]
         public void GetTestSuite_Current_New()
         {
@@ -47,7 +47,7 @@ namespace TMXUnitTests.Commands.Status
         }
         
         [Test]
-        [Description("New-TMXTestSuite -Name suite1; Get-TMXTestSuiteStatus")]
+        [Description("New-TmxTestSuite -Name suite1; Get-TmxTestSuiteStatus")]
         [Category("Fast")]
         public void GetTestSuite_Current_WithNotTested()
         {
@@ -60,7 +60,7 @@ namespace TMXUnitTests.Commands.Status
         }
         
         [Test]
-        [Description("New-TMXTestSuite -Name suite1; Close-TMXTestResult -TestResultName result -TestPassed; Get-TMXTestSuiteStatus")]
+        [Description("New-TmxTestSuite -Name suite1; Close-TmxTestResult -TestResultName result -TestPassed; Get-TmxTestSuiteStatus")]
         [Category("Fast")]
         public void GetTestSuite_Current_WithPassed()
         {
@@ -74,7 +74,7 @@ namespace TMXUnitTests.Commands.Status
         }
         
         [Test]
-        [Description("New-TMXTestSuite -Name suite1; Close-TMXTestResult -TestResultName result -TestPassed:$false; Get-TMXTestSuiteStatus")]
+        [Description("New-TmxTestSuite -Name suite1; Close-TmxTestResult -TestResultName result -TestPassed:$false; Get-TmxTestSuiteStatus")]
         [Category("Fast")]
         public void GetTestSuite_Current_WithFailed()
         {
@@ -86,7 +86,7 @@ namespace TMXUnitTests.Commands.Status
         }
         
         [Test]
-        [Description("New-TMXTestSuite -Name suite1; Close-TMXTestResult -TestResultName result -TestPassed -KnownIssue; Get-TMXTestSuiteStatus")]
+        [Description("New-TmxTestSuite -Name suite1; Close-TmxTestResult -TestResultName result -TestPassed -KnownIssue; Get-TmxTestSuiteStatus")]
         [Category("Fast")]
         public void GetTestSuite_Current_WithPassedKnownIssue()
         {
@@ -99,7 +99,7 @@ namespace TMXUnitTests.Commands.Status
         }
         
         [Test]
-        [Description("New-TMXTestSuite -Name suite1; Close-TMXTestResult -TestResultName result -TestPassed:$false -KnownIssue; Get-TMXTestSuiteStatus")]
+        [Description("New-TmxTestSuite -Name suite1; Close-TmxTestResult -TestResultName result -TestPassed:$false -KnownIssue; Get-TmxTestSuiteStatus")]
         [Category("Fast")]
         public void GetTestSuite_Current_WithFailedKnownIssue()
         {

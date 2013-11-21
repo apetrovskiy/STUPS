@@ -13,12 +13,12 @@ namespace TMX.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of GetTMXTestScenarioStatusCommand.
+    /// Description of GetTmxTestScenarioStatusCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "TMXTestScenarioStatus")]
-    public class GetTMXTestScenarioStatusCommand : OpenScenarioCmdletBase
+    [Cmdlet(VerbsCommon.Get, "TmxTestScenarioStatus")]
+    public class GetTmxTestScenarioStatusCommand : OpenScenarioCmdletBase
     {
-        public GetTMXTestScenarioStatusCommand()
+        public GetTmxTestScenarioStatusCommand()
         {
         }
         
@@ -30,8 +30,8 @@ namespace TMX.Commands
         
         protected override void BeginProcessing()
         {
-            TMXGetTestScenarioStatusCommand command =
-                new TMXGetTestScenarioStatusCommand(this);
+            TmxGetTestScenarioStatusCommand command =
+                new TmxGetTestScenarioStatusCommand(this);
             command.Execute();
         }
     }

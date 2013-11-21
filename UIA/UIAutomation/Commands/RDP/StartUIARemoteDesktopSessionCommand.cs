@@ -13,12 +13,12 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of StartUIARemoteDesktopSessionCommand.
+    /// Description of StartUiaRemoteDesktopSessionCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Start, "UIARemoteDesktopSession")]
-    public class StartUIARemoteDesktopSessionCommand
+    [Cmdlet(VerbsLifecycle.Start, "UiaRemoteDesktopSession")]
+    public class StartUiaRemoteDesktopSessionCommand
     {
-        public StartUIARemoteDesktopSessionCommand()
+        public StartUiaRemoteDesktopSessionCommand()
         {
         }
     }

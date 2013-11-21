@@ -14,12 +14,12 @@ namespace TMX.Commands
     //using System.Linq;
     
     /// <summary>
-    /// Description of SearchTMXTestScenarioCommand.
+    /// Description of SearchTmxTestScenarioCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Search, "TMXTestScenario", DefaultParameterSetName = "Common")]
-    public class SearchTMXTestScenarioCommand : SearchCmdletBase
+    [Cmdlet(VerbsCommon.Search, "TmxTestScenario", DefaultParameterSetName = "Common")]
+    public class SearchTmxTestScenarioCommand : SearchCmdletBase
     {
-        public SearchTMXTestScenarioCommand()
+        public SearchTmxTestScenarioCommand()
         {
         }
         
@@ -32,7 +32,7 @@ namespace TMX.Commands
         {
             this.CheckCmdletParameters();
             
-            TMXHelper.SearchForScenariosPS(this);
+            TmxHelper.SearchForScenariosPS(this);
         }
     }
 }

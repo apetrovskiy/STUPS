@@ -14,18 +14,18 @@ namespace UIAutomation
     using UIAutomation.Commands;
     
     /// <summary>
-    /// Description of UIANewRemoteDesktopProtocolFileCommand.
+    /// Description of UiaNewRemoteDesktopProtocolFileCommand.
     /// </summary>
-    internal class UIANewRemoteDesktopProtocolFileCommand : UIACommand
+    internal class UiaNewRemoteDesktopProtocolFileCommand : UiaCommand
     {
-        internal UIANewRemoteDesktopProtocolFileCommand(CommonCmdletBase cmdlet) : base (cmdlet)
+        internal UiaNewRemoteDesktopProtocolFileCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         
         internal override void Execute()
         {
-            NewUIARemoteDesktopProtocolFileCommand cmdlet =
-                (NewUIARemoteDesktopProtocolFileCommand)this.Cmdlet;
+            NewUiaRemoteDesktopProtocolFileCommand cmdlet =
+                (NewUiaRemoteDesktopProtocolFileCommand)this.Cmdlet;
 
             RDPHelper.CreateRDPFile(cmdlet);
         }

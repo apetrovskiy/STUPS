@@ -12,10 +12,10 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of AddUIABannerTextCommand.
+    /// Description of AddUiaBannerTextCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Add, "UIABannerText")]
-    public class AddUIABannerTextCommand : CommonCmdletBase
+    [Cmdlet(VerbsCommon.Add, "UiaBannerText")]
+    public class AddUiaBannerTextCommand : CommonCmdletBase
     {
         #region Parameters
         [Parameter(Mandatory = true,
@@ -26,7 +26,7 @@ namespace UIAutomation.Commands
         
         protected override void BeginProcessing()
         {
-            UIAHelper.AppendBanner(this.Message);
+            UiaHelper.AppendBanner(this.Message);
         }
     }
 }

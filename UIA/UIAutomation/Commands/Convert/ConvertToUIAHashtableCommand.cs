@@ -18,10 +18,10 @@ namespace UIAutomation.Commands
     using System.Windows.Automation;
 
     /// <summary>
-    /// Description of ConvertToUIAHashtableCommand.
+    /// Description of ConvertToUiaHashtableCommand.
     /// </summary>
-    [Cmdlet(VerbsData.ConvertTo, "UIAHashtable")]
-    public class ConvertToUIAHashtableCommand : ConvertCmdletBase
+    [Cmdlet(VerbsData.ConvertTo, "UiaHashtable")]
+    public class ConvertToUiaHashtableCommand : ConvertCmdletBase
     {
         #region Parameters
         #endregion Parameters
@@ -138,12 +138,12 @@ namespace UIAutomation.Commands
     }
     
     /// <summary>
-    /// Description of ConvertToUIASearchCriteriaCommand.
+    /// Description of ConvertToUiaSearchCriteriaCommand.
     /// </summary>
-    [Cmdlet(VerbsData.ConvertTo, "UIASearchCriteria")]
-    public class ConvertToUIASearchCriteriaCommand : ConvertCmdletBase
+    [Cmdlet(VerbsData.ConvertTo, "UiaSearchCriteria")]
+    public class ConvertToUiaSearchCriteriaCommand : ConvertCmdletBase
     {
-        public ConvertToUIASearchCriteriaCommand()
+        public ConvertToUiaSearchCriteriaCommand()
         {
             System.Collections.ArrayList defaultExcludeList = 
                 new System.Collections.ArrayList {"LabeledBy", "NativeWindowHandle", "ProcessId"};

@@ -8,14 +8,14 @@
  */
 using System;
 
-namespace TMXUnitTests.ParamChecks.TestStructure
+namespace TmxUnitTests.ParamChecks.TestStructure
 {
     /// <summary>
-    /// Description of AddTMXSimpleTestResultCommandTestFixture.
+    /// Description of AddTmxSimpleTestResultCommandTestFixture.
     /// </summary>
-    public class AddTMXSimpleTestResultCommandTestFixture
+    public class AddTmxSimpleTestResultCommandTestFixture
     {
-        public AddTMXSimpleTestResultCommandTestFixture()
+        public AddTmxSimpleTestResultCommandTestFixture()
         {
         }
     }

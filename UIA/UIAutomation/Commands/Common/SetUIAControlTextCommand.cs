@@ -13,11 +13,11 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of SetUIAControlTextCommand.
+    /// Description of SetUiaControlTextCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Set, "UIAControlText")]
+    [Cmdlet(VerbsCommon.Set, "UiaControlText")]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class SetUIAControlTextCommand : HasControlInputCmdletBase
+    public class SetUiaControlTextCommand : HasControlInputCmdletBase
     {
         #region Parameters
         [Parameter(Mandatory = true,

@@ -112,16 +112,16 @@ namespace UIAutomation
         	
         	//GetControlCmdletBase cmdletCtrl =
         	//	new GetControlCmdletBase();
-        	UIAutomation.Commands.GetUIAControlCommand cmdletCtrl =
-        	    new UIAutomation.Commands.GetUIAControlCommand
+        	UIAutomation.Commands.GetUiaControlCommand cmdletCtrl =
+        	    new UIAutomation.Commands.GetUiaControlCommand
         	    {
         	        InputObject = new MySuperWrapper[] {(MySuperWrapper) CurrentData.CurrentWindow},
         	        Timeout = 0
         	    };
 
             /*
-        	UIAutomation.Commands.GetUIAControlCommand cmdletCtrl =
-        	    new UIAutomation.Commands.GetUIAControlCommand();
+        	UIAutomation.Commands.GetUiaControlCommand cmdletCtrl =
+        	    new UIAutomation.Commands.GetUiaControlCommand();
 
         	cmdletCtrl.InputObject =
         	    // 20131109
@@ -163,7 +163,7 @@ namespace UIAutomation
         	            // 20131109
         	            //foreach (AutomationElement elementChecked in controlsList) {
         	            foreach (IMySuperWrapper elementChecked in controlsList) {
-        	                UIAHelper.HighlightCheckedControl(elementChecked);
+        	                UiaHelper.HighlightCheckedControl(elementChecked);
         	            }
         	        }
 	        	        
@@ -182,7 +182,7 @@ namespace UIAutomation
 	        	        // 20130423
 	        	        if (Preferences.HighlightCheckedControl) {
 	        	            foreach (AutomationElement elementChecked in controlsList) {
-	        	                UIAHelper.HighlightCheckedControl(elementChecked);
+	        	                UiaHelper.HighlightCheckedControl(elementChecked);
 	        	            }
 	        	        }
 	        	        

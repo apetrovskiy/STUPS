@@ -13,14 +13,14 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of InvokeUIATextPatternSetCommand.
+    /// Description of InvokeUiaTextPatternSetCommand.
     /// </summary>
     // 20131024
-    //[Cmdlet(VerbsCommon.Get, "UIATextPatternSet")]
-    [Cmdlet(VerbsLifecycle.Invoke, "UIATextPatternSet")]
-    public class InvokeUIATextPatternSetCommand : PatternCmdletBase
+    //[Cmdlet(VerbsCommon.Get, "UiaTextPatternSet")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaTextPatternSet")]
+    public class InvokeUiaTextPatternSetCommand : PatternCmdletBase
     {
-        public InvokeUIATextPatternSetCommand()
+        public InvokeUiaTextPatternSetCommand()
         {
             WhatToDo = "TextSet"; 
             //this.PassThru = false;
@@ -39,38 +39,38 @@ namespace UIAutomation.Commands
     }
     
     /// <summary>
-    /// Description of SetUIADocumentRangeTextCommand.
+    /// Description of SetUiaDocumentRangeTextCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Set, "UIADocumentRangeText")]
+    [Cmdlet(VerbsCommon.Set, "UiaDocumentRangeText")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class SetUIADocumentRangeTextCommand : InvokeUIATextPatternSetCommand
-    { public SetUIADocumentRangeTextCommand() { } }
+    public class SetUiaDocumentRangeTextCommand : InvokeUiaTextPatternSetCommand
+    { public SetUiaDocumentRangeTextCommand() { } }
     
     /// <summary>
-    /// Description of SetUIAEditRangeTextCommand.
+    /// Description of SetUiaEditRangeTextCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Set, "UIAEditRangeText")]
+    [Cmdlet(VerbsCommon.Set, "UiaEditRangeText")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class SetUIAEditRangeTextCommand : InvokeUIATextPatternSetCommand
-    { public SetUIAEditRangeTextCommand() { } }
+    public class SetUiaEditRangeTextCommand : InvokeUiaTextPatternSetCommand
+    { public SetUiaEditRangeTextCommand() { } }
     
     /// <summary>
-    /// Description of SetUIATextRangeTextCommand.
+    /// Description of SetUiaTextRangeTextCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Set, "UIATextRangeText")]
+    [Cmdlet(VerbsCommon.Set, "UiaTextRangeText")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class SetUIATextRangeTextCommand : InvokeUIATextPatternSetCommand
-    { public SetUIATextRangeTextCommand() { } }
+    public class SetUiaTextRangeTextCommand : InvokeUiaTextPatternSetCommand
+    { public SetUiaTextRangeTextCommand() { } }
     
     /// <summary>
-    /// Description of SetUIAToolTipRangeTextCommand.
+    /// Description of SetUiaToolTipRangeTextCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Set, "UIAToolTipRangeText")]
+    [Cmdlet(VerbsCommon.Set, "UiaToolTipRangeText")]
     //[OutputType(typeof(bool))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class SetUIAToolTipRangeTextCommand : InvokeUIATextPatternSetCommand
-    { public SetUIAToolTipRangeTextCommand() { } }
+    public class SetUiaToolTipRangeTextCommand : InvokeUiaTextPatternSetCommand
+    { public SetUiaToolTipRangeTextCommand() { } }
 }

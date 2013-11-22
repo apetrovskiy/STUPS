@@ -113,17 +113,29 @@ namespace UIAutomation
 			//return this.elementHolderNet.GetCurrentPropertyValue(property);
 			switch (innerElementType) {
 			    case InnerElementTypes.AutomationElementNet:
-			        return this.elementHolderNet.GetCurrentPropertyValue(property);
+			        if (Preferences.FromCache) {
+			            return this.elementHolderNet.GetCachedPropertyValue(property);
+			        } else {
+                        return this.elementHolderNet.GetCurrentPropertyValue(property);
+			        }
 			        //break;
 //			    case InnerElementTypes.AutomationElementCom:
 //			        //
 //			        //break;
 			    case InnerElementTypes.MySuperWrapper:
-			        return this.elementHolderAdapter.GetCurrentPropertyValue(property);
+			        if (Preferences.FromCache) {
+			            return this.elementHolderAdapter.GetCachedPropertyValue(property);
+			        } else {
+                        return this.elementHolderAdapter.GetCurrentPropertyValue(property);
+			        }
 			        //break;
 			    default:
 			        //throw new Exception("Invalid value for InnerElementTypes");
-			        return this.elementHolderNet.GetCurrentPropertyValue(property);
+			        if (Preferences.FromCache) {
+			            return this.elementHolderNet.GetCachedPropertyValue(property);
+			        } else {
+                        return this.elementHolderNet.GetCurrentPropertyValue(property);
+			        }
 			}
 		}
 
@@ -132,17 +144,29 @@ namespace UIAutomation
 			//return this.elementHolderNet.GetCurrentPropertyValue(property, ignoreDefaultValue);
 			switch (innerElementType) {
 			    case InnerElementTypes.AutomationElementNet:
-			        return this.elementHolderNet.GetCurrentPropertyValue(property, ignoreDefaultValue);
+			        if (Preferences.FromCache) {
+			            return this.elementHolderNet.GetCachedPropertyValue(property, ignoreDefaultValue);
+			        } else {
+                        return this.elementHolderNet.GetCurrentPropertyValue(property, ignoreDefaultValue);
+			        }
 			        //break;
 //			    case InnerElementTypes.AutomationElementCom:
 //			        //
 //			        //break;
 			    case InnerElementTypes.MySuperWrapper:
-			        return this.elementHolderAdapter.GetCurrentPropertyValue(property, ignoreDefaultValue);
+			        if (Preferences.FromCache) {
+			            return this.elementHolderAdapter.GetCachedPropertyValue(property, ignoreDefaultValue);
+			        } else {
+                        return this.elementHolderAdapter.GetCurrentPropertyValue(property, ignoreDefaultValue);
+			        }
 			        //break;
 			    default:
 			        //throw new Exception("Invalid value for InnerElementTypes");
-			        return this.elementHolderNet.GetCurrentPropertyValue(property, ignoreDefaultValue);
+			        if (Preferences.FromCache) {
+			            return this.elementHolderNet.GetCachedPropertyValue(property, ignoreDefaultValue);
+			        } else {
+                        return this.elementHolderNet.GetCurrentPropertyValue(property, ignoreDefaultValue);
+			        }
 			}
 		}
 
@@ -151,17 +175,29 @@ namespace UIAutomation
 			//return this.elementHolderNet.GetCurrentPattern(pattern);
 			switch (innerElementType) {
 			    case InnerElementTypes.AutomationElementNet:
-			        return this.elementHolderNet.GetCurrentPattern(pattern);
+			        if (Preferences.FromCache) {
+			            return this.elementHolderNet.GetCachedPattern(pattern);
+			        } else {
+                        return this.elementHolderNet.GetCurrentPattern(pattern);
+			        }
 			        //break;
 //			    case InnerElementTypes.AutomationElementCom:
 //			        //
 //			        //break;
 			    case InnerElementTypes.MySuperWrapper:
-			        return this.elementHolderAdapter.GetCurrentPattern(pattern);
+			        if (Preferences.FromCache) {
+			            return this.elementHolderAdapter.GetCachedPattern(pattern);
+			        } else {
+                        return this.elementHolderAdapter.GetCurrentPattern(pattern);
+			        }
 			        //break;
 			    default:
 			        //throw new Exception("Invalid value for InnerElementTypes");
-			        return this.elementHolderNet.GetCurrentPattern(pattern);
+			        if (Preferences.FromCache) {
+			            return this.elementHolderNet.GetCachedPattern(pattern);
+			        } else {
+                        return this.elementHolderNet.GetCurrentPattern(pattern);
+			        }
 			}
 		}
 
@@ -170,17 +206,29 @@ namespace UIAutomation
 			//return this.elementHolderNet.TryGetCurrentPattern(pattern, out patternObject);
 			switch (innerElementType) {
 			    case InnerElementTypes.AutomationElementNet:
-			        return this.elementHolderNet.TryGetCurrentPattern(pattern, out patternObject);
+			        if (Preferences.FromCache) {
+			            return this.elementHolderNet.TryGetCachedPattern(pattern, out patternObject);
+			        } else {
+                        return this.elementHolderNet.TryGetCurrentPattern(pattern, out patternObject);
+			        }
 			        //break;
 //			    case InnerElementTypes.AutomationElementCom:
 //			        //
 //			        //break;
 			    case InnerElementTypes.MySuperWrapper:
-			        return this.elementHolderAdapter.TryGetCurrentPattern(pattern, out patternObject);
+			        if (Preferences.FromCache) {
+			            return this.elementHolderAdapter.TryGetCachedPattern(pattern, out patternObject);
+			        } else {
+                        return this.elementHolderAdapter.TryGetCurrentPattern(pattern, out patternObject);
+			        }
 			        //break;
 			    default:
 			        //throw new Exception("Invalid value for InnerElementTypes");
-			        return this.elementHolderNet.TryGetCurrentPattern(pattern, out patternObject);
+			        if (Preferences.FromCache) {
+			            return this.elementHolderNet.TryGetCachedPattern(pattern, out patternObject);
+			        } else {
+                        return this.elementHolderNet.TryGetCurrentPattern(pattern, out patternObject);
+			        }
 			}
 		}
 
@@ -448,17 +496,29 @@ namespace UIAutomation
 		        //return ObjectsFactory.GetMySuperWrapperInformation(this.elementHolderNet.Current);
 		        switch (innerElementType) {
 		            case InnerElementTypes.AutomationElementNet:
-		                return ObjectsFactory.GetMySuperWrapperInformation(this.elementHolderNet.Current);
+		                if (Preferences.FromCache) {
+                            return ObjectsFactory.GetMySuperWrapperInformation(this.elementHolderNet.Cached);
+    			        } else {
+    		                return ObjectsFactory.GetMySuperWrapperInformation(this.elementHolderNet.Current);
+                        }
 		                //break;
 //		            case InnerElementTypes.AutomationElementCom:
 //		                //
 //		                //break;
 		            case InnerElementTypes.MySuperWrapper:
-		                return this.elementHolderAdapter.Current;
+		                if (Preferences.FromCache) {
+    			            return this.elementHolderAdapter.Cached;
+    			        } else {
+                            return this.elementHolderAdapter.Current;
+		                }
 		                //break;
 		            default:
 		                //throw new Exception("Invalid value for InnerElementTypes");
-		                return ObjectsFactory.GetMySuperWrapperInformation(this.elementHolderNet.Current);
+		                if (Preferences.FromCache) {
+    			            return ObjectsFactory.GetMySuperWrapperInformation(this.elementHolderNet.Cached);
+    			        } else {
+                            return ObjectsFactory.GetMySuperWrapperInformation(this.elementHolderNet.Current);
+		                }
 		        }
 		    }
 		}

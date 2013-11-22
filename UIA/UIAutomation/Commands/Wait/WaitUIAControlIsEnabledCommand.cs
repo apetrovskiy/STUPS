@@ -18,7 +18,7 @@ namespace UIAutomation.Commands
     /// Description of WaitUiaControlIsEnabled.
     /// </summary>
     [Cmdlet(VerbsLifecycle.Wait, "UiaControlIsEnabled")]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class WaitUiaControlIsEnabledCommand : WaitCmdletBase
     {
         #region Constructor
@@ -129,7 +129,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Wait, "UiaButtonIsEnabled")]
     [OutputType(typeof(object))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class WaitUiaButtonIsEnabledCommand : WaitUiaControlIsEnabledCommand
     { public WaitUiaButtonIsEnabledCommand() { this.ControlType = ControlType.Button; } }
 
@@ -138,7 +138,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Wait, "UiaCalendarIsEnabled")]
     [OutputType(typeof(object))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class WaitUiaCalendarIsEnabledCommand : WaitUiaControlIsEnabledCommand
     { public WaitUiaCalendarIsEnabledCommand() { this.ControlType = ControlType.Calendar; } }
     
@@ -147,7 +147,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Wait, "UiaCheckBoxIsEnabled")]
     [OutputType(typeof(object))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class WaitUiaCheckBoxIsEnabledCommand : WaitUiaControlIsEnabledCommand
     { public WaitUiaCheckBoxIsEnabledCommand() { this.ControlType = ControlType.CheckBox; } }
     
@@ -156,7 +156,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Wait, "UiaComboBoxIsEnabled")]
     [OutputType(typeof(object))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class WaitUiaComboBoxIsEnabledCommand : WaitUiaControlIsEnabledCommand
     { public WaitUiaComboBoxIsEnabledCommand() { this.ControlType = ControlType.ComboBox; } }
     
@@ -165,7 +165,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Wait, "UiaCustomIsEnabled")]
     [OutputType(typeof(object))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class WaitUiaCustomIsEnabledCommand : WaitUiaControlIsEnabledCommand
     { public WaitUiaCustomIsEnabledCommand() { this.ControlType = ControlType.Custom; } }
     
@@ -174,7 +174,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Wait, "UiaDataGridIsEnabled")]
     [OutputType(typeof(object))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class WaitUiaDataGridIsEnabledCommand : WaitUiaControlIsEnabledCommand
     { public WaitUiaDataGridIsEnabledCommand() { this.ControlType = ControlType.DataGrid; } }
     
@@ -183,7 +183,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Wait, "UiaDataItemIsEnabled")]
     [OutputType(typeof(object))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class WaitUiaDataItemIsEnabledCommand : WaitUiaControlIsEnabledCommand
     { public WaitUiaDataItemIsEnabledCommand() { this.ControlType = ControlType.DataItem; } }
     
@@ -192,7 +192,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Wait, "UiaDocumentIsEnabled")]
     [OutputType(typeof(object))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class WaitUiaDocumentIsEnabledCommand : WaitUiaControlIsEnabledCommand
     { public WaitUiaDocumentIsEnabledCommand() { this.ControlType = ControlType.Document; } }
 
@@ -201,7 +201,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Wait, "UiaEditIsEnabled")]
     [OutputType(typeof(object))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class WaitUiaEditIsEnabledCommand : WaitUiaControlIsEnabledCommand
     { public WaitUiaEditIsEnabledCommand() { this.ControlType = ControlType.Edit; } }
     
@@ -210,7 +210,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Wait, "UiaTextBoxIsEnabled")]
     [OutputType(typeof(object))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class WaitUiaTextBoxIsEnabledCommand : WaitUiaEditIsEnabledCommand
     { public WaitUiaTextBoxIsEnabledCommand() { this.ControlType = ControlType.Edit; } }
     
@@ -219,7 +219,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Wait, "UiaGroupIsEnabled")]
     [OutputType(typeof(object))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class WaitUiaGroupIsEnabledCommand : WaitUiaControlIsEnabledCommand
     { public WaitUiaGroupIsEnabledCommand() { this.ControlType = ControlType.Group; } }
     
@@ -228,7 +228,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Wait, "UiaGroupBoxIsEnabled")]
     [OutputType(typeof(object))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class WaitUiaGroupBoxIsEnabledCommand : WaitUiaGroupIsEnabledCommand
     { public WaitUiaGroupBoxIsEnabledCommand() { this.ControlType = ControlType.Group; } }
     
@@ -237,7 +237,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Wait, "UiaHeaderIsEnabled")]
     [OutputType(typeof(object))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class WaitUiaHeaderIsEnabledCommand : WaitUiaControlIsEnabledCommand
     { public WaitUiaHeaderIsEnabledCommand() { this.ControlType = ControlType.Header; } }
     
@@ -246,7 +246,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Wait, "UiaHeaderItemIsEnabled")]
     [OutputType(typeof(object))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class WaitUiaHeaderItemIsEnabledCommand : WaitUiaControlIsEnabledCommand
     { public WaitUiaHeaderItemIsEnabledCommand() { this.ControlType = ControlType.HeaderItem; } }
     
@@ -255,7 +255,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Wait, "UiaHyperlinkIsEnabled")]
     [OutputType(typeof(object))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class WaitUiaHyperlinkIsEnabledCommand : WaitUiaControlIsEnabledCommand
     { public WaitUiaHyperlinkIsEnabledCommand() { this.ControlType = ControlType.Hyperlink; } }
     
@@ -264,7 +264,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Wait, "UiaLinkLabelIsEnabled")]
     [OutputType(typeof(object))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class WaitUiaLinkLabelIsEnabledCommand : WaitUiaHyperlinkIsEnabledCommand
     { public WaitUiaLinkLabelIsEnabledCommand() { this.ControlType = ControlType.Hyperlink; } }
 
@@ -273,7 +273,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Wait, "UiaImageIsEnabled")]
     [OutputType(typeof(object))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class WaitUiaImageIsEnabledCommand : WaitUiaControlIsEnabledCommand
     { public WaitUiaImageIsEnabledCommand() { this.ControlType = ControlType.Image; } }
     
@@ -282,7 +282,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Wait, "UiaListIsEnabled")]
     [OutputType(typeof(object))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class WaitUiaListIsEnabledCommand : WaitUiaControlIsEnabledCommand
     { public WaitUiaListIsEnabledCommand() { this.ControlType = ControlType.List; } }
     
@@ -291,7 +291,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Wait, "UiaListItemIsEnabled")]
     [OutputType(typeof(object))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class WaitUiaListItemIsEnabledCommand : WaitUiaControlIsEnabledCommand
     { public WaitUiaListItemIsEnabledCommand() { this.ControlType = ControlType.ListItem; } }
     
@@ -300,7 +300,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Wait, "UiaMenuIsEnabled")]
     [OutputType(typeof(object))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class WaitUiaMenuIsEnabledCommand : WaitUiaControlIsEnabledCommand
     { public WaitUiaMenuIsEnabledCommand() { this.ControlType = ControlType.Menu; } }
     
@@ -309,7 +309,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Wait, "UiaMenuBarIsEnabled")]
     [OutputType(typeof(object))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class WaitUiaMenuBarIsEnabledCommand : WaitUiaControlIsEnabledCommand
     { public WaitUiaMenuBarIsEnabledCommand() { this.ControlType = ControlType.MenuBar; } }
 
@@ -318,7 +318,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Wait, "UiaMenuItemIsEnabled")]
     [OutputType(typeof(object))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class WaitUiaMenuItemIsEnabledCommand : WaitUiaControlIsEnabledCommand
     { public WaitUiaMenuItemIsEnabledCommand() { this.ControlType = ControlType.MenuItem; } }
     
@@ -327,7 +327,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Wait, "UiaPaneIsEnabled")]
     [OutputType(typeof(object))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class WaitUiaPaneIsEnabledCommand : WaitUiaControlIsEnabledCommand
     { public WaitUiaPaneIsEnabledCommand() { this.ControlType = ControlType.Pane; } }
     
@@ -336,7 +336,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Wait, "UiaProgressBarIsEnabled")]
     [OutputType(typeof(object))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class WaitUiaProgressBarIsEnabledCommand : WaitUiaControlIsEnabledCommand
     { public WaitUiaProgressBarIsEnabledCommand() { this.ControlType = ControlType.ProgressBar; } }
     
@@ -345,7 +345,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Wait, "UiaRadioButtonIsEnabled")]
     [OutputType(typeof(object))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class WaitUiaRadioButtonIsEnabledCommand : WaitUiaControlIsEnabledCommand
     { public WaitUiaRadioButtonIsEnabledCommand() { this.ControlType = ControlType.RadioButton; } }
     
@@ -354,7 +354,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Wait, "UiaScrollBarIsEnabled")]
     [OutputType(typeof(object))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class WaitUiaScrollBarIsEnabledCommand : WaitUiaControlIsEnabledCommand
     { public WaitUiaScrollBarIsEnabledCommand() { this.ControlType = ControlType.ScrollBar; } }
 
@@ -363,7 +363,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Wait, "UiaSeparatorIsEnabled")]
     [OutputType(typeof(object))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class WaitUiaSeparatorIsEnabledCommand : WaitUiaControlIsEnabledCommand
     { public WaitUiaSeparatorIsEnabledCommand() { this.ControlType = ControlType.Separator; } }
     
@@ -372,7 +372,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Wait, "UiaSliderIsEnabled")]
     [OutputType(typeof(object))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class WaitUiaSliderIsEnabledCommand : WaitUiaControlIsEnabledCommand
     { public WaitUiaSliderIsEnabledCommand() { this.ControlType = ControlType.Slider; } }
     
@@ -381,7 +381,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Wait, "UiaSpinnerIsEnabled")]
     [OutputType(typeof(object))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class WaitUiaSpinnerIsEnabledCommand : WaitUiaControlIsEnabledCommand
     { public WaitUiaSpinnerIsEnabledCommand() { this.ControlType = ControlType.Spinner; } }
     
@@ -390,7 +390,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Wait, "UiaSplitButtonIsEnabled")]
     [OutputType(typeof(object))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class WaitUiaSplitButtonIsEnabledCommand : WaitUiaControlIsEnabledCommand
     { public WaitUiaSplitButtonIsEnabledCommand() { this.ControlType = ControlType.SplitButton; } }
     
@@ -399,7 +399,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Wait, "UiaStatusBarIsEnabled")]
     [OutputType(typeof(object))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class WaitUiaStatusBarIsEnabledCommand : WaitUiaControlIsEnabledCommand
     { public WaitUiaStatusBarIsEnabledCommand() { this.ControlType = ControlType.StatusBar; } }
 
@@ -408,7 +408,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Wait, "UiaTabIsEnabled")]
     [OutputType(typeof(object))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class WaitUiaTabIsEnabledCommand : WaitUiaControlIsEnabledCommand
     { public WaitUiaTabIsEnabledCommand() { this.ControlType = ControlType.Tab; } }
     
@@ -417,7 +417,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Wait, "UiaTabItemIsEnabled")]
     [OutputType(typeof(object))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class WaitUiaTabItemIsEnabledCommand : WaitUiaControlIsEnabledCommand
     { public WaitUiaTabItemIsEnabledCommand() { this.ControlType = ControlType.TabItem; } }
     
@@ -426,7 +426,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Wait, "UiaTableIsEnabled")]
     [OutputType(typeof(object))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class WaitUiaTableIsEnabledCommand : WaitUiaControlIsEnabledCommand
     { public WaitUiaTableIsEnabledCommand() { this.ControlType = ControlType.Table; } }
     
@@ -435,7 +435,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Wait, "UiaTextIsEnabled")]
     [OutputType(typeof(object))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class WaitUiaTextIsEnabledCommand : WaitUiaControlIsEnabledCommand
     { public WaitUiaTextIsEnabledCommand() { this.ControlType = ControlType.Text; } }
     
@@ -444,7 +444,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Wait, "UiaLabelIsEnabled")]
     [OutputType(typeof(object))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class WaitUiaLabelIsEnabledCommand : WaitUiaTextIsEnabledCommand
     { public WaitUiaLabelIsEnabledCommand() { this.ControlType = ControlType.Text; } }
     
@@ -453,7 +453,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Wait, "UiaThumbIsEnabled")]
     [OutputType(typeof(object))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class WaitUiaThumbIsEnabledCommand : WaitUiaControlIsEnabledCommand
     { public WaitUiaThumbIsEnabledCommand() { this.ControlType = ControlType.Thumb; } }
 
@@ -462,7 +462,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Wait, "UiaTitleBarIsEnabled")]
     [OutputType(typeof(object))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class WaitUiaTitleBarIsEnabledCommand : WaitUiaControlIsEnabledCommand
     { public WaitUiaTitleBarIsEnabledCommand() { this.ControlType = ControlType.TitleBar; } }
     
@@ -471,7 +471,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Wait, "UiaToolBarIsEnabled")]
     [OutputType(typeof(object))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class WaitUiaToolBarIsEnabledCommand : WaitUiaControlIsEnabledCommand
     { public WaitUiaToolBarIsEnabledCommand() { this.ControlType = ControlType.ToolBar; } }
     
@@ -480,7 +480,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Wait, "UiaToolTipIsEnabled")]
     [OutputType(typeof(object))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class WaitUiaToolTipIsEnabledCommand : WaitUiaControlIsEnabledCommand
     { public WaitUiaToolTipIsEnabledCommand() { this.ControlType = ControlType.ToolTip; } }
     
@@ -489,7 +489,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Wait, "UiaTreeIsEnabled")]
     [OutputType(typeof(object))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class WaitUiaTreeIsEnabledCommand : WaitUiaControlIsEnabledCommand
     { public WaitUiaTreeIsEnabledCommand() { this.ControlType = ControlType.Tree; } }
     
@@ -498,7 +498,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Wait, "UiaTreeItemIsEnabled")]
     [OutputType(typeof(object))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class WaitUiaTreeItemIsEnabledCommand : WaitUiaControlIsEnabledCommand
     { public WaitUiaTreeItemIsEnabledCommand() { this.ControlType = ControlType.TreeItem; } }
     
@@ -507,7 +507,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Wait, "UiaChildWindowIsEnabled")]
     [OutputType(typeof(object))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class WaitUiaChildWindowIsEnabledCommand : WaitUiaControlIsEnabledCommand
     { public WaitUiaChildWindowIsEnabledCommand() { this.ControlType = ControlType.Window; } }
     

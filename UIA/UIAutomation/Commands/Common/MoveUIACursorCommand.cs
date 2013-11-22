@@ -15,7 +15,7 @@ namespace UIAutomation.Commands
     /// Description of MoveUiaCursorCommand.
     /// </summary>
     [Cmdlet(VerbsCommon.Move, "UiaCursor")]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class MoveUiaCursorCommand : HasControlInputCmdletBase
     {
         #region Constructor

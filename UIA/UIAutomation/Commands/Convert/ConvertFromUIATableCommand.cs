@@ -18,7 +18,7 @@ namespace UIAutomation.Commands
     /// Description of ConvertFromUiaTableCommand.
     /// </summary>
     [Cmdlet(VerbsData.ConvertFrom, "UiaTable")]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class ConvertFromUiaTableCommand : ConvertCmdletBase
     {
         #region Parameters

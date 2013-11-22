@@ -16,7 +16,7 @@ namespace UIAutomation.Commands
     /// Description of RegisterUiaTextChangedEventCommand.
     /// </summary>
     [Cmdlet(VerbsLifecycle.Register, "UiaTextChangedEvent")]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class RegisterUiaTextChangedEventCommand : EventCmdletBase
     {
         #region Constructor

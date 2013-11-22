@@ -15,7 +15,7 @@ namespace UIAutomation.Commands
     /// Description of InvokeUiaControlClickCommand.
     /// </summary>
     [Cmdlet(VerbsLifecycle.Invoke, "UiaControlClick")]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class InvokeUiaControlClickCommand : HasControlInputCmdletBase
     {
         #region Constructor

@@ -20,7 +20,7 @@ namespace TMX
     /// Description of TmxProvider.
     /// </summary>
     [CmdletProvider("TmxProvider", ProviderCapabilities.None)]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class TmxProvider : ItemCmdletProvider // ContainerCmdletProvider // DriveCmdletProvider // CmdletProvider
     {
 

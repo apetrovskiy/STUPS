@@ -18,7 +18,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaWindow", DefaultParameterSetName = "UIA")]
     [OutputType(typeof(object))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class GetUiaWindowCommand : GetWindowCmdletBase
     {
         #region Parameters

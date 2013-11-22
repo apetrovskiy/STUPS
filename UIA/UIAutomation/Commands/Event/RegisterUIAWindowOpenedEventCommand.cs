@@ -16,7 +16,7 @@ namespace UIAutomation.Commands
     /// Description of RegisterUiaWindowOpenedEventCommand.
     /// </summary>
     [Cmdlet(VerbsLifecycle.Register, "UiaWindowOpenedEvent")]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class RegisterUiaWindowOpenedEventCommand : EventCmdletBase
     {
         #region Constructor

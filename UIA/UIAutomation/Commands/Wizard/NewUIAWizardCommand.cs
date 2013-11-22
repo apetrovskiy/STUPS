@@ -17,7 +17,7 @@ namespace UIAutomation.Commands
     /// Description of NewUiaWizardCommand.
     /// </summary>
     [Cmdlet(VerbsCommon.New, "UiaWizard")]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class NewUiaWizardCommand : WizardContainerCmdletBase
     {
         public NewUiaWizardCommand()

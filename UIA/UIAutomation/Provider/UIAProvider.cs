@@ -20,7 +20,7 @@ namespace UIAutomation
     /// Description of UiaProvider.
     /// </summary>
     [CmdletProvider("UiaProvider", ProviderCapabilities.None)]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class UiaProvider : DriveCmdletProvider // ItemCmdletProvider // ContainerCmdletProvider // DriveCmdletProvider // CmdletProvider
     {
 

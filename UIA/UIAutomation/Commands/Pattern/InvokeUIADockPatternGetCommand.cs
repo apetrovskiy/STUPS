@@ -30,7 +30,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaCustomDockPosition")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class GetUiaCustomDockPositionCommand : InvokeUiaDockPatternGetCommand
     { public GetUiaCustomDockPositionCommand() { } }
     
@@ -39,7 +39,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaMenuBarDockPosition")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class GetUiaMenuBarDockPositionCommand : InvokeUiaDockPatternGetCommand
     { public GetUiaMenuBarDockPositionCommand() { } }
     
@@ -48,7 +48,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaPaneDockPosition")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class GetUiaPaneDockPositionCommand : InvokeUiaDockPatternGetCommand
     { public GetUiaPaneDockPositionCommand() { } }
     
@@ -57,7 +57,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaToolBarDockPosition")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class GetUiaToolBarDockPositionCommand : InvokeUiaDockPatternGetCommand
     { public GetUiaToolBarDockPositionCommand() { } }
     
@@ -66,7 +66,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaWindowDockPosition")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class GetUiaWindowDockPositionCommand : InvokeUiaDockPatternGetCommand
     { public GetUiaWindowDockPositionCommand() { } }
 }

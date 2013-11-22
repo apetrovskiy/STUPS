@@ -102,7 +102,7 @@ namespace SePSX.Commands
     /// Description of SaveSeScreenshotCommand.
     /// </summary>
     [Cmdlet(VerbsData.Save, "SeScreenshot", DefaultParameterSetName = "NoFile")] //"Screenshot")]
-    //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    //
     public class SaveSeScreenshotCommand : ScreenshotCmdletBase
     {
         #region Constructor
@@ -116,7 +116,7 @@ namespace SePSX.Commands
     /// Description of GetSeScreenshotCommand.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "SeScreenshot", DefaultParameterSetName = "Screenshot")]
-    //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    //
     public class GetSeScreenshotCommand : ScreenshotCmdletBase
     {
         #region Constructor

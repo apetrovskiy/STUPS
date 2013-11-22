@@ -18,7 +18,7 @@ namespace UIAutomation.Commands
     /// Description of ConvertFromUiaDataGridCommand.
     /// </summary>
     [Cmdlet(VerbsData.ConvertFrom, "UiaDataGrid")]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class ConvertFromUiaDataGridCommand : ConvertCmdletBase
     {
         #region Constructor

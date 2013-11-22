@@ -17,7 +17,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Invoke, "UiaSelectionItemPattern")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class InvokeUiaSelectionItemPatternCommand : PatternCmdletBase
     { public InvokeUiaSelectionItemPatternCommand() { WhatToDo = "SelectionItem"; }
         
@@ -40,7 +40,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Invoke, "UiaCustomSelectItem")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class InvokeUiaCustomSelectItemCommand : InvokeUiaSelectionItemPatternCommand
     { public InvokeUiaCustomSelectItemCommand() { } }
     
@@ -49,7 +49,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Invoke, "UiaDataItemSelectItem")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class InvokeUiaDataItemSelectItemCommand : InvokeUiaSelectionItemPatternCommand
     { public InvokeUiaDataItemSelectItemCommand() { } }
         
@@ -58,7 +58,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Invoke, "UiaImageSelectItem")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class InvokeUiaImageSelectItemCommand : InvokeUiaSelectionItemPatternCommand
     { public InvokeUiaImageSelectItemCommand() { } }
     
@@ -67,7 +67,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Invoke, "UiaListItemSelectItem")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class InvokeUiaListItemSelectItemCommand : InvokeUiaSelectionItemPatternCommand
     { public InvokeUiaListItemSelectItemCommand() { } }
     
@@ -76,7 +76,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Invoke, "UiaMenuItemSelectItem")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class InvokeUiaMenuItemSelectItemCommand : InvokeUiaSelectionItemPatternCommand
     { public InvokeUiaMenuItemSelectItemCommand() { } }
     
@@ -85,7 +85,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Invoke, "UiaRadioButtonSelectItem")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class InvokeUiaRadioButtonSelectItemCommand : InvokeUiaSelectionItemPatternCommand
     { public InvokeUiaRadioButtonSelectItemCommand() { } }
     
@@ -94,7 +94,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Invoke, "UiaTabItemSelectItem")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class InvokeUiaTabItemSelectItemCommand : InvokeUiaSelectionItemPatternCommand
     { public InvokeUiaTabItemSelectItemCommand() { } }
     
@@ -103,7 +103,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Invoke, "UiaTreeItemSelectItem")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class InvokeUiaTreeItemSelectItemCommand : InvokeUiaSelectionItemPatternCommand
     { public InvokeUiaTreeItemSelectItemCommand() { } }
 

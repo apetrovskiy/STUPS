@@ -15,7 +15,7 @@ namespace UIAutomation.Commands
     /// Description of SaveUiaScreenshotCommand.
     /// </summary>
     //[Cmdlet(VerbsData.Save, "UiaScreenshot")]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class ScreenshotCmdletBase : GetControlCmdletBase //HasControlInputCmdletBase
     {
         #region Constructor
@@ -95,7 +95,7 @@ namespace UIAutomation.Commands
     /// Description of SaveUiaScreenshotCommand.
     /// </summary>
     [Cmdlet(VerbsData.Save, "UiaScreenshot", DefaultParameterSetName = "NoFile")] //"Screenshot")]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class SaveUiaScreenshotCommand : ScreenshotCmdletBase
     {
         #region Constructor
@@ -106,7 +106,7 @@ namespace UIAutomation.Commands
     /// Description of GetUiaScreenshotCommand.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaScreenshot", DefaultParameterSetName = "Screenshot")]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class GetUiaScreenshotCommand : ScreenshotCmdletBase
     {
         #region Constructor

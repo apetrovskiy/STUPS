@@ -43,7 +43,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsCommon.Set, "UiaDocumentRangeText")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class SetUiaDocumentRangeTextCommand : InvokeUiaTextPatternSetCommand
     { public SetUiaDocumentRangeTextCommand() { } }
     
@@ -52,7 +52,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsCommon.Set, "UiaEditRangeText")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class SetUiaEditRangeTextCommand : InvokeUiaTextPatternSetCommand
     { public SetUiaEditRangeTextCommand() { } }
     
@@ -61,7 +61,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsCommon.Set, "UiaTextRangeText")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class SetUiaTextRangeTextCommand : InvokeUiaTextPatternSetCommand
     { public SetUiaTextRangeTextCommand() { } }
     
@@ -70,7 +70,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsCommon.Set, "UiaToolTipRangeText")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class SetUiaToolTipRangeTextCommand : InvokeUiaTextPatternSetCommand
     { public SetUiaToolTipRangeTextCommand() { } }
 }

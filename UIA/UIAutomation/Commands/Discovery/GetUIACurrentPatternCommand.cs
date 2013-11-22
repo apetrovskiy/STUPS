@@ -19,7 +19,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaCurrentPattern")]
     [OutputType(typeof(object))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class GetUiaCurrentPatternCommand : DiscoveryCmdletBase
     {
         #region Parameters

@@ -18,7 +18,7 @@ namespace UIAutomation.Commands
     /// Description of AddUiaWizardStepCommand.
     /// </summary>
     [Cmdlet(VerbsCommon.Add, "UiaWizardStep")]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class AddUiaWizardStepCommand : WizardStepCmdletBase //WizardConstructionCmdletBase
     //internal class AddUiaWizardStepCommand : WizardCmdletBase
     {

@@ -18,7 +18,7 @@ namespace UIAutomation.Commands
     // 20131024
     //[Cmdlet(VerbsCommon.Set, "UiaRangeValuePatternSet")]
     [Cmdlet(VerbsLifecycle.Invoke, "UiaRangeValuePatternSet")]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class InvokeUiaRangeValuePatternSetCommand : PatternCmdletBase
     {
         public InvokeUiaRangeValuePatternSetCommand()
@@ -41,7 +41,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsCommon.Set, "UiaCustomRangeValue")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class SetUiaCustomRangeValueCommand : InvokeUiaRangeValuePatternSetCommand
     { public SetUiaCustomRangeValueCommand() { } }
 
@@ -50,7 +50,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsCommon.Set, "UiaEditRangeValue")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class SetUiaEditRangeValueCommand : InvokeUiaRangeValuePatternSetCommand
     { public SetUiaEditRangeValueCommand() { } }
     
@@ -59,7 +59,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsCommon.Set, "UiaTextBoxRangeValue")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class SetUiaTextBoxRangeValueCommand : SetUiaEditRangeValueCommand
     { public SetUiaTextBoxRangeValueCommand() { } }
     
@@ -68,7 +68,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsCommon.Set, "UiaProgressBarRangeValue")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class SetUiaProgressBarRangeValueCommand : InvokeUiaRangeValuePatternSetCommand
     { public SetUiaProgressBarRangeValueCommand() { } }
     
@@ -77,7 +77,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsCommon.Set, "UiaScrollBarRangeValue")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class SetUiaScrollBarRangeValueCommand : InvokeUiaRangeValuePatternSetCommand
     { public SetUiaScrollBarRangeValueCommand() { } }
     
@@ -86,7 +86,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsCommon.Set, "UiaSliderRangeValue")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class SetUiaSliderRangeValueCommand : InvokeUiaRangeValuePatternSetCommand
     { public SetUiaSliderRangeValueCommand() { } }
     
@@ -95,7 +95,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsCommon.Set, "UiaSpinnerRangeValue")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class SetUiaSpinnerRangeValueCommand : InvokeUiaRangeValuePatternSetCommand
     { public SetUiaSpinnerRangeValueCommand() { } }
     
@@ -104,7 +104,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsCommon.Set, "UiaTextRangeValue")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class SetUiaTextRangeValueCommand : InvokeUiaRangeValuePatternSetCommand
     { public SetUiaTextRangeValueCommand() { } }
 }

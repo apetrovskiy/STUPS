@@ -31,7 +31,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaButtonToggleState")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class GetUiaButtonToggleStateCommand : InvokeUiaToggleStateGetCommand 
     { public GetUiaButtonToggleStateCommand() { } }
     
@@ -40,7 +40,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaCheckBoxToggleState")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class GetUiaCheckBoxToggleStateCommand : InvokeUiaToggleStateGetCommand 
     { public GetUiaCheckBoxToggleStateCommand() { } }
     
@@ -49,7 +49,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaCustomToggleState")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class GetUiaCustomToggleStateCommand : InvokeUiaToggleStateGetCommand 
     { public GetUiaCustomToggleStateCommand() { } }
     
@@ -58,7 +58,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaDataItemToggleState")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class GetUiaDataItemToggleStateCommand : InvokeUiaToggleStateGetCommand 
     { public GetUiaDataItemToggleStateCommand() { } }
     
@@ -67,7 +67,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaListItemToggleState")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class GetUiaListItemToggleStateCommand : InvokeUiaToggleStateGetCommand 
     { public GetUiaListItemToggleStateCommand() { } }
     
@@ -76,7 +76,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaMenuItemToggleState")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class GetUiaMenuItemToggleStateCommand : InvokeUiaToggleStateGetCommand 
     { public GetUiaMenuItemToggleStateCommand() { } }
     
@@ -85,7 +85,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaRadioButtonToggleState")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class GetUiaRadioButtonToggleStateCommand : InvokeUiaToggleStateGetCommand 
     { public GetUiaRadioButtonToggleStateCommand() { } }
 }

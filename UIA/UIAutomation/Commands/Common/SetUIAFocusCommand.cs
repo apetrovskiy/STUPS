@@ -16,7 +16,7 @@ namespace UIAutomation.Commands
     /// Description of SetUiaFocusCommand.
     /// </summary>
     [Cmdlet(VerbsCommon.Set, "UiaFocus")]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class SetUiaFocusCommand : HasControlInputCmdletBase
     {
         #region Parameters

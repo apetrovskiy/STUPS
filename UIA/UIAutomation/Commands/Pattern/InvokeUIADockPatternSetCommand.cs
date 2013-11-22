@@ -35,7 +35,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsCommon.Set, "UiaCustomDockPosition")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class SetUiaCustomDockPositionCommand : InvokeUiaDockPatternSetCommand
     { public SetUiaCustomDockPositionCommand() { } }
     
@@ -44,7 +44,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsCommon.Set, "UiaMenuBarDockPosition")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class SetUiaMenuBarDockPositionCommand : InvokeUiaDockPatternSetCommand
     { public SetUiaMenuBarDockPositionCommand() { } }
     
@@ -53,7 +53,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsCommon.Set, "UiaPaneDockPosition")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class SetUiaPaneDockPositionCommand : InvokeUiaDockPatternSetCommand
     { public SetUiaPaneDockPositionCommand() { } }
     
@@ -62,7 +62,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsCommon.Set, "UiaToolBarDockPosition")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class SetUiaToolBarDockPositionCommand : InvokeUiaDockPatternSetCommand
     { public SetUiaToolBarDockPositionCommand() { } }
     
@@ -71,7 +71,7 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsCommon.Set, "UiaWindowDockPosition")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    
     public class SetUiaWindowDockPositionCommand : InvokeUiaDockPatternSetCommand
     { public SetUiaWindowDockPositionCommand() { } }
 }

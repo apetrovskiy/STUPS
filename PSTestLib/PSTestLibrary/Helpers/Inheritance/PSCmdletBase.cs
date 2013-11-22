@@ -585,16 +585,17 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
 //                result = 
 //                    result.Replace("Se", "-Se");
 //            } else 
-            if (result.Contains("UIA")) {
+            if (result.Contains("Uia")) {
                 result = 
-                    result.Replace("UIA", "-UIA");
-            } else if (result.Contains("TMX")) {
+                    result.Replace("Uia", "-Uia");
+            } else if (result.Contains("Tmx")) {
                 result = 
-                    result.Replace("TMX", "-TMX");
-            } else if (result.Contains("AWS")) {
-                result = 
-                    result.Replace("AWS", "-AWS");
-            } else if (result.Contains("ESXi")) {
+                    result.Replace("Tmx", "-Tmx");
+            } //else if (result.Contains("AWS")) {
+            //    result = 
+            //        result.Replace("AWS", "-AWS");
+            //} 
+            else if (result.Contains("ESXi")) {
                 result = 
                     result.Replace("ESXi", "-ESXi");
             }

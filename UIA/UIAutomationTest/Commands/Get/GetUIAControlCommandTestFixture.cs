@@ -764,6 +764,7 @@ namespace UIAutomationTest.Commands.Get
                 // 20130219
                 //"Get-UiaControl: timeout expired for class: ' + , control type: , title: ");
                 @"Get-UiaControl: timeout expired for control with class: + '', control type: '', title: '', automationId: '', value: ''");
+                //@"Get-UiaControl: timeout expired for control with class: + '', control type: '', title: '', automationId: '', value: ''");
         }
         
         [Test] //[Test(Description="TBD")]

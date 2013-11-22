@@ -14,9 +14,6 @@ namespace UIAutomation
     using System.Collections.Generic;
     using System.Windows.Automation;
     using System.Linq;
-    
-    //using System.Linq.Expressions;
-    
     using Ninject;
     
 	public class MySuperCollection : IMySuperCollection
@@ -25,10 +22,6 @@ namespace UIAutomation
 	        new List<IMySuperWrapper>();
 	    
 		public IMySuperWrapper this[int index] {
-		    //get { return this.collectionHolder[index]; } //return this._elements[index]; }
-		    //get { return ((AutomationElementCollection)this.collectionHolder)[index]; } //return this._elements[index]; }
-		    //get { return new MySuperWrapper(((AutomationElementCollection)this.collectionHolder)[index]); } //return this._elements[index]; }
-		    //get { return new MySuperWrapper(this.collectionHolder[index]); } //return this._elements[index]; }
 		    get { return this.collectionHolder[index]; }
 		}
 		public int Count {
@@ -46,8 +39,6 @@ namespace UIAutomation
 		    foreach (AutomationElement element in elements) {
 		        
 		        if (null != element) {
-    		        // 20131112
-    		        //this.collectionHolder.Add(new MySuperWrapper(element));
     		        this.collectionHolder.Add(ObjectsFactory.GetMySuperWrapper(element));
 		        }
 		    }
@@ -90,12 +81,10 @@ namespace UIAutomation
 		}
 		public virtual void CopyTo(IMySuperWrapper[] array, int index)
 		{
-			//((ICollection)this).CopyTo(array, index);
 			this.collectionHolder.CopyTo(array, index);
 		}
 		public IEnumerator GetEnumerator()
 		{
-			//return this._elements.GetEnumerator();
 			return this.collectionHolder.GetEnumerator();
 		}
 		
@@ -111,11 +100,11 @@ namespace UIAutomation
 		
 		public void Dispose()
 		{
-		    if (null != this.collectionHolder) {
-		        for (int i = 0; i < this.collectionHolder.Count; i++) {
-		            this.collectionHolder[i].Dispose();
-		        }
-		    }
+//		    if (null != this.collectionHolder) {
+//		        for (int i = 0; i < this.collectionHolder.Count; i++) {
+//		            if (null != this.collectionHolder[i]) this.collectionHolder[i].Dispose();
+//		        }
+//		    }
 		    
 		    // 20131120
 		    GC.SuppressFinalize(this);

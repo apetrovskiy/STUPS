@@ -19,7 +19,7 @@ namespace UIAutomation
     using System.Management.Automation.Runspaces;
     using System.Windows.Automation;
     using System.Collections.Generic;
-    
+    using System.Text.RegularExpressions;
     using System.Linq;
     
     using PSTestLib;
@@ -2073,16 +2073,6 @@ namespace UIAutomation
                     cmdlet.WriteVerbose(cmdlet, (propertyCondition as PropertyCondition).Value.ToString());
                     cmdlet.WriteVerbose(cmdlet, (propertyCondition as PropertyCondition).Flags.ToString());
                 }
-
-                /*
-                for (int i = 0; i < conds.Length; i++) {
-                    cmdlet.WriteVerbose(cmdlet, "<<<< displaying conditions '" + description + "' >>>>");
-                    cmdlet.WriteVerbose(cmdlet, (conds[i] as PropertyCondition).Property.ProgrammaticName);
-                    cmdlet.WriteVerbose(cmdlet, (conds[i] as PropertyCondition).Value.ToString());
-                    cmdlet.WriteVerbose(cmdlet, (conds[i] as PropertyCondition).Flags.ToString());
-
-                }
-                */
             }
             catch {}
         }
@@ -2092,8 +2082,6 @@ namespace UIAutomation
         {
             try {
                 
-                // 20131107
-                //aeCtrl = new ArrayList();
                 resultArrayListOfControls = new ArrayList();
                 
                 #region conditions
@@ -2115,7 +2103,9 @@ namespace UIAutomation
                 tempCmdlet.ControlType = cmdlet.ControlType;
 
                 bool notTextSearch = true;
-                if (!string.IsNullOrEmpty(cmdlet.ContainsText)) {
+                // 20131122
+                //if (!string.IsNullOrEmpty(cmdlet.ContainsText)) {
+                if (!string.IsNullOrEmpty(cmdlet.ContainsText) && !cmdlet.Regex) {
                     tempCmdlet.ContainsText = cmdlet.ContainsText;
                     notTextSearch = false;
                     
@@ -2171,60 +2161,13 @@ namespace UIAutomation
                 }
                 #endregion conditions
                 
-                #region commented
-                /*
-                if (null != cmdlet.ContainsText && string.Empty != cmdlet.ContainsText) {
-                    tempCmdlet.ContainsText = cmdlet.ContainsText;
-                    notTextSearch = false;
-                    
-                    conditionsForTextSearch =
-                        this.getControlConditions(
-                            tempCmdlet,
-                            tempCmdlet.ControlType,
-                            cmdlet.CaseSensitive,
-                            false) as AndCondition;
-                    
-                    // display conditions for text search
-                    this.WriteVerbose(cmdlet, "these conditions are used for text search:");
-                    displayConditions(cmdlet, conditionsForTextSearch, "for text search");
-
-                } else {
-                    
-                    conditions = this.getControlConditions(cmdlet, cmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive, true) as AndCondition;
-                    // display conditions for a regular search
-                    this.WriteVerbose(cmdlet, "these conditions are used for an exact search:");
-                    displayConditions(cmdlet, conditions, "for exact search");
-                    
-                    conditionsForWildCards =
-                        this.getControlConditions(tempCmdlet, tempCmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive, true) as AndCondition;
-                    
-                    // display conditions for wildcard search
-                    this.WriteVerbose(cmdlet, "these conditions are used for wildcard search:");
-                    displayConditions(cmdlet, conditionsForWildCards, "for wildcard search");
-
-                }
-                */
-                #endregion commented
-                
                 tempCmdlet = null;
                 
-                // 20131108
                 IMySuperCollection inputCollection = cmdlet.InputObject.ConvertCmdletInputToCollectionAdapter();
                 
-                // 20131108
-                //foreach (AutomationElement inputObject in cmdlet.InputObject) {
-                // 20131109
-                //foreach (AutomationElement inputObject in inputCollection) {
                 foreach (IMySuperWrapper inputObject in inputCollection) {
                     
-                    // 20131104
-                    // refactoring
                     IMySuperWrapper adapterOfInputObject =
-                        // 20131112
-                        //new MySuperWrapper(inputObject.SourceElement);
-                        // 20131118
-                        // property to method
-                        //ObjectsFactory.GetMySuperWrapper(inputObject.SourceElement);
                         ObjectsFactory.GetMySuperWrapper(inputObject.GetSourceElement());
 
                     int processId = 0;
@@ -2275,7 +2218,9 @@ namespace UIAutomation
                         #endregion text search Win32
 
                         #region exact search
-                        if (0 == resultArrayListOfControls.Count && notTextSearch) {
+                        // 20131122
+                        //if (0 == resultArrayListOfControls.Count && notTextSearch) {
+                        if (0 == resultArrayListOfControls.Count && notTextSearch && !cmdlet.Regex) {
                             if (!Preferences.DisableExactSearch && !cmdlet.Win32 ) {
                                 
                                 // 20131104
@@ -2288,31 +2233,29 @@ namespace UIAutomation
                         #endregion exact search
 
                         #region wildcard search
-                        if (0 == resultArrayListOfControls.Count && notTextSearch) {
+                        // 20131122
+                        //if (0 == resultArrayListOfControls.Count && notTextSearch) {
+                        if (0 == resultArrayListOfControls.Count && notTextSearch && !cmdlet.Regex) {
                             if (!Preferences.DisableWildCardSearch && !cmdlet.Win32) {
                                 
-                                // 20131104
-                                // refactoring
-                                //SearchByWildcardViaUIA(cmdlet, ref aeCtrl, inputObject, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class, cmdlet.Value, conditionsForWildCards);
-                                SearchByWildcardViaUIA(cmdlet, ref resultArrayListOfControls, adapterOfInputObject, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class, cmdlet.Value, conditionsForWildCards);
+                                SearchByWildcardOrRegexViaUIA(cmdlet, ref resultArrayListOfControls, adapterOfInputObject, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class, cmdlet.Value, conditionsForWildCards, true);
                             }
                         }
                         #endregion wildcard search
                         
                         #region Regex search
-                        //if (0 == aeCtrl.Count && notTextSearch) {
-                        //    if (!Preferences.DisableWildCardSearch && !cmdlet.Win32) {
-                        //        
-                        //        // 20131104
-                        //        // refactoring
-                        //        //SearchByWildcardViaUIA(cmdlet, ref aeCtrl, inputObject, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class, cmdlet.Value, conditionsForWildCards);
-                        //        SearchByWildcardViaUIA(cmdlet, ref aeCtrl, adapterOfInputObject, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class, cmdlet.Value, conditionsForWildCards);
-                        //    }
-                        //}
+                        if (0 == resultArrayListOfControls.Count && notTextSearch && cmdlet.Regex) {
+                            if (!Preferences.DisableWildCardSearch && !cmdlet.Win32) {
+                                
+                                SearchByWildcardOrRegexViaUIA(cmdlet, ref resultArrayListOfControls, adapterOfInputObject, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class, cmdlet.Value, conditionsForWildCards, false);
+                            }
+                        }
                         #endregion Regex search
 
                         #region Win32 search
-                        if (0 == resultArrayListOfControls.Count && notTextSearch) {
+                        // 20131122
+                        //if (0 == resultArrayListOfControls.Count && notTextSearch) {
+                        if (0 == resultArrayListOfControls.Count && notTextSearch && !cmdlet.Regex) {
                             
                             if (!Preferences.DisableWin32Search || cmdlet.Win32) {
                                 
@@ -2557,12 +2500,9 @@ namespace UIAutomation
             */
         }
 
-        internal void SearchByWildcardViaUIA(
+        internal void SearchByWildcardOrRegexViaUIA(
             GetControlCmdletBase cmdlet, // 20130318 // ??
             ref ArrayList resultCollection,
-            // 20131104
-            // refactoring
-            //AutomationElement inputObject,
             IMySuperWrapper inputObject,
             string name,
             string automationId,
@@ -2570,16 +2510,16 @@ namespace UIAutomation
             string strValue,
             // 20131118
             // object -> Condition
-            System.Windows.Automation.AndCondition conditionsForWildCards)
+            System.Windows.Automation.AndCondition conditionsForWildCards,
+            // 20131122
+            bool viaWildcardOrRegex)
             //System.Windows.Automation.Condition conditionsForWildCards)
         {
-            this.WriteVerbose((cmdlet as PSTestLib.PSCmdletBase), "[getting the control] using WildCard search");
+            this.WriteVerbose((cmdlet as PSTestLib.PSCmdletBase), "[getting the control] using WildCard/Regex search");
             try {
 
                 GetControlCollectionCmdletBase cmdlet1 =
                     new GetControlCollectionCmdletBase(
-                        // 20131109
-                        //cmdlet.InputObject ?? (new AutomationElement[]{ AutomationElement.RootElement }),
                         cmdlet.InputObject ?? (new MySuperWrapper[]{ (MySuperWrapper)MySuperWrapper.RootElement }),
                         name, //cmdlet.Name,
                         automationId, //cmdlet.AutomationId,
@@ -2587,19 +2527,7 @@ namespace UIAutomation
                         strValue,
                         null != cmdlet.ControlType ? (new string[] {cmdlet.ControlType}) : (new string[] {}),
                         this.caseSensitive);
-
-                /*
-                GetControlCollectionCmdletBase cmdlet1 =
-                    new GetControlCollectionCmdletBase(
-                        null != cmdlet.InputObject ? cmdlet.InputObject : (new AutomationElement[]{ AutomationElement.RootElement }),
-                        name, //cmdlet.Name,
-                        automationId, //cmdlet.AutomationId,
-                        className, //cmdlet.Class,
-                        strValue,
-                        null != cmdlet.ControlType ? (new string[] {cmdlet.ControlType}) : (new string[] {}),
-                        this.caseSensitive);
-                */
-
+                
                 try {
                     this.WriteVerbose((cmdlet as PSTestLib.PSCmdletBase), "using the GetAutomationElementsViaWildcards_FindAll method");
                     
@@ -2610,7 +2538,9 @@ namespace UIAutomation
                             conditionsForWildCards,
                             cmdlet1.CaseSensitive,
                             false,
-                            false);
+                            false,
+                            // 20131122
+                            viaWildcardOrRegex);
 
                     cmdlet.WriteVerbose(
                         cmdlet, 
@@ -2623,16 +2553,14 @@ namespace UIAutomation
                         resultCollection.AddRange(tempList);
                     } else {
                         
-                        // 20131109
-                        //foreach (AutomationElement tempElement2 in tempList) {
                         foreach (IMySuperWrapper tempElement2 in tempList) {
                             
-                            cmdlet.WriteVerbose(cmdlet, "WildCardSearch: checking search criteria");
+                            cmdlet.WriteVerbose(cmdlet, "WildCard/Regex search: checking search criteria");
                             if (!TestControlWithAllSearchCriteria(cmdlet, cmdlet.SearchCriteria, tempElement2))
                                 continue;
-                            cmdlet.WriteVerbose(cmdlet, "WildCardSearch: the control matches the search criteria");
+                            cmdlet.WriteVerbose(cmdlet, "WildCard/Regex search: the control matches the search criteria");
                             resultCollection.Add(tempElement2);
-                            cmdlet.WriteVerbose(cmdlet, "WildCardSearch: element added to the result collection (SearchCriteria)");
+                            cmdlet.WriteVerbose(cmdlet, "WildCard/Regex search: element added to the result collection (SearchCriteria)");
                         }
                     }
                     
@@ -2670,7 +2598,7 @@ namespace UIAutomation
                         tempList = null;
                     }
                     
-                    cmdlet.WriteVerbose(cmdlet, "WildCardSearch: element(s) added to the result collection: " + resultCollection.Count.ToString());
+                    cmdlet.WriteVerbose(cmdlet, "WildCard/Regex search: element(s) added to the result collection: " + resultCollection.Count.ToString());
                 } catch (Exception eUnexpected) {
 
                     this.WriteError(
@@ -2695,13 +2623,9 @@ namespace UIAutomation
                     true);
             }
         }
-
-
+        
         internal void SearchByExactConditionsViaUIA(
             GetControlCmdletBase cmdlet,
-            // 20131104
-            // refactoring
-            //AutomationElement inputObject,
             IMySuperWrapper inputObject,
             // 20131118
             // object -> Condition

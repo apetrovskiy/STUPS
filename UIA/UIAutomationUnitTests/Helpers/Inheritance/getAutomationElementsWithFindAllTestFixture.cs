@@ -51,7 +51,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                     condition,
                     false,
                     false,
-                    false);
+                    false,
+                    // 20131122
+                    true);
             
             return resultList;
         }

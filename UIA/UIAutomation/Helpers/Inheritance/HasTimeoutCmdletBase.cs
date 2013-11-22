@@ -14,11 +14,11 @@ namespace UIAutomation
     using System.Windows.Automation;
     using System.Runtime.InteropServices;
     using System.Diagnostics;
-    using System.Windows.Automation;
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
     using System.Linq.Expressions;
+    using System.Text.RegularExpressions;
 
     /// <summary>
     /// Description of HasTimeoutCmdletBase.
@@ -660,7 +660,9 @@ namespace UIAutomation
                             className,
                             string.Empty,
                             new string[]{ "Window" },
-                            false));
+                            false,
+                            // 20131122
+                            true));
                         
                 }
             } else {
@@ -674,7 +676,9 @@ namespace UIAutomation
                         className,
                         string.Empty,
                         new string[]{ "Window" },
-                        false));
+                        false,
+                        // 20131122
+                        true));
             }
                 
             aeWndCollectionByProcessId = resultList;
@@ -884,7 +888,9 @@ namespace UIAutomation
                         className,
                         string.Empty,
                         (new string[]{ "Window", "Pane", "Menu" }),
-                        false);
+                        false,
+                        // 20131122
+                        true);
                 
                 this.WriteVerbose(this, "after running the returnOnlyRightElements method");
                 this.WriteVerbose(this, "collected " + windowCollectionByProperties.Count.ToString() + " elements");
@@ -1053,7 +1059,9 @@ namespace UIAutomation
             string className,
             string textValue,
             string[] controlType,
-            bool caseSensitive)
+            bool caseSensitive,
+            // 20131122
+            bool viaWildcardOrRegex)
         {
             ArrayList resultCollection = new ArrayList();
 
@@ -1067,10 +1075,22 @@ namespace UIAutomation
                     WildcardOptions.Compiled;
             }
             
-            name = string.IsNullOrEmpty(name) ? "*" : name;
-            automationId = string.IsNullOrEmpty(automationId) ? "*" : automationId;
-            className = string.IsNullOrEmpty(className) ? "*" : className;
-            textValue = string.IsNullOrEmpty(textValue) ? "*" : textValue;
+            RegexOptions regexOptions = RegexOptions.Compiled;
+            if (!caseSensitive) {
+                regexOptions |= RegexOptions.IgnoreCase;
+            }
+            
+            if (viaWildcardOrRegex) {
+                name = string.IsNullOrEmpty(name) ? "*" : name;
+                automationId = string.IsNullOrEmpty(automationId) ? "*" : automationId;
+                className = string.IsNullOrEmpty(className) ? "*" : className;
+                textValue = string.IsNullOrEmpty(textValue) ? "*" : textValue;
+            } else {
+                name = string.IsNullOrEmpty(name) ? ".*" : name;
+                automationId = string.IsNullOrEmpty(automationId) ? ".*" : automationId;
+                className = string.IsNullOrEmpty(className) ? ".*" : className;
+                textValue = string.IsNullOrEmpty(textValue) ? ".*" : textValue;
+            }
             
             /*
             if (string.IsNullOrEmpty(name) || 0 == name.Length) { name = "*"; }
@@ -1086,6 +1106,7 @@ namespace UIAutomation
             if (null == textValue || string.Empty == textValue || 0 == textValue.Length) { textValue = "*"; }
             */
             
+           //if (viaWildcardOrRegex) {
             WildcardPattern wildcardName = 
                 new WildcardPattern(name, options);
             WildcardPattern wildcardAutomationId = 
@@ -1094,7 +1115,7 @@ namespace UIAutomation
                 new WildcardPattern(className, options);
             WildcardPattern wildcardValue = 
                 new WildcardPattern(textValue, options);
-            
+           //}
             /*
             WildcardPattern wildcardName = 
                 new WildcardPattern(string.IsNullOrEmpty(name) ? "*" : name, options);
@@ -1127,79 +1148,50 @@ namespace UIAutomation
             */
 
             try {
-                
-               // 20131109
-//                var query = inputList
-//                    .Where<AutomationElement>(
-//                        item => (wildcardName.IsMatch(item.Current.Name) &&
-//                                 wildcardAutomationId.IsMatch(item.Current.AutomationId) &&
-//                                 wildcardClass.IsMatch(item.Current.ClassName) &&
-//                                 // check whether a control has or hasn't ValuePattern
-//                                 (item.GetSupportedPatterns().Contains(ValuePattern.Pattern) ?
-//                                  cmdlet.testRealValueAndValueParameter(item, name, automationId, className, textValue, wildcardValue) :
-//                                  // check whether the -Value parameter has or hasn't value
-//                                  ("*" == textValue ? true : false)
-//                                 )
-//                                )
-//                       )
-//                    .ToArray<AutomationElement>();
-                
-//cmdlet.WriteVerbose(cmdlet, "querying the input collection");
-//Console.WriteLine("Return...: 00007");
-//cmdlet.WriteVerbose(cmdlet, "inputList.Count = " + inputList.Count.ToString());
-//Console.WriteLine("Return...: 00008 inputList.Count = " + inputList.Count.ToString());
-//foreach (IMySuperWrapper wrp in inputList) {
-//    if (null == wrp) {
-//        cmdlet.WriteVerbose(cmdlet, "item is null");
-//        Console.WriteLine("Return...: 00009 item is null");
-//    }
-//    if (null == wrp.Current) {
-//        cmdlet.WriteVerbose(cmdlet, "item.Current is null");
-//        Console.WriteLine("Return...: 00010 item.Current is null");
-//    }
-//    Console.WriteLine("Return...: 00011 " + wrp.Current.Name);
-//    cmdlet.WriteVerbose(cmdlet, wrp.Current.Name);
-//    cmdlet.WriteVerbose(cmdlet, wrp.Current.AutomationId);
-//    cmdlet.WriteVerbose(cmdlet, wrp.Current.ClassName);
-//    cmdlet.WriteVerbose(cmdlet, wrp.Current.ControlType.ProgrammaticName);
-//}
-                
-                
-//try {
-                var query = inputList
-                    .Where<IMySuperWrapper>(
-                        item => (wildcardName.IsMatch(item.Current.Name) &&
-                                 wildcardAutomationId.IsMatch(item.Current.AutomationId) &&
-                                 wildcardClass.IsMatch(item.Current.ClassName) &&
-                                 // check whether a control has or hasn't ValuePattern
-                                 (item.GetSupportedPatterns().Contains(ValuePattern.Pattern) ?
-                                  cmdlet.testRealValueAndValueParameter(item, name, automationId, className, textValue, wildcardValue) :
-                                  // check whether the -Value parameter has or hasn't value
-                                  ("*" == textValue ? true : false)
-                                 )
-                                )
-                       )
-                    .ToArray<IMySuperWrapper>();
-                
-//cmdlet.WriteVerbose(cmdlet, "query has been completed");
-//Console.WriteLine("Return...: 00012");
-//foreach (IMySuperWrapper elt1 in query) {
-//    Console.WriteLine("elt1: " + elt1.Current.Name);
-//}
-                
+               
+                System.Collections.ICollection query;
+               
+                if (viaWildcardOrRegex) {
+                    query = inputList
+                        .Where<IMySuperWrapper>(
+                            item => (wildcardName.IsMatch(item.Current.Name) &&
+                                     wildcardAutomationId.IsMatch(item.Current.AutomationId) &&
+                                     wildcardClass.IsMatch(item.Current.ClassName) &&
+                                     // check whether a control has or hasn't ValuePattern
+                                     (item.GetSupportedPatterns().Contains(ValuePattern.Pattern) ?
+                                      cmdlet.testRealValueAndValueParameter(item, name, automationId, className, textValue, true, wildcardValue, regexOptions) :
+                                      // check whether the -Value parameter has or hasn't value
+                                      ("*" == textValue ? true : false)
+                                     )
+                                    )
+                           )
+                        .ToArray<IMySuperWrapper>();
+               } else {
+                   
+                    query = inputList
+                        .Where<IMySuperWrapper>(
+                            item => (Regex.IsMatch(item.Current.Name, name, regexOptions) &&
+                                     Regex.IsMatch(item.Current.AutomationId, automationId, regexOptions) &&
+                                     Regex.IsMatch(item.Current.ClassName, className, regexOptions) &&
+                                     // check whether a control has or hasn't ValuePattern
+                                     (item.GetSupportedPatterns().Contains(ValuePattern.Pattern) ?
+                                      cmdlet.testRealValueAndValueParameter(item, name, automationId, className, textValue, false, null, regexOptions) :
+                                      // check whether the -Value parameter has or hasn't value
+                                      (".*" == textValue ? true : false)
+                                     )
+                                    )
+                           )
+                        .ToArray<IMySuperWrapper>();
+               }
                 
                 cmdlet.WriteVerbose(
                         cmdlet,
                         "There are " +
-                        query.Count().ToString() +
+                        //query.Count().ToString() +
+                        query.Count.ToString() +
                         " elements");
                 
                 resultCollection.AddRange(query);
-                
-//}
-//catch (Exception eeeeeeeeeeeeeee) {
-//    Console.WriteLine(eeeeeeeeeeeeeee.Message);
-//}
                 
                 cmdlet.WriteVerbose(
                     cmdlet,
@@ -1215,15 +1207,16 @@ namespace UIAutomation
             return resultCollection;
         }
         
-        private bool testRealValueAndValueParameter(
-            // 20131109
-            //AutomationElement item,
+        protected internal bool testRealValueAndValueParameter(
             IMySuperWrapper item,
             string name,
             string automationId,
             string className,
             string textValue,
-            WildcardPattern wildcardValue)
+            // 20131122
+            bool viaWildcardOrRegex,
+            WildcardPattern wildcardValue,
+            RegexOptions regexOptions)
         {
             bool result = false;
             
@@ -1237,29 +1230,51 @@ namespace UIAutomation
                 //
             }
             
-            // if a control's ValuePattern has no value
-            if (string.Empty == realValue) {
-                
-                if ("*" != name || "*" != automationId || "*" != className) {
-                    return true;
-                }
-                return result;
-            }
-            
-            // if there was not specified the -Value parameter
-            if ("*" == textValue) {
-                
-                if ("*" != name || "*" != automationId || "*" != className) {
-                    return true;
+            // 20131122
+            if (viaWildcardOrRegex) {
+                // if a control's ValuePattern has no value
+                if (string.Empty == realValue) {
+                    
+                    if ("*" != name || "*" != automationId || "*" != className) {
+                        return true;
+                    }
+                    return result;
                 }
                 
-                // 20130208
-                //return result;
+                // if there was not specified the -Value parameter
+                if ("*" == textValue) {
+                    
+                    if ("*" != name || "*" != automationId || "*" != className) {
+                        return true;
+                    }
+                }
+                
+                result =
+                    wildcardValue.IsMatch(realValue);
+            } else {
+                
+                // 20131122
+                // if a control's ValuePattern has no value
+                if (string.Empty == realValue) {
+                    
+                    if (".*" != name || ".*" != automationId || ".*" != className) {
+                        return true;
+                    }
+                    return result;
+                }
+                
+                // if there was not specified the -Value parameter
+                if (".*" == textValue) {
+                    
+                    if (".*" != name || ".*" != automationId || ".*" != className) {
+                        return true;
+                    }
+                }
+                
+                result =
+                    Regex.IsMatch(realValue, textValue, regexOptions);
             }
             
-            result =
-                wildcardValue.IsMatch(realValue);
-
             return result;
         }
     }

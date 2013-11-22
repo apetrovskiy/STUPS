@@ -50,7 +50,6 @@ namespace UIAutomationUnitTests
                 // object -> Condition
                 (common.GetControlConditions(cmdlet, controlType, cmdlet.CaseSensitive, true) as AndCondition);
                 //common.GetControlConditions(cmdlet, controlType, cmdlet.CaseSensitive, true);
-
         }
         
         [Test]

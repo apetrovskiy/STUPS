@@ -3131,7 +3131,9 @@ namespace UIAutomation
                         cmdlet.Class, //className,
                         string.Empty,
                         new string[]{ "Window" },
-                        false));
+                        false,
+                        // 20131122
+                        true));
             }
             
             //

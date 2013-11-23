@@ -12,7 +12,7 @@ namespace UIAutomation
     using System;
     using System.Management.Automation;
     using System.Windows.Automation;
-    using System.Runtime.InteropServices;
+    //using System.Runtime.InteropServices;
 
     /// <summary>
     /// Description of HasScriptBlockCmdletBase.
@@ -48,9 +48,9 @@ namespace UIAutomation
         //protected internal AutomationElement ElementToSubscribe;
         protected internal IMySuperWrapper ElementToSubscribe;
         // list of all subscribed events
-        protected internal System.Collections.ArrayList subscribedEvents = 
+        protected internal readonly System.Collections.ArrayList SubscribedEvents = 
             new System.Collections.ArrayList();
-        protected internal System.Collections.ArrayList subscribedEventsIds = 
+        protected internal readonly System.Collections.ArrayList SubscribedEventsIds = 
             new System.Collections.ArrayList();
         
         #region for script recording
@@ -67,12 +67,15 @@ namespace UIAutomation
             //AutomationElement result = null;
             IMySuperWrapper result = null;
             try {
-                IntPtr _hWnd = 
+                IntPtr hWnd = 
                     NativeMethods.GetForegroundWindow();
                 WriteVerbose(this, 
                              "the handle to the active window is " + 
-                             _hWnd.ToInt32().ToString());
-                if (_hWnd == IntPtr.Zero) return result;
+                             hWnd.ToInt32());
+                            /*
+                            _hWnd.ToInt32().ToString());
+                            */
+                if (hWnd == IntPtr.Zero) return result;
                 // 20131109
                 //result = 
                 //    AutomationElement.FromHandle(_hWnd);
@@ -80,7 +83,7 @@ namespace UIAutomation
                 //result =
                 //    new MySuperWrapper(AutomationElement.FromHandle(_hWnd));
                 result =
-                    ObjectsFactory.GetMySuperWrapper(AutomationElement.FromHandle(_hWnd));
+                    ObjectsFactory.GetMySuperWrapper(AutomationElement.FromHandle(hWnd));
                 WriteVerbose(this, 
                              "the active window element is " + 
                              result.Current.Name);

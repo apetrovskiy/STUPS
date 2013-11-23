@@ -151,13 +151,22 @@ namespace UIAutomation
                                             const uint pressed = 0x8000;
                                             // uint pressed = 0x8000;
                                             if ((NativeMethods.GetKeyState(NativeMethods.VK_LCONTROL) & pressed) > 0) {
+                                                NativeMethods.keybd_event(NativeMethods.VK_LCONTROL, 0x45, NativeMethods.KEYEVENTF_EXTENDEDKEY | NativeMethods.KEYEVENTF_KEYUP, 0);
+                                                /*
                                                 NativeMethods.keybd_event((byte)NativeMethods.VK_LCONTROL, 0x45, NativeMethods.KEYEVENTF_EXTENDEDKEY | NativeMethods.KEYEVENTF_KEYUP, 0);
+                                                */
                                             }
                                             if ((NativeMethods.GetKeyState(NativeMethods.VK_RCONTROL) & pressed) > 0) {
+                                                NativeMethods.keybd_event(NativeMethods.VK_RCONTROL, 0x45, NativeMethods.KEYEVENTF_EXTENDEDKEY | NativeMethods.KEYEVENTF_KEYUP, 0);
+                                                /*
                                                 NativeMethods.keybd_event((byte)NativeMethods.VK_RCONTROL, 0x45, NativeMethods.KEYEVENTF_EXTENDEDKEY | NativeMethods.KEYEVENTF_KEYUP, 0);
+                                                */
                                             }
                                             if ((NativeMethods.GetKeyState(NativeMethods.VK_CONTROL) & pressed) > 0) {
+                                                NativeMethods.keybd_event(NativeMethods.VK_CONTROL, 0x45, NativeMethods.KEYEVENTF_EXTENDEDKEY | NativeMethods.KEYEVENTF_KEYUP, 0);
+                                                /*
                                                 NativeMethods.keybd_event((byte)NativeMethods.VK_CONTROL, 0x45, NativeMethods.KEYEVENTF_EXTENDEDKEY | NativeMethods.KEYEVENTF_KEYUP, 0);
+                                                */
                                             }
                                             break;
                                         case ifUltraGridOperations.getItems:

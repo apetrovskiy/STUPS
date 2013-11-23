@@ -16,7 +16,7 @@ namespace UIAutomation.Commands
     /// Description of ConnectUiaRemoteDesktopSessionCommand.
     /// </summary>
     [Cmdlet(VerbsCommunications.Connect, "UiaRemoteDesktopSession")]
-    public class ConnectUiaRemoteDesktopSessionCommand : RDPCmdletBase
+    public class ConnectUiaRemoteDesktopSessionCommand : RdpCmdletBase
     {
         public ConnectUiaRemoteDesktopSessionCommand()
         {

@@ -7,11 +7,13 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System.Threading;
+
 namespace UIAutomation
 {
     using System;
     using System.Management.Automation;
-    using System.Windows.Automation;
+    //using System.Windows.Automation;
     using System.Collections;
     using System.Collections.Generic;
 
@@ -29,11 +31,11 @@ namespace UIAutomation
             //this.ForwardDirection = true;
             
             // 20130318
-            this.ParametersDictionaries =
+            ParametersDictionaries =
                 new List<Dictionary<string, object>>();
             
             // 20130322
-            this.DirectionsDictionaries =
+            DirectionsDictionaries =
                 new List<Dictionary<string, object>>();
         }
         
@@ -85,7 +87,7 @@ namespace UIAutomation
         protected internal void RunWizardInAutomaticMode(WizardRunCmdletBase cmdlet, Wizard wizard)
         {
             cmdlet.StartDate =
-                System.DateTime.Now;
+                DateTime.Now;
             
             string previousStepName = string.Empty;
 
@@ -93,8 +95,11 @@ namespace UIAutomation
                 
                 // 20131109
                 //if (null != (CurrentData.CurrentWindow as AutomationElement)) {
+                if (null != CurrentData.CurrentWindow) {
+                /*
                 if (null != (CurrentData.CurrentWindow as IMySuperWrapper)) {
-                    
+                */
+
                     cmdlet.WriteVerbose(
                         cmdlet,
                         "the window: name = '" +
@@ -133,7 +138,7 @@ namespace UIAutomation
                             
                             // 20130508
                             cmdlet.WriteInfo(cmdlet, "the same step, sleeping...");
-                            System.Threading.Thread.Sleep(Preferences.OnSelectWizardStepDelay);
+                            Thread.Sleep(Preferences.OnSelectWizardStepDelay);
                             continue;
                         }
                         previousStepName = currentStep.Name;
@@ -141,7 +146,7 @@ namespace UIAutomation
                         object[] currentParameters = GetStepParameters(wizard, currentStep);
 
                         cmdlet.WriteInfo(cmdlet, "running step '" + currentStep.Name + "'");
-                        cmdlet.WriteInfo(cmdlet, "parameters: " + this.ConvertObjectArrayToString(currentParameters));
+                        cmdlet.WriteInfo(cmdlet, "parameters: " + ConvertObjectArrayToString(currentParameters));
                         RunCurrentStepParameters(cmdlet, wizard, currentStep, currentParameters);
 
                         // 20130325
@@ -160,7 +165,7 @@ namespace UIAutomation
                         #endregion commented
                         
                         cmdlet.StartDate =
-                            System.DateTime.Now;
+                            DateTime.Now;
                         
                     } else {
                         
@@ -218,7 +223,7 @@ namespace UIAutomation
             // 20130712
             bool interrupt = false;
             
-            System.DateTime nowDate = System.DateTime.Now;
+            DateTime nowDate = DateTime.Now;
             if (!((nowDate - cmdlet.StartDate).TotalSeconds > (Preferences.Timeout/1000))) return interrupt;
             cmdlet.WriteVerbose(
                 cmdlet,
@@ -232,7 +237,7 @@ namespace UIAutomation
                 cmdlet,
                 "outputting the wizard");
                 
-            if (this.Quiet) {
+            if (Quiet) {
                 cmdlet.WriteObject(cmdlet, false);
                 // 20130712
                 //return;
@@ -313,6 +318,26 @@ namespace UIAutomation
                 cmdlet.RunWizardStepScriptBlocks(cmdlet, currentStep, currentStep.ToDo, currentParameters);
                 cmdlet.WriteInfo(cmdlet, "Forward, Backward or Cancel scriptblocks have finished");
             }
+            /*
+            if (WizardStepActions.Stop == currentStep.ToDo) {
+                
+                cmdlet.WriteInfo(cmdlet, "running scriptblocks from the StopAction scriptblock set");
+                // 20130819
+                // cmdlet.RunWizardStopScriptBlocks(cmdlet, wizard, currentParameters);
+                cmdlet.RunWizardStopScriptBlocks(cmdlet, wizard, currentParameters, true);
+                // 20130508
+                // temporary
+                // profiling
+                //cmdlet.WriteVerbose(cmdlet, "StopAction has finished, exiting...");
+                cmdlet.WriteInfo(cmdlet, "StopAction has finished, exiting...");
+                return;
+            } else {
+                // 20130508
+                cmdlet.WriteInfo(cmdlet, "running scriptblocks for step '" + currentStep.Name + "', " + currentStep.ToDo.ToString());
+                cmdlet.RunWizardStepScriptBlocks(cmdlet, currentStep, currentStep.ToDo, currentParameters);
+                cmdlet.WriteInfo(cmdlet, "Forward, Backward or Cancel scriptblocks have finished");
+            }
+            */
         }
 
         // 20130322

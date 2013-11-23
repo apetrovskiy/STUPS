@@ -9,9 +9,9 @@
 
 namespace UIAutomation
 {
-    using System;
+    //using System;
     using System.Management.Automation;
-    using System.Windows.Automation;
+    //using System.Windows.Automation;
     
     using System.Linq;
 
@@ -109,6 +109,9 @@ namespace UIAutomation
                         true);
                 }
                 if (_control != null) continue;
+                
+                /*
+                // code is heuristically unavailable
                 WriteVerbose(this, "the control is unavailable");
                     
                 this.WriteError(
@@ -120,6 +123,7 @@ namespace UIAutomation
                     "TimeoutExpired",
                     ErrorCategory.OperationTimeout,
                     true);
+                */
 
                 /*
                 if (_control == null) {

@@ -16,7 +16,7 @@ namespace UIAutomation.Commands
     /// Description of NewUiaRemoteDesktopProtocolFileCommand.
     /// </summary>
     [Cmdlet(VerbsCommon.New, "UiaRemoteDesktopProtocolFile")]
-    public class NewUiaRemoteDesktopProtocolFileCommand : RDPCmdletBase
+    public class NewUiaRemoteDesktopProtocolFileCommand : RdpCmdletBase
     {
         public NewUiaRemoteDesktopProtocolFileCommand()
         {

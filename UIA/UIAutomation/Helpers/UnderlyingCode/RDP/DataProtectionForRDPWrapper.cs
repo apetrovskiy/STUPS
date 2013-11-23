@@ -30,7 +30,7 @@ namespace UIAutomation
 
         public static string Encrypt(string text_password)
         {
-            byte[] e = dp.Encrypt(GetBytes(text_password), null, "psw");
+            IEnumerable<byte> e = dp.Encrypt(GetBytes(text_password), null, "psw");
             return GetHex(e);
         }
 
@@ -43,12 +43,15 @@ namespace UIAutomation
 
         static byte[] GetBytes(string text)
         {
+            return Encoding.Unicode.GetBytes(text);
+            /*
             return UnicodeEncoding.Unicode.GetBytes(text);
+            */
         }
 
         static string GetString(byte[] byt)
         {
-            System.Text.Encoding enc = System.Text.Encoding.Unicode;
+            Encoding enc = Encoding.Unicode;
             return enc.GetString(byt);
         }
 

@@ -584,7 +584,8 @@ namespace UIAutomation
         
         #region Set-UiaControlText
         #region declarations
-        internal static uint WM_CHAR                        = 0x0102;
+
+        internal const uint WM_CHAR = 0x0102;
         // 20120206 uint WM_SETTEXT                        = 0x000C;
 // uint WM_KEYDOWN                        = 0x0100;
 // uint WM_KEYUP                        = 0x0100;
@@ -602,7 +603,8 @@ namespace UIAutomation
         [DllImport("user32.dll", EntryPoint="SendMessage", CharSet=CharSet.Auto, SetLastError = true)]
         internal static extern bool SendMessage3 (IntPtr hWnd, uint Msg, IntPtr wParam, string s);  
         //const uint WM_SETTEXT = 0x000c;
-        internal static uint WM_SETTEXT                        = 0x000c;
+        internal const uint WM_SETTEXT = 0x000c;
+
         #endregion Clear-UiaControlText
         
         #region Get-UiaActiveWindow
@@ -616,23 +618,23 @@ namespace UIAutomation
         #region declarations
         //Define TreeView Flags and Messages
         internal static int BN_CLICKED = 0xF5;
-        internal static int TV_FIRST = 0x1100;
-        internal static int TVGN_ROOT = 0x0;
-        internal static int TVGN_NEXT = 0x1;
-        internal static int TVGN_CHILD = 0x4;
+        internal const int TV_FIRST = 0x1100;
+        internal const int TVGN_ROOT = 0x0;
+        internal const int TVGN_NEXT = 0x1;
+        internal const int TVGN_CHILD = 0x4;
         internal static int TVGN_FIRSTVISIBLE = 0x5;
         internal static int TVGN_NEXTVISIBLE = 0x6;
         internal static int TVGN_CARET = 0x9;
         internal static int TVM_SELECTITEM = (TV_FIRST + 11);
-        internal static int TVM_GETNEXTITEM = (TV_FIRST + 10);
+        internal const int TVM_GETNEXTITEM = (TV_FIRST + 10);
         internal static int TVM_GETITEM = (TV_FIRST + 12);
         
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         public static extern int SendMessage(int hWnd, int msg, int wParam, IntPtr lParam);
-        
-        internal static int WM_GETTEXT = 0x000D;
-        internal static int WM_GETTEXTLENGTH = 0x000E;
-        
+
+        internal const int WM_GETTEXT = 0x000D;
+        internal const int WM_GETTEXTLENGTH = 0x000E;
+
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         public static extern int GetWindowText(IntPtr hWnd, string lpString, int nMaxCount);
 //        int WINAPI GetWindowText(

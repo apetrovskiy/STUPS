@@ -1853,18 +1853,18 @@ namespace UIAutomation
         {
             try
             {
-                if (cmdlet.subscribedEvents == null || cmdlet.subscribedEvents.Count <= 0 ||
+                if (cmdlet.SubscribedEvents == null || cmdlet.SubscribedEvents.Count <= 0 ||
                     cmdlet.thePreviouslyUsedElement == null) return;
-                for (int i = 0; i < cmdlet.subscribedEvents.Count; i++) {
+                for (int i = 0; i < cmdlet.SubscribedEvents.Count; i++) {
                     Automation.RemoveAutomationEventHandler(
-                        (AutomationEvent)cmdlet.subscribedEventsIds[i],
+                        (AutomationEvent)cmdlet.SubscribedEventsIds[i],
                         // 20131109
                         //cmdlet.thePreviouslyUsedElement,
                         // 20131118
                         // property to method
                         //cmdlet.thePreviouslyUsedElement.SourceElement,
                         cmdlet.thePreviouslyUsedElement.GetSourceElement(),
-                        (AutomationEventHandler)cmdlet.subscribedEvents[i]);
+                        (AutomationEventHandler)cmdlet.SubscribedEvents[i]);
                 }
 
                 /*

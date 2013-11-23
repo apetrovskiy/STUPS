@@ -7,6 +7,8 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using PSTestLib;
+
 namespace UIAutomation
 {
     using System;
@@ -22,7 +24,10 @@ namespace UIAutomation
     {
         static ObjectsFactory()
         {
+            if (PSCmdletBase.UnitTestMode || CommonCmdletBase.ModuleAlreadyLoaded) return;
+            /*
             if (CommonCmdletBase.UnitTestMode || CommonCmdletBase.ModuleAlreadyLoaded) return;
+            */
             ninjectModule = new ObjectLifecycleModule();
             CommonCmdletBase.ModuleAlreadyLoaded = true;
         }

@@ -38,16 +38,19 @@
 //using System.Runtime.InteropServices;
 
 //namespace DataProtection
+
+using System.Collections.Generic;
+
 namespace UIAutomation
 {
     using System;
-    using System.Text;
+    //using System.Text;
     using System.Runtime.InteropServices;
 
     public class DataProtector
     {
         [DllImport("Crypt32.dll", SetLastError = true,
-            CharSet = System.Runtime.InteropServices.CharSet.Auto)]
+            CharSet = CharSet.Auto)]
         private static extern bool CryptProtectData(
                                           ref DATA_BLOB pDataIn,
                                           String szDataDescr,
@@ -58,7 +61,7 @@ namespace UIAutomation
                                           int dwFlags,
                                           ref DATA_BLOB pDataOut);
         [DllImport("Crypt32.dll", SetLastError = true,
-                    CharSet = System.Runtime.InteropServices.CharSet.Auto)]
+                    CharSet = CharSet.Auto)]
         private static extern bool CryptUnprotectData(
                                           ref DATA_BLOB pDataIn,
                                           String szDataDescr,
@@ -93,7 +96,10 @@ namespace UIAutomation
             public IntPtr hwndApp;
             public String szPrompt;
         }
+        static private IntPtr NullPtr = ((IntPtr)0);
+        /*
         static private IntPtr NullPtr = ((IntPtr)((int)(0)));
+        */
         private const int CRYPTPROTECT_UI_FORBIDDEN = 0x1;
         private const int CRYPTPROTECT_LOCAL_MACHINE = 0x4;
 
@@ -106,7 +112,10 @@ namespace UIAutomation
             store = tempStore;
         }
 
+        public IEnumerable<byte> Encrypt(byte[] plainText, byte[] optionalEntropy, string DataDescription)
+        /*
         public byte[] Encrypt(byte[] plainText, byte[] optionalEntropy, string DataDescription)
+        */
         {
             bool retVal = false;
             DATA_BLOB plainTextBlob = new DATA_BLOB();

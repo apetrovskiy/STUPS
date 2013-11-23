@@ -9,8 +9,8 @@
 
 namespace UIAutomation.Commands
 {
-    using System;
-    using System.Management.Automation;
+    //using System;
+    //using System.Management.Automation;
 
     /// <summary>
     /// Description of InvokeUIAshTreeItemClickCommand.

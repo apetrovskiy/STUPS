@@ -21,8 +21,8 @@ namespace UIAutomation
         static RDPHelper()
         {
         }
-        
-        public static string rDPProtocolFile = @"screen mode id:i:1
+
+        public const string rDPProtocolFile = @"screen mode id:i:1
 use multimon:i:0
 desktopwidth:i:1024
 desktopheight:i:768
@@ -83,7 +83,7 @@ drivestoredirect:s:
         public static string RDPFileTemplate { get; set; }
         
         //public static void CreateRDPFile(NewUiaRemoteDesktopProtocolFileCommand cmdlet)
-        public static void CreateRDPFile(RDPCmdletBase cmdlet)
+        public static void CreateRDPFile(RdpCmdletBase cmdlet)
         {
             if (!string.IsNullOrEmpty(cmdlet.Template)) {
                 

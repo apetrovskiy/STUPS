@@ -18,14 +18,14 @@ namespace UIAutomation
 	/// </summary>
 	public class MyValuePatternNet :  IMySuperValuePattern //IValuePatternAdapter
 	{
-		private System.Windows.Automation.ValuePattern valuePattern;
+		private System.Windows.Automation.ValuePattern _valuePattern;
 		private IMySuperWrapper _element;
 		
 		//private bool _useCache; // mine
         
 		public MyValuePatternNet(IMySuperWrapper element, ValuePattern valuePattern)
 		{
-			this.valuePattern = valuePattern;
+			this._valuePattern = valuePattern;
 			this._element = element;
 			//this._useCache = useCache;
 		}
@@ -51,6 +51,23 @@ namespace UIAutomation
 //			        Console.WriteLine(this._valuePattern.GetType().Name);
 //			        Console.WriteLine(this._valuePattern.ParentElement.GetType().Name);
 //			        Console.WriteLine(this._useCache.ToString());
+//			        Console.WriteLine(ValuePattern.ValueProperty.ProgrammaticName);
+//			        try {
+//			            var a1 = this._valuePattern;
+//			            Console.WriteLine(a1.ToString());
+//			            var a2 = this._valuePattern.ParentElement;
+//			            Console.WriteLine(a2.ToString());
+//			            var a3 = this._useCache;
+//			            Console.WriteLine(a3.ToString());
+//			            var aaa = this._valuePattern.ParentElement.GetPatternPropertyValue(ValuePattern.ValueProperty, this._useCache);
+//			            Console.WriteLine(aaa);
+//			            Console.WriteLine(aaa.GetType());
+//			            Console.WriteLine(aaa.ToString());
+//			        }
+//			        catch (Exception eeee111) {
+//			            Console.WriteLine("eeee111:");
+//			            Console.WriteLine(eeee111.Message);
+//			        }
 			        return this._valuePattern.ParentElement.GetPatternPropertyValue(ValuePattern.ValueProperty, this._useCache).ToString(); }
 			}
 			public bool IsReadOnly {
@@ -102,7 +119,7 @@ namespace UIAutomation
 //				throw new InvalidOperationException(SR.Get("ValueReadonly"));
 //			}
 //			UiaCoreApi.ValuePattern_SetValue(this._hPattern, value);
-			this.valuePattern.SetValue(value);
+			this._valuePattern.SetValue(value);
 		}
 //		static internal object Wrap(AutomationElement el, SafePatternHandle hPattern, bool cached)
 //		{

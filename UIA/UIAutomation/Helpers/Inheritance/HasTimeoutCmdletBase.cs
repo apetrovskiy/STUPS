@@ -1225,7 +1225,7 @@ namespace UIAutomation
             try {
                 realValue =
                     // 20131122
-                    // ValuePatten -> IMySuperValuePattern
+                    // ValuePattern -> IMySuperValuePattern
                     //(item.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern).Current.Value;
                     (item.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern).Current.Value;
             }

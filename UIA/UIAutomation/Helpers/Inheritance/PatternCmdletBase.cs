@@ -370,7 +370,10 @@ namespace UIAutomation
         internal void InvokeValueSet(PatternCmdletBase cmdlet, IMySuperWrapper _control, IMySuperWrapper inputObject)
         {
             try {
-                ValuePattern valuePatternSet = _control.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern;
+                // 20131124
+                // ValuePattern -> IMySuperValuePattern
+                //ValuePattern valuePatternSet = _control.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern;
+                IMySuperValuePattern valuePatternSet = _control.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern;
                 if (valuePatternSet != null) {
                     
                     this.WriteVerbose(this, "using ValuePattern");
@@ -404,7 +407,10 @@ namespace UIAutomation
         internal void InvokeValueGet(PatternCmdletBase cmdlet, IMySuperWrapper _control, IMySuperWrapper inputObject)
         {
             try {
-                ValuePattern valuePatternGet = _control.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern;
+                // 20131124
+                // ValuePattern -> IMySuperValuePattern
+                //ValuePattern valuePatternGet = _control.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern;
+                IMySuperValuePattern valuePatternGet = _control.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern;
                 object result = null;
                 if (valuePatternGet != null) {
                     result = valuePatternGet.Current.Value;

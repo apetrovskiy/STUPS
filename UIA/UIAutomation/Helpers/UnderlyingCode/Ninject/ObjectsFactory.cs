@@ -21,6 +21,7 @@ namespace UIAutomation
     /// </summary>
     public static class ObjectsFactory
     {
+        #region Initialization
         static ObjectsFactory()
         {
             if (PSCmdletBase.UnitTestMode || CommonCmdletBase.ModuleAlreadyLoaded) return;
@@ -43,7 +44,6 @@ namespace UIAutomation
 		    get { return kernel; }
 		}
 		
-		#region Initialization
 		public static void Init()
 		{
 		    if (initFlag) return;

@@ -1013,13 +1013,7 @@ namespace UIAutomation
                     if (string.IsNullOrEmpty(elementControlType)) {
                         return result;
                     }
-
-                    /*
-                    if (null == elementControlType || string.Empty == elementControlType) {
-                        return result;
-                    }
-                    */
-
+                    
                     string elementVerbosity = String.Empty; // ?
 
                     elementVerbosity =
@@ -1036,8 +1030,12 @@ namespace UIAutomation
                     elementVerbosity +=
                         getElementPropertyString(cmdlet, element, "Name", null, ref hasName);
                     try {
-                        ValuePattern pattern =
-                            element.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern;
+                        // 20131124
+                        // ValuePattern -> IMySuperValuePattern
+                        //ValuePattern pattern =
+                        //    element.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern;
+                        IMySuperValuePattern pattern =
+                            element.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern;
                         elementVerbosity +=
                             getElementPropertyString(cmdlet, element, "Value", pattern, ref hasName);
                     }
@@ -1259,7 +1257,10 @@ namespace UIAutomation
             TranscriptCmdletBase cmdlet,
             IMySuperWrapper element,
             string propertyName,
-            ValuePattern pattern,
+            // 20131124
+            // ValuePattern -> IMySuperValuePattern
+            //ValuePattern pattern,
+            IMySuperValuePattern pattern,
             ref bool hasName)
         {
             cmdlet.WriteVerbose(cmdlet, "getting " + propertyName);
@@ -1288,13 +1289,6 @@ namespace UIAutomation
                             tempString = pattern.Current.Value;
                             hasName = true;
                         }
-
-                        /*
-                        if (null != pattern.Current.Value && string.Empty != pattern.Current.Value) {
-                            tempString = pattern.Current.Value;
-                            hasName = true;
-                        }
-                        */
                         break;
                     case "Win32":
                         if (0 < element.Current.NativeWindowHandle) {
@@ -1328,13 +1322,6 @@ namespace UIAutomation
                             tempString = pattern.Cached.Value;
                             hasName = true;
                         }
-
-                        /*
-                        if (null != pattern.Cached.Value && string.Empty != pattern.Cached.Value) {
-                            tempString = pattern.Cached.Value;
-                            hasName = true;
-                        }
-                        */
                         break;
                     case "Win32":
                         if (0 < element.Cached.NativeWindowHandle) {
@@ -1358,21 +1345,6 @@ namespace UIAutomation
                 }
                 return tempString;
             }
-
-            /*
-            if (null == tempString || string.Empty == tempString) {
-                return string.Empty;
-            } else {
-                if ("Win32" == propertyName) {
-                    tempString =
-                        " -" + propertyName;
-                } else {
-                    tempString =
-                        " -" + propertyName + " '" + tempString + "'";
-                }
-                return tempString;
-            }
-            */
         }
 
         /// <summary>
@@ -1556,76 +1528,7 @@ namespace UIAutomation
                             continue;
                         cmdlet.LastRecordedItem.Add(parentVerbosity);
                         cmdlet.WriteVerbose(parentVerbosity);
-
-                        /*
-                        if (cmdlet.LastRecordedItem[cmdlet.LastRecordedItem.Count - 1].ToString() != parentVerbosity) {
-                            cmdlet.LastRecordedItem.Add(parentVerbosity);
-                            cmdlet.WriteVerbose(parentVerbosity);
-                        }
-                        */
                     }
-
-                    /*
-                    if (testparent != null && (int)testparent.Current.ProcessId > 0) {
-                        if (testparent == cmdlet.rootElement)
-                        { testparent = null; }
-                        else{
-                            string parentControlType =
-                                // getControlTypeNameOfAutomationElement(testparent, element);
-                                // testparent.Current.ControlType.ProgrammaticName.Substring(
-                                // element.Current.ControlType.ProgrammaticName.IndexOf('.') + 1);
-                                //  // experimental
-                                testparent.Current.ControlType.ProgrammaticName.Substring(
-                                    testparent.Current.ControlType.ProgrammaticName.IndexOf('.') + 1);
-                            //  // if (parentControlType.Length == 0) {
-                            // break;
-                            //}
-                            
-                            // in case this element is an upper-level Pane
-                            // residing directrly under the RootElement
-                            // change type to window
-                            // i.e. Get-UiaPane - >  Get-UiaWindow
-                            // since Get-UiaPane is unable to get something more than
-                            // a window's child pane control
-                            if (parentControlType == "Pane" || parentControlType == "Menu") {
-                                if (walker.GetParent(testparent) == cmdlet.rootElement) {
-                                    parentControlType = "Window";
-                                }
-                            }
-                            
-                            string parentVerbosity =
-                                @"Get-UIA" + parentControlType;
-                            try {
-                                if (testparent.Current.AutomationId.Length > 0) {
-                                    parentVerbosity += (" -AutomationId '" + testparent.Current.AutomationId + "'");
-                                }
-                            }
-                            catch {
-                            }
-                            if (!cmdlet.NoClassInformation) {
-                                try {
-                                    if (testparent.Current.ClassName.Length > 0) {
-                                        parentVerbosity += (" -Class '" + testparent.Current.ClassName + "'");
-                                    }
-                                }
-                                catch {
-                                }
-                            }
-                            try {
-                                if (testparent.Current.Name.Length > 0) {
-                                    parentVerbosity += (" -Name '" + testparent.Current.Name + "'");
-                                }
-                            }
-                            catch {
-                            }
-
-                            if (cmdlet.LastRecordedItem[cmdlet.LastRecordedItem.Count - 1].ToString() != parentVerbosity) {
-                                cmdlet.LastRecordedItem.Add(parentVerbosity);
-                                cmdlet.WriteVerbose(parentVerbosity);
-                            }
-                        }
-                    }
-                    */
                 }
             } catch (Exception eErrorInTheInnerCycle) {
                 cmdlet.WriteDebug(cmdlet, eErrorInTheInnerCycle.Message);

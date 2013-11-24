@@ -149,7 +149,7 @@ namespace UIAutomation
 			    case InnerElementTypes.AutomationElementNet:
 			        if (Preferences.FromCache) {
                         // 20131122
-                        // ValuePatten -> IMySuperValuePattern
+                        // ValuePattern -> IMySuperValuePattern
 		                if (pattern.Id == ValuePattern.Pattern.Id) {
 		                //switch (pattern.Id) {
 		                //    case (ValuePattern.Pattern.Id):
@@ -167,7 +167,7 @@ namespace UIAutomation
 			            return this._elementHolderNet.GetCachedPattern(pattern);
 			        } else {
                         // 20131122
-                        // ValuePatten -> IMySuperValuePattern
+                        // ValuePattern -> IMySuperValuePattern
 		                if (pattern.Id == ValuePattern.Pattern.Id) {
 		                //switch (pattern.Id) {
 		                //    case ValuePattern.Pattern.Id:

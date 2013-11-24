@@ -42,17 +42,33 @@ namespace UIAutomationUnitTests
             
             //ValuePattern.ValuePatternInformation valuePatternInformation = new ValuePattern.ValuePatternInformation();
             //valuePatternInformation.Value = txtValue;
-Console.WriteLine("GetValuePattern 0002");
-            MyValuePatternNet.ValuePatternInformation valuePatternInformation = new MyValuePatternNet.ValuePatternInformation(valuePattern, false);
+Console.WriteLine("GetValuePattern: 0002");
+            //MyValuePatternNet.ValuePatternInformation valuePatternInformation = new MyValuePatternNet.ValuePatternInformation(valuePattern, false);
+            IValuePatternInformation valuePatternInformation = new MyValuePatternNet.ValuePatternInformation(valuePattern, false);
             //MyValuePatternNet.ValuePatternInformation valuePatternInformation = Substitute.For<MyValuePatternNet.ValuePatternInformation>(new object[] { valuePattern, false});
-Console.WriteLine("GetValuePattern 0003");
+            try {
+                if (null == valuePatternInformation) {
+                    Console.WriteLine("GetValuePattern: null == valuePatternInformation");
+                } else {
+                    Console.WriteLine("GetValuePattern: null != valuePatternInformation");
+                    if (null == valuePatternInformation.Value) {
+                        Console.WriteLine("GetValuePattern: null == valuePatternInformation.Value");
+                    } else {
+                        Console.WriteLine("GetValuePattern: null != valuePatternInformation.Value");
+                    }
+                }
+            }
+            catch (Exception e0000001) {
+                Console.WriteLine(e0000001.Message);
+            }
+Console.WriteLine("GetValuePattern: 0003");
             valuePatternInformation.Value.Returns(txtValue);
-Console.WriteLine("GetValuePattern 0004");
+Console.WriteLine("GetValuePattern: 0004");
             
             //valuePattern.Current.Returns(new ValuePattern.ValuePatternInformation());
             //valuePattern.Current.Value.Returns(txtValue);
             valuePattern.Current.Returns(valuePatternInformation);
-Console.WriteLine("GetValuePattern 0005");
+Console.WriteLine("GetValuePattern: 0005");
             
             //valuePattern.Current.Returns(valuePatternInformation);
             return valuePattern;
@@ -67,10 +83,11 @@ Console.WriteLine("GetValuePattern 0005");
             element.Current.ClassName.Returns(!string.IsNullOrEmpty(className) ? className : string.Empty);
             //element.GetSupportedPatterns().Returns(new[] { SelectionItemPattern.Pattern });
 Console.WriteLine("GetAutomationElement 0002");
-            //ValuePattern valuePattern = FakeFactory.GetValuePattern(txtValue);
-            IMySuperValuePattern valuePattern = FakeFactory.GetValuePattern(txtValue);
+            // //ValuePattern valuePattern = FakeFactory.GetValuePattern(txtValue);
+            
+            //IMySuperValuePattern valuePattern = FakeFactory.GetValuePattern(txtValue);
 Console.WriteLine("GetAutomationElement 0003");
-            element.GetSupportedPatterns().Returns<object[]>(new[] { valuePattern });
+            //element.GetSupportedPatterns().Returns<object[]>(new[] { valuePattern });
 Console.WriteLine("GetAutomationElement 0004");
             return element;
         }

@@ -1,4 +1,5 @@
-﻿/*
+﻿using System;
+/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
  * Date: 11/20/2013
@@ -32,17 +33,26 @@ namespace UIAutomationUnitTests
         }
         */
         
-        private static ValuePattern GetValuePattern(string txtValue)
+        private static IMySuperValuePattern GetValuePattern(string txtValue)
         {
-            ValuePattern valuePattern = Substitute.For<ValuePattern>();
+            //ValuePattern valuePattern = Substitute.For<ValuePattern>();
+            IMySuperValuePattern valuePattern = Substitute.For<IMySuperValuePattern>();
             //ValuePattern.ValuePatternInformation valuePatternInformation = Substitute.For<ValuePattern.ValuePatternInformation>();
             //valuePatternInformation.Value.Returns(txtValue);
             
             //ValuePattern.ValuePatternInformation valuePatternInformation = new ValuePattern.ValuePatternInformation();
             //valuePatternInformation.Value = txtValue;
+Console.WriteLine("GetValuePattern 0002");
+            MyValuePatternNet.ValuePatternInformation valuePatternInformation = new MyValuePatternNet.ValuePatternInformation(valuePattern, false);
+            //MyValuePatternNet.ValuePatternInformation valuePatternInformation = Substitute.For<MyValuePatternNet.ValuePatternInformation>(new object[] { valuePattern, false});
+Console.WriteLine("GetValuePattern 0003");
+            valuePatternInformation.Value.Returns(txtValue);
+Console.WriteLine("GetValuePattern 0004");
             
             //valuePattern.Current.Returns(new ValuePattern.ValuePatternInformation());
             //valuePattern.Current.Value.Returns(txtValue);
+            valuePattern.Current.Returns(valuePatternInformation);
+Console.WriteLine("GetValuePattern 0005");
             
             //valuePattern.Current.Returns(valuePatternInformation);
             return valuePattern;
@@ -56,8 +66,12 @@ namespace UIAutomationUnitTests
             element.Current.AutomationId.Returns(!string.IsNullOrEmpty(automationId) ? automationId : string.Empty);
             element.Current.ClassName.Returns(!string.IsNullOrEmpty(className) ? className : string.Empty);
             //element.GetSupportedPatterns().Returns(new[] { SelectionItemPattern.Pattern });
-            ValuePattern valuePattern = FakeFactory.GetValuePattern(txtValue);
-            //element.GetSupportedPatterns().Returns<object[]>(new[] { valuePattern });
+Console.WriteLine("GetAutomationElement 0002");
+            //ValuePattern valuePattern = FakeFactory.GetValuePattern(txtValue);
+            IMySuperValuePattern valuePattern = FakeFactory.GetValuePattern(txtValue);
+Console.WriteLine("GetAutomationElement 0003");
+            element.GetSupportedPatterns().Returns<object[]>(new[] { valuePattern });
+Console.WriteLine("GetAutomationElement 0004");
             return element;
         }
         

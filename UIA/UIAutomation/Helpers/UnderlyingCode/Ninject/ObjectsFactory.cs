@@ -7,8 +7,6 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-using PSTestLib;
-
 namespace UIAutomation
 {
     using System;
@@ -16,6 +14,7 @@ namespace UIAutomation
     using Ninject.Modules;
     using System.Windows.Automation;
     using System.Collections;
+    using PSTestLib;
     
     /// <summary>
     /// Description of ObjectsFactory.
@@ -25,9 +24,6 @@ namespace UIAutomation
         static ObjectsFactory()
         {
             if (PSCmdletBase.UnitTestMode || CommonCmdletBase.ModuleAlreadyLoaded) return;
-            /*
-            if (CommonCmdletBase.UnitTestMode || CommonCmdletBase.ModuleAlreadyLoaded) return;
-            */
             ninjectModule = new ObjectLifecycleModule();
             CommonCmdletBase.ModuleAlreadyLoaded = true;
         }
@@ -47,6 +43,7 @@ namespace UIAutomation
 		    get { return kernel; }
 		}
 		
+		#region Initialization
 		public static void Init()
 		{
 		    if (initFlag) return;
@@ -76,7 +73,9 @@ namespace UIAutomation
 //		         Console.WriteLine(eInitFailure.Message);
 		    }
 		}
+		#endregion Initialization
 		
+		#region IMySuperWrapper
 		internal static IMySuperWrapper GetMySuperWrapper(AutomationElement element)
 		{
 	        if (null == element) {
@@ -152,7 +151,9 @@ namespace UIAutomation
 			    return null;
 			}
 		}
+		#endregion IMySuperWrapper
 		
+		#region IMySuperCollection
 		internal static IMySuperCollection GetMySuperCollection(AutomationElementCollection elements)
 		{
 	        if (null == elements) {
@@ -225,5 +226,25 @@ namespace UIAutomation
 			    return null;
 			}
 		}
+		#endregion IMySuperCollection
+		
+		#region IMySuperValuePattern
+		internal static IMySuperValuePattern GetMySuperValuePattern(IMySuperWrapper element, System.Windows.Automation.ValuePattern valuePattern)
+		{
+			try {
+                var argElement = new Ninject.Parameters.ConstructorArgument("element", element);
+		        var argPattern = new Ninject.Parameters.ConstructorArgument("valuePattern", valuePattern);
+		        IMySuperValuePattern adapterPattern = ObjectsFactory.Kernel.Get<IMySuperValuePattern>(new[] { argElement, argPattern });
+	       		return adapterPattern;
+			}
+			catch (Exception eFailedToIssueValuePattern) {
+			    // TODO
+			    // write error to error object!!!
+//			    Console.WriteLine("ValuePattern");
+//			    Console.WriteLine(eFailedToIssueValuePattern.Message);
+			    return null;
+			}
+		}
+		#endregion IMySuperValuePattern
     }
 }

@@ -9,9 +9,9 @@
 
 namespace UIAutomation
 {
-	using System;
+	//using System;
     	
-	public interface IValuePatternAdapter
+	public interface IMySuperValuePattern : IBasePattern // IValuePatternAdapter
 	{
 		void SetValue(string value);
 		IValuePatternInformation Cached { get; }

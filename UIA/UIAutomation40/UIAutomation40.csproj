@@ -646,6 +646,9 @@
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\Enums.cs">
       <Link>Helpers\UnderlyingCode\Adapter\Enums.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\ValuePatternAdapterNet.cs">
+      <Link>Helpers\UnderlyingCode\Adapter\ValuePatternAdapterNet.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Commands\Container\UIANewContainerCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\Container\UIANewContainerCommand.cs</Link>
     </Compile>
@@ -748,6 +751,15 @@
     </Compile>
     <Compile Include="..\UIAutomation\Interface\IAutomationElementInformationAdapter.cs">
       <Link>Interface\IAutomationElementInformationAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\IBasePattern.cs">
+      <Link>Interface\IBasePattern.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\IValuePatternAdapter.cs">
+      <Link>Interface\IValuePatternAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\IValuePatternInformationAdapter.cs">
+      <Link>Interface\IValuePatternInformationAdapter.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>

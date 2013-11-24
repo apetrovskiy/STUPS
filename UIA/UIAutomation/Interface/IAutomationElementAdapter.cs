@@ -64,5 +64,7 @@ namespace UIAutomation
 		string Tag { get; set; }
 		//void Dispose();
 		
+		// internal methods
+		object GetPatternPropertyValue(AutomationProperty property, bool useCache);
 	}
 }

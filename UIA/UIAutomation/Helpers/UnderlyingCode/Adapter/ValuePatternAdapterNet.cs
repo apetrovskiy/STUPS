@@ -11,43 +11,51 @@ namespace UIAutomation
 {
 	using System;
 	using System.Windows.Automation;
+	//using Ninject;
 
 	/// <summary>
 	/// Description of ValuePatternAdapter.
 	/// </summary>
-	public class MyValuePattern : IValuePatternAdapter
+	public class MyValuePatternNet :  IMySuperValuePattern //IValuePatternAdapter
 	{
 		private System.Windows.Automation.ValuePattern valuePattern;
-		private IMySuperWrapper element;
-
-		public MyValuePattern(IMySuperWrapper element, ValuePattern valuePattern)
+		private IMySuperWrapper _element;
+		
+		//private bool _useCache; // mine
+        
+		public MyValuePatternNet(IMySuperWrapper element, ValuePattern valuePattern)
 		{
 			this.valuePattern = valuePattern;
-			this.element = element;
+			this._element = element;
+			//this._useCache = useCache;
 		}
 
-		//: BasePattern
 		public struct ValuePatternInformation : IValuePatternInformation
 		{
 			//private AutomationElement _el;
-			//private bool _useCache;
-			private IValuePatternAdapter valuePattern;
+			private bool _useCache;
+			//private IValuePatternAdapter valuePattern;
+			private IMySuperValuePattern _valuePattern;
 
-			public ValuePatternInformation(IValuePatternAdapter valuePattern)
+			//public ValuePatternInformation(IValuePatternAdapter valuePattern)
+			public ValuePatternInformation(IMySuperValuePattern valuePattern, bool useCache)
 			{
-				this.valuePattern = valuePattern;
+				this._valuePattern = valuePattern;
+				this._useCache = useCache;
 			}
 
 			public string Value {
 //					object patternPropertyValue = this._el.GetPatternPropertyValue(ValuePattern.ValueProperty, this._useCache);
 //					return patternPropertyValue.ToString();
-				//get { return this.valuePattern.ParentElement.GetPatternPropertyValue(ValuePattern.ValueProperty, false); }
-				get { return ""; }
+			    get { 
+//			        Console.WriteLine(this._valuePattern.GetType().Name);
+//			        Console.WriteLine(this._valuePattern.ParentElement.GetType().Name);
+//			        Console.WriteLine(this._useCache.ToString());
+			        return this._valuePattern.ParentElement.GetPatternPropertyValue(ValuePattern.ValueProperty, this._useCache).ToString(); }
 			}
 			public bool IsReadOnly {
 				//get { return (bool)this._el.GetPatternPropertyValue(ValuePattern.IsReadOnlyProperty, this._useCache); }
-				//get { return (bool)this._el.GetPatternPropertyValue(ValuePattern.IsReadOnlyProperty, this._useCache); }
-				get { return false; }
+				get { return (bool)this._valuePattern.ParentElement.GetPatternPropertyValue(ValuePattern.IsReadOnlyProperty, this._useCache); }
 			}
 //			internal ValuePatternInformation(AutomationElement el, bool useCache)
 //			{
@@ -58,6 +66,7 @@ namespace UIAutomation
 		public static readonly AutomationPattern Pattern = ValuePatternIdentifiers.Pattern;
 		public static readonly AutomationProperty ValueProperty = ValuePatternIdentifiers.ValueProperty;
 		public static readonly AutomationProperty IsReadOnlyProperty = ValuePatternIdentifiers.IsReadOnlyProperty;
+		
 //		private SafePatternHandle _hPattern;
 //		private bool _cached;
 		//public ValuePattern.ValuePatternInformation Cached {
@@ -65,7 +74,7 @@ namespace UIAutomation
 			get {
 				//Misc.ValidateCached(this._cached);
 				//return new ValuePattern.ValuePatternInformation(this._el, true);
-				return null;
+				return new MyValuePatternNet.ValuePatternInformation(this, true);
 			}
 		}
 		//public ValuePattern.ValuePatternInformation Current {
@@ -73,7 +82,7 @@ namespace UIAutomation
 			get {
 				//Misc.ValidateCurrent(this._hPattern);
 				//return new ValuePattern.ValuePatternInformation(this._el, false);
-				return null;
+				return new MyValuePatternNet.ValuePatternInformation(this, false);
 			}
 		}
 //		internal ValuePattern(AutomationElement el, SafePatternHandle hPattern, bool cached) : base(el, hPattern)
@@ -100,7 +109,11 @@ namespace UIAutomation
 //			return new ValuePattern(el, hPattern, cached);
 //		}
 
-		public IMySuperWrapper ParentElement { get; set; }
+		public IMySuperWrapper ParentElement
+		{
+		    get { return this._element; }
+		    set { this._element = value; }
+		}
 	}
 
 	/*

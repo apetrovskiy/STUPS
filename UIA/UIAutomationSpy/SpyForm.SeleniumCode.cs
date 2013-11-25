@@ -22,7 +22,7 @@ namespace UIAutomationSpy
         
         private void startSpying_Selenium()
         {
-            System.Windows.Forms.MessageBox.Show("Please download SeleniumSpy from http://SePSX.CodePlex.com");
+            MessageBox.Show("Please download SeleniumSpy from http://SePSX.CodePlex.com");
         }
     }
 }

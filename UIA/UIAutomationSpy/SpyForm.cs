@@ -19,7 +19,7 @@ namespace UIAutomationSpy
     /// <summary>
     /// Description of SpyForm.
     /// </summary>
-    public partial class SpyForm : Form
+    public partial class SpyForm //: Form
     {
         // 20131102
         //private int tabooPID = 0;
@@ -114,9 +114,14 @@ namespace UIAutomationSpy
                     this.richResults.Text += psObj.ToString();
                     this.richResults.Text += "\r\n";
                 }
+                this.pGridElement.SelectedObjects =
+                    new object[] { resultList.ToArray() };
+                
+                /*
                 this.pGridElement.SelectedObjects = 
                     resultList.ToArray();
-                
+                */
+
                 /*
                 if (resultObject.Count > 0) {
                     if (resultObject.Count == 1) {
@@ -290,7 +295,7 @@ namespace UIAutomationSpy
             // 20131109
             //IMySuperWrapper element,
             IMySuperWrapper element,
-            System.Windows.Automation.TreeWalker walker)
+            TreeWalker walker)
         {
             string result = string.Empty;
             
@@ -310,9 +315,14 @@ namespace UIAutomationSpy
                 // 20131118
                 // property to method
                 //if ((new MySuperWrapper(walker.GetParent(element.SourceElement))) == MySuperWrapper.RootElement) {
+                if (Equals(new MySuperWrapper(walker.GetParent(element.GetSourceElement())), MySuperWrapper.RootElement)) {
+                    elementControlType = "Window";
+                }
+                /*
                 if ((new MySuperWrapper(walker.GetParent(element.GetSourceElement()))) == MySuperWrapper.RootElement) {
                     elementControlType = "Window";
                 }
+                */
             }
                 
             string elementVerbosity = 
@@ -365,9 +375,14 @@ namespace UIAutomationSpy
                     listForNodes.Add(getNodeNameFromAutomationElement(testparent));
                     // 20131109
                     //if (testparent != AutomationElement.RootElement) {
+                    if (!Equals(testparent, MySuperWrapper.RootElement)) {
+                        listForCode.Add(getCodeFromAutomationElement(testparent, walker));
+                    }
+                    /*
                     if (testparent != MySuperWrapper.RootElement) {
                         listForCode.Add(getCodeFromAutomationElement(testparent, walker));
                     }
+                    */
                 }
                 
                 while (testparent != null && (int)testparent.Current.ProcessId > 0) {
@@ -378,13 +393,21 @@ namespace UIAutomationSpy
                         // property to method
                         //new MySuperWrapper(walker.GetParent(testparent.SourceElement));
                         new MySuperWrapper(walker.GetParent(testparent.GetSourceElement()));
+                    if (testparent.Current.ProcessId <= 0) continue;
+                    /*
                     if (testparent == null || (int) testparent.Current.ProcessId <= 0) continue;
+                    */
                     listForNodes.Add(getNodeNameFromAutomationElement(testparent));
                     // 20131109
                     //if (testparent != AutomationElement.RootElement) {
+                    if (!Equals(testparent, MySuperWrapper.RootElement)) {
+                        listForCode.Add(getCodeFromAutomationElement(testparent, walker));
+                    }
+                    /*
                     if (testparent != MySuperWrapper.RootElement) {
                         listForCode.Add(getCodeFromAutomationElement(testparent, walker));
                     }
+                    */
 
                     /*
                     if (testparent != null && (int)testparent.Current.ProcessId > 0) {
@@ -454,20 +477,22 @@ namespace UIAutomationSpy
             ancestorsCodeList.Clear();
         }
         
-        private UIAutomation.TranscriptCmdletBase createTranscriptingCmdlet()
+        private TranscriptCmdletBase createTranscriptingCmdlet()
         {
-            UIAutomation.TranscriptCmdletBase cmdlet = 
-                new UIAutomation.TranscriptCmdletBase();
-            cmdlet.NoClassInformation = false;
-            cmdlet.NoScriptHeader = true;
-            cmdlet.NoUI = true;
-            cmdlet.WriteCurrentPattern = true;
-            cmdlet.Timeout = 600000000;
-            cmdlet.Highlight = true;
-            cmdlet.HighlightParent = true;
-            cmdlet.PassThru = false;
-            
-            UIAutomation.Preferences.TranscriptInterval = 500;
+            TranscriptCmdletBase cmdlet = 
+                new TranscriptCmdletBase
+                {
+                    NoClassInformation = false,
+                    NoScriptHeader = true,
+                    NoUI = true,
+                    WriteCurrentPattern = true,
+                    Timeout = 600000000,
+                    Highlight = true,
+                    HighlightParent = true,
+                    PassThru = false
+                };
+
+            Preferences.TranscriptInterval = 500;
             return cmdlet;
         }
         
@@ -569,8 +594,11 @@ namespace UIAutomationSpy
                     if (this.tvwHierarhy.Nodes.Count == 0) {
                         this.tvwHierarhy.Nodes.Add(node);
                     } else {
-                        previousNode.Nodes.Add(node);
-                        previousNode.Expand();
+                        if (previousNode != null)
+                        {
+                            previousNode.Nodes.Add(node);
+                            previousNode.Expand();
+                        }
                     }
                     previousNode = node;
                 }
@@ -812,7 +840,7 @@ namespace UIAutomationSpy
             IMySuperWrapper rootElement =
                 MySuperWrapper.RootElement;
                 
-            UIAutomation.TranscriptCmdletBase cmdlet = null;
+            TranscriptCmdletBase cmdlet = null;
             // 20131109
             //System.Windows.Automation.AutomatIMySuperWrapper element = null;
             IMySuperWrapper element = null;
@@ -824,14 +852,14 @@ namespace UIAutomationSpy
 //                UiaCOM::System.Windows.Automation.AutomationElement element = null;
 
             do{
-                System.Windows.Forms.Application.DoEvents();
+                Application.DoEvents();
                     
                 try {
                         
                     element =
                         // 20131114
                         //this.getElementFromPoint();
-                        this.getElementFromPoint(System.Windows.Forms.Cursor.Position);
+                        this.getElementFromPoint(Cursor.Position);
                         
 //                        // use Windows forms mouse code instead of WPF
 //                        System.Drawing.Point mouse = System.Windows.Forms.Cursor.Position;
@@ -853,7 +881,7 @@ namespace UIAutomationSpy
 
                         try{
                             bool res =
-                                UIAutomation.UiaHelper.ProcessingElement(
+                                UiaHelper.ProcessingElement(
                                     cmdlet, 
                                     element); // as UiaNET::System.Windows.Automation.AutomationElement);
                             if (!res) {
@@ -866,7 +894,7 @@ namespace UIAutomationSpy
                                 eProcessingElement.Message;
                             element = null;
                             System.Threading.Thread.Sleep(
-                                UIAutomation.Preferences.TranscriptInterval);
+                                Preferences.TranscriptInterval);
                             continue;
                         }
                                 
@@ -896,7 +924,7 @@ namespace UIAutomationSpy
                                         null,
                                         null);
                                     if (this.chkClipboard.Checked) {
-                                        System.Windows.Forms.Clipboard.SetDataObject(
+                                        Clipboard.SetDataObject(
                                             this.richControlCode.Text);
                                     }
                                         
@@ -951,7 +979,7 @@ namespace UIAutomationSpy
                     } // end of if (element != null && ((element as AutomationElement) != null))
                     element = null;
                     System.Threading.Thread.Sleep(
-                        UIAutomation.Preferences.TranscriptInterval);
+                        Preferences.TranscriptInterval);
                 } catch (Exception eUnknown) {
                     this.txtFullCode.Text += 
                         "External cycle (eUnknown):\r\n" + 
@@ -960,11 +988,10 @@ namespace UIAutomationSpy
                     element = null;
                             
                     System.Threading.Thread.Sleep(
-                        UIAutomation.Preferences.TranscriptInterval);
+                        Preferences.TranscriptInterval);
                 }
                     
             } while (!this.stopNow);
-            return;
 
             /*
             if (this.btnStart.Text == "Start") {

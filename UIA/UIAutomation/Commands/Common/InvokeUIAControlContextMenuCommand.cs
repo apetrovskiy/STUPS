@@ -49,6 +49,8 @@ namespace UIAutomation.Commands
                                false,
                                false,
                                false,
+                               // 20131125
+                               0,
                                Preferences.ClickOnControlByCoordX,
                                Preferences.ClickOnControlByCoordY)) {
                 

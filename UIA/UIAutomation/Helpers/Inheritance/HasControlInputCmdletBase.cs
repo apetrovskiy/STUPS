@@ -142,6 +142,8 @@ namespace UIAutomation
                                     bool Ctrl,
                                     bool inSequence,
                                     bool DoubleClick,
+                                    // 20131125
+                                    int DoubleClickInterval,
                                     int RelativeX,
                                     int RelativeY)
         {
@@ -373,9 +375,19 @@ namespace UIAutomation
             // // 20120620 for Home Tab
             bool res1 = NativeMethods.PostMessage1(handle, uDown, wParamDown, lParam);
             
+            int interval = DoubleClickInterval / 2;
+            if (DoubleClick) {
+                System.Threading.Thread.Sleep(interval);
+            }
+            
             // MouseMove
             if (RightClick || DoubleClick) {
                 bool resMM = NativeMethods.PostMessage1(handle, NativeMethods.WM_MOUSEMOVE, wParamDown, lParam);
+            }
+            
+            // 20131125
+            if (DoubleClick) {
+                System.Threading.Thread.Sleep(interval);
             }
             
             // // 20120620 for Home Tab

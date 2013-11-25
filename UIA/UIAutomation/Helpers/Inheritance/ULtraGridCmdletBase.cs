@@ -140,6 +140,8 @@ namespace UIAutomation
                                                 true, // notTheFirstChild,
                                                 false, // notTheLastChild, // true,
                                                 false,
+                                                // 20131125
+                                                0,
                                                 Preferences.ClickOnControlByCoordX,
                                                 Preferences.ClickOnControlByCoordY)) {
                                                     selectedItems.Add(child);

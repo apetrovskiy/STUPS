@@ -47,6 +47,9 @@ namespace UIAutomation.Commands
         public SwitchParameter Ctrl { get; set; }
         [Parameter(Mandatory = false)]
         public SwitchParameter DoubleClick { get; set; }
+        // 20131125
+        [Parameter(Mandatory = false)]
+        public int DoubleClickInterval { get; set; }
         [Parameter(Mandatory = false)]
         public int X { get; set; }
         [Parameter(Mandatory = false)]
@@ -75,6 +78,8 @@ namespace UIAutomation.Commands
                     this.Ctrl,
                     false,
                     this.DoubleClick,
+                    // 20131125
+                    this.DoubleClickInterval,
                     this.X,
                     this.Y);
     

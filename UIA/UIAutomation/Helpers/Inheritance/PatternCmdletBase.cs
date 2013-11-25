@@ -559,7 +559,9 @@ namespace UIAutomation
                 //!!!!!!!!!!!!
                 if (Preferences.PerformWin32ClickOnFail) {
 
-                    ClickControl(this, _control, false, false, false, false, false, false, false, 0,
+                    // 20131125
+                    //ClickControl(this, _control, false, false, false, false, false, false, false, 0,
+                    ClickControl(this, _control, false, false, false, false, false, false, false, 0, 0,
                                  0);
                     
                     // 20131109
@@ -1022,7 +1024,9 @@ namespace UIAutomation
 
                     if (Preferences.PerformWin32ClickOnFail) {
 
-                        ClickControl(this, _control, false, false, false, false, false, false, false, 0,
+                        // 20131125
+                        //ClickControl(this, _control, false, false, false, false, false, false, false, 0,
+                        ClickControl(this, _control, false, false, false, false, false, false, false, 0, 0,
                                      0);
 
                         // 20131109
@@ -1050,7 +1054,9 @@ namespace UIAutomation
                 if (Preferences.PerformWin32ClickOnFail &&
                     "ElementNotAvailableException" != eInvokePatternException.GetType().Name) {
 
-                    ClickControl(this, _control, false, false, false, false, false, false, false, 0,
+                    // 20131125
+                    //ClickControl(this, _control, false, false, false, false, false, false, false, 0,
+                    ClickControl(this, _control, false, false, false, false, false, false, false, 0, 0,
                                  0);
 
                     // 20131109

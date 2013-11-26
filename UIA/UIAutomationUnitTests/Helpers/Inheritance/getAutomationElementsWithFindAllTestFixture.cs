@@ -127,7 +127,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             
             // Assert
             Assert.Count(0, resultList);
-            Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.ControlType == ControlType.Button);
+            Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.ControlType == controlType);
         }
         
         [Test]
@@ -155,7 +155,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             
             // Assert
             Assert.Count(0, resultList);
-            Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.ControlType == ControlType.Button);
+            Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.ControlType == controlType);
         }
         
         [Test]
@@ -183,7 +183,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             
             // Assert
             Assert.Count(1, resultList);
-            Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.ControlType == ControlType.Button);
+            Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.ControlType == controlType);
         }
         
         [Test]
@@ -210,7 +210,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             
             // Assert
             Assert.Count(3, resultList);
-            Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.ControlType == ControlType.Button);
+            Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.ControlType == controlType);
         }
         #endregion ControlType
         
@@ -694,7 +694,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             // Assert
             Assert.Count(0, resultList);
             Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.Name == name);
-            Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.ControlType == ControlType.Button);
+            Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.ControlType == controlType);
         }
         
         [Test]
@@ -724,14 +724,14 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             // Assert
             Assert.Count(0, resultList);
             Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.Name == name);
-            Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.ControlType == ControlType.Button);
+            Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.ControlType == controlType);
         }
         
         [Test]
         public void Get1of4_byControlTypeName()
         {
             // Arrange
-            string name = "aaa";
+            const string name = "aaa";
             ControlType controlType = ControlType.Button;
             var cmdlet =
                 FakeFactory.Get_GetControlCollectionCmdletBase(controlType, name, string.Empty, string.Empty, string.Empty);
@@ -755,14 +755,14 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             // Assert
             Assert.Count(1, resultList);
             Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.Name == name);
-            Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.ControlType == ControlType.Button);
+            Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.ControlType == controlType);
         }
         
         [Test]
         public void Get3of3_byControlTypeName()
         {
             // Arrange
-            string name = "aaa";
+            const string name = "aaa";
             ControlType controlType = ControlType.Button;
             var cmdlet =
                 FakeFactory.Get_GetControlCollectionCmdletBase(controlType, name, string.Empty, string.Empty, string.Empty);
@@ -784,7 +784,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             // Assert
             Assert.Count(3, resultList);
             Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.Name == name);
-            Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.ControlType == ControlType.Button);
+            Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.ControlType == controlType);
         }
         #endregion ControlType + Name
         
@@ -793,10 +793,10 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         public void Get0_byControlTypeAutomationId()
         {
             // Arrange
-            const string automaitonId = "aua2";
+            const string automationId = "aua2";
             ControlType controlType = ControlType.Button;
             var cmdlet =
-                FakeFactory.Get_GetControlCollectionCmdletBase(controlType, string.Empty, automaitonId, string.Empty, string.Empty);
+                FakeFactory.Get_GetControlCollectionCmdletBase(controlType, string.Empty, automationId, string.Empty, string.Empty);
             AndCondition condition =
                 cmdlet.GetControlConditions(cmdlet, "Button", false, true) as AndCondition;
             IMySuperWrapper element =
@@ -811,18 +811,18 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             
             // Assert
             Assert.Count(0, resultList);
-            Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.AutomationId == automaitonId);
-            Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.ControlType == ControlType.Button);
+            Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.AutomationId == automationId);
+            Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.ControlType == controlType);
         }
         
         [Test]
         public void Get0of4_byControlTypeAutomationId()
         {
             // Arrange
-            const string automaitonId = "aua2";
+            const string automationId = "aua2";
             ControlType controlType = ControlType.Button;
             var cmdlet =
-                FakeFactory.Get_GetControlCollectionCmdletBase(controlType, string.Empty, automaitonId, string.Empty, string.Empty);
+                FakeFactory.Get_GetControlCollectionCmdletBase(controlType, string.Empty, automationId, string.Empty, string.Empty);
             AndCondition condition =
                 cmdlet.GetControlConditions(cmdlet, "Button", false, true) as AndCondition;
             IMySuperWrapper element =
@@ -831,7 +831,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                         FakeFactory.GetAutomationElement(controlType, string.Empty, "au01", string.Empty, string.Empty),
                         FakeFactory.GetAutomationElement(controlType, string.Empty, "au02", string.Empty, string.Empty),
                         FakeFactory.GetAutomationElement(controlType, string.Empty, "au03", string.Empty, string.Empty),
-                        FakeFactory.GetAutomationElement(ControlType.Custom, string.Empty, automaitonId, string.Empty, string.Empty)
+                        FakeFactory.GetAutomationElement(ControlType.Custom, string.Empty, automationId, string.Empty, string.Empty)
                     },
                     condition
                    );
@@ -841,27 +841,27 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             
             // Assert
             Assert.Count(0, resultList);
-            Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.AutomationId == automaitonId);
-            Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.ControlType == ControlType.Button);
+            Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.AutomationId == automationId);
+            Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.ControlType == controlType);
         }
         
         [Test]
         public void Get1of4_byControlTypeAutomationId()
         {
             // Arrange
-            string automaitonId = "aua2";
+            string automationId = "aua2";
             ControlType controlType = ControlType.Button;
             var cmdlet =
-                FakeFactory.Get_GetControlCollectionCmdletBase(controlType, string.Empty, automaitonId, string.Empty, string.Empty);
+                FakeFactory.Get_GetControlCollectionCmdletBase(controlType, string.Empty, automationId, string.Empty, string.Empty);
             AndCondition condition =
                 cmdlet.GetControlConditions(cmdlet, "Button", false, true) as AndCondition;
             IMySuperWrapper element =
                 FakeFactory.GetElement_ForFindAll(
                     new [] {
                         FakeFactory.GetAutomationElement(controlType, string.Empty, "au01", string.Empty, string.Empty),
-                        FakeFactory.GetAutomationElement(controlType, string.Empty, automaitonId, string.Empty, string.Empty),
+                        FakeFactory.GetAutomationElement(controlType, string.Empty, automationId, string.Empty, string.Empty),
                         FakeFactory.GetAutomationElement(controlType, string.Empty, "au03", string.Empty, string.Empty),
-                        FakeFactory.GetAutomationElement(ControlType.DataGrid, string.Empty, automaitonId, string.Empty, string.Empty)
+                        FakeFactory.GetAutomationElement(ControlType.DataGrid, string.Empty, automationId, string.Empty, string.Empty)
                     },
                     condition
                    );
@@ -871,26 +871,26 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             
             // Assert
             Assert.Count(1, resultList);
-            Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.AutomationId == automaitonId);
-            Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.ControlType == ControlType.Button);
+            Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.AutomationId == automationId);
+            Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.ControlType == controlType);
         }
         
         [Test]
         public void Get3of3_byControlTypeAutomationId()
         {
             // Arrange
-            string automaitonId = "aua2";
+            string automationId = "aua2";
             ControlType controlType = ControlType.Button;
             var cmdlet =
-                FakeFactory.Get_GetControlCollectionCmdletBase(controlType, string.Empty, automaitonId, string.Empty, string.Empty);
+                FakeFactory.Get_GetControlCollectionCmdletBase(controlType, string.Empty, automationId, string.Empty, string.Empty);
             AndCondition condition =
                 cmdlet.GetControlConditions(cmdlet, "Button", false, true) as AndCondition;
             IMySuperWrapper element =
                 FakeFactory.GetElement_ForFindAll(
                     new [] {
-                        FakeFactory.GetAutomationElement(controlType, string.Empty, automaitonId, string.Empty, string.Empty),
-                        FakeFactory.GetAutomationElement(controlType, string.Empty, automaitonId, string.Empty, string.Empty),
-                        FakeFactory.GetAutomationElement(controlType, string.Empty, automaitonId, string.Empty, string.Empty)
+                        FakeFactory.GetAutomationElement(controlType, string.Empty, automationId, string.Empty, string.Empty),
+                        FakeFactory.GetAutomationElement(controlType, string.Empty, automationId, string.Empty, string.Empty),
+                        FakeFactory.GetAutomationElement(controlType, string.Empty, automationId, string.Empty, string.Empty)
                     },
                     condition
                    );
@@ -900,8 +900,8 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             
             // Assert
             Assert.Count(3, resultList);
-            Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.AutomationId == automaitonId);
-            Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.ControlType == ControlType.Button);
+            Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.AutomationId == automationId);
+            Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.ControlType == controlType);
         }
         #endregion ControlType + AutomationId
         
@@ -929,7 +929,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             // Assert
             Assert.Count(0, resultList);
             Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.ClassName == className);
-            Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.ControlType == ControlType.Button);
+            Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.ControlType == controlType);
         }
         
         [Test]
@@ -959,7 +959,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             // Assert
             Assert.Count(0, resultList);
             Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.ClassName == className);
-            Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.ControlType == ControlType.Button);
+            Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.ControlType == controlType);
         }
         
         [Test]
@@ -989,7 +989,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             // Assert
             Assert.Count(1, resultList);
             Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.ClassName == className);
-            Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.ControlType == ControlType.Button);
+            Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.ControlType == controlType);
         }
         
         [Test]
@@ -1018,7 +1018,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             // Assert
             Assert.Count(3, resultList);
             Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.ClassName == className);
-            Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.ControlType == ControlType.Button);
+            Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.ControlType == controlType);
         }
         #endregion ControlType + Class
         
@@ -1228,7 +1228,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         public void Get1of4_byNameAutomationId()
         {
             // Arrange
-            string name = "aaa";
+            const string name = "aaa";
             const string automationId = "zzz";
             var cmdlet =
                 FakeFactory.Get_GetControlCollectionCmdletBase(null, name, automationId, string.Empty, string.Empty);
@@ -1258,7 +1258,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         public void Get3of3_byNameAutomationId()
         {
             // Arrange
-            string name = "aaa";
+            const string name = "aaa";
             const string automationId = "zzz";
             var cmdlet =
                 FakeFactory.Get_GetControlCollectionCmdletBase(null, name, automationId, string.Empty, string.Empty);
@@ -1345,7 +1345,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         public void Get1of4_byNameClass()
         {
             // Arrange
-            string name = "aaa";
+            const string name = "aaa";
             const string className = "yyy";
             var cmdlet =
                 FakeFactory.Get_GetControlCollectionCmdletBase(null, name, string.Empty, className, string.Empty);
@@ -1375,7 +1375,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         public void Get3of3_byNameClass()
         {
             // Arrange
-            string name = "aaa";
+            const string name = "aaa";
             const string className = "yyy";
             var cmdlet =
                 FakeFactory.Get_GetControlCollectionCmdletBase(null, name, string.Empty, className, string.Empty);
@@ -1401,7 +1401,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         }
         #endregion Name + Class
         
-        #region Name + Class
+        #region Name + Value
         [Test]
         public void Get0_byNameValue()
         {
@@ -1476,7 +1476,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         public void Get1of4_byNameValue()
         {
             // Arrange
-            string name = "aaa";
+            const string name = "aaa";
             const string txtValue = "xxx";
             var cmdlet =
                 FakeFactory.Get_GetControlCollectionCmdletBase(null, name, string.Empty, string.Empty, txtValue);
@@ -1513,7 +1513,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         public void Get3of3_byNameValue()
         {
             // Arrange
-            string name = "aaa";
+            const string name = "aaa";
             const string txtValue = "xxx";
             var cmdlet =
                 FakeFactory.Get_GetControlCollectionCmdletBase(null, name, string.Empty, string.Empty, txtValue);
@@ -1732,7 +1732,6 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             
             // Assert
             Assert.Count(0, resultList);
-            Assert.Count(0, resultList);
             Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.Name == name);
             Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.AutomationId == automationId);
             Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.ClassName == className);
@@ -1776,7 +1775,6 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             
             // Assert
             Assert.Count(1, resultList);
-            Assert.Count(0, resultList);
             Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.Name == name);
             Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.AutomationId == automationId);
             Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.ClassName == className);
@@ -1819,7 +1817,6 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             
             // Assert
             Assert.Count(3, resultList);
-            Assert.Count(0, resultList);
             Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.Name == name);
             Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.AutomationId == automationId);
             Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.ClassName == className);

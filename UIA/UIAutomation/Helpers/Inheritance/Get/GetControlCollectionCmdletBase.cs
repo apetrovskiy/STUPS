@@ -718,61 +718,107 @@ namespace UIAutomation
                 //AutomationElement[] outResult;
 
                 if (scope == TreeScope.Children ||
-                scope == TreeScope.Descendants) {
-                WriteVerbose(this, "selected TreeScope." + scope.ToString());
-                // 20131118
-                // object -> Condition
-                AndCondition[] conditions = GetControlsConditions(this);
-                //Condition[] conditions = getControlsConditions(this);
+                    scope == TreeScope.Descendants) {
+                    WriteVerbose(this, "selected TreeScope." + scope.ToString());
+                    // 20131118
+                    // object -> Condition
+                    AndCondition[] conditions = GetControlsConditions(this);
+                    //Condition[] conditions = getControlsConditions(this);
                     IMySuperCollection temporaryResults = null;
                     if (conditions != null && conditions.Length > 0)
-                {
-                    WriteVerbose(this, "conditions number: " +
-                                 conditions.Length.ToString());
-                    foreach (AndCondition andCondition in conditions.Where(andCondition => andCondition != null))
                     {
-                        WriteVerbose(this, andCondition.GetConditions());
-                        temporaryResults =
-                            // 20120823
-                            //this.InputObject.FindAll(scope,
-                            inputObject.FindAll(scope,
-                                andCondition);
-                        if (temporaryResults.Count <= 0) continue;
+                        WriteVerbose(this, "conditions number: " +
+                                     conditions.Length.ToString());
+                        foreach (AndCondition andCondition in conditions.Where(andCondition => andCondition != null))
+                        {
+                            WriteVerbose(this, andCondition.GetConditions());
+                            temporaryResults =
+                                // 20120823
+                                //this.InputObject.FindAll(scope,
+                                inputObject.FindAll(scope,
+                                    andCondition);
+                            if (temporaryResults.Count <= 0) continue;
+                            /*
+                            if (temporaryResults.Count > 0) {
+                            */
+    
+                            // 20131109
+                            //searchResults.AddRange(temporaryResults.Cast<AutomationElement>());
+                            // 20131111
+                            //searchResults.AddRange(temporaryResults.Cast<IMySuperWrapper>());
+                            searchResults.AddRange(temporaryResults.Cast<IMySuperWrapper>());
+    
+                            /*
+                            foreach (IMySuperWrapper singleElement in temporaryResults) {
+                                searchResults.Add(singleElement);
+                            }
+                            */
+                            /*
+                                    foreach (AutomationElement element in temporaryResults)
+                                    {
+                                        searchResults.Add(element);
+                                    }
+                                    */
+                        }
+    
                         /*
-                        if (temporaryResults.Count > 0) {
-                        */
-
-                        // 20131109
-                        //searchResults.AddRange(temporaryResults.Cast<AutomationElement>());
-                        // 20131111
-                        //searchResults.AddRange(temporaryResults.Cast<IMySuperWrapper>());
-                        searchResults.AddRange(temporaryResults.Cast<IMySuperWrapper>());
-
-                        /*
-                        foreach (IMySuperWrapper singleElement in temporaryResults) {
-                            searchResults.Add(singleElement);
+                        foreach (AndCondition andCondition in conditions)
+                        {
+                            if (andCondition == null) continue;
+                            WriteVerbose(this, andCondition.GetConditions());
+                            temporaryResults =
+                                // 20120823
+                                //this.InputObject.FindAll(scope,
+                                inputObject.FindAll(scope,
+                                    andCondition);
+                            if (temporaryResults.Count > 0) {
+                                
+                                // 20131109
+                                //searchResults.AddRange(temporaryResults.Cast<AutomationElement>());
+                                // 20131111
+                                //searchResults.AddRange(temporaryResults.Cast<IMySuperWrapper>());
+                                foreach (IMySuperWrapper singleElement in temporaryResults) {
+                                    searchResults.Add(singleElement);
+                                }
+                            }
                         }
                         */
+    
                         /*
-                                foreach (AutomationElement element in temporaryResults)
-                                {
-                                    searchResults.Add(element);
-                                }
-                                */
+                        for (int i = 0; i < conditions.Length; i++) {
+                            if (conditions[i] != null) {
+                                WriteVerbose(this, conditions[i].GetConditions());
+                                temporaryResults =
+                                    // 20120823
+                                    //this.InputObject.FindAll(scope,
+                                    inputObject.FindAll(scope,
+                                                             conditions[i]);
+                                if (temporaryResults.Count > 0) {
+                                    searchResults.AddRange(temporaryResults.Cast<AutomationElement>());
+                                    //->
+                                    foreach (AutomationElement element in temporaryResults)
+                                    {
+                                        searchResults.Add(element);
+                                    }
+                                    -//
                     }
-
-                    /*
-                    foreach (AndCondition andCondition in conditions)
-                    {
-                        if (andCondition == null) continue;
-                        WriteVerbose(this, andCondition.GetConditions());
+                    }
+                        }
+                        */
+                    }
+                    else {
+                        WriteVerbose(this, "no conditions. Performing search with TrueCondition");
                         temporaryResults =
                             // 20120823
                             //this.InputObject.FindAll(scope,
                             inputObject.FindAll(scope,
-                                andCondition);
-                        if (temporaryResults.Count > 0) {
-                            
+                                                     Condition.TrueCondition);
+                        if (temporaryResults.Count > 0)
+                        {
+                            WriteVerbose(this, 
+                                         "returned " + 
+                                         temporaryResults.Count.ToString() + 
+                                         " results");
                             // 20131109
                             //searchResults.AddRange(temporaryResults.Cast<AutomationElement>());
                             // 20131111
@@ -780,63 +826,17 @@ namespace UIAutomation
                             foreach (IMySuperWrapper singleElement in temporaryResults) {
                                 searchResults.Add(singleElement);
                             }
+                            /*
+                            foreach (AutomationElement element in temporaryResults)
+                            {
+                                searchResults.Add(element);
+                            }
+                            */
                         }
                     }
-                    */
-
-                    /*
-                    for (int i = 0; i < conditions.Length; i++) {
-                        if (conditions[i] != null) {
-                            WriteVerbose(this, conditions[i].GetConditions());
-                            temporaryResults =
-                                // 20120823
-                                //this.InputObject.FindAll(scope,
-                                inputObject.FindAll(scope,
-                                                         conditions[i]);
-                            if (temporaryResults.Count > 0) {
-                                searchResults.AddRange(temporaryResults.Cast<AutomationElement>());
-                                //->
-                                foreach (AutomationElement element in temporaryResults)
-                                {
-                                    searchResults.Add(element);
-                                }
-                                -//
-                }
-                }
-                    }
-                    */
-                }
-                else {
-                    WriteVerbose(this, "no conditions. Performing search with TrueCondition");
-                    temporaryResults =
-                        // 20120823
-                        //this.InputObject.FindAll(scope,
-                        inputObject.FindAll(scope,
-                                                 Condition.TrueCondition);
-                    if (temporaryResults.Count > 0)
-                    {
-                        WriteVerbose(this, 
-                                     "returned " + 
-                                     temporaryResults.Count.ToString() + 
-                                     " results");
-                        // 20131109
-                        //searchResults.AddRange(temporaryResults.Cast<AutomationElement>());
-                        // 20131111
-                        //searchResults.AddRange(temporaryResults.Cast<IMySuperWrapper>());
-                        foreach (IMySuperWrapper singleElement in temporaryResults) {
-                            searchResults.Add(singleElement);
-                        }
-                        /*
-                        foreach (AutomationElement element in temporaryResults)
-                        {
-                            searchResults.Add(element);
-                        }
-                        */
-                    }
-                }
-                WriteVerbose(this, "results found: " + searchResults.Count.ToString());
-                WriteObject(this, searchResults.ToArray());
-            } // if (scope == TreeScope.Children ||
+                    WriteVerbose(this, "results found: " + searchResults.Count.ToString());
+                    WriteObject(this, searchResults.ToArray());
+                } // if (scope == TreeScope.Children ||
                 //scope == TreeScope.Descendants)
                 if (scope != TreeScope.Parent && scope != TreeScope.Ancestors) continue;
                 // 20131109

@@ -7,6 +7,8 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System.Collections.Generic;
+
 namespace UIAutomation
 {
     using System;
@@ -38,7 +40,7 @@ namespace UIAutomation
             
             // 20131109
             //System.Collections.Generic.List<AutomationElement> list = collection.Cast<AutomationElement>().ToList();
-            System.Collections.Generic.List<IMySuperWrapper> list = collection.Cast<IMySuperWrapper>().ToList();
+            List<IMySuperWrapper> list = collection.Cast<IMySuperWrapper>().ToList();
 
             /*
             foreach (AutomationElement element in collection) {

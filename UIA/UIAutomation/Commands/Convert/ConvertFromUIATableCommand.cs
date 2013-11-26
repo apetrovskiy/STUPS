@@ -7,6 +7,8 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System.Collections.Generic;
+
 namespace UIAutomation.Commands
 {
     using System;
@@ -29,17 +31,17 @@ namespace UIAutomation.Commands
         /// </summary>
         protected override void ProcessRecord()
         {
-            if (!this.CheckAndPrepareInput(this)) { return; }
+            if (!CheckAndPrepareInput(this)) { return; }
             
             // 20120823
             // 20131109
             //foreach (AutomationElement inputObject in this.InputObject) {
-            foreach (IMySuperWrapper inputObject in this.InputObject) {
+            foreach (IMySuperWrapper inputObject in InputObject) {
                 
                 string strData = String.Empty;
                 // 20131109
                 //System.Windows.Automation.AutomationElement _control = 
-                IMySuperWrapper _control =
+                IMySuperWrapper currentControl =
                     // 20120823
                     //this.InputObject;
                     inputObject;
@@ -53,12 +55,12 @@ namespace UIAutomation.Commands
                         as TablePattern;
                     
                     bool res1 = 
-                        UiaHelper.GetHeaderItems(ref _control, out strData, this.Delimiter);
+                        UiaHelper.GetHeaderItems(ref currentControl, out strData, Delimiter);
                     
                     if (res1) {
-                        this.WriteObject(strData);
+                        WriteObject(strData);
                     } else {
-                        this.WriteVerbose(this, strData);
+                        WriteVerbose(this, strData);
                     }
                     
                     // temporary!!!
@@ -66,15 +68,15 @@ namespace UIAutomation.Commands
                     // 20131109
                     //System.Windows.Automation.AutomationElement[] selectedItems = null;
                     IMySuperWrapper[] selectedItems = null;
-                    if (this.SelectedOnly) {
+                    if (SelectedOnly) {
                         
                         // if there's a selection, get items in the selection
                         try
                         {
                             
                             SelectionPattern selPattern = inputObject.GetCurrentPattern(
-                                System.Windows.Automation.SelectionPattern.Pattern)
-                                as System.Windows.Automation.SelectionPattern;
+                                SelectionPattern.Pattern)
+                                as SelectionPattern;
                             
                             /*
                             System.Windows.Automation.SelectionPattern selPattern;
@@ -93,8 +95,8 @@ namespace UIAutomation.Commands
                                 ObjectsFactory.GetMySuperCollection(selPattern.Current.GetSelection()).Cast<MySuperWrapper>().ToArray();
                         }
                         catch (Exception eSelection) {
-                            this.WriteDebug(this, eSelection.Message);
-                            this.WriteVerbose(this, "there wasn't a selection");
+                            WriteDebug(this, eSelection.Message);
+                            WriteVerbose(this, "there wasn't a selection");
                         }
                     }
                     
@@ -113,21 +115,21 @@ namespace UIAutomation.Commands
                         rowsCounter < tblPattern.Current.RowCount;
                         rowsCounter++) {
                         
-                            if (this.SelectedOnly && selectedItems.Length > 0) {
+                            if (SelectedOnly && selectedItems.Length > 0) {
                                 
                             } else {
                                 
                                 // without a selection
                                 string outString = 
-                                    UiaHelper.GetOutputStringUsingTableGridPattern<System.Windows.Automation.TablePattern>(
+                                    UiaHelper.GetOutputStringUsingTableGridPattern<TablePattern>(
                                         tblPattern,
                                         tblPattern.Current.ColumnCount,
                                         rowsCounter,
-                                        this.Delimiter);
+                                        Delimiter);
     // getOutputString(ref tblPattern,
     // rowsCounter);
                                 // output a row
-                                this.WriteObject(outString);
+                                WriteObject(outString);
                             }
                         }
                     //}
@@ -160,29 +162,29 @@ namespace UIAutomation.Commands
                     */
                 } catch {
                     if (tblPattern != null) continue;
-                    this.WriteVerbose(this, "couldn't get TablePattern");
-                    this.WriteVerbose(this, "trying to enumerate columns and rows");
+                    WriteVerbose(this, "couldn't get TablePattern");
+                    WriteVerbose(this, "trying to enumerate columns and rows");
                         
                         
                     bool res2 = 
-                        UiaHelper.GetHeaders(ref _control, out strData, this.Delimiter);
+                        UiaHelper.GetHeaders(ref currentControl, out strData, Delimiter);
                     if (res2) {
-                        this.WriteObject(strData);
+                        WriteObject(strData);
                     } else {
-                        this.WriteVerbose(this, strData);
+                        WriteVerbose(this, strData);
                     }
                         
-                    System.Collections.Generic.List<string> rows = 
+                    List<string> rows = 
                         // 20120823
                         //UiaHelper.GetOutputStringUsingItemsValuePattern(this.InputObject,
                         UiaHelper.GetOutputStringUsingItemsValuePattern(inputObject,
-                            this.Delimiter);
+                            Delimiter);
                     if (rows.Count <= 0) continue;
                     // 20130318
                     //RunOnSuccessScriptBlocks(this);
                     RunOnSuccessScriptBlocks(this, null);
                     foreach (string row in rows) {
-                        this.WriteObject(row);
+                        WriteObject(row);
                     }
                     
                     // 20131119

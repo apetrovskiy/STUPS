@@ -22,8 +22,8 @@ namespace UIAutomation.Commands
         #region Constructor
         public RegisterUiaInvokedEventCommand()
         {
-            this.AutomationEventType = InvokePattern.InvokedEvent;
-            this.AutomationEventHandler = OnUIAutomationEvent;
+            AutomationEventType = InvokePattern.InvokedEvent;
+            AutomationEventHandler = OnUIAutomationEvent;
         }
         #endregion Constructor
     }

@@ -31,7 +31,7 @@ namespace UIAutomation.Commands
             IMySuperWrapper result =
                 UiaHelper.GetAutomationElementFromPoint();
             
-            this.WriteObject(this, result);
+            WriteObject(this, result);
         }
     }
 }

@@ -8,6 +8,8 @@
  */
 
 using System.Linq;
+using System.Threading;
+using UIAutomation.Commands;
 
 namespace UIAutomation
 {
@@ -24,8 +26,8 @@ namespace UIAutomation
     {
         public Wizard(string name)
         {
-            this.Name = name;
-            this.Steps = new List<WizardStep>();
+            Name = name;
+            Steps = new List<WizardStep>();
             WizardCollection.Wizards.Add(this);
         }
         
@@ -61,12 +63,12 @@ namespace UIAutomation
         
         public void ClearSteps()
         {
-            this.Steps = new List<WizardStep>();
+            Steps = new List<WizardStep>();
         }
         
         public void ClearStepsData()
         {
-            foreach (WizardStep step in this.Steps) {
+            foreach (WizardStep step in Steps) {
                 
                 step.StepForwardAction = null;
                 step.StepBackwardAction = null;
@@ -75,7 +77,7 @@ namespace UIAutomation
         
         public void ClearStepsData(bool forward, bool backward)
         {
-            foreach (WizardStep step in this.Steps) {
+            foreach (WizardStep step in Steps) {
                 
                 if (forward) {
                     step.StepForwardAction = null;
@@ -88,7 +90,7 @@ namespace UIAutomation
         
         public WizardStep GetStep(string name)
         {
-            return this.Steps.FirstOrDefault(step => String.Equals(name, step.Name, StringComparison.CurrentCultureIgnoreCase));
+            return Steps.FirstOrDefault(step => String.Equals(name, step.Name, StringComparison.CurrentCultureIgnoreCase));
             // return this.Steps.FirstOrDefault(step => name.ToUpper() == step.Name.ToUpper());
             /*
             foreach (WizardStep step in this.Steps)
@@ -106,14 +108,14 @@ namespace UIAutomation
 
         public WizardStep GetActiveStep()
         {
-            this.StopImmediately = false;
+            StopImmediately = false;
             
         	WizardStep resultStep = null;
         	
         	//GetControlCmdletBase cmdletCtrl =
         	//	new GetControlCmdletBase();
-        	UIAutomation.Commands.GetUiaControlCommand cmdletCtrl =
-        	    new UIAutomation.Commands.GetUiaControlCommand
+        	GetUiaControlCommand cmdletCtrl =
+        	    new GetUiaControlCommand
         	    {
         	        InputObject = new MySuperWrapper[] {(MySuperWrapper) CurrentData.CurrentWindow},
         	        Timeout = 0
@@ -131,16 +133,16 @@ namespace UIAutomation
         	cmdletCtrl.Timeout = 0;
             */
 
-            foreach (WizardStep step in this.Steps) {
+            foreach (WizardStep step in Steps) {
 
-        	    if (this.StopImmediately) {
+        	    if (StopImmediately) {
         	        resultStep = step;
         	        break;
         	    }
         	    
         	    // 20130320
 			    // sleep interval
-			    System.Threading.Thread.Sleep(Preferences.OnSelectWizardStepDelay);
+			    Thread.Sleep(Preferences.OnSelectWizardStepDelay);
         	    
         		cmdletCtrl.SearchCriteria = step.SearchCriteria;
 
@@ -155,7 +157,7 @@ namespace UIAutomation
 	        	catch {}
 
         	    if (null == controlsList || 0 >= controlsList.Count) continue;
-        	    if (step == this.ActiveStep) {
+        	    if (step == ActiveStep) {
 	        	        
         	        // 20130423
         	        if (Preferences.HighlightCheckedControl) {
@@ -171,7 +173,7 @@ namespace UIAutomation
         	    }
 	        	    
         	    resultStep = step;
-        	    this.ActiveStep = step;
+        	    ActiveStep = step;
         	    break;
 
         	    /*
@@ -199,7 +201,7 @@ namespace UIAutomation
         	// 20130515
         	// moving the current step to the end of the step collection
         	try {
-        	   int currentIndex = this.Steps.IndexOf(resultStep);
+        	   int currentIndex = Steps.IndexOf(resultStep);
         	   try {
         	       cmdletCtrl.WriteInfo(cmdletCtrl, "current index = " + currentIndex.ToString());
         	   }
@@ -207,10 +209,10 @@ namespace UIAutomation
         	       cmdletCtrl.WriteInfo(cmdletCtrl, "failed to show the current index");
         	   }
         	   // 20130712
-        	   if (0 <= currentIndex && (this.Steps.Count - 1) != currentIndex) {
-            	   this.Steps.Insert(this.Steps.Count, resultStep);
+        	   if (0 <= currentIndex && (Steps.Count - 1) != currentIndex) {
+            	   Steps.Insert(Steps.Count, resultStep);
             	   cmdletCtrl.WriteInfo(cmdletCtrl, "inserted after the last step");
-            	   this.Steps.RemoveAt(currentIndex);
+            	   Steps.RemoveAt(currentIndex);
             	   cmdletCtrl.WriteInfo(cmdletCtrl, "deleted from the previous position");
         	   } else {
         	       cmdletCtrl.WriteInfo(cmdletCtrl, "there was no manipulation with wizard steps' order");
@@ -225,7 +227,7 @@ namespace UIAutomation
         
         public void Stop()
         {
-            this.StopImmediately = true;
+            StopImmediately = true;
         }
     }
 }

@@ -7,6 +7,8 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System;
+
 namespace UIAutomation.Commands
 {
     // 20131107
@@ -33,7 +35,7 @@ namespace UIAutomation.Commands
         protected override void BeginProcessing() {
             
             // set the start time to calculate the timeout expiration
-            StartDate = System.DateTime.Now;
+            StartDate = DateTime.Now;
         }
         
         /// <summary>
@@ -41,11 +43,11 @@ namespace UIAutomation.Commands
         /// </summary>
         protected override void ProcessRecord() 
         {
-            this.CheckCmdletParameters();
+            CheckCmdletParameters();
             
-            if (!this.CheckAndPrepareInput(this)) { return; }
+            if (!CheckAndPrepareInput(this)) { return; }
 
-            this.WriteVerbose(this, "getting the control");
+            WriteVerbose(this, "getting the control");
             
             ArrayList returnCollection = 
                 GetControl(this);
@@ -75,25 +77,25 @@ namespace UIAutomation.Commands
 
             if (null != returnCollection && 0 < returnCollection.Count) {
 
-                this.WriteObject(this, returnCollection);
+                WriteObject(this, returnCollection);
                 
             } else {
                 // 20120830
                 //WriteObject(this, (object)null);
                 
                 // 20131108
-                this.WriteError(
+                WriteError(
                     this,
                     CmdletSignature(this) + "timeout expired for control with class: + '" +
-                    this.Class + 
+                    Class + 
                     "', control type: '" + 
-                    this.ControlType + 
+                    ControlType + 
                     "', title: '" +
-                    this.Name +
+                    Name +
                     "', automationId: '" +
-                    this.AutomationId +
+                    AutomationId +
                     "', value: '" +
-                    this.Value +
+                    Value +
                     "'",
                     "ControlIsNull",
                     ErrorCategory.OperationTimeout,

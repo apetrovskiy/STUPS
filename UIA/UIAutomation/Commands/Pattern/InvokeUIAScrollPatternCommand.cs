@@ -22,10 +22,10 @@ namespace UIAutomation.Commands
     { public InvokeUiaScrollPatternCommand() 
       { 
             WhatToDo = "Scroll"; 
-            this.Vertical = false;
-            this.Horizontal = false;
+            Vertical = false;
+            Horizontal = false;
             //this.Percent = 0;
-            this.PassThru = true;
+            PassThru = true;
             base.Child = this;
       }
         

@@ -20,8 +20,8 @@ namespace UIAutomation.Commands
     {
         public RegisterUiaToolTipOpenedEventCommand()
         {
-            this.AutomationEventType = AutomationElement.ToolTipOpenedEvent;
-            this.AutomationEventHandler = OnUIAutomationEvent;
+            AutomationEventType = AutomationElement.ToolTipOpenedEvent;
+            AutomationEventHandler = OnUIAutomationEvent;
         }
     }
 }

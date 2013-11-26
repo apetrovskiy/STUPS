@@ -20,14 +20,14 @@ namespace UIAutomation.Commands
     {
         public SetUiaOnSleepActionSettingsCommand()
         {
-            this.Action = Preferences.OnSleepAction;
-            this.Delay = Preferences.OnSleepDelay;
+            Action = Preferences.OnSleepAction;
+            Delay = Preferences.OnSleepDelay;
         }
         
         protected override void BeginProcessing()
         {
-            Preferences.OnSleepAction = this.Action;
-            Preferences.OnSleepDelay = this.Delay;
+            Preferences.OnSleepAction = Action;
+            Preferences.OnSleepDelay = Delay;
         }
     }
 }

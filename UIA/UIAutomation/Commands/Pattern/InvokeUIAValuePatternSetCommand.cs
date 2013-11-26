@@ -28,7 +28,7 @@ namespace UIAutomation.Commands
             Text = String.Empty;
             base.Child = this;
             
-            this.PassThru = false;
+            PassThru = false;
         }
         
         #region Parameters

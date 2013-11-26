@@ -47,7 +47,7 @@ namespace UIAutomation
         #endregion Parameters
                 
         // 20120828
-        protected internal ArrayList getFiltredElementsCollection(GetCmdletBase cmdlet, ArrayList elementCollection)
+        protected internal ArrayList GetFilteredElementsCollection(GetCmdletBase cmdlet, ArrayList elementCollection)
         {
             ArrayList resultCollection = new ArrayList();
             

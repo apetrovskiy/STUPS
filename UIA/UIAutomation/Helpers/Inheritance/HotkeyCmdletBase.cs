@@ -7,6 +7,8 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System.Collections.Generic;
+
 namespace UIAutomation
 {
     //using System;
@@ -21,8 +23,8 @@ namespace UIAutomation
         {
         }
         
-        protected System.Collections.Generic.List<byte> keyCodes = 
-            new System.Collections.Generic.List<byte>();
+        protected List<byte> keyCodes = 
+            new List<byte>();
         
         protected void processKeys() //System.Collections.Generic.List<byte> keysList)
         {

@@ -26,7 +26,7 @@ namespace UIAutomation.Commands
         
         protected override void BeginProcessing()
         {
-            UiaHelper.ShowBanner(this.Message);
+            UiaHelper.ShowBanner(Message);
         }
     }
 }

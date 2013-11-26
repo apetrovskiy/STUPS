@@ -11,7 +11,7 @@ namespace UIAutomation
 {
     using System;
     using System.Management.Automation;
-    using UIAutomation.Commands;
+    using Commands;
     
     /// <summary>
     /// Description of UiaInvokeWizardCommand.
@@ -25,7 +25,7 @@ namespace UIAutomation
         internal override void Execute()
         {
             WizardRunCmdletBase cmdlet =
-                (WizardRunCmdletBase)this.Cmdlet;
+                (WizardRunCmdletBase)Cmdlet;
             
             WizardHelper.InvokeWizard(cmdlet);
         }

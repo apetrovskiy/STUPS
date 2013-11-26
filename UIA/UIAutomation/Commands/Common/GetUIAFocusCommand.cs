@@ -32,7 +32,7 @@ namespace UIAutomation.Commands
             //this.WriteObject(this, new MySuperWrapper(AutomationElement.FocusedElement));
             // 20131112
             //this.WriteObject(this, ObjectsFactory.Kernel.Get<IMySuperWrapper>( new MySuperWrapper[] { MySuperWrapper.FocusedElement } ));
-            this.WriteObject(this, MySuperWrapper.FocusedElement);
+            WriteObject(this, MySuperWrapper.FocusedElement);
         }
     }
 }

@@ -13,13 +13,13 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
 
     /// <summary>
-    /// Description of GetUIAifUltraGridSelectionCommand.
+    /// Description of GetUiaIfUltraGridSelectionCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAifUltraGridSelection")]
-    public class GetUIAifUltraGridSelectionCommand : ULtraGridCmdletBase
+    [Cmdlet(VerbsCommon.Get, "UiaIfUltraGridSelection")]
+    public class GetUiaIfUltraGridSelectionCommand : ULtraGridCmdletBase
     {
         #region Constructor
-        public GetUIAifUltraGridSelectionCommand()
+        public GetUiaIfUltraGridSelectionCommand()
         {
         }
         #endregion Constructor
@@ -34,9 +34,9 @@ namespace UIAutomation.Commands
         /// </summary>
         protected override void ProcessRecord()
         {
-            if (!this.CheckAndPrepareInput(this)) { return; }
+            if (!CheckAndPrepareInput(this)) { return; }
             
-            ifUltraGridProcessing(ifUltraGridOperations.getSelection);
+            ifUltraGridProcessing(ifUltraGridOperations.GetSelection);
         }
     }
 }

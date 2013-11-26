@@ -20,8 +20,8 @@ namespace UIAutomation.Commands
     {
         public RegisterUiaFocusChangedEventCommand()
         {
-            this.AutomationEventType = AutomationElement.AutomationFocusChangedEvent;
-            this.AutomationEventHandler = OnUIAutomationEvent;
+            AutomationEventType = AutomationElement.AutomationFocusChangedEvent;
+            AutomationEventHandler = OnUIAutomationEvent;
         }
     }
 }

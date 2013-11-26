@@ -7,6 +7,9 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+
 namespace UIAutomation
 {
     using System;
@@ -31,7 +34,7 @@ namespace UIAutomation
         public int Count { get; set; }
         #endregion Parameters
         
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "if")]
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "if")]
         protected void ifUltraGridProcessing(
             ifUltraGridOperations operation)
         {
@@ -40,14 +43,14 @@ namespace UIAutomation
             // 20131109
             //System.Collections.Generic.List<AutomationElement> selectedItems = 
             //    new System.Collections.Generic.List<AutomationElement>();
-            System.Collections.Generic.List<IMySuperWrapper> selectedItems = 
-                new System.Collections.Generic.List<IMySuperWrapper>();
+            List<IMySuperWrapper> selectedItems = 
+                new List<IMySuperWrapper>();
             
             try {
                 
                 // 20131109
                 //foreach (AutomationElement inputObject in this.InputObject) {
-                foreach (IMySuperWrapper inputObject in this.InputObject) {
+                foreach (IMySuperWrapper inputObject in InputObject) {
                     
                     // 20131109
                     //AutomationElementCollection tableItems = 
@@ -127,7 +130,7 @@ namespace UIAutomation
                                         
         
                                     switch (operation) {
-                                        case ifUltraGridOperations.selectItems:
+                                        case ifUltraGridOperations.SelectItems:
                                             // in case of this operation is a selection of items
                                             // clicks are needed
                                             // otherwise, just return the set of rows found
@@ -171,13 +174,13 @@ namespace UIAutomation
                                                 */
                                             }
                                             break;
-                                        case ifUltraGridOperations.getItems:
+                                        case ifUltraGridOperations.GetItems:
                                             selectedItems.Add(child);
                                             WriteVerbose(this, 
                                                 "the " + child.Current.Name + 
                                                 " added to the output collection");
                                             break;
-                                        case ifUltraGridOperations.getSelection:
+                                        case ifUltraGridOperations.GetSelection:
                                             if (GetColorProbe(this,
                                                 child)) {
                                                     selectedItems.Add(child);
@@ -187,7 +190,7 @@ namespace UIAutomation
                                                 }
                                             break;
                                     }
-                                    if (this.Count > 0 && counter == this.Count) {
+                                    if (Count > 0 && counter == Count) {
                                         break;
                                     }
                                 }
@@ -342,7 +345,7 @@ namespace UIAutomation
                         ee,
                         "ExceptionInSectingItems",
                         ErrorCategory.InvalidOperation,
-                        this.InputObject);
+                        InputObject);
                 err.ErrorDetails = new ErrorDetails("Exception were thrown during the cycle of selecting items.");
                 WriteObject(this, false);
 
@@ -354,7 +357,7 @@ namespace UIAutomation
         
         private bool IsInTheList(string strValue)
         {
-            return this.ItemName.Any(strItem => strValue == strItem);
+            return ItemName.Any(strItem => strValue == strItem);
             /*
             bool result = false;
             foreach (string strItem in this.ItemName)
@@ -370,16 +373,16 @@ namespace UIAutomation
         }
     }
     
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "if")]
+    [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "if")]
     public enum ifUltraGridOperations
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "unknown")]
-        unknown = 0,
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "select")]
-        selectItems = 1,
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "get")]
-        getSelection = 2,
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "get")]
-        getItems = 3
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "unknown")]
+        Unknown = 0,
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "select")]
+        SelectItems = 1,
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "get")]
+        GetSelection = 2,
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "get")]
+        GetItems = 3
     }
 }

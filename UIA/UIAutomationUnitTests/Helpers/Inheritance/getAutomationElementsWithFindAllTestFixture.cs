@@ -1,4 +1,5 @@
-﻿/*
+﻿using System;
+/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
  * Date: 11/17/2013
@@ -38,7 +39,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             GetControlCollectionCmdletBase cmdletDerived = new GetControlCollectionCmdletBase();
             
             ArrayList resultList =
-                cmdletDerived.getAutomationElementsWithFindAll(
+                cmdletDerived.GetAutomationElementsWithFindAll(
                     element,
                     cmdlet.Name,
                     cmdlet.AutomationId,
@@ -89,9 +90,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             IMySuperWrapper element =
                 FakeFactory.GetElement_ForFindAll(
                     new [] {
-                        FakeFactory.GetAutomationElement(ControlType.Button, "aaa", string.Empty, string.Empty, string.Empty),
-                        FakeFactory.GetAutomationElement(ControlType.Custom, "bcd", string.Empty, string.Empty, string.Empty),
-                        FakeFactory.GetAutomationElement(ControlType.TabItem, "zzz", string.Empty, string.Empty, string.Empty)
+                        FakeFactory.GetAutomationElement(ControlType.Button, string.Empty, string.Empty, string.Empty, string.Empty),
+                        FakeFactory.GetAutomationElement(ControlType.Custom, string.Empty, string.Empty, string.Empty, string.Empty),
+                        FakeFactory.GetAutomationElement(ControlType.TabItem, string.Empty, string.Empty, string.Empty, string.Empty)
                     },
                     condition
                    );
@@ -561,7 +562,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 .Cast<IMySuperWrapper>()
                 .ToList<IMySuperWrapper>(), x =>
                 {
-                    ValuePattern valuePattern = x.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern;
+                    IMySuperValuePattern valuePattern = x.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern;
                     return valuePattern != null && valuePattern.Current.Value == txtValue;
                 });
         }
@@ -595,7 +596,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 .Cast<IMySuperWrapper>()
                 .ToList<IMySuperWrapper>(), x =>
                 {
-                    ValuePattern valuePattern = x.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern;
+                    IMySuperValuePattern valuePattern = x.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern;
                     return valuePattern != null && valuePattern.Current.Value == txtValue;
                 });
         }
@@ -629,7 +630,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 .Cast<IMySuperWrapper>()
                 .ToList<IMySuperWrapper>(), x =>
                 {
-                    ValuePattern valuePattern = x.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern;
+                    IMySuperValuePattern valuePattern = x.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern;
                     return valuePattern != null && valuePattern.Current.Value == txtValue;
                 });
         }
@@ -663,7 +664,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 .Cast<IMySuperWrapper>()
                 .ToList<IMySuperWrapper>(), x =>
                 {
-                    ValuePattern valuePattern = x.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern;
+                    IMySuperValuePattern valuePattern = x.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern;
                     return valuePattern != null && valuePattern.Current.Value == txtValue;
                 });
         }
@@ -1050,7 +1051,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 .Cast<IMySuperWrapper>()
                 .ToList<IMySuperWrapper>(), x =>
                 {
-                    ValuePattern valuePattern = x.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern;
+                    IMySuperValuePattern valuePattern = x.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern;
                     return valuePattern != null && valuePattern.Current.Value == txtValue;
                 });
         }
@@ -1087,7 +1088,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 .Cast<IMySuperWrapper>()
                 .ToList<IMySuperWrapper>(), x =>
                 {
-                    ValuePattern valuePattern = x.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern;
+                    IMySuperValuePattern valuePattern = x.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern;
                     return valuePattern != null && valuePattern.Current.Value == txtValue;
                 });
         }
@@ -1124,7 +1125,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 .Cast<IMySuperWrapper>()
                 .ToList<IMySuperWrapper>(), x =>
                 {
-                    ValuePattern valuePattern = x.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern;
+                    IMySuperValuePattern valuePattern = x.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern;
                     return valuePattern != null && valuePattern.Current.Value == txtValue;
                 });
         }
@@ -1160,7 +1161,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 .Cast<IMySuperWrapper>()
                 .ToList<IMySuperWrapper>(), x =>
                 {
-                    ValuePattern valuePattern = x.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern;
+                    IMySuperValuePattern valuePattern = x.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern;
                     return valuePattern != null && valuePattern.Current.Value == txtValue;
                 });
         }
@@ -1429,7 +1430,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 .Cast<IMySuperWrapper>()
                 .ToList<IMySuperWrapper>(), x =>
                 {
-                    ValuePattern valuePattern = x.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern;
+                    IMySuperValuePattern valuePattern = x.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern;
                     return valuePattern != null && valuePattern.Current.Value == txtValue;
                 });
         }
@@ -1466,7 +1467,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 .Cast<IMySuperWrapper>()
                 .ToList<IMySuperWrapper>(), x =>
                 {
-                    ValuePattern valuePattern = x.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern;
+                    IMySuperValuePattern valuePattern = x.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern;
                     return valuePattern != null && valuePattern.Current.Value == txtValue;
                 });
         }
@@ -1503,7 +1504,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 .Cast<IMySuperWrapper>()
                 .ToList<IMySuperWrapper>(), x =>
                 {
-                    ValuePattern valuePattern = x.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern;
+                    IMySuperValuePattern valuePattern = x.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern;
                     return valuePattern != null && valuePattern.Current.Value == txtValue;
                 });
         }
@@ -1539,7 +1540,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 .Cast<IMySuperWrapper>()
                 .ToList<IMySuperWrapper>(), x =>
                 {
-                    ValuePattern valuePattern = x.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern;
+                    IMySuperValuePattern valuePattern = x.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern;
                     return valuePattern != null && valuePattern.Current.Value == txtValue;
                 });
         }
@@ -1675,7 +1676,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             var cmdlet =
                 FakeFactory.Get_GetControlCollectionCmdletBase(controlType, name, automationId, className, txtValue);
             AndCondition condition =
-                cmdlet.GetControlConditions(cmdlet, "", false, true) as AndCondition;
+                cmdlet.GetControlConditions(cmdlet, "Button", false, true) as AndCondition;
             IMySuperWrapper element =
                 FakeFactory.GetElement_ForFindAll(
                     new MySuperWrapper [] {
@@ -1697,7 +1698,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 .Cast<IMySuperWrapper>()
                 .ToList<IMySuperWrapper>(), x =>
                 {
-                    ValuePattern valuePattern = x.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern;
+                    IMySuperValuePattern valuePattern = x.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern;
                     return valuePattern != null && valuePattern.Current.Value == txtValue;
                 });
         }
@@ -1714,7 +1715,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             var cmdlet =
                 FakeFactory.Get_GetControlCollectionCmdletBase(controlType, name, automationId, className, txtValue);
             AndCondition condition =
-                cmdlet.GetControlConditions(cmdlet, "", false, true) as AndCondition;
+                cmdlet.GetControlConditions(cmdlet, "Button", false, true) as AndCondition;
             IMySuperWrapper element =
                 FakeFactory.GetElement_ForFindAll(
                     new [] {
@@ -1741,7 +1742,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 .Cast<IMySuperWrapper>()
                 .ToList<IMySuperWrapper>(), x =>
                 {
-                    ValuePattern valuePattern = x.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern;
+                    IMySuperValuePattern valuePattern = x.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern;
                     return valuePattern != null && valuePattern.Current.Value == txtValue;
                 });
         }
@@ -1758,7 +1759,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             var cmdlet =
                 FakeFactory.Get_GetControlCollectionCmdletBase(controlType, name, automationId, className, txtValue);
             AndCondition condition =
-                cmdlet.GetControlConditions(cmdlet, "", false, true) as AndCondition;
+                cmdlet.GetControlConditions(cmdlet, "Button", false, true) as AndCondition;
             IMySuperWrapper element =
                 FakeFactory.GetElement_ForFindAll(
                     new [] {
@@ -1785,7 +1786,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 .Cast<IMySuperWrapper>()
                 .ToList<IMySuperWrapper>(), x =>
                 {
-                    ValuePattern valuePattern = x.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern;
+                    IMySuperValuePattern valuePattern = x.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern;
                     return valuePattern != null && valuePattern.Current.Value == txtValue;
                 });
         }
@@ -1802,7 +1803,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             var cmdlet =
                 FakeFactory.Get_GetControlCollectionCmdletBase(controlType, name, automationId, className, txtValue);
             AndCondition condition =
-                cmdlet.GetControlConditions(cmdlet, "", false, true) as AndCondition;
+                cmdlet.GetControlConditions(cmdlet, "Button", false, true) as AndCondition;
             IMySuperWrapper element =
                 FakeFactory.GetElement_ForFindAll(
                     new [] {
@@ -1828,7 +1829,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 .Cast<IMySuperWrapper>()
                 .ToList<IMySuperWrapper>(), x =>
                 {
-                    ValuePattern valuePattern = x.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern;
+                    IMySuperValuePattern valuePattern = x.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern;
                     return valuePattern != null && valuePattern.Current.Value == txtValue;
                 });
         }

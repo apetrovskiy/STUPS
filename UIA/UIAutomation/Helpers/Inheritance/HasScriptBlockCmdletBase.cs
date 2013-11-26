@@ -7,6 +7,8 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System.Collections;
+
 namespace UIAutomation
 {
     using System;
@@ -22,13 +24,13 @@ namespace UIAutomation
         #region Constructor
         public HasScriptBlockCmdletBase()
         {
-            this.TestPassed = false;
+            TestPassed = false;
 
-            this.Highlight = Preferences.Highlight;
-            this.HighlightParent = Preferences.HighlightParent;
+            Highlight = Preferences.Highlight;
+            HighlightParent = Preferences.HighlightParent;
 //            this.HighlightFirstChild = Preferences.HighlightFirstChild;
-            this.KnownIssue = false;
-            this.Banner = string.Empty;
+            KnownIssue = false;
+            Banner = string.Empty;
         }
         #endregion Constructor
 
@@ -48,14 +50,14 @@ namespace UIAutomation
         //protected internal AutomationElement ElementToSubscribe;
         protected internal IMySuperWrapper ElementToSubscribe;
         // list of all subscribed events
-        protected internal readonly System.Collections.ArrayList SubscribedEvents = 
-            new System.Collections.ArrayList();
-        protected internal readonly System.Collections.ArrayList SubscribedEventsIds = 
-            new System.Collections.ArrayList();
+        protected internal readonly ArrayList SubscribedEvents = 
+            new ArrayList();
+        protected internal readonly ArrayList SubscribedEventsIds = 
+            new ArrayList();
         
         #region for script recording
-        public System.Collections.ArrayList Recording = 
-            new System.Collections.ArrayList();
+        public ArrayList Recording = 
+            new ArrayList();
         #endregion for script recording
         
         #region get active window

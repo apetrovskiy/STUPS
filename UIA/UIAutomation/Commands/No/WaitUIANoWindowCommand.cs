@@ -23,8 +23,8 @@ namespace UIAutomation.Commands
     {
         public WaitUiaNoWindowCommand()
         {
-            this.TestMode = true;
-            this.WaitNoWindow = true;
+            TestMode = true;
+            WaitNoWindow = true;
         }
     }
 }

@@ -7,7 +7,10 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
+using UIAutomation.Commands;
 
 namespace UIAutomation
 {
@@ -37,15 +40,15 @@ namespace UIAutomation
         // 20131109
         //public static AutomationElement CurrentWindow { get; internal set; }
         public static IMySuperWrapper CurrentWindow { get; internal set; }
-        public static System.Collections.ArrayList Error { get; set; }
+        public static ArrayList Error { get; set; }
         public static string LastCmdlet { get; internal set; }
         public static object LastResult { get; internal set; }
-        public static System.Collections.Generic.List<Profile> Profiles { get; set; }
+        public static List<Profile> Profiles { get; set; }
         //internal static System.Collections.Generic.List<System.Windows.Automation.AutomationEventHandler> Events { get; set; }
         //internal static System.Collections.Generic.List<object> Events { get; set; }
-public static System.Collections.Generic.List<object> Events { get; set; } // temporary ??
+public static List<object> Events { get; set; } // temporary ??
         
-        internal static Commands.RecorderForm formRecorder { get; set; }
+        internal static RecorderForm formRecorder { get; set; }
         
         // 20131109
         //public static AutomationElement LastEventSource { get; set; }
@@ -61,15 +64,15 @@ public static System.Collections.Generic.List<object> Events { get; set; } // te
         
         internal static void InitializeData()
         {
-            Error = new System.Collections.ArrayList(Preferences.MaximumErrorCount);
-            Profiles = new System.Collections.Generic.List<Profile>();
+            Error = new ArrayList(Preferences.MaximumErrorCount);
+            Profiles = new List<Profile>();
             
             InitializeEventCollection();
         }
         
         internal static void InitializeEventCollection()
         {
-            Events = new System.Collections.Generic.List<object>();
+            Events = new List<object>();
         }
         
         public static void ResetData()
@@ -99,7 +102,7 @@ public static System.Collections.Generic.List<object> Events { get; set; } // te
         //public static void SetCurrentWindow(AutomationElement window)
         public static void SetCurrentWindow(IMySuperWrapper window)
         {
-            CurrentData.CurrentWindow = window ?? null;
+            CurrentWindow = window ?? null;
 
             /*
             if (window != null) {
@@ -120,7 +123,7 @@ public static System.Collections.Generic.List<object> Events { get; set; } // te
 
         internal static Profile GetProfile(string name)
         {
-            return CurrentData.Profiles.FirstOrDefault(profile => name == profile.Name);
+            return Profiles.FirstOrDefault(profile => name == profile.Name);
             /*
             Profile result = null;
             foreach (Profile profile in CurrentData.Profiles)

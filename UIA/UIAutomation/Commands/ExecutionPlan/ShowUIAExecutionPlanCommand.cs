@@ -24,15 +24,15 @@ namespace UIAutomation.Commands
 		
 		protected override void BeginProcessing()
 		{
-			UIAutomation.ExecutionPlan.DisposeHighlighers();
-			UIAutomation.ExecutionPlan.Init();
-			CommonCmdletBase.HighlighterGeneration = 0;
-			if (0 != this.MaxControlsHighlighted) {
+			ExecutionPlan.DisposeHighlighers();
+			ExecutionPlan.Init();
+			HighlighterGeneration = 0;
+			if (0 != MaxControlsHighlighted) {
 				ExecutionPlan.DecreaseMaxCount(
                 // UIAutomation.ExecutionPlan.DecreaseMaxCount(
-					this.MaxControlsHighlighted);
+					MaxControlsHighlighted);
 			}
-			UIAutomation.Preferences.ShowExecutionPlan = true;
+			Preferences.ShowExecutionPlan = true;
 		}
 	}
 }

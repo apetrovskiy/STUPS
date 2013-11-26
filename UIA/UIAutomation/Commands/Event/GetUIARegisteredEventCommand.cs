@@ -34,14 +34,14 @@ namespace UIAutomation.Commands
 
                 foreach (object handler in CurrentData.Events) {
 
-                    this.WriteObject(
+                    WriteObject(
                         this,
                         handler);
 
                 }
             }
             catch (Exception eEnumEventhandlers) {
-                this.WriteError(
+                WriteError(
                     this,
                     "Unable to enumerate event handlers. " +
                     eEnumEventhandlers.Message,

@@ -23,25 +23,25 @@ namespace UIAutomation
         #region Constructor
         public GetControlCmdletBase()
         {
-            this.Class = string.Empty;
-            this.Name = string.Empty;
-            this.ControlType = string.Empty;
-            this.AutomationId = string.Empty;
-            this.Value = string.Empty;
+            Class = string.Empty;
+            Name = string.Empty;
+            ControlType = string.Empty;
+            AutomationId = string.Empty;
+            Value = string.Empty;
             
-            this.InputObject =
+            InputObject =
                 // 20131109
                 //new System.Windows.Automation.AutomationElement[] { CurrentData.CurrentWindow };
                 new MySuperWrapper[] { (MySuperWrapper)CurrentData.CurrentWindow };
             
             // CacheRequest
-            this.FromCache = Preferences.FromCache;
+            FromCache = Preferences.FromCache;
             
             // 20130204
 //            this.Fake = true;
             
             // 20131122
-            this.Regex = false;
+            Regex = false;
         }
         #endregion Constructor
         

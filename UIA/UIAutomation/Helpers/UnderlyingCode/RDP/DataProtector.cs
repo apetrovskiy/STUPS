@@ -117,13 +117,11 @@ namespace UIAutomation
         public byte[] Encrypt(byte[] plainText, byte[] optionalEntropy, string DataDescription)
         */
         {
-            bool retVal = false;
             DATA_BLOB plainTextBlob = new DATA_BLOB();
             DATA_BLOB cipherTextBlob = new DATA_BLOB();
             DATA_BLOB entropyBlob = new DATA_BLOB();
             CRYPTPROTECT_PROMPTSTRUCT prompt = new CRYPTPROTECT_PROMPTSTRUCT();
             InitPromptstruct(ref prompt);
-            int dwFlags;
             try
             {
                 try
@@ -141,6 +139,7 @@ namespace UIAutomation
                 {
                     throw new Exception("Exception marshalling data. " + ex.Message);
                 }
+                int dwFlags;
                 if (Store.USE_MACHINE_STORE == store)
                 {//Using the machine store, should be providing entropy.
                     dwFlags = CRYPTPROTECT_LOCAL_MACHINE | CRYPTPROTECT_UI_FORBIDDEN;
@@ -170,9 +169,9 @@ namespace UIAutomation
                 {//Using the user store
                     dwFlags = CRYPTPROTECT_UI_FORBIDDEN;
                 }
-                retVal = CryptProtectData(ref plainTextBlob, DataDescription, ref entropyBlob,
-                IntPtr.Zero, ref prompt, dwFlags,
-                ref cipherTextBlob);
+                bool retVal = CryptProtectData(ref plainTextBlob, DataDescription, ref entropyBlob,
+                    IntPtr.Zero, ref prompt, dwFlags,
+                    ref cipherTextBlob);
                 if (false == retVal)
                 {
                     //throw new Exception("Encryption failed. " +
@@ -201,7 +200,6 @@ namespace UIAutomation
 
         public byte[] Decrypt(byte[] cipherText, byte[] optionalEntropy, string DataDescription)
         {
-            bool retVal = false;
             DATA_BLOB plainTextBlob = new DATA_BLOB();
             DATA_BLOB cipherBlob = new DATA_BLOB();
             CRYPTPROTECT_PROMPTSTRUCT prompt = new
@@ -259,10 +257,10 @@ namespace UIAutomation
                 {//Using the user store
                     dwFlags = CRYPTPROTECT_UI_FORBIDDEN;
                 }
-                retVal = CryptUnprotectData(ref cipherBlob, DataDescription, ref 
-      entropyBlob,
-                                            IntPtr.Zero, ref prompt, dwFlags,
-                                            ref plainTextBlob);
+                bool retVal = CryptUnprotectData(ref cipherBlob, DataDescription, ref 
+                    entropyBlob,
+                    IntPtr.Zero, ref prompt, dwFlags,
+                    ref plainTextBlob);
                 if (false == retVal)
                 {
                     //throw new Exception("Decryption failed. " +

@@ -8,6 +8,8 @@
  */
 
 using System.Linq;
+using System.Threading;
+using TMX;
 
 namespace UIAutomation
 {
@@ -26,7 +28,7 @@ namespace UIAutomation
     
     using PSTestLib;
     
-    using UIAutomation.Commands;
+    using Commands;
 
     /// <summary>
     /// Description of UiaHelper.
@@ -35,21 +37,24 @@ namespace UIAutomation
     public static class UiaHelper
     {
         
-        private static Highlighter highlighter = null;
-        private static Highlighter highlighterParent = null;
+        private static Highlighter _highlighter = null;
+        private static Highlighter _highlighterParent = null;
         //private static Highlighter highlighterFirstChild = null;
-        private static Highlighter highlighterCheckedControl = null;
+        private static Highlighter _highlighterCheckedControl = null;
         
-        private static Banner banner = null;
+        private static Banner _banner = null;
         
         // 20131109
         //private static System.Windows.Automation.AutomationElement element = null;
-        private static IMySuperWrapper element = null;
+        private static IMySuperWrapper _element = null;
         
         //internal static CacheRequest CacheRequest = null;
         
         private static ArrayList GetControlByName(
+            PSCmdletBase cmdlet,
+            /*
             GetControlCmdletBase cmdlet,
+            */
             IntPtr containerHandle,
             string name,
             int level)
@@ -149,8 +154,8 @@ namespace UIAutomation
             */
 
             try {
-                System.IntPtr containerHandle =
-                    new System.IntPtr(container.Current.NativeWindowHandle);
+                IntPtr containerHandle =
+                    new IntPtr(container.Current.NativeWindowHandle);
                 if (containerHandle == IntPtr.Zero){
                     cmdlet.WriteVerbose(cmdlet, "The container control has no handle");
 
@@ -180,7 +185,7 @@ namespace UIAutomation
                 //if (null == handlesCollection || handlesCollection.Count <= 0) return resultCollection;
                 if (null == handlesCollection || 0 == handlesCollection.Count) return resultCollection;
                 cmdlet.WriteVerbose(cmdlet, "handles.Count = " + handlesCollection.Count.ToString());
-                foreach (System.IntPtr controlHandle in handlesCollection) {
+                foreach (IntPtr controlHandle in handlesCollection) {
                     try {
                         cmdlet.WriteVerbose(cmdlet, "checking a handle");
                         if (IntPtr.Zero == controlHandle) continue;
@@ -195,13 +200,13 @@ namespace UIAutomation
                         cmdlet.WriteVerbose(cmdlet, controlTitle);
                         cmdlet.WriteVerbose(cmdlet, tempElement.Current.Name);
 
-                        if (isMatchWildcardPattern(cmdlet, resultCollection, tempElement, wildcardName, tempElement.Current.Name)) continue;
-                        if (isMatchWildcardPattern(cmdlet, resultCollection, tempElement, wildcardName, tempElement.Current.AutomationId)) continue;
-                        if (isMatchWildcardPattern(cmdlet, resultCollection, tempElement, wildcardName, tempElement.Current.ClassName)) continue;
+                        if (IsMatchWildcardPattern(cmdlet, resultCollection, tempElement, wildcardName, tempElement.Current.Name)) continue;
+                        if (IsMatchWildcardPattern(cmdlet, resultCollection, tempElement, wildcardName, tempElement.Current.AutomationId)) continue;
+                        if (IsMatchWildcardPattern(cmdlet, resultCollection, tempElement, wildcardName, tempElement.Current.ClassName)) continue;
                         try {
                             string elementValue =
                                 (tempElement.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern).Current.Value;
-                            if (isMatchWildcardPattern(cmdlet, resultCollection, tempElement, wildcardName, elementValue)) continue;
+                            if (IsMatchWildcardPattern(cmdlet, resultCollection, tempElement, wildcardName, elementValue)) continue;
                         }
                         catch { //(Exception eValuePattern) {
                         }
@@ -283,8 +288,11 @@ namespace UIAutomation
             }
         }
         
-        private static bool isMatchWildcardPattern(
+        private static bool IsMatchWildcardPattern(
+            PSCmdletBase cmdlet,
+            /*
             GetControlCmdletBase cmdlet,
+            */
             IList resultCollection,
             // ArrayList resultCollection,
             // 20131109
@@ -328,15 +336,15 @@ namespace UIAutomation
         //internal static void Highlight(AutomationElement element) //, Highlighters control)  //(object obj)
         internal static void Highlight(IMySuperWrapper element)
         {
-            try { if (highlighter != null) { highlighter.Dispose(); } } catch {}
-            try { if (highlighterParent != null) { highlighterParent.Dispose(); } } catch {}
+            try { if (_highlighter != null) { _highlighter.Dispose(); } } catch {}
+            try { if (_highlighterParent != null) { _highlighterParent.Dispose(); } } catch {}
             //try { if (highlighterFirstChild != null) { highlighterFirstChild.Dispose(); } } catch {}
             
             // 20131109
             //if ((element as AutomationElement) != null) {
             if ((element as IMySuperWrapper) != null) {
                 
-                highlighter =
+                _highlighter =
                     new Highlighter(
                         element.Current.BoundingRectangle.Height,
                         element.Current.BoundingRectangle.Width,
@@ -351,9 +359,9 @@ namespace UIAutomation
             // 20131109
             //AutomationElement parent =
             IMySuperWrapper parent =
-                UiaHelper.GetParent(element);
+                GetParent(element);
                 
-            highlighterParent =
+            _highlighterParent =
                 new Highlighter(
                     parent.Current.BoundingRectangle.Height,
                     parent.Current.BoundingRectangle.Width,
@@ -385,13 +393,13 @@ namespace UIAutomation
         //internal static void HighlightCheckedControl(AutomationElement element) //, Highlighters control)  //(object obj)
         internal static void HighlightCheckedControl(IMySuperWrapper element)
         {
-            try { if (highlighterCheckedControl != null) { highlighterCheckedControl.Dispose(); } } catch {}
+            try { if (_highlighterCheckedControl != null) { _highlighterCheckedControl.Dispose(); } } catch {}
             
             // 20131109
             //if ((element as AutomationElement) != null) {
             if ((element as IMySuperWrapper) != null) {
 
-                highlighterCheckedControl =
+                _highlighterCheckedControl =
                     new Highlighter(
                         element.Current.BoundingRectangle.Height,
                         element.Current.BoundingRectangle.Width,
@@ -406,17 +414,17 @@ namespace UIAutomation
         internal static void HideHighlighters()
         {
             try {
-                highlighter.Dispose();
-                highlighterParent.Dispose();
+                _highlighter.Dispose();
+                _highlighterParent.Dispose();
             }
             catch {}
         }
         
         public static void ShowBanner(string message)
         {
-            try { if (null != banner) { banner.Dispose(); } } catch {}
+            try { if (null != _banner) { _banner.Dispose(); } } catch {}
             
-            banner =
+            _banner =
                 new Banner(
                     Preferences.BannerLeft,
                     Preferences.BannerTop,
@@ -427,12 +435,12 @@ namespace UIAutomation
         
         internal static void HideBanner()
         {
-            if (null == banner) return;
+            if (null == _banner) return;
             try {
-                banner.Hide();
+                _banner.Hide();
             }
             catch {}
-            banner.Dispose();
+            _banner.Dispose();
 
             /*
             if (null != banner) {
@@ -447,13 +455,13 @@ namespace UIAutomation
         
         public static void AppendBanner(string message)
         {
-            if (null != banner) {
+            if (null != _banner) {
                 
-                banner.AppendMessage(message);
+                _banner.AppendMessage(message);
                 
             } else {
             
-                banner =
+                _banner =
                     new Banner(
                         Preferences.BannerLeft,
                         Preferences.BannerTop,
@@ -466,18 +474,18 @@ namespace UIAutomation
         
         public static void ClearBanner()
         {
-            if (null != banner) {
+            if (null != _banner) {
                 
-                banner.Message = string.Empty;
+                _banner.Message = string.Empty;
             }
         }
         
-        private static string getTimedFileNameForScreenShot()
+        private static string GetTimedFileNameForScreenShot()
         {
             string result =
                 Preferences.ScreenShotFolder +
                 @"\" +
-                PSTestLib.PSTestHelper.GetTimedFileName();
+                PSTestHelper.GetTimedFileName();
             return result;
         }
         
@@ -490,7 +498,7 @@ namespace UIAutomation
             int Height,
             int Width,
             string path,
-            System.Drawing.Imaging.ImageFormat format)
+            ImageFormat format)
         {
             
             //if (null == cmdlet.InputObject || 0 == cmdlet.InputObject.Length) {
@@ -583,7 +591,7 @@ namespace UIAutomation
             int Height,
             int Width,
             string path,
-            System.Drawing.Imaging.ImageFormat format)
+            ImageFormat format)
         {
             
             cmdlet.WriteVerbose(cmdlet, "hiding highlighter if it's been used");
@@ -593,7 +601,7 @@ namespace UIAutomation
             if (Preferences.HideHighlighterOnScreenShotTaking &&
                 ! Preferences.ShowExecutionPlan) {
                 
-                UiaHelper.HideHighlighters();
+                HideHighlighters();
             }
             
             cmdlet.WriteVerbose(cmdlet, "calculating the size");
@@ -663,7 +671,7 @@ namespace UIAutomation
                                                  int absoluteHeight, //int Height, // = 0,
                                                  int absoluteWidth, //int Width,
                                                  string path, //)// = 0) //, int monitor)
-                                                 System.Drawing.Imaging.ImageFormat format)
+                                                 ImageFormat format)
         {
             Image myImage =
                 new Bitmap(absoluteWidth,
@@ -707,7 +715,7 @@ namespace UIAutomation
                     path.Length > 0 &&
                     path != @"\") { // && ! System.IO.File.Exists(path)) {
                     
-                    if (System.IO.File.Exists(path)) {
+                    if (File.Exists(path)) {
                         
                         cmdlet.WriteError(
                             cmdlet,
@@ -723,19 +731,19 @@ namespace UIAutomation
                     fileName = path;
                 } else {
                     
-                    if (cmdlet is Commands.SaveUiaScreenshotCommand) {
+                    if (cmdlet is SaveUiaScreenshotCommand) {
                         
                         fileName =
-                            getTimedFileNameForScreenShot() +
+                            GetTimedFileNameForScreenShot() +
                             description +
-                            getFileExtensionByImageType(format);
+                            GetFileExtensionByImageType(format);
                         
                     } else {  // ??
                         
                         fileName =
-                            getTimedFileNameForScreenShot() +
+                            GetTimedFileNameForScreenShot() +
                             description +
-                            getFileExtensionByImageType(format);
+                            GetFileExtensionByImageType(format);
                         
                     }
                 }
@@ -781,7 +789,7 @@ namespace UIAutomation
 
                 myImage.Save(fileName, format);
                 
-                TMX.TmxHelper.AddTestResultScreenshotDetail(fileName);
+                TmxHelper.AddTestResultScreenshotDetail(fileName);
             } else {
                 
                 cmdlet.WriteObject(cmdlet, myImage);
@@ -795,7 +803,7 @@ namespace UIAutomation
             
         }  //// ??
         
-        private static string getFileExtensionByImageType(System.Drawing.Imaging.ImageFormat format)
+        private static string GetFileExtensionByImageType(ImageFormat format)
         {
             string result = string.Empty;
             
@@ -841,10 +849,10 @@ namespace UIAutomation
         
         #region Start-UiaTranscript
         
-        private static string errorMessageInTheGatheringCycle = String.Empty;
-        private static bool errorInTheGatheringCycle = false;
-        private static string errorMessageInTheInnerCycle = String.Empty;
-        private static bool errorInTheInnerCycle = false;
+        private static string _errorMessageInTheGatheringCycle = String.Empty;
+        private static bool _errorInTheGatheringCycle = false;
+        private static string _errorMessageInTheInnerCycle = String.Empty;
+        private static bool _errorInTheInnerCycle = false;
         
         /// <summary>
         ///
@@ -855,13 +863,13 @@ namespace UIAutomation
             Global.GTranscript = true;
             int counter = 0;
             
-            cmdlet.oddRootElement =
+            cmdlet.OddRootElement =
                 // 20131109
                 //System.Windows.Automation.AutomationElement.RootElement;
                 MySuperWrapper.RootElement;
 
             cmdlet.StartDate =
-                System.DateTime.Now;
+                DateTime.Now;
             do
             {
                 // 20131108
@@ -870,7 +878,7 @@ namespace UIAutomation
                 counter++;
                 // 20131114
                 //bool res = ProcessingTranscriptOnce(cmdlet, counter);
-                bool res = ProcessingTranscriptOnce(cmdlet, counter, System.Windows.Forms.Cursor.Position);
+                bool res = ProcessingTranscriptOnce(cmdlet, counter, Cursor.Position);
                 if (!res) break;
                 
             } while (Global.GTranscript);
@@ -893,9 +901,9 @@ namespace UIAutomation
             // 20130318
             //cmdlet.RunOnSleepScriptBlocks(cmdlet);
             cmdlet.RunOnSleepScriptBlocks(cmdlet, null);
-            System.Threading.Thread.Sleep(Preferences.TranscriptInterval);
+            Thread.Sleep(Preferences.TranscriptInterval);
             while (cmdlet.Paused) {
-                System.Threading.Thread.Sleep(Preferences.TranscriptInterval);
+                Thread.Sleep(Preferences.TranscriptInterval);
             }
             counter++;
             
@@ -916,15 +924,15 @@ namespace UIAutomation
                 {
                     ProcessingElement(cmdlet, element);
                 }
-                if (errorInTheGatheringCycle) {
+                if (_errorInTheGatheringCycle) {
                     cmdlet.WriteDebug(cmdlet, "An error is in the control hierarchy gathering cycle");
-                    cmdlet.WriteDebug(cmdlet, errorMessageInTheGatheringCycle);
-                    errorInTheGatheringCycle = false;
+                    cmdlet.WriteDebug(cmdlet, _errorMessageInTheGatheringCycle);
+                    _errorInTheGatheringCycle = false;
                 }
             } catch (Exception eUnknown) {
                 cmdlet.WriteDebug(cmdlet, eUnknown.Message);
             }
-            System.DateTime nowDate = System.DateTime.Now;
+            DateTime nowDate = DateTime.Now;
             return !((nowDate - cmdlet.StartDate).TotalSeconds > cmdlet.Timeout / 1000);
 
             /*
@@ -1009,7 +1017,7 @@ namespace UIAutomation
                     
                     // 20130207
                     string elementControlType =
-                        getElementControlTypeString(element);
+                        GetElementControlTypeString(element);
                     if (string.IsNullOrEmpty(elementControlType)) {
                         return result;
                     }
@@ -1022,13 +1030,13 @@ namespace UIAutomation
                     // collecting the element's properties for parameters
                     bool hasName = false;
                     elementVerbosity +=
-                        getElementPropertyString(cmdlet, element, "AutomationId", null, ref hasName);
+                        GetElementPropertyString(cmdlet, element, "AutomationId", null, ref hasName);
                     if (!cmdlet.NoClassInformation) {
                         elementVerbosity +=
-                            getElementPropertyString(cmdlet, element, "Class", null, ref hasName);
+                            GetElementPropertyString(cmdlet, element, "Class", null, ref hasName);
                     }
                     elementVerbosity +=
-                        getElementPropertyString(cmdlet, element, "Name", null, ref hasName);
+                        GetElementPropertyString(cmdlet, element, "Name", null, ref hasName);
                     try {
                         // 20131124
                         // ValuePattern -> IMySuperValuePattern
@@ -1037,12 +1045,12 @@ namespace UIAutomation
                         IMySuperValuePattern pattern =
                             element.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern;
                         elementVerbosity +=
-                            getElementPropertyString(cmdlet, element, "Value", pattern, ref hasName);
+                            GetElementPropertyString(cmdlet, element, "Value", pattern, ref hasName);
                     }
                     catch {}
                     if (hasName) {
                         elementVerbosity +=
-                            getElementPropertyString(cmdlet, element, "Win32", null, ref hasName);
+                            GetElementPropertyString(cmdlet, element, "Win32", null, ref hasName);
                     }
                     cmdlet.WriteVerbose(cmdlet,
                                         "the concatenated result is: " +
@@ -1053,31 +1061,31 @@ namespace UIAutomation
                         
                         if (!cmdlet.NoEvents) {
                             cmdlet.WriteVerbose(cmdlet, "unsubscribe events");
-                            unsubscribeFromEventsDuringRecording(cmdlet); // thePreviouslyUsedElement);
+                            UnsubscribeFromEventsDuringRecording(cmdlet); // thePreviouslyUsedElement);
                             cmdlet.WriteVerbose(cmdlet, "events were unsubscribed");
                         }
                         
                         try{
-                            UiaHelper.Highlight(element);
+                            Highlight(element);
                         }
                         catch {
                         }
                         
-                        cmdlet.LastRecordedItem = new System.Collections.ArrayList();
+                        cmdlet.LastRecordedItem = new ArrayList();
                         string strElementPatterns = String.Empty;
                         
                         // if (WriteCurrentPattern) {
                         // strElementPatterns = String.Empty;
                         try {
-                            System.Windows.Automation.AutomationPattern[] elementPatterns =
+                            AutomationPattern[] elementPatterns =
                                 element.GetSupportedPatterns();
                             
                             if (!cmdlet.NoEvents) {
-                                subscribeToEventsDuringRecording(cmdlet, element, elementPatterns);
+                                SubscribeToEventsDuringRecording(cmdlet, element, elementPatterns);
                             }
                             
                             if (cmdlet.WriteCurrentPattern) {
-                                foreach (System.Windows.Automation.AutomationPattern ptrn in elementPatterns)
+                                foreach (AutomationPattern ptrn in elementPatterns)
                                 {
                                     strElementPatterns += "\r\n\t\t#";
                                     strElementPatterns +=
@@ -1202,7 +1210,7 @@ namespace UIAutomation
                             //return result;
                         }
 
-                        if (!errorInTheInnerCycle) {
+                        if (!_errorInTheInnerCycle) {
                             if (cmdlet.LastRecordedItem.Count > 0) {
                                 cmdlet.Recording.Add(cmdlet.LastRecordedItem);
                                 if (cmdlet.WriteCurrentPattern) {
@@ -1216,8 +1224,8 @@ namespace UIAutomation
                         
                     }
                 } catch (Exception eGatheringCycle) {
-                    errorInTheGatheringCycle = true;
-                    errorMessageInTheGatheringCycle =
+                    _errorInTheGatheringCycle = true;
+                    _errorMessageInTheGatheringCycle =
                         eGatheringCycle.Message;
                     //throw (eGatheringCycle);
                     Exception eGatheringCycle2 =
@@ -1253,8 +1261,11 @@ namespace UIAutomation
         /// <returns></returns>
         // 20131109
         //private static string getElementPropertyString(TranscriptCmdletBase cmdlet, AutomationElement element, string propertyName, ValuePattern pattern, ref bool hasName)
-        private static string getElementPropertyString(
+        private static string GetElementPropertyString(
+            PSCmdletBase cmdlet,
+            /*
             TranscriptCmdletBase cmdlet,
+            */
             IMySuperWrapper element,
             string propertyName,
             // 20131124
@@ -1354,7 +1365,7 @@ namespace UIAutomation
         /// <returns>string</returns>
         // 20131109
         //private static string getElementControlTypeString(AutomationElement element)
-        private static string getElementControlTypeString(IMySuperWrapper element)
+        private static string GetElementControlTypeString(IMySuperWrapper element)
         {
             string elementControlType = String.Empty;
             try {
@@ -1382,8 +1393,8 @@ namespace UIAutomation
             //AutomationElement result = null;
             IMySuperWrapper result = null;
             
-            System.Windows.Automation.TreeWalker walker =
-                new System.Windows.Automation.TreeWalker(
+            TreeWalker walker =
+                new TreeWalker(
                     System.Windows.Automation.Condition.TrueCondition);
             
             try {
@@ -1409,8 +1420,8 @@ namespace UIAutomation
             //AutomationElement result = null;
             IMySuperWrapper result = null;
             
-            System.Windows.Automation.TreeWalker walker =
-                new System.Windows.Automation.TreeWalker(
+            TreeWalker walker =
+                new TreeWalker(
                     System.Windows.Automation.Condition.TrueCondition);
             
             try {
@@ -1437,20 +1448,19 @@ namespace UIAutomation
         //private static void collectAncestors(TranscriptCmdletBase cmdlet, AutomationElement element)
         private static void collectAncestors(TranscriptCmdletBase cmdlet, IMySuperWrapper element)
         {
-            System.Windows.Automation.TreeWalker walker =
-                new System.Windows.Automation.TreeWalker(
+            TreeWalker walker =
+                new TreeWalker(
                     System.Windows.Automation.Condition.TrueCondition);
             // 20131109
             //System.Windows.Automation.AutomationElement testparent;
-            IMySuperWrapper testParent;
-            
-            try {
-                
+
+            try
+            {
                 // commented out 201206210
                 //testparent =
                 //    walker.GetParent(element);
-                testParent = element;
-                
+                IMySuperWrapper testParent = element;
+
                 while (testParent != null && (int)testParent.Current.ProcessId > 0) {
                     
                     testParent =
@@ -1464,7 +1474,7 @@ namespace UIAutomation
                         ObjectsFactory.GetMySuperWrapper(walker.GetParent(testParent.GetSourceElement()));
                     
                     if (testParent == null || (int) testParent.Current.ProcessId <= 0) continue;
-                    if (testParent == cmdlet.oddRootElement)
+                    if (testParent == cmdlet.OddRootElement)
                     { testParent = null; }
                     else{
                         string parentControlType =
@@ -1493,7 +1503,7 @@ namespace UIAutomation
                             // 20131118
                             // property to method
                             //if (ObjectsFactory.GetMySuperWrapper(walker.GetParent(testParent.SourceElement)) == cmdlet.oddRootElement) {
-                            if (ObjectsFactory.GetMySuperWrapper(walker.GetParent(testParent.GetSourceElement())) == cmdlet.oddRootElement) {
+                            if (ObjectsFactory.GetMySuperWrapper(walker.GetParent(testParent.GetSourceElement())) == cmdlet.OddRootElement) {
                                 parentControlType = "Window";
                             }
                         }
@@ -1530,11 +1540,12 @@ namespace UIAutomation
                         cmdlet.WriteVerbose(parentVerbosity);
                     }
                 }
-            } catch (Exception eErrorInTheInnerCycle) {
+            }
+            catch (Exception eErrorInTheInnerCycle) {
                 cmdlet.WriteDebug(cmdlet, eErrorInTheInnerCycle.Message);
-                errorMessageInTheInnerCycle =
+                _errorMessageInTheInnerCycle =
                     eErrorInTheInnerCycle.Message;
-                errorInTheInnerCycle = true;
+                _errorInTheInnerCycle = true;
             }
         }
         
@@ -1554,7 +1565,7 @@ namespace UIAutomation
         /// <param name="cmdlet"></param>
         /// <param name="element"></param>
         /// <param name="supportedPatterns"></param>
-        internal static void subscribeToEventsDuringRecording(HasControlInputCmdletBase cmdlet,
+        internal static void SubscribeToEventsDuringRecording(HasControlInputCmdletBase cmdlet,
                                                               // 20131109
                                                               //AutomationElement element,
                                                               IMySuperWrapper element,
@@ -1752,7 +1763,7 @@ namespace UIAutomation
         /// <summary>
         ///  /// </summary>
         /// <param name="cmdlet"></param>
-        private static void unsubscribeFromEventsDuringRecording(TranscriptCmdletBase cmdlet)
+        private static void UnsubscribeFromEventsDuringRecording(TranscriptCmdletBase cmdlet)
         {
             try
             {
@@ -1818,7 +1829,7 @@ namespace UIAutomation
             }
             try {
                 //System.IntPtr pHwnd = IntPtr.Zero;
-                System.IntPtr pHwnd = new IntPtr(handle);
+                IntPtr pHwnd = new IntPtr(handle);
                 cmdlet.WriteVerbose(cmdlet, "getting the control");
                 // 20131109
                 //element =
@@ -1826,12 +1837,12 @@ namespace UIAutomation
                 // 20131112
                 //element =
                 //    new MySuperWrapper(AutomationElement.FromHandle(pHwnd));
-                element =
+                _element =
                     ObjectsFactory.GetMySuperWrapper(AutomationElement.FromHandle(pHwnd));
-                if (element != null) {
-                    cmdlet.WriteVerbose(cmdlet, element.Current.Name);
+                if (_element != null) {
+                    cmdlet.WriteVerbose(cmdlet, _element.Current.Name);
                 }
-                result = element;
+                result = _element;
             }
             catch (Exception e) {
                 cmdlet.WriteVerbose(cmdlet, e.Message);
@@ -1867,7 +1878,7 @@ namespace UIAutomation
             IMySuperWrapper result = null;
             
             try {
-                element =
+                _element =
                     // 20131109
                     //AutomationElement.FromPoint(new System.Windows.Point(
                     //    Cursor.Position.X,
@@ -1876,7 +1887,7 @@ namespace UIAutomation
                         new System.Windows.Point(
                             Cursor.Position.X,
                             Cursor.Position.Y));
-                result = element;
+                result = _element;
             }
             catch { }
             return result;
@@ -1885,11 +1896,11 @@ namespace UIAutomation
         /// <summary>
         ///  /// </summary>
         /// <returns></returns>
-        internal static System.Windows.Automation.AutomationPattern[] GetElementPatternsFromPoint()
+        internal static AutomationPattern[] GetElementPatternsFromPoint()
         {
-            System.Windows.Automation.AutomationPattern[] result = null;
+            AutomationPattern[] result = null;
             GetAutomationElementFromPoint();
-            result = element.GetSupportedPatterns();
+            result = _element.GetSupportedPatterns();
             return result;
         }
         
@@ -1903,29 +1914,21 @@ namespace UIAutomation
         //internal static AutomationElement[] GetParentOrAncestor(AutomationElement element, TreeScope scope)
         internal static IMySuperWrapper[] GetParentOrAncestor(IMySuperWrapper element, TreeScope scope)
         {
-            System.Windows.Automation.TreeWalker walker =
-                new System.Windows.Automation.TreeWalker(
+            TreeWalker walker =
+                new TreeWalker(
                     System.Windows.Automation.Condition.TrueCondition);
             // 20131109
             //System.Windows.Automation.AutomationElement testparent;
-            IMySuperWrapper testParent;
             // 20131109
             //System.Collections.Generic.List<AutomationElement> ancestors =
             //    new System.Collections.Generic.List<AutomationElement>();
-            System.Collections.Generic.List<IMySuperWrapper> ancestors =
-                new System.Collections.Generic.List<IMySuperWrapper>();
+            List<IMySuperWrapper> ancestors =
+                new List<IMySuperWrapper>();
             
             try {
                 
                 // 20131109
-                testParent =
-                    //walker.GetParent(element);
-                    // 20131112
-                    //new MySuperWrapper(walker.GetParent(element.SourceElement));
-                    // 20131118
-                    // property to method
-                    //ObjectsFactory.GetMySuperWrapper(walker.GetParent(element.SourceElement));
-                    ObjectsFactory.GetMySuperWrapper(walker.GetParent(element.GetSourceElement()));
+                IMySuperWrapper testParent = ObjectsFactory.GetMySuperWrapper(walker.GetParent(element.GetSourceElement()));
                     
                 if (scope == TreeScope.Parent || scope == TreeScope.Ancestors) {
                     
@@ -1981,25 +1984,16 @@ namespace UIAutomation
         //internal static AutomationElement GetAncestorWithHandle(AutomationElement element)
         internal static IMySuperWrapper GetAncestorWithHandle(IMySuperWrapper element)
         {
-            System.Windows.Automation.TreeWalker walker =
-                new System.Windows.Automation.TreeWalker(
+            TreeWalker walker =
+                new TreeWalker(
                     System.Windows.Automation.Condition.TrueCondition);
             
             // 20131109
             //System.Windows.Automation.AutomationElement testparent;
-            IMySuperWrapper testparent;
-            
+
             try {
                 
-                testparent =
-                    // 20131109
-                    //walker.GetParent(element);
-                    // 20131112
-                    //new MySuperWrapper(walker.GetParent(element.SourceElement));
-                    // 20131118
-                    // property to method
-                    //ObjectsFactory.GetMySuperWrapper(walker.GetParent(element.SourceElement));
-                    ObjectsFactory.GetMySuperWrapper(walker.GetParent(element.GetSourceElement()));
+                IMySuperWrapper testparent = ObjectsFactory.GetMySuperWrapper(walker.GetParent(element.GetSourceElement()));
                 while (testparent != null &&
                        testparent.Current.NativeWindowHandle == 0) {
                     testparent =
@@ -2040,7 +2034,7 @@ namespace UIAutomation
             object result = null;
             GetAutomationElementFromPoint();
             result =
-                GetCurrentPattern(ref element,
+                GetCurrentPattern(ref _element,
                                   null);
             if (result != null) {
                 // writer.WriteLine("GetCurrentPatternFromPoint: result = " + result.ToString());
@@ -2057,9 +2051,9 @@ namespace UIAutomation
         /// </summary>
         /// <param name="patternName"></param>
         /// <returns></returns>
-        internal static System.Windows.Automation.AutomationPattern GetPatternByName(string patternName)
+        internal static AutomationPattern GetPatternByName(string patternName)
         {
-            System.Windows.Automation.AutomationPattern result = null;
+            AutomationPattern result = null;
             // normalize name
             patternName =
                 patternName.Substring(0, patternName.Length - 7) +
@@ -2067,58 +2061,58 @@ namespace UIAutomation
             patternName.Replace("dock", "Dock");
             switch (patternName) {
                 case "DockPattern":
-                    result = System.Windows.Automation.DockPattern.Pattern;
+                    result = DockPattern.Pattern;
                     break;
                 case "ExpandCollapsePattern":
-                    result = System.Windows.Automation.ExpandCollapsePattern.Pattern;
+                    result = ExpandCollapsePattern.Pattern;
                     break;
                 case "GridItemPattern":
-                    result = System.Windows.Automation.GridItemPattern.Pattern;
+                    result = GridItemPattern.Pattern;
                     break;
                 case "GridPattern":
-                    result = System.Windows.Automation.GridPattern.Pattern;
+                    result = GridPattern.Pattern;
                     break;
                 case "InvokePattern":
-                    result = System.Windows.Automation.InvokePattern.Pattern;
+                    result = InvokePattern.Pattern;
                     break;
                 case "MultipleViewPattern":
-                    result = System.Windows.Automation.MultipleViewPattern.Pattern;
+                    result = MultipleViewPattern.Pattern;
                     break;
                 case "RangeValuePattern":
-                    result = System.Windows.Automation.RangeValuePattern.Pattern;
+                    result = RangeValuePattern.Pattern;
                     break;
                 case "ScrollItemPattern":
-                    result = System.Windows.Automation.ScrollItemPattern.Pattern;
+                    result = ScrollItemPattern.Pattern;
                     break;
                 case "ScrollPattern":
-                    result = System.Windows.Automation.ScrollPattern.Pattern;
+                    result = ScrollPattern.Pattern;
                     break;
                 case "SelectionItemPattern":
-                    result = System.Windows.Automation.SelectionItemPattern.Pattern;
+                    result = SelectionItemPattern.Pattern;
                     break;
                 case "SelectionPattern":
-                    result = System.Windows.Automation.SelectionPattern.Pattern;
+                    result = SelectionPattern.Pattern;
                     break;
                 case "TableItemPattern":
-                    result = System.Windows.Automation.TableItemPattern.Pattern;
+                    result = TableItemPattern.Pattern;
                     break;
                 case "TablePattern":
-                    result = System.Windows.Automation.TablePattern.Pattern;
+                    result = TablePattern.Pattern;
                     break;
                 case "TextPattern":
-                    result = System.Windows.Automation.TextPattern.Pattern;
+                    result = TextPattern.Pattern;
                     break;
                 case "TogglePattern":
-                    result = System.Windows.Automation.TogglePattern.Pattern;
+                    result = TogglePattern.Pattern;
                     break;
                 case "TransformPattern":
-                    result = System.Windows.Automation.TransformPattern.Pattern;
+                    result = TransformPattern.Pattern;
                     break;
                 case "ValuePattern":
-                    result = System.Windows.Automation.ValuePattern.Pattern;
+                    result = ValuePattern.Pattern;
                     break;
                 case "WindowPattern":
-                    result = System.Windows.Automation.WindowPattern.Pattern;
+                    result = WindowPattern.Pattern;
                     break;
                 default:
                     result = null;
@@ -2137,19 +2131,18 @@ namespace UIAutomation
             // 20131109
             //ref System.Windows.Automation.AutomationElement element,
             ref IMySuperWrapper element,
-            System.Windows.Automation.AutomationPattern patternType)
+            AutomationPattern patternType)
         {
             object result =
                 null;
             try {
-                System.Windows.Automation.AutomationPattern[] supportedPatterns =
+                AutomationPattern[] supportedPatterns =
                     element.GetSupportedPatterns();
                 if (supportedPatterns == null ||
                     supportedPatterns.Length < 1)
                 {
                     return result;
                 }
-                object pattern = null;
                 /*
                 foreach (AutomationPattern ptrn in supportedPatterns.Where(ptrn => patternType.ProgrammaticName == ptrn.ProgrammaticName ||
                                                                                    patternType == null).Where(ptrn => element.TryGetCurrentPattern(
@@ -2166,6 +2159,7 @@ namespace UIAutomation
                 foreach (AutomationPattern ptrn in supportedPatterns.Where(ptrn => patternType.ProgrammaticName == ptrn.ProgrammaticName ||
                                                                                    patternType == null))
                 {
+                    object pattern = null;
                     if (!element.TryGetCurrentPattern(
                         ptrn, out pattern)) continue;
                     object resPattern =
@@ -2205,7 +2199,7 @@ namespace UIAutomation
         /// </summary>
         /// <param name="controlType"></param>
         /// <returns></returns>
-        public static System.Windows.Automation.ControlType
+        public static ControlType
             GetControlTypeByTypeName(string controlType)
         {
             // 20131119
@@ -2214,45 +2208,45 @@ namespace UIAutomation
             switch (_controlType)
             {
                     // 20131119
-                    case "BUTTON": { return System.Windows.Automation.ControlType.Button; }
-                    case "CALENDAR": { return System.Windows.Automation.ControlType.Calendar; }
-                    case "CHECKBOX": { return System.Windows.Automation.ControlType.CheckBox; }
-                    case "COMBOBOX": { return System.Windows.Automation.ControlType.ComboBox; }
-                    case "CUSTOM": { return System.Windows.Automation.ControlType.Custom; }
-                    case "DATAGRID": { return System.Windows.Automation.ControlType.DataGrid; }
-                    case "DATAITEM": { return System.Windows.Automation.ControlType.DataItem; }
-                    case "DOCUMENT": { return System.Windows.Automation.ControlType.Document; }
-                    case "EDIT": { return System.Windows.Automation.ControlType.Edit; }
-                    case "GROUP": { return System.Windows.Automation.ControlType.Group; }
-                    case "HEADER": { return System.Windows.Automation.ControlType.Header; }
-                    case "HEADERITEM": { return System.Windows.Automation.ControlType.HeaderItem; }
-                    case "HYPERLINK": { return System.Windows.Automation.ControlType.Hyperlink; }
-                    case "IMAGE": { return System.Windows.Automation.ControlType.Image; }
-                    case "LIST": { return System.Windows.Automation.ControlType.List; }
-                    case "LISTITEM": { return System.Windows.Automation.ControlType.ListItem; }
-                    case "MENU": { return System.Windows.Automation.ControlType.Menu; }
-                    case "MENUBAR": { return System.Windows.Automation.ControlType.MenuBar; }
-                    case "MENUITEM": { return System.Windows.Automation.ControlType.MenuItem; }
-                    case "PANE": { return System.Windows.Automation.ControlType.Pane; }
-                    case "PROGRESSBAR": { return System.Windows.Automation.ControlType.ProgressBar; }
-                    case "RADIOBUTTON": { return System.Windows.Automation.ControlType.RadioButton; }
-                    case "SCROLLBAR": { return System.Windows.Automation.ControlType.ScrollBar; }
-                    case "SEPARATOR": { return System.Windows.Automation.ControlType.Separator; }
-                    case "SLIDER": { return System.Windows.Automation.ControlType.Slider; }
-                    case "SPINNER": { return System.Windows.Automation.ControlType.Spinner; }
-                    case "SPLITBUTTON": { return System.Windows.Automation.ControlType.SplitButton; }
-                    case "STATUSBAR": { return System.Windows.Automation.ControlType.StatusBar; }
-                    case "TAB": { return System.Windows.Automation.ControlType.Tab; }
-                    case "TABITEM": { return System.Windows.Automation.ControlType.TabItem; }
-                    case "TABLE": { return System.Windows.Automation.ControlType.Table; }
-                    case "TEXT": { return System.Windows.Automation.ControlType.Text; }
-                    case "THUMB": { return System.Windows.Automation.ControlType.Thumb; }
-                    case "TITLEBAR": { return System.Windows.Automation.ControlType.TitleBar; }
-                    case "TOOLBAR": { return System.Windows.Automation.ControlType.ToolBar; }
-                    case "TOOLTIP": { return System.Windows.Automation.ControlType.ToolTip; }
-                    case "TREE": { return System.Windows.Automation.ControlType.Tree; }
-                    case "TREEITEM": { return System.Windows.Automation.ControlType.TreeItem; }
-                    case "WINDOW": { return System.Windows.Automation.ControlType.Window; }
+                    case "BUTTON": { return ControlType.Button; }
+                    case "CALENDAR": { return ControlType.Calendar; }
+                    case "CHECKBOX": { return ControlType.CheckBox; }
+                    case "COMBOBOX": { return ControlType.ComboBox; }
+                    case "CUSTOM": { return ControlType.Custom; }
+                    case "DATAGRID": { return ControlType.DataGrid; }
+                    case "DATAITEM": { return ControlType.DataItem; }
+                    case "DOCUMENT": { return ControlType.Document; }
+                    case "EDIT": { return ControlType.Edit; }
+                    case "GROUP": { return ControlType.Group; }
+                    case "HEADER": { return ControlType.Header; }
+                    case "HEADERITEM": { return ControlType.HeaderItem; }
+                    case "HYPERLINK": { return ControlType.Hyperlink; }
+                    case "IMAGE": { return ControlType.Image; }
+                    case "LIST": { return ControlType.List; }
+                    case "LISTITEM": { return ControlType.ListItem; }
+                    case "MENU": { return ControlType.Menu; }
+                    case "MENUBAR": { return ControlType.MenuBar; }
+                    case "MENUITEM": { return ControlType.MenuItem; }
+                    case "PANE": { return ControlType.Pane; }
+                    case "PROGRESSBAR": { return ControlType.ProgressBar; }
+                    case "RADIOBUTTON": { return ControlType.RadioButton; }
+                    case "SCROLLBAR": { return ControlType.ScrollBar; }
+                    case "SEPARATOR": { return ControlType.Separator; }
+                    case "SLIDER": { return ControlType.Slider; }
+                    case "SPINNER": { return ControlType.Spinner; }
+                    case "SPLITBUTTON": { return ControlType.SplitButton; }
+                    case "STATUSBAR": { return ControlType.StatusBar; }
+                    case "TAB": { return ControlType.Tab; }
+                    case "TABITEM": { return ControlType.TabItem; }
+                    case "TABLE": { return ControlType.Table; }
+                    case "TEXT": { return ControlType.Text; }
+                    case "THUMB": { return ControlType.Thumb; }
+                    case "TITLEBAR": { return ControlType.TitleBar; }
+                    case "TOOLBAR": { return ControlType.ToolBar; }
+                    case "TOOLTIP": { return ControlType.ToolTip; }
+                    case "TREE": { return ControlType.Tree; }
+                    case "TREEITEM": { return ControlType.TreeItem; }
+                    case "WINDOW": { return ControlType.Window; }
                     /*
                     case "BUTTON": { ctrlType = System.Windows.Automation.ControlType.Button; break; }
                     case "CALENDAR": { ctrlType = System.Windows.Automation.ControlType.Calendar; break; }
@@ -2323,10 +2317,10 @@ namespace UIAutomation
             //System.Windows.Automation.AutomationElementCollection headerItems =
             IMySuperCollection headerItems =
                 element.FindAll(
-                    System.Windows.Automation.TreeScope.Descendants,
-                    new System.Windows.Automation.PropertyCondition(
-                        System.Windows.Automation.AutomationElement.ControlTypeProperty,
-                        System.Windows.Automation.ControlType.HeaderItem));
+                    TreeScope.Descendants,
+                    new PropertyCondition(
+                        AutomationElement.ControlTypeProperty,
+                        ControlType.HeaderItem));
             if (headerItems == null || headerItems.Count == 0) {
                 // WriteVerbose(this, "no headers found");
                 strResultString =
@@ -2404,10 +2398,10 @@ namespace UIAutomation
             //System.Windows.Automation.AutomationElementCollection headerItems =
             IMySuperCollection headerItems =
                 element.FindAll(
-                    System.Windows.Automation.TreeScope.Descendants,
-                    new System.Windows.Automation.PropertyCondition(
-                        System.Windows.Automation.AutomationElement.ControlTypeProperty,
-                        System.Windows.Automation.ControlType.Header));
+                    TreeScope.Descendants,
+                    new PropertyCondition(
+                        AutomationElement.ControlTypeProperty,
+                        ControlType.Header));
             if (headerItems == null || headerItems.Count == 0) {
                 // WriteVerbose(this, "no headers found");
                 strResultString =
@@ -2509,7 +2503,7 @@ namespace UIAutomation
 //                            pattern,
 //                            coordinates)))).Current.Name;
                     (ObjectsFactory.GetMySuperWrapper(
-                        ((System.Windows.Automation.AutomationElement)
+                        ((AutomationElement)
                         pattern.GetType().GetMethod(
                             "GetItem").Invoke(
                             pattern,
@@ -2534,15 +2528,15 @@ namespace UIAutomation
         /// <param name="control"></param>
         /// <param name="delimiter"></param>
         /// <returns></returns>
-        internal static System.Collections.Generic.List<string>
+        internal static List<string>
             GetOutputStringUsingItemsValuePattern(
                 // 20131109
                 //AutomationElement control,
                 IMySuperWrapper control,
                 char delimiter)
         {
-            System.Collections.Generic.List<string> rowsCollection =
-                new System.Collections.Generic.List<string>();
+            List<string> rowsCollection =
+                new List<string>();
             
             // 20131109
             //AutomationElementCollection rows =
@@ -2572,15 +2566,15 @@ namespace UIAutomation
                     foreach (IMySuperWrapper rowItem in rowItems) {
                         
                         rowCounter++;
-                        ValuePattern valPattern = null;
                         string strValue = String.Empty;
                         strValue += '"';
-                        try {
-                            valPattern =
-                                rowItem.GetCurrentPattern(ValuePattern.Pattern)
-                                    as ValuePattern;
+                        try
+                        {
+                            ValuePattern valPattern = rowItem.GetCurrentPattern(ValuePattern.Pattern)
+                                as ValuePattern;
                             strValue += valPattern.Current.Value;
-                        } catch {
+                        }
+                        catch {
                             // nothing to do
                         }
                         strValue += '"';
@@ -2716,7 +2710,7 @@ namespace UIAutomation
             return result;
         }
         
-        private static bool compareSheridanTreeItemName(
+        private static bool CompareSheridanTreeItemName(
             SheridanCmdletBase cmdlet,
             string neededName)
         {
@@ -2759,7 +2753,7 @@ namespace UIAutomation
                 
             // search for a tree item recursively
             resultElement =
-                getSheridanTreeItemFromTreeNode(
+                GetSheridanTreeItemFromTreeNode(
                     cmdlet,
                     hwndTreeView,
                     (IntPtr)hwndTreeViewRoot,
@@ -2798,7 +2792,7 @@ namespace UIAutomation
         
         // 20131109
         //private static AutomationElement getSheridanTreeItemFromTreeNode(
-        private static IMySuperWrapper getSheridanTreeItemFromTreeNode(
+        private static IMySuperWrapper GetSheridanTreeItemFromTreeNode(
             CommonCmdletBase cmdlet,
             IntPtr hwndTreeView,
             IntPtr hwndTreeItem,
@@ -2811,8 +2805,7 @@ namespace UIAutomation
             //IntPtr resultHandle = IntPtr.Zero;
             int resultHandle = 0; //IntPtr.Zero;
             //IntPtr childHandle = IntPtr.Zero;
-            int childHandle = 0; //IntPtr.Zero;
-            
+
             do {
                 
                 try {
@@ -2836,12 +2829,11 @@ namespace UIAutomation
                     }
                         
                     // gettting the first child
-                    childHandle =
-                        NativeMethods.SendMessage(
-                            (int)hwndTreeView,
-                            NativeMethods.TVM_GETNEXTITEM,
-                            NativeMethods.TVGN_CHILD,
-                            (IntPtr)resultHandle);
+                    int childHandle = NativeMethods.SendMessage(
+                        (int)hwndTreeView,
+                        NativeMethods.TVM_GETNEXTITEM,
+                        NativeMethods.TVGN_CHILD,
+                        (IntPtr)resultHandle); //IntPtr.Zero;
                         
                     //if (IntPtr.Zero != childHandle) {
                     if (0 == childHandle) continue;
@@ -2855,7 +2847,7 @@ namespace UIAutomation
                             
                     // gettting children
                     resultElement =
-                        getSheridanTreeItemFromTreeNode(
+                        GetSheridanTreeItemFromTreeNode(
                             cmdlet,
                             hwndTreeView,
                             (IntPtr)childHandle,
@@ -2991,11 +2983,11 @@ namespace UIAutomation
             IEnumerable<IntPtr> list =
                 GetChildWindows(parentHandle);
             
-            System.Collections.ArrayList resultElements =
-                new System.Collections.ArrayList();
+            ArrayList resultElements =
+                new ArrayList();
             
-            System.Collections.ArrayList automationElements =
-                new System.Collections.ArrayList();
+            ArrayList automationElements =
+                new ArrayList();
             
             //using (System.Collections.ArrayList automationElements =
             //    new System.Collections.ArrayList()) {
@@ -3055,7 +3047,7 @@ namespace UIAutomation
             
             //PSCmdletBase cmdlet = new GetUiaWindowCommand();
             GetWindowCmdletBase cmdlet = new GetWindowCmdletBase();
-            System.Collections.ArrayList resultList =
+            ArrayList resultList =
                 EnumChildWindowsFromHandle(cmdlet, parentHandle);
             
             return resultList;
@@ -3066,7 +3058,7 @@ namespace UIAutomation
             
             //PSCmdletBase cmdlet = new GetUiaWindowCommand();
             GetWindowCmdletBase cmdlet = new GetWindowCmdletBase();
-            System.Collections.ArrayList resultList =
+            ArrayList resultList =
                 EnumChildWindowsFromHandle(cmdlet, IntPtr.Zero);
             
             return resultList;

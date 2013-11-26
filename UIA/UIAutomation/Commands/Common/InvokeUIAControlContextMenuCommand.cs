@@ -7,7 +7,10 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System;
 using System.Globalization;
+using System.Threading;
+using System.Windows.Forms;
 
 namespace UIAutomation.Commands
 {
@@ -26,12 +29,12 @@ namespace UIAutomation.Commands
         /// </summary>
         protected override void ProcessRecord()
         {
-            if (!this.CheckAndPrepareInput(this)) { return; }
+            if (!CheckAndPrepareInput(this)) { return; }
             
             // 20120823
             // 20131109
             //foreach (AutomationElement inputObject in this.InputObject) {
-            foreach (IMySuperWrapper inputObject in this.InputObject) {
+            foreach (IMySuperWrapper inputObject in InputObject) {
             
             // 20131109
             //AutomationElement resultElement = null;
@@ -69,7 +72,7 @@ namespace UIAutomation.Commands
 //// return;
 //                WriteError(this, err, true);
                 
-                this.WriteError(
+                WriteError(
                     this,
                     "Couldn't click on this control",
                     "couldNotClick",
@@ -79,16 +82,16 @@ namespace UIAutomation.Commands
             } else {
                 // 20120823
                 //WriteVerbose(this, "clicked on " + this.InputObject.Current.Name);
-                this.WriteVerbose(this, "clicked on " + inputObject.Current.Name);
+                WriteVerbose(this, "clicked on " + inputObject.Current.Name);
             }
             
             // System.Threading.Thread.Sleep(1000);
             
             // get the cursor coordinates
             int x = 
-                System.Windows.Forms.Cursor.Position.X;
+                Cursor.Position.X;
             int y = 
-                System.Windows.Forms.Cursor.Position.Y;
+                Cursor.Position.Y;
             
             WriteVerbose(this, "cursor coordinate X = " + x.ToString(CultureInfo.InvariantCulture));
             WriteVerbose(this, "cursor coordinate Y = " + y.ToString(CultureInfo.InvariantCulture));
@@ -105,13 +108,13 @@ namespace UIAutomation.Commands
             WriteVerbose(this, "process Id = " + processId.ToString());
             // 20131109
             //AutomationElementCollection windowsByPID = null;
-            IMySuperCollection windowsByPID = null;
-            StartDate = System.DateTime.Now;
+            IMySuperCollection windowsByPid = null;
+            StartDate = DateTime.Now;
             bool breakSearch = false;
             do {
                 // getting all menus in this process
                 if (processId != 0) {
-                    windowsByPID =
+                    windowsByPid =
                         // 20131109
                         //AutomationElement.RootElement.FindAll(TreeScope.Children,
                         MySuperWrapper.RootElement.FindAll(TreeScope.Children,
@@ -138,13 +141,13 @@ namespace UIAutomation.Commands
                 }
                 
                 // 
-                if (windowsByPID != null && windowsByPID.Count <= 0) continue;
+                if (windowsByPid != null && windowsByPid.Count <= 0) continue;
                 /*
                 if (windowsByPID.Count <= 0) continue;
                 */
                 WriteVerbose(this, 
                     "there are " +
-                    windowsByPID.Count.ToString() + 
+                    windowsByPid.Count.ToString() + 
                     //" windows running within the process");
                     " menus running within the process");
                 // 20130312
@@ -160,24 +163,24 @@ namespace UIAutomation.Commands
 //                        }
 //                    }
                     
-                System.DateTime nowDate = 
-                    System.DateTime.Now;
+                DateTime nowDate = 
+                    DateTime.Now;
                 if ((nowDate - StartDate).TotalSeconds > 3) {
                     breakSearch = true;
                     break;
                 }
                 // 20130312
                 //if (windowsByPID.Count == 1) {
-                if (windowsByPID.Count == 0) {
+                if (windowsByPid.Count == 0) {
                         
-                    this.WriteVerbose(this, "sleeping");
-                    System.Threading.Thread.Sleep(200);
+                    WriteVerbose(this, "sleeping");
+                    Thread.Sleep(200);
                     continue;
                 }
                 
                 // 20131109
                 //foreach (AutomationElement element in windowsByPID) {
-                foreach (IMySuperWrapper element in windowsByPID) {
+                foreach (IMySuperWrapper element in windowsByPid) {
                     
                     WriteVerbose(this, element.Current.Name);
                     WriteVerbose(this, element.Current.BoundingRectangle.ToString());
@@ -266,7 +269,7 @@ namespace UIAutomation.Commands
             
             // return the context menu window
             //if (resultElement != null && (int)resultElement.Current.ProcessId > 0) {
-                this.WriteObject(this, resultElement);
+                WriteObject(this, resultElement);
             //} else {
             //  //WriteObject(this, null);
             // WriteObject(this, false);
@@ -274,8 +277,8 @@ namespace UIAutomation.Commands
             
             // 20131119
             // disposal
-            windowsByPID.Dispose();
-            windowsByPID = null;
+            windowsByPid.Dispose();
+            windowsByPid = null;
             
             } // 20120823
         }

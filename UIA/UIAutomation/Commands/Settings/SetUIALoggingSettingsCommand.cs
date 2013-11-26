@@ -20,8 +20,8 @@ namespace UIAutomation.Commands
     {
         public SetUiaLoggingSettingsCommand()
         {
-            this.Log = Preferences.Log;
-            this.Path = Preferences.LogPath;
+            Log = Preferences.Log;
+            Path = Preferences.LogPath;
         }
         
         #region Parameters
@@ -33,8 +33,8 @@ namespace UIAutomation.Commands
         
         protected override void BeginProcessing()
         {
-            Preferences.Log = this.Log;
-            Preferences.LogPath = this.Path;
+            Preferences.Log = Log;
+            Preferences.LogPath = Path;
         }
     }
 }

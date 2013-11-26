@@ -7,6 +7,8 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System.Windows.Forms;
+
 namespace UIAutomation.Commands
 {
     using System;
@@ -53,16 +55,16 @@ namespace UIAutomation.Commands
         /// </summary>
         protected override void ProcessRecord()
         {
-            if (!this.CheckAndPrepareInput(this)) { return; }
+            if (!CheckAndPrepareInput(this)) { return; }
             
             // 20120823
             // 20131109
             //foreach (AutomationElement inputObject in this.InputObject) {
-            foreach (IMySuperWrapper inputObject in this.InputObject) {
+            foreach (IMySuperWrapper inputObject in InputObject) {
 
             try {
-                System.Windows.Forms.SendKeys.SendWait(this.Text);
-                this.WriteObject(this, true);
+                SendKeys.SendWait(Text);
+                WriteObject(this, true);
             }
             catch (Exception eKeys) {
                 ErrorRecord err = 
@@ -84,7 +86,7 @@ namespace UIAutomation.Commands
                         controlName + 
                         "\r\n" + 
                         eKeys.Message);
-                this.WriteError(this, err, true);
+                WriteError(this, err, true);
             }
 
             } // 20120823

@@ -19,8 +19,8 @@ namespace UIAutomation.Commands
 	{
 		protected override void BeginProcessing()
 		{
-			UIAutomation.ExecutionPlan.DisposeHighlighers();
-			UIAutomation.Preferences.ShowExecutionPlan = false;
+			ExecutionPlan.DisposeHighlighers();
+			Preferences.ShowExecutionPlan = false;
 		}
 	}
 }

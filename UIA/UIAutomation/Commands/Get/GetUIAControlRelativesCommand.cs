@@ -123,7 +123,7 @@ namespace UIAutomation.Commands
             // 20120824
             // 20131109
             //foreach (AutomationElement inputObject in this.InputObject) {
-            foreach (IMySuperWrapper inputObject in this.InputObject) {
+            foreach (IMySuperWrapper inputObject in InputObject) {
             
                 GetAutomationElementsChildren(inputObject, true);
             
@@ -146,7 +146,7 @@ namespace UIAutomation.Commands
             // 20120824
             // 20131109
             //foreach (AutomationElement inputObject in this.InputObject) {
-            foreach (IMySuperWrapper inputObject in this.InputObject) {
+            foreach (IMySuperWrapper inputObject in InputObject) {
                 
                 GetAutomationElementsChildren(inputObject, false);
             } // 20120824

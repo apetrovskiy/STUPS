@@ -134,7 +134,7 @@ namespace UIAutomation
 		        (Highlighters)(HighlighterNumber % 10),
 		        HighlighterNumber,
 		        highlighterData);
-		    ExecutionPlan.Enqueue(highlighter);
+		    Enqueue(highlighter);
 
 		    /*
             if (null != (elementToHighlight as AutomationElement)) {

@@ -24,20 +24,28 @@ namespace UIAutomation.Commands
                 CurrentData.CacheRequest.Pop();
                 CurrentData.CacheRequest = null;
                 Preferences.FromCache = false;
-                this.WriteObject(this, true);
+                WriteObject(this, true);
             }
             catch (Exception eCacheRequest) {
-                ErrorRecord err = 
-                    new ErrorRecord(
-                        new Exception("Unable to stop cache request"),
-                        "CacheRequestFailedToPop",
-                        ErrorCategory.InvalidOperation,
-                        null);
-                err.ErrorDetails = 
-                    new ErrorDetails(
-                        "Failed to stop a cache request\r\n" +
-                        eCacheRequest.Message);
-                WriteError(this, err, true);
+                //ErrorRecord err = 
+                //    new ErrorRecord(
+                //        new Exception("Unable to stop cache request"),
+                //        "CacheRequestFailedToPop",
+                //        ErrorCategory.InvalidOperation,
+                //        null);
+                //err.ErrorDetails = 
+                //    new ErrorDetails(
+                //        "Failed to stop a cache request\r\n" +
+                //        eCacheRequest.Message);
+                //WriteError(this, err, true);
+
+                WriteError(
+                    this,
+                    "Unable to stop cache request. " +
+                    eCacheRequest.Message,
+                    "CacheRequestFailedToPop",
+                    ErrorCategory.InvalidOperation,
+                    true);
 
                 // TODO
                 //this.WriteError();

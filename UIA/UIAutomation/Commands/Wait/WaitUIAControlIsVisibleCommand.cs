@@ -27,7 +27,7 @@ namespace UIAutomation.Commands
         #region Constructor
         public WaitUiaControlIsVisibleCommand()
         {
-            this.ControlType = null;
+            ControlType = null;
         }
         #endregion Constructor
         
@@ -50,30 +50,30 @@ namespace UIAutomation.Commands
 //                WriteVerbose(this, "ControlType " + 
 //                             this.ControlType.ProgrammaticName);
 //            }
-            StartDate = System.DateTime.Now;
+            StartDate = DateTime.Now;
         }
         
         /// <summary>
         /// Processes the pipeline.
         /// </summary>
         protected override void ProcessRecord() {
-            if (!this.CheckAndPrepareInput(this)) { return; }
+            if (!CheckAndPrepareInput(this)) { return; }
             
             // 20120823
             // 20131109
             //foreach (AutomationElement inputObject in this.InputObject) {
-            foreach (IMySuperWrapper inputObject in this.InputObject) {
+            foreach (IMySuperWrapper inputObject in InputObject) {
             
             //System.Windows.Automation.AutomationElement _control = null;
             
             // 20120823
             //if (this.ControlType != this.InputObject.Current.ControlType) {
-            if (!Equals(this.ControlType, inputObject.Current.ControlType)) {
+            if (!Equals(ControlType, inputObject.Current.ControlType)) {
                 
-                this.WriteError(
+                WriteError(
                     this,
                     "Control is not of " +
-                    this.ControlType.ProgrammaticName +
+                    ControlType.ProgrammaticName +
                     " type",
                     "WrongControlType",
                     ErrorCategory.InvalidArgument,
@@ -97,7 +97,7 @@ namespace UIAutomation.Commands
             //this.WaitIfCondition(_control, false);
             // 20120823
             //this.WaitIfCondition(this.InputObject, false);
-            this.WaitIfCondition(inputObject, false);
+            WaitIfCondition(inputObject, false);
            
             //WriteObject(this, _control);
             // 20130105
@@ -124,7 +124,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaButtonIsVisibleCommand : WaitUiaControlIsVisibleCommand
-    { public WaitUiaButtonIsVisibleCommand() { this.ControlType = ControlType.Button; } }
+    { public WaitUiaButtonIsVisibleCommand() { ControlType = ControlType.Button; } }
 
     /// <summary>
     /// Description of WaitUiaCalendarIsVisible.
@@ -133,7 +133,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaCalendarIsVisibleCommand : WaitUiaControlIsVisibleCommand
-    { public WaitUiaCalendarIsVisibleCommand() { this.ControlType = ControlType.Calendar; } }
+    { public WaitUiaCalendarIsVisibleCommand() { ControlType = ControlType.Calendar; } }
     
     /// <summary>
     /// Description of WaitUiaCheckBoxIsVisible.
@@ -142,7 +142,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaCheckBoxIsVisibleCommand : WaitUiaControlIsVisibleCommand
-    { public WaitUiaCheckBoxIsVisibleCommand() { this.ControlType = ControlType.CheckBox; } }
+    { public WaitUiaCheckBoxIsVisibleCommand() { ControlType = ControlType.CheckBox; } }
     
     /// <summary>
     /// Description of WaitUiaComboBoxIsVisible.
@@ -151,7 +151,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaComboBoxIsVisibleCommand : WaitUiaControlIsVisibleCommand
-    { public WaitUiaComboBoxIsVisibleCommand() { this.ControlType = ControlType.ComboBox; } }
+    { public WaitUiaComboBoxIsVisibleCommand() { ControlType = ControlType.ComboBox; } }
     
     /// <summary>
     /// Description of WaitUiaCustomIsVisible.
@@ -160,7 +160,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaCustomIsVisibleCommand : WaitUiaControlIsVisibleCommand
-    { public WaitUiaCustomIsVisibleCommand() { this.ControlType = ControlType.Custom; } }
+    { public WaitUiaCustomIsVisibleCommand() { ControlType = ControlType.Custom; } }
     
     /// <summary>
     /// Description of WaitUiaDataGridIsVisible.
@@ -169,7 +169,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaDataGridIsVisibleCommand : WaitUiaControlIsVisibleCommand
-    { public WaitUiaDataGridIsVisibleCommand() { this.ControlType = ControlType.DataGrid; } }
+    { public WaitUiaDataGridIsVisibleCommand() { ControlType = ControlType.DataGrid; } }
     
     /// <summary>
     /// Description of WaitUiaDataItemIsVisible.
@@ -178,7 +178,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaDataItemIsVisibleCommand : WaitUiaControlIsVisibleCommand
-    { public WaitUiaDataItemIsVisibleCommand() { this.ControlType = ControlType.DataItem; } }
+    { public WaitUiaDataItemIsVisibleCommand() { ControlType = ControlType.DataItem; } }
     
     /// <summary>
     /// Description of WaitUiaDocumentIsVisible.
@@ -187,7 +187,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaDocumentIsVisibleCommand : WaitUiaControlIsVisibleCommand
-    { public WaitUiaDocumentIsVisibleCommand() { this.ControlType = ControlType.Document; } }
+    { public WaitUiaDocumentIsVisibleCommand() { ControlType = ControlType.Document; } }
 
     /// <summary>
     /// Description of WaitUiaEditIsVisible.
@@ -196,7 +196,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaEditIsVisibleCommand : WaitUiaControlIsVisibleCommand
-    { public WaitUiaEditIsVisibleCommand() { this.ControlType = ControlType.Edit; } }
+    { public WaitUiaEditIsVisibleCommand() { ControlType = ControlType.Edit; } }
     
     /// <summary>
     /// Description of WaitUiaTextBoxIsVisible.
@@ -205,7 +205,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaTextBoxIsVisibleCommand : WaitUiaEditIsVisibleCommand
-    { public WaitUiaTextBoxIsVisibleCommand() { this.ControlType = ControlType.Edit; } }
+    { public WaitUiaTextBoxIsVisibleCommand() { ControlType = ControlType.Edit; } }
     
     /// <summary>
     /// Description of WaitUiaGroupIsVisible.
@@ -214,7 +214,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaGroupIsVisibleCommand : WaitUiaControlIsVisibleCommand
-    { public WaitUiaGroupIsVisibleCommand() { this.ControlType = ControlType.Group; } }
+    { public WaitUiaGroupIsVisibleCommand() { ControlType = ControlType.Group; } }
     
     /// <summary>
     /// Description of WaitUiaGroupBoxIsVisible.
@@ -223,7 +223,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaGroupBoxIsVisibleCommand : WaitUiaGroupIsVisibleCommand
-    { public WaitUiaGroupBoxIsVisibleCommand() { this.ControlType = ControlType.Group; } }
+    { public WaitUiaGroupBoxIsVisibleCommand() { ControlType = ControlType.Group; } }
     
     /// <summary>
     /// Description of WaitUiaHeaderIsVisible.
@@ -232,7 +232,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaHeaderIsVisibleCommand : WaitUiaControlIsVisibleCommand
-    { public WaitUiaHeaderIsVisibleCommand() { this.ControlType = ControlType.Header; } }
+    { public WaitUiaHeaderIsVisibleCommand() { ControlType = ControlType.Header; } }
     
     /// <summary>
     /// Description of WaitUiaHeaderItemIsVisible.
@@ -241,7 +241,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaHeaderItemIsVisibleCommand : WaitUiaControlIsVisibleCommand
-    { public WaitUiaHeaderItemIsVisibleCommand() { this.ControlType = ControlType.HeaderItem; } }
+    { public WaitUiaHeaderItemIsVisibleCommand() { ControlType = ControlType.HeaderItem; } }
     
     /// <summary>
     /// Description of WaitUiaHyperlinkIsVisible.
@@ -250,7 +250,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaHyperlinkIsVisibleCommand : WaitUiaControlIsVisibleCommand
-    { public WaitUiaHyperlinkIsVisibleCommand() { this.ControlType = ControlType.Hyperlink; } }
+    { public WaitUiaHyperlinkIsVisibleCommand() { ControlType = ControlType.Hyperlink; } }
     
     /// <summary>
     /// Description of WaitUiaLinkLabelIsVisible.
@@ -259,7 +259,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaLinkLabelIsVisibleCommand : WaitUiaHyperlinkIsVisibleCommand
-    { public WaitUiaLinkLabelIsVisibleCommand() { this.ControlType = ControlType.Hyperlink; } }
+    { public WaitUiaLinkLabelIsVisibleCommand() { ControlType = ControlType.Hyperlink; } }
 
     /// <summary>
     /// Description of WaitUiaImageIsVisible.
@@ -268,7 +268,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaImageIsVisibleCommand : WaitUiaControlIsVisibleCommand
-    { public WaitUiaImageIsVisibleCommand() { this.ControlType = ControlType.Image; } }
+    { public WaitUiaImageIsVisibleCommand() { ControlType = ControlType.Image; } }
     
     /// <summary>
     /// Description of WaitUiaListIsVisible.
@@ -277,7 +277,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaListIsVisibleCommand : WaitUiaControlIsVisibleCommand
-    { public WaitUiaListIsVisibleCommand() { this.ControlType = ControlType.List; } }
+    { public WaitUiaListIsVisibleCommand() { ControlType = ControlType.List; } }
     
     /// <summary>
     /// Description of WaitUiaListItemIsVisible.
@@ -286,7 +286,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaListItemIsVisibleCommand : WaitUiaControlIsVisibleCommand
-    { public WaitUiaListItemIsVisibleCommand() { this.ControlType = ControlType.ListItem; } }
+    { public WaitUiaListItemIsVisibleCommand() { ControlType = ControlType.ListItem; } }
     
     /// <summary>
     /// Description of WaitUiaMenuIsVisible.
@@ -295,7 +295,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaMenuIsVisibleCommand : WaitUiaControlIsVisibleCommand
-    { public WaitUiaMenuIsVisibleCommand() { this.ControlType = ControlType.Menu; } }
+    { public WaitUiaMenuIsVisibleCommand() { ControlType = ControlType.Menu; } }
     
     /// <summary>
     /// Description of WaitUiaMenuBarIsVisible.
@@ -304,7 +304,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaMenuBarIsVisibleCommand : WaitUiaControlIsVisibleCommand
-    { public WaitUiaMenuBarIsVisibleCommand() { this.ControlType = ControlType.MenuBar; } }
+    { public WaitUiaMenuBarIsVisibleCommand() { ControlType = ControlType.MenuBar; } }
 
     /// <summary>
     /// Description of WaitUiaMenuItemIsVisible.
@@ -313,7 +313,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaMenuItemIsVisibleCommand : WaitUiaControlIsVisibleCommand
-    { public WaitUiaMenuItemIsVisibleCommand() { this.ControlType = ControlType.MenuItem; } }
+    { public WaitUiaMenuItemIsVisibleCommand() { ControlType = ControlType.MenuItem; } }
     
     /// <summary>
     /// Description of WaitUiaPaneIsVisible.
@@ -322,7 +322,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaPaneIsVisibleCommand : WaitUiaControlIsVisibleCommand
-    { public WaitUiaPaneIsVisibleCommand() { this.ControlType = ControlType.Pane; } }
+    { public WaitUiaPaneIsVisibleCommand() { ControlType = ControlType.Pane; } }
     
     /// <summary>
     /// Description of WaitUiaProgressBarIsVisible.
@@ -331,7 +331,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaProgressBarIsVisibleCommand : WaitUiaControlIsVisibleCommand
-    { public WaitUiaProgressBarIsVisibleCommand() { this.ControlType = ControlType.ProgressBar; } }
+    { public WaitUiaProgressBarIsVisibleCommand() { ControlType = ControlType.ProgressBar; } }
     
     /// <summary>
     /// Description of WaitUiaRadioButtonIsVisible.
@@ -340,7 +340,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaRadioButtonIsVisibleCommand : WaitUiaControlIsVisibleCommand
-    { public WaitUiaRadioButtonIsVisibleCommand() { this.ControlType = ControlType.RadioButton; } }
+    { public WaitUiaRadioButtonIsVisibleCommand() { ControlType = ControlType.RadioButton; } }
     
     /// <summary>
     /// Description of WaitUiaScrollBarIsVisible.
@@ -349,7 +349,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaScrollBarIsVisibleCommand : WaitUiaControlIsVisibleCommand
-    { public WaitUiaScrollBarIsVisibleCommand() { this.ControlType = ControlType.ScrollBar; } }
+    { public WaitUiaScrollBarIsVisibleCommand() { ControlType = ControlType.ScrollBar; } }
 
     /// <summary>
     /// Description of WaitUiaSeparatorIsVisible.
@@ -358,7 +358,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaSeparatorIsVisibleCommand : WaitUiaControlIsVisibleCommand
-    { public WaitUiaSeparatorIsVisibleCommand() { this.ControlType = ControlType.Separator; } }
+    { public WaitUiaSeparatorIsVisibleCommand() { ControlType = ControlType.Separator; } }
     
     /// <summary>
     /// Description of WaitUiaSliderIsVisible.
@@ -367,7 +367,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaSliderIsVisibleCommand : WaitUiaControlIsVisibleCommand
-    { public WaitUiaSliderIsVisibleCommand() { this.ControlType = ControlType.Slider; } }
+    { public WaitUiaSliderIsVisibleCommand() { ControlType = ControlType.Slider; } }
     
     /// <summary>
     /// Description of WaitUiaSpinnerIsVisible.
@@ -376,7 +376,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaSpinnerIsVisibleCommand : WaitUiaControlIsVisibleCommand
-    { public WaitUiaSpinnerIsVisibleCommand() { this.ControlType = ControlType.Spinner; } }
+    { public WaitUiaSpinnerIsVisibleCommand() { ControlType = ControlType.Spinner; } }
     
     /// <summary>
     /// Description of WaitUiaSplitButtonIsVisible.
@@ -385,7 +385,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaSplitButtonIsVisibleCommand : WaitUiaControlIsVisibleCommand
-    { public WaitUiaSplitButtonIsVisibleCommand() { this.ControlType = ControlType.SplitButton; } }
+    { public WaitUiaSplitButtonIsVisibleCommand() { ControlType = ControlType.SplitButton; } }
     
     /// <summary>
     /// Description of WaitUiaStatusBarIsVisible.
@@ -394,7 +394,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaStatusBarIsVisibleCommand : WaitUiaControlIsVisibleCommand
-    { public WaitUiaStatusBarIsVisibleCommand() { this.ControlType = ControlType.StatusBar; } }
+    { public WaitUiaStatusBarIsVisibleCommand() { ControlType = ControlType.StatusBar; } }
 
     /// <summary>
     /// Description of WaitUiaTabIsVisible.
@@ -403,7 +403,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaTabIsVisibleCommand : WaitUiaControlIsVisibleCommand
-    { public WaitUiaTabIsVisibleCommand() { this.ControlType = ControlType.Tab; } }
+    { public WaitUiaTabIsVisibleCommand() { ControlType = ControlType.Tab; } }
     
     /// <summary>
     /// Description of WaitUiaTabItemIsVisible.
@@ -412,7 +412,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaTabItemIsVisibleCommand : WaitUiaControlIsVisibleCommand
-    { public WaitUiaTabItemIsVisibleCommand() { this.ControlType = ControlType.TabItem; } }
+    { public WaitUiaTabItemIsVisibleCommand() { ControlType = ControlType.TabItem; } }
     
     /// <summary>
     /// Description of WaitUiaTableIsVisible.
@@ -421,7 +421,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaTableIsVisibleCommand : WaitUiaControlIsVisibleCommand
-    { public WaitUiaTableIsVisibleCommand() { this.ControlType = ControlType.Table; } }
+    { public WaitUiaTableIsVisibleCommand() { ControlType = ControlType.Table; } }
     
     /// <summary>
     /// Description of WaitUiaTextIsVisible.
@@ -430,7 +430,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaTextIsVisibleCommand : WaitUiaControlIsVisibleCommand
-    { public WaitUiaTextIsVisibleCommand() { this.ControlType = ControlType.Text; } }
+    { public WaitUiaTextIsVisibleCommand() { ControlType = ControlType.Text; } }
     
     /// <summary>
     /// Description of WaitUiaLabelIsVisible.
@@ -439,7 +439,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaLabelIsVisibleCommand : WaitUiaTextIsVisibleCommand
-    { public WaitUiaLabelIsVisibleCommand() { this.ControlType = ControlType.Text; } }
+    { public WaitUiaLabelIsVisibleCommand() { ControlType = ControlType.Text; } }
     
     /// <summary>
     /// Description of WaitUiaThumbIsVisible.
@@ -448,7 +448,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaThumbIsVisibleCommand : WaitUiaControlIsVisibleCommand
-    { public WaitUiaThumbIsVisibleCommand() { this.ControlType = ControlType.Thumb; } }
+    { public WaitUiaThumbIsVisibleCommand() { ControlType = ControlType.Thumb; } }
 
     /// <summary>
     /// Description of WaitUiaTitleBarIsVisible.
@@ -457,7 +457,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaTitleBarIsVisibleCommand : WaitUiaControlIsVisibleCommand
-    { public WaitUiaTitleBarIsVisibleCommand() { this.ControlType = ControlType.TitleBar; } }
+    { public WaitUiaTitleBarIsVisibleCommand() { ControlType = ControlType.TitleBar; } }
     
     /// <summary>
     /// Description of WaitUiaToolBarIsVisible.
@@ -466,7 +466,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaToolBarIsVisibleCommand : WaitUiaControlIsVisibleCommand
-    { public WaitUiaToolBarIsVisibleCommand() { this.ControlType = ControlType.ToolBar; } }
+    { public WaitUiaToolBarIsVisibleCommand() { ControlType = ControlType.ToolBar; } }
     
     /// <summary>
     /// Description of WaitUiaToolTipIsVisible.
@@ -475,7 +475,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaToolTipIsVisibleCommand : WaitUiaControlIsVisibleCommand
-    { public WaitUiaToolTipIsVisibleCommand() { this.ControlType = ControlType.ToolTip; } }
+    { public WaitUiaToolTipIsVisibleCommand() { ControlType = ControlType.ToolTip; } }
     
     /// <summary>
     /// Description of WaitUiaTreeIsVisible.
@@ -484,7 +484,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaTreeIsVisibleCommand : WaitUiaControlIsVisibleCommand
-    { public WaitUiaTreeIsVisibleCommand() { this.ControlType = ControlType.Tree; } }
+    { public WaitUiaTreeIsVisibleCommand() { ControlType = ControlType.Tree; } }
     
     /// <summary>
     /// Description of WaitUiaTreeItemIsVisible.
@@ -493,7 +493,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaTreeItemIsVisibleCommand : WaitUiaControlIsVisibleCommand
-    { public WaitUiaTreeItemIsVisibleCommand() { this.ControlType = ControlType.TreeItem; } }
+    { public WaitUiaTreeItemIsVisibleCommand() { ControlType = ControlType.TreeItem; } }
     
     /// <summary>
     /// Description of WaitUiaChildWindowIsVisible.
@@ -502,5 +502,5 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaChildWindowIsVisibleCommand : WaitUiaControlIsVisibleCommand
-    { public WaitUiaChildWindowIsVisibleCommand() { this.ControlType = ControlType.Window; } }
+    { public WaitUiaChildWindowIsVisibleCommand() { ControlType = ControlType.Window; } }
 }

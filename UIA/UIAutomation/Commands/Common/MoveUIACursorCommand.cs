@@ -7,6 +7,9 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System.Drawing;
+using System.Windows.Forms;
+
 namespace UIAutomation.Commands
 {
     using System.Management.Automation;
@@ -21,8 +24,8 @@ namespace UIAutomation.Commands
         #region Constructor
         public MoveUiaCursorCommand()
         {
-            this.X = 0;
-            this.Y = 0;
+            X = 0;
+            Y = 0;
         }
         #endregion Constructor
         
@@ -41,28 +44,28 @@ namespace UIAutomation.Commands
             // 20120823
             // 20131109
             //foreach (AutomationElement inputObject in this.InputObject) {
-            foreach (IMySuperWrapper inputObject in this.InputObject) {
+            foreach (IMySuperWrapper inputObject in InputObject) {
             
-            if (!this.CheckAndPrepareInput(this)) { // return;
+            if (!CheckAndPrepareInput(this)) { // return;
                 // move to a position that is relative to the desktop
-                System.Windows.Forms.Cursor.Position = 
-                    new System.Drawing.Point(
+                Cursor.Position = 
+                    new Point(
                         // 20131109
                         //((int)AutomationElement.RootElement.Current.BoundingRectangle.Left + this.X),
                         //((int)AutomationElement.RootElement.Current.BoundingRectangle.Top + this.Y));
-                        ((int)MySuperWrapper.RootElement.Current.BoundingRectangle.Left + this.X),
-                        ((int)MySuperWrapper.RootElement.Current.BoundingRectangle.Top + this.Y));
-                this.WriteObject(this, true);
+                        ((int)MySuperWrapper.RootElement.Current.BoundingRectangle.Left + X),
+                        ((int)MySuperWrapper.RootElement.Current.BoundingRectangle.Top + Y));
+                WriteObject(this, true);
             }
             else {
-                System.Windows.Forms.Cursor.Position = 
-                    new System.Drawing.Point(
-                        ((int)inputObject.Current.BoundingRectangle.Left + this.X),
-                        ((int)inputObject.Current.BoundingRectangle.Top + this.Y));
-                if (this.PassThru) {
-                    this.WriteObject(this, inputObject);
+                Cursor.Position = 
+                    new Point(
+                        ((int)inputObject.Current.BoundingRectangle.Left + X),
+                        ((int)inputObject.Current.BoundingRectangle.Top + Y));
+                if (PassThru) {
+                    WriteObject(this, inputObject);
                 } else {
-                    this.WriteObject(this, true);
+                    WriteObject(this, true);
                 }
             }
                 

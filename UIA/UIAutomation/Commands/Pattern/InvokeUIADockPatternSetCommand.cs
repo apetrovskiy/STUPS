@@ -7,6 +7,8 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System.Windows.Automation;
+
 namespace UIAutomation.Commands
 {
     using System;
@@ -26,7 +28,7 @@ namespace UIAutomation.Commands
         [Parameter(Mandatory = true,
                    Position = 0)]
         [ValidateNotNullOrEmpty()]
-        public System.Windows.Automation.DockPosition DockPosition { get; set; }
+        public DockPosition DockPosition { get; set; }
         #endregion Parameters
     }
     

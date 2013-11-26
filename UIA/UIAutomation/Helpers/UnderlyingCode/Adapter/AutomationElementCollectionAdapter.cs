@@ -18,17 +18,17 @@ namespace UIAutomation
     
 	public class MySuperCollection : IMySuperCollection
 	{
-	    private List<IMySuperWrapper> collectionHolder =
+	    private List<IMySuperWrapper> _collectionHolder =
 	        new List<IMySuperWrapper>();
 	    
 		public IMySuperWrapper this[int index] {
-		    get { return this.collectionHolder[index]; }
+		    get { return _collectionHolder[index]; }
 		}
 		public int Count {
-		    get { return this.collectionHolder.Count; } //return this._elements.Length; }
+		    get { return _collectionHolder.Count; } //return this._elements.Length; }
 		}
 		public virtual object SyncRoot {
-		    get { return this.collectionHolder; } //return this; }
+		    get { return _collectionHolder; } //return this; }
 		}
 		public virtual bool IsSynchronized {
 			get { return false; }
@@ -39,7 +39,7 @@ namespace UIAutomation
 		    foreach (AutomationElement element in elements) {
 		        
 		        if (null != element) {
-    		        this.collectionHolder.Add(ObjectsFactory.GetMySuperWrapper(element));
+    		        _collectionHolder.Add(ObjectsFactory.GetMySuperWrapper(element));
 		        }
 		    }
 		}
@@ -49,7 +49,7 @@ namespace UIAutomation
 		    foreach (IMySuperWrapper element in elements) {
 		        
 		        if (null != element) {
-		          this.collectionHolder.Add(element);
+		          _collectionHolder.Add(element);
 		        }
 		    }
 		}
@@ -59,7 +59,7 @@ namespace UIAutomation
 		    foreach (var element in elements) {
 		        
 		        if (null != element) {
-		          this.collectionHolder.Add((IMySuperWrapper)element);
+		          _collectionHolder.Add((IMySuperWrapper)element);
 		        }
 		    }
 		}
@@ -72,37 +72,37 @@ namespace UIAutomation
 		public virtual void CopyTo(Array array, int index)
 		{
 			//this._elements.CopyTo(array, index);
-			//this.collectionHolder.CopyTo(array, index);
+			//this._collectionHolder.CopyTo(array, index);
 		}
 		public virtual void CopyTo(AutomationElement[] array, int index)
 		{
 			//((ICollection)this).CopyTo(array, index);
-			//this.collectionHolder.CopyTo(array, index);
+			//this._collectionHolder.CopyTo(array, index);
 		}
 		public virtual void CopyTo(IMySuperWrapper[] array, int index)
 		{
-			this.collectionHolder.CopyTo(array, index);
+			_collectionHolder.CopyTo(array, index);
 		}
 		public IEnumerator GetEnumerator()
 		{
-			return this.collectionHolder.GetEnumerator();
+			return _collectionHolder.GetEnumerator();
 		}
 		
 		public virtual void AddElement(IMySuperWrapper element)
 		{
-		    this.collectionHolder.Add(element);
+		    _collectionHolder.Add(element);
 		}
 		
 		public virtual List<IMySuperWrapper> SourceCollection
 		{
-		    get { return this.collectionHolder; }
+		    get { return _collectionHolder; }
 		}
 		
 		public void Dispose()
 		{
-//		    if (null != this.collectionHolder) {
-//		        for (int i = 0; i < this.collectionHolder.Count; i++) {
-//		            if (null != this.collectionHolder[i]) this.collectionHolder[i].Dispose();
+//		    if (null != this._collectionHolder) {
+//		        for (int i = 0; i < this._collectionHolder.Count; i++) {
+//		            if (null != this._collectionHolder[i]) this._collectionHolder[i].Dispose();
 //		        }
 //		    }
 		    

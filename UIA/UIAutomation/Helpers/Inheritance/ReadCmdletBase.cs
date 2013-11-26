@@ -29,80 +29,80 @@ namespace UIAutomation
         /// </summary>
         protected override void ProcessRecord()
         {
-            if (!this.CheckAndPrepareInput(this)) { return; }
+            if (!CheckAndPrepareInput(this)) { return; }
             
             // 20131109
             //foreach (AutomationElement inputObject in InputObject) {
             foreach (IMySuperWrapper inputObject in InputObject) {
                 
-                if (this.GetType().Name == "ReadUiaControlAutomationIdCommand") {
-                    this.WriteObject(this, inputObject.Current.AutomationId);
+                if (GetType().Name == "ReadUiaControlAutomationIdCommand") {
+                    WriteObject(this, inputObject.Current.AutomationId);
                 }
-                if (this.GetType().Name == "ReadUiaControlClassCommand") {
-                    this.WriteObject(this, inputObject.Current.ClassName);
+                if (GetType().Name == "ReadUiaControlClassCommand") {
+                    WriteObject(this, inputObject.Current.ClassName);
                 }
-                if (this.GetType().Name == "ReadUiaControlIsDisabledCommand") {
-                    this.WriteObject(this, !inputObject.Current.IsEnabled);
+                if (GetType().Name == "ReadUiaControlIsDisabledCommand") {
+                    WriteObject(this, !inputObject.Current.IsEnabled);
                 }
-                if (this.GetType().Name == "ReadUiaControlIsEnabledCommand") {
-                    this.WriteObject(this, inputObject.Current.IsEnabled);
+                if (GetType().Name == "ReadUiaControlIsEnabledCommand") {
+                    WriteObject(this, inputObject.Current.IsEnabled);
                 }
-                if (this.GetType().Name == "ReadUiaControlNameCommand") {
-                    this.WriteObject(this, inputObject.Current.Name);
+                if (GetType().Name == "ReadUiaControlNameCommand") {
+                    WriteObject(this, inputObject.Current.Name);
                 }
-                if (this.GetType().Name == "ReadUiaControlControlTypeCommand") {
-                    this.WriteObject(this, inputObject.Current.ControlType.ProgrammaticName);
+                if (GetType().Name == "ReadUiaControlControlTypeCommand") {
+                    WriteObject(this, inputObject.Current.ControlType.ProgrammaticName);
                 }
-                if (this.GetType().Name == "ReadUiaControlAcceleratorKeyCommand") {
-                    this.WriteObject(this, inputObject.Current.AcceleratorKey);
+                if (GetType().Name == "ReadUiaControlAcceleratorKeyCommand") {
+                    WriteObject(this, inputObject.Current.AcceleratorKey);
                 }
-                if (this.GetType().Name == "ReadUiaControlAccessKeyCommand") {
-                    this.WriteObject(this, inputObject.Current.AccessKey);
+                if (GetType().Name == "ReadUiaControlAccessKeyCommand") {
+                    WriteObject(this, inputObject.Current.AccessKey);
                 }
-                if (this.GetType().Name == "ReadUiaControlBoundingRectangleCommand") {
-                    this.WriteObject(this, inputObject.Current.BoundingRectangle);
+                if (GetType().Name == "ReadUiaControlBoundingRectangleCommand") {
+                    WriteObject(this, inputObject.Current.BoundingRectangle);
                 }
-                if (this.GetType().Name == "ReadUiaControlFrameworkIdCommand") {
-                    this.WriteObject(this, inputObject.Current.FrameworkId);
+                if (GetType().Name == "ReadUiaControlFrameworkIdCommand") {
+                    WriteObject(this, inputObject.Current.FrameworkId);
                 }
-                if (this.GetType().Name == "ReadUiaControlHasKeyboardFocusCommand") {
-                    this.WriteObject(this, inputObject.Current.HasKeyboardFocus);
+                if (GetType().Name == "ReadUiaControlHasKeyboardFocusCommand") {
+                    WriteObject(this, inputObject.Current.HasKeyboardFocus);
                 }
-                if (this.GetType().Name == "ReadUiaControlHelpTextCommand") {
-                    this.WriteObject(this, inputObject.Current.HelpText);
+                if (GetType().Name == "ReadUiaControlHelpTextCommand") {
+                    WriteObject(this, inputObject.Current.HelpText);
                 }
-                if (this.GetType().Name == "ReadUiaControlIsKeyboardFocusableCommand") {
-                    this.WriteObject(this, inputObject.Current.IsKeyboardFocusable);
+                if (GetType().Name == "ReadUiaControlIsKeyboardFocusableCommand") {
+                    WriteObject(this, inputObject.Current.IsKeyboardFocusable);
                 }
-                if (this.GetType().Name == "ReadUiaControlIsOffscreenCommand") {
-                    this.WriteObject(this, inputObject.Current.IsOffscreen);
+                if (GetType().Name == "ReadUiaControlIsOffscreenCommand") {
+                    WriteObject(this, inputObject.Current.IsOffscreen);
                 }
-                if (this.GetType().Name == "ReadUiaControlIsPasswordCommand") {
-                    this.WriteObject(this, inputObject.Current.IsPassword);
+                if (GetType().Name == "ReadUiaControlIsPasswordCommand") {
+                    WriteObject(this, inputObject.Current.IsPassword);
                 }
-                if (this.GetType().Name == "ReadUiaControlIsRequiredForFormCommand") {
-                    this.WriteObject(this, inputObject.Current.IsRequiredForForm);
+                if (GetType().Name == "ReadUiaControlIsRequiredForFormCommand") {
+                    WriteObject(this, inputObject.Current.IsRequiredForForm);
                 }
-                if (this.GetType().Name == "ReadUiaControlItemStatusCommand") {
-                    this.WriteObject(this, inputObject.Current.ItemStatus);
+                if (GetType().Name == "ReadUiaControlItemStatusCommand") {
+                    WriteObject(this, inputObject.Current.ItemStatus);
                 }
-                if (this.GetType().Name == "ReadUiaControlItemTypeCommand") {
-                    this.WriteObject(this, inputObject.Current.ItemType);
+                if (GetType().Name == "ReadUiaControlItemTypeCommand") {
+                    WriteObject(this, inputObject.Current.ItemType);
                 }
-                if (this.GetType().Name == "ReadUiaControlLabeledByCommand") {
-                    this.WriteObject(this, inputObject.Current.LabeledBy);
+                if (GetType().Name == "ReadUiaControlLabeledByCommand") {
+                    WriteObject(this, inputObject.Current.LabeledBy);
                 }
-                if (this.GetType().Name == "ReadUiaControlLocalizedControlTypeCommand") {
-                    this.WriteObject(this, inputObject.Current.LocalizedControlType);
+                if (GetType().Name == "ReadUiaControlLocalizedControlTypeCommand") {
+                    WriteObject(this, inputObject.Current.LocalizedControlType);
                 }
-                if (this.GetType().Name == "ReadUiaControlNativeWindowHandleCommand") {
-                    this.WriteObject(this, inputObject.Current.NativeWindowHandle);
+                if (GetType().Name == "ReadUiaControlNativeWindowHandleCommand") {
+                    WriteObject(this, inputObject.Current.NativeWindowHandle);
                 }
-                if (this.GetType().Name == "ReadUiaControlOrientationCommand") {
-                    this.WriteObject(this, inputObject.Current.Orientation);
+                if (GetType().Name == "ReadUiaControlOrientationCommand") {
+                    WriteObject(this, inputObject.Current.Orientation);
                 }
-                if (this.GetType().Name == "ReadUiaControlProcessIdCommand") {
-                    this.WriteObject(this, inputObject.Current.ProcessId);
+                if (GetType().Name == "ReadUiaControlProcessIdCommand") {
+                    WriteObject(this, inputObject.Current.ProcessId);
                 }
             }
             

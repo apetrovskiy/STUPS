@@ -8,7 +8,7 @@ using AVG.Automation.Cmdlets.NativeTypes;
 
 namespace AVG.Automation.Cmdlets.NativeTypes
 {
-    [StructLayoutAttribute(LayoutKind.Sequential)]
+    [StructLayout(LayoutKind.Sequential)]
     public struct SYSTEMTIME
     {
         public short wYear;

@@ -7,6 +7,8 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System.Windows;
+
 namespace UIAutomation
 {
     using System;
@@ -36,9 +38,9 @@ namespace UIAutomation
 		AutomationPattern[] GetSupportedPatterns();
 		void SetFocus();
 		//bool TryGetClickablePoint(out Point pt);
-		bool TryGetClickablePoint(out System.Windows.Point pt);
+		bool TryGetClickablePoint(out Point pt);
 		//Point GetClickablePoint();
-		System.Windows.Point GetClickablePoint();
+		Point GetClickablePoint();
 		// 20131114
 		//AutomationElement.AutomationElementInformation Cached { get; }
 		IMySuperWrapperInformation Cached { get; }

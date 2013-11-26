@@ -20,8 +20,8 @@ namespace UIAutomation.Commands
     {
         public RegisterUiaMenuClosedEventCommand()
         {
-            this.AutomationEventType = AutomationElement.MenuClosedEvent;
-            this.AutomationEventHandler = OnUIAutomationEvent;
+            AutomationEventType = AutomationElement.MenuClosedEvent;
+            AutomationEventHandler = OnUIAutomationEvent;
         }
     }
 }

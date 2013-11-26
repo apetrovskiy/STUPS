@@ -11,7 +11,7 @@ namespace UIAutomation
 {
     using System;
     using System.Management.Automation;
-    using UIAutomation.Commands;
+    using Commands;
     
     /// <summary>
     /// Description of UiaAddWizardStepCommand.
@@ -25,7 +25,7 @@ namespace UIAutomation
         internal override void Execute()
         {
             AddUiaWizardStepCommand cmdlet =
-                (AddUiaWizardStepCommand)this.Cmdlet;
+                (AddUiaWizardStepCommand)Cmdlet;
 
             WizardHelper.AddWizardStep(cmdlet);
         }

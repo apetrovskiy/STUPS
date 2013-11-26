@@ -14,7 +14,7 @@ namespace UIAutomation
     using System.Management.Automation.Provider;
     using System.Windows.Automation;
     using System.Collections.ObjectModel;
-    using UIAutomation.Commands;
+    using Commands;
     
     /// <summary>
     /// Description of UiaProvider.
@@ -25,8 +25,8 @@ namespace UIAutomation
     {
 
         private UiaDriveInfo uIAPSDriveInfo; // ???????????????
-        private UiaDriveInfo rootDrive;
-        private RuntimeDefinedParameterDictionary dynamicParameters;
+        private UiaDriveInfo _rootDrive;
+        private RuntimeDefinedParameterDictionary _dynamicParameters;
 
         #region CmdletProvider Overloads
         
@@ -38,7 +38,7 @@ namespace UIAutomation
         
         protected override void Stop()
         {
-            this.rootDrive = null;
+            _rootDrive = null;
         }
 
         #endregion CmdletProvider Overloads
@@ -49,7 +49,7 @@ namespace UIAutomation
         {
             try{
                 WriteVerbose("UiaProvider::NewDriveDynamicParameters()");
-                dynamicParameters =
+                _dynamicParameters =
                     new RuntimeDefinedParameterDictionary();
                 Collection<Attribute> atts1 = new Collection<Attribute>();
                 ParameterAttribute parameterAttribute1 = new ParameterAttribute {Mandatory = true};
@@ -61,7 +61,7 @@ namespace UIAutomation
                 atts1.Add(parameterAttribute1);
                 AllowEmptyStringAttribute attr1 = new AllowEmptyStringAttribute();
                 atts1.Add(attr1);
-                dynamicParameters.Add(
+                _dynamicParameters.Add(
                     "WindowName", 
                     new RuntimeDefinedParameter(
                         "WindowName", 
@@ -78,7 +78,7 @@ namespace UIAutomation
                 atts2.Add(parameterAttribute2);
                 AllowEmptyStringAttribute attr2 = new AllowEmptyStringAttribute();
                 atts2.Add(attr2);
-                dynamicParameters.Add(
+                _dynamicParameters.Add(
                     "ProcessName", 
                     new RuntimeDefinedParameter(
                         "ProcessName", 
@@ -95,14 +95,14 @@ namespace UIAutomation
                 atts3.Add(parameterAttribute3);
                 AllowEmptyStringAttribute attr3 = new AllowEmptyStringAttribute();
                 atts3.Add(attr3);
-                dynamicParameters.Add(
+                _dynamicParameters.Add(
                     "ProcessId", 
                     new RuntimeDefinedParameter(
                         "ProcessId", 
                         typeof(int), 
                         atts3));
                 
-                return dynamicParameters;
+                return _dynamicParameters;
             }
             catch (Exception e) {
                 WriteVerbose(e.Message);
@@ -119,12 +119,12 @@ namespace UIAutomation
                 PSDriveInfo drive =
                     new PSDriveInfo(
                         "UIA",
-                        this.ProviderInfo,
+                        ProviderInfo,
                         @"UIAutomation\UiaProvider::\", //"UIAutomation",
                         "This is the UI Automation root drive",
                         null);
-                rootDrive = new UiaDriveInfo(drive);
-                result.Add(rootDrive);
+                _rootDrive = new UiaDriveInfo(drive);
+                result.Add(_rootDrive);
                 return result;
             }
             catch (Exception e) {
@@ -202,7 +202,7 @@ namespace UIAutomation
                         new ErrorDetails(
                             "The PSDriveInfo argument is null");
                     //ThrowTerminatingError(err);
-                    this.ThrowTerminatingError(err);
+                    ThrowTerminatingError(err);
 
                     // TODO
                     // this.WriteError();
@@ -466,7 +466,7 @@ namespace UIAutomation
         private IMySuperWrapper _driveWindow = null;
         private string _windowName = string.Empty;
         private string _processName = string.Empty;
-        private int _processId = 0;
+        private const int _processId = 0;
 //        private System.Diagnostics.Process _process;
         
         // 20131109

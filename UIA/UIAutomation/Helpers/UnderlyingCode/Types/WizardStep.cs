@@ -21,8 +21,8 @@ namespace UIAutomation
     {
         public WizardStep(string name, int order)
         {
-            this.Name = name;
-            this.Order = order;
+            Name = name;
+            Order = order;
         }
         
         public string Name { get; set; }

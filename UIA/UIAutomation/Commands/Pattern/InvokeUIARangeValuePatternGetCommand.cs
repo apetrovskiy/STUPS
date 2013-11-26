@@ -20,7 +20,7 @@ namespace UIAutomation.Commands
     [Cmdlet(VerbsLifecycle.Invoke, "UiaRangeValuePatternGet")]
     
     public class InvokeUiaRangeValuePatternGetCommand : PatternCmdletBase
-    { public InvokeUiaRangeValuePatternGetCommand() { WhatToDo = "RangeValueGet"; this.PassThru = false; }
+    { public InvokeUiaRangeValuePatternGetCommand() { WhatToDo = "RangeValueGet"; PassThru = false; }
         
         [Parameter]
         internal new SwitchParameter PassThru {get; set; }

@@ -26,7 +26,7 @@ namespace UIAutomation.Commands
         protected override void BeginProcessing()
         {
             // RunScriptBlocks(this);
-            this.SleepAndRunScriptBlocks(this);
+            SleepAndRunScriptBlocks(this);
         }
     }
 }

@@ -20,14 +20,14 @@ namespace UIAutomation.Commands
     {
         public SetUiaOnSuccessActionSettingsCommand()
         {
-            this.Action = Preferences.OnSuccessAction;
-            this.Delay = Preferences.OnSuccessDelay;
+            Action = Preferences.OnSuccessAction;
+            Delay = Preferences.OnSuccessDelay;
         }
         
         protected override void BeginProcessing()
         {
-            Preferences.OnSuccessAction = this.Action;
-            Preferences.OnSuccessDelay = this.Delay;
+            Preferences.OnSuccessAction = Action;
+            Preferences.OnSuccessDelay = Delay;
         }
     }
 }

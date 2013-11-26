@@ -14,19 +14,19 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of GetUIAshTreeItemCommand.
+    /// Description of GetUiaShTreeItemCommand.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UIAshTreeItem")]
-    public class GetUIAshTreeItemCommand : SheridanCmdletBase
+    public class GetUiaShTreeItemCommand : SheridanCmdletBase
     {
-        public GetUIAshTreeItemCommand()
+        public GetUiaShTreeItemCommand()
         {
         }
         
         protected override void ProcessRecord()
         {
             
-            if (!this.CheckAndPrepareInput(this)) { return; }
+            if (!CheckAndPrepareInput(this)) { return; }
 //            
             
 //            //Handle variables
@@ -52,12 +52,12 @@ namespace UIAutomation.Commands
             
             // 20131109
             //foreach (AutomationElement inputObject in this.InputObject) {
-            foreach (IMySuperWrapper inputObject in this.InputObject) {
+            foreach (IMySuperWrapper inputObject in InputObject) {
                 
                 UiaHelper.GetSheridanTreeItemByName(
                     this, 
                     (IntPtr)inputObject.Current.NativeWindowHandle,
-                    this.Name);
+                    Name);
                 
             }
 

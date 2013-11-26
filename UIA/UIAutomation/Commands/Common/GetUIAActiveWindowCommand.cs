@@ -26,7 +26,7 @@ namespace UIAutomation.Commands
                 GetActiveWindow();
             //UIAutomation.CurrentData.CurrentWindow = element;
             CurrentData.CurrentWindow = element;
-            this.WriteObject(this, element);
+            WriteObject(this, element);
         }
     }
 }

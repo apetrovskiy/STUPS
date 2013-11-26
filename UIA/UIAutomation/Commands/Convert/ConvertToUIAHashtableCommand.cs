@@ -7,6 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System.Collections;
 using System.Linq;
 
 namespace UIAutomation.Commands
@@ -32,43 +33,40 @@ namespace UIAutomation.Commands
         protected override void ProcessRecord()
         {
             // if (!this.CheckControl(this)) { return; }
-            if (!this.CheckAndPrepareInput(this)) { return; }
+            if (!CheckAndPrepareInput(this)) { return; }
             
             // 20120823
             // 20131109
             //foreach (AutomationElement inputObject in this.InputObject) {
-            foreach (IMySuperWrapper inputObject in this.InputObject) {
-
-            System.Collections.Hashtable hashtable = 
-                new System.Collections.Hashtable
-                {
-                    {"Name", inputObject.Current.Name},
-                    {"AutomationId", inputObject.Current.AutomationId},
-                    {"ControlType", inputObject.Current.ControlType.ProgrammaticName},
-                    {"Class", inputObject.Current.ClassName},
-                    {"AcceleratorKey", inputObject.Current.AcceleratorKey},
-                    {"AccessKey", inputObject.Current.AccessKey},
-                    {"BoundingRectangle", inputObject.Current.BoundingRectangle.ToString()},
-                    {"FrameworkId", inputObject.Current.FrameworkId},
-                    {"HasKeyboardFocus", inputObject.Current.HasKeyboardFocus.ToString()},
-                    {"HelpText", inputObject.Current.HelpText},
-                    {"IsContentElement", inputObject.Current.IsContentElement.ToString()},
-                    {"IsControlElement", inputObject.Current.IsControlElement.ToString()},
-                    {"IsEnabled", inputObject.Current.IsEnabled.ToString()},
-                    {"IsKeyboardFocusable", inputObject.Current.IsKeyboardFocusable.ToString()},
-                    {"IsOffscreen", inputObject.Current.IsOffscreen.ToString()},
-                    {"IsPassword", inputObject.Current.IsPassword.ToString()},
-                    {"IsRequiredForForm", inputObject.Current.IsRequiredForForm.ToString()},
-                    {"ItemStatus", inputObject.Current.ItemStatus},
-                    {"ItemType", inputObject.Current.ItemType},
-                    {"LocalizedControlType", inputObject.Current.LocalizedControlType},
-                    {"NativeWindowHandle", inputObject.Current.NativeWindowHandle.ToString()},
-                    {"Orientation", inputObject.Current.Orientation.ToString()},
-                    {"ProcessId", inputObject.Current.ProcessId.ToString()}
-                };
-
-            #region commented
-            //            hashtable.Add("Name", this.InputObject.Current.Name);
+            foreach (Hashtable hashtable in InputObject.Select(inputObject => new Hashtable
+            {
+                {"Name", inputObject.Current.Name},
+                {"AutomationId", inputObject.Current.AutomationId},
+                {"ControlType", inputObject.Current.ControlType.ProgrammaticName},
+                {"Class", inputObject.Current.ClassName},
+                {"AcceleratorKey", inputObject.Current.AcceleratorKey},
+                {"AccessKey", inputObject.Current.AccessKey},
+                {"BoundingRectangle", inputObject.Current.BoundingRectangle.ToString()},
+                {"FrameworkId", inputObject.Current.FrameworkId},
+                {"HasKeyboardFocus", inputObject.Current.HasKeyboardFocus.ToString()},
+                {"HelpText", inputObject.Current.HelpText},
+                {"IsContentElement", inputObject.Current.IsContentElement.ToString()},
+                {"IsControlElement", inputObject.Current.IsControlElement.ToString()},
+                {"IsEnabled", inputObject.Current.IsEnabled.ToString()},
+                {"IsKeyboardFocusable", inputObject.Current.IsKeyboardFocusable.ToString()},
+                {"IsOffscreen", inputObject.Current.IsOffscreen.ToString()},
+                {"IsPassword", inputObject.Current.IsPassword.ToString()},
+                {"IsRequiredForForm", inputObject.Current.IsRequiredForForm.ToString()},
+                {"ItemStatus", inputObject.Current.ItemStatus},
+                {"ItemType", inputObject.Current.ItemType},
+                {"LocalizedControlType", inputObject.Current.LocalizedControlType},
+                {"NativeWindowHandle", inputObject.Current.NativeWindowHandle.ToString()},
+                {"Orientation", inputObject.Current.Orientation.ToString()},
+                {"ProcessId", inputObject.Current.ProcessId.ToString()}
+            }))
+            {
+                #region commented
+                //            hashtable.Add("Name", this.InputObject.Current.Name);
 //            hashtable.Add("AutomationId", this.InputObject.Current.AutomationId);
 //            hashtable.Add("ControlType", this.InputObject.Current.ControlType.ProgrammaticName);
 //            hashtable.Add("Class", this.InputObject.Current.ClassName);
@@ -92,9 +90,9 @@ namespace UIAutomation.Commands
 //            hashtable.Add("NativeWindowHandle", this.InputObject.Current.NativeWindowHandle.ToString());
 //            hashtable.Add("Orientation", this.InputObject.Current.Orientation.ToString());
 //            hashtable.Add("ProcessId", this.InputObject.Current.ProcessId.ToString());
-#endregion commented
+                #endregion commented
 
-            // 20120823
+                // 20120823
                 //hashtable.Add("LabeledBy", inputObject.Current.LabeledBy);
 
                 /*
@@ -128,12 +126,9 @@ namespace UIAutomation.Commands
             hashtable.Add("ProcessId", inputObject.Current.ProcessId.ToString());
             */
 
-            // 20120831
-            this.WriteObject(this, hashtable);
-            //this.WriteObject(this, hashtable, true);
-            
-            } // 20120823
-
+                // 20120831
+                WriteObject(this, hashtable);
+            }
         }
     }
     
@@ -145,8 +140,8 @@ namespace UIAutomation.Commands
     {
         public ConvertToUiaSearchCriteriaCommand()
         {
-            System.Collections.ArrayList defaultExcludeList = 
-                new System.Collections.ArrayList {"LabeledBy", "NativeWindowHandle", "ProcessId"};
+            ArrayList defaultExcludeList = 
+                new ArrayList {"LabeledBy", "NativeWindowHandle", "ProcessId"};
             /*
             System.Collections.ArrayList defaultExcludeList = 
                 new System.Collections.ArrayList();
@@ -154,9 +149,9 @@ namespace UIAutomation.Commands
             defaultExcludeList.Add("NativeWindowHandle");
             defaultExcludeList.Add("ProcessId");
             */
-            this.Exclude = (string[])defaultExcludeList.ToArray(typeof(string));
-            System.Collections.ArrayList defaultIncludeList = 
-                new System.Collections.ArrayList {"Name", "AutomationId", "ControlType"};
+            Exclude = (string[])defaultExcludeList.ToArray(typeof(string));
+            ArrayList defaultIncludeList = 
+                new ArrayList {"Name", "AutomationId", "ControlType"};
             /*
             System.Collections.ArrayList defaultIncludeList = 
                 new System.Collections.ArrayList();
@@ -164,8 +159,8 @@ namespace UIAutomation.Commands
             defaultIncludeList.Add("AutomationId");
             defaultIncludeList.Add("ControlType");
             */
-            this.Include = (string[])defaultIncludeList.ToArray(typeof(string));
-            this.Full = false;
+            Include = (string[])defaultIncludeList.ToArray(typeof(string));
+            Full = false;
             
 #region commented
 //            result += "Name=" + this.propertyToString(this.InputObject.Current.Name);
@@ -208,26 +203,26 @@ namespace UIAutomation.Commands
         // 20120823
         // 20131109
         //private AutomationElement currentInputObject = null;
-        private IMySuperWrapper currentInputObject = null;
+        private IMySuperWrapper _currentInputObject = null;
         
         /// <summary>
         /// Processes the pipeline.
         /// </summary>
         protected override void ProcessRecord()
         {
-            if (!this.CheckAndPrepareInput(this)) { return; }
+            if (!CheckAndPrepareInput(this)) { return; }
             
             // 20120823
             // 20131109
             //foreach (AutomationElement inputObject in this.InputObject) {
-            foreach (IMySuperWrapper inputObject in this.InputObject) {
+            foreach (IMySuperWrapper inputObject in InputObject) {
                 // 20120823
-                currentInputObject = inputObject;
+                _currentInputObject = inputObject;
             
-            if (this.Full) {
+            if (Full) {
                 //this.Exclude = null;
-                this.Exclude =
-                    (string[])(new System.Collections.ArrayList()).ToArray(typeof(string));
+                Exclude =
+                    (string[])(new ArrayList()).ToArray(typeof(string));
 //                for (int i = 0; i < this.Exclude.Length; i++) {
 //                    
 //                }
@@ -262,32 +257,32 @@ namespace UIAutomation.Commands
 //            result += ";ProcessId=" + this.propertyToString(this.InputObject.Current.ProcessId.ToString());
 #endregion commented
 
-            result += getPropertyCompleteString(result, "Name");
-            result += getPropertyCompleteString(result, "AutomationId");
-            result += getPropertyCompleteString(result, "ControlType");
-            result += getPropertyCompleteString(result, "Class");
-            result += getPropertyCompleteString(result, "AcceleratorKey");
-            result += getPropertyCompleteString(result, "AccessKey");
-            result += getPropertyCompleteString(result, "BoundingRectangle");
-            result += getPropertyCompleteString(result, "FrameworkId");
-            result += getPropertyCompleteString(result, "HasKeyboardFocus");
-            result += getPropertyCompleteString(result, "HelpText");
-            result += getPropertyCompleteString(result, "IsContentElement");
-            result += getPropertyCompleteString(result, "IsControlElement");
-            result += getPropertyCompleteString(result, "IsEnabled");
-            result += getPropertyCompleteString(result, "IsKeyboardFocusable");
-            result += getPropertyCompleteString(result, "IsOffscreen");
-            result += getPropertyCompleteString(result, "IsPassword");
-            result += getPropertyCompleteString(result, "IsRequiredForForm");
-            result += getPropertyCompleteString(result, "ItemStatus");
-            result += getPropertyCompleteString(result, "ItemType");
+            result += GetPropertyCompleteString(result, "Name");
+            result += GetPropertyCompleteString(result, "AutomationId");
+            result += GetPropertyCompleteString(result, "ControlType");
+            result += GetPropertyCompleteString(result, "Class");
+            result += GetPropertyCompleteString(result, "AcceleratorKey");
+            result += GetPropertyCompleteString(result, "AccessKey");
+            result += GetPropertyCompleteString(result, "BoundingRectangle");
+            result += GetPropertyCompleteString(result, "FrameworkId");
+            result += GetPropertyCompleteString(result, "HasKeyboardFocus");
+            result += GetPropertyCompleteString(result, "HelpText");
+            result += GetPropertyCompleteString(result, "IsContentElement");
+            result += GetPropertyCompleteString(result, "IsControlElement");
+            result += GetPropertyCompleteString(result, "IsEnabled");
+            result += GetPropertyCompleteString(result, "IsKeyboardFocusable");
+            result += GetPropertyCompleteString(result, "IsOffscreen");
+            result += GetPropertyCompleteString(result, "IsPassword");
+            result += GetPropertyCompleteString(result, "IsRequiredForForm");
+            result += GetPropertyCompleteString(result, "ItemStatus");
+            result += GetPropertyCompleteString(result, "ItemType");
             //result += getPropertyCompleteString(result, "LabeledBy");
-            result += getPropertyCompleteString(result, "LocalizedControlType");
-            result += getPropertyCompleteString(result, "NativeWindowHandle");
-            result += getPropertyCompleteString(result, "Orientation");
-            result += getPropertyCompleteString(result, "ProcessId");
+            result += GetPropertyCompleteString(result, "LocalizedControlType");
+            result += GetPropertyCompleteString(result, "NativeWindowHandle");
+            result += GetPropertyCompleteString(result, "Orientation");
+            result += GetPropertyCompleteString(result, "ProcessId");
             // 20130127
-            result += getPatternStrings();
+            result += GetPatternStrings();
 
             result += "}";
             WriteObject(this, result);
@@ -296,13 +291,13 @@ namespace UIAutomation.Commands
             
         }
         
-        private string getPatternStrings()
+        private string GetPatternStrings()
         {
             string result = string.Empty;
 
-            if (!this.Full) return result;
+            if (!Full) return result;
             AutomationPattern[] supportedPatterns =
-                currentInputObject.GetSupportedPatterns();
+                _currentInputObject.GetSupportedPatterns();
             if (null == supportedPatterns || 0 >= supportedPatterns.Length) return result;
             foreach (AutomationPattern pattern in supportedPatterns) {
                 result += ";Has";
@@ -351,13 +346,13 @@ namespace UIAutomation.Commands
             return result;
         }
         
-        private string getPropertyCompleteString(
+        private string GetPropertyCompleteString(
             string resultString,
             string propertyName)
         {
             string result = string.Empty;
             
-            if ((this.Full) ||
+            if ((Full) ||
                 (IsIncluded(propertyName) &&
                  !IsExcluded(propertyName))) {
                 result = propertyName;
@@ -442,76 +437,76 @@ namespace UIAutomation.Commands
 
                 switch (propertyName) {
                     case "Name":
-                        result += this.propertyToString(currentInputObject.Current.Name);
+                        result += propertyToString(_currentInputObject.Current.Name);
                         break;
                     case "AutomationId":
-                        result += this.propertyToString(currentInputObject.Current.AutomationId);
+                        result += propertyToString(_currentInputObject.Current.AutomationId);
                         break;
                     case "ControlType":
-                        result += this.propertyToString(currentInputObject.Current.ControlType.ProgrammaticName.Substring(12));
+                        result += propertyToString(_currentInputObject.Current.ControlType.ProgrammaticName.Substring(12));
                         break;
                     case "Class":
-                        result += this.propertyToString(currentInputObject.Current.ClassName);
+                        result += propertyToString(_currentInputObject.Current.ClassName);
                         break;
                     case "AcceleratorKey":
-                        result += this.propertyToString(currentInputObject.Current.AcceleratorKey);
+                        result += propertyToString(_currentInputObject.Current.AcceleratorKey);
                         break;
                     case "AccessKey":
-                        result += this.propertyToString(currentInputObject.Current.AccessKey);
+                        result += propertyToString(_currentInputObject.Current.AccessKey);
                         break;
                     case "BoundingRectangle":
-                        result += this.propertyToString(currentInputObject.Current.BoundingRectangle.ToString());
+                        result += propertyToString(_currentInputObject.Current.BoundingRectangle.ToString());
                         break;
                     case "FrameworkId":
-                        result += this.propertyToString(currentInputObject.Current.FrameworkId);
+                        result += propertyToString(_currentInputObject.Current.FrameworkId);
                         break;
                     case "HasKeyboardFocus":
-                        result += this.propertyToString(currentInputObject.Current.HasKeyboardFocus.ToString());
+                        result += propertyToString(_currentInputObject.Current.HasKeyboardFocus.ToString());
                         break;
                     case "HelpText":
-                        result += this.propertyToString(currentInputObject.Current.HelpText);
+                        result += propertyToString(_currentInputObject.Current.HelpText);
                         break;
                     case "IsContentElement":
-                        result += this.propertyToString(currentInputObject.Current.IsContentElement.ToString());
+                        result += propertyToString(_currentInputObject.Current.IsContentElement.ToString());
                         break;
                     case "IsControlElement":
-                        result += this.propertyToString(currentInputObject.Current.IsControlElement.ToString());
+                        result += propertyToString(_currentInputObject.Current.IsControlElement.ToString());
                         break;
                     case "IsEnabled":
-                        result += this.propertyToString(currentInputObject.Current.IsEnabled.ToString());
+                        result += propertyToString(_currentInputObject.Current.IsEnabled.ToString());
                         break;
                     case "IsKeyboardFocusable":
-                        result += this.propertyToString(currentInputObject.Current.IsKeyboardFocusable.ToString());
+                        result += propertyToString(_currentInputObject.Current.IsKeyboardFocusable.ToString());
                         break;
                     case "IsOffscreen":
-                        result += this.propertyToString(currentInputObject.Current.IsOffscreen.ToString());
+                        result += propertyToString(_currentInputObject.Current.IsOffscreen.ToString());
                         break;
                     case "IsPassword":
-                        result += this.propertyToString(currentInputObject.Current.IsPassword.ToString());
+                        result += propertyToString(_currentInputObject.Current.IsPassword.ToString());
                         break;
                     case "IsRequiredForForm":
-                        result += this.propertyToString(currentInputObject.Current.IsRequiredForForm.ToString());
+                        result += propertyToString(_currentInputObject.Current.IsRequiredForForm.ToString());
                         break;
                     case "ItemStatus":
-                        result += this.propertyToString(currentInputObject.Current.ItemStatus);
+                        result += propertyToString(_currentInputObject.Current.ItemStatus);
                         break;
                     case "ItemType":
-                        result += this.propertyToString(currentInputObject.Current.ItemType);
+                        result += propertyToString(_currentInputObject.Current.ItemType);
                         break;
                     //case "LabeledBy":
                     //    result += 
                     //    break;
                     case "LocalizedControlType":
-                        result += this.propertyToString(currentInputObject.Current.LocalizedControlType);
+                        result += propertyToString(_currentInputObject.Current.LocalizedControlType);
                         break;
                     case "NativeWindowHandle":
-                        result += this.propertyToString(currentInputObject.Current.NativeWindowHandle.ToString());
+                        result += propertyToString(_currentInputObject.Current.NativeWindowHandle.ToString());
                         break;
                     case "Orientation":
-                        result += this.propertyToString(currentInputObject.Current.Orientation.ToString());
+                        result += propertyToString(_currentInputObject.Current.Orientation.ToString());
                         break;
                     case "ProcessId":
-                        result += this.propertyToString(currentInputObject.Current.ProcessId.ToString());
+                        result += propertyToString(_currentInputObject.Current.ProcessId.ToString());
                         break;
                 }
             }
@@ -538,7 +533,7 @@ namespace UIAutomation.Commands
         
         private bool IsIncluded(string propertyName)
         {
-            return this.Include.Any(t => String.Equals(t, propertyName, StringComparison.CurrentCultureIgnoreCase));
+            return Include.Any(t => String.Equals(t, propertyName, StringComparison.CurrentCultureIgnoreCase));
 
             /*
             bool result = false;
@@ -554,7 +549,7 @@ namespace UIAutomation.Commands
 
         private bool IsExcluded(string propertyName)
         {
-            return this.Exclude.Any(t => String.Equals(t, propertyName, StringComparison.CurrentCultureIgnoreCase));
+            return Exclude.Any(t => String.Equals(t, propertyName, StringComparison.CurrentCultureIgnoreCase));
             /*
             bool result = false;
             for (int i = 0; i < this.Exclude.Length; i++)

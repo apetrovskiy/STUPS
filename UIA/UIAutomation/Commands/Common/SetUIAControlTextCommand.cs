@@ -45,11 +45,11 @@ namespace UIAutomation.Commands
         /// </summary>
         protected override void ProcessRecord()
         {
-            if (!this.CheckAndPrepareInput(this)) { return; }
+            if (!CheckAndPrepareInput(this)) { return; }
             
             // 20131109
             //foreach (AutomationElement inputObject in this.InputObject) {
-            foreach (IMySuperWrapper inputObject in this.InputObject) {
+            foreach (IMySuperWrapper inputObject in InputObject) {
                 
                 if (0 == inputObject.Current.NativeWindowHandle) {
         //                ErrorRecord err = 
@@ -66,7 +66,7 @@ namespace UIAutomation.Commands
         //// return;
         //                WriteError(this, err, true);
                         
-                    this.WriteError(
+                    WriteError(
                         this,
                         "The handle of this control equals to zero",
                         "ZeroHandle",
@@ -74,14 +74,14 @@ namespace UIAutomation.Commands
                         true);
                 }
                 
-                System.IntPtr handle =
-                    new System.IntPtr(inputObject.Current.NativeWindowHandle);
+                IntPtr handle =
+                    new IntPtr(inputObject.Current.NativeWindowHandle);
                 
                 // 20130208
                 // clean up the box
                 NativeMethods.SendMessage3(handle, NativeMethods.WM_SETTEXT, IntPtr.Zero, "");
 
-                foreach (char c in this.Text) {
+                foreach (char c in Text) {
     // if (c  > = 65 && c <= 122) {
     // c1 = c. - System.Char. (char)32;
     // } else {
@@ -103,8 +103,8 @@ namespace UIAutomation.Commands
                 }
                 
                 // 20130208
-                if (this.PassThru) {
-                    this.WriteObject(
+                if (PassThru) {
+                    WriteObject(
                         this,
                         inputObject);
                 }

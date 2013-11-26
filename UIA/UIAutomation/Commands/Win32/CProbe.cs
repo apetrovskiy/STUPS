@@ -30,11 +30,20 @@ namespace UIAutomation.Commands.Win32
         }
         
         public static IntPtr TreeView_SetItemState(HandleRef hwndTV, IntPtr hti, uint data, uint _mask) {
+            TVITEM _ms_TVi = new TVITEM
+            {
+                mask = (uint) TVIF.TVIF_STATE,
+                hItem = (hti),
+                stateMask = (_mask),
+                state = (data)
+            };
+            /*
             TVITEM _ms_TVi = new TVITEM();
             _ms_TVi.mask = (uint)TVIF.TVIF_STATE;
             _ms_TVi.hItem = (hti);
             _ms_TVi.stateMask = (_mask);
             _ms_TVi.state = (data);
+            */
             IntPtr p = Marshal.AllocCoTaskMem(Marshal.SizeOf(_ms_TVi));
             Marshal.StructureToPtr(_ms_TVi, p, false);
             IntPtr r = SendMessage(hwndTV, (int)TVM.TVM_SETITEMW, IntPtr.Zero, p);

@@ -11,7 +11,7 @@ namespace AVG.Automation.Cmdlets
     using System.Runtime.InteropServices;
     using System.Collections;
     using System.Diagnostics;
-    using AVG.Automation.Cmdlets.NativeTypes;
+    using NativeTypes;
     using UIAutomation;
 
     /// <summary>

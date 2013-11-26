@@ -11,7 +11,7 @@ namespace UIAutomation
 {
     using System;
     using System.Management.Automation;
-    using UIAutomation.Commands;
+    using Commands;
     
     /// <summary>
     /// Description of UiaGetWizardCommand.
@@ -25,7 +25,7 @@ namespace UIAutomation
         internal override void Execute()
         {
             GetUiaWizardCommand cmdlet =
-                (GetUiaWizardCommand)this.Cmdlet;
+                (GetUiaWizardCommand)Cmdlet;
 
             WizardHelper.GetWizard(cmdlet);
         }

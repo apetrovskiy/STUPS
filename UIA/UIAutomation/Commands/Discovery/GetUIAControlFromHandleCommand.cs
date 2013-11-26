@@ -42,18 +42,30 @@ namespace UIAutomation.Commands
         {
             // 20131109
             //System.Windows.Automation.AutomationElement result = null;
+            /*
             IMySuperWrapper result = null;
-            
-            foreach (int handle in this.InputObject) {
-                result = 
-                    UiaHelper.GetAutomationElementFromHandle(
-                        this,
-                        handle);
+            */
+
+            foreach (IMySuperWrapper result in InputObject.Select(handle => UiaHelper.GetAutomationElementFromHandle(
+                this,
+                handle)))
+            {
                 if (result != null) {
                     WriteVerbose(this, "got the control: " + result.Current.Name);
                 }
                 WriteObject(this, result);
             }
+            /*
+            foreach (int handle in InputObject) {
+                IMySuperWrapper result = UiaHelper.GetAutomationElementFromHandle(
+                    this,
+                    handle);
+                if (result != null) {
+                    WriteVerbose(this, "got the control: " + result.Current.Name);
+                }
+                WriteObject(this, result);
+            }
+            */
         }
     }
     
@@ -82,15 +94,15 @@ namespace UIAutomation.Commands
             // 20131109
             //System.Windows.Automation.AutomationElement result = null;
             // 20131113
-            foreach (IMySuperWrapper result in this.InputObject.Select(handle => UiaHelper.GetAutomationElementFromHandle(
+            foreach (IMySuperWrapper result in InputObject.Select(handle => UiaHelper.GetAutomationElementFromHandle(
                 this,
                 handle)))
             {
                 if (result != null) {
-                    this.WriteVerbose(this, "got the window");
+                    WriteVerbose(this, "got the window");
                 }
-                UIAutomation.CurrentData.CurrentWindow = result;
-                this.WriteObject(this, result);
+                CurrentData.CurrentWindow = result;
+                WriteObject(this, result);
             }
 
             /*

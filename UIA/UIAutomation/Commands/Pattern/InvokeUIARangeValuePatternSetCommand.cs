@@ -27,7 +27,7 @@ namespace UIAutomation.Commands
             Value = 0;
             base.Child = this;
             
-            this.PassThru = false;
+            PassThru = false;
         }
         
         [Parameter(Mandatory = true)]

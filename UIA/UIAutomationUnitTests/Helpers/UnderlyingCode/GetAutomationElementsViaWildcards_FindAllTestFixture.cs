@@ -135,7 +135,7 @@
 ////        {
 ////            Assert.AreEqual(
 ////                false,
-////                getClass().elementOfPossibleControlType(
+////                getClass().ElementOfPossibleControlType(
 ////                    null,
 ////                    null));
 ////        }

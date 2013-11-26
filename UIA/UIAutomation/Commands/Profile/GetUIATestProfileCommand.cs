@@ -26,13 +26,13 @@ namespace UIAutomation.Commands
         {
             Profile checkProfile = null;
             
-            if (!string.IsNullOrEmpty(this.Name) &&
-                this.Name.Length > 0) {
+            if (!string.IsNullOrEmpty(Name) &&
+                Name.Length > 0) {
                 checkProfile = 
-                    CurrentData.GetProfile(this.Name);
-            } else if (this.InputObject != null) {
+                    CurrentData.GetProfile(Name);
+            } else if (InputObject != null) {
                 checkProfile = 
-                    this.InputObject;
+                    InputObject;
             }
 
             /*

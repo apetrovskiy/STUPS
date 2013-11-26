@@ -20,10 +20,10 @@ namespace UIAutomation.Commands
     {
         protected override void BeginProcessing()
         {
-            this.keyCodes.Add(0x11);
-            this.keyCodes.Add(0x10);
-            this.keyCodes.Add(0x1B);
-            this.processKeys();
+            keyCodes.Add(0x11);
+            keyCodes.Add(0x10);
+            keyCodes.Add(0x1B);
+            processKeys();
         }
     }
 }

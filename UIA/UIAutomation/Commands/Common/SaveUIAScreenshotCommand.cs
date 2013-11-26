@@ -7,6 +7,8 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System.Drawing.Imaging;
+
 namespace UIAutomation.Commands
 {
     using System.Management.Automation;
@@ -23,7 +25,7 @@ namespace UIAutomation.Commands
         {
             // 20130702
             //this.Path = string.Empty;
-            this.As = System.Drawing.Imaging.ImageFormat.Bmp;
+            As = ImageFormat.Bmp;
         }
         #endregion Constructor
         
@@ -60,7 +62,7 @@ namespace UIAutomation.Commands
         public new string Name { get; set; }
         
         [Parameter(Mandatory = false)]
-        public System.Drawing.Imaging.ImageFormat As { get; set; }
+        public ImageFormat As { get; set; }
         #endregion Parameters
         
         /// <summary>
@@ -70,7 +72,7 @@ namespace UIAutomation.Commands
         {
             //if (this.InputObject == null ||
             // !(this.InputObject is AutomationElement)) {
-            bool save = this.GetType().Name == "SaveUiaScreenshotCommand";
+            bool save = GetType().Name == "SaveUiaScreenshotCommand";
             /*
             bool save = false;
             if (this.GetType().Name == "SaveUiaScreenshotCommand") {
@@ -80,14 +82,14 @@ namespace UIAutomation.Commands
 
             UiaHelper.GetScreenshotOfCmdletInput(
                 this,
-                this.Description,
+                Description,
                 save,
                 Left,
                 Top,
                 Height,
                 Width,
-                this.Path + @"\" + this.Name,
-                this.As);
+                Path + @"\" + Name,
+                As);
         }
     }
     
@@ -112,7 +114,7 @@ namespace UIAutomation.Commands
         #region Constructor
         public GetUiaScreenshotCommand()
         {
-            this.Path = string.Empty; // ?
+            Path = string.Empty; // ?
         }
         #endregion Constructor
         

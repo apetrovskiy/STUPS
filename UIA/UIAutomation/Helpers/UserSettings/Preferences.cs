@@ -7,6 +7,9 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System.Drawing;
+using System.Drawing.Imaging;
+
 namespace UIAutomation
 {
     using System;
@@ -20,11 +23,11 @@ namespace UIAutomation
         static Preferences()
         {
             Highlight = true;
-            HighlighterColor = System.Drawing.Color.Red;
+            HighlighterColor = Color.Red;
             HighlighterBorder = 3;
             
             HighlightParent = true;
-            HighlighterColorParent = System.Drawing.Color.HotPink;
+            HighlighterColorParent = Color.HotPink;
             HighlighterBorderParent = 5;
             
 //            HighlightFirstChild = false; //true;
@@ -33,7 +36,7 @@ namespace UIAutomation
             
             // 20130423
             HighlightCheckedControl = true;
-            HighlighterColorCheckedControl = System.Drawing.Color.Blue;
+            HighlighterColorCheckedControl = Color.Blue;
             HighlighterBorderCheckedControl = 3;
             
 			ShowExecutionPlan = false;
@@ -49,14 +52,14 @@ namespace UIAutomation
             DisableWin32Search = false;
             
             ScreenShotFolder = 
-                System.Environment.GetEnvironmentVariable(
+                Environment.GetEnvironmentVariable(
                     "TEMP",
                     EnvironmentVariableTarget.User);
             //OnErrorScreenShot = false;
             OnErrorScreenShot = true; // 20120819
-            OnErrorScreenShotFormat = System.Drawing.Imaging.ImageFormat.Jpeg;
+            OnErrorScreenShotFormat = ImageFormat.Jpeg;
             OnSuccessScreenShot = false;
-            OnSuccessScreenShotFormat = System.Drawing.Imaging.ImageFormat.Jpeg;
+            OnSuccessScreenShotFormat = ImageFormat.Jpeg;
             HideHighlighterOnScreenShotTaking = true;
 
             TranscriptInterval = 200;
@@ -70,7 +73,7 @@ namespace UIAutomation
             OnClickDelay = 0;
             Log = true;
             LogPath = 
-                System.Environment.GetEnvironmentVariable(
+                Environment.GetEnvironmentVariable(
                     "TEMP",
                     EnvironmentVariableTarget.User) + 
                 @"\UIAutomation.log";
@@ -114,7 +117,7 @@ namespace UIAutomation
         /// <summary>
         /// Color of Highlighter
         /// </summary>
-        public static System.Drawing.Color HighlighterColor { get; set; }
+        public static Color HighlighterColor { get; set; }
         /// <summary>
         /// Thikness of Highlighter's border.
         /// </summary>
@@ -126,7 +129,7 @@ namespace UIAutomation
         /// <summary>
         /// Color of Highlighter
         /// </summary>
-        public static System.Drawing.Color HighlighterColorParent { get; set; }
+        public static Color HighlighterColorParent { get; set; }
         /// <summary>
         /// Thikness of Highlighter's border.
         /// </summary>
@@ -151,7 +154,7 @@ namespace UIAutomation
         /// <summary>
         /// Color of Highlighter
         /// </summary>
-        public static System.Drawing.Color HighlighterColorCheckedControl { get; set; }
+        public static Color HighlighterColorCheckedControl { get; set; }
         /// <summary>
         /// Thikness of Highlighter's border.
         /// </summary>
@@ -216,7 +219,7 @@ namespace UIAutomation
         /// <summary>
         /// this flag says which format should  be used (by default, Jpeg)
         /// </summary>
-        public static System.Drawing.Imaging.ImageFormat OnErrorScreenShotFormat { get; set; }
+        public static ImageFormat OnErrorScreenShotFormat { get; set; }
         /// <summary>
         /// this flag turns on automatic saving of screenshots 
         /// if a terminating or non-terminating error has been raised.
@@ -225,7 +228,7 @@ namespace UIAutomation
         /// <summary>
         /// this flag says which format should  be used (by default, Jpeg)
         /// </summary>
-        public static System.Drawing.Imaging.ImageFormat OnSuccessScreenShotFormat { get; set; }
+        public static ImageFormat OnSuccessScreenShotFormat { get; set; }
         /// <summary>
         /// 
         /// </summary>
@@ -296,23 +299,23 @@ namespace UIAutomation
         // 20130429
         public static bool AutoLog { get; set; }
         
-        private static int maximumErrorCount;
+        private static int _maximumErrorCount;
         /// <summary>
         /// The upper limit of number of errors that
         /// are stored in the Error collection.
         /// </summary>
         public static int MaximumErrorCount
         {
-            get { return maximumErrorCount; } 
-            set{ maximumErrorCount = value; }
+            get { return _maximumErrorCount; } 
+            set{ _maximumErrorCount = value; }
         }
         
-        private static int maximumEventCount;
+        private static int _maximumEventCount;
         
         public static int MaximumEventCount
         {
-            get { return maximumEventCount; } 
-            set{ maximumEventCount = value; }
+            get { return _maximumEventCount; } 
+            set{ _maximumEventCount = value; }
         }
         
         /// <summary>
@@ -354,15 +357,15 @@ namespace UIAutomation
             Preferences.TimeoutSetByCustomer = false;
         }
         
-        private static Modes mode;
+        private static Modes _mode;
         public static Modes Profile
         {
-            get { return mode; }
+            get { return _mode; }
             set
             {
-                mode = value;
+                _mode = value;
                 switch (value) {
-                    case UIAutomation.Modes.Normal:
+                    case Modes.Normal:
                         Preferences.OnSuccessDelay = 0;
                         Preferences.OnErrorDelay = 0;
                         Preferences.OnSleepDelay = 100; // this did not work
@@ -374,7 +377,7 @@ namespace UIAutomation
                         Preferences.EveryCmdletAsTestResult = false;
                         Preferences.FailTestResultIfFailInTestSequence = true;
                         break;
-                    case UIAutomation.Modes.Debug:
+                    case Modes.Debug:
                         Preferences.OnSuccessDelay = 1000;
                         Preferences.OnErrorDelay = 2000; // there was 5000
                         Preferences.OnSleepDelay = 1000; // ??
@@ -386,7 +389,7 @@ namespace UIAutomation
                         Preferences.EveryCmdletAsTestResult = false;
                         Preferences.FailTestResultIfFailInTestSequence = true;
                         break;
-                    case UIAutomation.Modes.Presentation:
+                    case Modes.Presentation:
                         Preferences.OnSuccessDelay = 0; // there was 500;
                         Preferences.OnErrorDelay = 0; // there was 500;
                         Preferences.OnSleepDelay = 200; // this did not work
@@ -398,7 +401,7 @@ namespace UIAutomation
                         Preferences.EveryCmdletAsTestResult = true;
                         Preferences.FailTestResultIfFailInTestSequence = false;
                         break;
-                    case UIAutomation.Modes.AutomaticTestResults:
+                    case Modes.AutomaticTestResults:
                         Preferences.OnSuccessDelay = 0;
                         Preferences.OnErrorDelay = 0;
                         Preferences.OnSleepDelay = 100; // this did not work
@@ -410,7 +413,7 @@ namespace UIAutomation
                         Preferences.EveryCmdletAsTestResult = true;
                         Preferences.FailTestResultIfFailInTestSequence = false;
                         break;
-                    case UIAutomation.Modes.UserDrivenTestResults:
+                    case Modes.UserDrivenTestResults:
                         Preferences.OnSuccessDelay = 0;
                         Preferences.OnErrorDelay = 0;
                         Preferences.OnSleepDelay = 100; // this did not work

@@ -11,7 +11,7 @@ namespace UIAutomation
 {
     using System;
     using System.Management.Automation;
-    using UIAutomation.Commands;
+    using Commands;
     
     /// <summary>
     /// Description of UiaNewWizardCommand.
@@ -25,7 +25,7 @@ namespace UIAutomation
         internal override void Execute()
         {
             NewUiaWizardCommand cmdlet =
-                (NewUiaWizardCommand)this.Cmdlet;
+                (NewUiaWizardCommand)Cmdlet;
             
             WizardHelper.CreateWizard(cmdlet);
         }

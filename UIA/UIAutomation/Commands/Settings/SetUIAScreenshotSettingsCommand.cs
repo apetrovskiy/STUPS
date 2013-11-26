@@ -20,8 +20,8 @@ namespace UIAutomation.Commands
     {
         public SetUiaScreenshotSettingsCommand()
         {
-            this.Screenshot = Preferences.OnErrorScreenShot;
-            this.ScreenshotFolder = Preferences.ScreenShotFolder;
+            Screenshot = Preferences.OnErrorScreenShot;
+            ScreenshotFolder = Preferences.ScreenShotFolder;
         }
             
         #region Parameters
@@ -33,8 +33,8 @@ namespace UIAutomation.Commands
         
         protected override void BeginProcessing()
         {
-            Preferences.OnErrorScreenShot = this.Screenshot;
-            Preferences.ScreenShotFolder = this.ScreenshotFolder;
+            Preferences.OnErrorScreenShot = Screenshot;
+            Preferences.ScreenShotFolder = ScreenshotFolder;
         }
     }
 }

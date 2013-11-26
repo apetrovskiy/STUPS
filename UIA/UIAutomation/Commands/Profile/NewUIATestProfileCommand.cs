@@ -24,7 +24,7 @@ namespace UIAutomation.Commands
         
         protected override void BeginProcessing()
         {
-            Profile profile = new Profile(this.Name);
+            Profile profile = new Profile(Name);
             
             Profile checkProfile = 
                 CurrentData.GetProfile(profile.Name);
@@ -44,7 +44,7 @@ namespace UIAutomation.Commands
 //                    new ErrorDetails("The profile already exists");
 //                WriteError(this, err, true);
                 
-                this.WriteError(
+                WriteError(
                     this,
                     "The profile already exists",
                     "ProfileAlreadyExists",

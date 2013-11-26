@@ -7,12 +7,15 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System.Diagnostics.CodeAnalysis;
+using UInt32 = System.UInt32;
+
 namespace UIAutomation
 {
     using System;
     using System.Runtime.InteropServices;
     // http://msdn.microsoft.com/ru-ru/library/windows/desktop/aa379560(v=vs.85).aspx
-    using DWORD = System.UInt32; // Optional alias, used below.
+    using DWORD = UInt32; // Optional alias, used below.
     using System.ComponentModel;
     
     /// <summary>
@@ -40,7 +43,7 @@ namespace UIAutomation
              int x, int y, int nWidth, int nHeight, 
              IntPtr hSrcDC, 
              int xSrc, int ySrc, 
-             System.Int32 dwRop); 
+             Int32 dwRop); 
          
         [Flags]
         internal enum DrawingOptions
@@ -108,11 +111,11 @@ namespace UIAutomation
             internal int Y;
         }
         
-        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
         internal static extern bool GetPhysicalCursorPos(ref CursorPoint lpPoint);
         
-        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
         internal static extern bool PhysicalToLogicalPoint(IntPtr hWnd, ref CursorPoint lpPoint);
         #endregion Highlighter
@@ -535,27 +538,27 @@ namespace UIAutomation
         [return: MarshalAs(UnmanagedType.Bool)]
         internal static extern bool SetCursorPos(int X, int Y);
         
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "INPUT")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "MOUSE")]
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "INPUT")]
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "MOUSE")]
         internal static int INPUT_MOUSE = 0;
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "INPUT")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "KEYBOARD")]
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "INPUT")]
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "KEYBOARD")]
         internal static int INPUT_KEYBOARD = 1;
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "INPUT")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "HARDWARE")]
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "INPUT")]
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "HARDWARE")]
         internal static int INPUT_HARDWARE = 2;
         
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "KEYEVENTF")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "EXTENDEDKEY")]
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "KEYEVENTF")]
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "EXTENDEDKEY")]
         internal const uint KEYEVENTF_EXTENDEDKEY = 0x0001;
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "KEYEVENTF")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "KEYUP")]
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "KEYEVENTF")]
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "KEYUP")]
         internal const uint KEYEVENTF_KEYUP = 0x0002;
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "KEYEVENTF")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UNICODE")]
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "KEYEVENTF")]
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UNICODE")]
         internal const uint KEYEVENTF_UNICODE = 0x0004;
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "KEYEVENTF")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "SCANCODE")]
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "KEYEVENTF")]
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "SCANCODE")]
         internal const uint KEYEVENTF_SCANCODE = 0x0008;
         
 
@@ -570,8 +573,8 @@ namespace UIAutomation
 // UIntPtr dwExtraInfo);
         
         [DllImport("user32.dll")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "keybd")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "event")]
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "keybd")]
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "event")]
         internal static extern void keybd_event(byte bVk, byte bScan, uint dwFlags,
            int dwExtraInfo);
         
@@ -1001,7 +1004,7 @@ namespace UIAutomation
 //        }
         
         
-        [StructLayoutAttribute(LayoutKind.Sequential)]
+        [StructLayout(LayoutKind.Sequential)]
         public struct SYSTEMTIME
         {
             public short wYear;
@@ -1186,7 +1189,7 @@ namespace UIAutomation
         // Wrapper for DPAPI CryptProtectData function.
         [DllImport( "crypt32.dll",
                     SetLastError=true,
-                    CharSet=System.Runtime.InteropServices.CharSet.Auto)]
+                    CharSet=CharSet.Auto)]
         internal static extern
             bool CryptProtectData(  ref DATA_BLOB     pPlainText,
                                         string        szDescription,
@@ -1199,7 +1202,7 @@ namespace UIAutomation
         // Wrapper for DPAPI CryptUnprotectData function.
         [DllImport( "crypt32.dll",
                     SetLastError=true,
-                    CharSet=System.Runtime.InteropServices.CharSet.Auto)]
+                    CharSet=CharSet.Auto)]
         internal static extern
             bool CryptUnprotectData(ref DATA_BLOB       pCipherText,
                                     ref string          pszDescription,

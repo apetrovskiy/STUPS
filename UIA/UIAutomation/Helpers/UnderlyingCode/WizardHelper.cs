@@ -8,13 +8,14 @@
  */
 
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace UIAutomation
 {
     using System;
     using System.Management.Automation;
     using System.Windows.Automation;
-    using UIAutomation.Commands;
+    using Commands;
     using System.Collections;
     using System.Collections.Generic;
     
@@ -535,7 +536,7 @@ namespace UIAutomation
                     
                     // if there is no SearchCriteria, for example, there's at least one @{}
                     if (stepToRun.SearchCriteria.Length == 0 ||
-                        System.Text.RegularExpressions.Regex.IsMatch(
+                        Regex.IsMatch(
                             stepToRun.SearchCriteria.ToString(),
                             @"[\@][\{]\s+?[\}]")) {
                         result = true;
@@ -563,8 +564,8 @@ namespace UIAutomation
                         //SleepAndRunScriptBlocks(this);
                         cmdlet.SleepAndRunScriptBlocks(cmdlet);
                         // wait until timeout expires or the state will be confirmed as valid
-                        System.DateTime nowDate =
-                            System.DateTime.Now;
+                        DateTime nowDate =
+                            DateTime.Now;
                         //if ((nowDate - startDate).TotalSeconds > this.Timeout / 1000) {
                         if ((nowDate - cmdlet.StartDate).TotalSeconds > cmdlet.Timeout / 1000) {
                             //WriteObject(this, false);

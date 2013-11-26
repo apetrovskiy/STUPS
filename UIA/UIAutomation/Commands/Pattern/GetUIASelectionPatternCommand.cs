@@ -21,7 +21,7 @@ namespace UIAutomation.Commands
     ////[OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(UIAutomation.MySuperWrapper[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     
     public class InvokeUiaSelectionPatternCommand : PatternCmdletBase
-    { public InvokeUiaSelectionPatternCommand() { WhatToDo = "Selection"; this.PassThru = false; }
+    { public InvokeUiaSelectionPatternCommand() { WhatToDo = "Selection"; PassThru = false; }
         
         [Parameter]
         internal new SwitchParameter PassThru {get; set; }

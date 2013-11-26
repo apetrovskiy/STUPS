@@ -7,6 +7,8 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System;
+
 namespace UIAutomation
 {
     //using System;
@@ -39,18 +41,18 @@ namespace UIAutomation
         {
             // 20131109
             //_control = this.InputObject[0];
-            _control = this.InputObject.Cast<IMySuperWrapper>().ToArray()[0];
+            _control = InputObject.Cast<IMySuperWrapper>().ToArray()[0];
             
             if (isEnabledOrIsVisible) {
-                this.Wait = !(_control.Current).IsEnabled;
+                Wait = !(_control.Current).IsEnabled;
             } else {
-                this.Wait = (_control.Current).IsOffscreen;
+                Wait = (_control.Current).IsOffscreen;
             }
             do
             {
                 SleepAndRunScriptBlocks(this);
                 
-                System.DateTime nowDate = System.DateTime.Now;
+                DateTime nowDate = DateTime.Now;
                 try {
                     string tempIsReport = string.Empty;
                     tempIsReport = isEnabledOrIsVisible ? _control.Current.IsEnabled.ToString() : _control.Current.IsOffscreen.ToString();
@@ -72,11 +74,11 @@ namespace UIAutomation
                                  ", seconds: " + 
                                  ((nowDate - StartDate).TotalSeconds).ToString());
                 } catch { }
-                if (!this.CheckAndPrepareInput(this))
+                if (!CheckAndPrepareInput(this))
                 {
                     WriteObject(this, false);
                     
-                    this.WriteError(
+                    WriteError(
                         this,
                         "An unknown error while checking the control.",
                         "CheckingControl",
@@ -87,18 +89,18 @@ namespace UIAutomation
                 }
                 
                 if (isEnabledOrIsVisible) {
-                    this.Wait = !(_control.Current).IsEnabled;
+                    Wait = !(_control.Current).IsEnabled;
                 } else {
-                    this.Wait = (_control.Current).IsOffscreen;
+                    Wait = (_control.Current).IsOffscreen;
                 }
-                if ((nowDate - StartDate).TotalSeconds > this.Timeout / 1000)
+                if ((nowDate - StartDate).TotalSeconds > Timeout / 1000)
                 {
                     WriteVerbose(this, "timeout expired for AutomationId: " + 
                                  _control.Current.AutomationId +
                                 ", title: " +
                                  _control.Current.Name);
                     
-                    this.WriteError(
+                    WriteError(
                         this,
                         CmdletName(this) + ": timeout expired for AutomationId: " + 
                         _control.Current.AutomationId +
@@ -140,7 +142,7 @@ namespace UIAutomation
                         true);
                 }
                 */
-            } while (this.Wait);
+            } while (Wait);
         }
     }
 }

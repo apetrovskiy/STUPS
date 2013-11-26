@@ -7,6 +7,9 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System.Collections;
+using System.IO;
+
 namespace UIAutomation
 {
     using System;
@@ -48,12 +51,12 @@ namespace UIAutomation
         
         internal bool Paused { get; set; }
         
-        public System.Collections.ArrayList LastRecordedItem = 
-            new System.Collections.ArrayList();
+        public ArrayList LastRecordedItem = 
+            new ArrayList();
 
         // the list of all recorded controls' patterns
-        public System.Collections.ArrayList RecordingPatterns = 
-            new System.Collections.ArrayList();
+        public ArrayList RecordingPatterns = 
+            new ArrayList();
         
         // 20131109
         //protected internal AutomationElement thePreviouslyUsedElement = null;
@@ -68,12 +71,12 @@ namespace UIAutomation
         public string WritingRecord(
             object recordingItemCode,
             object recordingItemPatterns,
-            System.IO.StreamWriter writerToLongFile,
-            System.IO.StreamWriter writerToShortFile)
+            StreamWriter writerToLongFile,
+            StreamWriter writerToShortFile)
         {
             string result = string.Empty;
             try {
-                System.Collections.ArrayList recordList = (System.Collections.ArrayList)recordingItemCode;
+                ArrayList recordList = (ArrayList)recordingItemCode;
                 string longRecordingString = String.Empty;
                 string shortRecordingString = String.Empty;
                 string tempString = String.Empty;

@@ -23,7 +23,7 @@ namespace UIAutomation.Commands
       { 
             WhatToDo = "ScrollItem";
             
-            this.PassThru = true;
+            PassThru = true;
             //base.Child = this;
       }
     }

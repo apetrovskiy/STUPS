@@ -32,14 +32,14 @@ namespace UIAutomation.Commands
         /// </summary>
         protected override void ProcessRecord()
         {
-            if (!this.CheckAndPrepareInput(this)) { return; }
+            if (!CheckAndPrepareInput(this)) { return; }
             
             bool result = 
                 TestControlByPropertiesFromHashtable(
-                    this.InputObject,
-                    this.SearchCriteria,
+                    InputObject,
+                    SearchCriteria,
                     Preferences.Timeout);
-            this.WriteObject(this, result);
+            WriteObject(this, result);
 
             /*
             if (result) {

@@ -127,12 +127,6 @@
     <Compile Include="..\UIAutomationUnitTests\Commands\Wizard\NewUIAWizardCommandTestFixture.cs">
       <Link>Commands\Wizard\NewUIAWizardCommandTestFixture.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomationUnitTests\Fakes\FakeAutomationElement.cs">
-      <Link>Fakes\FakeAutomationElement.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomationUnitTests\Fakes\FakeDataHolder.cs">
-      <Link>Fakes\FakeDataHolder.cs</Link>
-    </Compile>
     <Compile Include="..\UIAutomationUnitTests\Fakes\FakeFactory.cs">
       <Link>Fakes\FakeFactory.cs</Link>
     </Compile>

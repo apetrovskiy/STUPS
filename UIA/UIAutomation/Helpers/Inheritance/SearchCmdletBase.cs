@@ -19,7 +19,7 @@ namespace UIAutomation
     {
         public SearchCmdletBase()
         {
-            this.CaseSensitive = false;
+            CaseSensitive = false;
         }
         
         #region Parameters

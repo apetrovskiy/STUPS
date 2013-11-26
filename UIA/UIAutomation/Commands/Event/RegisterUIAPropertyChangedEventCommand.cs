@@ -24,12 +24,12 @@ namespace UIAutomation.Commands
         {
 //            base.AutomationEventType = 
 //                AutomationElement.AutomationPropertyChangedEvent;
-            this.AutomationEventType = 
+            AutomationEventType = 
                 AutomationElement.AutomationPropertyChangedEvent;
             // base.AutomationEventHandler = OnUIAutomationPropertyChangedEvent;
 //            base.AutomationPropertyChangedEventHandler = 
 //                OnUIAutomationPropertyChangedEvent;
-            this.AutomationPropertyChangedEventHandler = 
+            AutomationPropertyChangedEventHandler = 
                 OnUIAutomationPropertyChangedEvent;
         }
         #endregion Constructor
@@ -48,7 +48,11 @@ namespace UIAutomation.Commands
         public RegisterUiaGridRowCountChangedEventCommand()
         {
             base.AutomationProperty = 
+                GridPattern.RowCountProperty;
+            /*
+            base.AutomationProperty = 
                 TablePattern.RowCountProperty;
+            */
         }
         #endregion Constructor
     }
@@ -64,7 +68,11 @@ namespace UIAutomation.Commands
         public RegisterUiaGridColumnCountChangedEventCommand()
         {
             base.AutomationProperty = 
+                GridPattern.ColumnCountProperty;
+            /*
+            base.AutomationProperty = 
                 TablePattern.ColumnCountProperty;
+            */
         }
         #endregion Constructor
     }
@@ -96,7 +104,11 @@ namespace UIAutomation.Commands
         public RegisterUiaTableRowCountChangedEventCommand()
         {
             base.AutomationProperty = 
+                GridPattern.RowCountProperty;
+            /*
+            base.AutomationProperty = 
                 TablePattern.RowCountProperty;
+            */
         }
         #endregion Constructor
     }
@@ -112,7 +124,11 @@ namespace UIAutomation.Commands
         public RegisterUiaTableColumnCountChangedEventCommand()
         {
             base.AutomationProperty = 
+                GridPattern.ColumnCountProperty;
+            /*
+            base.AutomationProperty = 
                 TablePattern.ColumnCountProperty;
+            */
         }
         #endregion Constructor
     }

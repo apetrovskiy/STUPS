@@ -35,7 +35,7 @@ namespace UIAutomation.Commands
         
         protected override void BeginProcessing()
         {
-            if (this.All) {
+            if (All) {
                 try {
 
                     Automation.RemoveAllEventHandlers();
@@ -65,7 +65,7 @@ namespace UIAutomation.Commands
 //                        new ErrorDetails("Unable to unregister all registerd event handlers");
 //                    WriteError(this, err, true);
                     
-                    this.WriteError(
+                    WriteError(
                         this,
                         "Unable to unregister all registered event handlers",
                         "UnableUnregisterEventhandlers",
@@ -75,10 +75,10 @@ namespace UIAutomation.Commands
             } else {
                 try {
 
-                    if (this.InputObject != null && 
-                        this.InputObject.Current.ProcessId > 0 &&
+                    if (InputObject != null && 
+                        InputObject.Current.ProcessId > 0 &&
                         // (int)this.InputObject.Current.ProcessId > 0 &&
-                        this.EventHandler != null) {
+                        EventHandler != null) {
 
                         Automation.RemoveAutomationEventHandler(
                             null,
@@ -87,8 +87,8 @@ namespace UIAutomation.Commands
                             // 20131118
                             // property to method
                             //this.InputObject.SourceElement,
-                            this.InputObject.GetSourceElement(),
-                            this.EventHandler);
+                            InputObject.GetSourceElement(),
+                            EventHandler);
 
                     }
                 } 
@@ -109,10 +109,10 @@ namespace UIAutomation.Commands
 //                                             this.EventHandler.Target.ToString());
 //                        WriteError(this, err, true);
                         
-                        this.WriteError(
+                        WriteError(
                             this,
                             "Unable to remove the event handler " +
-                            this.EventHandler.ToString(),
+                            EventHandler.ToString(),
                             "UnableToUnregister",
                             ErrorCategory.InvalidArgument,
                             true);

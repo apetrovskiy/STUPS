@@ -36,7 +36,7 @@ namespace UIAutomation.Commands
         protected override void BeginProcessing()
         {
             WriteVerbose(this, "Timeout = " + Timeout.ToString());
-            StartDate = System.DateTime.Now;
+            StartDate = DateTime.Now;
         }
         
         /// <summary>

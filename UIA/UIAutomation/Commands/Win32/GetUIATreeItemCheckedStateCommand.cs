@@ -26,8 +26,11 @@ namespace UIAutomation.Commands
         
         #region Parameters
         [Parameter(Mandatory = false)]
+        internal string AutomaitonId { get; set; }
+        /*
         internal new string AutomaitonId { get; set; }
-        
+        */
+
         [Parameter(Mandatory = false)]
         internal new string Class { get; set; }
         
@@ -37,12 +40,12 @@ namespace UIAutomation.Commands
         
         protected override void ProcessRecord()
         {
-            if (!this.CheckAndPrepareInput(this)) { return; }
+            if (!CheckAndPrepareInput(this)) { return; }
             
             // 20120823
             // 20131109
             //foreach (AutomationElement inputObject in this.InputObject) {
-            foreach (IMySuperWrapper inputObject in this.InputObject) {
+            foreach (IMySuperWrapper inputObject in InputObject) {
             
 //                ClickControl(
 //                    this,
@@ -57,11 +60,11 @@ namespace UIAutomation.Commands
 //                    this.X,
 //                    this.Y);
     
-                if (this.PassThru) {
+                if (PassThru) {
 
-                    this.WriteObject(this, inputObject);
+                    WriteObject(this, inputObject);
                 } else {
-                    this.WriteObject(this, true);
+                    WriteObject(this, true);
                 }
                 
             } // 20120823

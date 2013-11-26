@@ -20,116 +20,116 @@ namespace UIAutomation
     	//private AutomationElement _el;
     	//private bool _useCache;
     	
-    	private AutomationElement.AutomationElementInformation infoHolder;
+    	private AutomationElement.AutomationElementInformation _infoHolder;
     	//
     	[Inject]
     	public MySuperWrapperInformation(AutomationElement.AutomationElementInformation information)
     	{
-    	    this.infoHolder = information;
+    	    _infoHolder = information;
     	}
     	//
     	
     	public ControlType ControlType
     	{
-    	   get { return this.infoHolder.ControlType; }
+    	   get { return _infoHolder.ControlType; }
     	}
     	public string LocalizedControlType
     	{
-    	    get { return this.infoHolder.LocalizedControlType; }
+    	    get { return _infoHolder.LocalizedControlType; }
     	}
     	public string Name
     	{
-    	    get { return this.infoHolder.Name; }
+    	    get { return _infoHolder.Name; }
     	}
     	public string AcceleratorKey
     	{
-    	    get { return this.infoHolder.AcceleratorKey; }
+    	    get { return _infoHolder.AcceleratorKey; }
     	}
     	public string AccessKey
     	{
-    	    get { return this.infoHolder.AccessKey; }
+    	    get { return _infoHolder.AccessKey; }
     	}
     	public bool HasKeyboardFocus
     	{
-    	    get { return this.infoHolder.HasKeyboardFocus; }
+    	    get { return _infoHolder.HasKeyboardFocus; }
     	}
     	public bool IsKeyboardFocusable
     	{
-    	    get { return this.infoHolder.IsKeyboardFocusable; }
+    	    get { return _infoHolder.IsKeyboardFocusable; }
     	}
     	public bool IsEnabled
     	{
-    	    get { return this.infoHolder.IsEnabled; }
+    	    get { return _infoHolder.IsEnabled; }
     	}
     	public Rect BoundingRectangle
     	{
-    	    get { return this.infoHolder.BoundingRectangle; }
+    	    get { return _infoHolder.BoundingRectangle; }
     	}
     	public string HelpText
     	{
-    	    get { return this.infoHolder.HelpText; }
+    	    get { return _infoHolder.HelpText; }
     	}
     	public bool IsControlElement
     	{
-    	    get { return this.infoHolder.IsControlElement; }
+    	    get { return _infoHolder.IsControlElement; }
     	}
     	public bool IsContentElement
     	{
-    	    get { return this.infoHolder.IsContentElement; }
+    	    get { return _infoHolder.IsContentElement; }
     	}
     	public AutomationElement LabeledBy
     	{
-    	    get { return this.infoHolder.LabeledBy; }
+    	    get { return _infoHolder.LabeledBy; }
     	}
     	public string AutomationId
     	{
-    	    get { return this.infoHolder.AutomationId; }
+    	    get { return _infoHolder.AutomationId; }
     	}
     	public string ItemType
     	{
-    	    get { return this.infoHolder.ItemType; }
+    	    get { return _infoHolder.ItemType; }
     	}
     	public bool IsPassword
     	{
-    	    get { return this.infoHolder.IsPassword; }
+    	    get { return _infoHolder.IsPassword; }
     	}
     	public string ClassName
     	{
-    	    get { return this.infoHolder.ClassName; }
+    	    get { return _infoHolder.ClassName; }
     	}
     	public int NativeWindowHandle
     	{
-    	    get { return this.infoHolder.NativeWindowHandle; }
+    	    get { return _infoHolder.NativeWindowHandle; }
     	}
     	public int ProcessId
     	{
-    	    get { return this.infoHolder.ProcessId; }
+    	    get { return _infoHolder.ProcessId; }
     	}
     	public bool IsOffscreen
     	{
-    	    get { return this.infoHolder.IsOffscreen; }
+    	    get { return _infoHolder.IsOffscreen; }
     	}
     	public OrientationType Orientation
     	{
-    	    get { return this.infoHolder.Orientation; }
+    	    get { return _infoHolder.Orientation; }
     	}
     	public string FrameworkId
     	{
-    	    get { return this.infoHolder.FrameworkId; }
+    	    get { return _infoHolder.FrameworkId; }
     	}
     	public bool IsRequiredForForm
     	{
-    	    get { return this.infoHolder.IsRequiredForForm; }
+    	    get { return _infoHolder.IsRequiredForForm; }
     	}
     	public string ItemStatus
     	{
-    	    get { return this.infoHolder.ItemStatus; }
+    	    get { return _infoHolder.ItemStatus; }
     	}
     	
     	public AutomationElement.AutomationElementInformation SourceInformation
     	{
-    	    get { return this.infoHolder; }
-    	    set { this.infoHolder = value; }
+    	    get { return _infoHolder; }
+    	    set { _infoHolder = value; }
     	}
     }
 }

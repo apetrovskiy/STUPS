@@ -47,7 +47,7 @@ namespace UIAutomation.Commands
             
             object result = null; // ?
             
-            if (!this.CheckAndPrepareInput(this)) { return; }
+            if (!CheckAndPrepareInput(this)) { return; }
             
             // 20131014
             //this.WriteVerbose(this, _control.Current);
@@ -59,9 +59,9 @@ namespace UIAutomation.Commands
             // 20131109
             //foreach (System.Windows.Automation.AutomationElement element in this.InputObject) {
             // 20131113
-            foreach (AutomationPattern p in this.InputObject.SelectMany(element => element.GetSupportedPatterns()))
+            foreach (AutomationPattern p in InputObject.SelectMany(element => element.GetSupportedPatterns()))
             {
-                this.WriteVerbose(this, p.ProgrammaticName);
+                WriteVerbose(this, p.ProgrammaticName);
             }
 
             /*
@@ -91,16 +91,16 @@ namespace UIAutomation.Commands
             }
             */
 
-            System.Windows.Automation.AutomationPattern pattern = 
+            AutomationPattern pattern = 
                 UiaHelper.GetPatternByName(Name);
             
             result = 
                 UiaHelper.GetCurrentPattern(ref _control,
                                             pattern);
             
-            this.WriteVerbose(this, result);
+            WriteVerbose(this, result);
             
-            this.WriteObject(this, result);
+            WriteObject(this, result);
         }
     }
 }

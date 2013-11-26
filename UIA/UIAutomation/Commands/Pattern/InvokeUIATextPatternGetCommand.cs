@@ -22,8 +22,8 @@ namespace UIAutomation.Commands
     { public InvokeUiaTextPatternGetCommand() 
         { 
             WhatToDo = "TextGet"; 
-            this.PassThru = false;
-            this.TextLength = -1;
+            PassThru = false;
+            TextLength = -1;
         }
         
         [Parameter(Mandatory = false)]

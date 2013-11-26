@@ -40,11 +40,11 @@ namespace UIAutomation.Commands.Common
                     showDesktopButton.GetCurrentPattern(InvokePattern.Pattern) as InvokePattern;
                 invPtrn.Invoke();
                 */
-                this.WriteObject(this, true);
+                WriteObject(this, true);
             }
             catch (Exception ee) {
-                this.WriteObject(this, ee.Message);
-                this.WriteObject(this, false);
+                WriteObject(this, ee.Message);
+                WriteObject(this, false);
             }
         }
     }

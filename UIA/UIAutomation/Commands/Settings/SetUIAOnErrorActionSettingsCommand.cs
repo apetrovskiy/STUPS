@@ -20,14 +20,14 @@ namespace UIAutomation.Commands
     {
         public SetUiaOnErrorActionSettingsCommand()
         {
-            this.Action = Preferences.OnErrorAction;
-            this.Delay = Preferences.OnErrorDelay;
+            Action = Preferences.OnErrorAction;
+            Delay = Preferences.OnErrorDelay;
         }
         
         protected override void BeginProcessing()
         {
-            Preferences.OnErrorAction = this.Action;
-            Preferences.OnErrorDelay = this.Delay;
+            Preferences.OnErrorAction = Action;
+            Preferences.OnErrorDelay = Delay;
         }
     }
 }

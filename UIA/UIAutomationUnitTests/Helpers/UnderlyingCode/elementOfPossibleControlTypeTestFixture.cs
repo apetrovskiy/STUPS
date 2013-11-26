@@ -35,85 +35,85 @@ namespace UIAutomationUnitTests
         }
         
         [Test]
-        [Description("GetControlCollectionCmdletBase.elementOfPossibleControlType(string[], string)")]
+        [Description("GetControlCollectionCmdletBase.ElementOfPossibleControlType(string[], string)")]
         [Category("Fast")]
         public void Nothing_to_compare()
         {
             Assert.AreEqual(
                 false,
-                getClass().elementOfPossibleControlType(
+                getClass().ElementOfPossibleControlType(
                     null,
                     null));
         }
         
         [Test]
-        [Description("GetControlCollectionCmdletBase.elementOfPossibleControlType(string[], string)")]
+        [Description("GetControlCollectionCmdletBase.ElementOfPossibleControlType(string[], string)")]
         [Category("Fast")]
         public void No_ControlTypeArray()
         {
             Assert.AreEqual(
                 false,
-                getClass().elementOfPossibleControlType(
+                getClass().ElementOfPossibleControlType(
                     null,
                     "Button"));
         }
         
         [Test]
-        [Description("GetControlCollectionCmdletBase.elementOfPossibleControlType(string[], string)")]
+        [Description("GetControlCollectionCmdletBase.ElementOfPossibleControlType(string[], string)")]
         [Category("Fast")]
         public void No_ControlType()
         {
             Assert.AreEqual(
                 false,
-                getClass().elementOfPossibleControlType(
+                getClass().ElementOfPossibleControlType(
                     (new[]{ "Button" }),
                     null));
         }
         
         [Test]
-        [Description("GetControlCollectionCmdletBase.elementOfPossibleControlType(string[], string)")]
+        [Description("GetControlCollectionCmdletBase.ElementOfPossibleControlType(string[], string)")]
         [Category("Fast")]
         public void One_ControlType_That_Matches()
         {
             Assert.AreEqual(
                 true,
-                getClass().elementOfPossibleControlType(
+                getClass().ElementOfPossibleControlType(
                     (new[]{ "Button" }),
                     "Button"));
         }
         
         [Test]
-        [Description("GetControlCollectionCmdletBase.elementOfPossibleControlType(string[], string)")]
+        [Description("GetControlCollectionCmdletBase.ElementOfPossibleControlType(string[], string)")]
         [Category("Fast")]
         public void One_ControlType_That_DoesNot_Match()
         {
             Assert.AreEqual(
                 false,
-                getClass().elementOfPossibleControlType(
+                getClass().ElementOfPossibleControlType(
                     (new[]{ "Button" }),
                     "CheckBox"));
         }
         
         [Test]
-        [Description("GetControlCollectionCmdletBase.elementOfPossibleControlType(string[], string)")]
+        [Description("GetControlCollectionCmdletBase.ElementOfPossibleControlType(string[], string)")]
         [Category("Fast")]
         public void Three_ControlType_That_Match()
         {
             Assert.AreEqual(
                 true,
-                getClass().elementOfPossibleControlType(
+                getClass().ElementOfPossibleControlType(
                     (new[]{ "TreeItem", "Button", "Edit" }),
                     "Button"));
         }
         
         [Test]
-        [Description("GetControlCollectionCmdletBase.elementOfPossibleControlType(string[], string)")]
+        [Description("GetControlCollectionCmdletBase.ElementOfPossibleControlType(string[], string)")]
         [Category("Fast")]
         public void Three_ControlType_That_DonT_Match()
         {
             Assert.AreEqual(
                 false,
-                getClass().elementOfPossibleControlType(
+                getClass().ElementOfPossibleControlType(
                     (new[]{ "TreeItem", "ComboBox", "Edit" }),
                     "Button"));
         }

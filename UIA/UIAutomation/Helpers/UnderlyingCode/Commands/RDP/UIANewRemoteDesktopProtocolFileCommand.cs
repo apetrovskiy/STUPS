@@ -11,7 +11,7 @@ namespace UIAutomation
 {
     using System;
     using System.Management.Automation;
-    using UIAutomation.Commands;
+    using Commands;
     
     /// <summary>
     /// Description of UiaNewRemoteDesktopProtocolFileCommand.
@@ -25,9 +25,9 @@ namespace UIAutomation
         internal override void Execute()
         {
             NewUiaRemoteDesktopProtocolFileCommand cmdlet =
-                (NewUiaRemoteDesktopProtocolFileCommand)this.Cmdlet;
+                (NewUiaRemoteDesktopProtocolFileCommand)Cmdlet;
 
-            RDPHelper.CreateRDPFile(cmdlet);
+            RdpHelper.CreateRdpFile(cmdlet);
         }
     }
 }

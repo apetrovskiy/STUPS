@@ -28,18 +28,18 @@ namespace UIAutomation.Commands
         protected override void ProcessRecord()
         {
             // if (!this.CheckControl(this)) { return; }
-            if (!this.CheckAndPrepareInput(this)) { return; }
+            if (!CheckAndPrepareInput(this)) { return; }
             
             // 20120823
             // 20131109
             //foreach (AutomationElement inputObject in this.InputObject) {
-            foreach (IMySuperWrapper inputObject in this.InputObject) {
+            foreach (IMySuperWrapper inputObject in InputObject) {
 
                 try {
                     inputObject.SetFocus();
                 }
                 catch (Exception eSetFocus) {
-                    this.WriteError(
+                    WriteError(
                         this,
                         "Could not set focus. " +
                         eSetFocus.Message,
@@ -47,12 +47,12 @@ namespace UIAutomation.Commands
                         ErrorCategory.InvalidOperation,
                         true);
                 }
-                if (this.PassThru) {
+                if (PassThru) {
                     // 20130105
                     //this.WriteObject(this, this.InputObject);
-                    this.WriteObject(this, inputObject);
+                    WriteObject(this, inputObject);
                 } else {
-                    this.WriteObject(this, true);
+                    WriteObject(this, true);
                 }
             
             } // 20120823

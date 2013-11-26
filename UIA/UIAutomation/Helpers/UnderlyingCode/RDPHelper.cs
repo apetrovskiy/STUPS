@@ -7,22 +7,24 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System.IO;
+
 namespace UIAutomation
 {
     using System;
     using System.Management.Automation;
-    using UIAutomation.Commands;
+    using Commands;
     
     /// <summary>
     /// Description of RDPHelper.
     /// </summary>
-    public static class RDPHelper
+    public static class RdpHelper
     {
-        static RDPHelper()
+        static RdpHelper()
         {
         }
 
-        public const string rDPProtocolFile = @"screen mode id:i:1
+        public const string RDpProtocolFile = @"screen mode id:i:1
 use multimon:i:0
 desktopwidth:i:1024
 desktopheight:i:768
@@ -80,19 +82,19 @@ drivestoredirect:s:
 //            set { rDPProtocolFile = value; }
 //        }
         
-        public static string RDPFileTemplate { get; set; }
+        public static string RdpFileTemplate { get; set; }
         
         //public static void CreateRDPFile(NewUiaRemoteDesktopProtocolFileCommand cmdlet)
-        public static void CreateRDPFile(RdpCmdletBase cmdlet)
+        public static void CreateRdpFile(RdpCmdletBase cmdlet)
         {
             if (!string.IsNullOrEmpty(cmdlet.Template)) {
                 
                 cmdlet.WriteVerbose(cmdlet, "Using the external template");
-                RDPFileTemplate = cmdlet.Template;
+                RdpFileTemplate = cmdlet.Template;
             } else {
                 
                 cmdlet.WriteVerbose(cmdlet, "Using the default template");
-                RDPFileTemplate = rDPProtocolFile;
+                RdpFileTemplate = RDpProtocolFile;
             }
 
             /*
@@ -107,35 +109,35 @@ drivestoredirect:s:
             }
             */
 
-            RDPFileTemplate +=
+            RdpFileTemplate +=
                 "full address:s:" +
                 cmdlet.Hostname +
                 "\r\n";
-            RDPFileTemplate +=
+            RdpFileTemplate +=
                 "username:s:" +
                 cmdlet.Username +
                 "\r\n";
-            RDPFileTemplate +=
+            RdpFileTemplate +=
                 "domain:s:" +
                 cmdlet.Domain +
                 "\r\n";
-            RDPFileTemplate +=
+            RdpFileTemplate +=
                 "password 51:b:" +
                 DataProtectionForRDPWrapper.Encrypt(cmdlet.Password) +
                 "\r\n";
             
             if (cmdlet.RemoteAppMode) {
                 
-                RDPFileTemplate =
-                    RDPFileTemplate.Replace(
+                RdpFileTemplate =
+                    RdpFileTemplate.Replace(
                         "remoteapplicationmode:i:0",
                         "remoteapplicationmode:i:1");
             }
             
             if (!string.IsNullOrEmpty(cmdlet.RemoteAppProgram)) {
                 
-                RDPFileTemplate =
-                    RDPFileTemplate.Replace(
+                RdpFileTemplate =
+                    RdpFileTemplate.Replace(
                         "remoteapplicationprogram:s:",
                         "remoteapplicationprogram:s:" +
                         cmdlet.RemoteAppProgram);
@@ -154,8 +156,8 @@ drivestoredirect:s:
 
             if (!string.IsNullOrEmpty(cmdlet.RemoteAppCmdline)) {
                 
-                RDPFileTemplate =
-                    RDPFileTemplate.Replace(
+                RdpFileTemplate =
+                    RdpFileTemplate.Replace(
                         "remoteapplicationcmdline:s:",
                         "remoteapplicationcmdline:s:" +
                         cmdlet.RemoteAppCmdline);
@@ -174,8 +176,8 @@ drivestoredirect:s:
 
             if (!string.IsNullOrEmpty(cmdlet.AlternateShell)) {
                 
-                RDPFileTemplate =
-                    RDPFileTemplate.Replace(
+                RdpFileTemplate =
+                    RdpFileTemplate.Replace(
                         "alternate shell:s:",
                         "alternate shell:s:" +
                         cmdlet.AlternateShell);
@@ -194,8 +196,8 @@ drivestoredirect:s:
 
             if (!string.IsNullOrEmpty(cmdlet.ShellWorkingDir)) {
                 
-                RDPFileTemplate =
-                    RDPFileTemplate.Replace(
+                RdpFileTemplate =
+                    RdpFileTemplate.Replace(
                         "shell working directory:s:",
                         "shell working directory:s:" +
                         cmdlet.ShellWorkingDir);
@@ -214,8 +216,8 @@ drivestoredirect:s:
 
             if (null != cmdlet.AuthenticationLevel) {
                 
-                RDPFileTemplate =
-                    RDPFileTemplate.Replace(
+                RdpFileTemplate =
+                    RdpFileTemplate.Replace(
                         "authentication level:i:0",
                         "authentication level:i:" +
                         cmdlet.AuthenticationLevel);
@@ -225,8 +227,8 @@ drivestoredirect:s:
                 
                 int autoreconnection = cmdlet.Autoreconnection ? 1 : 0;
                 
-                RDPFileTemplate =
-                    RDPFileTemplate.Replace(
+                RdpFileTemplate =
+                    RdpFileTemplate.Replace(
                         "autoreconnection enabled:i:1",
                         "autoreconnection enabled:i:" +
                         autoreconnection);
@@ -234,8 +236,8 @@ drivestoredirect:s:
             
             if (null != cmdlet.DesktopHeight) {
                 
-                RDPFileTemplate =
-                    RDPFileTemplate.Replace(
+                RdpFileTemplate =
+                    RdpFileTemplate.Replace(
                         "desktopheight:i:768",
                         "desktopheight:i:" +
                         cmdlet.DesktopHeight);
@@ -243,8 +245,8 @@ drivestoredirect:s:
             
             if (null != cmdlet.DesktopWidth) {
                 
-                RDPFileTemplate =
-                    RDPFileTemplate.Replace(
+                RdpFileTemplate =
+                    RdpFileTemplate.Replace(
                         "desktopwidth:i:1024",
                         "desktopwidth:i:" +
                         cmdlet.DesktopWidth);
@@ -252,8 +254,8 @@ drivestoredirect:s:
             
             if (null != cmdlet.SmartSizing) {
                 
-                RDPFileTemplate =
-                    RDPFileTemplate.Replace(
+                RdpFileTemplate =
+                    RdpFileTemplate.Replace(
                         "smart sizing:i:0",
                         "smart sizing:i:1");
             }
@@ -262,8 +264,8 @@ drivestoredirect:s:
                 
                 int disableThemes = cmdlet.DisableThemes ? 1 : 0;
                 
-                RDPFileTemplate =
-                    RDPFileTemplate.Replace(
+                RdpFileTemplate =
+                    RdpFileTemplate.Replace(
                         "disable themes:i:0",
                         "disable themes:i:" +
                         disableThemes);
@@ -273,8 +275,8 @@ drivestoredirect:s:
                 
                 int disableWallpaper = cmdlet.DisableWallpaper ? 1 : 0;
                 
-                RDPFileTemplate =
-                    RDPFileTemplate.Replace(
+                RdpFileTemplate =
+                    RdpFileTemplate.Replace(
                         "disable wallpaper:i:0",
                         "disable wallpaper:i:" +
                         disableWallpaper);
@@ -284,8 +286,8 @@ drivestoredirect:s:
                 
                 int redirectClipboard = cmdlet.RedirectClipboard ? 1 : 0;
                 
-                RDPFileTemplate =
-                    RDPFileTemplate.Replace(
+                RdpFileTemplate =
+                    RdpFileTemplate.Replace(
                         "redirectclipboard:i:0",
                         "redirectclipboard:i:" +
                         redirectClipboard);
@@ -293,8 +295,8 @@ drivestoredirect:s:
             
             if (!string.IsNullOrEmpty(cmdlet.DriveStoreRedirect)) {
                 
-                RDPFileTemplate =
-                    RDPFileTemplate.Replace(
+                RdpFileTemplate =
+                    RdpFileTemplate.Replace(
                         "drivestoredirect:s:",
                         "drivestoredirect:s:" +
                         cmdlet.DriveStoreRedirect);
@@ -312,9 +314,9 @@ drivestoredirect:s:
             */
 
             try {
-                System.IO.StreamWriter writer =
-                    new System.IO.StreamWriter(((NewUiaRemoteDesktopProtocolFileCommand)cmdlet).Path);
-                writer.Write(RDPFileTemplate);
+                StreamWriter writer =
+                    new StreamWriter(((NewUiaRemoteDesktopProtocolFileCommand)cmdlet).Path);
+                writer.Write(RdpFileTemplate);
                 writer.Flush();
                 writer.Close();
                 
@@ -324,7 +326,7 @@ drivestoredirect:s:
                 cmdlet.WriteError(
                     cmdlet,
                     "Failed to create an RDP file '" +
-                    RDPFileTemplate +
+                    RdpFileTemplate +
                     "'." +
                     eWriter.Message,
                     "FailedToCreateFile",

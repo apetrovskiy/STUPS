@@ -23,7 +23,7 @@ namespace UIAutomation.Commands
     { public InvokeUiaValuePatternGetCommand() 
         { 
             WhatToDo = "ValueGet"; 
-            this.PassThru = false; 
+            PassThru = false; 
         }
         
         [Parameter]

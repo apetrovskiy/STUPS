@@ -29,8 +29,8 @@ namespace UIAutomation.Commands
             DoubleClick = false;
             
             
-            this.X = -1000000;
-            this.Y = -1000000;
+            X = -1000000;
+            Y = -1000000;
         }
         #endregion Constructor
         
@@ -61,33 +61,33 @@ namespace UIAutomation.Commands
         /// </summary>
         protected override void ProcessRecord()
         {
-            if (!this.CheckAndPrepareInput(this)) { return; }
+            if (!CheckAndPrepareInput(this)) { return; }
             
             // 20120823
             // 20131109
             //foreach (AutomationElement inputObject in this.InputObject) {
-            foreach (IMySuperWrapper inputObject in this.InputObject) {
+            foreach (IMySuperWrapper inputObject in InputObject) {
             
                 ClickControl(
                     this,
                     inputObject,
-                    this.RightClick,
-                    this.MidClick,
-                    this.Alt,
-                    this.Shift,
-                    this.Ctrl,
+                    RightClick,
+                    MidClick,
+                    Alt,
+                    Shift,
+                    Ctrl,
                     false,
-                    this.DoubleClick,
+                    DoubleClick,
                     // 20131125
-                    this.DoubleClickInterval,
-                    this.X,
-                    this.Y);
+                    DoubleClickInterval,
+                    X,
+                    Y);
     
-                if (this.PassThru) {
+                if (PassThru) {
 
-                    this.WriteObject(this, inputObject);
+                    WriteObject(this, inputObject);
                 } else {
-                    this.WriteObject(this, true);
+                    WriteObject(this, true);
                 }
                 
             } // 20120823

@@ -108,8 +108,6 @@
     <Compile Include="Commands\Wait\WaitUIAWindowCommandTestFixture.cs" />
     <Compile Include="Commands\Wizard\AddUIAWizardStepCommandTestFixture.cs" />
     <Compile Include="Commands\Wizard\NewUIAWizardCommandTestFixture.cs" />
-    <Compile Include="Fakes\FakeAutomationElement.cs" />
-    <Compile Include="Fakes\FakeDataHolder.cs" />
     <Compile Include="Fakes\FakeFactory.cs" />
     <Compile Include="Helpers\Inheritance\getAutomationElementsWithFindAllTestFixture.cs" />
     <Compile Include="Helpers\Inheritance\GetControlTestFixture.cs" />

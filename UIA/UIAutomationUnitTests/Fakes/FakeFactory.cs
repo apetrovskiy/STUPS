@@ -1,5 +1,4 @@
-﻿using System;
-/*
+﻿/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
  * Date: 11/20/2013
@@ -10,6 +9,7 @@
 
 namespace UIAutomationUnitTests
 {
+    using System;
     using System.Windows.Automation;
     using UIAutomation;
     using NSubstitute;
@@ -26,51 +26,12 @@ namespace UIAutomationUnitTests
             ObjectsFactory.InitUnitTests();
         }
         
-        /*
-        public class MyValuePatternInformation : IValuePatternInformation //ValuePattern.ValuePatternInformation
-        {
-            
-        }
-        */
-        
         private static IMySuperValuePattern GetValuePattern(string txtValue)
         {
-            //ValuePattern valuePattern = Substitute.For<ValuePattern>();
             IMySuperValuePattern valuePattern = Substitute.For<IMySuperValuePattern>();
-            //ValuePattern.ValuePatternInformation valuePatternInformation = Substitute.For<ValuePattern.ValuePatternInformation>();
-            //valuePatternInformation.Value.Returns(txtValue);
-            
-            //ValuePattern.ValuePatternInformation valuePatternInformation = new ValuePattern.ValuePatternInformation();
-            //valuePatternInformation.Value = txtValue;
-Console.WriteLine("GetValuePattern: 0002");
-            //MyValuePatternNet.ValuePatternInformation valuePatternInformation = new MyValuePatternNet.ValuePatternInformation(valuePattern, false);
-            IValuePatternInformation valuePatternInformation = new MyValuePatternNet.ValuePatternInformation(valuePattern, false);
-            //MyValuePatternNet.ValuePatternInformation valuePatternInformation = Substitute.For<MyValuePatternNet.ValuePatternInformation>(new object[] { valuePattern, false});
-            try {
-                if (null == valuePatternInformation) {
-                    Console.WriteLine("GetValuePattern: null == valuePatternInformation");
-                } else {
-                    Console.WriteLine("GetValuePattern: null != valuePatternInformation");
-                    if (null == valuePatternInformation.Value) {
-                        Console.WriteLine("GetValuePattern: null == valuePatternInformation.Value");
-                    } else {
-                        Console.WriteLine("GetValuePattern: null != valuePatternInformation.Value");
-                    }
-                }
-            }
-            catch (Exception e0000001) {
-                Console.WriteLine(e0000001.Message);
-            }
-Console.WriteLine("GetValuePattern: 0003");
+            IValuePatternInformation valuePatternInformation = Substitute.For<IValuePatternInformation>();
             valuePatternInformation.Value.Returns(txtValue);
-Console.WriteLine("GetValuePattern: 0004");
-            
-            //valuePattern.Current.Returns(new ValuePattern.ValuePatternInformation());
-            //valuePattern.Current.Value.Returns(txtValue);
             valuePattern.Current.Returns(valuePatternInformation);
-Console.WriteLine("GetValuePattern: 0005");
-            
-            //valuePattern.Current.Returns(valuePatternInformation);
             return valuePattern;
         }
         
@@ -81,14 +42,11 @@ Console.WriteLine("GetValuePattern: 0005");
             element.Current.Name.Returns(!string.IsNullOrEmpty(name) ? name : string.Empty);
             element.Current.AutomationId.Returns(!string.IsNullOrEmpty(automationId) ? automationId : string.Empty);
             element.Current.ClassName.Returns(!string.IsNullOrEmpty(className) ? className : string.Empty);
-            //element.GetSupportedPatterns().Returns(new[] { SelectionItemPattern.Pattern });
-Console.WriteLine("GetAutomationElement 0002");
-            // //ValuePattern valuePattern = FakeFactory.GetValuePattern(txtValue);
-            
-            //IMySuperValuePattern valuePattern = FakeFactory.GetValuePattern(txtValue);
-Console.WriteLine("GetAutomationElement 0003");
-            //element.GetSupportedPatterns().Returns<object[]>(new[] { valuePattern });
-Console.WriteLine("GetAutomationElement 0004");
+            IMySuperValuePattern valuePattern = FakeFactory.GetValuePattern(txtValue);
+            element.GetSupportedPatterns().Returns(new AutomationPattern[] { ValuePattern.Pattern });
+            element.GetCurrentPattern(ValuePattern.Pattern).Returns(valuePattern);
+            object patternObject;
+            element.TryGetCurrentPattern(ValuePattern.Pattern, out patternObject).Returns(true);
             return element;
         }
         
@@ -152,15 +110,18 @@ Console.WriteLine("GetAutomationElement 0004");
                     }
                 }
                 
-//                if (cond is PropertyCondition && (cond as PropertyCondition).Property == AutomationElement.ControlTypeProperty) {
-//                    //foreach (IMySuperWrapper element in descendants) {
-//                    for (int i = 0; i < descendants.Count; i++) {
-//                        if (null != descendants[i] && descendants[i].Current.ControlType != (cond as PropertyCondition).Value) {
-//                            descendants[i] = null;
-//                        }
-//                    }
-//                }
-
+                if (cond is PropertyCondition &&
+                    Equals((cond as PropertyCondition).Property, ValuePattern.ValueProperty)) {
+                    
+                    foreach (IMySuperWrapper element4 in descendants
+                        .Cast<IMySuperWrapper>()
+                        .Where(element4 => "null" != element4.Tag &&
+                               (element4.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern).Current.Value != (cond as PropertyCondition).Value.ToString()))
+                    {
+                        element4.Tag = "null";
+                    }
+                }
+                
                 if (!(cond is PropertyCondition) ||
                     !Equals((cond as PropertyCondition).Property, AutomationElement.ControlTypeProperty)) continue;
 
@@ -184,10 +145,5 @@ Console.WriteLine("GetAutomationElement 0004");
             element.FindAll(TreeScope.Descendants, Arg.Any<Condition>()).Returns(descendants2);
             return element;
         }
-        
-//        public static IValuePatternAdapter GetValuePattern(string txtValue)
-//        {
-//            IValuePatternAdapter valuePattern = new MyValuePattern(
-//        }
     }
 }

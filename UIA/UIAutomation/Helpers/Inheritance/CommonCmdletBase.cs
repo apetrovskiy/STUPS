@@ -949,7 +949,7 @@ namespace UIAutomation
         
         protected internal DateTime StartDate { get; set; }
         protected IMySuperWrapper CurrentWindow { get; set; }
-        protected ArrayList ResultArrayListOfControls;
+        protected internal ArrayList ResultArrayListOfControls;
         protected internal IMySuperWrapper OddRootElement { get; set; }
         
         /// <summary>
@@ -1319,20 +1319,19 @@ namespace UIAutomation
                 
                 foreach (IMySuperWrapper inputObject in inputCollection) {
                     
-                    IMySuperWrapper adapterOfInputObject =
-                        ObjectsFactory.GetMySuperWrapper(inputObject.GetSourceElement());
+//                    IMySuperWrapper inputObject =
+//                        ObjectsFactory.GetMySuperWrapper(inputObject1111.GetSourceElement());
 
                     int processId = 0;
                     do {
                         
                         #region checking processId
-                        if (adapterOfInputObject != null &&
-                            (int)adapterOfInputObject.Current.ProcessId > 0) {
+                        if (inputObject != null &&
+                            (int)inputObject.Current.ProcessId > 0) {
                             WriteVerbose(cmdlet, "CommonCmdletBase: getControl(cmdlet)");
                             WriteVerbose(cmdlet, "cmdlet.InputObject != null");
                             
-                            processId = adapterOfInputObject.Current.ProcessId;
-
+                            processId = inputObject.Current.ProcessId;
                         }
                         #endregion checking processId
                         
@@ -1342,10 +1341,7 @@ namespace UIAutomation
                         if (0 == ResultArrayListOfControls.Count) {
                             if (!notTextSearch && !cmdlet.Win32) {
                                 
-                                // 20131104
-                                // refactoring
-                                //SearchByTextViaUIA(cmdlet, inputObject, conditionsForTextSearch);
-                                SearchByTextViaUia(cmdlet, adapterOfInputObject, conditionsForTextSearch);
+                                SearchByTextViaUia(cmdlet, inputObject, conditionsForTextSearch);
                             }
                         }
                         #endregion text search
@@ -1354,7 +1350,7 @@ namespace UIAutomation
                         if (0 == ResultArrayListOfControls.Count) {
                             if (!notTextSearch && cmdlet.Win32) {
                                 
-                                SearchByTextViaWin32(cmdlet, adapterOfInputObject, cmdlet.ControlType);
+                                SearchByTextViaWin32(cmdlet, inputObject, cmdlet.ControlType);
                             }
                         }
                         #endregion text search Win32
@@ -1363,7 +1359,9 @@ namespace UIAutomation
                         if (0 == ResultArrayListOfControls.Count && notTextSearch && !cmdlet.Regex) {
                             if (!Preferences.DisableExactSearch && !cmdlet.Win32 ) {
                                 
-                                SearchByExactConditionsViaUia(cmdlet, adapterOfInputObject, conditions);
+                                // 20131126
+                                // SearchByExactConditionsViaUia(cmdlet, inputObject, conditions);
+                                SearchByExactConditionsViaUia(cmdlet, inputObject, conditions, cmdlet.ResultArrayListOfControls);
                                 
                             }
                         }
@@ -1373,7 +1371,7 @@ namespace UIAutomation
                         if (0 == ResultArrayListOfControls.Count && notTextSearch && !cmdlet.Regex) {
                             if (!Preferences.DisableWildCardSearch && !cmdlet.Win32) {
                                 
-                                SearchByWildcardOrRegexViaUia(cmdlet, ref ResultArrayListOfControls, adapterOfInputObject, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class, cmdlet.Value, conditionsForWildCards, true);
+                                SearchByWildcardOrRegexViaUia(cmdlet, ref ResultArrayListOfControls, inputObject, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class, cmdlet.Value, conditionsForWildCards, true);
                             }
                         }
                         #endregion wildcard search
@@ -1382,7 +1380,7 @@ namespace UIAutomation
                         if (0 == ResultArrayListOfControls.Count && notTextSearch && cmdlet.Regex) {
                             if (!Preferences.DisableWildCardSearch && !cmdlet.Win32) {
                                 
-                                SearchByWildcardOrRegexViaUia(cmdlet, ref ResultArrayListOfControls, adapterOfInputObject, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class, cmdlet.Value, conditionsForWildCards, false);
+                                SearchByWildcardOrRegexViaUia(cmdlet, ref ResultArrayListOfControls, inputObject, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class, cmdlet.Value, conditionsForWildCards, false);
                             }
                         }
                         #endregion Regex search
@@ -1392,7 +1390,7 @@ namespace UIAutomation
                             
                             if (!Preferences.DisableWin32Search || cmdlet.Win32) {
                                 
-                                SearchByWildcardViaWin32(cmdlet, adapterOfInputObject);
+                                SearchByWildcardViaWin32(cmdlet, inputObject);
                                 
                             } // if (!Preferences.DisableWin32Search || cmdlet.Win32)
                         } // FindWindowEx
@@ -1641,7 +1639,9 @@ namespace UIAutomation
         internal void SearchByExactConditionsViaUia(
             GetControlCmdletBase cmdlet,
             IMySuperWrapper inputObject,
-            AndCondition conditions)
+            AndCondition conditions,
+            // 20131126
+            ArrayList listOfColllectedResults)
         {
             #region the -First story
             // 20120824
@@ -1688,13 +1688,17 @@ namespace UIAutomation
             
             foreach (IMySuperWrapper tempElement in tempCollection) {
                 if (null == cmdlet.SearchCriteria || 0 == cmdlet.SearchCriteria.Length) {
-                    ResultArrayListOfControls.Add(tempElement);
+                    // 20131126
+                    // ResultArrayListOfControls.Add(tempElement);
+                    listOfColllectedResults.Add(tempElement);
                     cmdlet.WriteVerbose(cmdlet, "ExactSearch: element added to the result collection");
                 } else {
                     cmdlet.WriteVerbose(cmdlet, "ExactSearch: checking search criteria");
                     if (!TestControlWithAllSearchCriteria(cmdlet, cmdlet.SearchCriteria, tempElement)) continue;
                     cmdlet.WriteVerbose(cmdlet, "ExactSearch: the control matches the search criteria");
-                    ResultArrayListOfControls.Add(tempElement);
+                    // 20131126
+                    // ResultArrayListOfControls.Add(tempElement);
+                    listOfColllectedResults.Add(tempElement);
                     cmdlet.WriteVerbose(cmdlet, "ExactSearch: element added to the result collection");
                 }
             }

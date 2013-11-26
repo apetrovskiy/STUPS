@@ -7,8 +7,6 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-using System.Collections.Generic;
-
 namespace UIAutomation
 {
     using System;
@@ -19,7 +17,7 @@ namespace UIAutomation
     
     using System.Linq;
     using System.Linq.Expressions;
-    
+    using System.Collections.Generic;
     using Commands;
 
     /// <summary>
@@ -33,9 +31,6 @@ namespace UIAutomation
         }
         
         public GetControlCollectionCmdletBase(
-            // 20131109
-            //AutomationElement[] inputObjectCollection,
-            //ICollection inputObjectCollection,
             IMySuperWrapper[] inputObjectCollection,
             string name,
             string automationId,
@@ -84,15 +79,11 @@ namespace UIAutomation
         }
         
         protected void GetAutomationElementsViaWildcards_FindAll(
-            // 20131104
-            // refactoring
-            //AutomationElement inputObject,
             IMySuperWrapper inputObject,
             AndCondition conditions,
             bool caseSensitive,
             bool onlyOneResult,
             bool onlyTopLevel,
-            // 20131122
             bool viaWildcardOrRegex)
         {
             if (!CheckAndPrepareInput(this)) { return; }
@@ -108,21 +99,16 @@ namespace UIAutomation
                 caseSensitive,
                 onlyOneResult,
                 onlyTopLevel,
-                // 20131122
                 viaWildcardOrRegex);
         }
         
         internal ArrayList GetAutomationElementsViaWildcards_FindAll(
             GetControlCollectionCmdletBase cmdlet,
             IMySuperWrapper inputObject,
-            // 20131118
-            // object -> Condition
             AndCondition conditions,
-            //Condition conditions,
             bool caseSensitive,
             bool onlyOneResult,
             bool onlyTopLevel,
-            // 20131122
             bool viaWildcardOrRegex)
         {
             cmdlet.WriteVerbose(cmdlet, "in the GetAutomationElementsViaWildcards_FindAll method");
@@ -145,7 +131,6 @@ namespace UIAutomation
                     caseSensitive,
                     onlyOneResult,
                     onlyTopLevel,
-                    // 20131122
                     viaWildcardOrRegex);
             
             cmdlet.WriteVerbose(cmdlet, "with some resultCollection");
@@ -177,8 +162,6 @@ namespace UIAutomation
         }
         
         protected void GetAutomationElementsViaWildcards(
-            // 20131109
-            //AutomationElement inputObject,
             IMySuperWrapper inputObject,
             bool caseSensitive,
             bool onlyOneResult,
@@ -360,11 +343,9 @@ namespace UIAutomation
             string textValue,
             string[] controlType,
             Condition conditions,
-            // AndCondition conditions,
             bool caseSensitiveParam,
             bool onlyOneResult,
             bool onlyTopLevel,
-            // 20131122
             bool viaWildcardOrRegex)
         {
             ArrayList resultCollection = new ArrayList();

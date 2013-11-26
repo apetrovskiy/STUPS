@@ -7,24 +7,16 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-using System;
-
 namespace UIAutomation.Commands
 {
-    // 20131107
-    // refactoring
-    //using System;
+    using System;
     using System.Management.Automation;
-    //using System.Windows.Automation;
-    //using System.Xml.Serialization.Configuration;
-    
     using System.Collections;
 
     /// <summary>
     /// Description of GetUiaControl.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaControl", DefaultParameterSetName = "UiaWildCard")]
-    //[OutputType(typeof(object))]
     [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(UIAutomation.MySuperWrapper[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     
     public class GetUiaControlCommand : GetControlCmdletBase
@@ -52,38 +44,12 @@ namespace UIAutomation.Commands
             ArrayList returnCollection = 
                 GetControl(this);
             
-//            if (null == returnCollection || 0 == returnCollection.Count) {
-//                
-//                this.WriteError(
-//                    this,
-//                    CmdletSignature(this) + "timeout expired for control with class: + '" +
-//                    this.Class + 
-//                    "', control type: '" + 
-//                    this.ControlType + 
-//                    "', title: '" +
-//                    this.Name +
-//                    "', automationId: '" +
-//                    this.AutomationId +
-//                    "', value: '" +
-//                    this.Value +
-//                    "'",
-//                    "ControlIsNull",
-//                    ErrorCategory.OperationTimeout,
-//                    true);
-//
-//                return; // ?
-//
-//            }
-
             if (null != returnCollection && 0 < returnCollection.Count) {
 
                 WriteObject(this, returnCollection);
                 
             } else {
-                // 20120830
-                //WriteObject(this, (object)null);
                 
-                // 20131108
                 WriteError(
                     this,
                     CmdletSignature(this) + "timeout expired for control with class: + '" +

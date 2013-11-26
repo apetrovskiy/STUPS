@@ -90,33 +90,20 @@ namespace UIAutomation.Commands
             if (null != _returnedWindows && _returnedWindows.Count > 0) {
                 
                 if (TestMode) {
+                    
                     WriteObject(this, !WaitNoWindow);
-
-                    /*
-                    if (this.WaitNoWindow) {
-                        this.WriteObject(this, false);
-                    } else {
-                        this.WriteObject(this, true);
-                    }
-                    */
-
+                    
                 } else {
+                    
                     WriteObject(this, _returnedWindows);
                 }
                 
             } else {
                 
                 if (TestMode) {
+                    
                     WriteObject(this, WaitNoWindow);
-
-                    /*
-                    if (this.WaitNoWindow) {
-                        this.WriteObject(this, true);
-                    } else {
-                        this.WriteObject(this, false);
-                    }
-                    */
-
+                    
                 } else {
                 
                     string name = string.Empty;
@@ -150,7 +137,6 @@ namespace UIAutomation.Commands
     
                     WriteError(
                         this,
-                        //"Failed to get window by:" + 
                         "Failed to get window in " + 
                         Timeout.ToString() +
                         " seconds by:" +

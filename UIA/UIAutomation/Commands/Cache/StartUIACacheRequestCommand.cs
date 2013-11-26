@@ -86,28 +86,12 @@ namespace UIAutomation.Commands
                 
                 if (CurrentData.CacheRequest != null) {
                     
-                    // 20131105
-                    //ErrorRecord err = 
-                    //    new ErrorRecord(
-                    //        new Exception("There is already active CacheRequest"),
-                    //        "cacheRequestIsOpen",
-                    //        ErrorCategory.InvalidOperation,
-                    //        CurrentData.CacheRequest);
-                    //err.ErrorDetails = 
-                    //    new ErrorDetails("There is already active CacheRequest. Please close it first");
-                    //WriteError(this, err, true);
-
                     WriteError(
                         this,
                         "There is already active CacheRequest. Please close it first",
                         "cacheRequestIsOpen",
                         ErrorCategory.InvalidOperation,
                         true);
-
-                    // TODO
-                    //this.WriteError();
-
-                    //
                 }
                 
                 CurrentData.CacheRequest = new CacheRequest {AutomationElementMode = AutomationElementMode.Full};
@@ -333,18 +317,7 @@ namespace UIAutomation.Commands
                 //WriteObject(this, returnObject);
             }
             catch (Exception eCacheRequest) {
-                //ErrorRecord err = 
-                //    new ErrorRecord(
-                //        new Exception("Unable to start cache request"),
-                //        "CacheRequestFailedToPush",
-                //        ErrorCategory.InvalidOperation,
-                //        null);
-                //err.ErrorDetails = 
-                //    new ErrorDetails(
-                //        "Failed to start a cache request\r\n" +
-                //        eCacheRequest.Message);
-                //WriteError(this, err, true);
-
+                
                 WriteError(
                     this,
                     "Unable to start cache request. " +
@@ -352,9 +325,6 @@ namespace UIAutomation.Commands
                     "CacheRequestFailedToPush",
                     ErrorCategory.InvalidOperation,
                     true);
-
-                // TODO
-                //this.WriteError();
             }
         }
     }

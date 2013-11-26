@@ -341,7 +341,7 @@ namespace UIAutomationTest.Commands.Convert
                 result);
         }
         
-        [Test] //[Test(Description="TBD")]
+        [Test]
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
@@ -371,7 +371,7 @@ namespace UIAutomationTest.Commands.Convert
                 result);
         }
         
-        [Test] //[Test(Description="TBD")]
+        [Test]
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]

@@ -109,10 +109,10 @@
     <Compile Include="Commands\Wizard\AddUIAWizardStepCommandTestFixture.cs" />
     <Compile Include="Commands\Wizard\NewUIAWizardCommandTestFixture.cs" />
     <Compile Include="Fakes\FakeFactory.cs" />
-    <Compile Include="Helpers\Inheritance\getAutomationElementsWithFindAllTestFixture.cs" />
+    <Compile Include="Helpers\Inheritance\GetAutomationElementsWithFindAllTestFixture.cs" />
     <Compile Include="Helpers\Inheritance\GetControlTestFixture.cs" />
     <Compile Include="Helpers\Inheritance\ReturnOnlyRightElementsTestFixture.cs" />
-    <Compile Include="Helpers\Inheritance\SearchByWildcardViaUIATestFixtrure.cs" />
+    <Compile Include="Helpers\Inheritance\SearchByExactConditionsViaUiaTestFixture.cs" />
     <Compile Include="Helpers\Inheritance\SearchByWildcardViaUIATestFixture.cs" />
     <Compile Include="Helpers\UnderlyingCode\elementOfPossibleControlTypeTestFixture.cs" />
     <Compile Include="Helpers\UnderlyingCode\GetAutomationElementsViaWildcards_FindAllTestFixture.cs" />

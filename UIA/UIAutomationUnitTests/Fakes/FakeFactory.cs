@@ -14,6 +14,8 @@ namespace UIAutomationUnitTests
     using UIAutomation;
     using NSubstitute;
     using System.Linq;
+    using System.Collections;
+    using System.Collections.Generic;
     
     /// <summary>
     /// Description of FakeFactory.
@@ -56,7 +58,7 @@ namespace UIAutomationUnitTests
             if (null != controlType) {
                 cmdlet.ControlType.Returns(
                     new[] {
-                        controlType.ProgrammaticName.Substring(controlType.ProgrammaticName.IndexOf('.') + 1)
+                        controlType.ProgrammaticName.Substring(12)
                     }
                    );
             }
@@ -67,7 +69,7 @@ namespace UIAutomationUnitTests
             return cmdlet;
         }
         
-        public static IMySuperWrapper GetElement_ForFindAll(IMySuperWrapper[] elements, AndCondition conditions)
+        public static IMySuperWrapper GetElement_ForFindAll(IEnumerable<IMySuperWrapper> elements, AndCondition conditions)
         {
             IMySuperWrapper element = Substitute.For<IMySuperWrapper>();
             IMySuperCollection descendants = ObjectsFactory.GetMySuperCollection(elements);

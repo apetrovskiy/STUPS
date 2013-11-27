@@ -28,6 +28,14 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         }
         
         #region helpers
+        /*
+        internal void SearchByExactConditionsViaUia(
+            GetControlCmdletBase cmdlet,
+            IMySuperWrapper inputObject,
+            AndCondition conditions,
+            // 20131126
+            ArrayList listOfColllectedResults)
+        */
         #endregion helpers
         
         #region //

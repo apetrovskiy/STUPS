@@ -1015,13 +1015,13 @@ namespace UIAutomation
         }
         
         /// <summary>
-        /// Checks that the -Value parameter matches the value ValuePattern returns
+        /// Checks that the -Value parameter matches the value ValuePattern of the element returns
         /// </summary>
-        /// <param name="item"></param>
-        /// <param name="textValue"></param>
-        /// <param name="viaWildcardOrRegex"></param>
-        /// <param name="wildcardValue"></param>
-        /// <param name="regexOptions"></param>
+        /// <param name="item">IMySuperWrapper element</param>
+        /// <param name="textValue">the -Value parameter</param>
+        /// <param name="viaWildcardOrRegex">true is wildcard, false is regexp</param>
+        /// <param name="wildcardValue">a wildcard object</param>
+        /// <param name="regexOptions">a regex options object</param>
         /// <returns></returns>
         protected internal bool CompareElementValueAndValueParameter(
             IMySuperWrapper item,
@@ -1043,7 +1043,6 @@ namespace UIAutomation
                 // usually this place never be reached
             }
             
-            // 20131122
             if (viaWildcardOrRegex) {
                 
                 result =

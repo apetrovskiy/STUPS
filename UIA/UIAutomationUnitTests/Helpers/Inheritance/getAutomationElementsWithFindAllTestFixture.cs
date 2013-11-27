@@ -1,5 +1,4 @@
-﻿using System;
-/*
+﻿/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
  * Date: 11/17/2013
@@ -10,6 +9,7 @@
 
 namespace UIAutomationUnitTests.Helpers.Inheritance
 {
+    using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;

@@ -2368,8 +2368,6 @@ namespace UIAutomation
             return resultElement;
         }
         
-        // 20131109
-        //private static AutomationElement getSheridanTreeItemFromTreeNode(
         private static IMySuperWrapper GetSheridanTreeItemFromTreeNode(
             CommonCmdletBase cmdlet,
             IntPtr hwndTreeView,

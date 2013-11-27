@@ -1,4 +1,5 @@
-﻿/*
+﻿using System.Management.Automation;
+/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
  * Date: 12/18/2012
@@ -37,7 +38,9 @@ namespace TmxUnitTests
         }
         
         #region TestSuite
+        // 20131127
         internal static ITestSuite GetNewTestSuite(
+        //internal static object GetNewTestSuite(
             string name,
             string id,
             string description)
@@ -60,10 +63,21 @@ namespace TmxUnitTests
                 new TmxNewTestSuiteCommand(cmdlet);
             command.Execute();
             
+            // 20131127
             return (ITestSuite)(object)PSTestLib.UnitTestOutput.LastOutput[0];
+//            var output = (object)PSTestLib.UnitTestOutput.LastOutput[0];
+//            if (output is ErrorRecord) {
+//                return (ErrorRecord)return (ITestSuite)(object)PSTestLib.UnitTestOutput.LastOutput[0];
+//            }
+//            if (output is ITestSuite) {
+//                return (ITestSuite)return (ITestSuite)(object)PSTestLib.UnitTestOutput.LastOutput[0];
+//            }
+//            return output;
         }
         
+        // 20131127
         internal static ITestSuite GetExistingTestSuite(
+        //internal static object GetExistingTestSuite(
             string name,
             string id)
         {
@@ -82,7 +96,23 @@ namespace TmxUnitTests
                 new TmxOpenTestSuiteCommand(cmdlet);
             command.Execute();
             
+Console.WriteLine("gets 0003");
+            
+            // 20131127
             return (ITestSuite)(object)PSTestLib.UnitTestOutput.LastOutput[0];
+//            var output = (object)PSTestLib.UnitTestOutput.LastOutput[0];
+//            
+//Console.WriteLine("gets 0004");
+//            
+//            if (output is ErrorRecord) {
+//Console.WriteLine("gets 0005");
+//                return (ErrorRecord)output;
+//            }
+//            if (output is ITestSuite) {
+//Console.WriteLine("gets 0006");
+//                return (ITestSuite)output;
+//            }
+//            return output;
         }
         
         internal static string GetTestScenarioStatus(bool skipAutomatic)

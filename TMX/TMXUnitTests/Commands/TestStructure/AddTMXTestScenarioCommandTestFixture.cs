@@ -138,6 +138,8 @@ namespace TmxUnitTests.Commands.TestStructure
         {
             string expectedResultName = "scenario";
             ITestSuite testSuite =
+                // 20131127
+                //(ITestSuite)
                 UnitTestingHelper.GetNewTestSuite("suite", "suite id", string.Empty);
             ITestScenario testScenario =
                 UnitTestingHelper.AddTestScenario(testSuite, expectedResultName, string.Empty, string.Empty, string.Empty, string.Empty);

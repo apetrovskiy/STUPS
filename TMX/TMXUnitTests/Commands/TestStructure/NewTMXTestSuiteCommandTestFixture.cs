@@ -139,17 +139,24 @@ namespace TmxUnitTests.Commands.TestStructure
             UnitTestingHelper.GetNewTestSuite(expectedResultName, expectedResultId, string.Empty);
             UnitTestingHelper.GetNewTestSuite(expectedResultName, expectedResultId, string.Empty);
             
+Console.WriteLine("00000000000000003");
+            
             // checks the first test suite
             Assert.AreEqual(
                 expectedResultName,
                 //((ITestSuite)CommonCmdletBase.UnitTestOutput[CommonCmdletBase.UnitTestOutput.Count - 1]).Name);
                 ((ITestSuite)(object)PSTestLib.UnitTestOutput.LastOutput[0]).Name);
             
+Console.WriteLine("00000000000000004");
+            
             // checks how many test suites
             Console.WriteLine("Output in the UnitTestOutput object");
             Assert.AreEqual( // this is a technical solution
                 1,
                 PSTestLib.UnitTestOutput.Count);
+            
+Console.WriteLine("00000000000000005");
+            
             Console.WriteLine("Test Suites counter");
             Assert.AreEqual( // this is a logical solution
                 1,

@@ -41,7 +41,9 @@ namespace UIAutomationTest.Commands.Select
                 // 20131118
                 // object -> Condition
                 //cmdlet.GetControlConditions(cmdlet, controlType, ((GetControlCmdletBase)cmdlet).CaseSensitive, true); // as AndCondition;
-                cmdlet.GetControlConditions(cmdlet, controlType, ((GetControlCmdletBase)cmdlet).CaseSensitive, true) as AndCondition;
+                // 20131128
+                // cmdlet.GetControlConditionsForWildcardSearch(cmdlet, controlType, ((GetControlCmdletBase)cmdlet).CaseSensitive, true) as AndCondition;
+                cmdlet.GetControlConditionsForWildcardSearch(cmdlet, controlType, ((GetControlCmdletBase)cmdlet).CaseSensitive);
             conditions = ((AndCondition)condition).GetConditions();
             foreach (Condition cond in conditions) {
                 if ((cond as PropertyCondition) != null) {

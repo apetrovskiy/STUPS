@@ -36,26 +36,26 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         }
         
         #region helpers
-        private ArrayList GetResultArrayList(GetControlCollectionCmdletBase cmdlet, IMySuperWrapper element, Condition condition)
-        {
-            GetControlCollectionCmdletBase cmdletDerived = new GetControlCollectionCmdletBase();
-            
-            ArrayList resultList =
-                cmdletDerived.GetAutomationElementsWithFindAll(
-                    element,
-                    cmdlet.Name,
-                    cmdlet.AutomationId,
-                    cmdlet.Class,
-                    cmdlet.Value,
-                    cmdlet.ControlType,
-                    condition,
-                    false,
-                    false,
-                    false,
-                    true);
-            
-            return resultList;
-        }
+//        private ArrayList GetResultArrayList(GetControlCollectionCmdletBase cmdlet, IMySuperWrapper element, Condition condition)
+//        {
+//            GetControlCollectionCmdletBase cmdletDerived = new GetControlCollectionCmdletBase();
+//            
+//            ArrayList resultList =
+//                cmdletDerived.GetAutomationElementsWithFindAll(
+//                    element,
+//                    cmdlet.Name,
+//                    cmdlet.AutomationId,
+//                    cmdlet.Class,
+//                    cmdlet.Value,
+//                    cmdlet.ControlType,
+//                    condition,
+//                    false,
+//                    false,
+//                    false,
+//                    true);
+//            
+//            return resultList;
+//        }
         
         private void TestParametersAgainstCollection(
             ControlType controlType,
@@ -74,15 +74,19 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             
             var cmdlet =
                 FakeFactory.Get_GetControlCollectionCmdletBase(controlType, name, automationId, className, txtValue);
+            // 20131128
+            //AndCondition condition =
+            //    cmdlet.GetControlConditionsForWildcardSearch(cmdlet, controlTypeString, false, true) as AndCondition;
             AndCondition condition =
-                cmdlet.GetControlConditions(cmdlet, controlTypeString, false, true) as AndCondition;
+                cmdlet.GetControlConditionsForWildcardSearch(cmdlet, controlTypeString, false);
             IMySuperWrapper element =
                 FakeFactory.GetElement_ForFindAll(
                     collection,
                     condition);
             
             // Act
-            ArrayList resultList = GetResultArrayList(cmdlet, element, condition);
+            //ArrayList resultList = GetResultArrayList(cmdlet, element, condition);
+            ArrayList resultList = RealCodeCaller.GetResultArrayList_ViaWildcards(cmdlet, element, condition);
             
             // Assert
             Assert.Count(expectedNumberOfElements, resultList);

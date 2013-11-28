@@ -30,14 +30,12 @@ namespace UIAutomationUnitTests
         {
         }
         
-        // 20131118
-        // object -> Condition
-        private AndCondition ResultCondition { get; set; }
-        //private Condition ResultCondition { get; set; }
-
-        private void getConditions(string name, string automationId, string className, string controlType)
+        private AndCondition ResultAndCondition { get; set; }
+        private OrCondition ResultOrCondition { get; set; }
+        
+        private void getAndConditions(string name, string automationId, string className, string controlType)
         {
-            ResultCondition = null;
+            ResultAndCondition = null;
             
             GetControlCmdletBase cmdlet =
                 new GetControlCmdletBase {Name = name, AutomationId = automationId, Class = className, CaseSensitive = false };
@@ -45,21 +43,35 @@ namespace UIAutomationUnitTests
             CommonCmdletBase common =
                 new CommonCmdletBase();
             
-            ResultCondition =
-                // 20131118
-                // object -> Condition
-                (common.GetControlConditions(cmdlet, controlType, cmdlet.CaseSensitive, true) as AndCondition);
-                //common.GetControlConditions(cmdlet, controlType, cmdlet.CaseSensitive, true);
+            // 20131128
+            //ResultAndCondition =
+            //    (common.GetControlConditionsForWildcardSearch(cmdlet, controlType, cmdlet.CaseSensitive, true) as AndCondition);
+            ResultAndCondition =
+                (common.GetControlConditionsForWildcardSearch(cmdlet, controlType, cmdlet.CaseSensitive));
+        }
+        
+        private void getOrConditions(string searchString, string controlType)
+        {
+            ResultOrCondition = null;
+            
+            GetControlCmdletBase cmdlet =
+                new GetControlCmdletBase {ContainsText = searchString };
+
+            CommonCmdletBase common =
+                new CommonCmdletBase();
+            
+            ResultOrCondition =
+                (common.GetControlConditionsForExactSearch(cmdlet, controlType, cmdlet.CaseSensitive, false) as OrCondition);
         }
         
         [Test]
-        [Description("CommonCmdletBase.GetControlConditions(HasControlInputCmdletBase, string)")]
+        [Description("CommonCmdletBase.GetControlConditionsForWildcardSearch(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void ControlType()
         {
-            getConditions(null, null, null, "button");
+            getAndConditions(null, null, null, "button");
 
-            PropertyCondition propertyCondition = ResultCondition.GetConditions()[0] as PropertyCondition;
+            PropertyCondition propertyCondition = ResultAndCondition.GetConditions()[0] as PropertyCondition;
             if (propertyCondition != null)
                 Assert.AreEqual(
                     System.Windows.Automation.ControlType.Button.Id,
@@ -72,136 +84,136 @@ namespace UIAutomationUnitTests
 
             Assert.AreEqual(
                 Condition.TrueCondition,
-                (ResultCondition.GetConditions()[1]));
+                (ResultAndCondition.GetConditions()[1]));
            
            //Assert.ForAll(ResultCondition.GetConditions(), x => x is PropertyCondition | ((x as PropertyCondition).Value as ControlType).Id == System.Windows.Automation.ControlType.Button.Id | (x as Condition) == Condition.TrueCondition);
         }
         
         [Test]
-        [Description("CommonCmdletBase.GetControlConditions(HasControlInputCmdletBase, string)")]
+        [Description("CommonCmdletBase.GetControlConditionsForWildcardSearch(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void ControlType_Name()
         {
             const string expectedName = "name1";
             
-            getConditions(expectedName, null, null, "button");
+            getAndConditions(expectedName, null, null, "button");
             
             Assert.AreEqual(
                 System.Windows.Automation.ControlType.Button.Id,
-                (ResultCondition.GetConditions()[1] as PropertyCondition).Value);
+                (ResultAndCondition.GetConditions()[1] as PropertyCondition).Value);
             
             Assert.AreEqual(
                 expectedName,
-                (ResultCondition.GetConditions()[0] as PropertyCondition).Value);
+                (ResultAndCondition.GetConditions()[0] as PropertyCondition).Value);
         }
         
         [Test]
-        [Description("CommonCmdletBase.GetControlConditions(HasControlInputCmdletBase, string)")]
+        [Description("CommonCmdletBase.GetControlConditionsForWildcardSearch(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void ControlType_AutomationId()
         {
             const string expectedAutomationId = "au1";
             
-            getConditions(null, expectedAutomationId, null, "button");
+            getAndConditions(null, expectedAutomationId, null, "button");
             
             Assert.AreEqual(
                 System.Windows.Automation.ControlType.Button.Id,
-                (ResultCondition.GetConditions()[1] as PropertyCondition).Value);
+                (ResultAndCondition.GetConditions()[1] as PropertyCondition).Value);
             
             Assert.AreEqual(
                 expectedAutomationId,
-                (ResultCondition.GetConditions()[0] as PropertyCondition).Value);
+                (ResultAndCondition.GetConditions()[0] as PropertyCondition).Value);
         }
         
         [Test]
-        [Description("CommonCmdletBase.GetControlConditions(HasControlInputCmdletBase, string)")]
+        [Description("CommonCmdletBase.GetControlConditionsForWildcardSearch(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void ControlType_ClassName()
         {
             const string expectedClassName = "className1";
             
-            getConditions(null, null, expectedClassName, "button");
+            getAndConditions(null, null, expectedClassName, "button");
 
             Assert.AreEqual(
                 expectedClassName,
-                (ResultCondition.GetConditions()[0] as PropertyCondition).Value);
+                (ResultAndCondition.GetConditions()[0] as PropertyCondition).Value);
             
             Assert.AreEqual(
                 System.Windows.Automation.ControlType.Button.Id,
-                (ResultCondition.GetConditions()[1] as PropertyCondition).Value);
+                (ResultAndCondition.GetConditions()[1] as PropertyCondition).Value);
         }
         
         [Test]
-        [Description("CommonCmdletBase.GetControlConditions(HasControlInputCmdletBase, string)")]
+        [Description("CommonCmdletBase.GetControlConditionsForWildcardSearch(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void ControlType_Name_AutomationId()
         {
             const string expectedName = "name1";
             const string expectedAutomationId = "au1";
             
-            getConditions(expectedName, expectedAutomationId, null, "button");
+            getAndConditions(expectedName, expectedAutomationId, null, "button");
 
             Assert.AreEqual(
                 System.Windows.Automation.ControlType.Button.Id,
-                (ResultCondition.GetConditions()[0] as PropertyCondition).Value);
+                (ResultAndCondition.GetConditions()[0] as PropertyCondition).Value);
             
             Assert.AreEqual(
                 expectedName,
-                ((ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
+                ((ResultAndCondition.GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
 
             Assert.AreEqual(
                 expectedAutomationId,
-                ((ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
+                ((ResultAndCondition.GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
         }
         
         [Test]
-        [Description("CommonCmdletBase.GetControlConditions(HasControlInputCmdletBase, string)")]
+        [Description("CommonCmdletBase.GetControlConditionsForWildcardSearch(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void ControlType_Name_ClassName()
         {
             const string expectedName = "name1";
             const string expectedClassName = "className1";
             
-            getConditions(expectedName, null, expectedClassName, "button");
+            getAndConditions(expectedName, null, expectedClassName, "button");
 
             Assert.AreEqual(
                 expectedClassName,
-                ((ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
+                ((ResultAndCondition.GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
 
             Assert.AreEqual(
                 System.Windows.Automation.ControlType.Button.Id,
-                (ResultCondition.GetConditions()[0] as PropertyCondition).Value);
+                (ResultAndCondition.GetConditions()[0] as PropertyCondition).Value);
             
             Assert.AreEqual(
                 expectedName,
-                ((ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
+                ((ResultAndCondition.GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
         }
         
         [Test]
-        [Description("CommonCmdletBase.GetControlConditions(HasControlInputCmdletBase, string)")]
+        [Description("CommonCmdletBase.GetControlConditionsForWildcardSearch(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void ControlType_AutomationId_ClassName()
         {
             const string expectedAutomationId = "au1";
             const string expectedClassName = "className1";
             
-            getConditions(null, expectedAutomationId, expectedClassName, "button");
+            getAndConditions(null, expectedAutomationId, expectedClassName, "button");
 
             Assert.AreEqual(
                 expectedClassName,
-                ((ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
+                ((ResultAndCondition.GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
 
             Assert.AreEqual(
                 System.Windows.Automation.ControlType.Button.Id,
-                (ResultCondition.GetConditions()[0] as PropertyCondition).Value);
+                (ResultAndCondition.GetConditions()[0] as PropertyCondition).Value);
             
             Assert.AreEqual(
                 expectedAutomationId,
-                ((ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
+                ((ResultAndCondition.GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
         }
         
         [Test]
-        [Description("CommonCmdletBase.GetControlConditions(HasControlInputCmdletBase, string)")]
+        [Description("CommonCmdletBase.GetControlConditionsForWildcardSearch(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void ControlType_Name_AutomationId_ClassName()
         {
@@ -209,140 +221,140 @@ namespace UIAutomationUnitTests
             const string expectedAutomationId = "au1";
             const string expectedClassName = "className1";
             
-            getConditions(expectedName, expectedAutomationId, expectedClassName, "button");
+            getAndConditions(expectedName, expectedAutomationId, expectedClassName, "button");
 
             Assert.AreEqual(
                 expectedClassName,
-                ((ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
+                ((ResultAndCondition.GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
 
             Assert.AreEqual(
                 System.Windows.Automation.ControlType.Button.Id,
-                (ResultCondition.GetConditions()[0] as PropertyCondition).Value);
+                (ResultAndCondition.GetConditions()[0] as PropertyCondition).Value);
             
             Assert.AreEqual(
                 expectedName,
-                ((ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
+                ((ResultAndCondition.GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
             
             Assert.AreEqual(
                 expectedAutomationId,
-                ((ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[2] as PropertyCondition).Value);
+                ((ResultAndCondition.GetConditions()[1] as AndCondition).GetConditions()[2] as PropertyCondition).Value);
         }
 
         // =========================
         
         [Test]
-        [Description("CommonCmdletBase.GetControlConditions(HasControlInputCmdletBase, string)")]
+        [Description("CommonCmdletBase.GetControlConditionsForWildcardSearch(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void No_conditions()
         {
-            getConditions(null, null, null, "");
+            getAndConditions(null, null, null, "");
             
             Assert.AreEqual(
                 Condition.TrueCondition,
-                (ResultCondition.GetConditions()[0]));
+                (ResultAndCondition.GetConditions()[0]));
         }
         
         [Test]
-        [Description("CommonCmdletBase.GetControlConditions(HasControlInputCmdletBase, string)")]
+        [Description("CommonCmdletBase.GetControlConditionsForWildcardSearch(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void Name()
         {
             const string expectedName = "name1";
             
-            getConditions(expectedName, null, null, "");
+            getAndConditions(expectedName, null, null, "");
             
             Assert.AreEqual(
                 expectedName,
-                (ResultCondition.GetConditions()[0] as PropertyCondition).Value);
+                (ResultAndCondition.GetConditions()[0] as PropertyCondition).Value);
         }
         
         [Test]
-        [Description("CommonCmdletBase.GetControlConditions(HasControlInputCmdletBase, string)")]
+        [Description("CommonCmdletBase.GetControlConditionsForWildcardSearch(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void AutomationId()
         {
             const string expectedAutomationId = "au1";
             
-            getConditions(null, expectedAutomationId, null, "");
+            getAndConditions(null, expectedAutomationId, null, "");
             
             Assert.AreEqual(
                 expectedAutomationId,
-                (ResultCondition.GetConditions()[0] as PropertyCondition).Value);
+                (ResultAndCondition.GetConditions()[0] as PropertyCondition).Value);
         }
         
         [Test]
-        [Description("CommonCmdletBase.GetControlConditions(HasControlInputCmdletBase, string)")]
+        [Description("CommonCmdletBase.GetControlConditionsForWildcardSearch(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void ClassName()
         {
             const string expectedClassName = "className1";
             
-            getConditions(null, null, expectedClassName, "");
+            getAndConditions(null, null, expectedClassName, "");
 
             Assert.AreEqual(
                 expectedClassName,
-                (ResultCondition.GetConditions()[0] as PropertyCondition).Value);
+                (ResultAndCondition.GetConditions()[0] as PropertyCondition).Value);
         }
         
         [Test]
-        [Description("CommonCmdletBase.GetControlConditions(HasControlInputCmdletBase, string)")]
+        [Description("CommonCmdletBase.GetControlConditionsForWildcardSearch(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void Name_AutomationId()
         {
             const string expectedName = "name1";
             const string expectedAutomationId = "au1";
             
-            getConditions(expectedName, expectedAutomationId, null, "");
+            getAndConditions(expectedName, expectedAutomationId, null, "");
             
             Assert.AreEqual(
                 expectedName,
-                ((ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
+                ((ResultAndCondition.GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
 
             Assert.AreEqual(
                 expectedAutomationId,
-                ((ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
+                ((ResultAndCondition.GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
         }
         
         [Test]
-        [Description("CommonCmdletBase.GetControlConditions(HasControlInputCmdletBase, string)")]
+        [Description("CommonCmdletBase.GetControlConditionsForWildcardSearch(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void Name_ClassName()
         {
             const string expectedName = "name1";
             const string expectedClassName = "className1";
             
-            getConditions(expectedName, null, expectedClassName, "");
+            getAndConditions(expectedName, null, expectedClassName, "");
 
             Assert.AreEqual(
                 expectedClassName,
-                ((ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
+                ((ResultAndCondition.GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
 
             Assert.AreEqual(
                 expectedName,
-                ((ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
+                ((ResultAndCondition.GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
         }
         
         [Test]
-        [Description("CommonCmdletBase.GetControlConditions(HasControlInputCmdletBase, string)")]
+        [Description("CommonCmdletBase.GetControlConditionsForWildcardSearch(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void AutomationId_ClassName()
         {
             const string expectedAutomationId = "au1";
             const string expectedClassName = "className1";
             
-            getConditions(null, expectedAutomationId, expectedClassName, "");
+            getAndConditions(null, expectedAutomationId, expectedClassName, "");
 
             Assert.AreEqual(
                 expectedClassName,
-                ((ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
+                ((ResultAndCondition.GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
 
             Assert.AreEqual(
                 expectedAutomationId,
-                ((ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
+                ((ResultAndCondition.GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
         }
         
         [Test]
-        [Description("CommonCmdletBase.GetControlConditions(HasControlInputCmdletBase, string)")]
+        [Description("CommonCmdletBase.GetControlConditionsForWildcardSearch(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void Name_AutomationId_ClassName()
         {
@@ -350,20 +362,68 @@ namespace UIAutomationUnitTests
             const string expectedAutomationId = "au1";
             const string expectedClassName = "className1";
             
-            getConditions(expectedName, expectedAutomationId, expectedClassName, "");
+            getAndConditions(expectedName, expectedAutomationId, expectedClassName, "");
             
             Assert.AreEqual(
                 expectedClassName,
-                ((ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
+                ((ResultAndCondition.GetConditions()[1] as AndCondition).GetConditions()[0] as PropertyCondition).Value);
 
             Assert.AreEqual(
                 expectedName,
-                ((ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
+                ((ResultAndCondition.GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
             
             Assert.AreEqual(
                 expectedAutomationId,
-                ((ResultCondition.GetConditions()[1] as AndCondition).GetConditions()[2] as PropertyCondition).Value);
+                ((ResultAndCondition.GetConditions()[1] as AndCondition).GetConditions()[2] as PropertyCondition).Value);
         }
         
+        // ======================================================================================================
+        // OrCondition (ContainsText)
+        // ======================================================================================================
+        [Test]
+        //[Description("CommonCmdletBase.GetControlConditionsForExactSearch(HasControlInputCmdletBase, string)")]
+        [Category("Fast")]
+        public void ContainsText_1()
+        {
+            const string expectedText = "text";
+            string controlTypeText = string.Empty;
+            
+            getOrConditions(expectedText, controlTypeText);
+            
+            Assert.AreEqual(
+                expectedText,
+                ((ResultOrCondition.GetConditions()[1] as OrCondition).GetConditions()[0] as PropertyCondition).Value);
+
+            Assert.AreEqual(
+                expectedText,
+                ((ResultOrCondition.GetConditions()[1] as OrCondition).GetConditions()[1] as PropertyCondition).Value);
+            
+            Assert.AreEqual(
+                expectedText,
+                ((ResultOrCondition.GetConditions()[1] as OrCondition).GetConditions()[2] as PropertyCondition).Value);
+        }
+        
+        [Test]
+        //[Description("CommonCmdletBase.GetControlConditionsForExactSearch(HasControlInputCmdletBase, string)")]
+        [Category("Fast")]
+        public void ContainsTextControlType_1()
+        {
+            const string expectedText = "text";
+            const string controlTypeText = "button";
+            
+            getOrConditions(expectedText, controlTypeText);
+            
+            Assert.AreEqual(
+                expectedText,
+                ((ResultOrCondition.GetConditions()[1] as OrCondition).GetConditions()[0] as PropertyCondition).Value);
+
+            Assert.AreEqual(
+                expectedText,
+                ((ResultOrCondition.GetConditions()[1] as OrCondition).GetConditions()[1] as PropertyCondition).Value);
+            
+            Assert.AreEqual(
+                expectedText,
+                ((ResultOrCondition.GetConditions()[1] as OrCondition).GetConditions()[2] as PropertyCondition).Value);
+        }
     }
 }

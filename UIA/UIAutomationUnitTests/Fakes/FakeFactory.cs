@@ -40,6 +40,7 @@ namespace UIAutomationUnitTests
         public static IMySuperWrapper GetAutomationElement(ControlType controlType, string name, string automationId, string className, string txtValue)
         {
             IMySuperWrapper element = Substitute.For<IMySuperWrapper>();
+            element.Current.ProcessId.Returns(333);
             element.Current.ControlType.Returns(controlType);
             element.Current.Name.Returns(!string.IsNullOrEmpty(name) ? name : string.Empty);
             element.Current.AutomationId.Returns(!string.IsNullOrEmpty(automationId) ? automationId : string.Empty);
@@ -69,12 +70,40 @@ namespace UIAutomationUnitTests
             return cmdlet;
         }
         
-        public static IMySuperWrapper GetElement_ForFindAll(IEnumerable<IMySuperWrapper> elements, AndCondition conditions)
+        public static GetControlCollectionCmdletBase Get_GetControlCollectionCmdletBase(ControlType controlType, string searchString)
         {
-            IMySuperWrapper element = Substitute.For<IMySuperWrapper>();
+            GetControlCollectionCmdletBase cmdlet = Substitute.For<GetControlCollectionCmdletBase>();
+            if (null != controlType) {
+                cmdlet.ControlType.Returns(
+                    new[] {
+                        controlType.ProgrammaticName.Substring(12)
+                    }
+                   );
+            }
+            cmdlet.ContainsText.Returns(!string.IsNullOrEmpty(searchString) ? searchString : string.Empty);
+            return cmdlet;
+        }
+        
+        // 20131128
+        // public static IMySuperWrapper GetElement_ForFindAll(IEnumerable<IMySuperWrapper> elements, AndCondition conditions)
+        public static IMySuperWrapper GetElement_ForFindAll(IEnumerable<IMySuperWrapper> elements, Condition conditions)
+        {
+            //IMySuperWrapper element = Substitute.For<IMySuperWrapper>();
+            IMySuperWrapper element =
+                GetAutomationElement(ControlType.Pane, string.Empty, string.Empty, string.Empty, string.Empty);
             IMySuperCollection descendants = ObjectsFactory.GetMySuperCollection(elements);
             
-            foreach (Condition cond in conditions.GetConditions()) {
+            // 20131128
+            Condition[] condCollection = null;
+            if (conditions is AndCondition) {
+                condCollection = (conditions as AndCondition).GetConditions();
+            }
+            if (conditions is OrCondition) {
+                condCollection = (conditions as OrCondition).GetConditions();
+            }
+            // 20131128
+            // foreach (Condition cond in conditions.GetConditions()) {
+            foreach (Condition cond in condCollection) {
                 
                 if (cond is PropertyCondition &&
                     Equals((cond as PropertyCondition).Property, AutomationElement.NameProperty)) {

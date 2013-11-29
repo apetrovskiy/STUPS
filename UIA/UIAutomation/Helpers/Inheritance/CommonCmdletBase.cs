@@ -1649,6 +1649,213 @@ namespace UIAutomation
             catch {}
         }
         
+        protected internal AndCondition GetAndCondition(List<PropertyCondition> propertyCollection)
+        {
+            if (null == propertyCollection) return null;
+            AndCondition resultCondition = new AndCondition(propertyCollection.ToArray());
+            return resultCondition;
+        }
+        
+        protected internal OrCondition GetOrCondition(List<PropertyCondition> propertyCollection)
+        {
+            if (null == propertyCollection) return null;
+            OrCondition resultCondition = new OrCondition(propertyCollection.ToArray());
+            return resultCondition;
+        }
+        
+        protected internal Condition GetControlTypeCondition(string[] controlTypeNames)
+        {
+            if (null == controlTypeNames) return null;
+            
+Console.WriteLine("gctc 001");
+            
+            List<PropertyCondition> controlTypeCollection =
+                new List<PropertyCondition>();
+            foreach (string controlTypeName in controlTypeNames) {
+                
+Console.WriteLine("gctc 003");
+                
+                controlTypeCollection.Add(
+                    new PropertyCondition(
+                        AutomationElement.ControlTypeProperty,
+                        UiaHelper.GetControlTypeByTypeName(controlTypeName)));
+                        
+Console.WriteLine("gctc 004");
+                        
+            }
+            
+Console.WriteLine("gctc 005");
+            
+            if (1 == controlTypeCollection.Count) {
+    
+Console.WriteLine("gctc 006");
+                return controlTypeCollection[0];
+            } else {
+Console.WriteLine("gctc 007");
+                // return new OrCondition(controlTypeCollection.ToArray());
+                return GetOrCondition(controlTypeCollection);
+            }
+        }
+        
+        protected internal Condition GetTextSearchCondition(string searchString, string[] controlTypeNames, bool caseSensitive1)
+        {
+            if (string.IsNullOrEmpty(searchString)) return null;
+            
+Console.WriteLine("gesc 001");
+            
+            PropertyConditionFlags flags =
+                caseSensitive1 ? PropertyConditionFlags.None : PropertyConditionFlags.IgnoreCase;
+            
+Console.WriteLine("gesc 002");
+            
+            OrCondition searchStringCondition =
+                new OrCondition(
+                    new PropertyCondition(
+                        AutomationElement.AutomationIdProperty,
+                        searchString,
+                        flags),
+                    new PropertyCondition(
+                        AutomationElement.NameProperty,
+                        searchString,
+                        flags),
+                    new PropertyCondition(
+                        AutomationElement.ClassNameProperty,
+                        searchString,
+                        flags),
+                    new PropertyCondition(
+                        ValuePattern.ValueProperty,
+                        searchString,
+                        flags));
+            
+Console.WriteLine("gesc 003");
+            
+            if (null == controlTypeNames || 0 == controlTypeNames.Length) return searchStringCondition;
+            
+Console.WriteLine("gesc 004");
+            
+            Condition controlTypeCondition =
+                GetControlTypeCondition(controlTypeNames);
+            
+Console.WriteLine("gesc 005");
+            
+            if (null == controlTypeCondition) return searchStringCondition;
+            
+Console.WriteLine("gesc 006");
+            
+            AndCondition resultCondition =
+                new AndCondition(
+                    new Condition[] {
+                        searchStringCondition,
+                        controlTypeCondition
+                    });
+            
+Console.WriteLine("gesc 007");
+            
+            return resultCondition;
+        }
+        
+        protected internal Condition GetExactSearchCondition(GetControlCmdletBase cmdlet)
+        {
+            PropertyConditionFlags flags =
+                cmdlet.CaseSensitive ? PropertyConditionFlags.None : PropertyConditionFlags.IgnoreCase;
+            
+Console.WriteLine("gwsc 001");
+            
+            Condition controlTypeCondition = null;
+            if (null != cmdlet.ControlType && 0 < cmdlet.ControlType.Length) {
+                
+Console.WriteLine("gwsc 002");
+                
+                controlTypeCondition =
+                    GetControlTypeCondition(
+                        cmdlet.ControlType);
+                
+Console.WriteLine("gwsc 003");
+                
+            }
+            
+            List<PropertyCondition> propertyCollection =
+                new List<PropertyCondition>();
+            if (!string.IsNullOrEmpty(cmdlet.Name)) {
+                
+Console.WriteLine("gwsc 004");
+                
+                propertyCollection.Add(
+                    new PropertyCondition(
+                        AutomationElement.NameProperty,
+                        cmdlet.Name));
+            }
+            if (!string.IsNullOrEmpty(cmdlet.AutomationId)) {
+                
+Console.WriteLine("gwsc 005");
+                
+                propertyCollection.Add(
+                    new PropertyCondition(
+                        AutomationElement.AutomationIdProperty,
+                        cmdlet.AutomationId));
+            }
+            if (!string.IsNullOrEmpty(cmdlet.Class)) {
+                
+Console.WriteLine("gwsc 006");
+                
+                propertyCollection.Add(
+                    new PropertyCondition(
+                        AutomationElement.ClassNameProperty,
+                        cmdlet.Class));
+            }
+            if (!string.IsNullOrEmpty(cmdlet.Value)) {
+                
+Console.WriteLine("gwsc 007");
+                
+                propertyCollection.Add(
+                    new PropertyCondition(
+                        ValuePattern.ValueProperty,
+                        cmdlet.Value));
+            }
+            
+Console.WriteLine("gwsc 008");
+            
+//            Condition propertyCondition =
+//                0 == propertyCollection.Count ? null : (
+//                    1 == propertyCollection.Count ? propertyCollection[0] : (Condition)new AndCondition(
+//                        propertyCollection.ToArray())
+//                   );
+
+            Condition propertyCondition =
+                0 == propertyCollection.Count ? null : (
+                    1 == propertyCollection.Count ? propertyCollection[0] : (Condition)GetAndCondition(propertyCollection)
+                   );
+            
+//            Condition resultCondition =
+//                null == controlTypeCondition ? (propertyCondition ?? Condition.TrueCondition) : new AndCondition(
+//                    new Condition[] {
+//                        propertyCondition,
+//                        controlTypeCondition
+//                    });
+            
+Console.WriteLine("gwsc 009");
+if (null == propertyCondition) {
+    Console.WriteLine("null == propertyCondition");
+}
+if (propertyCondition is PropertyCondition) {
+    Console.WriteLine("propertyCondition is PropertyCondition");
+}
+            
+            if (null == propertyCondition) {
+Console.WriteLine("gwsc 010");
+                return controlTypeCondition;
+            } else {
+Console.WriteLine("gwsc 011");
+                return null == controlTypeCondition ? propertyCondition : new AndCondition(
+                    new Condition[] {
+                        propertyCondition,
+                        controlTypeCondition
+                    });
+            }
+            
+//            return resultCondition;
+        }
+        
         protected internal ArrayList GetControl(GetControlCmdletBase cmdlet)
         {
             try {
@@ -1656,9 +1863,15 @@ namespace UIAutomation
                 ResultArrayListOfControls = new ArrayList();
                 
                 #region conditions
-                AndCondition conditions = null;
-                AndCondition conditionsForWildCards = null;
-                AndCondition conditionsForTextSearch = null;
+                // 20131128
+                // AndCondition conditions = null;
+                Condition conditions = null;
+                // 20131128
+                // AndCondition conditionsForWildCards = null;
+                Condition conditionsForWildCards = null;
+                // 20131128
+                // AndCondition conditionsForTextSearch = null;
+                Condition conditionsForTextSearch = null;
                 
                 GetControlCmdletBase tempCmdlet =
                     new GetControlCmdletBase {ControlType = cmdlet.ControlType};
@@ -1669,12 +1882,17 @@ namespace UIAutomation
                     notTextSearch = false;
                     
                     // 20131128
+//                    conditionsForTextSearch =
+//                        GetControlConditionsForExactSearch(
+//                            tempCmdlet,
+//                            tempCmdlet.ControlType,
+//                            cmdlet.CaseSensitive,
+//                            false) as AndCondition;
                     conditionsForTextSearch =
-                        GetControlConditionsForExactSearch(
-                            tempCmdlet,
-                            tempCmdlet.ControlType,
-                            cmdlet.CaseSensitive,
-                            false) as AndCondition;
+                        GetTextSearchCondition(
+                            cmdlet.ContainsText,
+                            cmdlet.ControlType,
+                            cmdlet.CaseSensitive);
                     /*
                     conditionsForTextSearch =
                         GetControlConditionsForWildcardSearch(
@@ -1685,26 +1903,34 @@ namespace UIAutomation
                     */
                     
                     // display conditions for text search
-                    WriteVerbose(cmdlet, "these conditions are used for text search:");
-                    DisplayConditions(cmdlet, conditionsForTextSearch, "for text search");
+                    // WriteVerbose(cmdlet, "these conditions are used for text search:");
+                    // DisplayConditions(cmdlet, conditionsForTextSearch, "for text search");
 
                 } else {
                     
                     // 20131128
                     // conditions = GetControlConditionsForWildcardSearch(cmdlet, cmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive, true) as AndCondition;
-                    conditions = GetControlConditionsForWildcardSearch(cmdlet, cmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive);
-                    WriteVerbose(cmdlet, "these conditions are used for an exact search:");
-                    DisplayConditions(cmdlet, conditions, "for exact search");
+                    // 20131128
+                    // conditions = GetControlConditionsForWildcardSearch(cmdlet, cmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive);
+                    conditions = GetExactSearchCondition(cmdlet);
+                    // WriteVerbose(cmdlet, "these conditions are used for an exact search:");
+                    // DisplayConditions(cmdlet, conditions, "for exact search");
                     
                     // 20131128
                     //conditionsForWildCards =
                     //    GetControlConditionsForWildcardSearch(tempCmdlet, tempCmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive, true) as AndCondition;
+                    // 20131128
+                    // conditionsForWildCards =
+                    //     GetControlConditionsForWildcardSearch(tempCmdlet, tempCmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive);
+                    //conditionsForWildCards =
+                    //    GetExactSearchCondition(cmdlet);
+                    // 20131129
                     conditionsForWildCards =
-                        GetControlConditionsForWildcardSearch(tempCmdlet, tempCmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive);
+                        GetControlConditionsForWildcardSearch(tempCmdlet, (tempCmdlet.ControlType[0] ?? string.Empty), ((GetControlCmdletBase)cmdlet).CaseSensitive);
                     
                     // display conditions for wildcard search
-                    WriteVerbose(cmdlet, "these conditions are used for wildcard search:");
-                    DisplayConditions(cmdlet, conditionsForWildCards, "for wildcard search");
+                    // WriteVerbose(cmdlet, "these conditions are used for wildcard search:");
+                    // DisplayConditions(cmdlet, conditionsForWildCards, "for wildcard search");
                 }
                 #endregion conditions
                 
@@ -1751,22 +1977,24 @@ namespace UIAutomation
                         #endregion text search Win32
 
                         #region exact search
-//                        if (0 == ResultArrayListOfControls.Count && notTextSearch && !cmdlet.Regex) {
-//                            if (!Preferences.DisableExactSearch && !cmdlet.Win32 ) {
-//                                
-//                                // 20131126
-//                                // SearchByExactConditionsViaUia(cmdlet, inputObject, conditions);
-//                                SearchByExactConditionsViaUia(cmdlet, inputObject, conditions, cmdlet.ResultArrayListOfControls);
-//                                
-//                            }
-//                        }
+                        if (0 == ResultArrayListOfControls.Count && notTextSearch && !cmdlet.Regex) {
+                            if (!Preferences.DisableExactSearch && !cmdlet.Win32 ) {
+                                
+                                // 20131126
+                                // SearchByExactConditionsViaUia(cmdlet, inputObject, conditions);
+                                SearchByExactConditionsViaUia(cmdlet, inputObject, conditions, cmdlet.ResultArrayListOfControls);
+                                
+                            }
+                        }
                         #endregion exact search
 
                         #region wildcard search
                         if (0 == ResultArrayListOfControls.Count && notTextSearch && !cmdlet.Regex) {
                             if (!Preferences.DisableWildCardSearch && !cmdlet.Win32) {
                                 
-                                SearchByWildcardOrRegexViaUia(cmdlet, ref ResultArrayListOfControls, inputObject, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class, cmdlet.Value, conditionsForWildCards, true);
+                                // 20131128
+                                // SearchByWildcardOrRegexViaUia(cmdlet, ref ResultArrayListOfControls, inputObject, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class, cmdlet.Value, conditionsForWildCards, true);
+                                SearchByWildcardOrRegexViaUia(cmdlet, ref ResultArrayListOfControls, inputObject, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class, cmdlet.Value, (AndCondition)conditionsForWildCards, true);
                             }
                         }
                         #endregion wildcard search
@@ -1775,7 +2003,9 @@ namespace UIAutomation
                         if (0 == ResultArrayListOfControls.Count && notTextSearch && cmdlet.Regex) {
                             if (!Preferences.DisableWildCardSearch && !cmdlet.Win32) {
                                 
-                                SearchByWildcardOrRegexViaUia(cmdlet, ref ResultArrayListOfControls, inputObject, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class, cmdlet.Value, conditionsForWildCards, false);
+                                // 20131128
+                                // SearchByWildcardOrRegexViaUia(cmdlet, ref ResultArrayListOfControls, inputObject, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class, cmdlet.Value, conditionsForWildCards, false);
+                                SearchByWildcardOrRegexViaUia(cmdlet, ref ResultArrayListOfControls, inputObject, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class, cmdlet.Value, (AndCondition)conditionsForWildCards, false);
                             }
                         }
                         #endregion Regex search
@@ -1917,12 +2147,24 @@ namespace UIAutomation
             
             foreach (IMySuperWrapper tempElement3 in tempListWin32) {
                 
-                if (!string.IsNullOrEmpty(cmdlet.ControlType)) {
-                    if (!tempElement3.Current.ControlType.ProgrammaticName.ToUpper().Contains(cmdlet.ControlType.ToUpper()) || 
-                        tempElement3.Current.ControlType.ProgrammaticName.ToUpper().Substring(12).Length != cmdlet.ControlType.ToUpper().Length) {
-                        continue;
+                // 20131128
+//                if (!string.IsNullOrEmpty(cmdlet.ControlType)) {
+//                    if (!tempElement3.Current.ControlType.ProgrammaticName.ToUpper().Contains(cmdlet.ControlType.ToUpper()) || 
+//                        tempElement3.Current.ControlType.ProgrammaticName.ToUpper().Substring(12).Length != cmdlet.ControlType.ToUpper().Length) {
+//                        continue;
+//                    }
+//                }
+                bool goFurther = true;
+                if (null != cmdlet.ControlType && 0 < cmdlet.ControlType.Length) {
+                    
+                    foreach (string controlTypeName in cmdlet.ControlType) {
+                        if (tempElement3.Current.ControlType.ProgrammaticName.Substring(12).ToUpper() == controlTypeName.ToUpper()) {
+                            goFurther = false;
+                            break;
+                        }
                     }
                 }
+                if (goFurther) continue;
                 
                 if (null == cmdlet.SearchCriteria || 0 == cmdlet.SearchCriteria.Length) {
                     ResultArrayListOfControls.Add(tempElement3);
@@ -1962,7 +2204,9 @@ namespace UIAutomation
                         automationId, //cmdlet.AutomationId,
                         className, //cmdlet.Class,
                         strValue,
-                        null != cmdlet.ControlType ? (new string[] {cmdlet.ControlType}) : (new string[] {}),
+                        // 20131128
+                        // null != cmdlet.ControlType ? (new string[] {cmdlet.ControlType}) : (new string[] {}),
+                        null != cmdlet.ControlType && 0 < cmdlet.ControlType.Length ? cmdlet.ControlType : (new string[] {}),
                         caseSensitive);
                 
                 try {
@@ -2038,7 +2282,9 @@ namespace UIAutomation
             IMySuperWrapper inputObject,
             // 20131128
             //AndCondition conditions,
-            OrCondition conditions,
+            // 20131129
+            // OrCondition conditions,
+            Condition conditions,
             // 20131126
             ArrayList listOfColllectedResults)
         {
@@ -2143,7 +2389,9 @@ Console.WriteLine("tempCollection.Count = " + tempCollection.Count.ToString());
         internal void SearchByTextViaUia(
             GetControlCmdletBase cmdlet,
             IMySuperWrapper inputObject,
-            AndCondition conditionsForTextSearch)
+            // 20131128
+            // AndCondition conditionsForTextSearch)
+            Condition conditionsForTextSearch)
         {
             WriteVerbose(cmdlet, "Text search");
             
@@ -2188,7 +2436,9 @@ Console.WriteLine("tempCollection.Count = " + tempCollection.Count.ToString());
         internal void SearchByTextViaWin32(
             GetControlCmdletBase cmdlet,
             IMySuperWrapper inputObject,
-            string controlType)
+            // 20131128
+            //string controlType)
+            string[] controlTypeNames)
         {
 
             WriteVerbose(cmdlet, "Text search Win32");
@@ -2204,16 +2454,31 @@ Console.WriteLine("tempCollection.Count = " + tempCollection.Count.ToString());
                 
                 foreach (IMySuperWrapper elementToChoose in textSearchWin32List) {
                     
-                    if (!string.IsNullOrEmpty(controlType) && 0 < controlType.Length) {
-
-                        if (!elementToChoose.Current.ControlType.ProgrammaticName.ToUpper().Contains(controlType.ToUpper()) || 
-                            elementToChoose.Current.ControlType.ProgrammaticName.ToUpper().Substring(12).Length != controlType.ToUpper().Length) {
+                    // 20131128
+                    //if (!string.IsNullOrEmpty(controlType) && 0 < controlType.Length) {
+                    if (null != controlTypeNames && 0 < controlTypeNames.Length) {
+                        
+                        // 20131128
+//                        if (!elementToChoose.Current.ControlType.ProgrammaticName.ToUpper().Contains(controlType.ToUpper()) || 
+//                            elementToChoose.Current.ControlType.ProgrammaticName.ToUpper().Substring(12).Length != controlType.ToUpper().Length) {
+//                            
+//                            continue;
+//                        } else {
+//                            
+//                            ResultArrayListOfControls.Add(elementToChoose);
+//                        }
+                        
+                        foreach (string controlTypeName in controlTypeNames) {
                             
-                            continue;
-                        } else {
+                            if (elementToChoose.Current.ControlType.ProgrammaticName.Substring(12).ToUpper() != controlTypeName.ToUpper()) {
+                                continue;
+                            } else {
+                                ResultArrayListOfControls.Add(elementToChoose);
+                                break;
+                            }
                             
-                            ResultArrayListOfControls.Add(elementToChoose);
                         }
+                        
                     } else {
                         
                         ResultArrayListOfControls.Add(elementToChoose);

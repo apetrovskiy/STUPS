@@ -77,7 +77,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(UIAutomation.MySuperWrapper[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     
     public class GetUiaButtonCommand : GetUiaControlCommand
-    { public GetUiaButtonCommand() { ControlType = "Button"; } }
+    { public GetUiaButtonCommand() { ControlType = new string[] { "Button" }; } }
 
     /// <summary>
     /// Description of GetUiaCalendar.
@@ -86,7 +86,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(UIAutomation.MySuperWrapper[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     
     public class GetUiaCalendarCommand : GetUiaControlCommand
-    { public GetUiaCalendarCommand() { ControlType = "Calendar"; } }
+    { public GetUiaCalendarCommand() { ControlType = new string[] { "Calendar" }; } }
     
     /// <summary>
     /// Description of GetUiaCheckBox.
@@ -95,7 +95,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(UIAutomation.MySuperWrapper[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     
     public class GetUiaCheckBoxCommand : GetUiaControlCommand
-    { public GetUiaCheckBoxCommand() { ControlType = "CheckBox"; } }
+    { public GetUiaCheckBoxCommand() { ControlType = new string[] { "CheckBox" }; } }
     
     /// <summary>
     /// Description of GetUiaComboBox.
@@ -104,7 +104,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(UIAutomation.MySuperWrapper[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     
     public class GetUiaComboBoxCommand : GetUiaControlCommand
-    { public GetUiaComboBoxCommand() { ControlType = "ComboBox"; } }
+    { public GetUiaComboBoxCommand() { ControlType = new string[] { "ComboBox" }; } }
     
     /// <summary>
     /// Description of GetUiaCustom.
@@ -113,7 +113,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(UIAutomation.MySuperWrapper[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     
     public class GetUiaCustomCommand : GetUiaControlCommand
-    { public GetUiaCustomCommand() { ControlType = "Custom"; } }
+    { public GetUiaCustomCommand() { ControlType = new string[] { "Custom" }; } }
     
     /// <summary>
     /// Description of GetUiaDataGrid.
@@ -122,7 +122,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(UIAutomation.MySuperWrapper[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     
     public class GetUiaDataGridCommand : GetUiaControlCommand
-    { public GetUiaDataGridCommand() { ControlType = "DataGrid"; } }
+    { public GetUiaDataGridCommand() { ControlType = new string[] { "DataGrid" }; } }
     
     /// <summary>
     /// Description of GetUiaDataItem.
@@ -131,7 +131,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(UIAutomation.MySuperWrapper[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     
     public class GetUiaDataItemCommand : GetUiaControlCommand
-    { public GetUiaDataItemCommand() { ControlType = "DataItem"; } }
+    { public GetUiaDataItemCommand() { ControlType = new string[] { "DataItem" }; } }
     
     /// <summary>
     /// Description of GetUiaDocument.
@@ -140,7 +140,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(UIAutomation.MySuperWrapper[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     
     public class GetUiaDocumentCommand : GetUiaControlCommand
-    { public GetUiaDocumentCommand() { ControlType = "Document"; } }
+    { public GetUiaDocumentCommand() { ControlType = new string[] { "Document" }; } }
 
     /// <summary>
     /// Description of GetUiaEdit.
@@ -149,7 +149,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(UIAutomation.MySuperWrapper[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     
     public class GetUiaEditCommand : GetUiaControlCommand
-    { public GetUiaEditCommand() { ControlType = "Edit"; } }
+    { public GetUiaEditCommand() { ControlType = new string[] { "Edit" }; } }
     
     /// <summary>
     /// Description of GetUiaTextBox.
@@ -158,7 +158,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(UIAutomation.MySuperWrapper[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     
     public class GetUiaTextBoxCommand : GetUiaEditCommand
-    { public GetUiaTextBoxCommand() { ControlType = "Edit"; } }
+    { public GetUiaTextBoxCommand() { ControlType = new string[] { "Edit" }; } }
     
     /// <summary>
     /// Description of GetUiaGroup.
@@ -167,7 +167,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(UIAutomation.MySuperWrapper[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     
     public class GetUiaGroupCommand : GetUiaControlCommand
-    { public GetUiaGroupCommand() { ControlType = "Group"; } }
+    { public GetUiaGroupCommand() { ControlType = new string[] { "Group" }; } }
     
     /// <summary>
     /// Description of GetUiaGroupBox.
@@ -176,7 +176,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(UIAutomation.MySuperWrapper[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     
     public class GetUiaGroupBoxCommand : GetUiaGroupCommand
-    { public GetUiaGroupBoxCommand() { ControlType = "Group"; } }
+    { public GetUiaGroupBoxCommand() { ControlType = new string[] { "Group" }; } }
     
     /// <summary>
     /// Description of GetUiaHeader.
@@ -185,7 +185,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(UIAutomation.MySuperWrapper[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     
     public class GetUiaHeaderCommand : GetUiaControlCommand
-    { public GetUiaHeaderCommand() { ControlType = "Header"; } }
+    { public GetUiaHeaderCommand() { ControlType = new string[] { "Header" }; } }
     
     /// <summary>
     /// Description of GetUiaHeaderItem.
@@ -194,7 +194,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(UIAutomation.MySuperWrapper[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     
     public class GetUiaHeaderItemCommand : GetUiaControlCommand
-    { public GetUiaHeaderItemCommand() { ControlType = "HeaderItem"; } }
+    { public GetUiaHeaderItemCommand() { ControlType = new string[] { "HeaderItem" }; } }
     
     /// <summary>
     /// Description of GetUiaHyperlink.
@@ -203,7 +203,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(UIAutomation.MySuperWrapper[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     
     public class GetUiaHyperlinkCommand : GetUiaControlCommand
-    { public GetUiaHyperlinkCommand() { ControlType = "Hyperlink"; } }
+    { public GetUiaHyperlinkCommand() { ControlType = new string[] { "Hyperlink" }; } }
     
     /// <summary>
     /// Description of GetUiaLinkLabel.
@@ -212,7 +212,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(UIAutomation.MySuperWrapper[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     
     public class GetUiaLinkLabelCommand : GetUiaHyperlinkCommand
-    { public GetUiaLinkLabelCommand() { ControlType = "Hyperlink"; } }
+    { public GetUiaLinkLabelCommand() { ControlType = new string[] { "Hyperlink" }; } }
 
     /// <summary>
     /// Description of GetUiaImage.
@@ -221,7 +221,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(UIAutomation.MySuperWrapper[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     
     public class GetUiaImageCommand : GetUiaControlCommand
-    { public GetUiaImageCommand() { ControlType = "Image"; } }
+    { public GetUiaImageCommand() { ControlType = new string[] { "Image" }; } }
     
     /// <summary>
     /// Description of GetUiaList.
@@ -230,7 +230,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(UIAutomation.MySuperWrapper[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     
     public class GetUiaListCommand : GetUiaControlCommand
-    { public GetUiaListCommand() { ControlType = "List"; } }
+    { public GetUiaListCommand() { ControlType = new string[] { "List" }; } }
     
     /// <summary>
     /// Description of GetUiaListItem.
@@ -239,7 +239,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(UIAutomation.MySuperWrapper[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     
     public class GetUiaListItemCommand : GetUiaControlCommand
-    { public GetUiaListItemCommand() { ControlType = "ListItem"; } }
+    { public GetUiaListItemCommand() { ControlType = new string[] { "ListItem" }; } }
     
     /// <summary>
     /// Description of GetUiaMenu.
@@ -248,7 +248,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(UIAutomation.MySuperWrapper[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     
     public class GetUiaMenuCommand : GetUiaControlCommand
-    { public GetUiaMenuCommand() { ControlType = "Menu"; } }
+    { public GetUiaMenuCommand() { ControlType = new string[] { "Menu" }; } }
     
     /// <summary>
     /// Description of GetUiaMenuBar.
@@ -257,7 +257,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(UIAutomation.MySuperWrapper[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     
     public class GetUiaMenuBarCommand : GetUiaControlCommand
-    { public GetUiaMenuBarCommand() { ControlType = "MenuBar"; } }
+    { public GetUiaMenuBarCommand() { ControlType = new string[] { "MenuBar" }; } }
 
     /// <summary>
     /// Description of GetUiaMenuItem.
@@ -266,7 +266,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(UIAutomation.MySuperWrapper[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     
     public class GetUiaMenuItemCommand : GetUiaControlCommand
-    { public GetUiaMenuItemCommand() { ControlType = "MenuItem"; } }
+    { public GetUiaMenuItemCommand() { ControlType = new string[] { "MenuItem" }; } }
     
     /// <summary>
     /// Description of GetUiaPane.
@@ -275,7 +275,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(UIAutomation.MySuperWrapper[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     
     public class GetUiaPaneCommand : GetUiaControlCommand
-    { public GetUiaPaneCommand() { ControlType = "Pane"; } }
+    { public GetUiaPaneCommand() { ControlType = new string[] { "Pane" }; } }
     
     /// <summary>
     /// Description of GetUiaProgressBar.
@@ -284,7 +284,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(UIAutomation.MySuperWrapper[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     
     public class GetUiaProgressBarCommand : GetUiaControlCommand
-    { public GetUiaProgressBarCommand() { ControlType = "ProgressBar"; } }
+    { public GetUiaProgressBarCommand() { ControlType = new string[] { "ProgressBar" }; } }
     
     /// <summary>
     /// Description of GetUiaRadioButton.
@@ -293,7 +293,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(UIAutomation.MySuperWrapper[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     
     public class GetUiaRadioButtonCommand : GetUiaControlCommand
-    { public GetUiaRadioButtonCommand() { ControlType = "RadioButton"; } }
+    { public GetUiaRadioButtonCommand() { ControlType = new string[] { "RadioButton" }; } }
     
     /// <summary>
     /// Description of GetUiaScrollBar.
@@ -302,7 +302,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(UIAutomation.MySuperWrapper[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     
     public class GetUiaScrollBarCommand : GetUiaControlCommand
-    { public GetUiaScrollBarCommand() { ControlType = "ScrollBar"; } }
+    { public GetUiaScrollBarCommand() { ControlType = new string[] { "ScrollBar" }; } }
 
     /// <summary>
     /// Description of GetUiaSeparator.
@@ -311,7 +311,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(UIAutomation.MySuperWrapper[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     
     public class GetUiaSeparatorCommand : GetUiaControlCommand
-    { public GetUiaSeparatorCommand() { ControlType = "Separator"; } }
+    { public GetUiaSeparatorCommand() { ControlType = new string[] { "Separator" }; } }
     
     /// <summary>
     /// Description of GetUiaSlider.
@@ -320,7 +320,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(UIAutomation.MySuperWrapper[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     
     public class GetUiaSliderCommand : GetUiaControlCommand
-    { public GetUiaSliderCommand() { ControlType = "Slider"; } }
+    { public GetUiaSliderCommand() { ControlType = new string[] { "Slider" }; } }
     
     /// <summary>
     /// Description of GetUiaSpinner.
@@ -329,7 +329,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(UIAutomation.MySuperWrapper[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     
     public class GetUiaSpinnerCommand : GetUiaControlCommand
-    { public GetUiaSpinnerCommand() { ControlType = "Spinner"; } }
+    { public GetUiaSpinnerCommand() { ControlType = new string[] { "Spinner" }; } }
     
     /// <summary>
     /// Description of GetUiaSplitButton.
@@ -338,7 +338,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(UIAutomation.MySuperWrapper[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     
     public class GetUiaSplitButtonCommand : GetUiaControlCommand
-    { public GetUiaSplitButtonCommand() { ControlType = "SplitButton"; } }
+    { public GetUiaSplitButtonCommand() { ControlType = new string[] { "SplitButton" }; } }
     
     /// <summary>
     /// Description of GetUiaStatusBar.
@@ -347,7 +347,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(UIAutomation.MySuperWrapper[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     
     public class GetUiaStatusBarCommand : GetUiaControlCommand
-    { public GetUiaStatusBarCommand() { ControlType = "StatusBar"; } }
+    { public GetUiaStatusBarCommand() { ControlType = new string[] { "StatusBar" }; } }
 
     /// <summary>
     /// Description of GetUiaTab.
@@ -356,7 +356,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(UIAutomation.MySuperWrapper[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     
     public class GetUiaTabCommand : GetUiaControlCommand
-    { public GetUiaTabCommand() { ControlType = "Tab"; } }
+    { public GetUiaTabCommand() { ControlType = new string[] { "Tab" }; } }
     
     /// <summary>
     /// Description of GetUiaTabItem.
@@ -365,7 +365,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(UIAutomation.MySuperWrapper[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     
     public class GetUiaTabItemCommand : GetUiaControlCommand
-    { public GetUiaTabItemCommand() { ControlType = "TabItem"; } }
+    { public GetUiaTabItemCommand() { ControlType = new string[] { "TabItem" }; } }
     
     /// <summary>
     /// Description of GetUiaTable.
@@ -374,7 +374,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(UIAutomation.MySuperWrapper[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     
     public class GetUiaTableCommand : GetUiaControlCommand
-    { public GetUiaTableCommand() { ControlType = "Table"; } }
+    { public GetUiaTableCommand() { ControlType = new string[] { "Table" }; } }
     
     /// <summary>
     /// Description of GetUiaText.
@@ -383,7 +383,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(UIAutomation.MySuperWrapper[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     
     public class GetUiaTextCommand : GetUiaControlCommand
-    { public GetUiaTextCommand() { ControlType = "Text"; } }
+    { public GetUiaTextCommand() { ControlType = new string[] { "Text" }; } }
     
     /// <summary>
     /// Description of GetUiaLabel.
@@ -392,7 +392,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(UIAutomation.MySuperWrapper[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     
     public class GetUiaLabelCommand : GetUiaTextCommand
-    { public GetUiaLabelCommand() { ControlType = "Text"; } }
+    { public GetUiaLabelCommand() { ControlType = new string[] { "Text" }; } }
     
     /// <summary>
     /// Description of GetUiaThumb.
@@ -401,7 +401,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(UIAutomation.MySuperWrapper[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     
     public class GetUiaThumbCommand : GetUiaControlCommand
-    { public GetUiaThumbCommand() { ControlType = "Thumb"; } }
+    { public GetUiaThumbCommand() { ControlType = new string[] { "Thumb" }; } }
 
     /// <summary>
     /// Description of GetUiaTitleBar.
@@ -410,7 +410,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(UIAutomation.MySuperWrapper[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     
     public class GetUiaTitleBarCommand : GetUiaControlCommand
-    { public GetUiaTitleBarCommand() { ControlType = "TitleBar"; } }
+    { public GetUiaTitleBarCommand() { ControlType = new string[] { "TitleBar" }; } }
     
     /// <summary>
     /// Description of GetUiaToolBar.
@@ -419,7 +419,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(UIAutomation.MySuperWrapper[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     
     public class GetUiaToolBarCommand : GetUiaControlCommand
-    { public GetUiaToolBarCommand() { ControlType = "ToolBar"; } }
+    { public GetUiaToolBarCommand() { ControlType = new string[] { "ToolBar" }; } }
     
     /// <summary>
     /// Description of GetUiaToolTip.
@@ -428,7 +428,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(UIAutomation.MySuperWrapper[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     
     public class GetUiaToolTipCommand : GetUiaControlCommand
-    { public GetUiaToolTipCommand() { ControlType = "ToolTip"; } }
+    { public GetUiaToolTipCommand() { ControlType = new string[] { "ToolTip" }; } }
     
     /// <summary>
     /// Description of GetUiaTree.
@@ -437,7 +437,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(UIAutomation.MySuperWrapper[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     
     public class GetUiaTreeCommand : GetUiaControlCommand
-    { public GetUiaTreeCommand() { ControlType = "Tree"; } }
+    { public GetUiaTreeCommand() { ControlType = new string[] { "Tree" }; } }
     
     /// <summary>
     /// Description of GetUiaTreeItem.
@@ -446,7 +446,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(UIAutomation.MySuperWrapper[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     
     public class GetUiaTreeItemCommand : GetUiaControlCommand
-    { public GetUiaTreeItemCommand() { ControlType = "TreeItem"; } }
+    { public GetUiaTreeItemCommand() { ControlType = new string[] { "TreeItem" }; } }
     
     /// <summary>
     /// Description of GetUiaChildWindow.
@@ -455,6 +455,6 @@ namespace UIAutomation.Commands
     [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(UIAutomation.MySuperWrapper[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     
     public class GetUiaChildWindowCommand : GetUiaControlCommand
-    { public GetUiaChildWindowCommand() { ControlType = "Window"; } }
+    { public GetUiaChildWindowCommand() { ControlType = new string[] { "Window" }; } }
     
 }

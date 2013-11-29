@@ -1047,7 +1047,8 @@ try {
                 
                 try{ cmdlet.Class = dict["CLASS"].ToString(); } catch {}
                 try{ cmdlet.AutomationId = dict["AUTOMATIONID"].ToString(); } catch {}
-                try{ cmdlet.ControlType = dict["CONTROLTYPE"].ToString(); } catch {}
+                // 20131128
+                // try{ cmdlet.ControlType = dict["CONTROLTYPE"].ToString(); } catch {}
                 try{ cmdlet.Name = dict["NAME"].ToString(); } catch {}
                 try{ cmdlet.Value = dict["VALUE"].ToString(); } catch {}
                 

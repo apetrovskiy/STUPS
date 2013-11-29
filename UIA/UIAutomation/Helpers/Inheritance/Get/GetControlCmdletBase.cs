@@ -25,7 +25,8 @@ namespace UIAutomation
         {
             Class = string.Empty;
             Name = string.Empty;
-            ControlType = string.Empty;
+            // 20131128
+            // ControlType = string.Empty;
             AutomationId = string.Empty;
             Value = string.Empty;
             
@@ -109,7 +110,9 @@ namespace UIAutomation
 //        // 20131122
 //        [Parameter(Mandatory = false,
 //                   ParameterSetName = "UiaRegex")]
-        public virtual string ControlType { get; set; }
+        // 20131128
+        //public virtual string ControlType { get; set; }
+        public virtual string[] ControlType { get; set; }
         
         [Parameter(Mandatory = false,
                    ParameterSetName = "Win32")]

@@ -105,7 +105,9 @@ namespace UIAutomation
         internal ArrayList GetAutomationElementsViaWildcards_FindAll(
             GetControlCollectionCmdletBase cmdlet,
             IMySuperWrapper inputObject,
-            AndCondition conditions,
+            // 20131129
+            // AndCondition conditions,
+            Condition conditions,
             bool caseSensitive,
             bool onlyOneResult,
             bool onlyTopLevel,

@@ -1701,12 +1701,12 @@ Console.WriteLine("gctc 007");
         {
             if (string.IsNullOrEmpty(searchString)) return null;
             
-Console.WriteLine("gesc 001");
+Console.WriteLine("gtsc 001");
             
             PropertyConditionFlags flags =
                 caseSensitive1 ? PropertyConditionFlags.None : PropertyConditionFlags.IgnoreCase;
             
-Console.WriteLine("gesc 002");
+Console.WriteLine("gtsc 002");
             
             OrCondition searchStringCondition =
                 new OrCondition(
@@ -1727,20 +1727,20 @@ Console.WriteLine("gesc 002");
                         searchString,
                         flags));
             
-Console.WriteLine("gesc 003");
+Console.WriteLine("gtsc 003");
             
             if (null == controlTypeNames || 0 == controlTypeNames.Length) return searchStringCondition;
             
-Console.WriteLine("gesc 004");
+Console.WriteLine("gtsc 004");
             
             Condition controlTypeCondition =
                 GetControlTypeCondition(controlTypeNames);
             
-Console.WriteLine("gesc 005");
+Console.WriteLine("gtsc 005");
             
             if (null == controlTypeCondition) return searchStringCondition;
             
-Console.WriteLine("gesc 006");
+Console.WriteLine("gtsc 006");
             
             AndCondition resultCondition =
                 new AndCondition(
@@ -1749,7 +1749,7 @@ Console.WriteLine("gesc 006");
                         controlTypeCondition
                     });
             
-Console.WriteLine("gesc 007");
+Console.WriteLine("gtsc 007");
             
             return resultCondition;
         }
@@ -1759,18 +1759,18 @@ Console.WriteLine("gesc 007");
             PropertyConditionFlags flags =
                 cmdlet.CaseSensitive ? PropertyConditionFlags.None : PropertyConditionFlags.IgnoreCase;
             
-Console.WriteLine("gwsc 001");
+Console.WriteLine("gesc 001");
             
             Condition controlTypeCondition = null;
             if (null != cmdlet.ControlType && 0 < cmdlet.ControlType.Length) {
                 
-Console.WriteLine("gwsc 002");
+Console.WriteLine("gesc 002");
                 
                 controlTypeCondition =
                     GetControlTypeCondition(
                         cmdlet.ControlType);
                 
-Console.WriteLine("gwsc 003");
+Console.WriteLine("gesc 003");
                 
             }
             
@@ -1778,7 +1778,7 @@ Console.WriteLine("gwsc 003");
                 new List<PropertyCondition>();
             if (!string.IsNullOrEmpty(cmdlet.Name)) {
                 
-Console.WriteLine("gwsc 004");
+Console.WriteLine("gesc 004");
                 
                 propertyCollection.Add(
                     new PropertyCondition(
@@ -1787,7 +1787,7 @@ Console.WriteLine("gwsc 004");
             }
             if (!string.IsNullOrEmpty(cmdlet.AutomationId)) {
                 
-Console.WriteLine("gwsc 005");
+Console.WriteLine("gesc 005");
                 
                 propertyCollection.Add(
                     new PropertyCondition(
@@ -1796,7 +1796,7 @@ Console.WriteLine("gwsc 005");
             }
             if (!string.IsNullOrEmpty(cmdlet.Class)) {
                 
-Console.WriteLine("gwsc 006");
+Console.WriteLine("gesc 006");
                 
                 propertyCollection.Add(
                     new PropertyCondition(
@@ -1805,7 +1805,7 @@ Console.WriteLine("gwsc 006");
             }
             if (!string.IsNullOrEmpty(cmdlet.Value)) {
                 
-Console.WriteLine("gwsc 007");
+Console.WriteLine("gesc 007");
                 
                 propertyCollection.Add(
                     new PropertyCondition(
@@ -1813,7 +1813,7 @@ Console.WriteLine("gwsc 007");
                         cmdlet.Value));
             }
             
-Console.WriteLine("gwsc 008");
+Console.WriteLine("gesc 008");
             
 //            Condition propertyCondition =
 //                0 == propertyCollection.Count ? null : (
@@ -1833,7 +1833,7 @@ Console.WriteLine("gwsc 008");
 //                        controlTypeCondition
 //                    });
             
-Console.WriteLine("gwsc 009");
+Console.WriteLine("gesc 009");
 if (null == propertyCondition) {
     Console.WriteLine("null == propertyCondition");
 }
@@ -1842,16 +1842,119 @@ if (propertyCondition is PropertyCondition) {
 }
             
             if (null == propertyCondition) {
-Console.WriteLine("gwsc 010");
+Console.WriteLine("gesc 010");
                 return controlTypeCondition;
             } else {
-Console.WriteLine("gwsc 011");
+Console.WriteLine("gesc 011");
                 return null == controlTypeCondition ? propertyCondition : new AndCondition(
                     new Condition[] {
                         propertyCondition,
                         controlTypeCondition
                     });
             }
+            
+//            return resultCondition;
+        }
+        
+        protected internal Condition GetWildcardSearchCondition(GetControlCmdletBase cmdlet)
+        {
+//            PropertyConditionFlags flags =
+//                cmdlet.CaseSensitive ? PropertyConditionFlags.None : PropertyConditionFlags.IgnoreCase;
+            
+Console.WriteLine("gwsc 001");
+            
+            Condition controlTypeCondition = null;
+            if (null != cmdlet.ControlType && 0 < cmdlet.ControlType.Length) {
+                
+Console.WriteLine("gwsc 002");
+                
+                controlTypeCondition =
+                    GetControlTypeCondition(
+                        cmdlet.ControlType);
+                
+Console.WriteLine("gwsc 003");
+                
+            }
+            return controlTypeCondition;
+            
+//            List<PropertyCondition> propertyCollection =
+//                new List<PropertyCondition>();
+//            if (!string.IsNullOrEmpty(cmdlet.Name)) {
+//                
+//Console.WriteLine("gwsc 004");
+//                
+//                propertyCollection.Add(
+//                    new PropertyCondition(
+//                        AutomationElement.NameProperty,
+//                        cmdlet.Name));
+//            }
+//            if (!string.IsNullOrEmpty(cmdlet.AutomationId)) {
+//                
+//Console.WriteLine("gwsc 005");
+//                
+//                propertyCollection.Add(
+//                    new PropertyCondition(
+//                        AutomationElement.AutomationIdProperty,
+//                        cmdlet.AutomationId));
+//            }
+//            if (!string.IsNullOrEmpty(cmdlet.Class)) {
+//                
+//Console.WriteLine("gwsc 006");
+//                
+//                propertyCollection.Add(
+//                    new PropertyCondition(
+//                        AutomationElement.ClassNameProperty,
+//                        cmdlet.Class));
+//            }
+//            if (!string.IsNullOrEmpty(cmdlet.Value)) {
+//                
+//Console.WriteLine("gwsc 007");
+//                
+//                propertyCollection.Add(
+//                    new PropertyCondition(
+//                        ValuePattern.ValueProperty,
+//                        cmdlet.Value));
+//            }
+//            
+//Console.WriteLine("gwsc 008");
+//            
+////            Condition propertyCondition =
+////                0 == propertyCollection.Count ? null : (
+////                    1 == propertyCollection.Count ? propertyCollection[0] : (Condition)new AndCondition(
+////                        propertyCollection.ToArray())
+////                   );
+//
+//            Condition propertyCondition =
+//                0 == propertyCollection.Count ? null : (
+//                    1 == propertyCollection.Count ? propertyCollection[0] : (Condition)GetAndCondition(propertyCollection)
+//                   );
+//            
+////            Condition resultCondition =
+////                null == controlTypeCondition ? (propertyCondition ?? Condition.TrueCondition) : new AndCondition(
+////                    new Condition[] {
+////                        propertyCondition,
+////                        controlTypeCondition
+////                    });
+//            
+//Console.WriteLine("gwsc 009");
+//if (null == propertyCondition) {
+//    Console.WriteLine("null == propertyCondition");
+//}
+//if (propertyCondition is PropertyCondition) {
+//    Console.WriteLine("propertyCondition is PropertyCondition");
+//}
+//            
+//            if (null == propertyCondition) {
+//Console.WriteLine("gwsc 010");
+//                return controlTypeCondition;
+//            } else {
+//Console.WriteLine("gwsc 011");
+//                return null == controlTypeCondition ? propertyCondition : new AndCondition(
+//                    new Condition[] {
+//                        propertyCondition,
+//                        controlTypeCondition
+//                    });
+//            }
             
 //            return resultCondition;
         }
@@ -1926,7 +2029,8 @@ Console.WriteLine("gwsc 011");
                     //    GetExactSearchCondition(cmdlet);
                     // 20131129
                     conditionsForWildCards =
-                        GetControlConditionsForWildcardSearch(tempCmdlet, (tempCmdlet.ControlType[0] ?? string.Empty), ((GetControlCmdletBase)cmdlet).CaseSensitive);
+                        //GetControlConditionsForWildcardSearch(tempCmdlet, (tempCmdlet.ControlType[0] ?? string.Empty), ((GetControlCmdletBase)cmdlet).CaseSensitive);
+                        GetWildcardSearchCondition(cmdlet);
                     
                     // display conditions for wildcard search
                     // WriteVerbose(cmdlet, "these conditions are used for wildcard search:");
@@ -1994,7 +2098,9 @@ Console.WriteLine("gwsc 011");
                                 
                                 // 20131128
                                 // SearchByWildcardOrRegexViaUia(cmdlet, ref ResultArrayListOfControls, inputObject, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class, cmdlet.Value, conditionsForWildCards, true);
-                                SearchByWildcardOrRegexViaUia(cmdlet, ref ResultArrayListOfControls, inputObject, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class, cmdlet.Value, (AndCondition)conditionsForWildCards, true);
+                                // 20131129
+                                // SearchByWildcardOrRegexViaUia(cmdlet, ref ResultArrayListOfControls, inputObject, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class, cmdlet.Value, (AndCondition)conditionsForWildCards, true);
+                                SearchByWildcardOrRegexViaUia(cmdlet, ref ResultArrayListOfControls, inputObject, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class, cmdlet.Value, conditionsForWildCards, true);
                             }
                         }
                         #endregion wildcard search
@@ -2191,7 +2297,9 @@ Console.WriteLine("gwsc 011");
             string automationId,
             string className,
             string strValue,
-            AndCondition conditionsForWildCards,
+            // 20131129
+            // AndCondition conditionsForWildCards,
+            Condition conditionsForWildCards,
             bool viaWildcardOrRegex)
         {
             WriteVerbose((cmdlet as PSCmdletBase), "[getting the control] using WildCard/Regex search");

@@ -1240,7 +1240,9 @@ namespace UIAutomationTest.Commands.Get
                 "CmdletInvocationException",
                 // 20130219
                 //@"Get-UiaButton: timeout expired for class: ' + , control type: Button, title:");
-                @"Get-UiaButton: timeout expired for control with class: + '', control type: 'Button', title: '', automationId: 'Button1', value: 'my text'");
+                // 20131129
+                // @"Get-UiaButton: timeout expired for control with class: + '', control type: 'Button', title: '', automationId: 'Button1', value: 'my text'");
+                @"Get-UiaButton: timeout expired for control with class: + '', control type: 'System.String[]', title: '', automationId: 'Button1', value: 'my text'");
         }
 
 // =========================================================

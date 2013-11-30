@@ -959,10 +959,15 @@ namespace UIAutomation
         protected bool caseSensitive { get; set; }
         
         #region Get-UiaControl
-        public AndCondition[] GetControlsConditions(GetControlCollectionCmdletBase cmdlet)
+        // 20131129
+        // public AndCondition[] GetControlsConditions(GetControlCollectionCmdletBase cmdlet)
+        public Condition[] GetControlsConditions(GetControlCollectionCmdletBase cmdlet)
         {
-            List<AndCondition> conditions =
-                new List<AndCondition>();
+            // 20131129
+            // List<AndCondition> conditions =
+            //     new List<AndCondition>();
+            List<Condition> conditions =
+                new List<Condition>();
             
             if (null != cmdlet.ControlType && 0 < cmdlet.ControlType.Length) {
                 foreach (string controlTypeName in cmdlet.ControlType)
@@ -970,34 +975,370 @@ namespace UIAutomation
                     WriteVerbose(this, "control type: " + controlTypeName);
                     // 20131128
                     // conditions.Add(GetControlConditionsForWildcardSearch(((GetControlCmdletBase)cmdlet), controlTypeName, cmdlet.CaseSensitive, true) as AndCondition);
-                    conditions.Add(GetControlConditionsForWildcardSearch(((GetControlCmdletBase)cmdlet), controlTypeName, cmdlet.CaseSensitive));
+                    // 20131129
+                    // conditions.Add(GetControlConditionsForWildcardSearch(((GetControlCmdletBase)cmdlet), controlTypeName, cmdlet.CaseSensitive));
+                    conditions.Add(GetWildcardSearchCondition(cmdlet));
                 }
             } else{
                 WriteVerbose(this, "without control type");
                 // 20131128
                 // conditions.Add(GetControlConditionsForWildcardSearch(((GetControlCmdletBase)cmdlet), "", cmdlet.CaseSensitive, true) as AndCondition);
-                conditions.Add(GetControlConditionsForWildcardSearch(((GetControlCmdletBase)cmdlet), "", cmdlet.CaseSensitive));
+                // 20131129
+                // conditions.Add(GetControlConditionsForWildcardSearch(((GetControlCmdletBase)cmdlet), "", cmdlet.CaseSensitive));
+                conditions.Add(GetWildcardSearchCondition(cmdlet));
             }
+            // 20131129
+            // return conditions.ToArray();
             return conditions.ToArray();
         }
         
+#region commented (GetControlConditionsForWildcardSearch)
         //public object GetControlConditionsForWildcardSearch(GetCmdletBase cmdlet1, string controlType, bool caseSensitive, bool andVsOr)
-        public AndCondition GetControlConditionsForWildcardSearch(GetCmdletBase cmdlet1, string controlType, bool caseSensitive)
-        {
-            ControlType ctrlType = null;
-            AndCondition andConditions = null;
-            OrCondition orConditions = null;
-            PropertyCondition condition = null;
-            AndCondition allConditions = null;
-            object conditionsToReturn = null;
-            PropertyConditionFlags flags = PropertyConditionFlags.None;
-            if (!caseSensitive) {
-                flags = PropertyConditionFlags.IgnoreCase;
-            }
-            
-            GetControlCmdletBase cmdlet =
-                (GetControlCmdletBase)cmdlet1;
-            
+//        public AndCondition GetControlConditionsForWildcardSearch(GetCmdletBase cmdlet1, string controlType, bool caseSensitive)
+//        {
+//            ControlType ctrlType = null;
+//            AndCondition andConditions = null;
+//            OrCondition orConditions = null;
+//            PropertyCondition condition = null;
+//            AndCondition allConditions = null;
+//            object conditionsToReturn = null;
+//            PropertyConditionFlags flags = PropertyConditionFlags.None;
+//            if (!caseSensitive) {
+//                flags = PropertyConditionFlags.IgnoreCase;
+//            }
+//            
+//            GetControlCmdletBase cmdlet =
+//                (GetControlCmdletBase)cmdlet1;
+//            
+////            // the TextSearch mode
+////            if (null != (cmdlet as GetControlCmdletBase) && !string.IsNullOrEmpty(cmdlet.ContainsText) &&
+////                !andVsOr) {
+////
+////                cmdlet.Name =
+////                    cmdlet.AutomationId =
+////                    cmdlet.Class =
+////                    cmdlet.Value =
+////                    cmdlet.ContainsText;
+////                /*
+////                cmdlet.Name =
+////                    (cmdlet as GetControlCmdletBase).AutomationId =
+////                    (cmdlet as GetControlCmdletBase).Class =
+////                    (cmdlet as GetControlCmdletBase).Value =
+////                    (cmdlet as GetControlCmdletBase).ContainsText;
+////                */
+////
+////            }
+//            
+//            if (!string.IsNullOrEmpty(controlType)) {
+//                
+//                WriteVerbose(this,
+//                             "getting control with control type = " +
+//                             controlType);
+//                ctrlType =
+//                    UiaHelper.GetControlTypeByTypeName(controlType);
+//                
+//                WriteVerbose(cmdlet, "ctrlType = " + ctrlType.ProgrammaticName);
+//            }
+//            
+//            PropertyCondition ctrlTypeCondition = null,
+//            classCondition = null, titleCondition = null, autoIdCondition = null;
+//            PropertyCondition valueCondition = null;
+//            
+//            int conditionsCounter = 0;
+//            if (ctrlType != null) {
+//                
+//                ctrlTypeCondition =
+//                    new PropertyCondition(
+//                        AutomationElement.ControlTypeProperty,
+//                        ctrlType); //,
+//                
+//                WriteVerbose(cmdlet, "ControlTypeProperty '" +
+//                             ctrlType.ProgrammaticName + "' is used");
+//                // 20130128
+//                //conditionsCounter++;
+//            }
+//            // 20120828
+//            if (!string.IsNullOrEmpty(cmdlet.Class))
+//            {
+//                
+//                classCondition =
+//                    new PropertyCondition(
+//                        AutomationElement.ClassNameProperty,
+//                        cmdlet.Class,
+//                        flags);
+//                WriteVerbose(cmdlet, "ClassNameProperty '" +
+//                             cmdlet.Class + "' is used");
+//                conditionsCounter++;
+//            }
+//            
+//            if (!string.IsNullOrEmpty(cmdlet.AutomationId))
+//            {
+//                
+//                autoIdCondition =
+//                    new PropertyCondition(
+//                        AutomationElement.AutomationIdProperty,
+//                        cmdlet.AutomationId,
+//                        flags);
+//                WriteVerbose(cmdlet, "AutomationIdProperty '" +
+//                             cmdlet.AutomationId + "' is used");
+//                conditionsCounter++;
+//            }
+//            
+//            if (!string.IsNullOrEmpty(cmdlet.Name)) // allow empty name
+//            {
+//                
+//                titleCondition =
+//                    new PropertyCondition(
+//                        AutomationElement.NameProperty,
+//                        cmdlet.Name,
+//                        flags);
+//                WriteVerbose(cmdlet, "NameProperty '" +
+//                             cmdlet.Name + "' is used");
+//                conditionsCounter++;
+//            }
+//            
+//            if (!string.IsNullOrEmpty(cmdlet.Value))
+//            {
+//                
+//                valueCondition =
+//                    new PropertyCondition(
+//                        ValuePattern.ValueProperty,
+//                        cmdlet.Value,
+//                        flags);
+//                WriteVerbose(cmdlet, "ValueProperty '" +
+//                             cmdlet.Value + "' is used");
+//                conditionsCounter++;
+//            }
+//            
+//            // if there is more than one condition excepting ctrlTypeCondition
+//            if (1 < conditionsCounter)
+//            {
+//                
+//                try {
+//                    ArrayList l = new ArrayList();
+//                    if (classCondition != null)l.Add(classCondition);
+//                    if (titleCondition != null)l.Add(titleCondition);
+//                    if (autoIdCondition != null)l.Add(autoIdCondition);
+//                    if (null != valueCondition)l.Add(valueCondition);
+//                    Type t = typeof(Condition);
+//                    Condition[] conds =
+//                        ((Condition[])l.ToArray(t));
+//                    
+////                    if (andVsOr) {
+//                        
+//                        andConditions =
+//                            new AndCondition(conds);
+////                    } else {
+////                        
+////                        orConditions =
+////                            new OrCondition(conds);
+////                    }
+//                    
+//                    if (null != andConditions) {
+//                        
+//                        allConditions =
+//                            new AndCondition(
+//                                // 20131120
+//                                // that was experimental
+//                                ctrlTypeCondition ?? Condition.TrueCondition,
+//                                //ctrlTypeCondition,
+//                                andConditions);
+//
+//                        /*
+//                        allConditions =
+//                            new System.Windows.Automation.AndCondition(
+//                                null == ctrlTypeCondition ? Condition.TrueCondition : ctrlTypeCondition,
+//                                andConditions);
+//                        */
+//
+//                    }
+////                    if (null != orConditions) {
+////                        
+////                        allConditions =
+////                            new AndCondition(
+////                                // 20131120
+////                                // that was experimental
+////                                ctrlTypeCondition ?? Condition.TrueCondition,
+////                                //ctrlTypeCondition,
+////                                orConditions);
+////
+////                        /*
+////                        allConditions =
+////                            new System.Windows.Automation.AndCondition(
+////                                null == ctrlTypeCondition ? Condition.TrueCondition : ctrlTypeCondition,
+////                                orConditions);
+////                        */
+////
+////                    }
+//
+//                    WriteVerbose(cmdlet, "used conditions " +
+//                                 "ClassName = '" + classCondition.Value + "', " +
+//                                 "ControlType = '" + ctrlTypeCondition.Value + "', " +
+//                                 "Name = '" + titleCondition.Value + "', " +
+//                                 "AutomationId = '" + autoIdCondition.Value + "', " +  //"'");
+//                                 "Value = '" + valueCondition.Value + "'");
+//
+//                } catch (Exception eConditions) {
+//                    WriteDebug(cmdlet, "conditions related exception " +
+//                               eConditions.Message);
+//                }
+//                
+//            } else if (1 == conditionsCounter && null != ctrlTypeCondition) {
+//                
+//                if (classCondition != null) { allConditions = new AndCondition(classCondition, ctrlTypeCondition); }
+//                else if (titleCondition != null) { allConditions = new AndCondition(titleCondition, ctrlTypeCondition); }
+//                else if (autoIdCondition != null) { allConditions = new AndCondition(autoIdCondition, ctrlTypeCondition); }
+//                else if (null != valueCondition) { allConditions = new AndCondition(valueCondition, ctrlTypeCondition); }
+//                WriteVerbose(cmdlet, "conditions: ctrlTypeCondition + a condition");
+//                
+//            } else if ((0 == conditionsCounter && null != ctrlTypeCondition) ||
+//                       (1 == conditionsCounter && null == ctrlTypeCondition)) {
+//                
+//                if (classCondition != null) { condition = classCondition; }
+//                else if (ctrlTypeCondition != null) { condition = ctrlTypeCondition; }
+//                else if (titleCondition != null) { condition = titleCondition; }
+//                else if (autoIdCondition != null) { condition = autoIdCondition; }
+//                else if (null != valueCondition) { condition = valueCondition; }
+//                WriteVerbose(cmdlet, "condition " +
+//                             condition.GetType().Name + " '" +
+//                             condition.Value + "' is used");
+//            }
+//            
+//            else if (0 == conditionsCounter && null == ctrlTypeCondition)
+//            {
+//                
+//                WriteVerbose(cmdlet, "neither ControlType nor Class nor Name are present");
+//
+//                return (new AndCondition(Condition.TrueCondition,
+//                                         Condition.TrueCondition));
+//            }
+//            try {
+//
+//                Condition[] tempConditions = null;
+//                if (null != allConditions) {
+//                    
+//                    tempConditions = allConditions.GetConditions();
+//                    conditionsToReturn = allConditions;
+//
+//                }
+//
+//                else if (null != andConditions) {
+//                    
+//                    tempConditions = andConditions.GetConditions();
+//
+//                    conditionsToReturn = andConditions;
+//
+//                } else if (null != orConditions) {
+//                    
+//                    tempConditions = orConditions.GetConditions();
+//                    conditionsToReturn = orConditions;
+//
+//                } else if (condition != null) {
+//                    
+//                    WriteVerbose(cmdlet, "conditions (only one): " +
+//                                 condition.Property.ProgrammaticName +
+//                                 " = " +
+//                                 condition.Value.ToString());
+//                    
+//                    allConditions =
+//                        new AndCondition(condition,
+//                                         // 20131120
+//                                         // that was experimental
+//                                         Condition.TrueCondition);
+//                                         //Condition.FalseCondition);
+//                                         //condition);
+//                    conditionsToReturn = allConditions;
+//
+//                }
+//
+//                // 20131128
+//                // if (null == tempConditions) return conditionsToReturn;
+//                if (null == tempConditions) return (conditionsToReturn as AndCondition);
+//                foreach (Condition tempCondition in tempConditions)
+//                {
+//                    WriteVerbose(cmdlet, "condition: " + tempCondition.ToString());
+//                }
+//
+//                /*
+//                if (null != tempConditions) {
+//                    for (int i = 0; i < tempConditions.Length; i++) {
+//                        WriteVerbose(cmdlet, "condition: " + tempConditions[i].ToString());
+//                    }
+//                }
+//                */
+//               
+//                // 20131127
+//                try {
+//                    AndCondition cond = conditionsToReturn as AndCondition;
+//                    Condition[] conds = (conditionsToReturn as AndCondition).GetConditions();
+//                    Console.WriteLine("set 1");
+//                    foreach (Condition propertyCondition in conds)
+//                    {
+//                        Console.WriteLine((propertyCondition as PropertyCondition).Property.ProgrammaticName);
+//                        Console.WriteLine((propertyCondition as PropertyCondition).Value.ToString());
+//                        Console.WriteLine((propertyCondition as PropertyCondition).Flags.ToString());
+//                    }
+//                    Console.WriteLine("set 2");
+//                    foreach (Condition propertyCondition in allConditions.GetConditions())
+//                    {
+//                        Console.WriteLine((propertyCondition as PropertyCondition).Property.ProgrammaticName);
+//                        Console.WriteLine((propertyCondition as PropertyCondition).Value.ToString());
+//                        Console.WriteLine((propertyCondition as PropertyCondition).Flags.ToString());
+//                    }
+//                }
+//                catch {}
+//               
+//                // 20131128
+//                // return conditionsToReturn;
+//                return (conditionsToReturn as AndCondition);
+//            } catch {
+//                WriteVerbose(cmdlet, "conditions or condition are null");
+//                
+//                // 20131127
+//                try {
+//                    AndCondition cond = conditionsToReturn as AndCondition;
+//                    Condition[] conds = (conditionsToReturn as AndCondition).GetConditions();
+//                    Console.WriteLine("set 1");
+//                    foreach (Condition propertyCondition in conds)
+//                    {
+//                        Console.WriteLine((propertyCondition as PropertyCondition).Property.ProgrammaticName);
+//                        Console.WriteLine((propertyCondition as PropertyCondition).Value.ToString());
+//                        Console.WriteLine((propertyCondition as PropertyCondition).Flags.ToString());
+//                    }
+//                    Console.WriteLine("set 2");
+//                    foreach (Condition propertyCondition in allConditions.GetConditions())
+//                    {
+//                        Console.WriteLine((propertyCondition as PropertyCondition).Property.ProgrammaticName);
+//                        Console.WriteLine((propertyCondition as PropertyCondition).Value.ToString());
+//                        Console.WriteLine((propertyCondition as PropertyCondition).Flags.ToString());
+//                    }
+//                }
+//                catch {}
+//                
+//                // 20131128
+//                // return conditionsToReturn;
+//                return (conditionsToReturn as AndCondition);
+//            }
+//        }
+#endregion commented (GetControlConditionsForWildcardSearch)
+        
+#region commented (GetControlConditionsForExactSearch)
+//        public object GetControlConditionsForExactSearch(GetCmdletBase cmdlet1, string controlType, bool caseSensitive, bool andVsOr)
+//        {
+//            ControlType ctrlType = null;
+//            AndCondition andConditions = null;
+//            OrCondition orConditions = null;
+//            PropertyCondition condition = null;
+//            AndCondition allConditions = null;
+//            object conditionsToReturn = null;
+//            PropertyConditionFlags flags = PropertyConditionFlags.None;
+//            if (!caseSensitive) {
+//                flags = PropertyConditionFlags.IgnoreCase;
+//            }
+//            
+//            GetControlCmdletBase cmdlet =
+//                (GetControlCmdletBase)cmdlet1;
+//            
 //            // the TextSearch mode
 //            if (null != (cmdlet as GetControlCmdletBase) && !string.IsNullOrEmpty(cmdlet.ContainsText) &&
 //                !andVsOr) {
@@ -1016,130 +1357,130 @@ namespace UIAutomation
 //                */
 //
 //            }
-            
-            if (!string.IsNullOrEmpty(controlType)) {
-                
-                WriteVerbose(this,
-                             "getting control with control type = " +
-                             controlType);
-                ctrlType =
-                    UiaHelper.GetControlTypeByTypeName(controlType);
-                
-                WriteVerbose(cmdlet, "ctrlType = " + ctrlType.ProgrammaticName);
-            }
-            
-            PropertyCondition ctrlTypeCondition = null,
-            classCondition = null, titleCondition = null, autoIdCondition = null;
-            PropertyCondition valueCondition = null;
-            
-            int conditionsCounter = 0;
-            if (ctrlType != null) {
-                
-                ctrlTypeCondition =
-                    new PropertyCondition(
-                        AutomationElement.ControlTypeProperty,
-                        ctrlType); //,
-                
-                WriteVerbose(cmdlet, "ControlTypeProperty '" +
-                             ctrlType.ProgrammaticName + "' is used");
-                // 20130128
-                //conditionsCounter++;
-            }
-            // 20120828
-            if (!string.IsNullOrEmpty(cmdlet.Class))
-            {
-                
-                classCondition =
-                    new PropertyCondition(
-                        AutomationElement.ClassNameProperty,
-                        cmdlet.Class,
-                        flags);
-                WriteVerbose(cmdlet, "ClassNameProperty '" +
-                             cmdlet.Class + "' is used");
-                conditionsCounter++;
-            }
-            
-            if (!string.IsNullOrEmpty(cmdlet.AutomationId))
-            {
-                
-                autoIdCondition =
-                    new PropertyCondition(
-                        AutomationElement.AutomationIdProperty,
-                        cmdlet.AutomationId,
-                        flags);
-                WriteVerbose(cmdlet, "AutomationIdProperty '" +
-                             cmdlet.AutomationId + "' is used");
-                conditionsCounter++;
-            }
-            
-            if (!string.IsNullOrEmpty(cmdlet.Name)) // allow empty name
-            {
-                
-                titleCondition =
-                    new PropertyCondition(
-                        AutomationElement.NameProperty,
-                        cmdlet.Name,
-                        flags);
-                WriteVerbose(cmdlet, "NameProperty '" +
-                             cmdlet.Name + "' is used");
-                conditionsCounter++;
-            }
-            
-            if (!string.IsNullOrEmpty(cmdlet.Value))
-            {
-                
-                valueCondition =
-                    new PropertyCondition(
-                        ValuePattern.ValueProperty,
-                        cmdlet.Value,
-                        flags);
-                WriteVerbose(cmdlet, "ValueProperty '" +
-                             cmdlet.Value + "' is used");
-                conditionsCounter++;
-            }
-            
-            // if there is more than one condition excepting ctrlTypeCondition
-            if (1 < conditionsCounter)
-            {
-                
-                try {
-                    ArrayList l = new ArrayList();
-                    if (classCondition != null)l.Add(classCondition);
-                    if (titleCondition != null)l.Add(titleCondition);
-                    if (autoIdCondition != null)l.Add(autoIdCondition);
-                    if (null != valueCondition)l.Add(valueCondition);
-                    Type t = typeof(Condition);
-                    Condition[] conds =
-                        ((Condition[])l.ToArray(t));
-                    
+//            
+//            if (!string.IsNullOrEmpty(controlType)) {
+//                
+//                WriteVerbose(this,
+//                             "getting control with control type = " +
+//                             controlType);
+//                ctrlType =
+//                    UiaHelper.GetControlTypeByTypeName(controlType);
+//                
+//                WriteVerbose(cmdlet, "ctrlType = " + ctrlType.ProgrammaticName);
+//            }
+//            
+//            PropertyCondition ctrlTypeCondition = null,
+//            classCondition = null, titleCondition = null, autoIdCondition = null;
+//            PropertyCondition valueCondition = null;
+//            
+//            int conditionsCounter = 0;
+//            if (ctrlType != null) {
+//                
+//                ctrlTypeCondition =
+//                    new PropertyCondition(
+//                        AutomationElement.ControlTypeProperty,
+//                        ctrlType); //,
+//                
+//                WriteVerbose(cmdlet, "ControlTypeProperty '" +
+//                             ctrlType.ProgrammaticName + "' is used");
+//                // 20130128
+//                //conditionsCounter++;
+//            }
+//            // 20120828
+//            if (!string.IsNullOrEmpty(cmdlet.Class))
+//            {
+//                
+//                classCondition =
+//                    new PropertyCondition(
+//                        AutomationElement.ClassNameProperty,
+//                        cmdlet.Class,
+//                        flags);
+//                WriteVerbose(cmdlet, "ClassNameProperty '" +
+//                             cmdlet.Class + "' is used");
+//                conditionsCounter++;
+//            }
+//            
+//            if (!string.IsNullOrEmpty(cmdlet.AutomationId))
+//            {
+//                
+//                autoIdCondition =
+//                    new PropertyCondition(
+//                        AutomationElement.AutomationIdProperty,
+//                        cmdlet.AutomationId,
+//                        flags);
+//                WriteVerbose(cmdlet, "AutomationIdProperty '" +
+//                             cmdlet.AutomationId + "' is used");
+//                conditionsCounter++;
+//            }
+//            
+//            if (!string.IsNullOrEmpty(cmdlet.Name)) // allow empty name
+//            {
+//                
+//                titleCondition =
+//                    new PropertyCondition(
+//                        AutomationElement.NameProperty,
+//                        cmdlet.Name,
+//                        flags);
+//                WriteVerbose(cmdlet, "NameProperty '" +
+//                             cmdlet.Name + "' is used");
+//                conditionsCounter++;
+//            }
+//            
+//            if (!string.IsNullOrEmpty(cmdlet.Value))
+//            {
+//                
+//                valueCondition =
+//                    new PropertyCondition(
+//                        ValuePattern.ValueProperty,
+//                        cmdlet.Value,
+//                        flags);
+//                WriteVerbose(cmdlet, "ValueProperty '" +
+//                             cmdlet.Value + "' is used");
+//                conditionsCounter++;
+//            }
+//            
+//            // if there is more than one condition excepting ctrlTypeCondition
+//            if (1 < conditionsCounter)
+//            {
+//                
+//                try {
+//                    ArrayList l = new ArrayList();
+//                    if (classCondition != null)l.Add(classCondition);
+//                    if (titleCondition != null)l.Add(titleCondition);
+//                    if (autoIdCondition != null)l.Add(autoIdCondition);
+//                    if (null != valueCondition)l.Add(valueCondition);
+//                    Type t = typeof(Condition);
+//                    Condition[] conds =
+//                        ((Condition[])l.ToArray(t));
+//                    
 //                    if (andVsOr) {
-                        
-                        andConditions =
-                            new AndCondition(conds);
+//                        
+//                        andConditions =
+//                            new AndCondition(conds);
 //                    } else {
 //                        
 //                        orConditions =
 //                            new OrCondition(conds);
 //                    }
-                    
-                    if (null != andConditions) {
-                        
-                        allConditions =
-                            new AndCondition(
-                                // 20131120
-                                // that was experimental
-                                ctrlTypeCondition ?? Condition.TrueCondition,
-                                //ctrlTypeCondition,
-                                andConditions);
-
-                        /*
-                        allConditions =
-                            new System.Windows.Automation.AndCondition(
-                                null == ctrlTypeCondition ? Condition.TrueCondition : ctrlTypeCondition,
-                                andConditions);
-                        */
-
-                    }
+//                    
+//                    if (null != andConditions) {
+//                        
+//                        allConditions =
+//                            new AndCondition(
+//                                // 20131120
+//                                // that was experimental
+//                                ctrlTypeCondition ?? Condition.TrueCondition,
+//                                //ctrlTypeCondition,
+//                                andConditions);
+//
+//                        /*
+//                        allConditions =
+//                            new System.Windows.Automation.AndCondition(
+//                                null == ctrlTypeCondition ? Condition.TrueCondition : ctrlTypeCondition,
+//                                andConditions);
+//                        */
+//
+//                    }
 //                    if (null != orConditions) {
 //                        
 //                        allConditions =
@@ -1158,496 +1499,172 @@ namespace UIAutomation
 //                        */
 //
 //                    }
-
-                    WriteVerbose(cmdlet, "used conditions " +
-                                 "ClassName = '" + classCondition.Value + "', " +
-                                 "ControlType = '" + ctrlTypeCondition.Value + "', " +
-                                 "Name = '" + titleCondition.Value + "', " +
-                                 "AutomationId = '" + autoIdCondition.Value + "', " +  //"'");
-                                 "Value = '" + valueCondition.Value + "'");
-
-                } catch (Exception eConditions) {
-                    WriteDebug(cmdlet, "conditions related exception " +
-                               eConditions.Message);
-                }
-                
-            } else if (1 == conditionsCounter && null != ctrlTypeCondition) {
-                
-                if (classCondition != null) { allConditions = new AndCondition(classCondition, ctrlTypeCondition); }
-                else if (titleCondition != null) { allConditions = new AndCondition(titleCondition, ctrlTypeCondition); }
-                else if (autoIdCondition != null) { allConditions = new AndCondition(autoIdCondition, ctrlTypeCondition); }
-                else if (null != valueCondition) { allConditions = new AndCondition(valueCondition, ctrlTypeCondition); }
-                WriteVerbose(cmdlet, "conditions: ctrlTypeCondition + a condition");
-                
-            } else if ((0 == conditionsCounter && null != ctrlTypeCondition) ||
-                       (1 == conditionsCounter && null == ctrlTypeCondition)) {
-                
-                if (classCondition != null) { condition = classCondition; }
-                else if (ctrlTypeCondition != null) { condition = ctrlTypeCondition; }
-                else if (titleCondition != null) { condition = titleCondition; }
-                else if (autoIdCondition != null) { condition = autoIdCondition; }
-                else if (null != valueCondition) { condition = valueCondition; }
-                WriteVerbose(cmdlet, "condition " +
-                             condition.GetType().Name + " '" +
-                             condition.Value + "' is used");
-            }
-            
-            else if (0 == conditionsCounter && null == ctrlTypeCondition)
-            {
-                
-                WriteVerbose(cmdlet, "neither ControlType nor Class nor Name are present");
-
-                return (new AndCondition(Condition.TrueCondition,
-                                         Condition.TrueCondition));
-            }
-            try {
-
-                Condition[] tempConditions = null;
-                if (null != allConditions) {
-                    
-                    tempConditions = allConditions.GetConditions();
-                    conditionsToReturn = allConditions;
-
-                }
-
-                else if (null != andConditions) {
-                    
-                    tempConditions = andConditions.GetConditions();
-
-                    conditionsToReturn = andConditions;
-
-                } else if (null != orConditions) {
-                    
-                    tempConditions = orConditions.GetConditions();
-                    conditionsToReturn = orConditions;
-
-                } else if (condition != null) {
-                    
-                    WriteVerbose(cmdlet, "conditions (only one): " +
-                                 condition.Property.ProgrammaticName +
-                                 " = " +
-                                 condition.Value.ToString());
-                    
-                    allConditions =
-                        new AndCondition(condition,
-                                         // 20131120
-                                         // that was experimental
-                                         Condition.TrueCondition);
-                                         //Condition.FalseCondition);
-                                         //condition);
-                    conditionsToReturn = allConditions;
-
-                }
-
-                // 20131128
-                // if (null == tempConditions) return conditionsToReturn;
-                if (null == tempConditions) return (conditionsToReturn as AndCondition);
-                foreach (Condition tempCondition in tempConditions)
-                {
-                    WriteVerbose(cmdlet, "condition: " + tempCondition.ToString());
-                }
-
-                /*
-                if (null != tempConditions) {
-                    for (int i = 0; i < tempConditions.Length; i++) {
-                        WriteVerbose(cmdlet, "condition: " + tempConditions[i].ToString());
-                    }
-                }
-                */
-               
-                // 20131127
-                try {
-                    AndCondition cond = conditionsToReturn as AndCondition;
-                    Condition[] conds = (conditionsToReturn as AndCondition).GetConditions();
-                    Console.WriteLine("set 1");
-                    foreach (Condition propertyCondition in conds)
-                    {
-                        Console.WriteLine((propertyCondition as PropertyCondition).Property.ProgrammaticName);
-                        Console.WriteLine((propertyCondition as PropertyCondition).Value.ToString());
-                        Console.WriteLine((propertyCondition as PropertyCondition).Flags.ToString());
-                    }
-                    Console.WriteLine("set 2");
-                    foreach (Condition propertyCondition in allConditions.GetConditions())
-                    {
-                        Console.WriteLine((propertyCondition as PropertyCondition).Property.ProgrammaticName);
-                        Console.WriteLine((propertyCondition as PropertyCondition).Value.ToString());
-                        Console.WriteLine((propertyCondition as PropertyCondition).Flags.ToString());
-                    }
-                }
-                catch {}
-               
-                // 20131128
-                // return conditionsToReturn;
-                return (conditionsToReturn as AndCondition);
-            } catch {
-                WriteVerbose(cmdlet, "conditions or condition are null");
-                
-                // 20131127
-                try {
-                    AndCondition cond = conditionsToReturn as AndCondition;
-                    Condition[] conds = (conditionsToReturn as AndCondition).GetConditions();
-                    Console.WriteLine("set 1");
-                    foreach (Condition propertyCondition in conds)
-                    {
-                        Console.WriteLine((propertyCondition as PropertyCondition).Property.ProgrammaticName);
-                        Console.WriteLine((propertyCondition as PropertyCondition).Value.ToString());
-                        Console.WriteLine((propertyCondition as PropertyCondition).Flags.ToString());
-                    }
-                    Console.WriteLine("set 2");
-                    foreach (Condition propertyCondition in allConditions.GetConditions())
-                    {
-                        Console.WriteLine((propertyCondition as PropertyCondition).Property.ProgrammaticName);
-                        Console.WriteLine((propertyCondition as PropertyCondition).Value.ToString());
-                        Console.WriteLine((propertyCondition as PropertyCondition).Flags.ToString());
-                    }
-                }
-                catch {}
-                
-                // 20131128
-                // return conditionsToReturn;
-                return (conditionsToReturn as AndCondition);
-            }
-        }
+//
+//                    WriteVerbose(cmdlet, "used conditions " +
+//                                 "ClassName = '" + classCondition.Value + "', " +
+//                                 "ControlType = '" + ctrlTypeCondition.Value + "', " +
+//                                 "Name = '" + titleCondition.Value + "', " +
+//                                 "AutomationId = '" + autoIdCondition.Value + "', " +  //"'");
+//                                 "Value = '" + valueCondition.Value + "'");
+//
+//                } catch (Exception eConditions) {
+//                    WriteDebug(cmdlet, "conditions related exception " +
+//                               eConditions.Message);
+//                }
+//                
+//            } else if (1 == conditionsCounter && null != ctrlTypeCondition) {
+//                
+//                if (classCondition != null) { allConditions = new AndCondition(classCondition, ctrlTypeCondition); }
+//                else if (titleCondition != null) { allConditions = new AndCondition(titleCondition, ctrlTypeCondition); }
+//                else if (autoIdCondition != null) { allConditions = new AndCondition(autoIdCondition, ctrlTypeCondition); }
+//                else if (null != valueCondition) { allConditions = new AndCondition(valueCondition, ctrlTypeCondition); }
+//                WriteVerbose(cmdlet, "conditions: ctrlTypeCondition + a condition");
+//                
+//            } else if ((0 == conditionsCounter && null != ctrlTypeCondition) ||
+//                       (1 == conditionsCounter && null == ctrlTypeCondition)) {
+//                
+//                if (classCondition != null) { condition = classCondition; }
+//                else if (ctrlTypeCondition != null) { condition = ctrlTypeCondition; }
+//                else if (titleCondition != null) { condition = titleCondition; }
+//                else if (autoIdCondition != null) { condition = autoIdCondition; }
+//                else if (null != valueCondition) { condition = valueCondition; }
+//                WriteVerbose(cmdlet, "condition " +
+//                             condition.GetType().Name + " '" +
+//                             condition.Value + "' is used");
+//            }
+//            
+//            else if (0 == conditionsCounter && null == ctrlTypeCondition)
+//            {
+//                
+//                WriteVerbose(cmdlet, "neither ControlType nor Class nor Name are present");
+//
+//                return (new AndCondition(Condition.TrueCondition,
+//                                         Condition.TrueCondition));
+//            }
+//            try {
+//
+//                Condition[] tempConditions = null;
+//                if (null != allConditions) {
+//                    
+//                    tempConditions = allConditions.GetConditions();
+//                    conditionsToReturn = allConditions;
+//
+//                }
+//
+//                else if (null != andConditions) {
+//                    
+//                    tempConditions = andConditions.GetConditions();
+//
+//                    conditionsToReturn = andConditions;
+//
+//                } else if (null != orConditions) {
+//                    
+//                    tempConditions = orConditions.GetConditions();
+//                    conditionsToReturn = orConditions;
+//
+//                } else if (condition != null) {
+//                    
+//                    WriteVerbose(cmdlet, "conditions (only one): " +
+//                                 condition.Property.ProgrammaticName +
+//                                 " = " +
+//                                 condition.Value.ToString());
+//                    
+//                    allConditions =
+//                        new AndCondition(condition,
+//                                         // 20131120
+//                                         // that was experimental
+//                                         Condition.TrueCondition);
+//                                         //Condition.FalseCondition);
+//                                         //condition);
+//                    conditionsToReturn = allConditions;
+//
+//                }
+//
+//                if (null == tempConditions) return conditionsToReturn;
+//                foreach (Condition tempCondition in tempConditions)
+//                {
+//                    WriteVerbose(cmdlet, "condition: " + tempCondition.ToString());
+//                }
+//
+//                /*
+//                if (null != tempConditions) {
+//                    for (int i = 0; i < tempConditions.Length; i++) {
+//                        WriteVerbose(cmdlet, "condition: " + tempConditions[i].ToString());
+//                    }
+//                }
+//                */
+//               
+//                // 20131127
+//                try {
+//                    OrCondition cond = conditionsToReturn as OrCondition;
+//                    Condition[] conds = (conditionsToReturn as OrCondition).GetConditions();
+//                    Console.WriteLine("set 1");
+//                    foreach (Condition propertyCondition in conds)
+//                    {
+//                        Console.WriteLine((propertyCondition as PropertyCondition).Property.ProgrammaticName);
+//                        Console.WriteLine((propertyCondition as PropertyCondition).Value.ToString());
+//                        Console.WriteLine((propertyCondition as PropertyCondition).Flags.ToString());
+//                    }
+//                    Console.WriteLine("set 2");
+//                    foreach (Condition propertyCondition in allConditions.GetConditions())
+//                    {
+//                        Console.WriteLine((propertyCondition as PropertyCondition).Property.ProgrammaticName);
+//                        Console.WriteLine((propertyCondition as PropertyCondition).Value.ToString());
+//                        Console.WriteLine((propertyCondition as PropertyCondition).Flags.ToString());
+//                    }
+//                }
+//                catch {}
+//               
+//                return conditionsToReturn;
+//            } catch {
+//                WriteVerbose(cmdlet, "conditions or condition are null");
+//                
+//                // 20131127
+//                try {
+//                    OrCondition cond = conditionsToReturn as OrCondition;
+//                    Condition[] conds = (conditionsToReturn as OrCondition).GetConditions();
+//                    Console.WriteLine("set 1");
+//                    foreach (Condition propertyCondition in conds)
+//                    {
+//                        Console.WriteLine((propertyCondition as PropertyCondition).Property.ProgrammaticName);
+//                        Console.WriteLine((propertyCondition as PropertyCondition).Value.ToString());
+//                        Console.WriteLine((propertyCondition as PropertyCondition).Flags.ToString());
+//                    }
+//                    Console.WriteLine("set 2");
+//                    foreach (Condition propertyCondition in allConditions.GetConditions())
+//                    {
+//                        Console.WriteLine((propertyCondition as PropertyCondition).Property.ProgrammaticName);
+//                        Console.WriteLine((propertyCondition as PropertyCondition).Value.ToString());
+//                        Console.WriteLine((propertyCondition as PropertyCondition).Flags.ToString());
+//                    }
+//                }
+//                catch {}
+//                
+//                return conditionsToReturn;
+//            }
+//        }
+#endregion commented (GetControlConditionsForExactSearch)
         
-        public object GetControlConditionsForExactSearch(GetCmdletBase cmdlet1, string controlType, bool caseSensitive, bool andVsOr)
-        {
-            ControlType ctrlType = null;
-            AndCondition andConditions = null;
-            OrCondition orConditions = null;
-            PropertyCondition condition = null;
-            AndCondition allConditions = null;
-            object conditionsToReturn = null;
-            PropertyConditionFlags flags = PropertyConditionFlags.None;
-            if (!caseSensitive) {
-                flags = PropertyConditionFlags.IgnoreCase;
-            }
-            
-            GetControlCmdletBase cmdlet =
-                (GetControlCmdletBase)cmdlet1;
-            
-            // the TextSearch mode
-            if (null != (cmdlet as GetControlCmdletBase) && !string.IsNullOrEmpty(cmdlet.ContainsText) &&
-                !andVsOr) {
-
-                cmdlet.Name =
-                    cmdlet.AutomationId =
-                    cmdlet.Class =
-                    cmdlet.Value =
-                    cmdlet.ContainsText;
-                /*
-                cmdlet.Name =
-                    (cmdlet as GetControlCmdletBase).AutomationId =
-                    (cmdlet as GetControlCmdletBase).Class =
-                    (cmdlet as GetControlCmdletBase).Value =
-                    (cmdlet as GetControlCmdletBase).ContainsText;
-                */
-
-            }
-            
-            if (!string.IsNullOrEmpty(controlType)) {
-                
-                WriteVerbose(this,
-                             "getting control with control type = " +
-                             controlType);
-                ctrlType =
-                    UiaHelper.GetControlTypeByTypeName(controlType);
-                
-                WriteVerbose(cmdlet, "ctrlType = " + ctrlType.ProgrammaticName);
-            }
-            
-            PropertyCondition ctrlTypeCondition = null,
-            classCondition = null, titleCondition = null, autoIdCondition = null;
-            PropertyCondition valueCondition = null;
-            
-            int conditionsCounter = 0;
-            if (ctrlType != null) {
-                
-                ctrlTypeCondition =
-                    new PropertyCondition(
-                        AutomationElement.ControlTypeProperty,
-                        ctrlType); //,
-                
-                WriteVerbose(cmdlet, "ControlTypeProperty '" +
-                             ctrlType.ProgrammaticName + "' is used");
-                // 20130128
-                //conditionsCounter++;
-            }
-            // 20120828
-            if (!string.IsNullOrEmpty(cmdlet.Class))
-            {
-                
-                classCondition =
-                    new PropertyCondition(
-                        AutomationElement.ClassNameProperty,
-                        cmdlet.Class,
-                        flags);
-                WriteVerbose(cmdlet, "ClassNameProperty '" +
-                             cmdlet.Class + "' is used");
-                conditionsCounter++;
-            }
-            
-            if (!string.IsNullOrEmpty(cmdlet.AutomationId))
-            {
-                
-                autoIdCondition =
-                    new PropertyCondition(
-                        AutomationElement.AutomationIdProperty,
-                        cmdlet.AutomationId,
-                        flags);
-                WriteVerbose(cmdlet, "AutomationIdProperty '" +
-                             cmdlet.AutomationId + "' is used");
-                conditionsCounter++;
-            }
-            
-            if (!string.IsNullOrEmpty(cmdlet.Name)) // allow empty name
-            {
-                
-                titleCondition =
-                    new PropertyCondition(
-                        AutomationElement.NameProperty,
-                        cmdlet.Name,
-                        flags);
-                WriteVerbose(cmdlet, "NameProperty '" +
-                             cmdlet.Name + "' is used");
-                conditionsCounter++;
-            }
-            
-            if (!string.IsNullOrEmpty(cmdlet.Value))
-            {
-                
-                valueCondition =
-                    new PropertyCondition(
-                        ValuePattern.ValueProperty,
-                        cmdlet.Value,
-                        flags);
-                WriteVerbose(cmdlet, "ValueProperty '" +
-                             cmdlet.Value + "' is used");
-                conditionsCounter++;
-            }
-            
-            // if there is more than one condition excepting ctrlTypeCondition
-            if (1 < conditionsCounter)
-            {
-                
-                try {
-                    ArrayList l = new ArrayList();
-                    if (classCondition != null)l.Add(classCondition);
-                    if (titleCondition != null)l.Add(titleCondition);
-                    if (autoIdCondition != null)l.Add(autoIdCondition);
-                    if (null != valueCondition)l.Add(valueCondition);
-                    Type t = typeof(Condition);
-                    Condition[] conds =
-                        ((Condition[])l.ToArray(t));
-                    
-                    if (andVsOr) {
-                        
-                        andConditions =
-                            new AndCondition(conds);
-                    } else {
-                        
-                        orConditions =
-                            new OrCondition(conds);
-                    }
-                    
-                    if (null != andConditions) {
-                        
-                        allConditions =
-                            new AndCondition(
-                                // 20131120
-                                // that was experimental
-                                ctrlTypeCondition ?? Condition.TrueCondition,
-                                //ctrlTypeCondition,
-                                andConditions);
-
-                        /*
-                        allConditions =
-                            new System.Windows.Automation.AndCondition(
-                                null == ctrlTypeCondition ? Condition.TrueCondition : ctrlTypeCondition,
-                                andConditions);
-                        */
-
-                    }
-                    if (null != orConditions) {
-                        
-                        allConditions =
-                            new AndCondition(
-                                // 20131120
-                                // that was experimental
-                                ctrlTypeCondition ?? Condition.TrueCondition,
-                                //ctrlTypeCondition,
-                                orConditions);
-
-                        /*
-                        allConditions =
-                            new System.Windows.Automation.AndCondition(
-                                null == ctrlTypeCondition ? Condition.TrueCondition : ctrlTypeCondition,
-                                orConditions);
-                        */
-
-                    }
-
-                    WriteVerbose(cmdlet, "used conditions " +
-                                 "ClassName = '" + classCondition.Value + "', " +
-                                 "ControlType = '" + ctrlTypeCondition.Value + "', " +
-                                 "Name = '" + titleCondition.Value + "', " +
-                                 "AutomationId = '" + autoIdCondition.Value + "', " +  //"'");
-                                 "Value = '" + valueCondition.Value + "'");
-
-                } catch (Exception eConditions) {
-                    WriteDebug(cmdlet, "conditions related exception " +
-                               eConditions.Message);
-                }
-                
-            } else if (1 == conditionsCounter && null != ctrlTypeCondition) {
-                
-                if (classCondition != null) { allConditions = new AndCondition(classCondition, ctrlTypeCondition); }
-                else if (titleCondition != null) { allConditions = new AndCondition(titleCondition, ctrlTypeCondition); }
-                else if (autoIdCondition != null) { allConditions = new AndCondition(autoIdCondition, ctrlTypeCondition); }
-                else if (null != valueCondition) { allConditions = new AndCondition(valueCondition, ctrlTypeCondition); }
-                WriteVerbose(cmdlet, "conditions: ctrlTypeCondition + a condition");
-                
-            } else if ((0 == conditionsCounter && null != ctrlTypeCondition) ||
-                       (1 == conditionsCounter && null == ctrlTypeCondition)) {
-                
-                if (classCondition != null) { condition = classCondition; }
-                else if (ctrlTypeCondition != null) { condition = ctrlTypeCondition; }
-                else if (titleCondition != null) { condition = titleCondition; }
-                else if (autoIdCondition != null) { condition = autoIdCondition; }
-                else if (null != valueCondition) { condition = valueCondition; }
-                WriteVerbose(cmdlet, "condition " +
-                             condition.GetType().Name + " '" +
-                             condition.Value + "' is used");
-            }
-            
-            else if (0 == conditionsCounter && null == ctrlTypeCondition)
-            {
-                
-                WriteVerbose(cmdlet, "neither ControlType nor Class nor Name are present");
-
-                return (new AndCondition(Condition.TrueCondition,
-                                         Condition.TrueCondition));
-            }
-            try {
-
-                Condition[] tempConditions = null;
-                if (null != allConditions) {
-                    
-                    tempConditions = allConditions.GetConditions();
-                    conditionsToReturn = allConditions;
-
-                }
-
-                else if (null != andConditions) {
-                    
-                    tempConditions = andConditions.GetConditions();
-
-                    conditionsToReturn = andConditions;
-
-                } else if (null != orConditions) {
-                    
-                    tempConditions = orConditions.GetConditions();
-                    conditionsToReturn = orConditions;
-
-                } else if (condition != null) {
-                    
-                    WriteVerbose(cmdlet, "conditions (only one): " +
-                                 condition.Property.ProgrammaticName +
-                                 " = " +
-                                 condition.Value.ToString());
-                    
-                    allConditions =
-                        new AndCondition(condition,
-                                         // 20131120
-                                         // that was experimental
-                                         Condition.TrueCondition);
-                                         //Condition.FalseCondition);
-                                         //condition);
-                    conditionsToReturn = allConditions;
-
-                }
-
-                if (null == tempConditions) return conditionsToReturn;
-                foreach (Condition tempCondition in tempConditions)
-                {
-                    WriteVerbose(cmdlet, "condition: " + tempCondition.ToString());
-                }
-
-                /*
-                if (null != tempConditions) {
-                    for (int i = 0; i < tempConditions.Length; i++) {
-                        WriteVerbose(cmdlet, "condition: " + tempConditions[i].ToString());
-                    }
-                }
-                */
-               
-                // 20131127
-                try {
-                    OrCondition cond = conditionsToReturn as OrCondition;
-                    Condition[] conds = (conditionsToReturn as OrCondition).GetConditions();
-                    Console.WriteLine("set 1");
-                    foreach (Condition propertyCondition in conds)
-                    {
-                        Console.WriteLine((propertyCondition as PropertyCondition).Property.ProgrammaticName);
-                        Console.WriteLine((propertyCondition as PropertyCondition).Value.ToString());
-                        Console.WriteLine((propertyCondition as PropertyCondition).Flags.ToString());
-                    }
-                    Console.WriteLine("set 2");
-                    foreach (Condition propertyCondition in allConditions.GetConditions())
-                    {
-                        Console.WriteLine((propertyCondition as PropertyCondition).Property.ProgrammaticName);
-                        Console.WriteLine((propertyCondition as PropertyCondition).Value.ToString());
-                        Console.WriteLine((propertyCondition as PropertyCondition).Flags.ToString());
-                    }
-                }
-                catch {}
-               
-                return conditionsToReturn;
-            } catch {
-                WriteVerbose(cmdlet, "conditions or condition are null");
-                
-                // 20131127
-                try {
-                    OrCondition cond = conditionsToReturn as OrCondition;
-                    Condition[] conds = (conditionsToReturn as OrCondition).GetConditions();
-                    Console.WriteLine("set 1");
-                    foreach (Condition propertyCondition in conds)
-                    {
-                        Console.WriteLine((propertyCondition as PropertyCondition).Property.ProgrammaticName);
-                        Console.WriteLine((propertyCondition as PropertyCondition).Value.ToString());
-                        Console.WriteLine((propertyCondition as PropertyCondition).Flags.ToString());
-                    }
-                    Console.WriteLine("set 2");
-                    foreach (Condition propertyCondition in allConditions.GetConditions())
-                    {
-                        Console.WriteLine((propertyCondition as PropertyCondition).Property.ProgrammaticName);
-                        Console.WriteLine((propertyCondition as PropertyCondition).Value.ToString());
-                        Console.WriteLine((propertyCondition as PropertyCondition).Flags.ToString());
-                    }
-                }
-                catch {}
-                
-                return conditionsToReturn;
-            }
-        }
-        
-        protected void DisplayConditions(
-            GetControlCmdletBase cmdlet,
-            AndCondition conditions,
-            string description)
-        {
-            try
-            {
-                Condition[] conds = conditions.GetConditions();
-                foreach (Condition propertyCondition in conds)
-                {
-                    cmdlet.WriteVerbose(cmdlet, "<<<< displaying conditions '" + description + "' >>>>");
-                    cmdlet.WriteVerbose(cmdlet, (propertyCondition as PropertyCondition).Property.ProgrammaticName);
-                    cmdlet.WriteVerbose(cmdlet, (propertyCondition as PropertyCondition).Value.ToString());
-                    cmdlet.WriteVerbose(cmdlet, (propertyCondition as PropertyCondition).Flags.ToString());
-                }
-            }
-            catch {}
-        }
+#region commented (DisplayConditions)
+//        protected void DisplayConditions(
+//            GetControlCmdletBase cmdlet,
+//            AndCondition conditions,
+//            string description)
+//        {
+//            try
+//            {
+//                Condition[] conds = conditions.GetConditions();
+//                foreach (Condition propertyCondition in conds)
+//                {
+//                    cmdlet.WriteVerbose(cmdlet, "<<<< displaying conditions '" + description + "' >>>>");
+//                    cmdlet.WriteVerbose(cmdlet, (propertyCondition as PropertyCondition).Property.ProgrammaticName);
+//                    cmdlet.WriteVerbose(cmdlet, (propertyCondition as PropertyCondition).Value.ToString());
+//                    cmdlet.WriteVerbose(cmdlet, (propertyCondition as PropertyCondition).Flags.ToString());
+//                }
+//            }
+//            catch {}
+//        }
+#endregion commented (DisplayConditions)
         
         protected internal AndCondition GetAndCondition(List<PropertyCondition> propertyCollection)
         {
@@ -1665,34 +1682,21 @@ namespace UIAutomation
         
         protected internal Condition GetControlTypeCondition(string[] controlTypeNames)
         {
-            if (null == controlTypeNames) return null;
-            
-Console.WriteLine("gctc 001");
+            if (null == controlTypeNames) return Condition.TrueCondition;
             
             List<PropertyCondition> controlTypeCollection =
                 new List<PropertyCondition>();
             foreach (string controlTypeName in controlTypeNames) {
                 
-Console.WriteLine("gctc 003");
-                
                 controlTypeCollection.Add(
                     new PropertyCondition(
                         AutomationElement.ControlTypeProperty,
                         UiaHelper.GetControlTypeByTypeName(controlTypeName)));
-                        
-Console.WriteLine("gctc 004");
-                        
             }
             
-Console.WriteLine("gctc 005");
-            
             if (1 == controlTypeCollection.Count) {
-    
-Console.WriteLine("gctc 006");
                 return controlTypeCollection[0];
             } else {
-Console.WriteLine("gctc 007");
-                // return new OrCondition(controlTypeCollection.ToArray());
                 return GetOrCondition(controlTypeCollection);
             }
         }
@@ -1701,12 +1705,8 @@ Console.WriteLine("gctc 007");
         {
             if (string.IsNullOrEmpty(searchString)) return null;
             
-Console.WriteLine("gtsc 001");
-            
             PropertyConditionFlags flags =
                 caseSensitive1 ? PropertyConditionFlags.None : PropertyConditionFlags.IgnoreCase;
-            
-Console.WriteLine("gtsc 002");
             
             OrCondition searchStringCondition =
                 new OrCondition(
@@ -1727,20 +1727,12 @@ Console.WriteLine("gtsc 002");
                         searchString,
                         flags));
             
-Console.WriteLine("gtsc 003");
-            
             if (null == controlTypeNames || 0 == controlTypeNames.Length) return searchStringCondition;
-            
-Console.WriteLine("gtsc 004");
             
             Condition controlTypeCondition =
                 GetControlTypeCondition(controlTypeNames);
             
-Console.WriteLine("gtsc 005");
-            
             if (null == controlTypeCondition) return searchStringCondition;
-            
-Console.WriteLine("gtsc 006");
             
             AndCondition resultCondition =
                 new AndCondition(
@@ -1748,8 +1740,6 @@ Console.WriteLine("gtsc 006");
                         searchStringCondition,
                         controlTypeCondition
                     });
-            
-Console.WriteLine("gtsc 007");
             
             return resultCondition;
         }
@@ -1759,204 +1749,66 @@ Console.WriteLine("gtsc 007");
             PropertyConditionFlags flags =
                 cmdlet.CaseSensitive ? PropertyConditionFlags.None : PropertyConditionFlags.IgnoreCase;
             
-Console.WriteLine("gesc 001");
-            
             Condition controlTypeCondition = null;
             if (null != cmdlet.ControlType && 0 < cmdlet.ControlType.Length) {
-                
-Console.WriteLine("gesc 002");
-                
                 controlTypeCondition =
                     GetControlTypeCondition(
                         cmdlet.ControlType);
-                
-Console.WriteLine("gesc 003");
-                
             }
             
             List<PropertyCondition> propertyCollection =
                 new List<PropertyCondition>();
             if (!string.IsNullOrEmpty(cmdlet.Name)) {
-                
-Console.WriteLine("gesc 004");
-                
                 propertyCollection.Add(
                     new PropertyCondition(
                         AutomationElement.NameProperty,
                         cmdlet.Name));
             }
             if (!string.IsNullOrEmpty(cmdlet.AutomationId)) {
-                
-Console.WriteLine("gesc 005");
-                
                 propertyCollection.Add(
                     new PropertyCondition(
                         AutomationElement.AutomationIdProperty,
                         cmdlet.AutomationId));
             }
             if (!string.IsNullOrEmpty(cmdlet.Class)) {
-                
-Console.WriteLine("gesc 006");
-                
                 propertyCollection.Add(
                     new PropertyCondition(
                         AutomationElement.ClassNameProperty,
                         cmdlet.Class));
             }
             if (!string.IsNullOrEmpty(cmdlet.Value)) {
-                
-Console.WriteLine("gesc 007");
-                
                 propertyCollection.Add(
                     new PropertyCondition(
                         ValuePattern.ValueProperty,
                         cmdlet.Value));
             }
             
-Console.WriteLine("gesc 008");
-            
-//            Condition propertyCondition =
-//                0 == propertyCollection.Count ? null : (
-//                    1 == propertyCollection.Count ? propertyCollection[0] : (Condition)new AndCondition(
-//                        propertyCollection.ToArray())
-//                   );
-
             Condition propertyCondition =
                 0 == propertyCollection.Count ? null : (
                     1 == propertyCollection.Count ? propertyCollection[0] : (Condition)GetAndCondition(propertyCollection)
                    );
             
-//            Condition resultCondition =
-//                null == controlTypeCondition ? (propertyCondition ?? Condition.TrueCondition) : new AndCondition(
-//                    new Condition[] {
-//                        propertyCondition,
-//                        controlTypeCondition
-//                    });
-            
-Console.WriteLine("gesc 009");
-if (null == propertyCondition) {
-    Console.WriteLine("null == propertyCondition");
-}
-if (propertyCondition is PropertyCondition) {
-    Console.WriteLine("propertyCondition is PropertyCondition");
-}
-            
             if (null == propertyCondition) {
-Console.WriteLine("gesc 010");
                 return controlTypeCondition;
             } else {
-Console.WriteLine("gesc 011");
                 return null == controlTypeCondition ? propertyCondition : new AndCondition(
                     new Condition[] {
                         propertyCondition,
                         controlTypeCondition
                     });
             }
-            
-//            return resultCondition;
         }
         
         protected internal Condition GetWildcardSearchCondition(GetControlCmdletBase cmdlet)
         {
-//            PropertyConditionFlags flags =
-//                cmdlet.CaseSensitive ? PropertyConditionFlags.None : PropertyConditionFlags.IgnoreCase;
-            
-Console.WriteLine("gwsc 001");
-            
-            Condition controlTypeCondition = null;
+            Condition controlTypeCondition = Condition.TrueCondition;
             if (null != cmdlet.ControlType && 0 < cmdlet.ControlType.Length) {
-                
-Console.WriteLine("gwsc 002");
-                
                 controlTypeCondition =
                     GetControlTypeCondition(
                         cmdlet.ControlType);
                 
-Console.WriteLine("gwsc 003");
-                
             }
             return controlTypeCondition;
-            
-//            List<PropertyCondition> propertyCollection =
-//                new List<PropertyCondition>();
-//            if (!string.IsNullOrEmpty(cmdlet.Name)) {
-//                
-//Console.WriteLine("gwsc 004");
-//                
-//                propertyCollection.Add(
-//                    new PropertyCondition(
-//                        AutomationElement.NameProperty,
-//                        cmdlet.Name));
-//            }
-//            if (!string.IsNullOrEmpty(cmdlet.AutomationId)) {
-//                
-//Console.WriteLine("gwsc 005");
-//                
-//                propertyCollection.Add(
-//                    new PropertyCondition(
-//                        AutomationElement.AutomationIdProperty,
-//                        cmdlet.AutomationId));
-//            }
-//            if (!string.IsNullOrEmpty(cmdlet.Class)) {
-//                
-//Console.WriteLine("gwsc 006");
-//                
-//                propertyCollection.Add(
-//                    new PropertyCondition(
-//                        AutomationElement.ClassNameProperty,
-//                        cmdlet.Class));
-//            }
-//            if (!string.IsNullOrEmpty(cmdlet.Value)) {
-//                
-//Console.WriteLine("gwsc 007");
-//                
-//                propertyCollection.Add(
-//                    new PropertyCondition(
-//                        ValuePattern.ValueProperty,
-//                        cmdlet.Value));
-//            }
-//            
-//Console.WriteLine("gwsc 008");
-//            
-////            Condition propertyCondition =
-////                0 == propertyCollection.Count ? null : (
-////                    1 == propertyCollection.Count ? propertyCollection[0] : (Condition)new AndCondition(
-////                        propertyCollection.ToArray())
-////                   );
-//
-//            Condition propertyCondition =
-//                0 == propertyCollection.Count ? null : (
-//                    1 == propertyCollection.Count ? propertyCollection[0] : (Condition)GetAndCondition(propertyCollection)
-//                   );
-//            
-////            Condition resultCondition =
-////                null == controlTypeCondition ? (propertyCondition ?? Condition.TrueCondition) : new AndCondition(
-////                    new Condition[] {
-////                        propertyCondition,
-////                        controlTypeCondition
-////                    });
-//            
-//Console.WriteLine("gwsc 009");
-//if (null == propertyCondition) {
-//    Console.WriteLine("null == propertyCondition");
-//}
-//if (propertyCondition is PropertyCondition) {
-//    Console.WriteLine("propertyCondition is PropertyCondition");
-//}
-//            
-//            if (null == propertyCondition) {
-//Console.WriteLine("gwsc 010");
-//                return controlTypeCondition;
-//            } else {
-//Console.WriteLine("gwsc 011");
-//                return null == controlTypeCondition ? propertyCondition : new AndCondition(
-//                    new Condition[] {
-//                        propertyCondition,
-//                        controlTypeCondition
-//                    });
-//            }
-            
-//            return resultCondition;
         }
         
         protected internal ArrayList GetControl(GetControlCmdletBase cmdlet)
@@ -1968,7 +1820,7 @@ Console.WriteLine("gwsc 003");
                 #region conditions
                 // 20131128
                 // AndCondition conditions = null;
-                Condition conditions = null;
+                Condition conditionsForExactSearch = null;
                 // 20131128
                 // AndCondition conditionsForWildCards = null;
                 Condition conditionsForWildCards = null;
@@ -2015,7 +1867,7 @@ Console.WriteLine("gwsc 003");
                     // conditions = GetControlConditionsForWildcardSearch(cmdlet, cmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive, true) as AndCondition;
                     // 20131128
                     // conditions = GetControlConditionsForWildcardSearch(cmdlet, cmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive);
-                    conditions = GetExactSearchCondition(cmdlet);
+                    conditionsForExactSearch = GetExactSearchCondition(cmdlet);
                     // WriteVerbose(cmdlet, "these conditions are used for an exact search:");
                     // DisplayConditions(cmdlet, conditions, "for exact search");
                     
@@ -2066,6 +1918,8 @@ Console.WriteLine("gwsc 003");
                         if (0 == ResultArrayListOfControls.Count) {
                             if (!notTextSearch && !cmdlet.Win32) {
                                 
+Console.WriteLine("text search UIA");
+                                
                                 SearchByTextViaUia(cmdlet, inputObject, conditionsForTextSearch);
                             }
                         }
@@ -2074,6 +1928,8 @@ Console.WriteLine("gwsc 003");
                         #region text search Win32
                         if (0 == ResultArrayListOfControls.Count) {
                             if (!notTextSearch && cmdlet.Win32) {
+                                
+Console.WriteLine("text search Win32");
                                 
                                 SearchByTextViaWin32(cmdlet, inputObject, cmdlet.ControlType);
                             }
@@ -2084,9 +1940,11 @@ Console.WriteLine("gwsc 003");
                         if (0 == ResultArrayListOfControls.Count && notTextSearch && !cmdlet.Regex) {
                             if (!Preferences.DisableExactSearch && !cmdlet.Win32 ) {
                                 
+Console.WriteLine("exact search UIA");
+                                
                                 // 20131126
                                 // SearchByExactConditionsViaUia(cmdlet, inputObject, conditions);
-                                SearchByExactConditionsViaUia(cmdlet, inputObject, conditions, cmdlet.ResultArrayListOfControls);
+                                SearchByExactConditionsViaUia(cmdlet, inputObject, conditionsForExactSearch, cmdlet.ResultArrayListOfControls);
                                 
                             }
                         }
@@ -2095,6 +1953,8 @@ Console.WriteLine("gwsc 003");
                         #region wildcard search
                         if (0 == ResultArrayListOfControls.Count && notTextSearch && !cmdlet.Regex) {
                             if (!Preferences.DisableWildCardSearch && !cmdlet.Win32) {
+                                
+Console.WriteLine("wildcard search UIA");
                                 
                                 // 20131128
                                 // SearchByWildcardOrRegexViaUia(cmdlet, ref ResultArrayListOfControls, inputObject, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class, cmdlet.Value, conditionsForWildCards, true);
@@ -2109,6 +1969,8 @@ Console.WriteLine("gwsc 003");
                         if (0 == ResultArrayListOfControls.Count && notTextSearch && cmdlet.Regex) {
                             if (!Preferences.DisableWildCardSearch && !cmdlet.Win32) {
                                 
+Console.WriteLine("regex search UIA");
+                                
                                 // 20131128
                                 // SearchByWildcardOrRegexViaUia(cmdlet, ref ResultArrayListOfControls, inputObject, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class, cmdlet.Value, conditionsForWildCards, false);
                                 SearchByWildcardOrRegexViaUia(cmdlet, ref ResultArrayListOfControls, inputObject, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class, cmdlet.Value, (AndCondition)conditionsForWildCards, false);
@@ -2120,6 +1982,8 @@ Console.WriteLine("gwsc 003");
                         if (0 == ResultArrayListOfControls.Count && notTextSearch && !cmdlet.Regex) {
                             
                             if (!Preferences.DisableWin32Search || cmdlet.Win32) {
+                                
+Console.WriteLine("wildcard search Win32");
                                 
                                 SearchByWildcardViaWin32(cmdlet, inputObject);
                                 
@@ -2243,13 +2107,20 @@ Console.WriteLine("gwsc 003");
             ArrayList tempListWin32 = new ArrayList();
             if (!string.IsNullOrEmpty(cmdlet.Name)) {
                 WriteVerbose(cmdlet, "collecting controls by name (Win32)");
-                tempListWin32.AddRange(UiaHelper.GetControlByName(cmdlet, inputObject, cmdlet.Name));
+                // 20131129
+                // tempListWin32.AddRange(UiaHelper.GetControlByName(cmdlet, inputObject, cmdlet.Name));
+                tempListWin32.AddRange(UiaHelper.GetControlByName(cmdlet, inputObject, cmdlet.Name, cmdlet.Value));
+                
+Console.WriteLine("Win32 search via name and/or value");
+                
             }
             
-            if (!string.IsNullOrEmpty(cmdlet.Value)) {
-                WriteVerbose(cmdlet, "collecting controls by value (Win32)");
-                tempListWin32.AddRange(UiaHelper.GetControlByName(cmdlet, inputObject, cmdlet.Value));
-            }
+            // 20131129
+//            if (!string.IsNullOrEmpty(cmdlet.Value)) {
+//                WriteVerbose(cmdlet, "collecting controls by value (Win32)");
+//                tempListWin32.AddRange(UiaHelper.GetControlByName(cmdlet, inputObject, cmdlet.Value));
+//                
+//            }
             
             foreach (IMySuperWrapper tempElement3 in tempListWin32) {
                 
@@ -2554,7 +2425,9 @@ Console.WriteLine("tempCollection.Count = " + tempCollection.Count.ToString());
                 UiaHelper.GetControlByName(
                     cmdlet,
                     inputObject,
-                    cmdlet.ContainsText);
+                    cmdlet.ContainsText,
+                    // 20131129
+                    string.Empty);
             
             if (null != textSearchWin32List && 0 < textSearchWin32List.Count) {
                 

@@ -95,22 +95,27 @@ namespace UIAutomation
         
         internal static ArrayList GetControlByName(
             GetControlCmdletBase cmdlet,
-            IMySuperWrapper container,
-            string controlTitle)
+            IMySuperWrapper containerElement,
+            // 20131129
+            // string controlTitle)
+            string controlTitle,
+            string controlValue)
         {
 
             ArrayList resultCollection = new ArrayList();
             
             cmdlet.WriteVerbose(cmdlet, "checking the container control");
 
-            if (null == container) { return resultCollection; }
+            if (null == containerElement) { return resultCollection; }
             cmdlet.WriteVerbose(cmdlet, "checking the Name parameter");
             
             controlTitle = string.IsNullOrEmpty(controlTitle) ? "*" : controlTitle;
+            // 20131129
+            controlValue = string.IsNullOrEmpty(controlValue) ? "*" : controlValue;
             
             try {
                 IntPtr containerHandle =
-                    new IntPtr(container.Current.NativeWindowHandle);
+                    new IntPtr(containerElement.Current.NativeWindowHandle);
                 if (containerHandle == IntPtr.Zero){
                     cmdlet.WriteVerbose(cmdlet, "The container control has no handle");
 
@@ -127,7 +132,10 @@ namespace UIAutomation
                     WildcardOptions.Compiled;
                 
                 WildcardPattern wildcardName =
-                    new WildcardPattern(controlTitle,options);
+                    new WildcardPattern(controlTitle, options);
+                // 20131129
+                WildcardPattern wildcardValue =
+                    new WildcardPattern(controlValue, options);
                 
                 if (null == handlesCollection || 0 == handlesCollection.Count) return resultCollection;
                 cmdlet.WriteVerbose(cmdlet, "handles.Count = " + handlesCollection.Count.ToString());
@@ -145,12 +153,15 @@ namespace UIAutomation
                         cmdlet.WriteVerbose(cmdlet, tempElement.Current.Name);
 
                         if (IsMatchWildcardPattern(cmdlet, resultCollection, tempElement, wildcardName, tempElement.Current.Name)) continue;
+                        // 20131129
                         if (IsMatchWildcardPattern(cmdlet, resultCollection, tempElement, wildcardName, tempElement.Current.AutomationId)) continue;
                         if (IsMatchWildcardPattern(cmdlet, resultCollection, tempElement, wildcardName, tempElement.Current.ClassName)) continue;
                         try {
                             string elementValue =
                                 (tempElement.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern).Current.Value;
-                            if (IsMatchWildcardPattern(cmdlet, resultCollection, tempElement, wildcardName, elementValue)) continue;
+                            // 20131129
+                            // if (IsMatchWildcardPattern(cmdlet, resultCollection, tempElement, wildcardName, elementValue)) continue;
+                            if (IsMatchWildcardPattern(cmdlet, resultCollection, tempElement, wildcardValue, elementValue)) continue;
                         }
                         catch { //(Exception eValuePattern) {
                         }
@@ -181,11 +192,12 @@ namespace UIAutomation
             }
             
             if (!wcPattern.IsMatch(dataToCheck)) return result;
+            
             result = true;
             cmdlet.WriteVerbose(cmdlet, "name '" + dataToCheck + "' matches!");
             resultCollection.Add(elementInput);
-            
-            result = true;
+            // 20131129
+            // result = true;
             
             return result;
         }

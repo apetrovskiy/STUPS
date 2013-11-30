@@ -705,22 +705,32 @@ namespace UIAutomation
                     WriteVerbose(this, "selected TreeScope." + scope.ToString());
                     // 20131118
                     // object -> Condition
-                    AndCondition[] conditions = GetControlsConditions(this);
+                    // 20131129
+                    // AndCondition[] conditions = GetControlsConditions(this);
+                    Condition conditions = GetWildcardSearchCondition(this);
                     //Condition[] conditions = getControlsConditions(this);
                     IMySuperCollection temporaryResults = null;
-                    if (conditions != null && conditions.Length > 0)
+                    // 20131129
+                    // if (conditions != null && conditions.Length > 0)
+                    if (conditions != null)
                     {
-                        WriteVerbose(this, "conditions number: " +
-                                     conditions.Length.ToString());
-                        foreach (AndCondition andCondition in conditions.Where(andCondition => andCondition != null))
-                        {
-                            WriteVerbose(this, andCondition.GetConditions());
+//                        WriteVerbose(this, "conditions number: " +
+//                                     conditions.Length.ToString());
+                        // 20131129
+                        // foreach (AndCondition andCondition in conditions.Where(andCondition => andCondition != null))
+//                        foreach (Condition condition in conditions.Where(everyCondition => everyCondition != null))
+//                        {
+                            // 20131129
+                            // WriteVerbose(this, andCondition.GetConditions());
                             temporaryResults =
                                 // 20120823
                                 //this.InputObject.FindAll(scope,
-                                inputObject.FindAll(scope,
-                                    andCondition);
-                            if (temporaryResults.Count <= 0) continue;
+                                inputObject.FindAll(
+                                    scope,
+                                    // 20131129
+                                    //andCondition);
+                                    conditions);
+//                            if (temporaryResults.Count <= 0) continue;
                             /*
                             if (temporaryResults.Count > 0) {
                             */
@@ -742,7 +752,7 @@ namespace UIAutomation
                                         searchResults.Add(element);
                                     }
                                     */
-                        }
+//                        }
     
                         /*
                         foreach (AndCondition andCondition in conditions)

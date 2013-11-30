@@ -62,8 +62,11 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             // 20131128
             //AndCondition condition =
             //    cmdlet.GetControlConditionsForWildcardSearch(cmdlet, controlTypeString, false, false) as AndCondition;
-            OrCondition condition =
-                cmdlet.GetControlConditionsForExactSearch(cmdlet, controlTypeString, false, false) as OrCondition;
+            // 20131129
+            // OrCondition condition =
+            //     cmdlet.GetControlConditionsForExactSearch(cmdlet, controlTypeString, false, false) as OrCondition;
+            Condition condition =
+                cmdlet.GetExactSearchCondition(cmdlet);
             IMySuperWrapper element =
                 FakeFactory.GetElement_ForFindAll(
                     collection,
@@ -77,7 +80,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
 //                            false) as AndCondition;
             
             // Act
-            ArrayList resultList = RealCodeCaller.GetResultArrayList_ExactSearch(cmdlet, element, condition);
+            // 20131129
+            // ArrayList resultList = RealCodeCaller.GetResultArrayList_ExactSearch(cmdlet, element, condition);
+            ArrayList resultList = RealCodeCaller.GetResultArrayList_ExactSearch(cmdlet, element, (OrCondition)condition);
             
             // Assert
             Assert.Count(expectedNumberOfElements, resultList);

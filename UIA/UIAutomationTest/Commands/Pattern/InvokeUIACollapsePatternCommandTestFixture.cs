@@ -85,7 +85,9 @@ namespace UIAutomationTest.Commands.Pattern
             string expectedResult1 = "CmdletInvocationException";
             // 20130219
             //string expectedResult2 = "Get-UiaTreeItem: timeout expired for class: ' + , control type: TreeItem, title: Node1";
-            string expectedResult2 = @"Get-UiaTreeItem: timeout expired for control with class: + '', control type: 'TreeItem', title: 'Node1', automationId: '', value: ''";
+            // 20131129
+            // string expectedResult2 = @"Get-UiaTreeItem: timeout expired for control with class: + '', control type: 'TreeItem', title: 'Node1', automationId: '', value: ''";
+            string expectedResult2 = @"Get-UiaTreeItem: timeout expired for control with class: + '', control type: 'System.String[]', title: 'Node1', automationId: '', value: ''";
             //string expectedResult2 = "GetUiaTreeItem: timeout expired for class: ' + , control type: TreeItem, title: Node1";
             //string expectedResult2 = "A generic error occurred in GDI+.";
             MiddleLevelCode.StartProcessWithForm(

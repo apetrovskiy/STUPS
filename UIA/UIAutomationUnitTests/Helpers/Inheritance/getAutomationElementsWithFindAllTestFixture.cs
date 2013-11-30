@@ -77,8 +77,11 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             // 20131128
             //AndCondition condition =
             //    cmdlet.GetControlConditionsForWildcardSearch(cmdlet, controlTypeString, false, true) as AndCondition;
-            AndCondition condition =
-                cmdlet.GetControlConditionsForWildcardSearch(cmdlet, controlTypeString, false);
+            // 20131129
+            // AndCondition condition =
+            //     cmdlet.GetControlConditionsForWildcardSearch(cmdlet, controlTypeString, false);
+            Condition condition =
+                cmdlet.GetWildcardSearchCondition(cmdlet);
             IMySuperWrapper element =
                 FakeFactory.GetElement_ForFindAll(
                     collection,

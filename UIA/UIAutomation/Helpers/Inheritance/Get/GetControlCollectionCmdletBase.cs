@@ -686,27 +686,15 @@ namespace UIAutomation
         {
             if (!CheckAndPrepareInput(this)) { return; }
             
-            // 20120823
-            // 20131109
-            //foreach (AutomationElement inputObject in this.InputObject) {
             foreach (IMySuperWrapper inputObject in InputObject) {
-            
-                // 20131109
-                //System.Collections.Generic.List<AutomationElement> searchResults = 
-                //    new System.Collections.Generic.List<AutomationElement>();
+                
                 List<IMySuperWrapper> searchResults = 
                     new List<IMySuperWrapper>();
-            // 20131109
-            //AutomationElementCollection temporaryResults = null;
-                //AutomationElement[] outResult;
-
+                
                 if (scope == TreeScope.Children ||
                     scope == TreeScope.Descendants) {
                     WriteVerbose(this, "selected TreeScope." + scope.ToString());
-                    // 20131118
-                    // object -> Condition
-                    // 20131129
-                    // AndCondition[] conditions = GetControlsConditions(this);
+                    
                     Condition conditions = GetWildcardSearchCondition(this);
                     //Condition[] conditions = getControlsConditions(this);
                     IMySuperCollection temporaryResults = null;

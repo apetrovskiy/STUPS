@@ -7,7 +7,8 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace UIAutomationTest.Commands.Select
+// namespace UIAutomationTest.Commands.Select
+namespace UIAutomationUnitTests.Helpers.Inheritance
 {
     using System;
     using System.Diagnostics;

@@ -43,7 +43,7 @@ namespace UIAutomation
         private static Banner _banner = null;
         private static IMySuperWrapper _element = null;
         
-        private static ArrayList GetControlByName(
+        private static ArrayList GetControlByNameViaWin32Recursively(
             PSCmdletBase cmdlet,
             IntPtr containerHandle,
             string name,
@@ -55,20 +55,22 @@ namespace UIAutomation
             ArrayList controlHandles = new ArrayList();
             ArrayList tempControlHandles = new ArrayList();
             
-            cmdlet.WriteVerbose(cmdlet, "name = " + name);
-            
-            cmdlet.WriteVerbose(cmdlet, "using null instead of name");
-            cmdlet.WriteVerbose(cmdlet, "test >>>>>>>>>>>>>>>>>>>>>>>>>");
-            try{ cmdlet.WriteVerbose(cmdlet, "name = " + MySuperWrapper.FromHandle(controlHandle).Current.Name); } catch {}
-            try{ cmdlet.WriteVerbose(cmdlet, "automationid = " + MySuperWrapper.FromHandle(controlHandle).Current.AutomationId); } catch {}
-            try{ cmdlet.WriteVerbose(cmdlet, "class = " + MySuperWrapper.FromHandle(controlHandle).Current.ClassName); } catch {}
-            try{ cmdlet.WriteVerbose(cmdlet, "control type = " + MySuperWrapper.FromHandle(controlHandle).Current.ControlType.ProgrammaticName); } catch {}
+//            cmdlet.WriteVerbose(cmdlet, "name = " + name);
+//            
+//            cmdlet.WriteVerbose(cmdlet, "using null instead of name");
+//            cmdlet.WriteVerbose(cmdlet, "test >>>>>>>>>>>>>>>>>>>>>>>>>");
+//            try{ cmdlet.WriteVerbose(cmdlet, "name = " + MySuperWrapper.FromHandle(controlHandle).Current.Name); } catch {}
+//            try{ cmdlet.WriteVerbose(cmdlet, "automationid = " + MySuperWrapper.FromHandle(controlHandle).Current.AutomationId); } catch {}
+//            try{ cmdlet.WriteVerbose(cmdlet, "class = " + MySuperWrapper.FromHandle(controlHandle).Current.ClassName); } catch {}
+//            try{ cmdlet.WriteVerbose(cmdlet, "control type = " + MySuperWrapper.FromHandle(controlHandle).Current.ControlType.ProgrammaticName); } catch {}
             
             // search at this level
             do {
-                cmdlet.WriteVerbose(
-                    cmdlet,
-                    "performing the search at level " + level.ToString());
+//                cmdlet.WriteVerbose(
+//                    cmdlet,
+//                    "performing the search at level " + level.ToString());
+                // 20131130
+                // using null instead of name
                 controlHandle =
                     NativeMethods.FindWindowEx(containerHandle, controlHandle, null, null);
 
@@ -76,12 +78,12 @@ namespace UIAutomation
                 controlHandles.Add(controlHandle);
                     
                     
-                cmdlet.WriteVerbose(
-                    cmdlet,
-                    "performing the recursive search at level " + (level + 1).ToString());
+//                cmdlet.WriteVerbose(
+//                    cmdlet,
+//                    "performing the recursive search at level " + (level + 1).ToString());
                     
                 tempControlHandles =
-                    GetControlByName(cmdlet, controlHandle, name, level + 1);
+                    GetControlByNameViaWin32Recursively(cmdlet, controlHandle, name, level + 1);
                 //break;
                 if (null == tempControlHandles || 0 == tempControlHandles.Count) continue;
                 foreach (IntPtr oneMoreHandle in tempControlHandles) {
@@ -93,7 +95,7 @@ namespace UIAutomation
             return controlHandles;
         }
         
-        internal static ArrayList GetControlByName(
+        internal static ArrayList GetControlByNameViaWin32(
             GetControlCmdletBase cmdlet,
             IMySuperWrapper containerElement,
             // 20131129
@@ -125,8 +127,10 @@ namespace UIAutomation
                 ArrayList handlesCollection =
                     new ArrayList();
                 handlesCollection =
-                    GetControlByName(cmdlet, containerHandle, controlTitle, 1);
-
+                    GetControlByNameViaWin32Recursively(cmdlet, containerHandle, controlTitle, 1);
+                
+//Console.WriteLine("1 handlesCollection.Count = " + handlesCollection.Count.ToString());
+                
                 const WildcardOptions options =
                     WildcardOptions.IgnoreCase |
                     WildcardOptions.Compiled;
@@ -139,6 +143,9 @@ namespace UIAutomation
                 
                 if (null == handlesCollection || 0 == handlesCollection.Count) return resultCollection;
                 cmdlet.WriteVerbose(cmdlet, "handles.Count = " + handlesCollection.Count.ToString());
+                
+//Console.WriteLine("3 handlesCollection.Count = " + handlesCollection.Count.ToString());
+                
                 foreach (IntPtr controlHandle in handlesCollection) {
                     try {
                         cmdlet.WriteVerbose(cmdlet, "checking a handle");
@@ -160,7 +167,7 @@ namespace UIAutomation
                             string elementValue =
                                 (tempElement.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern).Current.Value;
                             // 20131129
-                            // if (IsMatchWildcardPattern(cmdlet, resultCollection, tempElement, wildcardName, elementValue)) continue;
+                            if (IsMatchWildcardPattern(cmdlet, resultCollection, tempElement, wildcardName, elementValue)) continue;
                             if (IsMatchWildcardPattern(cmdlet, resultCollection, tempElement, wildcardValue, elementValue)) continue;
                         }
                         catch { //(Exception eValuePattern) {

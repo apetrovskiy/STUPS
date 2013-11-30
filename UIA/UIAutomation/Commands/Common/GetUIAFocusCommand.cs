@@ -21,9 +21,13 @@ namespace UIAutomation.Commands
         [Parameter(Mandatory = false)]
         // 20131109
         //internal new AutomationElement InputObject { get; set; }
+        // 20131130
         internal new IMySuperWrapper InputObject { get; set; }
+        /*
+        internal new IMySuperWrapper InputObject { get; set; }
+        */
         #endregion Parameters
-        
+
         protected override void BeginProcessing()
         {
             // 20131109

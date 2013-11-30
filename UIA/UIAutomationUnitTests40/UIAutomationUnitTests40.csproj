@@ -133,6 +133,9 @@
     <Compile Include="..\UIAutomationUnitTests\Fakes\RealCodeCaller.cs">
       <Link>Fakes\RealCodeCaller.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\Inheritance\CommonCmdletBaseTestFixture.cs">
+      <Link>Helpers\Inheritance\CommonCmdletBaseTestFixture.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomationUnitTests\Helpers\Inheritance\getAutomationElementsWithFindAllTestFixture.cs">
       <Link>Helpers\Inheritance\getAutomationElementsWithFindAllTestFixture.cs</Link>
     </Compile>

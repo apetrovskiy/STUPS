@@ -55,12 +55,8 @@ namespace UIAutomationUnitTests
             cmdlet.ResultArrayListOfControls = new ArrayList();
             //cmdletDerived.ResultArrayListOfControls = new ArrayList();
             
-//Console.WriteLine("grales 0001");
-            
             cmdletDerived.SearchByExactConditionsViaUia(cmdlet, element, conditions, cmdlet.ResultArrayListOfControls);
             //cmdletDerived.SearchByExactConditionsViaUia(cmdlet, element, conditions, cmdletDerived.ResultArrayListOfControls);
-            
-//Console.WriteLine("grales 0002");
             
             return cmdlet.ResultArrayListOfControls;
         }

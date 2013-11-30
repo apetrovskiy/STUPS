@@ -355,9 +355,6 @@
     <Compile Include="..\UIAutomationTest\Enumerations.cs">
       <Link>Enumerations.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomationTest\Helpers\CommonCmdletBaseTestFixture.cs">
-      <Link>Helpers\CommonCmdletBaseTestFixture.cs</Link>
-    </Compile>
     <Compile Include="..\UIAutomationTest\Helpers\PreferencesTestFixture.cs">
       <Link>Helpers\PreferencesTestFixture.cs</Link>
     </Compile>

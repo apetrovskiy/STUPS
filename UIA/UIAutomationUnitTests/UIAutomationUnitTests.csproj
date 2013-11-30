@@ -110,6 +110,7 @@
     <Compile Include="Commands\Wizard\NewUIAWizardCommandTestFixture.cs" />
     <Compile Include="Fakes\FakeFactory.cs" />
     <Compile Include="Fakes\RealCodeCaller.cs" />
+    <Compile Include="Helpers\Inheritance\CommonCmdletBaseTestFixture.cs" />
     <Compile Include="Helpers\Inheritance\getAutomationElementsWithFindAllTestFixture.cs" />
     <Compile Include="Helpers\Inheritance\GetControlTestFixture.cs" />
     <Compile Include="Helpers\Inheritance\ReturnOnlyRightElementsTestFixture.cs" />

@@ -178,11 +178,12 @@ namespace UIAutomation
 //                            }
                             
                             GetControlCmdletBase cmdletCtrl =
-                                new GetControlCmdletBase();
-                            cmdletCtrl.InputObject =
-                                new MySuperWrapper[]{ (MySuperWrapper)window };
-                            cmdletCtrl.Timeout = 0;
-                            
+                                new GetControlCmdletBase
+                                {
+                                    InputObject = new MySuperWrapper[] {(MySuperWrapper) window},
+                                    Timeout = 0
+                                };
+
                             exitInnerCycle = false;
                             bool addToResultCollection = false;
                             foreach (Hashtable ht in cmdlet.WithControl)
@@ -488,6 +489,13 @@ namespace UIAutomation
 
                                 //foreach (AutomationElementCollection tempCollection in from AutomationElement rootWindowElement in rootCollection let tempCollection = null select rootWindowElement.FindAll(
                                 // 20131109
+                                foreach (IMySuperWrapper singleElement in (from IMySuperWrapper rootWindowElement in rootCollection select rootWindowElement.FindAll(
+                                    TreeScope.Descendants,
+                                    conditionsForRecurseSearch) into tempCollection where null != tempCollection && 0 < tempCollection.Count select tempCollection).SelectMany(tempCollection => rootCollection.Cast<IMySuperWrapper>()))
+                                {
+                                    aeWndCollectionByProcessId.Add(singleElement);
+                                }
+                                /*
                                 foreach (IMySuperCollection tempCollection in from IMySuperWrapper rootWindowElement in rootCollection select rootWindowElement.FindAll(
                                     TreeScope.Descendants,
                                     conditionsForRecurseSearch) into tempCollection where null != tempCollection && 0 < tempCollection.Count select tempCollection)
@@ -498,7 +506,8 @@ namespace UIAutomation
                                         aeWndCollectionByProcessId.Add(singleElement);
                                     }
                                 }
-                                
+                                */
+
                                 /*
                                 foreach (AutomationElementCollection tempCollection in from AutomationElement rootWindowElement in rootCollection select rootWindowElement.FindAll(
                                     TreeScope.Descendants,
@@ -1043,6 +1052,8 @@ namespace UIAutomation
                 // usually this place never be reached
             }
             
+            result = viaWildcardOrRegex ? wildcardValue.IsMatch(realValue) : Regex.IsMatch(realValue, textValue, regexOptions);
+            /*
             if (viaWildcardOrRegex) {
                 
                 result =
@@ -1052,7 +1063,8 @@ namespace UIAutomation
                 result =
                     Regex.IsMatch(realValue, textValue, regexOptions);
             }
-            
+            */
+
             return result;
         }
     }

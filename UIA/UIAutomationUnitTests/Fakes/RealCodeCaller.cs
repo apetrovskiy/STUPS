@@ -26,9 +26,11 @@ namespace UIAutomationUnitTests
 //        }
         
         //private ArrayList GetResultArrayList(GetControlCollectionCmdletBase cmdlet, IMySuperWrapper element, Condition condition)
-        public static ArrayList GetResultArrayList_ViaWildcards(GetControlCollectionCmdletBase cmdlet, IMySuperWrapper element, Condition condition)
+        // public static ArrayList GetResultArrayList_ViaWildcards(GetControlCollectionCmdletBase cmdlet, IMySuperWrapper element, Condition condition)
+        public static ArrayList GetResultArrayList_ViaWildcards(GetControlCmdletBase cmdlet, IMySuperWrapper element, Condition condition)
         {
             GetControlCollectionCmdletBase cmdletDerived = new GetControlCollectionCmdletBase();
+            // GetControlCmdletBase cmdletDerived = new GetControlCmdletBase();
             
             ArrayList resultList =
                 cmdletDerived.GetAutomationElementsWithFindAll(

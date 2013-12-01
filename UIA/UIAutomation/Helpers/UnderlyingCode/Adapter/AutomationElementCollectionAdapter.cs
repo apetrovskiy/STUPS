@@ -35,36 +35,54 @@ namespace UIAutomation
 		}
         
 		public MySuperCollection(AutomationElementCollection elements)
-        {
-		    foreach (AutomationElement element in elements) {
+		{
+		    foreach (AutomationElement element in elements.Cast<AutomationElement>().Where(element => null != element))
+		    {
+		        _collectionHolder.Add(ObjectsFactory.GetMySuperWrapper(element));
+		    }
+		    /*
+            foreach (AutomationElement element in elements) {
 		        
 		        if (null != element) {
     		        _collectionHolder.Add(ObjectsFactory.GetMySuperWrapper(element));
 		        }
 		    }
+            */
 		}
-		
-		public MySuperCollection(IMySuperCollection elements)
-		{
-		    foreach (IMySuperWrapper element in elements) {
+
+	    public MySuperCollection(IMySuperCollection elements)
+	    {
+	        foreach (IMySuperWrapper element in elements.Cast<IMySuperWrapper>().Where(element => null != element))
+	        {
+	            _collectionHolder.Add(element);
+	        }
+	        /*
+            foreach (IMySuperWrapper element in elements) {
 		        
 		        if (null != element) {
 		          _collectionHolder.Add(element);
 		        }
 		    }
-		}
-		
-		public MySuperCollection(IEnumerable elements)
-		{
-		    foreach (var element in elements) {
+            */
+	    }
+
+	    public MySuperCollection(IEnumerable elements)
+	    {
+	        foreach (var element in elements.Cast<object>().Where(element => null != element))
+	        {
+	            _collectionHolder.Add((IMySuperWrapper)element);
+	        }
+	        /*
+            foreach (var element in elements) {
 		        
 		        if (null != element) {
 		          _collectionHolder.Add((IMySuperWrapper)element);
 		        }
 		    }
-		}
-		
-		[Inject]
+            */
+	    }
+
+	    [Inject]
 		public MySuperCollection(bool fake)
 		{
 		}

@@ -14,6 +14,7 @@ namespace UIAutomationUnitTests
     using UIAutomation;
     using NSubstitute;
     using System.Linq;
+    using System.Linq.Expressions;
     using System.Collections;
     using System.Collections.Generic;
     
@@ -37,7 +38,17 @@ namespace UIAutomationUnitTests
             return valuePattern;
         }
         
-        public static IMySuperWrapper GetAutomationElement(ControlType controlType, string name, string automationId, string className, string txtValue)
+        public static  IMySuperWrapper GetAutomationElementExpected(ControlType controlType, string name, string automationId, string className, string txtValue)
+        {
+            return GetAutomationElement(controlType, name, automationId, className, txtValue, true);
+        }
+        
+        public static  IMySuperWrapper GetAutomationElementNotExpected(ControlType controlType, string name, string automationId, string className, string txtValue)
+        {
+            return GetAutomationElement(controlType, name, automationId, className, txtValue, false);
+        }
+        
+        private static IMySuperWrapper GetAutomationElement(ControlType controlType, string name, string automationId, string className, string txtValue, bool expected)
         {
             IMySuperWrapper element = Substitute.For<IMySuperWrapper>();
             element.Current.ProcessId.Returns(333);
@@ -50,12 +61,13 @@ namespace UIAutomationUnitTests
             element.GetCurrentPattern(ValuePattern.Pattern).Returns(valuePattern);
             object patternObject;
             element.TryGetCurrentPattern(ValuePattern.Pattern, out patternObject).Returns(true);
+            if (expected) { element.Tag.Returns("expected"); }
             return element;
         }
         
-        public static GetControlCollectionCmdletBase Get_GetControlCollectionCmdletBase(ControlType controlType, string name, string automationId, string className, string txtValue)
+        public static GetControlCmdletBase Get_GetControlCmdletBase(ControlType controlType, string name, string automationId, string className, string txtValue)
         {
-            GetControlCollectionCmdletBase cmdlet = Substitute.For<GetControlCollectionCmdletBase>();
+            GetControlCmdletBase cmdlet = Substitute.For<GetControlCmdletBase>();
             if (null != controlType) {
                 cmdlet.ControlType.Returns(
                     new[] {
@@ -84,91 +96,25 @@ namespace UIAutomationUnitTests
             return cmdlet;
         }
         
-        // 20131128
-        // public static IMySuperWrapper GetElement_ForFindAll(IEnumerable<IMySuperWrapper> elements, AndCondition conditions)
         public static IMySuperWrapper GetElement_ForFindAll(IEnumerable<IMySuperWrapper> elements, Condition conditions)
         {
-            //IMySuperWrapper element = Substitute.For<IMySuperWrapper>();
             IMySuperWrapper element =
-                GetAutomationElement(ControlType.Pane, string.Empty, string.Empty, string.Empty, string.Empty);
+                GetAutomationElement(ControlType.Pane, string.Empty, string.Empty, string.Empty, string.Empty, false);
             IMySuperCollection descendants = ObjectsFactory.GetMySuperCollection(elements);
             
-            // 20131128
             Condition[] condCollection = null;
-            if (conditions is AndCondition) {
+            if (null != conditions as AndCondition) {
                 condCollection = (conditions as AndCondition).GetConditions();
             }
-            if (conditions is OrCondition) {
+            
+            if (null != conditions as OrCondition) {
                 condCollection = (conditions as OrCondition).GetConditions();
-            }
-            // 20131128
-            // foreach (Condition cond in conditions.GetConditions()) {
-            foreach (Condition cond in condCollection) {
-                
-                if (cond is PropertyCondition &&
-                    Equals((cond as PropertyCondition).Property, AutomationElement.NameProperty)) {
-
-                    foreach (IMySuperWrapper element1 in descendants
-                        .Cast<IMySuperWrapper>()
-                        .Where(element1 => "null" != element1.Tag &&
-                            element1.Current.Name != (cond as PropertyCondition).Value.ToString()))
-                    {
-                        element1.Tag = "null";
-                    }
-                }
-                
-                if (cond is PropertyCondition &&
-                    Equals((cond as PropertyCondition).Property, AutomationElement.AutomationIdProperty)) {
-
-                    foreach (IMySuperWrapper element2 in descendants
-                        .Cast<IMySuperWrapper>()
-                        .Where(element2 => "null" != element2.Tag &&
-                            element2.Current.AutomationId != (cond as PropertyCondition).Value.ToString()))
-                    {
-                        element2.Tag = "null";
-                    }
-                }
-                
-                if (cond is PropertyCondition &&
-                    Equals((cond as PropertyCondition).Property, AutomationElement.ClassNameProperty)) {
-
-                    foreach (IMySuperWrapper element3 in descendants
-                        .Cast<IMySuperWrapper>()
-                        .Where(element3 => "null" != element3.Tag &&
-                            element3.Current.ClassName != (cond as PropertyCondition).Value.ToString()))
-                    {
-                        element3.Tag = "null";
-                    }
-                }
-                
-                if (cond is PropertyCondition &&
-                    Equals((cond as PropertyCondition).Property, ValuePattern.ValueProperty)) {
-                    
-                    foreach (IMySuperWrapper element4 in descendants
-                        .Cast<IMySuperWrapper>()
-                        .Where(element4 => "null" != element4.Tag &&
-                               (element4.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern).Current.Value != (cond as PropertyCondition).Value.ToString()))
-                    {
-                        element4.Tag = "null";
-                    }
-                }
-                
-                if (!(cond is PropertyCondition) ||
-                    !Equals((cond as PropertyCondition).Property, AutomationElement.ControlTypeProperty)) continue;
-
-                foreach (IMySuperWrapper element5 in descendants
-                    .Cast<IMySuperWrapper>()
-                    .Where(element5 => "null" != element5.Tag &&
-                        element5.Current.ControlType.Id.ToString() != (cond as PropertyCondition).Value.ToString()))
-                {
-                    element5.Tag = "null";
-                }
             }
             
             IMySuperCollection descendants2 = ObjectsFactory.GetMySuperCollection();
             foreach (IMySuperWrapper elt in descendants
                 .Cast<IMySuperWrapper>()
-                .Where(elt => "null" != elt.Tag))
+                .Where(elt => "expected" == elt.Tag))
             {
                 descendants2.SourceCollection.Add(elt);
             }

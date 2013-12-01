@@ -36,27 +36,6 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         }
         
         #region helpers
-//        private ArrayList GetResultArrayList(GetControlCollectionCmdletBase cmdlet, IMySuperWrapper element, Condition condition)
-//        {
-//            GetControlCollectionCmdletBase cmdletDerived = new GetControlCollectionCmdletBase();
-//            
-//            ArrayList resultList =
-//                cmdletDerived.GetAutomationElementsWithFindAll(
-//                    element,
-//                    cmdlet.Name,
-//                    cmdlet.AutomationId,
-//                    cmdlet.Class,
-//                    cmdlet.Value,
-//                    cmdlet.ControlType,
-//                    condition,
-//                    false,
-//                    false,
-//                    false,
-//                    true);
-//            
-//            return resultList;
-//        }
-        
         private void TestParametersAgainstCollection(
             ControlType controlType,
             string name,
@@ -72,23 +51,18 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 controlTypeString = controlType.ProgrammaticName.Substring(12);
             }
             
-            var cmdlet =
-                FakeFactory.Get_GetControlCollectionCmdletBase(controlType, name, automationId, className, txtValue);
-            // 20131128
-            //AndCondition condition =
-            //    cmdlet.GetControlConditionsForWildcardSearch(cmdlet, controlTypeString, false, true) as AndCondition;
-            // 20131129
-            // AndCondition condition =
-            //     cmdlet.GetControlConditionsForWildcardSearch(cmdlet, controlTypeString, false);
+            GetControlCmdletBase cmdlet =
+                FakeFactory.Get_GetControlCmdletBase(controlType, name, automationId, className, txtValue);
+            
             Condition condition =
                 cmdlet.GetWildcardSearchCondition(cmdlet);
+            
             IMySuperWrapper element =
                 FakeFactory.GetElement_ForFindAll(
                     collection,
                     condition);
             
             // Act
-            //ArrayList resultList = GetResultArrayList(cmdlet, element, condition);
             ArrayList resultList = RealCodeCaller.GetResultArrayList_ViaWildcards(cmdlet, element, condition);
             
             // Assert
@@ -152,9 +126,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                    FakeFactory.GetAutomationElement(ControlType.Button, string.Empty, string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.Custom, string.Empty, string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.TabItem, string.Empty, string.Empty, string.Empty, string.Empty)
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, string.Empty, string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Custom, string.Empty, string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(ControlType.TabItem, string.Empty, string.Empty, string.Empty, string.Empty)
                 },
                 3);
         }
@@ -194,9 +168,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                    FakeFactory.GetAutomationElement(ControlType.Calendar, string.Empty, string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.ComboBox, string.Empty, string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.Group, string.Empty, string.Empty, string.Empty, string.Empty)
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Calendar, string.Empty, string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.ComboBox, string.Empty, string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Group, string.Empty, string.Empty, string.Empty, string.Empty)
                 },
                 0);
         }
@@ -216,9 +190,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                    FakeFactory.GetAutomationElement(ControlType.DataGrid, string.Empty, string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(controlType, string.Empty, string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.DataItem, string.Empty, string.Empty, string.Empty, string.Empty)
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.DataGrid, string.Empty, string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(controlType, string.Empty, string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.DataItem, string.Empty, string.Empty, string.Empty, string.Empty)
                 },
                 1);
         }
@@ -238,9 +212,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                    FakeFactory.GetAutomationElement(controlType, string.Empty, string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(controlType, string.Empty, string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(controlType, string.Empty, string.Empty, string.Empty, string.Empty)
+                    FakeFactory.GetAutomationElementExpected(controlType, string.Empty, string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(controlType, string.Empty, string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(controlType, string.Empty, string.Empty, string.Empty, string.Empty)
                 },
                 3);
         }
@@ -280,9 +254,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                    FakeFactory.GetAutomationElement(ControlType.Button, "other name", string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.Custom, "second name", string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.CheckBox, "third name", string.Empty, string.Empty, string.Empty)
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, "other name", string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Custom, "second name", string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.CheckBox, "third name", string.Empty, string.Empty, string.Empty)
                 },
                 0);
         }
@@ -302,9 +276,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                    FakeFactory.GetAutomationElement(ControlType.Tab, "other name", string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.Image, name, string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.Button, "third name", string.Empty, string.Empty, string.Empty)
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Tab, "other name", string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Image, name, string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, "third name", string.Empty, string.Empty, string.Empty)
                 },
                 1);
         }
@@ -324,9 +298,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                    FakeFactory.GetAutomationElement(ControlType.Button, name, string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.Custom, name, string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.Hyperlink, name, string.Empty, string.Empty, string.Empty)
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, name, string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Custom, name, string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Hyperlink, name, string.Empty, string.Empty, string.Empty)
                 },
                 3);
         }
@@ -366,9 +340,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                    FakeFactory.GetAutomationElement(ControlType.Button, string.Empty, "au01", string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.Button, string.Empty, "au02", string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.Button, string.Empty, "au03", string.Empty, string.Empty)
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, string.Empty, "au01", string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, string.Empty, "au02", string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, string.Empty, "au03", string.Empty, string.Empty)
                 },
                 0);
         }
@@ -388,9 +362,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                    FakeFactory.GetAutomationElement(ControlType.Button, string.Empty, "au01", string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.Button, string.Empty, automationId, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.Button, string.Empty, "au03", string.Empty, string.Empty)
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, string.Empty, "au01", string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, string.Empty, automationId, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, string.Empty, "au03", string.Empty, string.Empty)
                 },
                 1);
         }
@@ -410,9 +384,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                    FakeFactory.GetAutomationElement(ControlType.Button, string.Empty, automationId, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.Button, string.Empty, automationId, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.Button, string.Empty, automationId, string.Empty, string.Empty)
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, string.Empty, automationId, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, string.Empty, automationId, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, string.Empty, automationId, string.Empty, string.Empty)
                 },
                 3);
         }
@@ -452,9 +426,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                    FakeFactory.GetAutomationElement(ControlType.Button, string.Empty, string.Empty, "first class", string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.Button, string.Empty, string.Empty, "second class", string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.Button, string.Empty, string.Empty, "third class", string.Empty)
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, string.Empty, string.Empty, "first class", string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, string.Empty, string.Empty, "second class", string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, string.Empty, string.Empty, "third class", string.Empty)
                 },
                 0);
         }
@@ -474,9 +448,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                    FakeFactory.GetAutomationElement(ControlType.Button, string.Empty, string.Empty, "first class", string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.Button, string.Empty, string.Empty, className, string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.Button, string.Empty, string.Empty, "third class", string.Empty)
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, string.Empty, string.Empty, "first class", string.Empty),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, string.Empty, string.Empty, className, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, string.Empty, string.Empty, "third class", string.Empty)
                 },
                 1);
         }
@@ -496,9 +470,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                    FakeFactory.GetAutomationElement(ControlType.Button, string.Empty, string.Empty, className, string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.Button, string.Empty, string.Empty, className, string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.Button, string.Empty, string.Empty, className, string.Empty)
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, string.Empty, string.Empty, className, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, string.Empty, string.Empty, className, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, string.Empty, string.Empty, className, string.Empty)
                 },
                 3);
         }
@@ -538,9 +512,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                    FakeFactory.GetAutomationElement(ControlType.Button, string.Empty, string.Empty, string.Empty, "value1"),
-                    FakeFactory.GetAutomationElement(ControlType.Button, string.Empty, string.Empty, string.Empty, "value2"),
-                    FakeFactory.GetAutomationElement(ControlType.Button, string.Empty, string.Empty, string.Empty, "value3")
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, string.Empty, string.Empty, string.Empty, "value1"),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, string.Empty, string.Empty, string.Empty, "value2"),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, string.Empty, string.Empty, string.Empty, "value3")
                 },
                 0);
         }
@@ -560,9 +534,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                    FakeFactory.GetAutomationElement(ControlType.Button, string.Empty, string.Empty, string.Empty, "value1"),
-                    FakeFactory.GetAutomationElement(ControlType.Button, string.Empty, string.Empty, string.Empty, txtValue),
-                    FakeFactory.GetAutomationElement(ControlType.Button, string.Empty, string.Empty, string.Empty, "value3")
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, string.Empty, string.Empty, string.Empty, "value1"),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, string.Empty, string.Empty, string.Empty, txtValue),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, string.Empty, string.Empty, string.Empty, "value3")
                 },
                 1);
         }
@@ -582,9 +556,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                    FakeFactory.GetAutomationElement(ControlType.Button, string.Empty, string.Empty, string.Empty, txtValue),
-                    FakeFactory.GetAutomationElement(ControlType.Button, string.Empty, string.Empty, string.Empty, txtValue),
-                    FakeFactory.GetAutomationElement(ControlType.Button, string.Empty, string.Empty, string.Empty, txtValue)
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, string.Empty, string.Empty, string.Empty, txtValue),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, string.Empty, string.Empty, string.Empty, txtValue),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, string.Empty, string.Empty, string.Empty, txtValue)
                 },
                 3);
         }
@@ -624,10 +598,10 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                    FakeFactory.GetAutomationElement(controlType, "other name", string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(controlType, "second name", string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(controlType, "third name", string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.DataGrid, name, string.Empty, string.Empty, string.Empty)
+                    FakeFactory.GetAutomationElementNotExpected(controlType, "other name", string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(controlType, "second name", string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(controlType, "third name", string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.DataGrid, name, string.Empty, string.Empty, string.Empty)
                 },
                 0);
         }
@@ -647,10 +621,10 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                    FakeFactory.GetAutomationElement(controlType, "other name", string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(controlType, name, string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(controlType, "third name", string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.Group, name, string.Empty, string.Empty, string.Empty)
+                    FakeFactory.GetAutomationElementNotExpected(controlType, "other name", string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(controlType, name, string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(controlType, "third name", string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Group, name, string.Empty, string.Empty, string.Empty)
                 },
                 1);
         }
@@ -670,9 +644,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                    FakeFactory.GetAutomationElement(controlType, name, string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(controlType, name, string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(controlType, name, string.Empty, string.Empty, string.Empty)
+                    FakeFactory.GetAutomationElementExpected(controlType, name, string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(controlType, name, string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(controlType, name, string.Empty, string.Empty, string.Empty)
                 },
                 3);
         }
@@ -712,10 +686,10 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                    FakeFactory.GetAutomationElement(controlType, string.Empty, "au01", string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(controlType, string.Empty, "au02", string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(controlType, string.Empty, "au03", string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.Custom, string.Empty, automationId, string.Empty, string.Empty)
+                    FakeFactory.GetAutomationElementNotExpected(controlType, string.Empty, "au01", string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(controlType, string.Empty, "au02", string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(controlType, string.Empty, "au03", string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Custom, string.Empty, automationId, string.Empty, string.Empty)
                 },
                 0);
         }
@@ -735,10 +709,10 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                    FakeFactory.GetAutomationElement(controlType, string.Empty, "au01", string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(controlType, string.Empty, automationId, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(controlType, string.Empty, "au03", string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.DataGrid, string.Empty, automationId, string.Empty, string.Empty)
+                    FakeFactory.GetAutomationElementNotExpected(controlType, string.Empty, "au01", string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(controlType, string.Empty, automationId, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(controlType, string.Empty, "au03", string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.DataGrid, string.Empty, automationId, string.Empty, string.Empty)
                 },
                 1);
         }
@@ -758,9 +732,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                    FakeFactory.GetAutomationElement(controlType, string.Empty, automationId, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(controlType, string.Empty, automationId, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(controlType, string.Empty, automationId, string.Empty, string.Empty)
+                    FakeFactory.GetAutomationElementExpected(controlType, string.Empty, automationId, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(controlType, string.Empty, automationId, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(controlType, string.Empty, automationId, string.Empty, string.Empty)
                 },
                 3);
         }
@@ -800,10 +774,10 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                    FakeFactory.GetAutomationElement(controlType, string.Empty, string.Empty, "cl01", string.Empty),
-                    FakeFactory.GetAutomationElement(controlType, string.Empty, string.Empty, "cl02", string.Empty),
-                    FakeFactory.GetAutomationElement(controlType, string.Empty, string.Empty, "cl03", string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.HeaderItem, string.Empty, string.Empty, className, string.Empty)
+                    FakeFactory.GetAutomationElementNotExpected(controlType, string.Empty, string.Empty, "cl01", string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(controlType, string.Empty, string.Empty, "cl02", string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(controlType, string.Empty, string.Empty, "cl03", string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.HeaderItem, string.Empty, string.Empty, className, string.Empty)
                 },
                 0);
         }
@@ -823,10 +797,10 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                    FakeFactory.GetAutomationElement(controlType, string.Empty, string.Empty, "cl01", string.Empty),
-                    FakeFactory.GetAutomationElement(controlType, string.Empty, string.Empty, className, string.Empty),
-                    FakeFactory.GetAutomationElement(controlType, string.Empty, string.Empty, "cl03", string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.Document, string.Empty, string.Empty, className, string.Empty)
+                    FakeFactory.GetAutomationElementNotExpected(controlType, string.Empty, string.Empty, "cl01", string.Empty),
+                    FakeFactory.GetAutomationElementExpected(controlType, string.Empty, string.Empty, className, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(controlType, string.Empty, string.Empty, "cl03", string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Document, string.Empty, string.Empty, className, string.Empty)
                 },
                 1);
         }
@@ -846,9 +820,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                    FakeFactory.GetAutomationElement(controlType, string.Empty, string.Empty, className, string.Empty),
-                    FakeFactory.GetAutomationElement(controlType, string.Empty, string.Empty, className, string.Empty),
-                    FakeFactory.GetAutomationElement(controlType, string.Empty, string.Empty, className, string.Empty)
+                    FakeFactory.GetAutomationElementExpected(controlType, string.Empty, string.Empty, className, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(controlType, string.Empty, string.Empty, className, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(controlType, string.Empty, string.Empty, className, string.Empty)
                 },
                 3);
         }
@@ -888,10 +862,10 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                    FakeFactory.GetAutomationElement(controlType, string.Empty, string.Empty, string.Empty, "first value"),
-                    FakeFactory.GetAutomationElement(controlType, string.Empty, string.Empty, string.Empty, "second value"),
-                    FakeFactory.GetAutomationElement(controlType, string.Empty, string.Empty, string.Empty, "third value"),
-                    FakeFactory.GetAutomationElement(ControlType.HeaderItem, string.Empty, string.Empty, string.Empty, txtValue)
+                    FakeFactory.GetAutomationElementNotExpected(controlType, string.Empty, string.Empty, string.Empty, "first value"),
+                    FakeFactory.GetAutomationElementNotExpected(controlType, string.Empty, string.Empty, string.Empty, "second value"),
+                    FakeFactory.GetAutomationElementNotExpected(controlType, string.Empty, string.Empty, string.Empty, "third value"),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.HeaderItem, string.Empty, string.Empty, string.Empty, txtValue)
                 },
                 0);
         }
@@ -911,10 +885,10 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                    FakeFactory.GetAutomationElement(controlType, string.Empty, string.Empty, string.Empty, "value 01"),
-                    FakeFactory.GetAutomationElement(controlType, string.Empty, string.Empty, string.Empty, txtValue),
-                    FakeFactory.GetAutomationElement(controlType, string.Empty, string.Empty, string.Empty, "value 03"),
-                    FakeFactory.GetAutomationElement(ControlType.Document, string.Empty, string.Empty, string.Empty, txtValue)
+                    FakeFactory.GetAutomationElementNotExpected(controlType, string.Empty, string.Empty, string.Empty, "value 01"),
+                    FakeFactory.GetAutomationElementExpected(controlType, string.Empty, string.Empty, string.Empty, txtValue),
+                    FakeFactory.GetAutomationElementNotExpected(controlType, string.Empty, string.Empty, string.Empty, "value 03"),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Document, string.Empty, string.Empty, string.Empty, txtValue)
                 },
                 1);
         }
@@ -934,9 +908,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                    FakeFactory.GetAutomationElement(controlType, string.Empty, string.Empty, string.Empty, txtValue),
-                    FakeFactory.GetAutomationElement(controlType, string.Empty, string.Empty, string.Empty, txtValue),
-                    FakeFactory.GetAutomationElement(controlType, string.Empty, string.Empty, string.Empty, txtValue)
+                    FakeFactory.GetAutomationElementExpected(controlType, string.Empty, string.Empty, string.Empty, txtValue),
+                    FakeFactory.GetAutomationElementExpected(controlType, string.Empty, string.Empty, string.Empty, txtValue),
+                    FakeFactory.GetAutomationElementExpected(controlType, string.Empty, string.Empty, string.Empty, txtValue)
                 },
                 3);
         }
@@ -976,10 +950,10 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                    FakeFactory.GetAutomationElement(ControlType.Button, "other name", string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.Button, "second name", automationId, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.Button, "third name", automationId, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.DataGrid, name, "fourth automationId", string.Empty, string.Empty)
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, "other name", string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, "second name", automationId, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, "third name", automationId, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.DataGrid, name, "fourth automationId", string.Empty, string.Empty)
                 },
                 0);
         }
@@ -999,10 +973,10 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                    FakeFactory.GetAutomationElement(ControlType.Button, "other name", automationId, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.Button, name, automationId, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.Button, name, "third automationId", string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.Group, name, string.Empty, string.Empty, string.Empty)
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, "other name", automationId, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, name, automationId, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, name, "third automationId", string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Group, name, string.Empty, string.Empty, string.Empty)
                 },
                 1);
         }
@@ -1022,9 +996,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                    FakeFactory.GetAutomationElement(ControlType.Button, name, automationId, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.Button, name, automationId, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.Button, name, automationId, string.Empty, string.Empty)
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, name, automationId, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, name, automationId, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, name, automationId, string.Empty, string.Empty)
                 },
                 3);
         }
@@ -1064,10 +1038,10 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                    FakeFactory.GetAutomationElement(ControlType.Button, "other name", string.Empty, className, string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.Button, name, string.Empty, "second className", string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.Button, "third name", string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.DataGrid, className, string.Empty, name, string.Empty)
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, "other name", string.Empty, className, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, name, string.Empty, "second className", string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, "third name", string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.DataGrid, className, string.Empty, name, string.Empty)
                 },
                 0);
         }
@@ -1087,10 +1061,10 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                    FakeFactory.GetAutomationElement(ControlType.Button, "other name", string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.Button, name, string.Empty, className, string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.Button, "third name", string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.Group, name, string.Empty, "fourth className", string.Empty)
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, "other name", string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, name, string.Empty, className, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, "third name", string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Group, name, string.Empty, "fourth className", string.Empty)
                 },
                 1);
         }
@@ -1110,9 +1084,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                    FakeFactory.GetAutomationElement(ControlType.Button, name, string.Empty, className, string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.Button, name, string.Empty, className, string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.Button, name, string.Empty, className, string.Empty)
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, name, string.Empty, className, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, name, string.Empty, className, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, name, string.Empty, className, string.Empty)
                 },
                 3);
         }
@@ -1152,10 +1126,10 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                    FakeFactory.GetAutomationElement(ControlType.Button, "other name", string.Empty, string.Empty, txtValue),
-                    FakeFactory.GetAutomationElement(ControlType.Button, name, string.Empty, string.Empty," second value"),
-                    FakeFactory.GetAutomationElement(ControlType.Button, "third name", string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.DataGrid, txtValue, string.Empty, string.Empty, name)
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, "other name", string.Empty, string.Empty, txtValue),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, name, string.Empty, string.Empty," second value"),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, "third name", string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.DataGrid, txtValue, string.Empty, string.Empty, name)
                 },
                 0);
         }
@@ -1175,10 +1149,10 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                    FakeFactory.GetAutomationElement(ControlType.Button, "other name", string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.Button, name, string.Empty, string.Empty, txtValue),
-                    FakeFactory.GetAutomationElement(ControlType.Button, "third name", string.Empty, string.Empty, "third value"),
-                    FakeFactory.GetAutomationElement(ControlType.Group, name, string.Empty, "fourth className", string.Empty)
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, "other name", string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, name, string.Empty, string.Empty, txtValue),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, "third name", string.Empty, string.Empty, "third value"),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Group, name, string.Empty, "fourth className", string.Empty)
                 },
                 1);
         }
@@ -1198,9 +1172,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                    FakeFactory.GetAutomationElement(ControlType.Button, name, string.Empty, string.Empty, txtValue),
-                    FakeFactory.GetAutomationElement(ControlType.Button, name, string.Empty, string.Empty, txtValue),
-                    FakeFactory.GetAutomationElement(ControlType.Button, name, string.Empty, string.Empty, txtValue)
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, name, string.Empty, string.Empty, txtValue),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, name, string.Empty, string.Empty, txtValue),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, name, string.Empty, string.Empty, txtValue)
                 },
                 3);
         }
@@ -1240,10 +1214,10 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                    FakeFactory.GetAutomationElement(ControlType.Button, string.Empty, "other auId", className, string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.Button, string.Empty, automationId, "second className", string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.Button, string.Empty, string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.DataGrid, string.Empty, className, automationId, string.Empty)
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, string.Empty, "other auId", className, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, string.Empty, automationId, "second className", string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, string.Empty, string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.DataGrid, string.Empty, className, automationId, string.Empty)
                 },
                 0);
         }
@@ -1263,10 +1237,10 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                    FakeFactory.GetAutomationElement(ControlType.Button, string.Empty, "other auId", string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.Button, string.Empty, automationId, className, string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.Button, string.Empty, string.Empty, className, string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.Group, string.Empty, automationId, "fourth className", string.Empty)
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, string.Empty, "other auId", string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, string.Empty, automationId, className, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, string.Empty, string.Empty, className, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Group, string.Empty, automationId, "fourth className", string.Empty)
                 },
                 1);
         }
@@ -1286,9 +1260,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                    FakeFactory.GetAutomationElement(ControlType.Button, string.Empty, automationId, className, string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.Button, string.Empty, automationId, className, string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.Button, string.Empty, automationId, className, string.Empty)
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, string.Empty, automationId, className, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, string.Empty, automationId, className, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, string.Empty, automationId, className, string.Empty)
                 },
                 3);
         }
@@ -1328,10 +1302,10 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                    FakeFactory.GetAutomationElement(controlType, string.Empty, automationId, className, string.Empty),
-                    FakeFactory.GetAutomationElement(controlType, name, automationId, "second className", txtValue),
-                    FakeFactory.GetAutomationElement(controlType, string.Empty, automationId, className, txtValue),
-                    FakeFactory.GetAutomationElement(ControlType.DataGrid, txtValue, className, automationId, name)
+                    FakeFactory.GetAutomationElementNotExpected(controlType, string.Empty, automationId, className, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(controlType, name, automationId, "second className", txtValue),
+                    FakeFactory.GetAutomationElementNotExpected(controlType, string.Empty, automationId, className, txtValue),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.DataGrid, txtValue, className, automationId, name)
                 },
                 0);
         }
@@ -1351,10 +1325,10 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                    FakeFactory.GetAutomationElement(controlType, string.Empty, "other auId", className, string.Empty),
-                    FakeFactory.GetAutomationElement(controlType, name, automationId, className, txtValue),
-                    FakeFactory.GetAutomationElement(controlType, string.Empty, string.Empty, className, string.Empty),
-                    FakeFactory.GetAutomationElement(ControlType.Group, name, automationId, className, txtValue)
+                    FakeFactory.GetAutomationElementNotExpected(controlType, string.Empty, "other auId", className, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(controlType, name, automationId, className, txtValue),
+                    FakeFactory.GetAutomationElementNotExpected(controlType, string.Empty, string.Empty, className, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Group, name, automationId, className, txtValue)
                 },
                 1);
         }
@@ -1374,9 +1348,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                        FakeFactory.GetAutomationElement(controlType, name, automationId, className, txtValue),
-                        FakeFactory.GetAutomationElement(controlType, name, automationId, className, txtValue),
-                        FakeFactory.GetAutomationElement(controlType, name, automationId, className, txtValue)
+                        FakeFactory.GetAutomationElementExpected(controlType, name, automationId, className, txtValue),
+                        FakeFactory.GetAutomationElementExpected(controlType, name, automationId, className, txtValue),
+                        FakeFactory.GetAutomationElementExpected(controlType, name, automationId, className, txtValue)
                 },
                 3);
         }

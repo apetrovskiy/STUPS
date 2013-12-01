@@ -43,10 +43,16 @@ namespace UIAutomation.Commands
                     this.ParametersDictionaries.Add(dictParameters);
                 }
                 */
+                foreach (Dictionary<string, object> dictParameters in Parameters.Select(ConvertHashtableToDictionary))
+                {
+                    ParametersDictionaries.Add(dictParameters);
+                }
+                /*
                 foreach (Dictionary<string, object> dictParameters in Parameters.Select(parametersTable => ConvertHashtableToDictionary(parametersTable)))
                 {
                     ParametersDictionaries.Add(dictParameters);
                 }
+                */
                 /*
                 foreach (Hashtable parametersTable in Parameters) {
 
@@ -72,10 +78,16 @@ namespace UIAutomation.Commands
                     this.DirectionsDictionaries.Add(dictDirections);
                 }
                 */
+                foreach (Dictionary<string, object> dictDirections in Directions.Select(ConvertHashtableToDictionary))
+                {
+                    DirectionsDictionaries.Add(dictDirections);
+                }
+                /*
                 foreach (Dictionary<string, object> dictDirections in Directions.Select(directionsTable => ConvertHashtableToDictionary(directionsTable)))
                 {
                     DirectionsDictionaries.Add(dictDirections);
                 }
+                */
                 /*
                 foreach (Hashtable directionsTable in Directions) {
                     

@@ -1006,8 +1006,8 @@ namespace UIAutomation
         {
             if (null == controlTypeNames) return Condition.TrueCondition;
             
-            List<PropertyCondition> controlTypeCollection =
-                new List<PropertyCondition>();
+            List<PropertyCondition> controlTypeCollection = controlTypeNames.Select(controlTypeName => new PropertyCondition(AutomationElement.ControlTypeProperty, UiaHelper.GetControlTypeByTypeName(controlTypeName))).ToList();
+            /*
             foreach (string controlTypeName in controlTypeNames) {
                 
                 controlTypeCollection.Add(
@@ -1015,7 +1015,8 @@ namespace UIAutomation
                         AutomationElement.ControlTypeProperty,
                         UiaHelper.GetControlTypeByTypeName(controlTypeName)));
             }
-            
+            */
+
             if (1 == controlTypeCollection.Count) {
                 return controlTypeCollection[0];
             } else {
@@ -1124,13 +1125,19 @@ namespace UIAutomation
         protected internal Condition GetWildcardSearchCondition(GetControlCmdletBase cmdlet)
         {
             Condition controlTypeCondition = Condition.TrueCondition;
+            if (null == cmdlet.ControlType || 0 >= cmdlet.ControlType.Length) return controlTypeCondition;
+            controlTypeCondition =
+                GetControlTypeCondition(
+                    cmdlet.ControlType);
+            return controlTypeCondition;
+            /*
             if (null != cmdlet.ControlType && 0 < cmdlet.ControlType.Length) {
                 controlTypeCondition =
                     GetControlTypeCondition(
                         cmdlet.ControlType);
-                
             }
             return controlTypeCondition;
+            */
         }
         #endregion condition methods
         
@@ -1461,21 +1468,20 @@ Console.WriteLine("wildcard search Win32");
                     
 //Console.WriteLine("w32: 0000000000000000005");
                     
+                    if (cmdlet.ControlType.Any(controlTypeName => String.Equals(tempElement3.Current.ControlType.ProgrammaticName.Substring(12), controlTypeName, StringComparison.CurrentCultureIgnoreCase)))
+                    {
+                        goFurther = false;
+                    }
+                    /*
                     foreach (string controlTypeName in cmdlet.ControlType) {
                         
-//Console.WriteLine("w32: 0000000000000000006");
-                        
                         if (String.Equals(tempElement3.Current.ControlType.ProgrammaticName.Substring(12), controlTypeName, StringComparison.CurrentCultureIgnoreCase)) {
-                        /*
-                        if (tempElement3.Current.ControlType.ProgrammaticName.Substring(12).ToUpper() == controlTypeName.ToUpper()) {
-                        */
-
-                            //Console.WriteLine("w32: 0000000000000000007");
                             
                             goFurther = false;
                             break;
                         }
                     }
+                    */
                 } else {
                     goFurther = false;
                 }

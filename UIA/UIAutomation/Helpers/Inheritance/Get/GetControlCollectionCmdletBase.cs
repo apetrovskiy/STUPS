@@ -582,23 +582,9 @@ namespace UIAutomation
             // 20120823
             // 20131109
             //foreach (AutomationElement inputObject in this.InputObject) {
-            foreach (IMySuperWrapper inputObject in InputObject) {
-                
-                // 20131109
-                //AutomationElement sibling = null;
-                //sibling = nextSibling ? walker.GetNextSibling(inputObject) : walker.GetPreviousSibling(inputObject);
-                IMySuperWrapper sibling = null;
-                // 20131112
-                //sibling = nextSibling ? (new MySuperWrapper(walker.GetNextSibling(inputObject.SourceElement))) : (new MySuperWrapper(walker.GetPreviousSibling(inputObject.SourceElement)));
-                // 20131118
-                // property to method
-                //sibling = nextSibling ? ObjectsFactory.GetMySuperWrapper(walker.GetNextSibling(inputObject.SourceElement)) : ObjectsFactory.GetMySuperWrapper(walker.GetPreviousSibling(inputObject.SourceElement));
-                // 20131118
-                // property to method
-                //sibling = nextSibling ? ObjectsFactory.GetMySuperWrapper(walker.GetNextSibling(inputObject.SourceElement)) : ObjectsFactory.GetMySuperWrapper(walker.GetPreviousSibling(inputObject.GetSourceElement()));
-                sibling = nextSibling ? ObjectsFactory.GetMySuperWrapper(walker.GetNextSibling(inputObject.GetSourceElement())) : ObjectsFactory.GetMySuperWrapper(walker.GetPreviousSibling(inputObject.GetSourceElement()));
-
-                
+            /*
+            foreach (IMySuperWrapper sibling in from inputObject in InputObject let sibling = null select nextSibling ? ObjectsFactory.GetMySuperWrapper(walker.GetNextSibling(inputObject.GetSourceElement())) : ObjectsFactory.GetMySuperWrapper(walker.GetPreviousSibling(inputObject.GetSourceElement())))
+            {
                 //if (nextSibling) {
                 //    // 20120823
                 //    //sibling = walker.GetNextSibling(this.InputObject);
@@ -612,9 +598,18 @@ namespace UIAutomation
                 // 20131113
                 // WriteObject(this, sibling);
                 WriteObject(this, sibling);
+            }
+            */
+
+            foreach (IMySuperWrapper inputObject in InputObject) {
+                
+                IMySuperWrapper sibling = null;
+                sibling = nextSibling ? ObjectsFactory.GetMySuperWrapper(walker.GetNextSibling(inputObject.GetSourceElement())) : ObjectsFactory.GetMySuperWrapper(walker.GetPreviousSibling(inputObject.GetSourceElement()));
+                
+                WriteObject(this, sibling);
             
             } // 20120823
-            
+
             /*
             foreach (IMySuperWrapper inputObject in this.InputObject) {
                 
@@ -804,9 +799,12 @@ namespace UIAutomation
                             //searchResults.AddRange(temporaryResults.Cast<AutomationElement>());
                             // 20131111
                             //searchResults.AddRange(temporaryResults.Cast<IMySuperWrapper>());
+                            searchResults.AddRange(temporaryResults.Cast<IMySuperWrapper>());
+                            /*
                             foreach (IMySuperWrapper singleElement in temporaryResults) {
                                 searchResults.Add(singleElement);
                             }
+                            */
                             /*
                             foreach (AutomationElement element in temporaryResults)
                             {

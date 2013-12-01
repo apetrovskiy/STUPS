@@ -191,6 +191,8 @@ namespace UIAutomation
                     err.ErrorDetails = 
                         new ErrorDetails("This control does not have a handle");
                     WriteError(cmdlet, err, true);
+
+                    // TODO: WriteError(...)
                 } else {
                     WriteVerbose(cmdlet, 
                                  "the control with a handle is " + 

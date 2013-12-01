@@ -129,8 +129,6 @@ namespace UIAutomation
                 handlesCollection =
                     GetControlByNameViaWin32Recursively(cmdlet, containerHandle, controlTitle, 1);
                 
-//Console.WriteLine("1 handlesCollection.Count = " + handlesCollection.Count.ToString());
-                
                 const WildcardOptions options =
                     WildcardOptions.IgnoreCase |
                     WildcardOptions.Compiled;
@@ -143,8 +141,6 @@ namespace UIAutomation
                 
                 if (null == handlesCollection || 0 == handlesCollection.Count) return resultCollection;
                 cmdlet.WriteVerbose(cmdlet, "handles.Count = " + handlesCollection.Count.ToString());
-                
-//Console.WriteLine("3 handlesCollection.Count = " + handlesCollection.Count.ToString());
                 
                 foreach (IntPtr controlHandle in handlesCollection) {
                     try {

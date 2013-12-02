@@ -36,8 +36,6 @@ namespace UIAutomation.Commands
         #region Parameters
         #endregion Parameters
         
-        // private bool SelectedOnly { get; set; }
-        
         /// <summary>
         /// Processes the pipeline.
         /// </summary>
@@ -45,25 +43,15 @@ namespace UIAutomation.Commands
         {
             if (!CheckAndPrepareInput(this)) { return; }
             
-            // 20120823
-            // 20131109
-            //foreach (AutomationElement inputObject in this.InputObject) {
             foreach (IMySuperWrapper inputObject in InputObject) {
     
                 string strData = String.Empty;
-                // 20131109
-                //System.Windows.Automation.AutomationElement _control = 
                 IMySuperWrapper currentControl = 
-                    // 20120823
-                    //this.InputObject;
                     inputObject;
                 GridPattern gridPattern = null;
     
                 try {
                     gridPattern = 
-                        //_control.GetCurrentPattern(GridPattern.Pattern)
-                        // 20120823
-                        //this.InputObject.GetCurrentPattern(GridPattern.Pattern)
                         inputObject.GetCurrentPattern(GridPattern.Pattern)
                         as GridPattern;
                     
@@ -79,8 +67,6 @@ namespace UIAutomation.Commands
                         
                     // temporary!!!
                     // Selection
-                    // 20131109
-                    //System.Windows.Automation.AutomationElement[] selectedItems = null;
                     IMySuperWrapper[] selectedItems = null;
                     if (SelectedOnly) {
                         // if there's a selection, get items in the selection

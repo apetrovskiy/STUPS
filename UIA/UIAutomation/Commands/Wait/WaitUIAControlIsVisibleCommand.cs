@@ -59,15 +59,10 @@ namespace UIAutomation.Commands
         protected override void ProcessRecord() {
             if (!CheckAndPrepareInput(this)) { return; }
             
-            // 20120823
-            // 20131109
-            //foreach (AutomationElement inputObject in this.InputObject) {
             foreach (IMySuperWrapper inputObject in InputObject) {
             
             //System.Windows.Automation.AutomationElement _control = null;
             
-            // 20120823
-            //if (this.ControlType != this.InputObject.Current.ControlType) {
             if (!Equals(ControlType, inputObject.Current.ControlType)) {
                 
                 WriteError(

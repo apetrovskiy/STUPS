@@ -24,10 +24,7 @@ namespace UIAutomation.Commands
     {
         public StartUiaCacheRequestCommand()
         {
-            // 20131202
-            // ArrayList defaultPropertiesList = 
             List<string>  defaultPropertiesList =
-                // new ArrayList
                 new List<string>
                 {
                     "Name",
@@ -41,14 +38,9 @@ namespace UIAutomation.Commands
                     "IsOffscreen"
                 };
             
-            // 20131202
-            // Property = (string[])defaultPropertiesList.ToArray(typeof(string));
             Property = defaultPropertiesList.ToArray();
             
-            // 20131202
-            // ArrayList defaultPatternsList = 
             List<string> defaultPatternsList =
-                // new ArrayList
                 new List<string>
                 {
                     "ExpandCollapsePattern",
@@ -61,8 +53,6 @@ namespace UIAutomation.Commands
                     "ValuePattern"
                 };
             
-            // 20131202
-            // Pattern = (string[])defaultPatternsList.ToArray(typeof(string));
             Pattern = defaultPatternsList.ToArray();
             
             Scope = "SUBTREE";
@@ -158,9 +148,9 @@ namespace UIAutomation.Commands
                     CurrentData.CacheRequest.Add(AutomationElement.IsEnabledProperty);
                     CurrentData.CacheRequest.Add(AutomationElement.IsOffscreenProperty);
                 } else {
-                    foreach (string t in Property)
+                    foreach (string propertyName in Property)
                     {
-                        switch (t.ToUpper()) {
+                        switch (propertyName.ToUpper()) {
                             case "NAME":
                                 CurrentData.CacheRequest.Add(AutomationElement.NameProperty);
                                 break;
@@ -221,9 +211,9 @@ namespace UIAutomation.Commands
                     CurrentData.CacheRequest.Add(TogglePattern.Pattern);
                     CurrentData.CacheRequest.Add(ValuePattern.Pattern);
                 } else {
-                    foreach (string t in Pattern)
+                    foreach (string patternName in Pattern)
                     {
-                        switch (t.ToUpper()) {
+                        switch (patternName.ToUpper()) {
                             case "DOCK":
                             case "DOCKPATTERN":
                                 CurrentData.CacheRequest.Add(DockPattern.Pattern);

@@ -37,8 +37,6 @@ namespace UIAutomation
             InitializeData();
         }
         
-        // 20131109
-        //public static AutomationElement CurrentWindow { get; internal set; }
         public static IMySuperWrapper CurrentWindow { get; internal set; }
         // 20131202
         // public static ArrayList Error { get; set; }
@@ -102,27 +100,9 @@ public static List<object> Events { get; set; } // temporary ??
             }
         }
         
-        // 20131109
-        //public static void SetCurrentWindow(AutomationElement window)
         public static void SetCurrentWindow(IMySuperWrapper window)
         {
             CurrentWindow = window ?? null;
-
-            /*
-            if (window != null) {
-                CurrentData.CurrentWindow = window;
-            } else {
-                CurrentData.CurrentWindow = null;
-            }
-            */
-
-            /*
-            if (window is AutomationElement) {
-                CurrentData.CurrentWindow = window;
-            } else {
-                CurrentData.CurrentWindow = null;
-            }
-            */
         }
 
         internal static Profile GetProfile(string name)

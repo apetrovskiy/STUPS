@@ -102,13 +102,9 @@ namespace UIAutomation
                 viaWildcardOrRegex);
         }
         
-        // 20131202
-        // internal ArrayList GetAutomationElementsViaWildcards_FindAll(
         internal List<IMySuperWrapper> GetAutomationElementsViaWildcards_FindAll(
             GetControlCollectionCmdletBase cmdlet,
             IMySuperWrapper inputObject,
-            // 20131129
-            // AndCondition conditions,
             Condition conditions,
             bool caseSensitive,
             bool onlyOneResult,
@@ -120,9 +116,7 @@ namespace UIAutomation
             if (!cmdlet.CheckAndPrepareInput(cmdlet)) { return null; } // ?? 20131107
             
             cmdlet.WriteVerbose(cmdlet, "still in the GetAutomationElementsViaWildcards_FindAll method");
-
-            // 20131202
-            // ArrayList resultCollection = new ArrayList();
+            
             List<IMySuperWrapper> resultCollection = new List<IMySuperWrapper>();
             
             resultCollection =
@@ -186,8 +180,6 @@ namespace UIAutomation
                 onlyTopLevel);
         }
         
-        // 20131202
-        // internal ArrayList GetAutomationElementsViaWildcards(
         internal List<IMySuperWrapper> GetAutomationElementsViaWildcards(
             GetControlCollectionCmdletBase cmdlet,
             bool caseSensitive,
@@ -196,12 +188,8 @@ namespace UIAutomation
         {
             if (!cmdlet.CheckAndPrepareInput(cmdlet)) { return null; }
             
-            // 20131202
-            // ArrayList resultCollection = new ArrayList();
             List<IMySuperWrapper> resultCollection = new List<IMySuperWrapper>();
             
-            // 20131109
-            //foreach (AutomationElement inputObject in this.InputObject) {
             foreach (IMySuperWrapper inputObject in InputObject) {
             
                 resultCollection =
@@ -242,11 +230,7 @@ namespace UIAutomation
             return resultCollection;
         }
         
-        // 20131202
-        // private ArrayList GetAutomationElementsWithWalker(
         private List<IMySuperWrapper> GetAutomationElementsWithWalker(
-            // 20131109
-            //AutomationElement element,
             IMySuperWrapper element,
             string name,
             string automationId,
@@ -256,8 +240,6 @@ namespace UIAutomation
             bool onlyOneResult,
             bool onlyTopLevel)
         {
-            // 20131202
-            // ArrayList resultCollection = new ArrayList();
             List<IMySuperWrapper> resultCollection = new List<IMySuperWrapper>();
 
             TreeWalker walker = 
@@ -349,8 +331,6 @@ namespace UIAutomation
             return resultCollection;
         }
         
-        // 20131202
-        // internal ArrayList GetAutomationElementsWithFindAll(
         internal List<IMySuperWrapper> GetAutomationElementsWithFindAll(
             IMySuperWrapper element,
             string name,
@@ -364,8 +344,6 @@ namespace UIAutomation
             bool onlyTopLevel,
             bool viaWildcardOrRegex)
         {
-            // 20131202
-            // ArrayList resultCollection = new ArrayList();
             List<IMySuperWrapper> resultCollection = new List<IMySuperWrapper>();
 
             try {
@@ -373,9 +351,7 @@ namespace UIAutomation
                 IMySuperCollection results =
                     element.FindAll(
                         TreeScope.Descendants,
-                        // 20131119
-                        //conditions);
-                        conditions); //(AndCondition)conditions);
+                        conditions);
                 WriteVerbose(
                     this,
                     "There are roughly " +
@@ -384,7 +360,6 @@ namespace UIAutomation
                 
                 resultCollection =
                     ReturnOnlyRightElements(
-                        // 20130513
                         this,
                         results,
                         name,
@@ -393,7 +368,6 @@ namespace UIAutomation
                         textValue,
                         controlType,
                         caseSensitiveParam,
-                        // 20131122
                         viaWildcardOrRegex);
                 
                 // 20130608
@@ -407,11 +381,7 @@ namespace UIAutomation
             return resultCollection;
         }
         
-        // 20131202
-        // private ArrayList ProcessAutomationElement(
         private List<IMySuperWrapper> ProcessAutomationElement(
-            // 20131109
-            //AutomationElement element,
             IMySuperWrapper element,
             string name,
             string automationId,
@@ -421,8 +391,6 @@ namespace UIAutomation
             bool onlyOneResult,
             bool onlyTopLevel)
         {
-            // 20131202
-            // ArrayList resultCollection = new ArrayList();
             List<IMySuperWrapper> resultCollection = new List<IMySuperWrapper>();
             
             if (null == name) {
@@ -820,17 +788,6 @@ namespace UIAutomation
                             // 20131111
                             //searchResults.AddRange(temporaryResults.Cast<IMySuperWrapper>());
                             searchResults.AddRange(temporaryResults.Cast<IMySuperWrapper>());
-                            /*
-                            foreach (IMySuperWrapper singleElement in temporaryResults) {
-                                searchResults.Add(singleElement);
-                            }
-                            */
-                            /*
-                            foreach (AutomationElement element in temporaryResults)
-                            {
-                                searchResults.Add(element);
-                            }
-                            */
                         }
                     }
                     WriteVerbose(this, "results found: " + searchResults.Count.ToString());

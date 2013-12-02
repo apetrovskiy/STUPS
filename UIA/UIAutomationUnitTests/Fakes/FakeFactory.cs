@@ -82,9 +82,9 @@ namespace UIAutomationUnitTests
             return cmdlet;
         }
         
-        public static GetControlCollectionCmdletBase Get_GetControlCollectionCmdletBase(ControlType controlType, string searchString)
+        public static GetControlCmdletBase Get_GetControlCmdletBase(ControlType controlType, string searchString)
         {
-            GetControlCollectionCmdletBase cmdlet = Substitute.For<GetControlCollectionCmdletBase>();
+            GetControlCmdletBase cmdlet = Substitute.For<GetControlCmdletBase>();
             if (null != controlType) {
                 cmdlet.ControlType.Returns(
                     new[] {

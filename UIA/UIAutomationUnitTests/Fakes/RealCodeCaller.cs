@@ -21,21 +21,11 @@ namespace UIAutomationUnitTests
     /// </summary>
     public static class RealCodeCaller
     {
-//        public RealCodeCaller()
-//        {
-//        }
-        
-        //private ArrayList GetResultArrayList(GetControlCollectionCmdletBase cmdlet, IMySuperWrapper element, Condition condition)
-        // public static ArrayList GetResultArrayList_ViaWildcards(GetControlCollectionCmdletBase cmdlet, IMySuperWrapper element, Condition condition)
-        // 20131202
-        // public static ArrayList GetResultArrayList_ViaWildcards(GetControlCmdletBase cmdlet, IMySuperWrapper element, Condition condition)
         public static List<IMySuperWrapper> GetResultList_ViaWildcards(GetControlCmdletBase cmdlet, IMySuperWrapper element, Condition condition)
         {
             GetControlCollectionCmdletBase cmdletDerived = new GetControlCollectionCmdletBase();
             // GetControlCmdletBase cmdletDerived = new GetControlCmdletBase();
             
-            // 20131202
-            // ArrayList resultList =
             List<IMySuperWrapper> resultList =
                 cmdletDerived.GetAutomationElementsWithFindAll(
                     element,
@@ -53,15 +43,10 @@ namespace UIAutomationUnitTests
             return resultList;
         }
         
-        // 20131128
-        // public static ArrayList GetResultArrayList_ExactSearch(GetControlCollectionCmdletBase cmdlet, IMySuperWrapper element, AndCondition conditions)
-        // 20131202
-        // public static ArrayList GetResultArrayList_ExactSearch(GetControlCollectionCmdletBase cmdlet, IMySuperWrapper element, OrCondition conditions)
-        public static List<IMySuperWrapper> GetResultList_ExactSearch(GetControlCollectionCmdletBase cmdlet, IMySuperWrapper element, OrCondition conditions)
+        // public static List<IMySuperWrapper> GetResultList_ExactSearch(GetControlCollectionCmdletBase cmdlet, IMySuperWrapper element, Condition conditions)
+        public static List<IMySuperWrapper> GetResultList_ExactSearch(GetControlCmdletBase cmdlet, IMySuperWrapper element, Condition conditions)
         {
             GetControlCmdletBase cmdletDerived = new GetControlCmdletBase();
-            // 20131202
-            // cmdlet.ResultArrayListOfControls = new ArrayList();
             cmdlet.ResultListOfControls = new List<IMySuperWrapper>();
             //cmdletDerived.ResultArrayListOfControls = new ArrayList();
             

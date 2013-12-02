@@ -58,9 +58,6 @@ namespace UIAutomation
                    ParameterSetName = "Win32")]
         [Parameter(Mandatory = false,
                    ParameterSetName = "UiaClassic")]
-//        // 20131122
-//        [Parameter(Mandatory = false,
-//                   ParameterSetName = "UiaRegex")]
         [Alias("Title")]
         public virtual string Name { get; set; }
         
@@ -70,48 +67,31 @@ namespace UIAutomation
                    ParameterSetName = "Win32")]
         [Parameter(Mandatory = false,
                    ParameterSetName = "UiaClassic")]
-//        // 20131122
-//        [Parameter(Mandatory = false,
-//                   ParameterSetName = "UiaRegex")]
         public virtual string Value { get; set; }
         
         [Parameter(Mandatory = false,
                    ParameterSetName = "UiaWildCard")]
-        // 20130218
         [Parameter(Mandatory = false,
                    ParameterSetName = "Win32")]
         [Parameter(Mandatory = false,
                    ParameterSetName = "UiaClassic")]
-//        // 20131122
-//        [Parameter(Mandatory = false,
-//                   ParameterSetName = "UiaRegex")]
         public virtual string AutomationId { get; set; }
         
         [Parameter(Mandatory = false,
                    ParameterSetName = "UiaWildCard")]
-        // 20130218
         [Parameter(Mandatory = false,
                    ParameterSetName = "Win32")]
         [Parameter(Mandatory = false,
                    ParameterSetName = "UiaClassic")]
-//        // 20131122
-//        [Parameter(Mandatory = false,
-//                   ParameterSetName = "UiaRegex")]
         [Alias("ClassName")]
         public virtual string Class { get; set; }
         
         [Parameter(Mandatory = false,
                    ParameterSetName = "UiaWildCard")]
-        // 20130218
         [Parameter(Mandatory = false,
                    ParameterSetName = "Win32")]
         [Parameter(Mandatory = false,
                    ParameterSetName = "UiaClassic")]
-//        // 20131122
-//        [Parameter(Mandatory = false,
-//                   ParameterSetName = "UiaRegex")]
-        // 20131128
-        //public virtual string ControlType { get; set; }
         public virtual string[] ControlType { get; set; }
         
         [Parameter(Mandatory = false,
@@ -124,31 +104,14 @@ namespace UIAutomation
                    ParameterSetName = "UiaWildCard")]
         [Parameter(Mandatory = false,
                    ParameterSetName = "UiaClassic")]
-//        // 20131122
-//        [Parameter(Mandatory = false,
-//                   ParameterSetName = "UiaRegex")]
         public virtual SwitchParameter FromCache { get; set; }
         
-        //[Parameter(Mandatory = false,
-        //           ParameterSetName = "First")]
-        //public SwitchParameter First { get; set; }
-        
-//        // 20131122
-//        [Parameter(Mandatory = false,
-//                   ParameterSetName = "UiaRegex")]
-        // 20131122
         [Parameter (Mandatory = false,
                    ParameterSetName = "UiaWildCard")]
         public SwitchParameter Regex { get; set; }
         
-        // 20130127
         [Parameter(Mandatory = false)]
         public SwitchParameter CaseSensitive { get; set; }
-        
-        // 20130204
-//        [Parameter(Mandatory = false,
-//                   ParameterSetName = "fake")]
-//        internal SwitchParameter Fake { get; set; }
         #endregion Parameters
 
     }

@@ -47,25 +47,10 @@ namespace UIAutomation.Commands
         {
             if (!CheckAndPrepareInput(this)) { return; }
             
-            // 20131109
-            //foreach (AutomationElement inputObject in this.InputObject) {
             foreach (IMySuperWrapper inputObject in InputObject) {
                 
                 if (0 == inputObject.Current.NativeWindowHandle) {
-        //                ErrorRecord err = 
-        //                    new ErrorRecord(new Exception("The handle of this control equals to zero"),
-        //                                    "ZeroHandle",
-        //                                    ErrorCategory.InvalidArgument,
-        //                                    // 20130105
-        //                                    //this.InputObject);
-        //                                    inputObject);
-        //                err.ErrorDetails = 
-        //                    new ErrorDetails("This control does not have a handle. Try to use its parent");
-        //// 20120209 
-        //// WriteError(this, err);
-        //// return;
-        //                WriteError(this, err, true);
-                        
+                    
                     WriteError(
                         this,
                         "The handle of this control equals to zero",

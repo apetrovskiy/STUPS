@@ -63,8 +63,6 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                     condition);
             
             // Act
-            // 20131202
-            // ArrayList resultList = RealCodeCaller.GetResultArrayList_ViaWildcards(cmdlet, element, condition);
             List<IMySuperWrapper> resultList = RealCodeCaller.GetResultList_ViaWildcards(cmdlet, element, condition);
             
             // Assert

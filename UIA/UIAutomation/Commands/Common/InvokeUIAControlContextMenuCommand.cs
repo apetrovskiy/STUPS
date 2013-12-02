@@ -31,19 +31,12 @@ namespace UIAutomation.Commands
         {
             if (!CheckAndPrepareInput(this)) { return; }
             
-            // 20120823
-            // 20131109
-            //foreach (AutomationElement inputObject in this.InputObject) {
             foreach (IMySuperWrapper inputObject in InputObject) {
             
-            // 20131109
-            //AutomationElement resultElement = null;
             IMySuperWrapper resultElement = null;
             
             // preform a right click on the control
             if (!ClickControl(this,
-                               // 20120823
-                               //this.InputObject,
                                inputObject,
                                true,
                                false,
@@ -52,25 +45,9 @@ namespace UIAutomation.Commands
                                false,
                                false,
                                false,
-                               // 20131125
                                0,
                                Preferences.ClickOnControlByCoordX,
                                Preferences.ClickOnControlByCoordY)) {
-                
-                // 20130312
-//                ErrorRecord err = 
-//                    new ErrorRecord(
-//                        new Exception("Couldn't click on this control"),
-//                        "couldNotClick",
-//                        ErrorCategory.InvalidResult,
-//                        //this.InputObject);
-//                        inputObject);
-//                err.ErrorDetails = 
-//                    new ErrorDetails("Could not click on the control");
-//// 20120209 
-//// WriteError(this, err);
-//// return;
-//                WriteError(this, err, true);
                 
                 WriteError(
                     this,
@@ -80,8 +57,6 @@ namespace UIAutomation.Commands
                     true);
                 
             } else {
-                // 20120823
-                //WriteVerbose(this, "clicked on " + this.InputObject.Current.Name);
                 WriteVerbose(this, "clicked on " + inputObject.Current.Name);
             }
             

@@ -52,18 +52,13 @@ namespace UIAutomation
         
         internal bool Paused { get; set; }
         
-        // 20131202
-        // public ArrayList LastRecordedItem = 
         public List<string> LastRecordedItem =
-            // new ArrayList();
             new List<string>();
 
         // the list of all recorded controls' patterns
         public ArrayList RecordingPatterns = 
             new ArrayList();
         
-        // 20131109
-        //protected internal AutomationElement thePreviouslyUsedElement = null;
         protected internal IMySuperWrapper thePreviouslyUsedElement = null;
         
         internal new void StopProcessing()
@@ -73,8 +68,6 @@ namespace UIAutomation
         }
         
         public string WritingRecord(
-            // 20131202
-            // object recordingItemCode,
             List<string> recordingItemCode,
             object recordingItemPatterns,
             StreamWriter writerToLongFile,
@@ -82,8 +75,6 @@ namespace UIAutomation
         {
             string result = string.Empty;
             try {
-                // 20131202
-                // ArrayList recordList = (ArrayList)recordingItemCode;
                 List<string> recordList = recordingItemCode;
                 
                 string longRecordingString = String.Empty;

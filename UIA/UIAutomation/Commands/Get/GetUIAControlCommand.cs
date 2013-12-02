@@ -43,8 +43,6 @@ namespace UIAutomation.Commands
 
             WriteVerbose(this, "getting the control");
             
-            // 20131202
-            // ArrayList returnCollection = 
             List<IMySuperWrapper> returnCollection =
                 GetControl(this);
             

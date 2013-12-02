@@ -949,7 +949,6 @@ namespace UIAutomation
         
         protected internal DateTime StartDate { get; set; }
         protected IMySuperWrapper CurrentWindow { get; set; }
-        // protected internal ArrayList ResultArrayListOfControls;
         protected internal List<IMySuperWrapper> ResultListOfControls;
         protected internal IMySuperWrapper OddRootElement { get; set; }
         
@@ -969,22 +968,12 @@ namespace UIAutomation
                 foreach (string controlTypeName in cmdlet.ControlType)
                 {
                     WriteVerbose(this, "control type: " + controlTypeName);
-                    // 20131128
-                    // conditions.Add(GetControlConditionsForWildcardSearch(((GetControlCmdletBase)cmdlet), controlTypeName, cmdlet.CaseSensitive, true) as AndCondition);
-                    // 20131129
-                    // conditions.Add(GetControlConditionsForWildcardSearch(((GetControlCmdletBase)cmdlet), controlTypeName, cmdlet.CaseSensitive));
                     conditions.Add(GetWildcardSearchCondition(cmdlet));
                 }
             } else{
                 WriteVerbose(this, "without control type");
-                // 20131128
-                // conditions.Add(GetControlConditionsForWildcardSearch(((GetControlCmdletBase)cmdlet), "", cmdlet.CaseSensitive, true) as AndCondition);
-                // 20131129
-                // conditions.Add(GetControlConditionsForWildcardSearch(((GetControlCmdletBase)cmdlet), "", cmdlet.CaseSensitive));
                 conditions.Add(GetWildcardSearchCondition(cmdlet));
             }
-            // 20131129
-            // return conditions.ToArray();
             return conditions.ToArray();
         }
         
@@ -1142,13 +1131,10 @@ namespace UIAutomation
         }
         #endregion condition methods
         
-        // 20131202
-        // protected internal ArrayList GetControl(GetControlCmdletBase cmdlet)
         protected internal List<IMySuperWrapper> GetControl(GetControlCmdletBase cmdlet)
         {
             try {
-                // 20131202
-                //ResultArrayListOfControls = new ArrayList();
+
                 ResultListOfControls = new List<IMySuperWrapper>();
                 
                 #region conditions
@@ -1296,8 +1282,6 @@ Console.WriteLine("wildcard search UIA");
                                 
 Console.WriteLine("regex search UIA");
                                 
-                                // 20131128
-                                // SearchByWildcardOrRegexViaUia(cmdlet, ref ResultArrayListOfControls, inputObject, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class, cmdlet.Value, conditionsForWildCards, false);
                                 SearchByWildcardOrRegexViaUia(cmdlet, ref ResultListOfControls, inputObject, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class, cmdlet.Value, (AndCondition)conditionsForWildCards, false);
                             }
                         }
@@ -1431,8 +1415,7 @@ Console.WriteLine("wildcard search Win32");
         internal void SearchByWildcardViaWin32(GetControlCmdletBase cmdlet, IMySuperWrapper inputObject)
         {
             WriteVerbose(cmdlet, "[getting the control] using FindWindowEx");
-            // 20131202
-            // ArrayList tempListWin32 = new ArrayList();
+            
             List<IMySuperWrapper> tempListWin32 = new List<IMySuperWrapper>();
             if (!string.IsNullOrEmpty(cmdlet.Name)) {
                 WriteVerbose(cmdlet, "collecting controls by name (Win32)");
@@ -1523,16 +1506,12 @@ Console.WriteLine("wildcard search Win32");
 
         internal void SearchByWildcardOrRegexViaUia(
             GetControlCmdletBase cmdlet, // 20130318 // ??
-            // 20131202
-            // ref ArrayList resultCollection,
             ref List<IMySuperWrapper> resultCollection,
             IMySuperWrapper inputObject,
             string name,
             string automationId,
             string className,
             string strValue,
-            // 20131129
-            // AndCondition conditionsForWildCards,
             Condition conditionsForWildCards,
             bool viaWildcardOrRegex)
         {
@@ -1554,8 +1533,6 @@ Console.WriteLine("wildcard search Win32");
                 try {
                     WriteVerbose((cmdlet as PSCmdletBase), "using the GetAutomationElementsViaWildcards_FindAll method");
                     
-                    // 20131202
-                    // ArrayList tempList =
                     List<IMySuperWrapper> tempList =
                         cmdlet1.GetAutomationElementsViaWildcards_FindAll(
                             cmdlet1,
@@ -1619,19 +1596,10 @@ Console.WriteLine("wildcard search Win32");
             }
         }
         
-        // 20131127
-        //internal void SearchByExactConditionsViaUia(
         protected internal void SearchByExactConditionsViaUia(
             GetControlCmdletBase cmdlet,
             IMySuperWrapper inputObject,
-            // 20131128
-            //AndCondition conditions,
-            // 20131129
-            // OrCondition conditions,
             Condition conditions,
-            // 20131126
-            // 20131202
-            // ArrayList listOfColllectedResults)
             List<IMySuperWrapper> listOfColllectedResults)
         {
             #region the -First story
@@ -1669,64 +1637,30 @@ Console.WriteLine("wildcard search Win32");
             //else if (UIAutomation.CurrentData.LastResult
             #endregion the -First story
             
-//Console.WriteLine("sbecvu 00001");
-            
-            //internal void SearchByExactConditionsViaUIA(System.Windows.Automation.AndCondition conditions, ref bool notTextSearch, ref System.Windows.Automation.AndCondition conditionsForWildCards, ref AutomationElement inputObject, ref int processId, GetControlCmdletBase cmdlet)
-            //{
-            
             if (conditions == null) return;
-            
-//Console.WriteLine("sbecvu 00002");
-//if (null == inputObject) {
-//    Console.WriteLine("null == inputObject");
-//}
-//if ((int) inputObject.Current.ProcessId <= 0) {
-//    Console.WriteLine("(int) inputObject.Current.ProcessId <= 0");
-//}
             
             if (inputObject == null || (int) inputObject.Current.ProcessId <= 0) return;
             
-//Console.WriteLine("sbecvu 00003");
-            
             IMySuperCollection tempCollection = inputObject.FindAll(TreeScope.Descendants, conditions);
-            
-//Console.WriteLine("sbecvu 00004");
-//Console.WriteLine("tempCollection.Count = " + tempCollection.Count.ToString());
             
             foreach (IMySuperWrapper tempElement in tempCollection) {
                 
-//Console.WriteLine("sbecvu 00005");
-                
                 if (null == cmdlet.SearchCriteria || 0 == cmdlet.SearchCriteria.Length) {
                     
-//Console.WriteLine("sbecvu 00006");
-                    
-                    // 20131126
-                    // ResultArrayListOfControls.Add(tempElement);
                     listOfColllectedResults.Add(tempElement);
                     
-//Console.WriteLine("sbecvu 00007");
-                    
                     cmdlet.WriteVerbose(cmdlet, "ExactSearch: element added to the result collection");
-                    
-//Console.WriteLine("sbecvu 00008");
                     
                 } else {
                     cmdlet.WriteVerbose(cmdlet, "ExactSearch: checking search criteria");
                     if (!TestControlWithAllSearchCriteria(cmdlet, cmdlet.SearchCriteria, tempElement)) continue;
                     cmdlet.WriteVerbose(cmdlet, "ExactSearch: the control matches the search criteria");
-                    // 20131126
-                    // ResultArrayListOfControls.Add(tempElement);
                     listOfColllectedResults.Add(tempElement);
                     cmdlet.WriteVerbose(cmdlet, "ExactSearch: element added to the result collection");
                 }
             }
             
-//Console.WriteLine("sbecvu 00009");
-            
             if (null != tempCollection) {
-                
-//Console.WriteLine("sbecvu 00010");
                 
                 tempCollection = null;
             }
@@ -1735,67 +1669,41 @@ Console.WriteLine("wildcard search Win32");
         internal void SearchByTextViaUia(
             GetControlCmdletBase cmdlet,
             IMySuperWrapper inputObject,
-            // 20131128
-            // AndCondition conditionsForTextSearch)
             Condition conditionsForTextSearch)
         {
             WriteVerbose(cmdlet, "Text search");
             
-//Console.WriteLine("sbtvu 0001");
-            
             IMySuperCollection textSearchCollection = inputObject.FindAll(TreeScope.Descendants, conditionsForTextSearch);
-            
-//Console.WriteLine("sbtvu 0002");
             
             if (null != textSearchCollection && 0 < textSearchCollection.Count) {
                 
-//Console.WriteLine("sbtvu 0003");
-                
                 WriteVerbose(cmdlet, "There are " + textSearchCollection.Count.ToString() + " elements");
-                
-//Console.WriteLine("sbtvu 0004");
                 
                 foreach (IMySuperWrapper element in textSearchCollection) {
                     
-//Console.WriteLine("sbtvu 0005");
-                    
                     ResultListOfControls.Add(element);
-                    
-//Console.WriteLine("sbtvu 0006");
-                    
                 }
             }
             
-//Console.WriteLine("sbtvu 0007");
-            
             if (null != textSearchCollection) {
                 
-//Console.WriteLine("sbtvu 0008");
-                
                 textSearchCollection = null;
-                
-//Console.WriteLine("sbtvu 0009");
-                
             }
         }
         
         internal void SearchByTextViaWin32(
             GetControlCmdletBase cmdlet,
             IMySuperWrapper inputObject,
-            // 20131128
-            //string controlType)
             string[] controlTypeNames)
         {
 
             WriteVerbose(cmdlet, "Text search Win32");
-            // 20131202
-            // ArrayList textSearchWin32List =
+            
             List<IMySuperWrapper> textSearchWin32List =
                 UiaHelper.GetControlByNameViaWin32(
                     cmdlet,
                     inputObject,
                     cmdlet.ContainsText,
-                    // 20131129
                     string.Empty);
             
             if (null != textSearchWin32List && 0 < textSearchWin32List.Count) {
@@ -1804,8 +1712,6 @@ Console.WriteLine("wildcard search Win32");
                 
                 foreach (IMySuperWrapper elementToChoose in textSearchWin32List) {
                     
-                    // 20131128
-                    //if (!string.IsNullOrEmpty(controlType) && 0 < controlType.Length) {
                     if (null != controlTypeNames && 0 < controlTypeNames.Length) {
                         
                         // 20131128

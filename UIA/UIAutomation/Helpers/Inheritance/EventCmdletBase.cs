@@ -61,8 +61,6 @@ namespace UIAutomation
         {
             if (InputObject == null) return;
             
-            // 20131109
-            //foreach (AutomationElement inputObject in this.InputObject) {
             foreach (IMySuperWrapper inputObject in InputObject) {
                 
                 SubscribeToEvents(this,

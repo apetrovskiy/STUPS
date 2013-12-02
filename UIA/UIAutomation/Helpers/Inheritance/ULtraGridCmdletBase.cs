@@ -358,18 +358,6 @@ namespace UIAutomation
         private bool IsInTheList(string strValue)
         {
             return ItemName.Any(strItem => strValue == strItem);
-            /*
-            bool result = false;
-            foreach (string strItem in this.ItemName)
-            {
-                if (strValue == strItem)
-                {
-                    result = true;
-                    break;
-                }
-            }
-            return result;
-            */
         }
     }
     

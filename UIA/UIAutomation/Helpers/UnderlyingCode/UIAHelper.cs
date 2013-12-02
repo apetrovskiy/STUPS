@@ -44,8 +44,6 @@ namespace UIAutomation
         private static Banner _banner = null;
         private static IMySuperWrapper _element = null;
         
-        // 20131202
-        // private static ArrayList GetControlByNameViaWin32Recursively(
         private static List<IntPtr> GetControlByNameViaWin32Recursively(
             PSCmdletBase cmdlet,
             IntPtr containerHandle,
@@ -55,9 +53,6 @@ namespace UIAutomation
             IntPtr resultHandle = IntPtr.Zero;
             IntPtr controlHandle = IntPtr.Zero;
             
-            // 20131202
-            // ArrayList controlHandles = new ArrayList();
-            // ArrayList tempControlHandles = new ArrayList();
             List<IntPtr> controlHandles = new List<IntPtr>();
             List<IntPtr> tempControlHandles = new List<IntPtr>();
             
@@ -104,8 +99,6 @@ namespace UIAutomation
             return controlHandles;
         }
         
-        // 20131202
-        // internal static ArrayList GetControlByNameViaWin32(
         internal static List<IMySuperWrapper> GetControlByNameViaWin32(
             GetControlCmdletBase cmdlet,
             IMySuperWrapper containerElement,
@@ -114,8 +107,6 @@ namespace UIAutomation
             string controlTitle,
             string controlValue)
         {
-            // 20131202
-            // ArrayList resultCollection = new ArrayList();
             List<IMySuperWrapper> resultCollection = new List<IMySuperWrapper>();
             
             cmdlet.WriteVerbose(cmdlet, "checking the container control");
@@ -136,10 +127,6 @@ namespace UIAutomation
                     return resultCollection;
                 }
                 
-                // 20131202
-                // ArrayList handlesCollection =
-                //     new ArrayList();
-                // handlesCollection =
                 List<IntPtr> handlesCollection =
                     GetControlByNameViaWin32Recursively(cmdlet, containerHandle, controlTitle, 1);
                 
@@ -845,8 +832,6 @@ namespace UIAutomation
                         catch {
                         }
                         
-                        // 20131202
-                        // cmdlet.LastRecordedItem = new ArrayList();
                         cmdlet.LastRecordedItem = new List<string>();
                         string strElementPatterns = String.Empty;
                         
@@ -2015,8 +2000,6 @@ namespace UIAutomation
         /// <param name="delimiter"></param>
         /// <returns></returns>
         internal static bool GetHeaders(
-            // 20131109
-            //ref System.Windows.Automation.AutomationElement element,
             ref IMySuperWrapper element,
             out string strResultString,
             char delimiter)
@@ -2155,8 +2138,6 @@ namespace UIAutomation
         /// <returns></returns>
         internal static List<string>
             GetOutputStringUsingItemsValuePattern(
-                // 20131109
-                //AutomationElement control,
                 IMySuperWrapper control,
                 char delimiter)
         {
@@ -2554,11 +2535,7 @@ namespace UIAutomation
 //    [return: MarshalAs(UnmanagedType.Bool)]
 //    public static extern bool EnumChildWindows(IntPtr window, EnumWindowProc callback, IntPtr i);
 
-        //public static List<IntPtr> GetChildWindows(IntPtr parent)
         internal static IEnumerable<IntPtr> GetChildWindows(IntPtr parent)
-        /*
-        internal static List<IntPtr> GetChildWindows(IntPtr parent)
-        */
         {
             List<IntPtr> result = new List<IntPtr>();
             GCHandle listHandle = GCHandle.Alloc(result);
@@ -2586,16 +2563,11 @@ namespace UIAutomation
             return true;
         }
         
-        // 20131202
-        // internal static ArrayList EnumChildWindowsFromHandle(GetWindowCmdletBase cmdlet, IntPtr parentHandle)
         internal static List<IMySuperWrapper> EnumChildWindowsFromHandle(GetWindowCmdletBase cmdlet, IntPtr parentHandle)
         {
             IEnumerable<IntPtr> list =
                 GetChildWindows(parentHandle);
             
-            // 20131202
-            // ArrayList resultElements =
-            //     new ArrayList();
             List<IMySuperWrapper> resultElements =
                 new List<IMySuperWrapper>();
             
@@ -2649,30 +2621,22 @@ namespace UIAutomation
             return resultElements;
         }
         
-        // 20131202
-        // public static ArrayList Enum1ChildWindows(IntPtr parentHandle)
         public static List<IMySuperWrapper> Enum1ChildWindows(IntPtr parentHandle)
         {
             
             //PSCmdletBase cmdlet = new GetUiaWindowCommand();
             GetWindowCmdletBase cmdlet = new GetWindowCmdletBase();
-            // 20131202
-            // ArrayList resultList =
             List<IMySuperWrapper> resultList =
                 EnumChildWindowsFromHandle(cmdlet, parentHandle);
             
             return resultList;
         }
         
-        // 20131202
-        // public static ArrayList Enum2ChildWindows(IntPtr parentHandle)
         public static List<IMySuperWrapper> Enum2ChildWindows(IntPtr parentHandle)
         {
             
             //PSCmdletBase cmdlet = new GetUiaWindowCommand();
             GetWindowCmdletBase cmdlet = new GetWindowCmdletBase();
-            // 20131202
-            // ArrayList resultList =
             List<IMySuperWrapper> resultList =
                 EnumChildWindowsFromHandle(cmdlet, IntPtr.Zero);
             

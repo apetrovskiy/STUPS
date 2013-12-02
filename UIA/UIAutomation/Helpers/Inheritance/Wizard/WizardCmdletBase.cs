@@ -77,26 +77,13 @@ namespace UIAutomation
             if (string.IsNullOrEmpty(name)) {
                 return result;
             }
-
-            /*
-            if (name == null || name == string.Empty) {
-                return result;
-            }
-            */
+            
             foreach (Wizard wzd in WizardCollection.Wizards.Where(wzd => wzd.Name == name))
             {
                 result = wzd;
                 return result;
             }
-
-            /*
-            foreach (Wizard wzd in WizardCollection.Wizards) {
-                if (wzd.Name == name) {
-                    result = wzd;
-                    return result;
-                }
-            }
-            */
+            
             return result;
         }
     }

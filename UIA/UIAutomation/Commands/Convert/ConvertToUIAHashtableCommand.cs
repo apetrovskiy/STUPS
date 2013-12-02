@@ -35,12 +35,8 @@ namespace UIAutomation.Commands
         /// </summary>
         protected override void ProcessRecord()
         {
-            // if (!this.CheckControl(this)) { return; }
             if (!CheckAndPrepareInput(this)) { return; }
             
-            // 20120823
-            // 20131109
-            //foreach (AutomationElement inputObject in this.InputObject) {
             foreach (Hashtable hashtable in InputObject.Select(inputObject => new Hashtable
             {
                 {"Name", inputObject.Current.Name},
@@ -143,18 +139,12 @@ namespace UIAutomation.Commands
     {
         public ConvertToUiaSearchCriteriaCommand()
         {
-            // 20131202
-            // ArrayList defaultExcludeList = 
             List<string> defaultExcludeList =
-                // new ArrayList {"LabeledBy", "NativeWindowHandle", "ProcessId"};
                 new List<string> {"LabeledBy", "NativeWindowHandle", "ProcessId"};
-            // Exclude = (string[])defaultExcludeList.ToArray(typeof(string));
             Exclude = defaultExcludeList.ToArray();
-            // ArrayList defaultIncludeList = 
+            
             List<string> defaultIncludeList =
-                // new ArrayList {"Name", "AutomationId", "ControlType"};
                 new List<string> {"Name", "AutomationId", "ControlType"};
-            // Include = (string[])defaultIncludeList.ToArray(typeof(string));
             Include = defaultIncludeList.ToArray();
             Full = false;
         }
@@ -184,8 +174,6 @@ namespace UIAutomation.Commands
             if (Full) {
                 //this.Exclude = null;
                 Exclude =
-                    // 20131202
-                    // (string[])(new ArrayList()).ToArray(typeof(string));
                     new string[] {};
 //                for (int i = 0; i < this.Exclude.Length; i++) {
 //                    

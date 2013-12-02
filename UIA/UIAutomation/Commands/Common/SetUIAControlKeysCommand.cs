@@ -57,9 +57,6 @@ namespace UIAutomation.Commands
         {
             if (!CheckAndPrepareInput(this)) { return; }
             
-            // 20120823
-            // 20131109
-            //foreach (AutomationElement inputObject in this.InputObject) {
             foreach (IMySuperWrapper inputObject in InputObject) {
 
             try {
@@ -75,8 +72,6 @@ namespace UIAutomation.Commands
                         null);
                 string controlName = string.Empty;
                 try {
-                    // 20120823
-                    //controlName = this.InputObject.Current.Name;
                     controlName = inputObject.Current.Name;
                 }
                 catch {}

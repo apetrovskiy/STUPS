@@ -146,8 +146,6 @@ namespace UIAutomation
         	    
         		cmdletCtrl.SearchCriteria = step.SearchCriteria;
                 
-        		// 20131202
-	        	// ArrayList controlsList = null;
 	        	List<IMySuperWrapper> controlsList = new List<IMySuperWrapper>();
 	        	
 	        	try {
@@ -164,8 +162,6 @@ namespace UIAutomation
         	        // 20130423
         	        if (Preferences.HighlightCheckedControl) {
         	            
-        	            // 20131109
-        	            //foreach (AutomationElement elementChecked in controlsList) {
         	            foreach (IMySuperWrapper elementChecked in controlsList) {
         	                UiaHelper.HighlightCheckedControl(elementChecked);
         	            }

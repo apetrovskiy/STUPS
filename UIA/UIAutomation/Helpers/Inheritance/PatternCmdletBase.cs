@@ -80,9 +80,7 @@ namespace UIAutomation
             /*
             IMySuperWrapper _control = null;
             */
-
-            // 20131109
-            //foreach (AutomationElement inputObject in this.InputObject) {
+            
             foreach (IMySuperWrapper inputObject in InputObject) {
                 IMySuperWrapper control = null;
                 try {

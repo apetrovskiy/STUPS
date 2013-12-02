@@ -47,37 +47,21 @@ namespace UIAutomation
         public string Banner { get; set; }
         #endregion Parameters
         
-        // 20131109
-        //protected internal AutomationElement ElementToSubscribe;
         protected internal IMySuperWrapper ElementToSubscribe;
         // list of all subscribed events
-        // 20131202
-        // protected internal readonly ArrayList SubscribedEvents =
         protected internal readonly List<AutomationEventHandler> SubscribedEvents =
-            // new ArrayList();
             new List<AutomationEventHandler>();
-        // protected internal readonly ArrayList SubscribedEventsIds = 
         protected internal readonly List<AutomationEvent> SubscribedEventsIds =
-            // new ArrayList();
             new List<AutomationEvent>();
         
         #region for script recording
-        // 20131202
-        // public ArrayList Recording = 
-        // public List<ArrayList> Recording =
         public List<List<string>> Recording =
-            // new ArrayList();
-            // new List<ArrayList>();
             new List<List<string>>();
         #endregion for script recording
         
         #region get active window
-        // 20131109
-        //protected AutomationElement GetActiveWindow()
         protected IMySuperWrapper GetActiveWindow()
         {
-            // 20131109
-            //AutomationElement result = null;
             IMySuperWrapper result = null;
             try {
                 IntPtr hWnd = 

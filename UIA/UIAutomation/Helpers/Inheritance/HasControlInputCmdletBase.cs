@@ -1035,13 +1035,8 @@ try {
         #endregion checker event handler inputs
 
         protected internal bool TestControlByPropertiesFromHashtable(
-            // 20130315
-            // 20131109
-            //AutomationElement[] inputElements,
-            //ICollection inputElements,
             IMySuperWrapper[] inputElements,
             IEnumerable<Hashtable> SearchCriteria,
-            //System.Collections.Hashtable[] SearchCriteria,
             int timeout)
         {
             
@@ -1082,13 +1077,13 @@ try {
                     
                     // 20131109
                     //cmdlet.InputObject = new AutomationElement[]{ UIAutomation.CurrentData.CurrentWindow };
-                    cmdlet.InputObject = new MySuperWrapper[]{ (MySuperWrapper)CurrentData.CurrentWindow };
+                    // 20131202
+                    // cmdlet.InputObject = new MySuperWrapper[]{ (MySuperWrapper)CurrentData.CurrentWindow };
+                    cmdlet.InputObject = new[]{ CurrentData.CurrentWindow };
                 }
                 
                 WriteVerbose(this, "getting the control");
                 
-                // 20131202
-                // ArrayList elementsToWorkWith = GetControl(cmdlet);
                 List<IMySuperWrapper> elementsToWorkWith = GetControl(cmdlet);
                 
                 if (null == elementsToWorkWith) {
@@ -1097,8 +1092,6 @@ try {
                     return result;
                 } else {
                     
-                    // 20131109
-                    //foreach (AutomationElement elementToWorkWith in elementsToWorkWith) {
                     foreach (IMySuperWrapper elementToWorkWith in elementsToWorkWith) {
                         
                         WriteVerbose(this, "found the control:");

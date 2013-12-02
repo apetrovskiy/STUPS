@@ -1,6 +1,6 @@
 ﻿/*
  * Created by SharpDevelop.
- * User: Alexander
+ * User: Alexander Petrovskiy
  * Date: 11/27/2013
  * Time: 11:54 PM
  * 
@@ -27,12 +27,16 @@ namespace UIAutomationUnitTests
         
         //private ArrayList GetResultArrayList(GetControlCollectionCmdletBase cmdlet, IMySuperWrapper element, Condition condition)
         // public static ArrayList GetResultArrayList_ViaWildcards(GetControlCollectionCmdletBase cmdlet, IMySuperWrapper element, Condition condition)
-        public static ArrayList GetResultArrayList_ViaWildcards(GetControlCmdletBase cmdlet, IMySuperWrapper element, Condition condition)
+        // 20131202
+        // public static ArrayList GetResultArrayList_ViaWildcards(GetControlCmdletBase cmdlet, IMySuperWrapper element, Condition condition)
+        public static List<IMySuperWrapper> GetResultArrayList_ViaWildcards(GetControlCmdletBase cmdlet, IMySuperWrapper element, Condition condition)
         {
             GetControlCollectionCmdletBase cmdletDerived = new GetControlCollectionCmdletBase();
             // GetControlCmdletBase cmdletDerived = new GetControlCmdletBase();
             
-            ArrayList resultList =
+            // 20131202
+            // ArrayList resultList =
+            List<IMySuperWrapper> resultList =
                 cmdletDerived.GetAutomationElementsWithFindAll(
                     element,
                     cmdlet.Name,

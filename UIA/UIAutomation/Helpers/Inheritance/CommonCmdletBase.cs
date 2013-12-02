@@ -1546,7 +1546,9 @@ Console.WriteLine("wildcard search Win32");
                 try {
                     WriteVerbose((cmdlet as PSCmdletBase), "using the GetAutomationElementsViaWildcards_FindAll method");
                     
-                    ArrayList tempList =
+                    // 20131202
+                    // ArrayList tempList =
+                    List<IMySuperWrapper> tempList =
                         cmdlet1.GetAutomationElementsViaWildcards_FindAll(
                             cmdlet1,
                             inputObject,

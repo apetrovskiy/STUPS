@@ -102,7 +102,9 @@ namespace UIAutomation
                 viaWildcardOrRegex);
         }
         
-        internal ArrayList GetAutomationElementsViaWildcards_FindAll(
+        // 20131202
+        // internal ArrayList GetAutomationElementsViaWildcards_FindAll(
+        internal List<IMySuperWrapper> GetAutomationElementsViaWildcards_FindAll(
             GetControlCollectionCmdletBase cmdlet,
             IMySuperWrapper inputObject,
             // 20131129
@@ -119,7 +121,9 @@ namespace UIAutomation
             
             cmdlet.WriteVerbose(cmdlet, "still in the GetAutomationElementsViaWildcards_FindAll method");
 
-            ArrayList resultCollection = new ArrayList();
+            // 20131202
+            // ArrayList resultCollection = new ArrayList();
+            List<IMySuperWrapper> resultCollection = new List<IMySuperWrapper>();
             
             resultCollection =
                 GetAutomationElementsWithFindAll(
@@ -337,7 +341,9 @@ namespace UIAutomation
             return resultCollection;
         }
         
-        internal ArrayList GetAutomationElementsWithFindAll(
+        // 20131202
+        // internal ArrayList GetAutomationElementsWithFindAll(
+        internal List<IMySuperWrapper> GetAutomationElementsWithFindAll(
             IMySuperWrapper element,
             string name,
             string automationId,
@@ -350,7 +356,9 @@ namespace UIAutomation
             bool onlyTopLevel,
             bool viaWildcardOrRegex)
         {
-            ArrayList resultCollection = new ArrayList();
+            // 20131202
+            // ArrayList resultCollection = new ArrayList();
+            List<IMySuperWrapper> resultCollection = new List<IMySuperWrapper>();
 
             try {
                 

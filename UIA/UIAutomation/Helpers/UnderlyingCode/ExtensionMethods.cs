@@ -13,9 +13,7 @@ namespace UIAutomation
 {
     using System;
     using System.Windows.Automation;
-    //using System.Text.RegularExpressions;
     using System.Collections;
-    //using System.Collections.Generic;
     using System.Linq;
     using System.Management.Automation;
     
@@ -24,57 +22,49 @@ namespace UIAutomation
     /// </summary>
     public static class ExtensionsMethods
     {
-        //public static void GetByWildcard(this IAutomationElementCollection collection, string wildcard)
-        //public static void GetByWildcard(this MySuperCollection collection, string wildcard)
-        public static IEnumerable GetByWildcard(this MySuperCollection collection, string wildcard)
+        public static IEnumerable GetElementsByWildcard(this MySuperCollection collection, string name, string automationId, string className, string txtValue, bool caseSensitive)
         {
             WildcardOptions options;
-            //if (caseSensitive) {
-            //    options =
-            //        WildcardOptions.Compiled;
-            //} else {
+            if (caseSensitive) {
+                options =
+                    WildcardOptions.Compiled;
+            } else {
                 options =
                     WildcardOptions.IgnoreCase |
                     WildcardOptions.Compiled;
-            //}
+            }
             
-            // 20131109
-            //System.Collections.Generic.List<AutomationElement> list = collection.Cast<AutomationElement>().ToList();
             List<IMySuperWrapper> list = collection.Cast<IMySuperWrapper>().ToList();
-
-            /*
-            foreach (AutomationElement element in collection) {
-                list.Add(element);
-            }
-            */
-
+            
             WildcardPattern wildcardName = 
-                new WildcardPattern(wildcard, options);
+                new WildcardPattern((string.IsNullOrEmpty(name) ? "*" : name), options);
+            WildcardPattern wildcardAutomationId = 
+                new WildcardPattern((string.IsNullOrEmpty(automationId) ? "*" : automationId), options);
+            WildcardPattern wildcardClassName = 
+                new WildcardPattern((string.IsNullOrEmpty(className) ? "*" : className), options);
+            WildcardPattern wildcardValue = 
+                new WildcardPattern((string.IsNullOrEmpty(txtValue) ? "*" : txtValue), options);
             
-//            var query = collection.SourceCollection.AsQueryable()
-//                    .Where<AutomationElement>(
-//                        item => (wildcardName.IsMatch(item.Current.Name)
-//                                )
-//                       )
-//                    .ToArray<AutomationElement>();
-            
-            var query2 = from item1
+            var queryByBigFour = from collectionItem
                 in list
-                where wildcardName.IsMatch(item1.Current.Name)
-                select item1;
+                where wildcardName.IsMatch(collectionItem.Current.Name) &&
+                      wildcardAutomationId.IsMatch(collectionItem.Current.AutomationId) &&
+                      wildcardClassName.IsMatch(collectionItem.Current.ClassName) &&
+                      (collectionItem.GetSupportedPatterns().Contains(ValuePattern.Pattern) ?
+                      wildcardValue.IsMatch((collectionItem.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern).Current.Value) :
+                      // check whether the -Value parameter has or hasn't value
+                      ("*" == txtValue ? true : false))
+                select collectionItem;
             
-            foreach (var element in query2) {
-                
-                //Console.WriteLine("//////////////////////////////////////////");
-                //Console.WriteLine(element.Current.Name);
-                //Console.WriteLine(element.Current.AutomationId);
-            }
-            
-            // 20131119
             // disposal
             list = null;
             
-            return query2;
+            return queryByBigFour;
+        }
+        
+        public static IEnumerable GetElementsByWildcard(this MySuperCollection collection, string name, string automationId, string className, string txtValue)
+        {
+            return GetElementsByWildcard(collection, name, automationId, className, txtValue, false);
         }
         
         public static IMySuperCollection ConvertCmdletInputToCollectionAdapter(this ICollection inputArray)
@@ -83,12 +73,5 @@ namespace UIAutomation
                 ObjectsFactory.GetMySuperCollection(inputArray);
             return resultCollection;
         }
-        
-//        public static IAutomationElementCollection ConvertCmdletInputToCollectionAdapter(this object[] inputArray)
-//        {
-//            IAutomationElementCollection resultCollection =
-//                new MySuperCollection(inputArray);
-//            return resultCollection;
-//        }
     }
 }

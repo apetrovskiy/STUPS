@@ -13,6 +13,7 @@ namespace UIAutomation
     using System.Management.Automation;
 //    using System.Windows.Automation;
     using System.Collections;
+    using System.Collections.Generic;
 //    using System.Linq;
 //    using System.Linq.Expressions;
 
@@ -47,10 +48,13 @@ namespace UIAutomation
         #endregion Parameters
                 
         // 20120828
-        protected internal ArrayList GetFilteredElementsCollection(GetCmdletBase cmdlet, ArrayList elementCollection)
+        // 20131202
+        // protected internal ArrayList GetFilteredElementsCollection(GetCmdletBase cmdlet, ArrayList elementCollection)
+        protected internal List<IMySuperWrapper> GetFilteredElementsCollection(GetCmdletBase cmdlet, List<IMySuperWrapper> elementCollection)
         {
-            ArrayList resultCollection = new ArrayList();
-            
+            // 20131202
+            // ArrayList resultCollection = new ArrayList();
+            List<IMySuperWrapper> resultCollection = new List<IMySuperWrapper>();
             
             
             

@@ -12,6 +12,7 @@ namespace UIAutomation.Commands
     using System;
     using System.Management.Automation;
     using System.Collections;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Description of GetUiaWindow.
@@ -49,7 +50,9 @@ namespace UIAutomation.Commands
             WriteVerbose(this, "Recurse = " + Recurse.ToString());
             WriteVerbose(this, "Timeout " + Timeout.ToString());
             
-            ArrayList _returnedWindows = new ArrayList();
+            // 20131202
+            // ArrayList _returnedWindows = new ArrayList();
+            List<IMySuperWrapper> _returnedWindows = new List<IMySuperWrapper>();
             
             try {
 

@@ -2564,13 +2564,18 @@ namespace UIAutomation
             return true;
         }
         
-        internal static ArrayList EnumChildWindowsFromHandle(GetWindowCmdletBase cmdlet, IntPtr parentHandle)
+        // 20131202
+        // internal static ArrayList EnumChildWindowsFromHandle(GetWindowCmdletBase cmdlet, IntPtr parentHandle)
+        internal static List<IMySuperWrapper> EnumChildWindowsFromHandle(GetWindowCmdletBase cmdlet, IntPtr parentHandle)
         {
             IEnumerable<IntPtr> list =
                 GetChildWindows(parentHandle);
             
-            ArrayList resultElements =
-                new ArrayList();
+            // 20131202
+            // ArrayList resultElements =
+            //     new ArrayList();
+            List<IMySuperWrapper> resultElements =
+                new List<IMySuperWrapper>();
             
             ArrayList automationElements =
                 new ArrayList();
@@ -2622,23 +2627,31 @@ namespace UIAutomation
             return resultElements;
         }
         
-        public static ArrayList Enum1ChildWindows(IntPtr parentHandle)
+        // 20131202
+        // public static ArrayList Enum1ChildWindows(IntPtr parentHandle)
+        public static List<IMySuperWrapper> Enum1ChildWindows(IntPtr parentHandle)
         {
             
             //PSCmdletBase cmdlet = new GetUiaWindowCommand();
             GetWindowCmdletBase cmdlet = new GetWindowCmdletBase();
-            ArrayList resultList =
+            // 20131202
+            // ArrayList resultList =
+            List<IMySuperWrapper> resultList =
                 EnumChildWindowsFromHandle(cmdlet, parentHandle);
             
             return resultList;
         }
         
-        public static ArrayList Enum2ChildWindows(IntPtr parentHandle)
+        // 20131202
+        // public static ArrayList Enum2ChildWindows(IntPtr parentHandle)
+        public static List<IMySuperWrapper> Enum2ChildWindows(IntPtr parentHandle)
         {
             
             //PSCmdletBase cmdlet = new GetUiaWindowCommand();
             GetWindowCmdletBase cmdlet = new GetWindowCmdletBase();
-            ArrayList resultList =
+            // 20131202
+            // ArrayList resultList =
+            List<IMySuperWrapper> resultList =
                 EnumChildWindowsFromHandle(cmdlet, IntPtr.Zero);
             
             return resultList;

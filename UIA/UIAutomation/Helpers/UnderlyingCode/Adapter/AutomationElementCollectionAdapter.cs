@@ -18,7 +18,7 @@ namespace UIAutomation
     
 	public class MySuperCollection : IMySuperCollection
 	{
-	    private List<IMySuperWrapper> _collectionHolder =
+	    private readonly List<IMySuperWrapper> _collectionHolder =
 	        new List<IMySuperWrapper>();
 	    
 		public IMySuperWrapper this[int index] {

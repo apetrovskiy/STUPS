@@ -298,7 +298,14 @@ namespace UIAutomation
         
         // 20130429
         public static bool AutoLog { get; set; }
-        
+
+        /// <summary>
+        /// The upper limit of number of errors that
+        /// are stored in the Error collection.
+        /// </summary>
+        public static int MaximumErrorCount { get; set; }
+
+        /*
         private static int _maximumErrorCount;
         /// <summary>
         /// The upper limit of number of errors that
@@ -309,7 +316,11 @@ namespace UIAutomation
             get { return _maximumErrorCount; } 
             set{ _maximumErrorCount = value; }
         }
-        
+        */
+
+        public static int MaximumEventCount { get; set; }
+
+        /*
         private static int _maximumEventCount;
         
         public static int MaximumEventCount
@@ -317,7 +328,8 @@ namespace UIAutomation
             get { return _maximumEventCount; } 
             set{ _maximumEventCount = value; }
         }
-        
+        */
+
         /// <summary>
         /// This flag indicates whether a control should be taken from cache
         /// or from search. Default behavior is from cache.

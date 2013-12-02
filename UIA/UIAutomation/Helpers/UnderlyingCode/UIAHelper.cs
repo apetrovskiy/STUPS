@@ -92,9 +92,12 @@ namespace UIAutomation
                     GetControlByNameViaWin32Recursively(cmdlet, controlHandle, name, level + 1);
                 //break;
                 if (null == tempControlHandles || 0 == tempControlHandles.Count) continue;
+                controlHandles.AddRange(tempControlHandles);
+                /*
                 foreach (IntPtr oneMoreHandle in tempControlHandles) {
                     controlHandles.Add(oneMoreHandle);
                 }
+                */
 
             } while (controlHandle != IntPtr.Zero);
             
@@ -732,10 +735,12 @@ namespace UIAutomation
             bool result = false;
             // UiaHelper.Highlight(element);
             try {
-                CacheRequest cacheRequest = new CacheRequest();
+                CacheRequest cacheRequest = new CacheRequest
+                {
+                    AutomationElementMode = AutomationElementMode.Full,
+                    TreeFilter = Automation.RawViewCondition
+                };
                 //cacheRequest.AutomationElementMode = AutomationElementMode.None;
-                cacheRequest.AutomationElementMode = AutomationElementMode.Full;
-                cacheRequest.TreeFilter = Automation.RawViewCondition;
                 cacheRequest.Add(AutomationElement.NameProperty);
                 cacheRequest.Add(AutomationElement.AutomationIdProperty);
                 cacheRequest.Add(AutomationElement.ClassNameProperty);

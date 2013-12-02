@@ -18,7 +18,7 @@ namespace UIAutomation
 	/// </summary>
 	public class MyValuePatternNet :  IMySuperValuePattern //IValuePatternAdapter
 	{
-		private System.Windows.Automation.ValuePattern _valuePattern;
+		private readonly System.Windows.Automation.ValuePattern _valuePattern;
 		private IMySuperWrapper _element;
 		
 		//private bool _useCache; // mine
@@ -33,9 +33,9 @@ namespace UIAutomation
 		public struct ValuePatternInformation : IValuePatternInformation
 		{
 			//private AutomationElement _el;
-			private bool _useCache;
+			private readonly bool _useCache;
 			//private IValuePatternAdapter valuePattern;
-			private IMySuperValuePattern _valuePattern;
+			private readonly IMySuperValuePattern _valuePattern;
 
 			//public ValuePatternInformation(IValuePatternAdapter valuePattern)
 			public ValuePatternInformation(IMySuperValuePattern valuePattern, bool useCache)

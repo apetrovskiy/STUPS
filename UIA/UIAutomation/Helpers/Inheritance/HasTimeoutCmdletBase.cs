@@ -350,9 +350,12 @@ namespace UIAutomation
                     
                     Process[] processes =
                         Process.GetProcessesByName(processName);
+                    processIdList.AddRange(processes.Select(process => process.Id));
+                    /*
                     foreach (Process process in processes) {
                         processIdList.Add(process.Id);
                     }
+                    */
                 }
                 catch {
                     return aeWndCollectionByProcId;
@@ -506,11 +509,14 @@ namespace UIAutomation
                             {
                                 // 20131111
                                 //aeWndCollectionByProcessId.AddRange(rootCollection);
+                                elementsByProcessId.AddRange(rootCollection.Cast<IMySuperWrapper>());
+                                /*
                                 foreach (IMySuperWrapper singleElement in rootCollection) {
                                     // 20131202
                                     // aeWndCollectionByProcessId.Add(singleElement);
                                     elementsByProcessId.Add(singleElement);
                                 }
+                                */
 
                                 //foreach (AutomationElementCollection tempCollection in from AutomationElement rootWindowElement in rootCollection let tempCollection = null select rootWindowElement.FindAll(
                                 // 20131109
@@ -585,11 +591,14 @@ namespace UIAutomation
                             if (null != tempCollection && 0 < tempCollection.Count) {
                                 
                                 //aeWndCollectionByProcessId.AddRange(tempCollection);
+                                elementsByProcessId.AddRange(tempCollection.Cast<IMySuperWrapper>());
+                                /*
                                 foreach (IMySuperWrapper newElement in tempCollection) {
                                     // 20131202
                                     // aeWndCollectionByProcessId.Add(newElement);
                                     elementsByProcessId.Add(newElement);
                                 }
+                                */
                             }
                         }
                     }
@@ -735,11 +744,14 @@ namespace UIAutomation
                 }
                 
                 tempCollection = GetWindowCollectionByPid(processIds, first, recurse, name, automationId, className);
-                
+
+                aeWndCollectionByProcId.AddRange(tempCollection);
+                /*
                 foreach (IMySuperWrapper tempElement in tempCollection) {
                     
                     aeWndCollectionByProcId.Add(tempElement);
                 }
+                */
             }
             catch (Exception tempException) {
                 

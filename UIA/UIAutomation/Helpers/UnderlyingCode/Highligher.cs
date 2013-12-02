@@ -199,9 +199,7 @@ namespace UIAutomation
             double Y,
             int intHandle)
         {
-            NativeMethods.CursorPoint p = new NativeMethods.CursorPoint();
-            p.X = (int)X;
-            p.Y = (int)Y;
+            NativeMethods.CursorPoint p = new NativeMethods.CursorPoint {X = (int) X, Y = (int) Y};
             if (intHandle == 0) return p;
             try { // Windows Vista or higher only
                 IntPtr handle = 
@@ -409,9 +407,9 @@ namespace UIAutomation
             //GC.SuppressFinalize(this);
         }
         
-        private Label lblMessage;
-        private int left;
-        private int top;
+        private readonly Label lblMessage;
+        private readonly int left;
+        private readonly int top;
         private int width;
         private int height;
         
@@ -563,8 +561,7 @@ namespace UIAutomation
             AutoSize = true;
             Enabled = false;
             Label labelNumber =
-        		new Label();
-            labelNumber.AutoSize = true;
+        		new Label {AutoSize = true};
             if (null == highlighterNumber || 0 >= highlighterNumber) {
                 highlighterNumber = 1;
             }
@@ -582,10 +579,7 @@ namespace UIAutomation
             
             if (Preferences.ShowInfoToolTip) {
                 // tooltip
-                ToolTip tooltip = new ToolTip();
-                tooltip.Active = true;
-                tooltip.ShowAlways = true;
-                tooltip.IsBalloon = true;
+                ToolTip tooltip = new ToolTip {Active = true, ShowAlways = true, IsBalloon = true};
                 tooltip.Show(tooltipText, this);
             }
             

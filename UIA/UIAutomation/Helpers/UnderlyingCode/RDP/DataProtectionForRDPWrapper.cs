@@ -26,7 +26,7 @@ namespace UIAutomation
     public class DataProtectionForRDPWrapper
     {
         //static DataProtection.DataProtector dp = new DataProtector(DataProtector.Store.USE_MACHINE_STORE);
-        static DataProtector dp = new DataProtector(DataProtector.Store.USE_MACHINE_STORE);
+        static readonly DataProtector dp = new DataProtector(DataProtector.Store.USE_MACHINE_STORE);
 
         public static string Encrypt(string text_password)
         {

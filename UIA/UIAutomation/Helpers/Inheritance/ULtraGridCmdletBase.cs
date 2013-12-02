@@ -376,9 +376,15 @@ namespace UIAutomation
     [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "if")]
     public enum ifUltraGridOperations
     {
+        Unknown,
+        SelectItems,
+        GetSelection,
+        GetItems
+        /*
         Unknown = 0,
         SelectItems = 1,
         GetSelection = 2,
         GetItems = 3
+        */
     }
 }

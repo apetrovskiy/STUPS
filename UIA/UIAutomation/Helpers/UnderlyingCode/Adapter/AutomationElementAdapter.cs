@@ -22,7 +22,7 @@ namespace UIAutomation
 	{
 		private AutomationElement _elementHolderNet;
 		// //private AutomationElement _elementHolderCom;
-		private IMySuperWrapper _elementHolderAdapter;
+		private readonly IMySuperWrapper _elementHolderAdapter;
 		private static InnerElementTypes _innerElementType = InnerElementTypes.Empty;
         
 		[Inject]
@@ -97,52 +97,71 @@ namespace UIAutomation
 		{
 			switch (_innerElementType) {
 			    case InnerElementTypes.AutomationElementNet:
-			        if (Preferences.FromCache) {
-			            return _elementHolderNet.GetCachedPropertyValue(property);
-			        } else {
+			        return Preferences.FromCache ? _elementHolderNet.GetCachedPropertyValue(property) : _elementHolderNet.GetCurrentPropertyValue(property);
+                    /*
+                    if (Preferences.FromCache) {
+                        return _elementHolderNet.GetCachedPropertyValue(property);
+                    } else {
                         return _elementHolderNet.GetCurrentPropertyValue(property);
-			        }
-//			    case InnerElementTypes.AutomationElementCom:
+                    }
+                    */
+                //			    case InnerElementTypes.AutomationElementCom:
 //			        //
 			    case InnerElementTypes.MySuperWrapper:
-			        if (Preferences.FromCache) {
-			            return _elementHolderAdapter.GetCachedPropertyValue(property);
-			        } else {
+			        return Preferences.FromCache ? _elementHolderAdapter.GetCachedPropertyValue(property) : _elementHolderAdapter.GetCurrentPropertyValue(property);
+                    /*
+                    if (Preferences.FromCache) {
+                        return _elementHolderAdapter.GetCachedPropertyValue(property);
+                    } else {
                         return _elementHolderAdapter.GetCurrentPropertyValue(property);
-			        }
-			    default:
-			        if (Preferences.FromCache) {
-			            return _elementHolderNet.GetCachedPropertyValue(property);
-			        } else {
+                    }
+                    */
+                default:
+			        return Preferences.FromCache ? _elementHolderNet.GetCachedPropertyValue(property) : _elementHolderNet.GetCurrentPropertyValue(property);
+                    /*
+                    if (Preferences.FromCache) {
+                        return _elementHolderNet.GetCachedPropertyValue(property);
+                    } else {
                         return _elementHolderNet.GetCurrentPropertyValue(property);
-			        }
-			}
+                    }
+                    */
+            }
 		}
 
 		public object GetCurrentPropertyValue(AutomationProperty property, bool ignoreDefaultValue)
 		{
 			switch (_innerElementType) {
 			    case InnerElementTypes.AutomationElementNet:
-			        if (Preferences.FromCache) {
-			            return _elementHolderNet.GetCachedPropertyValue(property, ignoreDefaultValue);
-			        } else {
+			        return Preferences.FromCache ? _elementHolderNet.GetCachedPropertyValue(property, ignoreDefaultValue) : _elementHolderNet.GetCurrentPropertyValue(property, ignoreDefaultValue);
+                    /*
+                    if (Preferences.FromCache) {
+                        return _elementHolderNet.GetCachedPropertyValue(property, ignoreDefaultValue);
+                    } else {
                         return _elementHolderNet.GetCurrentPropertyValue(property, ignoreDefaultValue);
-			        }
-//			    case InnerElementTypes.AutomationElementCom:
+                    }
+                    */
+                //			    case InnerElementTypes.AutomationElementCom:
 //			        //
 			    case InnerElementTypes.MySuperWrapper:
-			        if (Preferences.FromCache) {
-			            return _elementHolderAdapter.GetCachedPropertyValue(property, ignoreDefaultValue);
-			        } else {
+			        return Preferences.FromCache ? _elementHolderAdapter.GetCachedPropertyValue(property, ignoreDefaultValue) : _elementHolderAdapter.GetCurrentPropertyValue(property, ignoreDefaultValue);
+
+                    /*
+                    if (Preferences.FromCache) {
+                        return _elementHolderAdapter.GetCachedPropertyValue(property, ignoreDefaultValue);
+                    } else {
                         return _elementHolderAdapter.GetCurrentPropertyValue(property, ignoreDefaultValue);
-			        }
-			    default:
-			        if (Preferences.FromCache) {
-			            return _elementHolderNet.GetCachedPropertyValue(property, ignoreDefaultValue);
-			        } else {
+                    }
+                    */
+                default:
+			        return Preferences.FromCache ? _elementHolderNet.GetCachedPropertyValue(property, ignoreDefaultValue) : _elementHolderNet.GetCurrentPropertyValue(property, ignoreDefaultValue);
+                    /*
+                    if (Preferences.FromCache) {
+                        return _elementHolderNet.GetCachedPropertyValue(property, ignoreDefaultValue);
+                    } else {
                         return _elementHolderNet.GetCurrentPropertyValue(property, ignoreDefaultValue);
-			        }
-			}
+                    }
+                    */
+            }
 		}
 
 		public object GetCurrentPattern(AutomationPattern pattern)
@@ -152,81 +171,124 @@ namespace UIAutomation
 			        if (Preferences.FromCache) {
                         // 20131122
                         // ValuePattern -> IMySuperValuePattern
-		                if (pattern.Id == ValuePattern.Pattern.Id) {
-		                //switch (pattern.Id) {
-		                //    case (ValuePattern.Pattern.Id):
-		                        //ValuePattern valuePattern =
-		                        IMySuperValuePattern valuePattern =
-		                            ObjectsFactory.GetMySuperValuePattern(
-		                                this,
-		                                _elementHolderNet.GetCachedPattern(pattern) as ValuePattern);//,
-		                                //Preferences.FromCache);
-		                        return valuePattern;
-		                //    default:
-		                //        
-		                //    	break;
-		                }
-			            return _elementHolderNet.GetCachedPattern(pattern);
+			            if (pattern.Id != ValuePattern.Pattern.Id) return _elementHolderNet.GetCachedPattern(pattern);
+			            //switch (pattern.Id) {
+			            //    case (ValuePattern.Pattern.Id):
+			            //ValuePattern valuePattern =
+			            IMySuperValuePattern valuePattern =
+			                ObjectsFactory.GetMySuperValuePattern(
+			                    this,
+			                    _elementHolderNet.GetCachedPattern(pattern) as ValuePattern);//,
+			            //Preferences.FromCache);
+			            return valuePattern;
+			            //    default:
+			            //        
+			            //    	break;
+			            /*
+                        if (pattern.Id == ValuePattern.Pattern.Id) {
+                        //switch (pattern.Id) {
+                        //    case (ValuePattern.Pattern.Id):
+                                //ValuePattern valuePattern =
+                                IMySuperValuePattern valuePattern =
+                                    ObjectsFactory.GetMySuperValuePattern(
+                                        this,
+                                        _elementHolderNet.GetCachedPattern(pattern) as ValuePattern);//,
+                                        //Preferences.FromCache);
+                                return valuePattern;
+                        //    default:
+                        //        
+                        //    	break;
+                        }
+                        */
 			        } else {
                         // 20131122
                         // ValuePattern -> IMySuperValuePattern
-		                if (pattern.Id == ValuePattern.Pattern.Id) {
-		                //switch (pattern.Id) {
-		                //    case ValuePattern.Pattern.Id:
-		                        //ValuePattern valuePattern =
-		                        IMySuperValuePattern valuePattern =
-		                            ObjectsFactory.GetMySuperValuePattern(
-		                                this,
-		                                _elementHolderNet.GetCurrentPattern(pattern) as ValuePattern);//,
-		                                //Preferences.FromCache);
-		                        return valuePattern;
-		                //    default:
-		                //        
-		                //    	break;
-		                }
-                        return _elementHolderNet.GetCurrentPattern(pattern);
+			            if (pattern.Id != ValuePattern.Pattern.Id) return _elementHolderNet.GetCurrentPattern(pattern);
+			            //switch (pattern.Id) {
+			            //    case ValuePattern.Pattern.Id:
+			            //ValuePattern valuePattern =
+			            IMySuperValuePattern valuePattern =
+			                ObjectsFactory.GetMySuperValuePattern(
+			                    this,
+			                    _elementHolderNet.GetCurrentPattern(pattern) as ValuePattern);//,
+			            //Preferences.FromCache);
+			            return valuePattern;
+			            //    default:
+			            //        
+			            //    	break;
+			            /*
+                        if (pattern.Id == ValuePattern.Pattern.Id) {
+                        //switch (pattern.Id) {
+                        //    case ValuePattern.Pattern.Id:
+                                //ValuePattern valuePattern =
+                                IMySuperValuePattern valuePattern =
+                                    ObjectsFactory.GetMySuperValuePattern(
+                                        this,
+                                        _elementHolderNet.GetCurrentPattern(pattern) as ValuePattern);//,
+                                        //Preferences.FromCache);
+                                return valuePattern;
+                        //    default:
+                        //        
+                        //    	break;
+                        }
+                        */
 			        }
 //			    case InnerElementTypes.AutomationElementCom:
 //			        //
 			    case InnerElementTypes.MySuperWrapper:
-			        if (Preferences.FromCache) {
-			            return _elementHolderAdapter.GetCachedPattern(pattern);
-			        } else {
+			        return Preferences.FromCache ? _elementHolderAdapter.GetCachedPattern(pattern) : _elementHolderAdapter.GetCurrentPattern(pattern);
+                    /*
+                    if (Preferences.FromCache) {
+                        return _elementHolderAdapter.GetCachedPattern(pattern);
+                    } else {
                         return _elementHolderAdapter.GetCurrentPattern(pattern);
-			        }
-			    default:
-			        if (Preferences.FromCache) {
-			            return _elementHolderNet.GetCachedPattern(pattern);
-			        } else {
+                    }
+                    */
+                default:
+			        return Preferences.FromCache ? _elementHolderNet.GetCachedPattern(pattern) : _elementHolderNet.GetCurrentPattern(pattern);
+                    /*
+                    if (Preferences.FromCache) {
+                        return _elementHolderNet.GetCachedPattern(pattern);
+                    } else {
                         return _elementHolderNet.GetCurrentPattern(pattern);
-			        }
-			}
+                    }
+                    */
+            }
 		}
 
 		public bool TryGetCurrentPattern(AutomationPattern pattern, out object patternObject)
 		{
 			switch (_innerElementType) {
 			    case InnerElementTypes.AutomationElementNet:
-			        if (Preferences.FromCache) {
-			            return _elementHolderNet.TryGetCachedPattern(pattern, out patternObject);
-			        } else {
+			        return Preferences.FromCache ? _elementHolderNet.TryGetCachedPattern(pattern, out patternObject) : _elementHolderNet.TryGetCurrentPattern(pattern, out patternObject);
+                    /*
+                    if (Preferences.FromCache) {
+                        return _elementHolderNet.TryGetCachedPattern(pattern, out patternObject);
+                    } else {
                         return _elementHolderNet.TryGetCurrentPattern(pattern, out patternObject);
-			        }
-//			    case InnerElementTypes.AutomationElementCom:
+                    }
+                    */
+                //			    case InnerElementTypes.AutomationElementCom:
 //			        //
 			    case InnerElementTypes.MySuperWrapper:
-			        if (Preferences.FromCache) {
-			            return _elementHolderAdapter.TryGetCachedPattern(pattern, out patternObject);
-			        } else {
+			        return Preferences.FromCache ? _elementHolderAdapter.TryGetCachedPattern(pattern, out patternObject) : _elementHolderAdapter.TryGetCurrentPattern(pattern, out patternObject);
+                    /*
+                    if (Preferences.FromCache) {
+                        return _elementHolderAdapter.TryGetCachedPattern(pattern, out patternObject);
+                    } else {
                         return _elementHolderAdapter.TryGetCurrentPattern(pattern, out patternObject);
-			        }
-			    default:
-			        if (Preferences.FromCache) {
-			            return _elementHolderNet.TryGetCachedPattern(pattern, out patternObject);
-			        } else {
+                    }
+                    */
+                default:
+			        return Preferences.FromCache ? _elementHolderNet.TryGetCachedPattern(pattern, out patternObject) : _elementHolderNet.TryGetCurrentPattern(pattern, out patternObject);
+                    /*
+                    if (Preferences.FromCache) {
+                        return _elementHolderNet.TryGetCachedPattern(pattern, out patternObject);
+                    } else {
                         return _elementHolderNet.TryGetCurrentPattern(pattern, out patternObject);
-			        }
-			}
+                    }
+                    */
+            }
 		}
 
 		public object GetCachedPropertyValue(AutomationProperty property)
@@ -419,26 +481,35 @@ namespace UIAutomation
 		    get {
 		        switch (_innerElementType) {
 		            case InnerElementTypes.AutomationElementNet:
-		                if (Preferences.FromCache) {
+		                return ObjectsFactory.GetMySuperWrapperInformation(Preferences.FromCache ? _elementHolderNet.Cached : _elementHolderNet.Current);
+		                /*
+                        if (Preferences.FromCache) {
                             return ObjectsFactory.GetMySuperWrapperInformation(_elementHolderNet.Cached);
-    			        } else {
-    		                return ObjectsFactory.GetMySuperWrapperInformation(_elementHolderNet.Current);
+                        } else {
+                            return ObjectsFactory.GetMySuperWrapperInformation(_elementHolderNet.Current);
                         }
-//		            case InnerElementTypes.AutomationElementCom:
+                        */
+                    //		            case InnerElementTypes.AutomationElementCom:
 //		                //
 		            case InnerElementTypes.MySuperWrapper:
-		                if (Preferences.FromCache) {
-    			            return _elementHolderAdapter.Cached;
-    			        } else {
+		                return Preferences.FromCache ? _elementHolderAdapter.Cached : _elementHolderAdapter.Current;
+                        /*
+                        if (Preferences.FromCache) {
+                            return _elementHolderAdapter.Cached;
+                        } else {
                             return _elementHolderAdapter.Current;
-		                }
-		            default:
-		                if (Preferences.FromCache) {
-    			            return ObjectsFactory.GetMySuperWrapperInformation(_elementHolderNet.Cached);
-    			        } else {
+                        }
+                        */
+                    default:
+		                return ObjectsFactory.GetMySuperWrapperInformation(Preferences.FromCache ? _elementHolderNet.Cached : _elementHolderNet.Current);
+		                /*
+                        if (Preferences.FromCache) {
+                            return ObjectsFactory.GetMySuperWrapperInformation(_elementHolderNet.Cached);
+                        } else {
                             return ObjectsFactory.GetMySuperWrapperInformation(_elementHolderNet.Current);
-		                }
-		        }
+                        }
+                        */
+                }
 		    }
 		}
 

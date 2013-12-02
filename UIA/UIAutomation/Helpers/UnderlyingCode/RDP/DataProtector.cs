@@ -96,7 +96,7 @@ namespace UIAutomation
             public IntPtr hwndApp;
             public String szPrompt;
         }
-        static private IntPtr NullPtr = ((IntPtr)0);
+        static private readonly IntPtr NullPtr = ((IntPtr)0);
         /*
         static private IntPtr NullPtr = ((IntPtr)((int)(0)));
         */
@@ -105,7 +105,7 @@ namespace UIAutomation
 
         public enum Store { USE_MACHINE_STORE = 1, USE_USER_STORE };
 
-        private Store store;
+        private readonly Store store;
 
         public DataProtector(Store tempStore)
         {

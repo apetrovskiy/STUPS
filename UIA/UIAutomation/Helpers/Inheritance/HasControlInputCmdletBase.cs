@@ -100,6 +100,9 @@ namespace UIAutomation
         //public System.Windows.Automation.AutomationElement[] InputObject { get; set; }
         //public ICollection InputObject { get; set; }
         public IMySuperWrapper[] InputObject { get; set; }
+        /*
+        public MySuperWrapper[] InputObject { get; set; }
+        */
         [Parameter(Mandatory = false)]
         public virtual SwitchParameter PassThru { get; set; }
         
@@ -571,9 +574,11 @@ namespace UIAutomation
             
             try {
 
-                CacheRequest cacheRequest = new CacheRequest();
-                cacheRequest.AutomationElementMode = AutomationElementMode.Full; //.None;
-                cacheRequest.TreeFilter = Automation.RawViewCondition;
+                CacheRequest cacheRequest = new CacheRequest
+                {
+                    AutomationElementMode = AutomationElementMode.Full,
+                    TreeFilter = Automation.RawViewCondition
+                };
                 cacheRequest.Add(AutomationElement.NameProperty);
                 cacheRequest.Add(AutomationElement.AutomationIdProperty);
                 cacheRequest.Add(AutomationElement.ClassNameProperty);

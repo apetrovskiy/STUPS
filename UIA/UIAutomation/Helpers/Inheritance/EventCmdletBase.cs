@@ -26,7 +26,10 @@ namespace UIAutomation
             InputObject =
                 // 20131109
                 //new System.Windows.Automation.AutomationElement[] { CurrentData.CurrentWindow };
+                new[] { CurrentData.CurrentWindow };
+                /*
                 new MySuperWrapper[] { (MySuperWrapper)CurrentData.CurrentWindow };
+                */
             AutomationEventType = null;
             AutomationProperty = null;
             AutomationEventHandler = null;

@@ -12,6 +12,8 @@ namespace UIAutomation.Commands
     using System;
     using System.Management.Automation;
     using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
 
     /// <summary>
     /// Description of GetUiaControl.
@@ -41,7 +43,9 @@ namespace UIAutomation.Commands
 
             WriteVerbose(this, "getting the control");
             
-            ArrayList returnCollection = 
+            // 20131202
+            // ArrayList returnCollection = 
+            List<IMySuperWrapper> returnCollection =
                 GetControl(this);
             
             if (null != returnCollection && 0 < returnCollection.Count) {

@@ -186,15 +186,19 @@ namespace UIAutomation
                 onlyTopLevel);
         }
         
-        internal ArrayList GetAutomationElementsViaWildcards(
+        // 20131202
+        // internal ArrayList GetAutomationElementsViaWildcards(
+        internal List<IMySuperWrapper> GetAutomationElementsViaWildcards(
             GetControlCollectionCmdletBase cmdlet,
             bool caseSensitive,
             bool onlyOneResult,
             bool onlyTopLevel)
         {
             if (!cmdlet.CheckAndPrepareInput(cmdlet)) { return null; }
-
-            ArrayList resultCollection = new ArrayList();
+            
+            // 20131202
+            // ArrayList resultCollection = new ArrayList();
+            List<IMySuperWrapper> resultCollection = new List<IMySuperWrapper>();
             
             // 20131109
             //foreach (AutomationElement inputObject in this.InputObject) {
@@ -238,7 +242,9 @@ namespace UIAutomation
             return resultCollection;
         }
         
-        private ArrayList GetAutomationElementsWithWalker(
+        // 20131202
+        // private ArrayList GetAutomationElementsWithWalker(
+        private List<IMySuperWrapper> GetAutomationElementsWithWalker(
             // 20131109
             //AutomationElement element,
             IMySuperWrapper element,
@@ -250,7 +256,9 @@ namespace UIAutomation
             bool onlyOneResult,
             bool onlyTopLevel)
         {
-            ArrayList resultCollection = new ArrayList();
+            // 20131202
+            // ArrayList resultCollection = new ArrayList();
+            List<IMySuperWrapper> resultCollection = new List<IMySuperWrapper>();
 
             TreeWalker walker = 
                 new TreeWalker(
@@ -399,7 +407,9 @@ namespace UIAutomation
             return resultCollection;
         }
         
-        private ArrayList ProcessAutomationElement(
+        // 20131202
+        // private ArrayList ProcessAutomationElement(
+        private List<IMySuperWrapper> ProcessAutomationElement(
             // 20131109
             //AutomationElement element,
             IMySuperWrapper element,
@@ -411,7 +421,9 @@ namespace UIAutomation
             bool onlyOneResult,
             bool onlyTopLevel)
         {
-            ArrayList resultCollection = new ArrayList();
+            // 20131202
+            // ArrayList resultCollection = new ArrayList();
+            List<IMySuperWrapper> resultCollection = new List<IMySuperWrapper>();
             
             if (null == name) {
                 name = string.Empty;

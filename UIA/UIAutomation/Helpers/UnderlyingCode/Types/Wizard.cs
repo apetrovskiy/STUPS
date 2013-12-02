@@ -145,8 +145,10 @@ namespace UIAutomation
 			    Thread.Sleep(Preferences.OnSelectWizardStepDelay);
         	    
         		cmdletCtrl.SearchCriteria = step.SearchCriteria;
-
-	        	ArrayList controlsList = null;
+                
+        		// 20131202
+	        	// ArrayList controlsList = null;
+	        	List<IMySuperWrapper> controlsList = new List<IMySuperWrapper>();
 	        	
 	        	try {
 

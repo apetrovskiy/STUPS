@@ -29,7 +29,7 @@ namespace UIAutomationUnitTests
         // public static ArrayList GetResultArrayList_ViaWildcards(GetControlCollectionCmdletBase cmdlet, IMySuperWrapper element, Condition condition)
         // 20131202
         // public static ArrayList GetResultArrayList_ViaWildcards(GetControlCmdletBase cmdlet, IMySuperWrapper element, Condition condition)
-        public static List<IMySuperWrapper> GetResultArrayList_ViaWildcards(GetControlCmdletBase cmdlet, IMySuperWrapper element, Condition condition)
+        public static List<IMySuperWrapper> GetResultList_ViaWildcards(GetControlCmdletBase cmdlet, IMySuperWrapper element, Condition condition)
         {
             GetControlCollectionCmdletBase cmdletDerived = new GetControlCollectionCmdletBase();
             // GetControlCmdletBase cmdletDerived = new GetControlCmdletBase();
@@ -55,16 +55,20 @@ namespace UIAutomationUnitTests
         
         // 20131128
         // public static ArrayList GetResultArrayList_ExactSearch(GetControlCollectionCmdletBase cmdlet, IMySuperWrapper element, AndCondition conditions)
-        public static ArrayList GetResultArrayList_ExactSearch(GetControlCollectionCmdletBase cmdlet, IMySuperWrapper element, OrCondition conditions)
+        // 20131202
+        // public static ArrayList GetResultArrayList_ExactSearch(GetControlCollectionCmdletBase cmdlet, IMySuperWrapper element, OrCondition conditions)
+        public static List<IMySuperWrapper> GetResultList_ExactSearch(GetControlCollectionCmdletBase cmdlet, IMySuperWrapper element, OrCondition conditions)
         {
             GetControlCmdletBase cmdletDerived = new GetControlCmdletBase();
-            cmdlet.ResultArrayListOfControls = new ArrayList();
+            // 20131202
+            // cmdlet.ResultArrayListOfControls = new ArrayList();
+            cmdlet.ResultListOfControls = new List<IMySuperWrapper>();
             //cmdletDerived.ResultArrayListOfControls = new ArrayList();
             
-            cmdletDerived.SearchByExactConditionsViaUia(cmdlet, element, conditions, cmdlet.ResultArrayListOfControls);
+            cmdletDerived.SearchByExactConditionsViaUia(cmdlet, element, conditions, cmdlet.ResultListOfControls);
             //cmdletDerived.SearchByExactConditionsViaUia(cmdlet, element, conditions, cmdletDerived.ResultArrayListOfControls);
             
-            return cmdlet.ResultArrayListOfControls;
+            return cmdlet.ResultListOfControls;
         }
     }
 }

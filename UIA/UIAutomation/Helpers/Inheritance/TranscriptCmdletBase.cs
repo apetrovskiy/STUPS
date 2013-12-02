@@ -7,14 +7,15 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-using System.Collections;
-using System.IO;
-
 namespace UIAutomation
 {
     using System;
     using System.Management.Automation;
     using System.Windows.Automation;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.IO;
 
     /// <summary>
     /// Description of TranscriptCmdletBase.
@@ -51,8 +52,11 @@ namespace UIAutomation
         
         internal bool Paused { get; set; }
         
-        public ArrayList LastRecordedItem = 
-            new ArrayList();
+        // 20131202
+        // public ArrayList LastRecordedItem = 
+        public List<string> LastRecordedItem =
+            // new ArrayList();
+            new List<string>();
 
         // the list of all recorded controls' patterns
         public ArrayList RecordingPatterns = 
@@ -69,14 +73,19 @@ namespace UIAutomation
         }
         
         public string WritingRecord(
-            object recordingItemCode,
+            // 20131202
+            // object recordingItemCode,
+            List<string> recordingItemCode,
             object recordingItemPatterns,
             StreamWriter writerToLongFile,
             StreamWriter writerToShortFile)
         {
             string result = string.Empty;
             try {
-                ArrayList recordList = (ArrayList)recordingItemCode;
+                // 20131202
+                // ArrayList recordList = (ArrayList)recordingItemCode;
+                List<string> recordList = recordingItemCode;
+                
                 string longRecordingString = String.Empty;
                 string shortRecordingString = String.Empty;
                 string tempString = String.Empty;

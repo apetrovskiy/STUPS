@@ -7,13 +7,14 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-using System.Collections;
-
 namespace UIAutomation.Commands
 {
     using System;
     using System.Management.Automation;
     using System.Windows.Automation;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
     
     /// <summary>
     /// Description of StartUiaCacheRequestCommand.
@@ -23,8 +24,11 @@ namespace UIAutomation.Commands
     {
         public StartUiaCacheRequestCommand()
         {
-            ArrayList defaultPropertiesList = 
-                new ArrayList
+            // 20131202
+            // ArrayList defaultPropertiesList = 
+            List<string>  defaultPropertiesList =
+                // new ArrayList
+                new List<string>
                 {
                     "Name",
                     "AutomationId",
@@ -37,10 +41,15 @@ namespace UIAutomation.Commands
                     "IsOffscreen"
                 };
             
-            Property = (string[])defaultPropertiesList.ToArray(typeof(string));
+            // 20131202
+            // Property = (string[])defaultPropertiesList.ToArray(typeof(string));
+            Property = defaultPropertiesList.ToArray();
             
-            ArrayList defaultPatternsList = 
-                new ArrayList
+            // 20131202
+            // ArrayList defaultPatternsList = 
+            List<string> defaultPatternsList =
+                // new ArrayList
+                new List<string>
                 {
                     "ExpandCollapsePattern",
                     "InvokePattern",
@@ -52,7 +61,9 @@ namespace UIAutomation.Commands
                     "ValuePattern"
                 };
             
-            Pattern = (string[])defaultPatternsList.ToArray(typeof(string));
+            // 20131202
+            // Pattern = (string[])defaultPatternsList.ToArray(typeof(string));
+            Pattern = defaultPatternsList.ToArray();
             
             Scope = "SUBTREE";
             

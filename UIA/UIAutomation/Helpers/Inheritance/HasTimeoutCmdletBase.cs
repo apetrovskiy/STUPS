@@ -200,8 +200,9 @@ namespace UIAutomation
                                 cmdlet.WriteVerbose(cmdlet, "searching for controls that match the following critetion: " + ht.ToString());
                                 
                                 try {
-                                
-                                    ArrayList controlsList =
+                                    // 20131202
+                                    // ArrayList controlsList =
+                                    List<IMySuperWrapper> controlsList =
                                         GetControl(cmdletCtrl);
                                     
                                     if (null != controlsList && 0 < controlsList.Count) {
@@ -709,8 +710,11 @@ namespace UIAutomation
             List<IMySuperWrapper> aeWndCollectionByProcId = new List<IMySuperWrapper>();
             List<IMySuperWrapper> tempCollection = new List<IMySuperWrapper>();
             
-            ArrayList processIdList = 
-                new ArrayList();
+            // 20131202
+            // ArrayList processIdList = 
+            List<int> processIdList =
+                // new ArrayList();
+                new List<int>();
 
             foreach (Process process in processes) {
                 
@@ -721,8 +725,10 @@ namespace UIAutomation
                 }
                 
                 WriteVerbose(this, "processId = " + processId.ToString());
-
-                int[] processIds = (int[])processIdList.ToArray(typeof(int));
+                
+                // 20131202
+                // int[] processIds = (int[])processIdList.ToArray(typeof(int));
+                int[] processIds = processIdList.ToArray();
                 
                 if (null == processIds) {
                     WriteVerbose(this, "!!!!!!!!!!!!!!!!!!!! null == processIds !!!!!!!!!");
@@ -743,6 +749,10 @@ namespace UIAutomation
             }
             
             } // 20120824
+            
+            // 20131202
+            tempCollection = null;
+            processIdList = null;
 
             return aeWndCollectionByProcId;
         }

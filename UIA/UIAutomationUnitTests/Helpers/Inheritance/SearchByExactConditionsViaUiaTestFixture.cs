@@ -82,7 +82,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             // Act
             // 20131129
             // ArrayList resultList = RealCodeCaller.GetResultArrayList_ExactSearch(cmdlet, element, condition);
-            ArrayList resultList = RealCodeCaller.GetResultArrayList_ExactSearch(cmdlet, element, (OrCondition)condition);
+            // 20131202
+            // ArrayList resultList = RealCodeCaller.GetResultList_ExactSearch(cmdlet, element, (OrCondition)condition);
+            List<IMySuperWrapper> resultList = RealCodeCaller.GetResultList_ExactSearch(cmdlet, element, (OrCondition)condition);
             
             // Assert
             Assert.Count(expectedNumberOfElements, resultList);

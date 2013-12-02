@@ -8,6 +8,7 @@
  */
 
 using System.Collections;
+using System.Collections.Generic;
 
 namespace UIAutomation
 {
@@ -50,14 +51,24 @@ namespace UIAutomation
         //protected internal AutomationElement ElementToSubscribe;
         protected internal IMySuperWrapper ElementToSubscribe;
         // list of all subscribed events
-        protected internal readonly ArrayList SubscribedEvents = 
-            new ArrayList();
-        protected internal readonly ArrayList SubscribedEventsIds = 
-            new ArrayList();
+        // 20131202
+        // protected internal readonly ArrayList SubscribedEvents =
+        protected internal readonly List<AutomationEventHandler> SubscribedEvents =
+            // new ArrayList();
+            new List<AutomationEventHandler>();
+        // protected internal readonly ArrayList SubscribedEventsIds = 
+        protected internal readonly List<AutomationEvent> SubscribedEventsIds =
+            // new ArrayList();
+            new List<AutomationEvent>();
         
         #region for script recording
-        public ArrayList Recording = 
-            new ArrayList();
+        // 20131202
+        // public ArrayList Recording = 
+        // public List<ArrayList> Recording =
+        public List<List<string>> Recording =
+            // new ArrayList();
+            // new List<ArrayList>();
+            new List<List<string>>();
         #endregion for script recording
         
         #region get active window

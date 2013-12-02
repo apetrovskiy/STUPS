@@ -7,15 +7,15 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using UIAutomation.Commands;
-
 namespace UIAutomation
 {
     using System;
     using System.Windows.Automation;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Management.Automation;
+    using UIAutomation.Commands;
 
     /// <summary>
     /// Description of CurrentData.
@@ -40,7 +40,9 @@ namespace UIAutomation
         // 20131109
         //public static AutomationElement CurrentWindow { get; internal set; }
         public static IMySuperWrapper CurrentWindow { get; internal set; }
-        public static ArrayList Error { get; set; }
+        // 20131202
+        // public static ArrayList Error { get; set; }
+        public static List<ErrorRecord> Error { get; set; }
         public static string LastCmdlet { get; internal set; }
         public static object LastResult { get; internal set; }
         public static List<Profile> Profiles { get; set; }
@@ -64,7 +66,9 @@ public static List<object> Events { get; set; } // temporary ??
         
         internal static void InitializeData()
         {
-            Error = new ArrayList(Preferences.MaximumErrorCount);
+            // 20131202
+            // Error = new ArrayList(Preferences.MaximumErrorCount);
+            Error = new List<ErrorRecord>(Preferences.MaximumErrorCount);
             Profiles = new List<Profile>();
             
             InitializeEventCollection();

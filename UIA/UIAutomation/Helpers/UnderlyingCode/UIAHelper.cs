@@ -21,6 +21,7 @@ namespace UIAutomation
     
     using System.Collections;
     using System.Collections.Generic;
+    using System.Linq;
     
     using PSTestLib;
     
@@ -43,7 +44,9 @@ namespace UIAutomation
         private static Banner _banner = null;
         private static IMySuperWrapper _element = null;
         
-        private static ArrayList GetControlByNameViaWin32Recursively(
+        // 20131202
+        // private static ArrayList GetControlByNameViaWin32Recursively(
+        private static List<IntPtr> GetControlByNameViaWin32Recursively(
             PSCmdletBase cmdlet,
             IntPtr containerHandle,
             string name,
@@ -52,8 +55,11 @@ namespace UIAutomation
             IntPtr resultHandle = IntPtr.Zero;
             IntPtr controlHandle = IntPtr.Zero;
             
-            ArrayList controlHandles = new ArrayList();
-            ArrayList tempControlHandles = new ArrayList();
+            // 20131202
+            // ArrayList controlHandles = new ArrayList();
+            // ArrayList tempControlHandles = new ArrayList();
+            List<IntPtr> controlHandles = new List<IntPtr>();
+            List<IntPtr> tempControlHandles = new List<IntPtr>();
             
 //            cmdlet.WriteVerbose(cmdlet, "name = " + name);
 //            
@@ -95,7 +101,9 @@ namespace UIAutomation
             return controlHandles;
         }
         
-        internal static ArrayList GetControlByNameViaWin32(
+        // 20131202
+        // internal static ArrayList GetControlByNameViaWin32(
+        internal static List<IMySuperWrapper> GetControlByNameViaWin32(
             GetControlCmdletBase cmdlet,
             IMySuperWrapper containerElement,
             // 20131129
@@ -103,8 +111,9 @@ namespace UIAutomation
             string controlTitle,
             string controlValue)
         {
-
-            ArrayList resultCollection = new ArrayList();
+            // 20131202
+            // ArrayList resultCollection = new ArrayList();
+            List<IMySuperWrapper> resultCollection = new List<IMySuperWrapper>();
             
             cmdlet.WriteVerbose(cmdlet, "checking the container control");
 
@@ -124,9 +133,11 @@ namespace UIAutomation
                     return resultCollection;
                 }
                 
-                ArrayList handlesCollection =
-                    new ArrayList();
-                handlesCollection =
+                // 20131202
+                // ArrayList handlesCollection =
+                //     new ArrayList();
+                // handlesCollection =
+                List<IntPtr> handlesCollection =
                     GetControlByNameViaWin32Recursively(cmdlet, containerHandle, controlTitle, 1);
                 
                 const WildcardOptions options =
@@ -829,7 +840,9 @@ namespace UIAutomation
                         catch {
                         }
                         
-                        cmdlet.LastRecordedItem = new ArrayList();
+                        // 20131202
+                        // cmdlet.LastRecordedItem = new ArrayList();
+                        cmdlet.LastRecordedItem = new List<string>();
                         string strElementPatterns = String.Empty;
                         
                         // if (WriteCurrentPattern) {
@@ -1481,9 +1494,13 @@ namespace UIAutomation
                     cmdlet.thePreviouslyUsedElement == null) return;
                 for (int i = 0; i < cmdlet.SubscribedEvents.Count; i++) {
                     Automation.RemoveAutomationEventHandler(
-                        (AutomationEvent)cmdlet.SubscribedEventsIds[i],
+                        // 20131202
+                        // (AutomationEvent)cmdlet.SubscribedEventsIds[i],
+                        cmdlet.SubscribedEventsIds[i],
                         cmdlet.thePreviouslyUsedElement.GetSourceElement(),
-                        (AutomationEventHandler)cmdlet.SubscribedEvents[i]);
+                        // 20131202
+                        // (AutomationEventHandler)cmdlet.SubscribedEvents[i]);
+                        cmdlet.SubscribedEvents[i]);
                 }
             }
             catch (Exception eUnknown) {

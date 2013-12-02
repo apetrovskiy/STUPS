@@ -17,6 +17,9 @@ namespace UIAutomation.Commands
     
     // 20120823
     using System.Windows.Automation;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
 
     /// <summary>
     /// Description of ConvertToUiaHashtableCommand.
@@ -140,12 +143,19 @@ namespace UIAutomation.Commands
     {
         public ConvertToUiaSearchCriteriaCommand()
         {
-            ArrayList defaultExcludeList = 
-                new ArrayList {"LabeledBy", "NativeWindowHandle", "ProcessId"};
-            Exclude = (string[])defaultExcludeList.ToArray(typeof(string));
-            ArrayList defaultIncludeList = 
-                new ArrayList {"Name", "AutomationId", "ControlType"};
-            Include = (string[])defaultIncludeList.ToArray(typeof(string));
+            // 20131202
+            // ArrayList defaultExcludeList = 
+            List<string> defaultExcludeList =
+                // new ArrayList {"LabeledBy", "NativeWindowHandle", "ProcessId"};
+                new List<string> {"LabeledBy", "NativeWindowHandle", "ProcessId"};
+            // Exclude = (string[])defaultExcludeList.ToArray(typeof(string));
+            Exclude = defaultExcludeList.ToArray();
+            // ArrayList defaultIncludeList = 
+            List<string> defaultIncludeList =
+                // new ArrayList {"Name", "AutomationId", "ControlType"};
+                new List<string> {"Name", "AutomationId", "ControlType"};
+            // Include = (string[])defaultIncludeList.ToArray(typeof(string));
+            Include = defaultIncludeList.ToArray();
             Full = false;
         }
         
@@ -174,7 +184,9 @@ namespace UIAutomation.Commands
             if (Full) {
                 //this.Exclude = null;
                 Exclude =
-                    (string[])(new ArrayList()).ToArray(typeof(string));
+                    // 20131202
+                    // (string[])(new ArrayList()).ToArray(typeof(string));
+                    new string[] {};
 //                for (int i = 0; i < this.Exclude.Length; i++) {
 //                    
 //                }

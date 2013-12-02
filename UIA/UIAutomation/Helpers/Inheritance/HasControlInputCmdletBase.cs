@@ -974,8 +974,10 @@ try {
                         whatToWrite = specificToEvent;
                     }
                     if (whatToWrite != 
-                        ((ArrayList)Recording[Recording.Count - 1])[0].ToString()) {
-                        ((ArrayList)Recording[Recording.Count - 1]).Insert(0, whatToWrite);
+                        // ((ArrayList)Recording[Recording.Count - 1])[0].ToString()) {
+                        // ((ArrayList)Recording[Recording.Count - 1]).Insert(0, whatToWrite);
+                        (Recording[Recording.Count - 1])[0].ToString()) {
+                        (Recording[Recording.Count - 1]).Insert(0, whatToWrite);
                     }
                 }
             //} catch { return; }
@@ -1080,7 +1082,9 @@ try {
                 
                 WriteVerbose(this, "getting the control");
                 
-                ArrayList elementsToWorkWith = GetControl(cmdlet);
+                // 20131202
+                // ArrayList elementsToWorkWith = GetControl(cmdlet);
+                List<IMySuperWrapper> elementsToWorkWith = GetControl(cmdlet);
                 
                 if (null == elementsToWorkWith) {
 

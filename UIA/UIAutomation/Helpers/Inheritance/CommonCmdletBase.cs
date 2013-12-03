@@ -1062,7 +1062,9 @@ namespace UIAutomation
             PropertyConditionFlags flags =
                 cmdlet.CaseSensitive ? PropertyConditionFlags.None : PropertyConditionFlags.IgnoreCase;
             
-            Condition controlTypeCondition = null;
+            // 20131203
+            // Condition controlTypeCondition = null;
+            Condition controlTypeCondition = Condition.TrueCondition;
             if (null != cmdlet.ControlType && 0 < cmdlet.ControlType.Length) {
                 controlTypeCondition =
                     GetControlTypeCondition(
@@ -1193,8 +1195,6 @@ namespace UIAutomation
                                 
 Console.WriteLine("text search UIA");
                                 
-                                // 20131203
-                                // SearchByContainsTextViaUia(cmdlet, inputObject, conditionsForTextSearch);
                                 ResultListOfControls.AddRange(
                                     SearchByContainsTextViaUia(
                                         cmdlet,
@@ -1210,8 +1210,6 @@ Console.WriteLine("text search UIA");
                                 
 Console.WriteLine("text search Win32");
                                 
-                                // 20131203
-                                // SearchByTextViaWin32(cmdlet, inputObject, cmdlet.ControlType);
                                 ResultListOfControls.AddRange(
                                     SearchByTextViaWin32(
                                         cmdlet,
@@ -1227,17 +1225,11 @@ Console.WriteLine("text search Win32");
                                 
 Console.WriteLine("exact search UIA");
                                 
-                                // 20131126
-                                // SearchByExactConditionsViaUia(cmdlet, inputObject, conditions);
-                                // 20131203
-                                // SearchByExactConditionsViaUia(cmdlet, inputObject, conditionsForExactSearch, cmdlet.ResultListOfControls);
                                 ResultListOfControls.AddRange(
                                     SearchByExactConditionsViaUia(
                                         cmdlet,
                                         inputObject,
-                                        conditionsForExactSearch)); //,
-                                        //cmdlet.ResultListOfControls));
-                                
+                                        conditionsForExactSearch));
                             }
                         }
                         #endregion exact search
@@ -1248,12 +1240,6 @@ Console.WriteLine("exact search UIA");
                                 
 Console.WriteLine("wildcard search UIA");
                                 
-                                // 20131128
-                                // SearchByWildcardOrRegexViaUia(cmdlet, ref ResultArrayListOfControls, inputObject, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class, cmdlet.Value, conditionsForWildCards, true);
-                                // 20131129
-                                // SearchByWildcardOrRegexViaUia(cmdlet, ref ResultArrayListOfControls, inputObject, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class, cmdlet.Value, (AndCondition)conditionsForWildCards, true);
-                                // 20131203
-                                // SearchByWildcardOrRegexViaUia(cmdlet, ref ResultListOfControls, inputObject, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class, cmdlet.Value, conditionsForWildCards, true);
                                 ResultListOfControls.AddRange(
                                     SearchByWildcardOrRegexViaUia(
                                         cmdlet,
@@ -1274,8 +1260,6 @@ Console.WriteLine("wildcard search UIA");
                                 
 Console.WriteLine("regex search UIA");
                                 
-                                // 20131203
-                                // SearchByWildcardOrRegexViaUia(cmdlet, ref ResultListOfControls, inputObject, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class, cmdlet.Value, (AndCondition)conditionsForWildCards, false);
                                 ResultListOfControls.AddRange(
                                     SearchByWildcardOrRegexViaUia(
                                         cmdlet,
@@ -1297,8 +1281,6 @@ Console.WriteLine("regex search UIA");
                                 
 Console.WriteLine("wildcard search Win32");
                                 
-                                // 20131203
-                                // SearchByWildcardViaWin32(cmdlet, inputObject);
                                 ResultListOfControls.AddRange(
                                     SearchByWildcardViaWin32(
                                         cmdlet,
@@ -1321,24 +1303,6 @@ Console.WriteLine("wildcard search Win32");
                         ////impossible due to inheritance and the absense of scriptblock here
                         // SleepAndRunScriptBlocks(cmdlet);
                         DateTime nowDate = DateTime.Now;
-                        
-                        // 20131130
-//                        try {
-//                            WriteVerbose(cmdlet, "control type: '" +
-//                                         cmdlet.ControlType +
-//                                         "' , name: '" +
-//                                         cmdlet.Name +
-//                                         "', automationId: '" +
-//                                         cmdlet.AutomationId +
-//                                         "', class: '" +
-//                                         cmdlet.Class +
-//                                         "' , value: '" +
-//                                         cmdlet.Value +
-//                                         "' , seconds: " +
-//                                         ((nowDate - StartDate).TotalSeconds).ToString());
-//                        } catch { //(Exception eWriteVerbose) {
-//                            //WriteVerbose(this, eWriteVerbose.Message);
-//                        }
                         
                         if ((nowDate - StartDate).TotalSeconds > cmdlet.Timeout / 1000) {
                             
@@ -1420,8 +1384,6 @@ Console.WriteLine("wildcard search Win32");
 
         }
         
-        // 20131203
-        // internal void SearchByWildcardViaWin32(GetControlCmdletBase cmdlet, IMySuperWrapper inputObject)
         internal List<IMySuperWrapper> SearchByWildcardViaWin32(GetControlCmdletBase cmdlet, IMySuperWrapper inputObject)
         {
             WriteVerbose(cmdlet, "[getting the control] using FindWindowEx");
@@ -1441,22 +1403,9 @@ Console.WriteLine("wildcard search Win32");
 //                
 //            }
             
-//if (null == tempListWin32) {
-//    Console.WriteLine("null == tempListWin32");
-//} else {
-//    Console.WriteLine(tempListWin32.Count.ToString());
-//}
-            
-            // 20131203
             List<IMySuperWrapper> resultList = new List<IMySuperWrapper>();
             
             foreach (IMySuperWrapper tempElement3 in tempListWin32) {
-                
-//Console.WriteLine("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
-//try { Console.WriteLine("element: name = " + tempElement3.Current.Name); } catch {}
-//try { Console.WriteLine("element: auId = " + tempElement3.Current.AutomationId); } catch {}
-//try { Console.WriteLine("element: class = " + tempElement3.Current.ClassName); } catch {}
-//try { Console.WriteLine("element: control type = " + tempElement3.Current.ControlType.ProgrammaticName.Substring(12)); } catch {}
                 
                 // 20131128
 //                if (!string.IsNullOrEmpty(cmdlet.ControlType)) {
@@ -1467,8 +1416,6 @@ Console.WriteLine("wildcard search Win32");
 //                }
                 bool goFurther = true;
                 if (null != cmdlet.ControlType && 0 < cmdlet.ControlType.Length) {
-                    
-//Console.WriteLine("w32: 0000000000000000005");
                     
                     if (cmdlet.ControlType.Any(controlTypeName => String.Equals(tempElement3.Current.ControlType.ProgrammaticName.Substring(12), controlTypeName, StringComparison.CurrentCultureIgnoreCase)))
                     {
@@ -1488,51 +1435,32 @@ Console.WriteLine("wildcard search Win32");
                     goFurther = false;
                 }
                 
-//Console.WriteLine("w32: 0000000000000000008");
-                
                 if (goFurther) continue;
-                
-//Console.WriteLine("w32: 0000000000000000009");
                 
                 if (null == cmdlet.SearchCriteria || 0 == cmdlet.SearchCriteria.Length) {
                     
-//Console.WriteLine("w32: 0000000000000000010");
-                    
-                    // 20131203
-                    // ResultListOfControls.Add(tempElement3);
                     resultList.Add(tempElement3);
                     cmdlet.WriteVerbose(cmdlet, "Win32Search: element added to the result collection");
                 } else {
                     
-//Console.WriteLine("w32: 0000000000000000011");
-                    
                     cmdlet.WriteVerbose(cmdlet, "Win32Search: checking search criteria");
                     if (!TestControlWithAllSearchCriteria(cmdlet, cmdlet.SearchCriteria, tempElement3)) continue;
                     cmdlet.WriteVerbose(cmdlet, "Win32Search: the control matches the search criteria");
-                    // 20131203
-                    // ResultListOfControls.Add(tempElement3);
                     resultList.Add(tempElement3);
                     cmdlet.WriteVerbose(cmdlet, "Win32Search: element added to the result collection");
                 }
             }
             
-            // 20131203
-            //if (null == tempListWin32) return;
             if (null != tempListWin32) {
                 tempListWin32.Clear();
                 tempListWin32 = null;
             }
             
-            // 20131203
             return resultList;
         }
         
-        // 20131203
-        // internal void SearchByWildcardOrRegexViaUia(
         internal List<IMySuperWrapper> SearchByWildcardOrRegexViaUia(
             GetControlCmdletBase cmdlet, // 20130318 // ??
-            // 20131203
-            //ref List<IMySuperWrapper> resultCollection,
             IMySuperWrapper inputObject,
             string name,
             string automationId,
@@ -1543,7 +1471,6 @@ Console.WriteLine("wildcard search Win32");
         {
             WriteVerbose((cmdlet as PSCmdletBase), "[getting the control] using WildCard/Regex search");
             
-            // 20131203
             List<IMySuperWrapper> resultCollection =
                 new List<IMySuperWrapper>();
             
@@ -1636,14 +1563,10 @@ Console.WriteLine("wildcard search Win32");
             }
         }
         
-        // 20131203
-        // protected internal void SearchByExactConditionsViaUia(
         protected internal List<IMySuperWrapper> SearchByExactConditionsViaUia(
             GetControlCmdletBase cmdlet,
             IMySuperWrapper inputObject,
-            // 20131203
-            Condition conditions) //,
-            //List<IMySuperWrapper> listOfColllectedResults)
+            Condition conditions)
         {
             #region the -First story
             // 20120824
@@ -1680,21 +1603,12 @@ Console.WriteLine("wildcard search Win32");
             //else if (UIAutomation.CurrentData.LastResult
             #endregion the -First story
             
-            // 20131203
             List<IMySuperWrapper> listOfColllectedResults =
                 new List<IMySuperWrapper>();
             
-            // 20131203
-            // if (conditions == null) return;
             if (conditions == null) return listOfColllectedResults;
             
-            // 20131203
-            // if (inputObject == null || (int) inputObject.Current.ProcessId <= 0) return;
             if (inputObject == null || (int) inputObject.Current.ProcessId <= 0) return listOfColllectedResults;
-            
-            // 20131203
-            // List<IMySuperWrapper> listOfColllectedResults =
-            //     new List<IMySuperWrapper>();
             
             IMySuperCollection tempCollection = inputObject.FindAll(TreeScope.Descendants, conditions);
             
@@ -1707,25 +1621,24 @@ Console.WriteLine("wildcard search Win32");
                     cmdlet.WriteVerbose(cmdlet, "ExactSearch: element added to the result collection");
                     
                 } else {
+                    
                     cmdlet.WriteVerbose(cmdlet, "ExactSearch: checking search criteria");
                     if (!TestControlWithAllSearchCriteria(cmdlet, cmdlet.SearchCriteria, tempElement)) continue;
+                    
                     cmdlet.WriteVerbose(cmdlet, "ExactSearch: the control matches the search criteria");
                     listOfColllectedResults.Add(tempElement);
+                    
                     cmdlet.WriteVerbose(cmdlet, "ExactSearch: element added to the result collection");
                 }
             }
             
             if (null != tempCollection) {
-                
                 tempCollection = null;
             }
             
-            // 20131203
             return listOfColllectedResults;
         }
-
-        // 20131203
-        // internal void SearchByContainsTextViaUia(
+        
         internal List<IMySuperWrapper> SearchByContainsTextViaUia(
             GetControlCmdletBase cmdlet,
             IMySuperWrapper inputObject,
@@ -1754,8 +1667,6 @@ Console.WriteLine("wildcard search Win32");
 //            }
         }
         
-        // 20131203
-        // internal void SearchByTextViaWin32(
         internal List<IMySuperWrapper> SearchByTextViaWin32(
             GetControlCmdletBase cmdlet,
             IMySuperWrapper inputObject,
@@ -1801,8 +1712,7 @@ Console.WriteLine("wildcard search Win32");
                             */
                                 continue;
                             } else {
-                                // 20131203
-                                // ResultListOfControls.Add(elementToChoose);
+                                
                                 resultList.Add(elementToChoose);
                                 break;
                             }
@@ -1810,15 +1720,12 @@ Console.WriteLine("wildcard search Win32");
                         }
                         
                     } else {
-                        // 20131203
-                        // ResultListOfControls.Add(elementToChoose);
+                        
                         resultList.Add(elementToChoose);
                     }
                 }
             }
             
-            // 20131203
-            // if (null == textSearchWin32List) return;
             if (null != textSearchWin32List) {
                 textSearchWin32List.Clear();
                 textSearchWin32List = null;

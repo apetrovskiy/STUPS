@@ -47,14 +47,8 @@ namespace UIAutomationUnitTests
             GetControlCollectionCmdletBase cmdletDerived = new GetControlCollectionCmdletBase();
             
             List<IMySuperWrapper> resultList =
-            // 20131203
-            //    new List<IMySuperWrapper>();
-            
-                // 20131203
                 cmdletDerived.SearchByWildcardOrRegexViaUia(
                     cmdlet,
-                    // 20131203
-                    // ref resultList,
                     element,
                     cmdlet.Name,
                     cmdlet.AutomationId,
@@ -68,16 +62,14 @@ namespace UIAutomationUnitTests
         
         public static List<IMySuperWrapper> GetResultList_ExactSearch(GetControlCmdletBase cmdlet, IMySuperWrapper element, Condition conditions)
         {
-            // 20131203
-            cmdlet.ResultListOfControls = //new List<IMySuperWrapper>();
-                cmdlet.SearchByExactConditionsViaUia(cmdlet, element, conditions); //, cmdlet.ResultListOfControls);
+            cmdlet.ResultListOfControls =
+                cmdlet.SearchByExactConditionsViaUia(cmdlet, element, conditions);
             return cmdlet.ResultListOfControls;
         }
         
         public static List<IMySuperWrapper> GetResultList_TextSearch(GetControlCmdletBase cmdlet, IMySuperWrapper element, Condition conditions)
         {
-            // 20131203
-            cmdlet.ResultListOfControls = //new List<IMySuperWrapper>();
+            cmdlet.ResultListOfControls =
                 cmdlet.SearchByContainsTextViaUia(cmdlet, element, conditions);
             return cmdlet.ResultListOfControls;
         }

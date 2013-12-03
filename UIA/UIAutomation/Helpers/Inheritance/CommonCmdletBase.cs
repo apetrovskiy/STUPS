@@ -996,7 +996,8 @@ namespace UIAutomation
         {
             if (null == controlTypeNames) return Condition.TrueCondition;
             
-            List<PropertyCondition> controlTypeCollection = controlTypeNames.Select(controlTypeName => new PropertyCondition(AutomationElement.ControlTypeProperty, UiaHelper.GetControlTypeByTypeName(controlTypeName))).ToList();
+            List<PropertyCondition> controlTypeCollection =
+                controlTypeNames.Select(controlTypeName => new PropertyCondition(AutomationElement.ControlTypeProperty, UiaHelper.GetControlTypeByTypeName(controlTypeName))).ToList();
             /*
             foreach (string controlTypeName in controlTypeNames) {
                 
@@ -1231,7 +1232,7 @@ namespace UIAutomation
                                 
 Console.WriteLine("text search UIA");
                                 
-                                SearchByTextViaUia(cmdlet, inputObject, conditionsForTextSearch);
+                                SearchByContainsTextViaUia(cmdlet, inputObject, conditionsForTextSearch);
                             }
                         }
                         #endregion text search
@@ -1666,7 +1667,7 @@ Console.WriteLine("wildcard search Win32");
             }
         }
 
-        internal void SearchByTextViaUia(
+        internal void SearchByContainsTextViaUia(
             GetControlCmdletBase cmdlet,
             IMySuperWrapper inputObject,
             Condition conditionsForTextSearch)

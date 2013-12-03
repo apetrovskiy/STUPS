@@ -1,5 +1,4 @@
-﻿using System.Collections;
-/*
+﻿/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
  * Date: 11/27/2013
@@ -23,8 +22,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
     /// Description of SearchByExactConditionsViaUiaTestFixture.
     /// </summary>
     [TestFixture]
-    // public class SearchByExactConditionsViaUiaTestFixture
-    public class SearchByTextViaUiaTextFixture
+    public class SearchByContainsTextViaUiaTextFixture
     {
         [SetUp]
         public void SetUp()
@@ -53,7 +51,6 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             GetControlCmdletBase cmdlet =
                 FakeFactory.Get_GetControlCmdletBase(controlType, searchString);
             Condition condition =
-                //cmdlet.GetExactSearchCondition(cmdlet);
                 cmdlet.GetTextSearchCondition(searchString, new string[]{ controlTypeString }, false);
             IMySuperWrapper element =
                 FakeFactory.GetElement_ForFindAll(
@@ -61,7 +58,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                     condition);
             
             // Act
-            List<IMySuperWrapper> resultList = RealCodeCaller.GetResultList_ExactSearch(cmdlet, element, condition);
+            List<IMySuperWrapper> resultList = RealCodeCaller.GetResultList_TextSearch(cmdlet, element, condition);
             
             // Assert
             Assert.Count(expectedNumberOfElements, resultList);
@@ -137,7 +134,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         }
         
         [Test]
-        public void Get0of3_byContainsTextControlType()
+        public void Get0of3_byContainsTextControlType_None()
         {
             string searchString = "str";
             ControlType controlType = ControlType.Button;
@@ -153,7 +150,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         }
         
         [Test]
-        public void Get0of3_byContainsTextControlType_2()
+        public void Get0of3_byContainsTextControlType_OneControlType()
         {
             string searchString = "str";
             ControlType controlType = ControlType.Button;
@@ -169,7 +166,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         }
         
         [Test]//
-        public void Get0of3_byContainsTextControlType_3()
+        public void Get0of3_byContainsTextControlType_ThreeControlType()
         {
             string searchString = "str";
             ControlType controlType = ControlType.Button;
@@ -347,7 +344,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         
         #region ContainsText
         [Test]
-        public void Get0_byContainsText_Name()
+        public void Get0_byContainsText()
         {
             const string searchString = "str";
             ControlType controlType = null;
@@ -357,7 +354,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 new MySuperWrapper[] {},
                 0);
         }
+        #endregion ContainsText
         
+        #region ContainsText vs Name
         [Test]
         public void Get0of3_byContainsText_Name()
         {
@@ -405,6 +404,206 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 },
                 3);
         }
-        #endregion ContainsText
+        #endregion ContainsText vs Name
+        
+        #region ContainsText vs AutomationId
+        [Test]
+        public void Get0of3_byContainsText_AutomationId()
+        {
+            const string searchString = "str";
+            ControlType controlType = null;
+            TestParametersAgainstCollection(
+                controlType,
+                searchString,
+                new [] {
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, string.Empty, "other id", string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Custom, string.Empty, "second id", string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.CheckBox, string.Empty, "third id", string.Empty, string.Empty)
+                },
+                0);
+        }
+        
+        [Test]
+        public void Get1of3_byContainsText_AutomationId()
+        {
+            const string searchString = "str";
+            ControlType controlType = null;
+            TestParametersAgainstCollection(
+                controlType,
+                searchString,
+                new [] {
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Tab, string.Empty, "other id", string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Image, string.Empty, searchString, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, string.Empty, "third id", string.Empty, string.Empty)
+                },
+                1);
+        }
+        
+        [Test]
+        public void Get3of3_byContainsText_AutomationId()
+        {
+            const string searchString = "str";
+            ControlType controlType = null;
+            TestParametersAgainstCollection(
+                controlType,
+                searchString,
+                new [] {
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, string.Empty, searchString, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Custom, string.Empty, searchString, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Hyperlink, string.Empty, searchString, string.Empty, string.Empty)
+                },
+                3);
+        }
+        #endregion ContainsText vs AutomationId
+        
+        #region ContainsText vs Class
+        [Test]
+        public void Get0of3_byContainsText_Class()
+        {
+            const string searchString = "str";
+            ControlType controlType = null;
+            TestParametersAgainstCollection(
+                controlType,
+                searchString,
+                new [] {
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, string.Empty, string.Empty, "other class", string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Custom, string.Empty, string.Empty, "second class", string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.CheckBox, string.Empty, string.Empty, "third class", string.Empty)
+                },
+                0);
+        }
+        
+        [Test]
+        public void Get1of3_byContainsText_Class()
+        {
+            const string searchString = "str";
+            ControlType controlType = null;
+            TestParametersAgainstCollection(
+                controlType,
+                searchString,
+                new [] {
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Tab, string.Empty, string.Empty, "other class", string.Empty),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Image, string.Empty, string.Empty, searchString, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, string.Empty, string.Empty, "third class", string.Empty)
+                },
+                1);
+        }
+        
+        [Test]
+        public void Get3of3_byContainsText_Class()
+        {
+            const string searchString = "str";
+            ControlType controlType = null;
+            TestParametersAgainstCollection(
+                controlType,
+                searchString,
+                new [] {
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, string.Empty, string.Empty, searchString, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Custom, string.Empty, string.Empty, searchString, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Hyperlink, string.Empty, string.Empty, searchString, string.Empty)
+                },
+                3);
+        }
+        #endregion ContainsText vs Class
+        
+        #region ContainsText vs Value
+        [Test]
+        public void Get0of3_byContainsText_Value()
+        {
+            const string searchString = "str";
+            ControlType controlType = null;
+            TestParametersAgainstCollection(
+                controlType,
+                searchString,
+                new [] {
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, string.Empty, string.Empty, string.Empty, "other value"),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Custom, string.Empty, string.Empty, string.Empty, "second value"),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.CheckBox, string.Empty, string.Empty, string.Empty, "third value")
+                },
+                0);
+        }
+        
+        [Test]
+        public void Get1of3_byContainsText_Value()
+        {
+            const string searchString = "str";
+            ControlType controlType = null;
+            TestParametersAgainstCollection(
+                controlType,
+                searchString,
+                new [] {
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Tab, string.Empty, string.Empty, string.Empty, "other value"),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Image, string.Empty, string.Empty, string.Empty, searchString),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, string.Empty, string.Empty, string.Empty, "third value")
+                },
+                1);
+        }
+        
+        [Test]
+        public void Get3of3_byContainsText_Value()
+        {
+            const string searchString = "str";
+            ControlType controlType = null;
+            TestParametersAgainstCollection(
+                controlType,
+                searchString,
+                new [] {
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, string.Empty, string.Empty, string.Empty, searchString),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Custom, string.Empty, string.Empty, string.Empty, searchString),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Hyperlink, string.Empty, string.Empty, string.Empty, searchString)
+                },
+                3);
+        }
+        #endregion ContainsText vs Value
+        
+        #region ContainsText vs Mix
+        [Test]
+        public void Get0of3_byContainsText_NameAutomationIdClass()
+        {
+            const string searchString = "str";
+            ControlType controlType = null;
+            TestParametersAgainstCollection(
+                controlType,
+                searchString,
+                new [] {
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, "other name", string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Custom, string.Empty, "second automation Id", string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.CheckBox, string.Empty, string.Empty, "third class", string.Empty)
+                },
+                0);
+        }
+        
+        [Test]
+        public void Get1of3_byContainsText_NameAutomationIdClass()
+        {
+            const string searchString = "str";
+            ControlType controlType = null;
+            TestParametersAgainstCollection(
+                controlType,
+                searchString,
+                new [] {
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Tab, "other name", string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Image, string.Empty, searchString, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, string.Empty, string.Empty, "third class", string.Empty)
+                },
+                1);
+        }
+        
+        [Test]
+        public void Get3of3_byContainsText_AutomationIdClassValue()
+        {
+            const string searchString = "str";
+            ControlType controlType = null;
+            TestParametersAgainstCollection(
+                controlType,
+                searchString,
+                new [] {
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, string.Empty, searchString, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Custom, string.Empty, string.Empty, searchString, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Hyperlink, string.Empty, string.Empty, string.Empty, searchString)
+                },
+                3);
+        }
+        #endregion ContainsText vs Mix
     }
 }

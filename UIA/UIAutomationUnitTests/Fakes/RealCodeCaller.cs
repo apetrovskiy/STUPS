@@ -65,21 +65,15 @@ namespace UIAutomationUnitTests
         
         public static List<IMySuperWrapper> GetResultList_ExactSearch(GetControlCmdletBase cmdlet, IMySuperWrapper element, Condition conditions)
         {
-            GetControlCmdletBase cmdletDerived = new GetControlCmdletBase();
             cmdlet.ResultListOfControls = new List<IMySuperWrapper>();
-            
-            cmdletDerived.SearchByExactConditionsViaUia(cmdlet, element, conditions, cmdlet.ResultListOfControls);
-            
+            cmdlet.SearchByExactConditionsViaUia(cmdlet, element, conditions, cmdlet.ResultListOfControls);
             return cmdlet.ResultListOfControls;
         }
         
         public static List<IMySuperWrapper> GetResultList_TextSearch(GetControlCmdletBase cmdlet, IMySuperWrapper element, Condition conditions)
         {
-            GetControlCmdletBase cmdletDerived = new GetControlCmdletBase();
             cmdlet.ResultListOfControls = new List<IMySuperWrapper>();
-            
-            cmdletDerived.SearchByTextViaUia(cmdlet, element, conditions);
-            
+            cmdlet.SearchByContainsTextViaUia(cmdlet, element, conditions);
             return cmdlet.ResultListOfControls;
         }
     }

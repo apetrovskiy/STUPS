@@ -114,7 +114,8 @@
     <Compile Include="Helpers\Inheritance\GetAutomationElementsWithFindAllTestFixture.cs" />
     <Compile Include="Helpers\Inheritance\GetControlTestFixture.cs" />
     <Compile Include="Helpers\Inheritance\ReturnOnlyRightElementsTestFixture.cs" />
-    <Compile Include="Helpers\Inheritance\SearchByTextViaUiaTextFixture.cs" />
+    <Compile Include="Helpers\Inheritance\SearchByContainsTextViaUiaTextFixture.cs" />
+    <Compile Include="Helpers\Inheritance\SearchByExactConditionsViaUiaTestFixture.cs" />
     <Compile Include="Helpers\Inheritance\SearchByTextViaWin32TestFixture.cs" />
     <Compile Include="Helpers\Inheritance\SearchByWildcardOrRegexViaUiaTestFixture.cs" />
     <Compile Include="Helpers\Inheritance\SearchByWildcardViaWin32TestFixture.cs" />

@@ -145,8 +145,11 @@
     <Compile Include="..\UIAutomationUnitTests\Helpers\Inheritance\ReturnOnlyRightElementsTestFixture.cs">
       <Link>Helpers\Inheritance\ReturnOnlyRightElementsTestFixture.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomationUnitTests\Helpers\Inheritance\SearchByTextViaUiaTextFixture.cs">
-      <Link>Helpers\Inheritance\SearchByTextViaUiaTextFixture.cs</Link>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\Inheritance\SearchByContainsTextViaUiaTextFixture.cs">
+      <Link>Helpers\Inheritance\SearchByContainsTextViaUiaTextFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\Inheritance\SearchByExactConditionsViaUiaTestFixture.cs">
+      <Link>Helpers\Inheritance\SearchByExactConditionsViaUiaTestFixture.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomationUnitTests\Helpers\Inheritance\SearchByTextViaWin32TestFixture.cs">
       <Link>Helpers\Inheritance\SearchByTextViaWin32TestFixture.cs</Link>

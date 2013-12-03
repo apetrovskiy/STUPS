@@ -2,7 +2,7 @@
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
  * Date: 12/3/2013
- * Time: 10:48 AM
+ * Time: 1:51 PM
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
@@ -19,10 +19,10 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
     using System.Linq;
     
     /// <summary>
-    /// Description of SearchByWildcardOrRegexViaUiaTestFixture.
+    /// Description of SearchByExactConditionsViaUiaTestFixture.
     /// </summary>
     [TestFixture]
-    public class SearchByWildcardOrRegexViaUiaTestFixture
+    public class SearchByExactConditionsViaUiaTestFixture
     {
         [SetUp]
         public void SetUp()
@@ -55,7 +55,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 FakeFactory.Get_GetControlCmdletBase(controlType, name, automationId, className, txtValue);
             
             Condition condition =
-                cmdlet.GetWildcardSearchCondition(cmdlet);
+                cmdlet.GetExactSearchCondition(cmdlet);
             
             IMySuperWrapper element =
                 FakeFactory.GetElement_ForFindAll(
@@ -63,7 +63,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                     condition);
             
             // Act
-            List<IMySuperWrapper> resultList = RealCodeCaller.GetResultList_ViaWildcards(cmdlet, element, condition);
+            List<IMySuperWrapper> resultList = RealCodeCaller.GetResultList_ExactSearch(cmdlet, element, condition);
             
             // Assert
             Assert.Count(expectedNumberOfElements, resultList);

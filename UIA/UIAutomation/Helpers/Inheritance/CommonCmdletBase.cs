@@ -1150,57 +1150,19 @@ namespace UIAutomation
                     tempCmdlet.ContainsText = cmdlet.ContainsText;
                     notTextSearch = false;
                     
-                    // 20131128
-//                    conditionsForTextSearch =
-//                        GetControlConditionsForExactSearch(
-//                            tempCmdlet,
-//                            tempCmdlet.ControlType,
-//                            cmdlet.CaseSensitive,
-//                            false) as AndCondition;
                     conditionsForTextSearch =
                         GetTextSearchCondition(
                             cmdlet.ContainsText,
                             cmdlet.ControlType,
                             cmdlet.CaseSensitive);
-                    /*
-                    conditionsForTextSearch =
-                        GetControlConditionsForWildcardSearch(
-                            tempCmdlet,
-                            tempCmdlet.ControlType,
-                            cmdlet.CaseSensitive,
-                            false) as AndCondition;
-                    */
                     
-                    // display conditions for text search
-                    // WriteVerbose(cmdlet, "these conditions are used for text search:");
-                    // DisplayConditions(cmdlet, conditionsForTextSearch, "for text search");
-
                 } else {
                     
-                    // 20131128
-                    // conditions = GetControlConditionsForWildcardSearch(cmdlet, cmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive, true) as AndCondition;
-                    // 20131128
-                    // conditions = GetControlConditionsForWildcardSearch(cmdlet, cmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive);
                     conditionsForExactSearch = GetExactSearchCondition(cmdlet);
-                    // WriteVerbose(cmdlet, "these conditions are used for an exact search:");
-                    // DisplayConditions(cmdlet, conditions, "for exact search");
                     
-                    // 20131128
-                    //conditionsForWildCards =
-                    //    GetControlConditionsForWildcardSearch(tempCmdlet, tempCmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive, true) as AndCondition;
-                    // 20131128
-                    // conditionsForWildCards =
-                    //     GetControlConditionsForWildcardSearch(tempCmdlet, tempCmdlet.ControlType, ((GetControlCmdletBase)cmdlet).CaseSensitive);
-                    //conditionsForWildCards =
-                    //    GetExactSearchCondition(cmdlet);
-                    // 20131129
                     conditionsForWildCards =
-                        //GetControlConditionsForWildcardSearch(tempCmdlet, (tempCmdlet.ControlType[0] ?? string.Empty), ((GetControlCmdletBase)cmdlet).CaseSensitive);
                         GetWildcardSearchCondition(cmdlet);
                     
-                    // display conditions for wildcard search
-                    // WriteVerbose(cmdlet, "these conditions are used for wildcard search:");
-                    // DisplayConditions(cmdlet, conditionsForWildCards, "for wildcard search");
                 }
                 #endregion conditions
                 
@@ -1216,8 +1178,8 @@ namespace UIAutomation
                         #region checking processId
                         if (inputObject != null &&
                             (int)inputObject.Current.ProcessId > 0) {
-                            WriteVerbose(cmdlet, "CommonCmdletBase: getControl(cmdlet)");
-                            WriteVerbose(cmdlet, "cmdlet.InputObject != null");
+                            // WriteVerbose(cmdlet, "CommonCmdletBase: getControl(cmdlet)");
+                            // WriteVerbose(cmdlet, "cmdlet.InputObject != null");
                             
                             processId = inputObject.Current.ProcessId;
                         }

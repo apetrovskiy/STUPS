@@ -112,6 +112,10 @@ namespace UIAutomation
         
         [Parameter(Mandatory = false)]
         public SwitchParameter CaseSensitive { get; set; }
+        
+        // 20131203
+        [Parameter (Mandatory = false)]
+        public SwitchParameter Force { get; set; }
         #endregion Parameters
 
     }

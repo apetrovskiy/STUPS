@@ -947,7 +947,7 @@ namespace UIAutomation
         #endregion Invoke-UiaScript
         
         protected internal DateTime StartDate { get; set; }
-        protected IMySuperWrapper CurrentWindow { get; set; }
+        protected IMySuperWrapper CurrentInputElement { get; set; }
         protected internal List<IMySuperWrapper> ResultListOfControls;
         protected internal IMySuperWrapper OddRootElement { get; set; }
         

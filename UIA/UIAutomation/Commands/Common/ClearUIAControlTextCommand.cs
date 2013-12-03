@@ -11,9 +11,6 @@ namespace UIAutomation.Commands
 {
     using System;
     using System.Management.Automation;
-    //using System.Runtime.InteropServices;
-    //using System.Text;
-    //using System.Windows.Automation;
     
     /// <summary>
     /// Description of ClearUiaControlTextCommand.

@@ -13,8 +13,9 @@ namespace PSTestLib
     using System.Management.Automation;
     using System.Management.Automation.Runspaces;
     using System.Collections;
+    using System.Collections.Generic;
     using System.Collections.ObjectModel;
-    
+    using System.Linq;
     using System.Windows.Automation;
     
     /// <summary>
@@ -721,6 +722,10 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
                     " = " +
                     dict[keyUpper].ToString());
             }
+            
+//            foreach (string key2 in hashtable.Keys.Cast<string>().ToList().Any<string>(k => dict.Add(k.ToUpper(), hashtable[k.ToUpper()]))) {
+//                
+//            }
             
             return dict;
         }

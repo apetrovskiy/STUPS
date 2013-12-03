@@ -522,8 +522,7 @@ namespace UIAutomation
                     /*
                     if (inputObject is IMySuperWrapper) {
                     */
-
-                        cmdlet.CurrentWindow = (IMySuperWrapper)_controlAdapter;
+                        cmdlet.CurrentInputElement = (IMySuperWrapper)_controlAdapter;
                     }
 //                    if (inputObject is AutomationElement) {
 //                        cmdlet.currentWindow = new MySuperWrapper((AutomationElement)inputObject);
@@ -536,8 +535,9 @@ namespace UIAutomation
                     // (some part of AutomationElement, as an example)
                 } catch (Exception eControlTypeException) {
                     
-                    WriteDebug(cmdlet, "[checking the input] Control is not an AutomationElement");
-                    WriteDebug(cmdlet, "[checking the input] " + eControlTypeException.Message);
+                    // 20131203
+                    // WriteDebug(cmdlet, "[checking the input] Control is not an AutomationElement");
+                    // WriteDebug(cmdlet, "[checking the input] " + eControlTypeException.Message);
                     
                     if (PassThru) {
                         
@@ -1049,12 +1049,14 @@ try {
                 GetControlCmdletBase cmdlet = 
                     new GetControlCmdletBase();
                 
-                try{ cmdlet.Class = dict["CLASS"].ToString(); } catch {}
-                try{ cmdlet.AutomationId = dict["AUTOMATIONID"].ToString(); } catch {}
+                try { cmdlet.Class = dict["CLASS"].ToString(); } catch {}
+                try { cmdlet.AutomationId = dict["AUTOMATIONID"].ToString(); } catch {}
                 // 20131128
                 // try{ cmdlet.ControlType = dict["CONTROLTYPE"].ToString(); } catch {}
-                try{ cmdlet.Name = dict["NAME"].ToString(); } catch {}
-                try{ cmdlet.Value = dict["VALUE"].ToString(); } catch {}
+                // 20131203
+                try { cmdlet.ControlType = new string[] { dict["CONTROLTYPE"].ToString() }; } catch {}
+                try { cmdlet.Name = dict["NAME"].ToString(); } catch {}
+                try { cmdlet.Value = dict["VALUE"].ToString(); } catch {}
                 
                 cmdlet.Timeout = timeout;
                 
@@ -1075,10 +1077,6 @@ try {
                         return result;
                     }
                     
-                    // 20131109
-                    //cmdlet.InputObject = new AutomationElement[]{ UIAutomation.CurrentData.CurrentWindow };
-                    // 20131202
-                    // cmdlet.InputObject = new MySuperWrapper[]{ (MySuperWrapper)CurrentData.CurrentWindow };
                     cmdlet.InputObject = new[]{ CurrentData.CurrentWindow };
                 }
                 

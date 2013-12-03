@@ -80,7 +80,7 @@ namespace UIAutomation
                 //result =
                 //    new MySuperWrapper(AutomationElement.FromHandle(_hWnd));
                 result =
-                    ObjectsFactory.GetMySuperWrapper(AutomationElement.FromHandle(hWnd));
+                    AutomationFactory.GetMySuperWrapper(AutomationElement.FromHandle(hWnd));
                 WriteVerbose(this, 
                              "the active window element is " + 
                              result.Current.Name);

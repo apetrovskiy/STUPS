@@ -38,7 +38,7 @@ namespace UIAutomation
 		{
 		    foreach (AutomationElement element in elements.Cast<AutomationElement>().Where(element => null != element))
 		    {
-		        _collectionHolder.Add(ObjectsFactory.GetMySuperWrapper(element));
+		        _collectionHolder.Add(AutomationFactory.GetMySuperWrapper(element));
 		    }
 		    /*
             foreach (AutomationElement element in elements) {

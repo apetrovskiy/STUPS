@@ -23,7 +23,8 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
     /// Description of SearchByExactConditionsViaUiaTestFixture.
     /// </summary>
     [TestFixture]
-    public class SearchByExactConditionsViaUiaTestFixture
+    // public class SearchByExactConditionsViaUiaTestFixture
+    public class SearchByTextViaUiaTextFixture
     {
         [SetUp]
         public void SetUp()
@@ -52,7 +53,8 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             GetControlCmdletBase cmdlet =
                 FakeFactory.Get_GetControlCmdletBase(controlType, searchString);
             Condition condition =
-                cmdlet.GetExactSearchCondition(cmdlet);
+                //cmdlet.GetExactSearchCondition(cmdlet);
+                cmdlet.GetTextSearchCondition(searchString, new string[]{ controlTypeString }, false);
             IMySuperWrapper element =
                 FakeFactory.GetElement_ForFindAll(
                     collection,

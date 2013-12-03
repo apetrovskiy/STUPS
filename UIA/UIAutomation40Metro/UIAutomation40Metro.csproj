@@ -695,11 +695,11 @@
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NativeMethods.cs">
       <Link>Helpers\UnderlyingCode\NativeMethods.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Ninject\AutomationFactory.cs">
+      <Link>Helpers\UnderlyingCode\Ninject\AutomationFactory.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Ninject\ObjectLifecycleModule.cs">
       <Link>Helpers\UnderlyingCode\Ninject\ObjectLifecycleModule.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Ninject\ObjectsFactory.cs">
-      <Link>Helpers\UnderlyingCode\Ninject\ObjectsFactory.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\RDPHelper.cs">
       <Link>Helpers\UnderlyingCode\RDPHelper.cs</Link>

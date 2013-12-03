@@ -25,7 +25,7 @@ namespace UIAutomationSpy
         private static void Main(string[] args)
         {
             // 20131114
-            ObjectsFactory.Init();
+            AutomationFactory.Init();
             
             // 20121003
             SpyModes currentMode = SpyModes.uIAutomationSpy;

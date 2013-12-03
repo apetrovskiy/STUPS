@@ -21,10 +21,9 @@ namespace UIAutomationUnitTests
     /// </summary>
     public static class RealCodeCaller
     {
-        public static List<IMySuperWrapper> GetResultList_ViaWildcards(GetControlCmdletBase cmdlet, IMySuperWrapper element, Condition condition)
+        public static List<IMySuperWrapper> GetResultList_ViaWildcards_Legacy(GetControlCmdletBase cmdlet, IMySuperWrapper element, Condition condition)
         {
             GetControlCollectionCmdletBase cmdletDerived = new GetControlCollectionCmdletBase();
-            // GetControlCmdletBase cmdletDerived = new GetControlCmdletBase();
             
             List<IMySuperWrapper> resultList =
                 cmdletDerived.GetAutomationElementsWithFindAll(
@@ -43,15 +42,43 @@ namespace UIAutomationUnitTests
             return resultList;
         }
         
-        // public static List<IMySuperWrapper> GetResultList_ExactSearch(GetControlCollectionCmdletBase cmdlet, IMySuperWrapper element, Condition conditions)
+        public static List<IMySuperWrapper> GetResultList_ViaWildcards(GetControlCmdletBase cmdlet, IMySuperWrapper element, Condition condition)
+        {
+            GetControlCollectionCmdletBase cmdletDerived = new GetControlCollectionCmdletBase();
+            
+            List<IMySuperWrapper> resultList =
+                new List<IMySuperWrapper>();
+            
+            cmdletDerived.SearchByWildcardOrRegexViaUia(
+                cmdlet,
+                ref resultList,
+                element,
+                cmdlet.Name,
+                cmdlet.AutomationId,
+                cmdlet.Class,
+                cmdlet.Value,
+                condition,
+                true);
+            
+            return resultList;
+        }
+        
         public static List<IMySuperWrapper> GetResultList_ExactSearch(GetControlCmdletBase cmdlet, IMySuperWrapper element, Condition conditions)
         {
             GetControlCmdletBase cmdletDerived = new GetControlCmdletBase();
             cmdlet.ResultListOfControls = new List<IMySuperWrapper>();
-            //cmdletDerived.ResultArrayListOfControls = new ArrayList();
             
             cmdletDerived.SearchByExactConditionsViaUia(cmdlet, element, conditions, cmdlet.ResultListOfControls);
-            //cmdletDerived.SearchByExactConditionsViaUia(cmdlet, element, conditions, cmdletDerived.ResultArrayListOfControls);
+            
+            return cmdlet.ResultListOfControls;
+        }
+        
+        public static List<IMySuperWrapper> GetResultList_TextSearch(GetControlCmdletBase cmdlet, IMySuperWrapper element, Condition conditions)
+        {
+            GetControlCmdletBase cmdletDerived = new GetControlCmdletBase();
+            cmdlet.ResultListOfControls = new List<IMySuperWrapper>();
+            
+            cmdletDerived.SearchByTextViaUia(cmdlet, element, conditions);
             
             return cmdlet.ResultListOfControls;
         }

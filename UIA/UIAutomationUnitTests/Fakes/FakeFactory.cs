@@ -26,7 +26,7 @@ namespace UIAutomationUnitTests
         public static void Init()
         {
             UnitTestingHelper.PrepareUnitTestDataStore();
-            ObjectsFactory.InitUnitTests();
+            AutomationFactory.InitUnitTests();
         }
         
         private static IMySuperValuePattern GetValuePattern(string txtValue)
@@ -100,7 +100,7 @@ namespace UIAutomationUnitTests
         {
             IMySuperWrapper element =
                 GetAutomationElement(ControlType.Pane, string.Empty, string.Empty, string.Empty, string.Empty, false);
-            IMySuperCollection descendants = ObjectsFactory.GetMySuperCollection(elements);
+            IMySuperCollection descendants = AutomationFactory.GetMySuperCollection(elements);
             
             Condition[] condCollection = null;
             if (null != conditions as AndCondition) {
@@ -111,7 +111,7 @@ namespace UIAutomationUnitTests
                 condCollection = (conditions as OrCondition).GetConditions();
             }
             
-            IMySuperCollection descendants2 = ObjectsFactory.GetMySuperCollection();
+            IMySuperCollection descendants2 = AutomationFactory.GetMySuperCollection();
             foreach (IMySuperWrapper elt in descendants
                 .Cast<IMySuperWrapper>()
                 .Where(elt => "expected" == elt.Tag))

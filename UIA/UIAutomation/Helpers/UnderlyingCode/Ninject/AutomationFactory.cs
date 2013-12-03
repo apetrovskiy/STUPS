@@ -19,12 +19,12 @@ namespace UIAutomation
     using PSTestLib;
     
     /// <summary>
-    /// Description of ObjectsFactory.
+    /// Description of AutomationFactory.
     /// </summary>
-    public static class ObjectsFactory
+    public static class AutomationFactory
     {
         #region Initialization
-        static ObjectsFactory()
+        static AutomationFactory()
         {
             if (PSCmdletBase.UnitTestMode || CommonCmdletBase.ModuleAlreadyLoaded) return;
             _ninjectModule = new ObjectLifecycleModule();

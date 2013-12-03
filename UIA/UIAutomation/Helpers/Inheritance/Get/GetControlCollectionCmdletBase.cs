@@ -252,7 +252,7 @@ namespace UIAutomation
                 // 20131118
                 // property to method
                 //IMySuperWrapper oneMoreElement = ObjectsFactory.GetMySuperWrapper(walker.GetFirstChild(element.SourceElement));
-                IMySuperWrapper oneMoreElement = ObjectsFactory.GetMySuperWrapper(walker.GetFirstChild(element.GetSourceElement()));
+                IMySuperWrapper oneMoreElement = AutomationFactory.GetMySuperWrapper(walker.GetFirstChild(element.GetSourceElement()));
 
                 try{
                     WriteVerbose(
@@ -293,7 +293,7 @@ namespace UIAutomation
                     // 20131118
                     // property to method
                     //oneMoreElement = ObjectsFactory.GetMySuperWrapper(walker.GetNextSibling(oneMoreElement.SourceElement));
-                    oneMoreElement = ObjectsFactory.GetMySuperWrapper(walker.GetNextSibling(oneMoreElement.GetSourceElement()));
+                    oneMoreElement = AutomationFactory.GetMySuperWrapper(walker.GetNextSibling(oneMoreElement.GetSourceElement()));
 
                     try{
                         WriteVerbose(
@@ -592,7 +592,7 @@ namespace UIAutomation
             foreach (IMySuperWrapper inputObject in InputObject) {
                 
                 IMySuperWrapper sibling = null;
-                sibling = nextSibling ? ObjectsFactory.GetMySuperWrapper(walker.GetNextSibling(inputObject.GetSourceElement())) : ObjectsFactory.GetMySuperWrapper(walker.GetPreviousSibling(inputObject.GetSourceElement()));
+                sibling = nextSibling ? AutomationFactory.GetMySuperWrapper(walker.GetNextSibling(inputObject.GetSourceElement())) : AutomationFactory.GetMySuperWrapper(walker.GetPreviousSibling(inputObject.GetSourceElement()));
                 
                 WriteObject(this, sibling);
             
@@ -649,7 +649,7 @@ namespace UIAutomation
             // 20131118
             // property to method
             //sibling = firstChild ? ObjectsFactory.GetMySuperWrapper(walker.GetFirstChild(inputObject.SourceElement)) : ObjectsFactory.GetMySuperWrapper(walker.GetLastChild(inputObject.GetSourceElement()));
-            sibling = firstChild ? ObjectsFactory.GetMySuperWrapper(walker.GetFirstChild(inputObject.GetSourceElement())) : ObjectsFactory.GetMySuperWrapper(walker.GetLastChild(inputObject.GetSourceElement()));
+            sibling = firstChild ? AutomationFactory.GetMySuperWrapper(walker.GetFirstChild(inputObject.GetSourceElement())) : AutomationFactory.GetMySuperWrapper(walker.GetLastChild(inputObject.GetSourceElement()));
 
             /*
             if (firstChild) {

@@ -136,8 +136,8 @@
     <Compile Include="..\UIAutomationUnitTests\Helpers\Inheritance\CommonCmdletBaseTestFixture.cs">
       <Link>Helpers\Inheritance\CommonCmdletBaseTestFixture.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomationUnitTests\Helpers\Inheritance\getAutomationElementsWithFindAllTestFixture.cs">
-      <Link>Helpers\Inheritance\getAutomationElementsWithFindAllTestFixture.cs</Link>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\Inheritance\GetAutomationElementsWithFindAllTestFixture.cs">
+      <Link>Helpers\Inheritance\GetAutomationElementsWithFindAllTestFixture.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomationUnitTests\Helpers\Inheritance\GetControlTestFixture.cs">
       <Link>Helpers\Inheritance\GetControlTestFixture.cs</Link>
@@ -145,17 +145,20 @@
     <Compile Include="..\UIAutomationUnitTests\Helpers\Inheritance\ReturnOnlyRightElementsTestFixture.cs">
       <Link>Helpers\Inheritance\ReturnOnlyRightElementsTestFixture.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomationUnitTests\Helpers\Inheritance\SearchByExactConditionsViaUiaTestFixture.cs">
-      <Link>Helpers\Inheritance\SearchByExactConditionsViaUiaTestFixture.cs</Link>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\Inheritance\SearchByTextViaUiaTextFixture.cs">
+      <Link>Helpers\Inheritance\SearchByTextViaUiaTextFixture.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomationUnitTests\Helpers\Inheritance\SearchByWildcardViaUIATestFixture.cs">
-      <Link>Helpers\Inheritance\SearchByWildcardViaUIATestFixture.cs</Link>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\Inheritance\SearchByTextViaWin32TestFixture.cs">
+      <Link>Helpers\Inheritance\SearchByTextViaWin32TestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\Inheritance\SearchByWildcardOrRegexViaUiaTestFixture.cs">
+      <Link>Helpers\Inheritance\SearchByWildcardOrRegexViaUiaTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\Inheritance\SearchByWildcardViaWin32TestFixture.cs">
+      <Link>Helpers\Inheritance\SearchByWildcardViaWin32TestFixture.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomationUnitTests\Helpers\UnderlyingCode\elementOfPossibleControlTypeTestFixture.cs">
       <Link>Helpers\UnderlyingCode\elementOfPossibleControlTypeTestFixture.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomationUnitTests\Helpers\UnderlyingCode\GetAutomationElementsViaWildcards_FindAllTestFixture.cs">
-      <Link>Helpers\UnderlyingCode\GetAutomationElementsViaWildcards_FindAllTestFixture.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomationUnitTests\Helpers\UnderlyingCode\getControlConditionsTestFixture.cs">
       <Link>Helpers\UnderlyingCode\getControlConditionsTestFixture.cs</Link>

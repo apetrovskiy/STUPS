@@ -89,7 +89,7 @@ namespace UIAutomation.Commands
                                 //selPattern.Current.GetSelection();
                                 // 20131119
                                 //new MySuperCollection(selPattern.Current.GetSelection()).Cast<IMySuperWrapper>().ToArray();
-                                ObjectsFactory.GetMySuperCollection(selPattern.Current.GetSelection()).Cast<IMySuperWrapper>().ToArray();
+                                AutomationFactory.GetMySuperCollection(selPattern.Current.GetSelection()).Cast<IMySuperWrapper>().ToArray();
                         }
                         catch (Exception eSelection) {
                             WriteDebug(this, eSelection.Message);

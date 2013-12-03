@@ -55,7 +55,7 @@ namespace UIAutomation
             }
             
             //CurrentData.Init();
-            ObjectsFactory.Init();
+            AutomationFactory.Init();
         }
         #endregion Constructor
         
@@ -936,7 +936,7 @@ namespace UIAutomation
                 //CurrentData.LastEventSource = src; //.SourceElement; // as AutomationElement;
                 // 20131112
                 //CurrentData.LastEventSource = new MySuperWrapper(src);
-                CurrentData.LastEventSource = ObjectsFactory.GetMySuperWrapper(src);
+                CurrentData.LastEventSource = AutomationFactory.GetMySuperWrapper(src);
                 CurrentData.LastEventArgs = e; // as AutomationEventArgs;
                 CurrentData.LastEventType = programmaticName;
                 CurrentData.LastEventInfoAdded = infoAdded;

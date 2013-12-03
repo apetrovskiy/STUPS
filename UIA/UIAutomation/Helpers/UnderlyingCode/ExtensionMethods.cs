@@ -70,7 +70,7 @@ namespace UIAutomation
         public static IMySuperCollection ConvertCmdletInputToCollectionAdapter(this ICollection inputArray)
         {
             IMySuperCollection resultCollection =
-                ObjectsFactory.GetMySuperCollection(inputArray);
+                AutomationFactory.GetMySuperCollection(inputArray);
             return resultCollection;
         }
     }

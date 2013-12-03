@@ -47,33 +47,38 @@ namespace UIAutomationUnitTests
             GetControlCollectionCmdletBase cmdletDerived = new GetControlCollectionCmdletBase();
             
             List<IMySuperWrapper> resultList =
-                new List<IMySuperWrapper>();
+            // 20131203
+            //    new List<IMySuperWrapper>();
             
-            cmdletDerived.SearchByWildcardOrRegexViaUia(
-                cmdlet,
-                ref resultList,
-                element,
-                cmdlet.Name,
-                cmdlet.AutomationId,
-                cmdlet.Class,
-                cmdlet.Value,
-                condition,
-                true);
+                // 20131203
+                cmdletDerived.SearchByWildcardOrRegexViaUia(
+                    cmdlet,
+                    // 20131203
+                    // ref resultList,
+                    element,
+                    cmdlet.Name,
+                    cmdlet.AutomationId,
+                    cmdlet.Class,
+                    cmdlet.Value,
+                    condition,
+                    true);
             
             return resultList;
         }
         
         public static List<IMySuperWrapper> GetResultList_ExactSearch(GetControlCmdletBase cmdlet, IMySuperWrapper element, Condition conditions)
         {
-            cmdlet.ResultListOfControls = new List<IMySuperWrapper>();
-            cmdlet.SearchByExactConditionsViaUia(cmdlet, element, conditions, cmdlet.ResultListOfControls);
+            // 20131203
+            cmdlet.ResultListOfControls = //new List<IMySuperWrapper>();
+                cmdlet.SearchByExactConditionsViaUia(cmdlet, element, conditions); //, cmdlet.ResultListOfControls);
             return cmdlet.ResultListOfControls;
         }
         
         public static List<IMySuperWrapper> GetResultList_TextSearch(GetControlCmdletBase cmdlet, IMySuperWrapper element, Condition conditions)
         {
-            cmdlet.ResultListOfControls = new List<IMySuperWrapper>();
-            cmdlet.SearchByContainsTextViaUia(cmdlet, element, conditions);
+            // 20131203
+            cmdlet.ResultListOfControls = //new List<IMySuperWrapper>();
+                cmdlet.SearchByContainsTextViaUia(cmdlet, element, conditions);
             return cmdlet.ResultListOfControls;
         }
     }

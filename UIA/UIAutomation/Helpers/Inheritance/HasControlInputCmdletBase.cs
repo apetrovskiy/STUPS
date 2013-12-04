@@ -183,8 +183,10 @@ namespace UIAutomation
                 WriteVerbose(cmdlet, "The handle of this control equals to zero");
                 WriteVerbose(cmdlet, "trying to use one of its ancestors");
                 
-                whereTheHandle = 
-                    UiaHelper.GetAncestorWithHandle(whereToClick);
+                whereTheHandle =
+                    // 20131204
+                    // UiaHelper.GetAncestorWithHandle(whereToClick);
+                    whereToClick.GetAncestorWithHandle();
                 if (whereTheHandle.Current.NativeWindowHandle == 0) {
                     ErrorRecord err = 
                         new ErrorRecord(new Exception("The handle of this control equals to zero"),

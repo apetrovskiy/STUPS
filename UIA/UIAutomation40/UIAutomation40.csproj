@@ -682,6 +682,12 @@
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\ExtensionMethods.cs">
       <Link>Helpers\UnderlyingCode\ExtensionMethods.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\ExtensionMethodsCollection.cs">
+      <Link>Helpers\UnderlyingCode\ExtensionMethodsCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\ExtensionMethodsElement.cs">
+      <Link>Helpers\UnderlyingCode\ExtensionMethodsElement.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Global.cs">
       <Link>Helpers\UnderlyingCode\Global.cs</Link>
     </Compile>

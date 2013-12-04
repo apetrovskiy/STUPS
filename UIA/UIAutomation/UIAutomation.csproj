@@ -283,6 +283,8 @@
     <Compile Include="Helpers\UnderlyingCode\Commands\Wizard\UIARemoveWizardStepCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Wizard\UIAStepWizardCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\ExtensionMethods.cs" />
+    <Compile Include="Helpers\UnderlyingCode\ExtensionMethodsCollection.cs" />
+    <Compile Include="Helpers\UnderlyingCode\ExtensionMethodsElement.cs" />
     <Compile Include="Helpers\UnderlyingCode\Ninject\ObjectLifecycleModule.cs" />
     <Compile Include="Helpers\UnderlyingCode\Ninject\AutomationFactory.cs" />
     <Compile Include="Helpers\UnderlyingCode\RDPHelper.cs" />

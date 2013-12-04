@@ -227,7 +227,9 @@ namespace UIAutomation
             if (!Preferences.HighlightParent) return;
             
             IMySuperWrapper parent =
-                GetParent(element);
+                // 20131204
+                // GetParent(element);
+                element.GetParent();
                 
             _highlighterParent =
                 new Highlighter(
@@ -1148,23 +1150,23 @@ namespace UIAutomation
         #region collect ancestors
         // 20131109
         //internal static AutomationElement GetParent(AutomationElement element)
-        internal static IMySuperWrapper GetParent(IMySuperWrapper element)
-        {
-            // 20131109
-            //AutomationElement result = null;
-            IMySuperWrapper result = null;
-            
-            TreeWalker walker =
-                new TreeWalker(
-                    System.Windows.Automation.Condition.TrueCondition);
-            
-            try {
-                result = AutomationFactory.GetMySuperWrapper(walker.GetParent(element.GetSourceElement()));
-            }
-            catch {}
-            
-            return result;
-        }
+//        internal static IMySuperWrapper GetParent(IMySuperWrapper element)
+//        {
+//            // 20131109
+//            //AutomationElement result = null;
+//            IMySuperWrapper result = null;
+//            
+//            TreeWalker walker =
+//                new TreeWalker(
+//                    System.Windows.Automation.Condition.TrueCondition);
+//            
+//            try {
+//                result = AutomationFactory.GetMySuperWrapper(walker.GetParent(element.GetSourceElement()));
+//            }
+//            catch {}
+//            
+//            return result;
+//        }
         
         internal static IMySuperWrapper GetFirstChild(IMySuperWrapper element)
         {
@@ -1595,96 +1597,96 @@ namespace UIAutomation
             return result;
         }
         
-        #region get the parent or an ancestor
-        /// <summary>
-        ///  /// </summary>
-        /// <param name="element"></param>
-        /// <param name="scope"></param>
-        /// <returns></returns>
-        internal static IMySuperWrapper[] GetParentOrAncestor(IMySuperWrapper element, TreeScope scope)
-        {
-            TreeWalker walker =
-                new TreeWalker(
-                    System.Windows.Automation.Condition.TrueCondition);
-            // 20131109
-            //System.Windows.Automation.AutomationElement testparent;
-            // 20131109
-            //System.Collections.Generic.List<AutomationElement> ancestors =
-            //    new System.Collections.Generic.List<AutomationElement>();
-            List<IMySuperWrapper> ancestors =
-                new List<IMySuperWrapper>();
-            
-            try {
-                
-                // 20131109
-                IMySuperWrapper testParent = AutomationFactory.GetMySuperWrapper(walker.GetParent(element.GetSourceElement()));
-                    
-                if (scope == TreeScope.Parent || scope == TreeScope.Ancestors) {
-                    
-                    if (testParent != MySuperWrapper.RootElement) {
-                        ancestors.Add(testParent);
-                    }
-                    
-                    if (testParent == MySuperWrapper.RootElement ||
-                        scope == TreeScope.Parent) {
-                        return ancestors.ToArray();
-                    }
-                }
-                while (testParent != null &&
-                       (int)testParent.Current.ProcessId > 0 &&
-                       testParent != MySuperWrapper.RootElement) {
-                    
-                    testParent =
-                        AutomationFactory.GetMySuperWrapper(walker.GetParent(testParent.GetSourceElement()));
-                    if (testParent != null &&
-                        (int)testParent.Current.ProcessId > 0 &&
-                        testParent != MySuperWrapper.RootElement) {
-                        
-                        ancestors.Add(testParent);
-                    }
-                }
-                return ancestors.ToArray();
-            } catch {
-                return ancestors.ToArray();
-            }
-        }
-        #endregion get the parent or an ancestor
+//        #region get the parent or an ancestor
+//        /// <summary>
+//        ///  /// </summary>
+//        /// <param name="element"></param>
+//        /// <param name="scope"></param>
+//        /// <returns></returns>
+//        internal static IMySuperWrapper[] GetParentOrAncestor(IMySuperWrapper element, TreeScope scope)
+//        {
+//            TreeWalker walker =
+//                new TreeWalker(
+//                    System.Windows.Automation.Condition.TrueCondition);
+//            // 20131109
+//            //System.Windows.Automation.AutomationElement testparent;
+//            // 20131109
+//            //System.Collections.Generic.List<AutomationElement> ancestors =
+//            //    new System.Collections.Generic.List<AutomationElement>();
+//            List<IMySuperWrapper> ancestors =
+//                new List<IMySuperWrapper>();
+//            
+//            try {
+//                
+//                // 20131109
+//                IMySuperWrapper testParent = AutomationFactory.GetMySuperWrapper(walker.GetParent(element.GetSourceElement()));
+//                    
+//                if (scope == TreeScope.Parent || scope == TreeScope.Ancestors) {
+//                    
+//                    if (testParent != MySuperWrapper.RootElement) {
+//                        ancestors.Add(testParent);
+//                    }
+//                    
+//                    if (testParent == MySuperWrapper.RootElement ||
+//                        scope == TreeScope.Parent) {
+//                        return ancestors.ToArray();
+//                    }
+//                }
+//                while (testParent != null &&
+//                       (int)testParent.Current.ProcessId > 0 &&
+//                       testParent != MySuperWrapper.RootElement) {
+//                    
+//                    testParent =
+//                        AutomationFactory.GetMySuperWrapper(walker.GetParent(testParent.GetSourceElement()));
+//                    if (testParent != null &&
+//                        (int)testParent.Current.ProcessId > 0 &&
+//                        testParent != MySuperWrapper.RootElement) {
+//                        
+//                        ancestors.Add(testParent);
+//                    }
+//                }
+//                return ancestors.ToArray();
+//            } catch {
+//                return ancestors.ToArray();
+//            }
+//        }
+//        #endregion get the parent or an ancestor
         
-        #region get an ancestor with a handle
-        /// <summary>
-        ///  /// </summary>
-        /// <param name="element"></param>
-        /// <returns></returns>
-        internal static IMySuperWrapper GetAncestorWithHandle(IMySuperWrapper element)
-        {
-            TreeWalker walker =
-                new TreeWalker(
-                    System.Windows.Automation.Condition.TrueCondition);
-            
-            // 20131109
-            //System.Windows.Automation.AutomationElement testparent;
-
-            try {
-                
-                IMySuperWrapper testparent = AutomationFactory.GetMySuperWrapper(walker.GetParent(element.GetSourceElement()));
-                while (testparent != null &&
-                       testparent.Current.NativeWindowHandle == 0) {
-                    testparent =
-                        AutomationFactory.GetMySuperWrapper(walker.GetParent(testparent.GetSourceElement()));
-                    if (testparent != null &&
-                        (int)testparent.Current.ProcessId > 0 &&
-                        testparent.Current.NativeWindowHandle != 0) {
-                        
-                        return testparent;
-                    }
-                }
-                return testparent.Current.NativeWindowHandle != 0 ? testparent : null;
-                
-            } catch {
-                return null;
-            }
-        }
-        #endregion get an ancestor with a handle
+//        #region get an ancestor with a handle
+//        /// <summary>
+//        ///  /// </summary>
+//        /// <param name="element"></param>
+//        /// <returns></returns>
+//        internal static IMySuperWrapper GetAncestorWithHandle(IMySuperWrapper element)
+//        {
+//            TreeWalker walker =
+//                new TreeWalker(
+//                    System.Windows.Automation.Condition.TrueCondition);
+//            
+//            // 20131109
+//            //System.Windows.Automation.AutomationElement testparent;
+//
+//            try {
+//                
+//                IMySuperWrapper testparent = AutomationFactory.GetMySuperWrapper(walker.GetParent(element.GetSourceElement()));
+//                while (testparent != null &&
+//                       testparent.Current.NativeWindowHandle == 0) {
+//                    testparent =
+//                        AutomationFactory.GetMySuperWrapper(walker.GetParent(testparent.GetSourceElement()));
+//                    if (testparent != null &&
+//                        (int)testparent.Current.ProcessId > 0 &&
+//                        testparent.Current.NativeWindowHandle != 0) {
+//                        
+//                        return testparent;
+//                    }
+//                }
+//                return testparent.Current.NativeWindowHandle != 0 ? testparent : null;
+//                
+//            } catch {
+//                return null;
+//            }
+//        }
+//        #endregion get an ancestor with a handle
         
         /// <summary>
         ///  /// </summary>

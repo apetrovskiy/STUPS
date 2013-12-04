@@ -797,7 +797,9 @@ namespace UIAutomation
                 if (scope != TreeScope.Parent && scope != TreeScope.Ancestors) continue;
                 // 20131109
                 //AutomationElement[] outResult = UiaHelper.GetParentOrAncestor(inputObject, scope);
-                IMySuperWrapper[] outResult = UiaHelper.GetParentOrAncestor(inputObject, scope);
+                // 20131204
+                // IMySuperWrapper[] outResult = UiaHelper.GetParentOrAncestor(inputObject, scope);
+                IMySuperWrapper[] outResult = inputObject.GetParentOrAncestor(scope);
                 WriteObject(this, outResult);
 
                 /*

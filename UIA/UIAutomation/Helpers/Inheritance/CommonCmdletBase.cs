@@ -60,6 +60,9 @@ namespace UIAutomation
         
         internal static bool ModuleAlreadyLoaded { get; set; }
         
+        // 20131204
+        internal static int HighlighterGeneration = 0;
+        
         protected override void EndProcessing()
         {
             #region close the log
@@ -237,9 +240,13 @@ namespace UIAutomation
                 WriteVerbose(this, "run Highlighter");
                 if (Preferences.ShowExecutionPlan) {
                     if (Preferences.ShowInfoToolTip) {
-                        ExecutionPlan.Enqueue(element, HighlighterGeneration, "name: " + element.Current.Name);
+                        // 20131204
+                        // ExecutionPlan.Enqueue(element, HighlighterGeneration, "name: " + element.Current.Name);
+                        ExecutionPlan.Enqueue(element, "name: " + element.Current.Name);
                     } else {
-                        ExecutionPlan.Enqueue(element, HighlighterGeneration, string.Empty);
+                        // 20131204
+                        // ExecutionPlan.Enqueue(element, HighlighterGeneration, string.Empty);
+                        ExecutionPlan.Enqueue(element, string.Empty);
                     }
                     //this.Enqueue(element);
                 } else {
@@ -397,6 +404,8 @@ namespace UIAutomation
                     WriteObject(outputObject);
                 } else {
                     WriteVerbose("returning as is");
+                    // 20131204
+                    HighlighterGeneration++;
                     WriteObject(outputObject);
                 }
             } catch { // (Exception eeeee) {
@@ -405,6 +414,8 @@ namespace UIAutomation
                 //this.WriteVerbose(this, "failed to issue the result object of AutomationElement type");
                 WriteVerbose(this, "failed to issue the result object of IMySuperWrapper type");
                 WriteVerbose(this, "returning as is");
+                // 20131204
+                HighlighterGeneration++;
                 WriteObject(outputObject);
             }
         }
@@ -514,7 +525,24 @@ namespace UIAutomation
             WriteLog(LogLevels.Info, reportString);
         }
         
-        internal static int HighlighterGeneration = 0;
+        // 20131204
+        // internal static int HighlighterGeneration = 0;
+        
+        // 20131204
+        // ????????
+        public void WriteObject(PSCmdletBase cmdlet, List<IMySuperWrapper> outputObjectCollection)
+        {
+            HighlighterGeneration++;
+            base.WriteObject(cmdlet, outputObjectCollection);
+        }
+        
+        // 20131204
+        // ????????
+        public void WriteObject(PSCmdletBase cmdlet, IMySuperCollection outputObjectCollection)
+        {
+            HighlighterGeneration++;
+            base.WriteObject(cmdlet, outputObjectCollection);
+        }
         
         public override void WriteObject(PSCmdletBase cmdlet, object[] outputObjectCollection)
         {
@@ -1393,7 +1421,9 @@ Console.WriteLine("wildcard search Win32");
                 WriteVerbose(cmdlet, "collecting controls by name (Win32)");
                 // 20131129
                 // tempListWin32.AddRange(UiaHelper.GetControlByName(cmdlet, inputObject, cmdlet.Name));
-                tempListWin32.AddRange(UiaHelper.GetControlByNameViaWin32(cmdlet, inputObject, cmdlet.Name, cmdlet.Value));
+                // 20131204
+                // tempListWin32.AddRange(UiaHelper.GetControlByNameViaWin32(cmdlet, inputObject, cmdlet.Name, cmdlet.Value));
+                tempListWin32.AddRange(inputObject.GetControlByNameViaWin32(cmdlet, cmdlet.Name, cmdlet.Value));
             }
             
             // 20131129
@@ -1475,6 +1505,9 @@ Console.WriteLine("wildcard search Win32");
                 new List<IMySuperWrapper>();
             
             try {
+                
+Console.WriteLine("/name = " + name);
+Console.WriteLine("/au Id = " + automationId);
                 
                 GetControlCollectionCmdletBase cmdlet1 =
                     new GetControlCollectionCmdletBase(
@@ -1676,9 +1709,14 @@ Console.WriteLine("wildcard search Win32");
             WriteVerbose(cmdlet, "Text search Win32");
             
             List<IMySuperWrapper> textSearchWin32List =
-                UiaHelper.GetControlByNameViaWin32(
+                // 20131204
+                // UiaHelper.GetControlByNameViaWin32(
+                //     cmdlet,
+                //     inputObject,
+                //     cmdlet.ContainsText,
+                //     string.Empty);
+                inputObject.GetControlByNameViaWin32(
                     cmdlet,
-                    inputObject,
                     cmdlet.ContainsText,
                     string.Empty);
             

@@ -17,6 +17,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
     using UIAutomation;
     using MbUnit.Framework;
     using System.Linq;
+    using System.Management.Automation;
     
     /// <summary>
     /// Description of SearchByWildcardOrRegexViaUiaTestFixture.
@@ -66,15 +67,20 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             List<IMySuperWrapper> resultList = RealCodeCaller.GetResultList_ViaWildcards(cmdlet, element, condition);
             
             // Assert
+            WildcardOptions options = WildcardOptions.IgnoreCase;
+            WildcardPattern namePatern = new WildcardPattern(name, options);
+            WildcardPattern automationIdPatern = new WildcardPattern(automationId, options);
+            WildcardPattern classNamePatern = new WildcardPattern(className, options);
+            WildcardPattern txtValuePatern = new WildcardPattern(txtValue, options);
             Assert.Count(expectedNumberOfElements, resultList);
             if (!string.IsNullOrEmpty(name)) {
-                Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.Name == name);
+                Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => namePatern.IsMatch(x.Current.Name));
             }
             if (!string.IsNullOrEmpty(automationId)) {
-                Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.AutomationId == automationId);
+                Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => automationIdPatern.IsMatch(x.Current.AutomationId));
             }
             if (!string.IsNullOrEmpty(className)) {
-                Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.ClassName == className);
+                Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => classNamePatern.IsMatch(x.Current.ClassName));
             }
             if (null != controlType) {
                 Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.ControlType == controlType);
@@ -86,7 +92,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                     .ToList<IMySuperWrapper>(), x =>
                     {
                         IMySuperValuePattern valuePattern = x.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern;
-                        return valuePattern != null && valuePattern.Current.Value == txtValue;
+                        return valuePattern != null && txtValuePatern.IsMatch(valuePattern.Current.Value);
                     });
             }
         }
@@ -224,7 +230,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         [Test]
         public void Get0_byName()
         {
-            const string name = "aaa";
+            const string name = "*ame??atche*";
             string automationId = string.Empty;
             string className = string.Empty;
             string txtValue = string.Empty;
@@ -242,7 +248,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         [Test]
         public void Get0of3_byName()
         {
-            const string name = "aaa";
+            const string name = "*ame??atche*";
             string automationId = string.Empty;
             string className = string.Empty;
             string txtValue = string.Empty;
@@ -264,7 +270,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         [Test]
         public void Get1of3_byName()
         {
-            const string name = "aaa";
+            const string name = "*ame??atche*";
             string automationId = string.Empty;
             string className = string.Empty;
             string txtValue = string.Empty;
@@ -277,7 +283,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 txtValue,
                 new [] {
                     FakeFactory.GetAutomationElementNotExpected(ControlType.Tab, "other name", string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElementExpected(ControlType.Image, name, string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Image, "name matches", string.Empty, string.Empty, string.Empty),
                     FakeFactory.GetAutomationElementNotExpected(ControlType.Button, "third name", string.Empty, string.Empty, string.Empty)
                 },
                 1);
@@ -286,7 +292,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         [Test]
         public void Get3of3_byName()
         {
-            const string name = "aaa";
+            const string name = "*ame??atche*";
             string automationId = string.Empty;
             string className = string.Empty;
             string txtValue = string.Empty;
@@ -298,9 +304,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                    FakeFactory.GetAutomationElementExpected(ControlType.Button, name, string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElementExpected(ControlType.Custom, name, string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElementExpected(ControlType.Hyperlink, name, string.Empty, string.Empty, string.Empty)
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, "name matches", string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Custom, "Name matches", string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Hyperlink, "name matcheZ", string.Empty, string.Empty, string.Empty)
                 },
                 3);
         }
@@ -311,7 +317,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         public void Get0_byAutomationId()
         {
             string name = string.Empty;
-            const string automationId = "zzz";
+            const string automationId = "*au*oo*";
             string className = string.Empty;
             string txtValue = string.Empty;
             ControlType controlType = null;
@@ -329,7 +335,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         public void Get0of3_byAutomationId()
         {
             string name = string.Empty;
-            const string automationId = "zzz";
+            const string automationId = "*au*oo*";
             string className = string.Empty;
             string txtValue = string.Empty;
             ControlType controlType = null;
@@ -351,7 +357,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         public void Get1of3_byAutomationId()
         {
             string name = string.Empty;
-            const string automationId = "zzz";
+            const string automationId = "*au*oo*";
             string className = string.Empty;
             string txtValue = string.Empty;
             ControlType controlType = null;
@@ -363,7 +369,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 txtValue,
                 new [] {
                     FakeFactory.GetAutomationElementNotExpected(ControlType.Button, string.Empty, "au01", string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElementExpected(ControlType.Button, string.Empty, automationId, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, string.Empty, "automationId is good", string.Empty, string.Empty),
                     FakeFactory.GetAutomationElementNotExpected(ControlType.Button, string.Empty, "au03", string.Empty, string.Empty)
                 },
                 1);
@@ -373,7 +379,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         public void Get3of3_byAutomationId()
         {
             string name = string.Empty;
-            const string automationId = "zzz";
+            const string automationId = "*au*oo*";
             string className = string.Empty;
             string txtValue = string.Empty;
             ControlType controlType = null;
@@ -384,9 +390,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                    FakeFactory.GetAutomationElementExpected(ControlType.Button, string.Empty, automationId, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElementExpected(ControlType.Button, string.Empty, automationId, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElementExpected(ControlType.Button, string.Empty, automationId, string.Empty, string.Empty)
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, string.Empty, "automationId is good", string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, string.Empty, "automationId is always cool", string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, string.Empty, "AUautomationId woo", string.Empty, string.Empty)
                 },
                 3);
         }
@@ -568,7 +574,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         [Test]
         public void Get0_byControlTypeName()
         {
-            const string name = "aaa";
+            const string name = "*ame??atche*";
             string automationId = string.Empty;
             string className = string.Empty;
             string txtValue = string.Empty;
@@ -586,7 +592,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         [Test]
         public void Get0of4_byControlTypeName()
         {
-            const string name = "aaa";
+            const string name = "*ame??atche*";
             string automationId = string.Empty;
             string className = string.Empty;
             string txtValue = string.Empty;
@@ -609,7 +615,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         [Test]
         public void Get1of4_byControlTypeName()
         {
-            const string name = "aaa";
+            const string name = "*ame??atche*";
             string automationId = string.Empty;
             string className = string.Empty;
             string txtValue = string.Empty;
@@ -622,7 +628,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 txtValue,
                 new [] {
                     FakeFactory.GetAutomationElementNotExpected(controlType, "other name", string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElementExpected(controlType, name, string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(controlType, "name matches", string.Empty, string.Empty, string.Empty),
                     FakeFactory.GetAutomationElementNotExpected(controlType, "third name", string.Empty, string.Empty, string.Empty),
                     FakeFactory.GetAutomationElementNotExpected(ControlType.Group, name, string.Empty, string.Empty, string.Empty)
                 },
@@ -632,7 +638,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         [Test]
         public void Get3of3_byControlTypeName()
         {
-            const string name = "aaa";
+            const string name = "*ame??atche*";
             string automationId = string.Empty;
             string className = string.Empty;
             string txtValue = string.Empty;
@@ -644,9 +650,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                    FakeFactory.GetAutomationElementExpected(controlType, name, string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElementExpected(controlType, name, string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElementExpected(controlType, name, string.Empty, string.Empty, string.Empty)
+                    FakeFactory.GetAutomationElementExpected(controlType, "name matches", string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(controlType, "NNName matches", string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(controlType, "name matcheZ", string.Empty, string.Empty, string.Empty)
                 },
                 3);
         }
@@ -657,7 +663,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         public void Get0_byControlTypeAutomationId()
         {
             string name = string.Empty;
-            const string automationId = "zzz";
+            const string automationId = "*au*oo*";
             string className = string.Empty;
             string txtValue = string.Empty;
             ControlType controlType = ControlType.Button;
@@ -675,7 +681,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         public void Get0of4_byControlTypeAutomationId()
         {
             string name = string.Empty;
-            const string automationId = "zzz";
+            const string automationId = "*au*oo*";
             string className = string.Empty;
             string txtValue = string.Empty;
             ControlType controlType = ControlType.Button;
@@ -698,7 +704,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         public void Get1of4_byControlTypeAutomationId()
         {
             string name = string.Empty;
-            const string automationId = "zzz";
+            const string automationId = "*au*oo*";
             string className = string.Empty;
             string txtValue = string.Empty;
             ControlType controlType = ControlType.Button;
@@ -721,7 +727,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         public void Get3of3_byControlTypeAutomationId()
         {
             string name = string.Empty;
-            const string automationId = "zzz";
+            const string automationId = "*au*oo*";
             string className = string.Empty;
             string txtValue = string.Empty;
             ControlType controlType = ControlType.Button;
@@ -920,8 +926,8 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         [Test]
         public void Get0_byNameAutomationId()
         {
-            const string name = "aaa";
-            const string automationId = "zzz";
+            const string name = "*ame??atche*";
+            const string automationId = "*au*oo*";
             string className = string.Empty;
             string txtValue = string.Empty;
             ControlType controlType = null;
@@ -938,8 +944,8 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         [Test]
         public void Get0of4_byNameAutomationId()
         {
-            const string name = "aaa";
-            const string automationId = "zzz";
+            const string name = "*ame??atche*";
+            const string automationId = "*au*oo*";
             string className = string.Empty;
             string txtValue = string.Empty;
             ControlType controlType = null;
@@ -953,7 +959,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                     FakeFactory.GetAutomationElementNotExpected(ControlType.Button, "other name", string.Empty, string.Empty, string.Empty),
                     FakeFactory.GetAutomationElementNotExpected(ControlType.Button, "second name", automationId, string.Empty, string.Empty),
                     FakeFactory.GetAutomationElementNotExpected(ControlType.Button, "third name", automationId, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElementNotExpected(ControlType.DataGrid, name, "fourth automationId", string.Empty, string.Empty)
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.DataGrid, "name matches", "fourth automationId", string.Empty, string.Empty)
                 },
                 0);
         }
@@ -961,8 +967,8 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         [Test]
         public void Get1of4_byNameAutomationId()
         {
-            const string name = "aaa";
-            const string automationId = "zzz";
+            const string name = "*ame??atche*";
+            const string automationId = "*au*oo*";
             string className = string.Empty;
             string txtValue = string.Empty;
             ControlType controlType = null;
@@ -974,9 +980,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 txtValue,
                 new [] {
                     FakeFactory.GetAutomationElementNotExpected(ControlType.Button, "other name", automationId, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElementExpected(ControlType.Button, name, automationId, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, name, "third automationId", string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElementNotExpected(ControlType.Group, name, string.Empty, string.Empty, string.Empty)
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, "name matches", automationId, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, "ABCame matches", "third automationId", string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Group, "name matchez", string.Empty, string.Empty, string.Empty)
                 },
                 1);
         }
@@ -984,8 +990,8 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         [Test]
         public void Get3of3_byNameAutomationId()
         {
-            const string name = "aaa";
-            const string automationId = "zzz";
+            const string name = "*ame??atche*";
+            const string automationId = "*au*oo*";
             string className = string.Empty;
             string txtValue = string.Empty;
             ControlType controlType = null;
@@ -996,9 +1002,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                    FakeFactory.GetAutomationElementExpected(ControlType.Button, name, automationId, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElementExpected(ControlType.Button, name, automationId, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElementExpected(ControlType.Button, name, automationId, string.Empty, string.Empty)
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, "name matches", automationId, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, "*ame matches", automationId, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, "name matcheR", automationId, string.Empty, string.Empty)
                 },
                 3);
         }
@@ -1008,7 +1014,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         [Test]
         public void Get0_byNameClass()
         {
-            const string name = "aaa";
+            const string name = "*ame??atche*";
             string automationId = string.Empty;
             const string className = "yyy";
             string txtValue = string.Empty;
@@ -1026,7 +1032,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         [Test]
         public void Get0of4_byNameClass()
         {
-            const string name = "aaa";
+            const string name = "*ame??atche*";
             string automationId = string.Empty;
             const string className = "yyy";
             string txtValue = string.Empty;
@@ -1039,9 +1045,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 txtValue,
                 new [] {
                     FakeFactory.GetAutomationElementNotExpected(ControlType.Button, "other name", string.Empty, className, string.Empty),
-                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, name, string.Empty, "second className", string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, "name matches", string.Empty, "second className", string.Empty),
                     FakeFactory.GetAutomationElementNotExpected(ControlType.Button, "third name", string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElementNotExpected(ControlType.DataGrid, className, string.Empty, name, string.Empty)
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.DataGrid, className, string.Empty, "name matches", string.Empty)
                 },
                 0);
         }
@@ -1049,7 +1055,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         [Test]
         public void Get1of4_byNameClass()
         {
-            const string name = "aaa";
+            const string name = "*ame??atche*";
             string automationId = string.Empty;
             const string className = "yyy";
             string txtValue = string.Empty;
@@ -1062,9 +1068,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 txtValue,
                 new [] {
                     FakeFactory.GetAutomationElementNotExpected(ControlType.Button, "other name", string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElementExpected(ControlType.Button, name, string.Empty, className, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, "name matches", string.Empty, className, string.Empty),
                     FakeFactory.GetAutomationElementNotExpected(ControlType.Button, "third name", string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElementNotExpected(ControlType.Group, name, string.Empty, "fourth className", string.Empty)
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Group, "name matches!!!", string.Empty, "fourth className", string.Empty)
                 },
                 1);
         }
@@ -1072,7 +1078,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         [Test]
         public void Get3of3_byNameClass()
         {
-            const string name = "aaa";
+            const string name = "*ame??atche*";
             string automationId = string.Empty;
             const string className = "yyy";
             string txtValue = string.Empty;
@@ -1084,9 +1090,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                    FakeFactory.GetAutomationElementExpected(ControlType.Button, name, string.Empty, className, string.Empty),
-                    FakeFactory.GetAutomationElementExpected(ControlType.Button, name, string.Empty, className, string.Empty),
-                    FakeFactory.GetAutomationElementExpected(ControlType.Button, name, string.Empty, className, string.Empty)
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, "name matches", string.Empty, className, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, "name_matches", string.Empty, className, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, "name matche111", string.Empty, className, string.Empty)
                 },
                 3);
         }
@@ -1096,7 +1102,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         [Test]
         public void Get0_byNameValue()
         {
-            const string name = "aaa";
+            const string name = "*ame??atche*";
             string automationId = string.Empty;
             string className = string.Empty;
             const string txtValue = "xxx";
@@ -1114,7 +1120,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         [Test]
         public void Get0of4_byNameValue()
         {
-            const string name = "aaa";
+            const string name = "*ame??atche*";
             string automationId = string.Empty;
             string className = string.Empty;
             const string txtValue = "xxx";
@@ -1127,9 +1133,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 txtValue,
                 new [] {
                     FakeFactory.GetAutomationElementNotExpected(ControlType.Button, "other name", string.Empty, string.Empty, txtValue),
-                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, name, string.Empty, string.Empty," second value"),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, "name matches", string.Empty, string.Empty," second value"),
                     FakeFactory.GetAutomationElementNotExpected(ControlType.Button, "third name", string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElementNotExpected(ControlType.DataGrid, txtValue, string.Empty, string.Empty, name)
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.DataGrid, txtValue, string.Empty, string.Empty, "name matches")
                 },
                 0);
         }
@@ -1137,7 +1143,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         [Test]
         public void Get1of4_byNameValue()
         {
-            const string name = "aaa";
+            const string name = "*ame??atche*";
             string automationId = string.Empty;
             string className = string.Empty;
             const string txtValue = "xxx";
@@ -1150,9 +1156,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 txtValue,
                 new [] {
                     FakeFactory.GetAutomationElementNotExpected(ControlType.Button, "other name", string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElementExpected(ControlType.Button, name, string.Empty, string.Empty, txtValue),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, "name matches", string.Empty, string.Empty, txtValue),
                     FakeFactory.GetAutomationElementNotExpected(ControlType.Button, "third name", string.Empty, string.Empty, "third value"),
-                    FakeFactory.GetAutomationElementNotExpected(ControlType.Group, name, string.Empty, "fourth className", string.Empty)
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Group, "name matchES", string.Empty, "fourth className", string.Empty)
                 },
                 1);
         }
@@ -1160,7 +1166,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         [Test]
         public void Get3of3_byNameValue()
         {
-            const string name = "aaa";
+            const string name = "*ame??atche*";
             string automationId = string.Empty;
             string className = string.Empty;
             const string txtValue = "xxx";
@@ -1172,9 +1178,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                    FakeFactory.GetAutomationElementExpected(ControlType.Button, name, string.Empty, string.Empty, txtValue),
-                    FakeFactory.GetAutomationElementExpected(ControlType.Button, name, string.Empty, string.Empty, txtValue),
-                    FakeFactory.GetAutomationElementExpected(ControlType.Button, name, string.Empty, string.Empty, txtValue)
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, "name matches", string.Empty, string.Empty, txtValue),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, "///ame matches", string.Empty, string.Empty, txtValue),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, "name matche///", string.Empty, string.Empty, txtValue)
                 },
                 3);
         }
@@ -1185,7 +1191,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         public void Get0_byAutomationIdClass()
         {
             string name = string.Empty;
-            const string automationId = "zzz";
+            const string automationId = "*au*oo*";
             const string className = "yyy";
             string txtValue = string.Empty;
             ControlType controlType = null;
@@ -1203,7 +1209,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         public void Get0of4_byAutomationIdClass()
         {
             string name = string.Empty;
-            const string automationId = "zzz";
+            const string automationId = "*au*oo*";
             const string className = "yyy";
             string txtValue = string.Empty;
             ControlType controlType = null;
@@ -1226,7 +1232,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         public void Get1of4_byAutomationIdClass()
         {
             string name = string.Empty;
-            const string automationId = "zzz";
+            const string automationId = "*au*oo*";
             const string className = "yyy";
             string txtValue = string.Empty;
             ControlType controlType = null;
@@ -1249,7 +1255,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         public void Get3of3_byAutomationIdClass()
         {
             string name = string.Empty;
-            const string automationId = "zzz";
+            const string automationId = "*au*oo*";
             const string className = "yyy";
             string txtValue = string.Empty;
             ControlType controlType = null;
@@ -1272,8 +1278,8 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         [Test]
         public void Get0_byNameAutomationIdClassValueControlType()
         {
-            const string name = "aaa";
-            const string automationId = "zzz";
+            const string name = "*ame??atche*";
+            const string automationId = "*au*oo*";
             const string className = "yyy";
             const string txtValue = "xxx";
             ControlType controlType = ControlType.Button;
@@ -1290,8 +1296,8 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         [Test]
         public void Get0of4_byNameAutomationIdClassValueControlType()
         {
-            const string name = "aaa";
-            const string automationId = "zzz";
+            const string name = "*ame??atche*";
+            const string automationId = "*au*oo*";
             const string className = "yyy";
             const string txtValue = "xxx";
             ControlType controlType = ControlType.Button;
@@ -1303,9 +1309,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 txtValue,
                 new [] {
                     FakeFactory.GetAutomationElementNotExpected(controlType, string.Empty, automationId, className, string.Empty),
-                    FakeFactory.GetAutomationElementNotExpected(controlType, name, automationId, "second className", txtValue),
+                    FakeFactory.GetAutomationElementNotExpected(controlType, "name matches", automationId, "second className", txtValue),
                     FakeFactory.GetAutomationElementNotExpected(controlType, string.Empty, automationId, className, txtValue),
-                    FakeFactory.GetAutomationElementNotExpected(ControlType.DataGrid, txtValue, className, automationId, name)
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.DataGrid, txtValue, className, automationId, "name matches")
                 },
                 0);
         }
@@ -1313,8 +1319,8 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         [Test]
         public void Get1of4_byNameAutomationIdClassValueControlType()
         {
-            const string name = "aaa";
-            const string automationId = "zzz";
+            const string name = "*ame??atche*";
+            const string automationId = "*au*oo*";
             const string className = "yyy";
             const string txtValue = "xxx";
             ControlType controlType = ControlType.Button;
@@ -1326,9 +1332,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 txtValue,
                 new [] {
                     FakeFactory.GetAutomationElementNotExpected(controlType, string.Empty, "other auId", className, string.Empty),
-                    FakeFactory.GetAutomationElementExpected(controlType, name, automationId, className, txtValue),
+                    FakeFactory.GetAutomationElementExpected(controlType, "name matches", automationId, className, txtValue),
                     FakeFactory.GetAutomationElementNotExpected(controlType, string.Empty, string.Empty, className, string.Empty),
-                    FakeFactory.GetAutomationElementNotExpected(ControlType.Group, name, automationId, className, txtValue)
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Group, "name matches?", automationId, className, txtValue)
                 },
                 1);
         }
@@ -1336,8 +1342,8 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         [Test]
         public void Get3of3_byNameAutomationIdClassValueControlType()
         {
-            const string name = "aaa";
-            const string automationId = "zzz";
+            const string name = "*ame??atche*";
+            const string automationId = "*au*oo*";
             const string className = "yyy";
             const string txtValue = "xxx";
             ControlType controlType = ControlType.Button;
@@ -1348,9 +1354,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 className,
                 txtValue,
                 new [] {
-                        FakeFactory.GetAutomationElementExpected(controlType, name, automationId, className, txtValue),
-                        FakeFactory.GetAutomationElementExpected(controlType, name, automationId, className, txtValue),
-                        FakeFactory.GetAutomationElementExpected(controlType, name, automationId, className, txtValue)
+                        FakeFactory.GetAutomationElementExpected(controlType, "name matches", automationId, className, txtValue),
+                        FakeFactory.GetAutomationElementExpected(controlType, "name+matches", automationId, className, txtValue),
+                        FakeFactory.GetAutomationElementExpected(controlType, "_name matches_", automationId, className, txtValue)
                 },
                 3);
         }

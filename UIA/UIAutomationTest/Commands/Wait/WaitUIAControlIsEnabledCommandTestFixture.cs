@@ -40,7 +40,7 @@ namespace UIAutomationTest.Commands.Wait
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
 //                @"if (-not (Get-UiaWindow -pn " +
 //                MiddleLevelCode.TestFormProcess +
-//                @" | Get-UIA" +
+//                @" | Get-Uia" +
 //                controlType +
 //                " -" + propertyName + " '" +
 //                name +
@@ -50,7 +50,7 @@ namespace UIAutomationTest.Commands.Wait
 //                @" | Get-UiaButton -Name Button2 | Invoke-UiaButtonClick; " +
 //                @"Get-UiaWindow -pn " +
 //                MiddleLevelCode.TestFormProcess +
-//                @" | Get-UIA" + 
+//                @" | Get-Uia" + 
 //                controlType +
 //                " -" + propertyName + " '" +
 //                name + 
@@ -67,7 +67,7 @@ namespace UIAutomationTest.Commands.Wait
                 @"=""" +
                 name +
                 @""";IsEnabled=$false}){ $null = Get-UiaButton -Name Button2 | Invoke-UiaButtonClick; " +
-                @"Get-UIA" +
+                @"Get-Uia" +
                 controlType +
                 " -" + propertyName + " '" +
                 name +

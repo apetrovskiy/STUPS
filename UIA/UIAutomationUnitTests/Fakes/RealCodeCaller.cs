@@ -46,6 +46,9 @@ namespace UIAutomationUnitTests
         {
             GetControlCollectionCmdletBase cmdletDerived = new GetControlCollectionCmdletBase();
             
+Console.WriteLine("name = " + cmdlet.Name);
+Console.WriteLine("auId = " + cmdlet.AutomationId);
+            
             List<IMySuperWrapper> resultList =
                 cmdletDerived.SearchByWildcardOrRegexViaUia(
                     cmdlet,

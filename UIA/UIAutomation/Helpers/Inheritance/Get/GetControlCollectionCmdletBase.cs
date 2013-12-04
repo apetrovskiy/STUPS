@@ -348,6 +348,9 @@ namespace UIAutomation
 
             try {
                 
+Console.WriteLine("//name = " + name);
+Console.WriteLine("//au id = " + automationId);
+                
                 IMySuperCollection results =
                     element.FindAll(
                         TreeScope.Descendants,
@@ -357,6 +360,12 @@ namespace UIAutomation
                     "There are roughly " +
                     results.Count.ToString() +
                     " elements");
+                
+Console.WriteLine("results:");
+foreach (IMySuperWrapper returnedElement in results) {
+    Console.WriteLine(returnedElement.Current.Name);
+    Console.WriteLine(returnedElement.Current.AutomationId);
+}
                 
                 resultCollection =
                     ReturnOnlyRightElements(
@@ -372,7 +381,14 @@ namespace UIAutomation
                 
                 // 20130608
                 results = null;
-
+                
+                
+Console.WriteLine("resultCollection:");
+foreach (IMySuperWrapper returnedElement2 in resultCollection) {
+    Console.WriteLine(returnedElement2.Current.Name);
+    Console.WriteLine(returnedElement2.Current.AutomationId);
+}
+                
             }
             catch { //(Exception eWildCardSearch) {
                 

@@ -9,7 +9,7 @@
 
 namespace UIAutomation
 {
-	//using System;
+	using System;
 	using System.Collections.Generic;
 	//using System.Windows.Automation;
 	using System.Drawing;
@@ -110,7 +110,8 @@ namespace UIAutomation
 	        // 20131109
 			//AutomationElement elementToHighlight,
 			IMySuperWrapper elementToHighlight,
-			int highlightersGeneration,
+			// 20131204
+			// int highlightersGeneration,
 		    string highlighterData)
 		{
 		    // 20131109
@@ -119,11 +120,15 @@ namespace UIAutomation
             /*
             if (null == (elementToHighlight as IMySuperWrapper)) return;
             */
-		    if (0 >= highlightersGeneration) {
-		        HighlighterNumber++;
-		    } else {
-		        HighlighterNumber = highlightersGeneration;
-		    }
+            // 20131204
+//		    if (0 >= highlightersGeneration) {
+//		        HighlighterNumber++;
+//		    } else {
+//		        HighlighterNumber = highlightersGeneration;
+//		    }
+            if (0 == CommonCmdletBase.HighlighterGeneration) {
+                CommonCmdletBase.HighlighterGeneration++;
+            }
 				
 		    Highlighter highlighter = new Highlighter(
 		        elementToHighlight.Current.BoundingRectangle.Height,
@@ -131,8 +136,12 @@ namespace UIAutomation
 		        elementToHighlight.Current.BoundingRectangle.X,
 		        elementToHighlight.Current.BoundingRectangle.Y,
 		        elementToHighlight.Current.NativeWindowHandle,
-		        (Highlighters)(HighlighterNumber % 10),
-		        HighlighterNumber,
+		        // 20131204
+		        // (Highlighters)(HighlighterNumber % 10),
+		        (Highlighters)(CommonCmdletBase.HighlighterGeneration % 10),
+		        // 20131204
+		        // HighlighterNumber,
+		        CommonCmdletBase.HighlighterGeneration,
 		        highlighterData);
 		    Enqueue(highlighter);
 

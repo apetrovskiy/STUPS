@@ -326,7 +326,7 @@ namespace UIAutomationSpy
             }
                 
             string elementVerbosity = 
-                @"Get-UIA" + elementControlType;
+                @"Get-Uia" + elementControlType;
             try {
                 if (element.Current.AutomationId.Length > 0) {
                     elementVerbosity += (" -AutomationId '" + element.Current.AutomationId + "'");

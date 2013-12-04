@@ -20,9 +20,9 @@ namespace UIAutomation
     /// </summary>
     public static class RdpHelper
     {
-        static RdpHelper()
-        {
-        }
+//        static RdpHelper()
+//        {
+//        }
 
         public const string RDpProtocolFile = @"screen mode id:i:1
 use multimon:i:0

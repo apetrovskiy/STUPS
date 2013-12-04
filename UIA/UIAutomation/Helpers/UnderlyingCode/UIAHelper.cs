@@ -26,7 +26,6 @@ namespace UIAutomation
     using PSTestLib;
     
     using Commands;
-    using System.Linq;
     using System.Threading;
     using TMX;
 
@@ -43,6 +42,11 @@ namespace UIAutomation
         private static Highlighter _highlighterCheckedControl = null;
         private static Banner _banner = null;
         private static IMySuperWrapper _element = null;
+        
+        private static string _errorMessageInTheGatheringCycle = String.Empty;
+        private static bool _errorInTheGatheringCycle = false;
+        private static string _errorMessageInTheInnerCycle = String.Empty;
+        private static bool _errorInTheInnerCycle = false;
         
         private static List<IntPtr> GetControlByNameViaWin32Recursively(
             PSCmdletBase cmdlet,
@@ -625,10 +629,10 @@ namespace UIAutomation
         
         #region Start-UiaTranscript
         
-        private static string _errorMessageInTheGatheringCycle = String.Empty;
-        private static bool _errorInTheGatheringCycle = false;
-        private static string _errorMessageInTheInnerCycle = String.Empty;
-        private static bool _errorInTheInnerCycle = false;
+//        private static string _errorMessageInTheGatheringCycle = String.Empty;
+//        private static bool _errorInTheGatheringCycle = false;
+//        private static string _errorMessageInTheInnerCycle = String.Empty;
+//        private static bool _errorInTheInnerCycle = false;
         
         /// <summary>
         ///
@@ -963,7 +967,9 @@ namespace UIAutomation
                         
                         if (element == null) { return result; } // 20120306
                         try{
-                            collectAncestors(cmdlet, element);
+                            // 20131204
+                            // collectAncestors(cmdlet, element);
+                            element.CollectAncestors(cmdlet);
                         }
                         catch { //(Exception eCollecingAncestors) {
                             //                                Exception eCollecingAncestors2 =
@@ -1184,113 +1190,114 @@ namespace UIAutomation
             return result;
         }
         
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="cmdlet"></param>
-        /// <param name="element"></param>
-        private static void collectAncestors(TranscriptCmdletBase cmdlet, IMySuperWrapper element)
-        {
-            TreeWalker walker =
-                new TreeWalker(
-                    System.Windows.Automation.Condition.TrueCondition);
-            // 20131109
-            //System.Windows.Automation.AutomationElement testparent;
-
-            try
-            {
-                // commented out 201206210
-                //testparent =
-                //    walker.GetParent(element);
-                IMySuperWrapper testParent = element;
-
-                while (testParent != null && (int)testParent.Current.ProcessId > 0) {
-                    
-                    testParent =
-                        AutomationFactory.GetMySuperWrapper(walker.GetParent(testParent.GetSourceElement()));
-                    
-                    if (testParent == null || (int) testParent.Current.ProcessId <= 0) continue;
-                    if (testParent == cmdlet.OddRootElement)
-                    { testParent = null; }
-                    else{
-                        string parentControlType =
-                            // getControlTypeNameOfAutomationElement(testparent, element);
-                            // testparent.Current.ControlType.ProgrammaticName.Substring(
-                            // element.Current.ControlType.ProgrammaticName.IndexOf('.') + 1);
-                            //  // experimental
-                            testParent.Current.ControlType.ProgrammaticName.Substring(
-                                testParent.Current.ControlType.ProgrammaticName.IndexOf('.') + 1);
-                        //  // if (parentControlType.Length == 0) {
-                        // break;
-                        //}
-                            
-                        // in case this element is an upper-level Pane
-                        // residing directrly under the RootElement
-                        // change type to window
-                        // i.e. Get-UiaPane - >  Get-UiaWindow
-                        // since Get-UiaPane is unable to get something more than
-                        // a window's child pane control
-                        if (parentControlType == "Pane" || parentControlType == "Menu") {
-                            
-                            // 20131109
-                            //if (walker.GetParent(testParent) == cmdlet.rootElement) {
-                            // 20131112
-                            //if ((new MySuperWrapper(walker.GetParent(testParent.SourceElement))) == cmdlet.oddRootElement) {
-                            // 20131118
-                            // property to method
-                            //if (ObjectsFactory.GetMySuperWrapper(walker.GetParent(testParent.SourceElement)) == cmdlet.oddRootElement) {
-                            if (AutomationFactory.GetMySuperWrapper(walker.GetParent(testParent.GetSourceElement())) == cmdlet.OddRootElement) {
-                                parentControlType = "Window";
-                            }
-                        }
-                            
-                        string parentVerbosity =
-                            @"Get-UIA" + parentControlType;
-                        try {
-                            if (testParent.Current.AutomationId.Length > 0) {
-                                parentVerbosity += (" -AutomationId '" + testParent.Current.AutomationId + "'");
-                            }
-                        }
-                        catch {
-                        }
-                        if (!cmdlet.NoClassInformation) {
-                            try {
-                                if (testParent.Current.ClassName.Length > 0) {
-                                    parentVerbosity += (" -Class '" + testParent.Current.ClassName + "'");
-                                }
-                            }
-                            catch {
-                            }
-                        }
-                        try {
-                            if (testParent.Current.Name.Length > 0) {
-                                parentVerbosity += (" -Name '" + testParent.Current.Name + "'");
-                            }
-                        }
-                        catch {
-                        }
-
-                        if (cmdlet.LastRecordedItem[cmdlet.LastRecordedItem.Count - 1].ToString() == parentVerbosity)
-                            continue;
-                        cmdlet.LastRecordedItem.Add(parentVerbosity);
-                        cmdlet.WriteVerbose(parentVerbosity);
-                    }
-                }
-            }
-            catch (Exception eErrorInTheInnerCycle) {
-                cmdlet.WriteDebug(cmdlet, eErrorInTheInnerCycle.Message);
-                _errorMessageInTheInnerCycle =
-                    eErrorInTheInnerCycle.Message;
-                _errorInTheInnerCycle = true;
-            }
-        }
+//        /// <summary>
+//        ///
+//        /// </summary>
+//        /// <param name="cmdlet"></param>
+//        /// <param name="element"></param>
+//        // private static void collectAncestors(TranscriptCmdletBase cmdlet, IMySuperWrapper element)
+//        public static void collectAncestors(this IMySuperWrapper element, TranscriptCmdletBase cmdlet)
+//        {
+//            TreeWalker walker =
+//                new TreeWalker(
+//                    System.Windows.Automation.Condition.TrueCondition);
+//            // 20131109
+//            //System.Windows.Automation.AutomationElement testparent;
+//
+//            try
+//            {
+//                // commented out 201206210
+//                //testparent =
+//                //    walker.GetParent(element);
+//                IMySuperWrapper testParent = element;
+//
+//                while (testParent != null && (int)testParent.Current.ProcessId > 0) {
+//                    
+//                    testParent =
+//                        AutomationFactory.GetMySuperWrapper(walker.GetParent(testParent.GetSourceElement()));
+//                    
+//                    if (testParent == null || (int) testParent.Current.ProcessId <= 0) continue;
+//                    if (testParent == cmdlet.OddRootElement)
+//                    { testParent = null; }
+//                    else{
+//                        string parentControlType =
+//                            // getControlTypeNameOfAutomationElement(testparent, element);
+//                            // testparent.Current.ControlType.ProgrammaticName.Substring(
+//                            // element.Current.ControlType.ProgrammaticName.IndexOf('.') + 1);
+//                            //  // experimental
+//                            testParent.Current.ControlType.ProgrammaticName.Substring(
+//                                testParent.Current.ControlType.ProgrammaticName.IndexOf('.') + 1);
+//                        //  // if (parentControlType.Length == 0) {
+//                        // break;
+//                        //}
+//                            
+//                        // in case this element is an upper-level Pane
+//                        // residing directrly under the RootElement
+//                        // change type to window
+//                        // i.e. Get-UiaPane - >  Get-UiaWindow
+//                        // since Get-UiaPane is unable to get something more than
+//                        // a window's child pane control
+//                        if (parentControlType == "Pane" || parentControlType == "Menu") {
+//                            
+//                            // 20131109
+//                            //if (walker.GetParent(testParent) == cmdlet.rootElement) {
+//                            // 20131112
+//                            //if ((new MySuperWrapper(walker.GetParent(testParent.SourceElement))) == cmdlet.oddRootElement) {
+//                            // 20131118
+//                            // property to method
+//                            //if (ObjectsFactory.GetMySuperWrapper(walker.GetParent(testParent.SourceElement)) == cmdlet.oddRootElement) {
+//                            if (AutomationFactory.GetMySuperWrapper(walker.GetParent(testParent.GetSourceElement())) == cmdlet.OddRootElement) {
+//                                parentControlType = "Window";
+//                            }
+//                        }
+//                            
+//                        string parentVerbosity =
+//                            @"Get-UIA" + parentControlType;
+//                        try {
+//                            if (testParent.Current.AutomationId.Length > 0) {
+//                                parentVerbosity += (" -AutomationId '" + testParent.Current.AutomationId + "'");
+//                            }
+//                        }
+//                        catch {
+//                        }
+//                        if (!cmdlet.NoClassInformation) {
+//                            try {
+//                                if (testParent.Current.ClassName.Length > 0) {
+//                                    parentVerbosity += (" -Class '" + testParent.Current.ClassName + "'");
+//                                }
+//                            }
+//                            catch {
+//                            }
+//                        }
+//                        try {
+//                            if (testParent.Current.Name.Length > 0) {
+//                                parentVerbosity += (" -Name '" + testParent.Current.Name + "'");
+//                            }
+//                        }
+//                        catch {
+//                        }
+//
+//                        if (cmdlet.LastRecordedItem[cmdlet.LastRecordedItem.Count - 1].ToString() == parentVerbosity)
+//                            continue;
+//                        cmdlet.LastRecordedItem.Add(parentVerbosity);
+//                        cmdlet.WriteVerbose(parentVerbosity);
+//                    }
+//                }
+//            }
+//            catch (Exception eErrorInTheInnerCycle) {
+//                cmdlet.WriteDebug(cmdlet, eErrorInTheInnerCycle.Message);
+//                _errorMessageInTheInnerCycle =
+//                    eErrorInTheInnerCycle.Message;
+//                _errorInTheInnerCycle = true;
+//            }
+//        }
         
-        // 20131109
-        //public static void CollectAncestors(TranscriptCmdletBase cmdlet, AutomationElement element)
-        public static void CollectAncestors(TranscriptCmdletBase cmdlet, IMySuperWrapper element)
-        {
-            collectAncestors(cmdlet, element);
-        }
+//        // 20131109
+//        //public static void CollectAncestors(TranscriptCmdletBase cmdlet, AutomationElement element)
+//        public static void CollectAncestors(TranscriptCmdletBase cmdlet, IMySuperWrapper element)
+//        {
+//            collectAncestors(cmdlet, element);
+//        }
         #endregion collect ancestors
         
         

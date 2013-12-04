@@ -679,14 +679,14 @@
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\ExecutionPlan.cs">
       <Link>Helpers\UnderlyingCode\ExecutionPlan.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\ExtensionMethods.cs">
-      <Link>Helpers\UnderlyingCode\ExtensionMethods.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethods.cs">
+      <Link>Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethods.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\ExtensionMethodsCollection.cs">
-      <Link>Helpers\UnderlyingCode\ExtensionMethodsCollection.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethodsCollection.cs">
+      <Link>Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethodsCollection.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\ExtensionMethodsElement.cs">
-      <Link>Helpers\UnderlyingCode\ExtensionMethodsElement.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethodsElement.cs">
+      <Link>Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethodsElement.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Global.cs">
       <Link>Helpers\UnderlyingCode\Global.cs</Link>
@@ -803,6 +803,7 @@
     <Folder Include="Helpers\UnderlyingCode\Commands\Wizard" />
     <Folder Include="Helpers\UnderlyingCode\Commands\Wizard" />
     <Folder Include="Helpers\UnderlyingCode\Adapter" />
+    <Folder Include="Helpers\UnderlyingCode\ExtensionMethods" />
     <Folder Include="Helpers\UnderlyingCode\Ninject" />
     <Folder Include="Helpers\UnderlyingCode\RDP" />
     <Folder Include="Helpers\UnderlyingCode\Types" />

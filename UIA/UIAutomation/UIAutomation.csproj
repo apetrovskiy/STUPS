@@ -282,9 +282,9 @@
     <Compile Include="Helpers\UnderlyingCode\Commands\Wizard\UIAInvokeWizardCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Wizard\UIARemoveWizardStepCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Wizard\UIAStepWizardCommand.cs" />
-    <Compile Include="Helpers\UnderlyingCode\ExtensionMethods.cs" />
-    <Compile Include="Helpers\UnderlyingCode\ExtensionMethodsCollection.cs" />
-    <Compile Include="Helpers\UnderlyingCode\ExtensionMethodsElement.cs" />
+    <Compile Include="Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethods.cs" />
+    <Compile Include="Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethodsCollection.cs" />
+    <Compile Include="Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethodsElement.cs" />
     <Compile Include="Helpers\UnderlyingCode\Ninject\ObjectLifecycleModule.cs" />
     <Compile Include="Helpers\UnderlyingCode\Ninject\AutomationFactory.cs" />
     <Compile Include="Helpers\UnderlyingCode\RDPHelper.cs" />
@@ -416,6 +416,7 @@
     <Folder Include="Commands\Sheridan" />
     <Folder Include="Helpers\UnderlyingCode\Commands\RDP" />
     <Folder Include="Helpers\UnderlyingCode\Adapter" />
+    <Folder Include="Helpers\UnderlyingCode\ExtensionMethods" />
     <Folder Include="Helpers\UnderlyingCode\Ninject" />
     <Folder Include="Helpers\UnderlyingCode\RDP" />
     <Folder Include="Helpers\UnderlyingCode\Types" />

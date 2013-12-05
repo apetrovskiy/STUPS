@@ -7,13 +7,13 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-using Ninject.Parameters;
-
 namespace UIAutomation
 {
+    extern alias UIANET;
     using System;
     using Ninject;
     using Ninject.Modules;
+    using Ninject.Parameters;
     using System.Windows.Automation;
     using System.Collections;
     using PSTestLib;

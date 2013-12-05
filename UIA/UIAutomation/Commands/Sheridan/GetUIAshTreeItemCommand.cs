@@ -1,5 +1,4 @@
-﻿using System.Windows.Automation;
-/*
+﻿/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
  * Date: 10/22/2012
@@ -10,8 +9,10 @@
 
 namespace UIAutomation.Commands
 {
+    extern alias UIANET;
     using System;
     using System.Management.Automation;
+    using System.Windows.Automation;
     
     /// <summary>
     /// Description of GetUiaShTreeItemCommand.

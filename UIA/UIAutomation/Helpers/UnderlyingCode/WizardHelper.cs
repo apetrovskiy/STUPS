@@ -7,17 +7,17 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-using System.Linq;
-using System.Text.RegularExpressions;
-
 namespace UIAutomation
 {
+    extern alias UIANET;
     using System;
     using System.Management.Automation;
     using System.Windows.Automation;
     using Commands;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Linq;
+    using System.Text.RegularExpressions;
     
     /// <summary>
     /// Description of WizardHelper.

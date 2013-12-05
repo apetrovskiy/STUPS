@@ -7,14 +7,14 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-using System.Diagnostics;
-using System.IO;
-
 namespace UIAutomation.Commands
 {
+    extern alias UIANET;
     using System;
     using System.Management.Automation;
     using System.Windows.Automation;
+    using System.Diagnostics;
+    using System.IO;
 
     /// <summary>
     /// Description of StartUiaTranscriptCommand.

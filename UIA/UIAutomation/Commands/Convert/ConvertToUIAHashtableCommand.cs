@@ -12,6 +12,7 @@ using System.Linq;
 
 namespace UIAutomation.Commands
 {
+    extern alias UIANET;
     using System;
     using System.Management.Automation;
     

@@ -7,16 +7,16 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-
 namespace UIAutomation
 {
+    extern alias UIANET;
     using System;
     using System.Management.Automation;
     using System.Windows.Automation;
     
     using System.Linq;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
     /// Description of ULtraGridCmdletBase.

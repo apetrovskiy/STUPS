@@ -7,12 +7,12 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-using System.Windows.Automation;
-
 namespace UIAutomation.Commands
 {
+    extern alias UIANET;
     using System;
     using System.Management.Automation;
+    using System.Windows.Automation;
 
     /// <summary>
     /// Description of InvokeUiaDockPatternSetCommand.

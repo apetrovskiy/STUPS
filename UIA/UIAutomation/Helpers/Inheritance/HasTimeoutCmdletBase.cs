@@ -7,10 +7,9 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-using System.Threading;
-
 namespace UIAutomation
 {
+    extern alias UIANET;
     using System;
     using System.Management.Automation;
     using System.Windows.Automation;
@@ -21,6 +20,7 @@ namespace UIAutomation
     using System.Linq;
     using System.Linq.Expressions;
     using System.Text.RegularExpressions;
+    using System.Threading;
 
     /// <summary>
     /// Description of HasTimeoutCmdletBase.

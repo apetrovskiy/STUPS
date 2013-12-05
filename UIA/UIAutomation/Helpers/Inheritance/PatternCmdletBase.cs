@@ -1,7 +1,4 @@
-﻿using System.Threading;
-using System.Windows.Forms;
-using UIAutomation.Commands;
-/*
+﻿/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
  * Date: 29.11.2011
@@ -12,12 +9,16 @@ using UIAutomation.Commands;
 
 namespace UIAutomation
 {
+    extern alias UIANET;
     using System;
     using System.Management.Automation;
     using System.Windows.Automation;
     using System.Windows.Automation.Text;
     using System.Collections;
     using System.Linq;
+    using System.Threading;
+    using System.Windows.Forms;
+    using UIAutomation.Commands;
 
     /// <summary>
     /// Description of PatternCmdletBase.

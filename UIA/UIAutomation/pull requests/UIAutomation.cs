@@ -1,6 +1,7 @@
 ﻿
 namespace AVG.Automation.Cmdlets
 {
+    extern alias UIANET;
     using System;
     using System.Collections.Generic;
     using System.Linq;

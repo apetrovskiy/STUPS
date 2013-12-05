@@ -7,13 +7,13 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-using System.Windows;
-
 namespace UIAutomation
 {
+    extern alias UIANET;
 	using System;
-	using System.Windows.Automation;
+	using UIANET::System.Windows.Automation;
 	using Ninject;
+	using System.Windows;
 
 	/// <summary>
 	/// Description of MySuperWrapper.
@@ -360,8 +360,12 @@ namespace UIAutomation
 			        return _elementHolderNet.GetUpdatedCache(request);
 			}
 		}
-
-		public IMySuperWrapper FindFirst(TreeScope scope, Condition condition)
+        
+		// 20131205
+		// UIANET
+		// public IMySuperWrapper FindFirst(TreeScope scope, Condition condition)
+		public IMySuperWrapper FindFirst(TreeScope scope, UIANET::System.Windows.Automation.Condition condition)
+		// public IMySuperWrapper FindFirst(TreeScope scope, UIANET::Condition condition)
 		{
 			switch (_innerElementType) {
 			    case InnerElementTypes.AutomationElementNet:
@@ -374,8 +378,11 @@ namespace UIAutomation
 			        return AutomationFactory.GetMySuperWrapper(_elementHolderNet.FindFirst(scope, condition));
 			}
 		}
-
-		public IMySuperCollection FindAll(TreeScope scope, Condition condition)
+        
+		// 20131205
+		// UIANET
+		// public IMySuperCollection FindAll(TreeScope scope, Condition condition)
+		public IMySuperCollection FindAll(TreeScope scope, UIANET::System.Windows.Automation.Condition condition)
 		{
 			switch (_innerElementType) {
 			    case InnerElementTypes.AutomationElementNet:

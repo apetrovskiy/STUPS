@@ -7,14 +7,14 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-using System.Windows;
-
 namespace UIAutomation
 {
+    extern alias UIANET;
     using System;
     using System.Collections;
     using System.ComponentModel;
     using System.Windows.Automation;
+    using System.Windows;
 
     public interface IMySuperWrapper : IDisposable
 	{
@@ -31,9 +31,15 @@ namespace UIAutomation
 		bool TryGetCachedPattern(AutomationPattern pattern, out object patternObject);
 		AutomationElement GetUpdatedCache(CacheRequest request);
 		//AutomationElement FindFirst(TreeScope scope, Condition condition);
-		IMySuperWrapper FindFirst(TreeScope scope, Condition condition);
+		// 20131205
+		// UIANET
+		// IMySuperWrapper FindFirst(TreeScope scope, Condition condition);
+		IMySuperWrapper FindFirst(TreeScope scope, System.Windows.Automation.Condition condition);
 		//AutomationElementCollection FindAll(TreeScope scope, Condition condition);
-		IMySuperCollection FindAll(TreeScope scope, Condition condition);
+		// 20131205
+		// UIANET
+		// IMySuperCollection FindAll(TreeScope scope, Condition condition);
+		IMySuperCollection FindAll(TreeScope scope, System.Windows.Automation.Condition condition);
 		AutomationProperty[] GetSupportedProperties();
 		AutomationPattern[] GetSupportedPatterns();
 		void SetFocus();

@@ -124,10 +124,11 @@
     <Reference Include="System.Xml" />
     <Reference Include="UIAutomationClient">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
+      <Aliases>global,UIANET</Aliases>
     </Reference>
     <Reference Include="UIAutomationTypes">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
-      <Aliases>global</Aliases>
+      <Aliases>global,UIANET</Aliases>
     </Reference>
     <Reference Include="WindowsBase">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
@@ -404,6 +405,11 @@
     <ProjectReference Include="..\..\TMX\TMX\TMX.csproj">
       <Project>{DFFF7F28-CFA4-4EE5-84F0-4A12A415BC0C}</Project>
       <Name>TMX</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UiaComWrapper\UIAComWrapper.csproj">
+      <Project>{1DD63894-DBB9-40EF-BFF2-55624CB285AF}</Project>
+      <Name>UIAComWrapper</Name>
+      <Aliases>global,UIACOM</Aliases>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

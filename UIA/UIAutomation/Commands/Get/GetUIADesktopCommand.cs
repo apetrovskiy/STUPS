@@ -9,6 +9,7 @@
 
 namespace UIAutomation.Commands
 {
+    extern alias UIANET;
     using System.Management.Automation;
     using System.Windows.Automation;
     

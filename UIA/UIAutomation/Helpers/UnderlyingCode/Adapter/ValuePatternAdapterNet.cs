@@ -13,7 +13,7 @@ namespace UIAutomation
 	using System;
 	using System.Windows.Automation;
 	//using Ninject;
-
+    
 	/// <summary>
 	/// Description of ValuePatternAdapter.
 	/// </summary>

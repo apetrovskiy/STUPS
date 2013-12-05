@@ -11,7 +11,8 @@ namespace UIAutomation
 {
     extern alias UIANET;
 	using System;
-	using UIANET::System.Windows.Automation;
+	// using UIANET::System.Windows.Automation;
+	using System.Windows.Automation;
 	using Ninject;
 	using System.Windows;
 
@@ -166,21 +167,57 @@ namespace UIAutomation
 
 		public object GetCurrentPattern(AutomationPattern pattern)
 		{
+		    //int patternId = pattern.Id;
 			switch (_innerElementType) {
 			    case InnerElementTypes.AutomationElementNet:
 			        if (Preferences.FromCache) {
                         // 20131122
                         // ValuePattern -> IMySuperValuePattern
-			            if (pattern.Id != ValuePattern.Pattern.Id) return _elementHolderNet.GetCachedPattern(pattern);
+                        // 20131205
+			            // if (pattern.Id != ValuePattern.Pattern.Id) return _elementHolderNet.GetCachedPattern(pattern);
+//			            switch (pattern.ProgrammaticName) {
+//			                case System.Windows.Automation.ValuePattern.Pattern.ProgrammaticName:
+//        			            IMySuperValuePattern valuePattern =
+//        			                AutomationFactory.GetMySuperValuePattern(
+//        			                    this,
+//        			                    _elementHolderNet.GetCachedPattern(pattern) as ValuePattern);//,
+//        			            return valuePattern;
+//			                    //break;
+//			                case InvokePattern.Pattern.ProgrammaticName:
+//			                    IMySuperInvokePattern invokePattern =
+//			                        AutomationFactory.GetMySuperInvokePattern(
+//			                            this,
+//			                            _elementHolderNet.GetCachedPattern(pattern) as InvokePattern);
+//			                    return invokePattern;
+//			                default:
+//			                    return _elementHolderNet.GetCachedPattern(pattern);
+//			                	//break;
+//			            }
+			            if (pattern.Id == ValuePattern.Pattern.Id) {
+			                IMySuperValuePattern valuePattern =
+    			                AutomationFactory.GetMySuperValuePattern(
+    			                    this,
+    			                    _elementHolderNet.GetCachedPattern(pattern) as ValuePattern);//,
+    			            return valuePattern;
+			            } else if (pattern.Id == InvokePattern.Pattern.Id) {
+			                IMySuperInvokePattern invokePattern =
+		                        AutomationFactory.GetMySuperInvokePattern(
+		                            this,
+		                            _elementHolderNet.GetCachedPattern(pattern) as InvokePattern);
+		                    return invokePattern;
+			            } else {
+			                return _elementHolderNet.GetCachedPattern(pattern);
+			            }
+			            // if (pattern.Id != ValuePattern.Pattern.Id && pattern.Id != InvokePattern.Pattern.Id) return _elementHolderNet.GetCachedPattern(pattern);
 			            //switch (pattern.Id) {
 			            //    case (ValuePattern.Pattern.Id):
 			            //ValuePattern valuePattern =
-			            IMySuperValuePattern valuePattern =
-			                AutomationFactory.GetMySuperValuePattern(
-			                    this,
-			                    _elementHolderNet.GetCachedPattern(pattern) as ValuePattern);//,
-			            //Preferences.FromCache);
-			            return valuePattern;
+//			            IMySuperValuePattern valuePattern =
+//			                AutomationFactory.GetMySuperValuePattern(
+//			                    this,
+//			                    _elementHolderNet.GetCachedPattern(pattern) as ValuePattern);//,
+//			            //Preferences.FromCache);
+//			            return valuePattern;
 			            //    default:
 			            //        
 			            //    	break;
@@ -203,16 +240,49 @@ namespace UIAutomation
 			        } else {
                         // 20131122
                         // ValuePattern -> IMySuperValuePattern
-			            if (pattern.Id != ValuePattern.Pattern.Id) return _elementHolderNet.GetCurrentPattern(pattern);
+                        // 20131205
+			            // if (pattern.Id != ValuePattern.Pattern.Id) return _elementHolderNet.GetCurrentPattern(pattern);
+//			            switch (patternId) {
+//			                case (int)ValuePattern.Pattern.Id:
+//			                    IMySuperValuePattern valuePattern =
+//			                        AutomationFactory.GetMySuperValuePattern(
+//			                            this,
+//			                            _elementHolderNet.GetCurrentPattern(pattern) as ValuePattern);
+//			                    return valuePattern;
+//			                case (int)InvokePattern.Pattern.Id:
+//			                    IMySuperInvokePattern invokePattern =
+//			                        AutomationFactory.GetMySuperInvokePattern(
+//			                            this,
+//			                            _elementHolderNet.GetCurrentPattern(pattern) as InvokePattern);
+//			                    return invokePattern;
+//			                default:
+//			                    
+//			                	break;
+//			            }
+			            if (pattern.Id == ValuePattern.Pattern.Id) {
+			                IMySuperValuePattern valuePattern =
+		                        AutomationFactory.GetMySuperValuePattern(
+		                            this,
+		                            _elementHolderNet.GetCurrentPattern(pattern) as ValuePattern);
+		                    return valuePattern;
+			            } else if (pattern.Id == InvokePattern.Pattern.Id) {
+			                IMySuperInvokePattern invokePattern =
+		                        AutomationFactory.GetMySuperInvokePattern(
+		                            this,
+		                            _elementHolderNet.GetCurrentPattern(pattern) as InvokePattern);
+		                    return invokePattern;
+			            } else {
+			                return this._elementHolderNet.GetCurrentPattern(pattern);
+			            }
 			            //switch (pattern.Id) {
 			            //    case ValuePattern.Pattern.Id:
 			            //ValuePattern valuePattern =
-			            IMySuperValuePattern valuePattern =
-			                AutomationFactory.GetMySuperValuePattern(
-			                    this,
-			                    _elementHolderNet.GetCurrentPattern(pattern) as ValuePattern);//,
-			            //Preferences.FromCache);
-			            return valuePattern;
+//			            IMySuperValuePattern valuePattern =
+//			                AutomationFactory.GetMySuperValuePattern(
+//			                    this,
+//			                    _elementHolderNet.GetCurrentPattern(pattern) as ValuePattern);//,
+//			            //Preferences.FromCache);
+//			            return valuePattern;
 			            //    default:
 			            //        
 			            //    	break;

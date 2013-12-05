@@ -277,6 +277,7 @@
     <Compile Include="Helpers\UnderlyingCode\Adapter\AutomationElementCollectionAdapter.cs" />
     <Compile Include="Helpers\UnderlyingCode\Adapter\AutomationElementInformationAdapter.cs" />
     <Compile Include="Helpers\UnderlyingCode\Adapter\Enums.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Adapter\InvokePatternAdapterNet.cs" />
     <Compile Include="Helpers\UnderlyingCode\Adapter\ValuePatternAdapterNet.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\RDP\UIANewRemoteDesktopProtocolFileCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Wizard\UIAGetWizardCommand.cs" />
@@ -351,6 +352,7 @@
     <Compile Include="Interface\IAutomationElementCollection.cs" />
     <Compile Include="Interface\IAutomationElementInformationAdapter.cs" />
     <Compile Include="Interface\IBasePattern.cs" />
+    <Compile Include="Interface\IInvokePatternAdapter.cs" />
     <Compile Include="Interface\IValuePatternAdapter.cs" />
     <Compile Include="Interface\IValuePatternInformationAdapter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

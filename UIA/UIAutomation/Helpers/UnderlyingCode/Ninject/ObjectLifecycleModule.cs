@@ -77,6 +77,7 @@ namespace UIAutomation
             // IMySuperWrapperInformation
             Bind<IMySuperWrapperInformation>().To<MySuperWrapperInformation>().InCallScope();
             
+            // IMySuperValuePattern
             //Bind<IMySuperValuePattern>().To<MyValuePatternNet>().InCallScope();
             Bind<IMySuperValuePattern>()
                 .ToConstructor(
@@ -85,6 +86,13 @@ namespace UIAutomation
                 .InCallScope();
             
             Bind<IValuePatternInformation>().To<MyValuePatternNet.ValuePatternInformation>().InCallScope();
+            
+            // IMySuperInvokePattern
+            Bind<IMySuperInvokePattern>()
+                .ToConstructor(
+                    x =>
+                    new MyInvokePatternNet(x.Inject<IMySuperWrapper>(), x.Inject<InvokePattern>()))
+                .InCallScope();
         }
     }
 }

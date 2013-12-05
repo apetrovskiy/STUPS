@@ -247,6 +247,26 @@ namespace UIAutomation
 			    return null;
 			}
 		}
-		#endregion IMySuperValuePattern
+		#endregion IMySuperInvokePattern
+		
+		#region IMySuperValuePattern
+		internal static IMySuperInvokePattern GetMySuperInvokePattern(IMySuperWrapper element, InvokePattern invokePattern)
+		{
+			try {
+                var argElement = new ConstructorArgument("element", element);
+		        // var argPattern = new ConstructorArgument("valuePattern", valuePattern);
+		        var argPattern = new ConstructorArgument("invokePattern", invokePattern);
+		        IMySuperInvokePattern adapterPattern = Kernel.Get<IMySuperInvokePattern>(new[] { argElement, argPattern });
+	       		return adapterPattern;
+			}
+			catch (Exception eFailedToIssueInvokePattern) {
+			    // TODO
+			    // write error to error object!!!
+//			    Console.WriteLine("InvokePattern");
+//			    Console.WriteLine(eFailedToIssueInvokePattern.Message);
+			    return null;
+			}
+		}
+		#endregion IMySuperInvokePattern
     }
 }

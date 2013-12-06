@@ -74,5 +74,20 @@ namespace UIAutomation
 		
 		// internal methods
 		object GetPatternPropertyValue(AutomationProperty property, bool useCache);
+		
+		// NavigateTo
+        IMySuperWrapper NavigateToParent();
+        IMySuperWrapper NavigateToFirstChild();
+        IMySuperWrapper NavigateToLastChild();
+        IMySuperWrapper NavigateToNextSibling();
+        IMySuperWrapper NavigateToPreviousSibling();
+        
+        // Patterns
+        IMySuperWrapper Click();
+        IMySuperWrapper DoubleClick();
+        string Value { get; set; }
+        
+        // HIghlighter
+        IMySuperWrapper Highlight();
 	}
 }

@@ -813,5 +813,164 @@ namespace UIAutomation
         	        return _elementHolderNet.GetCurrentPropertyValue(property);
         	}
         }
+        
+//        public static MySuperWrapper GetParent()
+//        {
+//            return GetParent();
+//        }
+//        
+//        public static IMySuperWrapper GetFirstChild()
+//        {
+//            return GetFirstChild();
+//        }
+//        
+//        public static IMySuperWrapper GetLastChild()
+//        {
+//            return GetLastChild();
+//        }
+//        
+//        public static MySuperWrapper GetNextSibling()
+//        {
+//            return GetNextSibling();
+//        }
+//        
+//        public static IMySuperWrapper GetPreviousSibling()
+//        {
+//            return GetPreviousSibling();
+//        }
+
+        #region NavigateTo
+        public IMySuperWrapper NavigateToParent()
+        {
+            IMySuperWrapper result = null;
+            
+            TreeWalker walker =
+                new TreeWalker(
+                    System.Windows.Automation.Condition.TrueCondition);
+            
+            try {
+                result = AutomationFactory.GetMySuperWrapper(walker.GetParent(this.GetSourceElement()));
+            }
+            catch {}
+            
+            return result;
+        }
+        
+        public IMySuperWrapper NavigateToFirstChild()
+        {
+            IMySuperWrapper result = null;
+            
+            TreeWalker walker =
+                new TreeWalker(
+                    System.Windows.Automation.Condition.TrueCondition);
+            
+            try {
+                result = AutomationFactory.GetMySuperWrapper(walker.GetFirstChild(this.GetSourceElement()));
+            }
+            catch {}
+            
+            return result;
+        }
+        
+        public IMySuperWrapper NavigateToLastChild()
+        {
+            IMySuperWrapper result = null;
+            
+            TreeWalker walker =
+                new TreeWalker(
+                    System.Windows.Automation.Condition.TrueCondition);
+            
+            try {
+                result = AutomationFactory.GetMySuperWrapper(walker.GetLastChild(this.GetSourceElement()));
+            }
+            catch {}
+            
+            return result;
+        }
+        
+        public IMySuperWrapper NavigateToNextSibling()
+        {
+            IMySuperWrapper result = null;
+            
+            TreeWalker walker =
+                new TreeWalker(
+                    System.Windows.Automation.Condition.TrueCondition);
+            
+            try {
+                result = AutomationFactory.GetMySuperWrapper(walker.GetNextSibling(this.GetSourceElement()));
+            }
+            catch {}
+            
+            return result;
+        }
+        
+        public IMySuperWrapper NavigateToPreviousSibling()
+        {
+            IMySuperWrapper result = null;
+            
+            TreeWalker walker =
+                new TreeWalker(
+                    System.Windows.Automation.Condition.TrueCondition);
+            
+            try {
+                result = AutomationFactory.GetMySuperWrapper(walker.GetPreviousSibling(this.GetSourceElement()));
+            }
+            catch {}
+            
+            return result;
+        }
+        #endregion NavigateTo
+        
+        #region Patterns
+        public IMySuperWrapper Click()
+        {
+            IMySuperInvokePattern invokePattern =
+                this.GetInvokePattern();
+            
+            try {
+                invokePattern.Invoke();
+            }
+            catch {}
+            
+            return this;
+        }
+        
+        public IMySuperWrapper DoubleClick()
+        {
+            HasControlInputCmdletBase cmdlet =
+                new HasControlInputCmdletBase();
+            cmdlet.ClickControl(
+                cmdlet,
+                this,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                true,
+                50,
+                Preferences.ClickOnControlByCoordX,
+                Preferences.ClickOnControlByCoordY);
+            
+            return this;
+        }
+        
+        public string Value
+        {
+            get { return this.GetValuePattern().Current.Value; }
+            set { this.GetValuePattern().SetValue(value); }
+        }
+        
+        
+        #endregion Patterns
+        
+        #region Highlighter
+        public IMySuperWrapper Highlight()
+        {
+            UiaHelper.Highlight(this);
+            return this;
+        }
+        #endregion Highlighter
 	}
 }

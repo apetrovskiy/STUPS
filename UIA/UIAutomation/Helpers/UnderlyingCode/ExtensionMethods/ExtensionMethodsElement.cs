@@ -23,7 +23,9 @@ namespace UIAutomation
     /// </summary>
     public static class ExtensionMethodsElement
     {
-        internal static IMySuperWrapper GetParent(this IMySuperWrapper element)
+        // 20131205
+        // internal static IMySuperWrapper GetParent(this IMySuperWrapper element)
+        public static IMySuperWrapper GetParent(this IMySuperWrapper element)
         {
             IMySuperWrapper result = null;
             
@@ -38,6 +40,72 @@ namespace UIAutomation
             
             return result;
         }
+        
+        #region experiments
+//        public static IMySuperWrapper GetFirstChild(this IMySuperWrapper element)
+//        {
+//            IMySuperWrapper result = null;
+//            
+//            TreeWalker walker =
+//                new TreeWalker(
+//                    System.Windows.Automation.Condition.TrueCondition);
+//            
+//            try {
+//                result = AutomationFactory.GetMySuperWrapper(walker.GetFirstChild(element.GetSourceElement()));
+//            }
+//            catch {}
+//            
+//            return result;
+//        }
+//        
+//        public static IMySuperWrapper GetLastChild(this IMySuperWrapper element)
+//        {
+//            IMySuperWrapper result = null;
+//            
+//            TreeWalker walker =
+//                new TreeWalker(
+//                    System.Windows.Automation.Condition.TrueCondition);
+//            
+//            try {
+//                result = AutomationFactory.GetMySuperWrapper(walker.GetLastChild(element.GetSourceElement()));
+//            }
+//            catch {}
+//            
+//            return result;
+//        }
+//        
+//        public static IMySuperWrapper GetNextSibling(this IMySuperWrapper element)
+//        {
+//            IMySuperWrapper result = null;
+//            
+//            TreeWalker walker =
+//                new TreeWalker(
+//                    System.Windows.Automation.Condition.TrueCondition);
+//            
+//            try {
+//                result = AutomationFactory.GetMySuperWrapper(walker.GetNextSibling(element.GetSourceElement()));
+//            }
+//            catch {}
+//            
+//            return result;
+//        }
+//        
+//        public static IMySuperWrapper GetPreviousSibling(this IMySuperWrapper element)
+//        {
+//            IMySuperWrapper result = null;
+//            
+//            TreeWalker walker =
+//                new TreeWalker(
+//                    System.Windows.Automation.Condition.TrueCondition);
+//            
+//            try {
+//                result = AutomationFactory.GetMySuperWrapper(walker.GetPreviousSibling(element.GetSourceElement()));
+//            }
+//            catch {}
+//            
+//            return result;
+//        }
+        #endregion experiments
         
         #region get an ancestor with a handle
         /// <summary>
@@ -194,7 +262,9 @@ namespace UIAutomation
         /// <param name="cmdlet"></param>
         /// <param name="element"></param>
         // private static void collectAncestors(TranscriptCmdletBase cmdlet, IMySuperWrapper element)
-        public static void CollectAncestors(this IMySuperWrapper element, TranscriptCmdletBase cmdlet, ref string errorMessage, ref bool errorOccured)
+        // 20131205
+        // public static void CollectAncestors(this IMySuperWrapper element, TranscriptCmdletBase cmdlet, ref string errorMessage, ref bool errorOccured)
+        internal static void CollectAncestors(this IMySuperWrapper element, TranscriptCmdletBase cmdlet, ref string errorMessage, ref bool errorOccured)
         {
             TreeWalker walker =
                 new TreeWalker(
@@ -571,5 +641,47 @@ namespace UIAutomation
             
             return result;
         }
+        
+        #region Patterns
+        public static IMySuperInvokePattern GetInvokePattern(this IMySuperWrapper element)
+        {
+            IMySuperInvokePattern result = null;
+            object pattern = null;
+            
+            if (element.TryGetCurrentPattern(InvokePattern.Pattern, out pattern)) {
+                result =
+                    // element.GetCurrentPattern(InvokePattern.Pattern) as InvokePattern;
+                    AutomationFactory.GetMySuperInvokePattern(element,  (pattern as InvokePattern));
+            }
+            
+            return result;
+        }
+        
+        public static IMySuperValuePattern GetValuePattern(this IMySuperWrapper element)
+        {
+            IMySuperValuePattern result = null;
+            object pattern = null;
+            
+            if (element.TryGetCurrentPattern(ValuePattern.Pattern, out pattern)) {
+                result =
+                    // element.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern;
+                    AutomationFactory.GetMySuperValuePattern(element, (pattern as ValuePattern));
+            }
+            
+            return result;
+        }
+        
+//        public T GetValuePattern<T>(this IMySuperWrapper element)
+//        {
+//            T result = null;
+//            
+//            if (element.TryGetCurrentPattern(ValuePattern.Pattern)) {
+//                result =
+//                    element.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern;
+//            }
+//            
+//            return result;
+//        }
+        #endregion Patterns
     }
 }

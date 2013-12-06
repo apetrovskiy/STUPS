@@ -140,7 +140,9 @@ namespace UIAutomation
             return result;
         }
         
-        protected bool ClickControl(HasControlInputCmdletBase cmdlet,
+        // 20131205
+        // protected bool ClickControl(HasControlInputCmdletBase cmdlet,
+        protected internal bool ClickControl(HasControlInputCmdletBase cmdlet,
                                     // 20131109
                                     //AutomationElement element,
                                     IMySuperWrapper element,

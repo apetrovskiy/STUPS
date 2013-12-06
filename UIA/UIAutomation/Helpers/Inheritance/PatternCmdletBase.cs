@@ -374,7 +374,9 @@ namespace UIAutomation
                 // 20131124
                 // ValuePattern -> IMySuperValuePattern
                 //ValuePattern valuePatternSet = _control.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern;
-                IMySuperValuePattern valuePatternSet = control.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern;
+                // 20131205
+                // IMySuperValuePattern valuePatternSet = control.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern;
+                IMySuperValuePattern valuePatternSet = control.GetValuePattern();
                 if (valuePatternSet != null) {
                     
                     WriteVerbose(this, "using ValuePattern");
@@ -411,7 +413,9 @@ namespace UIAutomation
                 // 20131124
                 // ValuePattern -> IMySuperValuePattern
                 //ValuePattern valuePatternGet = _control.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern;
-                IMySuperValuePattern valuePatternGet = control.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern;
+                // 20131205
+                // IMySuperValuePattern valuePatternGet = control.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern;
+                IMySuperValuePattern valuePatternGet = control.GetValuePattern();
                 object result = null;
                 if (valuePatternGet != null) {
                     result = valuePatternGet.Current.Value;
@@ -1005,7 +1009,9 @@ namespace UIAutomation
         internal void InvokeInvoke(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
         {
             try {
-                InvokePattern invokePattern = control.GetCurrentPattern(InvokePattern.Pattern) as InvokePattern;
+                // 20131205
+                // InvokePattern invokePattern = control.GetCurrentPattern(InvokePattern.Pattern) as InvokePattern;
+                IMySuperInvokePattern invokePattern = control.GetInvokePattern();
                 if (invokePattern != null) {
 
                     invokePattern.Invoke();

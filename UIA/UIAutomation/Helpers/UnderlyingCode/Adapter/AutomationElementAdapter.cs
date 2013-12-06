@@ -987,6 +987,43 @@ namespace UIAutomation
             return this;
         }
         
+        public IMySuperWrapper AddToSelection()
+        {
+            this.GetSelectionItemPattern().AddToSelection();
+            return this;
+        }
+        
+        public IMySuperWrapper RemoveFromSelection()
+        {
+            this.GetSelectionItemPattern().RemoveFromSelection();
+            return this;
+        }
+        
+        public bool IsSelected
+        {
+            get { return this.GetSelectionItemPattern().Current.IsSelected; }
+        }
+        
+        public IMySuperWrapper SelectionContainer
+        {
+            get { return this.GetSelectionItemPattern().Current.SelectionContainer; }
+        }
+        
+        public IMySuperWrapper[] GetSelection()
+        {
+            return this.GetSelectionPattern().Current.GetSelection();
+        }
+        
+        public bool CanSelectMultiple
+        {
+            get { return this.GetSelectionPattern().Current.CanSelectMultiple; }
+        }
+        
+        public bool IsSelectionRequired
+        {
+            get { return this.GetSelectionPattern().Current.IsSelectionRequired; }
+        }
+        
         public IMySuperWrapper Toggle()
         {
             // IMySuperTogglePattern togglePattern =

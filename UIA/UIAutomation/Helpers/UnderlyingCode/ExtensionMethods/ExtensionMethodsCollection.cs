@@ -22,7 +22,8 @@ namespace UIAutomation
     /// </summary>
     public static class ExtensionMethodsCollection
     {
-        public static IEnumerable GetElementsByWildcard(this MySuperCollection collection, string name, string automationId, string className, string txtValue, bool caseSensitive)
+        // public static IEnumerable GetElementsByWildcard(this MySuperCollection collection, string name, string automationId, string className, string txtValue, bool caseSensitive)
+        public static IEnumerable GetElementsByWildcard(this IMySuperCollection collection, string name, string automationId, string className, string txtValue, bool caseSensitive)
         {
             WildcardOptions options;
             if (caseSensitive) {
@@ -62,9 +63,15 @@ namespace UIAutomation
             return queryByBigFour;
         }
         
-        public static IEnumerable GetElementsByWildcard(this MySuperCollection collection, string name, string automationId, string className, string txtValue)
+        // public static IEnumerable GetElementsByWildcard(this MySuperCollection collection, string name, string automationId, string className, string txtValue)
+        public static IEnumerable GetElementsByWildcard(this IMySuperCollection collection, string name, string automationId, string className, string txtValue)
         {
             return GetElementsByWildcard(collection, name, automationId, className, txtValue, false);
+        }
+        
+        public static IMySuperWrapper[] ToArray(this IMySuperCollection collection)
+        {
+            return collection.ToArray();
         }
     }
 }

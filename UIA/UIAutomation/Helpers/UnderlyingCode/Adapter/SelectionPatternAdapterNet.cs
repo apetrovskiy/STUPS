@@ -12,6 +12,9 @@ namespace UIAutomation
 	extern alias UIANET;
 	using System;
 	using System.Windows.Automation;
+	using System.Linq;
+	using System.Collections;
+	using System.Collections.Generic;
 	//using Ninject;
 
 	public class MySelectionPatternNet : IMySuperSelectionPattern
@@ -64,7 +67,7 @@ namespace UIAutomation
 			public IMySuperWrapper[] GetSelection()
 			{
 				// return (AutomationElement[])this._el.GetPatternPropertyValue(SelectionPattern.SelectionProperty, this._useCache);
-				return (IMySuperWrapper[])this._selectionPattern.ParentElement.GetPatternPropertyValue(SelectionPattern.SelectionProperty, this._useCache);
+				return AutomationFactory.GetMySuperCollection((AutomationElement[])this._selectionPattern.ParentElement.GetPatternPropertyValue(SelectionPattern.SelectionProperty, this._useCache)).ToArray();
 			}
 		}
 		public static readonly AutomationPattern Pattern = SelectionPatternIdentifiers.Pattern;

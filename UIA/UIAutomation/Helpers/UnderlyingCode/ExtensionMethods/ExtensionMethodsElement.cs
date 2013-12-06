@@ -645,54 +645,86 @@ namespace UIAutomation
         #region Patterns
         public static IMySuperExpandCollapsePattern GetExpandCollapsePattern(this IMySuperWrapper element)
         {
-            IMySuperExpandCollapsePattern result = null;
+            // IMySuperExpandCollapsePattern result = null;
+            IMySuperExpandCollapsePattern resultPattern = AutomationFactory.GetMySuperExpandCollapsePattern(element, null);
             object pattern = null;
             
             if (element.TryGetCurrentPattern(ExpandCollapsePattern.Pattern, out pattern)) {
-                result =
+                resultPattern =
                     AutomationFactory.GetMySuperExpandCollapsePattern(element,  (pattern as ExpandCollapsePattern));
             }
             
-            return result;
+            return resultPattern;
         }
         
         public static IMySuperInvokePattern GetInvokePattern(this IMySuperWrapper element)
         {
-            IMySuperInvokePattern result = null;
+            // IMySuperInvokePattern result = null;
+            IMySuperInvokePattern resultPattern = AutomationFactory.GetMySuperInvokePattern(element, null);
             object pattern = null;
             
             if (element.TryGetCurrentPattern(InvokePattern.Pattern, out pattern)) {
-                result =
+                resultPattern =
                     AutomationFactory.GetMySuperInvokePattern(element,  (pattern as InvokePattern));
             }
             
-            return result;
+            return resultPattern;
+        }
+        
+        public static IMySuperSelectionItemPattern GetSelectionItemPattern(this IMySuperWrapper element)
+        {
+            IMySuperSelectionItemPattern resultPattern =
+                AutomationFactory.GetMySuperSelectionItemPattern(element, null);
+            object pattern = null;
+            
+            if (element.TryGetCurrentPattern(SelectionItemPattern.Pattern, out pattern)) {
+                resultPattern =
+                    AutomationFactory.GetMySuperSelectionItemPattern(element, (pattern as SelectionItemPattern));
+            }
+            
+            return resultPattern;
+        }
+        
+        public static IMySuperSelectionPattern GetSelectionPattern(this IMySuperWrapper element)
+        {
+            IMySuperSelectionPattern resultPattern =
+                AutomationFactory.GetMySuperSelectionPattern(element, null);
+            object pattern = null;
+            
+            if (element.TryGetCurrentPattern(SelectionPattern.Pattern, out pattern)) {
+                resultPattern =
+                    AutomationFactory.GetMySuperSelectionPattern(element, (pattern as SelectionPattern));
+            }
+            
+            return resultPattern;
         }
         
         public static IMySuperTogglePattern GetTogglePattern(this IMySuperWrapper element)
         {
-            IMySuperTogglePattern result = null;
+            // IMySuperTogglePattern result = null;
+            IMySuperTogglePattern resultPattern = AutomationFactory.GetMySuperTogglePattern(element, null);
             object pattern = null;
             
             if (element.TryGetCurrentPattern(TogglePattern.Pattern, out pattern)) {
-                result =
+                resultPattern =
                     AutomationFactory.GetMySuperTogglePattern(element,  (pattern as TogglePattern));
             }
             
-            return result;
+            return resultPattern;
         }
         
         public static IMySuperValuePattern GetValuePattern(this IMySuperWrapper element)
         {
-            IMySuperValuePattern result = null;
+            // IMySuperValuePattern result = null;
+            IMySuperValuePattern resultPattern = AutomationFactory.GetMySuperValuePattern(element, null);
             object pattern = null;
             
             if (element.TryGetCurrentPattern(ValuePattern.Pattern, out pattern)) {
-                result =
+                resultPattern =
                     AutomationFactory.GetMySuperValuePattern(element, (pattern as ValuePattern));
             }
             
-            return result;
+            return resultPattern;
         }
         
 //        public T GetValuePattern<T>(this IMySuperWrapper element)

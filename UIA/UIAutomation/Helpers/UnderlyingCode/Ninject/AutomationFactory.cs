@@ -268,6 +268,44 @@ namespace UIAutomation
 		}
 		#endregion IMySuperInvokePattern
 		
+		#region IMySuperSelectionItemPattern
+		internal static IMySuperSelectionItemPattern GetMySuperSelectionItemPattern(IMySuperWrapper element, SelectionItemPattern selectionItemPattern)
+		{
+		    try {
+                var argElement = new ConstructorArgument("element", element);
+		        var argPattern = new ConstructorArgument("selectionItemPattern", selectionItemPattern);
+		        IMySuperSelectionItemPattern adapterPattern = Kernel.Get<IMySuperSelectionItemPattern>(new[] { argElement, argPattern });
+	       		return adapterPattern;
+			}
+			catch (Exception eFailedToIssueIMySuperSelectionItemPattern) {
+			    // TODO
+			    // write error to error object!!!
+//			    Console.WriteLine("IMySuperSelectionItemPattern");
+//			    Console.WriteLine(eFailedToIssueIMySuperSelectionItemPattern.Message);
+			    return null;
+			}
+		}
+		#endregion IMySuperSelectionItemPattern
+		
+		#region IMySuperSelectionPattern
+		internal static IMySuperSelectionPattern GetMySuperSelectionPattern(IMySuperWrapper element, SelectionPattern selectionPattern)
+		{
+		    try {
+                var argElement = new ConstructorArgument("element", element);
+		        var argPattern = new ConstructorArgument("selectionPattern", selectionPattern);
+		        IMySuperSelectionPattern adapterPattern = Kernel.Get<IMySuperSelectionPattern>(new[] { argElement, argPattern });
+	       		return adapterPattern;
+			}
+			catch (Exception eFailedToIssueSelectionPattern) {
+			    // TODO
+			    // write error to error object!!!
+//			    Console.WriteLine("SelectionPattern");
+//			    Console.WriteLine(eFailedToIssueSelectionPattern.Message);
+			    return null;
+			}
+		}
+		#endregion IMySuperSelectionPattern
+		
 		#region IMySuperTogglePattern
 		internal static IMySuperTogglePattern GetMySuperTogglePattern(IMySuperWrapper element, TogglePattern togglePattern)
 		{

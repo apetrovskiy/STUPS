@@ -26,6 +26,12 @@ namespace UIAutomation
 			//this._useCache = useCache;
 		}
 		
+		internal MyInvokePatternNet(IMySuperWrapper element)
+		{
+		    // this._invokePattern = AutomationFactory.GetMySuperInvokePattern(element, null);
+		    this._element = element;
+		}
+		
 		//: BasePattern
 		public static readonly AutomationPattern Pattern = InvokePatternIdentifiers.Pattern;
 		public static readonly AutomationEvent InvokedEvent = InvokePatternIdentifiers.InvokedEvent;
@@ -48,6 +54,7 @@ namespace UIAutomation
 		public void Invoke()
 		{
 			// UiaCoreApi.InvokePattern_Invoke(this._hPattern);
+			if (null == this._invokePattern) return;
 			this._invokePattern.Invoke();
 		}
 //		static internal object Wrap(AutomationElement el, SafePatternHandle hPattern, bool cached)

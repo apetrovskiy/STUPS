@@ -949,14 +949,14 @@ namespace UIAutomation
         #region Patterns
         public IMySuperWrapper Click()
         {
-            IMySuperInvokePattern invokePattern =
-                this.GetInvokePattern();
+            // IMySuperInvokePattern invokePattern =
+            //    this.GetInvokePattern().Invoke();
             
-            try {
-                invokePattern.Invoke();
-            }
-            catch {}
-            
+//            try {
+//                invokePattern.Invoke();
+//            }
+//            catch {}
+            this.GetInvokePattern().Invoke();
             return this;
         }
         
@@ -981,16 +981,22 @@ namespace UIAutomation
             return this;
         }
         
+        public IMySuperWrapper Select()
+        {
+            this.GetSelectionItemPattern().Select();
+            return this;
+        }
+        
         public IMySuperWrapper Toggle()
         {
-            IMySuperTogglePattern togglePattern =
-                this.GetTogglePattern();
+            // IMySuperTogglePattern togglePattern =
+            //     this.GetTogglePattern().Toggle();
             
-            try {
-                togglePattern.Toggle();
-            }
-            catch {}
-            
+//            try {
+//                togglePattern.Toggle();
+//            }
+//            catch {}
+            this.GetTogglePattern().Toggle();
             return this;
         }
         

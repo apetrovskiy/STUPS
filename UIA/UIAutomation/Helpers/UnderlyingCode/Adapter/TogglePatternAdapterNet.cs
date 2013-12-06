@@ -25,6 +25,12 @@ namespace UIAutomation
 			this._element = element;
 			//this._useCache = useCache;
 		}
+		
+		internal MyTogglePatternNet(IMySuperWrapper element)
+		{
+		    // this._togglePattern = AutomationFactory.GetMySuperTogglePattern(element, null);
+		    this._element = element;
+		}
 
 		//: BasePattern
 		public struct TogglePatternInformation : ITogglePatternInformation
@@ -78,6 +84,7 @@ namespace UIAutomation
 		public void Toggle()
 		{
 			// UiaCoreApi.TogglePattern_Toggle(this._hPattern);
+			if (null == this._togglePattern) return;
 			this._togglePattern.Toggle();
 		}
 //		static internal object Wrap(AutomationElement el, SafePatternHandle hPattern, bool cached)

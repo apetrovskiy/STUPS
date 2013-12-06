@@ -1222,7 +1222,7 @@ namespace UIAutomation
                         if (0 == ResultListOfControls.Count) {
                             if (!notTextSearch && !cmdlet.Win32) {
                                 
-Console.WriteLine("text search UIA");
+//Console.WriteLine("text search UIA");
                                 
                                 ResultListOfControls.AddRange(
                                     SearchByContainsTextViaUia(
@@ -1237,7 +1237,7 @@ Console.WriteLine("text search UIA");
                         if (0 == ResultListOfControls.Count) {
                             if (!notTextSearch && cmdlet.Win32) {
                                 
-Console.WriteLine("text search Win32");
+//Console.WriteLine("text search Win32");
                                 
                                 ResultListOfControls.AddRange(
                                     SearchByTextViaWin32(
@@ -1252,7 +1252,7 @@ Console.WriteLine("text search Win32");
                         if (0 == ResultListOfControls.Count && notTextSearch && !cmdlet.Regex) {
                             if (!Preferences.DisableExactSearch && !cmdlet.Win32 ) {
                                 
-Console.WriteLine("exact search UIA");
+//Console.WriteLine("exact search UIA");
                                 
                                 ResultListOfControls.AddRange(
                                     SearchByExactConditionsViaUia(
@@ -1267,7 +1267,7 @@ Console.WriteLine("exact search UIA");
                         if (0 == ResultListOfControls.Count && notTextSearch && !cmdlet.Regex) {
                             if (!Preferences.DisableWildCardSearch && !cmdlet.Win32) {
                                 
-Console.WriteLine("wildcard search UIA");
+//Console.WriteLine("wildcard search UIA");
                                 
                                 ResultListOfControls.AddRange(
                                     SearchByWildcardOrRegexViaUia(
@@ -1287,7 +1287,7 @@ Console.WriteLine("wildcard search UIA");
                         if (0 == ResultListOfControls.Count && notTextSearch && cmdlet.Regex) {
                             if (!Preferences.DisableWildCardSearch && !cmdlet.Win32) {
                                 
-Console.WriteLine("regex search UIA");
+//Console.WriteLine("regex search UIA");
                                 
                                 ResultListOfControls.AddRange(
                                     SearchByWildcardOrRegexViaUia(
@@ -1308,7 +1308,7 @@ Console.WriteLine("regex search UIA");
                             
                             if (!Preferences.DisableWin32Search || cmdlet.Win32) {
                                 
-Console.WriteLine("wildcard search Win32");
+//Console.WriteLine("wildcard search Win32");
                                 
                                 ResultListOfControls.AddRange(
                                     SearchByWildcardViaWin32(

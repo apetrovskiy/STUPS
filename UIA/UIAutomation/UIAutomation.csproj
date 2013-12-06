@@ -279,6 +279,8 @@
     <Compile Include="Helpers\UnderlyingCode\Adapter\Enums.cs" />
     <Compile Include="Helpers\UnderlyingCode\Adapter\ExpandCollapsePatternNet.cs" />
     <Compile Include="Helpers\UnderlyingCode\Adapter\InvokePatternAdapterNet.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Adapter\SelectionItemPatternAdapterNet.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Adapter\SelectionPatternAdapterNet.cs" />
     <Compile Include="Helpers\UnderlyingCode\Adapter\TogglePatternAdapterNet.cs" />
     <Compile Include="Helpers\UnderlyingCode\Adapter\ValuePatternAdapterNet.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\RDP\UIANewRemoteDesktopProtocolFileCommand.cs" />
@@ -357,6 +359,10 @@
     <Compile Include="Interface\IExpandCollapsePatternAdapter.cs" />
     <Compile Include="Interface\IExpandCollapsePatternInformationAdapter.cs" />
     <Compile Include="Interface\IInvokePatternAdapter.cs" />
+    <Compile Include="Interface\ISelectionItemPatternAdapter.cs" />
+    <Compile Include="Interface\ISelectionItemPatternInformationAdapter.cs" />
+    <Compile Include="Interface\ISelectionPatternAdapter.cs" />
+    <Compile Include="Interface\ISelectionPatternInformationAdapter.cs" />
     <Compile Include="Interface\ITogglePatternAdapter.cs" />
     <Compile Include="Interface\ITogglePatternInformationAdapter.cs" />
     <Compile Include="Interface\IValuePatternAdapter.cs" />

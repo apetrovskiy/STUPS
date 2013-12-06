@@ -30,6 +30,12 @@ namespace UIAutomation
 			this._element = element;
 			//this._useCache = useCache;
 		}
+		
+		internal MyValuePatternNet(IMySuperWrapper element)
+		{
+		    // this._valuePattern = AutomationFactory.GetMySuperValuePattern(element, null);
+		    this._element = element;
+		}
 
 		public struct ValuePatternInformation : IValuePatternInformation
 		{
@@ -69,11 +75,15 @@ namespace UIAutomation
 //			            Console.WriteLine("eeee111:");
 //			            Console.WriteLine(eeee111.Message);
 //			        }
+			        if (null == this._valuePattern) return string.Empty;
 			        return this._valuePattern.ParentElement.GetPatternPropertyValue(ValuePattern.ValueProperty, this._useCache).ToString(); }
 			}
 			public bool IsReadOnly {
 				//get { return (bool)this._el.GetPatternPropertyValue(ValuePattern.IsReadOnlyProperty, this._useCache); }
-				get { return (bool)this._valuePattern.ParentElement.GetPatternPropertyValue(ValuePattern.IsReadOnlyProperty, this._useCache); }
+				get {
+				    if (null == this._valuePattern) return true;
+				    return (bool)this._valuePattern.ParentElement.GetPatternPropertyValue(ValuePattern.IsReadOnlyProperty, this._useCache);
+				}
 			}
 //			internal ValuePatternInformation(AutomationElement el, bool useCache)
 //			{
@@ -120,6 +130,7 @@ namespace UIAutomation
 //				throw new InvalidOperationException(SR.Get("ValueReadonly"));
 //			}
 //			UiaCoreApi.ValuePattern_SetValue(this._hPattern, value);
+		    if (null == this._valuePattern) return;
 			this._valuePattern.SetValue(value);
 		}
 //		static internal object Wrap(AutomationElement el, SafePatternHandle hPattern, bool cached)

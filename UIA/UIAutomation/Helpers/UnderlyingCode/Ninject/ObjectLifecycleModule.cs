@@ -98,6 +98,26 @@ namespace UIAutomation
                 .InCallScope();
             #endregion IMySuperInvokePattern
             
+            #region IMySuperSelectionItemPattern
+            Bind<IMySuperSelectionItemPattern>()
+                .ToConstructor(
+                    x =>
+                    new MySelectionItemPatternNet(x.Inject<IMySuperWrapper>(), x.Inject<SelectionItemPattern>()))
+                .InCallScope();
+            
+            Bind<ISelectionItemPatternInformation>().To<MySelectionItemPatternNet.SelectionItemPatternInformation>().InCallScope();
+            #endregion IMySuperSelectionItemPattern
+            
+            #region IMySuperSelectionPattern
+            Bind<IMySuperSelectionPattern>()
+                .ToConstructor(
+                    x =>
+                    new MySelectionPatternNet(x.Inject<IMySuperWrapper>(), x.Inject<SelectionPattern>()))
+                .InCallScope();
+            
+            Bind<ISelectionPatternInformation>().To<MySelectionPatternNet.SelectionPatternInformation>().InCallScope();
+            #endregion IMySuperSelectionPattern
+            
             #region IMySuperTogglePattern
             Bind<IMySuperTogglePattern>()
                 .ToConstructor(

@@ -25,6 +25,13 @@ namespace UIAutomation
 			this._element = element;
 			//this._useCache = useCache;
 		}
+		
+		internal MyExpandCollapsePatternNet(IMySuperWrapper element)
+		{
+		    // this._expandCollapsePattern = AutomationFactory.GetMySuperExpandCollapsePattern(element, null);
+		    // this._expandCollapsePattern = new MyExpandCollapsePatternNet(ele
+		    this._element = element;
+		}
 
 		public struct ExpandCollapsePatternInformation : IExpandCollapsePatternInformationAdapter
 		{
@@ -76,11 +83,13 @@ namespace UIAutomation
 		public void Expand()
 		{
 			// UiaCoreApi.ExpandCollapsePattern_Expand(this._hPattern);
+			if (null == this._expandCollapsePattern) return;
 			this._expandCollapsePattern.Expand();
 		}
 		public void Collapse()
 		{
 			// UiaCoreApi.ExpandCollapsePattern_Collapse(this._hPattern);
+			if (null == this._expandCollapsePattern) return;
 			this._expandCollapsePattern.Collapse();
 		}
 //		static internal object Wrap(AutomationElement el, SafePatternHandle hPattern, bool cached)

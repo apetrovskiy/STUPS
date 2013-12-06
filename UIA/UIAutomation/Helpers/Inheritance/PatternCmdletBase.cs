@@ -107,20 +107,20 @@ namespace UIAutomation
                         InvokeDockGet(this, control, inputObject);
                         break;
                     case "Expand":
-                        InvokeExpand(this, control, inputObject);
+                        CallExpandPattern(this, control, inputObject);
                         break;
                     case "Collapse":
-                        InvokeCollapse(this, control, inputObject);
+                        CallCollapsePattern(this, control, inputObject);
                         break;
                     case "GridItem":
-                        InvokeGridItem(this, control, inputObject);
+                        CallGridItemPattern(this, control, inputObject);
                         break;
                         // not yet implemented
                     case "Grid":
-                        InvokeGrid(this, control, inputObject);
+                        CallGridPattern(this, control, inputObject);
                         break;
                     case "Invoke":
-                        InvokeInvoke(this, control, inputObject);
+                        CallInvokePattern(this, control, inputObject);
                         break;
                         // not yet implemented
                         // case "MultipleView":
@@ -128,29 +128,29 @@ namespace UIAutomation
                         // (System.Windows.Automation.MultipleViewPattern)pt;
                         // break;
                     case "RangeValueGet":
-                        InvokeRangeValueGet(this, control, inputObject);
+                        CallRangeValuePatternForGet(this, control, inputObject);
                         break;
                     case "RangeValueSet":
-                        InvokeRangeValueSet(this, control, inputObject);
+                        CallRangeValuePatternForSet(this, control, inputObject);
                         break;
                     case "ScrollItem":
-                        InvokeScrollItem(this, control, inputObject);
+                        CallScrollItemPattern(this, control, inputObject);
                         break;
                     case "Scroll":
-                        InvokeScroll(this, control, inputObject);
+                        CallScrollPattern(this, control, inputObject);
                         break;
                     case "SelectionItem":
-                        InvokeSelectionItem(this, control, inputObject);
+                        CallSelectionItemPattern(this, control, inputObject);
                         break;
                     case "SelectionItemState":
-                        InvokeSelectionItemState(this, control, inputObject);
+                        CallSelectionItemPatternForState(this, control, inputObject);
                         break;
                         // 20130108
                     case "SelectedItem": // return only elements that are selected
-                        InvokeSelectedItem(this, control, inputObject);
+                        CallSelectedItemPattern(this, control, inputObject);
                         break;
                     case "Selection":
-                        InvokeSelection(this, control, inputObject);
+                        CallSelectionPattern(this, control, inputObject);
                         break;
                         // not yet implemented
                     case "TableItem":
@@ -170,37 +170,37 @@ namespace UIAutomation
                         // pattern =
                         // (System.Windows.Automation.TextPattern)pt;
                         // break;
-                        InvokeTextGet(this, control, inputObject);
+                        CallTextPatternForGet(this, control, inputObject);
                         break;
                     case "TextSet":
-                        InvokeTextSet(this, control, inputObject);
+                        CallTextPatternForSet(this, control, inputObject);
                         break;
                     case "Toggle":
-                        InvokeToggle(this, control, inputObject);
+                        CallTogglePatternMethod(this, control, inputObject);
                         break;
                     case "ToggleStateGet":
-                        InvokeToggleStateGet(this, control, inputObject);
+                        CallTogglePatternForGet(this, control, inputObject);
                         break;
                     case "ToggleStateSet":
-                        InvokeToggleStateSet(this, control, inputObject, ((InvokeUiaToggleStateSetCommand)this).On);
+                        CallTogglePatternForSet(this, control, inputObject, ((InvokeUiaToggleStateSetCommand)this).On);
                         break;
                     case "TransformMove":
-                        InvokeTransformMove(this, control, inputObject);
+                        CallTransformPatternForMove(this, control, inputObject);
                         break;
                     case "TransformResize":
-                        InvokeTransformResize(this, control, inputObject);
+                        CallTransformPatternForResize(this, control, inputObject);
                         break;
                     case "TransformRotate":
-                        InvokeTransformRotate(this, control, inputObject);
+                        CallTransformPatternForRotate(this, control, inputObject);
                         break;
                     case "ValueGet":
-                        InvokeValueGet(this, control, inputObject);
+                        CallValuePatternForGet(this, control, inputObject);
                         break;
                     case "ValueSet":
-                        InvokeValueSet(this, control, inputObject);
+                        CallValuePatternForSet(this, control, inputObject);
                         break;
                     case "Window":
-                        InvokeWindow(this, control, inputObject);
+                        CallWindowPattern(this, control, inputObject);
                         break;
                     case "Annotation":
                         WriteVerbose(this, "Annotation");
@@ -325,7 +325,7 @@ namespace UIAutomation
 
         // 20131109
         //internal void InvokeWindow(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
-        internal void InvokeWindow(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
+        internal void CallWindowPattern(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
         {
             try {
                 WindowPattern windowPattern = control.GetCurrentPattern(WindowPattern.Pattern) as WindowPattern;
@@ -368,7 +368,7 @@ namespace UIAutomation
 
         // 20131109
         //internal void InvokeValueSet(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
-        internal void InvokeValueSet(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
+        internal void CallValuePatternForSet(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
         {
             try {
                 // 20131124
@@ -407,7 +407,7 @@ namespace UIAutomation
 
         // 20131109
         //internal void InvokeValueGet(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
-        internal void InvokeValueGet(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
+        internal void CallValuePatternForGet(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
         {
             try {
                 // 20131124
@@ -431,7 +431,7 @@ namespace UIAutomation
 
         // 20131109
         //internal void InvokeTransformRotate(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
-        internal void InvokeTransformRotate(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
+        internal void CallTransformPatternForRotate(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
         {
             try {
                 TransformPattern transformRotatePattern = control.GetCurrentPattern(TransformPattern.Pattern) as TransformPattern;
@@ -454,7 +454,7 @@ namespace UIAutomation
 
         // 20131109
         //internal void InvokeTransformResize(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
-        internal void InvokeTransformResize(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
+        internal void CallTransformPatternForResize(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
         {
             try {
                 TransformPattern transformResizePattern = control.GetCurrentPattern(TransformPattern.Pattern) as TransformPattern;
@@ -477,7 +477,7 @@ namespace UIAutomation
 
         // 20131109
         //internal void InvokeTransformMove(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
-        internal void InvokeTransformMove(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
+        internal void CallTransformPatternForMove(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
         {
             try {
                 TransformPattern transformMovePattern = control.GetCurrentPattern(TransformPattern.Pattern) as TransformPattern;
@@ -500,7 +500,7 @@ namespace UIAutomation
 
         // 20131109
         //internal void InvokeToggleStateGet(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
-        internal void InvokeToggleStateGet(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
+        internal void CallTogglePatternForGet(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
         {
             try {
                 cmdlet.WriteVerbose(cmdlet, "trying to get TogglePattern");
@@ -528,7 +528,7 @@ namespace UIAutomation
         
         // 20131109
         //internal void InvokeToggleStateSet(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject, bool on)
-        internal void InvokeToggleStateSet(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject, bool on)
+        internal void CallTogglePatternForSet(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject, bool on)
         {
             try {
                 // 20131206
@@ -590,7 +590,7 @@ namespace UIAutomation
 
         // 20131109
         //internal void InvokeToggle(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
-        internal void InvokeToggle(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
+        internal void CallTogglePatternMethod(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
         {
             try {
                 // 20131206
@@ -615,7 +615,7 @@ namespace UIAutomation
 
         // 20131109
         //internal void InvokeTextSet(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
-        internal void InvokeTextSet(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
+        internal void CallTextPatternForSet(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
         {
             try {
                 TextPattern textPatternSet = control.GetCurrentPattern(TextPattern.Pattern) as TextPattern;
@@ -632,7 +632,7 @@ namespace UIAutomation
 
         // 20131109
         //internal void InvokeTextGet(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
-        internal void InvokeTextGet(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
+        internal void CallTextPatternForGet(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
         {
             try {
                 TextPattern textPatternGet = control.GetCurrentPattern(TextPattern.Pattern) as TextPattern;
@@ -701,10 +701,12 @@ namespace UIAutomation
         //writev
         // 20131109
         //internal void InvokeSelection(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
-        internal void InvokeSelection(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
+        internal void CallSelectionPattern(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
         {
             try {
-                SelectionPattern selPattern = control.GetCurrentPattern(SelectionPattern.Pattern) as SelectionPattern;
+                // 20131206
+                // SelectionPattern selPattern = control.GetCurrentPattern(SelectionPattern.Pattern) as SelectionPattern;
+                IMySuperSelectionPattern selPattern = control.GetSelectionPattern();
                 if (selPattern != null) {
                     
                     // 20131109
@@ -723,10 +725,12 @@ namespace UIAutomation
 
         // 20131109
         //internal void InvokeSelectedItem(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
-        internal void InvokeSelectedItem(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
+        internal void CallSelectedItemPattern(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
         {
             try {
-                SelectionItemPattern selItemPattern1 = control.GetCurrentPattern(SelectionItemPattern.Pattern) as SelectionItemPattern;
+                // 20131206
+                // SelectionItemPattern selItemPattern1 = control.GetCurrentPattern(SelectionItemPattern.Pattern) as SelectionItemPattern;
+                IMySuperSelectionItemPattern selItemPattern1 = control.GetSelectionItemPattern();
                 if (selItemPattern1 == null) return;
                 if (selItemPattern1.Current.IsSelected) {
                     WriteObject(this, InputObject);
@@ -745,10 +749,12 @@ namespace UIAutomation
 
         // 20131109
         //internal void InvokeSelectionItemState(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
-        internal void InvokeSelectionItemState(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
+        internal void CallSelectionItemPatternForState(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
         {
             try {
-                SelectionItemPattern selItemPattern1 = control.GetCurrentPattern(SelectionItemPattern.Pattern) as SelectionItemPattern;
+                // 20131206
+                // SelectionItemPattern selItemPattern1 = control.GetCurrentPattern(SelectionItemPattern.Pattern) as SelectionItemPattern;
+                IMySuperSelectionItemPattern selItemPattern1 = control.GetSelectionItemPattern();
                 if (selItemPattern1 != null) {
                     WriteObject(this, selItemPattern1.Current.IsSelected);
                 } else {
@@ -761,10 +767,12 @@ namespace UIAutomation
 
         // 20131109
         //internal void InvokeSelectionItem(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
-        internal void InvokeSelectionItem(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
+        internal void CallSelectionItemPattern(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
         {
             try {
-                SelectionItemPattern selItemPattern = control.GetCurrentPattern(SelectionItemPattern.Pattern) as SelectionItemPattern;
+                // 20131206
+                // SelectionItemPattern selItemPattern = control.GetCurrentPattern(SelectionItemPattern.Pattern) as SelectionItemPattern;
+                IMySuperSelectionItemPattern selItemPattern = control.GetSelectionItemPattern();
                 if (selItemPattern != null) {
                     selItemPattern.Select();
                     // 20131109
@@ -805,7 +813,7 @@ namespace UIAutomation
         //if (this.PassThru && CheckControl(this)) {
         // 20131109
         //internal void InvokeScroll(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
-        internal void InvokeScroll(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
+        internal void CallScrollPattern(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
         {
             try {
                 ScrollPattern scPattern = control.GetCurrentPattern(ScrollPattern.Pattern) as ScrollPattern;
@@ -887,7 +895,7 @@ namespace UIAutomation
 
         // 20131109
         //internal void InvokeScrollItem(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
-        internal void InvokeScrollItem(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
+        internal void CallScrollItemPattern(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
         {
             try {
                 ScrollItemPattern sciPattern = control.GetCurrentPattern(ScrollItemPattern.Pattern) as ScrollItemPattern;
@@ -925,7 +933,7 @@ namespace UIAutomation
 
         // 20131109
         //internal void InvokeRangeValueSet(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
-        internal void InvokeRangeValueSet(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
+        internal void CallRangeValuePatternForSet(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
         {
             try {
                 RangeValuePattern rvPatternSet = control.GetCurrentPattern(RangeValuePattern.Pattern) as RangeValuePattern;
@@ -963,7 +971,7 @@ namespace UIAutomation
 
         // 20131109
         //internal void InvokeRangeValueGet(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
-        internal void InvokeRangeValueGet(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
+        internal void CallRangeValuePatternForGet(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
         {
             try {
                 RangeValuePattern rvPatternGet = control.GetCurrentPattern(RangeValuePattern.Pattern) as RangeValuePattern;
@@ -1012,7 +1020,7 @@ namespace UIAutomation
         //if (this.PassThru && CheckControl(this)) {
         // 20131109
         //internal void InvokeInvoke(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
-        internal void InvokeInvoke(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
+        internal void CallInvokePattern(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
         {
             try {
                 // 20131205
@@ -1110,7 +1118,7 @@ namespace UIAutomation
         // }
         // 20131109
         //internal void InvokeGrid(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
-        internal void InvokeGrid(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
+        internal void CallGridPattern(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
         {
             try {
                 GridPattern gridPattern = control.GetCurrentPattern(GridPattern.Pattern) as GridPattern;
@@ -1130,7 +1138,7 @@ namespace UIAutomation
         // giPattern.Current.
         // 20131109
         //internal void InvokeGridItem(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
-        internal void InvokeGridItem(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
+        internal void CallGridItemPattern(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
         {
             try {
                 GridItemPattern gridItemPattern = control.GetCurrentPattern(GridItemPattern.Pattern) as GridItemPattern;
@@ -1143,7 +1151,7 @@ namespace UIAutomation
 
         // 20131109
         //internal void InvokeCollapse(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
-        internal void InvokeCollapse(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
+        internal void CallCollapsePattern(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
         {
             try {
                 // 20131206
@@ -1168,7 +1176,7 @@ namespace UIAutomation
 
         // 20131109
         //internal void InvokeExpand(System.Windows.Automation.AutomationElement _control, AutomationElement inputObject)
-        internal void InvokeExpand(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
+        internal void CallExpandPattern(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
         {
             try {
                 // 20131206

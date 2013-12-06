@@ -654,6 +654,12 @@
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\InvokePatternAdapterNet.cs">
       <Link>Helpers\UnderlyingCode\Adapter\InvokePatternAdapterNet.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\SelectionItemPatternAdapterNet.cs">
+      <Link>Helpers\UnderlyingCode\Adapter\SelectionItemPatternAdapterNet.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\SelectionPatternAdapterNet.cs">
+      <Link>Helpers\UnderlyingCode\Adapter\SelectionPatternAdapterNet.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\TogglePatternAdapterNet.cs">
       <Link>Helpers\UnderlyingCode\Adapter\TogglePatternAdapterNet.cs</Link>
     </Compile>
@@ -780,6 +786,18 @@
     </Compile>
     <Compile Include="..\UIAutomation\Interface\IInvokePatternAdapter.cs">
       <Link>Interface\IInvokePatternAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\ISelectionItemPatternAdapter.cs">
+      <Link>Interface\ISelectionItemPatternAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\ISelectionItemPatternInformationAdapter.cs">
+      <Link>Interface\ISelectionItemPatternInformationAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\ISelectionPatternAdapter.cs">
+      <Link>Interface\ISelectionPatternAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\ISelectionPatternInformationAdapter.cs">
+      <Link>Interface\ISelectionPatternInformationAdapter.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Interface\ITogglePatternAdapter.cs">
       <Link>Interface\ITogglePatternAdapter.cs</Link>

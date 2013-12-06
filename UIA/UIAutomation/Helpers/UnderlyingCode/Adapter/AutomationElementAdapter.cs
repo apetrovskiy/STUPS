@@ -1,4 +1,5 @@
-﻿/*
+﻿using System.Windows.Media.Animation;
+/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
  * Date: 11/5/2013
@@ -193,18 +194,30 @@ namespace UIAutomation
 //			                    return _elementHolderNet.GetCachedPattern(pattern);
 //			                	//break;
 //			            }
-			            if (pattern.Id == ValuePattern.Pattern.Id) {
-			                IMySuperValuePattern valuePattern =
-    			                AutomationFactory.GetMySuperValuePattern(
-    			                    this,
-    			                    _elementHolderNet.GetCachedPattern(pattern) as ValuePattern);//,
-    			            return valuePattern;
-			            } else if (pattern.Id == InvokePattern.Pattern.Id) {
+                        if (pattern.Id == ExpandCollapsePattern.Pattern.Id) {
+                            IMySuperExpandCollapsePattern expandCollapsePattern =
+                                AutomationFactory.GetMySuperExpandCollapsePattern(
+                                    this,
+                                    _elementHolderNet.GetCachedPattern(pattern) as ExpandCollapsePattern);
+                            return expandCollapsePattern;
+                        } else if (pattern.Id == InvokePattern.Pattern.Id) {
 			                IMySuperInvokePattern invokePattern =
 		                        AutomationFactory.GetMySuperInvokePattern(
 		                            this,
 		                            _elementHolderNet.GetCachedPattern(pattern) as InvokePattern);
 		                    return invokePattern;
+                        } else if (pattern.Id == TogglePattern.Pattern.Id) {
+                            IMySuperTogglePattern togglePattern =
+                                AutomationFactory.GetMySuperTogglePattern(
+                                    this,
+                                    _elementHolderNet.GetCachedPattern(pattern) as TogglePattern);
+                            return togglePattern;
+                        } else if (pattern.Id == ValuePattern.Pattern.Id) {
+			                IMySuperValuePattern valuePattern =
+    			                AutomationFactory.GetMySuperValuePattern(
+    			                    this,
+    			                    _elementHolderNet.GetCachedPattern(pattern) as ValuePattern);//,
+    			            return valuePattern;
 			            } else {
 			                return _elementHolderNet.GetCachedPattern(pattern);
 			            }
@@ -259,19 +272,31 @@ namespace UIAutomation
 //			                    
 //			                	break;
 //			            }
-			            if (pattern.Id == ValuePattern.Pattern.Id) {
-			                IMySuperValuePattern valuePattern =
-		                        AutomationFactory.GetMySuperValuePattern(
-		                            this,
-		                            _elementHolderNet.GetCurrentPattern(pattern) as ValuePattern);
-		                    return valuePattern;
+			            if (pattern.Id == ExpandCollapsePattern.Pattern.Id) {
+			                IMySuperExpandCollapsePattern expandCollapsePattern =
+			                    AutomationFactory.GetMySuperExpandCollapsePattern(
+			                        this,
+			                        _elementHolderNet.GetCurrentPattern(pattern) as ExpandCollapsePattern);
+			                return expandCollapsePattern;
 			            } else if (pattern.Id == InvokePattern.Pattern.Id) {
 			                IMySuperInvokePattern invokePattern =
 		                        AutomationFactory.GetMySuperInvokePattern(
 		                            this,
 		                            _elementHolderNet.GetCurrentPattern(pattern) as InvokePattern);
 		                    return invokePattern;
-			            } else {
+			            } else if (pattern.Id == TogglePattern.Pattern.Id) {
+			                IMySuperTogglePattern togglePattern =
+			                    AutomationFactory.GetMySuperTogglePattern(
+			                        this,
+			                        _elementHolderNet.GetCurrentPattern(pattern) as TogglePattern);
+			                return togglePattern;
+			            } else if (pattern.Id == ValuePattern.Pattern.Id) {
+			                IMySuperValuePattern valuePattern =
+		                        AutomationFactory.GetMySuperValuePattern(
+		                            this,
+		                            _elementHolderNet.GetCurrentPattern(pattern) as ValuePattern);
+		                    return valuePattern;
+			            }  else {
 			                return this._elementHolderNet.GetCurrentPattern(pattern);
 			            }
 			            //switch (pattern.Id) {
@@ -955,6 +980,52 @@ namespace UIAutomation
             
             return this;
         }
+        
+        public IMySuperWrapper Toggle()
+        {
+            IMySuperTogglePattern togglePattern =
+                this.GetTogglePattern();
+            
+            try {
+                togglePattern.Toggle();
+            }
+            catch {}
+            
+            return this;
+        }
+        
+//        public bool? ToggleState
+//        {
+//            get {
+//                using (ToggleState t = ToggleState) {
+//                    
+//                } 
+//                switch (this.GetTogglePattern().Current.ToggleState) {
+//                     case ToggleState.Off:
+//                         return false;
+//                     case ToggleState.On:
+//                         return true;
+//                     case ToggleState.Indeterminate:
+//                         return null;
+////                     default:
+////                         throw new Exception("Invalid value for ToggleState");
+//                 }
+//            }
+//            set { 
+//                switch (value) {
+//                    case true:
+//                        this.GetTogglePattern().Current.ToggleState = ToggleState.On;
+//                        break;
+//                    case false:
+//                        this.GetTogglePattern().Current.ToggleState = ToggleState.Off;
+//                    case null:
+//                        this.GetTogglePattern().Current.ToggleState = ToggleState.Indeterminate;
+////                    default:
+////                        
+////                    	break;
+//                }
+//            }
+//        }
         
         public string Value
         {

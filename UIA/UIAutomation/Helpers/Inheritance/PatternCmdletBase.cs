@@ -504,7 +504,9 @@ namespace UIAutomation
         {
             try {
                 cmdlet.WriteVerbose(cmdlet, "trying to get TogglePattern");
-                TogglePattern togglePattern1 = control.GetCurrentPattern(TogglePattern.Pattern) as TogglePattern;
+                // 20131206
+                // TogglePattern togglePattern1 = control.GetCurrentPattern(TogglePattern.Pattern) as TogglePattern;
+                IMySuperTogglePattern togglePattern1 = control.GetTogglePattern();
                 if (togglePattern1 != null) {
                     
                     cmdlet.WriteVerbose(cmdlet, "TogglePattern != null");
@@ -529,7 +531,9 @@ namespace UIAutomation
         internal void InvokeToggleStateSet(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject, bool on)
         {
             try {
-                TogglePattern togglePattern1 = control.GetCurrentPattern(TogglePattern.Pattern) as TogglePattern;
+                // 20131206
+                // TogglePattern togglePattern1 = control.GetCurrentPattern(TogglePattern.Pattern) as TogglePattern;
+                IMySuperTogglePattern togglePattern1 = control.GetTogglePattern();
                 if (togglePattern1 != null) {
                     //bool toggleState = false;
                     if (togglePattern1.Current.ToggleState == ToggleState.On && on) {
@@ -589,7 +593,9 @@ namespace UIAutomation
         internal void InvokeToggle(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
         {
             try {
-                TogglePattern togglePattern = control.GetCurrentPattern(TogglePattern.Pattern) as TogglePattern;
+                // 20131206
+                // TogglePattern togglePattern = control.GetCurrentPattern(TogglePattern.Pattern) as TogglePattern;
+                IMySuperTogglePattern togglePattern = control.GetTogglePattern();
                 if (togglePattern != null) {
                     togglePattern.Toggle();
                     // 20131109
@@ -1140,7 +1146,9 @@ namespace UIAutomation
         internal void InvokeCollapse(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
         {
             try {
-                ExpandCollapsePattern collapsePattern = control.GetCurrentPattern(ExpandCollapsePattern.Pattern) as ExpandCollapsePattern;
+                // 20131206
+                // ExpandCollapsePattern collapsePattern = control.GetCurrentPattern(ExpandCollapsePattern.Pattern) as ExpandCollapsePattern;
+                IMySuperExpandCollapsePattern collapsePattern = control.GetExpandCollapsePattern();
                 if (collapsePattern != null) {
                     collapsePattern.Collapse();
                     // 20131109
@@ -1163,7 +1171,9 @@ namespace UIAutomation
         internal void InvokeExpand(PatternCmdletBase cmdlet, IMySuperWrapper control, IMySuperWrapper inputObject)
         {
             try {
-                ExpandCollapsePattern expandPattern = control.GetCurrentPattern(ExpandCollapsePattern.Pattern) as ExpandCollapsePattern;
+                // 20131206
+                // ExpandCollapsePattern expandPattern = control.GetCurrentPattern(ExpandCollapsePattern.Pattern) as ExpandCollapsePattern;
+                IMySuperExpandCollapsePattern expandPattern = control.GetExpandCollapsePattern();
                 if (expandPattern != null) {
                     expandPattern.Expand();
                     // 20131109

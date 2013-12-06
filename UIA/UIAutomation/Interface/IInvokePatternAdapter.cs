@@ -12,5 +12,7 @@ namespace UIAutomation
     public interface IMySuperInvokePattern : IBasePattern //IInvokePatternAdapter : IBasePattern
 	{
 		void Invoke();
+		
+		IMySuperWrapper ParentElement { get; set; }
 	}
 }

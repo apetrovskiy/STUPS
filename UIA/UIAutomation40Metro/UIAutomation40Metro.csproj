@@ -648,8 +648,14 @@
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\Enums.cs">
       <Link>Helpers\UnderlyingCode\Adapter\Enums.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\ExpandCollapsePatternNet.cs">
+      <Link>Helpers\UnderlyingCode\Adapter\ExpandCollapsePatternNet.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\InvokePatternAdapterNet.cs">
       <Link>Helpers\UnderlyingCode\Adapter\InvokePatternAdapterNet.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\TogglePatternAdapterNet.cs">
+      <Link>Helpers\UnderlyingCode\Adapter\TogglePatternAdapterNet.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\ValuePatternAdapterNet.cs">
       <Link>Helpers\UnderlyingCode\Adapter\ValuePatternAdapterNet.cs</Link>
@@ -766,8 +772,20 @@
     <Compile Include="..\UIAutomation\Interface\IBasePattern.cs">
       <Link>Interface\IBasePattern.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Interface\IExpandCollapsePatternAdapter.cs">
+      <Link>Interface\IExpandCollapsePatternAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\IExpandCollapsePatternInformationAdapter.cs">
+      <Link>Interface\IExpandCollapsePatternInformationAdapter.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Interface\IInvokePatternAdapter.cs">
       <Link>Interface\IInvokePatternAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\ITogglePatternAdapter.cs">
+      <Link>Interface\ITogglePatternAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\ITogglePatternInformationAdapter.cs">
+      <Link>Interface\ITogglePatternInformationAdapter.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Interface\IValuePatternAdapter.cs">
       <Link>Interface\IValuePatternAdapter.cs</Link>
@@ -811,6 +829,7 @@
     <Folder Include="Helpers\UnderlyingCode\Commands\Wizard" />
     <Folder Include="Helpers\UnderlyingCode\Commands\Wizard" />
     <Folder Include="Helpers\UnderlyingCode\Adapter" />
+    <Folder Include="Helpers\UnderlyingCode\ExtensionMethods" />
     <Folder Include="Helpers\UnderlyingCode\ExtensionMethods" />
     <Folder Include="Helpers\UnderlyingCode\Ninject" />
     <Folder Include="Helpers\UnderlyingCode\RDP" />

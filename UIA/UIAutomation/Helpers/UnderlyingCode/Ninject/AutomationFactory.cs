@@ -230,6 +230,63 @@ namespace UIAutomation
 		}
 		#endregion IMySuperCollection
 		
+		#region IMySuperExpandCollapsePattern
+		internal static IMySuperExpandCollapsePattern GetMySuperExpandCollapsePattern(IMySuperWrapper element, ExpandCollapsePattern expandCollapsePattern)
+		{
+		    try {
+                var argElement = new ConstructorArgument("element", element);
+		        var argPattern = new ConstructorArgument("expandCollapsePattern", expandCollapsePattern);
+		        IMySuperExpandCollapsePattern adapterPattern = Kernel.Get<IMySuperExpandCollapsePattern>(new[] { argElement, argPattern });
+	       		return adapterPattern;
+			}
+			catch (Exception eFailedToIssueExpandCollapsePattern) {
+			    // TODO
+			    // write error to error object!!!
+//			    Console.WriteLine("ExpandCollapsePattern");
+//			    Console.WriteLine(eFailedToIssueExpandCollapsePattern.Message);
+			    return null;
+			}
+		}
+		#endregion IMySuperExpandCollapsePattern
+		
+		#region IMySuperInvokePattern
+		internal static IMySuperInvokePattern GetMySuperInvokePattern(IMySuperWrapper element, InvokePattern invokePattern)
+		{
+			try {
+                var argElement = new ConstructorArgument("element", element);
+		        var argPattern = new ConstructorArgument("invokePattern", invokePattern);
+		        IMySuperInvokePattern adapterPattern = Kernel.Get<IMySuperInvokePattern>(new[] { argElement, argPattern });
+	       		return adapterPattern;
+			}
+			catch (Exception eFailedToIssueInvokePattern) {
+			    // TODO
+			    // write error to error object!!!
+//			    Console.WriteLine("InvokePattern");
+//			    Console.WriteLine(eFailedToIssueInvokePattern.Message);
+			    return null;
+			}
+		}
+		#endregion IMySuperInvokePattern
+		
+		#region IMySuperTogglePattern
+		internal static IMySuperTogglePattern GetMySuperTogglePattern(IMySuperWrapper element, TogglePattern togglePattern)
+		{
+		    try {
+                var argElement = new ConstructorArgument("element", element);
+		        var argPattern = new ConstructorArgument("togglePattern", togglePattern);
+		        IMySuperTogglePattern adapterPattern = Kernel.Get<IMySuperTogglePattern>(new[] { argElement, argPattern });
+	       		return adapterPattern;
+			}
+			catch (Exception eFailedToIssueTogglePattern) {
+			    // TODO
+			    // write error to error object!!!
+//			    Console.WriteLine("TogglePattern");
+//			    Console.WriteLine(eFailedToIssueTogglePattern.Message);
+			    return null;
+			}
+		}
+		#endregion IMySuperTogglePattern
+		
 		#region IMySuperValuePattern
 		internal static IMySuperValuePattern GetMySuperValuePattern(IMySuperWrapper element, ValuePattern valuePattern)
 		{
@@ -244,26 +301,6 @@ namespace UIAutomation
 			    // write error to error object!!!
 //			    Console.WriteLine("ValuePattern");
 //			    Console.WriteLine(eFailedToIssueValuePattern.Message);
-			    return null;
-			}
-		}
-		#endregion IMySuperInvokePattern
-		
-		#region IMySuperValuePattern
-		internal static IMySuperInvokePattern GetMySuperInvokePattern(IMySuperWrapper element, InvokePattern invokePattern)
-		{
-			try {
-                var argElement = new ConstructorArgument("element", element);
-		        // var argPattern = new ConstructorArgument("valuePattern", valuePattern);
-		        var argPattern = new ConstructorArgument("invokePattern", invokePattern);
-		        IMySuperInvokePattern adapterPattern = Kernel.Get<IMySuperInvokePattern>(new[] { argElement, argPattern });
-	       		return adapterPattern;
-			}
-			catch (Exception eFailedToIssueInvokePattern) {
-			    // TODO
-			    // write error to error object!!!
-//			    Console.WriteLine("InvokePattern");
-//			    Console.WriteLine(eFailedToIssueInvokePattern.Message);
 			    return null;
 			}
 		}

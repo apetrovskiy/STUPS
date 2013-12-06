@@ -643,6 +643,19 @@ namespace UIAutomation
         }
         
         #region Patterns
+        public static IMySuperExpandCollapsePattern GetExpandCollapsePattern(this IMySuperWrapper element)
+        {
+            IMySuperExpandCollapsePattern result = null;
+            object pattern = null;
+            
+            if (element.TryGetCurrentPattern(ExpandCollapsePattern.Pattern, out pattern)) {
+                result =
+                    AutomationFactory.GetMySuperExpandCollapsePattern(element,  (pattern as ExpandCollapsePattern));
+            }
+            
+            return result;
+        }
+        
         public static IMySuperInvokePattern GetInvokePattern(this IMySuperWrapper element)
         {
             IMySuperInvokePattern result = null;
@@ -650,8 +663,20 @@ namespace UIAutomation
             
             if (element.TryGetCurrentPattern(InvokePattern.Pattern, out pattern)) {
                 result =
-                    // element.GetCurrentPattern(InvokePattern.Pattern) as InvokePattern;
                     AutomationFactory.GetMySuperInvokePattern(element,  (pattern as InvokePattern));
+            }
+            
+            return result;
+        }
+        
+        public static IMySuperTogglePattern GetTogglePattern(this IMySuperWrapper element)
+        {
+            IMySuperTogglePattern result = null;
+            object pattern = null;
+            
+            if (element.TryGetCurrentPattern(TogglePattern.Pattern, out pattern)) {
+                result =
+                    AutomationFactory.GetMySuperTogglePattern(element,  (pattern as TogglePattern));
             }
             
             return result;
@@ -664,7 +689,6 @@ namespace UIAutomation
             
             if (element.TryGetCurrentPattern(ValuePattern.Pattern, out pattern)) {
                 result =
-                    // element.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern;
                     AutomationFactory.GetMySuperValuePattern(element, (pattern as ValuePattern));
             }
             

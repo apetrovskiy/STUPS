@@ -25,7 +25,7 @@ namespace UIAutomation
     {
         public override void Load()
         {
-            // IMySuperWrapper
+            #region IMySuperWrapper
             Bind<IMySuperWrapper>()
                 .ToConstructor(
                     x =>
@@ -44,8 +44,9 @@ namespace UIAutomation
                 .To<MySuperWrapper>()
                 .InCallScope()
                 .Named("Empty");
+            #endregion IMySuperWrapper
             
-            // IMySuperCollection
+            #region IMySuperCollection
             Bind<IMySuperCollection>()
                 .ToConstructor(
                     x => 
@@ -73,12 +74,41 @@ namespace UIAutomation
                     new MySuperCollection(x.Inject<bool>()))
                 .InCallScope()
                 .Named("Empty");
+            #endregion IMySuperCollection
             
-            // IMySuperWrapperInformation
+            #region IMySuperWrapperInformation
             Bind<IMySuperWrapperInformation>().To<MySuperWrapperInformation>().InCallScope();
+            #endregion IMySuperWrapperInformation
             
-            // IMySuperValuePattern
-            //Bind<IMySuperValuePattern>().To<MyValuePatternNet>().InCallScope();
+            #region IMySuperExpandCollapsePattern
+            Bind<IMySuperExpandCollapsePattern>()
+                .ToConstructor(
+                    x =>
+                    new MyExpandCollapsePatternNet(x.Inject<IMySuperWrapper>(), x.Inject<ExpandCollapsePattern>()))
+                .InCallScope();
+            
+            Bind<IExpandCollapsePatternInformationAdapter>().To<MyExpandCollapsePatternNet.ExpandCollapsePatternInformation>().InCallScope();
+            #endregion IMySuperExpandCollapsePattern
+            
+            #region IMySuperInvokePattern
+            Bind<IMySuperInvokePattern>()
+                .ToConstructor(
+                    x =>
+                    new MyInvokePatternNet(x.Inject<IMySuperWrapper>(), x.Inject<InvokePattern>()))
+                .InCallScope();
+            #endregion IMySuperInvokePattern
+            
+            #region IMySuperTogglePattern
+            Bind<IMySuperTogglePattern>()
+                .ToConstructor(
+                    x =>
+                    new MyTogglePatternNet(x.Inject<IMySuperWrapper>(), x.Inject<TogglePattern>()))
+                .InCallScope();
+            
+            Bind<ITogglePatternInformation>().To<MyTogglePatternNet.TogglePatternInformation>().InCallScope();
+            #endregion IMySuperTogglePattern
+            
+            #region IMySuperValuePattern
             Bind<IMySuperValuePattern>()
                 .ToConstructor(
                     x =>
@@ -86,13 +116,8 @@ namespace UIAutomation
                 .InCallScope();
             
             Bind<IValuePatternInformation>().To<MyValuePatternNet.ValuePatternInformation>().InCallScope();
-            
-            // IMySuperInvokePattern
-            Bind<IMySuperInvokePattern>()
-                .ToConstructor(
-                    x =>
-                    new MyInvokePatternNet(x.Inject<IMySuperWrapper>(), x.Inject<InvokePattern>()))
-                .InCallScope();
+            #endregion IMySuperValuePattern
+
         }
     }
 }

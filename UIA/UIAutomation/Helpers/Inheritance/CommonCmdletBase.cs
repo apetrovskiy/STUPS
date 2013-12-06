@@ -1507,9 +1507,6 @@ Console.WriteLine("wildcard search Win32");
             
             try {
                 
-Console.WriteLine("/name = " + name);
-Console.WriteLine("/au Id = " + automationId);
-                
                 GetControlCollectionCmdletBase cmdlet1 =
                     new GetControlCollectionCmdletBase(
                         cmdlet.InputObject ?? (new MySuperWrapper[]{ (MySuperWrapper)MySuperWrapper.RootElement }),

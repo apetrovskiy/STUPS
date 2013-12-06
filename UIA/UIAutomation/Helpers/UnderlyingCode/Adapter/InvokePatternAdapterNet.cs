@@ -16,12 +16,7 @@ namespace UIAutomation
     
 	public class MyInvokePatternNet : IMySuperInvokePattern
 	{
-		//: BasePattern
-		public static readonly AutomationPattern Pattern = InvokePatternIdentifiers.Pattern;
-		public static readonly AutomationEvent InvokedEvent = InvokePatternIdentifiers.InvokedEvent;
-		// private SafePatternHandle _hPattern;
-		
-		private readonly System.Windows.Automation.InvokePattern _invokePattern;
+	    private readonly System.Windows.Automation.InvokePattern _invokePattern;
 		private IMySuperWrapper _element;
 		
 		public MyInvokePatternNet(IMySuperWrapper element, InvokePattern invokePattern)
@@ -30,6 +25,21 @@ namespace UIAutomation
 			this._element = element;
 			//this._useCache = useCache;
 		}
+		
+		//: BasePattern
+		public static readonly AutomationPattern Pattern = InvokePatternIdentifiers.Pattern;
+		public static readonly AutomationEvent InvokedEvent = InvokePatternIdentifiers.InvokedEvent;
+		// private SafePatternHandle _hPattern;
+		
+//		private readonly System.Windows.Automation.InvokePattern _invokePattern;
+//		private IMySuperWrapper _element;
+//		
+//		public MyInvokePatternNet(IMySuperWrapper element, InvokePattern invokePattern)
+//		{
+//			this._invokePattern = invokePattern;
+//			this._element = element;
+//			//this._useCache = useCache;
+//		}
 		
 //		private InvokePattern(AutomationElement el, SafePatternHandle hPattern) : base(el, hPattern)
 //		{
@@ -44,5 +54,11 @@ namespace UIAutomation
 //		{
 //			return new InvokePattern(el, hPattern);
 //		}
+		
+		public IMySuperWrapper ParentElement
+		{
+		    get { return this._element; }
+		    set { this._element = value; }
+		}
 	}
 }

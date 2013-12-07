@@ -31,7 +31,7 @@ namespace UIAutomation.Commands
         [Parameter(Mandatory = false)]
         // 20131109
         //internal new System.Windows.Automation.AutomationElement InputObject { get; set; }
-        internal new IMySuperWrapper InputObject { get; set; }
+        internal new IUiElement InputObject { get; set; }
         #endregion Parameters
         
         protected override void BeginProcessing()

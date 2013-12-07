@@ -43,18 +43,18 @@ namespace UIAutomation
             // 20131109
             //System.Collections.Generic.List<AutomationElement> selectedItems = 
             //    new System.Collections.Generic.List<AutomationElement>();
-            List<IMySuperWrapper> selectedItems = 
-                new List<IMySuperWrapper>();
+            List<IUiElement> selectedItems = 
+                new List<IUiElement>();
             
             try {
                 
                 // 20131109
                 //foreach (AutomationElement inputObject in this.InputObject) {
-                foreach (IMySuperWrapper inputObject in InputObject) {
+                foreach (IUiElement inputObject in InputObject) {
                     
                     // 20131109
                     //AutomationElementCollection tableItems = 
-                    IMySuperCollection tableItems =
+                    IUiEltCollection tableItems =
                         inputObject.FindAll(
                             TreeScope.Children,
                                      new PropertyCondition(
@@ -72,12 +72,12 @@ namespace UIAutomation
                         bool notTheLastChild = true;
                         // 20131109
                         //foreach (AutomationElement child in tableItems) {
-                        foreach (IMySuperWrapper child in tableItems) {
+                        foreach (IUiElement child in tableItems) {
                             currentRowNumber++;
                             if (currentRowNumber == tableItems.Count) notTheLastChild = false;
                             // 20131109
                             //AutomationElementCollection row = 
-                            IMySuperCollection row =
+                            IUiEltCollection row =
                                 child.FindAll(TreeScope.Children,
                                     new PropertyCondition(
                                         AutomationElement.ControlTypeProperty,
@@ -86,7 +86,7 @@ namespace UIAutomation
                             int counter = 0;
                             // 20131109
                             //foreach (AutomationElement grandchild in row) {
-                            foreach (IMySuperWrapper grandchild in row) {
+                            foreach (IUiElement grandchild in row) {
                             
                                 string strValue = String.Empty;
                                 ValuePattern valPattern = null;

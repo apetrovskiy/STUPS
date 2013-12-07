@@ -39,7 +39,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         private void TestParametersAgainstCollection(
             ControlType controlType,
             string searchString,
-            IEnumerable<IMySuperWrapper> collection,
+            IEnumerable<IUiElement> collection,
             int expectedNumberOfElements)
         {
             // Arrange
@@ -52,24 +52,24 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 FakeFactory.Get_GetControlCmdletBase(controlType, searchString);
             Condition condition =
                 cmdlet.GetTextSearchCondition(searchString, new string[]{ controlTypeString }, false);
-            IMySuperWrapper element =
+            IUiElement element =
                 FakeFactory.GetElement_ForFindAll(
                     collection,
                     condition);
             
             // Act
-            List<IMySuperWrapper> resultList = RealCodeCaller.GetResultList_TextSearch(cmdlet, element, condition);
+            List<IUiElement> resultList = RealCodeCaller.GetResultList_TextSearch(cmdlet, element, condition);
             
             // Assert
             Assert.Count(expectedNumberOfElements, resultList);
             if (!string.IsNullOrEmpty(searchString)) {
                 Assert.ForAll(
-                    resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(),
+                    resultList.Cast<IUiElement>().ToList<IUiElement>(),
                     x => x.Current.Name == searchString || x.Current.AutomationId == searchString || x.Current.ClassName == searchString ||
                     (null != (x.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern) ? (x.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern).Current.Value == searchString : false));
             }
 //            if (null != controlType) {
-//                Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.ControlType == controlType);
+//                Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => x.Current.ControlType == controlType);
 //            }
         }
         #endregion helpers
@@ -83,7 +83,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             TestParametersAgainstCollection(
                 controlType,
                 searchString,
-                new MySuperWrapper[] {},
+                new UiElement[] {},
                 0);
         }
         
@@ -129,7 +129,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             TestParametersAgainstCollection(
                 controlType,
                 searchString,
-                new MySuperWrapper[] {},
+                new UiElement[] {},
                 0);
         }
         
@@ -351,7 +351,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             TestParametersAgainstCollection(
                 controlType,
                 searchString,
-                new MySuperWrapper[] {},
+                new UiElement[] {},
                 0);
         }
         #endregion ContainsText

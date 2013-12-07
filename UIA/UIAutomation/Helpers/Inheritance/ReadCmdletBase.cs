@@ -34,7 +34,7 @@ namespace UIAutomation
             
             // 20131109
             //foreach (AutomationElement inputObject in InputObject) {
-            foreach (IMySuperWrapper inputObject in InputObject) {
+            foreach (IUiElement inputObject in InputObject) {
                 
                 if (GetType().Name == "ReadUiaControlAutomationIdCommand") {
                     WriteObject(this, inputObject.Current.AutomationId);

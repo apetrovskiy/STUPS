@@ -41,14 +41,14 @@ namespace UIAutomation.Commands
         /// </summary>
         protected override void ProcessRecord()
         {
-            foreach (IMySuperWrapper inputObject in InputObject) {
+            foreach (IUiElement inputObject in InputObject) {
             
             if (!CheckAndPrepareInput(this)) { // return;
                 // move to a position that is relative to the desktop
                 Cursor.Position = 
                     new Point(
-                        ((int)MySuperWrapper.RootElement.Current.BoundingRectangle.Left + X),
-                        ((int)MySuperWrapper.RootElement.Current.BoundingRectangle.Top + Y));
+                        ((int)UiElement.RootElement.Current.BoundingRectangle.Left + X),
+                        ((int)UiElement.RootElement.Current.BoundingRectangle.Top + Y));
                 WriteObject(this, true);
             }
             else {

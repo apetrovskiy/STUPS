@@ -43,10 +43,10 @@ namespace UIAutomation.Commands
             // 20131109
             //System.Windows.Automation.AutomationElement result = null;
             /*
-            IMySuperWrapper result = null;
+            IUiElement result = null;
             */
 
-            foreach (IMySuperWrapper result in InputObject.Select(handle => UiaHelper.GetAutomationElementFromHandle(
+            foreach (IUiElement result in InputObject.Select(handle => UiaHelper.GetAutomationElementFromHandle(
                 this,
                 handle)))
             {
@@ -57,7 +57,7 @@ namespace UIAutomation.Commands
             }
             /*
             foreach (int handle in InputObject) {
-                IMySuperWrapper result = UiaHelper.GetAutomationElementFromHandle(
+                IUiElement result = UiaHelper.GetAutomationElementFromHandle(
                     this,
                     handle);
                 if (result != null) {
@@ -94,7 +94,7 @@ namespace UIAutomation.Commands
             // 20131109
             //System.Windows.Automation.AutomationElement result = null;
             // 20131113
-            foreach (IMySuperWrapper result in InputObject.Select(handle => UiaHelper.GetAutomationElementFromHandle(
+            foreach (IUiElement result in InputObject.Select(handle => UiaHelper.GetAutomationElementFromHandle(
                 this,
                 handle)))
             {
@@ -113,7 +113,7 @@ namespace UIAutomation.Commands
                 //    UiaHelper.GetAutomationElementFromHandle(
                 //        this,
                 //        handle);
-                IMySuperWrapper result =
+                IUiElement result =
                     UiaHelper.GetAutomationElementFromHandle(
                         this,
                         handle);

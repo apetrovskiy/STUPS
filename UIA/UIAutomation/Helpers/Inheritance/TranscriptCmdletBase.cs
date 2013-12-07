@@ -60,7 +60,7 @@ namespace UIAutomation
         public ArrayList RecordingPatterns = 
             new ArrayList();
         
-        protected internal IMySuperWrapper thePreviouslyUsedElement = null;
+        protected internal IUiElement thePreviouslyUsedElement = null;
         
         internal new void StopProcessing()
         {

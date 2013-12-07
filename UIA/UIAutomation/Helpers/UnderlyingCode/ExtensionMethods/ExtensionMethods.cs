@@ -22,7 +22,7 @@ namespace UIAutomation
     /// </summary>
     public static class ExtensionsMethods
     {
-//        public static IEnumerable GetElementsByWildcard(this MySuperCollection collection, string name, string automationId, string className, string txtValue, bool caseSensitive)
+//        public static IEnumerable GetElementsByWildcard(this UiEltCollection collection, string name, string automationId, string className, string txtValue, bool caseSensitive)
 //        {
 //            WildcardOptions options;
 //            if (caseSensitive) {
@@ -34,7 +34,7 @@ namespace UIAutomation
 //                    WildcardOptions.Compiled;
 //            }
 //            
-//            List<IMySuperWrapper> list = collection.Cast<IMySuperWrapper>().ToList();
+//            List<IUiElement> list = collection.Cast<IUiElement>().ToList();
 //            
 //            WildcardPattern wildcardName = 
 //                new WildcardPattern((string.IsNullOrEmpty(name) ? "*" : name), options);
@@ -62,28 +62,28 @@ namespace UIAutomation
 //            return queryByBigFour;
 //        }
         
-//        public static IEnumerable GetElementsByWildcard(this MySuperCollection collection, string name, string automationId, string className, string txtValue)
+//        public static IEnumerable GetElementsByWildcard(this UiEltCollection collection, string name, string automationId, string className, string txtValue)
 //        {
 //            return GetElementsByWildcard(collection, name, automationId, className, txtValue, false);
 //        }
         
-        public static IMySuperCollection ConvertCmdletInputToCollectionAdapter(this ICollection inputArray)
+        public static IUiEltCollection ConvertCmdletInputToCollectionAdapter(this ICollection inputArray)
         {
-            IMySuperCollection resultCollection =
-                AutomationFactory.GetMySuperCollection(inputArray);
+            IUiEltCollection resultCollection =
+                AutomationFactory.GetUiEltCollection(inputArray);
             return resultCollection;
         }
         
-//        internal static IMySuperWrapper GetParent(this IMySuperWrapper element)
+//        internal static IUiElement GetParent(this IUiElement element)
 //        {
-//            IMySuperWrapper result = null;
+//            IUiElement result = null;
 //            
 //            TreeWalker walker =
 //                new TreeWalker(
 //                    System.Windows.Automation.Condition.TrueCondition);
 //            
 //            try {
-//                result = AutomationFactory.GetMySuperWrapper(walker.GetParent(element.GetSourceElement()));
+//                result = AutomationFactory.GetUiElement(walker.GetParent(element.GetSourceElement()));
 //            }
 //            catch {}
 //            
@@ -95,7 +95,7 @@ namespace UIAutomation
 //        ///  /// </summary>
 //        /// <param name="element"></param>
 //        /// <returns></returns>
-//        internal static IMySuperWrapper GetAncestorWithHandle(this IMySuperWrapper element)
+//        internal static IUiElement GetAncestorWithHandle(this IUiElement element)
 //        {
 //            TreeWalker walker =
 //                new TreeWalker(
@@ -106,11 +106,11 @@ namespace UIAutomation
 //
 //            try {
 //                
-//                IMySuperWrapper testparent = AutomationFactory.GetMySuperWrapper(walker.GetParent(element.GetSourceElement()));
+//                IUiElement testparent = AutomationFactory.GetUiElement(walker.GetParent(element.GetSourceElement()));
 //                while (testparent != null &&
 //                       testparent.Current.NativeWindowHandle == 0) {
 //                    testparent =
-//                        AutomationFactory.GetMySuperWrapper(walker.GetParent(testparent.GetSourceElement()));
+//                        AutomationFactory.GetUiElement(walker.GetParent(testparent.GetSourceElement()));
 //                    if (testparent != null &&
 //                        (int)testparent.Current.ProcessId > 0 &&
 //                        testparent.Current.NativeWindowHandle != 0) {
@@ -132,7 +132,7 @@ namespace UIAutomation
 //        /// <param name="element"></param>
 //        /// <param name="scope"></param>
 //        /// <returns></returns>
-//        internal static IMySuperWrapper[] GetParentOrAncestor(this IMySuperWrapper element, TreeScope scope)
+//        internal static IUiElement[] GetParentOrAncestor(this IUiElement element, TreeScope scope)
 //        {
 //            TreeWalker walker =
 //                new TreeWalker(
@@ -142,34 +142,34 @@ namespace UIAutomation
 //            // 20131109
 //            //System.Collections.Generic.List<AutomationElement> ancestors =
 //            //    new System.Collections.Generic.List<AutomationElement>();
-//            List<IMySuperWrapper> ancestors =
-//                new List<IMySuperWrapper>();
+//            List<IUiElement> ancestors =
+//                new List<IUiElement>();
 //            
 //            try {
 //                
 //                // 20131109
-//                IMySuperWrapper testParent = AutomationFactory.GetMySuperWrapper(walker.GetParent(element.GetSourceElement()));
+//                IUiElement testParent = AutomationFactory.GetUiElement(walker.GetParent(element.GetSourceElement()));
 //                    
 //                if (scope == TreeScope.Parent || scope == TreeScope.Ancestors) {
 //                    
-//                    if (testParent != MySuperWrapper.RootElement) {
+//                    if (testParent != UiElement.RootElement) {
 //                        ancestors.Add(testParent);
 //                    }
 //                    
-//                    if (testParent == MySuperWrapper.RootElement ||
+//                    if (testParent == UiElement.RootElement ||
 //                        scope == TreeScope.Parent) {
 //                        return ancestors.ToArray();
 //                    }
 //                }
 //                while (testParent != null &&
 //                       (int)testParent.Current.ProcessId > 0 &&
-//                       testParent != MySuperWrapper.RootElement) {
+//                       testParent != UiElement.RootElement) {
 //                    
 //                    testParent =
-//                        AutomationFactory.GetMySuperWrapper(walker.GetParent(testParent.GetSourceElement()));
+//                        AutomationFactory.GetUiElement(walker.GetParent(testParent.GetSourceElement()));
 //                    if (testParent != null &&
 //                        (int)testParent.Current.ProcessId > 0 &&
-//                        testParent != MySuperWrapper.RootElement) {
+//                        testParent != UiElement.RootElement) {
 //                        
 //                        ancestors.Add(testParent);
 //                    }
@@ -184,7 +184,7 @@ namespace UIAutomation
 //        /// <summary>
 //        ///  /// </summary>
 //        /// <returns></returns>
-//        internal static AutomationPattern[] GetElementPatternsFromPoint(this IMySuperWrapper element)
+//        internal static AutomationPattern[] GetElementPatternsFromPoint(this IUiElement element)
 //        {
 //            AutomationPattern[] result = null;
 //            GetAutomationElementFromPoint();
@@ -199,12 +199,12 @@ namespace UIAutomation
 //        /// <summary>
 //        ///  /// </summary>
 //        /// <returns></returns>
-//        public static IMySuperWrapper GetAutomationElementFromPoint(this IMySuperWrapper element)
+//        public static IUiElement GetAutomationElementFromPoint(this IUiElement element)
 //        {
 //            // 20131109
 //            //System.Windows.Automation.AutomationElement result =
 //            //    null;
-//            IMySuperWrapper result = null;
+//            IUiElement result = null;
 //            
 //            try {
 //                _element =
@@ -212,7 +212,7 @@ namespace UIAutomation
 //                    //AutomationElement.FromPoint(new System.Windows.Point(
 //                    //    Cursor.Position.X,
 //                    //    Cursor.Position.Y));
-//                    MySuperWrapper.FromPoint(
+//                    UiElement.FromPoint(
 //                        new System.Windows.Point(
 //                            Cursor.Position.X,
 //                            Cursor.Position.Y));

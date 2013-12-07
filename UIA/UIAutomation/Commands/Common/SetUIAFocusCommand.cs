@@ -33,7 +33,7 @@ namespace UIAutomation.Commands
             // 20120823
             // 20131109
             //foreach (AutomationElement inputObject in this.InputObject) {
-            foreach (IMySuperWrapper inputObject in InputObject) {
+            foreach (IUiElement inputObject in InputObject) {
 
                 try {
                     inputObject.SetFocus();

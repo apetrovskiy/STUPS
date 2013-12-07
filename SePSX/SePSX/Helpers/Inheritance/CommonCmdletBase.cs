@@ -839,7 +839,7 @@ Console.WriteLine("WriteSingleObject 00008");
                     (new HasControlInputCmdletBase()),
                     // 20131109
                     //AutomationElement.RootElement,
-                    MySuperWrapper.RootElement,
+                    UiElement.RootElement,
                     CmdletName(cmdlet),
                     true,
                     0,

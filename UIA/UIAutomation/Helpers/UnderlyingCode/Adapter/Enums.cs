@@ -13,6 +13,6 @@ namespace UIAutomation
         Empty,
         AutomationElementNet,
         AutomationElementCom,
-        MySuperWrapper
+        UiElement
     }
 }

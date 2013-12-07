@@ -471,7 +471,7 @@ namespace UIAutomation
         
         // 20131109
         //public System.Windows.Automation.AutomationElement Window
-        public IMySuperWrapper Window { get; internal set; }
+        public IUiElement Window { get; internal set; }
 
         public string WindowName
         {
@@ -501,7 +501,7 @@ namespace UIAutomation
                 Window =
                     // 20131109
                     //AutomationElement.RootElement;
-                    MySuperWrapper.RootElement; //.SourceElement;
+                    UiElement.RootElement; //.SourceElement;
             }
             catch (Exception e) {
                 //WriteVerbose(e.Message);

@@ -17,16 +17,16 @@ namespace UIAutomation
 	public class MySelectionItemPatternNet : IMySuperSelectionItemPattern
 	{
 	    private readonly System.Windows.Automation.SelectionItemPattern _selectionItemPattern;
-		private IMySuperWrapper _element;
+		private IUiElement _element;
 		
-		public MySelectionItemPatternNet(IMySuperWrapper element, SelectionItemPattern selectionItemPattern)
+		public MySelectionItemPatternNet(IUiElement element, SelectionItemPattern selectionItemPattern)
 		{
 			this._selectionItemPattern = selectionItemPattern;
 			this._element = element;
 			//this._useCache = useCache;
 		}
 		
-		internal MySelectionItemPatternNet(IMySuperWrapper element)
+		internal MySelectionItemPatternNet(IUiElement element)
 		{
 		    this._element = element;
 		}
@@ -50,10 +50,10 @@ namespace UIAutomation
 			    }
 			}
 			// public AutomationElement SelectionContainer {
-			public IMySuperWrapper SelectionContainer {
+			public IUiElement SelectionContainer {
 				get {
 			        // return (AutomationElement)this._el.GetPatternPropertyValue(SelectionItemPattern.SelectionContainerProperty, this._useCache);
-			        return (IMySuperWrapper)this._selectionItemPattern.ParentElement.GetPatternPropertyValue(SelectionItemPattern.SelectionContainerProperty, this._useCache);
+			        return (IUiElement)this._selectionItemPattern.ParentElement.GetPatternPropertyValue(SelectionItemPattern.SelectionContainerProperty, this._useCache);
 			    }
 			}
 //			internal SelectionItemPatternInformation(AutomationElement el, bool useCache)
@@ -116,7 +116,7 @@ namespace UIAutomation
 //			return new SelectionItemPattern(el, hPattern, cached);
 //		}
 		
-		public IMySuperWrapper ParentElement
+		public IUiElement ParentElement
 		{
 		    get { return this._element; }
 		    set { this._element = value; }

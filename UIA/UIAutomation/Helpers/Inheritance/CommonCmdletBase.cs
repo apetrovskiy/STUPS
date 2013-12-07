@@ -198,7 +198,7 @@ namespace UIAutomation
 
         protected void WriteObjectMethod020Highlight(PSCmdletBase cmdlet, object outputObject)
         {
-            if (null == (outputObject as IMySuperWrapper)) {
+            if (null == (outputObject as IUiElement)) {
                 return;
             }
             
@@ -210,12 +210,12 @@ namespace UIAutomation
 
             if (!Preferences.Highlight && !((HasScriptBlockCmdletBase) cmdlet).Highlight) return;
             
-            IMySuperWrapper element = null;
+            IUiElement element = null;
 
             if (cmdlet == null || cmdlet is WizardCmdletBase) return;
             try {
                 
-                element = outputObject as IMySuperWrapper;
+                element = outputObject as IUiElement;
                 if (null != element &&
                     (int)element.Current.ProcessId > 0) {
                     
@@ -233,9 +233,9 @@ namespace UIAutomation
                 // nothing to do
                 // just failed to highlight
             }
-            if (element == null || !(element is IMySuperWrapper) || (int) element.Current.ProcessId <= 0) return;
+            if (element == null || !(element is IUiElement) || (int) element.Current.ProcessId <= 0) return;
             
-            WriteVerbose(this, "as it is an IMySuperWrapper, it should be highlighted");
+            WriteVerbose(this, "as it is an IUiElement, it should be highlighted");
             
             try {
                 WriteVerbose(this, "run Highlighter");
@@ -336,7 +336,7 @@ namespace UIAutomation
                 
                 UiaHelper.GetScreenshotOfAutomationElement(
                     (cmdlet as HasControlInputCmdletBase),
-                    (outputObject as IMySuperWrapper),
+                    (outputObject as IUiElement),
                     CmdletName(cmdlet),
                     true,
                     0,
@@ -360,11 +360,11 @@ namespace UIAutomation
                     if ((CurrentData.CurrentWindow != null &&
                         CurrentData.LastResult != null) ||
                         
-                        (outputObject as IMySuperWrapper) != null) {
+                        (outputObject as IUiElement) != null) {
 
                         WriteVerbose(this, "(CurrentData.CurrentWindow != null && " +
                                           "CurrentData.LastResult != null) || " +
-                                          "(outputObject as IMySuperWrapper) != null");
+                                          "(outputObject as IUiElement) != null");
 
                         if (Preferences.StoredDefaultTimeout != 0) {
 
@@ -393,7 +393,7 @@ namespace UIAutomation
             WriteVerbose(this, "outputting the result object");
             if (cmdlet == null) return;
             try {
-                IMySuperWrapper element = outputObject as IMySuperWrapper;
+                IUiElement element = outputObject as IUiElement;
                 WriteVerbose(this, "getting the element again to ensure that it still exists");
                 if (!(cmdlet is WizardCmdletBase) &&
                     (null != element)) {
@@ -413,7 +413,7 @@ namespace UIAutomation
                 // test
                 // 20131109
                 //this.WriteVerbose(this, "failed to issue the result object of AutomationElement type");
-                WriteVerbose(this, "failed to issue the result object of IMySuperWrapper type");
+                WriteVerbose(this, "failed to issue the result object of IUiElement type");
                 WriteVerbose(this, "returning as is");
                 // 20131204
                 HighlighterGeneration++;
@@ -429,10 +429,10 @@ namespace UIAutomation
                 
             switch (outputObject.GetType().Name) {
                 case "AutomationElement":
-                case "IMySuperWrapper":
+                case "IUiElement":
                     try {
                         
-                        IMySuperWrapper ae = outputObject as IMySuperWrapper;
+                        IUiElement ae = outputObject as IUiElement;
                         if (null != ae) {
                                 
                             reportString +=
@@ -531,7 +531,7 @@ namespace UIAutomation
         
         // 20131204
         // ????????
-        public void WriteObject(PSCmdletBase cmdlet, List<IMySuperWrapper> outputObjectCollection)
+        public void WriteObject(PSCmdletBase cmdlet, List<IUiElement> outputObjectCollection)
         {
             HighlighterGeneration++;
             base.WriteObject(cmdlet, outputObjectCollection);
@@ -539,7 +539,7 @@ namespace UIAutomation
         
         // 20131204
         // ????????
-        public void WriteObject(PSCmdletBase cmdlet, IMySuperCollection outputObjectCollection)
+        public void WriteObject(PSCmdletBase cmdlet, IUiEltCollection outputObjectCollection)
         {
             HighlighterGeneration++;
             base.WriteObject(cmdlet, outputObjectCollection);
@@ -689,7 +689,7 @@ namespace UIAutomation
 
             if (!Preferences.OnErrorScreenShot) return;
             
-            IMySuperWrapper elementToTakeScreenShot = null;
+            IUiElement elementToTakeScreenShot = null;
             
             try {
                     
@@ -700,13 +700,13 @@ namespace UIAutomation
                 } else {
                         
                     cmdlet.WriteVerbose(cmdlet, "taking screenshot of the desktop object");
-                    elementToTakeScreenShot = MySuperWrapper.RootElement;
+                    elementToTakeScreenShot = UiElement.RootElement;
                 }
             }
             catch {
                     
                 cmdlet.WriteVerbose(cmdlet, "taking screenshot of the desktop object (on fail)");
-                elementToTakeScreenShot = MySuperWrapper.RootElement;
+                elementToTakeScreenShot = UiElement.RootElement;
             }
                 
             cmdlet.WriteVerbose(cmdlet, "taking screenshot");
@@ -953,7 +953,7 @@ namespace UIAutomation
         protected override void SaveEventInput(
             // 20131109
             AutomationElement src,
-            //IMySuperWrapper src,
+            //IUiElement src,
             AutomationEventArgs e,
             string programmaticName,
             bool infoAdded)
@@ -963,8 +963,8 @@ namespace UIAutomation
                 // 20131109
                 //CurrentData.LastEventSource = src; //.SourceElement; // as AutomationElement;
                 // 20131112
-                //CurrentData.LastEventSource = new MySuperWrapper(src);
-                CurrentData.LastEventSource = AutomationFactory.GetMySuperWrapper(src);
+                //CurrentData.LastEventSource = new UiElement(src);
+                CurrentData.LastEventSource = AutomationFactory.GetUiElement(src);
                 CurrentData.LastEventArgs = e; // as AutomationEventArgs;
                 CurrentData.LastEventType = programmaticName;
                 CurrentData.LastEventInfoAdded = infoAdded;
@@ -976,9 +976,9 @@ namespace UIAutomation
         #endregion Invoke-UiaScript
         
         protected internal DateTime StartDate { get; set; }
-        protected IMySuperWrapper CurrentInputElement { get; set; }
-        protected internal List<IMySuperWrapper> ResultListOfControls;
-        protected internal IMySuperWrapper OddRootElement { get; set; }
+        protected IUiElement CurrentInputElement { get; set; }
+        protected internal List<IUiElement> ResultListOfControls;
+        protected internal IUiElement OddRootElement { get; set; }
         
         /// <summary>
         /// stores the state if there's no way to get it from a cmdlet object
@@ -1162,11 +1162,11 @@ namespace UIAutomation
         }
         #endregion condition methods
         
-        protected internal List<IMySuperWrapper> GetControl(GetControlCmdletBase cmdlet)
+        protected internal List<IUiElement> GetControl(GetControlCmdletBase cmdlet)
         {
             try {
 
-                ResultListOfControls = new List<IMySuperWrapper>();
+                ResultListOfControls = new List<IUiElement>();
                 
                 #region conditions
                 Condition conditionsForExactSearch = null;
@@ -1199,9 +1199,9 @@ namespace UIAutomation
                 
                 tempCmdlet = null;
                 
-                IMySuperCollection inputCollection = cmdlet.InputObject.ConvertCmdletInputToCollectionAdapter();
+                IUiEltCollection inputCollection = cmdlet.InputObject.ConvertCmdletInputToCollectionAdapter();
                 
-                foreach (IMySuperWrapper inputObject in inputCollection) {
+                foreach (IUiElement inputObject in inputCollection) {
                     
                     int processId = 0;
                     do {
@@ -1344,7 +1344,7 @@ namespace UIAutomation
                         else{
                             
                             OddRootElement =
-                                MySuperWrapper.RootElement;
+                                UiElement.RootElement;
                             if (processId > 0) {
                                 try {
                                     PropertyCondition pIDcondition =
@@ -1352,7 +1352,7 @@ namespace UIAutomation
                                             AutomationElement.ProcessIdProperty,
                                             processId);
                                     
-                                    IMySuperWrapper tempElement =
+                                    IUiElement tempElement =
                                         OddRootElement.FindFirst(
                                             TreeScope.Children,
                                             pIDcondition);
@@ -1413,11 +1413,11 @@ namespace UIAutomation
 
         }
         
-        internal List<IMySuperWrapper> SearchByWildcardViaWin32(GetControlCmdletBase cmdlet, IMySuperWrapper inputObject)
+        internal List<IUiElement> SearchByWildcardViaWin32(GetControlCmdletBase cmdlet, IUiElement inputObject)
         {
             WriteVerbose(cmdlet, "[getting the control] using FindWindowEx");
             
-            List<IMySuperWrapper> tempListWin32 = new List<IMySuperWrapper>();
+            List<IUiElement> tempListWin32 = new List<IUiElement>();
             if (!string.IsNullOrEmpty(cmdlet.Name)) {
                 WriteVerbose(cmdlet, "collecting controls by name (Win32)");
                 // 20131129
@@ -1434,9 +1434,9 @@ namespace UIAutomation
 //                
 //            }
             
-            List<IMySuperWrapper> resultList = new List<IMySuperWrapper>();
+            List<IUiElement> resultList = new List<IUiElement>();
             
-            foreach (IMySuperWrapper tempElement3 in tempListWin32) {
+            foreach (IUiElement tempElement3 in tempListWin32) {
                 
                 // 20131128
 //                if (!string.IsNullOrEmpty(cmdlet.ControlType)) {
@@ -1490,9 +1490,9 @@ namespace UIAutomation
             return resultList;
         }
         
-        internal List<IMySuperWrapper> SearchByWildcardOrRegexViaUia(
+        internal List<IUiElement> SearchByWildcardOrRegexViaUia(
             GetControlCmdletBase cmdlet, // 20130318 // ??
-            IMySuperWrapper inputObject,
+            IUiElement inputObject,
             string name,
             string automationId,
             string className,
@@ -1502,14 +1502,14 @@ namespace UIAutomation
         {
             WriteVerbose((cmdlet as PSCmdletBase), "[getting the control] using WildCard/Regex search");
             
-            List<IMySuperWrapper> resultCollection =
-                new List<IMySuperWrapper>();
+            List<IUiElement> resultCollection =
+                new List<IUiElement>();
             
             try {
                 
                 GetControlCollectionCmdletBase cmdlet1 =
                     new GetControlCollectionCmdletBase(
-                        cmdlet.InputObject ?? (new MySuperWrapper[]{ (MySuperWrapper)MySuperWrapper.RootElement }),
+                        cmdlet.InputObject ?? (new UiElement[]{ (UiElement)UiElement.RootElement }),
                         name, //cmdlet.Name,
                         automationId, //cmdlet.AutomationId,
                         className, //cmdlet.Class,
@@ -1522,7 +1522,7 @@ namespace UIAutomation
                 try {
                     WriteVerbose((cmdlet as PSCmdletBase), "using the GetAutomationElementsViaWildcards_FindAll method");
                     
-                    List<IMySuperWrapper> tempList =
+                    List<IUiElement> tempList =
                         cmdlet1.GetAutomationElementsViaWildcards_FindAll(
                             cmdlet1,
                             inputObject,
@@ -1543,7 +1543,7 @@ namespace UIAutomation
                         resultCollection.AddRange(tempList);
                     } else {
                         
-                        foreach (IMySuperWrapper tempElement2 in tempList) {
+                        foreach (IUiElement tempElement2 in tempList) {
                             
                             cmdlet.WriteVerbose(cmdlet, "WildCard/Regex search: checking search criteria");
                             if (!TestControlWithAllSearchCriteria(cmdlet, cmdlet.SearchCriteria, tempElement2))
@@ -1594,9 +1594,9 @@ namespace UIAutomation
             }
         }
         
-        protected internal List<IMySuperWrapper> SearchByExactConditionsViaUia(
+        protected internal List<IUiElement> SearchByExactConditionsViaUia(
             GetControlCmdletBase cmdlet,
-            IMySuperWrapper inputObject,
+            IUiElement inputObject,
             Condition conditions)
         {
             #region the -First story
@@ -1634,16 +1634,16 @@ namespace UIAutomation
             //else if (UIAutomation.CurrentData.LastResult
             #endregion the -First story
             
-            List<IMySuperWrapper> listOfColllectedResults =
-                new List<IMySuperWrapper>();
+            List<IUiElement> listOfColllectedResults =
+                new List<IUiElement>();
             
             if (conditions == null) return listOfColllectedResults;
             
             if (inputObject == null || (int) inputObject.Current.ProcessId <= 0) return listOfColllectedResults;
             
-            IMySuperCollection tempCollection = inputObject.FindAll(TreeScope.Descendants, conditions);
+            IUiEltCollection tempCollection = inputObject.FindAll(TreeScope.Descendants, conditions);
             
-            foreach (IMySuperWrapper tempElement in tempCollection) {
+            foreach (IUiElement tempElement in tempCollection) {
                 
                 if (null == cmdlet.SearchCriteria || 0 == cmdlet.SearchCriteria.Length) {
                     
@@ -1670,23 +1670,23 @@ namespace UIAutomation
             return listOfColllectedResults;
         }
         
-        internal List<IMySuperWrapper> SearchByContainsTextViaUia(
+        internal List<IUiElement> SearchByContainsTextViaUia(
             GetControlCmdletBase cmdlet,
-            IMySuperWrapper inputObject,
+            IUiElement inputObject,
             Condition conditionsForTextSearch)
         {
             WriteVerbose(cmdlet, "Text search");
             
-            IMySuperCollection textSearchCollection = inputObject.FindAll(TreeScope.Descendants, conditionsForTextSearch);
+            IUiEltCollection textSearchCollection = inputObject.FindAll(TreeScope.Descendants, conditionsForTextSearch);
             
-            return textSearchCollection.Cast<IMySuperWrapper>().ToList();
+            return textSearchCollection.Cast<IUiElement>().ToList();
             
             // 20131203
 //            if (null != textSearchCollection && 0 < textSearchCollection.Count) {
 //                
 //                WriteVerbose(cmdlet, "There are " + textSearchCollection.Count.ToString() + " elements");
 //                
-//                foreach (IMySuperWrapper element in textSearchCollection) {
+//                foreach (IUiElement element in textSearchCollection) {
 //                    
 //                    ResultListOfControls.Add(element);
 //                }
@@ -1698,15 +1698,15 @@ namespace UIAutomation
 //            }
         }
         
-        internal List<IMySuperWrapper> SearchByTextViaWin32(
+        internal List<IUiElement> SearchByTextViaWin32(
             GetControlCmdletBase cmdlet,
-            IMySuperWrapper inputObject,
+            IUiElement inputObject,
             string[] controlTypeNames)
         {
 
             WriteVerbose(cmdlet, "Text search Win32");
             
-            List<IMySuperWrapper> textSearchWin32List =
+            List<IUiElement> textSearchWin32List =
                 // 20131204
                 // UiaHelper.GetControlByNameViaWin32(
                 //     cmdlet,
@@ -1719,14 +1719,14 @@ namespace UIAutomation
                     string.Empty);
             
             // 20131203
-            List<IMySuperWrapper> resultList =
-                new List<IMySuperWrapper>();
+            List<IUiElement> resultList =
+                new List<IUiElement>();
             
             if (null != textSearchWin32List && 0 < textSearchWin32List.Count) {
                 
                 WriteVerbose(cmdlet, "There are " + textSearchWin32List.Count.ToString() + " elements");
                 
-                foreach (IMySuperWrapper elementToChoose in textSearchWin32List) {
+                foreach (IUiElement elementToChoose in textSearchWin32List) {
                     
                     if (null != controlTypeNames && 0 < controlTypeNames.Length) {
                         
@@ -1771,7 +1771,7 @@ namespace UIAutomation
         
         protected bool TestControlByPropertiesFromDictionary(
             Dictionary<string, object> dict,
-            IMySuperWrapper elementToWorkWith)
+            IUiElement elementToWorkWith)
         {
             bool result = false;
             
@@ -1986,7 +1986,7 @@ namespace UIAutomation
         protected internal bool TestControlWithAllSearchCriteria(
             GetCmdletBase cmdlet,
             IEnumerable<Hashtable> hashtables,
-            IMySuperWrapper element)
+            IUiElement element)
         {
             bool result = false;
             

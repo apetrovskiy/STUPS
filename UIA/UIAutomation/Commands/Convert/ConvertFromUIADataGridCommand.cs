@@ -44,10 +44,10 @@ namespace UIAutomation.Commands
         {
             if (!CheckAndPrepareInput(this)) { return; }
             
-            foreach (IMySuperWrapper inputObject in InputObject) {
+            foreach (IUiElement inputObject in InputObject) {
     
                 string strData = String.Empty;
-                IMySuperWrapper currentControl = 
+                IUiElement currentControl = 
                     inputObject;
                 GridPattern gridPattern = null;
     
@@ -68,7 +68,7 @@ namespace UIAutomation.Commands
                         
                     // temporary!!!
                     // Selection
-                    IMySuperWrapper[] selectedItems = null;
+                    IUiElement[] selectedItems = null;
                     if (SelectedOnly) {
                         // if there's a selection, get items in the selection
                         try
@@ -89,8 +89,8 @@ namespace UIAutomation.Commands
                                 // 20131109
                                 //selPattern.Current.GetSelection();
                                 // 20131119
-                                //new MySuperCollection(selPattern.Current.GetSelection()).Cast<IMySuperWrapper>().ToArray();
-                                AutomationFactory.GetMySuperCollection(selPattern.Current.GetSelection()).Cast<IMySuperWrapper>().ToArray();
+                                //new UiEltCollection(selPattern.Current.GetSelection()).Cast<IUiElement>().ToArray();
+                                AutomationFactory.GetUiEltCollection(selPattern.Current.GetSelection()).Cast<IUiElement>().ToArray();
                         }
                         catch (Exception eSelection) {
                             WriteDebug(this, eSelection.Message);

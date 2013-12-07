@@ -17,12 +17,12 @@ namespace UIAutomation
     using System.Linq;
     using Ninject;
     
-	public class MySuperCollection : IMySuperCollection
+	public class UiEltCollection : IUiEltCollection
 	{
-	    private readonly List<IMySuperWrapper> _collectionHolder =
-	        new List<IMySuperWrapper>();
+	    private readonly List<IUiElement> _collectionHolder =
+	        new List<IUiElement>();
 	    
-		public IMySuperWrapper this[int index] {
+		public IUiElement this[int index] {
 		    get { return _collectionHolder[index]; }
 		}
 		public int Count {
@@ -35,30 +35,30 @@ namespace UIAutomation
 			get { return false; }
 		}
         
-		public MySuperCollection(AutomationElementCollection elements)
+		public UiEltCollection(AutomationElementCollection elements)
 		{
 		    foreach (AutomationElement element in elements.Cast<AutomationElement>().Where(element => null != element))
 		    {
-		        _collectionHolder.Add(AutomationFactory.GetMySuperWrapper(element));
+		        _collectionHolder.Add(AutomationFactory.GetUiElement(element));
 		    }
 		    /*
             foreach (AutomationElement element in elements) {
 		        
 		        if (null != element) {
-    		        _collectionHolder.Add(ObjectsFactory.GetMySuperWrapper(element));
+    		        _collectionHolder.Add(ObjectsFactory.GetUiElement(element));
 		        }
 		    }
             */
 		}
 
-	    public MySuperCollection(IMySuperCollection elements)
+	    public UiEltCollection(IUiEltCollection elements)
 	    {
-	        foreach (IMySuperWrapper element in elements.Cast<IMySuperWrapper>().Where(element => null != element))
+	        foreach (IUiElement element in elements.Cast<IUiElement>().Where(element => null != element))
 	        {
 	            _collectionHolder.Add(element);
 	        }
 	        /*
-            foreach (IMySuperWrapper element in elements) {
+            foreach (IUiElement element in elements) {
 		        
 		        if (null != element) {
 		          _collectionHolder.Add(element);
@@ -67,24 +67,24 @@ namespace UIAutomation
             */
 	    }
 
-	    public MySuperCollection(IEnumerable elements)
+	    public UiEltCollection(IEnumerable elements)
 	    {
 	        foreach (var element in elements.Cast<object>().Where(element => null != element))
 	        {
-	            _collectionHolder.Add((IMySuperWrapper)element);
+	            _collectionHolder.Add((IUiElement)element);
 	        }
 	        /*
             foreach (var element in elements) {
 		        
 		        if (null != element) {
-		          _collectionHolder.Add((IMySuperWrapper)element);
+		          _collectionHolder.Add((IUiElement)element);
 		        }
 		    }
             */
 	    }
 
 	    [Inject]
-		public MySuperCollection(bool fake)
+		public UiEltCollection(bool fake)
 		{
 		}
 		
@@ -98,7 +98,7 @@ namespace UIAutomation
 			//((ICollection)this).CopyTo(array, index);
 			//this._collectionHolder.CopyTo(array, index);
 		}
-		public virtual void CopyTo(IMySuperWrapper[] array, int index)
+		public virtual void CopyTo(IUiElement[] array, int index)
 		{
 			_collectionHolder.CopyTo(array, index);
 		}
@@ -107,12 +107,12 @@ namespace UIAutomation
 			return _collectionHolder.GetEnumerator();
 		}
 		
-		public virtual void AddElement(IMySuperWrapper element)
+		public virtual void AddElement(IUiElement element)
 		{
 		    _collectionHolder.Add(element);
 		}
 		
-		public virtual List<IMySuperWrapper> SourceCollection
+		public virtual List<IUiElement> SourceCollection
 		{
 		    get { return _collectionHolder; }
 		}

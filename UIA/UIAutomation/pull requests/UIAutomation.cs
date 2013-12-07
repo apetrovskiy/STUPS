@@ -27,7 +27,7 @@ namespace AVG.Automation.Cmdlets
         [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true)]
         // 20131109
         //public AutomationElement InputObject { get; set; }
-        public IMySuperWrapper InputObject { get; set; }
+        public IUiElement InputObject { get; set; }
 
         /// <summary>
         /// Pattern name to be invoked
@@ -91,7 +91,7 @@ namespace AVG.Automation.Cmdlets
         [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true)]
         // 20131109
         //public AutomationElement InputObject { get; set; }
-        public IMySuperWrapper InputObject { get; set; }
+        public IUiElement InputObject { get; set; }
 
         protected override void ProcessRecord()
         {
@@ -122,7 +122,7 @@ namespace AVG.Automation.Cmdlets
         [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true)]
         // 20131109
         //public AutomationElement InputObject { get; set; }
-        public IMySuperWrapper InputObject { get; set; }
+        public IUiElement InputObject { get; set; }
 
         /// <summary>
         /// DateTime to bet set

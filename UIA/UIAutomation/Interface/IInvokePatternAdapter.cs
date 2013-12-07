@@ -13,6 +13,6 @@ namespace UIAutomation
 	{
 		void Invoke();
 		
-		IMySuperWrapper ParentElement { get; set; }
+		IUiElement ParentElement { get; set; }
 	}
 }

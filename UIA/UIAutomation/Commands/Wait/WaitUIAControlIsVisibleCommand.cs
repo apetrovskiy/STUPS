@@ -60,7 +60,7 @@ namespace UIAutomation.Commands
         protected override void ProcessRecord() {
             if (!CheckAndPrepareInput(this)) { return; }
             
-            foreach (IMySuperWrapper inputObject in InputObject) {
+            foreach (IUiElement inputObject in InputObject) {
             
             //System.Windows.Automation.AutomationElement _control = null;
             

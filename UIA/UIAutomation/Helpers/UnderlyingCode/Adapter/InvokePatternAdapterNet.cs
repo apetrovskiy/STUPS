@@ -17,16 +17,16 @@ namespace UIAutomation
 	public class MyInvokePatternNet : IMySuperInvokePattern
 	{
 	    private readonly System.Windows.Automation.InvokePattern _invokePattern;
-		private IMySuperWrapper _element;
+		private IUiElement _element;
 		
-		public MyInvokePatternNet(IMySuperWrapper element, InvokePattern invokePattern)
+		public MyInvokePatternNet(IUiElement element, InvokePattern invokePattern)
 		{
 			this._invokePattern = invokePattern;
 			this._element = element;
 			//this._useCache = useCache;
 		}
 		
-		internal MyInvokePatternNet(IMySuperWrapper element)
+		internal MyInvokePatternNet(IUiElement element)
 		{
 		    // this._invokePattern = AutomationFactory.GetMySuperInvokePattern(element, null);
 		    this._element = element;
@@ -38,9 +38,9 @@ namespace UIAutomation
 		// private SafePatternHandle _hPattern;
 		
 //		private readonly System.Windows.Automation.InvokePattern _invokePattern;
-//		private IMySuperWrapper _element;
+//		private IUiElement _element;
 //		
-//		public MyInvokePatternNet(IMySuperWrapper element, InvokePattern invokePattern)
+//		public MyInvokePatternNet(IUiElement element, InvokePattern invokePattern)
 //		{
 //			this._invokePattern = invokePattern;
 //			this._element = element;
@@ -62,7 +62,7 @@ namespace UIAutomation
 //			return new InvokePattern(el, hPattern);
 //		}
 		
-		public IMySuperWrapper ParentElement
+		public IUiElement ParentElement
 		{
 		    get { return this._element; }
 		    set { this._element = value; }

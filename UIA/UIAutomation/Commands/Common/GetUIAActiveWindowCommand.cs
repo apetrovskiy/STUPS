@@ -22,7 +22,7 @@ namespace UIAutomation.Commands
         {
             // 20131109
             //AutomationElement element = 
-            IMySuperWrapper element =
+            IUiElement element =
                 GetActiveWindow();
             //UIAutomation.CurrentData.CurrentWindow = element;
             CurrentData.CurrentWindow = element;

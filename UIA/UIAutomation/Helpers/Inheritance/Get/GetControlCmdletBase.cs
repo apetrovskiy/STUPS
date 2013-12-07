@@ -33,7 +33,7 @@ namespace UIAutomation
             InputObject =
                 // 20131109
                 //new System.Windows.Automation.AutomationElement[] { CurrentData.CurrentWindow };
-                new MySuperWrapper[] { (MySuperWrapper)CurrentData.CurrentWindow };
+                new UiElement[] { (UiElement)CurrentData.CurrentWindow };
             
             // CacheRequest
             FromCache = Preferences.FromCache;

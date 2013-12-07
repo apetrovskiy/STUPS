@@ -24,7 +24,7 @@ namespace UIAutomation
         internal static void _PaintRectangle(
             // 20131109
             //System.Windows.Automation.AutomationElement element)
-            IMySuperWrapper element)
+            IUiElement element)
         {
             if (element == null) {
                 return;

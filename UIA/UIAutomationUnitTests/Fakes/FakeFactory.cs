@@ -38,19 +38,19 @@ namespace UIAutomationUnitTests
             return valuePattern;
         }
         
-        public static  IMySuperWrapper GetAutomationElementExpected(ControlType controlType, string name, string automationId, string className, string txtValue)
+        public static  IUiElement GetAutomationElementExpected(ControlType controlType, string name, string automationId, string className, string txtValue)
         {
             return GetAutomationElement(controlType, name, automationId, className, txtValue, true);
         }
         
-        public static  IMySuperWrapper GetAutomationElementNotExpected(ControlType controlType, string name, string automationId, string className, string txtValue)
+        public static  IUiElement GetAutomationElementNotExpected(ControlType controlType, string name, string automationId, string className, string txtValue)
         {
             return GetAutomationElement(controlType, name, automationId, className, txtValue, false);
         }
         
-        private static IMySuperWrapper GetAutomationElement(ControlType controlType, string name, string automationId, string className, string txtValue, bool expected)
+        private static IUiElement GetAutomationElement(ControlType controlType, string name, string automationId, string className, string txtValue, bool expected)
         {
-            IMySuperWrapper element = Substitute.For<IMySuperWrapper>();
+            IUiElement element = Substitute.For<IUiElement>();
             element.Current.ProcessId.Returns(333);
             element.Current.ControlType.Returns(controlType);
             element.Current.Name.Returns(!string.IsNullOrEmpty(name) ? name : string.Empty);
@@ -96,11 +96,11 @@ namespace UIAutomationUnitTests
             return cmdlet;
         }
         
-        public static IMySuperWrapper GetElement_ForFindAll(IEnumerable<IMySuperWrapper> elements, Condition conditions)
+        public static IUiElement GetElement_ForFindAll(IEnumerable<IUiElement> elements, Condition conditions)
         {
-            IMySuperWrapper element =
+            IUiElement element =
                 GetAutomationElement(ControlType.Pane, string.Empty, string.Empty, string.Empty, string.Empty, false);
-            IMySuperCollection descendants = AutomationFactory.GetMySuperCollection(elements);
+            IUiEltCollection descendants = AutomationFactory.GetUiEltCollection(elements);
             
             Condition[] condCollection = null;
             if (null != conditions as AndCondition) {
@@ -111,9 +111,9 @@ namespace UIAutomationUnitTests
                 condCollection = (conditions as OrCondition).GetConditions();
             }
             
-            IMySuperCollection descendants2 = AutomationFactory.GetMySuperCollection();
-            foreach (IMySuperWrapper elt in descendants
-                .Cast<IMySuperWrapper>()
+            IUiEltCollection descendants2 = AutomationFactory.GetUiEltCollection();
+            foreach (IUiElement elt in descendants
+                .Cast<IUiElement>()
                 .Where(elt => "expected" == elt.Tag))
             {
                 descendants2.SourceCollection.Add(elt);

@@ -16,7 +16,7 @@ namespace UIAutomation
     using System.Windows.Automation;
     using System.Windows;
 
-    public interface IMySuperWrapper : IDisposable
+    public interface IUiElement : IDisposable
 	{
 		bool Equals(object obj);
 		int GetHashCode();
@@ -33,13 +33,13 @@ namespace UIAutomation
 		//AutomationElement FindFirst(TreeScope scope, Condition condition);
 		// 20131205
 		// UIANET
-		// IMySuperWrapper FindFirst(TreeScope scope, Condition condition);
-		IMySuperWrapper FindFirst(TreeScope scope, System.Windows.Automation.Condition condition);
+		// IUiElement FindFirst(TreeScope scope, Condition condition);
+		IUiElement FindFirst(TreeScope scope, System.Windows.Automation.Condition condition);
 		//AutomationElementCollection FindAll(TreeScope scope, Condition condition);
 		// 20131205
 		// UIANET
-		// IMySuperCollection FindAll(TreeScope scope, Condition condition);
-		IMySuperCollection FindAll(TreeScope scope, System.Windows.Automation.Condition condition);
+		// IUiEltCollection FindAll(TreeScope scope, Condition condition);
+		IUiEltCollection FindAll(TreeScope scope, System.Windows.Automation.Condition condition);
 		AutomationProperty[] GetSupportedProperties();
 		AutomationPattern[] GetSupportedPatterns();
 		void SetFocus();
@@ -49,16 +49,16 @@ namespace UIAutomation
 		Point GetClickablePoint();
 		// 20131114
 		//AutomationElement.AutomationElementInformation Cached { get; }
-		IMySuperWrapperInformation Cached { get; }
+		IUiElementInformation Cached { get; }
 		// 20131114
 		//AutomationElement.AutomationElementInformation Current { get; }
-		IMySuperWrapperInformation Current { get; }
+		IUiElementInformation Current { get; }
 		// 20131114
 		//AutomationElement CachedParent { get; }
-		IMySuperWrapper CachedParent { get; }
+		IUiElement CachedParent { get; }
 		// 20131114
 		//AutomationElementCollection CachedChildren { get; }
-		IMySuperCollection CachedChildren { get; }
+		IUiEltCollection CachedChildren { get; }
 		
 		//AutomationElement SourceElement { get; }
 		//AutomationElement SourceElement { get; set; }
@@ -66,8 +66,8 @@ namespace UIAutomation
 		//void SetSourceElement<T>(T element);
 		AutomationElement GetSourceElement();
 		void SetSourceElement(AutomationElement element);
-		//IMySuperWrapper GetSourceElement();
-		//void SetSourceElement(IMySuperWrapper element);
+		//IUiElement GetSourceElement();
+		//void SetSourceElement(IUiElement element);
 	    
 		string Tag { get; set; }
 		//void Dispose();
@@ -76,18 +76,18 @@ namespace UIAutomation
 		object GetPatternPropertyValue(AutomationProperty property, bool useCache);
 		
 		// NavigateTo
-        IMySuperWrapper NavigateToParent();
-        IMySuperWrapper NavigateToFirstChild();
-        IMySuperWrapper NavigateToLastChild();
-        IMySuperWrapper NavigateToNextSibling();
-        IMySuperWrapper NavigateToPreviousSibling();
+        IUiElement NavigateToParent();
+        IUiElement NavigateToFirstChild();
+        IUiElement NavigateToLastChild();
+        IUiElement NavigateToNextSibling();
+        IUiElement NavigateToPreviousSibling();
         
         // Patterns
-        IMySuperWrapper Click();
-        IMySuperWrapper DoubleClick();
+        IUiElement Click();
+        IUiElement DoubleClick();
         string Value { get; set; }
         
         // HIghlighter
-        IMySuperWrapper Highlight();
+        IUiElement Highlight();
 	}
 }

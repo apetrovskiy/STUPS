@@ -97,7 +97,7 @@ namespace UIAutomation
                 //if (null != (CurrentData.CurrentWindow as AutomationElement)) {
                 if (null != CurrentData.CurrentWindow) {
                 /*
-                if (null != (CurrentData.CurrentWindow as IMySuperWrapper)) {
+                if (null != (CurrentData.CurrentWindow as IUiElement)) {
                 */
 
                     cmdlet.WriteVerbose(

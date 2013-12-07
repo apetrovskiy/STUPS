@@ -20,18 +20,18 @@ namespace UIAutomation
 	public class MyValuePatternNet :  IMySuperValuePattern //IValuePatternAdapter
 	{
 		private readonly System.Windows.Automation.ValuePattern _valuePattern;
-		private IMySuperWrapper _element;
+		private IUiElement _element;
 		
 		//private bool _useCache; // mine
         
-		public MyValuePatternNet(IMySuperWrapper element, ValuePattern valuePattern)
+		public MyValuePatternNet(IUiElement element, ValuePattern valuePattern)
 		{
 			this._valuePattern = valuePattern;
 			this._element = element;
 			//this._useCache = useCache;
 		}
 		
-		internal MyValuePatternNet(IMySuperWrapper element)
+		internal MyValuePatternNet(IUiElement element)
 		{
 		    // this._valuePattern = AutomationFactory.GetMySuperValuePattern(element, null);
 		    this._element = element;
@@ -138,7 +138,7 @@ namespace UIAutomation
 //			return new ValuePattern(el, hPattern, cached);
 //		}
 
-		public IMySuperWrapper ParentElement
+		public IUiElement ParentElement
 		{
 		    get { return this._element; }
 		    set { this._element = value; }

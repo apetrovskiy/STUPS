@@ -25,10 +25,10 @@ namespace UIAutomation.Commands.Common
             try{
                 // 20131109
                 //AutomationElement showDesktopButton =
-                IMySuperWrapper showDesktopButton =
+                IUiElement showDesktopButton =
                     // 20131109
                     //AutomationElement.RootElement.FindFirst(
-                    MySuperWrapper.RootElement.FindFirst(
+                    UiElement.RootElement.FindFirst(
                         TreeScope.Children,
                         new PropertyCondition(
                             AutomationElement.NameProperty,

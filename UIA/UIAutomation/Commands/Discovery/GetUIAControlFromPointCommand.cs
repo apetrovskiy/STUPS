@@ -28,7 +28,7 @@ namespace UIAutomation.Commands
             //System.Windows.Automation.AutomationElement result = null;
             //result = 
             //    UiaHelper.GetAutomationElementFromPoint();
-            IMySuperWrapper result =
+            IUiElement result =
                 UiaHelper.GetAutomationElementFromPoint();
             
             WriteObject(this, result);

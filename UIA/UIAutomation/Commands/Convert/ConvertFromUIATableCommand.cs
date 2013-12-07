@@ -37,12 +37,12 @@ namespace UIAutomation.Commands
             // 20120823
             // 20131109
             //foreach (AutomationElement inputObject in this.InputObject) {
-            foreach (IMySuperWrapper inputObject in InputObject) {
+            foreach (IUiElement inputObject in InputObject) {
                 
                 string strData = String.Empty;
                 // 20131109
                 //System.Windows.Automation.AutomationElement _control = 
-                IMySuperWrapper currentControl =
+                IUiElement currentControl =
                     // 20120823
                     //this.InputObject;
                     inputObject;
@@ -68,7 +68,7 @@ namespace UIAutomation.Commands
                     // Selection
                     // 20131109
                     //System.Windows.Automation.AutomationElement[] selectedItems = null;
-                    IMySuperWrapper[] selectedItems = null;
+                    IUiElement[] selectedItems = null;
                     if (SelectedOnly) {
                         
                         // if there's a selection, get items in the selection
@@ -92,8 +92,8 @@ namespace UIAutomation.Commands
                                 // 20131109
                                 //selPattern.Current.GetSelection();
                                 // 20131119
-                                //new MySuperCollection(selPattern.Current.GetSelection()).Cast<MySuperWrapper>().ToArray();
-                                AutomationFactory.GetMySuperCollection(selPattern.Current.GetSelection()).Cast<MySuperWrapper>().ToArray();
+                                //new UiEltCollection(selPattern.Current.GetSelection()).Cast<UiElement>().ToArray();
+                                AutomationFactory.GetUiEltCollection(selPattern.Current.GetSelection()).Cast<UiElement>().ToArray();
                         }
                         catch (Exception eSelection) {
                             WriteDebug(this, eSelection.Message);

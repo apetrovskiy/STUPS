@@ -25,67 +25,67 @@ namespace UIAutomation
     {
         public override void Load()
         {
-            #region IMySuperWrapper
-            Bind<IMySuperWrapper>()
+            #region IUiElement
+            Bind<IUiElement>()
                 .ToConstructor(
                     x =>
-                    // new MySuperWrapper(x.Inject<AutomationElement>()))
-                    new MySuperWrapper(x.Inject<System.Windows.Automation.AutomationElement>()))
+                    // new UiElement(x.Inject<AutomationElement>()))
+                    new UiElement(x.Inject<System.Windows.Automation.AutomationElement>()))
                 .InCallScope()
                 .Named("AutomationElement.NET");
             
-            Bind<IMySuperWrapper>()
+            Bind<IUiElement>()
                 .ToConstructor(
                     x =>
-                    new MySuperWrapper(x.Inject<IMySuperWrapper>()))
+                    new UiElement(x.Inject<IUiElement>()))
                 .InCallScope()
-                .Named("MySuperWrapper");
+                .Named("UiElement");
             
-            Bind<IMySuperWrapper>()
-                .To<MySuperWrapper>()
+            Bind<IUiElement>()
+                .To<UiElement>()
                 .InCallScope()
                 .Named("Empty");
-            #endregion IMySuperWrapper
+            #endregion IUiElement
             
-            #region IMySuperCollection
-            Bind<IMySuperCollection>()
+            #region IUiEltCollection
+            Bind<IUiEltCollection>()
                 .ToConstructor(
                     x => 
-                    new MySuperCollection(x.Inject<AutomationElementCollection>()))
+                    new UiEltCollection(x.Inject<AutomationElementCollection>()))
                 .InCallScope()
                 .Named("AutomationElementCollection.NET");
             
-            Bind<IMySuperCollection>()
+            Bind<IUiEltCollection>()
                 .ToConstructor(
                     x =>
-                    new MySuperCollection(x.Inject<IMySuperCollection>()))
+                    new UiEltCollection(x.Inject<IUiEltCollection>()))
                 .InCallScope()
-                .Named("MySuperCollection");
+                .Named("UiEltCollection");
             
-            Bind<IMySuperCollection>()
+            Bind<IUiEltCollection>()
                 .ToConstructor(
                     x =>
-                    new MySuperCollection(x.Inject<IEnumerable>()))
+                    new UiEltCollection(x.Inject<IEnumerable>()))
                 .InCallScope()
                 .Named("AnyCollection");
             
-            Bind<IMySuperCollection>()
+            Bind<IUiEltCollection>()
                 .ToConstructor(
                     x =>
-                    new MySuperCollection(x.Inject<bool>()))
+                    new UiEltCollection(x.Inject<bool>()))
                 .InCallScope()
                 .Named("Empty");
-            #endregion IMySuperCollection
+            #endregion IUiEltCollection
             
-            #region IMySuperWrapperInformation
-            Bind<IMySuperWrapperInformation>().To<MySuperWrapperInformation>().InCallScope();
-            #endregion IMySuperWrapperInformation
+            #region IUiElementInformation
+            Bind<IUiElementInformation>().To<UiElementInformation>().InCallScope();
+            #endregion IUiElementInformation
             
             #region IMySuperExpandCollapsePattern
             Bind<IMySuperExpandCollapsePattern>()
                 .ToConstructor(
                     x =>
-                    new MyExpandCollapsePatternNet(x.Inject<IMySuperWrapper>(), x.Inject<ExpandCollapsePattern>()))
+                    new MyExpandCollapsePatternNet(x.Inject<IUiElement>(), x.Inject<ExpandCollapsePattern>()))
                 .InCallScope();
             
             Bind<IExpandCollapsePatternInformationAdapter>().To<MyExpandCollapsePatternNet.ExpandCollapsePatternInformation>().InCallScope();
@@ -95,7 +95,7 @@ namespace UIAutomation
             Bind<IMySuperInvokePattern>()
                 .ToConstructor(
                     x =>
-                    new MyInvokePatternNet(x.Inject<IMySuperWrapper>(), x.Inject<InvokePattern>()))
+                    new MyInvokePatternNet(x.Inject<IUiElement>(), x.Inject<InvokePattern>()))
                 .InCallScope();
             #endregion IMySuperInvokePattern
             
@@ -103,7 +103,7 @@ namespace UIAutomation
             Bind<IMySuperSelectionItemPattern>()
                 .ToConstructor(
                     x =>
-                    new MySelectionItemPatternNet(x.Inject<IMySuperWrapper>(), x.Inject<SelectionItemPattern>()))
+                    new MySelectionItemPatternNet(x.Inject<IUiElement>(), x.Inject<SelectionItemPattern>()))
                 .InCallScope();
             
             Bind<ISelectionItemPatternInformation>().To<MySelectionItemPatternNet.SelectionItemPatternInformation>().InCallScope();
@@ -113,7 +113,7 @@ namespace UIAutomation
             Bind<IMySuperSelectionPattern>()
                 .ToConstructor(
                     x =>
-                    new MySelectionPatternNet(x.Inject<IMySuperWrapper>(), x.Inject<SelectionPattern>()))
+                    new MySelectionPatternNet(x.Inject<IUiElement>(), x.Inject<SelectionPattern>()))
                 .InCallScope();
             
             Bind<ISelectionPatternInformation>().To<MySelectionPatternNet.SelectionPatternInformation>().InCallScope();
@@ -123,7 +123,7 @@ namespace UIAutomation
             Bind<IMySuperTogglePattern>()
                 .ToConstructor(
                     x =>
-                    new MyTogglePatternNet(x.Inject<IMySuperWrapper>(), x.Inject<TogglePattern>()))
+                    new MyTogglePatternNet(x.Inject<IUiElement>(), x.Inject<TogglePattern>()))
                 .InCallScope();
             
             Bind<ITogglePatternInformation>().To<MyTogglePatternNet.TogglePatternInformation>().InCallScope();
@@ -133,7 +133,7 @@ namespace UIAutomation
             Bind<IMySuperValuePattern>()
                 .ToConstructor(
                     x =>
-                    new MyValuePatternNet(x.Inject<IMySuperWrapper>(), x.Inject<ValuePattern>()))
+                    new MyValuePatternNet(x.Inject<IUiElement>(), x.Inject<ValuePattern>()))
                 .InCallScope();
             
             Bind<IValuePatternInformation>().To<MyValuePatternNet.ValuePatternInformation>().InCallScope();

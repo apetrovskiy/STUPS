@@ -124,7 +124,7 @@ namespace UIAutomation.Commands
             // 20120824
             // 20131109
             //foreach (AutomationElement inputObject in this.InputObject) {
-            foreach (IMySuperWrapper inputObject in InputObject) {
+            foreach (IUiElement inputObject in InputObject) {
             
                 GetAutomationElementsChildren(inputObject, true);
             
@@ -144,7 +144,7 @@ namespace UIAutomation.Commands
         /// </summary>
         protected override void ProcessRecord()
         {
-            foreach (IMySuperWrapper inputObject in InputObject) {
+            foreach (IUiElement inputObject in InputObject) {
                 
                 GetAutomationElementsChildren(inputObject, false);
             } // 20120824

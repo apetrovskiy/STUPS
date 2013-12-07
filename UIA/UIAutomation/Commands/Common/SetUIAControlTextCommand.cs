@@ -47,7 +47,7 @@ namespace UIAutomation.Commands
         {
             if (!CheckAndPrepareInput(this)) { return; }
             
-            foreach (IMySuperWrapper inputObject in InputObject) {
+            foreach (IUiElement inputObject in InputObject) {
                 
                 if (0 == inputObject.Current.NativeWindowHandle) {
                     

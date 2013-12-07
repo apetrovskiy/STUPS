@@ -19,7 +19,7 @@ namespace UIAutomation
 		ISelectionPatternInformation Cached { get; }
 		ISelectionPatternInformation Current { get; }
 		
-		IMySuperWrapper ParentElement { get; set; }
+		IUiElement ParentElement { get; set; }
 	}
 }
 

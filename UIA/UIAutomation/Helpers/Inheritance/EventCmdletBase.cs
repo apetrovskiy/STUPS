@@ -29,7 +29,7 @@ namespace UIAutomation
                 //new System.Windows.Automation.AutomationElement[] { CurrentData.CurrentWindow };
                 new[] { CurrentData.CurrentWindow };
                 /*
-                new MySuperWrapper[] { (MySuperWrapper)CurrentData.CurrentWindow };
+                new UiElement[] { (UiElement)CurrentData.CurrentWindow };
                 */
             AutomationEventType = null;
             AutomationProperty = null;
@@ -62,7 +62,7 @@ namespace UIAutomation
         {
             if (InputObject == null) return;
             
-            foreach (IMySuperWrapper inputObject in InputObject) {
+            foreach (IUiElement inputObject in InputObject) {
                 
                 SubscribeToEvents(this,
                                   inputObject,

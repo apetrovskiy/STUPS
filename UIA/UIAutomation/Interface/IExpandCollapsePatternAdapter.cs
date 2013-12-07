@@ -21,6 +21,6 @@ namespace UIAutomation
 		IExpandCollapsePatternInformationAdapter Cached { get; }
 		IExpandCollapsePatternInformationAdapter Current { get; }
 		
-		IMySuperWrapper ParentElement { get; set; }
+		IUiElement ParentElement { get; set; }
 	}
 }

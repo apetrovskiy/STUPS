@@ -53,7 +53,7 @@ namespace UIAutomation.Commands
             
             // 20131109
             //foreach (AutomationElement inputObject in this.InputObject) {
-            foreach (IMySuperWrapper inputObject in InputObject) {
+            foreach (IUiElement inputObject in InputObject) {
                 
                 UiaHelper.GetSheridanTreeItemByName(
                     this, 

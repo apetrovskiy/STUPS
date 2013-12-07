@@ -384,8 +384,8 @@ namespace UIAutomation.Commands
             // 20131109
             //AutomationElement element,
             //AutomationElement element2)
-            IMySuperWrapper element,
-            IMySuperWrapper element2)
+            IUiElement element,
+            IUiElement element2)
         {
             string result = String.Empty;
             if (element != null && (int)element.Current.ProcessId > 0 && 

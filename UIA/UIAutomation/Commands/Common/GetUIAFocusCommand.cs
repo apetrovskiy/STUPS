@@ -22,9 +22,9 @@ namespace UIAutomation.Commands
         // 20131109
         //internal new AutomationElement InputObject { get; set; }
         // 20131130
-        internal new IMySuperWrapper InputObject { get; set; }
+        internal new IUiElement InputObject { get; set; }
         /*
-        internal new IMySuperWrapper InputObject { get; set; }
+        internal new IUiElement InputObject { get; set; }
         */
         #endregion Parameters
 
@@ -33,10 +33,10 @@ namespace UIAutomation.Commands
             // 20131109
             //this.WriteObject(this, AutomationElement.FocusedElement);
             // 20131111
-            //this.WriteObject(this, new MySuperWrapper(AutomationElement.FocusedElement));
+            //this.WriteObject(this, new UiElement(AutomationElement.FocusedElement));
             // 20131112
-            //this.WriteObject(this, ObjectsFactory.Kernel.Get<IMySuperWrapper>( new MySuperWrapper[] { MySuperWrapper.FocusedElement } ));
-            WriteObject(this, MySuperWrapper.FocusedElement);
+            //this.WriteObject(this, ObjectsFactory.Kernel.Get<IUiElement>( new UiElement[] { UiElement.FocusedElement } ));
+            WriteObject(this, UiElement.FocusedElement);
         }
     }
 }

@@ -47,9 +47,9 @@ namespace UIAutomation
         public Hashtable[] SearchCriteria { get; set; }
         #endregion Parameters
         
-        protected internal List<IMySuperWrapper> GetFilteredElementsCollection(GetCmdletBase cmdlet, List<IMySuperWrapper> elementCollection)
+        protected internal List<IUiElement> GetFilteredElementsCollection(GetCmdletBase cmdlet, List<IUiElement> elementCollection)
         {
-            List<IMySuperWrapper> resultCollection = new List<IMySuperWrapper>();
+            List<IUiElement> resultCollection = new List<IUiElement>();
             
             
             

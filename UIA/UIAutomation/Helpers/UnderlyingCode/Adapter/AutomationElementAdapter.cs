@@ -19,39 +19,39 @@ namespace UIAutomation
 	// using TMX.Commands;
 
 	/// <summary>
-	/// Description of MySuperWrapper.
+	/// Description of UiElement.
 	/// </summary>
-	public class MySuperWrapper : IMySuperWrapper //, IInitializable
+	public class UiElement : IUiElement //, IInitializable
 	{
 		private AutomationElement _elementHolderNet;
 		// //private AutomationElement _elementHolderCom;
-		private readonly IMySuperWrapper _elementHolderAdapter;
+		private readonly IUiElement _elementHolderAdapter;
 		// 20131206
 		// private static InnerElementTypes _innerElementType = InnerElementTypes.Empty;
 		private static InnerElementTypes _innerElementType = InnerElementTypes.AutomationElementNet;
         
 		[Inject]
-		public MySuperWrapper(AutomationElement element)
+		public UiElement(AutomationElement element)
 		{
 			_elementHolderNet = element;
 			_innerElementType = InnerElementTypes.AutomationElementNet;
 		}
 		
 		//[Inject]
-		//public MySuperWrapper(::AutomationElement element)
+		//public UiElement(::AutomationElement element)
 		//{
 		//	this._elementHolderCom = element;
 		//}
 		
 		[Inject]
-		public MySuperWrapper(IMySuperWrapper element)
+		public UiElement(IUiElement element)
 		{
 			_elementHolderAdapter = element;
-			_innerElementType = InnerElementTypes.MySuperWrapper;
+			_innerElementType = InnerElementTypes.UiElement;
 		}
 		
 		[Inject]
-		public MySuperWrapper()
+		public UiElement()
 		{
 			_innerElementType = InnerElementTypes.Empty;
 		}
@@ -63,7 +63,7 @@ namespace UIAutomation
 			        return _elementHolderNet.Equals(obj);
 //			    case InnerElementTypes.AutomationElementCom:
 //			        //
-			    case InnerElementTypes.MySuperWrapper:
+			    case InnerElementTypes.UiElement:
 			        return _elementHolderAdapter.Equals(obj);
 			    default:
 			        return _elementHolderNet.Equals(obj);
@@ -77,7 +77,7 @@ namespace UIAutomation
 			        return _elementHolderNet.GetHashCode();
 //			    case InnerElementTypes.AutomationElementCom:
 //			        //
-			    case InnerElementTypes.MySuperWrapper:
+			    case InnerElementTypes.UiElement:
 			        return _elementHolderAdapter.GetHashCode();
 			    default:
 			        return _elementHolderNet.GetHashCode();
@@ -91,7 +91,7 @@ namespace UIAutomation
 			        return _elementHolderNet.GetRuntimeId();
 //			    case InnerElementTypes.AutomationElementCom:
 //			        //
-			    case InnerElementTypes.MySuperWrapper:
+			    case InnerElementTypes.UiElement:
 			        return _elementHolderAdapter.GetRuntimeId();
 			    default:
 			        return _elementHolderNet.GetRuntimeId();
@@ -112,7 +112,7 @@ namespace UIAutomation
                     */
                 //			    case InnerElementTypes.AutomationElementCom:
 //			        //
-			    case InnerElementTypes.MySuperWrapper:
+			    case InnerElementTypes.UiElement:
 			        return Preferences.FromCache ? _elementHolderAdapter.GetCachedPropertyValue(property) : _elementHolderAdapter.GetCurrentPropertyValue(property);
                     /*
                     if (Preferences.FromCache) {
@@ -147,7 +147,7 @@ namespace UIAutomation
                     */
                 //			    case InnerElementTypes.AutomationElementCom:
 //			        //
-			    case InnerElementTypes.MySuperWrapper:
+			    case InnerElementTypes.UiElement:
 			        return Preferences.FromCache ? _elementHolderAdapter.GetCachedPropertyValue(property, ignoreDefaultValue) : _elementHolderAdapter.GetCurrentPropertyValue(property, ignoreDefaultValue);
 
                     /*
@@ -333,7 +333,7 @@ namespace UIAutomation
 			        }
 //			    case InnerElementTypes.AutomationElementCom:
 //			        //
-			    case InnerElementTypes.MySuperWrapper:
+			    case InnerElementTypes.UiElement:
 			        return Preferences.FromCache ? _elementHolderAdapter.GetCachedPattern(pattern) : _elementHolderAdapter.GetCurrentPattern(pattern);
                     /*
                     if (Preferences.FromCache) {
@@ -368,7 +368,7 @@ namespace UIAutomation
                     */
                 //			    case InnerElementTypes.AutomationElementCom:
 //			        //
-			    case InnerElementTypes.MySuperWrapper:
+			    case InnerElementTypes.UiElement:
 			        return Preferences.FromCache ? _elementHolderAdapter.TryGetCachedPattern(pattern, out patternObject) : _elementHolderAdapter.TryGetCurrentPattern(pattern, out patternObject);
                     /*
                     if (Preferences.FromCache) {
@@ -396,7 +396,7 @@ namespace UIAutomation
 			        return _elementHolderNet.GetCachedPropertyValue(property);
 //			    case InnerElementTypes.AutomationElementCom:
 //			        //
-			    case InnerElementTypes.MySuperWrapper:
+			    case InnerElementTypes.UiElement:
 			        return _elementHolderAdapter.GetCachedPropertyValue(property);
 			    default:
 			        return _elementHolderNet.GetCachedPropertyValue(property);
@@ -410,7 +410,7 @@ namespace UIAutomation
 			        return _elementHolderNet.GetCachedPropertyValue(property, ignoreDefaultValue);
 //			    case InnerElementTypes.AutomationElementCom:
 //			        //
-			    case InnerElementTypes.MySuperWrapper:
+			    case InnerElementTypes.UiElement:
 			        return _elementHolderAdapter.GetCachedPropertyValue(property, ignoreDefaultValue);
 			    default:
 			        return _elementHolderNet.GetCachedPropertyValue(property, ignoreDefaultValue);
@@ -424,7 +424,7 @@ namespace UIAutomation
 			        return _elementHolderNet.GetCachedPattern(pattern);
 //			    case InnerElementTypes.AutomationElementCom:
 //			        //
-			    case InnerElementTypes.MySuperWrapper:
+			    case InnerElementTypes.UiElement:
 			        return _elementHolderAdapter.GetCachedPattern(pattern);
 			    default:
 			        return _elementHolderNet.GetCachedPattern(pattern);
@@ -438,7 +438,7 @@ namespace UIAutomation
 			        return _elementHolderNet.TryGetCachedPattern(pattern, out patternObject);
 //			    case InnerElementTypes.AutomationElementCom:
 //			        //
-			    case InnerElementTypes.MySuperWrapper:
+			    case InnerElementTypes.UiElement:
 			        return _elementHolderAdapter.TryGetCachedPattern(pattern, out patternObject);
 			    default:
 			        return _elementHolderNet.TryGetCachedPattern(pattern, out patternObject);
@@ -452,7 +452,7 @@ namespace UIAutomation
 			        return _elementHolderNet.GetUpdatedCache(request);
 //			    case InnerElementTypes.AutomationElementCom:
 //			        //
-			    case InnerElementTypes.MySuperWrapper:
+			    case InnerElementTypes.UiElement:
 			        return _elementHolderAdapter.GetUpdatedCache(request);
 			    default:
 			        return _elementHolderNet.GetUpdatedCache(request);
@@ -461,36 +461,36 @@ namespace UIAutomation
         
 		// 20131205
 		// UIANET
-		// public IMySuperWrapper FindFirst(TreeScope scope, Condition condition)
-		public IMySuperWrapper FindFirst(TreeScope scope, UIANET::System.Windows.Automation.Condition condition)
-		// public IMySuperWrapper FindFirst(TreeScope scope, UIANET::Condition condition)
+		// public IUiElement FindFirst(TreeScope scope, Condition condition)
+		public IUiElement FindFirst(TreeScope scope, UIANET::System.Windows.Automation.Condition condition)
+		// public IUiElement FindFirst(TreeScope scope, UIANET::Condition condition)
 		{
 			switch (_innerElementType) {
 			    case InnerElementTypes.AutomationElementNet:
-			        return AutomationFactory.GetMySuperWrapper(_elementHolderNet.FindFirst(scope, condition));
+			        return AutomationFactory.GetUiElement(_elementHolderNet.FindFirst(scope, condition));
 //			    case InnerElementTypes.AutomationElementCom:
 //			        //
-			    case InnerElementTypes.MySuperWrapper:
+			    case InnerElementTypes.UiElement:
 			        return _elementHolderAdapter.FindFirst(scope, condition);
 			    default:
-			        return AutomationFactory.GetMySuperWrapper(_elementHolderNet.FindFirst(scope, condition));
+			        return AutomationFactory.GetUiElement(_elementHolderNet.FindFirst(scope, condition));
 			}
 		}
         
 		// 20131205
 		// UIANET
-		// public IMySuperCollection FindAll(TreeScope scope, Condition condition)
-		public IMySuperCollection FindAll(TreeScope scope, UIANET::System.Windows.Automation.Condition condition)
+		// public IUiEltCollection FindAll(TreeScope scope, Condition condition)
+		public IUiEltCollection FindAll(TreeScope scope, UIANET::System.Windows.Automation.Condition condition)
 		{
 			switch (_innerElementType) {
 			    case InnerElementTypes.AutomationElementNet:
-			        return AutomationFactory.GetMySuperCollection(_elementHolderNet.FindAll(scope, condition));
+			        return AutomationFactory.GetUiEltCollection(_elementHolderNet.FindAll(scope, condition));
 //			    case InnerElementTypes.AutomationElementCom:
 //			        //
-			    case InnerElementTypes.MySuperWrapper:
+			    case InnerElementTypes.UiElement:
 			        return _elementHolderAdapter.FindAll(scope, condition);
 			    default:
-			        return AutomationFactory.GetMySuperCollection(_elementHolderNet.FindAll(scope, condition));
+			        return AutomationFactory.GetUiEltCollection(_elementHolderNet.FindAll(scope, condition));
 			}
 		}
 
@@ -501,7 +501,7 @@ namespace UIAutomation
 			        return _elementHolderNet.GetSupportedProperties();
 //			    case InnerElementTypes.AutomationElementCom:
 //			        //
-			    case InnerElementTypes.MySuperWrapper:
+			    case InnerElementTypes.UiElement:
 			        return _elementHolderAdapter.GetSupportedProperties();
 			    default:
 			        return _elementHolderNet.GetSupportedProperties();
@@ -515,7 +515,7 @@ namespace UIAutomation
 			        return _elementHolderNet.GetSupportedPatterns();
 //			    case InnerElementTypes.AutomationElementCom:
 //			        //
-			    case InnerElementTypes.MySuperWrapper:
+			    case InnerElementTypes.UiElement:
 			        return _elementHolderAdapter.GetSupportedPatterns();
 			    default:
 			        return _elementHolderNet.GetSupportedPatterns();
@@ -530,7 +530,7 @@ namespace UIAutomation
 			        break;
 //			    case InnerElementTypes.AutomationElementCom:
 //			        //
-			    case InnerElementTypes.MySuperWrapper:
+			    case InnerElementTypes.UiElement:
 			        _elementHolderAdapter.SetFocus();
 			        break;
 			    default:
@@ -546,7 +546,7 @@ namespace UIAutomation
 			        return _elementHolderNet.TryGetClickablePoint(out pt);
 //			    case InnerElementTypes.AutomationElementCom:
 //			        //
-			    case InnerElementTypes.MySuperWrapper:
+			    case InnerElementTypes.UiElement:
 			        return _elementHolderAdapter.TryGetClickablePoint(out pt);
 			    default:
 			        return _elementHolderNet.TryGetClickablePoint(out pt);
@@ -560,43 +560,43 @@ namespace UIAutomation
 			        return _elementHolderNet.GetClickablePoint();
 //			    case InnerElementTypes.AutomationElementCom:
 //			        //
-			    case InnerElementTypes.MySuperWrapper:
+			    case InnerElementTypes.UiElement:
 			        return _elementHolderAdapter.GetClickablePoint();
 			    default:
 			        return _elementHolderNet.GetClickablePoint();
 			}
 		}
 
-		public IMySuperWrapperInformation Cached {
+		public IUiElementInformation Cached {
 			get {
 			    switch (_innerElementType) {
 			        case InnerElementTypes.AutomationElementNet:
-			            return AutomationFactory.GetMySuperWrapperInformation(_elementHolderNet.Cached);
+			            return AutomationFactory.GetUiElementInformation(_elementHolderNet.Cached);
 //			        case /InnerElementTypes.AutomationElementCom:
 //			            //
-			        case InnerElementTypes.MySuperWrapper:
+			        case InnerElementTypes.UiElement:
 			            return _elementHolderAdapter.Cached;
 			        default:
-			            return AutomationFactory.GetMySuperWrapperInformation(_elementHolderNet.Cached);
+			            return AutomationFactory.GetUiElementInformation(_elementHolderNet.Cached);
 			    }
 			}
 		}
 
-		public IMySuperWrapperInformation Current {
+		public IUiElementInformation Current {
 		    get {
 		        switch (_innerElementType) {
 		            case InnerElementTypes.AutomationElementNet:
-		                return AutomationFactory.GetMySuperWrapperInformation(Preferences.FromCache ? _elementHolderNet.Cached : _elementHolderNet.Current);
+		                return AutomationFactory.GetUiElementInformation(Preferences.FromCache ? _elementHolderNet.Cached : _elementHolderNet.Current);
 		                /*
                         if (Preferences.FromCache) {
-                            return ObjectsFactory.GetMySuperWrapperInformation(_elementHolderNet.Cached);
+                            return ObjectsFactory.GetUiElementInformation(_elementHolderNet.Cached);
                         } else {
-                            return ObjectsFactory.GetMySuperWrapperInformation(_elementHolderNet.Current);
+                            return ObjectsFactory.GetUiElementInformation(_elementHolderNet.Current);
                         }
                         */
                     //		            case InnerElementTypes.AutomationElementCom:
 //		                //
-		            case InnerElementTypes.MySuperWrapper:
+		            case InnerElementTypes.UiElement:
 		                return Preferences.FromCache ? _elementHolderAdapter.Cached : _elementHolderAdapter.Current;
                         /*
                         if (Preferences.FromCache) {
@@ -606,44 +606,44 @@ namespace UIAutomation
                         }
                         */
                     default:
-		                return AutomationFactory.GetMySuperWrapperInformation(Preferences.FromCache ? _elementHolderNet.Cached : _elementHolderNet.Current);
+		                return AutomationFactory.GetUiElementInformation(Preferences.FromCache ? _elementHolderNet.Cached : _elementHolderNet.Current);
 		                /*
                         if (Preferences.FromCache) {
-                            return ObjectsFactory.GetMySuperWrapperInformation(_elementHolderNet.Cached);
+                            return ObjectsFactory.GetUiElementInformation(_elementHolderNet.Cached);
                         } else {
-                            return ObjectsFactory.GetMySuperWrapperInformation(_elementHolderNet.Current);
+                            return ObjectsFactory.GetUiElementInformation(_elementHolderNet.Current);
                         }
                         */
                 }
 		    }
 		}
 
-		public IMySuperWrapper CachedParent {
+		public IUiElement CachedParent {
 			get {
 			    switch (_innerElementType) {
 			        case InnerElementTypes.AutomationElementNet:
-			            return AutomationFactory.GetMySuperWrapper(_elementHolderNet.CachedParent);
+			            return AutomationFactory.GetUiElement(_elementHolderNet.CachedParent);
 //			        case InnerElementTypes.AutomationElementCom:
 //			            //
-			        case InnerElementTypes.MySuperWrapper:
+			        case InnerElementTypes.UiElement:
 			            return _elementHolderAdapter.CachedParent;
 			        default:
-			            return AutomationFactory.GetMySuperWrapper(_elementHolderNet.CachedParent);
+			            return AutomationFactory.GetUiElement(_elementHolderNet.CachedParent);
 			    }
 			}
 		}
 
-		public IMySuperCollection CachedChildren {
+		public IUiEltCollection CachedChildren {
 			get {
 			    switch (_innerElementType) {
 			        case InnerElementTypes.AutomationElementNet:
-			            return AutomationFactory.GetMySuperCollection(_elementHolderNet.CachedChildren);
+			            return AutomationFactory.GetUiEltCollection(_elementHolderNet.CachedChildren);
 //			        case /InnerElementTypes.AutomationElementCom:
 //			            //
-			        case InnerElementTypes.MySuperWrapper:
+			        case InnerElementTypes.UiElement:
 			            return _elementHolderAdapter.CachedChildren;
 			        default:
-			            return AutomationFactory.GetMySuperCollection(_elementHolderNet.CachedChildren);
+			            return AutomationFactory.GetUiEltCollection(_elementHolderNet.CachedChildren);
 			    }
 			}
 		}
@@ -705,61 +705,61 @@ namespace UIAutomation
 		public static readonly AutomationEvent MenuClosedEvent = AutomationElementIdentifiers.MenuClosedEvent;
 		public static readonly AutomationEvent LayoutInvalidatedEvent = AutomationElementIdentifiers.LayoutInvalidatedEvent;
 		
-		public static IMySuperWrapper RootElement {
+		public static IUiElement RootElement {
 			get {
 			    switch (_innerElementType) {
 			        case InnerElementTypes.AutomationElementNet:
-			            return AutomationFactory.GetMySuperWrapper(AutomationElement.RootElement);
+			            return AutomationFactory.GetUiElement(AutomationElement.RootElement);
 //			        case InnerElementTypes.AutomationElementCom:
 //			            //
-			        case InnerElementTypes.MySuperWrapper:
+			        case InnerElementTypes.UiElement:
 			            return RootElement;
 			        default:
-			            return AutomationFactory.GetMySuperWrapper(AutomationElement.RootElement);
+			            return AutomationFactory.GetUiElement(AutomationElement.RootElement);
 			    }
 			}
 		}
 		
-		public static IMySuperWrapper FocusedElement {
+		public static IUiElement FocusedElement {
 		    get {
 		        switch (_innerElementType) {
 		            case InnerElementTypes.AutomationElementNet:
-		                return AutomationFactory.GetMySuperWrapper(AutomationElement.FocusedElement);
+		                return AutomationFactory.GetUiElement(AutomationElement.FocusedElement);
 //		            case InnerElementTypes.AutomationElementCom:
 //		                //
-		            case InnerElementTypes.MySuperWrapper:
+		            case InnerElementTypes.UiElement:
 		                return FocusedElement;
 		            default:
-		                return AutomationFactory.GetMySuperWrapper(AutomationElement.FocusedElement);
+		                return AutomationFactory.GetUiElement(AutomationElement.FocusedElement);
 		        }
 		    }
 		}
 		
-		public static IMySuperWrapper FromPoint(Point pt)
+		public static IUiElement FromPoint(Point pt)
 		{
 		    switch (_innerElementType) {
 		        case InnerElementTypes.AutomationElementNet:
-		            return AutomationFactory.GetMySuperWrapper(AutomationElement.FromPoint(pt));
+		            return AutomationFactory.GetUiElement(AutomationElement.FromPoint(pt));
 //		        case InnerElementTypes.AutomationElementCom:
 //		            //
-		        case InnerElementTypes.MySuperWrapper:
+		        case InnerElementTypes.UiElement:
 		            return FromPoint(pt);
 		        default:
-		            return AutomationFactory.GetMySuperWrapper(AutomationElement.FromPoint(pt));
+		            return AutomationFactory.GetUiElement(AutomationElement.FromPoint(pt));
 		    }
 		}
 		
-		public static IMySuperWrapper FromHandle(IntPtr controlHandle)
+		public static IUiElement FromHandle(IntPtr controlHandle)
 		{
 		    switch (_innerElementType) {
 		        case InnerElementTypes.AutomationElementNet:
-		            return AutomationFactory.GetMySuperWrapper(AutomationElement.FromHandle(controlHandle));
+		            return AutomationFactory.GetUiElement(AutomationElement.FromHandle(controlHandle));
 //		        case InnerElementTypes.AutomationElementCom:
 //		            //
-		        case InnerElementTypes.MySuperWrapper:
+		        case InnerElementTypes.UiElement:
 		            return FromHandle(controlHandle);
 		        default:
-		            return AutomationFactory.GetMySuperWrapper(AutomationElement.FromHandle(controlHandle));
+		            return AutomationFactory.GetUiElement(AutomationElement.FromHandle(controlHandle));
 		    }
 		}
 		
@@ -781,11 +781,11 @@ namespace UIAutomation
 //		    this.elementHolderNet = element;
 //		}
 		
-//		public IMySuperWrapper GetSourceElement()
+//		public IUiElement GetSourceElement()
 //		{
 //		    return this.elementHolderAdapter;
 //		}
-//		public void SetSourceElement(IMySuperWrapper element)
+//		public void SetSourceElement(IUiElement element)
 //		{
 //		    this.elementHolderAdapter = element;
 //		}
@@ -799,7 +799,7 @@ namespace UIAutomation
 //		        this.elementHolderNet = null;
 //		    }
 //		    // this.elementHolderCom = null;
-//		    if (InnerElementTypes.MySuperWrapper == innerElementType) { //&&
+//		    if (InnerElementTypes.UiElement == innerElementType) { //&&
 //		        //null != this.elementHolderAdapter) {
 //		        this.elementHolderAdapter = null;
 //		    }
@@ -823,7 +823,7 @@ namespace UIAutomation
         		        return _elementHolderNet.GetCachedPropertyValue(property);
         		    //case InnerElementTypes.AutomationElementCom:
         		    //    
-        		    case InnerElementTypes.MySuperWrapper:
+        		    case InnerElementTypes.UiElement:
                         return _elementHolderAdapter.GetCachedPropertyValue(property);
         		    default:
         		        return _elementHolderNet.GetCachedPropertyValue(property);
@@ -835,113 +835,113 @@ namespace UIAutomation
         	        return _elementHolderNet.GetCurrentPropertyValue(property);
         	    //case InnerElementTypes.AutomationElementCom:
         	    //    
-        	    case InnerElementTypes.MySuperWrapper:
+        	    case InnerElementTypes.UiElement:
                     return _elementHolderAdapter.GetCurrentPropertyValue(property);
         	    default:
         	        return _elementHolderNet.GetCurrentPropertyValue(property);
         	}
         }
         
-//        public static MySuperWrapper GetParent()
+//        public static UiElement GetParent()
 //        {
 //            return GetParent();
 //        }
 //        
-//        public static IMySuperWrapper GetFirstChild()
+//        public static IUiElement GetFirstChild()
 //        {
 //            return GetFirstChild();
 //        }
 //        
-//        public static IMySuperWrapper GetLastChild()
+//        public static IUiElement GetLastChild()
 //        {
 //            return GetLastChild();
 //        }
 //        
-//        public static MySuperWrapper GetNextSibling()
+//        public static UiElement GetNextSibling()
 //        {
 //            return GetNextSibling();
 //        }
 //        
-//        public static IMySuperWrapper GetPreviousSibling()
+//        public static IUiElement GetPreviousSibling()
 //        {
 //            return GetPreviousSibling();
 //        }
 
         #region NavigateTo
-        public IMySuperWrapper NavigateToParent()
+        public IUiElement NavigateToParent()
         {
-            IMySuperWrapper result = null;
+            IUiElement result = null;
             
             TreeWalker walker =
                 new TreeWalker(
                     System.Windows.Automation.Condition.TrueCondition);
             
             try {
-                result = AutomationFactory.GetMySuperWrapper(walker.GetParent(this.GetSourceElement()));
+                result = AutomationFactory.GetUiElement(walker.GetParent(this.GetSourceElement()));
             }
             catch {}
             
             return result;
         }
         
-        public IMySuperWrapper NavigateToFirstChild()
+        public IUiElement NavigateToFirstChild()
         {
-            IMySuperWrapper result = null;
+            IUiElement result = null;
             
             TreeWalker walker =
                 new TreeWalker(
                     System.Windows.Automation.Condition.TrueCondition);
             
             try {
-                result = AutomationFactory.GetMySuperWrapper(walker.GetFirstChild(this.GetSourceElement()));
+                result = AutomationFactory.GetUiElement(walker.GetFirstChild(this.GetSourceElement()));
             }
             catch {}
             
             return result;
         }
         
-        public IMySuperWrapper NavigateToLastChild()
+        public IUiElement NavigateToLastChild()
         {
-            IMySuperWrapper result = null;
+            IUiElement result = null;
             
             TreeWalker walker =
                 new TreeWalker(
                     System.Windows.Automation.Condition.TrueCondition);
             
             try {
-                result = AutomationFactory.GetMySuperWrapper(walker.GetLastChild(this.GetSourceElement()));
+                result = AutomationFactory.GetUiElement(walker.GetLastChild(this.GetSourceElement()));
             }
             catch {}
             
             return result;
         }
         
-        public IMySuperWrapper NavigateToNextSibling()
+        public IUiElement NavigateToNextSibling()
         {
-            IMySuperWrapper result = null;
+            IUiElement result = null;
             
             TreeWalker walker =
                 new TreeWalker(
                     System.Windows.Automation.Condition.TrueCondition);
             
             try {
-                result = AutomationFactory.GetMySuperWrapper(walker.GetNextSibling(this.GetSourceElement()));
+                result = AutomationFactory.GetUiElement(walker.GetNextSibling(this.GetSourceElement()));
             }
             catch {}
             
             return result;
         }
         
-        public IMySuperWrapper NavigateToPreviousSibling()
+        public IUiElement NavigateToPreviousSibling()
         {
-            IMySuperWrapper result = null;
+            IUiElement result = null;
             
             TreeWalker walker =
                 new TreeWalker(
                     System.Windows.Automation.Condition.TrueCondition);
             
             try {
-                result = AutomationFactory.GetMySuperWrapper(walker.GetPreviousSibling(this.GetSourceElement()));
+                result = AutomationFactory.GetUiElement(walker.GetPreviousSibling(this.GetSourceElement()));
             }
             catch {}
             
@@ -950,7 +950,7 @@ namespace UIAutomation
         #endregion NavigateTo
         
         #region Patterns
-        public IMySuperWrapper Click()
+        public IUiElement Click()
         {
             // IMySuperInvokePattern invokePattern =
             //    this.GetInvokePattern().Invoke();
@@ -963,7 +963,7 @@ namespace UIAutomation
             return this;
         }
         
-        public IMySuperWrapper DoubleClick()
+        public IUiElement DoubleClick()
         {
             HasControlInputCmdletBase cmdlet =
                 new HasControlInputCmdletBase();
@@ -984,19 +984,19 @@ namespace UIAutomation
             return this;
         }
         
-        public IMySuperWrapper Select()
+        public IUiElement Select()
         {
             this.GetSelectionItemPattern().Select();
             return this;
         }
         
-        public IMySuperWrapper AddToSelection()
+        public IUiElement AddToSelection()
         {
             this.GetSelectionItemPattern().AddToSelection();
             return this;
         }
         
-        public IMySuperWrapper RemoveFromSelection()
+        public IUiElement RemoveFromSelection()
         {
             this.GetSelectionItemPattern().RemoveFromSelection();
             return this;
@@ -1007,12 +1007,12 @@ namespace UIAutomation
             get { return this.GetSelectionItemPattern().Current.IsSelected; }
         }
         
-        public IMySuperWrapper SelectionContainer
+        public IUiElement SelectionContainer
         {
             get { return this.GetSelectionItemPattern().Current.SelectionContainer; }
         }
         
-        public IMySuperWrapper[] GetSelection()
+        public IUiElement[] GetSelection()
         {
             return this.GetSelectionPattern().Current.GetSelection();
         }
@@ -1027,7 +1027,7 @@ namespace UIAutomation
             get { return this.GetSelectionPattern().Current.IsSelectionRequired; }
         }
         
-        public IMySuperWrapper Toggle()
+        public IUiElement Toggle()
         {
             // IMySuperTogglePattern togglePattern =
             //     this.GetTogglePattern().Toggle();
@@ -1083,7 +1083,7 @@ namespace UIAutomation
         #endregion Patterns
         
         #region Highlighter
-        public IMySuperWrapper Highlight()
+        public IUiElement Highlight()
         {
             UiaHelper.Highlight(this);
             return this;

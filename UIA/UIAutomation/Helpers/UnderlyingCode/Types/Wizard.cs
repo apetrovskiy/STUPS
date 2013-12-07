@@ -117,7 +117,7 @@ namespace UIAutomation
         	GetUiaControlCommand cmdletCtrl =
         	    new GetUiaControlCommand
         	    {
-        	        InputObject = new MySuperWrapper[] {(MySuperWrapper) CurrentData.CurrentWindow},
+        	        InputObject = new UiElement[] {(UiElement) CurrentData.CurrentWindow},
         	        Timeout = 0
         	    };
 
@@ -128,7 +128,7 @@ namespace UIAutomation
         	cmdletCtrl.InputObject =
         	    // 20131109
         		//new AutomationElement[]{ CurrentData.CurrentWindow };
-        	    new MySuperWrapper[]{ (MySuperWrapper)CurrentData.CurrentWindow };
+        	    new UiElement[]{ (UiElement)CurrentData.CurrentWindow };
 
         	cmdletCtrl.Timeout = 0;
             */
@@ -146,7 +146,7 @@ namespace UIAutomation
         	    
         		cmdletCtrl.SearchCriteria = step.SearchCriteria;
                 
-	        	List<IMySuperWrapper> controlsList = new List<IMySuperWrapper>();
+	        	List<IUiElement> controlsList = new List<IUiElement>();
 	        	
 	        	try {
 
@@ -162,7 +162,7 @@ namespace UIAutomation
         	        // 20130423
         	        if (Preferences.HighlightCheckedControl) {
         	            
-        	            foreach (IMySuperWrapper elementChecked in controlsList) {
+        	            foreach (IUiElement elementChecked in controlsList) {
         	                UiaHelper.HighlightCheckedControl(elementChecked);
         	            }
         	        }

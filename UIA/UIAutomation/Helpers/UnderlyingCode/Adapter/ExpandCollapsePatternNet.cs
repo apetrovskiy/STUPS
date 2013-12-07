@@ -17,16 +17,16 @@ namespace UIAutomation
 	public class MyExpandCollapsePatternNet : IMySuperExpandCollapsePattern
 	{
 		private readonly System.Windows.Automation.ExpandCollapsePattern _expandCollapsePattern;
-		private IMySuperWrapper _element;
+		private IUiElement _element;
 		
-		public MyExpandCollapsePatternNet(IMySuperWrapper element, ExpandCollapsePattern expandCollapsePattern)
+		public MyExpandCollapsePatternNet(IUiElement element, ExpandCollapsePattern expandCollapsePattern)
 		{
 			this._expandCollapsePattern = expandCollapsePattern;
 			this._element = element;
 			//this._useCache = useCache;
 		}
 		
-		internal MyExpandCollapsePatternNet(IMySuperWrapper element)
+		internal MyExpandCollapsePatternNet(IUiElement element)
 		{
 		    // this._expandCollapsePattern = AutomationFactory.GetMySuperExpandCollapsePattern(element, null);
 		    // this._expandCollapsePattern = new MyExpandCollapsePatternNet(ele
@@ -97,7 +97,7 @@ namespace UIAutomation
 //			return new ExpandCollapsePattern(el, hPattern, cached);
 //		}
 		
-		public IMySuperWrapper ParentElement
+		public IUiElement ParentElement
 		{
 		    get { return this._element; }
 		    set { this._element = value; }

@@ -32,9 +32,9 @@ namespace UIAutomation.Commands
         {
             if (!CheckAndPrepareInput(this)) { return; }
             
-            foreach (IMySuperWrapper inputObject in InputObject) {
+            foreach (IUiElement inputObject in InputObject) {
             
-            IMySuperWrapper resultElement = null;
+            IUiElement resultElement = null;
             
             // preform a right click on the control
             if (!ClickControl(this,
@@ -84,7 +84,7 @@ namespace UIAutomation.Commands
             WriteVerbose(this, "process Id = " + processId.ToString());
             // 20131109
             //AutomationElementCollection windowsByPID = null;
-            IMySuperCollection windowsByPid = null;
+            IUiEltCollection windowsByPid = null;
             StartDate = DateTime.Now;
             bool breakSearch = false;
             do {
@@ -93,7 +93,7 @@ namespace UIAutomation.Commands
                     windowsByPid =
                         // 20131109
                         //AutomationElement.RootElement.FindAll(TreeScope.Children,
-                        MySuperWrapper.RootElement.FindAll(TreeScope.Children,
+                        UiElement.RootElement.FindAll(TreeScope.Children,
                                                               new AndCondition(
                                                                   new PropertyCondition(
                                                                       AutomationElement.ProcessIdProperty,
@@ -156,7 +156,7 @@ namespace UIAutomation.Commands
                 
                 // 20131109
                 //foreach (AutomationElement element in windowsByPID) {
-                foreach (IMySuperWrapper element in windowsByPid) {
+                foreach (IUiElement element in windowsByPid) {
                     
                     WriteVerbose(this, element.Current.Name);
                     WriteVerbose(this, element.Current.BoundingRectangle.ToString());

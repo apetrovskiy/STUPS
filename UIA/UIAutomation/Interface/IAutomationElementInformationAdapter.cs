@@ -14,7 +14,7 @@ namespace UIAutomation
 	using System.Windows;
 	using System.Windows.Automation;
 	
-	public interface IMySuperWrapperInformation
+	public interface IUiElementInformation
 	{
 		ControlType ControlType { get; }
 		string LocalizedControlType { get; }

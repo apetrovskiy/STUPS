@@ -15,7 +15,7 @@ namespace UIAutomation
 	public interface ISelectionPatternInformation
 	{
 		// AutomationElement[] GetSelection();
-		IMySuperWrapper[] GetSelection();
+		IUiElement[] GetSelection();
 		bool CanSelectMultiple { get; }
 		bool IsSelectionRequired { get; }
 	}

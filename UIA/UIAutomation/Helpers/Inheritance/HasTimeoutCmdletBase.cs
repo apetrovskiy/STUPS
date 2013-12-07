@@ -79,7 +79,7 @@ namespace UIAutomation
             Wait = false;
         }
         
-        internal List<IMySuperWrapper> GetWindow(
+        internal List<IUiElement> GetWindow(
             GetWindowCmdletBase cmdlet,
             bool win32,
             Process[] processes,
@@ -90,11 +90,11 @@ namespace UIAutomation
             string className,
             bool testMode)
         {
-            List<IMySuperWrapper> aeWndCollection = new List<IMySuperWrapper>();
+            List<IUiElement> aeWndCollection = new List<IUiElement>();
             
             cmdlet.WriteVerbose(cmdlet, "getting the root element");
             OddRootElement =
-                MySuperWrapper.RootElement;
+                UiElement.RootElement;
             if (OddRootElement == null)
             {
                 cmdlet.WriteVerbose(cmdlet, "rootElement == null");
@@ -160,14 +160,14 @@ namespace UIAutomation
                     
                         cmdlet.WriteVerbose(cmdlet, "processing WithControl");
                         
-                        List<IMySuperWrapper> filteredWindows =
-                            new List<IMySuperWrapper>();
+                        List<IUiElement> filteredWindows =
+                            new List<IUiElement>();
         
                         cmdlet.WriteVerbose(cmdlet, "searching for control(s) for every window, one by one");
                         
                         bool exitInnerCycle = false;
                         
-                        foreach (IMySuperWrapper window in aeWndCollection) {
+                        foreach (IUiElement window in aeWndCollection) {
                             
                             cmdlet.WriteVerbose(cmdlet, "Window: name='" + window.Current.Name + "', automaitonId='" + window.Current.AutomationId + "'");
                             
@@ -180,7 +180,7 @@ namespace UIAutomation
                             GetControlCmdletBase cmdletCtrl =
                                 new GetControlCmdletBase
                                 {
-                                    InputObject = new MySuperWrapper[] {(MySuperWrapper) window},
+                                    InputObject = new UiElement[] {(UiElement) window},
                                     Timeout = 0
                                 };
 
@@ -193,7 +193,7 @@ namespace UIAutomation
                                 cmdlet.WriteVerbose(cmdlet, "searching for controls that match the following critetion: " + ht.ToString());
                                 
                                 try {
-                                    List<IMySuperWrapper> controlsList =
+                                    List<IUiElement> controlsList =
                                         GetControl(cmdletCtrl);
                                     
                                     if (null != controlsList && 0 < controlsList.Count) {
@@ -289,17 +289,17 @@ namespace UIAutomation
             } while (cmdlet.Wait);
             try {
                 
-                if (null != aeWndCollection && (int)((IMySuperWrapper)aeWndCollection[0]).Current.ProcessId > 0) {
+                if (null != aeWndCollection && (int)((IUiElement)aeWndCollection[0]).Current.ProcessId > 0) {
                     
                     cmdlet.WriteVerbose(cmdlet, "" + aeWndCollection.ToString());
                     
                     cmdlet.WriteVerbose(cmdlet, 
                                         "aeWnd.Current.GetType() = " +
-                                        ((IMySuperWrapper)aeWndCollection[0]).GetType().Name);
+                                        ((IUiElement)aeWndCollection[0]).GetType().Name);
                     
                 } // 20120127
                 
-                CurrentData.CurrentWindow = (IMySuperWrapper)aeWndCollection[aeWndCollection.Count -1];
+                CurrentData.CurrentWindow = (IUiElement)aeWndCollection[aeWndCollection.Count -1];
                 
             } catch (Exception eEvaluatingWindowAndWritingToPipeline) {
                 
@@ -317,7 +317,7 @@ namespace UIAutomation
             return aeWndCollection;
         }
         
-        private List<IMySuperWrapper> GetWindowCollectionByProcessName(
+        private List<IUiElement> GetWindowCollectionByProcessName(
             IEnumerable<string> processNames,
             bool first,
             bool recurse,
@@ -325,7 +325,7 @@ namespace UIAutomation
             string automationId,
             string className)
         {
-            List<IMySuperWrapper> aeWndCollectionByProcId = new List<IMySuperWrapper>();
+            List<IUiElement> aeWndCollectionByProcId = new List<IUiElement>();
             List<int> processIdList = new List<int>();
             
             foreach (string processName in processNames) {
@@ -350,7 +350,7 @@ namespace UIAutomation
             return aeWndCollectionByProcId;
         }
         
-        private List<IMySuperWrapper> GetWindowCollectionByPid(
+        private List<IUiElement> GetWindowCollectionByPid(
             IEnumerable<int> processIds,
             bool first,
             bool recurse,
@@ -360,8 +360,8 @@ namespace UIAutomation
         {
             AndCondition conditionsForRecurseSearch = null;
             
-            List<IMySuperWrapper> elementsByProcessId =
-                new List<IMySuperWrapper>();
+            List<IUiElement> elementsByProcessId =
+                new List<IUiElement>();
             
             if ((null != name && 0 < name.Count) ||
                 !string.IsNullOrEmpty(automationId) ||
@@ -446,7 +446,7 @@ namespace UIAutomation
                         
                         if (first) {
                             
-                            IMySuperWrapper rootWindowElement =
+                            IUiElement rootWindowElement =
                                 OddRootElement.FindFirst(
                                     TreeScope.Children,
                                     conditionsProcessId);
@@ -471,7 +471,7 @@ namespace UIAutomation
                             
                             // 20131109
                             //AutomationElementCollection rootCollection =
-                            IMySuperCollection rootCollection =
+                            IUiEltCollection rootCollection =
                                 OddRootElement.FindAll(
                                     TreeScope.Children,
                                     conditionsProcessId);
@@ -480,9 +480,9 @@ namespace UIAutomation
                             {
                                 // 20131111
                                 //aeWndCollectionByProcessId.AddRange(rootCollection);
-                                elementsByProcessId.AddRange(rootCollection.Cast<IMySuperWrapper>());
+                                elementsByProcessId.AddRange(rootCollection.Cast<IUiElement>());
                                 /*
-                                foreach (IMySuperWrapper singleElement in rootCollection) {
+                                foreach (IUiElement singleElement in rootCollection) {
                                     // 20131202
                                     // aeWndCollectionByProcessId.Add(singleElement);
                                     elementsByProcessId.Add(singleElement);
@@ -491,22 +491,22 @@ namespace UIAutomation
 
                                 //foreach (AutomationElementCollection tempCollection in from AutomationElement rootWindowElement in rootCollection let tempCollection = null select rootWindowElement.FindAll(
                                 // 20131109
-                                foreach (IMySuperWrapper singleElement in (from IMySuperWrapper rootWindowElement in rootCollection select rootWindowElement.FindAll(
+                                foreach (IUiElement singleElement in (from IUiElement rootWindowElement in rootCollection select rootWindowElement.FindAll(
                                     TreeScope.Descendants,
-                                    conditionsForRecurseSearch) into tempCollection where null != tempCollection && 0 < tempCollection.Count select tempCollection).SelectMany(tempCollection => rootCollection.Cast<IMySuperWrapper>()))
+                                    conditionsForRecurseSearch) into tempCollection where null != tempCollection && 0 < tempCollection.Count select tempCollection).SelectMany(tempCollection => rootCollection.Cast<IUiElement>()))
                                 {
                                     // 20131102
                                     // aeWndCollectionByProcessId.Add(singleElement);
                                     elementsByProcessId.Add(singleElement);
                                 }
                                 /*
-                                foreach (IMySuperCollection tempCollection in from IMySuperWrapper rootWindowElement in rootCollection select rootWindowElement.FindAll(
+                                foreach (IUiEltCollection tempCollection in from IUiElement rootWindowElement in rootCollection select rootWindowElement.FindAll(
                                     TreeScope.Descendants,
                                     conditionsForRecurseSearch) into tempCollection where null != tempCollection && 0 < tempCollection.Count select tempCollection)
                                 {
                                     // 20131111
                                     //aeWndCollectionByProcessId.AddRange(tempCollection);
-                                    foreach (IMySuperWrapper singleElement in rootCollection) {
+                                    foreach (IUiElement singleElement in rootCollection) {
                                         aeWndCollectionByProcessId.Add(singleElement);
                                     }
                                 }
@@ -542,7 +542,7 @@ namespace UIAutomation
                         
                         if (first) {
                             
-                            IMySuperWrapper tempElement =
+                            IUiElement tempElement =
                                 OddRootElement.FindFirst(TreeScope.Children,
                                                       conditionsProcessId);
                             
@@ -553,7 +553,7 @@ namespace UIAutomation
                             }
                         } else {
                             
-                            IMySuperCollection tempCollection =
+                            IUiEltCollection tempCollection =
                                 OddRootElement.FindAll(TreeScope.Children,
                                                     conditionsProcessId);
                             
@@ -561,7 +561,7 @@ namespace UIAutomation
                             
                             if (null != tempCollection && 0 < tempCollection.Count) {
                                 
-                                elementsByProcessId.AddRange(tempCollection.Cast<IMySuperWrapper>());
+                                elementsByProcessId.AddRange(tempCollection.Cast<IUiElement>());
                             }
                         }
                     }
@@ -588,8 +588,8 @@ namespace UIAutomation
                 ((null == name || 0 >= name.Count) && string.IsNullOrEmpty(automationId) &&
                  string.IsNullOrEmpty(className))) return elementsByProcessId;
             
-            List<IMySuperWrapper> resultList =
-                new List<IMySuperWrapper>();
+            List<IUiElement> resultList =
+                new List<IUiElement>();
                 
             if (null != name && 0 < name.Count) {
                 foreach (string n in name) {
@@ -631,14 +631,14 @@ namespace UIAutomation
             return elementsByProcessId;
         }
         
-        private List<IMySuperWrapper> GetWindowCollectionViaWin32(
+        private List<IUiElement> GetWindowCollectionViaWin32(
             bool first,
             bool recurse,
             string[] name,
             string automationId,
             string className)
         {
-            List<IMySuperWrapper> aeWndCollectionViaWin32 = new List<IMySuperWrapper>();
+            List<IUiElement> aeWndCollectionViaWin32 = new List<IUiElement>();
             
             aeWndCollectionViaWin32 =
                 UiaHelper.EnumChildWindowsFromHandle(
@@ -650,7 +650,7 @@ namespace UIAutomation
 //            }
         }
         
-        private List<IMySuperWrapper> GetWindowCollectionFromProcess(
+        private List<IUiElement> GetWindowCollectionFromProcess(
             IEnumerable<Process> processes,
             bool first,
             bool recurse,
@@ -658,8 +658,8 @@ namespace UIAutomation
             string automationId,
             string className)
         {
-            List<IMySuperWrapper> aeWndCollectionByProcId = new List<IMySuperWrapper>();
-            List<IMySuperWrapper> tempCollection = new List<IMySuperWrapper>();
+            List<IUiElement> aeWndCollectionByProcId = new List<IUiElement>();
+            List<IUiElement> tempCollection = new List<IUiElement>();
             
             List<int> processIdList =
                 new List<int>();
@@ -700,12 +700,12 @@ namespace UIAutomation
             return aeWndCollectionByProcId;
         }
         
-        private List<IMySuperWrapper> GetWindowCollectionByName(string[] windowNames, string automationId, string className, bool recurse)
+        private List<IUiElement> GetWindowCollectionByName(string[] windowNames, string automationId, string className, bool recurse)
         {
-            List<IMySuperWrapper> windowCollectionByProperties =
-                new List<IMySuperWrapper>();
-            List<IMySuperWrapper> resultCollection =
-                new List<IMySuperWrapper>();
+            List<IUiElement> windowCollectionByProperties =
+                new List<IUiElement>();
+            List<IUiElement> resultCollection =
+                new List<IUiElement>();
             
             if (null == windowNames) {
                 windowNames = new string[]{ string.Empty };
@@ -739,7 +739,7 @@ namespace UIAutomation
                 WriteVerbose(this, "trying to get window: by title = " +
                              windowTitle);
                 
-                IMySuperCollection windowCollection =
+                IUiEltCollection windowCollection =
                     OddRootElement.FindAll(recurse ? TreeScope.Descendants : TreeScope.Children, conditionsSet);
                 
                 WriteVerbose(this, "trying to run the returnOnlyRightElements method");
@@ -763,7 +763,7 @@ namespace UIAutomation
                 if (null != windowCollectionByProperties && 0 < windowCollectionByProperties.Count) {
                     
                     // 20131109
-                    foreach (IMySuperWrapper aeWndByTitle in windowCollectionByProperties.Cast<IMySuperWrapper>().Where(aeWndByTitle => aeWndByTitle != null &&
+                    foreach (IUiElement aeWndByTitle in windowCollectionByProperties.Cast<IUiElement>().Where(aeWndByTitle => aeWndByTitle != null &&
                                                                                                                                       (int)aeWndByTitle.Current.ProcessId > 0))
                     {
                         WriteVerbose(this, "aeWndByTitle: " +
@@ -803,14 +803,14 @@ namespace UIAutomation
 
                 } else {
                     
-                    IMySuperWrapper tempElement = null;
+                    IUiElement tempElement = null;
                     
                     // one more attempt using the FindWindow function
                     IntPtr wndHandle =
                         FindWindowByCaption(IntPtr.Zero, windowTitle);
                     if (wndHandle != null && wndHandle != IntPtr.Zero) {
                         tempElement =
-                            MySuperWrapper.FromHandle(wndHandle);
+                            UiElement.FromHandle(wndHandle);
                     }
 
                     if (null == tempElement || (int) tempElement.Current.ProcessId <= 0) continue;
@@ -874,7 +874,7 @@ namespace UIAutomation
             }
         }
         
-        internal static List<IMySuperWrapper> ReturnOnlyRightElements(
+        internal static List<IUiElement> ReturnOnlyRightElements(
             HasTimeoutCmdletBase cmdlet,
             IEnumerable inputCollection,
             string name,
@@ -885,7 +885,7 @@ namespace UIAutomation
             bool caseSensitive,
             bool viaWildcardOrRegex)
         {
-            List<IMySuperWrapper> resultCollection = new List<IMySuperWrapper>();
+            List<IUiElement> resultCollection = new List<IUiElement>();
             
             WildcardOptions options;
             if (caseSensitive) {
@@ -950,7 +950,7 @@ namespace UIAutomation
                 new WildcardPattern(string.IsNullOrEmpty(textValue) ? "*" : textValue, options);
             */
             
-            List<IMySuperWrapper> inputList = inputCollection.Cast<IMySuperWrapper>().ToList();
+            List<IUiElement> inputList = inputCollection.Cast<IUiElement>().ToList();
             
             cmdlet.WriteVerbose(
                     cmdlet,
@@ -969,11 +969,11 @@ namespace UIAutomation
 
             try {
                 
-                List<IMySuperWrapper> query;
+                List<IUiElement> query;
                 
                 if (viaWildcardOrRegex) {
                     query = inputList
-                        .Where<IMySuperWrapper>(
+                        .Where<IUiElement>(
                             item => (wildcardName.IsMatch(item.Current.Name) &&
                                      wildcardAutomationId.IsMatch(item.Current.AutomationId) &&
                                      wildcardClass.IsMatch(item.Current.ClassName) &&
@@ -985,11 +985,11 @@ namespace UIAutomation
                                      )
                                     )
                            )
-                        .ToList<IMySuperWrapper>();
+                        .ToList<IUiElement>();
                } else {
                    
                     query = inputList
-                        .Where<IMySuperWrapper>(
+                        .Where<IUiElement>(
                             item => (Regex.IsMatch(item.Current.Name, name, regexOptions) &&
                                      Regex.IsMatch(item.Current.AutomationId, automationId, regexOptions) &&
                                      Regex.IsMatch(item.Current.ClassName, className, regexOptions) &&
@@ -1001,7 +1001,7 @@ namespace UIAutomation
                                      )
                                     )
                            )
-                        .ToList<IMySuperWrapper>();
+                        .ToList<IUiElement>();
                }
                 
                 cmdlet.WriteVerbose(
@@ -1029,14 +1029,14 @@ namespace UIAutomation
         /// <summary>
         /// Checks that the -Value parameter matches the value ValuePattern of the element returns
         /// </summary>
-        /// <param name="item">IMySuperWrapper element</param>
+        /// <param name="item">IUiElement element</param>
         /// <param name="textValue">the -Value parameter</param>
         /// <param name="viaWildcardOrRegex">true is wildcard, false is regexp</param>
         /// <param name="wildcardValue">a wildcard object</param>
         /// <param name="regexOptions">a regex options object</param>
         /// <returns></returns>
         protected internal bool CompareElementValueAndValueParameter(
-            IMySuperWrapper item,
+            IUiElement item,
             string textValue,
             bool viaWildcardOrRegex,
             WildcardPattern wildcardValue,

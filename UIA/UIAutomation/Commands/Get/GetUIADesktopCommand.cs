@@ -26,10 +26,10 @@ namespace UIAutomation.Commands
             //UIAutomation.CurrentData.CurrentWindow = 
             //    AutomationElement.RootElement;
             CurrentData.CurrentWindow =
-                MySuperWrapper.RootElement;
+                UiElement.RootElement;
             // 20131109
             //this.WriteObject(this, AutomationElement.RootElement);
-            WriteObject(this, MySuperWrapper.RootElement);
+            WriteObject(this, UiElement.RootElement);
         }
     }
 }

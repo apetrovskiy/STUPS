@@ -16,7 +16,7 @@ namespace UIAutomation
 	{
 		bool IsSelected { get; }
 		// AutomationElement SelectionContainer { get; }
-		IMySuperWrapper SelectionContainer { get; }
+		IUiElement SelectionContainer { get; }
 	}
 }
 

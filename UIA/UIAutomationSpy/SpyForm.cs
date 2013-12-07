@@ -254,7 +254,7 @@ namespace UIAutomationSpy
         
         // 20131109
         //private string getNodeNameFromAutomationElement(AutomationElement element)
-        private string getNodeNameFromAutomationElement(IMySuperWrapper element)
+        private string getNodeNameFromAutomationElement(IUiElement element)
         {
             string result = string.Empty;
                 
@@ -293,8 +293,8 @@ namespace UIAutomationSpy
         
         private string getCodeFromAutomationElement(
             // 20131109
-            //IMySuperWrapper element,
-            IMySuperWrapper element,
+            //IUiElement element,
+            IUiElement element,
             TreeWalker walker)
         {
             string result = string.Empty;
@@ -314,12 +314,12 @@ namespace UIAutomationSpy
                 //if (walker.GetParent(element) == AutomationElement.RootElement) {
                 // 20131118
                 // property to method
-                //if ((new MySuperWrapper(walker.GetParent(element.SourceElement))) == MySuperWrapper.RootElement) {
-                if (Equals(new MySuperWrapper(walker.GetParent(element.GetSourceElement())), MySuperWrapper.RootElement)) {
+                //if ((new UiElement(walker.GetParent(element.SourceElement))) == UiElement.RootElement) {
+                if (Equals(new UiElement(walker.GetParent(element.GetSourceElement())), UiElement.RootElement)) {
                     elementControlType = "Window";
                 }
                 /*
-                if ((new MySuperWrapper(walker.GetParent(element.GetSourceElement()))) == MySuperWrapper.RootElement) {
+                if ((new UiElement(walker.GetParent(element.GetSourceElement()))) == UiElement.RootElement) {
                     elementControlType = "Window";
                 }
                 */
@@ -357,8 +357,8 @@ namespace UIAutomationSpy
             ref System.Collections.Generic.List<string> listForNodes,
             ref System.Collections.Generic.List<string> listForCode,
             // 20131109
-            //IMySuperWrapper element)
-            IMySuperWrapper element)
+            //IUiElement element)
+            IUiElement element)
         {
             this.cleanAncestry();
             
@@ -369,17 +369,17 @@ namespace UIAutomationSpy
             try {
                 
                 // 20131109
-                //AutomationElementIMySuperWrapper testparent = element;
-                IMySuperWrapper testparent = element;
+                //AutomationElementIUiElement testparent = element;
+                IUiElement testparent = element;
                 if (testparent != null && (int)testparent.Current.ProcessId > 0) {
                     listForNodes.Add(getNodeNameFromAutomationElement(testparent));
                     // 20131109
                     //if (testparent != AutomationElement.RootElement) {
-                    if (!Equals(testparent, MySuperWrapper.RootElement)) {
+                    if (!Equals(testparent, UiElement.RootElement)) {
                         listForCode.Add(getCodeFromAutomationElement(testparent, walker));
                     }
                     /*
-                    if (testparent != MySuperWrapper.RootElement) {
+                    if (testparent != UiElement.RootElement) {
                         listForCode.Add(getCodeFromAutomationElement(testparent, walker));
                     }
                     */
@@ -391,8 +391,8 @@ namespace UIAutomationSpy
                         //walker.GetParent(testparent);
                         // 20131118
                         // property to method
-                        //new MySuperWrapper(walker.GetParent(testparent.SourceElement));
-                        new MySuperWrapper(walker.GetParent(testparent.GetSourceElement()));
+                        //new UiElement(walker.GetParent(testparent.SourceElement));
+                        new UiElement(walker.GetParent(testparent.GetSourceElement()));
                     if (testparent.Current.ProcessId <= 0) continue;
                     /*
                     if (testparent == null || (int) testparent.Current.ProcessId <= 0) continue;
@@ -400,11 +400,11 @@ namespace UIAutomationSpy
                     listForNodes.Add(getNodeNameFromAutomationElement(testparent));
                     // 20131109
                     //if (testparent != AutomationElement.RootElement) {
-                    if (!Equals(testparent, MySuperWrapper.RootElement)) {
+                    if (!Equals(testparent, UiElement.RootElement)) {
                         listForCode.Add(getCodeFromAutomationElement(testparent, walker));
                     }
                     /*
-                    if (testparent != MySuperWrapper.RootElement) {
+                    if (testparent != UiElement.RootElement) {
                         listForCode.Add(getCodeFromAutomationElement(testparent, walker));
                     }
                     */
@@ -498,7 +498,7 @@ namespace UIAutomationSpy
         
         // 20131109
         //private void writingAvailablePatterns(AutomationElement element)
-        private void writingAvailablePatterns(IMySuperWrapper element)
+        private void writingAvailablePatterns(IUiElement element)
         {
             try {
                 this.richPatterns.Text = "available patterns";
@@ -536,14 +536,14 @@ namespace UIAutomationSpy
         }
         
         // 20131109
-        //privaIMySuperWrapperperWrapperperWrapper getElementFromPoint()
+        //privaIUiElementperWrapperperWrapper getElementFromPoint()
         // 20131114
-        //private IMySuperWrapper getElementFromPoint()
-        private IMySuperWrapper getElementFromPoint(System.Drawing.Point mousePoint)
+        //private IUiElement getElementFromPoint()
+        private IUiElement getElementFromPoint(System.Drawing.Point mousePoint)
         {
             // 20131109
-            //AutomatIMySuperWrapper element = null;
-            IMySuperWrapper element = null;
+            //AutomatIUiElement element = null;
+            IUiElement element = null;
             
             // use Windows forms mouse code instead of WPF
             // 20131114
@@ -553,7 +553,7 @@ namespace UIAutomationSpy
             element =
                 // 20131109
                 //System.Windows.Automation.AutomationElement.FromPoint(
-                MySuperWrapper.FromPoint(
+                UiElement.FromPoint(
                     // 20131114
                     //new System.Windows.Point(mouse.X, mouse.Y));
                     new System.Windows.Point(mousePoint.X, mousePoint.Y));
@@ -566,7 +566,7 @@ namespace UIAutomationSpy
         
         // 20131109
         //private void writingAutomationElementToPropertyGridControl(AutomationElement element)
-        private void writingAutomationElementToPropertyGridControl(IMySuperWrapper element)
+        private void writingAutomationElementToPropertyGridControl(IUiElement element)
         {
             try {
                 this.pGridElement.SelectedObject = 
@@ -836,14 +836,14 @@ namespace UIAutomationSpy
             // 20120618 UiaCOMWrapper
             // 20131109
             //AutomationElement rootElement = 
-            //    System.Windows.AutomIMySuperWrapperperWrapper rootElement = 
-            IMySuperWrapper rootElement =
-                MySuperWrapper.RootElement;
+            //    System.Windows.AutomIUiElementperWrapper rootElement = 
+            IUiElement rootElement =
+                UiElement.RootElement;
                 
             TranscriptCmdletBase cmdlet = null;
             // 20131109
-            //System.Windows.Automation.AutomatIMySuperWrapper element = null;
-            IMySuperWrapper element = null;
+            //System.Windows.Automation.AutomatIUiElement element = null;
+            IUiElement element = null;
 
 //				UiaNET::System.Windows.Automation.AutomationElement rootElement =
 //                    UiaNET::System.Windows.Automation.AutomationElement.RootElement;

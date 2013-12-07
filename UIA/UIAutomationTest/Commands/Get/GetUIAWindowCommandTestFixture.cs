@@ -217,7 +217,7 @@ namespace UIAutomationTest.Commands.Get
                 @"if (([uiautomation.currentdata]::currentwindow.current.name" +
                 ")) { 0; } else { 1; }",
                 //"System.Windows.Automation.AutomationElement");
-                "UIAutomation.MySuperWrapper");
+                "UIAutomation.UiElement");
         }
         
         [Test] //[Test(Description="TBD")]

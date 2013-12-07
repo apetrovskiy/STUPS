@@ -50,7 +50,7 @@ namespace UIAutomation.Commands
             WriteVerbose(this, "Recurse = " + Recurse.ToString());
             WriteVerbose(this, "Timeout " + Timeout.ToString());
             
-            List<IMySuperWrapper> _returnedWindows = new List<IMySuperWrapper>();
+            List<IUiElement> _returnedWindows = new List<IUiElement>();
             
             try {
 

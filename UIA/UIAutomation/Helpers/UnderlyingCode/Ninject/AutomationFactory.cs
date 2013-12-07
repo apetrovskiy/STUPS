@@ -78,9 +78,9 @@ namespace UIAutomation
 		}
 		#endregion Initialization
 		
-		#region IMySuperWrapper
-		// internal static IMySuperWrapper GetMySuperWrapper(AutomationElement element)
-		public static IMySuperWrapper GetMySuperWrapper(AutomationElement element)
+		#region IUiElement
+		// internal static IUiElement GetUiElement(AutomationElement element)
+		public static IUiElement GetUiElement(AutomationElement element)
 		{
 	        if (null == element) {
 	            return null;
@@ -89,7 +89,7 @@ namespace UIAutomation
 			try {
                 
     			var singleElement = new ConstructorArgument("element", element);
-    			IMySuperWrapper adapterElement = Kernel.Get<IMySuperWrapper>("AutomationElement.NET", singleElement);
+    			IUiElement adapterElement = Kernel.Get<IUiElement>("AutomationElement.NET", singleElement);
     			return adapterElement;
 			}
 			catch (Exception eFailedToIssueElement) {
@@ -101,14 +101,14 @@ namespace UIAutomation
 			}
 		}
 		
-		internal static IMySuperWrapper GetMySuperWrapper(IMySuperWrapper element)
+		internal static IUiElement GetUiElement(IUiElement element)
 		{
 	        if (null == element) {
 	            return null;
 	        }
 			try {
     			var singleElement = new ConstructorArgument("element", element);
-    			IMySuperWrapper adapterElement = Kernel.Get<IMySuperWrapper>("MySuperWrapper", singleElement);
+    			IUiElement adapterElement = Kernel.Get<IUiElement>("UiElement", singleElement);
     			return adapterElement;
 			}
 			catch (Exception eFailedToIssueElement) {
@@ -120,10 +120,10 @@ namespace UIAutomation
 			}
 		}
 		
-		internal static IMySuperWrapper GetMySuperWrapper()
+		internal static IUiElement GetUiElement()
 		{
 			try {
-    			IMySuperWrapper adapterElement = Kernel.Get<IMySuperWrapper>("Empty", null);
+    			IUiElement adapterElement = Kernel.Get<IUiElement>("Empty", null);
     			return adapterElement;
 			}
 			catch (Exception eFailedToIssueElement) {
@@ -135,11 +135,11 @@ namespace UIAutomation
 			}
 		}
 		
-		internal static IMySuperWrapperInformation GetMySuperWrapperInformation(AutomationElement.AutomationElementInformation information)
+		internal static IUiElementInformation GetUiElementInformation(AutomationElement.AutomationElementInformation information)
 		{
 			try {
     			var singleInfo = new ConstructorArgument("information", information);
-    			IMySuperWrapperInformation adapterInformation = Kernel.Get<IMySuperWrapperInformation>(singleInfo);
+    			IUiElementInformation adapterInformation = Kernel.Get<IUiElementInformation>(singleInfo);
     			return adapterInformation;
 			}
 			catch (Exception eFailedToIssueInformation) {
@@ -150,17 +150,17 @@ namespace UIAutomation
 			    return null;
 			}
 		}
-		#endregion IMySuperWrapper
+		#endregion IUiElement
 		
-		#region IMySuperCollection
-		internal static IMySuperCollection GetMySuperCollection(AutomationElementCollection elements)
+		#region IUiEltCollection
+		internal static IUiEltCollection GetUiEltCollection(AutomationElementCollection elements)
 		{
 	        if (null == elements) {
 	            return null;
 	        }
 			try {
     			var manyElements = new ConstructorArgument("elements", elements);
-	      		IMySuperCollection adapterCollection = Kernel.Get<IMySuperCollection>("AutomationElementCollection.NET", manyElements);
+	      		IUiEltCollection adapterCollection = Kernel.Get<IUiEltCollection>("AutomationElementCollection.NET", manyElements);
 	       		return adapterCollection;
 			}
 			catch (Exception eFailedToIssueCollection) {
@@ -172,14 +172,14 @@ namespace UIAutomation
 			}
 		}
 		
-		internal static IMySuperCollection GetMySuperCollection(IMySuperCollection elements)
+		internal static IUiEltCollection GetUiEltCollection(IUiEltCollection elements)
 		{
 	        if (null == elements) {
 	            return null;
 	        }
 			try {
     			var manyElements = new ConstructorArgument("elements", elements);
-	      		IMySuperCollection adapterCollection = Kernel.Get<IMySuperCollection>("MySuperCollection", manyElements);
+	      		IUiEltCollection adapterCollection = Kernel.Get<IUiEltCollection>("UiEltCollection", manyElements);
 	       		return adapterCollection;
 			}
 			catch (Exception eFailedToIssueCollection) {
@@ -191,14 +191,14 @@ namespace UIAutomation
 			}
 		}
 		
-		internal static IMySuperCollection GetMySuperCollection(IEnumerable elements)
+		internal static IUiEltCollection GetUiEltCollection(IEnumerable elements)
 		{
 	        if (null == elements) {
 	            return null;
 	        }
 			try {
     			var manyElements = new ConstructorArgument("elements", elements);
-	      		IMySuperCollection adapterCollection = Kernel.Get<IMySuperCollection>("AnyCollection", manyElements);
+	      		IUiEltCollection adapterCollection = Kernel.Get<IUiEltCollection>("AnyCollection", manyElements);
 	       		return adapterCollection;
 			}
 			catch (Exception eFailedToIssueCollection) {
@@ -210,11 +210,11 @@ namespace UIAutomation
 			}
 		}
 		
-		internal static IMySuperCollection GetMySuperCollection()
+		internal static IUiEltCollection GetUiEltCollection()
 		{
 			try {
 		        var boolArgument = new ConstructorArgument("fake", true);
-	      		IMySuperCollection adapterCollection = Kernel.Get<IMySuperCollection>("Empty", boolArgument);
+	      		IUiEltCollection adapterCollection = Kernel.Get<IUiEltCollection>("Empty", boolArgument);
 	       		return adapterCollection;
 			}
 			catch (Exception eFailedToIssueCollection) {
@@ -225,10 +225,10 @@ namespace UIAutomation
 			    return null;
 			}
 		}
-		#endregion IMySuperCollection
+		#endregion IUiEltCollection
 		
 		#region IMySuperExpandCollapsePattern
-		internal static IMySuperExpandCollapsePattern GetMySuperExpandCollapsePattern(IMySuperWrapper element, ExpandCollapsePattern expandCollapsePattern)
+		internal static IMySuperExpandCollapsePattern GetMySuperExpandCollapsePattern(IUiElement element, ExpandCollapsePattern expandCollapsePattern)
 		{
 		    try {
                 var argElement = new ConstructorArgument("element", element);
@@ -247,7 +247,7 @@ namespace UIAutomation
 		#endregion IMySuperExpandCollapsePattern
 		
 		#region IMySuperInvokePattern
-		internal static IMySuperInvokePattern GetMySuperInvokePattern(IMySuperWrapper element, InvokePattern invokePattern)
+		internal static IMySuperInvokePattern GetMySuperInvokePattern(IUiElement element, InvokePattern invokePattern)
 		{
 			try {
                 var argElement = new ConstructorArgument("element", element);
@@ -266,7 +266,7 @@ namespace UIAutomation
 		#endregion IMySuperInvokePattern
 		
 		#region IMySuperSelectionItemPattern
-		internal static IMySuperSelectionItemPattern GetMySuperSelectionItemPattern(IMySuperWrapper element, SelectionItemPattern selectionItemPattern)
+		internal static IMySuperSelectionItemPattern GetMySuperSelectionItemPattern(IUiElement element, SelectionItemPattern selectionItemPattern)
 		{
 		    try {
                 var argElement = new ConstructorArgument("element", element);
@@ -285,7 +285,7 @@ namespace UIAutomation
 		#endregion IMySuperSelectionItemPattern
 		
 		#region IMySuperSelectionPattern
-		internal static IMySuperSelectionPattern GetMySuperSelectionPattern(IMySuperWrapper element, SelectionPattern selectionPattern)
+		internal static IMySuperSelectionPattern GetMySuperSelectionPattern(IUiElement element, SelectionPattern selectionPattern)
 		{
 		    try {
                 var argElement = new ConstructorArgument("element", element);
@@ -304,7 +304,7 @@ namespace UIAutomation
 		#endregion IMySuperSelectionPattern
 		
 		#region IMySuperTogglePattern
-		internal static IMySuperTogglePattern GetMySuperTogglePattern(IMySuperWrapper element, TogglePattern togglePattern)
+		internal static IMySuperTogglePattern GetMySuperTogglePattern(IUiElement element, TogglePattern togglePattern)
 		{
 		    try {
                 var argElement = new ConstructorArgument("element", element);
@@ -323,7 +323,7 @@ namespace UIAutomation
 		#endregion IMySuperTogglePattern
 		
 		#region IMySuperValuePattern
-		internal static IMySuperValuePattern GetMySuperValuePattern(IMySuperWrapper element, ValuePattern valuePattern)
+		internal static IMySuperValuePattern GetMySuperValuePattern(IUiElement element, ValuePattern valuePattern)
 		{
 			try {
                 var argElement = new ConstructorArgument("element", element);

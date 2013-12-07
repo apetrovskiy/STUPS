@@ -38,7 +38,7 @@ namespace UIAutomation.Commands
         // 20131014
         // 20131109
         //System.Windows.Automation.AutomationElement _control = null;
-        IMySuperWrapper _control = null;
+        IUiElement _control = null;
         
         /// <summary>
         /// Processes the pipeline.
@@ -66,7 +66,7 @@ namespace UIAutomation.Commands
             }
 
             /*
-            foreach (IMySuperWrapper element in this.InputObject) {
+            foreach (IUiElement element in this.InputObject) {
                 foreach (System.Windows.Automation.AutomationPattern p in element.GetSupportedPatterns())
                 {
                     this.WriteVerbose(this, p.ProgrammaticName);

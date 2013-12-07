@@ -100,9 +100,9 @@ namespace UIAutomation
             HelpMessage = "This is usually the output from Get-UiaControl" )] 
         //public System.Windows.Automation.AutomationElement[] InputObject { get; set; }
         //public ICollection InputObject { get; set; }
-        public IMySuperWrapper[] InputObject { get; set; }
+        public IUiElement[] InputObject { get; set; }
         /*
-        public MySuperWrapper[] InputObject { get; set; }
+        public UiElement[] InputObject { get; set; }
         */
         [Parameter(Mandatory = false)]
         public virtual SwitchParameter PassThru { get; set; }
@@ -129,7 +129,7 @@ namespace UIAutomation
         protected bool GetColorProbe(HasControlInputCmdletBase cmdlet,
                                      // 20131109
                                      //AutomationElement element)
-                                     IMySuperWrapper element)
+                                     IUiElement element)
         {
             bool result = false;
             
@@ -145,7 +145,7 @@ namespace UIAutomation
         protected internal bool ClickControl(HasControlInputCmdletBase cmdlet,
                                     // 20131109
                                     //AutomationElement element,
-                                    IMySuperWrapper element,
+                                    IUiElement element,
                                     bool RightClick,
                                     bool MidClick,
                                     bool Alt,
@@ -170,7 +170,7 @@ namespace UIAutomation
             // 20131109
             //AutomationElement whereToClick = 
             //    element;
-            IMySuperWrapper whereToClick = 
+            IUiElement whereToClick = 
                 element;
             WriteVerbose(cmdlet, 
                          "where the click will be performed: " +
@@ -178,7 +178,7 @@ namespace UIAutomation
             // 20131109
             //AutomationElement whereTheHandle = 
             //    whereToClick;
-            IMySuperWrapper whereTheHandle = 
+            IUiElement whereTheHandle = 
                 whereToClick;
             
             if (whereToClick.Current.NativeWindowHandle == 0) {
@@ -451,7 +451,7 @@ namespace UIAutomation
             
             // 20131109
             //ICollection newInputCollection =
-            //    new MySuperCollection
+            //    new UiEltCollection
             
             if (null == cmdlet.InputObject) {
                 
@@ -503,7 +503,7 @@ namespace UIAutomation
                 
                 // 20131109
                 //System.Windows.Automation.AutomationElement _control = null;
-                //IMySuperWrapper _controlAdapter = null;
+                //IUiElement _controlAdapter = null;
                 var _controlAdapter = inputObject;
                 
                 try {
@@ -521,16 +521,16 @@ namespace UIAutomation
                     
                     // 20131109
                     //cmdlet.currentWindow = _control;
-                    //if (inputObject is IMySuperWrapper) {
-                    if (null != (inputObject as IMySuperWrapper))
+                    //if (inputObject is IUiElement) {
+                    if (null != (inputObject as IUiElement))
                     {
                     /*
-                    if (inputObject is IMySuperWrapper) {
+                    if (inputObject is IUiElement) {
                     */
-                        cmdlet.CurrentInputElement = (IMySuperWrapper)_controlAdapter;
+                        cmdlet.CurrentInputElement = (IUiElement)_controlAdapter;
                     }
 //                    if (inputObject is AutomationElement) {
-//                        cmdlet.currentWindow = new MySuperWrapper((AutomationElement)inputObject);
+//                        cmdlet.currentWindow = new UiElement((AutomationElement)inputObject);
 //                    }
                     
                     result = true;
@@ -569,7 +569,7 @@ namespace UIAutomation
         protected internal void SubscribeToEvents(HasControlInputCmdletBase cmdlet,
                                                   // 20131109
                                                   //AutomationElement inputObject,
-                                                  IMySuperWrapper inputObject,
+                                                  IUiElement inputObject,
                                                   AutomationEvent eventType,
                                                   AutomationProperty prop)
         {
@@ -846,7 +846,7 @@ try {
             
             // 20131109
             //AutomationElement sourceElement;
-            IMySuperWrapper sourceElement;
+            IUiElement sourceElement;
             string elementTitle = String.Empty;
             string elementType = String.Empty;
             AutomationEvent eventId = null;
@@ -854,7 +854,7 @@ try {
             try {
                 // 20131109
                 //sourceElement = src as AutomationElement;
-                sourceElement = src as IMySuperWrapper;
+                sourceElement = src as IUiElement;
                 try { elementTitle = sourceElement.Cached.Name; } catch { }
                 try {
                     elementType =
@@ -1000,7 +1000,7 @@ try {
             try {
                 // 20131109
                 WriteVerbose(this, e.EventId + "on " + (src as AutomationElement) + " fired");
-                WriteVerbose(this, e.EventId + "on " + (src as IMySuperWrapper) + " fired");
+                WriteVerbose(this, e.EventId + "on " + (src as IUiElement) + " fired");
             } catch { }
         }
         #endregion Event handling for recording
@@ -1012,7 +1012,7 @@ try {
             // 20131109
             //AutomationElement sourceElement;
             // 20131118
-            //IMySuperWrapper sourceElement;
+            //IUiElement sourceElement;
             /*
             AutomationElement sourceElement;
             */
@@ -1020,7 +1020,7 @@ try {
                 // 20131109
                 //sourceElement = objectToTest as AutomationElement;
                 // 20131118
-                //sourceElement = objectToTest as IMySuperWrapper;
+                //sourceElement = objectToTest as IUiElement;
                 AutomationElement sourceElement = objectToTest as AutomationElement;
                 // 20131109
                 //this.EventSource = sourceElement;
@@ -1040,7 +1040,7 @@ try {
         #endregion checker event handler inputs
 
         protected internal bool TestControlByPropertiesFromHashtable(
-            IMySuperWrapper[] inputElements,
+            IUiElement[] inputElements,
             IEnumerable<Hashtable> SearchCriteria,
             int timeout)
         {
@@ -1068,10 +1068,10 @@ try {
                 //if (null != inputElements && null != (inputElements as AutomationElement[]) && 0 < inputElements.Length) {
                 // 20131109
                 //if (null != inputElements && null != (inputElements as AutomationElement[]) && 0 < inputElements.Count) {
-                if (null != inputElements && null != (inputElements as IMySuperWrapper[]) && inputElements.Any()) {
+                if (null != inputElements && null != (inputElements as IUiElement[]) && inputElements.Any()) {
 
                 /*
-                if (null != inputElements && null != (inputElements as IMySuperWrapper[]) && 0 < inputElements.Count()) {
+                if (null != inputElements && null != (inputElements as IUiElement[]) && 0 < inputElements.Count()) {
                 */
 
                     // 20131109
@@ -1087,7 +1087,7 @@ try {
                 
                 WriteVerbose(this, "getting the control");
                 
-                List<IMySuperWrapper> elementsToWorkWith = GetControl(cmdlet);
+                List<IUiElement> elementsToWorkWith = GetControl(cmdlet);
                 
                 if (null == elementsToWorkWith) {
 
@@ -1095,7 +1095,7 @@ try {
                     return result;
                 } else {
                     
-                    foreach (IMySuperWrapper elementToWorkWith in elementsToWorkWith) {
+                    foreach (IUiElement elementToWorkWith in elementsToWorkWith) {
                         
                         WriteVerbose(this, "found the control:");
                         try {WriteVerbose(this, "Name = " + elementToWorkWith.Current.Name); }catch {}

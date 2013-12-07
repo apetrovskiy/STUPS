@@ -40,7 +40,7 @@ namespace UIAutomation.Commands
             cmdlet.OddRootElement =
                 // 20131109
                 //System.Windows.Automation.AutomationElement.RootElement;
-                MySuperWrapper.RootElement;
+                UiElement.RootElement;
             cmdlet.StartDate =
                 DateTime.Now;
             do{

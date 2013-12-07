@@ -38,7 +38,7 @@ namespace UIAutomation
             InitializeData();
         }
         
-        public static IMySuperWrapper CurrentWindow { get; internal set; }
+        public static IUiElement CurrentWindow { get; internal set; }
         // 20131202
         // public static ArrayList Error { get; set; }
         public static List<ErrorRecord> Error { get; set; }
@@ -53,7 +53,7 @@ public static List<object> Events { get; set; } // temporary ??
         
         // 20131109
         //public static AutomationElement LastEventSource { get; set; }
-        public static IMySuperWrapper LastEventSource { get; set; }
+        public static IUiElement LastEventSource { get; set; }
         //internal static EventArgs LastEventArgs { get; set; }
         public static EventArgs LastEventArgs { get; set; }
         //internal static string LastEventType { get; set; }
@@ -101,7 +101,7 @@ public static List<object> Events { get; set; } // temporary ??
             }
         }
         
-        public static void SetCurrentWindow(IMySuperWrapper window)
+        public static void SetCurrentWindow(IUiElement window)
         {
             CurrentWindow = window ?? null;
         }

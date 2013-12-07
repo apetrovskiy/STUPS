@@ -36,12 +36,12 @@ namespace UIAutomation
         protected void WaitIfCondition(
             // 20131109
             //AutomationElement _control,
-            IMySuperWrapper _control,
+            IUiElement _control,
             bool isEnabledOrIsVisible)
         {
             // 20131109
             //_control = this.InputObject[0];
-            _control = InputObject.Cast<IMySuperWrapper>().ToArray()[0];
+            _control = InputObject.Cast<IUiElement>().ToArray()[0];
             
             if (isEnabledOrIsVisible) {
                 Wait = !(_control.Current).IsEnabled;

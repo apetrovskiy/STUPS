@@ -42,7 +42,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             string automationId,
             string className,
             string txtValue,
-            IEnumerable<IMySuperWrapper> collection,
+            IEnumerable<IUiElement> collection,
             int expectedNumberOfElements)
         {
             // Arrange
@@ -57,33 +57,33 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             Condition condition =
                 cmdlet.GetWildcardSearchCondition(cmdlet);
             
-            IMySuperWrapper element =
+            IUiElement element =
                 FakeFactory.GetElement_ForFindAll(
                     collection,
                     condition);
             
             // Act
-            List<IMySuperWrapper> resultList = RealCodeCaller.GetResultList_ViaWildcards_Legacy(cmdlet, element, condition);
+            List<IUiElement> resultList = RealCodeCaller.GetResultList_ViaWildcards_Legacy(cmdlet, element, condition);
             
             // Assert
             Assert.Count(expectedNumberOfElements, resultList);
             if (!string.IsNullOrEmpty(name)) {
-                Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.Name == name);
+                Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => x.Current.Name == name);
             }
             if (!string.IsNullOrEmpty(automationId)) {
-                Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.AutomationId == automationId);
+                Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => x.Current.AutomationId == automationId);
             }
             if (!string.IsNullOrEmpty(className)) {
-                Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.ClassName == className);
+                Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => x.Current.ClassName == className);
             }
             if (null != controlType) {
-                Assert.ForAll(resultList.Cast<IMySuperWrapper>().ToList<IMySuperWrapper>(), x => x.Current.ControlType == controlType);
+                Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => x.Current.ControlType == controlType);
             }
             if (!string.IsNullOrEmpty(txtValue)) {
                 Assert.ForAll(
                     resultList
-                    .Cast<IMySuperWrapper>()
-                    .ToList<IMySuperWrapper>(), x =>
+                    .Cast<IUiElement>()
+                    .ToList<IUiElement>(), x =>
                     {
                         IMySuperValuePattern valuePattern = x.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern;
                         return valuePattern != null && valuePattern.Current.Value == txtValue;
@@ -107,7 +107,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 automationId,
                 className,
                 txtValue,
-                new MySuperWrapper[] {},
+                new UiElement[] {},
                 0);
         }
         
@@ -149,7 +149,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 automationId,
                 className,
                 txtValue,
-                new MySuperWrapper[] {},
+                new UiElement[] {},
                 0);
         }
         
@@ -235,7 +235,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 automationId,
                 className,
                 txtValue,
-                new MySuperWrapper[] {},
+                new UiElement[] {},
                 0);
         }
         
@@ -321,7 +321,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 automationId,
                 className,
                 txtValue,
-                new MySuperWrapper[] {},
+                new UiElement[] {},
                 0);
         }
         
@@ -407,7 +407,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 automationId,
                 className,
                 txtValue,
-                new MySuperWrapper[] {},
+                new UiElement[] {},
                 0);
         }
         
@@ -493,7 +493,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 automationId,
                 className,
                 txtValue,
-                new MySuperWrapper[] {},
+                new UiElement[] {},
                 0);
         }
         
@@ -579,7 +579,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 automationId,
                 className,
                 txtValue,
-                new MySuperWrapper[] {},
+                new UiElement[] {},
                 0);
         }
         
@@ -667,7 +667,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 automationId,
                 className,
                 txtValue,
-                new MySuperWrapper[] {},
+                new UiElement[] {},
                 0);
         }
         
@@ -755,7 +755,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 automationId,
                 className,
                 txtValue,
-                new MySuperWrapper[] {},
+                new UiElement[] {},
                 0);
         }
         
@@ -843,7 +843,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 automationId,
                 className,
                 txtValue,
-                new MySuperWrapper[] {},
+                new UiElement[] {},
                 0);
         }
         
@@ -931,7 +931,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 automationId,
                 className,
                 txtValue,
-                new MySuperWrapper[] {},
+                new UiElement[] {},
                 0);
         }
         
@@ -1019,7 +1019,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 automationId,
                 className,
                 txtValue,
-                new MySuperWrapper[] {},
+                new UiElement[] {},
                 0);
         }
         
@@ -1107,7 +1107,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 automationId,
                 className,
                 txtValue,
-                new MySuperWrapper[] {},
+                new UiElement[] {},
                 0);
         }
         
@@ -1195,7 +1195,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 automationId,
                 className,
                 txtValue,
-                new MySuperWrapper[] {},
+                new UiElement[] {},
                 0);
         }
         
@@ -1283,7 +1283,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 automationId,
                 className,
                 txtValue,
-                new MySuperWrapper[] {},
+                new UiElement[] {},
                 0);
         }
         

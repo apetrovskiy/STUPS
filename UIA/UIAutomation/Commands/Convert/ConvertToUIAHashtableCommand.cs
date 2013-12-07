@@ -159,7 +159,7 @@ namespace UIAutomation.Commands
         public SwitchParameter Full { get; set; }
         #endregion Parameters
         
-        private IMySuperWrapper _currentInputObject = null;
+        private IUiElement _currentInputObject = null;
         
         /// <summary>
         /// Processes the pipeline.
@@ -168,7 +168,7 @@ namespace UIAutomation.Commands
         {
             if (!CheckAndPrepareInput(this)) { return; }
             
-            foreach (IMySuperWrapper inputObject in InputObject) {
+            foreach (IUiElement inputObject in InputObject) {
                 // 20120823
                 _currentInputObject = inputObject;
             

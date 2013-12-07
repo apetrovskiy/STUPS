@@ -9,12 +9,12 @@
 
 namespace UIAutomationSpy
 {
-	//extern alias UIACOM;
+	//extern alias UiaCOM;
 	using System;
 	using System.Windows.Automation;
 	using System.Windows.Forms;
 	using System.Drawing;
-	//using UIACOM3;
+	//using UiaCOM3;
 	//using UIAutomationClient;
 	
 	using System.Management.Automation;
@@ -83,7 +83,7 @@ namespace UIAutomationSpy
             this.tabResults = new System.Windows.Forms.TabPage();
             this.richResults = new System.Windows.Forms.RichTextBox();
             this.tabTree = new System.Windows.Forms.TabPage();
-            this.tvUIAHierarchy = new System.Windows.Forms.TreeView();
+            this.tvUiaHierarchy = new System.Windows.Forms.TreeView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -397,7 +397,7 @@ namespace UIAutomationSpy
             // 
             // tabTree
             // 
-            this.tabTree.Controls.Add(this.tvUIAHierarchy);
+            this.tabTree.Controls.Add(this.tvUiaHierarchy);
             this.tabTree.Location = new System.Drawing.Point(4, 4);
             this.tabTree.Name = "tabTree";
             this.tabTree.Padding = new System.Windows.Forms.Padding(3);
@@ -406,13 +406,13 @@ namespace UIAutomationSpy
             this.tabTree.Text = "Tree";
             this.tabTree.UseVisualStyleBackColor = true;
             // 
-            // tvUIAHierarchy
+            // tvUiaHierarchy
             // 
-            this.tvUIAHierarchy.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tvUIAHierarchy.Location = new System.Drawing.Point(3, 3);
-            this.tvUIAHierarchy.Name = "tvUIAHierarchy";
-            this.tvUIAHierarchy.Size = new System.Drawing.Size(385, 288);
-            this.tvUIAHierarchy.TabIndex = 0;
+            this.tvUiaHierarchy.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tvUiaHierarchy.Location = new System.Drawing.Point(3, 3);
+            this.tvUiaHierarchy.Name = "tvUiaHierarchy";
+            this.tvUiaHierarchy.Size = new System.Drawing.Size(385, 288);
+            this.tvUiaHierarchy.TabIndex = 0;
             // 
             // menuStrip1
             // 
@@ -899,7 +899,7 @@ namespace UIAutomationSpy
         private System.Windows.Forms.SplitContainer splitContScript;
         private System.Windows.Forms.PropertyGrid pGridElement;
         private System.Windows.Forms.TabPage tabProperties;
-        private System.Windows.Forms.TreeView tvUIAHierarchy;
+        private System.Windows.Forms.TreeView tvUiaHierarchy;
         private System.Windows.Forms.TabPage tabScript;
         private System.Windows.Forms.RichTextBox richPatterns;
         private System.Windows.Forms.TabPage tabTree;

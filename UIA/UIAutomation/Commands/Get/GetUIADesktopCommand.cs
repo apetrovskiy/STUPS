@@ -9,28 +9,27 @@
 
 namespace UIAutomation.Commands
 {
-    // test it
-    //using System;
+    extern alias UIANET;
     using System.Management.Automation;
     using System.Windows.Automation;
     
     /// <summary>
-    /// Description of GetUIADesktopCommand.
+    /// Description of GetUiaDesktopCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIADesktop")]
+    [Cmdlet(VerbsCommon.Get, "UiaDesktop")]
     [OutputType(typeof(object))]
-    public class GetUIADesktopCommand : GetCmdletBase
+    public class GetUiaDesktopCommand : GetCmdletBase
     {
         protected override void BeginProcessing()
         {
             // 20131109
             //UIAutomation.CurrentData.CurrentWindow = 
             //    AutomationElement.RootElement;
-            UIAutomation.CurrentData.CurrentWindow =
-                MySuperWrapper.RootElement;
+            CurrentData.CurrentWindow =
+                UiElement.RootElement;
             // 20131109
             //this.WriteObject(this, AutomationElement.RootElement);
-            this.WriteObject(this, MySuperWrapper.RootElement);
+            WriteObject(this, UiElement.RootElement);
         }
     }
 }

@@ -14,10 +14,10 @@ namespace UIAutomationTest.Commands.Wait
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of WaitUIAControlIsVisibleCommandTestFixture.
+    /// Description of WaitUiaControlIsVisibleCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Wait-UIAControlIsVisibleCommand test")]
-    public class WaitUIAControlIsVisibleCommandTestFixture
+    [TestFixture] // [TestFixture(Description="Wait-UiaControlIsVisibleCommand test")]
+    public class WaitUiaControlIsVisibleCommandTestFixture
     {
         [SetUp]
         public void PrepareRunspace()
@@ -37,25 +37,25 @@ namespace UIAutomationTest.Commands.Wait
                 UIAutomationTestForms.Forms.WinFormsFull, 
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"if (-not (Get-UIAWindow -pn " +
+                @"if (-not (Get-UiaWindow -pn " +
                 MiddleLevelCode.TestFormProcess +
-                @" | Get-UIA" +
+                @" | Get-Uia" +
                 controlType +
                 " -" +  propertyName + " '" +
                 name +
                 @"').IsVisible) { " + 
-                @"$null = Get-UIAWindow -pn " +
+                @"$null = Get-UiaWindow -pn " +
                 MiddleLevelCode.TestFormProcess +
-                @" | Get-UIAButton -Name Button2 | Invoke-UIAButtonClick; " +
-                @"(-not (Get-UIAWindow -pn " +
+                @" | Get-UiaButton -Name Button2 | Invoke-UiaButtonClick; " +
+                @"(-not (Get-UiaWindow -pn " +
                 MiddleLevelCode.TestFormProcess +
-                @" | Get-UIA" + 
+                @" | Get-Uia" + 
                 controlType +
                 " -" + propertyName + " '" +
                 name + 
                 @"' | Wait-UIA" + 
                 controlType +
-                @"IsVisible | Read-UIAControlIsOffscreen)); } ",
+                @"IsVisible | Read-UiaControlIsOffscreen)); } ",
                 expectedResult);
         }
         

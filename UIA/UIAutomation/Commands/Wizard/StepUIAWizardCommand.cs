@@ -9,20 +9,21 @@
 
 namespace UIAutomation.Commands
 {
+    extern alias UIANET;
     using System;
     using System.Management.Automation;
     using System.Windows.Automation;
 
     /// <summary>
-    /// Description of StepUIAWizardCommand.
+    /// Description of StepUiaWizardCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Step, "UIAWizard")]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    [Cmdlet(VerbsCommon.Step, "UiaWizard")]
+    
     [Obsolete("This cmdlet is now obsolete. Wizard now support only automatic mode.")]
-    public class StepUIAWizardCommand : WizardRunCmdletBase
-    //internal class StepUIAWizardCommand : WizardCmdletBase
+    public class StepUiaWizardCommand : WizardRunCmdletBase
+    //internal class StepUiaWizardCommand : WizardCmdletBase
     {
-        public StepUIAWizardCommand()
+        public StepUiaWizardCommand()
         {
             Forward = true;
         }
@@ -36,7 +37,7 @@ namespace UIAutomation.Commands
         protected override void BeginProcessing()
         {
             WriteVerbose(this, "Timeout = " + Timeout.ToString());
-            StartDate = System.DateTime.Now;
+            StartDate = DateTime.Now;
         }
         
         /// <summary>
@@ -44,8 +45,8 @@ namespace UIAutomation.Commands
         /// </summary>
         protected override void ProcessRecord()
         {
-            UIAStepWizardCommand command =
-                new UIAStepWizardCommand(this);
+            UiaStepWizardCommand command =
+                new UiaStepWizardCommand(this);
             command.Execute();
             
 //            // getting the step the user ordered to run

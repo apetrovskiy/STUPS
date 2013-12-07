@@ -9,6 +9,7 @@
 
 namespace UIAutomation.Commands
 {
+    extern alias UIANET;
     using System;
     using System.Management.Automation;
     
@@ -16,15 +17,15 @@ namespace UIAutomation.Commands
     using System.Collections;
     
     /// <summary>
-    /// Description of WaitUIANoWindowCommand.
+    /// Description of WaitUiaNoWindowCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Wait, "UIANoWindow", DefaultParameterSetName = "UIA")]
-    public class WaitUIANoWindowCommand : GetUIAWindowCommand
+    [Cmdlet(VerbsLifecycle.Wait, "UiaNoWindow", DefaultParameterSetName = "UIA")]
+    public class WaitUiaNoWindowCommand : GetUiaWindowCommand
     {
-        public WaitUIANoWindowCommand()
+        public WaitUiaNoWindowCommand()
         {
-            this.TestMode = true;
-            this.WaitNoWindow = true;
+            TestMode = true;
+            WaitNoWindow = true;
         }
     }
 }

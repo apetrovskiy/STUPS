@@ -11,11 +11,11 @@ using System;
 namespace UIAutomationTest.Commands.Common
 {
     /// <summary>
-    /// Description of HideUIACurrentHighlighterCommandTestFixture.
+    /// Description of HideUiaCurrentHighlighterCommandTestFixture.
     /// </summary>
-    public class HideUIACurrentHighlighterCommandTestFixture
+    public class HideUiaCurrentHighlighterCommandTestFixture
     {
-        public HideUIACurrentHighlighterCommandTestFixture()
+        public HideUiaCurrentHighlighterCommandTestFixture()
         {
         }
     }

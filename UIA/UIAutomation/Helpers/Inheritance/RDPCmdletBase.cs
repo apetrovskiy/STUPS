@@ -9,15 +9,15 @@
 
 namespace UIAutomation
 {
-    using System;
+    //using System;
     using System.Management.Automation;
     
     /// <summary>
     /// Description of RDPCmdletBase.
     /// </summary>
-    public class RDPCmdletBase : CommonCmdletBase
+    public class RdpCmdletBase : CommonCmdletBase
     {
-        public RDPCmdletBase()
+        public RdpCmdletBase()
         {
         }
         
@@ -139,18 +139,18 @@ namespace UIAutomation
         // 1 password 51:
         
         [Parameter(Mandatory = true)]
-        [ValidateNotNullOrEmpty()]
+        [ValidateNotNullOrEmpty]
         public string Domain { get; set; }
         
         [Parameter(Mandatory = true)]
-        [ValidateNotNullOrEmpty()]
+        [ValidateNotNullOrEmpty]
         public string Username { get; set; }
         
         [Parameter(Mandatory = true)]
         public string Password { get; set; }
         
         [Parameter(Mandatory = true)]
-        [ValidateNotNullOrEmpty()]
+        [ValidateNotNullOrEmpty]
         public string Hostname { get; set; }
         
         [Parameter(Mandatory = false)]

@@ -14,10 +14,10 @@ namespace UIAutomationTest.Commands.Wizard
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of NewUIAWizardCommandTestFixture.
+    /// Description of NewUiaWizardCommandTestFixture.
     /// </summary>
     [TestFixture] // [TestFixture(Description="1")]
-    public class NewUIAWizardCommandTestFixture
+    public class NewUiaWizardCommandTestFixture
     {
         [SetUp]
         public void PrepareRunspace()
@@ -36,7 +36,7 @@ namespace UIAutomationTest.Commands.Wizard
         {
             string name = "wizard";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"(New-UIAWizard -Name '" + 
+                @"(New-UiaWizard -Name '" + 
                 name + 
                 "' -StartAction {}).Name;",
                 name);
@@ -50,7 +50,7 @@ namespace UIAutomationTest.Commands.Wizard
         {
             string name = "wi*za*rd";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"(New-UIAWizard -Name '" + 
+                @"(New-UiaWizard -Name '" + 
                 name + 
                 "' -StartAction {}).Name;",
                 name);
@@ -65,7 +65,7 @@ namespace UIAutomationTest.Commands.Wizard
             string name = @"``//\\`""`''#$(1)567";
             string answer = @"``//\\`""`'#$(1)567";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"(New-UIAWizard -Name '" + 
+                @"(New-UiaWizard -Name '" + 
                 name + 
                 "' -StartAction {}).Name;",
                 answer);
@@ -80,10 +80,10 @@ namespace UIAutomationTest.Commands.Wizard
             string name = "wizard";
             string result = "StartAction";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = New-UIAWizard -Name '" + 
+                @"$null = New-UiaWizard -Name '" + 
                 name + 
                 "' -StartAction {$global:wzdTest = '" + result + "'};" + 
-                @"$null = Invoke-UIAWizard -Name '" +
+                @"$null = Invoke-UiaWizard -Name '" +
                 name + 
                 "';" + 
                 @"$global:wzdTest;",

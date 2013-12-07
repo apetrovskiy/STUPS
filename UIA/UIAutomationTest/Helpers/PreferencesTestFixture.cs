@@ -50,7 +50,7 @@ namespace UIAutomationTest.Helpers
             MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"[UIAutomation.Preferences]::Timeout = 10000; " +
-                @"$null = Get-UIAWindow -pn '" +
+                @"$null = Get-UiaWindow -pn '" +
                 MiddleLevelCode.TestFormProcess + 
                 "'; " + 
                 @"[UIAutomation.Preferences]::Timeout;",
@@ -67,7 +67,7 @@ namespace UIAutomationTest.Helpers
             MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"[UIAutomation.Preferences]::Timeout = 10000; " +
-                @"$null = Get-UIAWindow -n " + 
+                @"$null = Get-UiaWindow -n " + 
                 MiddleLevelCode.TestFormNameEmpty +
                 "; " + 
                 @"[UIAutomation.Preferences]::Timeout;",
@@ -84,7 +84,7 @@ namespace UIAutomationTest.Helpers
             MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"[UIAutomation.Preferences]::Timeout = 10000; " +
-                @"$null = Get-UIAWindow -pid " + 
+                @"$null = Get-UiaWindow -pid " + 
                 @"(Get-Process -Name '" + 
                 MiddleLevelCode.TestFormProcess +
                 "').Id; " +
@@ -102,7 +102,7 @@ namespace UIAutomationTest.Helpers
             string timeoutInterval = "2000";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"[UIAutomation.Preferences]::Timeout = 4000; " +
-                @"try{ $null = Get-UIAWindow -pn '" + 
+                @"try{ $null = Get-UiaWindow -pn '" + 
                 processName + 
                 "';} catch {} " + 
                 @"[UIAutomation.Preferences]::Timeout;",
@@ -119,7 +119,7 @@ namespace UIAutomationTest.Helpers
             string timeoutInterval = "2000";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"[UIAutomation.Preferences]::Timeout = 4000; " +
-                @"try{ $null = Get-UIAWindow -n '" + 
+                @"try{ $null = Get-UiaWindow -n '" + 
                 windowTitle + 
                 "';} catch {} " + 
                 @"[UIAutomation.Preferences]::Timeout;",
@@ -136,7 +136,7 @@ namespace UIAutomationTest.Helpers
             string timeoutInterval = "2000";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"[UIAutomation.Preferences]::Timeout = 4000; " +
-                @"try{ $null = Get-UIAWindow -pid " + 
+                @"try{ $null = Get-UiaWindow -pid " + 
                 processId + 
                 ";} catch {} " + 
                 @"[UIAutomation.Preferences]::Timeout;",
@@ -156,7 +156,7 @@ namespace UIAutomationTest.Helpers
 //                MiddleLevelCode.TestFormProcess +
 //                "'; " +
 //                @"$null = Stop-Process -InputObject $process; " +
-//                @"try{ $process | Get-UIAWindow;} catch {} " + 
+//                @"try{ $process | Get-UiaWindow;} catch {} " + 
 //                @"[UIAutomation.Preferences]::Timeout;",
 //                timeoutInterval);
 //        }
@@ -172,10 +172,10 @@ namespace UIAutomationTest.Helpers
             MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"[UIAutomation.Preferences]::Timeout = 4000; " +
-                @"try{ $null = Get-UIAWindow -pn '" + 
+                @"try{ $null = Get-UiaWindow -pn '" + 
                 processName + 
                 "';} catch {} " + 
-                @"try{ $null = Get-UIAWindow -pn '" + 
+                @"try{ $null = Get-UiaWindow -pn '" + 
                 MiddleLevelCode.TestFormProcess + 
                 "';} catch {} " + 
                 @"[UIAutomation.Preferences]::Timeout;",
@@ -193,10 +193,10 @@ namespace UIAutomationTest.Helpers
             MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"[UIAutomation.Preferences]::Timeout = 4000; " +
-                @"try{ $null = Get-UIAWindow -n '" + 
+                @"try{ $null = Get-UiaWindow -n '" + 
                 windowTitle + 
                 "';} catch {} " + 
-                @"try{ $null = Get-UIAWindow -n '" + 
+                @"try{ $null = Get-UiaWindow -n '" + 
                 MiddleLevelCode.TestFormNameEmpty + 
                 "';} catch {} " + 
                 @"[UIAutomation.Preferences]::Timeout;",
@@ -214,10 +214,10 @@ namespace UIAutomationTest.Helpers
             MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"[UIAutomation.Preferences]::Timeout = 4000; " +
-                @"try{ $null = Get-UIAWindow -pid " + 
+                @"try{ $null = Get-UiaWindow -pid " + 
                 processId + 
                 ";} catch {} " + 
-                @"try{ $null = Get-UIAWindow -pid (" + 
+                @"try{ $null = Get-UiaWindow -pid (" + 
                 @"Get-Process -Name '" + 
                 MiddleLevelCode.TestFormProcess +
                 "').Id;} catch {} " + 
@@ -244,9 +244,9 @@ namespace UIAutomationTest.Helpers
                 @"[UIAutomation.Preferences]::Timeout = " + 
                 timeoutInterval +
                 "; " +
-                @"try{ $null = Get-UIAWindow -n '" + 
+                @"try{ $null = Get-UiaWindow -n '" + 
                 UIAutomationTestForms.Forms.WinFormsEmpty + 
-                "' | Get-UIAButton -n '111' -IsCritical;} catch {} " + 
+                "' | Get-UiaButton -n '111' -IsCritical;} catch {} " + 
                 @"[UIAutomation.Preferences]::Timeout;",
                 UIAutomation.Preferences.AfterFailTurboTimeout.ToString());
         }
@@ -270,12 +270,12 @@ namespace UIAutomationTest.Helpers
                 @"[UIAutomation.Preferences]::Timeout = " + 
                 timeoutInterval +
                 "; " +
-                @"try{ $null = Get-UIAWindow -n '" + 
+                @"try{ $null = Get-UiaWindow -n '" + 
                 UIAutomationTestForms.Forms.WinFormsEmpty + 
-                "' | Get-UIAButton -n '111' -IsCritical;} catch {} " + 
-                @"$null = Get-UIAWindow -n '" + 
+                "' | Get-UiaButton -n '111' -IsCritical;} catch {} " + 
+                @"$null = Get-UiaWindow -n '" + 
                 UIAutomationTestForms.Forms.WinFormsEmpty +
-                "' | Get-UIAButton -n '" + 
+                "' | Get-UiaButton -n '" + 
                 name + 
                 "'; " +
                 @"[UIAutomation.Preferences]::Timeout;",

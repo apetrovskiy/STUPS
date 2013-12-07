@@ -13,13 +13,13 @@ namespace TMX.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of AddTMXTestBucketCommand.
+    /// Description of AddTmxTestBucketCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Add, "TMXTestBucket")]
+    [Cmdlet(VerbsCommon.Add, "TmxTestBucket")]
     [OutputType(typeof(ITestBucket))]
-    public class AddTMXTestBucketCommand : TestBucketCmdletBase
+    public class AddTmxTestBucketCommand : TestBucketCmdletBase
     {
-        public AddTMXTestBucketCommand()
+        public AddTmxTestBucketCommand()
         {
         }
         

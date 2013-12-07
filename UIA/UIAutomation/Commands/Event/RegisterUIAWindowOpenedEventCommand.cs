@@ -9,20 +9,19 @@
 
 namespace UIAutomation.Commands
 {
-    // test it
-    //using System;
+    extern alias UIANET;
     using System.Management.Automation;
     using System.Windows.Automation;
 
     /// <summary>
-    /// Description of RegisterUIAWindowOpenedEventCommand.
+    /// Description of RegisterUiaWindowOpenedEventCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Register, "UIAWindowOpenedEvent")]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class RegisterUIAWindowOpenedEventCommand : EventCmdletBase
+    [Cmdlet(VerbsLifecycle.Register, "UiaWindowOpenedEvent")]
+    
+    public class RegisterUiaWindowOpenedEventCommand : EventCmdletBase
     {
         #region Constructor
-        public RegisterUIAWindowOpenedEventCommand()
+        public RegisterUiaWindowOpenedEventCommand()
         {
             base.AutomationEventType = 
                 WindowPattern.WindowOpenedEvent;

@@ -1,4 +1,5 @@
-﻿/*
+﻿using System.Management.Automation;
+/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
  * Date: 12/18/2012
@@ -7,7 +8,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMXUnitTests
+namespace TmxUnitTests
 {
     using System;
     using TMX;
@@ -37,7 +38,9 @@ namespace TMXUnitTests
         }
         
         #region TestSuite
+        // 20131127
         internal static ITestSuite GetNewTestSuite(
+        //internal static object GetNewTestSuite(
             string name,
             string id,
             string description)
@@ -56,14 +59,25 @@ namespace TMXUnitTests
                 cmdlet.Description = description;
             }
             
-            TMXNewTestSuiteCommand command =
-                new TMXNewTestSuiteCommand(cmdlet);
+            TmxNewTestSuiteCommand command =
+                new TmxNewTestSuiteCommand(cmdlet);
             command.Execute();
             
+            // 20131127
             return (ITestSuite)(object)PSTestLib.UnitTestOutput.LastOutput[0];
+//            var output = (object)PSTestLib.UnitTestOutput.LastOutput[0];
+//            if (output is ErrorRecord) {
+//                return (ErrorRecord)return (ITestSuite)(object)PSTestLib.UnitTestOutput.LastOutput[0];
+//            }
+//            if (output is ITestSuite) {
+//                return (ITestSuite)return (ITestSuite)(object)PSTestLib.UnitTestOutput.LastOutput[0];
+//            }
+//            return output;
         }
         
+        // 20131127
         internal static ITestSuite GetExistingTestSuite(
+        //internal static object GetExistingTestSuite(
             string name,
             string id)
         {
@@ -78,11 +92,27 @@ namespace TMXUnitTests
                 cmdlet.Id = id;
             }
             
-            TMXOpenTestSuiteCommand command =
-                new TMXOpenTestSuiteCommand(cmdlet);
+            TmxOpenTestSuiteCommand command =
+                new TmxOpenTestSuiteCommand(cmdlet);
             command.Execute();
             
+Console.WriteLine("gets 0003");
+            
+            // 20131127
             return (ITestSuite)(object)PSTestLib.UnitTestOutput.LastOutput[0];
+//            var output = (object)PSTestLib.UnitTestOutput.LastOutput[0];
+//            
+//Console.WriteLine("gets 0004");
+//            
+//            if (output is ErrorRecord) {
+//Console.WriteLine("gets 0005");
+//                return (ErrorRecord)output;
+//            }
+//            if (output is ITestSuite) {
+//Console.WriteLine("gets 0006");
+//                return (ITestSuite)output;
+//            }
+//            return output;
         }
         
         internal static string GetTestScenarioStatus(bool skipAutomatic)
@@ -108,8 +138,8 @@ namespace TMXUnitTests
             string testSuiteName,
             string testSuiteId)
         {
-            AddTMXTestScenarioCommand cmdlet =
-                new AddTMXTestScenarioCommand();
+            AddTmxTestScenarioCommand cmdlet =
+                new AddTmxTestScenarioCommand();
 
             if (null != name && string.Empty != name) {
                 cmdlet.Name = name;
@@ -144,8 +174,8 @@ namespace TMXUnitTests
                     (TestSuite)testSuite;
             }
             
-            TMXAddTestScenarioCommand command =
-                new TMXAddTestScenarioCommand(cmdlet);
+            TmxAddTestScenarioCommand command =
+                new TmxAddTestScenarioCommand(cmdlet);
             command.Execute();
             
             return (ITestScenario)TMX.TestData.CurrentTestScenario;
@@ -170,8 +200,8 @@ namespace TMXUnitTests
                 cmdlet.Description = description;
             }
             
-            TMXAddTestScenarioCommand command =
-                new TMXAddTestScenarioCommand(cmdlet);
+            TmxAddTestScenarioCommand command =
+                new TmxAddTestScenarioCommand(cmdlet);
             command.Execute();
             
             return (ITestScenario)(object)PSTestLib.UnitTestOutput.LastOutput[0];
@@ -182,8 +212,8 @@ namespace TMXUnitTests
         {
             GetNewTestSuite("name", "id", "description");
 
-            CloseTMXTestResultCommand cmdlet =
-                new CloseTMXTestResultCommand();
+            CloseTmxTestResultCommand cmdlet =
+                new CloseTmxTestResultCommand();
 
             cmdlet.TestResultName = "test result";
 
@@ -207,8 +237,8 @@ namespace TMXUnitTests
 
             cmdlet.KnownIssue = logicStatus;
             
-            TMXCloseTestResultCommand command =
-                new TMXCloseTestResultCommand(cmdlet);
+            TmxCloseTestResultCommand command =
+                new TmxCloseTestResultCommand(cmdlet);
             command.Execute();
 
             return TMX.TestData.CurrentTestResult;
@@ -218,8 +248,8 @@ namespace TMXUnitTests
         {
             GetNewTestSuite("name", "id", "description");
 
-            SetTMXCurrentTestResultCommand cmdlet =
-                new SetTMXCurrentTestResultCommand();
+            SetTmxCurrentTestResultCommand cmdlet =
+                new SetTmxCurrentTestResultCommand();
 
             if (null != testResultName &&
                 string.Empty != testResultName &&
@@ -235,8 +265,8 @@ namespace TMXUnitTests
                 cmdlet.Id = testResultId;
             }
 
-            TMXSetCurrentTestResultCommand command =
-                new TMXSetCurrentTestResultCommand(cmdlet);
+            TmxSetCurrentTestResultCommand command =
+                new TmxSetCurrentTestResultCommand(cmdlet);
             command.Execute();
 
             return TMX.TestData.CurrentTestResult;

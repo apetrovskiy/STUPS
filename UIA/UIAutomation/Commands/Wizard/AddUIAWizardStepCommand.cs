@@ -9,20 +9,21 @@
 
 namespace UIAutomation.Commands
 {
+    extern alias UIANET;
     using System;
     using System.Management.Automation;
     using System.Windows.Automation;
     using System.Collections;
 
     /// <summary>
-    /// Description of AddUIAWizardStepCommand.
+    /// Description of AddUiaWizardStepCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Add, "UIAWizardStep")]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class AddUIAWizardStepCommand : WizardStepCmdletBase //WizardConstructionCmdletBase
-    //internal class AddUIAWizardStepCommand : WizardCmdletBase
+    [Cmdlet(VerbsCommon.Add, "UiaWizardStep")]
+    
+    public class AddUiaWizardStepCommand : WizardStepCmdletBase //WizardConstructionCmdletBase
+    //internal class AddUiaWizardStepCommand : WizardCmdletBase
     {
-        public AddUIAWizardStepCommand()
+        public AddUiaWizardStepCommand()
         {
         }
         
@@ -49,8 +50,8 @@ namespace UIAutomation.Commands
         /// </summary>
         protected override void ProcessRecord()
         {
-            UIAAddWizardStepCommand command =
-                new UIAAddWizardStepCommand(this);
+            UiaAddWizardStepCommand command =
+                new UiaAddWizardStepCommand(this);
             command.Execute();
         }
         

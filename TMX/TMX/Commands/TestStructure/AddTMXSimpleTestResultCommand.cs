@@ -13,12 +13,12 @@ namespace TMX.Commands
 	using System.Management.Automation;
 
 	/// <summary>
-	/// Description of AddTMXSimpleTestResultCommand.
+	/// Description of AddTmxSimpleTestResultCommand.
 	/// </summary>
-	[Cmdlet(VerbsCommon.Add, "TMXSimpleTestResult")]
-	public class AddTMXSimpleTestResultCommand : TestResultCmdletBase
+	[Cmdlet(VerbsCommon.Add, "TmxSimpleTestResult")]
+	public class AddTmxSimpleTestResultCommand : TestResultCmdletBase
 	{
-		public AddTMXSimpleTestResultCommand()
+		public AddTmxSimpleTestResultCommand()
 		{
 		    // 20130626
             this.TestOrigin = TestResultOrigins.Logical;
@@ -41,8 +41,8 @@ namespace TMX.Commands
 		
 		protected override void BeginProcessing()
 		{
-			TMXAddSimpleTestResultCommand command =
-			    new TMXAddSimpleTestResultCommand(this);
+			TmxAddSimpleTestResultCommand command =
+			    new TmxAddSimpleTestResultCommand(this);
 			command.Execute();
 		}
 	}

@@ -11,15 +11,13 @@ namespace UIAutomation.Commands
 {
     using System;
     using System.Management.Automation;
-    // test it
-    //using System.Windows.Automation;
 
     /// <summary>
-    /// Description of GetUIARegisteredEventCommand.
+    /// Description of GetUiaRegisteredEventCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIARegisteredEvent")]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIARegisteredEventCommand : CommonCmdletBase //EventCmdletBase
+    [Cmdlet(VerbsCommon.Get, "UiaRegisteredEvent")]
+    
+    public class GetUiaRegisteredEventCommand : CommonCmdletBase //EventCmdletBase
     {
         #region Parameters
 //        [Parameter(Mandatory = false)] 
@@ -36,14 +34,14 @@ namespace UIAutomation.Commands
 
                 foreach (object handler in CurrentData.Events) {
 
-                    this.WriteObject(
+                    WriteObject(
                         this,
                         handler);
 
                 }
             }
             catch (Exception eEnumEventhandlers) {
-                this.WriteError(
+                WriteError(
                     this,
                     "Unable to enumerate event handlers. " +
                     eEnumEventhandlers.Message,

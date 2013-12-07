@@ -13,11 +13,11 @@ namespace TMX
     using System.Management.Automation;
     
 	/// <summary>
-	/// Description of TMXInvokeTestScenarioCommand.
+	/// Description of TmxInvokeTestScenarioCommand.
 	/// </summary>
-    internal class TMXInvokeTestScenarioCommand : TMXCommand
+    internal class TmxInvokeTestScenarioCommand : TmxCommand
     {
-        internal TMXInvokeTestScenarioCommand(CommonCmdletBase cmdlet) : base (cmdlet)
+        internal TmxInvokeTestScenarioCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         

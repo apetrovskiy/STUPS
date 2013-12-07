@@ -9,10 +9,13 @@
 
 namespace UIAutomation
 {
+    extern alias UIANET;
     using System;
     using System.Management.Automation;
     using System.Windows.Automation;
-    using System.Runtime.InteropServices;
+    //using System.Runtime.InteropServices;
+    using System.Collections;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Description of HasScriptBlockCmdletBase.
@@ -22,13 +25,13 @@ namespace UIAutomation
         #region Constructor
         public HasScriptBlockCmdletBase()
         {
-            this.TestPassed = false;
+            TestPassed = false;
 
-            this.Highlight = Preferences.Highlight;
-            this.HighlightParent = Preferences.HighlightParent;
+            Highlight = Preferences.Highlight;
+            HighlightParent = Preferences.HighlightParent;
 //            this.HighlightFirstChild = Preferences.HighlightFirstChild;
-            this.KnownIssue = false;
-            this.Banner = string.Empty;
+            KnownIssue = false;
+            Banner = string.Empty;
         }
         #endregion Constructor
 
@@ -44,43 +47,40 @@ namespace UIAutomation
         public string Banner { get; set; }
         #endregion Parameters
         
-        // 20131109
-        //protected internal AutomationElement ElementToSubscribe;
-        protected internal IMySuperWrapper ElementToSubscribe;
+        protected internal IUiElement ElementToSubscribe;
         // list of all subscribed events
-        protected internal System.Collections.ArrayList subscribedEvents = 
-            new System.Collections.ArrayList();
-        protected internal System.Collections.ArrayList subscribedEventsIds = 
-            new System.Collections.ArrayList();
+        protected internal readonly List<AutomationEventHandler> SubscribedEvents =
+            new List<AutomationEventHandler>();
+        protected internal readonly List<AutomationEvent> SubscribedEventsIds =
+            new List<AutomationEvent>();
         
         #region for script recording
-        public System.Collections.ArrayList Recording = 
-            new System.Collections.ArrayList();
+        public List<List<string>> Recording =
+            new List<List<string>>();
         #endregion for script recording
         
         #region get active window
-        // 20131109
-        //protected AutomationElement GetActiveWindow()
-        protected IMySuperWrapper GetActiveWindow()
+        protected IUiElement GetActiveWindow()
         {
-            // 20131109
-            //AutomationElement result = null;
-            IMySuperWrapper result = null;
+            IUiElement result = null;
             try {
-                IntPtr _hWnd = 
+                IntPtr hWnd = 
                     NativeMethods.GetForegroundWindow();
                 WriteVerbose(this, 
                              "the handle to the active window is " + 
-                             _hWnd.ToInt32().ToString());
-                if (_hWnd == IntPtr.Zero) return result;
+                             hWnd.ToInt32());
+                            /*
+                            _hWnd.ToInt32().ToString());
+                            */
+                if (hWnd == IntPtr.Zero) return result;
                 // 20131109
                 //result = 
                 //    AutomationElement.FromHandle(_hWnd);
                 // 20131112
                 //result =
-                //    new MySuperWrapper(AutomationElement.FromHandle(_hWnd));
+                //    new UiElement(AutomationElement.FromHandle(_hWnd));
                 result =
-                    ObjectsFactory.GetMySuperWrapper(AutomationElement.FromHandle(_hWnd));
+                    AutomationFactory.GetUiElement(AutomationElement.FromHandle(hWnd));
                 WriteVerbose(this, 
                              "the active window element is " + 
                              result.Current.Name);

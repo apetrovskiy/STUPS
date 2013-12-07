@@ -7,18 +7,18 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMXTest.Commands.Logging
+namespace TmxTest.Commands.Logging
 {
     using System;
     using MbUnit.Framework;
     
     /// <summary>
-    /// Description of NewTMXLoggerCommandTestFixture.
+    /// Description of NewTmxLoggerCommandTestFixture.
     /// </summary>
     [TestFixture]
-    public class NewTMXLoggerCommandTestFixture
+    public class NewTmxLoggerCommandTestFixture
     {
-        public NewTMXLoggerCommandTestFixture()
+        public NewTmxLoggerCommandTestFixture()
         {
         }
         

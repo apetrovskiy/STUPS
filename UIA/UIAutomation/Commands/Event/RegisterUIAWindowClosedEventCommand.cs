@@ -9,26 +9,25 @@
 
 namespace UIAutomation.Commands
 {
-    // test it
-    //using System;
+    extern alias UIANET;
     using System.Management.Automation;
     using System.Windows.Automation;
 
     /// <summary>
-    /// Description of RegisterUIAWindowClosedEventCommand.
+    /// Description of RegisterUiaWindowClosedEventCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Register, "UIAWindowClosedEvent")]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class RegisterUIAWindowClosedEventCommand : EventCmdletBase
+    [Cmdlet(VerbsLifecycle.Register, "UiaWindowClosedEvent")]
+    
+    public class RegisterUiaWindowClosedEventCommand : EventCmdletBase
     {
         #region Constructor
-        public RegisterUIAWindowClosedEventCommand()
+        public RegisterUiaWindowClosedEventCommand()
         {
             // base.AutomationEventType = 
-            this.AutomationEventType = 
+            AutomationEventType = 
                 WindowPattern.WindowClosedEvent;
             // base.AutomationEventHandler = OnUIAutomationEvent;
-            this.AutomationEventHandler = OnUIAutomationEvent;
+            AutomationEventHandler = OnUIAutomationEvent;
         }
         #endregion Constructor
     }

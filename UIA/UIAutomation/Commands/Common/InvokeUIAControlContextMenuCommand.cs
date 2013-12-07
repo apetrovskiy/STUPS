@@ -7,42 +7,37 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System;
+using System.Globalization;
+using System.Threading;
+using System.Windows.Forms;
+
 namespace UIAutomation.Commands
 {
-    // test it
-    //using System;
+    extern alias UIANET;
     using System.Management.Automation;
-    // test it
-    //using System.Security.Principal;
     using System.Windows.Automation;
     
     /// <summary>
-    /// Description of GetUIAControlContextMenuCommand.
+    /// Description of GetUiaControlContextMenuCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAControlContextMenu")]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIAControlContextMenuCommand : HasControlInputCmdletBase
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaControlContextMenu")]
+    
+    public class GetUiaControlContextMenuCommand : HasControlInputCmdletBase
     {
         /// <summary>
         /// Processes the pipeline.
         /// </summary>
         protected override void ProcessRecord()
         {
-            if (!this.CheckAndPrepareInput(this)) { return; }
+            if (!CheckAndPrepareInput(this)) { return; }
             
-            // 20120823
-            // 20131109
-            //foreach (AutomationElement inputObject in this.InputObject) {
-            foreach (IMySuperWrapper inputObject in this.InputObject) {
+            foreach (IUiElement inputObject in InputObject) {
             
-            // 20131109
-            //AutomationElement resultElement = null;
-            IMySuperWrapper resultElement = null;
+            IUiElement resultElement = null;
             
             // preform a right click on the control
             if (!ClickControl(this,
-                               // 20120823
-                               //this.InputObject,
                                inputObject,
                                true,
                                false,
@@ -51,25 +46,11 @@ namespace UIAutomation.Commands
                                false,
                                false,
                                false,
+                               0,
                                Preferences.ClickOnControlByCoordX,
                                Preferences.ClickOnControlByCoordY)) {
                 
-                // 20130312
-//                ErrorRecord err = 
-//                    new ErrorRecord(
-//                        new Exception("Couldn't click on this control"),
-//                        "couldNotClick",
-//                        ErrorCategory.InvalidResult,
-//                        //this.InputObject);
-//                        inputObject);
-//                err.ErrorDetails = 
-//                    new ErrorDetails("Could not click on the control");
-//// 20120209 
-//// WriteError(this, err);
-//// return;
-//                WriteError(this, err, true);
-                
-                this.WriteError(
+                WriteError(
                     this,
                     "Couldn't click on this control",
                     "couldNotClick",
@@ -77,22 +58,24 @@ namespace UIAutomation.Commands
                     true);
                 
             } else {
-                // 20120823
-                //WriteVerbose(this, "clicked on " + this.InputObject.Current.Name);
-                this.WriteVerbose(this, "clicked on " + inputObject.Current.Name);
+                WriteVerbose(this, "clicked on " + inputObject.Current.Name);
             }
             
             // System.Threading.Thread.Sleep(1000);
             
             // get the cursor coordinates
             int x = 
-                System.Windows.Forms.Cursor.Position.X;
+                Cursor.Position.X;
             int y = 
-                System.Windows.Forms.Cursor.Position.Y;
+                Cursor.Position.Y;
             
+            WriteVerbose(this, "cursor coordinate X = " + x.ToString(CultureInfo.InvariantCulture));
+            WriteVerbose(this, "cursor coordinate Y = " + y.ToString(CultureInfo.InvariantCulture));
+            /*
             WriteVerbose(this, "cursor coordinate X = " + x.ToString());
             WriteVerbose(this, "cursor coordinate Y = " + y.ToString());
-            
+            */
+
             // get the context menu window
             int processId = 
                 // 20120823
@@ -101,16 +84,16 @@ namespace UIAutomation.Commands
             WriteVerbose(this, "process Id = " + processId.ToString());
             // 20131109
             //AutomationElementCollection windowsByPID = null;
-            IMySuperCollection windowsByPID = null;
-            StartDate = System.DateTime.Now;
+            IUiEltCollection windowsByPid = null;
+            StartDate = DateTime.Now;
             bool breakSearch = false;
             do {
                 // getting all menus in this process
                 if (processId != 0) {
-                    windowsByPID =
+                    windowsByPid =
                         // 20131109
                         //AutomationElement.RootElement.FindAll(TreeScope.Children,
-                        MySuperWrapper.RootElement.FindAll(TreeScope.Children,
+                        UiElement.RootElement.FindAll(TreeScope.Children,
                                                               new AndCondition(
                                                                   new PropertyCondition(
                                                                       AutomationElement.ProcessIdProperty,
@@ -134,13 +117,13 @@ namespace UIAutomation.Commands
                 }
                 
                 // 
-                if (windowsByPID != null && windowsByPID.Count <= 0) continue;
+                if (windowsByPid != null && windowsByPid.Count <= 0) continue;
                 /*
                 if (windowsByPID.Count <= 0) continue;
                 */
                 WriteVerbose(this, 
                     "there are " +
-                    windowsByPID.Count.ToString() + 
+                    windowsByPid.Count.ToString() + 
                     //" windows running within the process");
                     " menus running within the process");
                 // 20130312
@@ -156,24 +139,24 @@ namespace UIAutomation.Commands
 //                        }
 //                    }
                     
-                System.DateTime nowDate = 
-                    System.DateTime.Now;
+                DateTime nowDate = 
+                    DateTime.Now;
                 if ((nowDate - StartDate).TotalSeconds > 3) {
                     breakSearch = true;
                     break;
                 }
                 // 20130312
                 //if (windowsByPID.Count == 1) {
-                if (windowsByPID.Count == 0) {
+                if (windowsByPid.Count == 0) {
                         
-                    this.WriteVerbose(this, "sleeping");
-                    System.Threading.Thread.Sleep(200);
+                    WriteVerbose(this, "sleeping");
+                    Thread.Sleep(200);
                     continue;
                 }
                 
                 // 20131109
                 //foreach (AutomationElement element in windowsByPID) {
-                foreach (IMySuperWrapper element in windowsByPID) {
+                foreach (IUiElement element in windowsByPid) {
                     
                     WriteVerbose(this, element.Current.Name);
                     WriteVerbose(this, element.Current.BoundingRectangle.ToString());
@@ -262,11 +245,16 @@ namespace UIAutomation.Commands
             
             // return the context menu window
             //if (resultElement != null && (int)resultElement.Current.ProcessId > 0) {
-                this.WriteObject(this, resultElement);
+                WriteObject(this, resultElement);
             //} else {
             //  //WriteObject(this, null);
             // WriteObject(this, false);
             //}
+            
+            // 20131119
+            // disposal
+            windowsByPid.Dispose();
+            windowsByPid = null;
             
             } // 20120823
         }

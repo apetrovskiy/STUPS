@@ -19,7 +19,7 @@
 //    /// by Crowcz from AVG
 //    /// </summary>
 //    [Cmdlet(VerbsCommon.Set, "DateTimePickerDate")]
-//    public class SetUIADateTimePickerDateCommand : Win32CmdletBase //GetControlCmdletBase //Cmdlet
+//    public class SetUiaDateTimePickerDateCommand : Win32CmdletBase //GetControlCmdletBase //Cmdlet
 //    {
 ////        [DllImport("user32.dll")]
 ////        static extern IntPtr SendMessage(IntPtr hWnd, UInt32 Msg, IntPtr wParam, IntPtr lParam);

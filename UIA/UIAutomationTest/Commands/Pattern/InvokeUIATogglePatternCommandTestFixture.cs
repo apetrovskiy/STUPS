@@ -14,12 +14,12 @@ namespace UIAutomationTest.Commands.Pattern
     using System.Management.Automation;
 
     /// <summary>
-    /// Description of InvokeUIATogglePatternCommandTestFixture.
+    /// Description of InvokeUiaTogglePatternCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Invoke-UIATogglePatternCommand test")]
-    public class InvokeUIATogglePatternCommandTestFixture
+    [TestFixture] // [TestFixture(Description="Invoke-UiaTogglePatternCommand test")]
+    public class InvokeUiaTogglePatternCommandTestFixture
     {
-        public InvokeUIATogglePatternCommandTestFixture()
+        public InvokeUiaTogglePatternCommandTestFixture()
         {
         }
         
@@ -45,15 +45,15 @@ namespace UIAutomationTest.Commands.Pattern
                 UIAutomationTestForms.Forms.WinFormsFull, 
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = Get-UIAWindow -pn " + 
+                @"$null = Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIACheckBox -AutomationId checkBox1 | Invoke-UIACheckBoxtoggle;" + 
-                @"Get-UIAWindow -pn " + 
+                " | Get-UiaCheckBox -AutomationId checkBox1 | Invoke-UiaCheckBoxtoggle;" + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAList -AutomationId listBox1 | " + 
-                "Get-UIAListItem -Name " + 
+                " | Get-UiaList -AutomationId listBox1 | " + 
+                "Get-UiaListItem -Name " + 
                 expectedResult +
-                " | Read-UIAControlName;",
+                " | Read-UiaControlName;",
                 expectedResult);
         }
         [Test] //[Test(Description="TBD")]
@@ -66,15 +66,15 @@ namespace UIAutomationTest.Commands.Pattern
                 UIAutomationTestForms.Forms.WinFormsFull, 
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = Get-UIAWindow -pn " + 
+                @"$null = Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIACheckBox -AutomationId checkBox1 | Invoke-UIACheckBoxtoggle | Invoke-UIACheckBoxtoggle;" + 
-                @"Get-UIAWindow -pn " + 
+                " | Get-UiaCheckBox -AutomationId checkBox1 | Invoke-UiaCheckBoxtoggle | Invoke-UiaCheckBoxtoggle;" + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAList -AutomationId listBox1 | " + 
-                "Get-UIAListItem -Name " + 
+                " | Get-UiaList -AutomationId listBox1 | " + 
+                "Get-UiaListItem -Name " + 
                 expectedResult +
-                " | Read-UIAControlName;",
+                " | Read-UiaControlName;",
                 expectedResult);
         }
     
@@ -93,16 +93,16 @@ namespace UIAutomationTest.Commands.Pattern
                 UIAutomationTestForms.Forms.WinFormsFull, 
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = Get-UIAWindow -pn " + 
+                @"$null = Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                @" | Get-UIAList -AutomationId checkedListBox1 " + 
-                @" | Get-UIAListItem -Name a1 | Invoke-UIAListItemToggle;" +
-                @"Get-UIAWindow -pn " + 
+                @" | Get-UiaList -AutomationId checkedListBox1 " + 
+                @" | Get-UiaListItem -Name a1 | Invoke-UiaListItemToggle;" +
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                @" | Get-UIAList -AutomationId listBox1 | " + 
-                @"Get-UIAListItem -Name " + 
+                @" | Get-UiaList -AutomationId listBox1 | " + 
+                @"Get-UiaListItem -Name " + 
                 expectedResult +
-                " | Read-UIAControlName;",
+                " | Read-UiaControlName;",
                 expectedResult);
         }
         [Test] //[Test(Description="TBD")]
@@ -115,16 +115,16 @@ namespace UIAutomationTest.Commands.Pattern
                 UIAutomationTestForms.Forms.WinFormsFull, 
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = Get-UIAWindow -pn " + 
+                @"$null = Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                @" | Get-UIAList -AutomationId checkedListBox1 " + 
-                @" | Get-UIAListItem -Name a1 | Invoke-UIAListItemToggle | Invoke-UIAListItemToggle;" +
-                @"Get-UIAWindow -pn " + 
+                @" | Get-UiaList -AutomationId checkedListBox1 " + 
+                @" | Get-UiaListItem -Name a1 | Invoke-UiaListItemToggle | Invoke-UiaListItemToggle;" +
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                @" | Get-UIAList -AutomationId listBox1 | " + 
-                @"Get-UIAListItem -Name " + 
+                @" | Get-UiaList -AutomationId listBox1 | " + 
+                @"Get-UiaListItem -Name " + 
                 expectedResult +
-                " | Read-UIAControlName;",
+                " | Read-UiaControlName;",
                 expectedResult);
         }
     

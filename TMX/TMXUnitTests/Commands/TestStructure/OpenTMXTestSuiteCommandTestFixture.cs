@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMXUnitTests.Commands.TestStructure
+namespace TmxUnitTests.Commands.TestStructure
 {
     using System;
     using MbUnit.Framework;
@@ -15,12 +15,12 @@ namespace TMXUnitTests.Commands.TestStructure
     using TMX;
     
     /// <summary>
-    /// Description of OpenTMXTestSuiteCommandTestFixture.
+    /// Description of OpenTmxTestSuiteCommandTestFixture.
     /// </summary>
     [TestFixture]
-    public class OpenTMXTestSuiteCommandTestFixture
+    public class OpenTmxTestSuiteCommandTestFixture
     {
-        public OpenTMXTestSuiteCommandTestFixture()
+        public OpenTmxTestSuiteCommandTestFixture()
         {
         }
         
@@ -36,7 +36,7 @@ namespace TMXUnitTests.Commands.TestStructure
         }
         
         [Test]
-        [Description("New-TMXTestSuite -Name suite1; New-TMXTestSuite -Name suite2; Open-TMXTestSuite -Name suite1")]
+        [Description("New-TmxTestSuite -Name suite1; New-TmxTestSuite -Name suite2; Open-TmxTestSuite -Name suite1")]
         [Category("Fast")]
         public void OpenTestSuite_Name()
         {
@@ -51,7 +51,7 @@ namespace TMXUnitTests.Commands.TestStructure
         }
         
         [Test]
-        [Description("New-TMXTestSuite -Name suite1; New-TMXTestSuite -Name suite2; Open-TMXTestSuite -Name suite0")]
+        [Description("New-TmxTestSuite -Name suite1; New-TmxTestSuite -Name suite2; Open-TmxTestSuite -Name suite0")]
         [Category("Fast")]
         public void OpenTestSuite_WrongName()
         {
@@ -66,7 +66,7 @@ namespace TMXUnitTests.Commands.TestStructure
         }
         
         [Test]
-        [Description("New-TMXTestSuite -Name suite1 -Id id1; New-TMXTestSuite -Name suite2 -Id id2; Open-TMXTestSuite -Id id1")]
+        [Description("New-TmxTestSuite -Name suite1 -Id id1; New-TmxTestSuite -Name suite2 -Id id2; Open-TmxTestSuite -Id id1")]
         [Category("Fast")]
         public void OpenTestSuite_Id()
         {
@@ -81,7 +81,7 @@ namespace TMXUnitTests.Commands.TestStructure
         }
         
         [Test]
-        [Description("New-TMXTestSuite -Name suite1 -Id id1; New-TMXTestSuite -Name suite2 -Id id2; Open-TMXTestSuite -Id id0")]
+        [Description("New-TmxTestSuite -Name suite1 -Id id1; New-TmxTestSuite -Name suite2 -Id id2; Open-TmxTestSuite -Id id0")]
         [Category("Fast")]
         public void OpenTestSuite_WrongId()
         {

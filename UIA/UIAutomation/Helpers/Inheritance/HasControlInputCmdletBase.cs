@@ -9,6 +9,7 @@
 
 namespace UIAutomation
 {
+    extern alias UIANET;
     using System;
     using System.Management.Automation;
     using System.Windows.Automation;
@@ -17,10 +18,15 @@ namespace UIAutomation
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
+    
+    using System.Diagnostics;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading;
+    using UIAutomation.Commands;
 
     #region declarations
         [StructLayout(LayoutKind.Sequential)]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "MOUSEINPUT")]
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "MOUSEINPUT")]
         internal struct MOUSEINPUT
         {
             public int dx;
@@ -32,7 +38,7 @@ namespace UIAutomation
         }
 
         [StructLayout(LayoutKind.Sequential)]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "KEYBDINPUT")]
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "KEYBDINPUT")]
         internal struct KEYBDINPUT
         {
             public ushort wVk;
@@ -43,7 +49,7 @@ namespace UIAutomation
         }
 
         [StructLayout(LayoutKind.Sequential)]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "HARDWAREINPUT")]
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "HARDWAREINPUT")]
         internal struct HARDWAREINPUT
         {
             public uint uMsg;
@@ -53,7 +59,7 @@ namespace UIAutomation
 
         
         [StructLayout(LayoutKind.Explicit)]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "MOUSEKEYBDHARDWAREINPUT")]
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "MOUSEKEYBDHARDWAREINPUT")]
         internal struct MOUSEKEYBDHARDWAREINPUT
         {
             [FieldOffset(0)]
@@ -66,7 +72,7 @@ namespace UIAutomation
             public HARDWAREINPUT Hardware;
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "INPUT")]
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "INPUT")]
         internal struct INPUT
         {
             public UInt32 Type;
@@ -91,10 +97,13 @@ namespace UIAutomation
         [ValidateNotNullOrEmpty()]
         [Parameter(Mandatory = false, 
             ValueFromPipeline = true,
-            HelpMessage = "This is usually the output from Get-UIAControl" )] 
+            HelpMessage = "This is usually the output from Get-UiaControl" )] 
         //public System.Windows.Automation.AutomationElement[] InputObject { get; set; }
         //public ICollection InputObject { get; set; }
-        public IMySuperWrapper[] InputObject { get; set; }
+        public IUiElement[] InputObject { get; set; }
+        /*
+        public UiElement[] InputObject { get; set; }
+        */
         [Parameter(Mandatory = false)]
         public virtual SwitchParameter PassThru { get; set; }
         
@@ -114,13 +123,13 @@ namespace UIAutomation
         protected internal AutomationEventHandler AutomationEventHandler { get; set; }
         protected internal AutomationPropertyChangedEventHandler AutomationPropertyChangedEventHandler { get; set; }
         protected internal StructureChangedEventHandler StructureChangedEventHandler { get; set; }
-        protected Commands.RegisterUIAStructureChangedEventCommand Child { get; set; }
+        protected RegisterUiaStructureChangedEventCommand Child { get; set; }
         #endregion Properties
         
         protected bool GetColorProbe(HasControlInputCmdletBase cmdlet,
                                      // 20131109
                                      //AutomationElement element)
-                                     IMySuperWrapper element)
+                                     IUiElement element)
         {
             bool result = false;
             
@@ -131,10 +140,12 @@ namespace UIAutomation
             return result;
         }
         
-        protected bool ClickControl(HasControlInputCmdletBase cmdlet,
+        // 20131205
+        // protected bool ClickControl(HasControlInputCmdletBase cmdlet,
+        protected internal bool ClickControl(HasControlInputCmdletBase cmdlet,
                                     // 20131109
                                     //AutomationElement element,
-                                    IMySuperWrapper element,
+                                    IUiElement element,
                                     bool RightClick,
                                     bool MidClick,
                                     bool Alt,
@@ -142,6 +153,8 @@ namespace UIAutomation
                                     bool Ctrl,
                                     bool inSequence,
                                     bool DoubleClick,
+                                    // 20131125
+                                    int DoubleClickInterval,
                                     int RelativeX,
                                     int RelativeY)
         {
@@ -157,7 +170,7 @@ namespace UIAutomation
             // 20131109
             //AutomationElement whereToClick = 
             //    element;
-            IMySuperWrapper whereToClick = 
+            IUiElement whereToClick = 
                 element;
             WriteVerbose(cmdlet, 
                          "where the click will be performed: " +
@@ -165,7 +178,7 @@ namespace UIAutomation
             // 20131109
             //AutomationElement whereTheHandle = 
             //    whereToClick;
-            IMySuperWrapper whereTheHandle = 
+            IUiElement whereTheHandle = 
                 whereToClick;
             
             if (whereToClick.Current.NativeWindowHandle == 0) {
@@ -173,8 +186,10 @@ namespace UIAutomation
                 WriteVerbose(cmdlet, "The handle of this control equals to zero");
                 WriteVerbose(cmdlet, "trying to use one of its ancestors");
                 
-                whereTheHandle = 
-                    UIAHelper.GetAncestorWithHandle(whereToClick);
+                whereTheHandle =
+                    // 20131204
+                    // UiaHelper.GetAncestorWithHandle(whereToClick);
+                    whereToClick.GetAncestorWithHandle();
                 if (whereTheHandle.Current.NativeWindowHandle == 0) {
                     ErrorRecord err = 
                         new ErrorRecord(new Exception("The handle of this control equals to zero"),
@@ -184,6 +199,8 @@ namespace UIAutomation
                     err.ErrorDetails = 
                         new ErrorDetails("This control does not have a handle");
                     WriteError(cmdlet, err, true);
+
+                    // TODO: WriteError(...)
                 } else {
                     WriteVerbose(cmdlet, 
                                  "the control with a handle is " + 
@@ -230,9 +247,9 @@ namespace UIAutomation
             WriteVerbose(cmdlet, "relative Y (the base is the control with the handle) = " + relativeY.ToString());
             
             // PostMessage's (click) third and fourth paramters (the third'll be reasigned later)
-            System.IntPtr wParamDown = IntPtr.Zero;
-            System.IntPtr wParamUp = IntPtr.Zero;
-            System.IntPtr lParam = 
+            IntPtr wParamDown = IntPtr.Zero;
+            IntPtr wParamUp = IntPtr.Zero;
+            IntPtr lParam = 
                 new IntPtr(((new IntPtr(relativeX)).ToInt32() & 0xFFFF) +
                            (((new IntPtr(relativeY)).ToInt32() & 0xFFFF) << 16));
             
@@ -241,8 +258,8 @@ namespace UIAutomation
             const uint uCtrlUp = 0xC01D;
             const uint uShiftDown = 0x402A;
             const uint uShiftUp = 0xC02A;
-            System.IntPtr lParamKeyDown = IntPtr.Zero;
-            System.IntPtr lParamKeyUp = IntPtr.Zero;
+            IntPtr lParamKeyDown = IntPtr.Zero;
+            IntPtr lParamKeyUp = IntPtr.Zero;
             
             if (Ctrl) {
                 lParamKeyDown = 
@@ -320,8 +337,8 @@ namespace UIAutomation
                 ulAct = NativeMethods.MK_LBUTTON;
             }
             
-            System.IntPtr handle =
-                    new System.IntPtr(whereTheHandle.Current.NativeWindowHandle);
+            IntPtr handle =
+                    new IntPtr(whereTheHandle.Current.NativeWindowHandle);
             WriteVerbose(cmdlet, 
                          "the handle of the element the click will be performed on is " + 
                          handle.ToString());
@@ -338,18 +355,18 @@ namespace UIAutomation
                 NativeMethods.SetCursorPos(x, y);
             WriteVerbose(cmdlet, "SetCursorPos result = " + setCursorPosResult.ToString());
             
-            System.Threading.Thread.Sleep(Preferences.OnClickDelay);
+            Thread.Sleep(Preferences.OnClickDelay);
             
             // trying to heal context menu clicks
-            System.Diagnostics.Process windowProcess = 
-                System.Diagnostics.Process.GetProcessById(
+            Process windowProcess = 
+                Process.GetProcessById(
                     whereTheHandle.Current.ProcessId);
             if (windowProcess != null) {
                 IntPtr mainWindow = 
                     windowProcess.MainWindowHandle;
                 if (mainWindow != IntPtr.Zero) {
                     
-                    System.IntPtr lParam2 = 
+                    IntPtr lParam2 = 
                         new IntPtr(((new IntPtr(ulAct)).ToInt32() & 0xFFFF) +
                                    (((new IntPtr(uhAct)).ToInt32() & 0xFFFF) << 16));
                     bool res0 = 
@@ -373,9 +390,19 @@ namespace UIAutomation
             // // 20120620 for Home Tab
             bool res1 = NativeMethods.PostMessage1(handle, uDown, wParamDown, lParam);
             
+            int interval = DoubleClickInterval / 2;
+            if (DoubleClick) {
+                Thread.Sleep(interval);
+            }
+            
             // MouseMove
             if (RightClick || DoubleClick) {
                 bool resMM = NativeMethods.PostMessage1(handle, NativeMethods.WM_MOUSEMOVE, wParamDown, lParam);
+            }
+            
+            // 20131125
+            if (DoubleClick) {
+                Thread.Sleep(interval);
             }
             
             // // 20120620 for Home Tab
@@ -424,11 +451,11 @@ namespace UIAutomation
             
             // 20131109
             //ICollection newInputCollection =
-            //    new MySuperCollection
+            //    new UiEltCollection
             
             if (null == cmdlet.InputObject) {
                 
-                this.WriteVerbose(cmdlet, "[checking the input] Control(s) are null");
+                WriteVerbose(cmdlet, "[checking the input] Control(s) are null");
                 
                 cmdlet.WriteError(
                     cmdlet,
@@ -445,14 +472,14 @@ namespace UIAutomation
                 
                 if (null == inputObject) {
                     
-                    this.WriteVerbose(cmdlet, "[checking the input] Control is null");
-                    if (this.PassThru) {
+                    WriteVerbose(cmdlet, "[checking the input] Control is null");
+                    if (PassThru) {
                         
-                        this.WriteObject(this, inputObject);
+                        WriteObject(this, inputObject);
                     } else {
                         
                         result = false;
-                        this.WriteObject(this, result);
+                        WriteObject(this, result);
                     }
                     
                     result = false;
@@ -476,7 +503,7 @@ namespace UIAutomation
                 
                 // 20131109
                 //System.Windows.Automation.AutomationElement _control = null;
-                //IMySuperWrapper _controlAdapter = null;
+                //IUiElement _controlAdapter = null;
                 var _controlAdapter = inputObject;
                 
                 try {
@@ -493,13 +520,17 @@ namespace UIAutomation
 //                        " type");
                     
                     // 20131109
-                    //cmdlet._window = _control;
-                    if (inputObject is IMySuperWrapper) {
-                        
-                        cmdlet._window = (IMySuperWrapper)_controlAdapter;
+                    //cmdlet.currentWindow = _control;
+                    //if (inputObject is IUiElement) {
+                    if (null != (inputObject as IUiElement))
+                    {
+                    /*
+                    if (inputObject is IUiElement) {
+                    */
+                        cmdlet.CurrentInputElement = (IUiElement)_controlAdapter;
                     }
 //                    if (inputObject is AutomationElement) {
-//                        cmdlet._window = new MySuperWrapper((AutomationElement)inputObject);
+//                        cmdlet.currentWindow = new UiElement((AutomationElement)inputObject);
 //                    }
                     
                     result = true;
@@ -509,10 +540,11 @@ namespace UIAutomation
                     // (some part of AutomationElement, as an example)
                 } catch (Exception eControlTypeException) {
                     
-                    this.WriteDebug(cmdlet, "[checking the input] Control is not an AutomationElement");
-                    this.WriteDebug(cmdlet, "[checking the input] " + eControlTypeException.Message);
+                    // 20131203
+                    // WriteDebug(cmdlet, "[checking the input] Control is not an AutomationElement");
+                    // WriteDebug(cmdlet, "[checking the input] " + eControlTypeException.Message);
                     
-                    if (this.PassThru) {
+                    if (PassThru) {
                         
                         // 20131109
                         //WriteObject(this, _control);
@@ -521,7 +553,7 @@ namespace UIAutomation
                     } else {
                         
                         result = false;
-                        this.WriteObject(this, result);
+                        WriteObject(this, result);
                         
                     }
                     result = false;
@@ -537,24 +569,21 @@ namespace UIAutomation
         protected internal void SubscribeToEvents(HasControlInputCmdletBase cmdlet,
                                                   // 20131109
                                                   //AutomationElement inputObject,
-                                                  IMySuperWrapper inputObject,
+                                                  IUiElement inputObject,
                                                   AutomationEvent eventType,
                                                   AutomationProperty prop)
         {
-            AutomationEventHandler uiaEventHandler;
-            AutomationPropertyChangedEventHandler uiaPropertyChangedEventHandler;
-            StructureChangedEventHandler uiaStructureChangedEventHandler;
-            AutomationFocusChangedEventHandler uiaFocusChangedEventHandler;
-            
             if (null == CurrentData.Events) {
                 CurrentData.InitializeEventCollection();
             }
             
             try {
 
-                CacheRequest cacheRequest = new CacheRequest();
-                cacheRequest.AutomationElementMode = AutomationElementMode.Full; //.None;
-                cacheRequest.TreeFilter = Automation.RawViewCondition;
+                CacheRequest cacheRequest = new CacheRequest
+                {
+                    AutomationElementMode = AutomationElementMode.Full,
+                    TreeFilter = Automation.RawViewCondition
+                };
                 cacheRequest.Add(AutomationElement.NameProperty);
                 cacheRequest.Add(AutomationElement.AutomationIdProperty);
                 cacheRequest.Add(AutomationElement.ClassNameProperty);
@@ -564,135 +593,172 @@ namespace UIAutomation
                 
                 // cacheRequest.Activate();
                 cacheRequest.Push();
-                
+
+                AutomationEventHandler uiaEventHandler;
                 switch (eventType.ProgrammaticName) {
                     case "InvokePatternIdentifiers.InvokedEvent":
-                        this.WriteVerbose(cmdlet, "subscribing to the InvokedEvent handler");
+                        WriteVerbose(cmdlet, "subscribing to the InvokedEvent handler");
                         Automation.AddAutomationEventHandler(
                             InvokePattern.InvokedEvent,
-                            inputObject.SourceElement, 
+                            // 20131118
+                            // property to method
+                            //inputObject.SourceElement, 
+                            inputObject.GetSourceElement(),
                             TreeScope.Element, // TreeScope.Subtree, // TreeScope.Element,
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
-                        UIAHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
+                        UiaHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
                         if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "TextPatternIdentifiers.TextChangedEvent":
-                        this.WriteVerbose(cmdlet, "subscribing to the TextChangedEvent handler");
+                        WriteVerbose(cmdlet, "subscribing to the TextChangedEvent handler");
                         Automation.AddAutomationEventHandler(
                             TextPattern.TextChangedEvent,
-                            inputObject.SourceElement, 
+                            // 20131118
+                            // property to method
+                            //inputObject.SourceElement, 
+                            inputObject.GetSourceElement(),
                             TreeScope.Element,
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
-                        UIAHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
+                        UiaHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
                         if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "TextPatternIdentifiers.TextSelectionChangedEvent":
-                        this.WriteVerbose(cmdlet, "subscribing to the TextSelectionChangedEvent handler");
+                        WriteVerbose(cmdlet, "subscribing to the TextSelectionChangedEvent handler");
                         Automation.AddAutomationEventHandler(
                             TextPattern.TextSelectionChangedEvent,
-                            inputObject.SourceElement, 
+                            // 20131118
+                            // property to method
+                            //inputObject.SourceElement, 
+                            inputObject.GetSourceElement(),
                             TreeScope.Element,
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
-                        UIAHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
+                        UiaHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
                         if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "WindowPatternIdentifiers.WindowOpenedProperty":
-                        this.WriteVerbose(cmdlet, "subscribing to the WindowOpenedEvent handler");
+                        WriteVerbose(cmdlet, "subscribing to the WindowOpenedEvent handler");
                         Automation.AddAutomationEventHandler(
                             WindowPattern.WindowOpenedEvent,
-                            inputObject.SourceElement, 
+                            // 20131118
+                            // property to method
+                            //inputObject.SourceElement, 
+                            inputObject.GetSourceElement(),
                             TreeScope.Subtree,
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
-                        UIAHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
+                        UiaHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
                         if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "AutomationElementIdentifiers.AutomationPropertyChangedEvent":
                         if (prop != null) {
-                            this.WriteVerbose(cmdlet, "subscribing to the AutomationPropertyChangedEvent handler");
+                            WriteVerbose(cmdlet, "subscribing to the AutomationPropertyChangedEvent handler");
+                            AutomationPropertyChangedEventHandler uiaPropertyChangedEventHandler;
                             Automation.AddAutomationPropertyChangedEventHandler(
-                                inputObject.SourceElement, 
+                                // 20131118
+                                // property to method
+                                //inputObject.SourceElement, 
+                                inputObject.GetSourceElement(),
                                 TreeScope.Subtree,
                                 uiaPropertyChangedEventHandler = 
                                     new AutomationPropertyChangedEventHandler(cmdlet.AutomationPropertyChangedEventHandler),
                                 prop);
-                            UIAHelper.WriteEventToCollection(cmdlet, uiaPropertyChangedEventHandler);
+                            UiaHelper.WriteEventToCollection(cmdlet, uiaPropertyChangedEventHandler);
                             if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaPropertyChangedEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         }
                         break;
                     case "AutomationElementIdentifiers.StructureChangedEvent":
-                        this.WriteVerbose(cmdlet, "subscribing to the StructureChangedEvent handler");
+                        WriteVerbose(cmdlet, "subscribing to the StructureChangedEvent handler");
+                        StructureChangedEventHandler uiaStructureChangedEventHandler;
                         Automation.AddStructureChangedEventHandler(
-                            inputObject.SourceElement,
+                            // 20131118
+                            // property to method
+                            //inputObject.SourceElement,
+                            inputObject.GetSourceElement(),
                             TreeScope.Subtree,
                             uiaStructureChangedEventHandler = 
                             new StructureChangedEventHandler(cmdlet.StructureChangedEventHandler));
-                        UIAHelper.WriteEventToCollection(cmdlet, uiaStructureChangedEventHandler);
+                        UiaHelper.WriteEventToCollection(cmdlet, uiaStructureChangedEventHandler);
                         if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaStructureChangedEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "WindowPatternIdentifiers.WindowClosedProperty":
-                        this.WriteVerbose(cmdlet, "subscribing to the WindowClosedEvent handler");
+                        WriteVerbose(cmdlet, "subscribing to the WindowClosedEvent handler");
                         Automation.AddAutomationEventHandler(
                             WindowPattern.WindowClosedEvent,
-                            inputObject.SourceElement, 
+                            // 20131118
+                            // property to method
+                            //inputObject.SourceElement, 
+                            inputObject.GetSourceElement(),
                             TreeScope.Subtree,
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
-                        UIAHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
+                        UiaHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
                         if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "AutomationElementIdentifiers.MenuClosedEvent":
-                        this.WriteVerbose(cmdlet, "subscribing to the MenuClosedEvent handler");
+                        WriteVerbose(cmdlet, "subscribing to the MenuClosedEvent handler");
                         Automation.AddAutomationEventHandler(
                             AutomationElement.MenuClosedEvent,
-                            inputObject.SourceElement, 
+                            // 20131118
+                            // property to method
+                            //inputObject.SourceElement, 
+                            inputObject.GetSourceElement(),
                             TreeScope.Subtree,
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
-                        UIAHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
+                        UiaHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
                         if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "AutomationElementIdentifiers.MenuOpenedEvent":
-                        this.WriteVerbose(cmdlet, "subscribing to the MenuOpenedEvent handler");
+                        WriteVerbose(cmdlet, "subscribing to the MenuOpenedEvent handler");
                         Automation.AddAutomationEventHandler(
                             AutomationElement.MenuOpenedEvent,
-                            inputObject.SourceElement, 
+                            // 20131118
+                            // property to method
+                            //inputObject.SourceElement, 
+                            inputObject.GetSourceElement(),
                             TreeScope.Subtree,
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
-                        UIAHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
+                        UiaHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
                         if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "AutomationElementIdentifiers.ToolTipClosedEvent":
-                        this.WriteVerbose(cmdlet, "subscribing to the ToolTipClosedEvent handler");
+                        WriteVerbose(cmdlet, "subscribing to the ToolTipClosedEvent handler");
                         Automation.AddAutomationEventHandler(
                             AutomationElement.ToolTipClosedEvent,
-                            inputObject.SourceElement, 
+                            // 20131118
+                            // property to method
+                            //inputObject.SourceElement, 
+                            inputObject.GetSourceElement(),
                             TreeScope.Subtree,
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
-                        UIAHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
+                        UiaHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
                         if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "AutomationElementIdentifiers.ToolTipOpenedEvent":
-                        this.WriteVerbose(cmdlet, "subscribing to the ToolTipOpenedEvent handler");
+                        WriteVerbose(cmdlet, "subscribing to the ToolTipOpenedEvent handler");
                         Automation.AddAutomationEventHandler(
                             AutomationElement.ToolTipOpenedEvent,
-                            inputObject.SourceElement, 
+                            // 20131118
+                            // property to method
+                            //inputObject.SourceElement, 
+                            inputObject.GetSourceElement(),
                             TreeScope.Subtree,
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
-                        UIAHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
+                        UiaHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
                         if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "AutomationElementIdentifiers.AutomationFocusChangedEvent":
                         WriteVerbose(cmdlet, "subscribing to the AutomationFocusChangedEvent handler");
+                        AutomationFocusChangedEventHandler uiaFocusChangedEventHandler;
                         Automation.AddAutomationFocusChangedEventHandler(
                             uiaFocusChangedEventHandler = new AutomationFocusChangedEventHandler(cmdlet.AutomationEventHandler));
-                        UIAHelper.WriteEventToCollection(cmdlet, uiaFocusChangedEventHandler);
+                        UiaHelper.WriteEventToCollection(cmdlet, uiaFocusChangedEventHandler);
                         if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaFocusChangedEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     default:
-                        this.WriteVerbose(cmdlet, 
+                        WriteVerbose(cmdlet, 
                                      "the following event has not been subscribed to: " + 
                                      eventType.ProgrammaticName);
                         break;
                 }
-                this.WriteVerbose(cmdlet, "on the object " + inputObject.Current.Name);
+                WriteVerbose(cmdlet, "on the object " + inputObject.Current.Name);
                 cacheRequest.Pop();
                 
             } 
@@ -724,7 +790,7 @@ namespace UIAutomation
         protected void OnUIAutomationPropertyChangedEvent(object src, AutomationPropertyChangedEventArgs e)
         {
             if (!checkNotNull(src, e)) return;
-            if (this.AutomationProperty == e.Property) {
+            if (AutomationProperty == e.Property) {
                 
                 
 try {
@@ -746,12 +812,12 @@ try {
             if (!checkNotNull(src, e)) return;
 
             // StructureChangeType
-            if ((e.StructureChangeType == StructureChangeType.ChildAdded && this.Child.ChildAdded) ||
-                (e.StructureChangeType == StructureChangeType.ChildRemoved && this.Child.ChildRemoved) ||
-                (e.StructureChangeType == StructureChangeType.ChildrenBulkAdded && this.Child.ChildrenBulkAdded) ||
-                (e.StructureChangeType == StructureChangeType.ChildrenBulkRemoved && this.Child.ChildrenBulkRemoved) ||
-                (e.StructureChangeType == StructureChangeType.ChildrenInvalidated && this.Child.ChildrenInvalidated) ||
-                (e.StructureChangeType == StructureChangeType.ChildrenReordered && this.Child.ChildrenReordered)) {
+            if ((e.StructureChangeType == StructureChangeType.ChildAdded && Child.ChildAdded) ||
+                (e.StructureChangeType == StructureChangeType.ChildRemoved && Child.ChildRemoved) ||
+                (e.StructureChangeType == StructureChangeType.ChildrenBulkAdded && Child.ChildrenBulkAdded) ||
+                (e.StructureChangeType == StructureChangeType.ChildrenBulkRemoved && Child.ChildrenBulkRemoved) ||
+                (e.StructureChangeType == StructureChangeType.ChildrenInvalidated && Child.ChildrenInvalidated) ||
+                (e.StructureChangeType == StructureChangeType.ChildrenReordered && Child.ChildrenReordered)) {
                 RunEventScriptBlocks(this);
             }
             try {
@@ -780,7 +846,7 @@ try {
             
             // 20131109
             //AutomationElement sourceElement;
-            IMySuperWrapper sourceElement;
+            IUiElement sourceElement;
             string elementTitle = String.Empty;
             string elementType = String.Empty;
             AutomationEvent eventId = null;
@@ -788,7 +854,7 @@ try {
             try {
                 // 20131109
                 //sourceElement = src as AutomationElement;
-                sourceElement = src as IMySuperWrapper;
+                sourceElement = src as IUiElement;
                 try { elementTitle = sourceElement.Cached.Name; } catch { }
                 try {
                     elementType =
@@ -918,8 +984,10 @@ try {
                         whatToWrite = specificToEvent;
                     }
                     if (whatToWrite != 
-                        ((System.Collections.ArrayList)this.Recording[this.Recording.Count - 1])[0].ToString()) {
-                        ((System.Collections.ArrayList)this.Recording[this.Recording.Count - 1]).Insert(0, whatToWrite);
+                        // ((ArrayList)Recording[Recording.Count - 1])[0].ToString()) {
+                        // ((ArrayList)Recording[Recording.Count - 1]).Insert(0, whatToWrite);
+                        (Recording[Recording.Count - 1])[0].ToString()) {
+                        (Recording[Recording.Count - 1]).Insert(0, whatToWrite);
                     }
                 }
             //} catch { return; }
@@ -932,26 +1000,37 @@ try {
             try {
                 // 20131109
                 WriteVerbose(this, e.EventId + "on " + (src as AutomationElement) + " fired");
-                WriteVerbose(this, e.EventId + "on " + (src as IMySuperWrapper) + " fired");
+                WriteVerbose(this, e.EventId + "on " + (src as IUiElement) + " fired");
             } catch { }
         }
         #endregion Event handling for recording
         
         #region checker event handler inputs
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "check")]
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "check")]
         protected bool checkNotNull(object objectToTest, AutomationEventArgs e)
         {
             // 20131109
             //AutomationElement sourceElement;
-            IMySuperWrapper sourceElement;
+            // 20131118
+            //IUiElement sourceElement;
+            /*
+            AutomationElement sourceElement;
+            */
             try {
                 // 20131109
                 //sourceElement = objectToTest as AutomationElement;
-                sourceElement = objectToTest as IMySuperWrapper;
+                // 20131118
+                //sourceElement = objectToTest as IUiElement;
+                AutomationElement sourceElement = objectToTest as AutomationElement;
                 // 20131109
                 //this.EventSource = sourceElement;
-                this.EventSource = sourceElement.SourceElement;
-                this.EventArgs = e;
+                // 20131118
+                // property to method
+                //this.EventSource = sourceElement.SourceElement;
+                // 20131118
+                //this.EventSource = sourceElement.GetSourceElement();
+                EventSource = sourceElement;
+                EventArgs = e;
             } 
             catch { //(ElementNotAvailableException eNotAvailable) {
                 return false;
@@ -961,58 +1040,54 @@ try {
         #endregion checker event handler inputs
 
         protected internal bool TestControlByPropertiesFromHashtable(
-            // 20130315
-            // 20131109
-            //AutomationElement[] inputElements,
-            //ICollection inputElements,
-            IMySuperWrapper[] inputElements,
+            IUiElement[] inputElements,
             IEnumerable<Hashtable> SearchCriteria,
-            //System.Collections.Hashtable[] SearchCriteria,
             int timeout)
         {
             
             bool result = false;
             foreach (Hashtable ht in SearchCriteria)
             {
-                System.Collections.Generic.Dictionary<string, object> dict =
-                    this.ConvertHashtableToDictionary(ht);
+                Dictionary<string, object> dict =
+                    ConvertHashtableToDictionary(ht);
                 
                 GetControlCmdletBase cmdlet = 
                     new GetControlCmdletBase();
                 
-                try{ cmdlet.Class = dict["CLASS"].ToString(); } catch {}
-                try{ cmdlet.AutomationId = dict["AUTOMATIONID"].ToString(); } catch {}
-                try{ cmdlet.ControlType = dict["CONTROLTYPE"].ToString(); } catch {}
-                try{ cmdlet.Name = dict["NAME"].ToString(); } catch {}
-                try{ cmdlet.Value = dict["VALUE"].ToString(); } catch {}
+                try { cmdlet.Class = dict["CLASS"].ToString(); } catch {}
+                try { cmdlet.AutomationId = dict["AUTOMATIONID"].ToString(); } catch {}
+                // 20131128
+                // try{ cmdlet.ControlType = dict["CONTROLTYPE"].ToString(); } catch {}
+                // 20131203
+                try { cmdlet.ControlType = new string[] { dict["CONTROLTYPE"].ToString() }; } catch {}
+                try { cmdlet.Name = dict["NAME"].ToString(); } catch {}
+                try { cmdlet.Value = dict["VALUE"].ToString(); } catch {}
                 
                 cmdlet.Timeout = timeout;
                 
                 //if (null != inputElements && null != (inputElements as AutomationElement[]) && 0 < inputElements.Length) {
                 // 20131109
                 //if (null != inputElements && null != (inputElements as AutomationElement[]) && 0 < inputElements.Count) {
-                if (null != inputElements && null != (inputElements as IMySuperWrapper[]) && inputElements.Any()) {
+                if (null != inputElements && null != (inputElements as IUiElement[]) && inputElements.Any()) {
 
                 /*
-                if (null != inputElements && null != (inputElements as IMySuperWrapper[]) && 0 < inputElements.Count()) {
+                if (null != inputElements && null != (inputElements as IUiElement[]) && 0 < inputElements.Count()) {
                 */
 
                     // 20131109
                     //cmdlet.InputObject = inputElements;
                     cmdlet.InputObject = inputElements; //.ConvertCmdletInputToCollectionAdapter();
                 } else {
-                    if (UIAutomation.CurrentData.CurrentWindow == null) {
+                    if (CurrentData.CurrentWindow == null) {
                         return result;
                     }
                     
-                    // 20131109
-                    //cmdlet.InputObject = new AutomationElement[]{ UIAutomation.CurrentData.CurrentWindow };
-                    cmdlet.InputObject = new MySuperWrapper[]{ (MySuperWrapper)UIAutomation.CurrentData.CurrentWindow };
+                    cmdlet.InputObject = new[]{ CurrentData.CurrentWindow };
                 }
                 
                 WriteVerbose(this, "getting the control");
                 
-                ArrayList elementsToWorkWith = GetControl(cmdlet);
+                List<IUiElement> elementsToWorkWith = GetControl(cmdlet);
                 
                 if (null == elementsToWorkWith) {
 
@@ -1020,9 +1095,7 @@ try {
                     return result;
                 } else {
                     
-                    // 20131109
-                    //foreach (AutomationElement elementToWorkWith in elementsToWorkWith) {
-                    foreach (IMySuperWrapper elementToWorkWith in elementsToWorkWith) {
+                    foreach (IUiElement elementToWorkWith in elementsToWorkWith) {
                         
                         WriteVerbose(this, "found the control:");
                         try {WriteVerbose(this, "Name = " + elementToWorkWith.Current.Name); }catch {}
@@ -1031,14 +1104,14 @@ try {
                         try {WriteVerbose(this, "ControlType = " + elementToWorkWith.Current.ControlType.ProgrammaticName); }catch {}
                         
                         bool oneControlResult = 
-                            testControlByPropertiesFromDictionary(
+                            TestControlByPropertiesFromDictionary(
                                 dict,
                                 elementToWorkWith);
                         
                         if (oneControlResult) {
                             
                             if (Preferences.HighlightCheckedControl) {
-                                UIAHelper.HighlightCheckedControl(elementToWorkWith);
+                                UiaHelper.HighlightCheckedControl(elementToWorkWith);
                             }
                             
                         } else { // 20130710
@@ -1101,7 +1174,7 @@ try {
                         if (oneControlResult) {
                             
                             if (Preferences.HighlightCheckedControl) {
-                                UIAHelper.HighlightCheckedControl(elementToWorkWith);
+                                UiaHelper.HighlightCheckedControl(elementToWorkWith);
                             }
                             
                         } else { // 20130710

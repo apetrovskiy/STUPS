@@ -13,11 +13,11 @@ namespace TMX
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of TMXGetTestCaseCommand.
+    /// Description of TmxGetTestCaseCommand.
     /// </summary>
-    internal class TMXGetTestCaseCommand : TMXCommand
+    internal class TmxGetTestCaseCommand : TmxCommand
     {
-        internal TMXGetTestCaseCommand(CommonCmdletBase cmdlet) : base (cmdlet)
+        internal TmxGetTestCaseCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         

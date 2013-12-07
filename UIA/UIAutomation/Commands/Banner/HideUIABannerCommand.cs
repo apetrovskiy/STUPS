@@ -9,19 +9,17 @@
 
 namespace UIAutomation.Commands
 {
-    // test it
-    //using System;
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of HideUIABannerCommand.
+    /// Description of HideUiaBannerCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Hide, "UIABanner")]
-    public class HideUIABannerCommand : CommonCmdletBase
+    [Cmdlet(VerbsCommon.Hide, "UiaBanner")]
+    public class HideUiaBannerCommand : CommonCmdletBase
     {
         protected override void BeginProcessing()
         {
-            UIAHelper.HideBanner();
+            UiaHelper.HideBanner();
         }
     }
 }

@@ -13,114 +13,114 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
 
     /// <summary>
-    /// Description of InvokeUIAInvokePatternCommand.
+    /// Description of InvokeUiaInvokePatternCommand.
     /// </summary>
     // 20130204
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAInvokePattern")]
-    //[Cmdlet(VerbsLifecycle.Invoke, "UIAInvokePattern", DefaultParameterSetName = "UIAWildCard")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaInvokePattern")]
+    //[Cmdlet(VerbsLifecycle.Invoke, "UiaInvokePattern", DefaultParameterSetName = "UiaWildCard")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAInvokePatternCommand : PatternCmdletBase
+    
+    public class InvokeUiaInvokePatternCommand : PatternCmdletBase
     {
-        public InvokeUIAInvokePatternCommand() { WhatToDo = "Invoke"; }
+        public InvokeUiaInvokePatternCommand() { WhatToDo = "Invoke"; }
     }
 
     /// <summary>
-    /// Description of InvokeUIAButtonClickCommand.
+    /// Description of InvokeUiaButtonClickCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAButtonClick")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaButtonClick")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAButtonClickCommand : InvokeUIAInvokePatternCommand
-    { public InvokeUIAButtonClickCommand() { } }
+    
+    public class InvokeUiaButtonClickCommand : InvokeUiaInvokePatternCommand
+    { public InvokeUiaButtonClickCommand() { } }
     
     /// <summary>
-    /// Description of InvokeUIACustomClickCommand.
+    /// Description of InvokeUiaCustomClickCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIACustomClick")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaCustomClick")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIACustomClickCommand : InvokeUIAInvokePatternCommand
-    { public InvokeUIACustomClickCommand() { } }
+    
+    public class InvokeUiaCustomClickCommand : InvokeUiaInvokePatternCommand
+    { public InvokeUiaCustomClickCommand() { } }
 
     /// <summary>
-    /// Description of InvokeUIAHeaderItemClickCommand.
+    /// Description of InvokeUiaHeaderItemClickCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAHeaderItemClick")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaHeaderItemClick")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAHeaderItemClickCommand : InvokeUIAInvokePatternCommand
-    { public InvokeUIAHeaderItemClickCommand() { } }
+    
+    public class InvokeUiaHeaderItemClickCommand : InvokeUiaInvokePatternCommand
+    { public InvokeUiaHeaderItemClickCommand() { } }
     
     /// <summary>
-    /// Description of InvokeUIALinkLabelClickCommand.
+    /// Description of InvokeUiaLinkLabelClickCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIALinkLabelClick")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaLinkLabelClick")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIALinkLabelClickCommand : InvokeUIAHyperlinkClickCommand
-    { public InvokeUIALinkLabelClickCommand() { } }
+    
+    public class InvokeUiaLinkLabelClickCommand : InvokeUiaHyperlinkClickCommand
+    { public InvokeUiaLinkLabelClickCommand() { } }
     
     /// <summary>
-    /// Description of InvokeUIAHyperlinkClickCommand.
+    /// Description of InvokeUiaHyperlinkClickCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAHyperlinkClick")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaHyperlinkClick")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAHyperlinkClickCommand : InvokeUIAInvokePatternCommand
-    { public InvokeUIAHyperlinkClickCommand() { } }
+    
+    public class InvokeUiaHyperlinkClickCommand : InvokeUiaInvokePatternCommand
+    { public InvokeUiaHyperlinkClickCommand() { } }
     
     /// <summary>
-    /// Description of InvokeUIAImageClickCommand.
+    /// Description of InvokeUiaImageClickCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAImageClick")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaImageClick")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAImageClickCommand : InvokeUIAInvokePatternCommand
-    { public InvokeUIAImageClickCommand() { } }
+    
+    public class InvokeUiaImageClickCommand : InvokeUiaInvokePatternCommand
+    { public InvokeUiaImageClickCommand() { } }
     
     /// <summary>
-    /// Description of InvokeUIAListItemClickCommand.
+    /// Description of InvokeUiaListItemClickCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAListItemClick")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaListItemClick")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAListItemClickCommand : InvokeUIAInvokePatternCommand
-    { public InvokeUIAListItemClickCommand() { } }
+    
+    public class InvokeUiaListItemClickCommand : InvokeUiaInvokePatternCommand
+    { public InvokeUiaListItemClickCommand() { } }
     
     /// <summary>
-    /// Description of InvokeUIAMenuItemClickCommand.
+    /// Description of InvokeUiaMenuItemClickCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAMenuItemClick")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaMenuItemClick")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAMenuItemClickCommand : InvokeUIAInvokePatternCommand
-    { public InvokeUIAMenuItemClickCommand() { } }
+    
+    public class InvokeUiaMenuItemClickCommand : InvokeUiaInvokePatternCommand
+    { public InvokeUiaMenuItemClickCommand() { } }
     
     /// <summary>
-    /// Description of InvokeUIASplitButtonClickCommand.
+    /// Description of InvokeUiaSplitButtonClickCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIASplitButtonClick")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaSplitButtonClick")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIASplitButtonClickCommand : InvokeUIAInvokePatternCommand
-    { public InvokeUIASplitButtonClickCommand() { } }
+    
+    public class InvokeUiaSplitButtonClickCommand : InvokeUiaInvokePatternCommand
+    { public InvokeUiaSplitButtonClickCommand() { } }
     
     /// <summary>
-    /// Description of InvokeUIATabItemClickCommand.
+    /// Description of InvokeUiaTabItemClickCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIATabItemClick")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaTabItemClick")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIATabItemClickCommand : InvokeUIAInvokePatternCommand
-    { public InvokeUIATabItemClickCommand() { } }
+    
+    public class InvokeUiaTabItemClickCommand : InvokeUiaInvokePatternCommand
+    { public InvokeUiaTabItemClickCommand() { } }
     
     /// <summary>
-    /// Description of InvokeUIATreeItemClickCommand.
+    /// Description of InvokeUiaTreeItemClickCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIATreeItemClick")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaTreeItemClick")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIATreeItemClickCommand : InvokeUIAInvokePatternCommand
-    { public InvokeUIATreeItemClickCommand() { } }
+    
+    public class InvokeUiaTreeItemClickCommand : InvokeUiaInvokePatternCommand
+    { public InvokeUiaTreeItemClickCommand() { } }
 }

@@ -7,6 +7,9 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System.Drawing;
+using PSTestLib;
+
 namespace UIAutomation
 {
     using System;
@@ -16,12 +19,12 @@ namespace UIAutomation
     {
         internal static bool GTranscript = false;
         // 20120206 internal static System.DateTime GLastTime;
-        internal static System.Drawing.Rectangle GRectangle;
+        internal static Rectangle GRectangle;
     
         internal static void _PaintRectangle(
             // 20131109
             //System.Windows.Automation.AutomationElement element)
-            IMySuperWrapper element)
+            IUiElement element)
         {
             if (element == null) {
                 return;
@@ -31,17 +34,17 @@ namespace UIAutomation
             }
             try {
                 // on an element
-                System.IntPtr ptr =
-                    new System.IntPtr(element.Current.NativeWindowHandle);
+                IntPtr ptr =
+                    new IntPtr(element.Current.NativeWindowHandle);
                 
-                System.Drawing.Graphics g = 
-                    System.Drawing.Graphics.FromHwnd(ptr);
-                System.Drawing.SolidBrush brush = 
-                    new System.Drawing.SolidBrush(System.Drawing.Color.HotPink);
-                System.Drawing.Pen pen = 
-                    new System.Drawing.Pen(brush, 10);
-                System.Drawing.Rectangle GRectangle = 
-                    new System.Drawing.Rectangle(
+                Graphics g = 
+                    Graphics.FromHwnd(ptr);
+                SolidBrush brush = 
+                    new SolidBrush(Color.HotPink);
+                Pen pen = 
+                    new Pen(brush, 10);
+                Rectangle GRectangle = 
+                    new Rectangle(
                         0,
                         0,
                         ((int)element.Current.BoundingRectangle.Width),
@@ -52,22 +55,22 @@ namespace UIAutomation
     
         internal static void _MinimizeRectangle()
         {
-            Global.GRectangle.X = 1;
-            Global.GRectangle.Y     = 1;
-            Global.GRectangle.Width = 1;
-            Global.GRectangle.Height = 1;
+            GRectangle.X = 1;
+            GRectangle.Y     = 1;
+            GRectangle.Width = 1;
+            GRectangle.Height = 1;
         }
     
         #region Log
-        private static System.IO.StreamWriter LogStream { get; set; }
-        private static System.IO.Stream Stream { get; set; }
+        private static StreamWriter LogStream { get; set; }
+        private static Stream Stream { get; set; }
         
         internal static void CreateLogFile()
         {
             if (!Preferences.Log) return;
             try {
                 Stream = 
-                    System.IO.File.Open(
+                    File.Open(
                         Preferences.LogPath,
                         FileMode.OpenOrCreate | FileMode.Append,
                         FileAccess.Write,
@@ -77,17 +80,17 @@ namespace UIAutomation
             } catch {
                 Preferences.LogPath = 
                     "'" +
-                    System.Environment.GetEnvironmentVariable(
+                    Environment.GetEnvironmentVariable(
                         "TEMP",
                         EnvironmentVariableTarget.User) + 
                     @"\UIAutomation_" +
-                    //UIAHelper.GetTimedFileName() +
-                    PSTestLib.PSTestHelper.GetTimedFileName() +
+                    //UiaHelper.GetTimedFileName() +
+                    PSTestHelper.GetTimedFileName() +
                     ".log" +
                     "'";
                 try {
                     Stream =
-                        System.IO.File.Open(
+                        File.Open(
                             Preferences.LogPath,
                             FileMode.OpenOrCreate | FileMode.Append,
                             FileAccess.Write,
@@ -118,7 +121,7 @@ namespace UIAutomation
                             "TEMP",
                             EnvironmentVariableTarget.User) + 
                             @"\UIAutomation_" +
-                            //UIAHelper.GetTimedFileName() +
+                            //UiaHelper.GetTimedFileName() +
                         PSTestLib.PSTestHelper.GetTimedFileName() +
                             ".log" +
                             "'";
@@ -168,10 +171,10 @@ namespace UIAutomation
         internal static void WriteToLogFile(string record)
         {
             if (!Preferences.Log) return;
-            if (!System.IO.File.Exists(Preferences.LogPath)) return;
+            if (!File.Exists(Preferences.LogPath)) return;
             if (LogStream == null) {
                 Stream = 
-                    System.IO.File.Open(
+                    File.Open(
                         Preferences.LogPath,
                         FileMode.OpenOrCreate | FileMode.Append,
                         FileAccess.Write,
@@ -180,7 +183,7 @@ namespace UIAutomation
                     new StreamWriter(Stream);
             }
             // 20130216
-            System.DateTime now = System.DateTime.Now;
+            DateTime now = DateTime.Now;
             string dateAndTime = 
                 now.ToShortDateString() + 
                 " " +

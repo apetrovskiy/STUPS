@@ -7,6 +7,8 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System.Linq;
+
 namespace UIAutomation.Commands
 {
     using System;
@@ -15,12 +17,12 @@ namespace UIAutomation.Commands
     using System.Collections.Generic;
 
     /// <summary>
-    /// Description of InvokeUIAWizardCommand.
+    /// Description of InvokeUiaWizardCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAWizard")]
-    public class InvokeUIAWizardCommand : WizardRunCmdletBase
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaWizard")]
+    public class InvokeUiaWizardCommand : WizardRunCmdletBase
     {
-        public InvokeUIAWizardCommand()
+        public InvokeUiaWizardCommand()
         {
         }
         
@@ -29,9 +31,9 @@ namespace UIAutomation.Commands
         
         protected override void BeginProcessing()
         {
-            if (null != this.Parameters && 0 < this.Parameters.Length)
+            if (null != Parameters && 0 < Parameters.Length)
             {
-                this.WriteVerbose(
+                WriteVerbose(
                     this,
                     "converting -Parameters hashtables to dictionaries");
 
@@ -41,20 +43,32 @@ namespace UIAutomation.Commands
                     this.ParametersDictionaries.Add(dictParameters);
                 }
                 */
-                foreach (Hashtable parametersTable in this.Parameters) {
+                foreach (Dictionary<string, object> dictParameters in Parameters.Select(ConvertHashtableToDictionary))
+                {
+                    ParametersDictionaries.Add(dictParameters);
+                }
+                /*
+                foreach (Dictionary<string, object> dictParameters in Parameters.Select(parametersTable => ConvertHashtableToDictionary(parametersTable)))
+                {
+                    ParametersDictionaries.Add(dictParameters);
+                }
+                */
+                /*
+                foreach (Hashtable parametersTable in Parameters) {
 
                     Dictionary<string, object> dictParameters =
-                        this.ConvertHashtableToDictionary(parametersTable);
+                        ConvertHashtableToDictionary(parametersTable);
 
-                    this.ParametersDictionaries.Add(dictParameters);
+                    ParametersDictionaries.Add(dictParameters);
                 }
+                */
             }
 
-            this.WriteInfo(this, "accepted " + this.ParametersDictionaries.Count.ToString() + " step parameters");
+            WriteInfo(this, "accepted " + ParametersDictionaries.Count.ToString() + " step parameters");
             
-            if (null != this.Directions && 0 < this.Directions.Length)
+            if (null != Directions && 0 < Directions.Length)
             {
-                this.WriteVerbose(
+                WriteVerbose(
                     this,
                     "converting -Directions hashtables to dictionaries");
 
@@ -64,19 +78,31 @@ namespace UIAutomation.Commands
                     this.DirectionsDictionaries.Add(dictDirections);
                 }
                 */
-                foreach (Hashtable directionsTable in this.Directions) {
+                foreach (Dictionary<string, object> dictDirections in Directions.Select(ConvertHashtableToDictionary))
+                {
+                    DirectionsDictionaries.Add(dictDirections);
+                }
+                /*
+                foreach (Dictionary<string, object> dictDirections in Directions.Select(directionsTable => ConvertHashtableToDictionary(directionsTable)))
+                {
+                    DirectionsDictionaries.Add(dictDirections);
+                }
+                */
+                /*
+                foreach (Hashtable directionsTable in Directions) {
                     
                     Dictionary<string, object> dictDirections =
-                        this.ConvertHashtableToDictionary(directionsTable);
+                        ConvertHashtableToDictionary(directionsTable);
                     
-                    this.DirectionsDictionaries.Add(dictDirections);
+                    DirectionsDictionaries.Add(dictDirections);
                 }
+                */
             }
 
-            this.WriteInfo(this, "accepted " + this.DirectionsDictionaries.Count.ToString() + " step directions");
+            WriteInfo(this, "accepted " + DirectionsDictionaries.Count.ToString() + " step directions");
 
-        	UIAInvokeWizardCommand command =
-        		new UIAInvokeWizardCommand(this);
+        	UiaInvokeWizardCommand command =
+        		new UiaInvokeWizardCommand(this);
         	command.Execute();
         }
     }

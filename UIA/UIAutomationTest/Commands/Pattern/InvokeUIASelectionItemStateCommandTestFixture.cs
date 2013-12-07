@@ -14,12 +14,12 @@ namespace UIAutomationTest.Commands.Pattern
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of InvokeUIASelectionItemStateCommandTestFixture.
+    /// Description of InvokeUiaSelectionItemStateCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Invoke-UIASelectionItemStateCommand test")]
-    public class InvokeUIASelectionItemStateCommandTestFixture
+    [TestFixture] // [TestFixture(Description="Invoke-UiaSelectionItemStateCommand test")]
+    public class InvokeUiaSelectionItemStateCommandTestFixture
     {
-        public InvokeUIASelectionItemStateCommandTestFixture()
+        public InvokeUiaSelectionItemStateCommandTestFixture()
         {
         }
         
@@ -61,16 +61,16 @@ namespace UIAutomationTest.Commands.Pattern
                 0,
                 (ControlToForm[])arrList.ToArray(typeof(ControlToForm)));
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = Get-UIAWindow -pn " + 
+                @"$null = Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIARadioButton -AutomationId '" + 
+                " | Get-UiaRadioButton -AutomationId '" + 
                 auId1 + 
-                "' | Invoke-UIARadioButtonSelectItem -ItemName '" + 
+                "' | Invoke-UiaRadioButtonSelectItem -ItemName '" + 
                 name1 +
                 @"';" +
-                @"Get-UIARadioButton -AutomationId '" + 
+                @"Get-UiaRadioButton -AutomationId '" + 
                 auId1 + 
-                "' | Get-UIARadioButtonSelectionItemState;",
+                "' | Get-UiaRadioButtonSelectionItemState;",
                 expectedResult);
         }
         

@@ -13,98 +13,98 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
 
     /// <summary>
-    /// Description of InvokeUIASelectionPatternCommand.
+    /// Description of InvokeUiaSelectionPatternCommand.
     /// </summary>
     // 20131024
-    //[Cmdlet(VerbsCommon.Get, "UIASelectionPattern")]
-    [Cmdlet(VerbsLifecycle.Invoke, "UIASelectionPattern")]
-    ////[OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIASelectionPatternCommand : PatternCmdletBase
-    { public InvokeUIASelectionPatternCommand() { WhatToDo = "Selection"; this.PassThru = false; }
+    //[Cmdlet(VerbsCommon.Get, "UiaSelectionPattern")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaSelectionPattern")]
+    ////[OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    
+    public class InvokeUiaSelectionPatternCommand : PatternCmdletBase
+    { public InvokeUiaSelectionPatternCommand() { WhatToDo = "Selection"; PassThru = false; }
         
         [Parameter]
         internal new SwitchParameter PassThru {get; set; }
     }
     
     /// <summary>
-    /// Description of GetUIACalendarSelectCommand.
+    /// Description of GetUiaCalendarSelectCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIACalendarSelection")]
+    [Cmdlet(VerbsCommon.Get, "UiaCalendarSelection")]
     ////[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIACalendarSelectionCommand : InvokeUIASelectionPatternCommand 
-    { public GetUIACalendarSelectionCommand() { } }
+    
+    public class GetUiaCalendarSelectionCommand : InvokeUiaSelectionPatternCommand 
+    { public GetUiaCalendarSelectionCommand() { } }
     
     /// <summary>
-    /// Description of GetUIAComboBoxSelectCommand.
+    /// Description of GetUiaComboBoxSelectCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAComboBoxSelection")]
+    [Cmdlet(VerbsCommon.Get, "UiaComboBoxSelection")]
     ////[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIAComboBoxSelectionCommand : InvokeUIASelectionPatternCommand 
-    { public GetUIAComboBoxSelectionCommand() { } }
+    
+    public class GetUiaComboBoxSelectionCommand : InvokeUiaSelectionPatternCommand 
+    { public GetUiaComboBoxSelectionCommand() { } }
     
     /// <summary>
-    /// Description of GetUIACustomSelectCommand.
+    /// Description of GetUiaCustomSelectCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIACustomSelection")]
+    [Cmdlet(VerbsCommon.Get, "UiaCustomSelection")]
     ////[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIACustomSelectionCommand : InvokeUIASelectionPatternCommand 
-    { public GetUIACustomSelectionCommand() { } }
+    
+    public class GetUiaCustomSelectionCommand : InvokeUiaSelectionPatternCommand 
+    { public GetUiaCustomSelectionCommand() { } }
     
     /// <summary>
-    /// Description of GetUIADataGridSelectCommand.
+    /// Description of GetUiaDataGridSelectCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIADataGridSelection")]
+    [Cmdlet(VerbsCommon.Get, "UiaDataGridSelection")]
     ////[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIADataGridSelectionCommand : InvokeUIASelectionPatternCommand 
-    { public GetUIADataGridSelectionCommand() { } }
+    
+    public class GetUiaDataGridSelectionCommand : InvokeUiaSelectionPatternCommand 
+    { public GetUiaDataGridSelectionCommand() { } }
     
     /// <summary>
-    /// Description of GetUIAListSelectCommand.
+    /// Description of GetUiaListSelectCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAListSelection")]
+    [Cmdlet(VerbsCommon.Get, "UiaListSelection")]
     ////[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIAListSelectionCommand : InvokeUIASelectionPatternCommand 
-    { public GetUIAListSelectionCommand() { } }
+    
+    public class GetUiaListSelectionCommand : InvokeUiaSelectionPatternCommand 
+    { public GetUiaListSelectionCommand() { } }
     
     /// <summary>
-    /// Description of GetUIASliderSelectCommand.
+    /// Description of GetUiaSliderSelectCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIASliderSelection")]
+    [Cmdlet(VerbsCommon.Get, "UiaSliderSelection")]
     ////[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIASliderSelectionCommand : InvokeUIASelectionPatternCommand 
-    { public GetUIASliderSelectionCommand() { } }
+    
+    public class GetUiaSliderSelectionCommand : InvokeUiaSelectionPatternCommand 
+    { public GetUiaSliderSelectionCommand() { } }
     
     /// <summary>
-    /// Description of GetUIASpinnerSelectCommand.
+    /// Description of GetUiaSpinnerSelectCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIASpinnerSelection")]
+    [Cmdlet(VerbsCommon.Get, "UiaSpinnerSelection")]
     ////[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIASpinnerSelectionCommand : InvokeUIASelectionPatternCommand 
-    { public GetUIASpinnerSelectionCommand() { } }
+    
+    public class GetUiaSpinnerSelectionCommand : InvokeUiaSelectionPatternCommand 
+    { public GetUiaSpinnerSelectionCommand() { } }
     
     /// <summary>
-    /// Description of GetUIATabSelectCommand.
+    /// Description of GetUiaTabSelectCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIATabSelection")]
+    [Cmdlet(VerbsCommon.Get, "UiaTabSelection")]
     ////[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIATabSelectionCommand : InvokeUIASelectionPatternCommand 
-    { public GetUIATabSelectionCommand() { } }
+    
+    public class GetUiaTabSelectionCommand : InvokeUiaSelectionPatternCommand 
+    { public GetUiaTabSelectionCommand() { } }
     
     /// <summary>
-    /// Description of GetUIATreeSelectCommand.
+    /// Description of GetUiaTreeSelectCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIATreeSelection")]
+    [Cmdlet(VerbsCommon.Get, "UiaTreeSelection")]
     ////[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIATreeSelectionCommand : InvokeUIASelectionPatternCommand 
-    { public GetUIATreeSelectionCommand() { } }
+    
+    public class GetUiaTreeSelectionCommand : InvokeUiaSelectionPatternCommand 
+    { public GetUiaTreeSelectionCommand() { } }
 }

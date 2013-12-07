@@ -9,8 +9,8 @@
 
 namespace UIAutomation
 {
-    using System;
-    using System.Windows.Automation;
+    //using System;
+    //using System.Windows.Automation;
     
     /// <summary>
     /// Description of CacheRequestCmdletBase.

@@ -9,17 +9,17 @@
 
 namespace UIAutomation.Commands
 {
-    using System;
+    //using System;
     using System.Management.Automation;
 
     /// <summary>
-    /// Description of GetUIAifUltraGridRowCommand.
+    /// Description of GetUiaIfUltraGridRowCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAifUltraGridRow")]
-    public class GetUIAifUltraGridRowCommand : ULtraGridCmdletBase
+    [Cmdlet(VerbsCommon.Get, "UiaIfUltraGridRow")]
+    public class GetUiaIfUltraGridRowCommand : ULtraGridCmdletBase
     {
         #region Constructor
-        public GetUIAifUltraGridRowCommand()
+        public GetUiaIfUltraGridRowCommand()
         {
         }
         #endregion Constructor
@@ -29,9 +29,9 @@ namespace UIAutomation.Commands
         /// </summary>
         protected override void ProcessRecord()
         {
-            if (!this.CheckAndPrepareInput(this)) { return; }
+            if (!CheckAndPrepareInput(this)) { return; }
             
-            ifUltraGridProcessing(ifUltraGridOperations.getItems);
+            ifUltraGridProcessing(ifUltraGridOperations.GetItems);
         }
     }
 }

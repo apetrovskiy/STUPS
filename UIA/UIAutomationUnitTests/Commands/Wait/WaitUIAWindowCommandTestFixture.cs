@@ -6,17 +6,13 @@
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
-using System;
 
 namespace UIAutomationUnitTests.Commands.Get
 {
     /// <summary>
-    /// Description of WaitUIAWindowCommandTestFixture.
+    /// Description of WaitUiaWindowCommandTestFixture.
     /// </summary>
-    public class WaitUIAWindowCommandTestFixture
+    public class WaitUiaWindowCommandTestFixture
     {
-        public WaitUIAWindowCommandTestFixture()
-        {
-        }
     }
 }

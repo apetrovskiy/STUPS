@@ -9,17 +9,16 @@
 
 namespace UIAutomation.Commands
 {
-    // test it
-    //using System;
+    extern alias UIANET;
     using System.Management.Automation;
     using System.Windows.Automation;
 
     /// <summary>
-    /// Description of UnregisterUIAEventCommand.
+    /// Description of UnregisterUiaEventCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Unregister, "UIAEvent")]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class UnregisterUIAEventCommand : EventCmdletBase
+    [Cmdlet(VerbsLifecycle.Unregister, "UiaEvent")]
+    
+    public class UnregisterUiaEventCommand : EventCmdletBase
     {
         #region Parameters
         [Parameter(Mandatory = false)]
@@ -32,12 +31,12 @@ namespace UIAutomation.Commands
         [Parameter(Mandatory = false)]
         // 20131109
         //internal new System.Windows.Automation.AutomationElement InputObject { get; set; }
-        internal new IMySuperWrapper InputObject { get; set; }
+        internal new IUiElement InputObject { get; set; }
         #endregion Parameters
         
         protected override void BeginProcessing()
         {
-            if (this.All) {
+            if (All) {
                 try {
 
                     Automation.RemoveAllEventHandlers();
@@ -67,7 +66,7 @@ namespace UIAutomation.Commands
 //                        new ErrorDetails("Unable to unregister all registerd event handlers");
 //                    WriteError(this, err, true);
                     
-                    this.WriteError(
+                    WriteError(
                         this,
                         "Unable to unregister all registered event handlers",
                         "UnableUnregisterEventhandlers",
@@ -77,17 +76,20 @@ namespace UIAutomation.Commands
             } else {
                 try {
 
-                    if (this.InputObject != null && 
-                        this.InputObject.Current.ProcessId > 0 &&
+                    if (InputObject != null && 
+                        InputObject.Current.ProcessId > 0 &&
                         // (int)this.InputObject.Current.ProcessId > 0 &&
-                        this.EventHandler != null) {
+                        EventHandler != null) {
 
                         Automation.RemoveAutomationEventHandler(
                             null,
                             // 20131109
                             //this.InputObject,
-                            this.InputObject.SourceElement,
-                            this.EventHandler);
+                            // 20131118
+                            // property to method
+                            //this.InputObject.SourceElement,
+                            InputObject.GetSourceElement(),
+                            EventHandler);
 
                     }
                 } 
@@ -108,10 +110,10 @@ namespace UIAutomation.Commands
 //                                             this.EventHandler.Target.ToString());
 //                        WriteError(this, err, true);
                         
-                        this.WriteError(
+                        WriteError(
                             this,
                             "Unable to remove the event handler " +
-                            this.EventHandler.ToString(),
+                            EventHandler.ToString(),
                             "UnableToUnregister",
                             ErrorCategory.InvalidArgument,
                             true);

@@ -13,11 +13,11 @@ namespace TMX.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of OpenTMXTestPlatformCommand.
+    /// Description of OpenTmxTestPlatformCommand.
     /// </summary>
-    public class OpenTMXTestPlatformCommand : PlatformCmdletBase
+    public class OpenTmxTestPlatformCommand : PlatformCmdletBase
     {
-        public OpenTMXTestPlatformCommand()
+        public OpenTmxTestPlatformCommand()
         {
         }
         
@@ -27,7 +27,7 @@ namespace TMX.Commands
             
             // temporary
             ITestPlatform platform =
-                TMXHelper.GetTestPlatformById(this.Id);
+                TmxHelper.GetTestPlatformById(this.Id);
             this.WriteObject(this, platform);
         }
     }

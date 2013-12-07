@@ -13,12 +13,12 @@ namespace TMX.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of InitializeTMXResultsStorageCommand.
+    /// Description of InitializeTmxResultsStorageCommand.
     /// </summary>
-    [Cmdlet(VerbsData.Initialize, "TMXResultsStorage", DefaultParameterSetName = "WithCredentials")]
-    public class InitializeTMXResultsStorageCommand : DatabaseCmdletBase
+    [Cmdlet(VerbsData.Initialize, "TmxResultsStorage", DefaultParameterSetName = "WithCredentials")]
+    public class InitializeTmxResultsStorageCommand : DatabaseCmdletBase
     {
-        public InitializeTMXResultsStorageCommand()
+        public InitializeTmxResultsStorageCommand()
         {
         }
         

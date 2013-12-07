@@ -6,17 +6,15 @@
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
-// test it
-//using System;
 
 namespace UIAutomation.Commands.Container
 {
     /// <summary>
-    /// Description of NewUIAContainerCommand.
+    /// Description of NewUiaContainerCommand.
     /// </summary>
-    public class NewUIAContainerCommand
+    public class NewUiaContainerCommand
     {
-        public NewUIAContainerCommand()
+        public NewUiaContainerCommand()
         {
         }
     }

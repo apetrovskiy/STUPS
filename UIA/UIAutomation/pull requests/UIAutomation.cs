@@ -1,6 +1,7 @@
 ﻿
 namespace AVG.Automation.Cmdlets
 {
+    extern alias UIANET;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -11,14 +12,14 @@ namespace AVG.Automation.Cmdlets
     using System.Runtime.InteropServices;
     using System.Collections;
     using System.Diagnostics;
-    using AVG.Automation.Cmdlets.NativeTypes;
+    using NativeTypes;
     using UIAutomation;
 
     /// <summary>
     /// Invokes selected WindowPattern on AutomationElement
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAWindowPattern")]
-    public class InvokeUIAWindowPattern : Cmdlet
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaWindowPattern")]
+    public class InvokeUiaWindowPattern : Cmdlet
     {
         /// <summary>
         /// Parent object that is target for pattern
@@ -26,7 +27,7 @@ namespace AVG.Automation.Cmdlets
         [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true)]
         // 20131109
         //public AutomationElement InputObject { get; set; }
-        public IMySuperWrapper InputObject { get; set; }
+        public IUiElement InputObject { get; set; }
 
         /// <summary>
         /// Pattern name to be invoked
@@ -81,8 +82,8 @@ namespace AVG.Automation.Cmdlets
     /// <summary>
     /// Sets control to foreground
     /// </summary>
-    [Cmdlet(VerbsCommon.Set, "UIAControlForeground")]
-    public class SetUIAControlForeground : Cmdlet
+    [Cmdlet(VerbsCommon.Set, "UiaControlForeground")]
+    public class SetUiaControlForeground : Cmdlet
     {
         /// <summary>
         /// Window to be set to foreground
@@ -90,7 +91,7 @@ namespace AVG.Automation.Cmdlets
         [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true)]
         // 20131109
         //public AutomationElement InputObject { get; set; }
-        public IMySuperWrapper InputObject { get; set; }
+        public IUiElement InputObject { get; set; }
 
         protected override void ProcessRecord()
         {
@@ -112,8 +113,8 @@ namespace AVG.Automation.Cmdlets
     /// <summary>
     /// Puts DateTime into DateTimePicker Win32 object
     /// </summary>
-    [Cmdlet(VerbsCommon.Set, "UIADateTimePickerDate")]
-    public class SetUIADateTimePickerDate : Cmdlet
+    [Cmdlet(VerbsCommon.Set, "UiaDateTimePickerDate")]
+    public class SetUiaDateTimePickerDate : Cmdlet
     {
         /// <summary>
         /// DateTimePicker input object
@@ -121,7 +122,7 @@ namespace AVG.Automation.Cmdlets
         [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true)]
         // 20131109
         //public AutomationElement InputObject { get; set; }
-        public IMySuperWrapper InputObject { get; set; }
+        public IUiElement InputObject { get; set; }
 
         /// <summary>
         /// DateTime to bet set

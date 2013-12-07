@@ -9,6 +9,7 @@
 
 namespace UIAutomation
 {
+    extern alias UIANET;
     using System;
     using System.Collections;
     using System.Collections.Generic;
@@ -16,109 +17,116 @@ namespace UIAutomation
     using System.Linq;
     using Ninject;
     
-	//public class AutomationElementCollection : ICollection, IEnumerable, IAutomationElementCollection
-	public class MySuperCollection : IMySuperCollection
+	public class UiEltCollection : IUiEltCollection
 	{
-	    //private AutomationElementCollection collectionHolder;
-	    //private ICollection collectionHolder;
-	    private List<IMySuperWrapper> collectionHolder =
-	        new List<IMySuperWrapper>();
+	    private readonly List<IUiElement> _collectionHolder =
+	        new List<IUiElement>();
 	    
-		//private AutomationElement[] _elements;
-		// 20131108
-		//public AutomationElement this[int index] {
-		public IMySuperWrapper this[int index] {
-		    //get { return this.collectionHolder[index]; } //return this._elements[index]; }
-		    //get { return ((AutomationElementCollection)this.collectionHolder)[index]; } //return this._elements[index]; }
-		    //get { return new MySuperWrapper(((AutomationElementCollection)this.collectionHolder)[index]); } //return this._elements[index]; }
-		    //get { return new MySuperWrapper(this.collectionHolder[index]); } //return this._elements[index]; }
-		    get { return this.collectionHolder[index]; }
+		public IUiElement this[int index] {
+		    get { return _collectionHolder[index]; }
 		}
 		public int Count {
-		    get { return this.collectionHolder.Count; } //return this._elements.Length; }
+		    get { return _collectionHolder.Count; } //return this._elements.Length; }
 		}
 		public virtual object SyncRoot {
-		    get { return this.collectionHolder; } //return this; }
+		    get { return _collectionHolder; } //return this; }
 		}
 		public virtual bool IsSynchronized {
 			get { return false; }
 		}
-		//internal MySuperCollection(AutomationElement[] elements)
-		[Inject]
-		//internal MySuperCollection(AutomationElementCollection elements)
-		public MySuperCollection(AutomationElementCollection elements)
-        /*
-        public MySuperCollection(AutomationElementCollection elements)
-        */
-        {
-		    foreach (AutomationElement element in elements) {
-		        
-		        // 20131112
-		        //this.collectionHolder.Add(new MySuperWrapper(element));
-		        this.collectionHolder.Add(ObjectsFactory.GetMySuperWrapper(element));
-		    }
-		}
-		
-		//internal MySuperCollection(IMySuperCollection elements)
-		public MySuperCollection(IMySuperCollection elements)
+        
+		public UiEltCollection(AutomationElementCollection elements)
 		{
-		    foreach (IMySuperWrapper element in elements) {
-		        
-		        this.collectionHolder.Add(element);
+		    foreach (AutomationElement element in elements.Cast<AutomationElement>().Where(element => null != element))
+		    {
+		        _collectionHolder.Add(AutomationFactory.GetUiElement(element));
 		    }
+		    /*
+            foreach (AutomationElement element in elements) {
+		        
+		        if (null != element) {
+    		        _collectionHolder.Add(ObjectsFactory.GetUiElement(element));
+		        }
+		    }
+            */
 		}
-		
-		//
-		//internal MySuperCollection(IEnumerable elements)
-		public MySuperCollection(IEnumerable elements)
-        /*
-        internal MySuperCollection(ICollection elements)
-        */
+
+	    public UiEltCollection(IUiEltCollection elements)
+	    {
+	        foreach (IUiElement element in elements.Cast<IUiElement>().Where(element => null != element))
+	        {
+	            _collectionHolder.Add(element);
+	        }
+	        /*
+            foreach (IUiElement element in elements) {
+		        
+		        if (null != element) {
+		          _collectionHolder.Add(element);
+		        }
+		    }
+            */
+	    }
+
+	    public UiEltCollection(IEnumerable elements)
+	    {
+	        foreach (var element in elements.Cast<object>().Where(element => null != element))
+	        {
+	            _collectionHolder.Add((IUiElement)element);
+	        }
+	        /*
+            foreach (var element in elements) {
+		        
+		        if (null != element) {
+		          _collectionHolder.Add((IUiElement)element);
+		        }
+		    }
+            */
+	    }
+
+	    [Inject]
+		public UiEltCollection(bool fake)
 		{
-		    foreach (var element in elements) {
-		        
-		        this.collectionHolder.Add((IMySuperWrapper)element);
-		    }
 		}
-		//
 		
 		public virtual void CopyTo(Array array, int index)
 		{
 			//this._elements.CopyTo(array, index);
-			//this.collectionHolder.CopyTo(array, index);
+			//this._collectionHolder.CopyTo(array, index);
 		}
 		public virtual void CopyTo(AutomationElement[] array, int index)
 		{
 			//((ICollection)this).CopyTo(array, index);
-			//this.collectionHolder.CopyTo(array, index);
+			//this._collectionHolder.CopyTo(array, index);
 		}
-		public virtual void CopyTo(IMySuperWrapper[] array, int index)
+		public virtual void CopyTo(IUiElement[] array, int index)
 		{
-			//((ICollection)this).CopyTo(array, index);
-			this.collectionHolder.CopyTo(array, index);
+			_collectionHolder.CopyTo(array, index);
 		}
 		public IEnumerator GetEnumerator()
 		{
-			//return this._elements.GetEnumerator();
-			return this.collectionHolder.GetEnumerator();
+			return _collectionHolder.GetEnumerator();
 		}
 		
-		public virtual void AddElement(IMySuperWrapper element)
+		public virtual void AddElement(IUiElement element)
 		{
-		    this.collectionHolder.Add(element);
+		    _collectionHolder.Add(element);
 		}
 		
-		//public AutomationElementCollection SourceCollection
-		//public IMySuperCollection SourceCollection
-		public virtual List<IMySuperWrapper> SourceCollection
+		public virtual List<IUiElement> SourceCollection
 		{
-		    //get { return this.collectionHolder; }
-		    //get { return ((AutomationElementCollection)this.collectionHolder); }
-		    //get { return (IMySuperCollection)this.collectionHolder.Cast<IMySuperWrapper>(); }
-		    //get { return (IMySuperCollection)this.collectionHolder.AsEnumerable<IMySuperWrapper>(); }
-		    get { return this.collectionHolder; }
-		    //internal 
-		    //set { this.collectionHolder = value; }
+		    get { return _collectionHolder; }
+		}
+		
+		public void Dispose()
+		{
+//		    if (null != this._collectionHolder) {
+//		        for (int i = 0; i < this._collectionHolder.Count; i++) {
+//		            if (null != this._collectionHolder[i]) this._collectionHolder[i].Dispose();
+//		        }
+//		    }
+		    
+		    // 20131120
+		    GC.SuppressFinalize(this);
 		}
 	}
 }

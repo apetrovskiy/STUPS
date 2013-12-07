@@ -48,7 +48,7 @@ namespace ExampleExportTestResultsFromCSharp
             foreach (TestStory story in stories) {
                 
                 // creating a new test suite == user story
-                TMX.TMXHelper.NewTestSuite(
+                TMX.TmxHelper.NewTestSuite(
                     story.Name,
                     story.Id,
                     "platform",
@@ -67,10 +67,10 @@ namespace ExampleExportTestResultsFromCSharp
                         
                         // adding a new test scenario to the test suite
                         // test scenario == name and id of th corresponding test result
-                        TMX.TMXHelper.AddTestScenario(cmdlet);
+                        TMX.TmxHelper.AddTestScenario(cmdlet);
                         
                         // create a test result with the same name and id as the test scenario has
-                        TMX.TMXHelper.CloseTestResult(
+                        TMX.TmxHelper.CloseTestResult(
                             result.Name,
                             result.Id,
                             true, // Passed
@@ -117,7 +117,7 @@ namespace ExampleExportTestResultsFromCSharp
             
             // export data to an XML sheet
             Console.WriteLine("export to XML");
-            TMX.TMXHelper.ExportResultsToXML(
+            TMX.TmxHelper.ExportResultsToXML(
                 (new ImportExportCmdletBase()),
                 @"C:\1\export_file.xml");
             

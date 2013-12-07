@@ -7,16 +7,17 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-using System.Linq;
-
 namespace UIAutomation
 {
+    extern alias UIANET;
     using System;
     using System.Management.Automation;
     using System.Windows.Automation;
-    using UIAutomation.Commands;
+    using Commands;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Linq;
+    using System.Text.RegularExpressions;
     
     /// <summary>
     /// Description of WizardHelper.
@@ -28,7 +29,7 @@ namespace UIAutomation
         }
         
         //public static void CreateWizard(WizardContainerCmdletBase cmdlet)
-        public static void CreateWizard(NewUIAWizardCommand cmdlet)
+        public static void CreateWizard(NewUiaWizardCommand cmdlet)
         {
             if (!cmdlet.ValidateWizardName(cmdlet.Name)) {
                 
@@ -404,7 +405,7 @@ namespace UIAutomation
             }
         }
         
-        public static void GetWizard(GetUIAWizardCommand cmdlet)
+        public static void GetWizard(GetUiaWizardCommand cmdlet)
         {
             //Wizard wzd = GetWizard(Name);
             Wizard wzd = cmdlet.GetWizard(cmdlet.Name);
@@ -425,7 +426,7 @@ namespace UIAutomation
             }
         }
         
-        public static void RemoveWizardStep(RemoveUIAWizardStepCommand cmdlet)
+        public static void RemoveWizardStep(RemoveUiaWizardStepCommand cmdlet)
         {
             
             //if (InputObject != null && InputObject is Wizard) {
@@ -479,7 +480,7 @@ namespace UIAutomation
             // if (SearchCriteria != null && SearchCriteria.Length > 0) {
         }
         
-        public static void StepWizardStep(StepUIAWizardCommand cmdlet)
+        public static void StepWizardStep(StepUiaWizardCommand cmdlet)
         {
             // getting the step the user ordered to run
             //if (InputObject != null && InputObject is Wizard) {
@@ -535,7 +536,7 @@ namespace UIAutomation
                     
                     // if there is no SearchCriteria, for example, there's at least one @{}
                     if (stepToRun.SearchCriteria.Length == 0 ||
-                        System.Text.RegularExpressions.Regex.IsMatch(
+                        Regex.IsMatch(
                             stepToRun.SearchCriteria.ToString(),
                             @"[\@][\{]\s+?[\}]")) {
                         result = true;
@@ -563,8 +564,8 @@ namespace UIAutomation
                         //SleepAndRunScriptBlocks(this);
                         cmdlet.SleepAndRunScriptBlocks(cmdlet);
                         // wait until timeout expires or the state will be confirmed as valid
-                        System.DateTime nowDate =
-                            System.DateTime.Now;
+                        DateTime nowDate =
+                            DateTime.Now;
                         //if ((nowDate - startDate).TotalSeconds > this.Timeout / 1000) {
                         if ((nowDate - cmdlet.StartDate).TotalSeconds > cmdlet.Timeout / 1000) {
                             //WriteObject(this, false);

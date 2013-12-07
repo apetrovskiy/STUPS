@@ -13,13 +13,13 @@ namespace TMX.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of GetTMXTestCaseCommand.
+    /// Description of GetTmxTestCaseCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "TMXTestCase")]
+    [Cmdlet(VerbsCommon.Get, "TmxTestCase")]
     [OutputType(typeof(ITestCase))]
-    public class GetTMXTestCaseCommand : TestCaseCmdletBase
+    public class GetTmxTestCaseCommand : TestCaseCmdletBase
     {
-        public GetTMXTestCaseCommand()
+        public GetTmxTestCaseCommand()
         {
         }
     }

@@ -13,19 +13,19 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
 
     /// <summary>
-    /// Description of GetUIAWizardCommand.
+    /// Description of GetUiaWizardCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAWizard")]
-    public class GetUIAWizardCommand : WizardContainerCmdletBase
+    [Cmdlet(VerbsCommon.Get, "UiaWizard")]
+    public class GetUiaWizardCommand : WizardContainerCmdletBase
     {
-        public GetUIAWizardCommand()
+        public GetUiaWizardCommand()
         {
         }
         
         protected override void BeginProcessing()
         {
-            UIAGetWizardCommand command =
-                new UIAGetWizardCommand(this);
+            UiaGetWizardCommand command =
+                new UiaGetWizardCommand(this);
             command.Execute();
             
 //            Wizard wzd = GetWizard(Name);

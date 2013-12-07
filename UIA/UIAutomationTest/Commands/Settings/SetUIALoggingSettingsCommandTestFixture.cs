@@ -14,10 +14,10 @@ namespace UIAutomationTest.Commands.Settings
     using System.Management.Automation;
 
     /// <summary>
-    /// Description of SetUIALoggingSettingsCommandTestFixture.
+    /// Description of SetUiaLoggingSettingsCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Set-UIALoggingSettingsCommand test")]
-    public class SetUIALoggingSettingsCommandTestFixture
+    [TestFixture] // [TestFixture(Description="Set-UiaLoggingSettingsCommand test")]
+    public class SetUiaLoggingSettingsCommandTestFixture
     {
         [SetUp]
         public void PrepareRunspace()
@@ -27,12 +27,12 @@ namespace UIAutomationTest.Commands.Settings
         
         [Test] //[Test(Description="TBD")]
         [Category("Slow")][Category("Settings")]
-        [Category("Slow")][Category("Set_UIALoggingSettings")]
+        [Category("Slow")][Category("Set_UiaLoggingSettings")]
         public void SetLog_On1()
         {
             string logResponse = "True";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = Set-UIALoggingSettings -Log " + 
+                @"$null = Set-UiaLoggingSettings -Log " + 
                 "; " + 
                 @"[UIAutomation.Preferences]::Log;",
                 logResponse);
@@ -40,13 +40,13 @@ namespace UIAutomationTest.Commands.Settings
         
         [Test] //[Test(Description="TBD")]
         [Category("Slow")][Category("Settings")]
-        [Category("Slow")][Category("Set_UIALoggingSettings")]
+        [Category("Slow")][Category("Set_UiaLoggingSettings")]
         public void SetLog_On2()
         {
             string log = "true";
             string logResponse = "True";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = Set-UIALoggingSettings -Log:$" + 
+                @"$null = Set-UiaLoggingSettings -Log:$" + 
                 log +
                 "; " + 
                 @"[UIAutomation.Preferences]::Log;",
@@ -55,13 +55,13 @@ namespace UIAutomationTest.Commands.Settings
         
         [Test] //[Test(Description="TBD")]
         [Category("Slow")][Category("Settings")]
-        [Category("Slow")][Category("Set_UIALoggingSettings")]
+        [Category("Slow")][Category("Set_UiaLoggingSettings")]
         public void SetLog_Off()
         {
             string log = "false";
             string logResponse = "False";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = Set-UIALoggingSettings -Log:$" + 
+                @"$null = Set-UiaLoggingSettings -Log:$" + 
                 log +
                 "; " + 
                 @"[UIAutomation.Preferences]::Log;",
@@ -70,12 +70,12 @@ namespace UIAutomationTest.Commands.Settings
         
         [Test] //[Test(Description="TBD")]
         [Category("Slow")][Category("Settings")]
-        [Category("Slow")][Category("Set_UIALoggingSettings")]
+        [Category("Slow")][Category("Set_UiaLoggingSettings")]
         public void SetLogPath_Simple()
         {
             string logPath = @"C:\1\Log.txt";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = Set-UIALoggingSettings -Log " + 
+                @"$null = Set-UiaLoggingSettings -Log " + 
                 " -Path " + 
                 logPath +
                 "; " + 

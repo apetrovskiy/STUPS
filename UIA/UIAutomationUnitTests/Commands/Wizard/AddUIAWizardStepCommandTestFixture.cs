@@ -9,23 +9,16 @@
 
 namespace UIAutomationUnitTests.Commands.Wizard
 {
-    using System;
     using MbUnit.Framework;
-    using PSTestLib;
     using UIAutomation;
-    using System.Management.Automation;
     
 	/// <summary>
-	/// Description of AddUIAWizardStepCommandTestFixture.
+	/// Description of AddUiaWizardStepCommandTestFixture.
 	/// </summary>
 	[TestFixture]
-	public class AddUIAWizardStepCommandTestFixture
+	public class AddUiaWizardStepCommandTestFixture
 	{
-		public AddUIAWizardStepCommandTestFixture()
-		{
-		}
-		
-        [SetUp]
+	    [SetUp]
         public void SetUp()
         {
             UnitTestingHelper.PrepareUnitTestDataStore();
@@ -38,12 +31,12 @@ namespace UIAutomationUnitTests.Commands.Wizard
         }
         
         [Test]
-        [Description("Add-UIAWizardStep")]
+        [Description("Add-UiaWizardStep")]
         [Category("Fast")]
         [Category("Wizard")]
         public void AddWizardStep_StandardName()
         {
-            string expectedName = "name";
+            const string expectedName = "name";
             UnitTestingHelper.AddWizardStep(expectedName, null, null);
 
             Assert.AreEqual(
@@ -52,12 +45,12 @@ namespace UIAutomationUnitTests.Commands.Wizard
         }
         
         [Test]
-        [Description("Add-UIAWizardStep")]
+        [Description("Add-UiaWizardStep")]
         [Category("Fast")]
         [Category("Wizard")]
         public void AddWizardStep_ComplexName()
         {
-            string expectedName = @"\\st//ep`` name;;";
+            const string expectedName = @"\\st//ep`` name;;";
             UnitTestingHelper.AddWizardStep(expectedName, null, null);
 
             Assert.AreEqual(

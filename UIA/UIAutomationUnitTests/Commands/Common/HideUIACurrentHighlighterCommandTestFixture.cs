@@ -6,17 +6,13 @@
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
-using System;
 
 namespace UIAutomationUnitTests.Commands.Common
 {
     /// <summary>
-    /// Description of HideUIACurrentHighlighterCommandTestFixture.
+    /// Description of HideUiaCurrentHighlighterCommandTestFixture.
     /// </summary>
-    public class HideUIACurrentHighlighterCommandTestFixture
+    public class HideUiaCurrentHighlighterCommandTestFixture
     {
-        public HideUIACurrentHighlighterCommandTestFixture()
-        {
-        }
     }
 }

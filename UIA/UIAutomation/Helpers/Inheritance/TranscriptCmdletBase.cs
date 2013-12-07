@@ -9,9 +9,14 @@
 
 namespace UIAutomation
 {
+    extern alias UIANET;
     using System;
     using System.Management.Automation;
     using System.Windows.Automation;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.IO;
 
     /// <summary>
     /// Description of TranscriptCmdletBase.
@@ -48,16 +53,14 @@ namespace UIAutomation
         
         internal bool Paused { get; set; }
         
-        public System.Collections.ArrayList LastRecordedItem = 
-            new System.Collections.ArrayList();
+        public List<string> LastRecordedItem =
+            new List<string>();
 
         // the list of all recorded controls' patterns
-        public System.Collections.ArrayList RecordingPatterns = 
-            new System.Collections.ArrayList();
+        public ArrayList RecordingPatterns = 
+            new ArrayList();
         
-        // 20131109
-        //protected internal AutomationElement thePreviouslyUsedElement = null;
-        protected internal IMySuperWrapper thePreviouslyUsedElement = null;
+        protected internal IUiElement thePreviouslyUsedElement = null;
         
         internal new void StopProcessing()
         {
@@ -66,14 +69,15 @@ namespace UIAutomation
         }
         
         public string WritingRecord(
-            object recordingItemCode,
+            List<string> recordingItemCode,
             object recordingItemPatterns,
-            System.IO.StreamWriter writerToLongFile,
-            System.IO.StreamWriter writerToShortFile)
+            StreamWriter writerToLongFile,
+            StreamWriter writerToShortFile)
         {
             string result = string.Empty;
             try {
-                System.Collections.ArrayList recordList = (System.Collections.ArrayList)recordingItemCode;
+                List<string> recordList = recordingItemCode;
+                
                 string longRecordingString = String.Empty;
                 string shortRecordingString = String.Empty;
                 string tempString = String.Empty;
@@ -81,10 +85,10 @@ namespace UIAutomation
                     tempString = String.Empty;
                     tempString += recordList[i];
                     if (i < (recordList.Count - 1)) {
-                        if (tempString.Contains("Get-UIAWindow")) {
+                        if (tempString.Contains("Get-UiaWindow")) {
                             tempString = 
-                                tempString.Replace("Get-UIAWindow",
-                                                      "Get-UIAChildWindow");
+                                tempString.Replace("Get-UiaWindow",
+                                                      "Get-UiaChildWindow");
                         }
                         // if the second or further in the pipeline
                         tempString = 
@@ -98,7 +102,7 @@ namespace UIAutomation
                         // the last in the pipeline
                         longRecordingString += ";";
                     }
-                    if (i != (recordList.Count - 1) && i != 0 && !tempString.Contains("Get-UIAChildWindow") && i != 1 &&
+                    if (i != (recordList.Count - 1) && i != 0 && !tempString.Contains("Get-UiaChildWindow") && i != 1 &&
                         !tempString.Contains("Tree") && !tempString.Contains("Menu") && !tempString.Contains("Tool") &&
                         !tempString.Contains("Tab") && !tempString.Contains("Table") && !tempString.Contains("List") &&
                         !tempString.Contains("Grid") && !tempString.Contains("Button") && !tempString.Contains("Combo"))
@@ -115,7 +119,7 @@ namespace UIAutomation
                     /*
                     if (i == (recordList.Count - 1) ||
                         i == 0 || // the last element or invoked event
-                        tempString.Contains("Get-UIAChildWindow") ||
+                        tempString.Contains("Get-UiaChildWindow") ||
                         i == 1 || //) // the last element in case of having invoked event
                         tempString.Contains("Tree") ||
                         tempString.Contains("Menu") ||

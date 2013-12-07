@@ -13,14 +13,14 @@ namespace TMX.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of SetTMXCurrentTestResultCommand.
+    /// Description of SetTmxCurrentTestResultCommand.
     /// </summary>
     // 20130330
-    //[Cmdlet(VerbsCommon.Set, "TMXCurrentTestResult")]
-    [Cmdlet(VerbsCommon.Set, "TMXCurrentTestResult", DefaultParameterSetName = "DefaultLogicId")]
-    public class SetTMXCurrentTestResultCommand : TestResultCmdletBase
+    //[Cmdlet(VerbsCommon.Set, "TmxCurrentTestResult")]
+    [Cmdlet(VerbsCommon.Set, "TmxCurrentTestResult", DefaultParameterSetName = "DefaultLogicId")]
+    public class SetTmxCurrentTestResultCommand : TestResultCmdletBase
     {
-        public SetTMXCurrentTestResultCommand()
+        public SetTmxCurrentTestResultCommand()
         {
             // 20130626
             this.TestOrigin = TestResultOrigins.Logical;
@@ -38,8 +38,8 @@ namespace TMX.Commands
         
         protected override void BeginProcessing()
         {
-            TMXSetCurrentTestResultCommand command =
-                new TMXSetCurrentTestResultCommand(this);
+            TmxSetCurrentTestResultCommand command =
+                new TmxSetCurrentTestResultCommand(this);
             command.Execute();
         }
     }

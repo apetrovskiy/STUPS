@@ -13,12 +13,12 @@ namespace TMX.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of ImportTMXTestResultsCommand.
+    /// Description of ImportTmxTestResultsCommand.
     /// </summary>
-    [Cmdlet(VerbsData.Import, "TMXTestResults")]
-    public class ImportTMXTestResultsCommand : ImportExportCmdletBase
+    [Cmdlet(VerbsData.Import, "TmxTestResults")]
+    public class ImportTmxTestResultsCommand : ImportExportCmdletBase
     {
-        public ImportTMXTestResultsCommand()
+        public ImportTmxTestResultsCommand()
         {
         }
         
@@ -32,11 +32,11 @@ namespace TMX.Commands
             string reportFormat = this.As.ToUpper();
             switch (reportFormat){
                 case "XML":
-                    TMXHelper.ImportResultsFromXML(this, this.Path);
+                    TmxHelper.ImportResultsFromXML(this, this.Path);
                     break;
                 case "JUNIT":
                 case "JUNITXML":
-                    TMXHelper.ImportResultsFromJUnitXML(this, this.Path);
+                    TmxHelper.ImportResultsFromJUnitXML(this, this.Path);
                     break;
                 case "HTML":
                     
@@ -74,7 +74,7 @@ namespace TMX.Commands
             throw new NotImplementedException();
         }
         
-        void ImportResultsFromHTML(ImportTMXTestResultsCommand importTMXTestResultsCommand0, string path)
+        void ImportResultsFromHTML(ImportTmxTestResultsCommand importTmxTestResultsCommand0, string path)
         {
             throw new NotImplementedException();
         }

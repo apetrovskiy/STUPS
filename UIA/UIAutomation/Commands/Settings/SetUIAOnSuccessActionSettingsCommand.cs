@@ -13,21 +13,21 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
 
     /// <summary>
-    /// Description of SetUIAOnSuccessActionSettingsCommand.
+    /// Description of SetUiaOnSuccessActionSettingsCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Set, "UIAOnSuccessActionSettings")]
-    public class SetUIAOnSuccessActionSettingsCommand : ModuleSettingsActionCmdletBase
+    [Cmdlet(VerbsCommon.Set, "UiaOnSuccessActionSettings")]
+    public class SetUiaOnSuccessActionSettingsCommand : ModuleSettingsActionCmdletBase
     {
-        public SetUIAOnSuccessActionSettingsCommand()
+        public SetUiaOnSuccessActionSettingsCommand()
         {
-            this.Action = Preferences.OnSuccessAction;
-            this.Delay = Preferences.OnSuccessDelay;
+            Action = Preferences.OnSuccessAction;
+            Delay = Preferences.OnSuccessDelay;
         }
         
         protected override void BeginProcessing()
         {
-            Preferences.OnSuccessAction = this.Action;
-            Preferences.OnSuccessDelay = this.Delay;
+            Preferences.OnSuccessAction = Action;
+            Preferences.OnSuccessDelay = Delay;
         }
     }
 }

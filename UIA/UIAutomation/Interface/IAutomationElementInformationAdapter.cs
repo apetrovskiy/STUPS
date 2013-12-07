@@ -9,11 +9,12 @@
 
 namespace UIAutomation
 {
-	using System;
+    extern alias UIANET;
+	//using System;
 	using System.Windows;
 	using System.Windows.Automation;
 	
-	public interface IMySuperWrapperInformation
+	public interface IUiElementInformation
 	{
 		ControlType ControlType { get; }
 		string LocalizedControlType { get; }

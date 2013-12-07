@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMXUnitTests.Commands.Status
+namespace TmxUnitTests.Commands.Status
 {
     using System;
     using MbUnit.Framework;
@@ -15,12 +15,12 @@ namespace TMXUnitTests.Commands.Status
     using TMX;
     
     /// <summary>
-    /// Description of GetTMXTestScenarioStatusCommandTestFixture.
+    /// Description of GetTmxTestScenarioStatusCommandTestFixture.
     /// </summary>
     [TestFixture]
-    public class GetTMXTestScenarioStatusCommandTestFixture
+    public class GetTmxTestScenarioStatusCommandTestFixture
     {
-        public GetTMXTestScenarioStatusCommandTestFixture()
+        public GetTmxTestScenarioStatusCommandTestFixture()
         {
         }
         
@@ -36,7 +36,7 @@ namespace TMXUnitTests.Commands.Status
         }
         
         [Test]
-        [Description("Get-TMXTestScenarioStatus")]
+        [Description("Get-TmxTestScenarioStatus")]
         [Category("Fast")]
         public void GetTestScenario_Current_New()
         {
@@ -47,7 +47,7 @@ namespace TMXUnitTests.Commands.Status
         }
         
         [Test]
-        [Description("New-TMXTestScenario -Name Scenario1; Get-TMXTestScenarioStatus")]
+        [Description("New-TmxTestScenario -Name Scenario1; Get-TmxTestScenarioStatus")]
         [Category("Fast")]
         public void GetTestScenario_Current_WithNotTested()
         {
@@ -60,7 +60,7 @@ namespace TMXUnitTests.Commands.Status
         }
         
         [Test]
-        [Description("New-TMXTestScenario -Name Scenario1; Close-TMXTestResult -TestResultName result -TestPassed; Get-TMXTestScenarioStatus")]
+        [Description("New-TmxTestScenario -Name Scenario1; Close-TmxTestResult -TestResultName result -TestPassed; Get-TmxTestScenarioStatus")]
         [Category("Fast")]
         public void GetTestScenario_Current_WithPassed()
         {
@@ -74,7 +74,7 @@ namespace TMXUnitTests.Commands.Status
         }
         
         [Test]
-        [Description("New-TMXTestScenario -Name Scenario1; Close-TMXTestResult -TestResultName result -TestPassed:$false; Get-TMXTestScenarioStatus")]
+        [Description("New-TmxTestScenario -Name Scenario1; Close-TmxTestResult -TestResultName result -TestPassed:$false; Get-TmxTestScenarioStatus")]
         [Category("Fast")]
         public void GetTestScenario_Current_WithFailed()
         {
@@ -86,7 +86,7 @@ namespace TMXUnitTests.Commands.Status
         }
         
         [Test]
-        [Description("New-TMXTestScenario -Name Scenario1; Close-TMXTestResult -TestResultName result -TestPassed -KnownIssue; Get-TMXTestScenarioStatus")]
+        [Description("New-TmxTestScenario -Name Scenario1; Close-TmxTestResult -TestResultName result -TestPassed -KnownIssue; Get-TmxTestScenarioStatus")]
         [Category("Fast")]
         public void GetTestScenario_Current_WithPassedKnownIssue()
         {
@@ -99,7 +99,7 @@ namespace TMXUnitTests.Commands.Status
         }
         
         [Test]
-        [Description("New-TMXTestScenario -Name Scenario1; Close-TMXTestResult -TestResultName result -TestPassed:$false -KnownIssue; Get-TMXTestScenarioStatus")]
+        [Description("New-TmxTestScenario -Name Scenario1; Close-TmxTestResult -TestResultName result -TestPassed:$false -KnownIssue; Get-TmxTestScenarioStatus")]
         [Category("Fast")]
         public void GetTestScenario_Current_WithFailedKnownIssue()
         {

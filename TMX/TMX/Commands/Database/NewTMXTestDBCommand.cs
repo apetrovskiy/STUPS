@@ -13,13 +13,13 @@ namespace TMX.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of NewTMXTestDBCommand.
+    /// Description of NewTmxTestDBCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.New, "TMXTestDB")]
+    [Cmdlet(VerbsCommon.New, "TmxTestDB")]
     [OutputType(typeof(IDatabase))]
-    public class NewTMXTestDBCommand : DatabaseFileOpenCmdletBase //DatabaseFileCmdletBase
+    public class NewTmxTestDBCommand : DatabaseFileOpenCmdletBase //DatabaseFileCmdletBase
     {
-        public NewTMXTestDBCommand()
+        public NewTmxTestDBCommand()
         {
         }
         

@@ -6,7 +6,7 @@
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
-namespace UIARunner
+namespace UiaRunner
 {
     partial class AboutForm
     {
@@ -73,7 +73,7 @@ namespace UIARunner
             this.MinimizeBox = false;
             this.Name = "AboutForm";
             this.ShowInTaskbar = false;
-            this.Text = "About UIARunner";
+            this.Text = "About UiaRunner";
             this.ResumeLayout(false);
         }
         private System.Windows.Forms.Button btnOK;

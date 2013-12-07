@@ -13,17 +13,17 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of ShowUIATaskManagerCommand.
+    /// Description of ShowUiaTaskManagerCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Show, "UIATaskManager")]
-    public class ShowUIATaskManagerCommand : HotkeyCmdletBase
+    [Cmdlet(VerbsCommon.Show, "UiaTaskManager")]
+    public class ShowUiaTaskManagerCommand : HotkeyCmdletBase
     {
         protected override void BeginProcessing()
         {
-            this.keyCodes.Add(0x11);
-            this.keyCodes.Add(0x10);
-            this.keyCodes.Add(0x1B);
-            this.processKeys();
+            keyCodes.Add(0x11);
+            keyCodes.Add(0x10);
+            keyCodes.Add(0x1B);
+            processKeys();
         }
     }
 }

@@ -13,12 +13,12 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of SetUIACurrentTestProfileCommand.
+    /// Description of SetUiaCurrentTestProfileCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Set, "UIACurrentTestProfile")]
-    public class SetUIACurrentTestProfileCommand : ProfileInputCmdletBase
+    [Cmdlet(VerbsCommon.Set, "UiaCurrentTestProfile")]
+    public class SetUiaCurrentTestProfileCommand : ProfileInputCmdletBase
     {
-        public SetUIACurrentTestProfileCommand()
+        public SetUiaCurrentTestProfileCommand()
         {
         }
     }

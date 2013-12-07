@@ -11,23 +11,21 @@ using System.Linq;
 
 namespace UIAutomation.Commands
 {
-    // test it
-    //using System;
     using System.Management.Automation;
 
     /// <summary>
-    /// Description of GetUIAControlFromHandleCommand.
+    /// Description of GetUiaControlFromHandleCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAControlFromHandle")]
+    [Cmdlet(VerbsCommon.Get, "UiaControlFromHandle")]
     [OutputType(typeof(object))]
-    public class GetUIAControlFromHandleCommand : DiscoveryCmdletBase
+    public class GetUiaControlFromHandleCommand : DiscoveryCmdletBase
     {
         #region Parameters
 //        [Parameter(Mandatory = true,
 //                   ValueFromPipeline = true)]
 //        [Alias("Handle")]
 //        public new int InputObject { get; set; }
-        [ValidateNotNullOrEmpty]// test it()]
+        [ValidateNotNullOrEmpty]
         [Alias ("Handle")]
         [Parameter(Mandatory = false, 
             ValueFromPipeline = true, 
@@ -44,33 +42,45 @@ namespace UIAutomation.Commands
         {
             // 20131109
             //System.Windows.Automation.AutomationElement result = null;
-            IMySuperWrapper result = null;
-            
-            foreach (int handle in this.InputObject) {
-                result = 
-                    UIAHelper.GetAutomationElementFromHandle(
-                        this,
-                        handle);
+            /*
+            IUiElement result = null;
+            */
+
+            foreach (IUiElement result in InputObject.Select(handle => UiaHelper.GetAutomationElementFromHandle(
+                this,
+                handle)))
+            {
                 if (result != null) {
                     WriteVerbose(this, "got the control: " + result.Current.Name);
                 }
                 WriteObject(this, result);
             }
+            /*
+            foreach (int handle in InputObject) {
+                IUiElement result = UiaHelper.GetAutomationElementFromHandle(
+                    this,
+                    handle);
+                if (result != null) {
+                    WriteVerbose(this, "got the control: " + result.Current.Name);
+                }
+                WriteObject(this, result);
+            }
+            */
         }
     }
     
     /// <summary>
-    /// Description of GetUIAWindowFromHandleCommand.
+    /// Description of GetUiaWindowFromHandleCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAWindowFromHandle")]
+    [Cmdlet(VerbsCommon.Get, "UiaWindowFromHandle")]
     [OutputType(typeof(object))]
-    public class GetUIAWindowFromHandleCommand : GetUIAControlFromHandleCommand
+    public class GetUiaWindowFromHandleCommand : GetUiaControlFromHandleCommand
     {
         #region Constructor
         // 20131105
         // refactoring
         /*
-        public GetUIAWindowFromHandleCommand()
+        public GetUiaWindowFromHandleCommand()
         {
         }
         */
@@ -84,15 +94,15 @@ namespace UIAutomation.Commands
             // 20131109
             //System.Windows.Automation.AutomationElement result = null;
             // 20131113
-            foreach (IMySuperWrapper result in this.InputObject.Select(handle => UIAHelper.GetAutomationElementFromHandle(
+            foreach (IUiElement result in InputObject.Select(handle => UiaHelper.GetAutomationElementFromHandle(
                 this,
                 handle)))
             {
                 if (result != null) {
-                    this.WriteVerbose(this, "got the window");
+                    WriteVerbose(this, "got the window");
                 }
-                UIAutomation.CurrentData.CurrentWindow = result;
-                this.WriteObject(this, result);
+                CurrentData.CurrentWindow = result;
+                WriteObject(this, result);
             }
 
             /*
@@ -100,11 +110,11 @@ namespace UIAutomation.Commands
                 
                 // 20131109
                 //result = 
-                //    UIAHelper.GetAutomationElementFromHandle(
+                //    UiaHelper.GetAutomationElementFromHandle(
                 //        this,
                 //        handle);
-                IMySuperWrapper result =
-                    UIAHelper.GetAutomationElementFromHandle(
+                IUiElement result =
+                    UiaHelper.GetAutomationElementFromHandle(
                         this,
                         handle);
                 

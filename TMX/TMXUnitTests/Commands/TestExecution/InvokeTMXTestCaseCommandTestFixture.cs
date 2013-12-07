@@ -8,14 +8,14 @@
  */
 using System;
 
-namespace TMXUnitTests.Commands.TestExecution
+namespace TmxUnitTests.Commands.TestExecution
 {
     /// <summary>
-    /// Description of InvokeTMXTestCaseCommandTestFixture.
+    /// Description of InvokeTmxTestCaseCommandTestFixture.
     /// </summary>
-    public class InvokeTMXTestCaseCommandTestFixture
+    public class InvokeTmxTestCaseCommandTestFixture
     {
-        public InvokeTMXTestCaseCommandTestFixture()
+        public InvokeTmxTestCaseCommandTestFixture()
         {
         }
     }

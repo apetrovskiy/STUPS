@@ -9,28 +9,24 @@
 
 namespace UIAutomation.Commands
 {
-    // test it
-    //using System;
     using System.Management.Automation;
-    // using System.Runtime.InteropServices;
-    using System.Windows.Automation;
     
     /// <summary>
-    /// Description of GetUIAActiveWindowCommand.
+    /// Description of GetUiaActiveWindowCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAActiveWindow")]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIAActiveWindowCommand : HasScriptBlockCmdletBase
+    [Cmdlet(VerbsCommon.Get, "UiaActiveWindow")]
+    
+    public class GetUiaActiveWindowCommand : HasScriptBlockCmdletBase
     {
         protected override void BeginProcessing()
         {
             // 20131109
             //AutomationElement element = 
-            IMySuperWrapper element =
+            IUiElement element =
                 GetActiveWindow();
             //UIAutomation.CurrentData.CurrentWindow = element;
             CurrentData.CurrentWindow = element;
-            this.WriteObject(this, element);
+            WriteObject(this, element);
         }
     }
 }

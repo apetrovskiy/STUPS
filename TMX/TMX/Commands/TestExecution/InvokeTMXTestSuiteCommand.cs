@@ -13,12 +13,12 @@ namespace TMX.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of InvokeTMXTestSuiteCommand.
+    /// Description of InvokeTmxTestSuiteCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "TMXTestSuite")]
-    public class InvokeTMXTestSuiteCommand : TestSuiteExecCmdletBase
+    [Cmdlet(VerbsLifecycle.Invoke, "TmxTestSuite")]
+    public class InvokeTmxTestSuiteCommand : TestSuiteExecCmdletBase
     {
-        public InvokeTMXTestSuiteCommand()
+        public InvokeTmxTestSuiteCommand()
         {
         }
         
@@ -29,8 +29,8 @@ namespace TMX.Commands
         {
             this.CheckCmdletParameters();
             
-            TMXInvokeTestSuiteCommand command =
-                new TMXInvokeTestSuiteCommand(this);
+            TmxInvokeTestSuiteCommand command =
+                new TmxInvokeTestSuiteCommand(this);
             command.Execute();
         }
     }

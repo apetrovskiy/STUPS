@@ -7,26 +7,28 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System.Drawing;
+
 namespace UIAutomation.Commands
 {
     using System;
     using System.Management.Automation;
 
     /// <summary>
-    /// Description of SetUIAHighligherSettingsCommand.
+    /// Description of SetUiaHighligherSettingsCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Set, "UIAHighligherSettings")]
-    public class SetUIAHighligherSettingsCommand : ModuleSettingsCmdletBase
+    [Cmdlet(VerbsCommon.Set, "UiaHighligherSettings")]
+    public class SetUiaHighligherSettingsCommand : ModuleSettingsCmdletBase
     {
-        public SetUIAHighligherSettingsCommand()
+        public SetUiaHighligherSettingsCommand()
         {
-            this.Highlight = Preferences.Highlight;
-            this.Color = Preferences.HighlighterColor;
-            this.Border = Preferences.HighlighterBorder;
+            Highlight = Preferences.Highlight;
+            Color = Preferences.HighlighterColor;
+            Border = Preferences.HighlighterBorder;
             
-            this.HighlightParent = Preferences.HighlightParent;
-            this.ColorParent = Preferences.HighlighterColorParent;
-            this.BorderParent = Preferences.HighlighterBorderParent;
+            HighlightParent = Preferences.HighlightParent;
+            ColorParent = Preferences.HighlighterColorParent;
+            BorderParent = Preferences.HighlighterBorderParent;
             
 //            this.HighlightFirstChild = Preferences.HighlightFirstChild;
 //            this.ColorFirstChild = Preferences.HighlighterColorFirstChild;
@@ -37,14 +39,14 @@ namespace UIAutomation.Commands
         [Parameter(Mandatory=true)]
         public SwitchParameter Highlight { get; set; }
         [Parameter(Mandatory=false)]
-        public System.Drawing.Color Color { get; set; }
+        public Color Color { get; set; }
         [Parameter(Mandatory=false)]
         public int Border { get; set; }
         
         [Parameter(Mandatory=true)]
         public SwitchParameter HighlightParent { get; set; }
         [Parameter(Mandatory=false)]
-        public System.Drawing.Color ColorParent { get; set; }
+        public Color ColorParent { get; set; }
         [Parameter(Mandatory=false)]
         public int BorderParent { get; set; }
         
@@ -58,13 +60,13 @@ namespace UIAutomation.Commands
         
         protected override void BeginProcessing()
         {
-            Preferences.Highlight = this.Highlight;
-            Preferences.HighlighterColor = this.Color;
-            Preferences.HighlighterBorder = this.Border;
+            Preferences.Highlight = Highlight;
+            Preferences.HighlighterColor = Color;
+            Preferences.HighlighterBorder = Border;
             
-            Preferences.HighlightParent = this.HighlightParent;
-            Preferences.HighlighterColorParent = this.ColorParent;
-            Preferences.HighlighterBorderParent = this.BorderParent;
+            Preferences.HighlightParent = HighlightParent;
+            Preferences.HighlighterColorParent = ColorParent;
+            Preferences.HighlighterBorderParent = BorderParent;
             
 //            Preferences.HighlightFirstChild = this.HighlightFirstChild;
 //            Preferences.HighlighterColorFirstChild = this.ColorFirstChild;

@@ -13,54 +13,54 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of InvokeUIAScrollItemPatternCommand.
+    /// Description of InvokeUiaScrollItemPatternCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAScrollItemPattern")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaScrollItemPattern")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAScrollItemPatternCommand : PatternCmdletBase
-    { public InvokeUIAScrollItemPatternCommand() 
+    
+    public class InvokeUiaScrollItemPatternCommand : PatternCmdletBase
+    { public InvokeUiaScrollItemPatternCommand() 
       { 
             WhatToDo = "ScrollItem";
             
-            this.PassThru = true;
+            PassThru = true;
             //base.Child = this;
       }
     }
 
     /// <summary>
-    /// Description of InvokeUIACustomScrollItemCommand.
+    /// Description of InvokeUiaCustomScrollItemCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIACustomScrollItem")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaCustomScrollItem")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIACustomScrollItemCommand : InvokeUIAScrollItemPatternCommand
-    { public InvokeUIACustomScrollItemCommand() { } }
+    
+    public class InvokeUiaCustomScrollItemCommand : InvokeUiaScrollItemPatternCommand
+    { public InvokeUiaCustomScrollItemCommand() { } }
     
     /// <summary>
-    /// Description of InvokeUIADataItemScrollItemCommand.
+    /// Description of InvokeUiaDataItemScrollItemCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIADataItemScrollItem")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaDataItemScrollItem")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIADataItemScrollItemCommand : InvokeUIAScrollItemPatternCommand
-    { public InvokeUIADataItemScrollItemCommand() { } }
+    
+    public class InvokeUiaDataItemScrollItemCommand : InvokeUiaScrollItemPatternCommand
+    { public InvokeUiaDataItemScrollItemCommand() { } }
     
     /// <summary>
-    /// Description of InvokeUIAListItemScrollItemCommand.
+    /// Description of InvokeUiaListItemScrollItemCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAListItemScrollItem")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaListItemScrollItem")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAListItemScrollItemCommand : InvokeUIAScrollItemPatternCommand
-    { public InvokeUIAListItemScrollItemCommand() { } }
+    
+    public class InvokeUiaListItemScrollItemCommand : InvokeUiaScrollItemPatternCommand
+    { public InvokeUiaListItemScrollItemCommand() { } }
     
     /// <summary>
-    /// Description of InvokeUIATreeItemScrollItemCommand.
+    /// Description of InvokeUiaTreeItemScrollItemCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIATreeItemScrollItem")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaTreeItemScrollItem")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIATreeItemScrollItemCommand : InvokeUIAScrollItemPatternCommand
-    { public InvokeUIATreeItemScrollItemCommand() { } }
+    
+    public class InvokeUiaTreeItemScrollItemCommand : InvokeUiaScrollItemPatternCommand
+    { public InvokeUiaTreeItemScrollItemCommand() { } }
 }

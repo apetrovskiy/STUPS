@@ -13,13 +13,13 @@ namespace TMX.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of RemoveTMXTestBucketCommand.
+    /// Description of RemoveTmxTestBucketCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Remove, "TMXTestBucket")]
+    [Cmdlet(VerbsCommon.Remove, "TmxTestBucket")]
     [OutputType(typeof(ITestBucket))]
-    public class RemoveTMXTestBucketCommand: TestBucketCmdletBase
+    public class RemoveTmxTestBucketCommand: TestBucketCmdletBase
     {
-        public RemoveTMXTestBucketCommand()
+        public RemoveTmxTestBucketCommand()
         {
         }
     }

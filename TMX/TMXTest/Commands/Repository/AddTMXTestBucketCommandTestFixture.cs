@@ -7,18 +7,18 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMXTest.Commands.Repository
+namespace TmxTest.Commands.Repository
 {
     using System;
     using MbUnit.Framework; // using MbUnit.Framework;
     
     /// <summary>
-    /// Description of AddTMXTestBucketCommandTestFixture.
+    /// Description of AddTmxTestBucketCommandTestFixture.
     /// </summary>
     [TestFixture] // [TestFixture(Description=" test")]
-    public class AddTMXTestBucketCommandTestFixture
+    public class AddTmxTestBucketCommandTestFixture
     {
-        public AddTMXTestBucketCommandTestFixture()
+        public AddTmxTestBucketCommandTestFixture()
         {
         }
         
@@ -28,9 +28,9 @@ namespace TMXTest.Commands.Repository
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [Test] //[Test(Description="The Add-TMXTestBucket test")]
+        [Test] //[Test(Description="The Add-TmxTestBucket test")]
         [Category("Slow")]
-        [Category("Add_TMXTestBucket")]
+        [Category("Add_TmxTestBucket")]
         [Ignore("Not implemented yet")]
         public void AddTestBucket_Simple()
         {
@@ -38,9 +38,9 @@ namespace TMXTest.Commands.Repository
             string bucketName = @"testbucket";
             string answer = @"testbucket";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"(New-TMXTestDB -FileName '" + 
+                @"(New-TmxTestDB -FileName '" + 
                 fileName + 
-                @"' | Add-TMXTestBucket -Name '" +
+                @"' | Add-TmxTestBucket -Name '" +
                 bucketName +
                 @"').Name; ",
                 answer);

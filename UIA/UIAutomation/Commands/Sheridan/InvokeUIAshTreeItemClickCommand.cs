@@ -9,15 +9,15 @@
 
 namespace UIAutomation.Commands
 {
-    using System;
-    using System.Management.Automation;
+    //using System;
+    //using System.Management.Automation;
 
     /// <summary>
-    /// Description of InvokeUIAshTreeItemClickCommand.
+    /// Description of InvokeUiaShTreeItemClickCommand.
     /// </summary>
-    public class InvokeUIAshTreeItemClickCommand : SheridanCmdletBase
+    public class InvokeUiaShTreeItemClickCommand : SheridanCmdletBase
     {
-        public InvokeUIAshTreeItemClickCommand()
+        public InvokeUiaShTreeItemClickCommand()
         {
         }
     }

@@ -10,19 +10,13 @@
 
 namespace UIAutomation.Commands
 {
-    // test it
-    //using System;
     using System.Management.Automation;
-    // test it
-    //using System.Collections;
-    // test it
-    //using System.Collections.ObjectModel;
 
     /// <summary>
-    /// Description of InvokeUIAScriptCommand.
+    /// Description of InvokeUiaScriptCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAScript")]
-    internal class InvokeUIAScriptCommand : HasTimeoutCmdletBase
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaScript")]
+    internal class InvokeUiaScriptCommand : HasTimeoutCmdletBase
     {
         #region Parameters
         [Parameter(Mandatory = true)]
@@ -32,7 +26,7 @@ namespace UIAutomation.Commands
         protected override void BeginProcessing()
         {
             // RunScriptBlocks(this);
-            this.SleepAndRunScriptBlocks(this);
+            SleepAndRunScriptBlocks(this);
         }
     }
 }

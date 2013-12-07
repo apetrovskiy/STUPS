@@ -25,7 +25,7 @@ namespace SePSXTest.Commands.Relatives
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [Test] //[Test(Description="The Get-UIAWebElementAncestors cmdlet test")]
+        [Test] //[Test(Description="The Get-UiaWebElementAncestors cmdlet test")]
         [Category("Slow")][Category("WebElement")]
         [Category("Slow")][Category("Get_SeWebElementAncestors")]
         [Category("Slow")][Category("Firefox")]
@@ -34,7 +34,7 @@ namespace SePSXTest.Commands.Relatives
             Ancestors_1(Settings.DriverNameFirefox);
         }
         
-        [Test] //[Test(Description="The Get-UIAWebElementAncestors cmdlet test")]
+        [Test] //[Test(Description="The Get-UiaWebElementAncestors cmdlet test")]
         [Category("Slow")][Category("WebElement")]
         [Category("Slow")][Category("Get_SeWebElementAncestors")]
         [Category("Slow")][Category("Chrome")]
@@ -43,7 +43,7 @@ namespace SePSXTest.Commands.Relatives
             Ancestors_1(Settings.DriverNameChrome);
         }
         
-        [Test] //[Test(Description="The Get-UIAWebElementAncestors cmdlet test")]
+        [Test] //[Test(Description="The Get-UiaWebElementAncestors cmdlet test")]
         [Category("Slow")][Category("WebElement")]
         [Category("Slow")][Category("Get_SeWebElementAncestors")]
         [Category("Slow")][Category("InternetExplorer")]

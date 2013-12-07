@@ -14,12 +14,12 @@ namespace UIAutomationTest.Commands.Get
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of GetUIAGroupBoxCommandTextFixture.
+    /// Description of GetUiaGroupBoxCommandTextFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Get-UIAGroupBoxCommand test")]
-    public class GetUIAGroupBoxCommandTextFixture
+    [TestFixture] // [TestFixture(Description="Get-UiaGroupBoxCommand test")]
+    public class GetUiaGroupBoxCommandTextFixture
     {
-        public GetUIAGroupBoxCommandTextFixture()
+        public GetUiaGroupBoxCommandTextFixture()
         {
         }
         
@@ -43,12 +43,12 @@ namespace UIAutomationTest.Commands.Get
                 auId,
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAGroupBox -AutomationId " + 
+                " | Get-UiaGroupBox -AutomationId " + 
                 auId + 
                 " | " +
-                "Read-UIAControlAutomationId",
+                "Read-UiaControlAutomationId",
                 auId);
         }
         
@@ -66,12 +66,12 @@ namespace UIAutomationTest.Commands.Get
                 auId,
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAGroupBox -AutomationId " + 
+                " | Get-UiaGroupBox -AutomationId " + 
                 auId + 
                 " -timeout 2000 | " +
-                "Read-UIAControlAutomationId",
+                "Read-UiaControlAutomationId",
                 auId);
         }
         
@@ -89,12 +89,12 @@ namespace UIAutomationTest.Commands.Get
                 auId,
                 TimeoutsAndDelays.Control_Timeout3000Delay500_Delay);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAGroupBox -AutomationId " + 
+                " | Get-UiaGroupBox -AutomationId " + 
                 auId + 
                 " -timeout 3000 | " +
-                "Read-UIAControlAutomationId",
+                "Read-UiaControlAutomationId",
                 auId);
         }
         
@@ -112,12 +112,12 @@ namespace UIAutomationTest.Commands.Get
                 auId,
                 TimeoutsAndDelays.Control_Timeout2000Delay4000_Delay);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAGroupBox -AutomationId " + 
+                " | Get-UiaGroupBox -AutomationId " + 
                 auId + 
                 " -timeout 2000 | " +
-                "Read-UIAControlAutomationId",
+                "Read-UiaControlAutomationId",
                 auId);
         }
         
@@ -135,11 +135,11 @@ namespace UIAutomationTest.Commands.Get
                 "btn",
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAGroupBox -Name " + 
+                " | Get-UiaGroupBox -Name " + 
                 name + " | " +
-                "Read-UIAControlName",
+                "Read-UiaControlName",
                 name);
         }
         
@@ -157,11 +157,11 @@ namespace UIAutomationTest.Commands.Get
                 "btn",
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAGroupBox -Name " + 
+                " | Get-UiaGroupBox -Name " + 
                 name + " -timeout 2000 | " +
-                "Read-UIAControlName",
+                "Read-UiaControlName",
                 name);
         }
         
@@ -179,11 +179,11 @@ namespace UIAutomationTest.Commands.Get
                 "btn",
                 TimeoutsAndDelays.Control_Timeout3000Delay500_Delay);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAGroupBox -Name " + 
+                " | Get-UiaGroupBox -Name " + 
                 name + " -timeout 3000 | " +
-                "Read-UIAControlName",
+                "Read-UiaControlName",
                 name);
         }
         
@@ -201,11 +201,11 @@ namespace UIAutomationTest.Commands.Get
                 "btn",
                 TimeoutsAndDelays.Control_Timeout2000Delay4000_Delay);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAGroupBox -Name " + 
+                " | Get-UiaGroupBox -Name " + 
                 name + " -timeout 2000 | " +
-                "Read-UIAControlName",
+                "Read-UiaControlName",
                 name);
         }
         
@@ -222,9 +222,9 @@ namespace UIAutomationTest.Commands.Get
                 "ddd",
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAGroupBox | Read-UIAControlType",
+                " | Get-UiaGroupBox | Read-UiaControlType",
                 "ControlType.Group");
         }
         
@@ -241,9 +241,9 @@ namespace UIAutomationTest.Commands.Get
                 "ddd",
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAGroupBox -timeout 2000 | Read-UIAControlType",
+                " | Get-UiaGroupBox -timeout 2000 | Read-UiaControlType",
                 "ControlType.Group");
         }
         
@@ -260,9 +260,9 @@ namespace UIAutomationTest.Commands.Get
                 "ddd",
                 TimeoutsAndDelays.Control_Timeout3000Delay500_Delay);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAGroupBox -timeout 3000 | Read-UIAControlType",
+                " | Get-UiaGroupBox -timeout 3000 | Read-UiaControlType",
                 "ControlType.Group");
         }
         
@@ -279,9 +279,9 @@ namespace UIAutomationTest.Commands.Get
                 "ddd",
                 TimeoutsAndDelays.Control_Timeout2000Delay4000_Delay);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAGroupBox -timeout 2000 | Read-UIAControlType",
+                " | Get-UiaGroupBox -timeout 2000 | Read-UiaControlType",
                 "ControlType.Group");
         }
         

@@ -13,17 +13,17 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of InvokeUIATextPatternGetCommand.
+    /// Description of InvokeUiaTextPatternGetCommand.
     /// </summary>
     // 20131024
-    //[Cmdlet(VerbsCommon.Get, "UIATextPatternGet")]
-    [Cmdlet(VerbsLifecycle.Invoke, "UIATextPatternGet")]
-    public class InvokeUIATextPatternGetCommand : PatternCmdletBase
-    { public InvokeUIATextPatternGetCommand() 
+    //[Cmdlet(VerbsCommon.Get, "UiaTextPatternGet")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaTextPatternGet")]
+    public class InvokeUiaTextPatternGetCommand : PatternCmdletBase
+    { public InvokeUiaTextPatternGetCommand() 
         { 
             WhatToDo = "TextGet"; 
-            this.PassThru = false;
-            this.TextLength = -1;
+            PassThru = false;
+            TextLength = -1;
         }
         
         [Parameter(Mandatory = false)]
@@ -36,47 +36,47 @@ namespace UIAutomation.Commands
     
     // 20131024
     /// <summary>
-    /// Description of GetUIACustomRangeTextCommand.
+    /// Description of GetUiaCustomRangeTextCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIACustomRangeText")]
+    [Cmdlet(VerbsCommon.Get, "UiaCustomRangeText")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIACustomRangeTextCommand : InvokeUIATextPatternGetCommand
-    { public GetUIACustomRangeTextCommand() { } }
+    
+    public class GetUiaCustomRangeTextCommand : InvokeUiaTextPatternGetCommand
+    { public GetUiaCustomRangeTextCommand() { } }
     
     /// <summary>
-    /// Description of GetUIADocumentRangeTextCommand.
+    /// Description of GetUiaDocumentRangeTextCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIADocumentRangeText")]
+    [Cmdlet(VerbsCommon.Get, "UiaDocumentRangeText")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIADocumentRangeTextCommand : InvokeUIATextPatternGetCommand
-    { public GetUIADocumentRangeTextCommand() { } }
+    
+    public class GetUiaDocumentRangeTextCommand : InvokeUiaTextPatternGetCommand
+    { public GetUiaDocumentRangeTextCommand() { } }
     
     /// <summary>
-    /// Description of GetUIAEditRangeTextCommand.
+    /// Description of GetUiaEditRangeTextCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAEditRangeText")]
+    [Cmdlet(VerbsCommon.Get, "UiaEditRangeText")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIAEditRangeTextCommand : InvokeUIATextPatternGetCommand
-    { public GetUIAEditRangeTextCommand() { } }
+    
+    public class GetUiaEditRangeTextCommand : InvokeUiaTextPatternGetCommand
+    { public GetUiaEditRangeTextCommand() { } }
     
     /// <summary>
-    /// Description of GetUIATextRangeTextCommand.
+    /// Description of GetUiaTextRangeTextCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIATextRangeText")]
+    [Cmdlet(VerbsCommon.Get, "UiaTextRangeText")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIATextRangeTextCommand : InvokeUIATextPatternGetCommand
-    { public GetUIATextRangeTextCommand() { } }
+    
+    public class GetUiaTextRangeTextCommand : InvokeUiaTextPatternGetCommand
+    { public GetUiaTextRangeTextCommand() { } }
     
     /// <summary>
-    /// Description of GetUIAToolTipRangeTextCommand.
+    /// Description of GetUiaToolTipRangeTextCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAToolTipRangeText")]
+    [Cmdlet(VerbsCommon.Get, "UiaToolTipRangeText")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIAToolTipRangeTextCommand : InvokeUIATextPatternGetCommand
-    { public GetUIAToolTipRangeTextCommand() { } }
+    
+    public class GetUiaToolTipRangeTextCommand : InvokeUiaTextPatternGetCommand
+    { public GetUiaToolTipRangeTextCommand() { } }
 }

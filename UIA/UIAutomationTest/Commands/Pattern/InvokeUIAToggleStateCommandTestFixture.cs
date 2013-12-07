@@ -14,12 +14,12 @@ namespace UIAutomationTest.Commands.Pattern
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of InvokeUIAToggleStateCommandTestFixture.
+    /// Description of InvokeUiaToggleStateCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Get-UIAToggleStateCommand test")]
-    public class InvokeUIAToggleStateCommandTestFixture
+    [TestFixture] // [TestFixture(Description="Get-UiaToggleStateCommand test")]
+    public class InvokeUiaToggleStateCommandTestFixture
     {
-        public InvokeUIAToggleStateCommandTestFixture()
+        public InvokeUiaToggleStateCommandTestFixture()
         {
         }
        
@@ -73,16 +73,16 @@ namespace UIAutomationTest.Commands.Pattern
 //                0,
 //                (ControlToForm[])arrList.ToArray(typeof(ControlToForm)));
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-//                @"$null = Get-UIAWindow -pn " + 
+//                @"$null = Get-UiaWindow -pn " + 
 //                MiddleLevelCode.TestFormProcess +
-//                " | Get-UIARadioButton -AutomationId '" + 
+//                " | Get-UiaRadioButton -AutomationId '" + 
 //                auId1 + 
-//                "' | Invoke-UIARadioButtonSelectItem -ItemName '" + 
+//                "' | Invoke-UiaRadioButtonSelectItem -ItemName '" + 
 //                name1 +
 //                @"';" +
-//                @"Get-UIARadioButton -AutomationId '" + 
+//                @"Get-UiaRadioButton -AutomationId '" + 
 //                auId1 + 
-//                "' | Get-UIARadioButtonToggleState;",
+//                "' | Get-UiaRadioButtonToggleState;",
 //                expectedResult);
 //        }
         
@@ -94,7 +94,7 @@ namespace UIAutomationTest.Commands.Pattern
         
         [Test]
         [Category("Slow")]
-        [Category("Get-UIACheckBoxToggleState")]
+        [Category("Get-UiaCheckBoxToggleState")]
         public void InvokeToggleStateGet_CheckBox_On()
         {
             string name = "check_box";
@@ -108,22 +108,22 @@ namespace UIAutomationTest.Commands.Pattern
                 automationId,
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = Get-UIAWindow -pn " + 
+                @"$null = Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIACheckBox -Name '" +
+                " | Get-UiaCheckBox -Name '" +
                 name +
-                "' | Set-UIACheckBoxToggleState $true; " +
-                @"Get-UIAWindow -pn " + 
+                "' | Set-UiaCheckBoxToggleState $true; " +
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIACheckBox -Name '" +
+                " | Get-UiaCheckBox -Name '" +
                 name +
-                "' | Get-UIACheckBoxToggleState;",
+                "' | Get-UiaCheckBoxToggleState;",
                 expectedResult);
         }
         
         [Test]
         [Category("Slow")]
-        [Category("Get-UIACheckBoxToggleState")]
+        [Category("Get-UiaCheckBoxToggleState")]
         public void InvokeToggleStateGet_CheckBox_Off()
         {
             string name = "check_box";
@@ -137,11 +137,11 @@ namespace UIAutomationTest.Commands.Pattern
                 automationId,
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIACheckBox -Name '" +
+                " | Get-UiaCheckBox -Name '" +
                 name +
-                "' | Get-UIACheckBoxToggleState;",
+                "' | Get-UiaCheckBoxToggleState;",
                 expectedResult);
         }
     }

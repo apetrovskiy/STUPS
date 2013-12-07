@@ -118,9 +118,11 @@
     </Reference>
     <Reference Include="UIAutomationClient">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
+      <Aliases>global,UIANET</Aliases>
     </Reference>
     <Reference Include="UIAutomationTypes">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
+      <Aliases>global,UIANET</Aliases>
     </Reference>
     <Reference Include="WindowsBase">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
@@ -643,6 +645,27 @@
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\AutomationElementInformationAdapter.cs">
       <Link>Helpers\UnderlyingCode\Adapter\AutomationElementInformationAdapter.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\Enums.cs">
+      <Link>Helpers\UnderlyingCode\Adapter\Enums.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\ExpandCollapsePatternNet.cs">
+      <Link>Helpers\UnderlyingCode\Adapter\ExpandCollapsePatternNet.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\InvokePatternAdapterNet.cs">
+      <Link>Helpers\UnderlyingCode\Adapter\InvokePatternAdapterNet.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\SelectionItemPatternAdapterNet.cs">
+      <Link>Helpers\UnderlyingCode\Adapter\SelectionItemPatternAdapterNet.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\SelectionPatternAdapterNet.cs">
+      <Link>Helpers\UnderlyingCode\Adapter\SelectionPatternAdapterNet.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\TogglePatternAdapterNet.cs">
+      <Link>Helpers\UnderlyingCode\Adapter\TogglePatternAdapterNet.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\ValuePatternAdapterNet.cs">
+      <Link>Helpers\UnderlyingCode\Adapter\ValuePatternAdapterNet.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Commands\Container\UIANewContainerCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\Container\UIANewContainerCommand.cs</Link>
     </Compile>
@@ -673,8 +696,14 @@
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\ExecutionPlan.cs">
       <Link>Helpers\UnderlyingCode\ExecutionPlan.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\ExtensionMethods.cs">
-      <Link>Helpers\UnderlyingCode\ExtensionMethods.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethods.cs">
+      <Link>Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethodsCollection.cs">
+      <Link>Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethodsCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethodsElement.cs">
+      <Link>Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethodsElement.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Global.cs">
       <Link>Helpers\UnderlyingCode\Global.cs</Link>
@@ -689,11 +718,11 @@
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NativeMethods.cs">
       <Link>Helpers\UnderlyingCode\NativeMethods.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Ninject\AutomationFactory.cs">
+      <Link>Helpers\UnderlyingCode\Ninject\AutomationFactory.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Ninject\ObjectLifecycleModule.cs">
       <Link>Helpers\UnderlyingCode\Ninject\ObjectLifecycleModule.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Ninject\ObjectsFactory.cs">
-      <Link>Helpers\UnderlyingCode\Ninject\ObjectsFactory.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\RDPHelper.cs">
       <Link>Helpers\UnderlyingCode\RDPHelper.cs</Link>
@@ -746,6 +775,42 @@
     <Compile Include="..\UIAutomation\Interface\IAutomationElementInformationAdapter.cs">
       <Link>Interface\IAutomationElementInformationAdapter.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Interface\IBasePattern.cs">
+      <Link>Interface\IBasePattern.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\IExpandCollapsePatternAdapter.cs">
+      <Link>Interface\IExpandCollapsePatternAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\IExpandCollapsePatternInformationAdapter.cs">
+      <Link>Interface\IExpandCollapsePatternInformationAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\IInvokePatternAdapter.cs">
+      <Link>Interface\IInvokePatternAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\ISelectionItemPatternAdapter.cs">
+      <Link>Interface\ISelectionItemPatternAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\ISelectionItemPatternInformationAdapter.cs">
+      <Link>Interface\ISelectionItemPatternInformationAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\ISelectionPatternAdapter.cs">
+      <Link>Interface\ISelectionPatternAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\ISelectionPatternInformationAdapter.cs">
+      <Link>Interface\ISelectionPatternInformationAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\ITogglePatternAdapter.cs">
+      <Link>Interface\ITogglePatternAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\ITogglePatternInformationAdapter.cs">
+      <Link>Interface\ITogglePatternInformationAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\IValuePatternAdapter.cs">
+      <Link>Interface\IValuePatternAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\IValuePatternInformationAdapter.cs">
+      <Link>Interface\IValuePatternInformationAdapter.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
@@ -782,6 +847,8 @@
     <Folder Include="Helpers\UnderlyingCode\Commands\Wizard" />
     <Folder Include="Helpers\UnderlyingCode\Commands\Wizard" />
     <Folder Include="Helpers\UnderlyingCode\Adapter" />
+    <Folder Include="Helpers\UnderlyingCode\ExtensionMethods" />
+    <Folder Include="Helpers\UnderlyingCode\ExtensionMethods" />
     <Folder Include="Helpers\UnderlyingCode\Ninject" />
     <Folder Include="Helpers\UnderlyingCode\RDP" />
     <Folder Include="Helpers\UnderlyingCode\Types" />

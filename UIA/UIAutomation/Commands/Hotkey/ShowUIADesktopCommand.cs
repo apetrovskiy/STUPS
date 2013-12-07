@@ -13,17 +13,17 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of ShowUIADesktopCommand.
+    /// Description of ShowUiaDesktopCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Show, "UIADesktop")]
-    public class ShowUIADesktopCommand : HotkeyCmdletBase
+    [Cmdlet(VerbsCommon.Show, "UiaDesktop")]
+    public class ShowUiaDesktopCommand : HotkeyCmdletBase
     {
         protected override void BeginProcessing()
         {
-            this.keyCodes.Add(0xE0);
-            this.keyCodes.Add(0x5B);
-            this.keyCodes.Add(0x44);
-            this.processKeys();
+            keyCodes.Add(0xE0);
+            keyCodes.Add(0x5B);
+            keyCodes.Add(0x44);
+            processKeys();
         }
     }
 }

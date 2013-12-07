@@ -9,12 +9,13 @@
 
 namespace UIAutomation
 {
+    extern alias UIANET;
     using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.Windows.Automation;
     
-    public interface IMySuperCollection : ICollection, IEnumerable
+    public interface IUiEltCollection : ICollection, IEnumerable, IDisposable
 	{
 		void CopyTo(Array array, int index);
 		void CopyTo(AutomationElement[] array, int index);
@@ -24,9 +25,11 @@ namespace UIAutomation
 		object SyncRoot { get; }
 		bool IsSynchronized { get; }
 		
+		void Dispose();
+		
 		//AutomationElementCollection SourceCollection { get; set; }
 		//AutomationElementCollection SourceCollection { get; }
-		//IMySuperCollection SourceCollection { get; }
-		List<IMySuperWrapper> SourceCollection { get; }
+		//IUiEltCollection SourceCollection { get; }
+		List<IUiElement> SourceCollection { get; }
 	}
 }

@@ -9,21 +9,20 @@
 
 namespace UIAutomation.Commands
 {
-    // test it
-    //using System;
+    extern alias UIANET;
     using System.Management.Automation;
     using System.Windows.Automation;
 
     /// <summary>
-    /// Description of RegisterUIAMenuOpenedEventCommand.
+    /// Description of RegisterUiaMenuOpenedEventCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Register, "UIAMenuOpenedEvent")]
-    public class RegisterUIAMenuOpenedEventCommand : EventCmdletBase
+    [Cmdlet(VerbsLifecycle.Register, "UiaMenuOpenedEvent")]
+    public class RegisterUiaMenuOpenedEventCommand : EventCmdletBase
     {
-        public RegisterUIAMenuOpenedEventCommand()
+        public RegisterUiaMenuOpenedEventCommand()
         {
-            this.AutomationEventType = AutomationElement.MenuOpenedEvent;
-            this.AutomationEventHandler = OnUIAutomationEvent;
+            AutomationEventType = AutomationElement.MenuOpenedEvent;
+            AutomationEventHandler = OnUIAutomationEvent;
         }
     }
 }

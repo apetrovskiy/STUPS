@@ -23,11 +23,11 @@ namespace TMX
     using NHibernate.Persister.Entity;
 
     /// <summary>
-    /// Description of TMXHelper.
+    /// Description of TmxHelper.
     /// </summary>
-    public static class TMXHelper
+    public static class TmxHelper
     {
-        static TMXHelper()
+        static TmxHelper()
         {
             TestData.InitTestData();
         }
@@ -79,7 +79,7 @@ namespace TMX
             bool result = false;
             
             // 20130429
-            TMX.Logger.TMXLogger.Info("Test suite: '" + testSuiteName + "'");
+            TMX.Logger.TmxLogger.Info("Test suite: '" + testSuiteName + "'");
             
             // 20130301
             // set time spent on the previous suite
@@ -97,24 +97,24 @@ namespace TMX
             TMX.TestData.CurrentTestSuite = 
                 TMX.TestData.GetTestSuite(testSuiteName, testSuiteId, testPlatformId);
             if (TMX.TestData.CurrentTestSuite == null) return result;
-            //TMX.TestData.FireTMXTestSuiteOpened(TMX.TestData.CurrentTestSuite, null);
+            //TMX.TestData.FireTmxTestSuiteOpened(TMX.TestData.CurrentTestSuite, null);
                 
             // 20130301
             // set the initial time for this suite's session
             TMX.TestData.CurrentTestSuite.SetNow();
 
-            TMX.TestData.OnTMXTestSuiteOpened(TMX.TestData.CurrentTestSuite, null);
+            TMX.TestData.OnTmxTestSuiteOpened(TMX.TestData.CurrentTestSuite, null);
             result = true;
 
             /*
             if (TMX.TestData.CurrentTestSuite != null) {
-                //TMX.TestData.FireTMXTestSuiteOpened(TMX.TestData.CurrentTestSuite, null);
+                //TMX.TestData.FireTmxTestSuiteOpened(TMX.TestData.CurrentTestSuite, null);
                 
                 // 20130301
                 // set the initial time for this suite's session
                 TMX.TestData.CurrentTestSuite.SetNow();
 
-                TMX.TestData.OnTMXTestSuiteOpened(TMX.TestData.CurrentTestSuite, null);
+                TMX.TestData.OnTmxTestSuiteOpened(TMX.TestData.CurrentTestSuite, null);
                 result = true;
             }
             */
@@ -223,8 +223,8 @@ namespace TMX
             // set the initial time for this scenario's session
             TMX.TestData.CurrentTestScenario.SetNow();
 
-            //TMX.TestData.FireTMXTestScenarioOpened(TMX.TestData.CurrentTestResult, null);
-            TMX.TestData.OnTMXTestScenarioOpened(TMX.TestData.CurrentTestScenario, null);
+            //TMX.TestData.FireTmxTestScenarioOpened(TMX.TestData.CurrentTestResult, null);
+            TMX.TestData.OnTmxTestScenarioOpened(TMX.TestData.CurrentTestScenario, null);
 
             result = true;
 
@@ -243,8 +243,8 @@ namespace TMX
                 // set the initial time for this scenario's session
                 TMX.TestData.CurrentTestScenario.SetNow();
 
-                //TMX.TestData.FireTMXTestScenarioOpened(TMX.TestData.CurrentTestResult, null);
-                TMX.TestData.OnTMXTestScenarioOpened(TMX.TestData.CurrentTestScenario, null);
+                //TMX.TestData.FireTmxTestScenarioOpened(TMX.TestData.CurrentTestResult, null);
+                TMX.TestData.OnTmxTestScenarioOpened(TMX.TestData.CurrentTestScenario, null);
 
                 result = true;
             }
@@ -388,16 +388,16 @@ namespace TMX
                                                  new XAttribute("id", suite.Id),
                                                  new XAttribute("name", suite.Name),
                                                  new XAttribute("status", suite.Status),
-                                                 TMXHelper.CreateXAttribute(xmlStruct.TimeSpentAttribute, Convert.ToInt32(suite.Statistics.TimeSpent)),
+                                                 TmxHelper.CreateXAttribute(xmlStruct.TimeSpentAttribute, Convert.ToInt32(suite.Statistics.TimeSpent)),
                                                  new XAttribute("all", suite.Statistics.All.ToString()),
                                                  new XAttribute("passed", suite.Statistics.Passed.ToString()),
-                                                 TMXHelper.CreateXAttribute(xmlStruct.FailedAttribute, suite.Statistics.Failed.ToString()),
+                                                 TmxHelper.CreateXAttribute(xmlStruct.FailedAttribute, suite.Statistics.Failed.ToString()),
                                                  new XAttribute("notTested", suite.Statistics.NotTested.ToString()),
                                                  new XAttribute("knownIssue", suite.Statistics.PassedButWithBadSmell.ToString()),
-                                                 TMXHelper.CreateXAttribute("description", suite.Description),
+                                                 TmxHelper.CreateXAttribute("description", suite.Description),
                                                  // 20130603
-                                                 TMXHelper.CreateXAttribute("platformId", suite.PlatformId),
-                                                 TMXHelper.CreateScenariosXElementCommon(
+                                                 TmxHelper.CreateXAttribute("platformId", suite.PlatformId),
+                                                 TmxHelper.CreateScenariosXElementCommon(
                                                      suite,
                                                      scenarios,
                                                      testResults,
@@ -453,16 +453,16 @@ namespace TMX
                              new XAttribute("id", scenario.Id),
                              new XAttribute("name", scenario.Name),
                              new XAttribute("status", scenario.Status),
-                             TMXHelper.CreateXAttribute(xmlStruct.TimeSpentAttribute, Convert.ToInt32(suite.Statistics.TimeSpent)),
+                             TmxHelper.CreateXAttribute(xmlStruct.TimeSpentAttribute, Convert.ToInt32(suite.Statistics.TimeSpent)),
                              new XAttribute("all", scenario.Statistics.All.ToString()),
                              new XAttribute("passed", scenario.Statistics.Passed.ToString()),
-                             TMXHelper.CreateXAttribute(xmlStruct.FailedAttribute, scenario.Statistics.Failed.ToString()),
+                             TmxHelper.CreateXAttribute(xmlStruct.FailedAttribute, scenario.Statistics.Failed.ToString()),
                              new XAttribute("notTested", scenario.Statistics.NotTested.ToString()),
                              new XAttribute("knownIssue", scenario.Statistics.PassedButWithBadSmell.ToString()),
-                             TMXHelper.CreateXAttribute("description", scenario.Description),
+                             TmxHelper.CreateXAttribute("description", scenario.Description),
                              // 20130603
-                             TMXHelper.CreateXAttribute("platformId", scenario.PlatformId),
-                             TMXHelper.CreateTestResultsXElementCommon(
+                             TmxHelper.CreateXAttribute("platformId", scenario.PlatformId),
+                             TmxHelper.CreateTestResultsXElementCommon(
                                  suite,
                                  scenario,
                                  testResults,
@@ -518,24 +518,24 @@ namespace TMX
                              new XAttribute("status", testResult.Status),
                              // 20130626
                              new XAttribute("origin", testResult.Origin),
-                             TMXHelper.CreateXAttribute(xmlStruct.TimeSpentAttribute, Convert.ToInt32(testResult.TimeSpent)), // ??
-                             TMXHelper.CreateXElement(
+                             TmxHelper.CreateXAttribute(xmlStruct.TimeSpentAttribute, Convert.ToInt32(testResult.TimeSpent)), // ??
+                             TmxHelper.CreateXElement(
                                  "source",
-                                 TMXHelper.CreateXAttribute("scriptName", testResult.ScriptName),
-                                 TMXHelper.CreateXAttribute("lineNumber", testResult.LineNumber),
-                                 TMXHelper.CreateXAttribute("position", testResult.Position),
-                                 TMXHelper.CreateXAttribute("code", testResult.Code)
+                                 TmxHelper.CreateXAttribute("scriptName", testResult.ScriptName),
+                                 TmxHelper.CreateXAttribute("lineNumber", testResult.LineNumber),
+                                 TmxHelper.CreateXAttribute("position", testResult.Position),
+                                 TmxHelper.CreateXAttribute("code", testResult.Code)
                                 ),
-                             TMXHelper.CreateXAttribute(xmlStruct.TimeStampAttribute, testResult.Timestamp),
-                             TMXHelper.CreateXElement(
+                             TmxHelper.CreateXAttribute(xmlStruct.TimeStampAttribute, testResult.Timestamp),
+                             TmxHelper.CreateXElement(
                                  "error",
-                                 TMXHelper.CreateXAttribute("error", testResult.Error)
+                                 TmxHelper.CreateXAttribute("error", testResult.Error)
                                 ),
-                             TMXHelper.CreateXAttribute("screenshot", testResult.Screenshot),
-                             TMXHelper.CreateXAttribute("description", testResult.Description),
+                             TmxHelper.CreateXAttribute("screenshot", testResult.Screenshot),
+                             TmxHelper.CreateXAttribute("description", testResult.Description),
                              // 20130603
-                             TMXHelper.CreateXAttribute("platformId", testResult.PlatformId),
-                             TMXHelper.CreateTestResultDetailsXElement(
+                             TmxHelper.CreateXAttribute("platformId", testResult.PlatformId),
+                             TmxHelper.CreateTestResultDetailsXElement(
                                  testResult,
                                  xmlStruct)
                             );
@@ -556,9 +556,9 @@ namespace TMX
                 new XElement("details",
                              from testResultDetail in testResult.Details
                              select new XElement("detail", 
-                                                 TMXHelper.CreateXAttribute("name", testResultDetail.Name),
-                                                 TMXHelper.CreateXAttribute(xmlStruct.TimeSpentAttribute, testResultDetail.Timestamp),
-                                                 TMXHelper.CreateXAttribute("status", testResultDetail.DetailStatus)
+                                                 TmxHelper.CreateXAttribute("name", testResultDetail.Name),
+                                                 TmxHelper.CreateXAttribute(xmlStruct.TimeSpentAttribute, testResultDetail.Timestamp),
+                                                 TmxHelper.CreateXAttribute("status", testResultDetail.DetailStatus)
                                                 )
                             );
 
@@ -581,7 +581,7 @@ namespace TMX
                 
                 cmdlet.WriteVerbose(cmdlet, "converting data to XML");
                 XElement suitesElement = 
-                    TMXHelper.CreateSuitesXElementWithParameters(
+                    TmxHelper.CreateSuitesXElementWithParameters(
                         gathered.TestSuites,
                         gathered.TestScenarios,
                         gathered.TestResults,
@@ -1175,7 +1175,7 @@ namespace TMX
             }
             */
 
-            TMXHelper.ImportVariables(cmdlet, variablesCollection);
+            TmxHelper.ImportVariables(cmdlet, variablesCollection);
         }
         
         public static bool ImportVariables(
@@ -1245,7 +1245,7 @@ namespace TMX
                 
                 cmdlet.WriteVerbose(cmdlet, "converting data to XML");
                 XElement suitesElement = 
-                    TMXHelper.CreateSuitesXElementWithParameters(
+                    TmxHelper.CreateSuitesXElementWithParameters(
                         gathered.TestSuites,
                         gathered.TestScenarios,
                         gathered.TestResults,
@@ -1298,7 +1298,7 @@ namespace TMX
         
         public static void GetTestSuiteStatusByName(OpenSuiteCmdletBase cmdlet, string name, string testPlatformId, bool skipAutomatic)
         {
-            TMXHelper.OpenTestSuite(
+            TmxHelper.OpenTestSuite(
                 name,
                 string.Empty,
                 testPlatformId);
@@ -1321,7 +1321,7 @@ namespace TMX
         
         public static void GetTestSuiteStatusById(OpenSuiteCmdletBase cmdlet, string id, string testPlatformId, bool skipAutomatic)
         {
-            TMXHelper.OpenTestSuite(
+            TmxHelper.OpenTestSuite(
                 string.Empty,
                 id,
                 testPlatformId);
@@ -1363,7 +1363,7 @@ namespace TMX
         
         public static void GetTestScenarioStatus(OpenScenarioCmdletBase cmdlet, bool skipAutomatic)
         {
-            TMXHelper.OpenTestScenario(cmdlet);
+            TmxHelper.OpenTestScenario(cmdlet);
             if (null == TestData.CurrentTestScenario) return;
             // 201330322
             //TestData.RefreshScenarioStatistics(TestData.CurrentTestScenario);

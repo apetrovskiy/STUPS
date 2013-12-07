@@ -11,17 +11,16 @@ namespace UIAutomation.Commands
 {
     using System;
     using System.Management.Automation;
-    // test it
-    //using System.Windows.Automation;
     using System.Collections;
+    using System.Collections.Generic;
 
     /// <summary>
-    /// Description of GetUIAWindow.
+    /// Description of GetUiaWindow.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAWindow", DefaultParameterSetName = "UIA")]
+    [Cmdlet(VerbsCommon.Get, "UiaWindow", DefaultParameterSetName = "UIA")]
     [OutputType(typeof(object))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIAWindowCommand : GetWindowCmdletBase
+    
+    public class GetUiaWindowCommand : GetWindowCmdletBase
     {
         #region Parameters
         #endregion Parameters
@@ -30,7 +29,7 @@ namespace UIAutomation.Commands
         
         protected override void BeginProcessing()
         {
-            StartDate = System.DateTime.Now;
+            StartDate = DateTime.Now;
             
             CurrentData.SetCurrentWindow(null);
         }
@@ -40,31 +39,31 @@ namespace UIAutomation.Commands
         /// </summary>
         protected override void ProcessRecord()
         {
-            this.CheckCmdletParameters();
+            CheckCmdletParameters();
             
             WriteVerbose(this, "Input parameters:");
-            WriteVerbose(this, "ProcessName = " + this.ProcessName);
-            WriteVerbose(this, "ProcessId = " + this.ProcessId);
-            WriteVerbose(this, "Name = " + this.Name);
-            WriteVerbose(this, "AutomationId = " + this.AutomationId);
-            WriteVerbose(this, "Class = " + this.Class);
-            WriteVerbose(this, "Recurse = " + this.Recurse.ToString());
-            WriteVerbose(this, "Timeout " + this.Timeout.ToString());
+            WriteVerbose(this, "ProcessName = " + ProcessName);
+            WriteVerbose(this, "ProcessId = " + ProcessId);
+            WriteVerbose(this, "Name = " + Name);
+            WriteVerbose(this, "AutomationId = " + AutomationId);
+            WriteVerbose(this, "Class = " + Class);
+            WriteVerbose(this, "Recurse = " + Recurse.ToString());
+            WriteVerbose(this, "Timeout " + Timeout.ToString());
             
-            ArrayList _returnedWindows = new ArrayList();
+            List<IUiElement> _returnedWindows = new List<IUiElement>();
             
             try {
 
-                if (null == this.ProcessName &&
-                    (null == this.Name && null == this.AutomationId && null == this.Class) &&
-                    null == this.ProcessId &&
-                    null == this.InputObject) {
+                if (null == ProcessName &&
+                    (null == Name && null == AutomationId && null == Class) &&
+                    null == ProcessId &&
+                    null == InputObject) {
 
                     WriteVerbose(
                         this, 
                         "no processName, name, processid or process was supplied");
                     
-                    this.WriteError(
+                    WriteError(
                         this,
                         "Neither ProcessName nor window Name are provided. Or ProcessId == 0",
                         "NoParametersInGetWindow",
@@ -77,7 +76,7 @@ namespace UIAutomation.Commands
                 
                 WriteVerbose(this, eCheckParameters.Message);
 
-                this.WriteError(
+                WriteError(
                     this,
                     "Unknown error in '" + CmdletName(this) + "' ProcessRecord",
                     "UnknownInGetWindow",
@@ -87,38 +86,25 @@ namespace UIAutomation.Commands
             } // describe
             
             _returnedWindows =
-                GetWindow(this, this.Win32, this.InputObject, this.ProcessName, this.ProcessId, this.Name, this.AutomationId, this.Class, this.TestMode);
+                GetWindow(this, Win32, InputObject, ProcessName, ProcessId, Name, AutomationId, Class, TestMode);
             
             if (null != _returnedWindows && _returnedWindows.Count > 0) {
                 
-                if (this.TestMode) {
-                    this.WriteObject(this, !this.WaitNoWindow);
-
-                    /*
-                    if (this.WaitNoWindow) {
-                        this.WriteObject(this, false);
-                    } else {
-                        this.WriteObject(this, true);
-                    }
-                    */
-
+                if (TestMode) {
+                    
+                    WriteObject(this, !WaitNoWindow);
+                    
                 } else {
-                    this.WriteObject(this, _returnedWindows);
+                    
+                    WriteObject(this, _returnedWindows);
                 }
                 
             } else {
                 
-                if (this.TestMode) {
-                    this.WriteObject(this, this.WaitNoWindow);
-
-                    /*
-                    if (this.WaitNoWindow) {
-                        this.WriteObject(this, true);
-                    } else {
-                        this.WriteObject(this, false);
-                    }
-                    */
-
+                if (TestMode) {
+                    
+                    WriteObject(this, WaitNoWindow);
+                    
                 } else {
                 
                     string name = string.Empty;
@@ -126,7 +112,7 @@ namespace UIAutomation.Commands
                     string procId = string.Empty;
     
                     try{ 
-                        foreach(string n in this.Name) { 
+                        foreach(string n in Name) { 
                             name += n; name += ","; 
                         }
                         name = name.Substring(0, name.Length - 1);
@@ -134,7 +120,7 @@ namespace UIAutomation.Commands
                     catch {}
     
                     try{ 
-                        foreach(string s in this.ProcessName) { 
+                        foreach(string s in ProcessName) { 
                             procName += s; procName += ","; 
                         }
                         procName = procName.Substring(0, procName.Length - 1);
@@ -142,7 +128,7 @@ namespace UIAutomation.Commands
                     catch {}
     
                     try {
-                        foreach (int i in this.ProcessId) {
+                        foreach (int i in ProcessId) {
                             procId += i.ToString();
                             procId += ",";
                         }
@@ -150,11 +136,10 @@ namespace UIAutomation.Commands
                     }
                     catch {}
     
-                    this.WriteError(
+                    WriteError(
                         this,
-                        //"Failed to get window by:" + 
                         "Failed to get window in " + 
-                        this.Timeout.ToString() +
+                        Timeout.ToString() +
                         " seconds by:" +
                         " process name: '" +
                         procName +
@@ -163,9 +148,9 @@ namespace UIAutomation.Commands
                         ", window title: '" + 
                         name +
                         "', automationId: '" +
-                        this.AutomationId +
+                        AutomationId +
                         "', className: '" +
-                        this.Class +
+                        Class +
                         "'",
                         "FailedToGetWindow",
                         ErrorCategory.InvalidResult,
@@ -176,7 +161,7 @@ namespace UIAutomation.Commands
         
         protected override void EndProcessing()
         {
-            oddRootElement = null;
+            OddRootElement = null;
         }
         
 //        protected override void StopProcessing()
@@ -189,8 +174,8 @@ namespace UIAutomation.Commands
         // 20131019
         protected override void StopProcessing()
         {
-            this.WriteVerbose(this, "User interrupted");
-            this.Wait = false;
+            WriteVerbose(this, "User interrupted");
+            Wait = false;
         }
         
     }

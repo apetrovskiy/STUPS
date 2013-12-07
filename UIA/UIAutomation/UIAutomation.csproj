@@ -124,10 +124,11 @@
     <Reference Include="System.Xml" />
     <Reference Include="UIAutomationClient">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
+      <Aliases>global,UIANET</Aliases>
     </Reference>
     <Reference Include="UIAutomationTypes">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
-      <Aliases>global</Aliases>
+      <Aliases>global,UIANET</Aliases>
     </Reference>
     <Reference Include="WindowsBase">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
@@ -275,14 +276,23 @@
     <Compile Include="Helpers\UnderlyingCode\Adapter\AutomationElementAdapter.cs" />
     <Compile Include="Helpers\UnderlyingCode\Adapter\AutomationElementCollectionAdapter.cs" />
     <Compile Include="Helpers\UnderlyingCode\Adapter\AutomationElementInformationAdapter.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Adapter\Enums.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Adapter\ExpandCollapsePatternNet.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Adapter\InvokePatternAdapterNet.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Adapter\SelectionItemPatternAdapterNet.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Adapter\SelectionPatternAdapterNet.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Adapter\TogglePatternAdapterNet.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Adapter\ValuePatternAdapterNet.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\RDP\UIANewRemoteDesktopProtocolFileCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Wizard\UIAGetWizardCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Wizard\UIAInvokeWizardCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Wizard\UIARemoveWizardStepCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Wizard\UIAStepWizardCommand.cs" />
-    <Compile Include="Helpers\UnderlyingCode\ExtensionMethods.cs" />
+    <Compile Include="Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethods.cs" />
+    <Compile Include="Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethodsCollection.cs" />
+    <Compile Include="Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethodsElement.cs" />
     <Compile Include="Helpers\UnderlyingCode\Ninject\ObjectLifecycleModule.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Ninject\ObjectsFactory.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Ninject\AutomationFactory.cs" />
     <Compile Include="Helpers\UnderlyingCode\RDPHelper.cs" />
     <Compile Include="Helpers\UnderlyingCode\RDP\DataProtectionForRDPWrapper.cs" />
     <Compile Include="Helpers\UnderlyingCode\RDP\DataProtector.cs" />
@@ -345,6 +355,18 @@
     <Compile Include="Interface\IAutomationElementAdapter.cs" />
     <Compile Include="Interface\IAutomationElementCollection.cs" />
     <Compile Include="Interface\IAutomationElementInformationAdapter.cs" />
+    <Compile Include="Interface\IBasePattern.cs" />
+    <Compile Include="Interface\IExpandCollapsePatternAdapter.cs" />
+    <Compile Include="Interface\IExpandCollapsePatternInformationAdapter.cs" />
+    <Compile Include="Interface\IInvokePatternAdapter.cs" />
+    <Compile Include="Interface\ISelectionItemPatternAdapter.cs" />
+    <Compile Include="Interface\ISelectionItemPatternInformationAdapter.cs" />
+    <Compile Include="Interface\ISelectionPatternAdapter.cs" />
+    <Compile Include="Interface\ISelectionPatternInformationAdapter.cs" />
+    <Compile Include="Interface\ITogglePatternAdapter.cs" />
+    <Compile Include="Interface\ITogglePatternInformationAdapter.cs" />
+    <Compile Include="Interface\IValuePatternAdapter.cs" />
+    <Compile Include="Interface\IValuePatternInformationAdapter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Provider\UIAProvider.cs" />
     <Compile Include="pull requests\NativeMethods.cs" />
@@ -398,6 +420,11 @@
       <Project>{DFFF7F28-CFA4-4EE5-84F0-4A12A415BC0C}</Project>
       <Name>TMX</Name>
     </ProjectReference>
+    <ProjectReference Include="..\UiaComWrapper\UIAComWrapper.csproj">
+      <Project>{1DD63894-DBB9-40EF-BFF2-55624CB285AF}</Project>
+      <Name>UIAComWrapper</Name>
+      <Aliases>global,UIACOM</Aliases>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands\ExecutionPlan" />
@@ -409,6 +436,7 @@
     <Folder Include="Commands\Sheridan" />
     <Folder Include="Helpers\UnderlyingCode\Commands\RDP" />
     <Folder Include="Helpers\UnderlyingCode\Adapter" />
+    <Folder Include="Helpers\UnderlyingCode\ExtensionMethods" />
     <Folder Include="Helpers\UnderlyingCode\Ninject" />
     <Folder Include="Helpers\UnderlyingCode\RDP" />
     <Folder Include="Helpers\UnderlyingCode\Types" />

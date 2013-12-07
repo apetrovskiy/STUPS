@@ -1,14 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Text;
 using System.Runtime.InteropServices;
 using AVG.Automation.Cmdlets.NativeTypes;
 
 
 namespace AVG.Automation.Cmdlets.NativeTypes
 {
-    [StructLayoutAttribute(LayoutKind.Sequential)]
+    [StructLayout(LayoutKind.Sequential)]
     public struct SYSTEMTIME
     {
         public short wYear;

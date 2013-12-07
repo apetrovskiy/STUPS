@@ -9,21 +9,17 @@
 
 namespace UIAutomation.Commands
 {
-    // test it
-    //using System;
     using System.Management.Automation;
-    // using System.Runtime.InteropServices;
-    using System.Windows.Automation;
 
     /// <summary>
-    /// Description of InvokeUIAControlClickCommand.
+    /// Description of InvokeUiaControlClickCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAControlClick")]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAControlClickCommand : HasControlInputCmdletBase
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaControlClick")]
+    
+    public class InvokeUiaControlClickCommand : HasControlInputCmdletBase
     {
         #region Constructor
-        public InvokeUIAControlClickCommand()
+        public InvokeUiaControlClickCommand()
         {
             RightClick = false;
             MidClick = false;
@@ -33,8 +29,8 @@ namespace UIAutomation.Commands
             DoubleClick = false;
             
             
-            this.X = -1000000;
-            this.Y = -1000000;
+            X = -1000000;
+            Y = -1000000;
         }
         #endregion Constructor
         
@@ -51,6 +47,9 @@ namespace UIAutomation.Commands
         public SwitchParameter Ctrl { get; set; }
         [Parameter(Mandatory = false)]
         public SwitchParameter DoubleClick { get; set; }
+        // 20131125
+        [Parameter(Mandatory = false)]
+        public int DoubleClickInterval { get; set; }
         [Parameter(Mandatory = false)]
         public int X { get; set; }
         [Parameter(Mandatory = false)]
@@ -62,31 +61,30 @@ namespace UIAutomation.Commands
         /// </summary>
         protected override void ProcessRecord()
         {
-            if (!this.CheckAndPrepareInput(this)) { return; }
+            if (!CheckAndPrepareInput(this)) { return; }
             
-            // 20120823
-            // 20131109
-            //foreach (AutomationElement inputObject in this.InputObject) {
-            foreach (IMySuperWrapper inputObject in this.InputObject) {
+            foreach (IUiElement inputObject in InputObject) {
             
                 ClickControl(
                     this,
                     inputObject,
-                    this.RightClick,
-                    this.MidClick,
-                    this.Alt,
-                    this.Shift,
-                    this.Ctrl,
+                    RightClick,
+                    MidClick,
+                    Alt,
+                    Shift,
+                    Ctrl,
                     false,
-                    this.DoubleClick,
-                    this.X,
-                    this.Y);
+                    DoubleClick,
+                    // 20131125
+                    DoubleClickInterval,
+                    X,
+                    Y);
     
-                if (this.PassThru) {
+                if (PassThru) {
 
-                    this.WriteObject(this, inputObject);
+                    WriteObject(this, inputObject);
                 } else {
-                    this.WriteObject(this, true);
+                    WriteObject(this, true);
                 }
                 
             } // 20120823

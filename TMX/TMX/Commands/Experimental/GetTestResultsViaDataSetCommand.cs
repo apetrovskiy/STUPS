@@ -57,15 +57,15 @@ namespace TMX.Commands
 //            da.
             
 //            IOrderedEnumerable<TestSuite> suitesCollection = 
-//                TMXHelper.SearchForSuites(cmdlet);
+//                TmxHelper.SearchForSuites(cmdlet);
 //            foreach (TestSuite testSuite in suitesCollection) {
 //                DataRow row = tableSuites.NewRow();
 //                //row.
 //            }
             
             
-            TMXHelper.SearchForScenarios(cmdlet);
-            TMXHelper.SearchForTestResults(cmdlet);
+            TmxHelper.SearchForScenarios(cmdlet);
+            TmxHelper.SearchForTestResults(cmdlet);
 
         }
     }

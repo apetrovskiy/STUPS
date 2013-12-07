@@ -14,11 +14,11 @@ namespace TMX
     using TMX.Commands;
     
     /// <summary>
-    /// Description of TMXGetTestScenarioStatusCommand.
+    /// Description of TmxGetTestScenarioStatusCommand.
     /// </summary>
-    internal class TMXGetTestScenarioStatusCommand : TMXCommand
+    internal class TmxGetTestScenarioStatusCommand : TmxCommand
     {
-        internal TMXGetTestScenarioStatusCommand(CommonCmdletBase cmdlet) : base (cmdlet)
+        internal TmxGetTestScenarioStatusCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         
@@ -27,13 +27,13 @@ namespace TMX
             // 20130322
             //OpenScenarioCmdletBase cmdlet =
             //    (OpenScenarioCmdletBase)this.Cmdlet;
-            GetTMXTestScenarioStatusCommand cmdlet =
-                (GetTMXTestScenarioStatusCommand)this.Cmdlet;
+            GetTmxTestScenarioStatusCommand cmdlet =
+                (GetTmxTestScenarioStatusCommand)this.Cmdlet;
             
             if (!string.IsNullOrEmpty(cmdlet.Name)) {
                 
                 // 20130322
-                TMXHelper.GetTestScenarioStatus(
+                TmxHelper.GetTestScenarioStatus(
                     //cmdlet);
                     cmdlet,
                     cmdlet.FilterOutAutomaticResults);
@@ -41,7 +41,7 @@ namespace TMX
             } else if (!string.IsNullOrEmpty(cmdlet.Id)) {
                 
                 // 20130322
-                TMXHelper.GetTestScenarioStatus(
+                TmxHelper.GetTestScenarioStatus(
                     //cmdlet);
                     cmdlet,
                     cmdlet.FilterOutAutomaticResults);
@@ -50,7 +50,7 @@ namespace TMX
                 
                 // 20130322
                 // 20130918
-                //TMXHelper.GetCurrentTestScenarioStatus(
+                //TmxHelper.GetCurrentTestScenarioStatus(
                 //    //cmdlet);
                 //    cmdlet,
                 //    cmdlet.FilterOutAutomaticResults);

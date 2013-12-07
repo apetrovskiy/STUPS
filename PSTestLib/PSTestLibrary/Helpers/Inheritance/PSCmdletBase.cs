@@ -13,8 +13,9 @@ namespace PSTestLib
     using System.Management.Automation;
     using System.Management.Automation.Runspaces;
     using System.Collections;
+    using System.Collections.Generic;
     using System.Collections.ObjectModel;
-    
+    using System.Linq;
     using System.Windows.Automation;
     
     /// <summary>
@@ -585,16 +586,17 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
 //                result = 
 //                    result.Replace("Se", "-Se");
 //            } else 
-            if (result.Contains("UIA")) {
+            if (result.Contains("Uia")) {
                 result = 
-                    result.Replace("UIA", "-UIA");
-            } else if (result.Contains("TMX")) {
+                    result.Replace("Uia", "-Uia");
+            } else if (result.Contains("Tmx")) {
                 result = 
-                    result.Replace("TMX", "-TMX");
-            } else if (result.Contains("AWS")) {
-                result = 
-                    result.Replace("AWS", "-AWS");
-            } else if (result.Contains("ESXi")) {
+                    result.Replace("Tmx", "-Tmx");
+            } //else if (result.Contains("AWS")) {
+            //    result = 
+            //        result.Replace("AWS", "-AWS");
+            //} 
+            else if (result.Contains("ESXi")) {
                 result = 
                     result.Replace("ESXi", "-ESXi");
             }
@@ -720,6 +722,10 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
                     " = " +
                     dict[keyUpper].ToString());
             }
+            
+//            foreach (string key2 in hashtable.Keys.Cast<string>().ToList().Any<string>(k => dict.Add(k.ToUpper(), hashtable[k.ToUpper()]))) {
+//                
+//            }
             
             return dict;
         }
@@ -929,7 +935,7 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
                 throw new Exception("Failed to run scriptblocks");
             }
         }
-        //#endregion Invoke-UIAScript
+        //#endregion Invoke-UiaScript
         
         
         protected virtual void SaveEventInput(
@@ -947,7 +953,7 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
                                 AutomationEventArgs e)
         {
             
-            // inform the Wait-UIAEventRaised cmdlet
+            // inform the Wait-UiaEventRaised cmdlet
             SaveEventInput(
                 src,
                 e,

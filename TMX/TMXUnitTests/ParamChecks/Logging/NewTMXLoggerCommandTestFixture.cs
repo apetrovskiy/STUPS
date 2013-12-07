@@ -8,14 +8,14 @@
  */
 using System;
 
-namespace TMXUnitTests.ParamChecks.Logging
+namespace TmxUnitTests.ParamChecks.Logging
 {
     /// <summary>
-    /// Description of NewTMXLoggerCommandTestFixture.
+    /// Description of NewTmxLoggerCommandTestFixture.
     /// </summary>
-    public class NewTMXLoggerCommandTestFixture
+    public class NewTmxLoggerCommandTestFixture
     {
-        public NewTMXLoggerCommandTestFixture()
+        public NewTmxLoggerCommandTestFixture()
         {
         }
     }

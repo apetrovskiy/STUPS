@@ -7,21 +7,17 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System.Drawing.Imaging;
+
 namespace UIAutomation.Commands
 {
-    // test it
-    //using System;
     using System.Management.Automation;
-    // test it
-    //using System.Runtime.InteropServices;
-    // test it
-    //using System.Windows.Automation;
     
     /// <summary>
-    /// Description of SaveUIAScreenshotCommand.
+    /// Description of SaveUiaScreenshotCommand.
     /// </summary>
-    //[Cmdlet(VerbsData.Save, "UIAScreenshot")]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
+    //[Cmdlet(VerbsData.Save, "UiaScreenshot")]
+    
     public class ScreenshotCmdletBase : GetControlCmdletBase //HasControlInputCmdletBase
     {
         #region Constructor
@@ -29,7 +25,7 @@ namespace UIAutomation.Commands
         {
             // 20130702
             //this.Path = string.Empty;
-            this.As = System.Drawing.Imaging.ImageFormat.Bmp;
+            As = ImageFormat.Bmp;
         }
         #endregion Constructor
         
@@ -42,8 +38,8 @@ namespace UIAutomation.Commands
         // 20130702
         [Parameter(Mandatory = false,
                    ParameterSetName = "File")]
-        [AllowNull]// test it()]
-        [AllowEmptyString]// test it()]
+        [AllowNull]
+        [AllowEmptyString]
         public string Description { get; set; }
         [Parameter(Mandatory = false)] //,
         //           ParameterSetName = "Screenshot")]
@@ -66,7 +62,7 @@ namespace UIAutomation.Commands
         public new string Name { get; set; }
         
         [Parameter(Mandatory = false)]
-        public System.Drawing.Imaging.ImageFormat As { get; set; }
+        public ImageFormat As { get; set; }
         #endregion Parameters
         
         /// <summary>
@@ -76,61 +72,49 @@ namespace UIAutomation.Commands
         {
             //if (this.InputObject == null ||
             // !(this.InputObject is AutomationElement)) {
-            bool save = this.GetType().Name == "SaveUIAScreenshotCommand";
+            bool save = GetType().Name == "SaveUiaScreenshotCommand";
             /*
             bool save = false;
-            if (this.GetType().Name == "SaveUIAScreenshotCommand") {
+            if (this.GetType().Name == "SaveUiaScreenshotCommand") {
                 save = true;
             }
             */
 
-            //UIAHelper.GetScreenshotOfAutomationElement(
-            UIAHelper.GetScreenshotOfCmdletInput(
+            UiaHelper.GetScreenshotOfCmdletInput(
                 this,
-                this.Description,
+                Description,
                 save,
                 Left,
                 Top,
                 Height,
                 Width,
-                this.Path + @"\" + this.Name,
-                this.As);
-            //TMX.
-            //} else {
-            // UIAHelper.GetControlScreenshot(this.InputObject, this.Description);
-            //}
+                Path + @"\" + Name,
+                As);
         }
     }
     
     /// <summary>
-    /// Description of SaveUIAScreenshotCommand.
+    /// Description of SaveUiaScreenshotCommand.
     /// </summary>
-    [Cmdlet(VerbsData.Save, "UIAScreenshot", DefaultParameterSetName = "NoFile")] //"Screenshot")]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class SaveUIAScreenshotCommand : ScreenshotCmdletBase
+    [Cmdlet(VerbsData.Save, "UiaScreenshot", DefaultParameterSetName = "NoFile")] //"Screenshot")]
+    
+    public class SaveUiaScreenshotCommand : ScreenshotCmdletBase
     {
         #region Constructor
-        // 20131105
-        // refactoring
-        /*
-        public SaveUIAScreenshotCommand()
-        {
-        }
-        */
         #endregion Constructor
     }
     
     /// <summary>
-    /// Description of GetUIAScreenshotCommand.
+    /// Description of GetUiaScreenshotCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAScreenshot", DefaultParameterSetName = "Screenshot")]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIAScreenshotCommand : ScreenshotCmdletBase
+    [Cmdlet(VerbsCommon.Get, "UiaScreenshot", DefaultParameterSetName = "Screenshot")]
+    
+    public class GetUiaScreenshotCommand : ScreenshotCmdletBase
     {
         #region Constructor
-        public GetUIAScreenshotCommand()
+        public GetUiaScreenshotCommand()
         {
-            this.Path = string.Empty; // ?
+            Path = string.Empty; // ?
         }
         #endregion Constructor
         

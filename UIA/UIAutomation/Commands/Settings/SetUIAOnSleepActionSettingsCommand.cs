@@ -13,21 +13,21 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
 
     /// <summary>
-    /// Description of SetUIAOnSleepActionSettingsCommand.
+    /// Description of SetUiaOnSleepActionSettingsCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Set, "UIAOnSleepActionSettings")]
-    public class SetUIAOnSleepActionSettingsCommand : ModuleSettingsActionCmdletBase
+    [Cmdlet(VerbsCommon.Set, "UiaOnSleepActionSettings")]
+    public class SetUiaOnSleepActionSettingsCommand : ModuleSettingsActionCmdletBase
     {
-        public SetUIAOnSleepActionSettingsCommand()
+        public SetUiaOnSleepActionSettingsCommand()
         {
-            this.Action = Preferences.OnSleepAction;
-            this.Delay = Preferences.OnSleepDelay;
+            Action = Preferences.OnSleepAction;
+            Delay = Preferences.OnSleepDelay;
         }
         
         protected override void BeginProcessing()
         {
-            Preferences.OnSleepAction = this.Action;
-            Preferences.OnSleepDelay = this.Delay;
+            Preferences.OnSleepAction = Action;
+            Preferences.OnSleepDelay = Delay;
         }
     }
 }

@@ -13,14 +13,14 @@ namespace TMX.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of CloseTMXTestResultCommand.
+    /// Description of CloseTmxTestResultCommand.
     /// </summary>
     //V20130330
-    //[Cmdlet(VerbsCommon.Close, "TMXTestResult")]
-    [Cmdlet(VerbsCommon.Close, "TMXTestResult", DefaultParameterSetName = "DefaultLogicId")]
-    public class CloseTMXTestResultCommand : TestResultCmdletBase
+    //[Cmdlet(VerbsCommon.Close, "TmxTestResult")]
+    [Cmdlet(VerbsCommon.Close, "TmxTestResult", DefaultParameterSetName = "DefaultLogicId")]
+    public class CloseTmxTestResultCommand : TestResultCmdletBase
     {
-        public CloseTMXTestResultCommand()
+        public CloseTmxTestResultCommand()
         {
             // 20130605
 //            if (null == TestData.TestSuites || 0 == TestData.TestSuites.Count) {
@@ -72,8 +72,8 @@ namespace TMX.Commands
         {
             this.CheckCmdletParameters();
                 
-            TMXCloseTestResultCommand command =
-                new TMXCloseTestResultCommand(this);
+            TmxCloseTestResultCommand command =
+                new TmxCloseTestResultCommand(this);
             command.Execute();
         }
     }

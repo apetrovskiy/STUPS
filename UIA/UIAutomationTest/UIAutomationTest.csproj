@@ -190,7 +190,6 @@
     <Compile Include="Commands\Wizard\AddUIAWizardStepCommandTestFixture.cs" />
     <Compile Include="Commands\Wizard\NewUIAWizardCommandTestFixture.cs" />
     <Compile Include="Enumerations.cs" />
-    <Compile Include="Helpers\CommonCmdletBaseTestFixture.cs" />
     <Compile Include="Helpers\PreferencesTestFixture.cs" />
     <Compile Include="Helpers\TestResultsTestFixture.cs" />
     <Compile Include="MiddleLevelCode.cs" />

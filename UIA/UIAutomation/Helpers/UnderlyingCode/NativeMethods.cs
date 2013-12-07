@@ -7,12 +7,15 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System.Diagnostics.CodeAnalysis;
+using UInt32 = System.UInt32;
+
 namespace UIAutomation
 {
     using System;
     using System.Runtime.InteropServices;
     // http://msdn.microsoft.com/ru-ru/library/windows/desktop/aa379560(v=vs.85).aspx
-    using DWORD = System.UInt32; // Optional alias, used below.
+    using DWORD = UInt32; // Optional alias, used below.
     using System.ComponentModel;
     
     /// <summary>
@@ -40,7 +43,7 @@ namespace UIAutomation
              int x, int y, int nWidth, int nHeight, 
              IntPtr hSrcDC, 
              int xSrc, int ySrc, 
-             System.Int32 dwRop); 
+             Int32 dwRop); 
          
         [Flags]
         internal enum DrawingOptions
@@ -108,11 +111,11 @@ namespace UIAutomation
             internal int Y;
         }
         
-        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
         internal static extern bool GetPhysicalCursorPos(ref CursorPoint lpPoint);
         
-        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
         internal static extern bool PhysicalToLogicalPoint(IntPtr hWnd, ref CursorPoint lpPoint);
         #endregion Highlighter
@@ -213,30 +216,30 @@ namespace UIAutomation
         #region the click
         #region declarations
         // http://msdn.microsoft.com/en-us/library/windows/desktop/ms646244(v=vs.85).aspx
-        internal static uint WM_MOUSEACTIVATE             = 0x0021;
-        internal static uint WM_MOUSEMOVE                 = 0x0200;
-        internal static uint WM_LBUTTONDOWN               = 0x0201;
-        internal static uint WM_LBUTTONUP                 = 0x0202;
-        internal static uint WM_LBUTTONDBLCLK             = 0x0203;
-        internal static uint WM_RBUTTONDOWN               = 0x0204;
-        internal static uint WM_RBUTTONUP                 = 0x0205;
-        internal static uint WM_RBUTTONDBLCLK             = 0x0206;
-        internal static uint WM_MBUTTONDOWN               = 0x0207;
-        internal static uint WM_MBUTTONUP                 = 0x0208;
-        internal static uint WM_MBUTTONDBLCLK             = 0x0209;
+        internal const uint WM_MOUSEACTIVATE = 0x0021;
+        internal const uint WM_MOUSEMOVE                 = 0x0200;
+        internal const uint WM_LBUTTONDOWN               = 0x0201;
+        internal const uint WM_LBUTTONUP                 = 0x0202;
+        internal const uint WM_LBUTTONDBLCLK             = 0x0203;
+        internal const uint WM_RBUTTONDOWN               = 0x0204;
+        internal const uint WM_RBUTTONUP                 = 0x0205;
+        internal const uint WM_RBUTTONDBLCLK             = 0x0206;
+        internal const uint WM_MBUTTONDOWN               = 0x0207;
+        internal const uint WM_MBUTTONUP                 = 0x0208;
+        internal const uint WM_MBUTTONDBLCLK             = 0x0209;
         
-        internal static uint MK_CONTROL                    = 0x0008;    // The CTRL key is down.
-        internal static uint MK_LBUTTON                    = 0x0001;    // The left mouse button is down.
-        internal static uint MK_MBUTTON                    = 0x0010;    // The middle mouse button is down.
-        internal static uint MK_RBUTTON                    = 0x0002;    // The right mouse button is down.
-        internal static uint MK_SHIFT                        = 0x0004;    // The SHIFT key is down.
+        internal const uint MK_CONTROL                    = 0x0008;    // The CTRL key is down.
+        internal const uint MK_LBUTTON                    = 0x0001;    // The left mouse button is down.
+        internal const uint MK_MBUTTON                    = 0x0010;    // The middle mouse button is down.
+        internal const uint MK_RBUTTON                    = 0x0002;    // The right mouse button is down.
+        internal const uint MK_SHIFT                        = 0x0004;    // The SHIFT key is down.
         // 20120206 internal static uint MK_XBUTTON1                    = 0x0020;    // The first X button is down.
         // 20120206 internal static uint MK_XBUTTON2                    = 0x0040;    // The second X button is down.
         
-        internal static uint WM_KEYDOWN                   = 0x0100;
-        internal static uint WM_KEYUP                     = 0x0101;
-        internal static uint WM_SYSKEYDOWN                = 0x0104;
-        internal static uint WM_SYSKEYUP                  = 0x0105;
+        internal const uint WM_KEYDOWN                   = 0x0100;
+        internal const uint WM_KEYUP                     = 0x0101;
+        internal const uint WM_SYSKEYDOWN                = 0x0104;
+        internal const uint WM_SYSKEYUP                  = 0x0105;
         
 //        // http://msdn.microsoft.com/en-us/library/ms927178.aspx
 //        internal static uint VK_SHIFT                        = 0x0010;    // SHIFT key
@@ -251,263 +254,263 @@ namespace UIAutomation
         
         
         // http://msdn.microsoft.com/en-us/library/windows/desktop/dd375731(v=vs.85).aspx
-        internal static byte VK_LBUTTON = 0x01; // Left mouse button
-        internal static byte VK_RBUTTON = 0x02; // Right mouse button
-        internal static byte VK_CANCEL = 0x03; // Control-break processing
-        internal static byte VK_MBUTTON = 0x04; // Middle mouse button (three-button mouse)
-        internal static byte VK_XBUTTON1 = 0x05; // X1 mouse button
-        internal static byte VK_XBUTTON2 = 0x06; // X2 mouse button
-        internal static byte VK_0x07 = 0x07; // Undefined
-        internal static byte VK_BACK = 0x08; // BACKSPACE key
-        internal static byte VK_TAB = 0x09; // TAB key
-        internal static byte VK_0x0A = 0x0A; // Reserved
-        internal static byte VK_0x0B = 0x0B; // Reserved
-        internal static byte VK_CLEAR = 0x0C; // CLEAR key
-        internal static byte VK_RETURN = 0x0D; // ENTER key
-        internal static byte VK_0x0E = 0x0E; // Undefined
-        internal static byte VK_0x0F = 0x0F; // Undefined
-        internal static byte VK_SHIFT = 0x10; // SHIFT key
-        internal static byte VK_CONTROL = 0x11; // CTRL key
-        internal static byte VK_MENU = 0x12; // ALT key
-        internal static byte VK_PAUSE = 0x13; // PAUSE key
-        internal static byte VK_CAPITAL = 0x14; // CAPS LOCK key
-        internal static byte VK_KANA = 0x15; // IME Kana mode
-        internal static byte VK_HANGUEL = 0x15; // IME Hanguel mode (maintained for compatibility; use VK_HANGUL)
-        internal static byte VK_HANGUL = 0x15; // IME Hangul mode
-        internal static byte VK_0x16 = 0x16; // Undefined
-        internal static byte VK_JUNJA = 0x17; // IME Junja mode
-        internal static byte VK_FINAL = 0x18; // IME final mode
-        internal static byte VK_HANJA = 0x19; // IME Hanja mode
-        internal static byte VK_KANJI = 0x19; // IME Kanji mode
-        internal static byte VK_0x1A = 0x1A; // Undefined
-        internal static byte VK_ESCAPE = 0x1B; // ESC key
-        internal static byte VK_CONVERT = 0x1C; // IME convert
-        internal static byte VK_NONCONVERT = 0x1D; // IME nonconvert
-        internal static byte VK_ACCEPT = 0x1E; // IME accept
-        internal static byte VK_MODECHANGE = 0x1F; // IME mode change request
-        internal static byte VK_SPACE = 0x20; // SPACEBAR
-        internal static byte VK_PRIOR = 0x21; // PAGE UP key
-        internal static byte VK_NEXT = 0x22; // PAGE DOWN key
-        internal static byte VK_END = 0x23; // END key
-        internal static byte VK_HOME = 0x24; // HOME key
-        internal static byte VK_LEFT = 0x25; // LEFT ARROW key
-        internal static byte VK_UP = 0x26; // UP ARROW key
-        internal static byte VK_RIGHT = 0x27; // RIGHT ARROW key
-        internal static byte VK_DOWN = 0x28; // DOWN ARROW key
-        internal static byte VK_SELECT = 0x29; // SELECT key
-        internal static byte VK_PRINT = 0x2A; // PRINT key
-        internal static byte VK_EXECUTE = 0x2B; // EXECUTE key
-        internal static byte VK_SNAPSHOT = 0x2C; // PRINT SCREEN key
-        internal static byte VK_INSERT = 0x2D; // INS key
-        internal static byte VK_DELETE = 0x2E; // DEL key
-        internal static byte VK_HELP = 0x2F; // HELP key
-        internal static byte VK_0x30 = 0x30; // 0 key
-        internal static byte VK_0x31 = 0x31; // 1 key
-        internal static byte VK_0x32 = 0x32; // 2 key
-        internal static byte VK_0x33 = 0x33; // 3 key
-        internal static byte VK_0x34 = 0x34; // 4 key
-        internal static byte VK_0x35 = 0x35; // 5 key
-        internal static byte VK_0x36 = 0x36; // 6 key
-        internal static byte VK_0x37 = 0x37; // 7 key
-        internal static byte VK_0x38 = 0x38; // 8 key
-        internal static byte VK_0x39 = 0x39; // 9 key
-        internal static byte VK_0x3A = 0x3A; // Undefined
-        internal static byte VK_0x3B = 0x3B; // Undefined
-        internal static byte VK_0x3C = 0x3C; // Undefined
-        internal static byte VK_0x3D = 0x3D; // Undefined
-        internal static byte VK_0x3E = 0x3E; // Undefined
-        internal static byte VK_0x3F = 0x3F; // Undefined
-        internal static byte VK_0x40 = 0x40; // Undefined
-        internal static byte VK_0x41 = 0x41; // A key
-        internal static byte VK_0x42 = 0x42; // B key
-        internal static byte VK_0x43 = 0x43; // C key
-        internal static byte VK_0x44 = 0x44; // D key
-        internal static byte VK_0x45 = 0x45; // E key
-        internal static byte VK_0x46 = 0x46; // F key
-        internal static byte VK_0x47 = 0x47; // G key
-        internal static byte VK_0x48 = 0x48; // H key
-        internal static byte VK_0x49 = 0x49; // I key
-        internal static byte VK_0x4A = 0x4A; // J key
-        internal static byte VK_0x4B = 0x4B; // K key
-        internal static byte VK_0x4C = 0x4C; // L key
-        internal static byte VK_0x4D = 0x4D; // M key
-        internal static byte VK_0x4E = 0x4E; // N key
-        internal static byte VK_0x4F = 0x4F; // O key
-        internal static byte VK_0x50 = 0x50; // P key
-        internal static byte VK_0x51 = 0x51; // Q key
-        internal static byte VK_0x52 = 0x52; // R key
-        internal static byte VK_0x53 = 0x53; // S key
-        internal static byte VK_0x54 = 0x54; // T key
-        internal static byte VK_0x55 = 0x55; // U key
-        internal static byte VK_0x56 = 0x56; // V key
-        internal static byte VK_0x57 = 0x57; // W key
-        internal static byte VK_0x58 = 0x58; // X key
-        internal static byte VK_0x59 = 0x59; // Y key
-        internal static byte VK_0x5A = 0x5A; // Z key
-        internal static byte VK_LWIN = 0x5B; // Left Windows key (Natural keyboard)
-        internal static byte VK_RWIN = 0x5C; // Right Windows key (Natural keyboard)
-        internal static byte VK_APPS = 0x5D; // Applications key (Natural keyboard)
-        internal static byte VK_0x5E = 0x5E; // Reserved
-        internal static byte VK_SLEEP = 0x5F; // Computer Sleep key
-        internal static byte VK_NUMPAD0 = 0x60; // Numeric keypad 0 key
-        internal static byte VK_NUMPAD1 = 0x61; // Numeric keypad 1 key
-        internal static byte VK_NUMPAD2 = 0x62; // Numeric keypad 2 key
-        internal static byte VK_NUMPAD3 = 0x63; // Numeric keypad 3 key
-        internal static byte VK_NUMPAD4 = 0x64; // Numeric keypad 4 key
-        internal static byte VK_NUMPAD5 = 0x65; // Numeric keypad 5 key
-        internal static byte VK_NUMPAD6 = 0x66; // Numeric keypad 6 key
-        internal static byte VK_NUMPAD7 = 0x67; // Numeric keypad 7 key
-        internal static byte VK_NUMPAD8 = 0x68; // Numeric keypad 8 key
-        internal static byte VK_NUMPAD9 = 0x69; // Numeric keypad 9 key
-        internal static byte VK_MULTIPLY = 0x6A; // Multiply key
-        internal static byte VK_ADD = 0x6B; // Add key
-        internal static byte VK_SEPARATOR = 0x6C; // Separator key
-        internal static byte VK_SUBTRACT = 0x6D; // Subtract key
-        internal static byte VK_DECIMAL = 0x6E; // Decimal key
-        internal static byte VK_DIVIDE = 0x6F; // Divide key
-        internal static byte VK_F1 = 0x70; // F1 key
-        internal static byte VK_F2 = 0x71; // F2 key
-        internal static byte VK_F3 = 0x72; // F3 key
-        internal static byte VK_F4 = 0x73; // F4 key
-        internal static byte VK_F5 = 0x74; // F5 key
-        internal static byte VK_F6 = 0x75; // F6 key
-        internal static byte VK_F7 = 0x76; // F7 key
-        internal static byte VK_F8 = 0x77; // F8 key
-        internal static byte VK_F9 = 0x78; // F9 key
-        internal static byte VK_F10 = 0x79; // F10 key
-        internal static byte VK_F11 = 0x7A; // F11 key
-        internal static byte VK_F12 = 0x7B; // F12 key
-        internal static byte VK_F13 = 0x7C; // F13 key
-        internal static byte VK_F14 = 0x7D; // F14 key
-        internal static byte VK_F15 = 0x7E; // F15 key
-        internal static byte VK_F16 = 0x7F; // F16 key
-        internal static byte VK_F17 = 0x80; // F17 key
-        internal static byte VK_F18 = 0x81; // F18 key
-        internal static byte VK_F19 = 0x82; // F19 key
-        internal static byte VK_F20 = 0x83; // F20 key
-        internal static byte VK_F21 = 0x84; // F21 key
-        internal static byte VK_F22 = 0x85; // F22 key
-        internal static byte VK_F23 = 0x86; // F23 key
-        internal static byte VK_F24 = 0x87; // F24 key
-        internal static byte VK_0x88 = 0x88; // Unassigned
-        internal static byte VK_0x89 = 0x89; // Unassigned
-        internal static byte VK_0x8A = 0x8A; // Unassigned
-        internal static byte VK_0x8B = 0x8B; // Unassigned
-        internal static byte VK_0x8C = 0x8C; // Unassigned
-        internal static byte VK_0x8D = 0x8D; // Unassigned
-        internal static byte VK_0x8E = 0x8E; // Unassigned
-        internal static byte VK_0x8F = 0x8F; // Unassigned
-        internal static byte VK_NUMLOCK = 0x90; // NUM LOCK key
-        internal static byte VK_SCROLL = 0x91; // SCROLL LOCK key
-        internal static byte VK_0x92 = 0x92; // OEM specific
-        internal static byte VK_0x93 = 0x93; // OEM specific
-        internal static byte VK_0x94 = 0x94; // OEM specific
-        internal static byte VK_0x95 = 0x95; // OEM specific
-        internal static byte VK_0x96 = 0x96; // OEM specific
-        internal static byte VK_0x97 = 0x97; // Unassigned
-        internal static byte VK_0x98 = 0x98; // Unassigned
-        internal static byte VK_0x99 = 0x99; // Unassigned
-        internal static byte VK_0x9A = 0x9A; // Unassigned
-        internal static byte VK_0x9B = 0x9B; // Unassigned
-        internal static byte VK_0x9C = 0x9C; // Unassigned
-        internal static byte VK_0x9D = 0x9D; // Unassigned
-        internal static byte VK_0x9E = 0x9E; // Unassigned
-        internal static byte VK_0x9F = 0x9F; // Unassigned
-        internal static byte VK_LSHIFT = 0xA0; // Left SHIFT key
-        internal static byte VK_RSHIFT = 0xA1; // Right SHIFT key
-        internal static byte VK_LCONTROL = 0xA2; // Left CONTROL key
-        internal static byte VK_RCONTROL = 0xA3; // Right CONTROL key
-        internal static byte VK_LMENU = 0xA4; // Left MENU key
-        internal static byte VK_RMENU = 0xA5; // Right MENU key
-        internal static byte VK_BROWSER_BACK = 0xA6; // Browser Back key
-        internal static byte VK_BROWSER_FORWARD = 0xA7; // Browser Forward key
-        internal static byte VK_BROWSER_REFRESH = 0xA8; // Browser Refresh key
-        internal static byte VK_BROWSER_STOP = 0xA9; // Browser Stop key
-        internal static byte VK_BROWSER_SEARCH = 0xAA; // Browser Search key
-        internal static byte VK_BROWSER_FAVORITES = 0xAB; // Browser Favorites key
-        internal static byte VK_BROWSER_HOME = 0xAC; // Browser Start and Home key
-        internal static byte VK_VOLUME_MUTE = 0xAD; // Volume Mute key
-        internal static byte VK_VOLUME_DOWN = 0xAE; // Volume Down key
-        internal static byte VK_VOLUME_UP = 0xAF; // Volume Up key
-        internal static byte VK_MEDIA_NEXT_TRACK = 0xB0; // Next Track key
-        internal static byte VK_MEDIA_PREV_TRACK = 0xB1; // Previous Track key
-        internal static byte VK_MEDIA_STOP = 0xB2; // Stop Media key
-        internal static byte VK_MEDIA_PLAY_PAUSE = 0xB3; // Play/Pause Media key
-        internal static byte VK_LAUNCH_MAIL = 0xB4; // Start Mail key
-        internal static byte VK_LAUNCH_MEDIA_SELECT = 0xB5; // Select Media key
-        internal static byte VK_LAUNCH_APP1 = 0xB6; // Start Application 1 key
-        internal static byte VK_LAUNCH_APP2 = 0xB7; // Start Application 2 key
-        internal static byte VK_0xB8 = 0xB8; // Reserved
-        internal static byte VK_0xB9 = 0xB9; // Reserved
-        internal static byte VK_OEM_1 = 0xBA; // Used for miscellaneous characters; it can vary by keyboard. For the US standard keyboard, the ';:' key
-        internal static byte VK_OEM_PLUS = 0xBB; // For any country/region, the '+' key
-        internal static byte VK_OEM_COMMA = 0xBC; // For any country/region, the ',' key
-        internal static byte VK_OEM_MINUS = 0xBD; // For any country/region, the '-' key
-        internal static byte VK_OEM_PERIOD = 0xBE; // For any country/region, the '.' key
-        internal static byte VK_OEM_2 = 0xBF; // Used for miscellaneous characters; it can vary by keyboard.
-        internal static byte VK_OEM_3 = 0xC0; // Used for miscellaneous characters; it can vary by keyboard.
-        internal static byte VK_0xC1 = 0xC1; // Reserved
-        internal static byte VK_0xC2 = 0xC2; // Reserved
-        internal static byte VK_0xC3 = 0xC3; // Reserved
-        internal static byte VK_0xC4 = 0xC4; // Reserved
-        internal static byte VK_0xC5 = 0xC5; // Reserved
-        internal static byte VK_0xC6 = 0xC6; // Reserved
-        internal static byte VK_0xC7 = 0xC7; // Reserved
-        internal static byte VK_0xC8 = 0xC8; // Reserved
-        internal static byte VK_0xC9 = 0xC9; // Reserved
-        internal static byte VK_0xCA = 0xCA; // Reserved
-        internal static byte VK_0xCB = 0xCB; // Reserved
-        internal static byte VK_0xCC = 0xCC; // Reserved
-        internal static byte VK_0xCD = 0xCD; // Reserved
-        internal static byte VK_0xCE = 0xCE; // Reserved
-        internal static byte VK_0xCF = 0xCF; // Reserved
-        internal static byte VK_0xD0 = 0xD0; // Reserved
-        internal static byte VK_0xD1 = 0xD1; // Reserved
-        internal static byte VK_0xD2 = 0xD2; // Reserved
-        internal static byte VK_0xD3 = 0xD3; // Reserved
-        internal static byte VK_0xD4 = 0xD4; // Reserved
-        internal static byte VK_0xD5 = 0xD5; // Reserved
-        internal static byte VK_0xD6 = 0xD6; // Reserved
-        internal static byte VK_0xD7 = 0xD7; // Reserved
-        internal static byte VK_0xD8 = 0xD8; // Unassigned
-        internal static byte VK_0xD9 = 0xD9; // Unassigned
-        internal static byte VK_0xDA = 0xDA; // Unassigned
-        internal static byte VK_OEM_4 = 0xDB; // Used for miscellaneous characters; it can vary by keyboard.
-        internal static byte VK_OEM_5 = 0xDC; // Used for miscellaneous characters; it can vary by keyboard.
-        internal static byte VK_OEM_6 = 0xDD; // Used for miscellaneous characters; it can vary by keyboard.
-        internal static byte VK_OEM_7 = 0xDE; // Used for miscellaneous characters; it can vary by keyboard.
-        internal static byte VK_OEM_8 = 0xDF; // Used for miscellaneous characters; it can vary by keyboard.
-        internal static byte VK_0xE0 = 0xE0; // Reserved
-        internal static byte VK_0xE1 = 0xE1; // OEM specific
-        internal static byte VK_OEM_102 = 0xE2; // Either the angle bracket key or the backslash key on the RT 102-key keyboard
-        internal static byte VK_0xE3 = 0xE3; // OEM specific
-        internal static byte VK_0xE4 = 0xE4; // OEM specific
-        internal static byte VK_PROCESSKEY = 0xE5; // IME PROCESS key
-        internal static byte VK_0xE6 = 0xE6; // OEM specific
-        internal static byte VK_PACKET = 0xE7; // Used to pass Unicode characters as if they were keystrokes. The VK_PACKET key is the low word of a 32-bit Virtual Key value used for non-keyboard input methods. For more information, see Remark in KEYBDINPUT,SendInput, WM_KEYDOWN, and WM_KEYUP
-        internal static byte VK_0xE8 = 0xE8; // Unassigned
-        internal static byte VK_0xE9 = 0xE9; // OEM specific
-        internal static byte VK_0xEA = 0xEA; // OEM specific
-        internal static byte VK_0xEB = 0xEB; // OEM specific
-        internal static byte VK_0xEC = 0xEC; // OEM specific
-        internal static byte VK_0xED = 0xED; // OEM specific
-        internal static byte VK_0xEE = 0xEE; // OEM specific
-        internal static byte VK_0xEF = 0xEF; // OEM specific
-        internal static byte VK_0xF0 = 0xF0; // OEM specific
-        internal static byte VK_0xF1 = 0xF1; // OEM specific
-        internal static byte VK_0xF2 = 0xF2; // OEM specific
-        internal static byte VK_0xF3 = 0xF3; // OEM specific
-        internal static byte VK_0xF4 = 0xF4; // OEM specific
-        internal static byte VK_0xF5 = 0xF5; // OEM specific
-        internal static byte VK_ATTN = 0xF6; // Attn key
-        internal static byte VK_CRSEL = 0xF7; // CrSel key
-        internal static byte VK_EXSEL = 0xF8; // ExSel key
-        internal static byte VK_EREOF = 0xF9; // Erase EOF key
-        internal static byte VK_PLAY = 0xFA; // Play key
-        internal static byte VK_ZOOM = 0xFB; // Zoom key
-        internal static byte VK_NONAME = 0xFC; // Reserved
-        internal static byte VK_PA1 = 0xFD; // PA1 key
-        internal static byte VK_OEM_CLEAR = 0xFE; // Clear key
+        internal const byte VK_LBUTTON = 0x01; // Left mouse button
+        internal const byte VK_RBUTTON = 0x02; // Right mouse button
+        internal const byte VK_CANCEL = 0x03; // Control-break processing
+        internal const byte VK_MBUTTON = 0x04; // Middle mouse button (three-button mouse)
+        internal const byte VK_XBUTTON1 = 0x05; // X1 mouse button
+        internal const byte VK_XBUTTON2 = 0x06; // X2 mouse button
+        internal const byte VK_0x07 = 0x07; // Undefined
+        internal const byte VK_BACK = 0x08; // BACKSPACE key
+        internal const byte VK_TAB = 0x09; // TAB key
+        internal const byte VK_0x0A = 0x0A; // Reserved
+        internal const byte VK_0x0B = 0x0B; // Reserved
+        internal const byte VK_CLEAR = 0x0C; // CLEAR key
+        internal const byte VK_RETURN = 0x0D; // ENTER key
+        internal const byte VK_0x0E = 0x0E; // Undefined
+        internal const byte VK_0x0F = 0x0F; // Undefined
+        internal const byte VK_SHIFT = 0x10; // SHIFT key
+        internal const byte VK_CONTROL = 0x11; // CTRL key
+        internal const byte VK_MENU = 0x12; // ALT key
+        internal const byte VK_PAUSE = 0x13; // PAUSE key
+        internal const byte VK_CAPITAL = 0x14; // CAPS LOCK key
+        internal const byte VK_KANA = 0x15; // IME Kana mode
+        internal const byte VK_HANGUEL = 0x15; // IME Hanguel mode (maintained for compatibility; use VK_HANGUL)
+        internal const byte VK_HANGUL = 0x15; // IME Hangul mode
+        internal const byte VK_0x16 = 0x16; // Undefined
+        internal const byte VK_JUNJA = 0x17; // IME Junja mode
+        internal const byte VK_FINAL = 0x18; // IME final mode
+        internal const byte VK_HANJA = 0x19; // IME Hanja mode
+        internal const byte VK_KANJI = 0x19; // IME Kanji mode
+        internal const byte VK_0x1A = 0x1A; // Undefined
+        internal const byte VK_ESCAPE = 0x1B; // ESC key
+        internal const byte VK_CONVERT = 0x1C; // IME convert
+        internal const byte VK_NONCONVERT = 0x1D; // IME nonconvert
+        internal const byte VK_ACCEPT = 0x1E; // IME accept
+        internal const byte VK_MODECHANGE = 0x1F; // IME mode change request
+        internal const byte VK_SPACE = 0x20; // SPACEBAR
+        internal const byte VK_PRIOR = 0x21; // PAGE UP key
+        internal const byte VK_NEXT = 0x22; // PAGE DOWN key
+        internal const byte VK_END = 0x23; // END key
+        internal const byte VK_HOME = 0x24; // HOME key
+        internal const byte VK_LEFT = 0x25; // LEFT ARROW key
+        internal const byte VK_UP = 0x26; // UP ARROW key
+        internal const byte VK_RIGHT = 0x27; // RIGHT ARROW key
+        internal const byte VK_DOWN = 0x28; // DOWN ARROW key
+        internal const byte VK_SELECT = 0x29; // SELECT key
+        internal const byte VK_PRINT = 0x2A; // PRINT key
+        internal const byte VK_EXECUTE = 0x2B; // EXECUTE key
+        internal const byte VK_SNAPSHOT = 0x2C; // PRINT SCREEN key
+        internal const byte VK_INSERT = 0x2D; // INS key
+        internal const byte VK_DELETE = 0x2E; // DEL key
+        internal const byte VK_HELP = 0x2F; // HELP key
+        internal const byte VK_0x30 = 0x30; // 0 key
+        internal const byte VK_0x31 = 0x31; // 1 key
+        internal const byte VK_0x32 = 0x32; // 2 key
+        internal const byte VK_0x33 = 0x33; // 3 key
+        internal const byte VK_0x34 = 0x34; // 4 key
+        internal const byte VK_0x35 = 0x35; // 5 key
+        internal const byte VK_0x36 = 0x36; // 6 key
+        internal const byte VK_0x37 = 0x37; // 7 key
+        internal const byte VK_0x38 = 0x38; // 8 key
+        internal const byte VK_0x39 = 0x39; // 9 key
+        internal const byte VK_0x3A = 0x3A; // Undefined
+        internal const byte VK_0x3B = 0x3B; // Undefined
+        internal const byte VK_0x3C = 0x3C; // Undefined
+        internal const byte VK_0x3D = 0x3D; // Undefined
+        internal const byte VK_0x3E = 0x3E; // Undefined
+        internal const byte VK_0x3F = 0x3F; // Undefined
+        internal const byte VK_0x40 = 0x40; // Undefined
+        internal const byte VK_0x41 = 0x41; // A key
+        internal const byte VK_0x42 = 0x42; // B key
+        internal const byte VK_0x43 = 0x43; // C key
+        internal const byte VK_0x44 = 0x44; // D key
+        internal const byte VK_0x45 = 0x45; // E key
+        internal const byte VK_0x46 = 0x46; // F key
+        internal const byte VK_0x47 = 0x47; // G key
+        internal const byte VK_0x48 = 0x48; // H key
+        internal const byte VK_0x49 = 0x49; // I key
+        internal const byte VK_0x4A = 0x4A; // J key
+        internal const byte VK_0x4B = 0x4B; // K key
+        internal const byte VK_0x4C = 0x4C; // L key
+        internal const byte VK_0x4D = 0x4D; // M key
+        internal const byte VK_0x4E = 0x4E; // N key
+        internal const byte VK_0x4F = 0x4F; // O key
+        internal const byte VK_0x50 = 0x50; // P key
+        internal const byte VK_0x51 = 0x51; // Q key
+        internal const byte VK_0x52 = 0x52; // R key
+        internal const byte VK_0x53 = 0x53; // S key
+        internal const byte VK_0x54 = 0x54; // T key
+        internal const byte VK_0x55 = 0x55; // U key
+        internal const byte VK_0x56 = 0x56; // V key
+        internal const byte VK_0x57 = 0x57; // W key
+        internal const byte VK_0x58 = 0x58; // X key
+        internal const byte VK_0x59 = 0x59; // Y key
+        internal const byte VK_0x5A = 0x5A; // Z key
+        internal const byte VK_LWIN = 0x5B; // Left Windows key (Natural keyboard)
+        internal const byte VK_RWIN = 0x5C; // Right Windows key (Natural keyboard)
+        internal const byte VK_APPS = 0x5D; // Applications key (Natural keyboard)
+        internal const byte VK_0x5E = 0x5E; // Reserved
+        internal const byte VK_SLEEP = 0x5F; // Computer Sleep key
+        internal const byte VK_NUMPAD0 = 0x60; // Numeric keypad 0 key
+        internal const byte VK_NUMPAD1 = 0x61; // Numeric keypad 1 key
+        internal const byte VK_NUMPAD2 = 0x62; // Numeric keypad 2 key
+        internal const byte VK_NUMPAD3 = 0x63; // Numeric keypad 3 key
+        internal const byte VK_NUMPAD4 = 0x64; // Numeric keypad 4 key
+        internal const byte VK_NUMPAD5 = 0x65; // Numeric keypad 5 key
+        internal const byte VK_NUMPAD6 = 0x66; // Numeric keypad 6 key
+        internal const byte VK_NUMPAD7 = 0x67; // Numeric keypad 7 key
+        internal const byte VK_NUMPAD8 = 0x68; // Numeric keypad 8 key
+        internal const byte VK_NUMPAD9 = 0x69; // Numeric keypad 9 key
+        internal const byte VK_MULTIPLY = 0x6A; // Multiply key
+        internal const byte VK_ADD = 0x6B; // Add key
+        internal const byte VK_SEPARATOR = 0x6C; // Separator key
+        internal const byte VK_SUBTRACT = 0x6D; // Subtract key
+        internal const byte VK_DECIMAL = 0x6E; // Decimal key
+        internal const byte VK_DIVIDE = 0x6F; // Divide key
+        internal const byte VK_F1 = 0x70; // F1 key
+        internal const byte VK_F2 = 0x71; // F2 key
+        internal const byte VK_F3 = 0x72; // F3 key
+        internal const byte VK_F4 = 0x73; // F4 key
+        internal const byte VK_F5 = 0x74; // F5 key
+        internal const byte VK_F6 = 0x75; // F6 key
+        internal const byte VK_F7 = 0x76; // F7 key
+        internal const byte VK_F8 = 0x77; // F8 key
+        internal const byte VK_F9 = 0x78; // F9 key
+        internal const byte VK_F10 = 0x79; // F10 key
+        internal const byte VK_F11 = 0x7A; // F11 key
+        internal const byte VK_F12 = 0x7B; // F12 key
+        internal const byte VK_F13 = 0x7C; // F13 key
+        internal const byte VK_F14 = 0x7D; // F14 key
+        internal const byte VK_F15 = 0x7E; // F15 key
+        internal const byte VK_F16 = 0x7F; // F16 key
+        internal const byte VK_F17 = 0x80; // F17 key
+        internal const byte VK_F18 = 0x81; // F18 key
+        internal const byte VK_F19 = 0x82; // F19 key
+        internal const byte VK_F20 = 0x83; // F20 key
+        internal const byte VK_F21 = 0x84; // F21 key
+        internal const byte VK_F22 = 0x85; // F22 key
+        internal const byte VK_F23 = 0x86; // F23 key
+        internal const byte VK_F24 = 0x87; // F24 key
+        internal const byte VK_0x88 = 0x88; // Unassigned
+        internal const byte VK_0x89 = 0x89; // Unassigned
+        internal const byte VK_0x8A = 0x8A; // Unassigned
+        internal const byte VK_0x8B = 0x8B; // Unassigned
+        internal const byte VK_0x8C = 0x8C; // Unassigned
+        internal const byte VK_0x8D = 0x8D; // Unassigned
+        internal const byte VK_0x8E = 0x8E; // Unassigned
+        internal const byte VK_0x8F = 0x8F; // Unassigned
+        internal const byte VK_NUMLOCK = 0x90; // NUM LOCK key
+        internal const byte VK_SCROLL = 0x91; // SCROLL LOCK key
+        internal const byte VK_0x92 = 0x92; // OEM specific
+        internal const byte VK_0x93 = 0x93; // OEM specific
+        internal const byte VK_0x94 = 0x94; // OEM specific
+        internal const byte VK_0x95 = 0x95; // OEM specific
+        internal const byte VK_0x96 = 0x96; // OEM specific
+        internal const byte VK_0x97 = 0x97; // Unassigned
+        internal const byte VK_0x98 = 0x98; // Unassigned
+        internal const byte VK_0x99 = 0x99; // Unassigned
+        internal const byte VK_0x9A = 0x9A; // Unassigned
+        internal const byte VK_0x9B = 0x9B; // Unassigned
+        internal const byte VK_0x9C = 0x9C; // Unassigned
+        internal const byte VK_0x9D = 0x9D; // Unassigned
+        internal const byte VK_0x9E = 0x9E; // Unassigned
+        internal const byte VK_0x9F = 0x9F; // Unassigned
+        internal const byte VK_LSHIFT = 0xA0; // Left SHIFT key
+        internal const byte VK_RSHIFT = 0xA1; // Right SHIFT key
+        internal const byte VK_LCONTROL = 0xA2; // Left CONTROL key
+        internal const byte VK_RCONTROL = 0xA3; // Right CONTROL key
+        internal const byte VK_LMENU = 0xA4; // Left MENU key
+        internal const byte VK_RMENU = 0xA5; // Right MENU key
+        internal const byte VK_BROWSER_BACK = 0xA6; // Browser Back key
+        internal const byte VK_BROWSER_FORWARD = 0xA7; // Browser Forward key
+        internal const byte VK_BROWSER_REFRESH = 0xA8; // Browser Refresh key
+        internal const byte VK_BROWSER_STOP = 0xA9; // Browser Stop key
+        internal const byte VK_BROWSER_SEARCH = 0xAA; // Browser Search key
+        internal const byte VK_BROWSER_FAVORITES = 0xAB; // Browser Favorites key
+        internal const byte VK_BROWSER_HOME = 0xAC; // Browser Start and Home key
+        internal const byte VK_VOLUME_MUTE = 0xAD; // Volume Mute key
+        internal const byte VK_VOLUME_DOWN = 0xAE; // Volume Down key
+        internal const byte VK_VOLUME_UP = 0xAF; // Volume Up key
+        internal const byte VK_MEDIA_NEXT_TRACK = 0xB0; // Next Track key
+        internal const byte VK_MEDIA_PREV_TRACK = 0xB1; // Previous Track key
+        internal const byte VK_MEDIA_STOP = 0xB2; // Stop Media key
+        internal const byte VK_MEDIA_PLAY_PAUSE = 0xB3; // Play/Pause Media key
+        internal const byte VK_LAUNCH_MAIL = 0xB4; // Start Mail key
+        internal const byte VK_LAUNCH_MEDIA_SELECT = 0xB5; // Select Media key
+        internal const byte VK_LAUNCH_APP1 = 0xB6; // Start Application 1 key
+        internal const byte VK_LAUNCH_APP2 = 0xB7; // Start Application 2 key
+        internal const byte VK_0xB8 = 0xB8; // Reserved
+        internal const byte VK_0xB9 = 0xB9; // Reserved
+        internal const byte VK_OEM_1 = 0xBA; // Used for miscellaneous characters; it can vary by keyboard. For the US standard keyboard, the ';:' key
+        internal const byte VK_OEM_PLUS = 0xBB; // For any country/region, the '+' key
+        internal const byte VK_OEM_COMMA = 0xBC; // For any country/region, the ',' key
+        internal const byte VK_OEM_MINUS = 0xBD; // For any country/region, the '-' key
+        internal const byte VK_OEM_PERIOD = 0xBE; // For any country/region, the '.' key
+        internal const byte VK_OEM_2 = 0xBF; // Used for miscellaneous characters; it can vary by keyboard.
+        internal const byte VK_OEM_3 = 0xC0; // Used for miscellaneous characters; it can vary by keyboard.
+        internal const byte VK_0xC1 = 0xC1; // Reserved
+        internal const byte VK_0xC2 = 0xC2; // Reserved
+        internal const byte VK_0xC3 = 0xC3; // Reserved
+        internal const byte VK_0xC4 = 0xC4; // Reserved
+        internal const byte VK_0xC5 = 0xC5; // Reserved
+        internal const byte VK_0xC6 = 0xC6; // Reserved
+        internal const byte VK_0xC7 = 0xC7; // Reserved
+        internal const byte VK_0xC8 = 0xC8; // Reserved
+        internal const byte VK_0xC9 = 0xC9; // Reserved
+        internal const byte VK_0xCA = 0xCA; // Reserved
+        internal const byte VK_0xCB = 0xCB; // Reserved
+        internal const byte VK_0xCC = 0xCC; // Reserved
+        internal const byte VK_0xCD = 0xCD; // Reserved
+        internal const byte VK_0xCE = 0xCE; // Reserved
+        internal const byte VK_0xCF = 0xCF; // Reserved
+        internal const byte VK_0xD0 = 0xD0; // Reserved
+        internal const byte VK_0xD1 = 0xD1; // Reserved
+        internal const byte VK_0xD2 = 0xD2; // Reserved
+        internal const byte VK_0xD3 = 0xD3; // Reserved
+        internal const byte VK_0xD4 = 0xD4; // Reserved
+        internal const byte VK_0xD5 = 0xD5; // Reserved
+        internal const byte VK_0xD6 = 0xD6; // Reserved
+        internal const byte VK_0xD7 = 0xD7; // Reserved
+        internal const byte VK_0xD8 = 0xD8; // Unassigned
+        internal const byte VK_0xD9 = 0xD9; // Unassigned
+        internal const byte VK_0xDA = 0xDA; // Unassigned
+        internal const byte VK_OEM_4 = 0xDB; // Used for miscellaneous characters; it can vary by keyboard.
+        internal const byte VK_OEM_5 = 0xDC; // Used for miscellaneous characters; it can vary by keyboard.
+        internal const byte VK_OEM_6 = 0xDD; // Used for miscellaneous characters; it can vary by keyboard.
+        internal const byte VK_OEM_7 = 0xDE; // Used for miscellaneous characters; it can vary by keyboard.
+        internal const byte VK_OEM_8 = 0xDF; // Used for miscellaneous characters; it can vary by keyboard.
+        internal const byte VK_0xE0 = 0xE0; // Reserved
+        internal const byte VK_0xE1 = 0xE1; // OEM specific
+        internal const byte VK_OEM_102 = 0xE2; // Either the angle bracket key or the backslash key on the RT 102-key keyboard
+        internal const byte VK_0xE3 = 0xE3; // OEM specific
+        internal const byte VK_0xE4 = 0xE4; // OEM specific
+        internal const byte VK_PROCESSKEY = 0xE5; // IME PROCESS key
+        internal const byte VK_0xE6 = 0xE6; // OEM specific
+        internal const byte VK_PACKET = 0xE7; // Used to pass Unicode characters as if they were keystrokes. The VK_PACKET key is the low word of a 32-bit Virtual Key value used for non-keyboard input methods. For more information, see Remark in KEYBDINPUT,SendInput, WM_KEYDOWN, and WM_KEYUP
+        internal const byte VK_0xE8 = 0xE8; // Unassigned
+        internal const byte VK_0xE9 = 0xE9; // OEM specific
+        internal const byte VK_0xEA = 0xEA; // OEM specific
+        internal const byte VK_0xEB = 0xEB; // OEM specific
+        internal const byte VK_0xEC = 0xEC; // OEM specific
+        internal const byte VK_0xED = 0xED; // OEM specific
+        internal const byte VK_0xEE = 0xEE; // OEM specific
+        internal const byte VK_0xEF = 0xEF; // OEM specific
+        internal const byte VK_0xF0 = 0xF0; // OEM specific
+        internal const byte VK_0xF1 = 0xF1; // OEM specific
+        internal const byte VK_0xF2 = 0xF2; // OEM specific
+        internal const byte VK_0xF3 = 0xF3; // OEM specific
+        internal const byte VK_0xF4 = 0xF4; // OEM specific
+        internal const byte VK_0xF5 = 0xF5; // OEM specific
+        internal const byte VK_ATTN = 0xF6; // Attn key
+        internal const byte VK_CRSEL = 0xF7; // CrSel key
+        internal const byte VK_EXSEL = 0xF8; // ExSel key
+        internal const byte VK_EREOF = 0xF9; // Erase EOF key
+        internal const byte VK_PLAY = 0xFA; // Play key
+        internal const byte VK_ZOOM = 0xFB; // Zoom key
+        internal const byte VK_NONAME = 0xFC; // Reserved
+        internal const byte VK_PA1 = 0xFD; // PA1 key
+        internal const byte VK_OEM_CLEAR = 0xFE; // Clear key
 
         
         
@@ -535,28 +538,28 @@ namespace UIAutomation
         [return: MarshalAs(UnmanagedType.Bool)]
         internal static extern bool SetCursorPos(int X, int Y);
         
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "INPUT")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "MOUSE")]
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "INPUT")]
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "MOUSE")]
         internal static int INPUT_MOUSE = 0;
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "INPUT")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "KEYBOARD")]
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "INPUT")]
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "KEYBOARD")]
         internal static int INPUT_KEYBOARD = 1;
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "INPUT")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "HARDWARE")]
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "INPUT")]
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "HARDWARE")]
         internal static int INPUT_HARDWARE = 2;
         
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "KEYEVENTF")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "EXTENDEDKEY")]
-        internal static uint KEYEVENTF_EXTENDEDKEY = 0x0001;
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "KEYEVENTF")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "KEYUP")]
-        internal static uint KEYEVENTF_KEYUP = 0x0002;
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "KEYEVENTF")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UNICODE")]
-        internal static uint KEYEVENTF_UNICODE = 0x0004;
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "KEYEVENTF")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "SCANCODE")]
-        internal static uint KEYEVENTF_SCANCODE = 0x0008;
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "KEYEVENTF")]
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "EXTENDEDKEY")]
+        internal const uint KEYEVENTF_EXTENDEDKEY = 0x0001;
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "KEYEVENTF")]
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "KEYUP")]
+        internal const uint KEYEVENTF_KEYUP = 0x0002;
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "KEYEVENTF")]
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UNICODE")]
+        internal const uint KEYEVENTF_UNICODE = 0x0004;
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "KEYEVENTF")]
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "SCANCODE")]
+        internal const uint KEYEVENTF_SCANCODE = 0x0008;
         
 
         
@@ -570,8 +573,8 @@ namespace UIAutomation
 // UIntPtr dwExtraInfo);
         
         [DllImport("user32.dll")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "keybd")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "event")]
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "keybd")]
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "event")]
         internal static extern void keybd_event(byte bVk, byte bScan, uint dwFlags,
            int dwExtraInfo);
         
@@ -582,9 +585,10 @@ namespace UIAutomation
         #endregion declarations
         #endregion the click
         
-        #region Set-UIAControlText
+        #region Set-UiaControlText
         #region declarations
-        internal static uint WM_CHAR                        = 0x0102;
+
+        internal const uint WM_CHAR = 0x0102;
         // 20120206 uint WM_SETTEXT                        = 0x000C;
 // uint WM_KEYDOWN                        = 0x0100;
 // uint WM_KEYUP                        = 0x0100;
@@ -595,44 +599,45 @@ namespace UIAutomation
         internal static extern bool SendMessage1(IntPtr hWnd, uint Msg,
                                         int wParam, int lParam);
         #endregion declarations
-        #endregion Set-UIAControlText
-        #region Clear-UIAControlText
+        #endregion Set-UiaControlText
+        #region Clear-UiaControlText
         [return: MarshalAs (UnmanagedType.Bool)]
         //[DllImport ("user32.dll", SetLastError = true)]
         [DllImport("user32.dll", EntryPoint="SendMessage", CharSet=CharSet.Auto, SetLastError = true)]
         internal static extern bool SendMessage3 (IntPtr hWnd, uint Msg, IntPtr wParam, string s);  
         //const uint WM_SETTEXT = 0x000c;
-        internal static uint WM_SETTEXT                        = 0x000c;
-        #endregion Clear-UIAControlText
+        internal const uint WM_SETTEXT = 0x000c;
+
+        #endregion Clear-UiaControlText
         
-        #region Get-UIAActiveWindow
+        #region Get-UiaActiveWindow
         #region declarations
         [DllImport("user32.dll")]
         internal static extern IntPtr GetForegroundWindow();
         #endregion declarations
-        #endregion Get-UIAActiveWindow
+        #endregion Get-UiaActiveWindow
         
         #region Sheridan
         #region declarations
         //Define TreeView Flags and Messages
         internal static int BN_CLICKED = 0xF5;
-        internal static int TV_FIRST = 0x1100;
-        internal static int TVGN_ROOT = 0x0;
-        internal static int TVGN_NEXT = 0x1;
-        internal static int TVGN_CHILD = 0x4;
+        internal const int TV_FIRST = 0x1100;
+        internal const int TVGN_ROOT = 0x0;
+        internal const int TVGN_NEXT = 0x1;
+        internal const int TVGN_CHILD = 0x4;
         internal static int TVGN_FIRSTVISIBLE = 0x5;
         internal static int TVGN_NEXTVISIBLE = 0x6;
         internal static int TVGN_CARET = 0x9;
         internal static int TVM_SELECTITEM = (TV_FIRST + 11);
-        internal static int TVM_GETNEXTITEM = (TV_FIRST + 10);
+        internal const int TVM_GETNEXTITEM = (TV_FIRST + 10);
         internal static int TVM_GETITEM = (TV_FIRST + 12);
         
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         public static extern int SendMessage(int hWnd, int msg, int wParam, IntPtr lParam);
-        
-        internal static int WM_GETTEXT = 0x000D;
-        internal static int WM_GETTEXTLENGTH = 0x000E;
-        
+
+        internal const int WM_GETTEXT = 0x000D;
+        internal const int WM_GETTEXTLENGTH = 0x000E;
+
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         public static extern int GetWindowText(IntPtr hWnd, string lpString, int nMaxCount);
 //        int WINAPI GetWindowText(
@@ -999,7 +1004,7 @@ namespace UIAutomation
 //        }
         
         
-        [StructLayoutAttribute(LayoutKind.Sequential)]
+        [StructLayout(LayoutKind.Sequential)]
         public struct SYSTEMTIME
         {
             public short wYear;
@@ -1184,7 +1189,7 @@ namespace UIAutomation
         // Wrapper for DPAPI CryptProtectData function.
         [DllImport( "crypt32.dll",
                     SetLastError=true,
-                    CharSet=System.Runtime.InteropServices.CharSet.Auto)]
+                    CharSet=CharSet.Auto)]
         internal static extern
             bool CryptProtectData(  ref DATA_BLOB     pPlainText,
                                         string        szDescription,
@@ -1197,7 +1202,7 @@ namespace UIAutomation
         // Wrapper for DPAPI CryptUnprotectData function.
         [DllImport( "crypt32.dll",
                     SetLastError=true,
-                    CharSet=System.Runtime.InteropServices.CharSet.Auto)]
+                    CharSet=CharSet.Auto)]
         internal static extern
             bool CryptUnprotectData(ref DATA_BLOB       pCipherText,
                                     ref string          pszDescription,

@@ -11,21 +11,21 @@ namespace UIAutomation
 {
     using System;
     using System.Management.Automation;
-    using UIAutomation.Commands;
+    using Commands;
     
     /// <summary>
-    /// Description of UIANewWizardCommand.
+    /// Description of UiaNewWizardCommand.
     /// </summary>
-    internal class UIANewWizardCommand : UIACommand
+    internal class UiaNewWizardCommand : UiaCommand
     {
-        internal UIANewWizardCommand(CommonCmdletBase cmdlet) : base (cmdlet)
+        internal UiaNewWizardCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         
         internal override void Execute()
         {
-            NewUIAWizardCommand cmdlet =
-                (NewUIAWizardCommand)this.Cmdlet;
+            NewUiaWizardCommand cmdlet =
+                (NewUiaWizardCommand)Cmdlet;
             
             WizardHelper.CreateWizard(cmdlet);
         }

@@ -13,13 +13,13 @@ namespace TMX.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of RemoveTMXTestCaseCommand.
+    /// Description of RemoveTmxTestCaseCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Remove, "TMXTestCase")]
+    [Cmdlet(VerbsCommon.Remove, "TmxTestCase")]
     [OutputType(typeof(ITestCase))]
-    public class RemoveTMXTestCaseCommand : TestCaseCmdletBase
+    public class RemoveTmxTestCaseCommand : TestCaseCmdletBase
     {
-        public RemoveTMXTestCaseCommand()
+        public RemoveTmxTestCaseCommand()
         {
         }
     }

@@ -9,21 +9,14 @@
 
 namespace UIAutomationUnitTests.CheckCmdletParameters
 {
-    using System;
-    using System.Windows.Automation;
-    using PSTestLib;
     using UIAutomation;
     using MbUnit.Framework;
     
     /// <summary>
-    /// Description of AddUIAWizardStepCommandTestFixture.
+    /// Description of AddUiaWizardStepCommandTestFixture.
     /// </summary>
-    public class AddUIAWizardStepCommandTestFixture
+    public class AddUiaWizardStepCommandTestFixture
     {
-        public AddUIAWizardStepCommandTestFixture()
-        {
-        }
-        
         [SetUp]
         public void PrepareRunspace()
         {
@@ -42,7 +35,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         public void AddWizardStep_Name()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		@"Add-UIAWizardStep -Name 'stepName' -InputObject (New-UIAWizard -Name wizardName -StartAction {});");
+        		@"Add-UiaWizardStep -Name 'stepName' -InputObject (New-UiaWizard -Name wizardName -StartAction {});");
         }
         
         [Test]
@@ -50,7 +43,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         public void AddWizardStep_Name_StepForwardAction()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		@"Add-UIAWizardStep -Name 'stepName' -InputObject (New-UIAWizard -Name wizardName -StartAction {}) -StepForwardAction {};");
+        		@"Add-UiaWizardStep -Name 'stepName' -InputObject (New-UiaWizard -Name wizardName -StartAction {}) -StepForwardAction {};");
         }
         
         [Test]
@@ -58,7 +51,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         public void AddWizardStep_Name_StepBackwardAction()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		@"Add-UIAWizardStep -Name 'stepName' -InputObject (New-UIAWizard -Name wizardName -StartAction {}) -StepBackwardAction {};");
+        		@"Add-UiaWizardStep -Name 'stepName' -InputObject (New-UiaWizard -Name wizardName -StartAction {}) -StepBackwardAction {};");
         }
         
         [Test]
@@ -66,7 +59,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         public void AddWizardStep_Name_StepForwardAction_StepBackwardAction()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		@"Add-UIAWizardStep -Name 'stepName' -InputObject (New-UIAWizard -Name wizardName -StartAction {}) -StepForwardAction {} -StepBackwardAction {};");
+        		@"Add-UiaWizardStep -Name 'stepName' -InputObject (New-UiaWizard -Name wizardName -StartAction {}) -StepForwardAction {} -StepBackwardAction {};");
         }
     }
 }

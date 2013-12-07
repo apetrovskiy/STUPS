@@ -9,6 +9,7 @@
 
 namespace UIAutomation
 {
+    extern alias UIANET;
     using System;
     using System.Management.Automation;
     using System.Windows.Automation;
@@ -17,8 +18,8 @@ namespace UIAutomation
     
     using System.Linq;
     using System.Linq.Expressions;
-    
-    using UIAutomation.Commands;
+    using System.Collections.Generic;
+    using Commands;
 
     /// <summary>
     /// Description of GetControlCollectionCmdletBase.
@@ -27,14 +28,11 @@ namespace UIAutomation
     {
         public GetControlCollectionCmdletBase()
         {
-            this.PassThru = false;
+            PassThru = false;
         }
         
         public GetControlCollectionCmdletBase(
-            // 20131109
-            //AutomationElement[] inputObjectCollection,
-            //ICollection inputObjectCollection,
-            IMySuperWrapper[] inputObjectCollection,
+            IUiElement[] inputObjectCollection,
             string name,
             string automationId,
             string className,
@@ -42,13 +40,13 @@ namespace UIAutomation
             string[] controlType,
             bool caseSensitive)
         {
-            this.InputObject = inputObjectCollection;
-            this.Name = name;
-            this.AutomationId = automationId;
-            this.Class = className;
-            this.Value = textValue;
-            this.ControlType = controlType;
-            this.CaseSensitive = caseSensitive;
+            InputObject = inputObjectCollection;
+            Name = name;
+            AutomationId = automationId;
+            Class = className;
+            Value = textValue;
+            ControlType = controlType;
+            CaseSensitive = caseSensitive;
         }
         
         #region Parameters
@@ -64,7 +62,7 @@ namespace UIAutomation
         }
         
         [Parameter(Mandatory = false)]
-        public new string[] ControlType { get; set; }
+        public virtual new string[] ControlType { get; set; }
         
         [Parameter(Mandatory = false)]
         internal new SwitchParameter PassThru { get; set; }
@@ -82,51 +80,48 @@ namespace UIAutomation
         }
         
         protected void GetAutomationElementsViaWildcards_FindAll(
-            // 20131104
-            // refactoring
-            //AutomationElement inputObject,
-            IMySuperWrapper inputObject,
+            IUiElement inputObject,
             AndCondition conditions,
             bool caseSensitive,
             bool onlyOneResult,
-            bool onlyTopLevel)
+            bool onlyTopLevel,
+            bool viaWildcardOrRegex)
         {
-            if (!this.CheckAndPrepareInput(this)) { return; }
+            if (!CheckAndPrepareInput(this)) { return; }
           
-            getAutomationElementsWithFindAll(
+            GetAutomationElementsWithFindAll(
                 inputObject,
-                this.Name,
-                this.AutomationId,
-                this.Class,
-                this.Value,
-                this.ControlType,
+                Name,
+                AutomationId,
+                Class,
+                Value,
+                ControlType,
                 conditions,
                 caseSensitive,
                 onlyOneResult,
-                onlyTopLevel);
+                onlyTopLevel,
+                viaWildcardOrRegex);
         }
         
-        internal ArrayList GetAutomationElementsViaWildcards_FindAll(
+        internal List<IUiElement> GetAutomationElementsViaWildcards_FindAll(
             GetControlCollectionCmdletBase cmdlet,
-            // 20131104
-            // refactoring
-            //AutomationElement inputObject,
-            IMySuperWrapper inputObject,
-            AndCondition conditions,
+            IUiElement inputObject,
+            Condition conditions,
             bool caseSensitive,
             bool onlyOneResult,
-            bool onlyTopLevel)
+            bool onlyTopLevel,
+            bool viaWildcardOrRegex)
         {
             cmdlet.WriteVerbose(cmdlet, "in the GetAutomationElementsViaWildcards_FindAll method");
             
             if (!cmdlet.CheckAndPrepareInput(cmdlet)) { return null; } // ?? 20131107
             
             cmdlet.WriteVerbose(cmdlet, "still in the GetAutomationElementsViaWildcards_FindAll method");
-
-            ArrayList resultCollection = new ArrayList();
+            
+            List<IUiElement> resultCollection = new List<IUiElement>();
             
             resultCollection =
-                getAutomationElementsWithFindAll(
+                GetAutomationElementsWithFindAll(
                     inputObject,
                     cmdlet.Name,
                     cmdlet.AutomationId,
@@ -136,21 +131,12 @@ namespace UIAutomation
                     conditions,
                     caseSensitive,
                     onlyOneResult,
-                    onlyTopLevel);
+                    onlyTopLevel,
+                    viaWildcardOrRegex);
             
             cmdlet.WriteVerbose(cmdlet, "with some resultCollection");
             
             if (null == resultCollection || resultCollection.Count == 0) {
-                
-if (null == inputObject) {
-    Console.WriteLine("inputObject == null");
-}
-//var aaa = inputObject.Current;
-//if (null == aaa) {
-//    Console.WriteLine("inputObject.Current == null");
-//}
-Console.WriteLine("inputObject.Current = " + inputObject.Current);
-Console.WriteLine("inputObject.Current.Name = " + inputObject.Current.Name);
                 
                 WriteVerbose(
                     cmdlet, 
@@ -177,42 +163,38 @@ Console.WriteLine("inputObject.Current.Name = " + inputObject.Current.Name);
         }
         
         protected void GetAutomationElementsViaWildcards(
-            // 20131109
-            //AutomationElement inputObject,
-            IMySuperWrapper inputObject,
+            IUiElement inputObject,
             bool caseSensitive,
             bool onlyOneResult,
             bool onlyTopLevel)
         {
-            if (!this.CheckAndPrepareInput(this)) { return; }
+            if (!CheckAndPrepareInput(this)) { return; }
           
-            getAutomationElementsWithWalker(
+            GetAutomationElementsWithWalker(
                 inputObject,
-                this.Name,
-                this.AutomationId,
-                this.Class,
-                this.ControlType,
+                Name,
+                AutomationId,
+                Class,
+                ControlType,
                 caseSensitive,
                 onlyOneResult,
                 onlyTopLevel);
         }
         
-        internal ArrayList GetAutomationElementsViaWildcards(
+        internal List<IUiElement> GetAutomationElementsViaWildcards(
             GetControlCollectionCmdletBase cmdlet,
             bool caseSensitive,
             bool onlyOneResult,
             bool onlyTopLevel)
         {
             if (!cmdlet.CheckAndPrepareInput(cmdlet)) { return null; }
-
-            ArrayList resultCollection = new ArrayList();
             
-            // 20131109
-            //foreach (AutomationElement inputObject in this.InputObject) {
-            foreach (IMySuperWrapper inputObject in this.InputObject) {
+            List<IUiElement> resultCollection = new List<IUiElement>();
+            
+            foreach (IUiElement inputObject in InputObject) {
             
                 resultCollection =
-                    getAutomationElementsWithWalker(
+                    GetAutomationElementsWithWalker(
                         inputObject,
                         cmdlet.Name,
                         cmdlet.AutomationId,
@@ -249,10 +231,8 @@ Console.WriteLine("inputObject.Current.Name = " + inputObject.Current.Name);
             return resultCollection;
         }
         
-        private ArrayList getAutomationElementsWithWalker(
-            // 20131109
-            //AutomationElement element,
-            IMySuperWrapper element,
+        private List<IUiElement> GetAutomationElementsWithWalker(
+            IUiElement element,
             string name,
             string automationId,
             string className,
@@ -261,22 +241,19 @@ Console.WriteLine("inputObject.Current.Name = " + inputObject.Current.Name);
             bool onlyOneResult,
             bool onlyTopLevel)
         {
-            ArrayList resultCollection = new ArrayList();
+            List<IUiElement> resultCollection = new List<IUiElement>();
 
-            System.Windows.Automation.TreeWalker walker = 
-                new System.Windows.Automation.TreeWalker(
-                    System.Windows.Automation.Condition.TrueCondition);
+            TreeWalker walker = 
+                new TreeWalker(
+                    Condition.TrueCondition);
             // 20131109
             //System.Windows.Automation.AutomationElement oneMoreElement;
-            IMySuperWrapper oneMoreElement;
-            
+
             try {
-                oneMoreElement =
-                    // 20131109
-                    //walker.GetFirstChild(element);
-                    // 20131112
-                    //new MySuperWrapper(walker.GetFirstChild(element.SourceElement));
-                    ObjectsFactory.GetMySuperWrapper(walker.GetFirstChild(element.SourceElement));
+                // 20131118
+                // property to method
+                //IUiElement oneMoreElement = ObjectsFactory.GetUiElement(walker.GetFirstChild(element.SourceElement));
+                IUiElement oneMoreElement = AutomationFactory.GetUiElement(walker.GetFirstChild(element.GetSourceElement()));
 
                 try{
                     WriteVerbose(
@@ -289,7 +266,7 @@ Console.WriteLine("inputObject.Current.Name = " + inputObject.Current.Name);
                 }
                 catch {}
 
-                resultCollection = processAutomationElement(
+                resultCollection = ProcessAutomationElement(
                         oneMoreElement,
                         name,
                         automationId,
@@ -313,8 +290,11 @@ Console.WriteLine("inputObject.Current.Name = " + inputObject.Current.Name);
                     // 20131109
                     //oneMoreElement = walker.GetNextSibling(oneMoreElement.SourceElement);
                     // 20131112
-                    //oneMoreElement = new MySuperWrapper(walker.GetNextSibling(oneMoreElement.SourceElement));
-                    oneMoreElement = ObjectsFactory.GetMySuperWrapper(walker.GetNextSibling(oneMoreElement.SourceElement));
+                    //oneMoreElement = new UiElement(walker.GetNextSibling(oneMoreElement.SourceElement));
+                    // 20131118
+                    // property to method
+                    //oneMoreElement = ObjectsFactory.GetUiElement(walker.GetNextSibling(oneMoreElement.SourceElement));
+                    oneMoreElement = AutomationFactory.GetUiElement(walker.GetNextSibling(oneMoreElement.GetSourceElement()));
 
                     try{
                         WriteVerbose(
@@ -327,7 +307,7 @@ Console.WriteLine("inputObject.Current.Name = " + inputObject.Current.Name);
                     }
                     catch {}
 
-                    resultCollection = processAutomationElement(
+                    resultCollection = ProcessAutomationElement(
                         oneMoreElement,
                         name,
                         automationId,
@@ -352,42 +332,35 @@ Console.WriteLine("inputObject.Current.Name = " + inputObject.Current.Name);
             return resultCollection;
         }
         
-        private ArrayList getAutomationElementsWithFindAll(
-            // 20131104
-            // refactoring
-            //AutomationElement element,
-            IMySuperWrapper element,
+        internal List<IUiElement> GetAutomationElementsWithFindAll(
+            IUiElement element,
             string name,
             string automationId,
             string className,
             string textValue,
             string[] controlType,
             Condition conditions,
-            // AndCondition conditions,
             bool caseSensitiveParam,
             bool onlyOneResult,
-            bool onlyTopLevel)
+            bool onlyTopLevel,
+            bool viaWildcardOrRegex)
         {
-            ArrayList resultCollection = new ArrayList();
+            List<IUiElement> resultCollection = new List<IUiElement>();
 
             try {
                 
-                // 20131105
-                // refactoring
-                //AutomationElementCollection results =
-                IMySuperCollection results =
+                IUiEltCollection results =
                     element.FindAll(
                         TreeScope.Descendants,
                         conditions);
-                this.WriteVerbose(
+                WriteVerbose(
                     this,
                     "There are roughly " +
                     results.Count.ToString() +
                     " elements");
-
+                
                 resultCollection =
                     ReturnOnlyRightElements(
-                        // 20130513
                         this,
                         results,
                         name,
@@ -395,11 +368,12 @@ Console.WriteLine("inputObject.Current.Name = " + inputObject.Current.Name);
                         className,
                         textValue,
                         controlType,
-                        caseSensitiveParam);
+                        caseSensitiveParam,
+                        viaWildcardOrRegex);
                 
                 // 20130608
                 results = null;
-
+                
             }
             catch { //(Exception eWildCardSearch) {
                 
@@ -408,142 +382,8 @@ Console.WriteLine("inputObject.Current.Name = " + inputObject.Current.Name);
             return resultCollection;
         }
         
-//        internal ArrayList returnOnlyRightElements(
-//            AutomationElementCollection results,
-//            string name,
-//            string automationId,
-//            string className,
-//            string textValue,
-//            string[] controlType,
-//            bool caseSensitive)
-//        {
-//                ArrayList resultCollection = new ArrayList();
-//                
-//                WildcardOptions options;
-//                if (caseSensitive) {
-//                    options =
-//                        WildcardOptions.Compiled;
-//                } else {
-//                    options =
-//                        WildcardOptions.IgnoreCase |
-//                        WildcardOptions.Compiled;
-//                }
-//
-//                if (string.Empty == name || 0 == name.Length) { name = "*"; }
-//                if (string.Empty == automationId || 0 == automationId.Length) { automationId = "*"; }
-//                if (string.Empty == className || 0 == className.Length) { className = "*"; }
-//                if (string.Empty == textValue || 0 == textValue.Length) { textValue = "*"; }
-//
-//                WildcardPattern wildcardName = 
-//                    new WildcardPattern(name, options);
-//                WildcardPattern wildcardAutomationId = 
-//                    new WildcardPattern(automationId, options);
-//                WildcardPattern wildcardClass = 
-//                    new WildcardPattern(className, options);
-//                WildcardPattern wildcardValue = 
-//                    new WildcardPattern(textValue, options);
-//
-//                System.Collections.Generic.List<AutomationElement> list =
-//                    new System.Collections.Generic.List<AutomationElement>();
-//                foreach (AutomationElement elt in results) {
-//                    list.Add(elt);
-//                }
-//
-//            try {
-//                var query = list
-////                    .Where<AutomationElement>(item => wildcardName.IsMatch(item.Current.Name))
-////                    .Where<AutomationElement>(item => wildcardAutomationId.IsMatch(item.Current.AutomationId))
-////                    .Where<AutomationElement>(item => wildcardClass.IsMatch(item.Current.ClassName))
-////                    .Where<AutomationElement>(item => 
-////                                              item.GetSupportedPatterns().Contains(ValuePattern.Pattern) ? 
-////                                              //(("*" != textValue) ? wildcardValue.IsMatch((item.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern).Current.Value) : false) :
-////                                              (("*" != textValue) ? (positiveMatch(item, wildcardValue, textValue)) : (negativeMatch(textValue))) :
-////                                              true
-////                                              )
-//                    .Where<AutomationElement>(
-//                        item => (wildcardName.IsMatch(item.Current.Name) &&
-//                                 wildcardAutomationId.IsMatch(item.Current.AutomationId) &&
-//                                 wildcardClass.IsMatch(item.Current.ClassName) &&
-//                                 // check whether a control has or hasn't ValuePattern
-//                                 (item.GetSupportedPatterns().Contains(ValuePattern.Pattern) ?
-//                                  testRealValueAndValueParameter(item, name, automationId, className, textValue, wildcardValue) :
-//                                  // check whether the -Value parameter has or hasn't value
-//                                  ("*" == textValue ? true : false)
-//                                 )
-//                                )
-//                       )
-//                    .ToArray<AutomationElement>();
-//
-//                this.WriteVerbose(
-//                    this,
-//                    "There are " +
-//                    query.Count().ToString() +
-//                    " elements");
-//
-//                resultCollection.AddRange(query);
-//
-//                this.WriteVerbose(
-//                    this,
-//                    "There are " +
-//                    resultCollection.Count.ToString() +
-//                    " elements");
-//                
-//            }
-//            catch {
-//                
-//            }
-//            
-//            return resultCollection;
-//        }
-        
-//        private bool testRealValueAndValueParameter(
-//            AutomationElement item,
-//            string name,
-//            string automationId,
-//            string className,
-//            string textValue,
-//            WildcardPattern wildcardValue)
-//        {
-//            bool result = false;
-//            
-//            // getting the real value of a control
-//            string realValue = string.Empty;
-//            try {
-//                realValue =
-//                    (item.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern).Current.Value;
-//            }
-//            catch {}
-//            
-//            // if a control's ValuePattern has no value
-//            if (string.Empty == realValue) {
-//                
-//                if ("*" != name || "*" != automationId || "*" != className) {
-//                    return true;
-//                }
-//                return result;
-//            }
-//            
-//            // if there was not specified the -Value parameter
-//            if ("*" == textValue) {
-//                
-//                if ("*" != name || "*" != automationId || "*" != className) {
-//                    return true;
-//                }
-//                
-//                // 20130208
-//                //return result;
-//            }
-//            
-//            result =
-//                wildcardValue.IsMatch(realValue);
-//
-//            return result;
-//        }
-        
-        private ArrayList processAutomationElement(
-            // 20131109
-            //AutomationElement element,
-            IMySuperWrapper element,
+        private List<IUiElement> ProcessAutomationElement(
+            IUiElement element,
             string name,
             string automationId,
             string className,
@@ -552,7 +392,7 @@ Console.WriteLine("inputObject.Current.Name = " + inputObject.Current.Name);
             bool onlyOneResult,
             bool onlyTopLevel)
         {
-            ArrayList resultCollection = new ArrayList();
+            List<IUiElement> resultCollection = new List<IUiElement>();
             
             if (null == name) {
                 name = string.Empty;
@@ -566,7 +406,7 @@ Console.WriteLine("inputObject.Current.Name = " + inputObject.Current.Name);
             
             if ((controlType != null && 
                 controlType.Length > 0 && 
-                elementOfPossibleControlType(
+                ElementOfPossibleControlType(
                     controlType,
                     element.Current.ControlType.ProgrammaticName)) ||
                 (controlType == null) ||
@@ -599,7 +439,7 @@ Console.WriteLine("inputObject.Current.Name = " + inputObject.Current.Name);
                 // there's a bug 20130125
                 bool matched = false;
                 
-                if (this.FromCache && CurrentData.CacheRequest != null) {
+                if (FromCache && CurrentData.CacheRequest != null) {
                     if (name.Length > 0 && wildcardName.IsMatch(element.Cached.Name)) {
                         matched = true;
                     } else if (automationId.Length > 0 && 
@@ -643,7 +483,7 @@ Console.WriteLine("inputObject.Current.Name = " + inputObject.Current.Name);
             
             if (!onlyTopLevel) {
                 
-                getAutomationElementsWithWalker(
+                GetAutomationElementsWithWalker(
                     element,
                     name,
                     automationId,
@@ -658,7 +498,7 @@ Console.WriteLine("inputObject.Current.Name = " + inputObject.Current.Name);
             return resultCollection;
         }
         
-        internal bool elementOfPossibleControlType(
+        internal bool ElementOfPossibleControlType(
             string[] controlType, 
             string elementControlType)
         {
@@ -722,26 +562,18 @@ Console.WriteLine("inputObject.Current.Name = " + inputObject.Current.Name);
         
         protected void GetAutomationElementsSiblings(bool nextSibling)
         {
-            if (!this.CheckAndPrepareInput(this)) { return; }
+            if (!CheckAndPrepareInput(this)) { return; }
             
-            System.Windows.Automation.TreeWalker walker = 
-                new System.Windows.Automation.TreeWalker(
-                    System.Windows.Automation.Condition.TrueCondition);
+            TreeWalker walker = 
+                new TreeWalker(
+                    Condition.TrueCondition);
             
             // 20120823
             // 20131109
             //foreach (AutomationElement inputObject in this.InputObject) {
-            foreach (IMySuperWrapper inputObject in this.InputObject) {
-                
-                // 20131109
-                //AutomationElement sibling = null;
-                //sibling = nextSibling ? walker.GetNextSibling(inputObject) : walker.GetPreviousSibling(inputObject);
-                IMySuperWrapper sibling = null;
-                // 20131112
-                //sibling = nextSibling ? (new MySuperWrapper(walker.GetNextSibling(inputObject.SourceElement))) : (new MySuperWrapper(walker.GetPreviousSibling(inputObject.SourceElement)));
-                sibling = nextSibling ? ObjectsFactory.GetMySuperWrapper(walker.GetNextSibling(inputObject.SourceElement)) : ObjectsFactory.GetMySuperWrapper(walker.GetPreviousSibling(inputObject.SourceElement));
-
-                
+            /*
+            foreach (IUiElement sibling in from inputObject in InputObject let sibling = null select nextSibling ? ObjectsFactory.GetUiElement(walker.GetNextSibling(inputObject.GetSourceElement())) : ObjectsFactory.GetUiElement(walker.GetPreviousSibling(inputObject.GetSourceElement())))
+            {
                 //if (nextSibling) {
                 //    // 20120823
                 //    //sibling = walker.GetNextSibling(this.InputObject);
@@ -754,20 +586,29 @@ Console.WriteLine("inputObject.Current.Name = " + inputObject.Current.Name);
                 
                 // 20131113
                 // WriteObject(this, sibling);
-                this.WriteObject(this, sibling);
+                WriteObject(this, sibling);
+            }
+            */
+
+            foreach (IUiElement inputObject in InputObject) {
+                
+                IUiElement sibling = null;
+                sibling = nextSibling ? AutomationFactory.GetUiElement(walker.GetNextSibling(inputObject.GetSourceElement())) : AutomationFactory.GetUiElement(walker.GetPreviousSibling(inputObject.GetSourceElement()));
+                
+                WriteObject(this, sibling);
             
             } // 20120823
-            
+
             /*
-            foreach (IMySuperWrapper inputObject in this.InputObject) {
+            foreach (IUiElement inputObject in this.InputObject) {
                 
                 // 20131109
                 //AutomationElement sibling = null;
                 //sibling = nextSibling ? walker.GetNextSibling(inputObject) : walker.GetPreviousSibling(inputObject);
-                IMySuperWrapper sibling = null;
+                IUiElement sibling = null;
                 // 20131112
-                //sibling = nextSibling ? (new MySuperWrapper(walker.GetNextSibling(inputObject.SourceElement))) : (new MySuperWrapper(walker.GetPreviousSibling(inputObject.SourceElement)));
-                sibling = nextSibling ? ObjectsFactory.GetMySuperWrapper(walker.GetNextSibling(inputObject.SourceElement)) : ObjectsFactory.GetMySuperWrapper(walker.GetPreviousSibling(inputObject.SourceElement));
+                //sibling = nextSibling ? (new UiElement(walker.GetNextSibling(inputObject.SourceElement))) : (new UiElement(walker.GetPreviousSibling(inputObject.SourceElement)));
+                sibling = nextSibling ? ObjectsFactory.GetUiElement(walker.GetNextSibling(inputObject.SourceElement)) : ObjectsFactory.GetUiElement(walker.GetPreviousSibling(inputObject.SourceElement));
 
                 
                 //if (nextSibling) {
@@ -789,21 +630,27 @@ Console.WriteLine("inputObject.Current.Name = " + inputObject.Current.Name);
         
         // 20131109
         //protected void GetAutomationElementsChildren(AutomationElement inputObject, bool firstChild)
-        protected void GetAutomationElementsChildren(IMySuperWrapper inputObject, bool firstChild)
+        protected void GetAutomationElementsChildren(IUiElement inputObject, bool firstChild)
         {
-            if (!this.CheckAndPrepareInput(this)) { return; }
+            if (!CheckAndPrepareInput(this)) { return; }
             
-            System.Windows.Automation.TreeWalker walker = 
-                new System.Windows.Automation.TreeWalker(
-                    System.Windows.Automation.Condition.TrueCondition);
+            TreeWalker walker = 
+                new TreeWalker(
+                    Condition.TrueCondition);
             
             // 20131109
             //AutomationElement sibling = null;
             //sibling = firstChild ? walker.GetFirstChild(inputObject) : walker.GetLastChild(inputObject);
-            IMySuperWrapper sibling = null;
+            IUiElement sibling = null;
             // 20131112
-            //sibling = firstChild ? (new MySuperWrapper(walker.GetFirstChild(inputObject.SourceElement))) : (new MySuperWrapper(walker.GetLastChild(inputObject.SourceElement)));
-            sibling = firstChild ? ObjectsFactory.GetMySuperWrapper(walker.GetFirstChild(inputObject.SourceElement)) : ObjectsFactory.GetMySuperWrapper(walker.GetLastChild(inputObject.SourceElement));
+            //sibling = firstChild ? (new UiElement(walker.GetFirstChild(inputObject.SourceElement))) : (new UiElement(walker.GetLastChild(inputObject.SourceElement)));
+            // 20131118
+            // property to method
+            //sibling = firstChild ? ObjectsFactory.GetUiElement(walker.GetFirstChild(inputObject.SourceElement)) : ObjectsFactory.GetUiElement(walker.GetLastChild(inputObject.SourceElement));
+            // 20131118
+            // property to method
+            //sibling = firstChild ? ObjectsFactory.GetUiElement(walker.GetFirstChild(inputObject.SourceElement)) : ObjectsFactory.GetUiElement(walker.GetLastChild(inputObject.GetSourceElement()));
+            sibling = firstChild ? AutomationFactory.GetUiElement(walker.GetFirstChild(inputObject.GetSourceElement())) : AutomationFactory.GetUiElement(walker.GetLastChild(inputObject.GetSourceElement()));
 
             /*
             if (firstChild) {
@@ -821,138 +668,139 @@ Console.WriteLine("inputObject.Current.Name = " + inputObject.Current.Name);
         
         protected void GetAutomationElements(TreeScope scope)
         {
-            if (!this.CheckAndPrepareInput(this)) { return; }
+            if (!CheckAndPrepareInput(this)) { return; }
             
-            // 20120823
-            // 20131109
-            //foreach (AutomationElement inputObject in this.InputObject) {
-            foreach (IMySuperWrapper inputObject in this.InputObject) {
-            
-                // 20131109
-                //System.Collections.Generic.List<AutomationElement> searchResults = 
-                //    new System.Collections.Generic.List<AutomationElement>();
-                System.Collections.Generic.List<IMySuperWrapper> searchResults = 
-                    new System.Collections.Generic.List<IMySuperWrapper>();
-            // 20131109
-            //AutomationElementCollection temporaryResults = null;
-            IMySuperCollection temporaryResults = null;
-            //AutomationElement[] outResult;
-
+            foreach (IUiElement inputObject in InputObject) {
+                
+                List<IUiElement> searchResults = 
+                    new List<IUiElement>();
+                
                 if (scope == TreeScope.Children ||
-                scope == TreeScope.Descendants) {
-                WriteVerbose(this, "selected TreeScope." + scope.ToString());
-                AndCondition[] conditions = getControlsConditions(this);
-                if (conditions != null && conditions.Length > 0)
-                {
-                    WriteVerbose(this, "conditions number: " +
-                                 conditions.Length.ToString());
-                    foreach (AndCondition andCondition in conditions.Where(andCondition => andCondition != null))
+                    scope == TreeScope.Descendants) {
+                    WriteVerbose(this, "selected TreeScope." + scope.ToString());
+                    
+                    Condition conditions = GetWildcardSearchCondition(this);
+                    //Condition[] conditions = getControlsConditions(this);
+                    IUiEltCollection temporaryResults = null;
+                    // 20131129
+                    // if (conditions != null && conditions.Length > 0)
+                    if (conditions != null)
                     {
-                        WriteVerbose(this, andCondition.GetConditions());
-                        temporaryResults =
-                            // 20120823
-                            //this.InputObject.FindAll(scope,
-                            inputObject.FindAll(scope,
-                                andCondition);
-                        if (temporaryResults.Count > 0) {
-                            
-                            // 20131109
-                            //searchResults.AddRange(temporaryResults.Cast<AutomationElement>());
-                            // 20131111
-                            //searchResults.AddRange(temporaryResults.Cast<IMySuperWrapper>());
-                            foreach (IMySuperWrapper singleElement in temporaryResults) {
-                                searchResults.Add(singleElement);
-                            }
+//                        WriteVerbose(this, "conditions number: " +
+//                                     conditions.Length.ToString());
+                        // 20131129
+                        // foreach (AndCondition andCondition in conditions.Where(andCondition => andCondition != null))
+//                        foreach (Condition condition in conditions.Where(everyCondition => everyCondition != null))
+//                        {
+                            // 20131129
+                            // WriteVerbose(this, andCondition.GetConditions());
+                            temporaryResults =
+                                // 20120823
+                                //this.InputObject.FindAll(scope,
+                                inputObject.FindAll(
+                                    scope,
+                                    // 20131129
+                                    //andCondition);
+                                    conditions);
+//                            if (temporaryResults.Count <= 0) continue;
                             /*
-                                foreach (AutomationElement element in temporaryResults)
-                                {
-                                    searchResults.Add(element);
-                                }
-                                */
-                        }
-                    }
-
-                    /*
-                    foreach (AndCondition andCondition in conditions)
-                    {
-                        if (andCondition == null) continue;
-                        WriteVerbose(this, andCondition.GetConditions());
-                        temporaryResults =
-                            // 20120823
-                            //this.InputObject.FindAll(scope,
-                            inputObject.FindAll(scope,
-                                andCondition);
-                        if (temporaryResults.Count > 0) {
-                            
+                            if (temporaryResults.Count > 0) {
+                            */
+    
                             // 20131109
                             //searchResults.AddRange(temporaryResults.Cast<AutomationElement>());
                             // 20131111
-                            //searchResults.AddRange(temporaryResults.Cast<IMySuperWrapper>());
-                            foreach (IMySuperWrapper singleElement in temporaryResults) {
+                            //searchResults.AddRange(temporaryResults.Cast<IUiElement>());
+                            searchResults.AddRange(temporaryResults.Cast<IUiElement>());
+    
+                            /*
+                            foreach (IUiElement singleElement in temporaryResults) {
                                 searchResults.Add(singleElement);
                             }
-                        }
-                    }
-                    */
-
-                    /*
-                    for (int i = 0; i < conditions.Length; i++) {
-                        if (conditions[i] != null) {
-                            WriteVerbose(this, conditions[i].GetConditions());
+                            */
+                            /*
+                                    foreach (AutomationElement element in temporaryResults)
+                                    {
+                                        searchResults.Add(element);
+                                    }
+                                    */
+//                        }
+    
+                        /*
+                        foreach (AndCondition andCondition in conditions)
+                        {
+                            if (andCondition == null) continue;
+                            WriteVerbose(this, andCondition.GetConditions());
                             temporaryResults =
                                 // 20120823
                                 //this.InputObject.FindAll(scope,
                                 inputObject.FindAll(scope,
-                                                         conditions[i]);
+                                    andCondition);
                             if (temporaryResults.Count > 0) {
-                                searchResults.AddRange(temporaryResults.Cast<AutomationElement>());
-                                //->
-                                foreach (AutomationElement element in temporaryResults)
-                                {
-                                    searchResults.Add(element);
+                                
+                                // 20131109
+                                //searchResults.AddRange(temporaryResults.Cast<AutomationElement>());
+                                // 20131111
+                                //searchResults.AddRange(temporaryResults.Cast<IUiElement>());
+                                foreach (IUiElement singleElement in temporaryResults) {
+                                    searchResults.Add(singleElement);
                                 }
-                                -//
-                }
-                }
-                    }
-                    */
-                }
-                else {
-                    WriteVerbose(this, "no conditions. Performing search with TrueCondition");
-                    temporaryResults =
-                        // 20120823
-                        //this.InputObject.FindAll(scope,
-                        inputObject.FindAll(scope,
-                                                 Condition.TrueCondition);
-                    if (temporaryResults.Count > 0)
-                    {
-                        WriteVerbose(this, 
-                                     "returned " + 
-                                     temporaryResults.Count.ToString() + 
-                                     " results");
-                        // 20131109
-                        //searchResults.AddRange(temporaryResults.Cast<AutomationElement>());
-                        // 20131111
-                        //searchResults.AddRange(temporaryResults.Cast<IMySuperWrapper>());
-                        foreach (IMySuperWrapper singleElement in temporaryResults) {
-                            searchResults.Add(singleElement);
+                            }
                         }
+                        */
+    
                         /*
-                        foreach (AutomationElement element in temporaryResults)
-                        {
-                            searchResults.Add(element);
+                        for (int i = 0; i < conditions.Length; i++) {
+                            if (conditions[i] != null) {
+                                WriteVerbose(this, conditions[i].GetConditions());
+                                temporaryResults =
+                                    // 20120823
+                                    //this.InputObject.FindAll(scope,
+                                    inputObject.FindAll(scope,
+                                                             conditions[i]);
+                                if (temporaryResults.Count > 0) {
+                                    searchResults.AddRange(temporaryResults.Cast<AutomationElement>());
+                                    //->
+                                    foreach (AutomationElement element in temporaryResults)
+                                    {
+                                        searchResults.Add(element);
+                                    }
+                                    -//
+                    }
+                    }
                         }
                         */
                     }
-                }
-                WriteVerbose(this, "results found: " + searchResults.Count.ToString());
-                WriteObject(this, searchResults.ToArray());
-            } // if (scope == TreeScope.Children ||
+                    else {
+                        WriteVerbose(this, "no conditions. Performing search with TrueCondition");
+                        temporaryResults =
+                            // 20120823
+                            //this.InputObject.FindAll(scope,
+                            inputObject.FindAll(scope,
+                                                     Condition.TrueCondition);
+                        if (temporaryResults.Count > 0)
+                        {
+                            WriteVerbose(this, 
+                                         "returned " + 
+                                         temporaryResults.Count.ToString() + 
+                                         " results");
+                            // 20131109
+                            //searchResults.AddRange(temporaryResults.Cast<AutomationElement>());
+                            // 20131111
+                            //searchResults.AddRange(temporaryResults.Cast<IUiElement>());
+                            searchResults.AddRange(temporaryResults.Cast<IUiElement>());
+                        }
+                    }
+                    WriteVerbose(this, "results found: " + searchResults.Count.ToString());
+                    WriteObject(this, searchResults.ToArray());
+                } // if (scope == TreeScope.Children ||
                 //scope == TreeScope.Descendants)
                 if (scope != TreeScope.Parent && scope != TreeScope.Ancestors) continue;
                 // 20131109
-                //AutomationElement[] outResult = UIAHelper.GetParentOrAncestor(inputObject, scope);
-                IMySuperWrapper[] outResult = UIAHelper.GetParentOrAncestor(inputObject, scope);
+                //AutomationElement[] outResult = UiaHelper.GetParentOrAncestor(inputObject, scope);
+                // 20131204
+                // IUiElement[] outResult = UiaHelper.GetParentOrAncestor(inputObject, scope);
+                IUiElement[] outResult = inputObject.GetParentOrAncestor(scope);
                 WriteObject(this, outResult);
 
                 /*
@@ -960,8 +808,8 @@ Console.WriteLine("inputObject.Current.Name = " + inputObject.Current.Name);
                 scope == TreeScope.Ancestors) {
                 outResult = 
                     // 20120823
-                    //UIAHelper.GetParentOrAncestor(this.InputObject, scope);
-                    UIAHelper.GetParentOrAncestor(inputObject, scope);
+                    //UiaHelper.GetParentOrAncestor(this.InputObject, scope);
+                    UiaHelper.GetParentOrAncestor(inputObject, scope);
                 WriteObject(this, outResult);
             }
             */

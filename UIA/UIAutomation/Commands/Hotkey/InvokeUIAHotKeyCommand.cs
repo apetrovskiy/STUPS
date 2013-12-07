@@ -13,15 +13,15 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of InvokeUIAHotKeyCommand.
+    /// Description of InvokeUiaHotKeyCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAHotKey")]
-    public class InvokeUIAHotKeyCommand : HasScriptBlockCmdletBase
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaHotKey")]
+    public class InvokeUiaHotKeyCommand : HasScriptBlockCmdletBase
     {
         #region Constructor
-        public InvokeUIAHotKeyCommand()
+        public InvokeUiaHotKeyCommand()
         {
-            this.Key = string.Empty;
+            Key = string.Empty;
         }
         #endregion Constructor
         
@@ -81,23 +81,23 @@ namespace UIAutomation.Commands
             byte keys2 = 0x00;
             byte keys3 = 0x00;
             
-            if (this.Win) { 
+            if (Win) { 
                 keys = 0xE0;
                 keys2 = 0x5B;
             }
             
-            if (this.Ctrl) { keys = 0x11; }
-            if (this.Shift) { keys = 0x10; }
-            if (this.Alt) { keys = 0x12; }
-            if (this.Enter) { keys = 0x0D; }
+            if (Ctrl) { keys = 0x11; }
+            if (Shift) { keys = 0x10; }
+            if (Alt) { keys = 0x12; }
+            if (Enter) { keys = 0x0D; }
             //if (this.Esc) { keys = 0x1B; }
             
             //if (this.Ctrl) {}
             //if (this.Ctrl) {}
             //if (this.Ctrl) {}
             
-            if (this.Key.Length > 0) {
-                switch (this.Key) {
+            if (Key.Length > 0) {
+                switch (Key) {
                     case "a":
                     case "A":
                         keys3 = NativeMethods.VK_0x41;

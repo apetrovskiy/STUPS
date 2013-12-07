@@ -13,12 +13,12 @@ namespace TMX.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of GetTMXTestResultDetailsCommand.
+    /// Description of GetTmxTestResultDetailsCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "TMXTestResultDetails")]
-    public class GetTMXTestResultDetailsCommand : TestResultStatusCmdletBase //TestResultCmdletBase
+    [Cmdlet(VerbsCommon.Get, "TmxTestResultDetails")]
+    public class GetTmxTestResultDetailsCommand : TestResultStatusCmdletBase //TestResultCmdletBase
     {
-        public GetTMXTestResultDetailsCommand()
+        public GetTmxTestResultDetailsCommand()
         {
         }
         
@@ -47,8 +47,8 @@ namespace TMX.Commands
         
         protected override void BeginProcessing()
         {
-            TMXGetTestResultDetailsCommand command =
-                new TMXGetTestResultDetailsCommand(this);
+            TmxGetTestResultDetailsCommand command =
+                new TmxGetTestResultDetailsCommand(this);
             command.Execute();
         }
     }

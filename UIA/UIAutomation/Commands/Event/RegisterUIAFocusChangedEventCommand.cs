@@ -9,21 +9,20 @@
 
 namespace UIAutomation.Commands
 {
-    // test it
-    //using System;
+    extern alias UIANET;
     using System.Management.Automation;
     using System.Windows.Automation;
 
     /// <summary>
-    /// Description of RegisterUIAFocusChangedEventCommand.
+    /// Description of RegisterUiaFocusChangedEventCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Register, "UIAFocusChangedEvent")]
-    public class RegisterUIAFocusChangedEventCommand : EventCmdletBase
+    [Cmdlet(VerbsLifecycle.Register, "UiaFocusChangedEvent")]
+    public class RegisterUiaFocusChangedEventCommand : EventCmdletBase
     {
-        public RegisterUIAFocusChangedEventCommand()
+        public RegisterUiaFocusChangedEventCommand()
         {
-            this.AutomationEventType = AutomationElement.AutomationFocusChangedEvent;
-            this.AutomationEventHandler = OnUIAutomationEvent;
+            AutomationEventType = AutomationElement.AutomationFocusChangedEvent;
+            AutomationEventHandler = OnUIAutomationEvent;
         }
     }
 }

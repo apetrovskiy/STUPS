@@ -8,14 +8,14 @@
  */
 using System;
 
-namespace TMXTest.Commands.Configuration
+namespace TmxTest.Commands.Configuration
 {
     /// <summary>
-    /// Description of ExportTMXTestSettingsCommandTestFixture.
+    /// Description of ExportTmxTestSettingsCommandTestFixture.
     /// </summary>
-    public class ExportTMXTestSettingsCommandTestFixture
+    public class ExportTmxTestSettingsCommandTestFixture
     {
-        public ExportTMXTestSettingsCommandTestFixture()
+        public ExportTmxTestSettingsCommandTestFixture()
         {
         }
     }

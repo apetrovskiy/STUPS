@@ -13,56 +13,56 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
 
     /// <summary>
-    /// Description of InvokeUIAWindowPatternCommand.
+    /// Description of InvokeUiaWindowPatternCommand.
     /// </summary>
-    //[Cmdlet(VerbsLifecycle.Invoke, "UIAWindowPattern")]
+    //[Cmdlet(VerbsLifecycle.Invoke, "UiaWindowPattern")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAWindowPatternCommand : PatternCmdletBase
-    { public InvokeUIAWindowPatternCommand() { WhatToDo = "Window"; } }
+    
+    public class InvokeUiaWindowPatternCommand : PatternCmdletBase
+    { public InvokeUiaWindowPatternCommand() { WhatToDo = "Window"; } }
     
     /// <summary>
-    /// Description of InvokeUIACustomWindowStateCommand.
+    /// Description of InvokeUiaCustomWindowStateCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIACustomWindowState")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaCustomWindowState")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIACustomWindowStateCommand : InvokeUIAWindowPatternCommand
-    { public InvokeUIACustomWindowStateCommand() { } }
+    
+    public class InvokeUiaCustomWindowStateCommand : InvokeUiaWindowPatternCommand
+    { public InvokeUiaCustomWindowStateCommand() { } }
 
     /// <summary>
-    /// Description of InvokeUIAPaneWindowStateCommand.
+    /// Description of InvokeUiaPaneWindowStateCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAPaneWindowState")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaPaneWindowState")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAPaneWindowStateCommand : InvokeUIAWindowPatternCommand
-    { public InvokeUIAPaneWindowStateCommand() { } }
+    
+    public class InvokeUiaPaneWindowStateCommand : InvokeUiaWindowPatternCommand
+    { public InvokeUiaPaneWindowStateCommand() { } }
 
     /// <summary>
-    /// Description of InvokeUIAToolTipWindowStateCommand.
+    /// Description of InvokeUiaToolTipWindowStateCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAToolTipWindowState")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaToolTipWindowState")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAToolTipWindowStateCommand : InvokeUIAWindowPatternCommand
-    { public InvokeUIAToolTipWindowStateCommand() { } }
+    
+    public class InvokeUiaToolTipWindowStateCommand : InvokeUiaWindowPatternCommand
+    { public InvokeUiaToolTipWindowStateCommand() { } }
 
     /// <summary>
-    /// Description of InvokeUIAWindowWindowStateCommand.
+    /// Description of InvokeUiaWindowWindowStateCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAWindowWindowState")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaWindowWindowState")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAWindowWindowStateCommand : InvokeUIAWindowPatternCommand
-    { public InvokeUIAWindowWindowStateCommand() { } }
+    
+    public class InvokeUiaWindowWindowStateCommand : InvokeUiaWindowPatternCommand
+    { public InvokeUiaWindowWindowStateCommand() { } }
 
     /// <summary>
-    /// Description of InvokeUIAChildWindowWindowStateCommand.
+    /// Description of InvokeUiaChildWindowWindowStateCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAChildWindowWindowState")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaChildWindowWindowState")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class InvokeUIAChildWindowWindowStateCommand : InvokeUIAWindowWindowStateCommand
-    { public InvokeUIAChildWindowWindowStateCommand() { } }
+    
+    public class InvokeUiaChildWindowWindowStateCommand : InvokeUiaWindowWindowStateCommand
+    { public InvokeUiaChildWindowWindowStateCommand() { } }
 }

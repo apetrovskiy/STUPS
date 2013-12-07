@@ -9,19 +9,15 @@
 
 namespace PSTestLibraryTest.Commands.C_
 {
-    using System;
+    //using System;
     using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
     
     /// <summary>
     /// Description of NewPSEnumCommandTestFixture.
     /// </summary>
     [TestFixture] // [TestFixture(Description="1")]
-    public class NewPSEnumCommandTestFixture
+    public class NewPsEnumCommandTestFixture
     {
-        public NewPSEnumCommandTestFixture()
-        {
-        }
-        
         [SetUp]
         public void PrepareRunspace()
         {

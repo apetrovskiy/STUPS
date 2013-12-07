@@ -7,18 +7,18 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMXTest.Commands.TestStructure
+namespace TmxTest.Commands.TestStructure
 {
     using System;
     using MbUnit.Framework; // using MbUnit.Framework;
     
     /// <summary>
-    /// Description of AddTMXTestScenarioCommandTestFixture.
+    /// Description of AddTmxTestScenarioCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Add-TMXTestScenario test")]
-    public class AddTMXTestScenarioCommandTestFixture
+    [TestFixture] // [TestFixture(Description="Add-TmxTestScenario test")]
+    public class AddTmxTestScenarioCommandTestFixture
     {
-        public AddTMXTestScenarioCommandTestFixture()
+        public AddTmxTestScenarioCommandTestFixture()
         {
         }
         
@@ -28,79 +28,79 @@ namespace TMXTest.Commands.TestStructure
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [Test] //[Test(Description="The -Name parameter test: simple name (New-TMXTestSuite)")]
+        [Test] //[Test(Description="The -Name parameter test: simple name (New-TmxTestSuite)")]
         [Category("Slow")]
         [Category("ScenarioLevel")]
-        [Category("Add_TMXTestScenario")]
+        [Category("Add_TmxTestScenario")]
         public void TestPrm_Name_Simple_after_NewSuite()
         {
             string suiteName = "suite1";
             string scenarioName = "sc1";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"(New-TMXTestSuite -Name " + 
+                @"(New-TmxTestSuite -Name " + 
                 suiteName + 
-                " | Add-TMXTestScenario -Name " + 
+                " | Add-TmxTestScenario -Name " + 
                 scenarioName + 
                 ").Name;",
                 scenarioName);
         }
         
-        [Test] //[Test(Description="The -Name parameter test: complex name (New-TMXTestSuite)")]
+        [Test] //[Test(Description="The -Name parameter test: complex name (New-TmxTestSuite)")]
         [Category("Slow")]
         [Category("ScenarioLevel")]
-        [Category("Add_TMXTestScenario")]
+        [Category("Add_TmxTestScenario")]
         public void TestPrm_Name_Complex_after_NewSuite()
         {
             string suiteName = @"suite%%`1  1";
             string scenarioName = @"\ s c 1 \";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"(New-TMXTestSuite -Name '" + 
+                @"(New-TmxTestSuite -Name '" + 
                 suiteName + 
-                "' | Add-TMXTestScenario -Name '" + 
+                "' | Add-TmxTestScenario -Name '" + 
                 scenarioName + 
                 "').Name;",
                 scenarioName);
         }
         
-        [Test] //[Test(Description="The -Name parameter test: simple name (Open-TMXTestSuite)")]
+        [Test] //[Test(Description="The -Name parameter test: simple name (Open-TmxTestSuite)")]
         [Category("Slow")]
         [Category("ScenarioLevel")]
-        [Category("Add_TMXTestScenario")]
+        [Category("Add_TmxTestScenario")]
         public void TestPrm_Name_Simple_after_OpenSuite()
         {
             string suiteName = "suite2";
             string scenarioName = "sc1";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = New-TMXTestSuite -Name suite1; " +
-                @"$null = New-TMXTestSuite -Name " + 
+                @"$null = New-TmxTestSuite -Name suite1; " +
+                @"$null = New-TmxTestSuite -Name " + 
                 suiteName + 
                 "; " +
-                @"$null = New-TMXTestSuite -Name suite3; " +
-                @"(Open-TMXTestSuite -Name " +
+                @"$null = New-TmxTestSuite -Name suite3; " +
+                @"(Open-TmxTestSuite -Name " +
                 suiteName +
-                " | Add-TMXTestScenario -Name " + 
+                " | Add-TmxTestScenario -Name " + 
                 scenarioName + 
                 ").Name;",
                 scenarioName);
         }
         
-        [Test] //[Test(Description="The -Name parameter test: complex name (Open-TMXTestSuite)")]
+        [Test] //[Test(Description="The -Name parameter test: complex name (Open-TmxTestSuite)")]
         [Category("Slow")]
         [Category("ScenarioLevel")]
-        [Category("Add_TMXTestScenario")]
+        [Category("Add_TmxTestScenario")]
         public void TestPrm_Name_Complex_after_OpenSuite()
         {
             string suiteName = @"suite%%`2  2";
             string scenarioName = @"\ s c 1 \";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = New-TMXTestSuite -Name suite1; " +
-                @"$null = New-TMXTestSuite -Name '" + 
+                @"$null = New-TmxTestSuite -Name suite1; " +
+                @"$null = New-TmxTestSuite -Name '" + 
                 suiteName + 
                 "'; " +
-                @"$null = New-TMXTestSuite -Name suite3; " +
-                @"(Open-TMXTestSuite -Name '" +
+                @"$null = New-TmxTestSuite -Name suite3; " +
+                @"(Open-TmxTestSuite -Name '" +
                 suiteName +
-                "' | Add-TMXTestScenario -Name '" + 
+                "' | Add-TmxTestScenario -Name '" + 
                 scenarioName + 
                 "').Name;",
                 scenarioName);
@@ -109,18 +109,18 @@ namespace TMXTest.Commands.TestStructure
         [Test] //[Test(Description="The -Name parameter test: simple name and simple suite name")]
         [Category("Slow")]
         [Category("ScenarioLevel")]
-        [Category("Add_TMXTestScenario")]
+        [Category("Add_TmxTestScenario")]
         public void TestPrm_Name_TestSuiteName_Simple()
         {
             string suiteName = "suite2";
             string scenarioName = "sc1";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = New-TMXTestSuite -Name suite1; " +
-                @"$null = New-TMXTestSuite -Name " + 
+                @"$null = New-TmxTestSuite -Name suite1; " +
+                @"$null = New-TmxTestSuite -Name " + 
                 suiteName + 
                 "; " +
-                @"$null = New-TMXTestSuite -Name suite3; " +
-                @"(Add-TMXTestScenario -Name " + 
+                @"$null = New-TmxTestSuite -Name suite3; " +
+                @"(Add-TmxTestScenario -Name " + 
                 scenarioName + 
                 " -TestSuiteName " +
                 suiteName +
@@ -131,18 +131,18 @@ namespace TMXTest.Commands.TestStructure
         [Test] //[Test(Description="The -Name parameter test: complex name and complex suite name")]
         [Category("Slow")]
         [Category("ScenarioLevel")]
-        [Category("Add_TMXTestScenario")]
+        [Category("Add_TmxTestScenario")]
         public void TestPrm_Name_TestSuiteName_Complex()
         {
             string suiteName = @"suite%%`2  2";
             string scenarioName = @"\ s c 1 \";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = New-TMXTestSuite -Name suite1; " +
-                @"$null = New-TMXTestSuite -Name '" + 
+                @"$null = New-TmxTestSuite -Name suite1; " +
+                @"$null = New-TmxTestSuite -Name '" + 
                 suiteName + 
                 "'; " +
-                @"$null = New-TMXTestSuite -Name suite3; " +
-                @"(Add-TMXTestScenario -Name '" + 
+                @"$null = New-TmxTestSuite -Name suite3; " +
+                @"(Add-TmxTestScenario -Name '" + 
                 scenarioName + 
                 "' -TestSuiteName '" +
                 suiteName +
@@ -153,21 +153,21 @@ namespace TMXTest.Commands.TestStructure
         [Test] //[Test(Description="The -Name parameter test: simple name and simple suite id")]
         [Category("Slow")]
         [Category("ScenarioLevel")]
-        [Category("Add_TMXTestScenario")]
+        [Category("Add_TmxTestScenario")]
         public void TestPrm_Name_TestSuiteId_Simple()
         {
             string suiteName = "suite2";
             string suiteId = "222";
             string scenarioName = "sc1";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = New-TMXTestSuite -Name suite1; " +
-                @"$null = New-TMXTestSuite -Name " + 
+                @"$null = New-TmxTestSuite -Name suite1; " +
+                @"$null = New-TmxTestSuite -Name " + 
                 suiteName + 
                 " -Id " + 
                 suiteId + 
                 "; " +
-                @"$null = New-TMXTestSuite -Name suite3; " +
-                @"(Add-TMXTestScenario -Name " + 
+                @"$null = New-TmxTestSuite -Name suite3; " +
+                @"(Add-TmxTestScenario -Name " + 
                 scenarioName + 
                 " -TestSuiteId " +
                 suiteId +
@@ -178,21 +178,21 @@ namespace TMXTest.Commands.TestStructure
         [Test] //[Test(Description="The -Name parameter test: complex name and complex suite id")]
         [Category("Slow")]
         [Category("ScenarioLevel")]
-        [Category("Add_TMXTestScenario")]
+        [Category("Add_TmxTestScenario")]
         public void TestPrm_Name_TestSuiteId_Complex()
         {
             string suiteName = @"suite%%`2  2";
             string suiteId = @"/2\";
             string scenarioName = @"\ s c 1 \";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = New-TMXTestSuite -Name suite1; " +
-                @"$null = New-TMXTestSuite -Name '" + 
+                @"$null = New-TmxTestSuite -Name suite1; " +
+                @"$null = New-TmxTestSuite -Name '" + 
                 suiteName + 
                 "' -Id '" + 
                 suiteId + 
                 "'; " +
-                @"$null = New-TMXTestSuite -Name suite3; " +
-                @"(Add-TMXTestScenario -Name '" + 
+                @"$null = New-TmxTestSuite -Name suite3; " +
+                @"(Add-TmxTestScenario -Name '" + 
                 scenarioName + 
                 "' -TestSuiteId '" +
                 suiteId +
@@ -203,21 +203,21 @@ namespace TMXTest.Commands.TestStructure
         [Test] //[Test(Description="The -Name parameter test: simple name, simple suite name, and simple suite id")]
         [Category("Slow")]
         [Category("ScenarioLevel")]
-        [Category("Add_TMXTestScenario")]
+        [Category("Add_TmxTestScenario")]
         public void TestPrm_Name_TestSuiteName_TestSuiteId_Simple()
         {
             string suiteName = "suite2";
             string suiteId = "222";
             string scenarioName = "sc1";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = New-TMXTestSuite -Name suite1; " +
-                @"$null = New-TMXTestSuite -Name " + 
+                @"$null = New-TmxTestSuite -Name suite1; " +
+                @"$null = New-TmxTestSuite -Name " + 
                 suiteName + 
                 " -Id " + 
                 suiteId + 
                 "; " +
-                @"$null = New-TMXTestSuite -Name suite3; " +
-                @"(Add-TMXTestScenario -Name " + 
+                @"$null = New-TmxTestSuite -Name suite3; " +
+                @"(Add-TmxTestScenario -Name " + 
                 scenarioName + 
                 " -TestSuiteName " +
                 suiteName +
@@ -230,21 +230,21 @@ namespace TMXTest.Commands.TestStructure
         [Test] //[Test(Description="The -Name parameter test: complex name, complex suite name, and complex suite id")]
         [Category("Slow")]
         [Category("ScenarioLevel")]
-        [Category("Add_TMXTestScenario")]
+        [Category("Add_TmxTestScenario")]
         public void TestPrm_Name_TestSuiteName_TestSuiteId_Complex()
         {
             string suiteName = @"suite%%`2  2";
             string suiteId = @"/2\";
             string scenarioName = @"\ s c 1 \";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = New-TMXTestSuite -Name suite1; " +
-                @"$null = New-TMXTestSuite -Name '" + 
+                @"$null = New-TmxTestSuite -Name suite1; " +
+                @"$null = New-TmxTestSuite -Name '" + 
                 suiteName + 
                 "' -Id '" + 
                 suiteId + 
                 "'; " +
-                @"$null = New-TMXTestSuite -Name suite3; " +
-                @"(Add-TMXTestScenario -Name '" + 
+                @"$null = New-TmxTestSuite -Name suite3; " +
+                @"(Add-TmxTestScenario -Name '" + 
                 scenarioName + 
                 "' -TestSuiteName '" +
                 suiteName +
@@ -257,14 +257,14 @@ namespace TMXTest.Commands.TestStructure
         [Test] //[Test(Description="The -Description parameter test 1")]
         [Category("Slow")]
         [Category("ScenarioLevel")]
-        [Category("Add_TMXTestScenario")]
+        [Category("Add_TmxTestScenario")]
         [Ignore("This code never worked before. 20130207")]
         public void TestPrm_Name_Description1()
         {
             string testScenarioDescription = "";
             CmdletUnitTest.TestRunspace.RunAndGetTheException( //.RunAndEvaluateAreEqual(
-                @"[void](New-TMXTestSuite -Description ""suite description"" -Name suite1 -Id 111); " + 
-                @"[void](Add-TMXTestScenario -Name sc1 -Id 1111 -TestSuiteName suite1 -Description '" + 
+                @"[void](New-TmxTestSuite -Description ""suite description"" -Name suite1 -Id 111); " + 
+                @"[void](Add-TmxTestScenario -Name sc1 -Id 1111 -TestSuiteName suite1 -Description '" + 
                 testScenarioDescription + 
                 "'); " +
                 "[TMX.TestData]::TestSuites[0].TestScenarios[0].Description;",
@@ -277,13 +277,13 @@ namespace TMXTest.Commands.TestStructure
         [Test] //[Test(Description="The -Description parameter test 2")]
         [Category("Slow")]
         [Category("ScenarioLevel")]
-        [Category("Add_TMXTestScenario")]
+        [Category("Add_TmxTestScenario")]
         public void TestPrm_Name_Description2()
         {
             string testScenarioDescription = "test scenario description";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"[void](New-TMXTestSuite -Description ""suite description"" -Name suite1 -Id 111); " + 
-                @"[void](Add-TMXTestScenario -Name sc1 -Id 1111 -TestSuiteName suite1 -Description '" + 
+                @"[void](New-TmxTestSuite -Description ""suite description"" -Name suite1 -Id 111); " + 
+                @"[void](Add-TmxTestScenario -Name sc1 -Id 1111 -TestSuiteName suite1 -Description '" + 
                 testScenarioDescription + 
                 "'); " +
                 "[TMX.TestData]::TestSuites[0].TestScenarios[0].Description;",
@@ -293,13 +293,13 @@ namespace TMXTest.Commands.TestStructure
         [Test] //[Test(Description="The -Description parameter test 3")]
         [Category("Slow")]
         [Category("ScenarioLevel")]
-        [Category("Add_TMXTestScenario")]
+        [Category("Add_TmxTestScenario")]
         public void TestPrm_Name_Description3()
         {
             string testScenarioDescription = @"test \\scenario `r`ndescription ...";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"[void](New-TMXTestSuite -Description ""suite description"" -Name suite1 -Id 111); " + 
-                @"[void](Add-TMXTestScenario -Name sc1 -Id 1111 -TestSuiteName suite1 -Description '" + 
+                @"[void](New-TmxTestSuite -Description ""suite description"" -Name suite1 -Id 111); " + 
+                @"[void](Add-TmxTestScenario -Name sc1 -Id 1111 -TestSuiteName suite1 -Description '" + 
                 testScenarioDescription + 
                 "'); " +
                 "[TMX.TestData]::TestSuites[0].TestScenarios[0].Description;",
@@ -309,18 +309,18 @@ namespace TMXTest.Commands.TestStructure
         [Test] //[Test(Description="The SuiteId assignment test")]
         [Category("Slow")]
         [Category("ScenarioLevel")]
-        [Category("Add_TMXTestScenario")]
+        [Category("Add_TmxTestScenario")]
         public void TestProperty_SuiteId()
         {
             string suiteName = "suite1";
             string suiteId = "111";
             string scenarioName = "sc1";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"(New-TMXTestSuite -Name '" + 
+                @"(New-TmxTestSuite -Name '" + 
                 suiteName + 
                 @"' -Id '" +
                 suiteId + 
-                @"' | Add-TMXTestScenario -Name " + 
+                @"' | Add-TmxTestScenario -Name " + 
                 scenarioName + 
                 ").SuiteId;",
                 suiteId);

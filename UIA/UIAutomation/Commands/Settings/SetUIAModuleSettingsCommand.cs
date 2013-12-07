@@ -13,13 +13,13 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of SetUIAModuleSettingsCommand.
+    /// Description of SetUiaModuleSettingsCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Set, "UIAModuleSettings")]
-    //public class SetUIAModuleSettingsCommand
-    internal class SetUIAModuleSettingsCommand : CommonCmdletBase
+    [Cmdlet(VerbsCommon.Set, "UiaModuleSettings")]
+    //public class SetUiaModuleSettingsCommand
+    internal class SetUiaModuleSettingsCommand : CommonCmdletBase
     {
-        public SetUIAModuleSettingsCommand()
+        public SetUiaModuleSettingsCommand()
         {
         }
         

@@ -13,13 +13,13 @@ namespace TMX.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of GetTMXTestConstantValueCommand.
+    /// Description of GetTmxTestConstantValueCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "TMXTestConstantValue")]
+    [Cmdlet(VerbsCommon.Get, "TmxTestConstantValue")]
     [OutputType(typeof(ITestConstant))]
-    public class GetTMXTestConstantValueCommand: TestConstantCmdletBase
+    public class GetTmxTestConstantValueCommand: TestConstantCmdletBase
     {
-        public GetTMXTestConstantValueCommand()
+        public GetTmxTestConstantValueCommand()
         {
         }
     }

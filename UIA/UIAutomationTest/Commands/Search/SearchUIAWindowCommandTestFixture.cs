@@ -14,12 +14,12 @@
 //    using System.Management.Automation;
 //    
 //    /// <summary>
-//    /// Description of SearchUIAWindowCommandTestFixture.
+//    /// Description of SearchUiaWindowCommandTestFixture.
 //    /// </summary>
-//    [TestFixture] // [TestFixture(Description="Search-UIAWindow test")]
-//    public class SearchUIAWindowCommandTestFixture
+//    [TestFixture] // [TestFixture(Description="Search-UiaWindow test")]
+//    public class SearchUiaWindowCommandTestFixture
 //    {
-//        public SearchUIAWindowCommandTestFixture()
+//        public SearchUiaWindowCommandTestFixture()
 //        {
 //        }
 //        
@@ -32,7 +32,7 @@
 //        [Test] //[Test(Description="TBD")]
 //        [Category("Slow")][Category("WinForms")]
 //        [Category("Slow")][Category("Window")]
-//        [Category("Slow")][Category("Search_UIAWindow")]
+//        [Category("Slow")][Category("Search_UiaWindow")]
 //        public void SearchWindow_Name_1()
 //        {
 //            string name = "*Emp*";
@@ -41,13 +41,13 @@
 //                UIAutomationTestForms.Forms.WinFormsEmpty, 
 //                0);
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-//                @"$null = Get-UIAWindow -pn '" + 
+//                @"$null = Get-UiaWindow -pn '" + 
 //                MiddleLevelCode.TestFormProcess +
 //                @"'; [void]([UIAutomation.CurrentData]::ResetData()); " +
-//                @"Get-UIADesktop | Search-UIAWindow -Name '" + 
+//                @"Get-UiaDesktop | Search-UiaWindow -Name '" + 
 //                name +
-//                @"' -Verbose | Read-UIAControlName;",
-////                @"(Get-UIADesktop | Search-UIAWindow -Name " + 
+//                @"' -Verbose | Read-UiaControlName;",
+////                @"(Get-UiaDesktop | Search-UiaWindow -Name " + 
 ////                name +
 ////                ").Current.Name;",
 //                MiddleLevelCode.TestFormNameEmpty);
@@ -56,7 +56,7 @@
 //        [Test] //[Test(Description="TBD")]
 //        [Category("Slow")][Category("WinForms")]
 //        [Category("Slow")][Category("Window")]
-//        [Category("Slow")][Category("Search_UIAWindow")]
+//        [Category("Slow")][Category("Search_UiaWindow")]
 //        public void SearchWindow_Name_2()
 //        {
 //            string name = "*Em?t*";
@@ -65,13 +65,13 @@
 //                UIAutomationTestForms.Forms.WinFormsEmpty, 
 //                0);
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-//                @"$null = Get-UIAWindow -pn '" + 
+//                @"$null = Get-UiaWindow -pn '" + 
 //                MiddleLevelCode.TestFormProcess +
 //                @"'; [void]([UIAutomation.CurrentData]::ResetData()); " +
-//                @"Get-UIADesktop | Search-UIAWindow -Name '" + 
+//                @"Get-UiaDesktop | Search-UiaWindow -Name '" + 
 //                name +
-//                @"' -Verbose | Read-UIAControlName;",
-////                @"(Get-UIADesktop | Search-UIAWindow -Name " + 
+//                @"' -Verbose | Read-UiaControlName;",
+////                @"(Get-UiaDesktop | Search-UiaWindow -Name " + 
 ////                name +
 ////                ").Current.Name;",
 //                MiddleLevelCode.TestFormNameEmpty);
@@ -80,7 +80,7 @@
 //        [Test] //[Test(Description="TBD")]
 //        [Category("Slow")][Category("WinForms")]
 //        [Category("Slow")][Category("Window")]
-//        [Category("Slow")][Category("Search_UIAWindow")]
+//        [Category("Slow")][Category("Search_UiaWindow")]
 //        public void SearchWindow_Name_3()
 //        {
 //            string name = "*T???Bar*";
@@ -89,13 +89,13 @@
 //                UIAutomationTestForms.Forms.WinFormsNoTaskBar, 
 //                0);
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-//                @"$null = Get-UIAWindow -pn '" + 
+//                @"$null = Get-UiaWindow -pn '" + 
 //                MiddleLevelCode.TestFormProcess +
 //                @"'; [void]([UIAutomation.CurrentData]::ResetData()); " +
-//                @"Get-UIADesktop | Search-UIAWindow -Name '" + 
+//                @"Get-UiaDesktop | Search-UiaWindow -Name '" + 
 //                name +
-//                @"' -Verbose | Read-UIAControlName;",
-////                @"(Get-UIADesktop | Search-UIAWindow -Name " + 
+//                @"' -Verbose | Read-UiaControlName;",
+////                @"(Get-UiaDesktop | Search-UiaWindow -Name " + 
 ////                name +
 ////                ").Current.Name;",
 //                MiddleLevelCode.TestFormNameNoTaskBar);
@@ -104,7 +104,7 @@
 //        [Test] //[Test(Description="TBD")]
 //        [Category("Slow")][Category("WinForms")]
 //        [Category("Slow")][Category("Window")]
-//        [Category("Slow")][Category("Search_UIAWindow")]
+//        [Category("Slow")][Category("Search_UiaWindow")]
 //        public void SearchWindow_Name_4()
 //        {
 //            string name = "*T???Bar";
@@ -113,13 +113,13 @@
 //                UIAutomationTestForms.Forms.WinFormsNoTaskBar, 
 //                0);
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-//                @"$null = Get-UIAWindow -pn '" + 
+//                @"$null = Get-UiaWindow -pn '" + 
 //                MiddleLevelCode.TestFormProcess +
 //                @"'; [void]([UIAutomation.CurrentData]::ResetData()); " +
-//                @"Get-UIADesktop | Search-UIAWindow -Name '" + 
+//                @"Get-UiaDesktop | Search-UiaWindow -Name '" + 
 //                name +
-//                @"' -Verbose | Read-UIAControlName;",
-////                @"(Get-UIADesktop | Search-UIAWindow -Name " + 
+//                @"' -Verbose | Read-UiaControlName;",
+////                @"(Get-UiaDesktop | Search-UiaWindow -Name " + 
 ////                name +
 ////                ").Current.Name;",
 //                MiddleLevelCode.TestFormNameNoTaskBar);
@@ -128,7 +128,7 @@
 //        [Test] //[Test(Description="TBD")]
 //        [Category("Slow")][Category("WinForms")]
 //        [Category("Slow")][Category("Window")]
-//        [Category("Slow")][Category("Search_UIAWindow")]
+//        [Category("Slow")][Category("Search_UiaWindow")]
 //        public void SearchWindow_Name_5()
 //        {
 //            string name = "*Tas?Bar";
@@ -137,13 +137,13 @@
 //                UIAutomationTestForms.Forms.WinFormsNoTaskBar, 
 //                0);
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-//                @"$null = Get-UIAWindow -pn '" + 
+//                @"$null = Get-UiaWindow -pn '" + 
 //                MiddleLevelCode.TestFormProcess +
 //                @"'; [void]([UIAutomation.CurrentData]::ResetData()); " +
-//                @"Get-UIADesktop | Search-UIAWindow -Name '" + 
+//                @"Get-UiaDesktop | Search-UiaWindow -Name '" + 
 //                name +
-//                @"' -Verbose | Read-UIAControlName;",
-////                @"(Get-UIADesktop | Search-UIAWindow -Name " + 
+//                @"' -Verbose | Read-UiaControlName;",
+////                @"(Get-UiaDesktop | Search-UiaWindow -Name " + 
 ////                name +
 ////                ").Current.Name;",
 //                MiddleLevelCode.TestFormNameNoTaskBar);
@@ -152,7 +152,7 @@
 //        [Test] //[Test(Description="TBD")]
 //        [Category("Slow")][Category("WinForms")]
 //        [Category("Slow")][Category("Window")]
-//        [Category("Slow")][Category("Search_UIAWindow")]
+//        [Category("Slow")][Category("Search_UiaWindow")]
 //        public void SearchWindow_Name_6()
 //        {
 //            string name = "*TaskBar";
@@ -161,13 +161,13 @@
 //                UIAutomationTestForms.Forms.WinFormsNoTaskBar, 
 //                0);
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-//                @"$null = Get-UIAWindow -pn '" + 
+//                @"$null = Get-UiaWindow -pn '" + 
 //                MiddleLevelCode.TestFormProcess +
 //                @"'; [void]([UIAutomation.CurrentData]::ResetData()); " +
-//                @"Get-UIADesktop | Search-UIAWindow -Name '" + 
+//                @"Get-UiaDesktop | Search-UiaWindow -Name '" + 
 //                name +
-//                @"' -Verbose | Read-UIAControlName;",
-////                @"(Get-UIADesktop | Search-UIAWindow -Name " + 
+//                @"' -Verbose | Read-UiaControlName;",
+////                @"(Get-UiaDesktop | Search-UiaWindow -Name " + 
 ////                name +
 ////                ").Current.Name;",
 //                MiddleLevelCode.TestFormNameNoTaskBar);
@@ -176,7 +176,7 @@
 //        [Test] //[Test(Description="TBD")]
 //        [Category("Slow")][Category("WinForms")]
 //        [Category("Slow")][Category("Window")]
-//        [Category("Slow")][Category("Search_UIAWindow")]
+//        [Category("Slow")][Category("Search_UiaWindow")]
 //        public void SearchWindow_Name_CaseSensitive1()
 //        {
 //            string name = "*TaskBar";
@@ -185,13 +185,13 @@
 //                UIAutomationTestForms.Forms.WinFormsNoTaskBar, 
 //                0);
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-//                @"$null = Get-UIAWindow -pn '" + 
+//                @"$null = Get-UiaWindow -pn '" + 
 //                MiddleLevelCode.TestFormProcess +
 //                @"'; [void]([UIAutomation.CurrentData]::ResetData()); " +
-//                @"Get-UIADesktop | Search-UIAWindow -Name '" + 
+//                @"Get-UiaDesktop | Search-UiaWindow -Name '" + 
 //                name +
-//                @"' -CaseSensitive | Read-UIAControlName;",
-////                @"(Get-UIADesktop | Search-UIAWindow -Name " + 
+//                @"' -CaseSensitive | Read-UiaControlName;",
+////                @"(Get-UiaDesktop | Search-UiaWindow -Name " + 
 ////                name +
 ////                ").Current.Name;",
 //                MiddleLevelCode.TestFormNameNoTaskBar);
@@ -200,7 +200,7 @@
 //        [Test] //[Test(Description="TBD")]
 //        [Category("Slow")][Category("WinForms")]
 //        [Category("Slow")][Category("Window")]
-//        [Category("Slow")][Category("Search_UIAWindow")]
+//        [Category("Slow")][Category("Search_UiaWindow")]
 //        public void SearchWindow_Name_CaseSensitive2()
 //        {
 //            string name = "*TaskBar";
@@ -209,13 +209,13 @@
 //                UIAutomationTestForms.Forms.WinFormsNoTaskBar, 
 //                0);
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-//                @"$null = Get-UIAWindow -pn '" + 
+//                @"$null = Get-UiaWindow -pn '" + 
 //                MiddleLevelCode.TestFormProcess +
 //                @"'; [void]([UIAutomation.CurrentData]::ResetData()); " +
-//                @"Get-UIADesktop | Search-UIAWindow -Name '" + 
+//                @"Get-UiaDesktop | Search-UiaWindow -Name '" + 
 //                name +
-//                @"' -CaseSensitive:$true | Read-UIAControlName;",
-////                @"(Get-UIADesktop | Search-UIAWindow -Name " + 
+//                @"' -CaseSensitive:$true | Read-UiaControlName;",
+////                @"(Get-UiaDesktop | Search-UiaWindow -Name " + 
 ////                name +
 ////                ").Current.Name;",
 //                MiddleLevelCode.TestFormNameNoTaskBar);
@@ -224,7 +224,7 @@
 //        [Test] //[Test(Description="TBD")]
 //        [Category("Slow")][Category("WinForms")]
 //        [Category("Slow")][Category("Window")]
-//        [Category("Slow")][Category("Search_UIAWindow")]
+//        [Category("Slow")][Category("Search_UiaWindow")]
 //        public void SearchWindow_Name_CaseInsensitive1()
 //        {
 //            string name = "*TaskBar";
@@ -233,13 +233,13 @@
 //                UIAutomationTestForms.Forms.WinFormsNoTaskBar, 
 //                0);
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-//                @"$null = Get-UIAWindow -pn '" + 
+//                @"$null = Get-UiaWindow -pn '" + 
 //                MiddleLevelCode.TestFormProcess +
 //                @"'; [void]([UIAutomation.CurrentData]::ResetData()); " +
-//                @"Get-UIADesktop | Search-UIAWindow -Name '" + 
+//                @"Get-UiaDesktop | Search-UiaWindow -Name '" + 
 //                name +
-//                @"' | Read-UIAControlName;",
-////                @"(Get-UIADesktop | Search-UIAWindow -Name " + 
+//                @"' | Read-UiaControlName;",
+////                @"(Get-UiaDesktop | Search-UiaWindow -Name " + 
 ////                name +
 ////                ").Current.Name;",
 //                MiddleLevelCode.TestFormNameNoTaskBar);
@@ -248,7 +248,7 @@
 //        [Test] //[Test(Description="TBD")]
 //        [Category("Slow")][Category("WinForms")]
 //        [Category("Slow")][Category("Window")]
-//        [Category("Slow")][Category("Search_UIAWindow")]
+//        [Category("Slow")][Category("Search_UiaWindow")]
 //        public void SearchWindow_Name_CaseInsensitive2()
 //        {
 //            string name = "*TaskBar";
@@ -257,13 +257,13 @@
 //                UIAutomationTestForms.Forms.WinFormsNoTaskBar, 
 //                0);
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-//                @"$null = Get-UIAWindow -pn '" + 
+//                @"$null = Get-UiaWindow -pn '" + 
 //                MiddleLevelCode.TestFormProcess +
 //                @"'; [void]([UIAutomation.CurrentData]::ResetData()); " +
-//                @"Get-UIADesktop | Search-UIAWindow -Name '" + 
+//                @"Get-UiaDesktop | Search-UiaWindow -Name '" + 
 //                name +
-//                @"' -CaseSensitive:$false | Read-UIAControlName;",
-////                @"(Get-UIADesktop | Search-UIAWindow -Name " + 
+//                @"' -CaseSensitive:$false | Read-UiaControlName;",
+////                @"(Get-UiaDesktop | Search-UiaWindow -Name " + 
 ////                name +
 ////                ").Current.Name;",
 //                MiddleLevelCode.TestFormNameNoTaskBar);
@@ -272,7 +272,7 @@
 //        [Test] //[Test(Description="TBD")]
 //        [Category("Slow")][Category("WinForms")]
 //        [Category("Slow")][Category("Window")]
-//        [Category("Slow")][Category("Search_UIAWindow")]
+//        [Category("Slow")][Category("Search_UiaWindow")]
 //        public void SearchWindow_Name_CaseSensitive_Failed()
 //        {
 //            string name = "*TASKBAR";
@@ -281,18 +281,18 @@
 //                UIAutomationTestForms.Forms.WinFormsNoTaskBar, 
 //                0);
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateIsEmpty(
-//                @"$null = Get-UIAWindow -pn '" + 
+//                @"$null = Get-UiaWindow -pn '" + 
 //                MiddleLevelCode.TestFormProcess +
 //                @"'; [void]([UIAutomation.CurrentData]::ResetData()); " +
-//                @"Get-UIADesktop | Search-UIAWindow -Name '" + 
+//                @"Get-UiaDesktop | Search-UiaWindow -Name '" + 
 //                name +
-//                @"' -CaseSensitive | Read-UIAControlName;");
+//                @"' -CaseSensitive | Read-UiaControlName;");
 //        }
 //        
 //        [Test] //[Test(Description="TBD")]
 //        [Category("Slow")][Category("WinForms")]
 //        [Category("Slow")][Category("Window")]
-//        [Category("Slow")][Category("Search_UIAWindow")]
+//        [Category("Slow")][Category("Search_UiaWindow")]
 //        public void SearchWindow_Name_CaseInsensitive_Success()
 //        {
 //            string name = "*TASKBAR";
@@ -301,12 +301,12 @@
 //                UIAutomationTestForms.Forms.WinFormsNoTaskBar, 
 //                0);
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-//                @"$null = Get-UIAWindow -pn '" + 
+//                @"$null = Get-UiaWindow -pn '" + 
 //                MiddleLevelCode.TestFormProcess +
 //                @"'; [void]([UIAutomation.CurrentData]::ResetData()); " +
-//                @"Get-UIADesktop | Search-UIAWindow -Name '" + 
+//                @"Get-UiaDesktop | Search-UiaWindow -Name '" + 
 //                name +
-//                @"' -CaseSensitive:$false | Read-UIAControlName;",
+//                @"' -CaseSensitive:$false | Read-UiaControlName;",
 //                MiddleLevelCode.TestFormNameNoTaskBar);
 //        }
 //        

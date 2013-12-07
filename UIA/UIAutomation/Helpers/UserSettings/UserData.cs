@@ -7,9 +7,11 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System.Collections.Generic;
+
 namespace UIAutomation
 {
-    using System;
+    //using System;
     
     /// <summary>
     /// Description of UserData.
@@ -19,9 +21,9 @@ namespace UIAutomation
         //public UserData()
         static UserData()
         {
-            UserDictionary = new System.Collections.Generic.Dictionary<string, object>();
+            UserDictionary = new Dictionary<string, object>();
         }
         
-        public static System.Collections.Generic.Dictionary<string, object> UserDictionary = null;
+        public static Dictionary<string, object> UserDictionary = null;
     }
 }

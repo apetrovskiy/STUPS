@@ -13,15 +13,15 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
 
     /// <summary>
-    /// Description of StopUIATranscriptCommand.
+    /// Description of StopUiaTranscriptCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Stop, "UIATranscript")]
+    [Cmdlet(VerbsLifecycle.Stop, "UiaTranscript")]
     //[OutputType(new[]{ typeof(object) })]
-    // public class StopUIATranscriptCommand : TranscriptCmdletBase
-    internal class StopUIATranscriptCommand : TranscriptCmdletBase
+    // public class StopUiaTranscriptCommand : TranscriptCmdletBase
+    internal class StopUiaTranscriptCommand : TranscriptCmdletBase
     {
         #region Constructor
-        public StopUIATranscriptCommand()
+        public StopUiaTranscriptCommand()
         {
         }
         #endregion Constructor
@@ -38,11 +38,11 @@ namespace UIAutomation.Commands
     }
     
     /// <summary>
-    /// Description of StopUIARecorderCommand.
+    /// Description of StopUiaRecorderCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Stop, "UIARecorder")]
+    [Cmdlet(VerbsLifecycle.Stop, "UiaRecorder")]
     //[OutputType(new[]{ typeof(object) })]
-    // public class StopUIARecorderCommand : StopUIATranscriptCommand
-    internal class StopUIARecorderCommand : StopUIATranscriptCommand
-    { public StopUIARecorderCommand() { } }
+    // public class StopUiaRecorderCommand : StopUiaTranscriptCommand
+    internal class StopUiaRecorderCommand : StopUiaTranscriptCommand
+    { public StopUiaRecorderCommand() { } }
 }

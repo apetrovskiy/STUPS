@@ -13,14 +13,14 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
 
     /// <summary>
-    /// Description of InvokeUIAToggleStateSetCommand.
+    /// Description of InvokeUiaToggleStateSetCommand.
     /// </summary>
     // 20131024
-    //[Cmdlet(VerbsCommon.Set, "UIAToggleStateSet")]
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAToggleStateSet")]
-    public class InvokeUIAToggleStateSetCommand : PatternCmdletBase
+    //[Cmdlet(VerbsCommon.Set, "UiaToggleStateSet")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaToggleStateSet")]
+    public class InvokeUiaToggleStateSetCommand : PatternCmdletBase
     {
-        public InvokeUIAToggleStateSetCommand()
+        public InvokeUiaToggleStateSetCommand()
         {
             WhatToDo = "ToggleStateSet";
         }
@@ -35,65 +35,65 @@ namespace UIAutomation.Commands
     }
     
     /// <summary>
-    /// Description of SetUIAButtonToggleStateCommand.
+    /// Description of SetUiaButtonToggleStateCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Set, "UIAButtonToggleState")]
+    [Cmdlet(VerbsCommon.Set, "UiaButtonToggleState")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class SetUIAButtonToggleStateCommand : InvokeUIAToggleStateSetCommand 
-    { public SetUIAButtonToggleStateCommand() { } }
+    
+    public class SetUiaButtonToggleStateCommand : InvokeUiaToggleStateSetCommand 
+    { public SetUiaButtonToggleStateCommand() { } }
     
     /// <summary>
-    /// Description of SetUIACheckBoxToggleStateCommand.
+    /// Description of SetUiaCheckBoxToggleStateCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Set, "UIACheckBoxToggleState")]
+    [Cmdlet(VerbsCommon.Set, "UiaCheckBoxToggleState")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class SetUIACheckBoxToggleStateCommand : InvokeUIAToggleStateSetCommand 
-    { public SetUIACheckBoxToggleStateCommand() { } }
+    
+    public class SetUiaCheckBoxToggleStateCommand : InvokeUiaToggleStateSetCommand 
+    { public SetUiaCheckBoxToggleStateCommand() { } }
     
     /// <summary>
-    /// Description of SetUIACustomToggleStateCommand.
+    /// Description of SetUiaCustomToggleStateCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Set, "UIACustomToggleState")]
+    [Cmdlet(VerbsCommon.Set, "UiaCustomToggleState")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class SetUIACustomToggleStateCommand : InvokeUIAToggleStateSetCommand 
-    { public SetUIACustomToggleStateCommand() { } }
+    
+    public class SetUiaCustomToggleStateCommand : InvokeUiaToggleStateSetCommand 
+    { public SetUiaCustomToggleStateCommand() { } }
     
     /// <summary>
-    /// Description of SetUIADataItemToggleStateCommand.
+    /// Description of SetUiaDataItemToggleStateCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Set, "UIADataItemToggleState")]
+    [Cmdlet(VerbsCommon.Set, "UiaDataItemToggleState")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class SetUIADataItemToggleStateCommand : InvokeUIAToggleStateSetCommand 
-    { public SetUIADataItemToggleStateCommand() { } }
+    
+    public class SetUiaDataItemToggleStateCommand : InvokeUiaToggleStateSetCommand 
+    { public SetUiaDataItemToggleStateCommand() { } }
     
     /// <summary>
-    /// Description of SetUIAListItemToggleStateCommand.
+    /// Description of SetUiaListItemToggleStateCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Set, "UIAListItemToggleState")]
+    [Cmdlet(VerbsCommon.Set, "UiaListItemToggleState")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class SetUIAListItemToggleStateCommand : InvokeUIAToggleStateSetCommand 
-    { public SetUIAListItemToggleStateCommand() { } }
+    
+    public class SetUiaListItemToggleStateCommand : InvokeUiaToggleStateSetCommand 
+    { public SetUiaListItemToggleStateCommand() { } }
     
     /// <summary>
-    /// Description of SetUIAMenuItemToggleStateCommand.
+    /// Description of SetUiaMenuItemToggleStateCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Set, "UIAMenuItemToggleState")]
+    [Cmdlet(VerbsCommon.Set, "UiaMenuItemToggleState")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class SetUIAMenuItemToggleStateCommand : InvokeUIAToggleStateSetCommand 
-    { public SetUIAMenuItemToggleStateCommand() { } }
+    
+    public class SetUiaMenuItemToggleStateCommand : InvokeUiaToggleStateSetCommand 
+    { public SetUiaMenuItemToggleStateCommand() { } }
     
     /// <summary>
-    /// Description of SetUIARadioButtonToggleStateCommand.
+    /// Description of SetUiaRadioButtonToggleStateCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Set, "UIARadioButtonToggleState")]
+    [Cmdlet(VerbsCommon.Set, "UiaRadioButtonToggleState")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class SetUIARadioButtonToggleStateCommand : InvokeUIAToggleStateSetCommand 
-    { public SetUIARadioButtonToggleStateCommand() { } }
+    
+    public class SetUiaRadioButtonToggleStateCommand : InvokeUiaToggleStateSetCommand 
+    { public SetUiaRadioButtonToggleStateCommand() { } }
 }

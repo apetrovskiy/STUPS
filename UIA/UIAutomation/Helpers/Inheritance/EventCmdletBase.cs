@@ -9,6 +9,7 @@
 
 namespace UIAutomation
 {
+    extern alias UIANET;
     using System;
     using System.Management.Automation;
     using System.Windows.Automation;
@@ -17,27 +18,34 @@ namespace UIAutomation
     /// <summary>
     /// Description of HasScriptBlockCmdletBase.
     /// </summary>
-    //[Cmdlet(VerbsLifecycle.Register, "UIADummyEvent")]
+    //[Cmdlet(VerbsLifecycle.Register, "UiaDummyEvent")]
     public class EventCmdletBase : HasControlInputCmdletBase
     {
         #region Constructor
         public EventCmdletBase()
         {
-            this.InputObject =
+            InputObject =
                 // 20131109
                 //new System.Windows.Automation.AutomationElement[] { CurrentData.CurrentWindow };
-                new MySuperWrapper[] { (MySuperWrapper)CurrentData.CurrentWindow };
-            this.AutomationEventType = null;
-            this.AutomationProperty = null;
-            this.AutomationEventHandler = null;
-            this.AutomationPropertyChangedEventHandler = null;
-            this.StructureChangedEventHandler = null;
+                new[] { CurrentData.CurrentWindow };
+                /*
+                new UiElement[] { (UiElement)CurrentData.CurrentWindow };
+                */
+            AutomationEventType = null;
+            AutomationProperty = null;
+            AutomationEventHandler = null;
+            AutomationPropertyChangedEventHandler = null;
+            StructureChangedEventHandler = null;
         }
         #endregion Constructor
 
         #region Parameters
         [Parameter(Mandatory = false)]
+        //public override SwitchParameter OnErrorScreenShot { get; set; }
+        internal new SwitchParameter OnErrorScreenShot { get; set; }
+        /*
         internal SwitchParameter OnErrorScreenShot { get; set; }
+        */
         // internal new SwitchParameter OnErrorScreenShot { get; set; }
 
         [Parameter(Mandatory = false)]
@@ -52,17 +60,15 @@ namespace UIAutomation
         /// </summary>
         protected override void ProcessRecord()
         {
-            if (this.InputObject == null) return;
+            if (InputObject == null) return;
             
-            // 20131109
-            //foreach (AutomationElement inputObject in this.InputObject) {
-            foreach (IMySuperWrapper inputObject in this.InputObject) {
-
-            SubscribeToEvents(this,
-                              inputObject,
-                              this.AutomationEventType,
-                              this.AutomationProperty);
-
+            foreach (IUiElement inputObject in InputObject) {
+                
+                SubscribeToEvents(this,
+                                  inputObject,
+                                  AutomationEventType,
+                                  AutomationProperty);
+                
             } // 20120824
         }
     }

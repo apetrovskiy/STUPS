@@ -9,21 +9,13 @@
 
 namespace UIAutomationUnitTests.CheckCmdletParameters
 {
-    using System;
-    using System.Windows.Automation;
-    using PSTestLib;
-    using UIAutomation;
     using MbUnit.Framework;
     
     /// <summary>
-    /// Description of WaitUIAWindowCommandTestFixture.
+    /// Description of WaitUiaWindowCommandTestFixture.
     /// </summary>
-    public class WaitUIAWindowCommandTestFixture
+    public class WaitUiaWindowCommandTestFixture
     {
-        public WaitUIAWindowCommandTestFixture()
-        {
-        }
-        
         [SetUp]
         public void PrepareRunspace()
         {
@@ -40,19 +32,19 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         
 //        [Test]
 //        [Category("Fast")]
-//        public void Get_UIAWindow_NoParameters()
+//        public void Get_UiaWindow_NoParameters()
 //        {
 //            //CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParameterMissing(
 //            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParameterMissing(
-//        		"Get-UIAWindow;");
+//        		"Get-UiaWindow;");
 //        }
 //        
 //        [Test]
 //        [Category("Fast")]
-//        public void Get_UIAWindow_ProcessName()
+//        public void Get_UiaWindow_ProcessName()
 //        {
 //            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
-//        		"Get-UIAWindow -ProcessName processName;");
+//        		"Get-UiaWindow -ProcessName processName;");
 //        }
     }
 }

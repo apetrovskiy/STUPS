@@ -13,13 +13,13 @@ namespace UIAutomation
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of UIACommand.
+    /// Description of UiaCommand.
     /// </summary>
-    internal abstract class UIACommand
+    internal abstract class UiaCommand
     {
-        internal UIACommand(CommonCmdletBase cmdlet)
+        internal UiaCommand(CommonCmdletBase cmdlet)
         {
-            this.Cmdlet = cmdlet;
+            Cmdlet = cmdlet;
         }
         
         internal CommonCmdletBase Cmdlet { get; set; }

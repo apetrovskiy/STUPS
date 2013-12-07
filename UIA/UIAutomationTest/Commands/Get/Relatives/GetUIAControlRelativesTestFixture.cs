@@ -14,15 +14,11 @@ namespace UIAutomationTest.Commands.Get
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of GetUIAControlRelativesTestFixture.
+    /// Description of GetUiaControlRelativesTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Get-UIAControl[Relatives] test")]
-    public class GetUIAControlRelativesTestFixture
+    [TestFixture] // [TestFixture(Description="Get-UiaControl[Relatives] test")]
+    public class GetUiaControlRelativesTestFixture
     {
-        public GetUIAControlRelativesTestFixture()
-        {
-        }
-        
         [SetUp]
         public void PrepareRunspace()
         {
@@ -30,9 +26,10 @@ namespace UIAutomationTest.Commands.Get
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
-        [Category("Slow")][Category("Get_UIAControlRelatives")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
+        [Category("Get_UiaControlRelatives")]
         public void GetControlParent()
         {
             string auId = "Button111";
@@ -45,18 +42,19 @@ namespace UIAutomationTest.Commands.Get
                 auId,
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAControl -AutomationId " + 
+                " | Get-UiaControl -AutomationId " + 
                 auId + 
-                " | Get-UIAControlParent | Read-UIAControlName;",
+                " | Get-UiaControlParent | Read-UiaControlName;",
                 formName);
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
-        [Category("Slow")][Category("Get_UIAControlRelatives")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
+        [Category("Get_UiaControlRelatives")]
         public void GetControlParent_OnlyOne()
         {
             string name = "ccc";
@@ -68,17 +66,18 @@ namespace UIAutomationTest.Commands.Get
                 "ddd",
                 TimeoutsAndDelays.Control_Delay0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIATable -timeout 2000 | Get-UIAControlParent | Read-UIAControlName;",
+                " | Get-UiaTable -timeout 2000 | Get-UiaControlParent | Read-UiaControlName;",
                 name);
         }
         
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
-        [Category("Slow")][Category("Get_UIAControlRelatives")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
+        [Category("Get_UiaControlRelatives")]
         public void GetControlAncestors()
         {
             string auId = "Button111";
@@ -91,18 +90,19 @@ namespace UIAutomationTest.Commands.Get
                 auId,
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAControl -AutomationId " + 
+                " | Get-UiaControl -AutomationId " + 
                 auId + 
-                " | Get-UIAControlAncestors -ControlType Window | Read-UIAControlName;",
+                " | Get-UiaControlAncestors -ControlType Window | Read-UiaControlName;",
                 formName);
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
-        [Category("Slow")][Category("Get_UIAControlRelatives")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
+        [Category("Get_UiaControlRelatives")]
         public void GetControlAncestors_MoreThanOne()
         {
             MiddleLevelCode.StartProcessWithFormAndControl(
@@ -113,16 +113,17 @@ namespace UIAutomationTest.Commands.Get
                 "ddd",
                 TimeoutsAndDelays.Control_Delay0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"(Get-UIAWindow -pn " + 
+                @"(Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIATable -timeout 2000 | Get-UIAControlAncestors | Read-UIAControlName).Count;",
+                " | Get-UiaTable -timeout 2000 | Get-UiaControlAncestors | Read-UiaControlName).Count;",
                 "2");
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
-        [Category("Slow")][Category("Get_UIAControlRelatives")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
+        [Category("Get_UiaControlRelatives")]
         public void GetControlChildren()
         {
             string auId = "Button111";
@@ -135,17 +136,18 @@ namespace UIAutomationTest.Commands.Get
                 auId,
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAControlChildren -ControlType Button | " +
-                "Read-UIAControlAutomationId;",
+                " | Get-UiaControlChildren -ControlType Button | " +
+                "Read-UiaControlAutomationId;",
                 auId);
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
-        [Category("Slow")][Category("Get_UIAControlRelatives")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
+        [Category("Get_UiaControlRelatives")]
         public void GetControlDescendants()
         {
             string auId = "Button111";
@@ -158,17 +160,18 @@ namespace UIAutomationTest.Commands.Get
                 auId,
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAControlDescendants -ControlType Button | " +
-                "Read-UIAControlAutomationId;",
+                " | Get-UiaControlDescendants -ControlType Button | " +
+                "Read-UiaControlAutomationId;",
                 auId);
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
-        [Category("Slow")][Category("Get_UIAControlRelatives")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
+        [Category("Get_UiaControlRelatives")]
         public void GetControlNextSibling()
         {
             string name1 = "Button111";
@@ -196,19 +199,20 @@ namespace UIAutomationTest.Commands.Get
                 0,
                 ctf);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                @" | Get-UIAButton -Name '" +
+                @" | Get-UiaButton -Name '" +
                 name1 + 
-                "' | Get-UIAControlNextSibling | " +
-                "Read-UIAControlAutomationId;",
+                "' | Get-UiaControlNextSibling | " +
+                "Read-UiaControlAutomationId;",
                 auId2);
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
-        [Category("Slow")][Category("Get_UIAControlRelatives")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
+        [Category("Get_UiaControlRelatives")]
         public void GetControlPreviousSibling()
         {
             string name1 = "Button111";
@@ -236,19 +240,20 @@ namespace UIAutomationTest.Commands.Get
                 0,
                 ctf);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                @" | Get-UIAButton -Name '" +
+                @" | Get-UiaButton -Name '" +
                 name2 + 
-                "' | Get-UIAControlPreviousSibling | " +
-                "Read-UIAControlAutomationId;",
+                "' | Get-UiaControlPreviousSibling | " +
+                "Read-UiaControlAutomationId;",
                 auId1);
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
-        [Category("Slow")][Category("Get_UIAControlRelatives")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
+        [Category("Get_UiaControlRelatives")]
         public void GetControlFirstChild()
         {
             string name1 = "Button111";
@@ -276,17 +281,18 @@ namespace UIAutomationTest.Commands.Get
                 0,
                 ctf);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                @" | Get-UIAControlFirstChild | " +
-                "Read-UIAControlAutomationId;",
+                @" | Get-UiaControlFirstChild | " +
+                "Read-UiaControlAutomationId;",
                 auId1);
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
-        [Category("Slow")][Category("Get_UIAControlRelatives")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
+        [Category("Get_UiaControlRelatives")]
         public void GetControlLastChild()
         {
             string name1 = "Button111";
@@ -315,10 +321,10 @@ namespace UIAutomationTest.Commands.Get
                 0,
                 ctf);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                @" | Get-UIAControlLastChild | " +
-                "Read-UIAControlAutomationId;",
+                @" | Get-UiaControlLastChild | " +
+                "Read-UiaControlAutomationId;",
                 theAnswer);
         }
         

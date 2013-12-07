@@ -14,12 +14,12 @@ namespace UIAutomationTest.Commands.Pattern
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of InvokeUIAValuePatternSetCommandTestFixture.
+    /// Description of InvokeUiaValuePatternSetCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Invoke-UIAValuePatternSetCommand test")]
-    public class InvokeUIAValuePatternSetCommandTestFixture
+    [TestFixture] // [TestFixture(Description="Invoke-UiaValuePatternSetCommand test")]
+    public class InvokeUiaValuePatternSetCommandTestFixture
     {
-        public InvokeUIAValuePatternSetCommandTestFixture()
+        public InvokeUiaValuePatternSetCommandTestFixture()
         {
         }
         
@@ -51,19 +51,19 @@ namespace UIAutomationTest.Commands.Pattern
                 auId,
                 TimeoutsAndDelays.Control_Timeout2000Delay4000_Delay);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = Get-UIAWindow -pn " + 
+                @"$null = Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIATextBox -AutomationId '" + 
+                " | Get-UiaTextBox -AutomationId '" + 
                 auId + 
-                "' -timeout 2000 | Set-UIATextBoxText -Text '" +
+                "' -timeout 2000 | Set-UiaTextBoxText -Text '" +
                 expectedResult + 
                 "'; " + 
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                @" | Get-UIATextBox -AutomationId '" +
+                @" | Get-UiaTextBox -AutomationId '" +
                 auId + 
                 "'" +
-                " | Get-UIATextBoxText",
+                " | Get-UiaTextBoxText",
                 expectedResult);
         }
         
@@ -87,16 +87,16 @@ namespace UIAutomationTest.Commands.Pattern
 //                auId,
 //                TimeoutsAndDelays.Control_Timeout2000Delay4000_Delay);
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-//                @"$null = Get-UIAWindow -pn " + 
+//                @"$null = Get-UiaWindow -pn " + 
 //                MiddleLevelCode.TestFormProcess +
-//                " | Get-UIAProgressBar -AutomationId " + 
+//                " | Get-UiaProgressBar -AutomationId " + 
 //                auId + 
-//                " -timeout 2000 | Set-UIAProgressBarValue -Text " +
+//                " -timeout 2000 | Set-UiaProgressBarValue -Text " +
 //                expectedResult +
 //                "; " + 
-//                @"Get-UIAWindow -pn " + 
+//                @"Get-UiaWindow -pn " + 
 //                MiddleLevelCode.TestFormProcess +
-//                " | Get-UIAProgressBarValue;",
+//                " | Get-UiaProgressBarValue;",
 //                expectedResult);
 //        }
         

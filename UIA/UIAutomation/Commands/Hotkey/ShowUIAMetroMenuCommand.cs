@@ -13,17 +13,17 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of ShowUIAMetroMenuCommand.
+    /// Description of ShowUiaMetroMenuCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Show, "UIAMetroMenu")]
-    public class ShowUIAMetroMenuCommand : HotkeyCmdletBase
+    [Cmdlet(VerbsCommon.Show, "UiaMetroMenu")]
+    public class ShowUiaMetroMenuCommand : HotkeyCmdletBase
     {
         protected override void BeginProcessing()
         {
-            this.keyCodes.Add(0xE0);
-            this.keyCodes.Add(0x5B);
-            this.keyCodes.Add(0x5A);
-            this.processKeys();
+            keyCodes.Add(0xE0);
+            keyCodes.Add(0x5B);
+            keyCodes.Add(0x5A);
+            processKeys();
         }
     }
 }

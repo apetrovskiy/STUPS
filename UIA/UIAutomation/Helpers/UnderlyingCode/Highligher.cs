@@ -9,6 +9,7 @@
 
 namespace UIAutomation
 {
+    extern alias UIANET;
     using System;
     using System.Windows.Automation;
     using System.Windows.Forms;
@@ -55,9 +56,9 @@ namespace UIAutomation
             Color? color)
             // System.Nullable<System.Drawing.Color> color)
         {
-			this.disposeSides();
+			disposeSides();
 			
-        	this.createHighlighter(
+        	createHighlighter(
         		height,
         		width,
         		X,
@@ -77,7 +78,7 @@ namespace UIAutomation
         	int highlighterNumber,
             string highlighterData)
         {
-        	this.createHighlighter(
+        	createHighlighter(
         		height,
         		width,
         		X,
@@ -86,7 +87,7 @@ namespace UIAutomation
         		control,
         	    null);
         	
-        	this.PaintLabel(highlighterNumber, highlighterData);
+        	PaintLabel(highlighterNumber, highlighterData);
         }
         
 //        ~Highlighter()
@@ -97,7 +98,7 @@ namespace UIAutomation
         [STAThread]
         public void Dispose()
         {
-        	this.disposeSides();
+        	disposeSides();
         	//GC.SuppressFinalize(this);
         }
         
@@ -121,10 +122,10 @@ namespace UIAutomation
                         Y,
                         intHandle); //;
                     
-                this.paintLeftSide(control, border, p, height, width, color);
-                this.paintTopSide(control, border, p, height, width, color);
-                this.paintRightSide(control, border, p, height, width, color);
-                this.paintBottomSide(control, border, p, height, width, color);
+                paintLeftSide(control, border, p, height, width, color);
+                paintTopSide(control, border, p, height, width, color);
+                paintRightSide(control, border, p, height, width, color);
+                paintBottomSide(control, border, p, height, width, color);
 
                 /*
                 if (height != 0 && width != 0) {
@@ -152,13 +153,13 @@ namespace UIAutomation
         {
         	// painting a new form
         	int left =
-        		this.rightSide.Left - 20;
+        		rightSide.Left - 20;
         	int top =
-        		this.bottomSide.Top - 15;
+        		bottomSide.Top - 15;
         	int height =
-        		this.bottomSide.Top - top;
+        		bottomSide.Top - top;
         	int width =
-        		this.rightSide.Left - left;
+        		rightSide.Left - left;
 
         	labelForm =
         		new LabelForm(
@@ -167,7 +168,7 @@ namespace UIAutomation
         			width,
         			height, 
         			highlighterNumber,
-        			this.bottomSide.BackColor,
+        			bottomSide.BackColor,
         		    highlighterData);
         }
         
@@ -199,9 +200,7 @@ namespace UIAutomation
             double Y,
             int intHandle)
         {
-            NativeMethods.CursorPoint p = new NativeMethods.CursorPoint();
-            p.X = (int)X;
-            p.Y = (int)Y;
+            NativeMethods.CursorPoint p = new NativeMethods.CursorPoint {X = (int) X, Y = (int) Y};
             if (intHandle == 0) return p;
             try { // Windows Vista or higher only
                 IntPtr handle = 
@@ -316,12 +315,12 @@ namespace UIAutomation
         [STAThread]
         public void Show()
         {
-            this.leftSide.Show();
-            this.topSide.Show();
-            this.rightSide.Show();
-            this.bottomSide.Show();
+            leftSide.Show();
+            topSide.Show();
+            rightSide.Show();
+            bottomSide.Show();
             try {
-                this.labelForm.Show();
+                labelForm.Show();
             }
             catch {}
         }
@@ -329,12 +328,12 @@ namespace UIAutomation
         [STAThread]
         public void Hide()
         {
-            this.leftSide.Hide();
-            this.topSide.Hide();
-            this.rightSide.Hide();
-            this.bottomSide.Hide();
+            leftSide.Hide();
+            topSide.Hide();
+            rightSide.Hide();
+            bottomSide.Hide();
             try {
-                this.labelForm.Hide();
+                labelForm.Hide();
             }
             catch {}
         }
@@ -351,7 +350,7 @@ namespace UIAutomation
         {
             
             if (string.Empty == message || 0 == message.Length) {
-                this.Dispose();
+                Dispose();
                 return;
             }
             
@@ -360,64 +359,64 @@ namespace UIAutomation
             this.width = (int)width;
             this.height = (int)height;
             
-            this.lblMessage = new System.Windows.Forms.Label();
-            this.SuspendLayout();
+            lblMessage = new Label();
+            SuspendLayout();
             // 
             // lblMessage
             // 
-            this.lblMessage.BackColor = this.BackColor;
-            this.lblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", (float)Preferences.BannerFontSize, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMessage.Location = new System.Drawing.Point(0, 0);
-            this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(this.width, this.height);
-            this.lblMessage.TabIndex = 0;
+            lblMessage.BackColor = BackColor;
+            lblMessage.Font = new Font("Microsoft Sans Serif", (float)Preferences.BannerFontSize, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
+            lblMessage.Location = new Point(0, 0);
+            lblMessage.Name = "lblMessage";
+            lblMessage.Size = new Size(this.width, this.height);
+            lblMessage.TabIndex = 0;
             // replace "&" with "&&"
             message = message.Replace("&", "&&");
-            this.lblMessage.Text = message;
+            lblMessage.Text = message;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(this.width, this.height);
-            this.Controls.Add(this.lblMessage);
-            this.Name = "MainForm";
-            this.Opacity = 0.7D;
-            this.TopMost = true;
-            this.ControlBox = false;
-            this.FormBorderStyle = FormBorderStyle.None;
-            this.Left = this.left;
-            this.Top = this.top;
-            this.Width = this.width;
-            this.Height = this.height;
-            this.Location = new System.Drawing.Point(this.left, this.top);
-            this.Text = "UIABanner";
-            this.Load += new System.EventHandler(this.MainFormLoad);
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(6F, 13F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(this.width, this.height);
+            Controls.Add(lblMessage);
+            Name = "MainForm";
+            Opacity = 0.7D;
+            TopMost = true;
+            ControlBox = false;
+            FormBorderStyle = FormBorderStyle.None;
+            Left = this.left;
+            Top = this.top;
+            Width = this.width;
+            Height = this.height;
+            Location = new Point(this.left, this.top);
+            Text = "UiaBanner";
+            Load += new EventHandler(MainFormLoad);
+            ResumeLayout(false);
             
-            this.Show();
+            Show();
         }
         
         void MainFormLoad(object sender, EventArgs e)
         {
-            this.Location = new System.Drawing.Point((int)this.left, (int)this.top);
+            Location = new Point((int)left, (int)top);
         }
         
         public new void Dispose()
         {
-            this.Close();
+            Close();
             //GC.SuppressFinalize(this);
         }
         
-        private Label lblMessage;
-        private int left;
-        private int top;
+        private readonly Label lblMessage;
+        private readonly int left;
+        private readonly int top;
         private int width;
         private int height;
         
         public string Message {
-            get { return this.lblMessage.Text; }
-            set { this.lblMessage.Text = value; }
+            get { return lblMessage.Text; }
+            set { lblMessage.Text = value; }
         }
         
         private string originalMessage = string.Empty;
@@ -425,18 +424,18 @@ namespace UIAutomation
         public void AppendMessage(string message)
         {
             if (string.Empty != originalMessage) {
-                originalMessage = this.Message;
+                originalMessage = Message;
             }
             
-            this.Message += message;
+            Message += message;
             
             Application.DoEvents();
         }
         
         public void RestoreOriginalMessage()
         {
-            if (string.Empty != this.originalMessage) {
-                this.Message = this.originalMessage;
+            if (string.Empty != originalMessage) {
+                Message = originalMessage;
             }
             
             Application.DoEvents();
@@ -455,29 +454,29 @@ namespace UIAutomation
             Color? color)
             // System.Nullable<System.Drawing.Color> color)
         {
-            this.TopMost = true;
+            TopMost = true;
             //this.FormBorderStyle = FormBorderStyle.None;
-            this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
-            this.Visible = false;
-            this.Opacity = 0.5;
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            Visible = false;
+            Opacity = 0.5;
             
             if (null != color) {
-                this.BackColor = (System.Drawing.Color)color;
-                this.ForeColor = (System.Drawing.Color)color;
+                BackColor = (Color)color;
+                ForeColor = (Color)color;
             } else {
                 switch (control)
                 {
                     case Highlighters.Parent:
-                        this.BackColor = Preferences.HighlighterColorParent;
-                        this.ForeColor = Preferences.HighlighterColorParent;
+                        BackColor = Preferences.HighlighterColorParent;
+                        ForeColor = Preferences.HighlighterColorParent;
                         break;
                     case Highlighters.Element:
-                        this.BackColor = Preferences.HighlighterColor;
-                        this.ForeColor = Preferences.HighlighterColor;
+                        BackColor = Preferences.HighlighterColor;
+                        ForeColor = Preferences.HighlighterColor;
                         break;
                     default:
-                        this.BackColor = Color.FromKnownColor(ExecutionPlan.colorTable[(int)control]);
-                        this.ForeColor = Color.FromKnownColor(ExecutionPlan.colorTable[(int)control]);
+                        BackColor = Color.FromKnownColor(ExecutionPlan.colorTable[(int)control]);
+                        ForeColor = Color.FromKnownColor(ExecutionPlan.colorTable[(int)control]);
                         break;
                 }
     //            else if (control == Highlighters.FirstChild) {
@@ -499,34 +498,34 @@ namespace UIAutomation
                 */
             }
             
-            this.AllowTransparency = true;
-            this.ControlBox = false;
-            this.ShowIcon = false;
-            this.ShowInTaskbar = false;
-            this.TopLevel = true;
-            this.UseWaitCursor = false;
-            this.WindowState = FormWindowState.Normal;
-            this.Left = (int)left;
-            this.Top = (int)top;
-            this.Width = 0;
-            this.Height = 0;
-            this.Show();
-            this.Hide();
-            this.Left = (int)left;
-            this.Top = (int)top;
-            this.Width = (int)width;
-            this.Height = (int)height;
-            this.Enabled = false;
-            this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
-            this.ShowInTaskbar = false;
-            this.UseWaitCursor = false;
-            this.Visible = true;
-            this.Show();
+            AllowTransparency = true;
+            ControlBox = false;
+            ShowIcon = false;
+            ShowInTaskbar = false;
+            TopLevel = true;
+            UseWaitCursor = false;
+            WindowState = FormWindowState.Normal;
+            Left = (int)left;
+            Top = (int)top;
+            Width = 0;
+            Height = 0;
+            Show();
+            Hide();
+            Left = (int)left;
+            Top = (int)top;
+            Width = (int)width;
+            Height = (int)height;
+            Enabled = false;
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            ShowInTaskbar = false;
+            UseWaitCursor = false;
+            Visible = true;
+            Show();
         }
         
         public new void Dispose()
         {
-            this.Close();
+            Close();
             //GC.SuppressFinalize(this);
         }
     }
@@ -540,31 +539,30 @@ namespace UIAutomation
             double width, 
             double height, 
             int highlighterNumber,
-            System.Drawing.Color foreColor,
+            Color foreColor,
             string tooltipText)
         {
-            this.TopMost = true;
-            this.FormBorderStyle = FormBorderStyle.None;
-            this.Visible = false;
-            this.Opacity = 0.5;
-            this.AllowTransparency = true;
-            this.ControlBox = false;
-            this.ShowIcon = false;
-            this.ShowInTaskbar = false;
-            this.TopLevel = true;
-            this.UseWaitCursor = false;
-            this.WindowState = FormWindowState.Normal;
-            this.Show();
-            this.Hide();
-            this.Left = (int)left;
-            this.Top = (int)top;
-            this.Width = (int)width;
-            this.Height = (int)height;
-            this.AutoSize = true;
-            this.Enabled = false;
+            TopMost = true;
+            FormBorderStyle = FormBorderStyle.None;
+            Visible = false;
+            Opacity = 0.5;
+            AllowTransparency = true;
+            ControlBox = false;
+            ShowIcon = false;
+            ShowInTaskbar = false;
+            TopLevel = true;
+            UseWaitCursor = false;
+            WindowState = FormWindowState.Normal;
+            Show();
+            Hide();
+            Left = (int)left;
+            Top = (int)top;
+            Width = (int)width;
+            Height = (int)height;
+            AutoSize = true;
+            Enabled = false;
             Label labelNumber =
-        		new Label();
-            labelNumber.AutoSize = true;
+        		new Label {AutoSize = true};
             if (null == highlighterNumber || 0 >= highlighterNumber) {
                 highlighterNumber = 1;
             }
@@ -573,26 +571,23 @@ namespace UIAutomation
         	labelNumber.ForeColor = foreColor;
         	labelNumber.Dock = DockStyle.Fill;
         	labelNumber.MouseMove += 
-        		new System.Windows.Forms.MouseEventHandler(this.labelNumberMouseMove);
-        	this.Controls.Add(labelNumber);
-            this.FormBorderStyle = FormBorderStyle.None;
-            this.ShowInTaskbar = false;
-            this.UseWaitCursor = false;
-            this.Visible = true;
+        		new MouseEventHandler(labelNumberMouseMove);
+        	Controls.Add(labelNumber);
+            FormBorderStyle = FormBorderStyle.None;
+            ShowInTaskbar = false;
+            UseWaitCursor = false;
+            Visible = true;
             
             if (Preferences.ShowInfoToolTip) {
                 // tooltip
-                ToolTip tooltip = new ToolTip();
-                tooltip.Active = true;
-                tooltip.ShowAlways = true;
-                tooltip.IsBalloon = true;
+                ToolTip tooltip = new ToolTip {Active = true, ShowAlways = true, IsBalloon = true};
                 tooltip.Show(tooltipText, this);
             }
             
-            this.Show();
+            Show();
         }
     	
-		void labelNumberMouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
+		void labelNumberMouseMove(object sender, MouseEventArgs e)
 		{
 		    try {
 			 Application.DoEvents();
@@ -602,7 +597,7 @@ namespace UIAutomation
         
         public new void Dispose()
         {
-            this.Close();
+            Close();
             //GC.SuppressFinalize(this);
         }
     }

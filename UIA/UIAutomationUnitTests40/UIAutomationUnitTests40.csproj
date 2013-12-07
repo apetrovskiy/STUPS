@@ -1,0 +1,304 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectGuid>{B63278E9-C2A9-47DD-BC0D-8AC41C8314D3}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <OutputType>Library</OutputType>
+    <RootNamespace>UIAutomationUnitTests40</RootNamespace>
+    <AssemblyName>UIAutomationUnitTests40</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <NoStdLib>False</NoStdLib>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release35' ">
+    <OutputPath>bin\Release35\</OutputPath>
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>None</DebugType>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'Release35' ">
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Gallio">
+      <HintPath>..\..\..\..\..\Program Files\Gallio\bin\Gallio.dll</HintPath>
+    </Reference>
+    <Reference Include="MbUnit">
+      <HintPath>..\..\..\..\..\Program Files\Gallio\bin\MbUnit.dll</HintPath>
+    </Reference>
+    <Reference Include="Moq">
+      <HintPath>..\..\binaries\Moq\NET40\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\..\packages\Ninject.3.0.1.10\lib\net40\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Extensions.NamedScope">
+      <HintPath>..\..\packages\Ninject.Extensions.NamedScope.3.0.0.5\lib\net40\Ninject.Extensions.NamedScope.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.MockingKernel">
+      <HintPath>..\..\packages\Ninject.MockingKernel.3.0.0.5\lib\net40-full\Ninject.MockingKernel.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.MockingKernel.Moq">
+      <HintPath>..\..\packages\Ninject.MockingKernel.Moq.3.0.0.5\lib\net40-full\Ninject.MockingKernel.Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.MockingKernel.NSubstitute">
+      <HintPath>..\..\packages\Ninject.MockingKernel.NSubstitute.3.0.0.5\lib\net40-full\Ninject.MockingKernel.NSubstitute.dll</HintPath>
+    </Reference>
+    <Reference Include="NSubstitute">
+      <HintPath>..\..\packages\NSubstitute.1.3.0.0\lib\NET40\NSubstitute.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Linq" />
+    <Reference Include="System.Management.Automation" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="UIAutomationClient">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="UIAutomationTypes">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\UIAutomationUnitTests\Commands\Common\HideUIACurrentHighlighterCommandTestFixture.cs">
+      <Link>Commands\Common\HideUIACurrentHighlighterCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Commands\Container\NewUIAContainerCommandTestFixture.cs">
+      <Link>Commands\Container\NewUIAContainerCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Commands\No\WaitUIANoWindowCommandTestFixture.cs">
+      <Link>Commands\No\WaitUIANoWindowCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Commands\Pattern\InvokeUIAToggleStateSetCommandTestFixture.cs">
+      <Link>Commands\Pattern\InvokeUIAToggleStateSetCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Commands\Wait\WaitUIAWindowCommandTestFixture.cs">
+      <Link>Commands\Wait\WaitUIAWindowCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Commands\Wizard\AddUIAWizardStepCommandTestFixture.cs">
+      <Link>Commands\Wizard\AddUIAWizardStepCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Commands\Wizard\NewUIAWizardCommandTestFixture.cs">
+      <Link>Commands\Wizard\NewUIAWizardCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Fakes\FakeFactory.cs">
+      <Link>Fakes\FakeFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Fakes\RealCodeCaller.cs">
+      <Link>Fakes\RealCodeCaller.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\Inheritance\CommonCmdletBaseTestFixture.cs">
+      <Link>Helpers\Inheritance\CommonCmdletBaseTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\Inheritance\GetAutomationElementsWithFindAllTestFixture.cs">
+      <Link>Helpers\Inheritance\GetAutomationElementsWithFindAllTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\Inheritance\GetControlTestFixture.cs">
+      <Link>Helpers\Inheritance\GetControlTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\Inheritance\ReturnOnlyRightElementsTestFixture.cs">
+      <Link>Helpers\Inheritance\ReturnOnlyRightElementsTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\Inheritance\SearchByContainsTextViaUiaTextFixture.cs">
+      <Link>Helpers\Inheritance\SearchByContainsTextViaUiaTextFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\Inheritance\SearchByExactConditionsViaUiaTestFixture.cs">
+      <Link>Helpers\Inheritance\SearchByExactConditionsViaUiaTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\Inheritance\SearchByTextViaWin32TestFixture.cs">
+      <Link>Helpers\Inheritance\SearchByTextViaWin32TestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\Inheritance\SearchByWildcardOrRegexViaUiaTestFixture.cs">
+      <Link>Helpers\Inheritance\SearchByWildcardOrRegexViaUiaTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\Inheritance\SearchByWildcardViaWin32TestFixture.cs">
+      <Link>Helpers\Inheritance\SearchByWildcardViaWin32TestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\UnderlyingCode\elementOfPossibleControlTypeTestFixture.cs">
+      <Link>Helpers\UnderlyingCode\elementOfPossibleControlTypeTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\UnderlyingCode\getControlConditionsTestFixture.cs">
+      <Link>Helpers\UnderlyingCode\getControlConditionsTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\UnitTestingHelper.cs">
+      <Link>Helpers\UnitTestingHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\ParamChecks\Common\HideUIACurrentHighlighterCommandTestFixture.cs">
+      <Link>ParamChecks\Common\HideUIACurrentHighlighterCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\ParamChecks\Common\InvokeUIAControlClickCommandTestFixture.cs">
+      <Link>ParamChecks\Common\InvokeUIAControlClickCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\ParamChecks\Container\NewUIAContainerCommandTestFixture.cs">
+      <Link>ParamChecks\Container\NewUIAContainerCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\ParamChecks\Get\GetUIAControlCommandTestFixture.cs">
+      <Link>ParamChecks\Get\GetUIAControlCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\ParamChecks\Get\GetUIAWindowCommandTestFixture.cs">
+      <Link>ParamChecks\Get\GetUIAWindowCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\ParamChecks\MiddleLevelCode.cs">
+      <Link>ParamChecks\MiddleLevelCode.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\ParamChecks\No\WaitUIANoWindowCommandTestFixture.cs">
+      <Link>ParamChecks\No\WaitUIANoWindowCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\ParamChecks\Pattern\GetUIAEditTextCommandTestFixture.cs">
+      <Link>ParamChecks\Pattern\GetUIAEditTextCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\ParamChecks\Pattern\InvokeUIAButtonClickCommandTestFixture.cs">
+      <Link>ParamChecks\Pattern\InvokeUIAButtonClickCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\ParamChecks\Pattern\InvokeUIAInvokePatternCommandTestFixture.cs">
+      <Link>ParamChecks\Pattern\InvokeUIAInvokePatternCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\ParamChecks\Pattern\InvokeUIAToggleStateSetCommandTestFixture.cs">
+      <Link>ParamChecks\Pattern\InvokeUIAToggleStateSetCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\ParamChecks\Pattern\SetUIAEditTextCommandTestFixture.cs">
+      <Link>ParamChecks\Pattern\SetUIAEditTextCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\ParamChecks\Settings.cs">
+      <Link>ParamChecks\Settings.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\ParamChecks\Wait\WaitUIAWindowCommandTestFixture.cs">
+      <Link>ParamChecks\Wait\WaitUIAWindowCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\ParamChecks\Wizard\AddUIAWizardStepCommandTestFixture.cs">
+      <Link>ParamChecks\Wizard\AddUIAWizardStepCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\ParamChecks\Wizard\NewUIAWizardCommandTestFixture.cs">
+      <Link>ParamChecks\Wizard\NewUIAWizardCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Commands" />
+    <Folder Include="Commands\Cache" />
+    <Folder Include="Commands\Cache" />
+    <Folder Include="Commands\Common" />
+    <Folder Include="Commands\Container" />
+    <Folder Include="Commands\Convert" />
+    <Folder Include="Commands\Convert" />
+    <Folder Include="Commands\Discovery" />
+    <Folder Include="Commands\Discovery" />
+    <Folder Include="Commands\Event" />
+    <Folder Include="Commands\Event" />
+    <Folder Include="Commands\ExecutionPlan" />
+    <Folder Include="Commands\ExecutionPlan" />
+    <Folder Include="Commands\Get" />
+    <Folder Include="Commands\Get" />
+    <Folder Include="Commands\Hotkey" />
+    <Folder Include="Commands\Hotkey" />
+    <Folder Include="Commands\No" />
+    <Folder Include="Commands\Pattern" />
+    <Folder Include="Commands\Wait" />
+    <Folder Include="Commands\Wizard" />
+    <Folder Include="Fakes" />
+    <Folder Include="Fakes" />
+    <Folder Include="Helpers" />
+    <Folder Include="Helpers" />
+    <Folder Include="Helpers\Inheritance" />
+    <Folder Include="Helpers\Inheritance" />
+    <Folder Include="Helpers\UnderlyingCode" />
+    <Folder Include="Helpers\UnderlyingCode" />
+    <Folder Include="Ninject" />
+    <Folder Include="Ninject" />
+    <Folder Include="ParamChecks" />
+    <Folder Include="ParamChecks\Cache" />
+    <Folder Include="ParamChecks\Cache" />
+    <Folder Include="ParamChecks\Common" />
+    <Folder Include="ParamChecks\Container" />
+    <Folder Include="ParamChecks\Convert" />
+    <Folder Include="ParamChecks\Convert" />
+    <Folder Include="ParamChecks\Discovery" />
+    <Folder Include="ParamChecks\Discovery" />
+    <Folder Include="ParamChecks\Event" />
+    <Folder Include="ParamChecks\Event" />
+    <Folder Include="ParamChecks\ExecutionPlan" />
+    <Folder Include="ParamChecks\ExecutionPlan" />
+    <Folder Include="ParamChecks\Get" />
+    <Folder Include="ParamChecks\Hotkey" />
+    <Folder Include="ParamChecks\Hotkey" />
+    <Folder Include="ParamChecks\No" />
+    <Folder Include="ParamChecks\Pattern" />
+    <Folder Include="ParamChecks\Profile" />
+    <Folder Include="ParamChecks\Profile" />
+    <Folder Include="ParamChecks\Search" />
+    <Folder Include="ParamChecks\Search" />
+    <Folder Include="ParamChecks\Transcript" />
+    <Folder Include="ParamChecks\Transcript" />
+    <Folder Include="ParamChecks\UltraGrid" />
+    <Folder Include="ParamChecks\UltraGrid" />
+    <Folder Include="ParamChecks\Wait" />
+    <Folder Include="ParamChecks\Wizard" />
+    <Folder Include="Properties" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">
+      <Project>{E4499004-DAE5-4700-B212-4CDEA3080BC5}</Project>
+      <Name>PSTestLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\PS\CmdletUnit\CmdletUnit.csproj">
+      <Project>{36F73FA0-C636-48CF-BB7A-FE10FE52C391}</Project>
+      <Name>CmdletUnit</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UIAutomation\UIAutomation.csproj">
+      <Project>{BF63F595-4A58-49E8-97F2-7701F51F0CD1}</Project>
+      <Name>UIAutomation</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+</Project>

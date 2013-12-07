@@ -13,12 +13,12 @@
 //    using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
 //    using System.Management.Automation;
 //    /// <summary>
-//    /// Description of ConvertFromUIAListCommandTestFixture.
+//    /// Description of ConvertFromUiaListCommandTestFixture.
 //    /// </summary>
-//    [TestFixture] // [TestFixture(Description="ConvertFrom-UIAListCommand test")]
-//    public class ConvertFromUIAListCommandTestFixture
+//    [TestFixture] // [TestFixture(Description="ConvertFrom-UiaListCommand test")]
+//    public class ConvertFromUiaListCommandTestFixture
 //    {
-//        public ConvertFromUIAListCommandTestFixture()
+//        public ConvertFromUiaListCommandTestFixture()
 //        {
 //        }
 //        
@@ -33,7 +33,7 @@
 //        public void TestPipelineInput()
 //        {
 //            string codeSnippet = 
-//                @"if ( ($null | ConvertFrom-UIAList) ) { 1; }else{ 0; }";
+//                @"if ( ($null | ConvertFrom-UiaList) ) { 1; }else{ 0; }";
 //            System.Collections.ObjectModel.Collection<PSObject> coll = 
 //                CmdletUnitTest.TestRunspace.RunPSCode(codeSnippet);
 //            Assert.IsTrue(coll[0].ToString() == "0");
@@ -44,7 +44,7 @@
 //        public void TestParameterInputNull()
 //        {
 //            string codeSnippet = 
-//                @"if ((ConvertFrom-UIAList -InputObject $null)) { 1; }else{ 0; }";
+//                @"if ((ConvertFrom-UiaList -InputObject $null)) { 1; }else{ 0; }";
 //            System.Collections.ObjectModel.Collection<PSObject> coll =
 //                CmdletUnitTest.TestRunspace.RunPSCode(codeSnippet);
 //            Assert.IsNull(coll);
@@ -55,7 +55,7 @@
 //        public void TestParameterInputOtherType()
 //        {
 //            string codeSnippet = 
-//                @"if ((ConvertFrom-UIAList -InputObject (New-Object System.Windows.forms.Label))) { 1; }else{ 0; }";
+//                @"if ((ConvertFrom-UiaList -InputObject (New-Object System.Windows.forms.Label))) { 1; }else{ 0; }";
 //            System.Collections.ObjectModel.Collection<PSObject> coll =
 //                CmdletUnitTest.TestRunspace.RunPSCode(codeSnippet);
 //            Assert.IsNull(coll);

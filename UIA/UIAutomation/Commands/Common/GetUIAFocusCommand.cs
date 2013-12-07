@@ -9,38 +9,34 @@
 
 namespace UIAutomation.Commands
 {
-    // test it
-    //using System;
     using System.Management.Automation;
-    //using System.Runtime.InteropServices;
-    using System.Windows.Automation;
-    //using UIAutomationClient;
-    
-    using Ninject;
-    using Ninject.Parameters;
     
     /// <summary>
-    /// Description of GetUIAFocusCommand.
+    /// Description of GetUiaFocusCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAFocus")]
-    public class GetUIAFocusCommand : HasControlInputCmdletBase
+    [Cmdlet(VerbsCommon.Get, "UiaFocus")]
+    public class GetUiaFocusCommand : HasControlInputCmdletBase
     {
         #region Parameters
         [Parameter(Mandatory = false)]
         // 20131109
         //internal new AutomationElement InputObject { get; set; }
-        internal new IMySuperWrapper InputObject { get; set; }
+        // 20131130
+        internal new IUiElement InputObject { get; set; }
+        /*
+        internal new IUiElement InputObject { get; set; }
+        */
         #endregion Parameters
-        
+
         protected override void BeginProcessing()
         {
             // 20131109
             //this.WriteObject(this, AutomationElement.FocusedElement);
             // 20131111
-            //this.WriteObject(this, new MySuperWrapper(AutomationElement.FocusedElement));
+            //this.WriteObject(this, new UiElement(AutomationElement.FocusedElement));
             // 20131112
-            //this.WriteObject(this, ObjectsFactory.Kernel.Get<IMySuperWrapper>( new MySuperWrapper[] { MySuperWrapper.FocusedElement } ));
-            this.WriteObject(this, MySuperWrapper.FocusedElement);
+            //this.WriteObject(this, ObjectsFactory.Kernel.Get<IUiElement>( new UiElement[] { UiElement.FocusedElement } ));
+            WriteObject(this, UiElement.FocusedElement);
         }
     }
 }

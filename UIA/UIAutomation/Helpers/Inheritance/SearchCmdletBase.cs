@@ -9,8 +9,8 @@
 
 namespace UIAutomation
 {
-    using System;
-    using System.Management.Automation;
+    //using System;
+    //using System.Management.Automation;
     
     /// <summary>
     /// Description of SearchCmdletBase.
@@ -19,7 +19,7 @@ namespace UIAutomation
     {
         public SearchCmdletBase()
         {
-            this.CaseSensitive = false;
+            CaseSensitive = false;
         }
         
         #region Parameters

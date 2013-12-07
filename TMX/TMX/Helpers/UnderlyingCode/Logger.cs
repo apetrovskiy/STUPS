@@ -81,13 +81,13 @@ namespace TMX
                 }
                 LogManager.Configuration.LoggingRules.Add(rule);
                 
-                TMXLogger = LogManager.GetLogger("TMX");
+                TmxLogger = LogManager.GetLogger("TMX");
             }
         }
         
         // 20130506
-        //internal static NLog.Logger TMXLogger = null;
-        public static NLog.Logger TMXLogger = null;
+        //internal static NLog.Logger TmxLogger = null;
+        public static NLog.Logger TmxLogger = null;
         
         internal static void Init()
         {
@@ -112,37 +112,37 @@ namespace TMX
 
             LogManager.Configuration = config;
 
-            TMXLogger = LogManager.GetLogger("TMX");
+            TmxLogger = LogManager.GetLogger("TMX");
         }
         
         public static void Fatal(string message)
         {
-            TMXLogger.Fatal(message);
+            TmxLogger.Fatal(message);
         }
         
         public static void Error(string message)
         {
-            TMXLogger.Error(message);
+            TmxLogger.Error(message);
         }
         
         public static void Warn(string message)
         {
-            TMXLogger.Warn(message);
+            TmxLogger.Warn(message);
         }
         
         public static void Info(string message)
         {
-            TMXLogger.Info(message);
+            TmxLogger.Info(message);
         }
         
         public static void Debug(string message)
         {
-            TMXLogger.Debug(message);
+            TmxLogger.Debug(message);
         }
         
         public static void Trace(string message)
         {
-            TMXLogger.Trace(message);
+            TmxLogger.Trace(message);
         }
     }
 }

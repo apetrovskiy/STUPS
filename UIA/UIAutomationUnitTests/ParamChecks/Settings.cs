@@ -9,17 +9,11 @@
 
 namespace UIAutomationUnitTests.CheckCmdletParameters
 {
-    using System;
-    
     /// <summary>
     /// Description of Settings.
     /// </summary>
     public class Settings
     {
-        public Settings()
-        {
-        }
-        
         public static string RunspaceCommand =
             @"Import-Module '.\UIAutomation.dll' -Force;";
 

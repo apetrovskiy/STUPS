@@ -14,12 +14,12 @@ namespace UIAutomationTest.Commands.Common
     using System.Management.Automation;
 
     /// <summary>
-    /// Description of SaveUIAScreenshotCommandTestFixture.
+    /// Description of SaveUiaScreenshotCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Save-UIAScreenshotCommand test")]
-    public class SaveUIAScreenshotCommandTestFixture
+    [TestFixture] // [TestFixture(Description="Save-UiaScreenshotCommand test")]
+    public class SaveUiaScreenshotCommandTestFixture
     {
-        public SaveUIAScreenshotCommandTestFixture()
+        public SaveUiaScreenshotCommandTestFixture()
         {
         }
         
@@ -35,7 +35,7 @@ namespace UIAutomationTest.Commands.Common
         public void ScreenshotFile_Description()
         {
             CmdletUnitTest.TestRunspace.RunAndEvaluateIsTrue(
-                @"if ( ($null | Set-UIAFocus) ) { 1; } else { 0; }",
+                @"if ( ($null | Set-UiaFocus) ) { 1; } else { 0; }",
                 "0");
         }
         

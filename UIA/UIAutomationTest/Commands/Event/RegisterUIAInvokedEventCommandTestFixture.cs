@@ -14,12 +14,12 @@ namespace UIAutomationTest.Commands.Event
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of RegisterUIAInvokedEventCommandTestFixture.
+    /// Description of RegisterUiaInvokedEventCommandTestFixture.
     /// </summary>
     [TestFixture] // [TestFixture(Description="1")]
-    public class RegisterUIAInvokedEventCommandTestFixture
+    public class RegisterUiaInvokedEventCommandTestFixture
     {
-        public RegisterUIAInvokedEventCommandTestFixture()
+        public RegisterUiaInvokedEventCommandTestFixture()
         {
         }
         
@@ -35,7 +35,7 @@ namespace UIAutomationTest.Commands.Event
 //        [Category("Slow")][Category("WinForms")]
 //        [Category("Slow")][Category("Control")]
 //        [Category("Slow")][Category("Event")]
-//        [Category("Slow")][Category("Register_UIAInvokedEvent")]
+//        [Category("Slow")][Category("Register_UiaInvokedEvent")]
 //        public void RegisterInvokedEvent_Button()
 //        {
 //            string name = "Button1";
@@ -54,16 +54,16 @@ namespace UIAutomationTest.Commands.Event
 //                0,
 //                (ControlToForm[])arrList.ToArray(typeof(ControlToForm)));
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-//                @"$null = Get-UIAWindow -n " +
+//                @"$null = Get-UiaWindow -n " +
 //                MiddleLevelCode.TestFormNameEmpty +
-//                @" | Get-UIAButton -Name '" + 
+//                @" | Get-UiaButton -Name '" + 
 //                name +
-//                @"' | Register-UIAInvokedEvent " + 
+//                @"' | Register-UiaInvokedEvent " + 
 //                @"-EventAction {$i = 1;}; " + 
-//                @"$null = Get-UIAButton -Name '" + 
+//                @"$null = Get-UiaButton -Name '" + 
 //                name +
-//                @"' | Invoke-UIAButtonClick; " + 
-//                @"(Wait-UIAEventRaised -Name '" + 
+//                @"' | Invoke-UiaButtonClick; " + 
+//                @"(Wait-UiaEventRaised -Name '" + 
 //                name +
 //                @"').Cached.Name;",
 //                name);

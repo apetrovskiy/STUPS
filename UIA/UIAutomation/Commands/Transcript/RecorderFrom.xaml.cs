@@ -25,24 +25,24 @@ namespace UIAutomation.Commands
     {
         public RecorderFrom(TranscriptCmdletBase cmdlet)
         {
-            this.Cmdlet = cmdlet;
+            Cmdlet = cmdlet;
             
             InitializeComponent();
         }
         
         internal TranscriptCmdletBase Cmdlet { get; set; }
-        delegate void StartRecording(TranscriptCmdletBase cmdlet);
-        private void startRecording(TranscriptCmdletBase cmdlet)
+        delegate void StartRecordingDelegate(TranscriptCmdletBase cmdlet);
+        private void StartRecordingMethod(TranscriptCmdletBase cmdlet)
         {
-            // UIAHelper.ProcessingTranscript(cmdlet);
+            // UiaHelper.ProcessingTranscript(cmdlet);
             Global.GTranscript = true;
             int counter = 0;
-            cmdlet.oddRootElement =
+            cmdlet.OddRootElement =
                 // 20131109
                 //System.Windows.Automation.AutomationElement.RootElement;
-                MySuperWrapper.RootElement;
+                UiElement.RootElement;
             cmdlet.StartDate =
-                System.DateTime.Now;
+                DateTime.Now;
             do{
                 //Application.DoEvents();
                 // 20131107
@@ -50,63 +50,63 @@ namespace UIAutomation.Commands
                 //
                 bool res =
                     // 20131114
-                    //UIAHelper.ProcessingTranscriptOnce(cmdlet, counter);
-                    UIAHelper.ProcessingTranscriptOnce(cmdlet, counter, System.Windows.Forms.Cursor.Position);
+                    //UiaHelper.ProcessingTranscriptOnce(cmdlet, counter);
+                    UiaHelper.ProcessingTranscriptOnce(cmdlet, counter, System.Windows.Forms.Cursor.Position);
                 if (!res) break;
             } while (Global.GTranscript);
             
         }
-        delegate void PauseRecording(TranscriptCmdletBase cmdlet);
-        private void pauseRecording(TranscriptCmdletBase cmdlet)
+        delegate void PauseRecordingDelegate(TranscriptCmdletBase cmdlet);
+        private void PauseRecordingMethod(TranscriptCmdletBase cmdlet)
         {
-            this.Cmdlet.Paused = true;
+            Cmdlet.Paused = true;
             //System.Windows.Forms.MessageBox.Show("Paused!");
         }
-        delegate void StopRecording(TranscriptCmdletBase cmdlet);
-        private void stopRecording(TranscriptCmdletBase cmdlet)
+        delegate void StopRecordingDelegate(TranscriptCmdletBase cmdlet);
+        private void StopRecordingMethod(TranscriptCmdletBase cmdlet)
         {
             Global.GTranscript = false;
             //System.Windows.Forms.MessageBox.Show("Stopped!");
-            this.Cmdlet.StopProcessing();
+            Cmdlet.StopProcessing();
         }
         
         void BtnStartClick(object sender, EventArgs e)
         {
-            this.btnStart.IsEnabled = false;
-            this.btnPause.IsEnabled = true;
-            this.btnStop.IsEnabled = true;
+            btnStart.IsEnabled = false;
+            btnPause.IsEnabled = true;
+            btnStop.IsEnabled = true;
             
             
             //// this.Cmdlet.NoUI = true;
-            //// UIAHelper.ProcessingTranscript(this.Cmdlet)
-            if (!this.Cmdlet.Paused) {
-                ////StartRecording startRec = new RecorderFrom.StartRecording(startRecording);
+            //// UiaHelper.ProcessingTranscript(this.Cmdlet)
+            if (!Cmdlet.Paused) {
+                ////StartRecordingDelegate startRec = new RecorderFrom.StartRecordingDelegate(StartRecordingMethod);
                 ////this.Invoke(startRec, this.Cmdlet);
-                ////RecorderFrom.StartRecording(startRecording);
+                ////RecorderFrom.StartRecordingDelegate(StartRecordingMethod);
             }
-            this.Cmdlet.Paused = false;
+            Cmdlet.Paused = false;
         }
         
         void BtnPauseClick(object sender, EventArgs e)
         {
-            this.btnPause.IsEnabled = false;
-            this.btnStart.IsEnabled = true;
-            this.btnStop.IsEnabled = true;
+            btnPause.IsEnabled = false;
+            btnStart.IsEnabled = true;
+            btnStop.IsEnabled = true;
             
-            this.Cmdlet.Paused = true;
+            Cmdlet.Paused = true;
             //// System.Windows.Forms.MessageBox.Show("Paused!");
-            ////PauseRecording pauseRec = new RecorderFrom.PauseRecording(pauseRecording);
+            ////PauseRecordingDelegate pauseRec = new RecorderFrom.PauseRecordingDelegate(PauseRecordingMethod);
             ////this.in.Invoke(pauseRec, this.Cmdlet);
-            ////RecorderFrom.PauseRecording(pauseRecording);
+            ////RecorderFrom.PauseRecordingDelegate(PauseRecordingMethod);
         }
         
         void BtnStopClick(object sender, EventArgs e)
         {
-            this.btnStop.IsEnabled = false;
-            this.btnStart.IsEnabled = true;
-            this.btnPause.IsEnabled = false;
+            btnStop.IsEnabled = false;
+            btnStart.IsEnabled = true;
+            btnPause.IsEnabled = false;
             
-            StopRecording stopRec = new RecorderFrom.StopRecording(stopRecording);
+            StopRecordingDelegate stopRec = new StopRecordingDelegate(StopRecordingMethod);
             ////this.Invoke(stopRec, this.Cmdlet);
             //// this.Cmdlet.Paused = true;
 //// Global.GTranscript = false;

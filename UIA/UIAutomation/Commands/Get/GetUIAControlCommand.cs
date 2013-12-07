@@ -9,23 +9,19 @@
 
 namespace UIAutomation.Commands
 {
-    // 20131107
-    // refactoring
-    //using System;
+    using System;
     using System.Management.Automation;
-    //using System.Windows.Automation;
-    //using System.Xml.Serialization.Configuration;
-    
     using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
 
     /// <summary>
-    /// Description of GetUIAControl.
+    /// Description of GetUiaControl.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAControl", DefaultParameterSetName = "UIAWildCard")]
-    //[OutputType(typeof(object))]
-    [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIAControlCommand : GetControlCmdletBase
+    [Cmdlet(VerbsCommon.Get, "UiaControl", DefaultParameterSetName = "UiaWildCard")]
+    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    
+    public class GetUiaControlCommand : GetControlCmdletBase
     {
         #region Parameters
         #endregion Parameters
@@ -33,7 +29,7 @@ namespace UIAutomation.Commands
         protected override void BeginProcessing() {
             
             // set the start time to calculate the timeout expiration
-            StartDate = System.DateTime.Now;
+            StartDate = DateTime.Now;
         }
         
         /// <summary>
@@ -41,59 +37,33 @@ namespace UIAutomation.Commands
         /// </summary>
         protected override void ProcessRecord() 
         {
-            this.CheckCmdletParameters();
+            CheckCmdletParameters();
             
-            if (!this.CheckAndPrepareInput(this)) { return; }
+            if (!CheckAndPrepareInput(this)) { return; }
 
-            this.WriteVerbose(this, "getting the control");
+            WriteVerbose(this, "getting the control");
             
-            ArrayList returnCollection = 
+            List<IUiElement> returnCollection =
                 GetControl(this);
             
-//            if (null == returnCollection || 0 == returnCollection.Count) {
-//                
-//                this.WriteError(
-//                    this,
-//                    CmdletSignature(this) + "timeout expired for control with class: + '" +
-//                    this.Class + 
-//                    "', control type: '" + 
-//                    this.ControlType + 
-//                    "', title: '" +
-//                    this.Name +
-//                    "', automationId: '" +
-//                    this.AutomationId +
-//                    "', value: '" +
-//                    this.Value +
-//                    "'",
-//                    "ControlIsNull",
-//                    ErrorCategory.OperationTimeout,
-//                    true);
-//
-//                return; // ?
-//
-//            }
-
             if (null != returnCollection && 0 < returnCollection.Count) {
 
-                this.WriteObject(this, returnCollection);
+                WriteObject(this, returnCollection);
                 
             } else {
-                // 20120830
-                //WriteObject(this, (object)null);
                 
-                // 20131108
-                this.WriteError(
+                WriteError(
                     this,
                     CmdletSignature(this) + "timeout expired for control with class: + '" +
-                    this.Class + 
+                    Class + 
                     "', control type: '" + 
-                    this.ControlType + 
+                    ControlType + 
                     "', title: '" +
-                    this.Name +
+                    Name +
                     "', automationId: '" +
-                    this.AutomationId +
+                    AutomationId +
                     "', value: '" +
-                    this.Value +
+                    Value +
                     "'",
                     "ControlIsNull",
                     ErrorCategory.OperationTimeout,
@@ -103,390 +73,390 @@ namespace UIAutomation.Commands
     }
     
     /// <summary>
-    /// Description of GetUIAButton.
+    /// Description of GetUiaButton.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAButton", DefaultParameterSetName = "UIAWildCard")]
-    [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIAButtonCommand : GetUIAControlCommand
-    { public GetUIAButtonCommand() { ControlType = "Button"; } }
+    [Cmdlet(VerbsCommon.Get, "UiaButton", DefaultParameterSetName = "UiaWildCard")]
+    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    
+    public class GetUiaButtonCommand : GetUiaControlCommand
+    { public GetUiaButtonCommand() { ControlType = new string[] { "Button" }; } }
 
     /// <summary>
-    /// Description of GetUIACalendar.
+    /// Description of GetUiaCalendar.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIACalendar", DefaultParameterSetName = "UIAWildCard")]
-    [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIACalendarCommand : GetUIAControlCommand
-    { public GetUIACalendarCommand() { ControlType = "Calendar"; } }
+    [Cmdlet(VerbsCommon.Get, "UiaCalendar", DefaultParameterSetName = "UiaWildCard")]
+    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    
+    public class GetUiaCalendarCommand : GetUiaControlCommand
+    { public GetUiaCalendarCommand() { ControlType = new string[] { "Calendar" }; } }
     
     /// <summary>
-    /// Description of GetUIACheckBox.
+    /// Description of GetUiaCheckBox.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIACheckBox", DefaultParameterSetName = "UIAWildCard")]
-    [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIACheckBoxCommand : GetUIAControlCommand
-    { public GetUIACheckBoxCommand() { ControlType = "CheckBox"; } }
+    [Cmdlet(VerbsCommon.Get, "UiaCheckBox", DefaultParameterSetName = "UiaWildCard")]
+    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    
+    public class GetUiaCheckBoxCommand : GetUiaControlCommand
+    { public GetUiaCheckBoxCommand() { ControlType = new string[] { "CheckBox" }; } }
     
     /// <summary>
-    /// Description of GetUIAComboBox.
+    /// Description of GetUiaComboBox.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAComboBox", DefaultParameterSetName = "UIAWildCard")]
-    [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIAComboBoxCommand : GetUIAControlCommand
-    { public GetUIAComboBoxCommand() { ControlType = "ComboBox"; } }
+    [Cmdlet(VerbsCommon.Get, "UiaComboBox", DefaultParameterSetName = "UiaWildCard")]
+    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    
+    public class GetUiaComboBoxCommand : GetUiaControlCommand
+    { public GetUiaComboBoxCommand() { ControlType = new string[] { "ComboBox" }; } }
     
     /// <summary>
-    /// Description of GetUIACustom.
+    /// Description of GetUiaCustom.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIACustom", DefaultParameterSetName = "UIAWildCard")]
-    [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIACustomCommand : GetUIAControlCommand
-    { public GetUIACustomCommand() { ControlType = "Custom"; } }
+    [Cmdlet(VerbsCommon.Get, "UiaCustom", DefaultParameterSetName = "UiaWildCard")]
+    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    
+    public class GetUiaCustomCommand : GetUiaControlCommand
+    { public GetUiaCustomCommand() { ControlType = new string[] { "Custom" }; } }
     
     /// <summary>
-    /// Description of GetUIADataGrid.
+    /// Description of GetUiaDataGrid.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIADataGrid", DefaultParameterSetName = "UIAWildCard")]
-    [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIADataGridCommand : GetUIAControlCommand
-    { public GetUIADataGridCommand() { ControlType = "DataGrid"; } }
+    [Cmdlet(VerbsCommon.Get, "UiaDataGrid", DefaultParameterSetName = "UiaWildCard")]
+    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    
+    public class GetUiaDataGridCommand : GetUiaControlCommand
+    { public GetUiaDataGridCommand() { ControlType = new string[] { "DataGrid" }; } }
     
     /// <summary>
-    /// Description of GetUIADataItem.
+    /// Description of GetUiaDataItem.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIADataItem", DefaultParameterSetName = "UIAWildCard")]
-    [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIADataItemCommand : GetUIAControlCommand
-    { public GetUIADataItemCommand() { ControlType = "DataItem"; } }
+    [Cmdlet(VerbsCommon.Get, "UiaDataItem", DefaultParameterSetName = "UiaWildCard")]
+    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    
+    public class GetUiaDataItemCommand : GetUiaControlCommand
+    { public GetUiaDataItemCommand() { ControlType = new string[] { "DataItem" }; } }
     
     /// <summary>
-    /// Description of GetUIADocument.
+    /// Description of GetUiaDocument.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIADocument", DefaultParameterSetName = "UIAWildCard")]
-    [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIADocumentCommand : GetUIAControlCommand
-    { public GetUIADocumentCommand() { ControlType = "Document"; } }
+    [Cmdlet(VerbsCommon.Get, "UiaDocument", DefaultParameterSetName = "UiaWildCard")]
+    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    
+    public class GetUiaDocumentCommand : GetUiaControlCommand
+    { public GetUiaDocumentCommand() { ControlType = new string[] { "Document" }; } }
 
     /// <summary>
-    /// Description of GetUIAEdit.
+    /// Description of GetUiaEdit.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAEdit", DefaultParameterSetName = "UIAWildCard")]
-    [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIAEditCommand : GetUIAControlCommand
-    { public GetUIAEditCommand() { ControlType = "Edit"; } }
+    [Cmdlet(VerbsCommon.Get, "UiaEdit", DefaultParameterSetName = "UiaWildCard")]
+    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    
+    public class GetUiaEditCommand : GetUiaControlCommand
+    { public GetUiaEditCommand() { ControlType = new string[] { "Edit" }; } }
     
     /// <summary>
-    /// Description of GetUIATextBox.
+    /// Description of GetUiaTextBox.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIATextBox", DefaultParameterSetName = "UIAWildCard")]
-    [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIATextBoxCommand : GetUIAEditCommand
-    { public GetUIATextBoxCommand() { ControlType = "Edit"; } }
+    [Cmdlet(VerbsCommon.Get, "UiaTextBox", DefaultParameterSetName = "UiaWildCard")]
+    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    
+    public class GetUiaTextBoxCommand : GetUiaEditCommand
+    { public GetUiaTextBoxCommand() { ControlType = new string[] { "Edit" }; } }
     
     /// <summary>
-    /// Description of GetUIAGroup.
+    /// Description of GetUiaGroup.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAGroup", DefaultParameterSetName = "UIAWildCard")]
-    [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIAGroupCommand : GetUIAControlCommand
-    { public GetUIAGroupCommand() { ControlType = "Group"; } }
+    [Cmdlet(VerbsCommon.Get, "UiaGroup", DefaultParameterSetName = "UiaWildCard")]
+    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    
+    public class GetUiaGroupCommand : GetUiaControlCommand
+    { public GetUiaGroupCommand() { ControlType = new string[] { "Group" }; } }
     
     /// <summary>
-    /// Description of GetUIAGroupBox.
+    /// Description of GetUiaGroupBox.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAGroupBox", DefaultParameterSetName = "UIAWildCard")]
-    [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIAGroupBoxCommand : GetUIAGroupCommand
-    { public GetUIAGroupBoxCommand() { ControlType = "Group"; } }
+    [Cmdlet(VerbsCommon.Get, "UiaGroupBox", DefaultParameterSetName = "UiaWildCard")]
+    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    
+    public class GetUiaGroupBoxCommand : GetUiaGroupCommand
+    { public GetUiaGroupBoxCommand() { ControlType = new string[] { "Group" }; } }
     
     /// <summary>
-    /// Description of GetUIAHeader.
+    /// Description of GetUiaHeader.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAHeader", DefaultParameterSetName = "UIAWildCard")]
-    [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIAHeaderCommand : GetUIAControlCommand
-    { public GetUIAHeaderCommand() { ControlType = "Header"; } }
+    [Cmdlet(VerbsCommon.Get, "UiaHeader", DefaultParameterSetName = "UiaWildCard")]
+    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    
+    public class GetUiaHeaderCommand : GetUiaControlCommand
+    { public GetUiaHeaderCommand() { ControlType = new string[] { "Header" }; } }
     
     /// <summary>
-    /// Description of GetUIAHeaderItem.
+    /// Description of GetUiaHeaderItem.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAHeaderItem", DefaultParameterSetName = "UIAWildCard")]
-    [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIAHeaderItemCommand : GetUIAControlCommand
-    { public GetUIAHeaderItemCommand() { ControlType = "HeaderItem"; } }
+    [Cmdlet(VerbsCommon.Get, "UiaHeaderItem", DefaultParameterSetName = "UiaWildCard")]
+    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    
+    public class GetUiaHeaderItemCommand : GetUiaControlCommand
+    { public GetUiaHeaderItemCommand() { ControlType = new string[] { "HeaderItem" }; } }
     
     /// <summary>
-    /// Description of GetUIAHyperlink.
+    /// Description of GetUiaHyperlink.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAHyperlink", DefaultParameterSetName = "UIAWildCard")]
-    [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIAHyperlinkCommand : GetUIAControlCommand
-    { public GetUIAHyperlinkCommand() { ControlType = "Hyperlink"; } }
+    [Cmdlet(VerbsCommon.Get, "UiaHyperlink", DefaultParameterSetName = "UiaWildCard")]
+    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    
+    public class GetUiaHyperlinkCommand : GetUiaControlCommand
+    { public GetUiaHyperlinkCommand() { ControlType = new string[] { "Hyperlink" }; } }
     
     /// <summary>
-    /// Description of GetUIALinkLabel.
+    /// Description of GetUiaLinkLabel.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIALinkLabel", DefaultParameterSetName = "UIAWildCard")]
-    [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIALinkLabelCommand : GetUIAHyperlinkCommand
-    { public GetUIALinkLabelCommand() { ControlType = "Hyperlink"; } }
+    [Cmdlet(VerbsCommon.Get, "UiaLinkLabel", DefaultParameterSetName = "UiaWildCard")]
+    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    
+    public class GetUiaLinkLabelCommand : GetUiaHyperlinkCommand
+    { public GetUiaLinkLabelCommand() { ControlType = new string[] { "Hyperlink" }; } }
 
     /// <summary>
-    /// Description of GetUIAImage.
+    /// Description of GetUiaImage.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAImage", DefaultParameterSetName = "UIAWildCard")]
-    [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIAImageCommand : GetUIAControlCommand
-    { public GetUIAImageCommand() { ControlType = "Image"; } }
+    [Cmdlet(VerbsCommon.Get, "UiaImage", DefaultParameterSetName = "UiaWildCard")]
+    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    
+    public class GetUiaImageCommand : GetUiaControlCommand
+    { public GetUiaImageCommand() { ControlType = new string[] { "Image" }; } }
     
     /// <summary>
-    /// Description of GetUIAList.
+    /// Description of GetUiaList.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAList", DefaultParameterSetName = "UIAWildCard")]
-    [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIAListCommand : GetUIAControlCommand
-    { public GetUIAListCommand() { ControlType = "List"; } }
+    [Cmdlet(VerbsCommon.Get, "UiaList", DefaultParameterSetName = "UiaWildCard")]
+    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    
+    public class GetUiaListCommand : GetUiaControlCommand
+    { public GetUiaListCommand() { ControlType = new string[] { "List" }; } }
     
     /// <summary>
-    /// Description of GetUIAListItem.
+    /// Description of GetUiaListItem.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAListItem", DefaultParameterSetName = "UIAWildCard")]
-    [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIAListItemCommand : GetUIAControlCommand
-    { public GetUIAListItemCommand() { ControlType = "ListItem"; } }
+    [Cmdlet(VerbsCommon.Get, "UiaListItem", DefaultParameterSetName = "UiaWildCard")]
+    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    
+    public class GetUiaListItemCommand : GetUiaControlCommand
+    { public GetUiaListItemCommand() { ControlType = new string[] { "ListItem" }; } }
     
     /// <summary>
-    /// Description of GetUIAMenu.
+    /// Description of GetUiaMenu.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAMenu", DefaultParameterSetName = "UIAWildCard")]
-    [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIAMenuCommand : GetUIAControlCommand
-    { public GetUIAMenuCommand() { ControlType = "Menu"; } }
+    [Cmdlet(VerbsCommon.Get, "UiaMenu", DefaultParameterSetName = "UiaWildCard")]
+    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    
+    public class GetUiaMenuCommand : GetUiaControlCommand
+    { public GetUiaMenuCommand() { ControlType = new string[] { "Menu" }; } }
     
     /// <summary>
-    /// Description of GetUIAMenuBar.
+    /// Description of GetUiaMenuBar.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAMenuBar", DefaultParameterSetName = "UIAWildCard")]
-    [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIAMenuBarCommand : GetUIAControlCommand
-    { public GetUIAMenuBarCommand() { ControlType = "MenuBar"; } }
+    [Cmdlet(VerbsCommon.Get, "UiaMenuBar", DefaultParameterSetName = "UiaWildCard")]
+    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    
+    public class GetUiaMenuBarCommand : GetUiaControlCommand
+    { public GetUiaMenuBarCommand() { ControlType = new string[] { "MenuBar" }; } }
 
     /// <summary>
-    /// Description of GetUIAMenuItem.
+    /// Description of GetUiaMenuItem.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAMenuItem", DefaultParameterSetName = "UIAWildCard")]
-    [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIAMenuItemCommand : GetUIAControlCommand
-    { public GetUIAMenuItemCommand() { ControlType = "MenuItem"; } }
+    [Cmdlet(VerbsCommon.Get, "UiaMenuItem", DefaultParameterSetName = "UiaWildCard")]
+    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    
+    public class GetUiaMenuItemCommand : GetUiaControlCommand
+    { public GetUiaMenuItemCommand() { ControlType = new string[] { "MenuItem" }; } }
     
     /// <summary>
-    /// Description of GetUIAPane.
+    /// Description of GetUiaPane.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAPane", DefaultParameterSetName = "UIAWildCard")]
-    [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIAPaneCommand : GetUIAControlCommand
-    { public GetUIAPaneCommand() { ControlType = "Pane"; } }
+    [Cmdlet(VerbsCommon.Get, "UiaPane", DefaultParameterSetName = "UiaWildCard")]
+    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    
+    public class GetUiaPaneCommand : GetUiaControlCommand
+    { public GetUiaPaneCommand() { ControlType = new string[] { "Pane" }; } }
     
     /// <summary>
-    /// Description of GetUIAProgressBar.
+    /// Description of GetUiaProgressBar.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAProgressBar", DefaultParameterSetName = "UIAWildCard")]
-    [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIAProgressBarCommand : GetUIAControlCommand
-    { public GetUIAProgressBarCommand() { ControlType = "ProgressBar"; } }
+    [Cmdlet(VerbsCommon.Get, "UiaProgressBar", DefaultParameterSetName = "UiaWildCard")]
+    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    
+    public class GetUiaProgressBarCommand : GetUiaControlCommand
+    { public GetUiaProgressBarCommand() { ControlType = new string[] { "ProgressBar" }; } }
     
     /// <summary>
-    /// Description of GetUIARadioButton.
+    /// Description of GetUiaRadioButton.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIARadioButton", DefaultParameterSetName = "UIAWildCard")]
-    [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIARadioButtonCommand : GetUIAControlCommand
-    { public GetUIARadioButtonCommand() { ControlType = "RadioButton"; } }
+    [Cmdlet(VerbsCommon.Get, "UiaRadioButton", DefaultParameterSetName = "UiaWildCard")]
+    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    
+    public class GetUiaRadioButtonCommand : GetUiaControlCommand
+    { public GetUiaRadioButtonCommand() { ControlType = new string[] { "RadioButton" }; } }
     
     /// <summary>
-    /// Description of GetUIAScrollBar.
+    /// Description of GetUiaScrollBar.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAScrollBar", DefaultParameterSetName = "UIAWildCard")]
-    [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIAScrollBarCommand : GetUIAControlCommand
-    { public GetUIAScrollBarCommand() { ControlType = "ScrollBar"; } }
+    [Cmdlet(VerbsCommon.Get, "UiaScrollBar", DefaultParameterSetName = "UiaWildCard")]
+    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    
+    public class GetUiaScrollBarCommand : GetUiaControlCommand
+    { public GetUiaScrollBarCommand() { ControlType = new string[] { "ScrollBar" }; } }
 
     /// <summary>
-    /// Description of GetUIASeparator.
+    /// Description of GetUiaSeparator.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIASeparator", DefaultParameterSetName = "UIAWildCard")]
-    [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIASeparatorCommand : GetUIAControlCommand
-    { public GetUIASeparatorCommand() { ControlType = "Separator"; } }
+    [Cmdlet(VerbsCommon.Get, "UiaSeparator", DefaultParameterSetName = "UiaWildCard")]
+    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    
+    public class GetUiaSeparatorCommand : GetUiaControlCommand
+    { public GetUiaSeparatorCommand() { ControlType = new string[] { "Separator" }; } }
     
     /// <summary>
-    /// Description of GetUIASlider.
+    /// Description of GetUiaSlider.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIASlider", DefaultParameterSetName = "UIAWildCard")]
-    [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIASliderCommand : GetUIAControlCommand
-    { public GetUIASliderCommand() { ControlType = "Slider"; } }
+    [Cmdlet(VerbsCommon.Get, "UiaSlider", DefaultParameterSetName = "UiaWildCard")]
+    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    
+    public class GetUiaSliderCommand : GetUiaControlCommand
+    { public GetUiaSliderCommand() { ControlType = new string[] { "Slider" }; } }
     
     /// <summary>
-    /// Description of GetUIASpinner.
+    /// Description of GetUiaSpinner.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIASpinner", DefaultParameterSetName = "UIAWildCard")]
-    [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIASpinnerCommand : GetUIAControlCommand
-    { public GetUIASpinnerCommand() { ControlType = "Spinner"; } }
+    [Cmdlet(VerbsCommon.Get, "UiaSpinner", DefaultParameterSetName = "UiaWildCard")]
+    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    
+    public class GetUiaSpinnerCommand : GetUiaControlCommand
+    { public GetUiaSpinnerCommand() { ControlType = new string[] { "Spinner" }; } }
     
     /// <summary>
-    /// Description of GetUIASplitButton.
+    /// Description of GetUiaSplitButton.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIASplitButton", DefaultParameterSetName = "UIAWildCard")]
-    [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIASplitButtonCommand : GetUIAControlCommand
-    { public GetUIASplitButtonCommand() { ControlType = "SplitButton"; } }
+    [Cmdlet(VerbsCommon.Get, "UiaSplitButton", DefaultParameterSetName = "UiaWildCard")]
+    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    
+    public class GetUiaSplitButtonCommand : GetUiaControlCommand
+    { public GetUiaSplitButtonCommand() { ControlType = new string[] { "SplitButton" }; } }
     
     /// <summary>
-    /// Description of GetUIAStatusBar.
+    /// Description of GetUiaStatusBar.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAStatusBar", DefaultParameterSetName = "UIAWildCard")]
-    [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIAStatusBarCommand : GetUIAControlCommand
-    { public GetUIAStatusBarCommand() { ControlType = "StatusBar"; } }
+    [Cmdlet(VerbsCommon.Get, "UiaStatusBar", DefaultParameterSetName = "UiaWildCard")]
+    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    
+    public class GetUiaStatusBarCommand : GetUiaControlCommand
+    { public GetUiaStatusBarCommand() { ControlType = new string[] { "StatusBar" }; } }
 
     /// <summary>
-    /// Description of GetUIATab.
+    /// Description of GetUiaTab.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIATab", DefaultParameterSetName = "UIAWildCard")]
-    [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIATabCommand : GetUIAControlCommand
-    { public GetUIATabCommand() { ControlType = "Tab"; } }
+    [Cmdlet(VerbsCommon.Get, "UiaTab", DefaultParameterSetName = "UiaWildCard")]
+    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    
+    public class GetUiaTabCommand : GetUiaControlCommand
+    { public GetUiaTabCommand() { ControlType = new string[] { "Tab" }; } }
     
     /// <summary>
-    /// Description of GetUIATabItem.
+    /// Description of GetUiaTabItem.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIATabItem", DefaultParameterSetName = "UIAWildCard")]
-    [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIATabItemCommand : GetUIAControlCommand
-    { public GetUIATabItemCommand() { ControlType = "TabItem"; } }
+    [Cmdlet(VerbsCommon.Get, "UiaTabItem", DefaultParameterSetName = "UiaWildCard")]
+    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    
+    public class GetUiaTabItemCommand : GetUiaControlCommand
+    { public GetUiaTabItemCommand() { ControlType = new string[] { "TabItem" }; } }
     
     /// <summary>
-    /// Description of GetUIATable.
+    /// Description of GetUiaTable.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIATable", DefaultParameterSetName = "UIAWildCard")]
-    [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIATableCommand : GetUIAControlCommand
-    { public GetUIATableCommand() { ControlType = "Table"; } }
+    [Cmdlet(VerbsCommon.Get, "UiaTable", DefaultParameterSetName = "UiaWildCard")]
+    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    
+    public class GetUiaTableCommand : GetUiaControlCommand
+    { public GetUiaTableCommand() { ControlType = new string[] { "Table" }; } }
     
     /// <summary>
-    /// Description of GetUIAText.
+    /// Description of GetUiaText.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAText", DefaultParameterSetName = "UIAWildCard")]
-    [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIATextCommand : GetUIAControlCommand
-    { public GetUIATextCommand() { ControlType = "Text"; } }
+    [Cmdlet(VerbsCommon.Get, "UiaText", DefaultParameterSetName = "UiaWildCard")]
+    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    
+    public class GetUiaTextCommand : GetUiaControlCommand
+    { public GetUiaTextCommand() { ControlType = new string[] { "Text" }; } }
     
     /// <summary>
-    /// Description of GetUIALabel.
+    /// Description of GetUiaLabel.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIALabel", DefaultParameterSetName = "UIAWildCard")]
-    [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIALabelCommand : GetUIATextCommand
-    { public GetUIALabelCommand() { ControlType = "Text"; } }
+    [Cmdlet(VerbsCommon.Get, "UiaLabel", DefaultParameterSetName = "UiaWildCard")]
+    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    
+    public class GetUiaLabelCommand : GetUiaTextCommand
+    { public GetUiaLabelCommand() { ControlType = new string[] { "Text" }; } }
     
     /// <summary>
-    /// Description of GetUIAThumb.
+    /// Description of GetUiaThumb.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAThumb", DefaultParameterSetName = "UIAWildCard")]
-    [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIAThumbCommand : GetUIAControlCommand
-    { public GetUIAThumbCommand() { ControlType = "Thumb"; } }
+    [Cmdlet(VerbsCommon.Get, "UiaThumb", DefaultParameterSetName = "UiaWildCard")]
+    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    
+    public class GetUiaThumbCommand : GetUiaControlCommand
+    { public GetUiaThumbCommand() { ControlType = new string[] { "Thumb" }; } }
 
     /// <summary>
-    /// Description of GetUIATitleBar.
+    /// Description of GetUiaTitleBar.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIATitleBar", DefaultParameterSetName = "UIAWildCard")]
-    [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIATitleBarCommand : GetUIAControlCommand
-    { public GetUIATitleBarCommand() { ControlType = "TitleBar"; } }
+    [Cmdlet(VerbsCommon.Get, "UiaTitleBar", DefaultParameterSetName = "UiaWildCard")]
+    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    
+    public class GetUiaTitleBarCommand : GetUiaControlCommand
+    { public GetUiaTitleBarCommand() { ControlType = new string[] { "TitleBar" }; } }
     
     /// <summary>
-    /// Description of GetUIAToolBar.
+    /// Description of GetUiaToolBar.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAToolBar", DefaultParameterSetName = "UIAWildCard")]
-    [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIAToolBarCommand : GetUIAControlCommand
-    { public GetUIAToolBarCommand() { ControlType = "ToolBar"; } }
+    [Cmdlet(VerbsCommon.Get, "UiaToolBar", DefaultParameterSetName = "UiaWildCard")]
+    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    
+    public class GetUiaToolBarCommand : GetUiaControlCommand
+    { public GetUiaToolBarCommand() { ControlType = new string[] { "ToolBar" }; } }
     
     /// <summary>
-    /// Description of GetUIAToolTip.
+    /// Description of GetUiaToolTip.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAToolTip", DefaultParameterSetName = "UIAWildCard")]
-    [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIAToolTipCommand : GetUIAControlCommand
-    { public GetUIAToolTipCommand() { ControlType = "ToolTip"; } }
+    [Cmdlet(VerbsCommon.Get, "UiaToolTip", DefaultParameterSetName = "UiaWildCard")]
+    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    
+    public class GetUiaToolTipCommand : GetUiaControlCommand
+    { public GetUiaToolTipCommand() { ControlType = new string[] { "ToolTip" }; } }
     
     /// <summary>
-    /// Description of GetUIATree.
+    /// Description of GetUiaTree.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIATree", DefaultParameterSetName = "UIAWildCard")]
-    [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIATreeCommand : GetUIAControlCommand
-    { public GetUIATreeCommand() { ControlType = "Tree"; } }
+    [Cmdlet(VerbsCommon.Get, "UiaTree", DefaultParameterSetName = "UiaWildCard")]
+    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    
+    public class GetUiaTreeCommand : GetUiaControlCommand
+    { public GetUiaTreeCommand() { ControlType = new string[] { "Tree" }; } }
     
     /// <summary>
-    /// Description of GetUIATreeItem.
+    /// Description of GetUiaTreeItem.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIATreeItem", DefaultParameterSetName = "UIAWildCard")]
-    [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIATreeItemCommand : GetUIAControlCommand
-    { public GetUIATreeItemCommand() { ControlType = "TreeItem"; } }
+    [Cmdlet(VerbsCommon.Get, "UiaTreeItem", DefaultParameterSetName = "UiaWildCard")]
+    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    
+    public class GetUiaTreeItemCommand : GetUiaControlCommand
+    { public GetUiaTreeItemCommand() { ControlType = new string[] { "TreeItem" }; } }
     
     /// <summary>
-    /// Description of GetUIAChildWindow.
+    /// Description of GetUiaChildWindow.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIAChildWindow", DefaultParameterSetName = "UIAWildCard")]
-    [OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIAChildWindowCommand : GetUIAControlCommand
-    { public GetUIAChildWindowCommand() { ControlType = "Window"; } }
+    [Cmdlet(VerbsCommon.Get, "UiaChildWindow", DefaultParameterSetName = "UiaWildCard")]
+    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    
+    public class GetUiaChildWindowCommand : GetUiaControlCommand
+    { public GetUiaChildWindowCommand() { ControlType = new string[] { "Window" }; } }
     
 }

@@ -14,12 +14,12 @@ namespace UIAutomationTest.Commands.Pattern
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of InvokeUIAExpandPatternCommandTestFixture.
+    /// Description of InvokeUiaExpandPatternCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Invoke-UIAExpandPatternCommand test")]
-    public class InvokeUIAExpandPatternCommandTestFixture
+    [TestFixture] // [TestFixture(Description="Invoke-UiaExpandPatternCommand test")]
+    public class InvokeUiaExpandPatternCommandTestFixture
     {
-        public InvokeUIAExpandPatternCommandTestFixture()
+        public InvokeUiaExpandPatternCommandTestFixture()
         {
         }
         
@@ -43,13 +43,13 @@ namespace UIAutomationTest.Commands.Pattern
 //                UIAutomationTestForms.Forms.WinFormsFull, 
 //                0);
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-//                @"$null = Get-UIAWindow -pn " + 
+//                @"$null = Get-UiaWindow -pn " + 
 //                MiddleLevelCode.TestFormProcess +
-//                " | Get-UIAButton -Name button1 | Invoke-UIAButtonClick;" + 
-//                @"(Get-UIAWindow -pn " + 
+//                " | Get-UiaButton -Name button1 | Invoke-UiaButtonClick;" + 
+//                @"(Get-UiaWindow -pn " + 
 //                MiddleLevelCode.TestFormProcess +
-//                " | Get-UIAList -AutomationId listBox1 | " + 
-//                "Get-UIAListItem -Name " + 
+//                " | Get-UiaList -AutomationId listBox1 | " + 
+//                "Get-UiaListItem -Name " + 
 //                expectedResult +
 //                ").Current.Name;",
 //                expectedResult);
@@ -66,10 +66,10 @@ namespace UIAutomationTest.Commands.Pattern
                 UIAutomationTestForms.Forms.WinFormsFull, 
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAComboBox -AutomationId comboBox1 | Invoke-UIAComboBoxExpand " + 
-                " | Get-UIAListItem -Name b2 | Read-UIAControlName;",
+                " | Get-UiaComboBox -AutomationId comboBox1 | Invoke-UiaComboBoxExpand " + 
+                " | Get-UiaListItem -Name b2 | Read-UiaControlName;",
                 expectedResult);
         }
         
@@ -93,15 +93,15 @@ namespace UIAutomationTest.Commands.Pattern
                 UIAutomationTestForms.Forms.WinFormsFull, 
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = Get-UIAWindow -pn " + 
+                @"$null = Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIATreeItem -Name Node0 | Invoke-UIATreeItemExpand;" + 
-                @"Get-UIAWindow -pn " + 
+                " | Get-UiaTreeItem -Name Node0 | Invoke-UiaTreeItemExpand;" + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAList -AutomationId listBox1 | " + 
-                "Get-UIAListItem -Name " + 
+                " | Get-UiaList -AutomationId listBox1 | " + 
+                "Get-UiaListItem -Name " + 
                 expectedResult +
-                " | Read-UIAControlName;",
+                " | Read-UiaControlName;",
                 expectedResult);
         }
         

@@ -9,26 +9,25 @@
 
 namespace UIAutomation.Commands
 {
-    // test it
-    //using System;
+    extern alias UIANET;
     using System.Management.Automation;
     
     using System.Linq;
     using System.Windows.Automation;
 
     /// <summary>
-    /// Description of GetUIACurrentPatternCommand.
+    /// Description of GetUiaCurrentPatternCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIACurrentPattern")]
+    [Cmdlet(VerbsCommon.Get, "UiaCurrentPattern")]
     [OutputType(typeof(object))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class GetUIACurrentPatternCommand : DiscoveryCmdletBase
+    
+    public class GetUiaCurrentPatternCommand : DiscoveryCmdletBase
     {
         #region Parameters
         //[ValidateNotNullOrEmpty()]
         //[Parameter(Mandatory = true, 
         //    ValueFromPipeline = true, 
-        //    HelpMessage = "This is usually the output from Get-UIAControl" )] 
+        //    HelpMessage = "This is usually the output from Get-UiaControl" )] 
         //// 20131014
         ////public System.Windows.Automation.AutomationElement Control { get; set; }
         //public System.Windows.Automation.AutomationElement[] InputObject { get; set; }
@@ -39,7 +38,7 @@ namespace UIAutomation.Commands
         // 20131014
         // 20131109
         //System.Windows.Automation.AutomationElement _control = null;
-        IMySuperWrapper _control = null;
+        IUiElement _control = null;
         
         /// <summary>
         /// Processes the pipeline.
@@ -49,7 +48,7 @@ namespace UIAutomation.Commands
             
             object result = null; // ?
             
-            if (!this.CheckAndPrepareInput(this)) { return; }
+            if (!CheckAndPrepareInput(this)) { return; }
             
             // 20131014
             //this.WriteVerbose(this, _control.Current);
@@ -61,13 +60,13 @@ namespace UIAutomation.Commands
             // 20131109
             //foreach (System.Windows.Automation.AutomationElement element in this.InputObject) {
             // 20131113
-            foreach (AutomationPattern p in this.InputObject.SelectMany(element => element.GetSupportedPatterns()))
+            foreach (AutomationPattern p in InputObject.SelectMany(element => element.GetSupportedPatterns()))
             {
-                this.WriteVerbose(this, p.ProgrammaticName);
+                WriteVerbose(this, p.ProgrammaticName);
             }
 
             /*
-            foreach (IMySuperWrapper element in this.InputObject) {
+            foreach (IUiElement element in this.InputObject) {
                 foreach (System.Windows.Automation.AutomationPattern p in element.GetSupportedPatterns())
                 {
                     this.WriteVerbose(this, p.ProgrammaticName);
@@ -93,16 +92,16 @@ namespace UIAutomation.Commands
             }
             */
 
-            System.Windows.Automation.AutomationPattern pattern = 
-                UIAHelper.GetPatternByName(Name);
+            AutomationPattern pattern = 
+                UiaHelper.GetPatternByName(Name);
             
             result = 
-                UIAHelper.GetCurrentPattern(ref _control,
+                UiaHelper.GetCurrentPattern(ref _control,
                                             pattern);
             
-            this.WriteVerbose(this, result);
+            WriteVerbose(this, result);
             
-            this.WriteObject(this, result);
+            WriteObject(this, result);
         }
     }
 }

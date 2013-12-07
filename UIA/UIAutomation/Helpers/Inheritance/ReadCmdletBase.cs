@@ -1,5 +1,4 @@
-﻿using System.Windows.Automation;
-/*
+﻿/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
  * Date: 29.11.2011
@@ -10,8 +9,10 @@
 
 namespace UIAutomation
 {
+    extern alias UIANET;
     using System;
     using System.Management.Automation;
+    using System.Windows.Automation;
 
     /// <summary>
     /// Description of ReadCmdletBase.
@@ -29,80 +30,80 @@ namespace UIAutomation
         /// </summary>
         protected override void ProcessRecord()
         {
-            if (!this.CheckAndPrepareInput(this)) { return; }
+            if (!CheckAndPrepareInput(this)) { return; }
             
             // 20131109
             //foreach (AutomationElement inputObject in InputObject) {
-            foreach (IMySuperWrapper inputObject in InputObject) {
+            foreach (IUiElement inputObject in InputObject) {
                 
-                if (this.GetType().Name == "ReadUIAControlAutomationIdCommand") {
-                    this.WriteObject(this, inputObject.Current.AutomationId);
+                if (GetType().Name == "ReadUiaControlAutomationIdCommand") {
+                    WriteObject(this, inputObject.Current.AutomationId);
                 }
-                if (this.GetType().Name == "ReadUIAControlClassCommand") {
-                    this.WriteObject(this, inputObject.Current.ClassName);
+                if (GetType().Name == "ReadUiaControlClassCommand") {
+                    WriteObject(this, inputObject.Current.ClassName);
                 }
-                if (this.GetType().Name == "ReadUIAControlIsDisabledCommand") {
-                    this.WriteObject(this, !inputObject.Current.IsEnabled);
+                if (GetType().Name == "ReadUiaControlIsDisabledCommand") {
+                    WriteObject(this, !inputObject.Current.IsEnabled);
                 }
-                if (this.GetType().Name == "ReadUIAControlIsEnabledCommand") {
-                    this.WriteObject(this, inputObject.Current.IsEnabled);
+                if (GetType().Name == "ReadUiaControlIsEnabledCommand") {
+                    WriteObject(this, inputObject.Current.IsEnabled);
                 }
-                if (this.GetType().Name == "ReadUIAControlNameCommand") {
-                    this.WriteObject(this, inputObject.Current.Name);
+                if (GetType().Name == "ReadUiaControlNameCommand") {
+                    WriteObject(this, inputObject.Current.Name);
                 }
-                if (this.GetType().Name == "ReadUIAControlControlTypeCommand") {
-                    this.WriteObject(this, inputObject.Current.ControlType.ProgrammaticName);
+                if (GetType().Name == "ReadUiaControlControlTypeCommand") {
+                    WriteObject(this, inputObject.Current.ControlType.ProgrammaticName);
                 }
-                if (this.GetType().Name == "ReadUIAControlAcceleratorKeyCommand") {
-                    this.WriteObject(this, inputObject.Current.AcceleratorKey);
+                if (GetType().Name == "ReadUiaControlAcceleratorKeyCommand") {
+                    WriteObject(this, inputObject.Current.AcceleratorKey);
                 }
-                if (this.GetType().Name == "ReadUIAControlAccessKeyCommand") {
-                    this.WriteObject(this, inputObject.Current.AccessKey);
+                if (GetType().Name == "ReadUiaControlAccessKeyCommand") {
+                    WriteObject(this, inputObject.Current.AccessKey);
                 }
-                if (this.GetType().Name == "ReadUIAControlBoundingRectangleCommand") {
-                    this.WriteObject(this, inputObject.Current.BoundingRectangle);
+                if (GetType().Name == "ReadUiaControlBoundingRectangleCommand") {
+                    WriteObject(this, inputObject.Current.BoundingRectangle);
                 }
-                if (this.GetType().Name == "ReadUIAControlFrameworkIdCommand") {
-                    this.WriteObject(this, inputObject.Current.FrameworkId);
+                if (GetType().Name == "ReadUiaControlFrameworkIdCommand") {
+                    WriteObject(this, inputObject.Current.FrameworkId);
                 }
-                if (this.GetType().Name == "ReadUIAControlHasKeyboardFocusCommand") {
-                    this.WriteObject(this, inputObject.Current.HasKeyboardFocus);
+                if (GetType().Name == "ReadUiaControlHasKeyboardFocusCommand") {
+                    WriteObject(this, inputObject.Current.HasKeyboardFocus);
                 }
-                if (this.GetType().Name == "ReadUIAControlHelpTextCommand") {
-                    this.WriteObject(this, inputObject.Current.HelpText);
+                if (GetType().Name == "ReadUiaControlHelpTextCommand") {
+                    WriteObject(this, inputObject.Current.HelpText);
                 }
-                if (this.GetType().Name == "ReadUIAControlIsKeyboardFocusableCommand") {
-                    this.WriteObject(this, inputObject.Current.IsKeyboardFocusable);
+                if (GetType().Name == "ReadUiaControlIsKeyboardFocusableCommand") {
+                    WriteObject(this, inputObject.Current.IsKeyboardFocusable);
                 }
-                if (this.GetType().Name == "ReadUIAControlIsOffscreenCommand") {
-                    this.WriteObject(this, inputObject.Current.IsOffscreen);
+                if (GetType().Name == "ReadUiaControlIsOffscreenCommand") {
+                    WriteObject(this, inputObject.Current.IsOffscreen);
                 }
-                if (this.GetType().Name == "ReadUIAControlIsPasswordCommand") {
-                    this.WriteObject(this, inputObject.Current.IsPassword);
+                if (GetType().Name == "ReadUiaControlIsPasswordCommand") {
+                    WriteObject(this, inputObject.Current.IsPassword);
                 }
-                if (this.GetType().Name == "ReadUIAControlIsRequiredForFormCommand") {
-                    this.WriteObject(this, inputObject.Current.IsRequiredForForm);
+                if (GetType().Name == "ReadUiaControlIsRequiredForFormCommand") {
+                    WriteObject(this, inputObject.Current.IsRequiredForForm);
                 }
-                if (this.GetType().Name == "ReadUIAControlItemStatusCommand") {
-                    this.WriteObject(this, inputObject.Current.ItemStatus);
+                if (GetType().Name == "ReadUiaControlItemStatusCommand") {
+                    WriteObject(this, inputObject.Current.ItemStatus);
                 }
-                if (this.GetType().Name == "ReadUIAControlItemTypeCommand") {
-                    this.WriteObject(this, inputObject.Current.ItemType);
+                if (GetType().Name == "ReadUiaControlItemTypeCommand") {
+                    WriteObject(this, inputObject.Current.ItemType);
                 }
-                if (this.GetType().Name == "ReadUIAControlLabeledByCommand") {
-                    this.WriteObject(this, inputObject.Current.LabeledBy);
+                if (GetType().Name == "ReadUiaControlLabeledByCommand") {
+                    WriteObject(this, inputObject.Current.LabeledBy);
                 }
-                if (this.GetType().Name == "ReadUIAControlLocalizedControlTypeCommand") {
-                    this.WriteObject(this, inputObject.Current.LocalizedControlType);
+                if (GetType().Name == "ReadUiaControlLocalizedControlTypeCommand") {
+                    WriteObject(this, inputObject.Current.LocalizedControlType);
                 }
-                if (this.GetType().Name == "ReadUIAControlNativeWindowHandleCommand") {
-                    this.WriteObject(this, inputObject.Current.NativeWindowHandle);
+                if (GetType().Name == "ReadUiaControlNativeWindowHandleCommand") {
+                    WriteObject(this, inputObject.Current.NativeWindowHandle);
                 }
-                if (this.GetType().Name == "ReadUIAControlOrientationCommand") {
-                    this.WriteObject(this, inputObject.Current.Orientation);
+                if (GetType().Name == "ReadUiaControlOrientationCommand") {
+                    WriteObject(this, inputObject.Current.Orientation);
                 }
-                if (this.GetType().Name == "ReadUIAControlProcessIdCommand") {
-                    this.WriteObject(this, inputObject.Current.ProcessId);
+                if (GetType().Name == "ReadUiaControlProcessIdCommand") {
+                    WriteObject(this, inputObject.Current.ProcessId);
                 }
             }
             
@@ -111,345 +112,345 @@ namespace UIAutomation
     }
     
     /// <summary>
-    /// Description of ReadUIAControlAutomationIdCommand.
+    /// Description of ReadUiaControlAutomationIdCommand.
     /// </summary>
-    [Cmdlet(VerbsCommunications.Read, "UIAControlAutomationId")]
+    [Cmdlet(VerbsCommunications.Read, "UiaControlAutomationId")]
     //[OutputType(typeof(string[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class ReadUIAControlAutomationIdCommand : ReadCmdletBase
+    
+    public class ReadUiaControlAutomationIdCommand : ReadCmdletBase
     {
         #region Constructor
-        public ReadUIAControlAutomationIdCommand()
+        public ReadUiaControlAutomationIdCommand()
         {
         }
         #endregion Constructor
     }
     
     /// <summary>
-    /// Description of ReadUIAControlClassCommand.
+    /// Description of ReadUiaControlClassCommand.
     /// </summary>
-    [Cmdlet(VerbsCommunications.Read, "UIAControlClass")]
+    [Cmdlet(VerbsCommunications.Read, "UiaControlClass")]
     //[OutputType(typeof(string[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class ReadUIAControlClassCommand : ReadCmdletBase
+    
+    public class ReadUiaControlClassCommand : ReadCmdletBase
     {
         #region Constructor
-        public ReadUIAControlClassCommand()
+        public ReadUiaControlClassCommand()
         {
         }
         #endregion Constructor
     }
     
     /// <summary>
-    /// Description of ReadUIAControlIsDisabledCommand.
+    /// Description of ReadUiaControlIsDisabledCommand.
     /// </summary>
-    [Cmdlet(VerbsCommunications.Read, "UIAControlIsDisabled")]
+    [Cmdlet(VerbsCommunications.Read, "UiaControlIsDisabled")]
     //[OutputType(typeof(bool[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class ReadUIAControlIsDisabledCommand : ReadCmdletBase
+    
+    public class ReadUiaControlIsDisabledCommand : ReadCmdletBase
     {
         #region Constructor
-        public ReadUIAControlIsDisabledCommand()
+        public ReadUiaControlIsDisabledCommand()
         {
         }
         #endregion Constructor
     }
     
     /// <summary>
-    /// Description of ReadUIAControlIsEnabledCommand.
+    /// Description of ReadUiaControlIsEnabledCommand.
     /// </summary>
-    [Cmdlet(VerbsCommunications.Read, "UIAControlIsEnabled")]
+    [Cmdlet(VerbsCommunications.Read, "UiaControlIsEnabled")]
     //[OutputType(typeof(bool[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class ReadUIAControlIsEnabledCommand : ReadCmdletBase
+    
+    public class ReadUiaControlIsEnabledCommand : ReadCmdletBase
     {
         #region Constructor
-        public ReadUIAControlIsEnabledCommand()
+        public ReadUiaControlIsEnabledCommand()
         {
         }
         #endregion Constructor
     }
     
     /// <summary>
-    /// Description of ReadUIAControlNameCommand.
+    /// Description of ReadUiaControlNameCommand.
     /// </summary>
-    [Cmdlet(VerbsCommunications.Read, "UIAControlName")]
+    [Cmdlet(VerbsCommunications.Read, "UiaControlName")]
     //[OutputType(typeof(string[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class ReadUIAControlNameCommand : ReadCmdletBase
+    
+    public class ReadUiaControlNameCommand : ReadCmdletBase
     {
         #region Constructor
-        public ReadUIAControlNameCommand()
+        public ReadUiaControlNameCommand()
         {
         }
         #endregion Constructor
     }
     
     /// <summary>
-    /// Description of ReadUIAControlControlTypeCommand.
+    /// Description of ReadUiaControlControlTypeCommand.
     /// </summary>
-    [Cmdlet(VerbsCommunications.Read, "UIAControlType")]
+    [Cmdlet(VerbsCommunications.Read, "UiaControlType")]
     //[OutputType(typeof(string[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class ReadUIAControlControlTypeCommand : ReadCmdletBase
+    
+    public class ReadUiaControlControlTypeCommand : ReadCmdletBase
     {
         #region Constructor
-        public ReadUIAControlControlTypeCommand()
+        public ReadUiaControlControlTypeCommand()
         {
         }
         #endregion Constructor
     }
     
     /// <summary>
-    /// Description of ReadUIAControlAcceleratorKeyCommand.
+    /// Description of ReadUiaControlAcceleratorKeyCommand.
     /// </summary>
-    [Cmdlet(VerbsCommunications.Read, "UIAControlAcceleratorKey")]
+    [Cmdlet(VerbsCommunications.Read, "UiaControlAcceleratorKey")]
     //[OutputType(typeof(string[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class ReadUIAControlAcceleratorKeyCommand : ReadCmdletBase
+    
+    public class ReadUiaControlAcceleratorKeyCommand : ReadCmdletBase
     {
         #region Constructor
-        public ReadUIAControlAcceleratorKeyCommand()
+        public ReadUiaControlAcceleratorKeyCommand()
         {
         }
         #endregion Constructor
     }
     
     /// <summary>
-    /// Description of ReadUIAControlAccessKeyCommand.
+    /// Description of ReadUiaControlAccessKeyCommand.
     /// </summary>
-    [Cmdlet(VerbsCommunications.Read, "UIAControlAccessKey")]
+    [Cmdlet(VerbsCommunications.Read, "UiaControlAccessKey")]
     //[OutputType(typeof(string[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class ReadUIAControlAccessKeyCommand : ReadCmdletBase
+    
+    public class ReadUiaControlAccessKeyCommand : ReadCmdletBase
     {
         #region Constructor
-        public ReadUIAControlAccessKeyCommand()
+        public ReadUiaControlAccessKeyCommand()
         {
         }
         #endregion Constructor
     }
     
     /// <summary>
-    /// Description of ReadUIAControlBoundingRectangleCommand.
+    /// Description of ReadUiaControlBoundingRectangleCommand.
     /// </summary>
-    [Cmdlet(VerbsCommunications.Read, "UIAControlBoundingRectangle")]
+    [Cmdlet(VerbsCommunications.Read, "UiaControlBoundingRectangle")]
     //[OutputType(typeof(string[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class ReadUIAControlBoundingRectangleCommand : ReadCmdletBase
+    
+    public class ReadUiaControlBoundingRectangleCommand : ReadCmdletBase
     {
         #region Constructor
-        public ReadUIAControlBoundingRectangleCommand()
+        public ReadUiaControlBoundingRectangleCommand()
         {
         }
         #endregion Constructor
     }
     
     /// <summary>
-    /// Description of ReadUIAControlFrameworkIdCommand.
+    /// Description of ReadUiaControlFrameworkIdCommand.
     /// </summary>
-    [Cmdlet(VerbsCommunications.Read, "UIAControlFrameworkIdKey")]
+    [Cmdlet(VerbsCommunications.Read, "UiaControlFrameworkIdKey")]
     //[OutputType(typeof(string[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class ReadUIAControlFrameworkIdCommand : ReadCmdletBase
+    
+    public class ReadUiaControlFrameworkIdCommand : ReadCmdletBase
     {
         #region Constructor
-        public ReadUIAControlFrameworkIdCommand()
+        public ReadUiaControlFrameworkIdCommand()
         {
         }
         #endregion Constructor
     }
     
     /// <summary>
-    /// Description of ReadUIAControlHasKeyboardFocusCommand.
+    /// Description of ReadUiaControlHasKeyboardFocusCommand.
     /// </summary>
-    [Cmdlet(VerbsCommunications.Read, "UIAControlHasKeyboardFocus")]
+    [Cmdlet(VerbsCommunications.Read, "UiaControlHasKeyboardFocus")]
     //[OutputType(typeof(bool[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class ReadUIAControlHasKeyboardFocusCommand : ReadCmdletBase
+    
+    public class ReadUiaControlHasKeyboardFocusCommand : ReadCmdletBase
     {
         #region Constructor
-        public ReadUIAControlHasKeyboardFocusCommand()
+        public ReadUiaControlHasKeyboardFocusCommand()
         {
         }
         #endregion Constructor
     }
     
     /// <summary>
-    /// Description of ReadUIAControlHelpTextCommand.
+    /// Description of ReadUiaControlHelpTextCommand.
     /// </summary>
-    [Cmdlet(VerbsCommunications.Read, "UIAControlHelpText")]
+    [Cmdlet(VerbsCommunications.Read, "UiaControlHelpText")]
     //[OutputType(typeof(string[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class ReadUIAControlHelpTextCommand : ReadCmdletBase
+    
+    public class ReadUiaControlHelpTextCommand : ReadCmdletBase
     {
         #region Constructor
-        public ReadUIAControlHelpTextCommand()
+        public ReadUiaControlHelpTextCommand()
         {
         }
         #endregion Constructor
     }
 
     /// <summary>
-    /// Description of ReadUIAControlIsKeyboardFocusableCommand.
+    /// Description of ReadUiaControlIsKeyboardFocusableCommand.
     /// </summary>
-    [Cmdlet(VerbsCommunications.Read, "UIAControlIsKeyboardFocusable")]
+    [Cmdlet(VerbsCommunications.Read, "UiaControlIsKeyboardFocusable")]
     //[OutputType(typeof(bool[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class ReadUIAControlIsKeyboardFocusableCommand : ReadCmdletBase
+    
+    public class ReadUiaControlIsKeyboardFocusableCommand : ReadCmdletBase
     {
         #region Constructor
-        public ReadUIAControlIsKeyboardFocusableCommand()
+        public ReadUiaControlIsKeyboardFocusableCommand()
         {
         }
         #endregion Constructor
     }
 
     /// <summary>
-    /// Description of ReadUIAControlIsOffscreenCommand.
+    /// Description of ReadUiaControlIsOffscreenCommand.
     /// </summary>
-    [Cmdlet(VerbsCommunications.Read, "UIAControlIsOffscreen")]
+    [Cmdlet(VerbsCommunications.Read, "UiaControlIsOffscreen")]
     //[OutputType(typeof(bool[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class ReadUIAControlIsOffscreenCommand : ReadCmdletBase
+    
+    public class ReadUiaControlIsOffscreenCommand : ReadCmdletBase
     {
         #region Constructor
-        public ReadUIAControlIsOffscreenCommand()
+        public ReadUiaControlIsOffscreenCommand()
         {
         }
         #endregion Constructor
     }
 
     /// <summary>
-    /// Description of ReadUIAControlIsPasswordCommand.
+    /// Description of ReadUiaControlIsPasswordCommand.
     /// </summary>
-    [Cmdlet(VerbsCommunications.Read, "UIAControlIsPassword")]
+    [Cmdlet(VerbsCommunications.Read, "UiaControlIsPassword")]
     //[OutputType(typeof(bool[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class ReadUIAControlIsPasswordCommand : ReadCmdletBase
+    
+    public class ReadUiaControlIsPasswordCommand : ReadCmdletBase
     {
         #region Constructor
-        public ReadUIAControlIsPasswordCommand()
+        public ReadUiaControlIsPasswordCommand()
         {
         }
         #endregion Constructor
     }
 
     /// <summary>
-    /// Description of ReadUIAControlIsRequiredForFormCommand.
+    /// Description of ReadUiaControlIsRequiredForFormCommand.
     /// </summary>
-    [Cmdlet(VerbsCommunications.Read, "UIAControlIsRequiredForForm")]
+    [Cmdlet(VerbsCommunications.Read, "UiaControlIsRequiredForForm")]
     //[OutputType(typeof(bool[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class ReadUIAControlIsRequiredForFormCommand : ReadCmdletBase
+    
+    public class ReadUiaControlIsRequiredForFormCommand : ReadCmdletBase
     {
         #region Constructor
-        public ReadUIAControlIsRequiredForFormCommand()
+        public ReadUiaControlIsRequiredForFormCommand()
         {
         }
         #endregion Constructor
     }
     
     /// <summary>
-    /// Description of ReadUIAControlItemStatusCommand.
+    /// Description of ReadUiaControlItemStatusCommand.
     /// </summary>
-    [Cmdlet(VerbsCommunications.Read, "UIAControlItemStatus")]
+    [Cmdlet(VerbsCommunications.Read, "UiaControlItemStatus")]
     //[OutputType(typeof(string[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class ReadUIAControlItemStatusCommand : ReadCmdletBase
+    
+    public class ReadUiaControlItemStatusCommand : ReadCmdletBase
     {
         #region Constructor
-        public ReadUIAControlItemStatusCommand()
+        public ReadUiaControlItemStatusCommand()
         {
         }
         #endregion Constructor
     }
     
     /// <summary>
-    /// Description of ReadUIAControlItemTypeCommand.
+    /// Description of ReadUiaControlItemTypeCommand.
     /// </summary>
-    [Cmdlet(VerbsCommunications.Read, "UIAControlItemType")]
+    [Cmdlet(VerbsCommunications.Read, "UiaControlItemType")]
     //[OutputType(typeof(string[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class ReadUIAControlItemTypeCommand : ReadCmdletBase
+    
+    public class ReadUiaControlItemTypeCommand : ReadCmdletBase
     {
         #region Constructor
-        public ReadUIAControlItemTypeCommand()
+        public ReadUiaControlItemTypeCommand()
         {
         }
         #endregion Constructor
     }
     
     /// <summary>
-    /// Description of ReadUIAControlLabeledByCommand.
+    /// Description of ReadUiaControlLabeledByCommand.
     /// </summary>
-    [Cmdlet(VerbsCommunications.Read, "UIAControlLabeledBy")]
+    [Cmdlet(VerbsCommunications.Read, "UiaControlLabeledBy")]
     //[OutputType(typeof(string[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class ReadUIAControlLabeledByCommand : ReadCmdletBase
+    
+    public class ReadUiaControlLabeledByCommand : ReadCmdletBase
     {
         #region Constructor
-        public ReadUIAControlLabeledByCommand()
+        public ReadUiaControlLabeledByCommand()
         {
         }
         #endregion Constructor
     }
     
     /// <summary>
-    /// Description of ReadUIAControlLocalizedControlTypeCommand.
+    /// Description of ReadUiaControlLocalizedControlTypeCommand.
     /// </summary>
-    [Cmdlet(VerbsCommunications.Read, "UIAControlLocalizedControlType")]
+    [Cmdlet(VerbsCommunications.Read, "UiaControlLocalizedControlType")]
     //[OutputType(typeof(string[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class ReadUIAControlLocalizedControlTypeCommand : ReadCmdletBase
+    
+    public class ReadUiaControlLocalizedControlTypeCommand : ReadCmdletBase
     {
         #region Constructor
-        public ReadUIAControlLocalizedControlTypeCommand()
+        public ReadUiaControlLocalizedControlTypeCommand()
         {
         }
         #endregion Constructor
     }
     
     /// <summary>
-    /// Description of ReadUIAControlNativeWindowHandleCommand.
+    /// Description of ReadUiaControlNativeWindowHandleCommand.
     /// </summary>
-    [Cmdlet(VerbsCommunications.Read, "UIAControlNativeWindowHandle")]
+    [Cmdlet(VerbsCommunications.Read, "UiaControlNativeWindowHandle")]
     //[OutputType(typeof(int[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class ReadUIAControlNativeWindowHandleCommand : ReadCmdletBase
+    
+    public class ReadUiaControlNativeWindowHandleCommand : ReadCmdletBase
     {
         #region Constructor
-        public ReadUIAControlNativeWindowHandleCommand()
+        public ReadUiaControlNativeWindowHandleCommand()
         {
         }
         #endregion Constructor
     }
     
     /// <summary>
-    /// Description of ReadUIAControlOrientationCommand.
+    /// Description of ReadUiaControlOrientationCommand.
     /// </summary>
-    [Cmdlet(VerbsCommunications.Read, "UIAControlOrientation")]
+    [Cmdlet(VerbsCommunications.Read, "UiaControlOrientation")]
     //[OutputType(typeof(string[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class ReadUIAControlOrientationCommand : ReadCmdletBase
+    
+    public class ReadUiaControlOrientationCommand : ReadCmdletBase
     {
         #region Constructor
-        public ReadUIAControlOrientationCommand()
+        public ReadUiaControlOrientationCommand()
         {
         }
         #endregion Constructor
     }
     
     /// <summary>
-    /// Description of ReadUIAControlProcessIdCommand.
+    /// Description of ReadUiaControlProcessIdCommand.
     /// </summary>
-    [Cmdlet(VerbsCommunications.Read, "UIAControlProcessId")]
+    [Cmdlet(VerbsCommunications.Read, "UiaControlProcessId")]
     //[OutputType(typeof(int[]))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class ReadUIAControlProcessIdCommand : ReadCmdletBase
+    
+    public class ReadUiaControlProcessIdCommand : ReadCmdletBase
     {
         #region Constructor
-        public ReadUIAControlProcessIdCommand()
+        public ReadUiaControlProcessIdCommand()
         {
         }
         #endregion Constructor

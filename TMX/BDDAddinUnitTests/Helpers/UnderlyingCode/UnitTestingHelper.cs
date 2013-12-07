@@ -75,8 +75,8 @@ namespace BDDAddinUnitTests
 //                cmdlet.Description = description;
 //            }
 //            
-//            TMXNewTestSuiteCommand command =
-//                new TMXNewTestSuiteCommand(cmdlet);
+//            TmxNewTestSuiteCommand command =
+//                new TmxNewTestSuiteCommand(cmdlet);
 //            command.Execute();
 //            
 //            return (ITestSuite)CommonCmdletBase.UnitTestOutput[CommonCmdletBase.UnitTestOutput.Count - 1];

@@ -6,17 +6,13 @@
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
-using System;
 
 namespace UIAutomationUnitTests.Commands.Container
 {
     /// <summary>
-    /// Description of NewUIAContainerCommandTestFixture.
+    /// Description of NewUiaContainerCommandTestFixture.
     /// </summary>
-    public class NewUIAContainerCommandTestFixture
+    public class NewUiaContainerCommandTestFixture
     {
-        public NewUIAContainerCommandTestFixture()
-        {
-        }
     }
 }

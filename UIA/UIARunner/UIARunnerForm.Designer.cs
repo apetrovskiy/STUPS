@@ -8,7 +8,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace UIARunner
+namespace UiaRunner
 {
     partial class UiaRunnerForm
     {
@@ -373,7 +373,7 @@ namespace UIARunner
             this.colScreenshot.ReadOnly = true;
             this.colScreenshot.Width = 67;
             // 
-            // UIARunnerForm
+            // UiaRunnerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -387,7 +387,7 @@ namespace UIARunner
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "UiaRunnerForm";
-            this.Text = "UIARunner";
+            this.Text = "UiaRunner";
             this.Deactivate += new System.EventHandler(this.UiaRunnerFormDeactivate);
             this.Load += new System.EventHandler(this.UiaRunnerFormLoad);
             this.Leave += new System.EventHandler(this.UiaRunnerFormLeave);

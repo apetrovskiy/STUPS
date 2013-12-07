@@ -7,6 +7,8 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System.Drawing;
+
 namespace UIAutomation
 {
     using System;
@@ -19,7 +21,7 @@ namespace UIAutomation
     {
         public Profile(string name)
         {
-            this.Name = name;
+            Name = name;
         }
         
         public string Name { get; set; }
@@ -35,7 +37,7 @@ namespace UIAutomation
         /// <summary>
         /// Color of Highlighter
         /// </summary>
-        public static System.Drawing.Color HighlighterColor { get; set; }
+        public static Color HighlighterColor { get; set; }
         /// <summary>
         /// Thikness of Highlighter's border.
         /// </summary>
@@ -85,7 +87,7 @@ namespace UIAutomation
         
         /// <summary>
         /// This property defines an interval
-        /// the Start-UIARecorer cmdlet queries the element
+        /// the Start-UiaRecorer cmdlet queries the element
         /// beneath the cursor. Usually, the default value meets
         /// better conditions. Exceptions may be needed in highly 
         /// load environments.

@@ -14,12 +14,12 @@ namespace UIAutomationTest.Commands.Discovery
     using System.Management.Automation;
 
     /// <summary>
-    /// Description of GetUIACurrentPatternFromPointCommandTestFixture.
+    /// Description of GetUiaCurrentPatternFromPointCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Get-UIACurrentPatternFromPointCommand test")]
-    public class GetUIACurrentPatternFromPointCommandTestFixture
+    [TestFixture] // [TestFixture(Description="Get-UiaCurrentPatternFromPointCommand test")]
+    public class GetUiaCurrentPatternFromPointCommandTestFixture
     {
-        public GetUIACurrentPatternFromPointCommandTestFixture()
+        public GetUiaCurrentPatternFromPointCommandTestFixture()
         {
         }
         

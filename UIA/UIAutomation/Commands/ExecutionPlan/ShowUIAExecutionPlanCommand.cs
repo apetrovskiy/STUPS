@@ -9,15 +9,13 @@
 
 namespace UIAutomation.Commands
 {
-    // test it
-    //using System;
     using System.Management.Automation;
 
 	/// <summary>
-	/// Description of ShowUIAExecutionPlanCommand.
+	/// Description of ShowUiaExecutionPlanCommand.
 	/// </summary>
-	[Cmdlet(VerbsCommon.Show, "UIAExecutionPlan")]
-	public class ShowUIAExecutionPlanCommand : ExecutionPlanCmdletBase
+	[Cmdlet(VerbsCommon.Show, "UiaExecutionPlan")]
+	public class ShowUiaExecutionPlanCommand : ExecutionPlanCmdletBase
 	{
 		#region Parameters
 		[Parameter(Mandatory = false)]
@@ -26,15 +24,15 @@ namespace UIAutomation.Commands
 		
 		protected override void BeginProcessing()
 		{
-			UIAutomation.ExecutionPlan.DisposeHighlighers();
-			UIAutomation.ExecutionPlan.Init();
-			CommonCmdletBase.HighlighterGeneration = 0;
-			if (0 != this.MaxControlsHighlighted) {
+			ExecutionPlan.DisposeHighlighers();
+			ExecutionPlan.Init();
+			HighlighterGeneration = 0;
+			if (0 != MaxControlsHighlighted) {
 				ExecutionPlan.DecreaseMaxCount(
                 // UIAutomation.ExecutionPlan.DecreaseMaxCount(
-					this.MaxControlsHighlighted);
+					MaxControlsHighlighted);
 			}
-			UIAutomation.Preferences.ShowExecutionPlan = true;
+			Preferences.ShowExecutionPlan = true;
 		}
 	}
 }

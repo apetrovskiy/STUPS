@@ -38,7 +38,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControl_X2_SearchInName_Timeout2000()
         {
             string expectedName = "my_name";
@@ -71,9 +71,9 @@ namespace UIAutomationTest.Commands.Get
                 0,
                 (ControlToForm[])arrList.ToArray(typeof(ControlToForm)));
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"(Get-UIAWindow -n " + 
+                @"(Get-UiaWindow -n " + 
                 MiddleLevelCode.TestFormNameEmpty +
-                " | Get-UIAControl '" +
+                " | Get-UiaControl '" +
                 expectedName +
                 "' -Timeout 2000).Count;",
                 "2");
@@ -83,7 +83,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControl_Win32_X2_SearchInName_Timeout2000()
         {
             string expectedName = "my_name";
@@ -116,9 +116,9 @@ namespace UIAutomationTest.Commands.Get
                 0,
                 (ControlToForm[])arrList.ToArray(typeof(ControlToForm)));
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"(Get-UIAWindow -n " + 
+                @"(Get-UiaWindow -n " + 
                 MiddleLevelCode.TestFormNameEmpty +
-                " | Get-UIAControl '" +
+                " | Get-UiaControl '" +
                 expectedName +
                 "' -Win32 -Timeout 2000).Count;",
                 "2");
@@ -128,7 +128,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControl_X2_SearchInAutomationId_Timeout2000()
         {
             string expectedAuId = "myAuId";
@@ -161,9 +161,9 @@ namespace UIAutomationTest.Commands.Get
                 0,
                 (ControlToForm[])arrList.ToArray(typeof(ControlToForm)));
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"(Get-UIAWindow -n " + 
+                @"(Get-UiaWindow -n " + 
                 MiddleLevelCode.TestFormNameEmpty +
-                " | Get-UIAControl '" +
+                " | Get-UiaControl '" +
                 expectedAuId +
                 "' -Timeout 2000).Count;",
                 "2");
@@ -173,7 +173,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControl_Win32_X2_SearchInAutomationId_Timeout2000()
         {
             string expectedAuId = "myAuId";
@@ -206,9 +206,9 @@ namespace UIAutomationTest.Commands.Get
                 0,
                 (ControlToForm[])arrList.ToArray(typeof(ControlToForm)));
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"(Get-UIAWindow -n " + 
+                @"(Get-UiaWindow -n " + 
                 MiddleLevelCode.TestFormNameEmpty +
-                " | Get-UIAControl '" +
+                " | Get-UiaControl '" +
                 expectedAuId +
                 "' -Win32 -Timeout 2000).Count;",
                 "2");
@@ -218,7 +218,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControl_X2_SearchInValue_Timeout2000()
         {
             string expectedValue = "my text";
@@ -251,15 +251,15 @@ namespace UIAutomationTest.Commands.Get
                 0,
                 (ControlToForm[])arrList.ToArray(typeof(ControlToForm)));
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = Get-UIAWindow -n " + 
+                @"$null = Get-UiaWindow -n " + 
                 MiddleLevelCode.TestFormNameEmpty +
-                " | Get-UIAControl -AutomationId auid1 | Set-UIAControlText '" + 
+                " | Get-UiaControl -AutomationId auid1 | Set-UiaControlText '" + 
                 expectedValue +
                 "'; " +
-                "$null = Get-UIAControl -AutomationId auid3 | Set-UIAControlText '" + 
+                "$null = Get-UiaControl -AutomationId auid3 | Set-UiaControlText '" + 
                 expectedValue +
                 "'; " +
-                "(Get-UIAControl '" +
+                "(Get-UiaControl '" +
                 expectedValue +
                 "' -Timeout 2000).Count;",
                 "2");
@@ -269,7 +269,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControl_Win32_X2_SearchInValue_Timeout2000()
         {
             string expectedValue = "my text";
@@ -302,15 +302,15 @@ namespace UIAutomationTest.Commands.Get
                 0,
                 (ControlToForm[])arrList.ToArray(typeof(ControlToForm)));
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = Get-UIAWindow -n " + 
+                @"$null = Get-UiaWindow -n " + 
                 MiddleLevelCode.TestFormNameEmpty +
-                " | Get-UIAControl -AutomationId auid1 | Set-UIAControlText '" + 
+                " | Get-UiaControl -AutomationId auid1 | Set-UiaControlText '" + 
                 expectedValue +
                 "'; " +
-                "$null = Get-UIAControl -AutomationId auid3 | Set-UIAControlText '" + 
+                "$null = Get-UiaControl -AutomationId auid3 | Set-UiaControlText '" + 
                 expectedValue +
                 "'; " +
-                "(Get-UIAControl '" +
+                "(Get-UiaControl '" +
                 expectedValue +
                 "' -Win32 -Timeout 2000).Count;",
                 "2");
@@ -320,7 +320,7 @@ namespace UIAutomationTest.Commands.Get
 //        [Category("Slow")]
 //        [Category("WinForms")]
 //        [Category("Control")]
-//        [Category("Get_UIAControl")]
+//        [Category("Get_UiaControl")]
 //        public void GetControl_X2_SearchInClassName_Timeout2000()
 //        {
 //            string expectedClass = "button";
@@ -353,9 +353,9 @@ namespace UIAutomationTest.Commands.Get
 //                0,
 //                (ControlToForm[])arrList.ToArray(typeof(ControlToForm)));
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-//                @"(Get-UIAWindow -n " + 
+//                @"(Get-UiaWindow -n " + 
 //                MiddleLevelCode.TestFormNameEmpty +
-//                " | Get-UIAControl '" +
+//                " | Get-UiaControl '" +
 //                expectedClass +
 //                "' -Timeout 2000).Count;",
 //                "2");
@@ -365,7 +365,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControl_Win32_X2_SearchInClassName_Timeout2000()
         {
             string expectedClass = "button";
@@ -398,9 +398,9 @@ namespace UIAutomationTest.Commands.Get
                 0,
                 (ControlToForm[])arrList.ToArray(typeof(ControlToForm)));
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"(Get-UIAWindow -n " + 
+                @"(Get-UiaWindow -n " + 
                 MiddleLevelCode.TestFormNameEmpty +
-                " | Get-UIAControl '*" +
+                " | Get-UiaControl '*" +
                 expectedClass +
                 "*' -Win32 -Timeout 2000).Count;",
                 "2");
@@ -410,7 +410,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControl_X2_SearchInNameAutomationId_Timeout2000()
         {
             string expectedName = "myName";
@@ -443,9 +443,9 @@ namespace UIAutomationTest.Commands.Get
                 0,
                 (ControlToForm[])arrList.ToArray(typeof(ControlToForm)));
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"(Get-UIAWindow -n " + 
+                @"(Get-UiaWindow -n " + 
                 MiddleLevelCode.TestFormNameEmpty +
-                " | Get-UIAControl '" +
+                " | Get-UiaControl '" +
                 expectedName +
                 "' -Timeout 2000).Count;",
                 "2");
@@ -455,7 +455,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControl_Win32_X2_SearchInNameAutomationId_Timeout2000()
         {
             string expectedName = "myName";
@@ -488,9 +488,9 @@ namespace UIAutomationTest.Commands.Get
                 0,
                 (ControlToForm[])arrList.ToArray(typeof(ControlToForm)));
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"(Get-UIAWindow -n " + 
+                @"(Get-UiaWindow -n " + 
                 MiddleLevelCode.TestFormNameEmpty +
-                " | Get-UIAControl '" +
+                " | Get-UiaControl '" +
                 expectedName +
                 "' -Win32 -Timeout 2000).Count;",
                 "2");
@@ -500,7 +500,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControl_X2_SearchInNameClassName_Timeout2000()
         {
             string expectedClass = "button";
@@ -533,9 +533,9 @@ namespace UIAutomationTest.Commands.Get
                 0,
                 (ControlToForm[])arrList.ToArray(typeof(ControlToForm)));
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"(Get-UIAWindow -n " + 
+                @"(Get-UiaWindow -n " + 
                 MiddleLevelCode.TestFormNameEmpty +
-                " | Get-UIAControl '" +
+                " | Get-UiaControl '" +
                 expectedClass +
                 "' -Timeout 2000).Count;",
                 "2");
@@ -545,7 +545,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControl_Win32_X2_SearchInNameClassName_Timeout2000()
         {
             string expectedClass = "button";
@@ -578,9 +578,9 @@ namespace UIAutomationTest.Commands.Get
                 0,
                 (ControlToForm[])arrList.ToArray(typeof(ControlToForm)));
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"(Get-UIAWindow -n " + 
+                @"(Get-UiaWindow -n " + 
                 MiddleLevelCode.TestFormNameEmpty +
-                " | Get-UIAControl '" +
+                " | Get-UiaControl '" +
                 expectedClass +
                 "' -Win32 -Timeout 2000).Count;",
                 "2");
@@ -590,7 +590,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControl_X2_SearchInAutomationIdClassName_Timeout2000()
         {
             string expectedClass = "button";
@@ -623,9 +623,9 @@ namespace UIAutomationTest.Commands.Get
                 0,
                 (ControlToForm[])arrList.ToArray(typeof(ControlToForm)));
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"(Get-UIAWindow -n " + 
+                @"(Get-UiaWindow -n " + 
                 MiddleLevelCode.TestFormNameEmpty +
-                " | Get-UIAControl '" +
+                " | Get-UiaControl '" +
                 expectedClass +
                 "' -Timeout 2000).Count;",
                 "2");
@@ -635,7 +635,7 @@ namespace UIAutomationTest.Commands.Get
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        [Category("Get_UIAControl")]
+        [Category("Get_UiaControl")]
         public void GetControl_Win32_X2_SearchInAutomationIdClassName_Timeout2000()
         {
             string expectedClass = "button";
@@ -668,9 +668,9 @@ namespace UIAutomationTest.Commands.Get
                 0,
                 (ControlToForm[])arrList.ToArray(typeof(ControlToForm)));
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"(Get-UIAWindow -n " + 
+                @"(Get-UiaWindow -n " + 
                 MiddleLevelCode.TestFormNameEmpty +
-                " | Get-UIAControl '" +
+                " | Get-UiaControl '" +
                 expectedClass +
                 "' -Win32 -Timeout 2000).Count;",
                 "2");

@@ -11,10 +11,10 @@ using System.Linq;
 
 namespace UIAutomation
 {
-    using System;
-    using System.Collections;
+    //using System;
+    //using System.Collections;
     using System.Collections.Generic;
-    using System.Management.Automation;
+    //using System.Management.Automation;
 
     /// <summary>
     /// Description of WizardCollection.
@@ -49,7 +49,7 @@ namespace UIAutomation
         {
             Wizard wizard = null;
             
-            foreach (Wizard wzd in WizardCollection.Wizards.Where(wzd => name == wzd.Name))
+            foreach (Wizard wzd in Wizards.Where(wzd => name == wzd.Name))
             {
                 wizard = wzd;
                 return wizard;

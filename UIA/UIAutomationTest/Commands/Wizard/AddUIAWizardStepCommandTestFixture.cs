@@ -14,10 +14,10 @@ namespace UIAutomationTest.Commands.Wizard
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of AddUIAWizardStepCommandTestFixture.
+    /// Description of AddUiaWizardStepCommandTestFixture.
     /// </summary>
     [TestFixture] // [TestFixture(Description="1")]
-    public class AddUIAWizardStepCommandTestFixture
+    public class AddUiaWizardStepCommandTestFixture
     {
         [SetUp]
         public void PrepareRunspace()
@@ -37,10 +37,10 @@ namespace UIAutomationTest.Commands.Wizard
             string wizardName = "wizard";
             string stepName = "step1";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"(New-UIAWizard -Name '" + 
+                @"(New-UiaWizard -Name '" + 
                 wizardName + 
                 @"' -StartAction {} | " +
-                @"Add-UIAWizardStep -Name '" + 
+                @"Add-UiaWizardStep -Name '" + 
                 stepName +
                 @"' -StepForwardAction {}).Steps[0].Name;",
                 stepName);
@@ -55,10 +55,10 @@ namespace UIAutomationTest.Commands.Wizard
             string wizardName = "wi*za*rd";
             string stepName = "st*ep*1";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"(New-UIAWizard -Name '" + 
+                @"(New-UiaWizard -Name '" + 
                 wizardName + 
                 @"' -StartAction {} | " +
-                @"Add-UIAWizardStep -Name '" + 
+                @"Add-UiaWizardStep -Name '" + 
                 stepName +
                 @"' -StepForwardAction {}).Steps[0].Name;",
                 stepName);
@@ -74,10 +74,10 @@ namespace UIAutomationTest.Commands.Wizard
             string answer = @"``//\\`""`'#$(1)5678";
             string stepName = @"``//\\`""`''#$(1)5678";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"(New-UIAWizard -Name '" + 
+                @"(New-UiaWizard -Name '" + 
                 wizardName + 
                 @"' -StartAction {} | " +
-                @"Add-UIAWizardStep -Name '" + 
+                @"Add-UiaWizardStep -Name '" + 
                 stepName +
                 @"' -StepForwardAction {}).Steps[0].Name;",
                 answer);
@@ -93,16 +93,16 @@ namespace UIAutomationTest.Commands.Wizard
 //            string stepName = "step1";
 //            string result2 = "StepForwardAction";
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-//                @"$null = New-UIAWizard -Name '" + 
+//                @"$null = New-UiaWizard -Name '" + 
 //                wizardName + 
 //                "' -StartAction {$global:wzdTest = '" + result1 + "'} | " +
-//                @"Add-UIAWizardStep -Name '" + 
+//                @"Add-UiaWizardStep -Name '" + 
 //                stepName +
 //                @"' -StepForwardAction {$global:wzdTest = '" + result2 + "'}" + 
 //                @" -SearchCriteria @{}; " +
-//                @"$null = Invoke-UIAWizard -Name '" +
+//                @"$null = Invoke-UiaWizard -Name '" +
 //                wizardName + 
-//                "' | Step-UIAWizard -Name '" + stepName + "'; " + 
+//                "' | Step-UiaWizard -Name '" + stepName + "'; " + 
 //                @"$global:wzdTest;",
 //                result2);
 //        }

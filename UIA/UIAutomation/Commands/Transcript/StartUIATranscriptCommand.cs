@@ -9,20 +9,23 @@
 
 namespace UIAutomation.Commands
 {
+    extern alias UIANET;
     using System;
     using System.Management.Automation;
     using System.Windows.Automation;
+    using System.Diagnostics;
+    using System.IO;
 
     /// <summary>
-    /// Description of StartUIATranscriptCommand.
+    /// Description of StartUiaTranscriptCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Start, "UIATranscript")]
+    [Cmdlet(VerbsLifecycle.Start, "UiaTranscript")]
     //[OutputType(new[]{ typeof(object) })]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class StartUIATranscriptCommand : TranscriptCmdletBase
+    
+    public class StartUiaTranscriptCommand : TranscriptCmdletBase
     {
         #region Constructor
-        public StartUIATranscriptCommand()
+        public StartUiaTranscriptCommand()
         {
             LongRecordingFileName = String.Empty;
             ShortRecordingFileName = String.Empty;
@@ -46,8 +49,8 @@ namespace UIAutomation.Commands
         protected override void BeginProcessing()
         {
             
-            if (!this.NoUI) {
-                this.Timeout = 604800000;
+            if (!NoUI) {
+                Timeout = 604800000;
                 // frmRecorder formRecorder = 
                 CurrentData.formRecorder = 
                     new RecorderForm(this);
@@ -55,18 +58,18 @@ namespace UIAutomation.Commands
                 CurrentData.formRecorder.Show();
                 CurrentData.formRecorder.Hide();
                 try {
-                this.Events.SubscribeEvent((object)CurrentData.formRecorder.btnStop,
+                Events.SubscribeEvent((object)CurrentData.formRecorder.btnStop,
                                            "BtnStopClick",
                                            "formRecorder",
                                            new PSObject(),
-                                           System.Management.Automation.ScriptBlock.Create(""), // CurrentData.formRecorder.BtnStopClick,
+                                           ScriptBlock.Create(""), // CurrentData.formRecorder.BtnStopClick,
                                            true,
                                            false);
                 } catch { }
                 CurrentData.formRecorder.ShowDialog();
                 return;
             } else {
-                UIAHelper.ProcessingTranscript(this);
+                UiaHelper.ProcessingTranscript(this);
             }
 #region old
 // Global.GTranscript = true;
@@ -118,7 +121,7 @@ namespace UIAutomation.Commands
         #endregion BeginProcessing
         
         #region Script header
-        private void writeHeader(ref System.IO.StreamWriter fileWriter, 
+        private void WriteHeader(ref StreamWriter fileWriter, 
                                          string fileName) {
             try {
         
@@ -175,9 +178,9 @@ namespace UIAutomation.Commands
                 #region preparing script files
                 // use user's %TEMP%
                 string recordingFileName =
-                    System.Environment.GetEnvironmentVariable(
+                    Environment.GetEnvironmentVariable(
                         "TEMP",
-                        System.EnvironmentVariableTarget.User) + 
+                        EnvironmentVariableTarget.User) + 
                     @"\";
                 string shRecordingFileName = 
                     recordingFileName;
@@ -191,35 +194,35 @@ namespace UIAutomation.Commands
 //                            this.ShortRecordingFileName;
 //                    }
                 // genearated file names
-                if (this.LongRecordingFileName.Length == 0) {
+                if (LongRecordingFileName.Length == 0) {
                     recordingFileName += @"UIAutomation_recording_";
                 }
-                if (this.ShortRecordingFileName.Length == 0) {
+                if (ShortRecordingFileName.Length == 0) {
                     shRecordingFileName += 
                         @"UIAutomation_recording_short_";
                 }
                 string datetime = 
-                    (((((System.DateTime.Now.ToShortDateString().ToString() +
+                    (((((DateTime.Now.ToShortDateString().ToString() +
                          "_" + 
-                         System.DateTime.Now.ToShortTimeString()).Replace(":", "_")).Replace("/", "_")).Replace(";", "_")).Replace(@"\", "_")).Replace(" ", "_");
-                if (this.LongRecordingFileName.Length == 0) {
+                         DateTime.Now.ToShortTimeString()).Replace(":", "_")).Replace("/", "_")).Replace(";", "_")).Replace(@"\", "_")).Replace(" ", "_");
+                if (LongRecordingFileName.Length == 0) {
                     recordingFileName += datetime;
                     recordingFileName += ".ps1";
                 }
-                if (this.ShortRecordingFileName.Length == 0) {
+                if (ShortRecordingFileName.Length == 0) {
                     shRecordingFileName += datetime;
                     shRecordingFileName += ".ps1";
                 }
                     
                     
                 // file names from parameters -Long... and -Short...
-                if (this.LongRecordingFileName.Length > 0) {
+                if (LongRecordingFileName.Length > 0) {
                     recordingFileName =
-                        this.LongRecordingFileName;
+                        LongRecordingFileName;
                 }
-                if (this.ShortRecordingFileName.Length > 0) {
+                if (ShortRecordingFileName.Length > 0) {
                     shRecordingFileName =
-                        this.ShortRecordingFileName;
+                        ShortRecordingFileName;
                 }
                     
                     
@@ -228,23 +231,23 @@ namespace UIAutomation.Commands
                 WriteVerbose(this, "short recording file name " +
                                    shRecordingFileName);
                     
-                System.IO.StreamWriter writerToLongFile = 
-                    new System.IO.StreamWriter(recordingFileName, true);
-                System.IO.StreamWriter writerToShortFile = 
-                    new System.IO.StreamWriter(shRecordingFileName, true);
+                StreamWriter writerToLongFile = 
+                    new StreamWriter(recordingFileName, true);
+                StreamWriter writerToShortFile = 
+                    new StreamWriter(shRecordingFileName, true);
                 WriteVerbose(this, "log writers created");
     
-                if (!this.NoScriptHeader) {
+                if (!NoScriptHeader) {
                     WriteVerbose(this, "writing the script header");
-                    writeHeader(ref writerToLongFile, recordingFileName);
-                    writeHeader(ref writerToShortFile, shRecordingFileName);
+                    WriteHeader(ref writerToLongFile, recordingFileName);
+                    WriteHeader(ref writerToShortFile, shRecordingFileName);
                 }
                 #endregion preparing script files
 
                 #region writing the script
                 for (int j = 0; j < Recording.Count; j++) {
                     object patternsInfo = null;
-                    if (this.WriteCurrentPattern) {
+                    if (WriteCurrentPattern) {
                         patternsInfo = RecordingPatterns[j];
                     }
                     WritingRecord(
@@ -259,8 +262,8 @@ namespace UIAutomation.Commands
                 writerToLongFile.Flush(); writerToLongFile.Close();
                 writerToShortFile.Flush(); writerToShortFile.Close();
                 try {
-                    System.Diagnostics.Process.Start("notepad.exe", recordingFileName);
-                    System.Diagnostics.Process.Start("notepad.exe", shRecordingFileName);
+                    Process.Start("notepad.exe", recordingFileName);
+                    Process.Start("notepad.exe", shRecordingFileName);
                 } catch {
                     WriteObject(this, "The full script recorded is here: " + 
                                       recordingFileName);
@@ -377,12 +380,12 @@ namespace UIAutomation.Commands
         #endregion EndProcessing
         
         #region getControlTypeNameOfAutomationElement
-        private string getControlTypeNameOfAutomationElement(
+        private string GetControlTypeNameOfAutomationElement(
             // 20131109
             //AutomationElement element,
             //AutomationElement element2)
-            IMySuperWrapper element,
-            IMySuperWrapper element2)
+            IUiElement element,
+            IUiElement element2)
         {
             string result = String.Empty;
             if (element != null && (int)element.Current.ProcessId > 0 && 
@@ -396,11 +399,11 @@ namespace UIAutomation.Commands
     }
     
     /// <summary>
-    /// Description of StartUIARecorderCommand.
+    /// Description of StartUiaRecorderCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Start, "UIARecorder")]
+    [Cmdlet(VerbsLifecycle.Start, "UiaRecorder")]
     //[OutputType(new[]{ typeof(object) })]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class StartUIARecorderCommand : StartUIATranscriptCommand
-    { public StartUIARecorderCommand() { } }
+    
+    public class StartUiaRecorderCommand : StartUiaTranscriptCommand
+    { public StartUiaRecorderCommand() { } }
 }

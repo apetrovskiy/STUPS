@@ -9,20 +9,19 @@
 
 namespace UIAutomation.Commands
 {
-    // test it
-    //using System;
+    extern alias UIANET;
     using System.Management.Automation;
     using System.Windows.Automation;
 
     /// <summary>
-    /// Description of RegisterUIAStructureChangedEventCommand.
+    /// Description of RegisterUiaStructureChangedEventCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Register, "UIAStructureChangedEvent")]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class RegisterUIAStructureChangedEventCommand : EventCmdletBase
+    [Cmdlet(VerbsLifecycle.Register, "UiaStructureChangedEvent")]
+    
+    public class RegisterUiaStructureChangedEventCommand : EventCmdletBase
     {
         #region Constructor
-        public RegisterUIAStructureChangedEventCommand()
+        public RegisterUiaStructureChangedEventCommand()
         {
             base.AutomationEventType = 
                 AutomationElement.StructureChangedEvent;

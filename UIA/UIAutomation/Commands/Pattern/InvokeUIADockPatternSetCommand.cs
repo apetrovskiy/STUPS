@@ -9,69 +9,71 @@
 
 namespace UIAutomation.Commands
 {
+    extern alias UIANET;
     using System;
     using System.Management.Automation;
+    using System.Windows.Automation;
 
     /// <summary>
-    /// Description of InvokeUIADockPatternSetCommand.
+    /// Description of InvokeUiaDockPatternSetCommand.
     /// </summary>
     // 20131024
-    //[Cmdlet(VerbsLifecycle.Invoke, "UIADockPattern")]
-    [Cmdlet(VerbsLifecycle.Invoke, "UIADockPatternSet")]
-    public class InvokeUIADockPatternSetCommand : PatternCmdletBase
+    //[Cmdlet(VerbsLifecycle.Invoke, "UiaDockPattern")]
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaDockPatternSet")]
+    public class InvokeUiaDockPatternSetCommand : PatternCmdletBase
     {
-        public InvokeUIADockPatternSetCommand() { WhatToDo = "DockSet"; }
+        public InvokeUiaDockPatternSetCommand() { WhatToDo = "DockSet"; }
         
         #region Parameters
         [Parameter(Mandatory = true,
                    Position = 0)]
         [ValidateNotNullOrEmpty()]
-        public System.Windows.Automation.DockPosition DockPosition { get; set; }
+        public DockPosition DockPosition { get; set; }
         #endregion Parameters
     }
     
     /// <summary>
-    /// Description of SetUIACustomDockPositionCommand.
+    /// Description of SetUiaCustomDockPositionCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Set, "UIACustomDockPosition")]
+    [Cmdlet(VerbsCommon.Set, "UiaCustomDockPosition")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class SetUIACustomDockPositionCommand : InvokeUIADockPatternSetCommand
-    { public SetUIACustomDockPositionCommand() { } }
+    
+    public class SetUiaCustomDockPositionCommand : InvokeUiaDockPatternSetCommand
+    { public SetUiaCustomDockPositionCommand() { } }
     
     /// <summary>
-    /// Description of SetUIAMenuBarDockPositionCommand.
+    /// Description of SetUiaMenuBarDockPositionCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Set, "UIAMenuBarDockPosition")]
+    [Cmdlet(VerbsCommon.Set, "UiaMenuBarDockPosition")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class SetUIAMenuBarDockPositionCommand : InvokeUIADockPatternSetCommand
-    { public SetUIAMenuBarDockPositionCommand() { } }
+    
+    public class SetUiaMenuBarDockPositionCommand : InvokeUiaDockPatternSetCommand
+    { public SetUiaMenuBarDockPositionCommand() { } }
     
     /// <summary>
-    /// Description of SetUIAPaneDockPositionCommand.
+    /// Description of SetUiaPaneDockPositionCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Set, "UIAPaneDockPosition")]
+    [Cmdlet(VerbsCommon.Set, "UiaPaneDockPosition")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class SetUIAPaneDockPositionCommand : InvokeUIADockPatternSetCommand
-    { public SetUIAPaneDockPositionCommand() { } }
+    
+    public class SetUiaPaneDockPositionCommand : InvokeUiaDockPatternSetCommand
+    { public SetUiaPaneDockPositionCommand() { } }
     
     /// <summary>
-    /// Description of SetUIAToolBarDockPositionCommand.
+    /// Description of SetUiaToolBarDockPositionCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Set, "UIAToolBarDockPosition")]
+    [Cmdlet(VerbsCommon.Set, "UiaToolBarDockPosition")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class SetUIAToolBarDockPositionCommand : InvokeUIADockPatternSetCommand
-    { public SetUIAToolBarDockPositionCommand() { } }
+    
+    public class SetUiaToolBarDockPositionCommand : InvokeUiaDockPatternSetCommand
+    { public SetUiaToolBarDockPositionCommand() { } }
     
     /// <summary>
-    /// Description of SetUIAWindowDockPositionCommand.
+    /// Description of SetUiaWindowDockPositionCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Set, "UIAWindowDockPosition")]
+    [Cmdlet(VerbsCommon.Set, "UiaWindowDockPosition")]
     //[OutputType(typeof(bool))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class SetUIAWindowDockPositionCommand : InvokeUIADockPatternSetCommand
-    { public SetUIAWindowDockPositionCommand() { } }
+    
+    public class SetUiaWindowDockPositionCommand : InvokeUiaDockPatternSetCommand
+    { public SetUiaWindowDockPositionCommand() { } }
 }

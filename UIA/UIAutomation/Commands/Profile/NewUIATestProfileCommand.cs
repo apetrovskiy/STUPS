@@ -13,18 +13,18 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of NewUIATestProfileCommand.
+    /// Description of NewUiaTestProfileCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.New, "UIATestProfile")]
-    public class NewUIATestProfileCommand : ProfileCmdletBase
+    [Cmdlet(VerbsCommon.New, "UiaTestProfile")]
+    public class NewUiaTestProfileCommand : ProfileCmdletBase
     {
-        public NewUIATestProfileCommand()
+        public NewUiaTestProfileCommand()
         {
         }
         
         protected override void BeginProcessing()
         {
-            Profile profile = new Profile(this.Name);
+            Profile profile = new Profile(Name);
             
             Profile checkProfile = 
                 CurrentData.GetProfile(profile.Name);
@@ -44,7 +44,7 @@ namespace UIAutomation.Commands
 //                    new ErrorDetails("The profile already exists");
 //                WriteError(this, err, true);
                 
-                this.WriteError(
+                WriteError(
                     this,
                     "The profile already exists",
                     "ProfileAlreadyExists",

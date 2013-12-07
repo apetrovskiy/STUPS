@@ -9,19 +9,20 @@
 
 namespace UIAutomation.Commands
 {
+    extern alias UIANET;
     using System;
     using System.Management.Automation;
     using System.Windows.Automation;
 
     /// <summary>
-    /// Description of RemoveUIAWizardStepCommand.
+    /// Description of RemoveUiaWizardStepCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Remove, "UIAWizardStep")]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class RemoveUIAWizardStepCommand : WizardStepCmdletBase //WizardConstructionCmdletBase
-    //internal class RemoveUIAWizardStepCommand : WizardCmdletBase
+    [Cmdlet(VerbsCommon.Remove, "UiaWizardStep")]
+    
+    public class RemoveUiaWizardStepCommand : WizardStepCmdletBase //WizardConstructionCmdletBase
+    //internal class RemoveUiaWizardStepCommand : WizardCmdletBase
     {
-        public RemoveUIAWizardStepCommand()
+        public RemoveUiaWizardStepCommand()
         {
         }
         
@@ -36,8 +37,8 @@ namespace UIAutomation.Commands
         /// </summary>
         protected override void ProcessRecord()
         {
-            UIARemoveWizardStepCommand command =
-                new UIARemoveWizardStepCommand(this);
+            UiaRemoveWizardStepCommand command =
+                new UiaRemoveWizardStepCommand(this);
             command.Execute();
             
 //            if (InputObject != null && InputObject is Wizard) {

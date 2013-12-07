@@ -13,17 +13,17 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of ShowUIAStartRunCommand.
+    /// Description of ShowUiaStartRunCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Show, "UIAStartRun")]
-    public class ShowUIAStartRunCommand : HotkeyCmdletBase
+    [Cmdlet(VerbsCommon.Show, "UiaStartRun")]
+    public class ShowUiaStartRunCommand : HotkeyCmdletBase
     {
         protected override void BeginProcessing()
         {
-            this.keyCodes.Add(0xE0);
-            this.keyCodes.Add(0x5B);
-            this.keyCodes.Add(0x52);
-            this.processKeys();
+            keyCodes.Add(0xE0);
+            keyCodes.Add(0x5B);
+            keyCodes.Add(0x52);
+            processKeys();
         }
     }
 }

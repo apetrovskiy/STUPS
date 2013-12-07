@@ -14,10 +14,10 @@ namespace UIAutomationTest.Commands.Convert
     using System.Management.Automation;
 
     /// <summary>
-    /// Description of ConvertFromUIATableCommandTestFixture.
+    /// Description of ConvertFromUiaTableCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="ConvertFrom-UIATableCommand test")]
-    public class ConvertFromUIATableCommandTestFixture
+    [TestFixture] // [TestFixture(Description="ConvertFrom-UiaTableCommand test")]
+    public class ConvertFromUiaTableCommandTestFixture
     {
         [SetUp]
         public void PrepareRunspace()
@@ -28,10 +28,10 @@ namespace UIAutomationTest.Commands.Convert
         [Test] //[Test(Description="InputObject ProcessRecord test Null via pipeline")]
         [Category("Slow")]
         [Category("NoForms")]
-        public void ConvertFromUIATable_TestPipelineInput()
+        public void ConvertFromUiaTable_TestPipelineInput()
         {
             string codeSnippet = 
-                @"if ( ($null | ConvertFrom-UIATable) ) { 1; }else{ 0; }";
+                @"if ( ($null | ConvertFrom-UiaTable) ) { 1; }else{ 0; }";
             System.Collections.ObjectModel.Collection<PSObject> coll = 
                 CmdletUnitTest.TestRunspace.RunPSCode(codeSnippet);
             Assert.IsTrue(coll[0].ToString() == "0");
@@ -40,20 +40,20 @@ namespace UIAutomationTest.Commands.Convert
         [Test] //[Test(Description="ProcessRecord test Null via parameter")]
         [Category("Slow")]
         [Category("NoForms")]
-        public void ConvertFromUIATable_TestParameterInputNull()
+        public void ConvertFromUiaTable_TestParameterInputNull()
         {
 //            string codeSnippet = 
-//                @"if ((ConvertFrom-UIATable -InputObject $null)) { 1; }else{ 0; }";
+//                @"if ((ConvertFrom-UiaTable -InputObject $null)) { 1; }else{ 0; }";
 //            System.Collections.ObjectModel.Collection<PSObject> coll =
 //                CmdletUnitTest.TestRunspace.RunPSCode(codeSnippet);
 //            Assert.IsNull(coll);
             
             CmdletUnitTest.TestRunspace.RunAndGetTheException(
-                @"if ((ConvertFrom-UIATable -InputObject $null)) { 1; } else { 0; }",
+                @"if ((ConvertFrom-UiaTable -InputObject $null)) { 1; } else { 0; }",
                 "ParameterBindingValidationException",
                 @"Cannot validate argument on parameter 'InputObject'. The argument is null or empty. Supply an argument that is not null or empty and then try the command again.");
             
-//            UIAutomationTest.Commands.Convert.ConvertFromUIATableCommandTestFixture.TestParameterInputNull:
+//            UIAutomationTest.Commands.Convert.ConvertFromUiaTableCommandTestFixture.TestParameterInputNull:
 //System.Management.Automation.ParameterBindingValidationException : Cannot validate argument on parameter 'InputObject'. The argument is null or empty. Supply an argument that is not null or empty and then try the command again.
 //  ----> System.Management.Automation.ValidationMetadataException : The argument is null or empty. Supply an argument that is not null or empty and then try the command again.
         }
@@ -61,21 +61,21 @@ namespace UIAutomationTest.Commands.Convert
         [Test] //[Test(Description="ProcessRecord test Is Not AutomationElement")]
         [Category("Slow")]
         [Category("NoForms")]
-        public void ConvertFromUIATable_TestParameterInputOtherType()
+        public void ConvertFromUiaTable_TestParameterInputOtherType()
         {
 //            string codeSnippet = 
-//                @"if ((ConvertFrom-UIATable -InputObject (New-Object System.Windows.forms.Label))) { 1; }else{ 0; }";
+//                @"if ((ConvertFrom-UiaTable -InputObject (New-Object System.Windows.forms.Label))) { 1; }else{ 0; }";
 //            System.Collections.ObjectModel.Collection<PSObject> coll =
 //                CmdletUnitTest.TestRunspace.RunPSCode(codeSnippet);
 //            Assert.IsNull(coll);
             
             CmdletUnitTest.TestRunspace.RunAndGetTheException(
-                @"if ((ConvertFrom-UIATable -InputObject (New-Object System.Windows.forms.Label))) { 1; } else { 0; }",
+                @"if ((ConvertFrom-UiaTable -InputObject (New-Object System.Windows.forms.Label))) { 1; } else { 0; }",
                 "ParameterBindingException",
                 //@"Cannot bind parameter 'InputObject'. Cannot convert the ""System.Windows.Forms.Label, Text: "" value of type ""System.Windows.Forms.Label"" to type ""System.Windows.Automation.AutomationElement"".");
-                @"Cannot bind parameter 'InputObject'. Cannot convert the ""System.Windows.Forms.Label, Text: "" value of type ""System.Windows.Forms.Label"" to type ""UIAutomation.IMySuperWrapper"".");
+                @"Cannot bind parameter 'InputObject'. Cannot convert the ""System.Windows.Forms.Label, Text: "" value of type ""System.Windows.Forms.Label"" to type ""UIAutomation.IUiElement"".");
             
-//            UIAutomationTest.Commands.Convert.ConvertFromUIATableCommandTestFixture.TestParameterInputOtherType:
+//            UIAutomationTest.Commands.Convert.ConvertFromUiaTableCommandTestFixture.TestParameterInputOtherType:
 //System.Management.Automation.ParameterBindingException : Cannot bind parameter 'InputObject'. Cannot convert the "System.Windows.Forms.Label, Text: " value of type "System.Windows.Forms.Label" to type "System.Windows.Automation.AutomationElement".
 //  ----> System.Management.Automation.PSInvalidCastException : Cannot convert the "System.Windows.Forms.Label, Text: " value of type "System.Windows.Forms.Label" to type "System.Windows.Automation.AutomationElement".
         }

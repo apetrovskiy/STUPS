@@ -7,18 +7,18 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMXTest.Commands.Database
+namespace TmxTest.Commands.Database
 {
     using System;
     using MbUnit.Framework; // using MbUnit.Framework;
     
     /// <summary>
-    /// Description of OpenTMXTestDBCommandTestFixture.
+    /// Description of OpenTmxTestDBCommandTestFixture.
     /// </summary>
     [TestFixture] // [TestFixture(Description=" test")]
-    public class OpenTMXTestDBCommandTestFixture
+    public class OpenTmxTestDBCommandTestFixture
     {
-        public OpenTMXTestDBCommandTestFixture()
+        public OpenTmxTestDBCommandTestFixture()
         {
         }
         
@@ -28,23 +28,23 @@ namespace TMXTest.Commands.Database
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [Test] //[Test(Description="The New-TMXTestDB test")]
+        [Test] //[Test(Description="The New-TmxTestDB test")]
         [Category("Slow")]
-        //[Category("New_TMXTestDB")]
+        //[Category("New_TmxTestDB")]
         public void OpenTestDB_Simple()
         {
             CmdletUnitTest.TestRunspace.RunPSCode(
-                @"$null = New-TMXTestDB -FileName '" + 
+                @"$null = New-TmxTestDB -FileName '" + 
                 Settings.FileName + 
                 @"' -Name " + 
                 Settings.DatabaseName +
                 @"-StructureDB -RepositoryDB -ResultsDB;");
             CmdletUnitTest.TestRunspace.RunPSCode(
-                @"Close-TMXTestDB -Name " +
+                @"Close-TmxTestDB -Name " +
                 Settings.DatabaseName +
                 @";");
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"(Open-TMXTestDB -FileName '" +
+                @"(Open-TmxTestDB -FileName '" +
                 Settings.FileName +
                 @"' -Name " + 
                 Settings.DatabaseName +
@@ -58,7 +58,7 @@ namespace TMXTest.Commands.Database
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual1(
                 @"if ($null -ne [TMX.TestData]::CurrentStructureDB) { ""1""; }");
             CmdletUnitTest.TestRunspace.RunPSCode(
-                @"Close-TMXTestDB -Name " +
+                @"Close-TmxTestDB -Name " +
                 Settings.DatabaseName +
                 @";");
             CmdletUnitTest.TestRunspace.RunPSCode(

@@ -13,21 +13,21 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
 
     /// <summary>
-    /// Description of SetUIAOnErrorActionSettingsCommand.
+    /// Description of SetUiaOnErrorActionSettingsCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Set, "UIAOnErrorActionSettings")]
-    public class SetUIAOnErrorActionSettingsCommand : ModuleSettingsActionCmdletBase
+    [Cmdlet(VerbsCommon.Set, "UiaOnErrorActionSettings")]
+    public class SetUiaOnErrorActionSettingsCommand : ModuleSettingsActionCmdletBase
     {
-        public SetUIAOnErrorActionSettingsCommand()
+        public SetUiaOnErrorActionSettingsCommand()
         {
-            this.Action = Preferences.OnErrorAction;
-            this.Delay = Preferences.OnErrorDelay;
+            Action = Preferences.OnErrorAction;
+            Delay = Preferences.OnErrorDelay;
         }
         
         protected override void BeginProcessing()
         {
-            Preferences.OnErrorAction = this.Action;
-            Preferences.OnErrorDelay = this.Delay;
+            Preferences.OnErrorAction = Action;
+            Preferences.OnErrorDelay = Delay;
         }
     }
 }

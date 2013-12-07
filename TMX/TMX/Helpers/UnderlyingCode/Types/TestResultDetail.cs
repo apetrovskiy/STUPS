@@ -61,8 +61,8 @@ namespace TMX
            TestResultDetailTypes detailType,
            string detail)
         {
-            if (TMXHelper.TestCaseStarted == System.DateTime.MinValue) {
-                TMXHelper.TestCaseStarted = System.DateTime.Now;
+            if (TmxHelper.TestCaseStarted == System.DateTime.MinValue) {
+                TmxHelper.TestCaseStarted = System.DateTime.Now;
             }
             this.DetailType = detailType;
 
@@ -90,8 +90,8 @@ namespace TMX
            TestResultDetailTypes detailType,
            ErrorRecord detail)
         {
-            if (TMXHelper.TestCaseStarted == System.DateTime.MinValue) {
-                TMXHelper.TestCaseStarted = System.DateTime.Now;
+            if (TmxHelper.TestCaseStarted == System.DateTime.MinValue) {
+                TmxHelper.TestCaseStarted = System.DateTime.Now;
             }
             this.DetailType = detailType;
             if (detailType == TestResultDetailTypes.ErrorRecord) {

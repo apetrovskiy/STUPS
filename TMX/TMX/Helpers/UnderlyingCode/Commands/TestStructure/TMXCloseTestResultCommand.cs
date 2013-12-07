@@ -13,18 +13,18 @@ namespace TMX
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of TMXCloseTestResultCommand.
+    /// Description of TmxCloseTestResultCommand.
     /// </summary>
-    internal class TMXCloseTestResultCommand : TMXCommand
+    internal class TmxCloseTestResultCommand : TmxCommand
     {
-        internal TMXCloseTestResultCommand(CommonCmdletBase cmdlet) : base (cmdlet)
+        internal TmxCloseTestResultCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         
         internal override void Execute()
         {
-            TMX.Commands.CloseTMXTestResultCommand cmdlet =
-                (TMX.Commands.CloseTMXTestResultCommand)this.Cmdlet;
+            TMX.Commands.CloseTmxTestResultCommand cmdlet =
+                (TMX.Commands.CloseTmxTestResultCommand)this.Cmdlet;
             
             cmdlet.ConvertTestResultStatusToTraditionalTestResult();
                 
@@ -62,7 +62,7 @@ namespace TMX
 
             }
 
-            TMXHelper.CloseTestResult(
+            TmxHelper.CloseTestResult(
                 testResultName,
                 cmdlet.Id, 
                 cmdlet.TestPassed, 

@@ -13,12 +13,12 @@ namespace TMX.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of OpenTMXTestScenarioCommand.
+    /// Description of OpenTmxTestScenarioCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Open, "TMXTestScenario")]
-    public class OpenTMXTestScenarioCommand : OpenScenarioCmdletBase
+    [Cmdlet(VerbsCommon.Open, "TmxTestScenario")]
+    public class OpenTmxTestScenarioCommand : OpenScenarioCmdletBase
     {
-        public OpenTMXTestScenarioCommand()
+        public OpenTmxTestScenarioCommand()
         {
         }
         
@@ -31,7 +31,7 @@ namespace TMX.Commands
         protected override void ProcessRecord()
         {
             bool result = 
-                TMX.TMXHelper.OpenTestScenario(this);
+                TMX.TmxHelper.OpenTestScenario(this);
 
             if (result) {
 

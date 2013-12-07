@@ -14,10 +14,10 @@ namespace UIAutomationTest.Commands.Wait
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of WaitUIAControlIsEnabledCommandTestFixture.
+    /// Description of WaitUiaControlIsEnabledCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Wait-UIAControlIsEnabledCommand test")]
-    public class WaitUIAControlIsEnabledCommandTestFixture
+    [TestFixture] // [TestFixture(Description="Wait-UiaControlIsEnabledCommand test")]
+    public class WaitUiaControlIsEnabledCommandTestFixture
     {
         [SetUp]
         public void PrepareRunspace()
@@ -38,42 +38,42 @@ namespace UIAutomationTest.Commands.Wait
                 0);
             // 20130130
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-//                @"if (-not (Get-UIAWindow -pn " +
+//                @"if (-not (Get-UiaWindow -pn " +
 //                MiddleLevelCode.TestFormProcess +
-//                @" | Get-UIA" +
+//                @" | Get-Uia" +
 //                controlType +
 //                " -" + propertyName + " '" +
 //                name +
 //                @"').IsEnabled) { " + 
-//                @"$null = Get-UIAWindow -pn " +
+//                @"$null = Get-UiaWindow -pn " +
 //                MiddleLevelCode.TestFormProcess +
-//                @" | Get-UIAButton -Name Button2 | Invoke-UIAButtonClick; " +
-//                @"Get-UIAWindow -pn " +
+//                @" | Get-UiaButton -Name Button2 | Invoke-UiaButtonClick; " +
+//                @"Get-UiaWindow -pn " +
 //                MiddleLevelCode.TestFormProcess +
-//                @" | Get-UIA" + 
+//                @" | Get-Uia" + 
 //                controlType +
 //                " -" + propertyName + " '" +
 //                name + 
 //                @"' | Wait-UIA" + 
 //                controlType +
-//                @"IsEnabled | Read-UIAControlIsEnabled; } ",
+//                @"IsEnabled | Read-UiaControlIsEnabled; } ",
 //                expectedResult);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = Get-UIAWindow -pn " +
+                @"$null = Get-UiaWindow -pn " +
                 MiddleLevelCode.TestFormProcess +
                 "; " +
-                @"if (Test-UIAControlState -searchCriteria @{" +
+                @"if (Test-UiaControlState -searchCriteria @{" +
                 propertyName +
                 @"=""" +
                 name +
-                @""";IsEnabled=$false}){ $null = Get-UIAButton -Name Button2 | Invoke-UIAButtonClick; " +
-                @"Get-UIA" +
+                @""";IsEnabled=$false}){ $null = Get-UiaButton -Name Button2 | Invoke-UiaButtonClick; " +
+                @"Get-Uia" +
                 controlType +
                 " -" + propertyName + " '" +
                 name +
                 @"' | Wait-UIA" + 
                 controlType +
-                @"IsEnabled | Read-UIAControlIsEnabled; }",
+                @"IsEnabled | Read-UiaControlIsEnabled; }",
                 expectedResult);
         }
         

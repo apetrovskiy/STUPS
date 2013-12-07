@@ -11,7 +11,7 @@ namespace UIAutomation
 {
 	using System;
 	using System.Collections.Generic;
-	using System.Windows.Automation;
+	//using System.Windows.Automation;
 	using System.Drawing;
 	
 	/// <summary>
@@ -109,31 +109,41 @@ namespace UIAutomation
 		public static void Enqueue(
 	        // 20131109
 			//AutomationElement elementToHighlight,
-			IMySuperWrapper elementToHighlight,
-			int highlightersGeneration,
+			IUiElement elementToHighlight,
+			// 20131204
+			// int highlightersGeneration,
 		    string highlighterData)
 		{
-			Highlighter highlighter = null;
-			// 20131109
+		    // 20131109
 		    //if (null == (elementToHighlight as AutomationElement)) return;
-		    if (null == (elementToHighlight as IMySuperWrapper)) return;
-		    if (0 >= highlightersGeneration) {
-		        HighlighterNumber++;
-		    } else {
-		        HighlighterNumber = highlightersGeneration;
-		    }
+		    if (null == elementToHighlight) return;
+            /*
+            if (null == (elementToHighlight as IUiElement)) return;
+            */
+            // 20131204
+//		    if (0 >= highlightersGeneration) {
+//		        HighlighterNumber++;
+//		    } else {
+//		        HighlighterNumber = highlightersGeneration;
+//		    }
+            if (0 == CommonCmdletBase.HighlighterGeneration) {
+                CommonCmdletBase.HighlighterGeneration++;
+            }
 				
-		    highlighter =
-		        new Highlighter(
-		            elementToHighlight.Current.BoundingRectangle.Height,
-		            elementToHighlight.Current.BoundingRectangle.Width,
-		            elementToHighlight.Current.BoundingRectangle.X,
-		            elementToHighlight.Current.BoundingRectangle.Y,
-		            elementToHighlight.Current.NativeWindowHandle,
-		            (Highlighters)(HighlighterNumber % 10),
-		            HighlighterNumber,
-		            highlighterData);
-		    ExecutionPlan.Enqueue(highlighter);
+		    Highlighter highlighter = new Highlighter(
+		        elementToHighlight.Current.BoundingRectangle.Height,
+		        elementToHighlight.Current.BoundingRectangle.Width,
+		        elementToHighlight.Current.BoundingRectangle.X,
+		        elementToHighlight.Current.BoundingRectangle.Y,
+		        elementToHighlight.Current.NativeWindowHandle,
+		        // 20131204
+		        // (Highlighters)(HighlighterNumber % 10),
+		        (Highlighters)(CommonCmdletBase.HighlighterGeneration % 10),
+		        // 20131204
+		        // HighlighterNumber,
+		        CommonCmdletBase.HighlighterGeneration,
+		        highlighterData);
+		    Enqueue(highlighter);
 
 		    /*
             if (null != (elementToHighlight as AutomationElement)) {

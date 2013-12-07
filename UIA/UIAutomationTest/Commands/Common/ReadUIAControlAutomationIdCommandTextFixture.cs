@@ -15,10 +15,10 @@ namespace UIAutomationTest.Commands.Common
     using System.Management.Automation;
 
     /// <summary>
-    /// Description of ReadUIAControlAutomationIdCommandTextFixture.
+    /// Description of ReadUiaControlAutomationIdCommandTextFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Read-UIAControlAutomationIdCommand test")]
-    public class ReadUIAControlAutomationIdCommandTestFixture
+    [TestFixture] // [TestFixture(Description="Read-UiaControlAutomationIdCommand test")]
+    public class ReadUiaControlAutomationIdCommandTestFixture
     {
         [SetUp]
         public void PrepareRunspace()
@@ -29,27 +29,27 @@ namespace UIAutomationTest.Commands.Common
         [Test] //[Test(Description="InputObject ProcessRecord test Null via pipeline")]
         [Category("Slow")]
         [Category("NoForms")]
-        public void ReadUIAControlAutomationId_TestPipelineInput()
+        public void ReadUiaControlAutomationId_TestPipelineInput()
         {
             CmdletUnitTest.TestRunspace.RunAndEvaluateIsTrue(
-                @"if ( ($null | Read-UIAControlAutomationId) ) { 1; } else { 0; }",
+                @"if ( ($null | Read-UiaControlAutomationId) ) { 1; } else { 0; }",
                 "0");
         }
         
         [Test] //[Test(Description="ProcessRecord test Null via parameter")]
         [Category("Slow")]
         [Category("NoForms")]
-        public void ReadUIAControlAutomationId_TestParameterInputNull()
+        public void ReadUiaControlAutomationId_TestParameterInputNull()
         {
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateIsNull(
-//                @"if ((Read-UIAControlAutomationId -InputObject $null)) { 1; } else { 0; }");
+//                @"if ((Read-UiaControlAutomationId -InputObject $null)) { 1; } else { 0; }");
             
             CmdletUnitTest.TestRunspace.RunAndGetTheException(
-                @"if ((Read-UIAControlAutomationId -InputObject $null)) { 1; } else { 0; }",
+                @"if ((Read-UiaControlAutomationId -InputObject $null)) { 1; } else { 0; }",
                 "ParameterBindingValidationException",
                 "Cannot validate argument on parameter 'InputObject'. The argument is null or empty. Supply an argument that is not null or empty and then try the command again.");
             
-//            UIAutomationTest.Commands.Common.ReadUIAControlAutomationIdCommandTestFixture.TestParameterInputNull:
+//            UIAutomationTest.Commands.Common.ReadUiaControlAutomationIdCommandTestFixture.TestParameterInputNull:
 //System.Management.Automation.ParameterBindingValidationException : Cannot validate argument on parameter 'InputObject'. The argument is null or empty. Supply an argument that is not null or empty and then try the command again.
 //  ----> System.Management.Automation.ValidationMetadataException : The argument is null or empty. Supply an argument that is not null or empty and then try the command again.
         }
@@ -57,18 +57,18 @@ namespace UIAutomationTest.Commands.Common
         [Test] //[Test(Description="ProcessRecord test Is Not AutomationElement")]
         [Category("Slow")]
         [Category("NoForms")]
-        public void ReadUIAControlAutomationId_TestParameterInputOtherType()
+        public void ReadUiaControlAutomationId_TestParameterInputOtherType()
         {
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateIsNull(
-//                @"if ((Read-UIAControlAutomationId -InputObject (New-Object System.Windows.forms.Label))) { 1; }else{ 0; }");
+//                @"if ((Read-UiaControlAutomationId -InputObject (New-Object System.Windows.forms.Label))) { 1; }else{ 0; }");
             
             CmdletUnitTest.TestRunspace.RunAndGetTheException(
-                @"if ((Read-UIAControlAutomationId -InputObject (New-Object System.Windows.forms.Label))) { 1; } else { 0; }",
+                @"if ((Read-UiaControlAutomationId -InputObject (New-Object System.Windows.forms.Label))) { 1; } else { 0; }",
                 "ParameterBindingException",
                 //@"Cannot bind parameter 'InputObject'. Cannot convert the ""System.Windows.Forms.Label, Text: "" value of type ""System.Windows.Forms.Label"" to type ""System.Windows.Automation.AutomationElement"".");
-                @"Cannot bind parameter 'InputObject'. Cannot convert the ""System.Windows.Forms.Label, Text: "" value of type ""System.Windows.Forms.Label"" to type ""UIAutomation.IMySuperWrapper"".");
+                @"Cannot bind parameter 'InputObject'. Cannot convert the ""System.Windows.Forms.Label, Text: "" value of type ""System.Windows.Forms.Label"" to type ""UIAutomation.IUiElement"".");
             
-//            UIAutomationTest.Commands.Common.ReadUIAControlAutomationIdCommandTestFixture.TestParameterInputOtherType:
+//            UIAutomationTest.Commands.Common.ReadUiaControlAutomationIdCommandTestFixture.TestParameterInputOtherType:
 //System.Management.Automation.ParameterBindingException : Cannot bind parameter 'InputObject'. Cannot convert the "System.Windows.Forms.Label, Text: " value of type "System.Windows.Forms.Label" to type "System.Windows.Automation.AutomationElement".
 //  ----> System.Management.Automation.PSInvalidCastException : Cannot convert the "System.Windows.Forms.Label, Text: " value of type "System.Windows.Forms.Label" to type "System.Windows.Automation.AutomationElement".
         }
@@ -78,14 +78,14 @@ namespace UIAutomationTest.Commands.Common
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        public void ReadUIAControlAutomationId_TestParameterInputControlWithAutomationId()
+        public void ReadUiaControlAutomationId_TestParameterInputControlWithAutomationId()
         {
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-//                @"Get-UIAWindow -Name '" + 
+//                @"Get-UiaWindow -Name '" + 
 //                CmdletUnitTest.TestRunspace.NUnitTitle + 
-//                "' | Get-UIAPane -AutomationId '" + 
+//                "' | Get-UiaPane -AutomationId '" + 
 //                CmdletUnitTest.TestRunspace.NUnitTreeSplitterAutomationId + 
-//                "' | Read-UIAControlAutomationId",
+//                "' | Read-UiaControlAutomationId",
 //                CmdletUnitTest.TestRunspace.NUnitTreeSplitterAutomationId);
             string automationId = "btnAuId";
             MiddleLevelCode.StartProcessWithFormAndControl(
@@ -96,9 +96,9 @@ namespace UIAutomationTest.Commands.Common
                 automationId,
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"if ((Get-UIAWindow -n " +
+                @"if ((Get-UiaWindow -n " +
                 MiddleLevelCode.TestFormNameEmpty +
-                " | Get-UIAButton -name btnName | Read-UIAControlAutomationId)) { '" + 
+                " | Get-UiaButton -name btnName | Read-UiaControlAutomationId)) { '" + 
                 automationId + 
                 "'; } else { ''; }",
                 automationId);

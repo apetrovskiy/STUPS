@@ -9,25 +9,29 @@
 
 namespace UIAutomation.Commands
 {
+    extern alias UIANET;
     using System;
     using System.Management.Automation;
     using System.Windows.Automation;
     //using System.Xml.Serialization.Configuration;
 
     /// <summary>
-    /// Description of GetUIATreeItemCheckedStateCommand.
+    /// Description of GetUiaTreeItemCheckedStateCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UIATreeItemCheckedState")]
-    public class GetUIATreeItemCheckedStateCommand : Win32CmdletBase //GetControlCmdletBase
+    [Cmdlet(VerbsCommon.Get, "UiaTreeItemCheckedState")]
+    public class GetUiaTreeItemCheckedStateCommand : Win32CmdletBase //GetControlCmdletBase
     {
-        public GetUIATreeItemCheckedStateCommand()
+        public GetUiaTreeItemCheckedStateCommand()
         {
         }
         
         #region Parameters
         [Parameter(Mandatory = false)]
+        internal string AutomaitonId { get; set; }
+        /*
         internal new string AutomaitonId { get; set; }
-        
+        */
+
         [Parameter(Mandatory = false)]
         internal new string Class { get; set; }
         
@@ -37,12 +41,12 @@ namespace UIAutomation.Commands
         
         protected override void ProcessRecord()
         {
-            if (!this.CheckAndPrepareInput(this)) { return; }
+            if (!CheckAndPrepareInput(this)) { return; }
             
             // 20120823
             // 20131109
             //foreach (AutomationElement inputObject in this.InputObject) {
-            foreach (IMySuperWrapper inputObject in this.InputObject) {
+            foreach (IUiElement inputObject in InputObject) {
             
 //                ClickControl(
 //                    this,
@@ -57,11 +61,11 @@ namespace UIAutomation.Commands
 //                    this.X,
 //                    this.Y);
     
-                if (this.PassThru) {
+                if (PassThru) {
 
-                    this.WriteObject(this, inputObject);
+                    WriteObject(this, inputObject);
                 } else {
-                    this.WriteObject(this, true);
+                    WriteObject(this, true);
                 }
                 
             } // 20120823

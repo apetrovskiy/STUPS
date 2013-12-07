@@ -7,19 +7,19 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace UIARunner
+namespace UiaRunner
 {
     using System;
     using System.Collections.Generic;
     using System.Drawing;
     using System.Windows.Forms;
     using TMX;
-    //using UIARunner;
+    //using UiaRunner;
     using System.Threading;
     using PSTestRunner;
     
     /// <summary>
-    /// Description of UIARunnerForm.
+    /// Description of UiaRunnerForm.
     /// </summary>
     public partial class UiaRunnerForm : Form
     {
@@ -134,10 +134,10 @@ namespace UIARunner
                     this.dgvTestResults.Rows.Add(
                         System.DateTime.Now.ToString(),
                         TMX.TestData.TestStateFailed,
-                        "UIARunner.ps1",
+                        "UiaRunner.ps1",
                         string.Empty,
                         string.Empty,
-                        "UIARunner.ps1");
+                        "UiaRunner.ps1");
 
                 setRowStatus(index, TMX.TestData.TestStateFailed);
                 setTestResultsCounters(TMX.TestData.TestStateFailed, 1);
@@ -151,10 +151,10 @@ namespace UIARunner
                         this.dgvTestResults.Rows.Add(
                             System.DateTime.Now.ToString(),
                             TMX.TestData.TestStateFailed,
-                            "UIARunner.ps1",
+                            "UiaRunner.ps1",
                             string.Empty,
                             string.Empty,
-                            "UIARunner.ps1");
+                            "UiaRunner.ps1");
 
                     setRowStatus(index, TMX.TestData.TestStateFailed);
                     setTestResultsCounters(TMX.TestData.TestStateFailed, 1);
@@ -169,10 +169,10 @@ namespace UIARunner
                     this.dgvTestResults.Rows.Add(
                         System.DateTime.Now.ToString(),
                         TMX.TestData.TestStateFailed,
-                        "UIARunner.ps1",
+                        "UiaRunner.ps1",
                         string.Empty,
                         string.Empty,
-                        "UIARunner.ps1",
+                        "UiaRunner.ps1",
                         eInitException.Message,
                         string.Empty);
 
@@ -374,8 +374,8 @@ namespace UIARunner
         
         private void registerEvents()
         {
-            TMX.TestData.TMXNewTestResultClosed += 
-                new TMX.TMXStructureChangedEventHandler(
+            TMX.TestData.TmxNewTestResultClosed += 
+                new TMX.TmxStructureChangedEventHandler(
                     NewTestResultClosed);
             
             // Runspace and Pipeline events
@@ -407,8 +407,8 @@ namespace UIARunner
         
         private void unregisterEvents()
         {
-            TMX.TestData.TMXNewTestResultClosed -= 
-                new TMX.TMXStructureChangedEventHandler(
+            TMX.TestData.TmxNewTestResultClosed -= 
+                new TMX.TmxStructureChangedEventHandler(
                 NewTestResultClosed);
             
             
@@ -537,14 +537,14 @@ namespace UIARunner
             string scriptFileName = 
                 scriptPath.Split('\\')[scriptPath.Split('\\').Length - 1];
             this.Text = 
-                "UIARunner - " +
+                "UiaRunner - " +
                 scriptFileName;
         }
         
         private void resetCaption()
         {
             this.Text = 
-                "UIARunner";
+                "UiaRunner";
         }
         
         void DgvTestResultsMouseMove(object sender, MouseEventArgs e)

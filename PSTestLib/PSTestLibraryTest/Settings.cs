@@ -9,7 +9,7 @@
 
 namespace PSTestLibraryTest
 {
-    using System;
+    //using System;
     
     /// <summary>
     /// Description of Settings.
@@ -19,9 +19,12 @@ namespace PSTestLibraryTest
         static Settings()
         {
         }
-        
-        
-        
+
+
+        public const string RunspaceCommand = 
+            @"Import-Module '.\UIAutomation.dll' -Force;" + @"Import-Module '.\TMX.dll' -Force;";
+
+        /*
         public static string RunspaceCommand = 
 //#if DEBUG
 //                        @"Import-Module '..\..\..\TMX\bin\Debug\TMX.dll' -Force;" + //);
@@ -42,6 +45,6 @@ namespace PSTestLibraryTest
 //                        @"[UIAutomation.Preferences]::Timeout = 3000;" + 
 //                        @"[UIAutomation.Preferences]::OnErrorScreenShot = $false;" + 
 //                        @"[UIAutomation.Preferences]::Log = $false;";
-        
+        */
     }
 }

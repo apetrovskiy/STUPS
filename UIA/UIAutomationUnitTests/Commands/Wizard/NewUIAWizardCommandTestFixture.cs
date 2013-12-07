@@ -9,22 +9,15 @@
 
 namespace UIAutomationUnitTests.Commands.Wizard
 {
-    using System;
     using MbUnit.Framework;
-    using PSTestLib;
     using UIAutomation;
-    using System.Management.Automation;
     
     /// <summary>
-    /// Description of NewUIAWizardCommandTestFixture.
+    /// Description of NewUiaWizardCommandTestFixture.
     /// </summary>
     [TestFixture]
-    public class NewUIAWizardCommandTestFixture
+    public class NewUiaWizardCommandTestFixture
     {
-        public NewUIAWizardCommandTestFixture()
-        {
-        }
-        
         [SetUp]
         public void SetUp()
         {
@@ -38,12 +31,12 @@ namespace UIAutomationUnitTests.Commands.Wizard
         }
         
         [Test]
-        [Description("New-UIAWizard")]
+        [Description("New-UiaWizard")]
         [Category("Fast")]
         [Category("Wizard")]
         public void NewWizard_StandardName()
         {
-            string expectedName = "name";
+            const string expectedName = "name";
             UnitTestingHelper.CreateWizard(expectedName, null);
             
             Assert.AreEqual(
@@ -52,12 +45,12 @@ namespace UIAutomationUnitTests.Commands.Wizard
         }
         
         [Test]
-        [Description("New-UIAWizard")]
+        [Description("New-UiaWizard")]
         [Category("Fast")]
         [Category("Wizard")]
         public void NewWizard_ComplexName()
         {
-            string expectedName = @"\\aa//bb``cc";
+            const string expectedName = @"\\aa//bb``cc";
             UnitTestingHelper.CreateWizard(expectedName, null);
             
             Assert.AreEqual(
@@ -66,13 +59,13 @@ namespace UIAutomationUnitTests.Commands.Wizard
         }
         
         [Test]
-        [Description("New-UIAWizard")]
+        [Description("New-UiaWizard")]
         [Category("Fast")]
         [Category("Wizard")]
         [Ignore]
         public void NewWizard_DuplicatedName()
         {
-            string expectedName = "name";
+            const string expectedName = "name";
             UnitTestingHelper.CreateWizard(expectedName, null);
             
             //Assert.Throws<Type>(UnitTestingHelper.CreateWizard(expectedName, null));

@@ -14,12 +14,12 @@ namespace UIAutomationTest.Commands.Profile
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of NewUIATestProfileCommandTestFixture.
+    /// Description of NewUiaTestProfileCommandTestFixture.
     /// </summary>
-    [Cmdlet(VerbsCommon.New, "UIATestProfile")]
-    public class NewUIATestProfileCommandTestFixture
+    [Cmdlet(VerbsCommon.New, "UiaTestProfile")]
+    public class NewUiaTestProfileCommandTestFixture
     {
-        public NewUIATestProfileCommandTestFixture()
+        public NewUiaTestProfileCommandTestFixture()
         {
         }
         
@@ -35,12 +35,12 @@ namespace UIAutomationTest.Commands.Profile
         
         [Test] //[Test(Description="TBD")]
         [Category("Slow")][Category("Profile")]
-        [Category("Slow")][Category("New_UIATestProfile")]
+        [Category("Slow")][Category("New_UiaTestProfile")]
         public void NewTestProfile_Simple()
         {
             string name = "prof";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$profile = New-UIATestProfile -Name '" + 
+                @"$profile = New-UiaTestProfile -Name '" + 
                 name +
                 "'; " + 
                 "$profile.Name;",
@@ -49,13 +49,13 @@ namespace UIAutomationTest.Commands.Profile
         
         [Test] //[Test(Description="TBD")]
         [Category("Slow")][Category("Profile")]
-        [Category("Slow")][Category("New_UIATestProfile")]
+        [Category("Slow")][Category("New_UiaTestProfile")]
         public void NewTestProfile_Complex1()
         {
             string name = @"<<p`r*o''f>>";
             string answer = @"<<p`r*o'f>>";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$profile = New-UIATestProfile -Name '" + 
+                @"$profile = New-UiaTestProfile -Name '" + 
                 name +
                 "'; " + 
                 "$profile.Name;",
@@ -64,13 +64,13 @@ namespace UIAutomationTest.Commands.Profile
         
         [Test] //[Test(Description="TBD")]
         [Category("Slow")][Category("Profile")]
-        [Category("Slow")][Category("New_UIATestProfile")]
+        [Category("Slow")][Category("New_UiaTestProfile")]
         public void NewTestProfile_Complex2()
         {
             string name = @"``//\\`""`''#$(1)567";
             string answer = @"``//\\`""`'#$(1)567";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$profile = New-UIATestProfile -Name '" + 
+                @"$profile = New-UiaTestProfile -Name '" + 
                 name +
                 "'; " + 
                 "$profile.Name;",
@@ -79,15 +79,15 @@ namespace UIAutomationTest.Commands.Profile
         
         [Test] //[Test(Description="TBD")]
         [Category("Slow")][Category("Profile")]
-        [Category("Slow")][Category("New_UIATestProfile")]
+        [Category("Slow")][Category("New_UiaTestProfile")]
         public void NewTestProfile_Simple_AlreadyExists()
         {
             string name = "prof";
             CmdletUnitTest.TestRunspace.RunAndGetTheException(
-                @"$profile = New-UIATestProfile -Name '" + 
+                @"$profile = New-UiaTestProfile -Name '" + 
                 name +
                 "'; " + 
-                @"$profile = New-UIATestProfile -Name '" + 
+                @"$profile = New-UiaTestProfile -Name '" + 
                 name +
                 "';",
                 "CmdletInvocationException",

@@ -32,17 +32,17 @@ namespace TMX
         {
             cmdlet.WriteVerbose(cmdlet, "getting test suites");
             IOrderedEnumerable<TestSuite> suites =
-                TMXHelper.SearchForSuites(cmdlet);
+                TmxHelper.SearchForSuites(cmdlet);
             this.TestSuites = suites;
 
             cmdlet.WriteVerbose(cmdlet, "getting test scenarios");
             IOrderedEnumerable<TestScenario> scenarios = 
-                TMXHelper.SearchForScenarios(cmdlet);
+                TmxHelper.SearchForScenarios(cmdlet);
             this.TestScenarios = scenarios;
 
             cmdlet.WriteVerbose(cmdlet, "getting test results");
             IOrderedEnumerable<TestResult> testResults = 
-                TMXHelper.SearchForTestResults(cmdlet);
+                TmxHelper.SearchForTestResults(cmdlet);
             this.TestResults = testResults;
         }
     }

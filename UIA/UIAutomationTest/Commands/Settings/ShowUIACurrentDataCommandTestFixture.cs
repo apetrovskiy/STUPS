@@ -14,10 +14,10 @@ namespace UIAutomationTest.Commands.Settings
     using System.Management.Automation;
 
     /// <summary>
-    /// Description of ShowUIACurrentDataCommandTestFixture.
+    /// Description of ShowUiaCurrentDataCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Set-UIACurrentDataCommand test")]
-    public class ShowUIACurrentDataCommandTestFixture
+    [TestFixture] // [TestFixture(Description="Set-UiaCurrentDataCommand test")]
+    public class ShowUiaCurrentDataCommandTestFixture
     {
         [SetUp]
         public void PrepareRunspace()

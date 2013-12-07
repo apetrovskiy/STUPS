@@ -7,27 +7,25 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System.Drawing;
+using System.Windows.Forms;
+
 namespace UIAutomation.Commands
 {
-    // test it
-    //using System;
     using System.Management.Automation;
-    // test it
-    //using System.Runtime.InteropServices;
-    using System.Windows.Automation;
 
     /// <summary>
-    /// Description of MoveUIACursorCommand.
+    /// Description of MoveUiaCursorCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Move, "UIACursor")]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class MoveUIACursorCommand : HasControlInputCmdletBase
+    [Cmdlet(VerbsCommon.Move, "UiaCursor")]
+    
+    public class MoveUiaCursorCommand : HasControlInputCmdletBase
     {
         #region Constructor
-        public MoveUIACursorCommand()
+        public MoveUiaCursorCommand()
         {
-            this.X = 0;
-            this.Y = 0;
+            X = 0;
+            Y = 0;
         }
         #endregion Constructor
         
@@ -43,31 +41,25 @@ namespace UIAutomation.Commands
         /// </summary>
         protected override void ProcessRecord()
         {
-            // 20120823
-            // 20131109
-            //foreach (AutomationElement inputObject in this.InputObject) {
-            foreach (IMySuperWrapper inputObject in this.InputObject) {
+            foreach (IUiElement inputObject in InputObject) {
             
-            if (!this.CheckAndPrepareInput(this)) { // return;
+            if (!CheckAndPrepareInput(this)) { // return;
                 // move to a position that is relative to the desktop
-                System.Windows.Forms.Cursor.Position = 
-                    new System.Drawing.Point(
-                        // 20131109
-                        //((int)AutomationElement.RootElement.Current.BoundingRectangle.Left + this.X),
-                        //((int)AutomationElement.RootElement.Current.BoundingRectangle.Top + this.Y));
-                        ((int)MySuperWrapper.RootElement.Current.BoundingRectangle.Left + this.X),
-                        ((int)MySuperWrapper.RootElement.Current.BoundingRectangle.Top + this.Y));
-                this.WriteObject(this, true);
+                Cursor.Position = 
+                    new Point(
+                        ((int)UiElement.RootElement.Current.BoundingRectangle.Left + X),
+                        ((int)UiElement.RootElement.Current.BoundingRectangle.Top + Y));
+                WriteObject(this, true);
             }
             else {
-                System.Windows.Forms.Cursor.Position = 
-                    new System.Drawing.Point(
-                        ((int)inputObject.Current.BoundingRectangle.Left + this.X),
-                        ((int)inputObject.Current.BoundingRectangle.Top + this.Y));
-                if (this.PassThru) {
-                    this.WriteObject(this, inputObject);
+                Cursor.Position = 
+                    new Point(
+                        ((int)inputObject.Current.BoundingRectangle.Left + X),
+                        ((int)inputObject.Current.BoundingRectangle.Top + Y));
+                if (PassThru) {
+                    WriteObject(this, inputObject);
                 } else {
-                    this.WriteObject(this, true);
+                    WriteObject(this, true);
                 }
             }
                 

@@ -9,18 +9,14 @@
 
 namespace UIAutomation.Commands
 {
-    // test it
-    //using System;
     using System.Management.Automation;
-    // test it
-    //using System.Runtime.InteropServices;
 
     /// <summary>
-    /// Description of ConvertFromUIAListCommand.
+    /// Description of ConvertFromUiaListCommand.
     /// </summary>
-    [Cmdlet(VerbsData.ConvertFrom, "UIAList")]
+    [Cmdlet(VerbsData.ConvertFrom, "UiaList")]
     // disabled in the current release
-    internal class ConvertFromUIAListCommand : ConvertCmdletBase
+    internal class ConvertFromUiaListCommand : ConvertCmdletBase
     {
         #region Parameters
         #endregion Parameters
@@ -30,7 +26,7 @@ namespace UIAutomation.Commands
         /// </summary>
         protected override void ProcessRecord()
         {
-            if (!this.CheckAndPrepareInput(this)) { return; }
+            if (!CheckAndPrepareInput(this)) { return; }
             
             //_control.SetFocus();
             

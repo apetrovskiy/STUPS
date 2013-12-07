@@ -6,17 +6,13 @@
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
-using System;
 
 namespace UIAutomationUnitTests.Commands.Pattern
 {
     /// <summary>
-    /// Description of InvokeUIAToggleStateSetCommandTestFixture.
+    /// Description of InvokeUiaToggleStateSetCommandTestFixture.
     /// </summary>
-    public class InvokeUIAToggleStateSetCommandTestFixture
+    public class InvokeUiaToggleStateSetCommandTestFixture
     {
-        public InvokeUIAToggleStateSetCommandTestFixture()
-        {
-        }
     }
 }

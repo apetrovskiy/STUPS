@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMXUnitTests.Commands.TestStructure
+namespace TmxUnitTests.Commands.TestStructure
 {
     using System;
     using MbUnit.Framework;
@@ -15,12 +15,12 @@ namespace TMXUnitTests.Commands.TestStructure
     using TMX;
     
     /// <summary>
-    /// Description of GetTMXTestCaseCommandTestFixture.
+    /// Description of GetTmxTestCaseCommandTestFixture.
     /// </summary>
     [TestFixture]
-    public class GetTMXTestCaseCommandTestFixture
+    public class GetTmxTestCaseCommandTestFixture
     {
-        public GetTMXTestCaseCommandTestFixture()
+        public GetTmxTestCaseCommandTestFixture()
         {
         }
         
@@ -36,7 +36,7 @@ namespace TMXUnitTests.Commands.TestStructure
         }
         
         [Test]
-        [Description("Get-TMXTestCase")]
+        [Description("Get-TmxTestCase")]
         [Category("Fast")]
         [Ignore]
         public void Need_Code()

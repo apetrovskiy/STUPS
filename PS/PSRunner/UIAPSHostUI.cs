@@ -17,11 +17,11 @@ namespace PSRunner
     using System.Collections.Generic;
     
     /// <summary>
-    /// Description of UIAPSHostUI.
+    /// Description of UiaPSHostUI.
     /// </summary>
-    public class UIAPSHostUI //: PSHostUserInterface
+    public class UiaPSHostUI //: PSHostUserInterface
     {
-        public UIAPSHostUI()
+        public UiaPSHostUI()
         {
         }
         

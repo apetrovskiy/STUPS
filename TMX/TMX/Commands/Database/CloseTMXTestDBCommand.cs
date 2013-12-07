@@ -13,13 +13,13 @@ namespace TMX.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of CloseTMXTestDBCommand.
+    /// Description of CloseTmxTestDBCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Close, "TMXTestDB")]
+    [Cmdlet(VerbsCommon.Close, "TmxTestDB")]
     [OutputType(typeof(bool))]
-    public class CloseTMXTestDBCommand : DatabaseFileCmdletBase
+    public class CloseTmxTestDBCommand : DatabaseFileCmdletBase
     {
-        public CloseTMXTestDBCommand()
+        public CloseTmxTestDBCommand()
         {
         }
         

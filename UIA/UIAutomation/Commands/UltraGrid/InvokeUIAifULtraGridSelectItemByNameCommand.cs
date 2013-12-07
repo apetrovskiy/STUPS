@@ -9,17 +9,17 @@
 
 namespace UIAutomation.Commands
 {
-    using System;
+    //using System;
     using System.Management.Automation;
 
     /// <summary>
-    /// Description of InvokeUIAifUltraGridSelectItemByNameCommand.
+    /// Description of InvokeUiaIfUltraGridSelectItemByNameCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "UIAifUltraGridSelectItemByName")]
-    public class InvokeUIAifUltraGridSelectItemByNameCommand : ULtraGridCmdletBase
+    [Cmdlet(VerbsLifecycle.Invoke, "UiaIfUltraGridSelectItemByName")]
+    public class InvokeUiaIfUltraGridSelectItemByNameCommand : ULtraGridCmdletBase
     {
         #region Constructor
-        public InvokeUIAifUltraGridSelectItemByNameCommand()
+        public InvokeUiaIfUltraGridSelectItemByNameCommand()
         {
         }
         #endregion Constructor
@@ -34,9 +34,9 @@ namespace UIAutomation.Commands
         /// </summary>
         protected override void ProcessRecord()
         {
-            if (!this.CheckAndPrepareInput(this)) { return; }
+            if (!CheckAndPrepareInput(this)) { return; }
             
-            ifUltraGridProcessing(ifUltraGridOperations.selectItems);
+            ifUltraGridProcessing(ifUltraGridOperations.SelectItems);
         }
     }
 }

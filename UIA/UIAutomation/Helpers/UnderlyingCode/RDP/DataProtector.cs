@@ -38,16 +38,19 @@
 //using System.Runtime.InteropServices;
 
 //namespace DataProtection
+
+using System.Collections.Generic;
+
 namespace UIAutomation
 {
     using System;
-    using System.Text;
+    //using System.Text;
     using System.Runtime.InteropServices;
 
     public class DataProtector
     {
         [DllImport("Crypt32.dll", SetLastError = true,
-            CharSet = System.Runtime.InteropServices.CharSet.Auto)]
+            CharSet = CharSet.Auto)]
         private static extern bool CryptProtectData(
                                           ref DATA_BLOB pDataIn,
                                           String szDataDescr,
@@ -58,7 +61,7 @@ namespace UIAutomation
                                           int dwFlags,
                                           ref DATA_BLOB pDataOut);
         [DllImport("Crypt32.dll", SetLastError = true,
-                    CharSet = System.Runtime.InteropServices.CharSet.Auto)]
+                    CharSet = CharSet.Auto)]
         private static extern bool CryptUnprotectData(
                                           ref DATA_BLOB pDataIn,
                                           String szDataDescr,
@@ -93,28 +96,32 @@ namespace UIAutomation
             public IntPtr hwndApp;
             public String szPrompt;
         }
+        static private readonly IntPtr NullPtr = ((IntPtr)0);
+        /*
         static private IntPtr NullPtr = ((IntPtr)((int)(0)));
+        */
         private const int CRYPTPROTECT_UI_FORBIDDEN = 0x1;
         private const int CRYPTPROTECT_LOCAL_MACHINE = 0x4;
 
         public enum Store { USE_MACHINE_STORE = 1, USE_USER_STORE };
 
-        private Store store;
+        private readonly Store store;
 
         public DataProtector(Store tempStore)
         {
             store = tempStore;
         }
 
+        public IEnumerable<byte> Encrypt(byte[] plainText, byte[] optionalEntropy, string DataDescription)
+        /*
         public byte[] Encrypt(byte[] plainText, byte[] optionalEntropy, string DataDescription)
+        */
         {
-            bool retVal = false;
             DATA_BLOB plainTextBlob = new DATA_BLOB();
             DATA_BLOB cipherTextBlob = new DATA_BLOB();
             DATA_BLOB entropyBlob = new DATA_BLOB();
             CRYPTPROTECT_PROMPTSTRUCT prompt = new CRYPTPROTECT_PROMPTSTRUCT();
             InitPromptstruct(ref prompt);
-            int dwFlags;
             try
             {
                 try
@@ -132,6 +139,7 @@ namespace UIAutomation
                 {
                     throw new Exception("Exception marshalling data. " + ex.Message);
                 }
+                int dwFlags;
                 if (Store.USE_MACHINE_STORE == store)
                 {//Using the machine store, should be providing entropy.
                     dwFlags = CRYPTPROTECT_LOCAL_MACHINE | CRYPTPROTECT_UI_FORBIDDEN;
@@ -161,9 +169,9 @@ namespace UIAutomation
                 {//Using the user store
                     dwFlags = CRYPTPROTECT_UI_FORBIDDEN;
                 }
-                retVal = CryptProtectData(ref plainTextBlob, DataDescription, ref entropyBlob,
-                IntPtr.Zero, ref prompt, dwFlags,
-                ref cipherTextBlob);
+                bool retVal = CryptProtectData(ref plainTextBlob, DataDescription, ref entropyBlob,
+                    IntPtr.Zero, ref prompt, dwFlags,
+                    ref cipherTextBlob);
                 if (false == retVal)
                 {
                     //throw new Exception("Encryption failed. " +
@@ -192,7 +200,6 @@ namespace UIAutomation
 
         public byte[] Decrypt(byte[] cipherText, byte[] optionalEntropy, string DataDescription)
         {
-            bool retVal = false;
             DATA_BLOB plainTextBlob = new DATA_BLOB();
             DATA_BLOB cipherBlob = new DATA_BLOB();
             CRYPTPROTECT_PROMPTSTRUCT prompt = new
@@ -250,10 +257,10 @@ namespace UIAutomation
                 {//Using the user store
                     dwFlags = CRYPTPROTECT_UI_FORBIDDEN;
                 }
-                retVal = CryptUnprotectData(ref cipherBlob, DataDescription, ref 
-      entropyBlob,
-                                            IntPtr.Zero, ref prompt, dwFlags,
-                                            ref plainTextBlob);
+                bool retVal = CryptUnprotectData(ref cipherBlob, DataDescription, ref 
+                    entropyBlob,
+                    IntPtr.Zero, ref prompt, dwFlags,
+                    ref plainTextBlob);
                 if (false == retVal)
                 {
                     //throw new Exception("Decryption failed. " +

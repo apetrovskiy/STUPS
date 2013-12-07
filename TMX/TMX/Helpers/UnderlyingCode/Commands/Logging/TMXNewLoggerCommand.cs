@@ -13,11 +13,11 @@ namespace TMX
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of TMXNewLoggerCommand.
+    /// Description of TmxNewLoggerCommand.
     /// </summary>
-    internal class TMXNewLoggerCommand : TMXCommand
+    internal class TmxNewLoggerCommand : TmxCommand
     {
-        internal TMXNewLoggerCommand(CommonCmdletBase cmdlet) : base (cmdlet)
+        internal TmxNewLoggerCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         

@@ -14,12 +14,12 @@
 //    using System.Windows.Automation;
 //    
 //    /// <summary>
-//    /// Description of SearchUIAWindowCommand.
+//    /// Description of SearchUiaWindowCommand.
 //    /// </summary>
-//    [Cmdlet(VerbsCommon.Search, "UIAWindow", DefaultParameterSetName = "UIAWildCard")]
-//    public class SearchUIAWindowCommand : SearchCmdletBase
+//    [Cmdlet(VerbsCommon.Search, "UiaWindow", DefaultParameterSetName = "UiaWildCard")]
+//    public class SearchUiaWindowCommand : SearchCmdletBase
 //    {
-//        public SearchUIAWindowCommand()
+//        public SearchUiaWindowCommand()
 //        {
 //        }
 //        

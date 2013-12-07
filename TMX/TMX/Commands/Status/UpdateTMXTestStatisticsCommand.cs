@@ -13,12 +13,12 @@ namespace TMX.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of UpdateTMXTestStatisticsCommand.
+    /// Description of UpdateTmxTestStatisticsCommand.
     /// </summary>
-    [Cmdlet(VerbsData.Update, "TMXTestStatistics")]
-    public class UpdateTMXTestStatisticsCommand : CommonCmdletBase
+    [Cmdlet(VerbsData.Update, "TmxTestStatistics")]
+    public class UpdateTmxTestStatisticsCommand : CommonCmdletBase
     {
-        public UpdateTMXTestStatisticsCommand()
+        public UpdateTmxTestStatisticsCommand()
         {
         }
         

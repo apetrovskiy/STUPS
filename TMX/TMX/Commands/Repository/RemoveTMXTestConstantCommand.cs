@@ -13,13 +13,13 @@ namespace TMX.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of RemoveTMXTestConstantCommand.
+    /// Description of RemoveTmxTestConstantCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Remove, "TMXTestConstant")]
+    [Cmdlet(VerbsCommon.Remove, "TmxTestConstant")]
     [OutputType(typeof(ITestConstant))]
-    public class RemoveTMXTestConstantCommand : TestConstantCmdletBase
+    public class RemoveTmxTestConstantCommand : TestConstantCmdletBase
     {
-        public RemoveTMXTestConstantCommand()
+        public RemoveTmxTestConstantCommand()
         {
         }
     }

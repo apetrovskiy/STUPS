@@ -9,26 +9,24 @@
 
 namespace UIAutomation.Commands
 {
-    // test it
-    //using System;
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of AddUIABannerTextCommand.
+    /// Description of AddUiaBannerTextCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Add, "UIABannerText")]
-    public class AddUIABannerTextCommand : CommonCmdletBase
+    [Cmdlet(VerbsCommon.Add, "UiaBannerText")]
+    public class AddUiaBannerTextCommand : CommonCmdletBase
     {
         #region Parameters
         [Parameter(Mandatory = true,
                    Position = 0)]
-        [ValidateNotNullOrEmpty]// test it()]
+        [ValidateNotNullOrEmpty]
         public string Message { get; set; }
         #endregion Parameters
         
         protected override void BeginProcessing()
         {
-            UIAHelper.AppendBanner(this.Message);
+            UiaHelper.AppendBanner(Message);
         }
     }
 }

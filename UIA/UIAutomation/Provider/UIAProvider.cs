@@ -9,36 +9,37 @@
 
 namespace UIAutomation
 {
+    extern alias UIANET;
     using System;
     using System.Management.Automation;
     using System.Management.Automation.Provider;
     using System.Windows.Automation;
     using System.Collections.ObjectModel;
-    using UIAutomation.Commands;
+    using Commands;
     
     /// <summary>
-    /// Description of UIAProvider.
+    /// Description of UiaProvider.
     /// </summary>
-    [CmdletProvider("UIAProvider", ProviderCapabilities.None)]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "UIA")]
-    public class UIAProvider : DriveCmdletProvider // ItemCmdletProvider // ContainerCmdletProvider // DriveCmdletProvider // CmdletProvider
+    [CmdletProvider("UiaProvider", ProviderCapabilities.None)]
+    
+    public class UiaProvider : DriveCmdletProvider // ItemCmdletProvider // ContainerCmdletProvider // DriveCmdletProvider // CmdletProvider
     {
 
-        private UIADriveInfo uIAPSDriveInfo; // ???????????????
-        private UIADriveInfo rootDrive;
-        private RuntimeDefinedParameterDictionary dynamicParameters;
+        private UiaDriveInfo uIAPSDriveInfo; // ???????????????
+        private UiaDriveInfo _rootDrive;
+        private RuntimeDefinedParameterDictionary _dynamicParameters;
 
         #region CmdletProvider Overloads
         
         protected override ProviderInfo Start(ProviderInfo providerInfo)
         {
-            WriteVerbose("UIAProvider::Start()");
+            WriteVerbose("UiaProvider::Start()");
             return providerInfo;
         }
         
         protected override void Stop()
         {
-            this.rootDrive = null;
+            _rootDrive = null;
         }
 
         #endregion CmdletProvider Overloads
@@ -48,8 +49,8 @@ namespace UIAutomation
         protected override object NewDriveDynamicParameters()
         {
             try{
-                WriteVerbose("UIAProvider::NewDriveDynamicParameters()");
-                dynamicParameters =
+                WriteVerbose("UiaProvider::NewDriveDynamicParameters()");
+                _dynamicParameters =
                     new RuntimeDefinedParameterDictionary();
                 Collection<Attribute> atts1 = new Collection<Attribute>();
                 ParameterAttribute parameterAttribute1 = new ParameterAttribute {Mandatory = true};
@@ -61,7 +62,7 @@ namespace UIAutomation
                 atts1.Add(parameterAttribute1);
                 AllowEmptyStringAttribute attr1 = new AllowEmptyStringAttribute();
                 atts1.Add(attr1);
-                dynamicParameters.Add(
+                _dynamicParameters.Add(
                     "WindowName", 
                     new RuntimeDefinedParameter(
                         "WindowName", 
@@ -78,7 +79,7 @@ namespace UIAutomation
                 atts2.Add(parameterAttribute2);
                 AllowEmptyStringAttribute attr2 = new AllowEmptyStringAttribute();
                 atts2.Add(attr2);
-                dynamicParameters.Add(
+                _dynamicParameters.Add(
                     "ProcessName", 
                     new RuntimeDefinedParameter(
                         "ProcessName", 
@@ -95,18 +96,18 @@ namespace UIAutomation
                 atts3.Add(parameterAttribute3);
                 AllowEmptyStringAttribute attr3 = new AllowEmptyStringAttribute();
                 atts3.Add(attr3);
-                dynamicParameters.Add(
+                _dynamicParameters.Add(
                     "ProcessId", 
                     new RuntimeDefinedParameter(
                         "ProcessId", 
                         typeof(int), 
                         atts3));
                 
-                return dynamicParameters;
+                return _dynamicParameters;
             }
             catch (Exception e) {
                 WriteVerbose(e.Message);
-                WriteVerbose("UIAProvider::NewDriveDynamicParameters()");
+                WriteVerbose("UiaProvider::NewDriveDynamicParameters()");
                 return null;
             }
         }
@@ -119,17 +120,17 @@ namespace UIAutomation
                 PSDriveInfo drive =
                     new PSDriveInfo(
                         "UIA",
-                        this.ProviderInfo,
-                        @"UIAutomation\UIAProvider::\", //"UIAutomation",
+                        ProviderInfo,
+                        @"UIAutomation\UiaProvider::\", //"UIAutomation",
                         "This is the UI Automation root drive",
                         null);
-                rootDrive = new UIADriveInfo(drive);
-                result.Add(rootDrive);
+                _rootDrive = new UiaDriveInfo(drive);
+                result.Add(_rootDrive);
                 return result;
             }
             catch (Exception e) {
                 WriteVerbose(e.Message);
-                WriteVerbose("UIAProvider::InitializeDefaultDrives()");
+                WriteVerbose("UiaProvider::InitializeDefaultDrives()");
                 return null;
             }
         }
@@ -138,7 +139,7 @@ namespace UIAutomation
 //        protected override PSDriveInfo NewDrive(PSDriveInfo drive)
 //        {
 //            try{
-//                WriteVerbose("UIAProvider::NewDrive()");
+//                WriteVerbose("UiaProvider::NewDrive()");
 //                string windowName = string.Empty;
 //                string processName = string.Empty;
 //                int processId = 0;
@@ -161,18 +162,18 @@ namespace UIAutomation
 //                    // there might not be a parameter
 //                }
 //                if (processId > 0) {
-//                    return new UIADriveInfo(processId, drive);
+//                    return new UiaDriveInfo(processId, drive);
 //                } else if (processName.Length > 0) {
-//                    return new UIADriveInfo(processName, drive);
+//                    return new UiaDriveInfo(processName, drive);
 //                } else if (windowName.Length > 0) {
-//                    return new UIADriveInfo(windowName, drive);
+//                    return new UiaDriveInfo(windowName, drive);
 //                } else {
-//                    return new UIADriveInfo(drive);
+//                    return new UiaDriveInfo(drive);
 //                }
 //            }
 //            catch (Exception e) {
 //                WriteVerbose(e.Message);
-//                WriteVerbose("UIAProvider::NewDrive()");
+//                WriteVerbose("UiaProvider::NewDrive()");
 //                return null;
 //            }
 //        }
@@ -202,13 +203,13 @@ namespace UIAutomation
                         new ErrorDetails(
                             "The PSDriveInfo argument is null");
                     //ThrowTerminatingError(err);
-                    this.ThrowTerminatingError(err);
+                    ThrowTerminatingError(err);
 
                     // TODO
                     // this.WriteError();
                 }
 
-                UIADriveInfo driveInfo = drive as UIADriveInfo;
+                UiaDriveInfo driveInfo = drive as UiaDriveInfo;
                 
                 if (driveInfo == null)
                 {
@@ -221,7 +222,7 @@ namespace UIAutomation
             }
             catch (Exception e) {
                 WriteVerbose(e.Message);
-                WriteVerbose("UIAProvider::RemoveDrive()");
+                WriteVerbose("UiaProvider::RemoveDrive()");
                 return null;
             }
         } // End RemoveDrive.
@@ -242,11 +243,11 @@ namespace UIAutomation
 //            
 //            // provider-qualified paths
 //            if (path.ToUpper().Contains(
-//                @"UIAUTOMATION::\" + 
+//                @"UiaUTOMATION::\" + 
 //                uIAPSDriveInfo.Name.ToUpper())) { return true; }
 //            
 //            if (path.ToUpper().Contains(
-//                @"UIAUTOMATION::" + 
+//                @"UiaUTOMATION::" + 
 //                uIAPSDriveInfo.Name.ToUpper())) { return true; }
 //            
 //            // provider-direct paths
@@ -459,24 +460,19 @@ namespace UIAutomation
     
 
     
-    internal class UIADriveInfo : PSDriveInfo
+    internal class UiaDriveInfo : PSDriveInfo
     {
         // 20131109
         //private System.Windows.Automation.AutomationElement _driveWindow = null;
-        private IMySuperWrapper _driveWindow = null;
-        private string _windowName = string.Empty;
-        private string _processName = string.Empty;
-        private int _processId = 0;
+        private readonly string _windowName = string.Empty;
+        private readonly string _processName = string.Empty;
+        private const int _processId = 0;
 //        private System.Diagnostics.Process _process;
         
         // 20131109
         //public System.Windows.Automation.AutomationElement Window
-        public IMySuperWrapper Window
-        {
-            get { return _driveWindow; }
-            internal set {_driveWindow = value; }
-        }
-        
+        public IUiElement Window { get; internal set; }
+
         public string WindowName
         {
             get { return _windowName; }
@@ -497,30 +493,31 @@ namespace UIAutomation
 //            get { return _process; }
 //        }
         
-        public UIADriveInfo(
+        public UiaDriveInfo(
             PSDriveInfo drive) : base(drive)
         {
+            Window = null;
             try{
-                _driveWindow =
+                Window =
                     // 20131109
                     //AutomationElement.RootElement;
-                    MySuperWrapper.RootElement; //.SourceElement;
+                    UiElement.RootElement; //.SourceElement;
             }
             catch (Exception e) {
                 //WriteVerbose(e.Message);
-                //WriteVerbose("UIADriveInfo(PSDriveInfo)");
+                //WriteVerbose("UiaDriveInfo(PSDriveInfo)");
             }
         }
 
-//        public UIADriveInfo(
+//        public UiaDriveInfo(
 //            System.Diagnostics.Process process,
 //            PSDriveInfo drive) : base(drive)
 //        {
 //            try{
 //                this._process = process;
-//                GetUIAWindowCommand cmd;
+//                GetUiaWindowCommand cmd;
 //                _driveWindow = 
-//                    ((cmd = new GetUIAWindowCommand())).GetWindow(
+//                    ((cmd = new GetUiaWindowCommand())).GetWindow(
 //                        cmd, 
 //                        process, 
 //                        string.Empty,
@@ -529,20 +526,20 @@ namespace UIAutomation
 //            }
 //            catch (Exception e  ) {
 //                WriteVerbose(e.Message);
-//                WriteVerbose("UIADriveInfo(Process, PSDriveInfo)");
+//                WriteVerbose("UiaDriveInfo(Process, PSDriveInfo)");
 //            }
 //        }
   
   // 20120824
-//        public UIADriveInfo(
+//        public UiaDriveInfo(
 //            int processId,
 //            PSDriveInfo drive) : base(drive)
 //        {
 //            try{
 //                this._processId = processId;
-//                GetUIAWindowCommand cmd;
+//                GetUiaWindowCommand cmd;
 //                _driveWindow = 
-//                    ((cmd = new GetUIAWindowCommand())).GetWindow(
+//                    ((cmd = new GetUiaWindowCommand())).GetWindow(
 //                        cmd, 
 //                        null, 
 //                        string.Empty,
@@ -551,11 +548,11 @@ namespace UIAutomation
 //            }
 //            catch (Exception e) {
 //                //WriteVerbose(e.Message);
-//                //WriteVerbose("UIADriveInfo(int, PSDriveInfo)");
+//                //WriteVerbose("UiaDriveInfo(int, PSDriveInfo)");
 //            }
 //        }
 //        
-//        public UIADriveInfo(
+//        public UiaDriveInfo(
 //            string processNameOrWindowTitle,
 //            PSDriveInfo drive) : base(drive)
 //        {
@@ -563,9 +560,9 @@ namespace UIAutomation
 //                this._processName = processNameOrWindowTitle;
 //                this._windowName = processNameOrWindowTitle;
 //
-//                GetUIAWindowCommand cmd;
+//                GetUiaWindowCommand cmd;
 //                _driveWindow = 
-//                    ((cmd = new GetUIAWindowCommand())).GetWindow(
+//                    ((cmd = new GetUiaWindowCommand())).GetWindow(
 //                        cmd, 
 //                        null, 
 //                        processNameOrWindowTitle,
@@ -574,7 +571,7 @@ namespace UIAutomation
 //            }
 //            catch (Exception e){
 //                //WriteVerbose(e.Message);
-//                //WriteVerbose("UIADriveInfo(string, PSDriveInfo)");
+//                //WriteVerbose("UiaDriveInfo(string, PSDriveInfo)");
 //            }
 //        }
     }

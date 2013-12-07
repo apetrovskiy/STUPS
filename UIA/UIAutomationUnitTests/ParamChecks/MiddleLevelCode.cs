@@ -9,7 +9,6 @@
 
 namespace UIAutomationUnitTests.CheckCmdletParameters
 {
-    using System;
     using PSTestLib;
     
     /// <summary>
@@ -17,10 +16,6 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
     /// </summary>
     public static class MiddleLevelCode
     {
-        static MiddleLevelCode()
-        {
-        }
-        
         public static void PrepareRunspace()
         {
             CmdletUnitTest.TestRunspace.IitializeRunspace(Settings.RunspaceCommand);

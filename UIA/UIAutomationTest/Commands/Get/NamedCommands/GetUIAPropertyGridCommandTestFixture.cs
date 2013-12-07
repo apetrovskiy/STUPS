@@ -14,12 +14,12 @@ namespace UIAutomationTest.Commands.Get
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of GetUIATableCommandTextFixture.
+    /// Description of GetUiaTableCommandTextFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Get-UIATableCommand test")]
-    public class GetUIATableCommandTextFixture
+    [TestFixture] // [TestFixture(Description="Get-UiaTableCommand test")]
+    public class GetUiaTableCommandTextFixture
     {
-        public GetUIATableCommandTextFixture()
+        public GetUiaTableCommandTextFixture()
         {
         }
         
@@ -44,13 +44,13 @@ namespace UIAutomationTest.Commands.Get
                 auId,
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAPane -AutomationId " + 
+                " | Get-UiaPane -AutomationId " + 
                 auId + 
-                " | Get-UIATable -Name '" + 
+                " | Get-UiaTable -Name '" + 
                 name + "' | " +
-                "Read-UIAControlName",
+                "Read-UiaControlName",
                 name);
         }
         
@@ -69,13 +69,13 @@ namespace UIAutomationTest.Commands.Get
                 auId,
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAPane -AutomationId " + 
+                " | Get-UiaPane -AutomationId " + 
                 auId + 
-                " -timeout 2000 | Get-UIATable -Name '" + 
+                " -timeout 2000 | Get-UiaTable -Name '" + 
                 name + "' | " +
-                "Read-UIAControlName",
+                "Read-UiaControlName",
                 name);
         }
         
@@ -94,14 +94,14 @@ namespace UIAutomationTest.Commands.Get
                 auId,
                 TimeoutsAndDelays.Control_Timeout3000Delay500_Delay);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAPane -AutomationId " + 
+                " | Get-UiaPane -AutomationId " + 
                 auId + 
-                " -timeout 3000 | Get-UIATable -Name '" + 
+                " -timeout 3000 | Get-UiaTable -Name '" + 
                 name + 
                 "' | " +
-                "Read-UIAControlName",
+                "Read-UiaControlName",
                 name);
         }
         
@@ -120,14 +120,14 @@ namespace UIAutomationTest.Commands.Get
                 auId,
                 TimeoutsAndDelays.Control_Timeout2000Delay4000_Delay);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIAPane -AutomationId " + 
+                " | Get-UiaPane -AutomationId " + 
                 auId + 
-                " -timeout 2000 | Get-UIATable -Name '" + 
+                " -timeout 2000 | Get-UiaTable -Name '" + 
                 name + 
                 "' | " +
-                "Read-UIAControlName",
+                "Read-UiaControlName",
                 name);
         }
         
@@ -146,11 +146,11 @@ namespace UIAutomationTest.Commands.Get
                 "btn",
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIATable -Name '" + 
+                " | Get-UiaTable -Name '" + 
                 name + "' | " +
-                "Read-UIAControlName",
+                "Read-UiaControlName",
                 name);
         }
         
@@ -169,11 +169,11 @@ namespace UIAutomationTest.Commands.Get
                 "btn",
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIATable -Name '" + 
+                " | Get-UiaTable -Name '" + 
                 name + "' -timeout 2000 | " +
-                "Read-UIAControlName",
+                "Read-UiaControlName",
                 name);
         }
         
@@ -192,11 +192,11 @@ namespace UIAutomationTest.Commands.Get
                 "btn",
                 TimeoutsAndDelays.Control_Timeout3000Delay500_Delay);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIATable -Name '" + 
+                " | Get-UiaTable -Name '" + 
                 name + "' -timeout 3000 | " +
-                "Read-UIAControlName",
+                "Read-UiaControlName",
                 name);
         }
         
@@ -215,11 +215,11 @@ namespace UIAutomationTest.Commands.Get
                 "btn",
                 TimeoutsAndDelays.Control_Timeout2000Delay4000_Delay);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIATable -Name '" + 
+                " | Get-UiaTable -Name '" + 
                 name + "' -timeout 2000 | " +
-                "Read-UIAControlName",
+                "Read-UiaControlName",
                 name);
         }
         
@@ -236,9 +236,9 @@ namespace UIAutomationTest.Commands.Get
                 "ddd",
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIATable | Read-UIAControlType",
+                " | Get-UiaTable | Read-UiaControlType",
                 "ControlType.Table");
         }
         
@@ -255,9 +255,9 @@ namespace UIAutomationTest.Commands.Get
                 "ddd",
                 0);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIATable -timeout 2000 | Read-UIAControlType",
+                " | Get-UiaTable -timeout 2000 | Read-UiaControlType",
                 "ControlType.Table");
         }
         
@@ -274,9 +274,9 @@ namespace UIAutomationTest.Commands.Get
                 "ddd",
                 TimeoutsAndDelays.Control_Timeout3000Delay500_Delay);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIATable -timeout 3000 | Read-UIAControlType",
+                " | Get-UiaTable -timeout 3000 | Read-UiaControlType",
                 "ControlType.Table");
         }
         
@@ -293,9 +293,9 @@ namespace UIAutomationTest.Commands.Get
                 "ddd",
                 TimeoutsAndDelays.Control_Timeout2000Delay4000_Delay);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"Get-UIAWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                " | Get-UIATable -timeout 2000 | Read-UIAControlType",
+                " | Get-UiaTable -timeout 2000 | Read-UiaControlType",
                 "ControlType.Table");
         }
         

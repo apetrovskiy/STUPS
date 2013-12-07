@@ -9,17 +9,17 @@
 
 namespace UIAutomation.Commands
 {
-    using System;
+    //using System;
     using System.Management.Automation;
-    using System.Windows.Automation;
+    //using System.Windows.Automation;
     
     /// <summary>
-    /// Description of RegisterUIAUnexpectedWindowCommand.
+    /// Description of RegisterUiaUnexpectedWindowCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Register, "UIAUnexpectedWindow")]
-    public class RegisterUIAUnexpectedWindowCommand : RegisterUIAWindowOpenedEventCommand
+    [Cmdlet(VerbsLifecycle.Register, "UiaUnexpectedWindow")]
+    public class RegisterUiaUnexpectedWindowCommand : RegisterUiaWindowOpenedEventCommand
     {
-        public RegisterUIAUnexpectedWindowCommand()
+        public RegisterUiaUnexpectedWindowCommand()
         {
         }
     }

@@ -1,5 +1,4 @@
-﻿using System.Windows.Media.Animation;
-/*
+﻿/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
  * Date: 11/5/2013
@@ -16,16 +15,20 @@ namespace UIAutomation
 	using System.Windows.Automation;
 	using Ninject;
 	using System.Windows;
+	
+	// using TMX.Commands;
 
 	/// <summary>
 	/// Description of MySuperWrapper.
 	/// </summary>
-	public class MySuperWrapper : IMySuperWrapper
+	public class MySuperWrapper : IMySuperWrapper //, IInitializable
 	{
 		private AutomationElement _elementHolderNet;
 		// //private AutomationElement _elementHolderCom;
 		private readonly IMySuperWrapper _elementHolderAdapter;
-		private static InnerElementTypes _innerElementType = InnerElementTypes.Empty;
+		// 20131206
+		// private static InnerElementTypes _innerElementType = InnerElementTypes.Empty;
+		private static InnerElementTypes _innerElementType = InnerElementTypes.AutomationElementNet;
         
 		[Inject]
 		public MySuperWrapper(AutomationElement element)

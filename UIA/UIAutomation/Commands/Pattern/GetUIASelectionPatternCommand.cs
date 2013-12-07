@@ -18,7 +18,7 @@ namespace UIAutomation.Commands
     // 20131024
     //[Cmdlet(VerbsCommon.Get, "UiaSelectionPattern")]
     [Cmdlet(VerbsLifecycle.Invoke, "UiaSelectionPattern")]
-    ////[OutputType(typeof(IMySuperWrapper[]))] //[OutputType(typeof(UIAutomation.MySuperWrapper[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    ////[OutputType(typeof(UIAutomation.IMySuperWrapper))] //[OutputType(typeof(UIAutomation.MySuperWrapper[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
     
     public class InvokeUiaSelectionPatternCommand : PatternCmdletBase
     { public InvokeUiaSelectionPatternCommand() { WhatToDo = "Selection"; PassThru = false; }

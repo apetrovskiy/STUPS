@@ -29,7 +29,8 @@ namespace UIAutomation
             Bind<IMySuperWrapper>()
                 .ToConstructor(
                     x =>
-                    new MySuperWrapper(x.Inject<AutomationElement>()))
+                    // new MySuperWrapper(x.Inject<AutomationElement>()))
+                    new MySuperWrapper(x.Inject<System.Windows.Automation.AutomationElement>()))
                 .InCallScope()
                 .Named("AutomationElement.NET");
             

@@ -29,6 +29,7 @@ namespace UIAutomation
             if (PSCmdletBase.UnitTestMode || CommonCmdletBase.ModuleAlreadyLoaded) return;
             _ninjectModule = new ObjectLifecycleModule();
             CommonCmdletBase.ModuleAlreadyLoaded = true;
+            Init();
         }
         
 		private static INinjectModule _ninjectModule;
@@ -78,12 +79,15 @@ namespace UIAutomation
 		#endregion Initialization
 		
 		#region IMySuperWrapper
-		internal static IMySuperWrapper GetMySuperWrapper(AutomationElement element)
+		// internal static IMySuperWrapper GetMySuperWrapper(AutomationElement element)
+		public static IMySuperWrapper GetMySuperWrapper(AutomationElement element)
 		{
 	        if (null == element) {
 	            return null;
 	        }
+	        
 			try {
+                
     			var singleElement = new ConstructorArgument("element", element);
     			IMySuperWrapper adapterElement = Kernel.Get<IMySuperWrapper>("AutomationElement.NET", singleElement);
     			return adapterElement;
@@ -91,8 +95,8 @@ namespace UIAutomation
 			catch (Exception eFailedToIssueElement) {
 			    // TODO
 			    // write error to error object!!!
-//			    Console.WriteLine("Element");
-//			    Console.WriteLine(eFailedToIssueElement.Message);
+			    // Console.WriteLine("Element");
+			    // Console.WriteLine(eFailedToIssueElement.Message);
 			    return null;
 			}
 		}
@@ -110,36 +114,29 @@ namespace UIAutomation
 			catch (Exception eFailedToIssueElement) {
 			    // TODO
 			    // write error to error object!!!
-			    //Console.WriteLine("Element");
-			    //Console.WriteLine(eFailedToIssueElement.Message);
+			    // Console.WriteLine("Element");
+			    // Console.WriteLine(eFailedToIssueElement.Message);
 			    return null;
 			}
 		}
 		
 		internal static IMySuperWrapper GetMySuperWrapper()
 		{
-//	        if (null == element) {
-//	            return null;
-//	        }
 			try {
-    			//IMySuperWrapper adapterElement = ObjectsFactory.Kernel.Get<IMySuperWrapper>();
     			IMySuperWrapper adapterElement = Kernel.Get<IMySuperWrapper>("Empty", null);
     			return adapterElement;
 			}
 			catch (Exception eFailedToIssueElement) {
 			    // TODO
 			    // write error to error object!!!
-			    //Console.WriteLine("Element");
-			    //Console.WriteLine(eFailedToIssueElement.Message);
+			    // Console.WriteLine("Element");
+			    // Console.WriteLine(eFailedToIssueElement.Message);
 			    return null;
 			}
 		}
 		
 		internal static IMySuperWrapperInformation GetMySuperWrapperInformation(AutomationElement.AutomationElementInformation information)
 		{
-//	        if (null == information) {
-//	            return null;
-//	        }
 			try {
     			var singleInfo = new ConstructorArgument("information", information);
     			IMySuperWrapperInformation adapterInformation = Kernel.Get<IMySuperWrapperInformation>(singleInfo);

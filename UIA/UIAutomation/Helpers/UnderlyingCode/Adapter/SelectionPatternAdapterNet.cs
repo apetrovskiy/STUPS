@@ -79,7 +79,7 @@ namespace UIAutomation
 //		private bool _cached;
 		// public SelectionPattern.SelectionPatternInformation Cached {
 		// public MySelectionPatternNet.SelectionPatternInformation Cached {
-		public ISelectionPatternInformation Cached {
+		public virtual ISelectionPatternInformation Cached {
 			get {
 				// Misc.ValidateCached(this._cached);
 				// return new SelectionPattern.SelectionPatternInformation(this._el, true);
@@ -88,7 +88,7 @@ namespace UIAutomation
 		}
 		// public SelectionPattern.SelectionPatternInformation Current {
 		// public MySelectionPatternNet.SelectionPatternInformation Current {
-		public ISelectionPatternInformation Current {
+		public virtual ISelectionPatternInformation Current {
 			get {
 				// Misc.ValidateCurrent(this._hPattern);
 				// return new SelectionPattern.SelectionPatternInformation(this._el, false);
@@ -105,7 +105,7 @@ namespace UIAutomation
 //			return new SelectionPattern(el, hPattern, cached);
 //		}
 		
-		public IUiElement ParentElement
+		public virtual IUiElement ParentElement
 		{
 		    get { return this._element; }
 		    set { this._element = value; }

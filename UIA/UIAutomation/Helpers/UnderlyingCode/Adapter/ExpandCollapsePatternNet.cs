@@ -60,7 +60,7 @@ namespace UIAutomation
 		// private SafePatternHandle _hPattern;
 		// private bool _cached;
 		// public ExpandCollapsePattern.ExpandCollapsePatternInformation Cached {
-		public IExpandCollapsePatternInformationAdapter Cached {
+		public virtual IExpandCollapsePatternInformationAdapter Cached {
 			get {
 				// Misc.ValidateCached(this._cached);
 				// return new ExpandCollapsePattern.ExpandCollapsePatternInformation(this._el, true);
@@ -68,7 +68,7 @@ namespace UIAutomation
 			}
 		}
 		// public ExpandCollapsePattern.ExpandCollapsePatternInformation Current {
-		public IExpandCollapsePatternInformationAdapter Current {
+		public virtual IExpandCollapsePatternInformationAdapter Current {
 			get {
 				// Misc.ValidateCurrent(this._hPattern);
 				// return new ExpandCollapsePattern.ExpandCollapsePatternInformation(this._el, false);
@@ -80,13 +80,13 @@ namespace UIAutomation
 //			this._hPattern = hPattern;
 //			this._cached = cached;
 //		}
-		public void Expand()
+		public virtual void Expand()
 		{
 			// UiaCoreApi.ExpandCollapsePattern_Expand(this._hPattern);
 			if (null == this._expandCollapsePattern) return;
 			this._expandCollapsePattern.Expand();
 		}
-		public void Collapse()
+		public virtual void Collapse()
 		{
 			// UiaCoreApi.ExpandCollapsePattern_Collapse(this._hPattern);
 			if (null == this._expandCollapsePattern) return;
@@ -97,7 +97,7 @@ namespace UIAutomation
 //			return new ExpandCollapsePattern(el, hPattern, cached);
 //		}
 		
-		public IUiElement ParentElement
+		public virtual IUiElement ParentElement
 		{
 		    get { return this._element; }
 		    set { this._element = value; }

@@ -51,7 +51,7 @@ namespace UIAutomation
 //		{
 //			this._hPattern = hPattern;
 //		}
-		public void Invoke()
+		public virtual void Invoke()
 		{
 			// UiaCoreApi.InvokePattern_Invoke(this._hPattern);
 			if (null == this._invokePattern) return;
@@ -62,7 +62,7 @@ namespace UIAutomation
 //			return new InvokePattern(el, hPattern);
 //		}
 		
-		public IUiElement ParentElement
+		public virtual IUiElement ParentElement
 		{
 		    get { return this._element; }
 		    set { this._element = value; }

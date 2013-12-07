@@ -22,10 +22,10 @@ namespace UIAutomation
 	    private readonly List<IUiElement> _collectionHolder =
 	        new List<IUiElement>();
 	    
-		public IUiElement this[int index] {
+		public virtual IUiElement this[int index] {
 		    get { return _collectionHolder[index]; }
 		}
-		public int Count {
+		public virtual int Count {
 		    get { return _collectionHolder.Count; } //return this._elements.Length; }
 		}
 		public virtual object SyncRoot {
@@ -41,14 +41,6 @@ namespace UIAutomation
 		    {
 		        _collectionHolder.Add(AutomationFactory.GetUiElement(element));
 		    }
-		    /*
-            foreach (AutomationElement element in elements) {
-		        
-		        if (null != element) {
-    		        _collectionHolder.Add(ObjectsFactory.GetUiElement(element));
-		        }
-		    }
-            */
 		}
 
 	    public UiEltCollection(IUiEltCollection elements)
@@ -57,14 +49,6 @@ namespace UIAutomation
 	        {
 	            _collectionHolder.Add(element);
 	        }
-	        /*
-            foreach (IUiElement element in elements) {
-		        
-		        if (null != element) {
-		          _collectionHolder.Add(element);
-		        }
-		    }
-            */
 	    }
 
 	    public UiEltCollection(IEnumerable elements)
@@ -73,14 +57,6 @@ namespace UIAutomation
 	        {
 	            _collectionHolder.Add((IUiElement)element);
 	        }
-	        /*
-            foreach (var element in elements) {
-		        
-		        if (null != element) {
-		          _collectionHolder.Add((IUiElement)element);
-		        }
-		    }
-            */
 	    }
 
 	    [Inject]
@@ -117,7 +93,7 @@ namespace UIAutomation
 		    get { return _collectionHolder; }
 		}
 		
-		public void Dispose()
+		public virtual void Dispose()
 		{
 //		    if (null != this._collectionHolder) {
 //		        for (int i = 0; i < this._collectionHolder.Count; i++) {

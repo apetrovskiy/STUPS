@@ -61,7 +61,7 @@ namespace UIAutomation
 		// private SafePatternHandle _hPattern;
 		// private bool _cached;
 		// public TogglePattern.TogglePatternInformation Cached {
-		public ITogglePatternInformation Cached {
+		public virtual ITogglePatternInformation Cached {
 			get {
 //				Misc.ValidateCached(this._cached);
 //				return new TogglePattern.TogglePatternInformation(this._el, true);
@@ -69,7 +69,7 @@ namespace UIAutomation
 			}
 		}
 		// public TogglePattern.TogglePatternInformation Current {
-		public ITogglePatternInformation Current {
+		public virtual ITogglePatternInformation Current {
 			get {
 				// Misc.ValidateCurrent(this._hPattern);
 				// return new TogglePattern.TogglePatternInformation(this._el, false);
@@ -81,7 +81,7 @@ namespace UIAutomation
 //			this._hPattern = hPattern;
 //			this._cached = cached;
 //		}
-		public void Toggle()
+		public virtual void Toggle()
 		{
 			// UiaCoreApi.TogglePattern_Toggle(this._hPattern);
 			if (null == this._togglePattern) return;
@@ -92,7 +92,7 @@ namespace UIAutomation
 //			return new TogglePattern(el, hPattern, cached);
 //		}
 		
-		public IUiElement ParentElement
+		public virtual IUiElement ParentElement
 		{
 		    get { return this._element; }
 		    set { this._element = value; }

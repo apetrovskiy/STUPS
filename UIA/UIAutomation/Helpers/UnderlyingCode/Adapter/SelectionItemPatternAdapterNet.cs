@@ -72,7 +72,7 @@ namespace UIAutomation
 //		private bool _cached;
 		// public SelectionItemPattern.SelectionItemPatternInformation Cached {
 		// public MySelectionItemPatternNet.SelectionItemPatternInformation Cached {
-		public ISelectionItemPatternInformation Cached {
+		public virtual ISelectionItemPatternInformation Cached {
 			get {
 				// Misc.ValidateCached(this._cached);
 				// return new SelectionItemPattern.SelectionItemPatternInformation(this._el, true);
@@ -81,7 +81,7 @@ namespace UIAutomation
 		}
 		// public SelectionItemPattern.SelectionItemPatternInformation Current {
 		// public SelectionItemPattern.SelectionItemPatternInformation Current {
-		public ISelectionItemPatternInformation Current {
+		public virtual ISelectionItemPatternInformation Current {
 			get {
 				// Misc.ValidateCurrent(this._hPattern);
 				// return new SelectionItemPattern.SelectionItemPatternInformation(this._el, false);
@@ -93,19 +93,19 @@ namespace UIAutomation
 //			this._hPattern = hPattern;
 //			this._cached = cached;
 //		}
-		public void Select()
+		public virtual void Select()
 		{
 			// UiaCoreApi.SelectionItemPattern_Select(this._hPattern);
 			if (null == this._selectionItemPattern) return;
 			this._selectionItemPattern.Select();
 		}
-		public void AddToSelection()
+		public virtual void AddToSelection()
 		{
 			// UiaCoreApi.SelectionItemPattern_AddToSelection(this._hPattern);
 			if (null == this._selectionItemPattern) return;
 			this._selectionItemPattern.AddToSelection();
 		}
-		public void RemoveFromSelection()
+		public virtual void RemoveFromSelection()
 		{
 			// UiaCoreApi.SelectionItemPattern_RemoveFromSelection(this._hPattern);
 			if (null == this._selectionItemPattern) return;
@@ -116,7 +116,7 @@ namespace UIAutomation
 //			return new SelectionItemPattern(el, hPattern, cached);
 //		}
 		
-		public IUiElement ParentElement
+		public virtual IUiElement ParentElement
 		{
 		    get { return this._element; }
 		    set { this._element = value; }

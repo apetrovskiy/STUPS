@@ -16,8 +16,6 @@ namespace UIAutomation
 	{
 		void Expand();
 		void Collapse();
-		// ExpandCollapsePattern.ExpandCollapsePatternInformation Cached { get; }
-		// ExpandCollapsePattern.ExpandCollapsePatternInformation Current { get; }
 		IExpandCollapsePatternInformationAdapter Cached { get; }
 		IExpandCollapsePatternInformationAdapter Current { get; }
 		

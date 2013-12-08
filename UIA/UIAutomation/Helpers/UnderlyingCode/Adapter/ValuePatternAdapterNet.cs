@@ -12,7 +12,6 @@ namespace UIAutomation
     extern alias UIANET;
 	using System;
 	using System.Windows.Automation;
-	//using Ninject;
     
 	/// <summary>
 	/// Description of ValuePatternAdapter.
@@ -22,8 +21,6 @@ namespace UIAutomation
 		private readonly System.Windows.Automation.ValuePattern _valuePattern;
 		private IUiElement _element;
 		
-		//private bool _useCache; // mine
-        
 		public MyValuePatternNet(IUiElement element, ValuePattern valuePattern)
 		{
 			this._valuePattern = valuePattern;

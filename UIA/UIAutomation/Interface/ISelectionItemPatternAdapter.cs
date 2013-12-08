@@ -17,8 +17,6 @@ namespace UIAutomation
 		void Select();
 		void AddToSelection();
 		void RemoveFromSelection();
-		// SelectionItemPattern.SelectionItemPatternInformation Cached { get; }
-		// SelectionItemPattern.SelectionItemPatternInformation Current { get; }
 		ISelectionItemPatternInformation Cached { get; }
 		ISelectionItemPatternInformation Current { get; }
 		

@@ -22,7 +22,6 @@ namespace UIAutomation
     /// </summary>
     public static class ExtensionMethodsCollection
     {
-        // public static IEnumerable GetElementsByWildcard(this UiEltCollection collection, string name, string automationId, string className, string txtValue, bool caseSensitive)
         public static IEnumerable GetElementsByWildcard(this IUiEltCollection collection, string name, string automationId, string className, string txtValue, bool caseSensitive)
         {
             WildcardOptions options;
@@ -63,7 +62,6 @@ namespace UIAutomation
             return queryByBigFour;
         }
         
-        // public static IEnumerable GetElementsByWildcard(this UiEltCollection collection, string name, string automationId, string className, string txtValue)
         public static IEnumerable GetElementsByWildcard(this IUiEltCollection collection, string name, string automationId, string className, string txtValue)
         {
             return GetElementsByWildcard(collection, name, automationId, className, txtValue, false);

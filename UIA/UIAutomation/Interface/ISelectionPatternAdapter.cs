@@ -14,8 +14,6 @@ namespace UIAutomation
 	
 	public interface IMySuperSelectionPattern : IBasePattern
 	{
-		// SelectionPattern.SelectionPatternInformation Cached { get; }
-		// SelectionPattern.SelectionPatternInformation Current { get; }
 		ISelectionPatternInformation Cached { get; }
 		ISelectionPatternInformation Current { get; }
 		

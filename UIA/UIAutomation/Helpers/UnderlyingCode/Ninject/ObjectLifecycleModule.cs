@@ -99,6 +99,26 @@ namespace UIAutomation
                 .InCallScope();
             #endregion IMySuperInvokePattern
             
+            #region IMySuperScrollItemPattern
+            Bind<IMySuperScrollItemPattern>()
+                .ToConstructor(
+                    x =>
+                    new MyScrollItemPatternNet(x.Inject<IUiElement>(), x.Inject<ScrollItemPattern>()))
+                .InCallScope();
+            
+            // Bind<IScrollItemPatternInformation>().To<MyScrollItemPatternNet.ScrollItemPatternInformation>().InCallScope();
+            #endregion IMySuperScrollItemPattern
+            
+            #region IMySuperScrollPattern
+            Bind<IMySuperScrollPattern>()
+                .ToConstructor(
+                    x =>
+                    new MyScrollPatternNet(x.Inject<IUiElement>(), x.Inject<ScrollPattern>()))
+                .InCallScope();
+            
+            Bind<IScrollPatternInformation>().To<MyScrollPatternNet.ScrollPatternInformation>().InCallScope();
+            #endregion IMySuperScrollPattern
+            
             #region IMySuperSelectionItemPattern
             Bind<IMySuperSelectionItemPattern>()
                 .ToConstructor(
@@ -106,7 +126,7 @@ namespace UIAutomation
                     new MySelectionItemPatternNet(x.Inject<IUiElement>(), x.Inject<SelectionItemPattern>()))
                 .InCallScope();
             
-            Bind<ISelectionItemPatternInformation>().To<MySelectionItemPatternNet.SelectionItemPatternInformation>().InCallScope();
+            // Bind<ISelectionItemPatternInformation>().To<MySelectionItemPatternNet.SelectionItemPatternInformation>().InCallScope();
             #endregion IMySuperSelectionItemPattern
             
             #region IMySuperSelectionPattern
@@ -138,7 +158,16 @@ namespace UIAutomation
             
             Bind<IValuePatternInformation>().To<MyValuePatternNet.ValuePatternInformation>().InCallScope();
             #endregion IMySuperValuePattern
-
+            
+            #region IMySuperWindowPattern
+            Bind<IMySuperWindowPattern>()
+                .ToConstructor(
+                    x =>
+                    new MyWindowPatternNet(x.Inject<IUiElement>(), x.Inject<WindowPattern>()))
+                .InCallScope();
+            
+            Bind<IWindowPatternInformation>().To<MyWindowPatternNet.WindowPatternInformation>().InCallScope();
+            #endregion IMySuperWindowPattern
         }
     }
 }

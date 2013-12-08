@@ -654,6 +654,12 @@
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\InvokePatternAdapterNet.cs">
       <Link>Helpers\UnderlyingCode\Adapter\InvokePatternAdapterNet.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\ScrollItemPatternAdapter.cs">
+      <Link>Helpers\UnderlyingCode\Adapter\ScrollItemPatternAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\ScrollPatternAdapter.cs">
+      <Link>Helpers\UnderlyingCode\Adapter\ScrollPatternAdapter.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\SelectionItemPatternAdapterNet.cs">
       <Link>Helpers\UnderlyingCode\Adapter\SelectionItemPatternAdapterNet.cs</Link>
     </Compile>
@@ -665,6 +671,9 @@
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\ValuePatternAdapterNet.cs">
       <Link>Helpers\UnderlyingCode\Adapter\ValuePatternAdapterNet.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\WindowPatternAdapter.cs">
+      <Link>Helpers\UnderlyingCode\Adapter\WindowPatternAdapter.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Commands\Container\UIANewContainerCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\Container\UIANewContainerCommand.cs</Link>
@@ -787,6 +796,15 @@
     <Compile Include="..\UIAutomation\Interface\IInvokePatternAdapter.cs">
       <Link>Interface\IInvokePatternAdapter.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Interface\IScrollItemPatternAdapter.cs">
+      <Link>Interface\IScrollItemPatternAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\IScrollPatternAdapter.cs">
+      <Link>Interface\IScrollPatternAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\IScrollPatternInformationAdapter.cs">
+      <Link>Interface\IScrollPatternInformationAdapter.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Interface\ISelectionItemPatternAdapter.cs">
       <Link>Interface\ISelectionItemPatternAdapter.cs</Link>
     </Compile>
@@ -810,6 +828,12 @@
     </Compile>
     <Compile Include="..\UIAutomation\Interface\IValuePatternInformationAdapter.cs">
       <Link>Interface\IValuePatternInformationAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\IWindowPatternAdapter.cs">
+      <Link>Interface\IWindowPatternAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\IWindowPatternInformationAdapter.cs">
+      <Link>Interface\IWindowPatternInformationAdapter.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>

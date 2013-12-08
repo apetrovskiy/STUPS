@@ -15,7 +15,6 @@ namespace UIAutomation
 	using System.Linq;
 	using System.Collections;
 	using System.Collections.Generic;
-	//using Ninject;
 
 	public class MySelectionPatternNet : IMySuperSelectionPattern
 	{
@@ -36,7 +35,6 @@ namespace UIAutomation
 		
 		public struct SelectionPatternInformation : ISelectionPatternInformation
 		{
-			// private AutomationElement _el;
             private bool _useCache;
 			private IMySuperSelectionPattern _selectionPattern;
 			
@@ -48,25 +46,17 @@ namespace UIAutomation
 			
 			public bool CanSelectMultiple {
 				get {
-			        // return (bool)this._el.GetPatternPropertyValue(SelectionPattern.CanSelectMultipleProperty, this._useCache);
 			        return (bool)this._selectionPattern.ParentElement.GetPatternPropertyValue(SelectionPattern.CanSelectMultipleProperty, this._useCache);
 			    }
 			}
 			public bool IsSelectionRequired {
 				get {
-			        // return (bool)this._el.GetPatternPropertyValue(SelectionPattern.IsSelectionRequiredProperty, this._useCache);
 			        return (bool)this._selectionPattern.ParentElement.GetPatternPropertyValue(SelectionPattern.IsSelectionRequiredProperty, this._useCache);
 			    }
 			}
-//			internal SelectionPatternInformation(AutomationElement el, bool useCache)
-//			{
-//				this._el = el;
-//				this._useCache = useCache;
-//			}
-			// public AutomationElement[] GetSelection()
+            
 			public IUiElement[] GetSelection()
 			{
-				// return (AutomationElement[])this._el.GetPatternPropertyValue(SelectionPattern.SelectionProperty, this._useCache);
 				return AutomationFactory.GetUiEltCollection((AutomationElement[])this._selectionPattern.ParentElement.GetPatternPropertyValue(SelectionPattern.SelectionProperty, this._useCache)).ToArray();
 			}
 		}
@@ -75,35 +65,18 @@ namespace UIAutomation
 		public static readonly AutomationProperty CanSelectMultipleProperty = SelectionPatternIdentifiers.CanSelectMultipleProperty;
 		public static readonly AutomationProperty IsSelectionRequiredProperty = SelectionPatternIdentifiers.IsSelectionRequiredProperty;
 		public static readonly AutomationEvent InvalidatedEvent = SelectionPatternIdentifiers.InvalidatedEvent;
-//		private SafePatternHandle _hPattern;
-//		private bool _cached;
-		// public SelectionPattern.SelectionPatternInformation Cached {
-		// public MySelectionPatternNet.SelectionPatternInformation Cached {
+        
 		public virtual ISelectionPatternInformation Cached {
 			get {
-				// Misc.ValidateCached(this._cached);
-				// return new SelectionPattern.SelectionPatternInformation(this._el, true);
 				return new MySelectionPatternNet.SelectionPatternInformation(this, true);
 			}
 		}
-		// public SelectionPattern.SelectionPatternInformation Current {
-		// public MySelectionPatternNet.SelectionPatternInformation Current {
+		
 		public virtual ISelectionPatternInformation Current {
 			get {
-				// Misc.ValidateCurrent(this._hPattern);
-				// return new SelectionPattern.SelectionPatternInformation(this._el, false);
 				return new MySelectionPatternNet.SelectionPatternInformation(this, false);
 			}
 		}
-//		private SelectionPattern(AutomationElement el, SafePatternHandle hPattern, bool cached) : base(el, hPattern)
-//		{
-//			this._hPattern = hPattern;
-//			this._cached = cached;
-//		}
-//		internal static object Wrap(AutomationElement el, SafePatternHandle hPattern, bool cached)
-//		{
-//			return new SelectionPattern(el, hPattern, cached);
-//		}
 		
 		public virtual IUiElement ParentElement
 		{

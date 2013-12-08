@@ -279,10 +279,13 @@
     <Compile Include="Helpers\UnderlyingCode\Adapter\Enums.cs" />
     <Compile Include="Helpers\UnderlyingCode\Adapter\ExpandCollapsePatternNet.cs" />
     <Compile Include="Helpers\UnderlyingCode\Adapter\InvokePatternAdapterNet.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Adapter\ScrollItemPatternAdapter.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Adapter\ScrollPatternAdapter.cs" />
     <Compile Include="Helpers\UnderlyingCode\Adapter\SelectionItemPatternAdapterNet.cs" />
     <Compile Include="Helpers\UnderlyingCode\Adapter\SelectionPatternAdapterNet.cs" />
     <Compile Include="Helpers\UnderlyingCode\Adapter\TogglePatternAdapterNet.cs" />
     <Compile Include="Helpers\UnderlyingCode\Adapter\ValuePatternAdapterNet.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Adapter\WindowPatternAdapter.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\RDP\UIANewRemoteDesktopProtocolFileCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Wizard\UIAGetWizardCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Wizard\UIAInvokeWizardCommand.cs" />
@@ -359,6 +362,9 @@
     <Compile Include="Interface\IExpandCollapsePatternAdapter.cs" />
     <Compile Include="Interface\IExpandCollapsePatternInformationAdapter.cs" />
     <Compile Include="Interface\IInvokePatternAdapter.cs" />
+    <Compile Include="Interface\IScrollItemPatternAdapter.cs" />
+    <Compile Include="Interface\IScrollPatternAdapter.cs" />
+    <Compile Include="Interface\IScrollPatternInformationAdapter.cs" />
     <Compile Include="Interface\ISelectionItemPatternAdapter.cs" />
     <Compile Include="Interface\ISelectionItemPatternInformationAdapter.cs" />
     <Compile Include="Interface\ISelectionPatternAdapter.cs" />
@@ -367,6 +373,8 @@
     <Compile Include="Interface\ITogglePatternInformationAdapter.cs" />
     <Compile Include="Interface\IValuePatternAdapter.cs" />
     <Compile Include="Interface\IValuePatternInformationAdapter.cs" />
+    <Compile Include="Interface\IWindowPatternAdapter.cs" />
+    <Compile Include="Interface\IWindowPatternInformationAdapter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Provider\UIAProvider.cs" />
     <Compile Include="pull requests\NativeMethods.cs" />

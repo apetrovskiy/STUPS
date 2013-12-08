@@ -23,8 +23,6 @@ namespace UIAutomation
     /// </summary>
     public static class ExtensionMethodsElement
     {
-        // 20131205
-        // internal static IUiElement GetParent(this IUiElement element)
         public static IUiElement GetParent(this IUiElement element)
         {
             IUiElement result = null;
@@ -41,72 +39,6 @@ namespace UIAutomation
             return result;
         }
         
-        #region experiments
-//        public static IUiElement GetFirstChild(this IUiElement element)
-//        {
-//            IUiElement result = null;
-//            
-//            TreeWalker walker =
-//                new TreeWalker(
-//                    System.Windows.Automation.Condition.TrueCondition);
-//            
-//            try {
-//                result = AutomationFactory.GetUiElement(walker.GetFirstChild(element.GetSourceElement()));
-//            }
-//            catch {}
-//            
-//            return result;
-//        }
-//        
-//        public static IUiElement GetLastChild(this IUiElement element)
-//        {
-//            IUiElement result = null;
-//            
-//            TreeWalker walker =
-//                new TreeWalker(
-//                    System.Windows.Automation.Condition.TrueCondition);
-//            
-//            try {
-//                result = AutomationFactory.GetUiElement(walker.GetLastChild(element.GetSourceElement()));
-//            }
-//            catch {}
-//            
-//            return result;
-//        }
-//        
-//        public static IUiElement GetNextSibling(this IUiElement element)
-//        {
-//            IUiElement result = null;
-//            
-//            TreeWalker walker =
-//                new TreeWalker(
-//                    System.Windows.Automation.Condition.TrueCondition);
-//            
-//            try {
-//                result = AutomationFactory.GetUiElement(walker.GetNextSibling(element.GetSourceElement()));
-//            }
-//            catch {}
-//            
-//            return result;
-//        }
-//        
-//        public static IUiElement GetPreviousSibling(this IUiElement element)
-//        {
-//            IUiElement result = null;
-//            
-//            TreeWalker walker =
-//                new TreeWalker(
-//                    System.Windows.Automation.Condition.TrueCondition);
-//            
-//            try {
-//                result = AutomationFactory.GetUiElement(walker.GetPreviousSibling(element.GetSourceElement()));
-//            }
-//            catch {}
-//            
-//            return result;
-//        }
-        #endregion experiments
-        
         #region get an ancestor with a handle
         /// <summary>
         ///  /// </summary>
@@ -118,9 +50,6 @@ namespace UIAutomation
                 new TreeWalker(
                     System.Windows.Automation.Condition.TrueCondition);
             
-            // 20131109
-            //System.Windows.Automation.AutomationElement testparent;
-
             try {
                 
                 IUiElement testparent = AutomationFactory.GetUiElement(walker.GetParent(element.GetSourceElement()));
@@ -154,17 +83,12 @@ namespace UIAutomation
             TreeWalker walker =
                 new TreeWalker(
                     System.Windows.Automation.Condition.TrueCondition);
-            // 20131109
-            //System.Windows.Automation.AutomationElement testparent;
-            // 20131109
-            //System.Collections.Generic.List<AutomationElement> ancestors =
-            //    new System.Collections.Generic.List<AutomationElement>();
+            
             List<IUiElement> ancestors =
                 new List<IUiElement>();
             
             try {
                 
-                // 20131109
                 IUiElement testParent = AutomationFactory.GetUiElement(walker.GetParent(element.GetSourceElement()));
                     
                 if (scope == TreeScope.Parent || scope == TreeScope.Ancestors) {
@@ -198,80 +122,18 @@ namespace UIAutomation
         }
         #endregion get the parent or an ancestor
         
-        // 20131204
-        #region wrong experiment
-//        internal static void Highlight(this IUiElement element)
-//        {
-//            try { if (_highlighter != null) { _highlighter.Dispose(); } } catch {}
-//            try { if (_highlighterParent != null) { _highlighterParent.Dispose(); } } catch {}
-//            //try { if (highlighterFirstChild != null) { highlighterFirstChild.Dispose(); } } catch {}
-//            
-//            if ((element as IUiElement) != null) {
-//                
-//                _highlighter =
-//                    new Highlighter(
-//                        element.Current.BoundingRectangle.Height,
-//                        element.Current.BoundingRectangle.Width,
-//                        element.Current.BoundingRectangle.X,
-//                        element.Current.BoundingRectangle.Y,
-//                        element.Current.NativeWindowHandle,
-//                        Highlighters.Element,
-//                        Preferences.HighlighterColor);
-//            }
-//            if (!Preferences.HighlightParent) return;
-//            
-//            IUiElement parent =
-//                // 20131204
-//                // GetParent(element);
-//                element.GetParent();
-//                
-//            _highlighterParent =
-//                new Highlighter(
-//                    parent.Current.BoundingRectangle.Height,
-//                    parent.Current.BoundingRectangle.Width,
-//                    parent.Current.BoundingRectangle.X,
-//                    parent.Current.BoundingRectangle.Y,
-//                    parent.Current.NativeWindowHandle,
-//                    Highlighters.Parent,
-//                    Preferences.HighlighterColorParent);
-//        }
-//        
-//        internal static void HighlightCheckedControl(this IUiElement element)
-//        {
-//            try { if (_highlighterCheckedControl != null) { _highlighterCheckedControl.Dispose(); } } catch {}
-//            
-//            if ((element as IUiElement) != null) {
-//
-//                _highlighterCheckedControl =
-//                    new Highlighter(
-//                        element.Current.BoundingRectangle.Height,
-//                        element.Current.BoundingRectangle.Width,
-//                        element.Current.BoundingRectangle.X,
-//                        element.Current.BoundingRectangle.Y,
-//                        element.Current.NativeWindowHandle,
-//                        Highlighters.Element,
-//                        Preferences.HighlighterColorCheckedControl);
-//            }
-//        }
-        #endregion wrong experiment
-        
         #region Collect ancestors
         /// <summary>
         ///
         /// </summary>
         /// <param name="cmdlet"></param>
         /// <param name="element"></param>
-        // private static void collectAncestors(TranscriptCmdletBase cmdlet, IUiElement element)
-        // 20131205
-        // public static void CollectAncestors(this IUiElement element, TranscriptCmdletBase cmdlet, ref string errorMessage, ref bool errorOccured)
         internal static void CollectAncestors(this IUiElement element, TranscriptCmdletBase cmdlet, ref string errorMessage, ref bool errorOccured)
         {
             TreeWalker walker =
                 new TreeWalker(
                     System.Windows.Automation.Condition.TrueCondition);
-            // 20131109
-            //System.Windows.Automation.AutomationElement testparent;
-
+            
             try
             {
                 // commented out 201206210
@@ -368,9 +230,6 @@ namespace UIAutomation
         /// </summary>
         /// <param name="element">AutomationElement</param>
         /// <returns>string</returns>
-        // 20131109
-        //private static string getElementControlTypeString(AutomationElement element)
-        // private static string GetElementControlTypeString(this IUiElement element)
         internal static string GetElementControlTypeString(this IUiElement element)
         {
             string elementControlType = String.Empty;
@@ -398,20 +257,10 @@ namespace UIAutomation
         /// <param name="pattern">an object of the ValuePattern type</param>
         /// <param name="hasName">an object has Name</param>
         /// <returns></returns>
-        // 20131109
-        //private static string getElementPropertyString(TranscriptCmdletBase cmdlet, AutomationElement element, string propertyName, ValuePattern pattern, ref bool hasName)
-        // private static string GetElementPropertyString(
         internal static string GetElementPropertyString(
             this IUiElement element,
             PSCmdletBase cmdlet,
-            /*
-            TranscriptCmdletBase cmdlet,
-            */
-            // IUiElement element,
             string propertyName,
-            // 20131124
-            // ValuePattern -> IMySuperValuePattern
-            //ValuePattern pattern,
             IMySuperValuePattern pattern,
             ref bool hasName)
         {
@@ -499,32 +348,9 @@ namespace UIAutomation
             }
         }
         
-//        internal static IUiElement GetFirstChild(this IUiElement element)
-//        {
-//            IUiElement result = null;
-//            
-//            TreeWalker walker =
-//                new TreeWalker(
-//                    System.Windows.Automation.Condition.TrueCondition);
-//            
-//            try {
-//                // 20131204
-//                // result = AutomationFactory.GetUiElement(walker.GetFirstChild(element.GetSourceElement()));
-//                result = AutomationFactory.GetUiElement(walker.GetFirstChild(element.GetSourceElement()));
-//            }
-//            catch {}
-//            
-//            return result;
-//        }
-
         internal static List<IUiElement> GetControlByNameViaWin32(
-            // 20131204
             this IUiElement containerElement,
             GetControlCmdletBase cmdlet,
-            // 20131204
-            // IUiElement containerElement,
-            // 20131129
-            // string controlTitle)
             string controlTitle,
             string controlValue)
         {
@@ -536,7 +362,6 @@ namespace UIAutomation
             cmdlet.WriteVerbose(cmdlet, "checking the Name parameter");
             
             controlTitle = string.IsNullOrEmpty(controlTitle) ? "*" : controlTitle;
-            // 20131129
             controlValue = string.IsNullOrEmpty(controlValue) ? "*" : controlValue;
             
             try {
@@ -549,8 +374,6 @@ namespace UIAutomation
                 }
                 
                 List<IntPtr> handlesCollection =
-                    // 20131204
-                    // GetControlByNameViaWin32Recursively(cmdlet, containerHandle, controlTitle, 1);
                     UiaHelper.GetControlByNameViaWin32Recursively(cmdlet, containerHandle, controlTitle, 1);
                 
                 const WildcardOptions options =
@@ -559,7 +382,6 @@ namespace UIAutomation
                 
                 WildcardPattern wildcardName =
                     new WildcardPattern(controlTitle, options);
-                // 20131129
                 WildcardPattern wildcardValue =
                     new WildcardPattern(controlValue, options);
                 
@@ -579,22 +401,12 @@ namespace UIAutomation
                         cmdlet.WriteVerbose(cmdlet, controlTitle);
                         cmdlet.WriteVerbose(cmdlet, tempElement.Current.Name);
                         
-                        // 20131204
-                        // if (IsMatchWildcardPattern(cmdlet, resultCollection, tempElement, wildcardName, tempElement.Current.Name)) continue;
                         if (tempElement.IsMatchWildcardPattern(cmdlet, resultCollection, wildcardName, tempElement.Current.Name)) continue;
-                        // 20131129
-                        // 20131204
-                        // if (IsMatchWildcardPattern(cmdlet, resultCollection, tempElement, wildcardName, tempElement.Current.AutomationId)) continue;
-                        // if (IsMatchWildcardPattern(cmdlet, resultCollection, tempElement, wildcardName, tempElement.Current.ClassName)) continue;
                         if (tempElement.IsMatchWildcardPattern(cmdlet, resultCollection, wildcardName, tempElement.Current.AutomationId)) continue;
                         if (tempElement.IsMatchWildcardPattern(cmdlet, resultCollection, wildcardName, tempElement.Current.ClassName)) continue;
                         try {
                             string elementValue =
                                 (tempElement.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern).Current.Value;
-                            // 20131129
-                            // 20131204
-                            // if (IsMatchWildcardPattern(cmdlet, resultCollection, tempElement, wildcardName, elementValue)) continue;
-                            // if (IsMatchWildcardPattern(cmdlet, resultCollection, tempElement, wildcardValue, elementValue)) continue;
                             if (tempElement.IsMatchWildcardPattern(cmdlet, resultCollection, wildcardName, elementValue)) continue;
                             if (tempElement.IsMatchWildcardPattern(cmdlet, resultCollection, wildcardValue, elementValue)) continue;
                         }
@@ -613,15 +425,10 @@ namespace UIAutomation
             }
         }
         
-        // 20131204
-        // private static bool IsMatchWildcardPattern(
         internal static bool IsMatchWildcardPattern(
-            // 20131204
             this IUiElement elementInput,
             PSCmdletBase cmdlet,
             IList resultCollection,
-            // 20131204
-            // IUiElement elementInput,
             WildcardPattern wcPattern,
             string dataToCheck)
         {
@@ -636,8 +443,6 @@ namespace UIAutomation
             result = true;
             cmdlet.WriteVerbose(cmdlet, "name '" + dataToCheck + "' matches!");
             resultCollection.Add(elementInput);
-            // 20131129
-            // result = true;
             
             return result;
         }
@@ -645,7 +450,6 @@ namespace UIAutomation
         #region Patterns
         public static IMySuperExpandCollapsePattern GetExpandCollapsePattern(this IUiElement element)
         {
-            // IMySuperExpandCollapsePattern result = null;
             IMySuperExpandCollapsePattern resultPattern = AutomationFactory.GetMySuperExpandCollapsePattern(element, null);
             object pattern = null;
             
@@ -659,7 +463,6 @@ namespace UIAutomation
         
         public static IMySuperInvokePattern GetInvokePattern(this IUiElement element)
         {
-            // IMySuperInvokePattern result = null;
             IMySuperInvokePattern resultPattern = AutomationFactory.GetMySuperInvokePattern(element, null);
             object pattern = null;
             
@@ -701,7 +504,6 @@ namespace UIAutomation
         
         public static IMySuperTogglePattern GetTogglePattern(this IUiElement element)
         {
-            // IMySuperTogglePattern result = null;
             IMySuperTogglePattern resultPattern = AutomationFactory.GetMySuperTogglePattern(element, null);
             object pattern = null;
             
@@ -715,7 +517,6 @@ namespace UIAutomation
         
         public static IMySuperValuePattern GetValuePattern(this IUiElement element)
         {
-            // IMySuperValuePattern result = null;
             IMySuperValuePattern resultPattern = AutomationFactory.GetMySuperValuePattern(element, null);
             object pattern = null;
             

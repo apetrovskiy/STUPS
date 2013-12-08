@@ -26,8 +26,6 @@ namespace UIAutomation
 		private AutomationElement _elementHolderNet;
 		// //private AutomationElement _elementHolderCom;
 		private readonly IUiElement _elementHolderAdapter;
-		// 20131206
-		// private static InnerElementTypes _innerElementType = InnerElementTypes.Empty;
 		private static InnerElementTypes _innerElementType = InnerElementTypes.AutomationElementNet;
         
 		[Inject]
@@ -103,33 +101,12 @@ namespace UIAutomation
 			switch (_innerElementType) {
 			    case InnerElementTypes.AutomationElementNet:
 			        return Preferences.FromCache ? _elementHolderNet.GetCachedPropertyValue(property) : _elementHolderNet.GetCurrentPropertyValue(property);
-                    /*
-                    if (Preferences.FromCache) {
-                        return _elementHolderNet.GetCachedPropertyValue(property);
-                    } else {
-                        return _elementHolderNet.GetCurrentPropertyValue(property);
-                    }
-                    */
                 //			    case InnerElementTypes.AutomationElementCom:
 //			        //
 			    case InnerElementTypes.UiElement:
 			        return Preferences.FromCache ? _elementHolderAdapter.GetCachedPropertyValue(property) : _elementHolderAdapter.GetCurrentPropertyValue(property);
-                    /*
-                    if (Preferences.FromCache) {
-                        return _elementHolderAdapter.GetCachedPropertyValue(property);
-                    } else {
-                        return _elementHolderAdapter.GetCurrentPropertyValue(property);
-                    }
-                    */
                 default:
 			        return Preferences.FromCache ? _elementHolderNet.GetCachedPropertyValue(property) : _elementHolderNet.GetCurrentPropertyValue(property);
-                    /*
-                    if (Preferences.FromCache) {
-                        return _elementHolderNet.GetCachedPropertyValue(property);
-                    } else {
-                        return _elementHolderNet.GetCurrentPropertyValue(property);
-                    }
-                    */
             }
 		}
 
@@ -138,65 +115,20 @@ namespace UIAutomation
 			switch (_innerElementType) {
 			    case InnerElementTypes.AutomationElementNet:
 			        return Preferences.FromCache ? _elementHolderNet.GetCachedPropertyValue(property, ignoreDefaultValue) : _elementHolderNet.GetCurrentPropertyValue(property, ignoreDefaultValue);
-                    /*
-                    if (Preferences.FromCache) {
-                        return _elementHolderNet.GetCachedPropertyValue(property, ignoreDefaultValue);
-                    } else {
-                        return _elementHolderNet.GetCurrentPropertyValue(property, ignoreDefaultValue);
-                    }
-                    */
                 //			    case InnerElementTypes.AutomationElementCom:
 //			        //
 			    case InnerElementTypes.UiElement:
 			        return Preferences.FromCache ? _elementHolderAdapter.GetCachedPropertyValue(property, ignoreDefaultValue) : _elementHolderAdapter.GetCurrentPropertyValue(property, ignoreDefaultValue);
-
-                    /*
-                    if (Preferences.FromCache) {
-                        return _elementHolderAdapter.GetCachedPropertyValue(property, ignoreDefaultValue);
-                    } else {
-                        return _elementHolderAdapter.GetCurrentPropertyValue(property, ignoreDefaultValue);
-                    }
-                    */
                 default:
 			        return Preferences.FromCache ? _elementHolderNet.GetCachedPropertyValue(property, ignoreDefaultValue) : _elementHolderNet.GetCurrentPropertyValue(property, ignoreDefaultValue);
-                    /*
-                    if (Preferences.FromCache) {
-                        return _elementHolderNet.GetCachedPropertyValue(property, ignoreDefaultValue);
-                    } else {
-                        return _elementHolderNet.GetCurrentPropertyValue(property, ignoreDefaultValue);
-                    }
-                    */
             }
 		}
 
 		public virtual object GetCurrentPattern(AutomationPattern pattern)
 		{
-		    //int patternId = pattern.Id;
 			switch (_innerElementType) {
 			    case InnerElementTypes.AutomationElementNet:
 			        if (Preferences.FromCache) {
-                        // 20131122
-                        // ValuePattern -> IMySuperValuePattern
-                        // 20131205
-			            // if (pattern.Id != ValuePattern.Pattern.Id) return _elementHolderNet.GetCachedPattern(pattern);
-//			            switch (pattern.ProgrammaticName) {
-//			                case System.Windows.Automation.ValuePattern.Pattern.ProgrammaticName:
-//        			            IMySuperValuePattern valuePattern =
-//        			                AutomationFactory.GetMySuperValuePattern(
-//        			                    this,
-//        			                    _elementHolderNet.GetCachedPattern(pattern) as ValuePattern);//,
-//        			            return valuePattern;
-//			                    //break;
-//			                case InvokePattern.Pattern.ProgrammaticName:
-//			                    IMySuperInvokePattern invokePattern =
-//			                        AutomationFactory.GetMySuperInvokePattern(
-//			                            this,
-//			                            _elementHolderNet.GetCachedPattern(pattern) as InvokePattern);
-//			                    return invokePattern;
-//			                default:
-//			                    return _elementHolderNet.GetCachedPattern(pattern);
-//			                	//break;
-//			            }
                         if (pattern.Id == ExpandCollapsePattern.Pattern.Id) {
                             IMySuperExpandCollapsePattern expandCollapsePattern =
                                 AutomationFactory.GetMySuperExpandCollapsePattern(
@@ -209,6 +141,18 @@ namespace UIAutomation
 		                            this,
 		                            _elementHolderNet.GetCachedPattern(pattern) as InvokePattern);
 		                    return invokePattern;
+		                } else if (pattern.Id == ScrollItemPattern.Pattern.Id) {
+		                    IMySuperScrollItemPattern scrollItemPattern =
+		                        AutomationFactory.GetMySuperScrollItemPattern(
+		                            this,
+		                            _elementHolderNet.GetCachedPattern(pattern) as ScrollItemPattern);
+		                    return scrollItemPattern;
+		                } else if (pattern.Id == ScrollPattern.Pattern.Id) {
+		                    IMySuperScrollPattern scrollPattern =
+		                        AutomationFactory.GetMySuperScrollPattern(
+		                            this,
+		                            _elementHolderNet.GetCachedPattern(pattern) as ScrollPattern);
+		                    return scrollPattern;
                         } else if (pattern.Id == TogglePattern.Pattern.Id) {
                             IMySuperTogglePattern togglePattern =
                                 AutomationFactory.GetMySuperTogglePattern(
@@ -221,60 +165,16 @@ namespace UIAutomation
     			                    this,
     			                    _elementHolderNet.GetCachedPattern(pattern) as ValuePattern);//,
     			            return valuePattern;
+		                } else if (pattern.Id == WindowPattern.Pattern.Id) {
+		                    IMySuperWindowPattern windowPattern =
+		                        AutomationFactory.GetMySuperWindowPattern(
+		                            this,
+		                            _elementHolderNet.GetCachedPattern(pattern) as WindowPattern);//,
+		                    return windowPattern;
 			            } else {
 			                return _elementHolderNet.GetCachedPattern(pattern);
 			            }
-			            // if (pattern.Id != ValuePattern.Pattern.Id && pattern.Id != InvokePattern.Pattern.Id) return _elementHolderNet.GetCachedPattern(pattern);
-			            //switch (pattern.Id) {
-			            //    case (ValuePattern.Pattern.Id):
-			            //ValuePattern valuePattern =
-//			            IMySuperValuePattern valuePattern =
-//			                AutomationFactory.GetMySuperValuePattern(
-//			                    this,
-//			                    _elementHolderNet.GetCachedPattern(pattern) as ValuePattern);//,
-//			            //Preferences.FromCache);
-//			            return valuePattern;
-			            //    default:
-			            //        
-			            //    	break;
-			            /*
-                        if (pattern.Id == ValuePattern.Pattern.Id) {
-                        //switch (pattern.Id) {
-                        //    case (ValuePattern.Pattern.Id):
-                                //ValuePattern valuePattern =
-                                IMySuperValuePattern valuePattern =
-                                    ObjectsFactory.GetMySuperValuePattern(
-                                        this,
-                                        _elementHolderNet.GetCachedPattern(pattern) as ValuePattern);//,
-                                        //Preferences.FromCache);
-                                return valuePattern;
-                        //    default:
-                        //        
-                        //    	break;
-                        }
-                        */
 			        } else {
-                        // 20131122
-                        // ValuePattern -> IMySuperValuePattern
-                        // 20131205
-			            // if (pattern.Id != ValuePattern.Pattern.Id) return _elementHolderNet.GetCurrentPattern(pattern);
-//			            switch (patternId) {
-//			                case (int)ValuePattern.Pattern.Id:
-//			                    IMySuperValuePattern valuePattern =
-//			                        AutomationFactory.GetMySuperValuePattern(
-//			                            this,
-//			                            _elementHolderNet.GetCurrentPattern(pattern) as ValuePattern);
-//			                    return valuePattern;
-//			                case (int)InvokePattern.Pattern.Id:
-//			                    IMySuperInvokePattern invokePattern =
-//			                        AutomationFactory.GetMySuperInvokePattern(
-//			                            this,
-//			                            _elementHolderNet.GetCurrentPattern(pattern) as InvokePattern);
-//			                    return invokePattern;
-//			                default:
-//			                    
-//			                	break;
-//			            }
 			            if (pattern.Id == ExpandCollapsePattern.Pattern.Id) {
 			                IMySuperExpandCollapsePattern expandCollapsePattern =
 			                    AutomationFactory.GetMySuperExpandCollapsePattern(
@@ -287,6 +187,30 @@ namespace UIAutomation
 		                            this,
 		                            _elementHolderNet.GetCurrentPattern(pattern) as InvokePattern);
 		                    return invokePattern;
+		                } else if (pattern.Id == ScrollItemPattern.Pattern.Id) {
+		                    IMySuperScrollItemPattern scrollItemPattern =
+		                        AutomationFactory.GetMySuperScrollItemPattern(
+		                            this,
+		                            _elementHolderNet.GetCurrentPattern(pattern) as ScrollItemPattern);
+		                    return scrollItemPattern;
+		                } else if (pattern.Id == ScrollPattern.Pattern.Id) {
+		                    IMySuperScrollPattern scrollPattern =
+		                        AutomationFactory.GetMySuperScrollPattern(
+		                            this,
+		                            _elementHolderNet.GetCurrentPattern(pattern) as ScrollPattern);
+		                    return scrollPattern;
+		                } else if (pattern.Id == SelectionItemPattern.Pattern.Id) {
+		                    IMySuperSelectionItemPattern selectionItemPattern =
+		                        AutomationFactory.GetMySuperSelectionItemPattern(
+		                            this,
+		                            _elementHolderNet.GetCurrentPattern(pattern) as SelectionItemPattern);
+		                    return selectionItemPattern;
+		                } else if (pattern.Id == SelectionPattern.Pattern.Id) {
+		                    IMySuperSelectionPattern selectionPattern =
+		                        AutomationFactory.GetMySuperSelectionPattern(
+		                            this,
+		                            _elementHolderNet.GetCurrentPattern(pattern) as SelectionPattern);
+		                    return selectionPattern;
 			            } else if (pattern.Id == TogglePattern.Pattern.Id) {
 			                IMySuperTogglePattern togglePattern =
 			                    AutomationFactory.GetMySuperTogglePattern(
@@ -299,58 +223,22 @@ namespace UIAutomation
 		                            this,
 		                            _elementHolderNet.GetCurrentPattern(pattern) as ValuePattern);
 		                    return valuePattern;
+		                } else if (pattern.Id == WindowPattern.Pattern.Id) {
+		                    IMySuperWindowPattern windowPattern =
+		                        AutomationFactory.GetMySuperWindowPattern(
+		                            this,
+		                            _elementHolderNet.GetCurrentPattern(pattern) as WindowPattern);
+		                    return windowPattern;
 			            }  else {
 			                return this._elementHolderNet.GetCurrentPattern(pattern);
 			            }
-			            //switch (pattern.Id) {
-			            //    case ValuePattern.Pattern.Id:
-			            //ValuePattern valuePattern =
-//			            IMySuperValuePattern valuePattern =
-//			                AutomationFactory.GetMySuperValuePattern(
-//			                    this,
-//			                    _elementHolderNet.GetCurrentPattern(pattern) as ValuePattern);//,
-//			            //Preferences.FromCache);
-//			            return valuePattern;
-			            //    default:
-			            //        
-			            //    	break;
-			            /*
-                        if (pattern.Id == ValuePattern.Pattern.Id) {
-                        //switch (pattern.Id) {
-                        //    case ValuePattern.Pattern.Id:
-                                //ValuePattern valuePattern =
-                                IMySuperValuePattern valuePattern =
-                                    ObjectsFactory.GetMySuperValuePattern(
-                                        this,
-                                        _elementHolderNet.GetCurrentPattern(pattern) as ValuePattern);//,
-                                        //Preferences.FromCache);
-                                return valuePattern;
-                        //    default:
-                        //        
-                        //    	break;
-                        }
-                        */
 			        }
 //			    case InnerElementTypes.AutomationElementCom:
 //			        //
 			    case InnerElementTypes.UiElement:
 			        return Preferences.FromCache ? _elementHolderAdapter.GetCachedPattern(pattern) : _elementHolderAdapter.GetCurrentPattern(pattern);
-                    /*
-                    if (Preferences.FromCache) {
-                        return _elementHolderAdapter.GetCachedPattern(pattern);
-                    } else {
-                        return _elementHolderAdapter.GetCurrentPattern(pattern);
-                    }
-                    */
                 default:
 			        return Preferences.FromCache ? _elementHolderNet.GetCachedPattern(pattern) : _elementHolderNet.GetCurrentPattern(pattern);
-                    /*
-                    if (Preferences.FromCache) {
-                        return _elementHolderNet.GetCachedPattern(pattern);
-                    } else {
-                        return _elementHolderNet.GetCurrentPattern(pattern);
-                    }
-                    */
             }
 		}
 
@@ -359,33 +247,12 @@ namespace UIAutomation
 			switch (_innerElementType) {
 			    case InnerElementTypes.AutomationElementNet:
 			        return Preferences.FromCache ? _elementHolderNet.TryGetCachedPattern(pattern, out patternObject) : _elementHolderNet.TryGetCurrentPattern(pattern, out patternObject);
-                    /*
-                    if (Preferences.FromCache) {
-                        return _elementHolderNet.TryGetCachedPattern(pattern, out patternObject);
-                    } else {
-                        return _elementHolderNet.TryGetCurrentPattern(pattern, out patternObject);
-                    }
-                    */
                 //			    case InnerElementTypes.AutomationElementCom:
 //			        //
 			    case InnerElementTypes.UiElement:
 			        return Preferences.FromCache ? _elementHolderAdapter.TryGetCachedPattern(pattern, out patternObject) : _elementHolderAdapter.TryGetCurrentPattern(pattern, out patternObject);
-                    /*
-                    if (Preferences.FromCache) {
-                        return _elementHolderAdapter.TryGetCachedPattern(pattern, out patternObject);
-                    } else {
-                        return _elementHolderAdapter.TryGetCurrentPattern(pattern, out patternObject);
-                    }
-                    */
                 default:
 			        return Preferences.FromCache ? _elementHolderNet.TryGetCachedPattern(pattern, out patternObject) : _elementHolderNet.TryGetCurrentPattern(pattern, out patternObject);
-                    /*
-                    if (Preferences.FromCache) {
-                        return _elementHolderNet.TryGetCachedPattern(pattern, out patternObject);
-                    } else {
-                        return _elementHolderNet.TryGetCurrentPattern(pattern, out patternObject);
-                    }
-                    */
             }
 		}
 
@@ -587,33 +454,12 @@ namespace UIAutomation
 		        switch (_innerElementType) {
 		            case InnerElementTypes.AutomationElementNet:
 		                return AutomationFactory.GetUiElementInformation(Preferences.FromCache ? _elementHolderNet.Cached : _elementHolderNet.Current);
-		                /*
-                        if (Preferences.FromCache) {
-                            return ObjectsFactory.GetUiElementInformation(_elementHolderNet.Cached);
-                        } else {
-                            return ObjectsFactory.GetUiElementInformation(_elementHolderNet.Current);
-                        }
-                        */
                     //		            case InnerElementTypes.AutomationElementCom:
 //		                //
 		            case InnerElementTypes.UiElement:
 		                return Preferences.FromCache ? _elementHolderAdapter.Cached : _elementHolderAdapter.Current;
-                        /*
-                        if (Preferences.FromCache) {
-                            return _elementHolderAdapter.Cached;
-                        } else {
-                            return _elementHolderAdapter.Current;
-                        }
-                        */
                     default:
 		                return AutomationFactory.GetUiElementInformation(Preferences.FromCache ? _elementHolderNet.Cached : _elementHolderNet.Current);
-		                /*
-                        if (Preferences.FromCache) {
-                            return ObjectsFactory.GetUiElementInformation(_elementHolderNet.Cached);
-                        } else {
-                            return ObjectsFactory.GetUiElementInformation(_elementHolderNet.Current);
-                        }
-                        */
                 }
 		    }
 		}
@@ -794,21 +640,6 @@ namespace UIAutomation
 		
 		public virtual void Dispose()
 		{
-//		    if (InnerElementTypes.AutomationElementNet == innerElementType) { // &&
-//		        //null != this.elementHolderNet) {
-//		        this.elementHolderNet = null;
-//		    }
-//		    // this.elementHolderCom = null;
-//		    if (InnerElementTypes.UiElement == innerElementType) { //&&
-//		        //null != this.elementHolderAdapter) {
-//		        this.elementHolderAdapter = null;
-//		    }
-//		    this.Cached = null;
-//		    this.CachedChildren = null;
-//		    this.CachedParent = null;
-//		    this.Current = null;
-		    
-		    // 20131120
 		    GC.SuppressFinalize(this);
 		}
 		
@@ -817,7 +648,6 @@ namespace UIAutomation
         {
         	if (useCache)
         	{
-        		//return this.GetCachedPropertyValue(property);
         		switch (_innerElementType) {
         		    case InnerElementTypes.AutomationElementNet:
         		        return _elementHolderNet.GetCachedPropertyValue(property);
@@ -829,7 +659,7 @@ namespace UIAutomation
         		        return _elementHolderNet.GetCachedPropertyValue(property);
         		}
         	}
-        	//return this.GetCurrentPropertyValue(property);
+        	
         	switch (_innerElementType) {
         	    case InnerElementTypes.AutomationElementNet:
         	        return _elementHolderNet.GetCurrentPropertyValue(property);
@@ -842,31 +672,6 @@ namespace UIAutomation
         	}
         }
         
-//        public static UiElement GetParent()
-//        {
-//            return GetParent();
-//        }
-//        
-//        public static IUiElement GetFirstChild()
-//        {
-//            return GetFirstChild();
-//        }
-//        
-//        public static IUiElement GetLastChild()
-//        {
-//            return GetLastChild();
-//        }
-//        
-//        public static UiElement GetNextSibling()
-//        {
-//            return GetNextSibling();
-//        }
-//        
-//        public static IUiElement GetPreviousSibling()
-//        {
-//            return GetPreviousSibling();
-//        }
-
         #region NavigateTo
         public virtual IUiElement NavigateToParent()
         {
@@ -952,13 +757,6 @@ namespace UIAutomation
         #region Patterns
         public virtual IUiElement Click()
         {
-            // IMySuperInvokePattern invokePattern =
-            //    this.GetInvokePattern().Invoke();
-            
-//            try {
-//                invokePattern.Invoke();
-//            }
-//            catch {}
             this.GetInvokePattern().Invoke();
             return this;
         }
@@ -1029,13 +827,6 @@ namespace UIAutomation
         
         public virtual IUiElement Toggle()
         {
-            // IMySuperTogglePattern togglePattern =
-            //     this.GetTogglePattern().Toggle();
-            
-//            try {
-//                togglePattern.Toggle();
-//            }
-//            catch {}
             this.GetTogglePattern().Toggle();
             return this;
         }
@@ -1078,8 +869,6 @@ namespace UIAutomation
             get { return this.GetValuePattern().Current.Value; }
             set { this.GetValuePattern().SetValue(value); }
         }
-        
-        
         #endregion Patterns
         
         #region Highlighter

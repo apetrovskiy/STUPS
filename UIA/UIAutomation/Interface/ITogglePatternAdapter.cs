@@ -15,8 +15,6 @@ namespace UIAutomation
 	public interface IMySuperTogglePattern : IBasePattern
 	{
 		void Toggle();
-		// TogglePattern.TogglePatternInformation Cached { get; }
-		// TogglePattern.TogglePatternInformation Current { get; }
 		ITogglePatternInformation Cached { get; }
 		ITogglePatternInformation Current { get; }
 		

@@ -265,6 +265,44 @@ namespace UIAutomation
 		}
 		#endregion IMySuperInvokePattern
 		
+		#region IMySuperScrollItemPattern
+		internal static IMySuperScrollItemPattern GetMySuperScrollItemPattern(IUiElement element, ScrollItemPattern scrollItemPattern)
+		{
+		    try {
+                var argElement = new ConstructorArgument("element", element);
+		        var argPattern = new ConstructorArgument("scrollItemPattern", scrollItemPattern);
+		        IMySuperScrollItemPattern adapterPattern = Kernel.Get<IMySuperScrollItemPattern>(new[] { argElement, argPattern });
+	       		return adapterPattern;
+			}
+			catch (Exception eFailedToIssueIMySuperScrollItemPattern) {
+			    // TODO
+			    // write error to error object!!!
+//			    Console.WriteLine("IMySuperScrollItemPattern");
+//			    Console.WriteLine(eFailedToIssueIMySuperScrollItemPattern.Message);
+			    return null;
+			}
+		}
+		#endregion IMySuperScrollPattern
+		
+		#region IMySuperScrollItemPattern
+		internal static IMySuperScrollPattern GetMySuperScrollPattern(IUiElement element, ScrollPattern scrollPattern)
+		{
+		    try {
+                var argElement = new ConstructorArgument("element", element);
+		        var argPattern = new ConstructorArgument("scrollPattern", scrollPattern);
+		        IMySuperScrollPattern adapterPattern = Kernel.Get<IMySuperScrollPattern>(new[] { argElement, argPattern });
+	       		return adapterPattern;
+			}
+			catch (Exception eFailedToIssueIMySuperScrollPattern) {
+			    // TODO
+			    // write error to error object!!!
+//			    Console.WriteLine("IMySuperScrollPattern");
+//			    Console.WriteLine(eFailedToIssueIMySuperScrollPattern.Message);
+			    return null;
+			}
+		}
+		#endregion IMySuperScrollPattern
+		
 		#region IMySuperSelectionItemPattern
 		internal static IMySuperSelectionItemPattern GetMySuperSelectionItemPattern(IUiElement element, SelectionItemPattern selectionItemPattern)
 		{
@@ -339,6 +377,25 @@ namespace UIAutomation
 			    return null;
 			}
 		}
-		#endregion IMySuperInvokePattern
+		#endregion IMySuperValuePattern
+		
+		#region IMySuperWindowPattern
+		internal static IMySuperWindowPattern GetMySuperWindowPattern(IUiElement element, WindowPattern windowPattern)
+		{
+			try {
+                var argElement = new ConstructorArgument("element", element);
+		        var argPattern = new ConstructorArgument("windowPattern", windowPattern);
+		        IMySuperWindowPattern adapterPattern = Kernel.Get<IMySuperWindowPattern>(new[] { argElement, argPattern });
+	       		return adapterPattern;
+			}
+			catch (Exception eFailedToIssueWindowPattern) {
+			    // TODO
+			    // write error to error object!!!
+//			    Console.WriteLine("WindowPattern");
+//			    Console.WriteLine(eFailedToIssueWindowPattern.Message);
+			    return null;
+			}
+		}
+		#endregion IMySuperWindowPattern
     }
 }

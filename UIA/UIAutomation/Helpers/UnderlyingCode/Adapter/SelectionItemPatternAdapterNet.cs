@@ -12,7 +12,6 @@ namespace UIAutomation
 	extern alias UIANET;
 	using System;
 	using System.Windows.Automation;
-	//using Ninject;
 
 	public class MySelectionItemPatternNet : IMySuperSelectionItemPattern
 	{
@@ -33,7 +32,6 @@ namespace UIAutomation
 		
 		public struct SelectionItemPatternInformation : ISelectionItemPatternInformation
 		{
-			// private AutomationElement _el;
 			private bool _useCache;
 			private IMySuperSelectionItemPattern _selectionItemPattern;
 			
@@ -45,22 +43,15 @@ namespace UIAutomation
 			
 			public bool IsSelected {
 				get {
-			        // return (bool)this._el.GetPatternPropertyValue(SelectionItemPattern.IsSelectedProperty, this._useCache);
 			        return (bool)this._selectionItemPattern.ParentElement.GetPatternPropertyValue(SelectionItemPattern.IsSelectedProperty, this._useCache);
 			    }
 			}
-			// public AutomationElement SelectionContainer {
+			
 			public IUiElement SelectionContainer {
 				get {
-			        // return (AutomationElement)this._el.GetPatternPropertyValue(SelectionItemPattern.SelectionContainerProperty, this._useCache);
 			        return (IUiElement)this._selectionItemPattern.ParentElement.GetPatternPropertyValue(SelectionItemPattern.SelectionContainerProperty, this._useCache);
 			    }
 			}
-//			internal SelectionItemPatternInformation(AutomationElement el, bool useCache)
-//			{
-//				this._el = el;
-//				this._useCache = useCache;
-//			}
 		}
 		public static readonly AutomationPattern Pattern = SelectionItemPatternIdentifiers.Pattern;
 		public static readonly AutomationProperty IsSelectedProperty = SelectionItemPatternIdentifiers.IsSelectedProperty;
@@ -68,53 +59,34 @@ namespace UIAutomation
 		public static readonly AutomationEvent ElementAddedToSelectionEvent = SelectionItemPatternIdentifiers.ElementAddedToSelectionEvent;
 		public static readonly AutomationEvent ElementRemovedFromSelectionEvent = SelectionItemPatternIdentifiers.ElementRemovedFromSelectionEvent;
 		public static readonly AutomationEvent ElementSelectedEvent = SelectionItemPatternIdentifiers.ElementSelectedEvent;
-//		private SafePatternHandle _hPattern;
-//		private bool _cached;
-		// public SelectionItemPattern.SelectionItemPatternInformation Cached {
-		// public MySelectionItemPatternNet.SelectionItemPatternInformation Cached {
+        
 		public virtual ISelectionItemPatternInformation Cached {
 			get {
-				// Misc.ValidateCached(this._cached);
-				// return new SelectionItemPattern.SelectionItemPatternInformation(this._el, true);
 				return new MySelectionItemPatternNet.SelectionItemPatternInformation(this, true);
 			}
 		}
-		// public SelectionItemPattern.SelectionItemPatternInformation Current {
-		// public SelectionItemPattern.SelectionItemPatternInformation Current {
+		
 		public virtual ISelectionItemPatternInformation Current {
 			get {
-				// Misc.ValidateCurrent(this._hPattern);
-				// return new SelectionItemPattern.SelectionItemPatternInformation(this._el, false);
 				return new MySelectionItemPatternNet.SelectionItemPatternInformation(this, false);
 			}
 		}
-//		private SelectionItemPattern(AutomationElement el, SafePatternHandle hPattern, bool cached) : base(el, hPattern)
-//		{
-//			this._hPattern = hPattern;
-//			this._cached = cached;
-//		}
+        
 		public virtual void Select()
 		{
-			// UiaCoreApi.SelectionItemPattern_Select(this._hPattern);
 			if (null == this._selectionItemPattern) return;
 			this._selectionItemPattern.Select();
 		}
 		public virtual void AddToSelection()
 		{
-			// UiaCoreApi.SelectionItemPattern_AddToSelection(this._hPattern);
 			if (null == this._selectionItemPattern) return;
 			this._selectionItemPattern.AddToSelection();
 		}
 		public virtual void RemoveFromSelection()
 		{
-			// UiaCoreApi.SelectionItemPattern_RemoveFromSelection(this._hPattern);
 			if (null == this._selectionItemPattern) return;
 			this._selectionItemPattern.RemoveFromSelection();
 		}
-//		internal static object Wrap(AutomationElement el, SafePatternHandle hPattern, bool cached)
-//		{
-//			return new SelectionItemPattern(el, hPattern, cached);
-//		}
 		
 		public virtual IUiElement ParentElement
 		{

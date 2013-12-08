@@ -95,13 +95,6 @@ namespace UIAutomation
 		
 		public virtual void Dispose()
 		{
-//		    if (null != this._collectionHolder) {
-//		        for (int i = 0; i < this._collectionHolder.Count; i++) {
-//		            if (null != this._collectionHolder[i]) this._collectionHolder[i].Dispose();
-//		        }
-//		    }
-		    
-		    // 20131120
 		    GC.SuppressFinalize(this);
 		}
 	}

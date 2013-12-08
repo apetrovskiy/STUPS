@@ -15,7 +15,6 @@ namespace UIAutomation
 	public interface ISelectionItemPatternInformation
 	{
 		bool IsSelected { get; }
-		// AutomationElement SelectionContainer { get; }
 		IUiElement SelectionContainer { get; }
 	}
 }

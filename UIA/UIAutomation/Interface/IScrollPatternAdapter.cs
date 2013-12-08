@@ -23,6 +23,6 @@ namespace UIAutomation
 		IScrollPatternInformation Cached { get; }
 		IScrollPatternInformation Current { get; }
 		
-		IUiElement ParentElement { get; set; }
+//		IUiElement ParentElement { get; set; }
 	}
 }

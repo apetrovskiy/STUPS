@@ -51,7 +51,10 @@ namespace UIAutomation
                       wildcardAutomationId.IsMatch(collectionItem.Current.AutomationId) &&
                       wildcardClassName.IsMatch(collectionItem.Current.ClassName) &&
                       (collectionItem.GetSupportedPatterns().Contains(ValuePattern.Pattern) ?
-                      wildcardValue.IsMatch((collectionItem.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern).Current.Value) :
+                      // 20131208
+                      // wildcardValue.IsMatch((collectionItem.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern).Current.Value) :
+                      // wildcardValue.IsMatch((collectionItem.GetCurrentPattern<IMySuperValuePattern, ValuePattern>(ValuePattern.Pattern) as IMySuperValuePattern).Current.Value) :
+                      wildcardValue.IsMatch(collectionItem.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern).Current.Value) :
                       // check whether the -Value parameter has or hasn't value
                       ("*" == txtValue ? true : false))
                 select collectionItem;

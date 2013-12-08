@@ -1,0 +1,34 @@
+20131208 day:
+GetUiaControlCommandTestFixture:
+GetControlByValue_WildCard_TimeoutDefault
+GetControlGetControlByValueAndAutomationId_WildCard_TimeoutDefault
+ByValue_Win32_WildCard_TimeoutDefault
+GetControlByValueX2_WildCard_TimeoutDefault
+
+traditional:
+GetUiaControlRelativesTestFixture:
+GetControlAncestors_MoreThanOne
+
+WaitUiaWindowCommandTestFixture:
+WaitWindow_ByProcessId_Timeout2000
+
+InvokeUiaScrollItemPatternCommandTestFixture:
+InvokeScrollItem_ListBox
+
+
+
+
+ipmo C:\Projects\PS\STUPS\UIA\UIAutomation\bin\Release35\UIAutomation.dll
+Start-Process calc -PassThru | Get-UiaWindow | Get-UiaButton 1
+Get-UiaEdit -Value 22*
+
+
+20131208 evening:
+GetUiaWindowCommandTestFixture:
+GetWindowByAutomationId_TimeoutDefault
+
+ParameterlessSearchTestFixture:
+GetControl_Win32_X2_SearchInAutomationIdClassName_Timeout2000
+GetControl_Win32_X2_SearchInClassName_Timeout2000
+GetControl_Win32_X2_SearchInNameClassName_Timeout2000
+GetControl_Win32_X2_SearchInValue_Timeout2000

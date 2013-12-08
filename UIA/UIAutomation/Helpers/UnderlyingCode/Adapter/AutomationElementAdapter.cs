@@ -21,6 +21,9 @@ namespace UIAutomation
 	/// <summary>
 	/// Description of UiElement.
 	/// </summary>
+	// public class UiElement <N, O> : IUiElement //, IInitializable
+	//     where N : IBasePattern
+	//     where O : AutomationPattern
 	public class UiElement : IUiElement //, IInitializable
 	{
 		private AutomationElement _elementHolderNet;
@@ -124,122 +127,180 @@ namespace UIAutomation
             }
 		}
 
-		public virtual object GetCurrentPattern(AutomationPattern pattern)
+		// public virtual object GetCurrentPattern(AutomationPattern pattern)
+		// public virtual object GetCurrentPattern<N, O>(AutomationPattern pattern)
+		// public virtual object GetCurrentPattern<N>(AutomationPattern pattern)
+		public virtual N GetCurrentPattern<N>(AutomationPattern pattern)
+		// public virtual object GetCurrentPattern<N, O>(object pattern)
+		    where N : IBasePattern
+		    // where O : AutomationIdentifier
 		{
+            
 			switch (_innerElementType) {
 			    case InnerElementTypes.AutomationElementNet:
 			        if (Preferences.FromCache) {
-                        if (pattern.Id == ExpandCollapsePattern.Pattern.Id) {
-                            IMySuperExpandCollapsePattern expandCollapsePattern =
-                                AutomationFactory.GetMySuperExpandCollapsePattern(
-                                    this,
-                                    _elementHolderNet.GetCachedPattern(pattern) as ExpandCollapsePattern);
-                            return expandCollapsePattern;
-                        } else if (pattern.Id == InvokePattern.Pattern.Id) {
-			                IMySuperInvokePattern invokePattern =
-		                        AutomationFactory.GetMySuperInvokePattern(
-		                            this,
-		                            _elementHolderNet.GetCachedPattern(pattern) as InvokePattern);
-		                    return invokePattern;
-		                } else if (pattern.Id == ScrollItemPattern.Pattern.Id) {
-		                    IMySuperScrollItemPattern scrollItemPattern =
-		                        AutomationFactory.GetMySuperScrollItemPattern(
-		                            this,
-		                            _elementHolderNet.GetCachedPattern(pattern) as ScrollItemPattern);
-		                    return scrollItemPattern;
-		                } else if (pattern.Id == ScrollPattern.Pattern.Id) {
-		                    IMySuperScrollPattern scrollPattern =
-		                        AutomationFactory.GetMySuperScrollPattern(
-		                            this,
-		                            _elementHolderNet.GetCachedPattern(pattern) as ScrollPattern);
-		                    return scrollPattern;
-                        } else if (pattern.Id == TogglePattern.Pattern.Id) {
-                            IMySuperTogglePattern togglePattern =
-                                AutomationFactory.GetMySuperTogglePattern(
-                                    this,
-                                    _elementHolderNet.GetCachedPattern(pattern) as TogglePattern);
-                            return togglePattern;
-                        } else if (pattern.Id == ValuePattern.Pattern.Id) {
-			                IMySuperValuePattern valuePattern =
-    			                AutomationFactory.GetMySuperValuePattern(
-    			                    this,
-    			                    _elementHolderNet.GetCachedPattern(pattern) as ValuePattern);//,
-    			            return valuePattern;
-		                } else if (pattern.Id == WindowPattern.Pattern.Id) {
-		                    IMySuperWindowPattern windowPattern =
-		                        AutomationFactory.GetMySuperWindowPattern(
-		                            this,
-		                            _elementHolderNet.GetCachedPattern(pattern) as WindowPattern);//,
-		                    return windowPattern;
-			            } else {
-			                return _elementHolderNet.GetCachedPattern(pattern);
-			            }
+		                // 20131208
+//                        if (pattern.Id == ExpandCollapsePattern.Pattern.Id) {
+//                            IMySuperExpandCollapsePattern expandCollapsePattern =
+//                                AutomationFactory.GetMySuperExpandCollapsePattern(
+//                                    this,
+//                                    _elementHolderNet.GetCachedPattern(pattern) as ExpandCollapsePattern);
+//                            return expandCollapsePattern;
+//                        } else if (pattern.Id == InvokePattern.Pattern.Id) {
+//			                IMySuperInvokePattern invokePattern =
+//		                        AutomationFactory.GetMySuperInvokePattern(
+//		                            this,
+//		                            _elementHolderNet.GetCachedPattern(pattern) as InvokePattern);
+//		                    return invokePattern;
+//		                } else if (pattern.Id == ScrollItemPattern.Pattern.Id) {
+//		                    IMySuperScrollItemPattern scrollItemPattern =
+//		                        AutomationFactory.GetMySuperScrollItemPattern(
+//		                            this,
+//		                            _elementHolderNet.GetCachedPattern(pattern) as ScrollItemPattern);
+//		                    return scrollItemPattern;
+//		                } else if (pattern.Id == ScrollPattern.Pattern.Id) {
+//		                    IMySuperScrollPattern scrollPattern =
+//		                        AutomationFactory.GetMySuperScrollPattern(
+//		                            this,
+//		                            _elementHolderNet.GetCachedPattern(pattern) as ScrollPattern);
+//		                    return scrollPattern;
+//                        } else if (pattern.Id == TogglePattern.Pattern.Id) {
+//                            IMySuperTogglePattern togglePattern =
+//                                AutomationFactory.GetMySuperTogglePattern(
+//                                    this,
+//                                    _elementHolderNet.GetCachedPattern(pattern) as TogglePattern);
+//                            return togglePattern;
+//                        } else if (pattern.Id == ValuePattern.Pattern.Id) {
+//			                IMySuperValuePattern valuePattern =
+//    			                AutomationFactory.GetMySuperValuePattern(
+//    			                    this,
+//    			                    _elementHolderNet.GetCachedPattern(pattern) as ValuePattern);//,
+//    			            return valuePattern;
+//		                } else if (pattern.Id == WindowPattern.Pattern.Id) {
+//		                    IMySuperWindowPattern windowPattern =
+//		                        AutomationFactory.GetMySuperWindowPattern(
+//		                            this,
+//		                            _elementHolderNet.GetCachedPattern(pattern) as WindowPattern);//,
+//		                    return windowPattern;
+//			            } else {
+//			                return _elementHolderNet.GetCachedPattern(pattern);
+//			            }
+//return AutomationFactory.GetMySuperPattern<N, O>(this, _elementHolderNet.GetCachedPattern(pattern) as AutomationPattern); //(pattern as AutomationPattern))); // as AutomationPattern);// as O);
+
+                        // return (N)AutomationFactory.GetMySuperPattern<N, O>(this, (_elementHolderNet.GetCachedPattern(pattern) as AutomationPattern));
+                        // return (N)AutomationFactory.GetMySuperPattern<N>(this, (_elementHolderNet.GetCachedPattern(pattern) as AutomationPattern));
+                        return (N)AutomationFactory.GetMySuperPattern<N>(this, _elementHolderNet.GetCachedPattern(pattern));
 			        } else {
-			            if (pattern.Id == ExpandCollapsePattern.Pattern.Id) {
-			                IMySuperExpandCollapsePattern expandCollapsePattern =
-			                    AutomationFactory.GetMySuperExpandCollapsePattern(
-			                        this,
-			                        _elementHolderNet.GetCurrentPattern(pattern) as ExpandCollapsePattern);
-			                return expandCollapsePattern;
-			            } else if (pattern.Id == InvokePattern.Pattern.Id) {
-			                IMySuperInvokePattern invokePattern =
-		                        AutomationFactory.GetMySuperInvokePattern(
-		                            this,
-		                            _elementHolderNet.GetCurrentPattern(pattern) as InvokePattern);
-		                    return invokePattern;
-		                } else if (pattern.Id == ScrollItemPattern.Pattern.Id) {
-		                    IMySuperScrollItemPattern scrollItemPattern =
-		                        AutomationFactory.GetMySuperScrollItemPattern(
-		                            this,
-		                            _elementHolderNet.GetCurrentPattern(pattern) as ScrollItemPattern);
-		                    return scrollItemPattern;
-		                } else if (pattern.Id == ScrollPattern.Pattern.Id) {
-		                    IMySuperScrollPattern scrollPattern =
-		                        AutomationFactory.GetMySuperScrollPattern(
-		                            this,
-		                            _elementHolderNet.GetCurrentPattern(pattern) as ScrollPattern);
-		                    return scrollPattern;
-		                } else if (pattern.Id == SelectionItemPattern.Pattern.Id) {
-		                    IMySuperSelectionItemPattern selectionItemPattern =
-		                        AutomationFactory.GetMySuperSelectionItemPattern(
-		                            this,
-		                            _elementHolderNet.GetCurrentPattern(pattern) as SelectionItemPattern);
-		                    return selectionItemPattern;
-		                } else if (pattern.Id == SelectionPattern.Pattern.Id) {
-		                    IMySuperSelectionPattern selectionPattern =
-		                        AutomationFactory.GetMySuperSelectionPattern(
-		                            this,
-		                            _elementHolderNet.GetCurrentPattern(pattern) as SelectionPattern);
-		                    return selectionPattern;
-			            } else if (pattern.Id == TogglePattern.Pattern.Id) {
-			                IMySuperTogglePattern togglePattern =
-			                    AutomationFactory.GetMySuperTogglePattern(
-			                        this,
-			                        _elementHolderNet.GetCurrentPattern(pattern) as TogglePattern);
-			                return togglePattern;
-			            } else if (pattern.Id == ValuePattern.Pattern.Id) {
-			                IMySuperValuePattern valuePattern =
-		                        AutomationFactory.GetMySuperValuePattern(
-		                            this,
-		                            _elementHolderNet.GetCurrentPattern(pattern) as ValuePattern);
-		                    return valuePattern;
-		                } else if (pattern.Id == WindowPattern.Pattern.Id) {
-		                    IMySuperWindowPattern windowPattern =
-		                        AutomationFactory.GetMySuperWindowPattern(
-		                            this,
-		                            _elementHolderNet.GetCurrentPattern(pattern) as WindowPattern);
-		                    return windowPattern;
-			            }  else {
-			                return this._elementHolderNet.GetCurrentPattern(pattern);
-			            }
+		                // 20131208
+//			            if (pattern.Id == ExpandCollapsePattern.Pattern.Id) {
+//			                IMySuperExpandCollapsePattern expandCollapsePattern =
+//			                    AutomationFactory.GetMySuperExpandCollapsePattern(
+//			                        this,
+//			                        _elementHolderNet.GetCurrentPattern(pattern) as ExpandCollapsePattern);
+//			                return expandCollapsePattern;
+//			            } else if (pattern.Id == InvokePattern.Pattern.Id) {
+//			                IMySuperInvokePattern invokePattern =
+//		                        AutomationFactory.GetMySuperInvokePattern(
+//		                            this,
+//		                            _elementHolderNet.GetCurrentPattern(pattern) as InvokePattern);
+//		                    return invokePattern;
+//		                } else if (pattern.Id == ScrollItemPattern.Pattern.Id) {
+//		                    IMySuperScrollItemPattern scrollItemPattern =
+//		                        AutomationFactory.GetMySuperScrollItemPattern(
+//		                            this,
+//		                            _elementHolderNet.GetCurrentPattern(pattern) as ScrollItemPattern);
+//		                    return scrollItemPattern;
+//		                } else if (pattern.Id == ScrollPattern.Pattern.Id) {
+//		                    IMySuperScrollPattern scrollPattern =
+//		                        AutomationFactory.GetMySuperScrollPattern(
+//		                            this,
+//		                            _elementHolderNet.GetCurrentPattern(pattern) as ScrollPattern);
+//		                    return scrollPattern;
+//		                } else if (pattern.Id == SelectionItemPattern.Pattern.Id) {
+//		                    IMySuperSelectionItemPattern selectionItemPattern =
+//		                        AutomationFactory.GetMySuperSelectionItemPattern(
+//		                            this,
+//		                            _elementHolderNet.GetCurrentPattern(pattern) as SelectionItemPattern);
+//		                    return selectionItemPattern;
+//		                } else if (pattern.Id == SelectionPattern.Pattern.Id) {
+//		                    IMySuperSelectionPattern selectionPattern =
+//		                        AutomationFactory.GetMySuperSelectionPattern(
+//		                            this,
+//		                            _elementHolderNet.GetCurrentPattern(pattern) as SelectionPattern);
+//		                    return selectionPattern;
+//			            } else if (pattern.Id == TogglePattern.Pattern.Id) {
+//			                IMySuperTogglePattern togglePattern =
+//			                    AutomationFactory.GetMySuperTogglePattern(
+//			                        this,
+//			                        _elementHolderNet.GetCurrentPattern(pattern) as TogglePattern);
+//			                return togglePattern;
+//			            } else if (pattern.Id == ValuePattern.Pattern.Id) {
+//			                IMySuperValuePattern valuePattern =
+//		                        AutomationFactory.GetMySuperValuePattern(
+//		                            this,
+//		                            _elementHolderNet.GetCurrentPattern(pattern) as ValuePattern);
+//		                    return valuePattern;
+//		                } else if (pattern.Id == WindowPattern.Pattern.Id) {
+//		                    IMySuperWindowPattern windowPattern =
+//		                        AutomationFactory.GetMySuperWindowPattern(
+//		                            this,
+//		                            _elementHolderNet.GetCurrentPattern(pattern) as WindowPattern);
+//		                    return windowPattern;
+//			            }  else {
+//			                return this._elementHolderNet.GetCurrentPattern(pattern);
+//			            }
+		                
+		                
+		                
+		                //return AutomationFactory.GetMySuperPattern<N, O>(this, _elementHolderNet.GetCurrentPattern(pattern) as AutomationPattern);// as O);
+		                // var aaaa = AutomationFactory.GetMySuperPattern<N, O>(this, _elementHolderNet.GetCurrentPattern(pattern) as AutomationPattern); //(pattern as AutomationPattern))); // as AutomationPattern);// as O);
+		                
+		                // this works
+//		                var aaaa = (N)AutomationFactory.GetMySuperPattern<N, O>(this, (_elementHolderNet.GetCurrentPattern(pattern) as AutomationPattern)); //(pattern as AutomationPattern))); // as AutomationPattern);// as O);
+//Console.WriteLine("gcp " + aaaa.GetType().Name);
+//return aaaa;
+                        // return (N)AutomationFactory.GetMySuperPattern<N, O>(this, (_elementHolderNet.GetCurrentPattern(pattern) as AutomationPattern));
+                        
+                        
+//                        var a1 = _elementHolderNet.GetCurrentPattern(pattern);
+//                        if (null == a1) {
+//                            Console.WriteLine("null == _elementHolderNet.GetCurrentPattern(pattern)");
+//                        } else {
+//                            Console.WriteLine(a1.GetType().Name);
+//                            var a2 = a1 as AutomationPattern;
+//                            if (null == a2) {
+//                                Console.WriteLine("null == _elementHolderNet.GetCurrentPattern(pattern) as AutomationPattern");
+//                            } else {
+//                                Console.WriteLine(a2.GetType().Name);
+//                                var a3 = (N)AutomationFactory.GetMySuperPattern<N>(this, (_elementHolderNet.GetCurrentPattern(pattern) as AutomationPattern));
+//                                if (null == a3) {
+//                                    Console.WriteLine("null == (N)AutomationFactory.GetMySuperPattern<N>(this, (_elementHolderNet.GetCurrentPattern(pattern) as AutomationPattern))");
+//                                }
+//                            }
+//                        }
+                        // return (N)AutomationFactory.GetMySuperPattern<N>(this, (_elementHolderNet.GetCurrentPattern(pattern) as AutomationPattern));
+                        return (N)AutomationFactory.GetMySuperPattern<N>(this, _elementHolderNet.GetCurrentPattern(pattern));
+		                
+		                
+		                
+		                
+		                
+		                
+		                
+		                
+		                
 			        }
 //			    case InnerElementTypes.AutomationElementCom:
 //			        //
-			    case InnerElementTypes.UiElement:
-			        return Preferences.FromCache ? _elementHolderAdapter.GetCachedPattern(pattern) : _elementHolderAdapter.GetCurrentPattern(pattern);
-                default:
-			        return Preferences.FromCache ? _elementHolderNet.GetCachedPattern(pattern) : _elementHolderNet.GetCurrentPattern(pattern);
+		        // 20131208
+			    // case InnerElementTypes.UiElement:
+			    //     return Preferences.FromCache ? _elementHolderAdapter.GetCachedPattern(pattern) : _elementHolderAdapter.GetCurrentPattern(pattern);
+                // default:
+			    ///    return Preferences.FromCache ? _elementHolderNet.GetCachedPattern(pattern) : _elementHolderNet.GetCurrentPattern(pattern);
             }
+		    // 20131208
+		    // return null;
+		    return default(N);
 		}
 
 		public virtual bool TryGetCurrentPattern(AutomationPattern pattern, out object patternObject)
@@ -754,122 +815,122 @@ namespace UIAutomation
         }
         #endregion NavigateTo
         
-        #region Patterns
-        public virtual IUiElement Click()
-        {
-            this.GetInvokePattern().Invoke();
-            return this;
-        }
-        
-        public virtual IUiElement DoubleClick()
-        {
-            HasControlInputCmdletBase cmdlet =
-                new HasControlInputCmdletBase();
-            cmdlet.ClickControl(
-                cmdlet,
-                this,
-                false,
-                false,
-                false,
-                false,
-                false,
-                false,
-                true,
-                50,
-                Preferences.ClickOnControlByCoordX,
-                Preferences.ClickOnControlByCoordY);
-            
-            return this;
-        }
-        
-        public virtual IUiElement Select()
-        {
-            this.GetSelectionItemPattern().Select();
-            return this;
-        }
-        
-        public virtual IUiElement AddToSelection()
-        {
-            this.GetSelectionItemPattern().AddToSelection();
-            return this;
-        }
-        
-        public virtual IUiElement RemoveFromSelection()
-        {
-            this.GetSelectionItemPattern().RemoveFromSelection();
-            return this;
-        }
-        
-        public virtual bool IsSelected
-        {
-            get { return this.GetSelectionItemPattern().Current.IsSelected; }
-        }
-        
-        public virtual IUiElement SelectionContainer
-        {
-            get { return this.GetSelectionItemPattern().Current.SelectionContainer; }
-        }
-        
-        public virtual IUiElement[] GetSelection()
-        {
-            return this.GetSelectionPattern().Current.GetSelection();
-        }
-        
-        public virtual bool CanSelectMultiple
-        {
-            get { return this.GetSelectionPattern().Current.CanSelectMultiple; }
-        }
-        
-        public virtual bool IsSelectionRequired
-        {
-            get { return this.GetSelectionPattern().Current.IsSelectionRequired; }
-        }
-        
-        public virtual IUiElement Toggle()
-        {
-            this.GetTogglePattern().Toggle();
-            return this;
-        }
-        
-//        public bool? ToggleState
+//        #region Patterns
+//        public virtual IUiElement Click()
 //        {
-//            get {
-//                using (ToggleState t = ToggleState) {
-//                    
-//                } 
-//                switch (this.GetTogglePattern().Current.ToggleState) {
-//                     case ToggleState.Off:
-//                         return false;
-//                     case ToggleState.On:
-//                         return true;
-//                     case ToggleState.Indeterminate:
-//                         return null;
-////                     default:
-////                         throw new Exception("Invalid value for ToggleState");
-//                 }
-//            }
-//            set { 
-//                switch (value) {
-//                    case true:
-//                        this.GetTogglePattern().Current.ToggleState = ToggleState.On;
-//                        break;
-//                    case false:
-//                        this.GetTogglePattern().Current.ToggleState = ToggleState.Off;
-//                    case null:
-//                        this.GetTogglePattern().Current.ToggleState = ToggleState.Indeterminate;
-////                    default:
-////                        
-////                    	break;
-//                }
-//            }
+//            this.GetInvokePattern().Invoke();
+//            return this;
 //        }
-        
-        public virtual string Value
-        {
-            get { return this.GetValuePattern().Current.Value; }
-            set { this.GetValuePattern().SetValue(value); }
-        }
-        #endregion Patterns
+//        
+//        public virtual IUiElement DoubleClick()
+//        {
+//            HasControlInputCmdletBase cmdlet =
+//                new HasControlInputCmdletBase();
+//            cmdlet.ClickControl(
+//                cmdlet,
+//                this,
+//                false,
+//                false,
+//                false,
+//                false,
+//                false,
+//                false,
+//                true,
+//                50,
+//                Preferences.ClickOnControlByCoordX,
+//                Preferences.ClickOnControlByCoordY);
+//            
+//            return this;
+//        }
+//        
+//        public virtual IUiElement Select()
+//        {
+//            this.GetSelectionItemPattern().Select();
+//            return this;
+//        }
+//        
+//        public virtual IUiElement AddToSelection()
+//        {
+//            this.GetSelectionItemPattern().AddToSelection();
+//            return this;
+//        }
+//        
+//        public virtual IUiElement RemoveFromSelection()
+//        {
+//            this.GetSelectionItemPattern().RemoveFromSelection();
+//            return this;
+//        }
+//        
+//        public virtual bool IsSelected
+//        {
+//            get { return this.GetSelectionItemPattern().Current.IsSelected; }
+//        }
+//        
+//        public virtual IUiElement SelectionContainer
+//        {
+//            get { return this.GetSelectionItemPattern().Current.SelectionContainer; }
+//        }
+//        
+//        public virtual IUiElement[] GetSelection()
+//        {
+//            return this.GetSelectionPattern().Current.GetSelection();
+//        }
+//        
+//        public virtual bool CanSelectMultiple
+//        {
+//            get { return this.GetSelectionPattern().Current.CanSelectMultiple; }
+//        }
+//        
+//        public virtual bool IsSelectionRequired
+//        {
+//            get { return this.GetSelectionPattern().Current.IsSelectionRequired; }
+//        }
+//        
+//        public virtual IUiElement Toggle()
+//        {
+//            this.GetTogglePattern().Toggle();
+//            return this;
+//        }
+//        
+////        public bool? ToggleState
+////        {
+////            get {
+////                using (ToggleState t = ToggleState) {
+////                    
+////                } 
+////                switch (this.GetTogglePattern().Current.ToggleState) {
+////                     case ToggleState.Off:
+////                         return false;
+////                     case ToggleState.On:
+////                         return true;
+////                     case ToggleState.Indeterminate:
+////                         return null;
+//////                     default:
+//////                         throw new Exception("Invalid value for ToggleState");
+////                 }
+////            }
+////            set { 
+////                switch (value) {
+////                    case true:
+////                        this.GetTogglePattern().Current.ToggleState = ToggleState.On;
+////                        break;
+////                    case false:
+////                        this.GetTogglePattern().Current.ToggleState = ToggleState.Off;
+////                    case null:
+////                        this.GetTogglePattern().Current.ToggleState = ToggleState.Indeterminate;
+//////                    default:
+//////                        
+//////                    	break;
+////                }
+////            }
+////        }
+//        
+//        public virtual string Value
+//        {
+//            get { return this.GetValuePattern().Current.Value; }
+//            set { this.GetValuePattern().SetValue(value); }
+//        }
+//        #endregion Patterns
         
         #region Highlighter
         public virtual IUiElement Highlight()

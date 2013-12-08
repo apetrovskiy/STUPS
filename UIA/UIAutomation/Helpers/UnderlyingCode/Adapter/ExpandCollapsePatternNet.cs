@@ -1,4 +1,5 @@
-﻿/*
+﻿using System.Deployment.Internal;
+/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
  * Date: 12/6/2013
@@ -15,7 +16,7 @@ namespace UIAutomation
 
 	public class MyExpandCollapsePatternNet : IMySuperExpandCollapsePattern
 	{
-		private readonly System.Windows.Automation.ExpandCollapsePattern _expandCollapsePattern;
+		private System.Windows.Automation.ExpandCollapsePattern _expandCollapsePattern;
 		private IUiElement _element;
 		
 		public MyExpandCollapsePatternNet(IUiElement element, ExpandCollapsePattern expandCollapsePattern)
@@ -25,12 +26,12 @@ namespace UIAutomation
 			//this._useCache = useCache;
 		}
 		
-		internal MyExpandCollapsePatternNet(IUiElement element)
+		public MyExpandCollapsePatternNet(IUiElement element)
 		{
 		    this._element = element;
 		}
 
-		public struct ExpandCollapsePatternInformation : IExpandCollapsePatternInformationAdapter
+		public struct ExpandCollapsePatternInformation : IExpandCollapsePatternInformation
 		{
 			private bool _useCache;
 			private IMySuperExpandCollapsePattern _expandCollapsePattern;
@@ -48,13 +49,13 @@ namespace UIAutomation
 		public static readonly AutomationPattern Pattern = ExpandCollapsePatternIdentifiers.Pattern;
 		public static readonly AutomationProperty ExpandCollapseStateProperty = ExpandCollapsePatternIdentifiers.ExpandCollapseStateProperty;
         
-		public virtual IExpandCollapsePatternInformationAdapter Cached {
+		public virtual IExpandCollapsePatternInformation Cached {
 			get {
 				return new MyExpandCollapsePatternNet.ExpandCollapsePatternInformation(this, true);
 			}
 		}
 		
-		public virtual IExpandCollapsePatternInformationAdapter Current {
+		public virtual IExpandCollapsePatternInformation Current {
 			get {
 				return new MyExpandCollapsePatternNet.ExpandCollapsePatternInformation(this, false);
 			}
@@ -75,6 +76,12 @@ namespace UIAutomation
 		{
 		    get { return this._element; }
 		    set { this._element = value; }
+		}
+		
+		public object SourcePattern
+		{
+		    get { return this._expandCollapsePattern; }
+		    set { this._expandCollapsePattern = value as ExpandCollapsePattern; }
 		}
 	}
 }

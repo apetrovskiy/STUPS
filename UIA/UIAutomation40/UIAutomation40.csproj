@@ -645,14 +645,26 @@
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\AutomationElementInformationAdapter.cs">
       <Link>Helpers\UnderlyingCode\Adapter\AutomationElementInformationAdapter.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\DockPatternAdapterNet.cs">
+      <Link>Helpers\UnderlyingCode\Adapter\DockPatternAdapterNet.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\Enums.cs">
       <Link>Helpers\UnderlyingCode\Adapter\Enums.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\ExpandCollapsePatternNet.cs">
       <Link>Helpers\UnderlyingCode\Adapter\ExpandCollapsePatternNet.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\GridItemPatternAdapterNet.cs">
+      <Link>Helpers\UnderlyingCode\Adapter\GridItemPatternAdapterNet.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\GridPatternAdapterNet.cs">
+      <Link>Helpers\UnderlyingCode\Adapter\GridPatternAdapterNet.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\InvokePatternAdapterNet.cs">
       <Link>Helpers\UnderlyingCode\Adapter\InvokePatternAdapterNet.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\RangeValuePatternAdapterNet.cs">
+      <Link>Helpers\UnderlyingCode\Adapter\RangeValuePatternAdapterNet.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\ScrollItemPatternAdapter.cs">
       <Link>Helpers\UnderlyingCode\Adapter\ScrollItemPatternAdapter.cs</Link>
@@ -666,8 +678,20 @@
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\SelectionPatternAdapterNet.cs">
       <Link>Helpers\UnderlyingCode\Adapter\SelectionPatternAdapterNet.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\TableItemPatternAdapterNet.cs">
+      <Link>Helpers\UnderlyingCode\Adapter\TableItemPatternAdapterNet.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\TablePatternAdapterNet.cs">
+      <Link>Helpers\UnderlyingCode\Adapter\TablePatternAdapterNet.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\TextPatternAdapterNet.cs">
+      <Link>Helpers\UnderlyingCode\Adapter\TextPatternAdapterNet.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\TogglePatternAdapterNet.cs">
       <Link>Helpers\UnderlyingCode\Adapter\TogglePatternAdapterNet.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\TransformPatternAdapterNet.cs">
+      <Link>Helpers\UnderlyingCode\Adapter\TransformPatternAdapterNet.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\ValuePatternAdapterNet.cs">
       <Link>Helpers\UnderlyingCode\Adapter\ValuePatternAdapterNet.cs</Link>
@@ -787,14 +811,38 @@
     <Compile Include="..\UIAutomation\Interface\IBasePattern.cs">
       <Link>Interface\IBasePattern.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Interface\IDockPatternAdapter.cs">
+      <Link>Interface\IDockPatternAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\IDockPatternInformationAdapter.cs">
+      <Link>Interface\IDockPatternInformationAdapter.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Interface\IExpandCollapsePatternAdapter.cs">
       <Link>Interface\IExpandCollapsePatternAdapter.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Interface\IExpandCollapsePatternInformationAdapter.cs">
       <Link>Interface\IExpandCollapsePatternInformationAdapter.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Interface\IGridItemPatternAdapter.cs">
+      <Link>Interface\IGridItemPatternAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\IGridItemPatternInformationAdapter.cs">
+      <Link>Interface\IGridItemPatternInformationAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\IGridPatternAdapter.cs">
+      <Link>Interface\IGridPatternAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\IGridPatternInformationAdapter.cs">
+      <Link>Interface\IGridPatternInformationAdapter.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Interface\IInvokePatternAdapter.cs">
       <Link>Interface\IInvokePatternAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\IRangeValuePatternAdapter.cs">
+      <Link>Interface\IRangeValuePatternAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\IRangeValuePatternInformationAdapter.cs">
+      <Link>Interface\IRangeValuePatternInformationAdapter.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Interface\IScrollItemPatternAdapter.cs">
       <Link>Interface\IScrollItemPatternAdapter.cs</Link>
@@ -817,11 +865,32 @@
     <Compile Include="..\UIAutomation\Interface\ISelectionPatternInformationAdapter.cs">
       <Link>Interface\ISelectionPatternInformationAdapter.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Interface\ITableItemPatternAdapter.cs">
+      <Link>Interface\ITableItemPatternAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\ITableItemPatternInformationAdapter.cs">
+      <Link>Interface\ITableItemPatternInformationAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\ITablePatternAdapter.cs">
+      <Link>Interface\ITablePatternAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\ITablePatternInformationAdapter.cs">
+      <Link>Interface\ITablePatternInformationAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\ITextPatternAdapter.cs">
+      <Link>Interface\ITextPatternAdapter.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Interface\ITogglePatternAdapter.cs">
       <Link>Interface\ITogglePatternAdapter.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Interface\ITogglePatternInformationAdapter.cs">
       <Link>Interface\ITogglePatternInformationAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\ITransformPatternAdapter.cs">
+      <Link>Interface\ITransformPatternAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\ITransformPatternInformationAdapter.cs">
+      <Link>Interface\ITransformPatternInformationAdapter.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Interface\IValuePatternAdapter.cs">
       <Link>Interface\IValuePatternAdapter.cs</Link>

@@ -15,7 +15,7 @@ namespace UIAutomation
 
 	public class MyTogglePatternNet : IMySuperTogglePattern
 	{
-		private readonly System.Windows.Automation.TogglePattern _togglePattern;
+		private System.Windows.Automation.TogglePattern _togglePattern;
 		private IUiElement _element;
 		
 		public MyTogglePatternNet(IUiElement element, TogglePattern togglePattern)
@@ -25,7 +25,7 @@ namespace UIAutomation
 			//this._useCache = useCache;
 		}
 		
-		internal MyTogglePatternNet(IUiElement element)
+		public MyTogglePatternNet(IUiElement element)
 		{
 		    this._element = element;
 		}
@@ -71,6 +71,12 @@ namespace UIAutomation
 		{
 		    get { return this._element; }
 		    set { this._element = value; }
+		}
+		
+		public object SourcePattern
+		{
+		    get { return this._togglePattern; }
+		    set { this._togglePattern = value as TogglePattern; }
 		}
 	}
 }

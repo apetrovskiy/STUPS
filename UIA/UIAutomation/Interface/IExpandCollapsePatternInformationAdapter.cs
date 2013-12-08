@@ -12,7 +12,7 @@ namespace UIAutomation
     extern alias UIANET;
     using System.Windows.Automation;
     
-	public interface IExpandCollapsePatternInformationAdapter
+	public interface IExpandCollapsePatternInformation
 	{
 		ExpandCollapseState ExpandCollapseState { get; }
 	}

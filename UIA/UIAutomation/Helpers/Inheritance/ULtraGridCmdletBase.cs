@@ -89,11 +89,16 @@ namespace UIAutomation
                             foreach (IUiElement grandchild in row) {
                             
                                 string strValue = String.Empty;
-                                ValuePattern valPattern = null;
+                                // 20131208
+                                // ValuePattern valPattern = null;
+                                IMySuperValuePattern valPattern = null;
                                 try {
                                     valPattern =
-                                        grandchild.GetCurrentPattern(ValuePattern.Pattern)
-                                            as ValuePattern;
+                                        // 20131208
+                                        // grandchild.GetCurrentPattern(ValuePattern.Pattern)
+                                        // grandchild.GetCurrentPattern<IMySuperValuePattern, ValuePattern>(ValuePattern.Pattern)
+                                        //    as ValuePattern;
+                                        grandchild.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern);
                                     WriteVerbose(this, 
                                         "getting the valuePattern of the control");
                                 } catch {

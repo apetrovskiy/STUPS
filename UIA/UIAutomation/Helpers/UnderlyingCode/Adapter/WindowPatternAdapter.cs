@@ -18,7 +18,7 @@ namespace UIAutomation
 	/// </summary>
 	public class MyWindowPatternNet : IMySuperWindowPattern
 	{
-		private readonly System.Windows.Automation.WindowPattern _windowPattern;
+		private System.Windows.Automation.WindowPattern _windowPattern;
 		private IUiElement _element;
 
 		public MyWindowPatternNet(IUiElement element, WindowPattern windowPattern)
@@ -28,7 +28,7 @@ namespace UIAutomation
 			//this._useCache = useCache;
 		}
 
-		internal MyWindowPatternNet(IUiElement element)
+		public MyWindowPatternNet(IUiElement element)
 		{
 			this._element = element;
 		}
@@ -132,6 +132,12 @@ namespace UIAutomation
 		{
 		    get { return this._element; }
 		    set { this._element = value; }
+		}
+		
+		public object SourcePattern
+		{
+		    get { return this._windowPattern; }
+		    set { this._windowPattern = value as WindowPattern; }
 		}
 	}
 }

@@ -81,30 +81,126 @@ namespace UIAutomation
             Bind<IUiElementInformation>().To<UiElementInformation>().InCallScope();
             #endregion IUiElementInformation
             
+            #region IMySuperDockPattern
+            Bind<IMySuperDockPattern>()
+                .ToConstructor(
+                    x =>
+                    new MyDockPatternNet(x.Inject<IUiElement>(), x.Inject<DockPattern>()))
+                .InCallScope()
+                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<IMySuperDockPattern>()
+                .ToConstructor(
+                    x =>
+                    new MyDockPatternNet(x.Inject<IUiElement>()))
+                .InCallScope()
+                .Named(AutomationFactory.NamedParameter_WithoutPattern);
+            
+            Bind<IDockPatternInformation>().To<MyDockPatternNet.DockPatternInformation>().InCallScope();
+            #endregion IMySuperDockPattern
+            
             #region IMySuperExpandCollapsePattern
             Bind<IMySuperExpandCollapsePattern>()
                 .ToConstructor(
                     x =>
                     new MyExpandCollapsePatternNet(x.Inject<IUiElement>(), x.Inject<ExpandCollapsePattern>()))
-                .InCallScope();
+                .InCallScope()
+                .Named(AutomationFactory.NamedParameter_WithPattern);
             
-            Bind<IExpandCollapsePatternInformationAdapter>().To<MyExpandCollapsePatternNet.ExpandCollapsePatternInformation>().InCallScope();
+            Bind<IMySuperExpandCollapsePattern>()
+                .ToConstructor(
+                    x =>
+                    new MyExpandCollapsePatternNet(x.Inject<IUiElement>()))
+                .InCallScope()
+                .Named(AutomationFactory.NamedParameter_WithoutPattern);
+            
+            Bind<IExpandCollapsePatternInformation>().To<MyExpandCollapsePatternNet.ExpandCollapsePatternInformation>().InCallScope();
             #endregion IMySuperExpandCollapsePattern
+            
+            #region IMySuperGridItemPattern
+            Bind<IMySuperGridItemPattern>()
+                .ToConstructor(
+                    x =>
+                    new MyGridItemPatternNet(x.Inject<IUiElement>(), x.Inject<GridItemPattern>()))
+                .InCallScope()
+                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<IMySuperGridItemPattern>()
+                .ToConstructor(
+                    x =>
+                    new MyGridItemPatternNet(x.Inject<IUiElement>()))
+                .InCallScope()
+                .Named(AutomationFactory.NamedParameter_WithoutPattern);
+            
+            Bind<IGridItemPatternInformation>().To<MyGridItemPatternNet.GridItemPatternInformation>().InCallScope();
+            #endregion IMySuperGridItemPattern
+            
+            #region IMySuperGridPattern
+            Bind<IMySuperGridPattern>()
+                .ToConstructor(
+                    x =>
+                    new MyGridPatternNet(x.Inject<IUiElement>(), x.Inject<GridPattern>()))
+                .InCallScope()
+                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<IMySuperGridPattern>()
+                .ToConstructor(
+                    x =>
+                    new MyGridPatternNet(x.Inject<IUiElement>()))
+                .InCallScope()
+                .Named(AutomationFactory.NamedParameter_WithoutPattern);
+            
+            Bind<IGridPatternInformation>().To<MyGridPatternNet.GridPatternInformation>().InCallScope();
+            #endregion IMySuperGridPattern
             
             #region IMySuperInvokePattern
             Bind<IMySuperInvokePattern>()
                 .ToConstructor(
                     x =>
                     new MyInvokePatternNet(x.Inject<IUiElement>(), x.Inject<InvokePattern>()))
-                .InCallScope();
+                .InCallScope()
+                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<IMySuperInvokePattern>()
+                .ToConstructor(
+                    x =>
+                    new MyInvokePatternNet(x.Inject<IUiElement>()))
+                .InCallScope()
+                .Named(AutomationFactory.NamedParameter_WithoutPattern);
             #endregion IMySuperInvokePattern
+            
+            #region IMySuperRangeValuePattern
+            Bind<IMySuperRangeValuePattern>()
+                .ToConstructor(
+                    x =>
+                    new MyRangeValuePatternNet(x.Inject<IUiElement>(), x.Inject<RangeValuePattern>()))
+                .InCallScope()
+                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<IMySuperRangeValuePattern>()
+                .ToConstructor(
+                    x =>
+                    new MyRangeValuePatternNet(x.Inject<IUiElement>()))
+                .InCallScope()
+                .Named(AutomationFactory.NamedParameter_WithoutPattern);
+            
+            Bind<IRangeValuePatternInformation>().To<MyRangeValuePatternNet.RangeValuePatternInformation>().InCallScope();
+            #endregion IMySuperRangeValuePattern
             
             #region IMySuperScrollItemPattern
             Bind<IMySuperScrollItemPattern>()
                 .ToConstructor(
                     x =>
                     new MyScrollItemPatternNet(x.Inject<IUiElement>(), x.Inject<ScrollItemPattern>()))
-                .InCallScope();
+                .InCallScope()
+                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<IMySuperScrollItemPattern>()
+                .ToConstructor(
+                    x =>
+                    new MyScrollItemPatternNet(x.Inject<IUiElement>()))
+                .InCallScope()
+                .Named(AutomationFactory.NamedParameter_WithoutPattern);
             
             // Bind<IScrollItemPatternInformation>().To<MyScrollItemPatternNet.ScrollItemPatternInformation>().InCallScope();
             #endregion IMySuperScrollItemPattern
@@ -114,7 +210,15 @@ namespace UIAutomation
                 .ToConstructor(
                     x =>
                     new MyScrollPatternNet(x.Inject<IUiElement>(), x.Inject<ScrollPattern>()))
-                .InCallScope();
+                .InCallScope()
+                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<IMySuperScrollPattern>()
+                .ToConstructor(
+                    x =>
+                    new MyScrollPatternNet(x.Inject<IUiElement>()))
+                .InCallScope()
+                .Named(AutomationFactory.NamedParameter_WithoutPattern);
             
             Bind<IScrollPatternInformation>().To<MyScrollPatternNet.ScrollPatternInformation>().InCallScope();
             #endregion IMySuperScrollPattern
@@ -124,7 +228,15 @@ namespace UIAutomation
                 .ToConstructor(
                     x =>
                     new MySelectionItemPatternNet(x.Inject<IUiElement>(), x.Inject<SelectionItemPattern>()))
-                .InCallScope();
+                .InCallScope()
+                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<IMySuperSelectionItemPattern>()
+                .ToConstructor(
+                    x =>
+                    new MySelectionItemPatternNet(x.Inject<IUiElement>()))
+                .InCallScope()
+                .Named(AutomationFactory.NamedParameter_WithoutPattern);
             
             // Bind<ISelectionItemPatternInformation>().To<MySelectionItemPatternNet.SelectionItemPatternInformation>().InCallScope();
             #endregion IMySuperSelectionItemPattern
@@ -134,27 +246,121 @@ namespace UIAutomation
                 .ToConstructor(
                     x =>
                     new MySelectionPatternNet(x.Inject<IUiElement>(), x.Inject<SelectionPattern>()))
-                .InCallScope();
+                .InCallScope()
+                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<IMySuperSelectionPattern>()
+                .ToConstructor(
+                    x =>
+                    new MySelectionPatternNet(x.Inject<IUiElement>()))
+                .InCallScope()
+                .Named(AutomationFactory.NamedParameter_WithoutPattern);
             
             Bind<ISelectionPatternInformation>().To<MySelectionPatternNet.SelectionPatternInformation>().InCallScope();
             #endregion IMySuperSelectionPattern
+            
+            #region IMySuperTableItemPattern
+            Bind<IMySuperTableItemPattern>()
+                .ToConstructor(
+                    x =>
+                    new MyTableItemPatternNet(x.Inject<IUiElement>(), x.Inject<TableItemPattern>()))
+                .InCallScope()
+                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<IMySuperTableItemPattern>()
+                .ToConstructor(
+                    x =>
+                    new MyTableItemPatternNet(x.Inject<IUiElement>()))
+                .InCallScope()
+                .Named(AutomationFactory.NamedParameter_WithoutPattern);
+            
+            Bind<ITableItemPatternInformation>().To<MyTableItemPatternNet.TableItemPatternInformation>().InCallScope();
+            #endregion IMySuperTableItemPattern
+            
+            #region IMySuperTablePattern
+            Bind<IMySuperTablePattern>()
+                .ToConstructor(
+                    x =>
+                    new MyTablePatternNet(x.Inject<IUiElement>(), x.Inject<TablePattern>()))
+                .InCallScope()
+                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<IMySuperTablePattern>()
+                .ToConstructor(
+                    x =>
+                    new MyTablePatternNet(x.Inject<IUiElement>()))
+                .InCallScope()
+                .Named(AutomationFactory.NamedParameter_WithoutPattern);
+            
+            Bind<ITablePatternInformation>().To<MyTablePatternNet.TablePatternInformation>().InCallScope();
+            #endregion IMySuperTablePattern
+            
+            #region IMySuperTextPattern
+            Bind<IMySuperTextPattern>()
+                .ToConstructor(
+                    x =>
+                    new MyTextPatternNet(x.Inject<IUiElement>(), x.Inject<TextPattern>()))
+                .InCallScope()
+                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<IMySuperTextPattern>()
+                .ToConstructor(
+                    x =>
+                    new MyTextPatternNet(x.Inject<IUiElement>()))
+                .InCallScope()
+                .Named(AutomationFactory.NamedParameter_WithoutPattern);
+            #endregion IMySuperTextPattern
             
             #region IMySuperTogglePattern
             Bind<IMySuperTogglePattern>()
                 .ToConstructor(
                     x =>
                     new MyTogglePatternNet(x.Inject<IUiElement>(), x.Inject<TogglePattern>()))
-                .InCallScope();
+                .InCallScope()
+                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<IMySuperTogglePattern>()
+                .ToConstructor(
+                    x =>
+                    new MyTogglePatternNet(x.Inject<IUiElement>()))
+                .InCallScope()
+                .Named(AutomationFactory.NamedParameter_WithoutPattern);
             
             Bind<ITogglePatternInformation>().To<MyTogglePatternNet.TogglePatternInformation>().InCallScope();
             #endregion IMySuperTogglePattern
+            
+            #region IMySuperTransformPattern
+            Bind<IMySuperTransformPattern>()
+                .ToConstructor(
+                    x =>
+                    new MyTransformPatternNet(x.Inject<IUiElement>(), x.Inject<TransformPattern>()))
+                .InCallScope()
+                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<IMySuperTransformPattern>()
+                .ToConstructor(
+                    x =>
+                    new MyTransformPatternNet(x.Inject<IUiElement>()))
+                .InCallScope()
+                .Named(AutomationFactory.NamedParameter_WithoutPattern);
+            
+            Bind<ITransformPatternInformation>().To<MyTransformPatternNet.TransformPatternInformation>().InCallScope();
+            #endregion IMySuperTransformPattern
             
             #region IMySuperValuePattern
             Bind<IMySuperValuePattern>()
                 .ToConstructor(
                     x =>
                     new MyValuePatternNet(x.Inject<IUiElement>(), x.Inject<ValuePattern>()))
-                .InCallScope();
+                .InCallScope()
+                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<IMySuperValuePattern>()
+                .ToConstructor(
+                    x =>
+                    new MyValuePatternNet(x.Inject<IUiElement>()))
+                .InCallScope()
+                .Named(AutomationFactory.NamedParameter_WithoutPattern);
             
             Bind<IValuePatternInformation>().To<MyValuePatternNet.ValuePatternInformation>().InCallScope();
             #endregion IMySuperValuePattern
@@ -164,10 +370,26 @@ namespace UIAutomation
                 .ToConstructor(
                     x =>
                     new MyWindowPatternNet(x.Inject<IUiElement>(), x.Inject<WindowPattern>()))
-                .InCallScope();
+                .InCallScope()
+                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<IMySuperWindowPattern>()
+                .ToConstructor(
+                    x =>
+                    new MyWindowPatternNet(x.Inject<IUiElement>()))
+                .InCallScope()
+                .Named(AutomationFactory.NamedParameter_WithoutPattern);
             
             Bind<IWindowPatternInformation>().To<MyWindowPatternNet.WindowPatternInformation>().InCallScope();
             #endregion IMySuperWindowPattern
+            
+//            Bind<ValuePattern>()
+//                //.To<ValuePattern>()
+//                //.ToSelf()
+//                //.ToConstant<ValuePattern>(ValuePattern.Pattern)
+//                //.ToProvider(typeof(ValuePattern))
+//                .ToMethod(
+//                .InSingletonScope();
         }
     }
 }

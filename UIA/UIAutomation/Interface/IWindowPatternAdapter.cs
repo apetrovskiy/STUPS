@@ -22,6 +22,6 @@ namespace UIAutomation
 		IWindowPatternInformation Cached { get; }
 		IWindowPatternInformation Current { get; }
 		
-		IUiElement ParentElement { get; set; }
+//		IUiElement ParentElement { get; set; }
 	}
 }

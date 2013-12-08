@@ -85,7 +85,10 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                     .Cast<IUiElement>()
                     .ToList<IUiElement>(), x =>
                     {
-                        IMySuperValuePattern valuePattern = x.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern;
+                        // 20131208
+                        // IMySuperValuePattern valuePattern = x.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern;
+                        // IMySuperValuePattern valuePattern = x.GetCurrentPattern<IMySuperValuePattern, ValuePattern>(ValuePattern.Pattern) as IMySuperValuePattern;
+                        IMySuperValuePattern valuePattern = x.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern) as IMySuperValuePattern;
                         return valuePattern != null && valuePattern.Current.Value == txtValue;
                     });
             }

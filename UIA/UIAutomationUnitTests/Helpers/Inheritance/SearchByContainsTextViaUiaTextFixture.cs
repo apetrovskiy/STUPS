@@ -66,7 +66,13 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 Assert.ForAll(
                     resultList.Cast<IUiElement>().ToList<IUiElement>(),
                     x => x.Current.Name == searchString || x.Current.AutomationId == searchString || x.Current.ClassName == searchString ||
-                    (null != (x.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern) ? (x.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern).Current.Value == searchString : false));
+                    // 20131208
+                    // (null != (x.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern) ? (x.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern).Current.Value == searchString : false));
+                    // (null != (x.GetCurrentPattern<IMySuperValuePattern, ValuePattern>(ValuePattern.Pattern) as IMySuperValuePattern) ? 
+                    (null != (x.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern) as IMySuperValuePattern) ? 
+                     // (x.GetCurrentPattern<IMySuperValuePattern, ValuePattern>(ValuePattern.Pattern) as IMySuperValuePattern).Current.Value == searchString : 
+                     (x.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern) as IMySuperValuePattern).Current.Value == searchString : 
+                     false));
             }
 //            if (null != controlType) {
 //                Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => x.Current.ControlType == controlType);

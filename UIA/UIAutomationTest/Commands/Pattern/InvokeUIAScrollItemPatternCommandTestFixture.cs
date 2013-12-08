@@ -32,8 +32,9 @@ namespace UIAutomationTest.Commands.Pattern
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
         public void InvokeScrollItem_ListBox()
         {
             //string name1 = "listBox1";

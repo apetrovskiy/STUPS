@@ -9,13 +9,17 @@
 
 namespace UIAutomation
 {
-    //using System;
+    extern alias UIANET;
+    using System.Windows.Automation;
     
     /// <summary>
     /// Description of IBasePattern.
     /// </summary>
     public interface IBasePattern
     {
+        IUiElement ParentElement { get; set; }
         
+        // AutomationPattern SourcePattern { get; set; }
+        object SourcePattern { get; set; }
     }
 }

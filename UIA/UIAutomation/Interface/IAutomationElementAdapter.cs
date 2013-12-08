@@ -23,7 +23,12 @@ namespace UIAutomation
 		int[] GetRuntimeId();
 		object GetCurrentPropertyValue(AutomationProperty property);
 		object GetCurrentPropertyValue(AutomationProperty property, bool ignoreDefaultValue);
-		object GetCurrentPattern(AutomationPattern pattern);
+		// object GetCurrentPattern(AutomationPattern pattern);
+		// object GetCurrentPattern<N, O>(AutomationPattern pattern) where N : IBasePattern; // where O : AutomationIdentifier;
+		// object GetCurrentPattern<N>(AutomationPattern pattern) where N : IBasePattern;
+		// IBasePattern GetCurrentPattern<N>(AutomationPattern pattern) where N : IBasePattern;
+		N GetCurrentPattern<N>(AutomationPattern pattern) where N : IBasePattern;
+		// object GetCurrentPattern<N, O>(object pattern) where N : IBasePattern;
 		bool TryGetCurrentPattern(AutomationPattern pattern, out object patternObject);
 		object GetCachedPropertyValue(AutomationProperty property);
 		object GetCachedPropertyValue(AutomationProperty property, bool ignoreDefaultValue);
@@ -83,9 +88,9 @@ namespace UIAutomation
         IUiElement NavigateToPreviousSibling();
         
         // Patterns
-        IUiElement Click();
-        IUiElement DoubleClick();
-        string Value { get; set; }
+//        IUiElement Click();
+//        IUiElement DoubleClick();
+//        string Value { get; set; }
         
         // HIghlighter
         IUiElement Highlight();

@@ -20,7 +20,7 @@ namespace UIAutomation
 		ISelectionItemPatternInformation Cached { get; }
 		ISelectionItemPatternInformation Current { get; }
 		
-		IUiElement ParentElement { get; set; }
+//		IUiElement ParentElement { get; set; }
 	}
 }
 

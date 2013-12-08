@@ -46,14 +46,19 @@ namespace UIAutomation.Commands
                     // 20120823
                     //this.InputObject;
                     inputObject;
-                TablePattern tblPattern = null;
+                // 20131208
+                // TablePattern tblPattern = null;
+                IMySuperTablePattern tblPattern = null;
                 
                 try {
                     tblPattern =
                         // 20120823
                         //this.InputObject.GetCurrentPattern(TablePattern.Pattern)
-                        inputObject.GetCurrentPattern(TablePattern.Pattern)
-                        as TablePattern;
+                        // 20131208
+                        // inputObject.GetCurrentPattern(TablePattern.Pattern)
+                        // inputObject.GetCurrentPattern<IMySuperTablePattern, TablePattern>(TablePattern.Pattern)
+                        // as TablePattern;
+                        inputObject.GetCurrentPattern<IMySuperTablePattern>(TablePattern.Pattern);
                     
                     bool res1 = 
                         UiaHelper.GetHeaderItems(ref currentControl, out strData, Delimiter);
@@ -74,10 +79,13 @@ namespace UIAutomation.Commands
                         // if there's a selection, get items in the selection
                         try
                         {
-                            
-                            SelectionPattern selPattern = inputObject.GetCurrentPattern(
-                                SelectionPattern.Pattern)
-                                as SelectionPattern;
+                            // 20131208
+                            // SelectionPattern selPattern = inputObject.GetCurrentPattern(
+                            // SelectionPattern selPattern = inputObject.GetCurrentPattern<IMySuperSelectionPattern, SelectionPattern>(
+                                // SelectionPattern.Pattern)
+                                // as SelectionPattern;
+                            // SelectionPattern selPattern = inputObject.GetCurrentPattern<IMySuperSelectionPattern>(SelectionPattern.Pattern);
+                            IMySuperSelectionPattern selPattern = inputObject.GetCurrentPattern<IMySuperSelectionPattern>(SelectionPattern.Pattern);
                             
                             /*
                             System.Windows.Automation.SelectionPattern selPattern;
@@ -121,8 +129,10 @@ namespace UIAutomation.Commands
                             } else {
                                 
                                 // without a selection
-                                string outString = 
-                                    UiaHelper.GetOutputStringUsingTableGridPattern<TablePattern>(
+                                string outString =
+                                    // 20131208
+                                    // UiaHelper.GetOutputStringUsingTableGridPattern<TablePattern>(
+                                    UiaHelper.GetOutputStringUsingTableGridPattern<IMySuperTablePattern>(
                                         tblPattern,
                                         tblPattern.Current.ColumnCount,
                                         rowsCounter,

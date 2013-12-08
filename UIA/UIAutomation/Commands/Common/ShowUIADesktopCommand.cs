@@ -33,9 +33,14 @@ namespace UIAutomation.Commands.Common
                         new PropertyCondition(
                             AutomationElement.NameProperty,
                             "Show desktop"));
-                InvokePattern invPtrn = 
-                    showDesktopButton.GetCurrentPattern(InvokePattern.Pattern) as InvokePattern;
-                invPtrn.Invoke();
+                // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                // 20131208
+                // InvokePattern invPtrn =
+                    // 20131208
+                    // showDesktopButton.GetCurrentPattern(InvokePattern.Pattern) as InvokePattern;
+                //    showDesktopButton.GetCurrentPattern<IMySuperInvokePattern, InvokePattern>(InvokePattern.Pattern) as InvokePattern;
+                // invPtrn.Invoke();
+                // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 /*
                 InvokePattern invPtrn = 
                     showDesktopButton.GetCurrentPattern(InvokePattern.Pattern) as InvokePattern;

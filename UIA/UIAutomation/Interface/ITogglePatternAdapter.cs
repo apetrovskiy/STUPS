@@ -18,6 +18,6 @@ namespace UIAutomation
 		ITogglePatternInformation Cached { get; }
 		ITogglePatternInformation Current { get; }
 		
-		IUiElement ParentElement { get; set; }
+//		IUiElement ParentElement { get; set; }
 	}
 }

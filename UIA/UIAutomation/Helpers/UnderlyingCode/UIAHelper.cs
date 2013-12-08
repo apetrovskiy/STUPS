@@ -823,7 +823,10 @@ namespace UIAutomation
                         element.GetElementPropertyString(cmdlet, "Name", null, ref hasName);
                     try {
                         IMySuperValuePattern pattern =
-                            element.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern;
+                            // 20131208
+                            // element.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern;
+                            // element.GetCurrentPattern<IMySuperValuePattern, ValuePattern>(ValuePattern.Pattern) as IMySuperValuePattern;
+                            element.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern);
                         elementVerbosity +=
                             // 20131204
                             // GetElementPropertyString(cmdlet, element, "Value", pattern, ref hasName);
@@ -1845,10 +1848,14 @@ namespace UIAutomation
                     object pattern = null;
                     if (!element.TryGetCurrentPattern(
                         ptrn, out pattern)) continue;
-                    object resPattern =
-                        element.GetCurrentPattern(ptrn);
-                    // as System.Windows.Automation.AutomationPattern;
-                    result = resPattern;
+                    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//                    object resPattern =
+//                        // 20131208
+//                        // element.GetCurrentPattern(ptrn);
+//                        element.GetCurrentPattern<(ptrn);
+//                    // as System.Windows.Automation.AutomationPattern;
+//                    result = resPattern;
+                    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                     return result;
                 }
 
@@ -2195,8 +2202,11 @@ namespace UIAutomation
                         strValue += '"';
                         try
                         {
-                            ValuePattern valPattern = rowItem.GetCurrentPattern(ValuePattern.Pattern)
-                                as ValuePattern;
+                            // 20131208
+                            // ValuePattern valPattern = rowItem.GetCurrentPattern(ValuePattern.Pattern)
+                            // ValuePattern valPattern = rowItem.GetCurrentPattern<IMySuperValuePattern, ValuePattern>(ValuePattern.Pattern)
+                            //     as ValuePattern;
+                            IMySuperValuePattern valPattern = rowItem.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern);
                             strValue += valPattern.Current.Value;
                         }
                         catch {

@@ -16,6 +16,6 @@ namespace UIAutomation
 	{
 		void ScrollIntoView();
 		
-		IUiElement ParentElement { get; set; }
+//		IUiElement ParentElement { get; set; }
 	}
 }

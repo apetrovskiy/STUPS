@@ -49,12 +49,17 @@ namespace UIAutomation.Commands
                 string strData = String.Empty;
                 IUiElement currentControl = 
                     inputObject;
-                GridPattern gridPattern = null;
+                // 20131208
+                // GridPattern gridPattern = null;
+                IMySuperGridPattern gridPattern = null;
     
                 try {
-                    gridPattern = 
-                        inputObject.GetCurrentPattern(GridPattern.Pattern)
-                        as GridPattern;
+                    gridPattern =
+                        // 20131208
+                        // inputObject.GetCurrentPattern(GridPattern.Pattern)
+                        // inputObject.GetCurrentPattern<IMySuperGridPattern, GridPattern>(GridPattern.Pattern)
+                        inputObject.GetCurrentPattern<IMySuperGridPattern>(GridPattern.Pattern);
+                        // as GridPattern;
                     
                 
                     bool res1 = 
@@ -73,9 +78,12 @@ namespace UIAutomation.Commands
                         // if there's a selection, get items in the selection
                         try
                         {
-                            SelectionPattern selPattern = inputObject.GetCurrentPattern(
-                                SelectionPattern.Pattern)
-                                as SelectionPattern;
+                            // 20131208
+                            // SelectionPattern selPattern = inputObject.GetCurrentPattern(
+                            // SelectionPattern selPattern = inputObject.GetCurrentPattern<IMySuperSelectionPattern, SelectionPattern>(
+                            IMySuperSelectionPattern selPattern = inputObject.GetCurrentPattern<IMySuperSelectionPattern>(SelectionPattern.Pattern);
+                                // SelectionPattern.Pattern)
+                                // as SelectionPattern;
                             /*
                             System.Windows.Automation.SelectionPattern selPattern;
                             selPattern = 
@@ -117,8 +125,10 @@ namespace UIAutomation.Commands
                                 
                             } else {
                                 // without a selection
-                                string outString = 
-                                    UiaHelper.GetOutputStringUsingTableGridPattern<GridPattern>(
+                                string outString =
+                                    // 20131208
+                                    // UiaHelper.GetOutputStringUsingTableGridPattern<GridPattern>(
+                                    UiaHelper.GetOutputStringUsingTableGridPattern<IMySuperGridPattern>(
                                         gridPattern,
                                         gridPattern.Current.ColumnCount,
                                         rowsCounter,

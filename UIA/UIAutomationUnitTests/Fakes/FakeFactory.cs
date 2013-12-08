@@ -58,7 +58,10 @@ namespace UIAutomationUnitTests
             element.Current.ClassName.Returns(!string.IsNullOrEmpty(className) ? className : string.Empty);
             IMySuperValuePattern valuePattern = FakeFactory.GetValuePattern(txtValue);
             element.GetSupportedPatterns().Returns(new AutomationPattern[] { ValuePattern.Pattern });
-            element.GetCurrentPattern(ValuePattern.Pattern).Returns(valuePattern);
+            // 20131208
+            // element.GetCurrentPattern(ValuePattern.Pattern).Returns(valuePattern);
+            // element.GetCurrentPattern<IMySuperValuePattern, ValuePattern>(ValuePattern.Pattern).Returns(valuePattern);
+            element.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern).Returns(valuePattern);
             object patternObject;
             element.TryGetCurrentPattern(ValuePattern.Pattern, out patternObject).Returns(true);
             if (expected) { element.Tag.Returns("expected"); }

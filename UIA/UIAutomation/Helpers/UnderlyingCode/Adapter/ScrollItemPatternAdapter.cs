@@ -21,7 +21,7 @@ namespace UIAutomation
 		public static readonly AutomationPattern Pattern = ScrollItemPatternIdentifiers.Pattern;
 		// private SafePatternHandle _hPattern;
 		
-		private readonly System.Windows.Automation.ScrollItemPattern _scrollItemPattern;
+		private System.Windows.Automation.ScrollItemPattern _scrollItemPattern;
 		private IUiElement _element;
 		
 		public MyScrollItemPatternNet(IUiElement element, ScrollItemPattern scrollItemPattern)
@@ -31,7 +31,7 @@ namespace UIAutomation
 			//this._useCache = useCache;
 		}
 		
-		internal MyScrollItemPatternNet(IUiElement element)
+		public MyScrollItemPatternNet(IUiElement element)
 		{
 		    this._element = element;
 		}
@@ -54,6 +54,12 @@ namespace UIAutomation
 		{
 		    get { return this._element; }
 		    set { this._element = value; }
+		}
+		
+		public object SourcePattern
+		{
+		    get { return this._scrollItemPattern; }
+		    set { this._scrollItemPattern = value as ScrollItemPattern; }
 		}
 	}
 }

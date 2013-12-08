@@ -15,7 +15,7 @@ namespace UIAutomation
 
 	public class MySelectionItemPatternNet : IMySuperSelectionItemPattern
 	{
-	    private readonly System.Windows.Automation.SelectionItemPattern _selectionItemPattern;
+	    private System.Windows.Automation.SelectionItemPattern _selectionItemPattern;
 		private IUiElement _element;
 		
 		public MySelectionItemPatternNet(IUiElement element, SelectionItemPattern selectionItemPattern)
@@ -25,7 +25,7 @@ namespace UIAutomation
 			//this._useCache = useCache;
 		}
 		
-		internal MySelectionItemPatternNet(IUiElement element)
+		public MySelectionItemPatternNet(IUiElement element)
 		{
 		    this._element = element;
 		}
@@ -92,6 +92,12 @@ namespace UIAutomation
 		{
 		    get { return this._element; }
 		    set { this._element = value; }
+		}
+		
+		public object SourcePattern
+		{
+		    get { return this._selectionItemPattern; }
+		    set { this._selectionItemPattern = value as SelectionItemPattern; }
 		}
 	}
 }

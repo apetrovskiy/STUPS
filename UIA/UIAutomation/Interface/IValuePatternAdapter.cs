@@ -15,6 +15,6 @@ namespace UIAutomation
 		IValuePatternInformation Cached { get; }
 		IValuePatternInformation Current { get; }
 		
-		IUiElement ParentElement { get; set; }
+//		IUiElement ParentElement { get; set; }
 	}
 }

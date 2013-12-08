@@ -15,7 +15,7 @@ namespace UIAutomation
     
 	public class MyInvokePatternNet : IMySuperInvokePattern
 	{
-	    private readonly System.Windows.Automation.InvokePattern _invokePattern;
+	    private System.Windows.Automation.InvokePattern _invokePattern;
 		private IUiElement _element;
 		
 		public MyInvokePatternNet(IUiElement element, InvokePattern invokePattern)
@@ -25,7 +25,7 @@ namespace UIAutomation
 			//this._useCache = useCache;
 		}
 		
-		internal MyInvokePatternNet(IUiElement element)
+		public MyInvokePatternNet(IUiElement element)
 		{
 		    this._element = element;
 		}
@@ -44,6 +44,12 @@ namespace UIAutomation
 		{
 		    get { return this._element; }
 		    set { this._element = value; }
+		}
+		
+		public object SourcePattern
+		{
+		    get { return this._invokePattern; }
+		    set { this._invokePattern = value as InvokePattern; }
 		}
 	}
 }

@@ -23,6 +23,9 @@ namespace UIAutomation
     /// </summary>
     public static class AutomationFactory
     {
+        internal const string NamedParameter_WithPattern = "WithPattern";
+        internal const string NamedParameter_WithoutPattern = "WithoutPattern";
+        
         #region Initialization
         static AutomationFactory()
         {
@@ -397,5 +400,43 @@ namespace UIAutomation
 			}
 		}
 		#endregion IMySuperWindowPattern
+		
+		#region patterns
+		// internal static N GetMySuperPattern<N, O>(IUiElement element, AutomationPattern pattern) //AutomationIdentifier identifier) // AutomationPattern pattern,
+		// internal static N GetMySuperPattern<N, O>(IUiElement element, object pattern)
+		internal static N GetMySuperPattern<N>(IUiElement element, object pattern)
+		    where N : IBasePattern
+		    // where O : AutomationPattern //AutomationIdentifier
+		{
+			try {
+                
+                N adapterPattern = default(N);
+                var argElement = new ConstructorArgument("element", element);
+//                if (null != pattern) {
+//                    // var pt = element.GetCurrentPattern<N, O>(pattern as AutomationPattern);
+//                    var argPattern = new ConstructorArgument("pattern", pattern);
+//                    // N adapterPattern = Kernel.Get<N>(new[] { argElement, argPattern });
+//                    adapterPattern = Kernel.Get<N>(NamedParameter_WithPattern, new[] { argElement, argPattern });
+//                } else {
+		        // var argPattern = new ConstructorArgument("pattern", pattern);
+                // var argPattern = new ConstructorArgument("pattern", pt);
+		        // N adapterPattern = Kernel.Get<N>(new[] { argElement, argPattern });
+                    // N adapterPattern = Kernel.Get<N>(new[] { argElement });
+                    adapterPattern = Kernel.Get<N>(NamedParameter_WithoutPattern, new[] { argElement });
+                // }
+		        adapterPattern.SourcePattern = pattern;
+//		        }
+	       		return adapterPattern;
+			}
+			catch (Exception eFailedToIssuePattern) {
+			    // TODO
+			    // write error to error object!!!
+			    Console.WriteLine("Pattern");
+			    Console.WriteLine(eFailedToIssuePattern.Message);
+			    // return null;
+			    return default(N);
+			}
+		}
+		#endregion patterns
     }
 }

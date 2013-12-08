@@ -28,12 +28,6 @@ namespace UIAutomation
     // 20130204
     public class PatternCmdletBase : HasControlInputCmdletBase
     {
-        #region Constructor
-        public PatternCmdletBase()
-        {
-        }
-        #endregion Constructor
-
         #region Parameters
         #endregion Parameters
         
@@ -274,7 +268,10 @@ namespace UIAutomation
         {
             //dockPattern.Current.DockPosition
             try {
-                DockPattern dockPattern = control.GetCurrentPattern(DockPattern.Pattern) as DockPattern;
+                // 20131208
+                // DockPattern dockPattern = control.GetCurrentPattern(DockPattern.Pattern) as DockPattern;
+                // DockPattern dockPattern = control.GetCurrentPattern<IMySuperDockPattern, DockPattern>(DockPattern.Pattern) as DockPattern;
+                IMySuperDockPattern dockPattern = control.GetCurrentPattern<IMySuperDockPattern>(DockPattern.Pattern);
                 if (null != dockPattern) {
                     WriteObject(this, dockPattern.Current.DockPosition);
                 } else {
@@ -290,7 +287,10 @@ namespace UIAutomation
         internal void CallDockPatternForSet(PatternCmdletBase cmdlet, IUiElement control, IUiElement inputObject, DockPosition position)
         {
             try {
-                DockPattern dockPattern = control.GetCurrentPattern(DockPattern.Pattern) as DockPattern;
+                // 20131208
+                // DockPattern dockPattern = control.GetCurrentPattern(DockPattern.Pattern) as DockPattern;
+                // DockPattern dockPattern = control.GetCurrentPattern<IMySuperDockPattern, DockPattern>(DockPattern.Pattern) as DockPattern;
+                IMySuperDockPattern dockPattern = control.GetCurrentPattern<IMySuperDockPattern>(DockPattern.Pattern);
                 if (null != dockPattern) {
                     dockPattern.SetDockPosition(position);
                     
@@ -312,7 +312,11 @@ namespace UIAutomation
         internal void CallWindowPattern(PatternCmdletBase cmdlet, IUiElement control, IUiElement inputObject)
         {
             try {
-                WindowPattern windowPattern = control.GetCurrentPattern(WindowPattern.Pattern) as WindowPattern;
+                // 20131208
+                // WindowPattern windowPattern = control.GetCurrentPattern(WindowPattern.Pattern) as WindowPattern;
+                // WindowPattern windowPattern = control.GetCurrentPattern<IMySuperWindowPattern, WindowPattern>(WindowPattern.Pattern) as WindowPattern;
+                // IMySuperWindowPattern windowPattern = control.GetCurrentPattern<IMySuperWindowPattern, WindowPattern>(); //WindowPattern.Pattern);
+                IMySuperWindowPattern windowPattern = control.GetCurrentPattern<IMySuperWindowPattern>(WindowPattern.Pattern);
                 if (windowPattern != null) {
 
                     // Close windowPattern.Close
@@ -352,7 +356,9 @@ namespace UIAutomation
         internal void CallValuePatternForSet(PatternCmdletBase cmdlet, IUiElement control, IUiElement inputObject)
         {
             try {
-                IMySuperValuePattern valuePatternSet = control.GetValuePattern();
+                // IMySuperValuePattern valuePatternSet = control.GetValuePattern();
+                // IMySuperValuePattern valuePatternSet = control.GetCurrentPattern<IMySuperValuePattern, ValuePattern>(); //ValuePattern.Pattern);
+                IMySuperValuePattern valuePatternSet = control.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern);
                 if (valuePatternSet != null) {
                     
                     WriteVerbose(this, "using ValuePattern");
@@ -382,13 +388,20 @@ namespace UIAutomation
         internal void CallValuePatternForGet(PatternCmdletBase cmdlet, IUiElement control, IUiElement inputObject)
         {
             try {
-                IMySuperValuePattern valuePatternGet = control.GetValuePattern();
+//Console.WriteLine("CallValuePatternForGet 00001");
+                // IMySuperValuePattern valuePatternGet = control.GetValuePattern();
+                // IMySuperValuePattern valuePatternGet = control.GetCurrentPattern<IMySuperValuePattern, ValuePattern>();
+                IMySuperValuePattern valuePatternGet = control.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern);
+//Console.WriteLine("CallValuePatternForGet 00002");
                 object result = null;
+//Console.WriteLine("CallValuePatternForGet 00003");
                 if (valuePatternGet != null) {
+//Console.WriteLine("CallValuePatternForGet 00004");
                     result = valuePatternGet.Current.Value;
                     WriteVerbose(this, "the result is " + result);
                     WriteObject(this, result);
                 } else {
+//Console.WriteLine("CallValuePatternForGet 00005");
                     WriteVerbose(this, "couldn't get ValuePattern");
                     WriteObject(this, result);
                 }
@@ -399,7 +412,10 @@ namespace UIAutomation
         internal void CallTransformPatternForRotate(PatternCmdletBase cmdlet, IUiElement control, IUiElement inputObject)
         {
             try {
-                TransformPattern transformRotatePattern = control.GetCurrentPattern(TransformPattern.Pattern) as TransformPattern;
+                // 20131208
+                // TransformPattern transformRotatePattern = control.GetCurrentPattern(TransformPattern.Pattern) as TransformPattern;
+                // TransformPattern transformRotatePattern = control.GetCurrentPattern<IMySuperTransformPattern, TransformPattern>(TransformPattern.Pattern) as TransformPattern;
+                IMySuperTransformPattern transformRotatePattern = control.GetCurrentPattern<IMySuperTransformPattern>(TransformPattern.Pattern);
                 if (transformRotatePattern != null) {
                     transformRotatePattern.Rotate(((InvokeUiaTransformPatternRotateCommand)Child).TransformRotateDegrees);
                     
@@ -419,7 +435,10 @@ namespace UIAutomation
         internal void CallTransformPatternForResize(PatternCmdletBase cmdlet, IUiElement control, IUiElement inputObject)
         {
             try {
-                TransformPattern transformResizePattern = control.GetCurrentPattern(TransformPattern.Pattern) as TransformPattern;
+                // 20131208
+                // TransformPattern transformResizePattern = control.GetCurrentPattern(TransformPattern.Pattern) as TransformPattern;
+                // TransformPattern transformResizePattern = control.GetCurrentPattern<IMySuperTransformPattern, TransformPattern>(TransformPattern.Pattern) as TransformPattern;
+                IMySuperTransformPattern transformResizePattern = control.GetCurrentPattern<IMySuperTransformPattern>(TransformPattern.Pattern);
                 if (transformResizePattern != null) {
                     transformResizePattern.Resize(((InvokeUiaTransformPatternResizeCommand)Child).TransformResizeWidth, ((InvokeUiaTransformPatternResizeCommand)Child).TransformResizeHeight);
                     
@@ -439,7 +458,10 @@ namespace UIAutomation
         internal void CallTransformPatternForMove(PatternCmdletBase cmdlet, IUiElement control, IUiElement inputObject)
         {
             try {
-                TransformPattern transformMovePattern = control.GetCurrentPattern(TransformPattern.Pattern) as TransformPattern;
+                // 20131208
+                // TransformPattern transformMovePattern = control.GetCurrentPattern(TransformPattern.Pattern) as TransformPattern;
+                // TransformPattern transformMovePattern = control.GetCurrentPattern<IMySuperTransformPattern, TransformPattern>(TransformPattern.Pattern) as TransformPattern;
+                IMySuperTransformPattern transformMovePattern = control.GetCurrentPattern<IMySuperTransformPattern>(TransformPattern.Pattern);
                 if (transformMovePattern != null) {
                     transformMovePattern.Move(((InvokeUiaTransformPatternMoveCommand)Child).TransformMoveX, ((InvokeUiaTransformPatternMoveCommand)Child).TransformMoveY);
                     
@@ -460,7 +482,9 @@ namespace UIAutomation
         {
             try {
                 cmdlet.WriteVerbose(cmdlet, "trying to get TogglePattern");
-                IMySuperTogglePattern togglePattern = control.GetTogglePattern();
+                // IMySuperTogglePattern togglePattern = control.GetTogglePattern();
+                // IMySuperTogglePattern togglePattern = control.GetCurrentPattern<IMySuperTogglePattern, TogglePattern>();
+                IMySuperTogglePattern togglePattern = control.GetCurrentPattern<IMySuperTogglePattern>(TogglePattern.Pattern);
                 if (togglePattern != null) {
                     
                     cmdlet.WriteVerbose(cmdlet, "TogglePattern != null");
@@ -478,18 +502,20 @@ namespace UIAutomation
         internal void CallTogglePatternForSet(PatternCmdletBase cmdlet, IUiElement control, IUiElement inputObject, bool on)
         {
             try {
-                IMySuperTogglePattern togglePattern1 = control.GetTogglePattern();
-                if (togglePattern1 != null) {
-                    if (togglePattern1.Current.ToggleState == ToggleState.On && on) {
+                // IMySuperTogglePattern togglePattern1 = control.GetTogglePattern();
+                // IMySuperTogglePattern togglePattern = control.GetCurrentPattern<IMySuperTogglePattern, TogglePattern>();
+                IMySuperTogglePattern togglePattern = control.GetCurrentPattern<IMySuperTogglePattern>(TogglePattern.Pattern);
+                if (togglePattern != null) {
+                    if (togglePattern.Current.ToggleState == ToggleState.On && on) {
                         // nothing to do
                         cmdlet.WriteVerbose("the control is already ON");
-                    } else if (togglePattern1.Current.ToggleState == ToggleState.Off && on) {
+                    } else if (togglePattern.Current.ToggleState == ToggleState.Off && on) {
                         cmdlet.WriteVerbose("setting the control ON");
-                        togglePattern1.Toggle();
-                    } else if (togglePattern1.Current.ToggleState == ToggleState.On && !on) {
+                        togglePattern.Toggle();
+                    } else if (togglePattern.Current.ToggleState == ToggleState.On && !on) {
                         cmdlet.WriteVerbose("setting the control OFF");
-                        togglePattern1.Toggle();
-                    } else if (togglePattern1.Current.ToggleState == ToggleState.Off && !on) {
+                        togglePattern.Toggle();
+                    } else if (togglePattern.Current.ToggleState == ToggleState.Off && !on) {
                         cmdlet.WriteVerbose("the control is already OF");
                         // nothing to do
                     }
@@ -533,7 +559,9 @@ namespace UIAutomation
         internal void CallTogglePatternMethod(PatternCmdletBase cmdlet, IUiElement control, IUiElement inputObject)
         {
             try {
-                IMySuperTogglePattern togglePattern = control.GetTogglePattern();
+                // IMySuperTogglePattern togglePattern = control.GetTogglePattern();
+                // IMySuperTogglePattern togglePattern = control.GetCurrentPattern<IMySuperTogglePattern, TogglePattern>();
+                IMySuperTogglePattern togglePattern = control.GetCurrentPattern<IMySuperTogglePattern>(TogglePattern.Pattern);
                 if (togglePattern != null) {
                     togglePattern.Toggle();
                     
@@ -553,7 +581,10 @@ namespace UIAutomation
         internal void CallTextPatternForSet(PatternCmdletBase cmdlet, IUiElement control, IUiElement inputObject)
         {
             try {
-                TextPattern textPatternSet = control.GetCurrentPattern(TextPattern.Pattern) as TextPattern;
+                // 20131208
+                // TextPattern textPatternSet = control.GetCurrentPattern(TextPattern.Pattern) as TextPattern;
+                // TextPattern textPatternSet = control.GetCurrentPattern<IMySuperTextPattern, TextPattern>(TextPattern.Pattern) as TextPattern;
+                IMySuperTextPattern textPatternSet = control.GetCurrentPattern<IMySuperTextPattern>(TextPattern.Pattern);
                 if (textPatternSet != null) {
                     textPatternSet.GetSelection().SetValue(((InvokeUiaTextPatternSetCommand)this).Text, 0);
                     WriteObject(this, true);
@@ -568,7 +599,10 @@ namespace UIAutomation
         internal void CallTextPatternForGet(PatternCmdletBase cmdlet, IUiElement control, IUiElement inputObject)
         {
             try {
-                TextPattern textPatternGet = control.GetCurrentPattern(TextPattern.Pattern) as TextPattern;
+                // 20131208
+                // TextPattern textPatternGet = control.GetCurrentPattern(TextPattern.Pattern) as TextPattern;
+                // TextPattern textPatternGet = control.GetCurrentPattern<IMySuperTextPattern, TextPattern>(TextPattern.Pattern) as TextPattern;
+                IMySuperTextPattern textPatternGet = control.GetCurrentPattern<IMySuperTextPattern>(TextPattern.Pattern);
                 if (textPatternGet != null) {
                     int textLength = ((InvokeUiaTextPatternGetCommand)this).TextLength;
                     if (((InvokeUiaTextPatternGetCommand)this).VisibleArea)
@@ -596,7 +630,10 @@ namespace UIAutomation
         internal void CallTablePattern(PatternCmdletBase cmdlet, IUiElement control, IUiElement inputObject)
         {
             try {
-                TablePattern tablePattern = control.GetCurrentPattern(TablePattern.Pattern) as TablePattern;
+                // 20131208
+                // TablePattern tablePattern = control.GetCurrentPattern(TablePattern.Pattern) as TablePattern;
+                // TablePattern tablePattern = control.GetCurrentPattern<IMySuperTablePattern, TablePattern>(TablePattern.Pattern) as TablePattern;
+                IMySuperTablePattern tablePattern = control.GetCurrentPattern<IMySuperTablePattern>(TablePattern.Pattern);
                 if (tablePattern != null) {
                 }
             } catch (Exception eTablePatternException) {
@@ -606,7 +643,10 @@ namespace UIAutomation
         internal void CallTableItemPattern(PatternCmdletBase cmdlet, IUiElement control, IUiElement inputObject)
         {
             try {
-                TableItemPattern tableItemPattern = control.GetCurrentPattern(TableItemPattern.Pattern) as TableItemPattern;
+                // 20131208
+                // TableItemPattern tableItemPattern = control.GetCurrentPattern(TableItemPattern.Pattern) as TableItemPattern;
+                // TableItemPattern tableItemPattern = control.GetCurrentPattern<IMySuperTableItemPattern, TableItemPattern>(TableItemPattern.Pattern) as TableItemPattern;
+                IMySuperTableItemPattern tableItemPattern = control.GetCurrentPattern<IMySuperTableItemPattern>(TableItemPattern.Pattern);
                 if (tableItemPattern != null) {
                     //tableItemPattern.Current.
                 }
@@ -625,7 +665,9 @@ namespace UIAutomation
         internal void CallSelectionPattern(PatternCmdletBase cmdlet, IUiElement control, IUiElement inputObject)
         {
             try {
-                IMySuperSelectionPattern selPattern = control.GetSelectionPattern();
+                // IMySuperSelectionPattern selPattern = control.GetSelectionPattern();
+                // IMySuperSelectionPattern selPattern = control.GetCurrentPattern<IMySuperSelectionPattern, SelectionPattern>();
+                IMySuperSelectionPattern selPattern = control.GetCurrentPattern<IMySuperSelectionPattern>(SelectionPattern.Pattern);
                 if (selPattern != null) {
                     IUiElement[] selection = AutomationFactory.GetUiEltCollection(selPattern.Current.GetSelection()).Cast<UiElement>().ToArray();
                     WriteObject(this, selection);
@@ -640,9 +682,11 @@ namespace UIAutomation
         internal void CallSelectedItemPattern(PatternCmdletBase cmdlet, IUiElement control, IUiElement inputObject)
         {
             try {
-                IMySuperSelectionItemPattern selItemPattern1 = control.GetSelectionItemPattern();
-                if (selItemPattern1 == null) return;
-                if (selItemPattern1.Current.IsSelected) {
+                // IMySuperSelectionItemPattern selItemPattern = control.GetSelectionItemPattern();
+                // IMySuperSelectionItemPattern selItemPattern = control.GetCurrentPattern<IMySuperSelectionItemPattern, SelectionItemPattern>();
+                IMySuperSelectionItemPattern selItemPattern = control.GetCurrentPattern<IMySuperSelectionItemPattern>(SelectionItemPattern.Pattern);
+                if (selItemPattern == null) return;
+                if (selItemPattern.Current.IsSelected) {
                     WriteObject(this, InputObject);
                 }
             } catch (Exception eSeleItemStatePatternException) {
@@ -652,9 +696,11 @@ namespace UIAutomation
         internal void CallSelectionItemPatternForState(PatternCmdletBase cmdlet, IUiElement control, IUiElement inputObject)
         {
             try {
-                IMySuperSelectionItemPattern selItemPattern1 = control.GetSelectionItemPattern();
-                if (selItemPattern1 != null) {
-                    WriteObject(this, selItemPattern1.Current.IsSelected);
+                // IMySuperSelectionItemPattern selItemPattern = control.GetSelectionItemPattern();
+                // IMySuperSelectionItemPattern selItemPattern = control.GetCurrentPattern<IMySuperSelectionItemPattern, SelectionItemPattern>();
+                IMySuperSelectionItemPattern selItemPattern = control.GetCurrentPattern<IMySuperSelectionItemPattern>(SelectionItemPattern.Pattern);
+                if (selItemPattern != null) {
+                    WriteObject(this, selItemPattern.Current.IsSelected);
                 } else {
                     WriteVerbose(this, "couldn't get SelectionItemPattern");
                     WriteObject(this, false);
@@ -666,15 +712,22 @@ namespace UIAutomation
         internal void CallSelectionItemPattern(PatternCmdletBase cmdlet, IUiElement control, IUiElement inputObject)
         {
             try {
-                IMySuperSelectionItemPattern selItemPattern = control.GetSelectionItemPattern();
+                // IMySuperSelectionItemPattern selItemPattern = control.GetSelectionItemPattern();
+                // IMySuperSelectionItemPattern selItemPattern = control.GetCurrentPattern<IMySuperSelectionItemPattern, SelectionItemPattern>();
+                IMySuperSelectionItemPattern selItemPattern = control.GetCurrentPattern<IMySuperSelectionItemPattern>(SelectionItemPattern.Pattern);
                 if (selItemPattern != null) {
                     selItemPattern.Select();
                     
                     if (PassThru && null != (inputObject as IUiElement)) {
                         try {
-                            SelectionPattern selPatternTemp = control.GetCurrentPattern(SelectionPattern.Pattern) as SelectionPattern;
+                            // 20131208
+                            // SelectionPattern selPatternTemp = control.GetCurrentPattern(SelectionPattern.Pattern) as SelectionPattern;
+                            // SelectionPattern selPatternTemp = control.GetCurrentPattern<IMySuperSelectionItemPattern, SelectionItemPattern>(SelectionPattern.Pattern) as SelectionPattern;
+                            IMySuperSelectionPattern selPatternTemp = control.GetCurrentPattern<IMySuperSelectionPattern>(SelectionPattern.Pattern);
                             if (selPatternTemp != null) {
-                                IUiElement[] selection = AutomationFactory.GetUiEltCollection(selPatternTemp.Current.GetSelection()).Cast<UiElement>().ToArray();
+                                // 20131208
+                                // IUiElement[] selection = AutomationFactory.GetUiEltCollection(selPatternTemp.Current.GetSelection()).Cast<UiElement>().ToArray();
+                                IUiElement[] selection = AutomationFactory.GetUiEltCollection(selPatternTemp.Current.GetSelection()).ToArray();
                                 WriteObject(this, selection);
                             } else {
                                 WriteObject(this, true);
@@ -702,7 +755,12 @@ namespace UIAutomation
         internal void CallScrollPattern(PatternCmdletBase cmdlet, IUiElement control, IUiElement inputObject)
         {
             try {
-                ScrollPattern scPattern = control.GetCurrentPattern(ScrollPattern.Pattern) as ScrollPattern;
+                // 20131208
+                // ScrollPattern scPattern = control.GetCurrentPattern(ScrollPattern.Pattern) as ScrollPattern;
+                // ScrollPattern scPattern = control.GetCurrentPattern<IMySuperScrollPattern, ScrollPattern>(ScrollPattern.Pattern) as ScrollPattern;
+                // IMySuperScrollPattern scPattern = control.GetScrollPattern();
+                // IMySuperScrollPattern scPattern = control.GetCurrentPattern<IMySuperScrollPattern, ScrollPattern>();
+                IMySuperScrollPattern scPattern = control.GetCurrentPattern<IMySuperScrollPattern>(ScrollPattern.Pattern);
                 if (scPattern == null) return;
                 try {
                     bool horizontal = ((InvokeUiaScrollPatternCommand)this).Horizontal;
@@ -781,7 +839,12 @@ namespace UIAutomation
         internal void CallScrollItemPattern(PatternCmdletBase cmdlet, IUiElement control, IUiElement inputObject)
         {
             try {
-                ScrollItemPattern sciPattern = control.GetCurrentPattern(ScrollItemPattern.Pattern) as ScrollItemPattern;
+                // 20131208
+                // ScrollItemPattern sciPattern = control.GetCurrentPattern(ScrollItemPattern.Pattern) as ScrollItemPattern;
+                // ScrollItemPattern sciPattern = control.GetCurrentPattern<IMySuperScrollItemPattern, ScrollItemPattern>(ScrollItemPattern.Pattern) as ScrollItemPattern;
+                // IMySuperScrollItemPattern sciPattern = control.GetScrollItemPattern();
+                // IMySuperScrollItemPattern sciPattern = control.GetCurrentPattern<IMySuperScrollItemPattern, ScrollItemPattern>();
+                IMySuperScrollItemPattern sciPattern = control.GetCurrentPattern<IMySuperScrollItemPattern>(ScrollItemPattern.Pattern);
                 if (sciPattern == null) return;
                 try {
                     sciPattern.ScrollIntoView();
@@ -801,7 +864,10 @@ namespace UIAutomation
         internal void CallRangeValuePatternForSet(PatternCmdletBase cmdlet, IUiElement control, IUiElement inputObject)
         {
             try {
-                RangeValuePattern rvPatternSet = control.GetCurrentPattern(RangeValuePattern.Pattern) as RangeValuePattern;
+                // 20131208
+                // RangeValuePattern rvPatternSet = control.GetCurrentPattern(RangeValuePattern.Pattern) as RangeValuePattern;
+                // RangeValuePattern rvPatternSet = control.GetCurrentPattern<IMySuperRangeValuePattern, RangeValuePattern>(RangeValuePattern.Pattern) as RangeValuePattern;
+                IMySuperRangeValuePattern rvPatternSet = control.GetCurrentPattern<IMySuperRangeValuePattern>(RangeValuePattern.Pattern);
                 if (rvPatternSet == null) return;
                 try {
                     rvPatternSet.SetValue(((InvokeUiaRangeValuePatternSetCommand)Child).Value);
@@ -821,7 +887,10 @@ namespace UIAutomation
         internal void CallRangeValuePatternForGet(PatternCmdletBase cmdlet, IUiElement control, IUiElement inputObject)
         {
             try {
-                RangeValuePattern rvPatternGet = control.GetCurrentPattern(RangeValuePattern.Pattern) as RangeValuePattern;
+                // 20131208
+                // RangeValuePattern rvPatternGet = control.GetCurrentPattern(RangeValuePattern.Pattern) as RangeValuePattern;
+                // RangeValuePattern rvPatternGet = control.GetCurrentPattern<IMySuperRangeValuePattern, RangeValuePattern>(RangeValuePattern.Pattern) as RangeValuePattern;
+                IMySuperRangeValuePattern rvPatternGet = control.GetCurrentPattern<IMySuperRangeValuePattern>(RangeValuePattern.Pattern);
                 if (rvPatternGet != null) {
                     WriteObject(this, rvPatternGet.Current.Value);
                 }
@@ -864,37 +933,35 @@ namespace UIAutomation
         internal void CallInvokePattern(PatternCmdletBase cmdlet, IUiElement control, IUiElement inputObject)
         {
             try {
-                IMySuperInvokePattern invokePattern = control.GetInvokePattern();
+                // IMySuperInvokePattern invokePattern = control.GetInvokePattern();
+                // IMySuperInvokePattern invokePattern = control.GetCurrentPattern<IMySuperInvokePattern, InvokePattern>();
+                IMySuperInvokePattern invokePattern = control.GetCurrentPattern<IMySuperInvokePattern>(InvokePattern.Pattern);
                 if (invokePattern != null) {
-
                     invokePattern.Invoke();
-
+                    
                     if (PassThru && null != (inputObject as IUiElement)) {
                         WriteObject(this, inputObject);
                     } else {
                         WriteObject(this, true);
                     }
                 } else {
-
                     if (Preferences.PerformWin32ClickOnFail) {
                         
                         ClickControl(this, control, false, false, false, false, false, false, false, 0, 0,
                                      0);
-
+                        
                         if (PassThru && null != (inputObject as IUiElement)) {
                             WriteObject(this, inputObject);
                         } else {
                             WriteObject(this, true);
                         }
                     } else {
-
                         WriteVerbose(this, "couldn't get InvokePattern");
                         WriteObject(this, false);
-
                     }
                 }
             } catch (Exception eInvokePatternException) {
-
+                
                 WriteVerbose(this, eInvokePatternException.Message + "\r\n" + eInvokePatternException.GetType().Name);
                 if (Preferences.PerformWin32ClickOnFail &&
                     "ElementNotAvailableException" != eInvokePatternException.GetType().Name) {
@@ -934,7 +1001,10 @@ namespace UIAutomation
         internal void CallGridPattern(PatternCmdletBase cmdlet, IUiElement control, IUiElement inputObject)
         {
             try {
-                GridPattern gridPattern = control.GetCurrentPattern(GridPattern.Pattern) as GridPattern;
+                // 20131208
+                // GridPattern gridPattern = control.GetCurrentPattern(GridPattern.Pattern) as GridPattern;
+                // GridPattern gridPattern = control.GetCurrentPattern<IMySuperGridPattern, GridPattern>(GridPattern.Pattern) as GridPattern;
+                IMySuperGridPattern gridPattern = control.GetCurrentPattern<IMySuperGridPattern>(GridPattern.Pattern);
                 if (gridPattern != null) {
                 }
             } catch (Exception eGridPatternException) {
@@ -952,7 +1022,10 @@ namespace UIAutomation
         internal void CallGridItemPattern(PatternCmdletBase cmdlet, IUiElement control, IUiElement inputObject)
         {
             try {
-                GridItemPattern gridItemPattern = control.GetCurrentPattern(GridItemPattern.Pattern) as GridItemPattern;
+                // 20131208
+                // GridItemPattern gridItemPattern = control.GetCurrentPattern(GridItemPattern.Pattern) as GridItemPattern;
+                // GridItemPattern gridItemPattern = control.GetCurrentPattern<IMySuperGridItemPattern, GridItemPattern>(GridItemPattern.Pattern) as GridItemPattern;
+                IMySuperGridItemPattern gridItemPattern = control.GetCurrentPattern<IMySuperGridItemPattern>(GridItemPattern.Pattern);
                 if (gridItemPattern != null) {
                     //gridItemPattern.Current.
                 }
@@ -963,7 +1036,9 @@ namespace UIAutomation
         internal void CallCollapsePattern(PatternCmdletBase cmdlet, IUiElement control, IUiElement inputObject)
         {
             try {
-                IMySuperExpandCollapsePattern collapsePattern = control.GetExpandCollapsePattern();
+                // IMySuperExpandCollapsePattern collapsePattern = control.GetExpandCollapsePattern();
+                // IMySuperExpandCollapsePattern collapsePattern = control.GetCurrentPattern<IMySuperExpandCollapsePattern, ExpandCollapsePattern>();
+                IMySuperExpandCollapsePattern collapsePattern = control.GetCurrentPattern<IMySuperExpandCollapsePattern>(ExpandCollapsePattern.Pattern);
                 if (collapsePattern != null) {
                     collapsePattern.Collapse();
                     
@@ -983,7 +1058,9 @@ namespace UIAutomation
         internal void CallExpandPattern(PatternCmdletBase cmdlet, IUiElement control, IUiElement inputObject)
         {
             try {
-                IMySuperExpandCollapsePattern expandPattern = control.GetExpandCollapsePattern();
+                // IMySuperExpandCollapsePattern expandPattern = control.GetExpandCollapsePattern();
+                // IMySuperExpandCollapsePattern expandPattern = control.GetCurrentPattern<IMySuperExpandCollapsePattern, ExpandCollapsePattern>();
+                IMySuperExpandCollapsePattern expandPattern = control.GetCurrentPattern<IMySuperExpandCollapsePattern>(ExpandCollapsePattern.Pattern);
                 if (expandPattern != null) {
                     expandPattern.Expand();
                     

@@ -18,7 +18,7 @@ namespace UIAutomation
 	/// </summary>
 	public class MyScrollPatternNet : IMySuperScrollPattern
 	{
-		private readonly System.Windows.Automation.ScrollPattern _scrollPattern;
+		private System.Windows.Automation.ScrollPattern _scrollPattern;
 		private IUiElement _element;
 
 		public MyScrollPatternNet(IUiElement element, ScrollPattern scrollPattern)
@@ -28,7 +28,7 @@ namespace UIAutomation
 			//this._useCache = useCache;
 		}
 
-		internal MyScrollPatternNet(IUiElement element)
+		public MyScrollPatternNet(IUiElement element)
 		{
 			this._element = element;
 		}
@@ -137,6 +137,12 @@ namespace UIAutomation
 		{
 		    get { return this._element; }
 		    set { this._element = value; }
+		}
+		
+		public object SourcePattern
+		{
+		    get { return this._scrollPattern; }
+		    set { this._scrollPattern = value as ScrollPattern; }
 		}
 	}
 }

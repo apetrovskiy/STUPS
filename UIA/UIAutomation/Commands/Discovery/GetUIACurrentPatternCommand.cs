@@ -94,10 +94,12 @@ namespace UIAutomation.Commands
 
             AutomationPattern pattern = 
                 UiaHelper.GetPatternByName(Name);
-            
-            result = 
+            // 20131209
+            result =
                 UiaHelper.GetCurrentPattern(ref _control,
                                             pattern);
+            // result =
+            //     _control.GetCurrentPattern(pattern);
             
             WriteVerbose(this, result);
             

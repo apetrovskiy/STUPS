@@ -388,20 +388,15 @@ namespace UIAutomation
         internal void CallValuePatternForGet(PatternCmdletBase cmdlet, IUiElement control, IUiElement inputObject)
         {
             try {
-//Console.WriteLine("CallValuePatternForGet 00001");
                 // IMySuperValuePattern valuePatternGet = control.GetValuePattern();
                 // IMySuperValuePattern valuePatternGet = control.GetCurrentPattern<IMySuperValuePattern, ValuePattern>();
                 IMySuperValuePattern valuePatternGet = control.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern);
-//Console.WriteLine("CallValuePatternForGet 00002");
                 object result = null;
-//Console.WriteLine("CallValuePatternForGet 00003");
                 if (valuePatternGet != null) {
-//Console.WriteLine("CallValuePatternForGet 00004");
                     result = valuePatternGet.Current.Value;
                     WriteVerbose(this, "the result is " + result);
                     WriteObject(this, result);
                 } else {
-//Console.WriteLine("CallValuePatternForGet 00005");
                     WriteVerbose(this, "couldn't get ValuePattern");
                     WriteObject(this, result);
                 }

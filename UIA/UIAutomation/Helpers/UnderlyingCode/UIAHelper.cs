@@ -1856,6 +1856,8 @@ namespace UIAutomation
 //                    // as System.Windows.Automation.AutomationPattern;
 //                    result = resPattern;
                     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                    object resPattern =
+                        element.GetCurrentPattern(ptrn);
                     return result;
                 }
 

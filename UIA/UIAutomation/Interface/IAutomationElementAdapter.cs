@@ -28,6 +28,7 @@ namespace UIAutomation
 		// object GetCurrentPattern<N>(AutomationPattern pattern) where N : IBasePattern;
 		// IBasePattern GetCurrentPattern<N>(AutomationPattern pattern) where N : IBasePattern;
 		N GetCurrentPattern<N>(AutomationPattern pattern) where N : IBasePattern;
+		object GetCurrentPattern(AutomationPattern pattern);
 		// object GetCurrentPattern<N, O>(object pattern) where N : IBasePattern;
 		bool TryGetCurrentPattern(AutomationPattern pattern, out object patternObject);
 		object GetCachedPropertyValue(AutomationProperty property);

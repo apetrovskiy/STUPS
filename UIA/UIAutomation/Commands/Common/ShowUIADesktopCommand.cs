@@ -25,6 +25,8 @@ namespace UIAutomation.Commands.Common
             try{
                 // 20131109
                 //AutomationElement showDesktopButton =
+                // 20131209
+                /*
                 IUiElement showDesktopButton =
                     // 20131109
                     //AutomationElement.RootElement.FindFirst(
@@ -33,6 +35,14 @@ namespace UIAutomation.Commands.Common
                         new PropertyCondition(
                             AutomationElement.NameProperty,
                             "Show desktop"));
+                */
+                IUiElement showDesktopButton =
+                    UiElement.RootElement.FindFirst(
+                        TreeScope.Children,
+                        new PropertyCondition(
+                            AutomationElement.ClassNameProperty,
+                            "TrayShowDesktopButtonWClass"));
+                
                 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 // 20131208
                 // InvokePattern invPtrn =
@@ -41,6 +51,9 @@ namespace UIAutomation.Commands.Common
                 //    showDesktopButton.GetCurrentPattern<IMySuperInvokePattern, InvokePattern>(InvokePattern.Pattern) as InvokePattern;
                 // invPtrn.Invoke();
                 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                IMySuperInvokePattern invPtrn =
+                    showDesktopButton.GetCurrentPattern<IMySuperInvokePattern>(InvokePattern.Pattern);
+                invPtrn.Invoke();
                 /*
                 InvokePattern invPtrn = 
                     showDesktopButton.GetCurrentPattern(InvokePattern.Pattern) as InvokePattern;

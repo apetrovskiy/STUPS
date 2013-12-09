@@ -130,6 +130,9 @@
     <Compile Include="..\UIAutomationUnitTests\Fakes\FakeFactory.cs">
       <Link>Fakes\FakeFactory.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Fakes\PatternsData.cs">
+      <Link>Fakes\PatternsData.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomationUnitTests\Fakes\RealCodeCaller.cs">
       <Link>Fakes\RealCodeCaller.cs</Link>
     </Compile>

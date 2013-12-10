@@ -130,6 +130,12 @@
     <Compile Include="..\UIAutomationUnitTests\Fakes\FakeFactory.cs">
       <Link>Fakes\FakeFactory.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Fakes\FakeUiElement.cs">
+      <Link>Fakes\FakeUiElement.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Fakes\IFakeUiElement.cs">
+      <Link>Fakes\IFakeUiElement.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomationUnitTests\Fakes\PatternsData.cs">
       <Link>Fakes\PatternsData.cs</Link>
     </Compile>

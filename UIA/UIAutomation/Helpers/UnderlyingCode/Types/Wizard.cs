@@ -120,19 +120,7 @@ namespace UIAutomation
         	        InputObject = new UiElement[] {(UiElement) CurrentData.CurrentWindow},
         	        Timeout = 0
         	    };
-
-            /*
-        	UIAutomation.Commands.GetUiaControlCommand cmdletCtrl =
-        	    new UIAutomation.Commands.GetUiaControlCommand();
-
-        	cmdletCtrl.InputObject =
-        	    // 20131109
-        		//new AutomationElement[]{ CurrentData.CurrentWindow };
-        	    new UiElement[]{ (UiElement)CurrentData.CurrentWindow };
-
-        	cmdletCtrl.Timeout = 0;
-            */
-
+            
             foreach (WizardStep step in Steps) {
 
         	    if (StopImmediately) {
@@ -173,27 +161,6 @@ namespace UIAutomation
         	    resultStep = step;
         	    ActiveStep = step;
         	    break;
-
-        	    /*
-	        	if (null != controlsList && 0 < controlsList.Count) {
-
-	        	    if (step == this.ActiveStep) {
-	        	        
-	        	        // 20130423
-	        	        if (Preferences.HighlightCheckedControl) {
-	        	            foreach (AutomationElement elementChecked in controlsList) {
-	        	                UiaHelper.HighlightCheckedControl(elementChecked);
-	        	            }
-	        	        }
-	        	        
-	        	        continue;
-	        	    }
-	        	    
-	        		resultStep = step;
-	        		this.ActiveStep = step;
-	        		break;
-	        	}
-                */
             }
         	
         	// 20130515

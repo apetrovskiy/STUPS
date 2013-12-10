@@ -505,7 +505,10 @@ namespace UIAutomationSpy
                 this.richPatterns.Text += "\r\n";
                 
                 // 20120618 UiaCOMWrapper
-                AutomationPattern[] supportedPatterns =
+                // 20131209
+                // AutomationPattern[] supportedPatterns =
+                //     element.GetSupportedPatterns();
+                IBasePattern[] supportedPatterns =
                     element.GetSupportedPatterns();
                 //UiaCOM::System.Windows.Automation.AutomationPattern[] supportedPatterns =
                 //    element.GetSupportedPatterns();                                    
@@ -515,8 +518,12 @@ namespace UIAutomationSpy
                     if (i > 0) {
                         this.richPatterns.Text += "\r\n";
                     }
-                    this.richPatterns.Text += 
-                        supportedPatterns[i].ProgrammaticName.Replace("Identifiers.Pattern", "");
+                    this.richPatterns.Text +=
+                        // 20131209
+                        // supportedPatterns[i].ProgrammaticName.Replace("Identifiers.Pattern", "");
+                        // 20131210
+                        // (supportedPatterns[i] as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", "");
+                        (supportedPatterns[i].SourcePattern as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", "");
                 }
 
                 /*

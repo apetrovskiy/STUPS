@@ -47,7 +47,9 @@ namespace UIAutomation
 		// IUiEltCollection FindAll(TreeScope scope, Condition condition);
 		IUiEltCollection FindAll(TreeScope scope, System.Windows.Automation.Condition condition);
 		AutomationProperty[] GetSupportedProperties();
-		AutomationPattern[] GetSupportedPatterns();
+		// 20131209
+		// AutomationPattern[] GetSupportedPatterns();
+		IBasePattern[] GetSupportedPatterns();
 		void SetFocus();
 		//bool TryGetClickablePoint(out Point pt);
 		bool TryGetClickablePoint(out Point pt);

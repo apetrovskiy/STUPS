@@ -15,6 +15,7 @@ namespace UIAutomation
 	using System.Windows.Automation;
 	using Ninject;
 	using System.Windows;
+	using System.Linq;
 	
 	// using TMX.Commands;
 
@@ -297,18 +298,24 @@ namespace UIAutomation
 			        return _elementHolderNet.GetSupportedProperties();
 			}
 		}
-
-		public virtual AutomationPattern[] GetSupportedPatterns()
+        
+		// 20131209
+		// public virtual AutomationPattern[] GetSupportedPatterns()
+		public virtual IBasePattern[] GetSupportedPatterns()
 		{
 			switch (_innerElementType) {
 			    case InnerElementTypes.AutomationElementNet:
-			        return _elementHolderNet.GetSupportedPatterns();
+		            // 20131209
+		            // return _elementHolderNet.GetSupportedPatterns(); //.AsQueryable().ToList<IBasePattern>().ToArray();
+		            return _elementHolderNet.GetSupportedPatterns().ConvertAutomationPatternToBasePattern(AutomationFactory.GetUiElement(_elementHolderNet));
 //			    case InnerElementTypes.AutomationElementCom:
 //			        //
 			    case InnerElementTypes.UiElement:
 			        return _elementHolderAdapter.GetSupportedPatterns();
 			    default:
-			        return _elementHolderNet.GetSupportedPatterns();
+			        // 20131209
+			        // return _elementHolderNet.GetSupportedPatterns(); //.ToList<IBasePattern>().ToArray();
+			        return _elementHolderNet.GetSupportedPatterns().ConvertAutomationPatternToBasePattern(AutomationFactory.GetUiElement(_elementHolderNet));
 			}
 		}
 

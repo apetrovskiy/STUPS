@@ -222,13 +222,23 @@ namespace UIAutomation.Commands
             string result = string.Empty;
 
             if (!Full) return result;
-            AutomationPattern[] supportedPatterns =
+            // 20131209
+            // AutomationPattern[] supportedPatterns =
+            //     _currentInputObject.GetSupportedPatterns();
+            IBasePattern[] supportedPatterns =
                 _currentInputObject.GetSupportedPatterns();
             if (null == supportedPatterns || 0 >= supportedPatterns.Length) return result;
-            foreach (AutomationPattern pattern in supportedPatterns) {
+            // 20131209
+            // foreach (AutomationPattern pattern in supportedPatterns) {
+            foreach (IBasePattern pattern in supportedPatterns) {
+                
                 result += ";Has";
                 result +=
-                    pattern.ProgrammaticName.Substring(0, pattern.ProgrammaticName.Length - 19);
+                    // 20131209
+                    // pattern.ProgrammaticName.Substring(0, pattern.ProgrammaticName.Length - 19);
+                    // 20131210
+                    // (pattern.SourcePattern as AutomationPattern).ProgrammaticName.Substring(0, (pattern as AutomationPattern).ProgrammaticName.Length - 19);
+                    (pattern.SourcePattern as AutomationPattern).ProgrammaticName.Substring(0, (pattern.SourcePattern as AutomationPattern).ProgrammaticName.Length - 19);
                 result += "=$true";
             }
             

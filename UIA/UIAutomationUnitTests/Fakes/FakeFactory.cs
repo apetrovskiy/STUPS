@@ -166,30 +166,44 @@ namespace UIAutomationUnitTests
         }
         #endregion patterns
         
-        public static  IUiElement GetAutomationElementExpected(ControlType controlType, string name, string automationId, string className, string txtValue)
+        // public static IUiElement GetAutomationElementExpected(ControlType controlType, string name, string automationId, string className, string txtValue)
+        public static IFakeUiElement GetAutomationElementExpected(ControlType controlType, string name, string automationId, string className, string txtValue)
         {
-            return GetAutomationElement(controlType, name, automationId, className, txtValue, true);
+            // return GetAutomationElement(controlType, name, automationId, className, txtValue, true);
+            IMySuperValuePattern valuePattern = null;
+            if (!string.IsNullOrEmpty(txtValue)) {
+                valuePattern = FakeFactory.GetValuePattern(new PatternsData{ ValuePattern_Value = txtValue });
+            }
+            return GetAutomationElement(controlType, name, automationId, className, new IBasePattern[] { valuePattern }, true);
         }
         
-        public static  IUiElement GetAutomationElementNotExpected(ControlType controlType, string name, string automationId, string className, string txtValue)
+        // public static  IUiElement GetAutomationElementNotExpected(ControlType controlType, string name, string automationId, string className, string txtValue)
+        public static  IFakeUiElement GetAutomationElementNotExpected(ControlType controlType, string name, string automationId, string className, string txtValue)
         {
-            return GetAutomationElement(controlType, name, automationId, className, txtValue, false);
+            // return GetAutomationElement(controlType, name, automationId, className, txtValue, false);
+            IMySuperValuePattern valuePattern = null;
+            if (!string.IsNullOrEmpty(txtValue)) {
+                valuePattern = FakeFactory.GetValuePattern(new PatternsData{ ValuePattern_Value = txtValue });
+            }
+            return GetAutomationElement(controlType, name, automationId, className, new IBasePattern[] { valuePattern }, false);
         }
         
-        private static IUiElement GetAutomationElement(ControlType controlType, string name, string automationId, string className, string txtValue, bool expected)
+        // private static IUiElement GetAutomationElement(ControlType controlType, string name, string automationId, string className, string txtValue, bool expected)
+        private static IFakeUiElement GetAutomationElement(ControlType controlType, string name, string automationId, string className, IBasePattern[] patterns, bool expected)
         {
-            IUiElement element = Substitute.For<IUiElement>();
+            // IUiElement element = Substitute.For<IUiElement>();
+            IFakeUiElement element = Substitute.For<FakeUiElement>();
             element.Current.ProcessId.Returns(333);
             element.Current.ControlType.Returns(controlType);
             element.Current.Name.Returns(!string.IsNullOrEmpty(name) ? name : string.Empty);
             element.Current.AutomationId.Returns(!string.IsNullOrEmpty(automationId) ? automationId : string.Empty);
             element.Current.ClassName.Returns(!string.IsNullOrEmpty(className) ? className : string.Empty);
-            IMySuperValuePattern valuePattern = FakeFactory.GetValuePattern(new PatternsData { ValuePattern_Value = txtValue });
-            element.GetSupportedPatterns().Returns(new AutomationPattern[] { ValuePattern.Pattern });
-            // 20131208
-            // element.GetCurrentPattern(ValuePattern.Pattern).Returns(valuePattern);
-            // element.GetCurrentPattern<IMySuperValuePattern, ValuePattern>(ValuePattern.Pattern).Returns(valuePattern);
-            element.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern).Returns(valuePattern);
+            // IMySuperValuePattern valuePattern = FakeFactory.GetValuePattern(new PatternsData { ValuePattern_Value = txtValue });
+            element.Patterns.AddRange(patterns);
+            // element.GetSupportedPatterns().Returns(new AutomationPattern[] { ValuePattern.Pattern });
+            element.GetSupportedPatterns().Returns<IBasePattern[]>(element.Patterns.ToArray());
+            // element.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern).Returns(valuePattern);
+            element.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern).Returns<IMySuperValuePattern>(element.Patterns.Find(ptrn => ptrn is IMySuperValuePattern) as IMySuperValuePattern);
             object patternObject;
             element.TryGetCurrentPattern(ValuePattern.Pattern, out patternObject).Returns(true);
             if (expected) { element.Tag.Returns("expected"); }
@@ -227,10 +241,13 @@ namespace UIAutomationUnitTests
             return cmdlet;
         }
         
-        public static IUiElement GetElement_ForFindAll(IEnumerable<IUiElement> elements, Condition conditions)
+        // public static IUiElement GetElement_ForFindAll(IEnumerable<IUiElement> elements, Condition conditions)
+        public static IFakeUiElement GetElement_ForFindAll(IEnumerable<IUiElement> elements, Condition conditions)
         {
-            IUiElement element =
-                GetAutomationElement(ControlType.Pane, string.Empty, string.Empty, string.Empty, string.Empty, false);
+            // IUiElement element =
+            IFakeUiElement element =
+                // GetAutomationElement(ControlType.Pane, string.Empty, string.Empty, string.Empty, string.Empty, false);
+                GetAutomationElement(ControlType.Pane, string.Empty, string.Empty, string.Empty, new IBasePattern[] {}, false);
             IUiEltCollection descendants = AutomationFactory.GetUiEltCollection(elements);
             
             Condition[] condCollection = null;

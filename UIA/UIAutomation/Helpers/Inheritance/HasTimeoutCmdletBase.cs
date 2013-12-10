@@ -978,7 +978,9 @@ namespace UIAutomation
                                      wildcardAutomationId.IsMatch(item.Current.AutomationId) &&
                                      wildcardClass.IsMatch(item.Current.ClassName) &&
                                      // check whether a control has or hasn't ValuePattern
-                                     (item.GetSupportedPatterns().Contains(ValuePattern.Pattern) ?
+                                     // 20131209
+                                     (item.GetSupportedPatterns().AsQueryable<IBasePattern>().Any<IBasePattern>(p => p is IMySuperValuePattern) ?
+                                      //.Single<IMySuperValuePattern>() ? //.Contains(ValuePattern.Pattern) ?
                                       cmdlet.CompareElementValueAndValueParameter(item, textValue, true, wildcardValue, regexOptions) :
                                       // check whether the -Value parameter has or hasn't value
                                       ("*" == textValue ? true : false)
@@ -994,7 +996,12 @@ namespace UIAutomation
                                      Regex.IsMatch(item.Current.AutomationId, automationId, regexOptions) &&
                                      Regex.IsMatch(item.Current.ClassName, className, regexOptions) &&
                                      // check whether a control has or hasn't ValuePattern
-                                     (item.GetSupportedPatterns().Contains(ValuePattern.Pattern) ?
+                                     // 20131209
+                                     // (item.GetSupportedPatterns().Contains(ValuePattern.Pattern) ?
+                                     // 20131209
+                                     // (item.GetSupportedPatterns().Contains(IMySuperValuePattern.Contains(ValuePattern.Pattern) ?
+                                     // (item.GetSupportedPatterns().Contains(IMySuperValuePattern) ?
+                                     (item.GetSupportedPatterns().AsQueryable<IBasePattern>().Any<IBasePattern>(p => p is IMySuperValuePattern) ?
                                       cmdlet.CompareElementValueAndValueParameter(item, textValue, false, null, regexOptions) :
                                       // check whether the -Value parameter has or hasn't value
                                       (".*" == textValue ? true : false)

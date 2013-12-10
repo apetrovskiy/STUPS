@@ -50,7 +50,9 @@ namespace UIAutomation
                 where wildcardName.IsMatch(collectionItem.Current.Name) &&
                       wildcardAutomationId.IsMatch(collectionItem.Current.AutomationId) &&
                       wildcardClassName.IsMatch(collectionItem.Current.ClassName) &&
-                      (collectionItem.GetSupportedPatterns().Contains(ValuePattern.Pattern) ?
+                      // 20131209
+                      // (collectionItem.GetSupportedPatterns().Contains(ValuePattern.Pattern) ?
+                      (collectionItem.GetSupportedPatterns().AsQueryable<IBasePattern>().Any<IBasePattern>(p => p is IMySuperValuePattern) ?
                       // 20131208
                       // wildcardValue.IsMatch((collectionItem.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern).Current.Value) :
                       // wildcardValue.IsMatch((collectionItem.GetCurrentPattern<IMySuperValuePattern, ValuePattern>(ValuePattern.Pattern) as IMySuperValuePattern).Current.Value) :

@@ -864,7 +864,10 @@ namespace UIAutomation
                         // if (WriteCurrentPattern) {
                         // strElementPatterns = String.Empty;
                         try {
-                            AutomationPattern[] elementPatterns =
+                            // 20131209
+                            // AutomationPattern[] elementPatterns =
+                            //     element.GetSupportedPatterns();
+                            IBasePattern[] elementPatterns =
                                 element.GetSupportedPatterns();
                             
                             if (!cmdlet.NoEvents) {
@@ -872,18 +875,26 @@ namespace UIAutomation
                             }
                             
                             if (cmdlet.WriteCurrentPattern) {
-                                foreach (AutomationPattern ptrn in elementPatterns)
+                                // 20131209
+                                // foreach (AutomationPattern ptrn in elementPatterns)
+                                foreach (IBasePattern ptrn in elementPatterns)
                                 {
                                     strElementPatterns += "\r\n\t\t#";
                                     strElementPatterns +=
-                                        ptrn.ProgrammaticName.Replace("Identifiers.Pattern", "");
+                                        // 20131209
+                                        // ptrn.ProgrammaticName.Replace("Identifiers.Pattern", "");
+                                        (ptrn.SourcePattern as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", "");
                                     strElementPatterns += ": use the ";
                                     
                                     string tempControlNameForCmdlet =
                                         "-UIA" +
                                         elementControlType;
                                     
-                                    switch (ptrn.ProgrammaticName.Replace("Identifiers.Pattern", "")) {
+                                    // 20131209
+                                    // switch (ptrn.ProgrammaticName.Replace("Identifiers.Pattern", "")) {
+                                    // 20131210
+                                    // switch ((ptrn as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", "")) {
+                                    switch ((ptrn.SourcePattern as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", "")) {
                                         case "InvokePattern":
                                             strElementPatterns +=
                                                 "Invoke" + tempControlNameForCmdlet + "Click";
@@ -1331,7 +1342,9 @@ namespace UIAutomation
                                                               // 20131109
                                                               //AutomationElement element,
                                                               IUiElement element,
-                                                              AutomationPattern[] supportedPatterns)
+                                                              // 20131209
+                                                              // AutomationPattern[] supportedPatterns)
+                                                              IBasePattern[] supportedPatterns)
         {
             try { // experimental
                 
@@ -1361,12 +1374,18 @@ namespace UIAutomation
                         cmdlet.WriteVerbose(cmdlet, eCacheRequest.Message);
                     }
                     
-                    foreach (AutomationPattern pattern in supportedPatterns) {
+                    // 20131209
+                    // foreach (AutomationPattern pattern in supportedPatterns) {
+                    foreach (IBasePattern pattern in supportedPatterns) {
                         try {
                             if (element == null) { break; }
                             cmdlet.AutomationEventHandler =
                                 cmdlet.OnUIRecordingAutomationEvent;
-                            switch (pattern.ProgrammaticName) {
+                            // 20131209
+                            // switch (pattern.ProgrammaticName) {
+                            // 20131210
+                            // switch ((pattern as AutomationPattern).ProgrammaticName) {
+                            switch ((pattern.SourcePattern as AutomationPattern).ProgrammaticName) {
                                 case "SelectionItemPatternIdentifiers.Pattern":
                                     cmdlet.SubscribeToEvents(cmdlet,
                                                              element,
@@ -1476,7 +1495,11 @@ namespace UIAutomation
                         catch {
                             cmdlet.WriteVerbose(cmdlet,
                                                 "Unable to register an " +
-                                                pattern.ProgrammaticName +
+                                                // 20131209
+                                                // pattern.ProgrammaticName +
+                                                // 20131210
+                                                // (pattern as AutomationPattern).ProgrammaticName +
+                                                (pattern.SourcePattern as AutomationPattern).ProgrammaticName +
                                                 " event for " +
                                                 element.Current.Name);
                         }
@@ -1615,9 +1638,13 @@ namespace UIAutomation
         /// <summary>
         ///  /// </summary>
         /// <returns></returns>
-        internal static AutomationPattern[] GetElementPatternsFromPoint()
+        // 20131209
+        // internal static AutomationPattern[] GetElementPatternsFromPoint()
+        internal static IBasePattern[] GetElementPatternsFromPoint()
         {
-            AutomationPattern[] result = null;
+            // 20131209
+            // AutomationPattern[] result = null;
+            IBasePattern[] result = null;
             GetAutomationElementFromPoint();
             result = _element.GetSupportedPatterns();
             return result;
@@ -1822,7 +1849,10 @@ namespace UIAutomation
             object result =
                 null;
             try {
-                AutomationPattern[] supportedPatterns =
+                // 20131209
+                // AutomationPattern[] supportedPatterns =
+                //     element.GetSupportedPatterns();
+                IBasePattern[] supportedPatterns =
                     element.GetSupportedPatterns();
                 if (supportedPatterns == null ||
                     supportedPatterns.Length < 1)
@@ -1841,13 +1871,21 @@ namespace UIAutomation
                     return result;
                 }
                 */
-
-                foreach (AutomationPattern ptrn in supportedPatterns.Where(ptrn => patternType.ProgrammaticName == ptrn.ProgrammaticName ||
+                
+                // 20131209
+                // foreach (AutomationPattern ptrn in supportedPatterns.Where(ptrn => patternType.ProgrammaticName == ptrn.ProgrammaticName ||
+                // 20131210
+                // foreach (IBasePattern ptrn in supportedPatterns.Where(ptrn => patternType.ProgrammaticName == (ptrn as AutomationPattern).ProgrammaticName ||
+                foreach (IBasePattern ptrn in supportedPatterns.Where(ptrn => patternType.ProgrammaticName == (ptrn.SourcePattern as AutomationPattern).ProgrammaticName ||
                                                                                    patternType == null))
                 {
                     object pattern = null;
                     if (!element.TryGetCurrentPattern(
-                        ptrn, out pattern)) continue;
+                        // 20131209
+                        // ptrn, out pattern)) continue;
+                        // 20131210
+                        // (ptrn as AutomationPattern), out pattern)) continue;
+                        (ptrn.SourcePattern as AutomationPattern), out pattern)) continue;
                     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //                    object resPattern =
 //                        // 20131208
@@ -1857,7 +1895,11 @@ namespace UIAutomation
 //                    result = resPattern;
                     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                     object resPattern =
-                        element.GetCurrentPattern(ptrn);
+                        // 20131209
+                        // element.GetCurrentPattern(ptrn);
+                        // 20131210
+                        // element.GetCurrentPattern((ptrn as AutomationPattern));
+                        element.GetCurrentPattern((ptrn.SourcePattern as AutomationPattern));
                     return result;
                 }
 

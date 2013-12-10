@@ -109,6 +109,8 @@
     <Compile Include="Commands\Wizard\AddUIAWizardStepCommandTestFixture.cs" />
     <Compile Include="Commands\Wizard\NewUIAWizardCommandTestFixture.cs" />
     <Compile Include="Fakes\FakeFactory.cs" />
+    <Compile Include="Fakes\FakeUiElement.cs" />
+    <Compile Include="Fakes\IFakeUiElement.cs" />
     <Compile Include="Fakes\PatternsData.cs" />
     <Compile Include="Fakes\RealCodeCaller.cs" />
     <Compile Include="Helpers\Inheritance\CommonCmdletBaseTestFixture.cs" />

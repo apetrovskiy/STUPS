@@ -35,7 +35,9 @@ namespace UIAutomation
                 new List<IBasePattern>();
             foreach (AutomationPattern pattern in patterns) {
                 // resultList.Add(AutomationFactory.GetMySuperPattern<IBasePattern>(element, pattern));
-                switch (pattern.ProgrammaticName.Substring(12)) {
+                // 20131210
+                // switch (pattern.ProgrammaticName.Substring(12)) {
+                switch (pattern.ProgrammaticName.Replace("Identifiers.Pattern", string.Empty)) {
                     case "DockPattern":
                         resultList.Add(AutomationFactory.GetMySuperPattern<IMySuperDockPattern>(element, pattern));
                         break;

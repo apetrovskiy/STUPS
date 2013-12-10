@@ -883,7 +883,9 @@ namespace UIAutomation
                                     strElementPatterns +=
                                         // 20131209
                                         // ptrn.ProgrammaticName.Replace("Identifiers.Pattern", "");
-                                        (ptrn.SourcePattern as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", "");
+                                        // 20131210
+                                        // (ptrn.SourcePattern as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", "");
+                                        (ptrn.SourcePattern as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", string.Empty);
                                     strElementPatterns += ": use the ";
                                     
                                     string tempControlNameForCmdlet =
@@ -894,7 +896,8 @@ namespace UIAutomation
                                     // switch (ptrn.ProgrammaticName.Replace("Identifiers.Pattern", "")) {
                                     // 20131210
                                     // switch ((ptrn as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", "")) {
-                                    switch ((ptrn.SourcePattern as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", "")) {
+                                    // switch ((ptrn.SourcePattern as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", "")) {
+                                    switch ((ptrn.SourcePattern as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", string.Empty)) {
                                         case "InvokePattern":
                                             strElementPatterns +=
                                                 "Invoke" + tempControlNameForCmdlet + "Click";

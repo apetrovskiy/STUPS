@@ -227,7 +227,9 @@ namespace UIAutomation.Commands
             //     _currentInputObject.GetSupportedPatterns();
             IBasePattern[] supportedPatterns =
                 _currentInputObject.GetSupportedPatterns();
-            if (null == supportedPatterns || 0 >= supportedPatterns.Length) return result;
+            // 20131210
+            // if (null == supportedPatterns || 0 >= supportedPatterns.Length) return result;
+            if (null == supportedPatterns || 0 == supportedPatterns.Length) return result;
             // 20131209
             // foreach (AutomationPattern pattern in supportedPatterns) {
             foreach (IBasePattern pattern in supportedPatterns) {

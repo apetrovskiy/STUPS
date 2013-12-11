@@ -114,9 +114,14 @@ if (null == resultList) {
             Console.WriteLine(e1.Current.Name);
             Console.WriteLine(e1.Current.AutomationId);
             Console.WriteLine(e1.Current.ClassName);
-            IMySuperValuePattern valuePattern =
-                e1.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern);
-            Console.WriteLine(valuePattern.Current.Value);
+            try {
+                IMySuperValuePattern valuePattern =
+                    e1.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern);
+                Console.WriteLine(valuePattern.Current.Value);
+            } catch (Exception eee) {
+                Console.WriteLine(eee.Message);
+            }
+            
         }
     }
 }

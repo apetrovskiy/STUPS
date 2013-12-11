@@ -32,7 +32,7 @@ namespace UIAutomation
 		public MyValuePatternNet(IUiElement element)
 		{
 		    this._element = element;
-		    this._patternEmulator = new SourcePatternEmulator();
+		    this._patternEmulator = new SourcePatternEmulator(new object());
 		}
 		
 		public MyValuePatternNet(ValuePattern ValuePattern)

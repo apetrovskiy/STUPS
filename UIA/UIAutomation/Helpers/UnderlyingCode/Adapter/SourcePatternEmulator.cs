@@ -20,7 +20,7 @@ namespace UIAutomation
         
         public SourcePatternEmulator(object pattern)
         {
-            Pattern = pattern;
+            Pattern = pattern as AutomationPattern;
         }
     }
 }

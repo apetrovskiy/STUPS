@@ -980,6 +980,18 @@ Console.WriteLine("ReturnOnlyRightElements 00007");
 
             try {
                 
+               
+foreach (IUiElement el001 in inputList) {
+    try {
+           Console.WriteLine(el001.Current.Name);
+           bool hasPatern = el001.GetSupportedPatterns().AsQueryable<IBasePattern>().Any(p => null != p && null != (p as IMySuperValuePattern));
+    }
+   catch (Exception e00001) {
+       Console.WriteLine(e00001.Message);
+   }
+}
+               
+               
                 List<IUiElement> query;
                 
                 if (viaWildcardOrRegex) {
@@ -993,7 +1005,9 @@ Console.WriteLine("ReturnOnlyRightElements 00009");
                                      wildcardClass.IsMatch(item.Current.ClassName) &&
                                      // check whether a control has or hasn't ValuePattern
                                      // 20131209
-                                     (item.GetSupportedPatterns().AsQueryable<IBasePattern>().Any<IBasePattern>(p => p is IMySuperValuePattern) ?
+                                     // 20131211
+                                     // (item.GetSupportedPatterns().AsQueryable<IBasePattern>().Any<IBasePattern>(p => p is IMySuperValuePattern) ?
+                                     (item.GetSupportedPatterns().AsQueryable<IBasePattern>().Any(p => null != p && null != (p as IMySuperValuePattern)) ?
                                       //.Single<IMySuperValuePattern>() ? //.Contains(ValuePattern.Pattern) ?
                                       cmdlet.CompareElementValueAndValueParameter(item, textValue, true, wildcardValue, regexOptions) :
                                       // check whether the -Value parameter has or hasn't value
@@ -1017,7 +1031,9 @@ Console.WriteLine("ReturnOnlyRightElements 00011");
                                      // 20131209
                                      // (item.GetSupportedPatterns().Contains(IMySuperValuePattern.Contains(ValuePattern.Pattern) ?
                                      // (item.GetSupportedPatterns().Contains(IMySuperValuePattern) ?
-                                     (item.GetSupportedPatterns().AsQueryable<IBasePattern>().Any<IBasePattern>(p => p is IMySuperValuePattern) ?
+                                     // 20131211
+                                     // (item.GetSupportedPatterns().AsQueryable<IBasePattern>().Any<IBasePattern>(p => p is IMySuperValuePattern) ?
+                                     (item.GetSupportedPatterns().AsQueryable<IBasePattern>().Any(p => null != p && null != (p as IMySuperValuePattern)) ?
                                       cmdlet.CompareElementValueAndValueParameter(item, textValue, false, null, regexOptions) :
                                       // check whether the -Value parameter has or hasn't value
                                       (".*" == textValue ? true : false)

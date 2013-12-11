@@ -223,13 +223,17 @@ if (null == aaaaa) {
     Console.WriteLine(aaaaa.Length.ToString());
     if (0 < aaaaa.Length) {
         foreach (var ptrn in aaaaa) {
-            Console.WriteLine(ptrn.GetType().Name);
-            if (null == ptrn.SourcePattern) {
-                Console.WriteLine("null == ptrn.SourcePattern");
+            if (null == ptrn) {
+                Console.WriteLine("null == ptrn");
             } else {
-                Console.WriteLine(ptrn.SourcePattern.GetType().Name);
-                //Console.WriteLine((ptrn.SourcePattern as AutomationPattern).ProgrammaticName);
-                Console.WriteLine(ptrn.SourcePattern.Pattern);
+                Console.WriteLine(ptrn.GetType().Name);
+                if (null == ptrn.SourcePattern) {
+                    Console.WriteLine("null == ptrn.SourcePattern");
+                } else {
+                    Console.WriteLine(ptrn.SourcePattern.GetType().Name);
+                    //Console.WriteLine((ptrn.SourcePattern as AutomationPattern).ProgrammaticName);
+                    // Console.WriteLine(ptrn.SourcePattern.Pattern);
+                }
             }
         }
     }

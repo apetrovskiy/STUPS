@@ -560,7 +560,7 @@ Console.WriteLine("utility 0000005");
             ControlType controlType = null;
             TestParametersAgainstCollection(
                 controlType,
-                name,
+                expectedValue,
                 automationId,
                 className,
                 expectedValue,
@@ -584,7 +584,7 @@ Console.WriteLine("utility 0000005");
             ControlType controlType = null;
             TestParametersAgainstCollection(
                 controlType,
-                name,
+                expectedValue,
                 automationId,
                 className,
                 expectedValue,

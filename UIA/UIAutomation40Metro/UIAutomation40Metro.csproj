@@ -678,6 +678,9 @@
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\SelectionPatternAdapterNet.cs">
       <Link>Helpers\UnderlyingCode\Adapter\SelectionPatternAdapterNet.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\SourcePatternEmulator.cs">
+      <Link>Helpers\UnderlyingCode\Adapter\SourcePatternEmulator.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\TableItemPatternAdapterNet.cs">
       <Link>Helpers\UnderlyingCode\Adapter\TableItemPatternAdapterNet.cs</Link>
     </Compile>

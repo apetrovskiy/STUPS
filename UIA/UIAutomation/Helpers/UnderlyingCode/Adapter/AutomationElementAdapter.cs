@@ -311,10 +311,12 @@ namespace UIAutomation
 		            // return _elementHolderNet.GetSupportedPatterns().ConvertAutomationPatternToBasePattern(AutomationFactory.GetUiElement(_elementHolderNet));
 		            // 20131211
 		            // return _elementHolderNet.GetSupportedPatterns().ConvertAutomationPatternToBasePattern();
+Console.WriteLine("GetSupportedPatterns: 000001");
 		            return _elementHolderNet.GetSupportedPatterns().ConvertAutomationPatternToBasePattern(this);
 //			    case InnerElementTypes.AutomationElementCom:
 //			        //
 			    case InnerElementTypes.UiElement:
+Console.WriteLine("GetSupportedPatterns: 000002");
 			        return _elementHolderAdapter.GetSupportedPatterns();
 			    default:
 			        // 20131209
@@ -323,6 +325,7 @@ namespace UIAutomation
 			        // return _elementHolderNet.GetSupportedPatterns().ConvertAutomationPatternToBasePattern(AutomationFactory.GetUiElement(_elementHolderNet));
 			        // 20131211
 			        // return _elementHolderNet.GetSupportedPatterns().ConvertAutomationPatternToBasePattern();
+Console.WriteLine("GetSupportedPatterns: 000003");
 			        return _elementHolderNet.GetSupportedPatterns().ConvertAutomationPatternToBasePattern(this);
 			}
 		}

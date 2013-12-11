@@ -95,16 +95,29 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                     if (null != controlType) {
                         Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => controlTypeNames.Contains(x.Current.ControlType.ProgrammaticName.Substring(12)));
                     }
+Console.WriteLine("utility 0000001");
                     if (!string.IsNullOrEmpty(txtValue)) {
                         Assert.ForAll(
                             resultList
                             .Cast<IUiElement>()
                             .ToList<IUiElement>(), x =>
                             {
+Console.WriteLine("utility 0000002");
                                 IMySuperValuePattern valuePattern = x.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern) as IMySuperValuePattern;
+                                
+if (null == valuePattern) {
+    Console.WriteLine("null == valuePattern");
+} else {
+    Console.WriteLine(valuePattern.GetType().Name);
+    // Console.WriteLine(valuePattern.SourcePattern.
+    Console.WriteLine(valuePattern.Current.Value);
+}
+Console.WriteLine("utility 0000003");
                                 return valuePattern != null && txtValuePatern.IsMatch(valuePattern.Current.Value);
                             });
+Console.WriteLine("utility 0000004");
                     }
+Console.WriteLine("utility 0000005");
                     break;
                 case UIAutomationUnitTests.Helpers.Inheritance.UsualWildcardRegex.Regex:
                     if (!string.IsNullOrEmpty(name)) {
@@ -469,6 +482,169 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 3);
         }
         #endregion Name
+        
+        #region Value
+        [Test]
+        public void Get0_byValue()
+        {
+            string name = string.Empty;
+            string automationId = string.Empty;
+            string className = string.Empty;
+            const string txtValue = "xxx";
+            ControlType controlType = null;
+            TestParametersAgainstCollection(
+                controlType,
+                name,
+                automationId,
+                className,
+                txtValue,
+                new UiElement[] {},
+                UsualWildcardRegex.Wildcard,
+                0);
+        }
+        
+        [Test]
+        public void Get0of3_byValue_Wildcard()
+        {
+            string name = string.Empty;
+            string automationId = string.Empty;
+            string className = string.Empty;
+            const string txtValue = "xxx";
+            ControlType controlType = null;
+            TestParametersAgainstCollection(
+                controlType,
+                name,
+                automationId,
+                className,
+                txtValue,
+                new [] {
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, string.Empty, string.Empty, string.Empty, "value1"),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, string.Empty, string.Empty, string.Empty, "value2"),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, string.Empty, string.Empty, string.Empty, "value3")
+                },
+                UsualWildcardRegex.Wildcard,
+                0);
+        }
+        
+        [Test]
+        public void Get0of3_byValue_Regex()
+        {
+            string name = string.Empty;
+            string automationId = string.Empty;
+            string className = string.Empty;
+            const string txtValue = "xxx";
+            ControlType controlType = null;
+            TestParametersAgainstCollection(
+                controlType,
+                name,
+                automationId,
+                className,
+                txtValue,
+                new [] {
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, string.Empty, string.Empty, string.Empty, "value1"),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, string.Empty, string.Empty, string.Empty, "value2"),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, string.Empty, string.Empty, string.Empty, "value3")
+                },
+                UsualWildcardRegex.Regex,
+                0);
+        }
+        
+        [Test]
+        public void Get1of3_byValue_Wildcard()
+        {
+            string name = string.Empty;
+            string automationId = string.Empty;
+            string className = string.Empty;
+            const string txtValue = "xxx";
+            const string expectedValue = "?x*";
+            ControlType controlType = null;
+            TestParametersAgainstCollection(
+                controlType,
+                name,
+                automationId,
+                className,
+                expectedValue,
+                new [] {
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, string.Empty, string.Empty, string.Empty, "value1"),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, string.Empty, string.Empty, string.Empty, txtValue),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, string.Empty, string.Empty, string.Empty, "value3")
+                },
+                UsualWildcardRegex.Wildcard,
+                1);
+        }
+        
+        [Test]
+        public void Get1of3_byValue_Regex()
+        {
+            string name = string.Empty;
+            string automationId = string.Empty;
+            string className = string.Empty;
+            const string txtValue = "xxx";
+            const string expectedValue = "(x|y)[x]{2}";
+            ControlType controlType = null;
+            TestParametersAgainstCollection(
+                controlType,
+                name,
+                automationId,
+                className,
+                expectedValue,
+                new [] {
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, string.Empty, string.Empty, string.Empty, "value1"),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, string.Empty, string.Empty, string.Empty, txtValue),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, string.Empty, string.Empty, string.Empty, "value3")
+                },
+                UsualWildcardRegex.Regex,
+                1);
+        }
+        
+        [Test]
+        public void Get3of3_byValue_Wildcard()
+        {
+            string name = string.Empty;
+            string automationId = string.Empty;
+            string className = string.Empty;
+            const string txtValue = "xxx";
+            const string expectedValue = "?x*";
+            ControlType controlType = null;
+            TestParametersAgainstCollection(
+                controlType,
+                expectedValue,
+                automationId,
+                className,
+                txtValue,
+                new [] {
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, string.Empty, string.Empty, string.Empty, "xxxx"),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, string.Empty, string.Empty, string.Empty, txtValue),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, string.Empty, string.Empty, string.Empty, "yx x x ")
+                },
+                UsualWildcardRegex.Wildcard,
+                3);
+        }
+        
+        [Test]
+        public void Get3of3_byValue_Regex()
+        {
+            string name = string.Empty;
+            string automationId = string.Empty;
+            string className = string.Empty;
+            const string txtValue = "xxx";
+            const string expectedValue = @"(x\s?){3}";
+            ControlType controlType = null;
+            TestParametersAgainstCollection(
+                controlType,
+                expectedValue,
+                automationId,
+                className,
+                txtValue,
+                new [] {
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, string.Empty, string.Empty, string.Empty, "xxxx"),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, string.Empty, string.Empty, string.Empty, txtValue),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, string.Empty, string.Empty, string.Empty, "yx x x ")
+                },
+                UsualWildcardRegex.Regex,
+                3);
+        }
+        #endregion Value
     }
     
     public enum UsualWildcardRegex

@@ -287,6 +287,7 @@
     <Compile Include="Helpers\UnderlyingCode\Adapter\ScrollPatternAdapter.cs" />
     <Compile Include="Helpers\UnderlyingCode\Adapter\SelectionItemPatternAdapterNet.cs" />
     <Compile Include="Helpers\UnderlyingCode\Adapter\SelectionPatternAdapterNet.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Adapter\SourcePatternEmulator.cs" />
     <Compile Include="Helpers\UnderlyingCode\Adapter\TableItemPatternAdapterNet.cs" />
     <Compile Include="Helpers\UnderlyingCode\Adapter\TablePatternAdapterNet.cs" />
     <Compile Include="Helpers\UnderlyingCode\Adapter\TextPatternAdapterNet.cs" />

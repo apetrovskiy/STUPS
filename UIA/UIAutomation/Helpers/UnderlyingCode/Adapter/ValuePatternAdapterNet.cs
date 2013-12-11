@@ -20,6 +20,7 @@ namespace UIAutomation
 	{
 		private System.Windows.Automation.ValuePattern _valuePattern;
 		private IUiElement _element;
+		private object _patternEmulator;
 		
 		public MyValuePatternNet(IUiElement element, ValuePattern valuePattern)
 		{
@@ -31,6 +32,7 @@ namespace UIAutomation
 		public MyValuePatternNet(IUiElement element)
 		{
 		    this._element = element;
+		    this._patternEmulator = new SourcePatternEmulator();
 		}
 		
 		public MyValuePatternNet(ValuePattern ValuePattern)

@@ -93,7 +93,7 @@ namespace UIAutomationUnitTests
             
             List<IUiElement> resultList =
                 HasTimeoutCmdletBase.ReturnOnlyRightElements(
-                    cmdlet,
+                    cmdletDerived,
                     elements,
                     cmdlet.Name,
                     cmdlet.AutomationId,
@@ -102,6 +102,24 @@ namespace UIAutomationUnitTests
                     cmdlet.ControlType,
                     false,
                     useWildcardOrRegex);
+            
+Console.WriteLine("GetResultList_ReturnOnlyRightElements: 00001");
+if (null == resultList) {
+    Console.WriteLine("null == resultList");
+} else {
+    Console.WriteLine(resultList.GetType().Name);
+    Console.WriteLine(resultList.Count.ToString());
+    if (0 < resultList.Count) {
+        foreach (var e1 in resultList) {
+            Console.WriteLine(e1.Current.Name);
+            Console.WriteLine(e1.Current.AutomationId);
+            Console.WriteLine(e1.Current.ClassName);
+            IMySuperValuePattern valuePattern =
+                e1.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern);
+            Console.WriteLine(valuePattern.Current.Value);
+        }
+    }
+}
             
             return resultList;
         }

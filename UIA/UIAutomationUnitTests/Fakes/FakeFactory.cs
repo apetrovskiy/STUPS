@@ -142,10 +142,17 @@ namespace UIAutomationUnitTests
         
         private static IMySuperValuePattern GetValuePattern(PatternsData data)
         {
+Console.WriteLine("GetValuePattern 00001");
             IMySuperValuePattern valuePattern = Substitute.For<IMySuperValuePattern>();
             IValuePatternInformation valuePatternInformation = Substitute.For<IValuePatternInformation>();
             valuePatternInformation.Value.Returns(data.ValuePattern_Value);
+Console.WriteLine("valuePatternInformation.Value = {0}", valuePatternInformation.Value);
             valuePattern.Current.Returns(valuePatternInformation);
+Console.WriteLine("valuePattern.Current.Value = {0}", valuePattern.Current.Value);
+Console.WriteLine("GetValuePattern 00005");
+            FakeSourcePattern sourcePattern = new FakeSourcePattern();
+            FakeSourcePattern.Pattern = ValuePattern.Pattern;
+            valuePattern.SourcePattern = sourcePattern;
             return valuePattern;
         }
         
@@ -171,9 +178,14 @@ namespace UIAutomationUnitTests
         {
             // return GetAutomationElement(controlType, name, automationId, className, txtValue, true);
             IMySuperValuePattern valuePattern = null;
+Console.WriteLine("GetAutomationElementExpected 00001");
             if (!string.IsNullOrEmpty(txtValue)) {
+Console.WriteLine("GetAutomationElementExpected 00002");
                 valuePattern = FakeFactory.GetValuePattern(new PatternsData{ ValuePattern_Value = txtValue });
+Console.WriteLine("GetAutomationElementExpected 00003");
+Console.WriteLine("FakeFactory.GetValuePattern -> {0}", valuePattern.Current.Value);
             }
+Console.WriteLine("GetAutomationElementExpected 00004");
             return GetAutomationElement(controlType, name, automationId, className, new IBasePattern[] { valuePattern }, true);
         }
         
@@ -203,6 +215,25 @@ namespace UIAutomationUnitTests
             element.Patterns.AddRange(patterns);
             // element.GetSupportedPatterns().Returns(new AutomationPattern[] { ValuePattern.Pattern });
             element.GetSupportedPatterns().Returns<IBasePattern[]>(element.Patterns.ToArray());
+var aaaaa = element.GetSupportedPatterns();
+if (null == aaaaa) {
+    Console.WriteLine("null == element.GetSupportedPatterns()");
+} else {
+    Console.WriteLine(aaaaa.GetType().Name);
+    Console.WriteLine(aaaaa.Length.ToString());
+    if (0 < aaaaa.Length) {
+        foreach (var ptrn in aaaaa) {
+            Console.WriteLine(ptrn.GetType().Name);
+            if (null == ptrn.SourcePattern) {
+                Console.WriteLine("null == ptrn.SourcePattern");
+            } else {
+                Console.WriteLine(ptrn.SourcePattern.GetType().Name);
+                //Console.WriteLine((ptrn.SourcePattern as AutomationPattern).ProgrammaticName);
+                Console.WriteLine(ptrn.SourcePattern.Pattern);
+            }
+        }
+    }
+}
             // element.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern).Returns(valuePattern);
             element.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern).Returns<IMySuperValuePattern>(element.Patterns.Find(ptrn => ptrn is IMySuperValuePattern) as IMySuperValuePattern);
             object patternObject;
@@ -308,5 +339,10 @@ namespace UIAutomationUnitTests
             element.FindAll(TreeScope.Descendants, Arg.Any<Condition>()).Returns(descendants2);
             return element;
         }
+    }
+    
+    public class FakeSourcePattern
+    {
+        public static AutomationPattern Pattern { get; set; }
     }
 }

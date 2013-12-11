@@ -887,6 +887,8 @@ namespace UIAutomation
         {
             List<IUiElement> resultCollection = new List<IUiElement>();
             
+Console.WriteLine("ReturnOnlyRightElements 00001");
+            
             // 20131210
             if (null == inputCollection) { return resultCollection; }
             
@@ -899,6 +901,8 @@ namespace UIAutomation
                     WildcardOptions.IgnoreCase |
                     WildcardOptions.Compiled;
             }
+            
+Console.WriteLine("ReturnOnlyRightElements 00003");
             
             RegexOptions regexOptions = RegexOptions.Compiled;
             if (!caseSensitive) {
@@ -916,6 +920,8 @@ namespace UIAutomation
                 className = string.IsNullOrEmpty(className) ? ".*" : className;
                 textValue = string.IsNullOrEmpty(textValue) ? ".*" : textValue;
             }
+            
+Console.WriteLine("ReturnOnlyRightElements 00005");
             
             /*
             if (string.IsNullOrEmpty(name) || 0 == name.Length) { name = "*"; }
@@ -955,6 +961,8 @@ namespace UIAutomation
             
             List<IUiElement> inputList = inputCollection.Cast<IUiElement>().ToList();
             
+Console.WriteLine("ReturnOnlyRightElements 00007");
+            
             cmdlet.WriteVerbose(
                     cmdlet,
                     "ReturnOnlyRightElements: there are " +
@@ -975,6 +983,9 @@ namespace UIAutomation
                 List<IUiElement> query;
                 
                 if (viaWildcardOrRegex) {
+                    
+Console.WriteLine("ReturnOnlyRightElements 00009");
+                    
                     query = inputList
                         .Where<IUiElement>(
                             item => (wildcardName.IsMatch(item.Current.Name) &&
@@ -993,6 +1004,8 @@ namespace UIAutomation
                         .ToList<IUiElement>();
                } else {
                    
+Console.WriteLine("ReturnOnlyRightElements 00011");
+                    
                     query = inputList
                         .Where<IUiElement>(
                             item => (Regex.IsMatch(item.Current.Name, name, regexOptions) &&
@@ -1019,6 +1032,8 @@ namespace UIAutomation
                         "There are " +
                         query.Count.ToString() +
                         " elements");
+                
+Console.WriteLine("ReturnOnlyRightElements 00015");
                 
                 resultCollection.AddRange(query);
                 
@@ -1054,18 +1069,23 @@ namespace UIAutomation
         {
             bool result = false;
             
+Console.WriteLine("CompareElementValueAndValueParameter: 00001");
+            
             // getting the real value of a control
             string realValue = string.Empty;
             try {
+Console.WriteLine("CompareElementValueAndValueParameter: 00002");
                 realValue =
                     // 20131208
                     // (item.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern).Current.Value;
                     // (item.GetCurrentPattern<IMySuperValuePattern, ValuePattern>(ValuePattern.Pattern) as IMySuperValuePattern).Current.Value;
                     (item.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern)).Current.Value;
+Console.WriteLine("CompareElementValueAndValueParameter: 00003");
             }
             catch { //(Exception eGetCurrentPattern) {
                 // nothing to do
                 // usually this place never be reached
+Console.WriteLine("CompareElementValueAndValueParameter: 00004");
             }
             
             result = viaWildcardOrRegex ? wildcardValue.IsMatch(realValue) : Regex.IsMatch(realValue, textValue, regexOptions);
@@ -1080,7 +1100,7 @@ namespace UIAutomation
                     Regex.IsMatch(realValue, textValue, regexOptions);
             }
             */
-
+Console.WriteLine("CompareElementValueAndValueParameter: 00005");
             return result;
         }
     }

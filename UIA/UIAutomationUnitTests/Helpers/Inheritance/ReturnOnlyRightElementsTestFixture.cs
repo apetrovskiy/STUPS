@@ -1,4 +1,5 @@
-﻿/*
+﻿using System;
+/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
  * Date: 11/18/2013
@@ -48,7 +49,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             // Arrange
             ControlType[] controlTypes =
                 new[] { controlType };
-         
+            
             GetControlCmdletBase cmdlet =
                 FakeFactory.Get_GetControlCmdletBase(controlTypes, name, automationId, className, txtValue);
             
@@ -89,7 +90,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => x.Current.ClassName == className);
             }
             string[] controlTypeNames =
-                controlTypes.Select(ct => ct.ProgrammaticName.Substring(12)).ToArray();
+                controlTypes.Select(ct => null != ct ? ct.ProgrammaticName.Substring(12) : string.Empty).ToArray();
             if (null != controlType) {
                 Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => controlTypeNames.Contains(x.Current.ControlType.ProgrammaticName.Substring(12)));
             }

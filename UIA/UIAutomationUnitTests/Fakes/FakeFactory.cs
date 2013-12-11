@@ -215,7 +215,7 @@ namespace UIAutomationUnitTests
         // public static GetControlCmdletBase Get_GetControlCmdletBase(ControlType controlType, string name, string automationId, string className, string txtValue)
         public static GetControlCmdletBase Get_GetControlCmdletBase(ControlType[] controlTypes, string name, string automationId, string className, string txtValue)
         {
-Console.WriteLine("gccb 0001");
+//Console.WriteLine("gccb 0001");
             GetControlCmdletBase cmdlet = Substitute.For<GetControlCmdletBase>();
 //            if (null != controlType) {
 //                cmdlet.ControlType.Returns(
@@ -224,18 +224,36 @@ Console.WriteLine("gccb 0001");
 //                    }
 //                   );
 //            }
-Console.WriteLine("gccb 0002");
+//Console.WriteLine("gccb 0002");
             
             if (null != controlTypes && 0 < controlTypes.Length) {
-Console.WriteLine("gccb 0003");
-IEnumerable<string> sss = controlTypes.Select(ct => ct.ProgrammaticName.Substring(12));
-Console.WriteLine("gccb 0003.1");
-Console.WriteLine(sss.Count().ToString());
-foreach (string str in sss) {
-    Console.WriteLine(str);
-}
-                cmdlet.ControlType.Returns(controlTypes.Select(ct => ct.ProgrammaticName.Substring(12)).ToArray());
-Console.WriteLine("gccb 0004");
+//Console.WriteLine("gccb 0003");
+//Console.WriteLine(controlTypes.Count().ToString());
+//if (null == controlTypes[0]) {
+//    Console.WriteLine("null == controlTypes[0]");
+//} else {
+//    Console.WriteLine(controlTypes[0].GetType().Name);
+//}
+//IEnumerable<string> sss = controlTypes.Select(ct => null != ct ? ct.ProgrammaticName.Substring(12) : string.Empty);
+//Console.WriteLine("gccb 0003.1");
+//if (null == sss) {
+//    Console.WriteLine("null == sss");
+//} else {
+//    Console.WriteLine(sss.GetType().Name);
+//    if (sss.Any()) {
+//        // Console.WriteLine(sss.Count().ToString());
+//        foreach (string str in sss) {
+//            Console.WriteLine(str);
+//        }
+//    } else {
+//        Console.WriteLine("there are no elements");
+//    }
+//}
+
+                cmdlet.ControlType.Returns<string[]>(controlTypes.Select(
+                    ct =>
+                    null != ct ? ct.ProgrammaticName.Substring(12) : string.Empty).ToArray());
+//Console.WriteLine("gccb 0004");
             } else {
                 cmdlet.ControlType.Returns(new string[] {});
             }

@@ -52,8 +52,12 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 controlTypeString = controlType.ProgrammaticName.Substring(12);
             }
             
+            ControlType[] controlTypes =
+                new[] { controlType };
+            
             GetControlCmdletBase cmdlet =
-                FakeFactory.Get_GetControlCmdletBase(new ControlType[] { controlType }, name, automationId, className, txtValue);
+                // FakeFactory.Get_GetControlCmdletBase(new ControlType[] { controlType }, name, automationId, className, txtValue);
+                FakeFactory.Get_GetControlCmdletBase(controlTypes, name, automationId, className, txtValue);
             
             Condition condition =
                 cmdlet.GetWildcardSearchCondition(cmdlet);

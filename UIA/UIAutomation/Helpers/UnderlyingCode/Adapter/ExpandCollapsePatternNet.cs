@@ -30,6 +30,11 @@ namespace UIAutomation
 		{
 		    this._element = element;
 		}
+		
+		public MyExpandCollapsePatternNet(ExpandCollapsePattern ExpandCollapsePattern)
+		{
+		    this._expandCollapsePattern = ExpandCollapsePattern;
+		}
 
 		public struct ExpandCollapsePatternInformation : IExpandCollapsePatternInformation
 		{

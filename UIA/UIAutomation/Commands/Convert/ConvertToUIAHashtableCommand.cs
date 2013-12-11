@@ -288,7 +288,8 @@ if (null == pattern) {
                     // pattern.ProgrammaticName.Substring(0, pattern.ProgrammaticName.Length - 19);
                     // 20131210
                     // (pattern.SourcePattern as AutomationPattern).ProgrammaticName.Substring(0, (pattern as AutomationPattern).ProgrammaticName.Length - 19);
-                    (pattern.SourcePattern as AutomationPattern).ProgrammaticName.Substring(0, (pattern.SourcePattern as AutomationPattern).ProgrammaticName.Length - 19);
+                    // (pattern.SourcePattern as AutomationPattern).ProgrammaticName.Substring(0, (pattern.SourcePattern as AutomationPattern).ProgrammaticName.Length - 19);
+                    (pattern.SourcePattern as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", string.Empty); //.Substring(0, (pattern.SourcePattern as AutomationPattern).ProgrammaticName.Length - 19);
                 
 Console.WriteLine("GetPatternStrings 00005");
                 

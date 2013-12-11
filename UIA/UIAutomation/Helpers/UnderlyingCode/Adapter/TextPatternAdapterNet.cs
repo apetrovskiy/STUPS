@@ -35,6 +35,11 @@ namespace UIAutomation
 		    this._element = element;
 		}
 		
+		public MyTextPatternNet(TextPattern textPattern)
+		{
+		    this._textPattern = textPattern;
+		}
+		
 		public static readonly object MixedAttributeValue = TextPatternIdentifiers.MixedAttributeValue;
 		public static readonly AutomationTextAttribute AnimationStyleAttribute = TextPatternIdentifiers.AnimationStyleAttribute;
 		public static readonly AutomationTextAttribute BackgroundColorAttribute = TextPatternIdentifiers.BackgroundColorAttribute;

@@ -52,7 +52,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             }
             
             GetControlCmdletBase cmdlet =
-                FakeFactory.Get_GetControlCmdletBase(controlType, name, automationId, className, txtValue);
+                // 20131211
+                // FakeFactory.Get_GetControlCmdletBase(controlType, name, automationId, className, txtValue);
+                FakeFactory.Get_GetControlCmdletBase(new ControlType[] {controlType}, name, automationId, className, txtValue);
             
             Condition condition =
                 cmdlet.GetWildcardSearchCondition(cmdlet);

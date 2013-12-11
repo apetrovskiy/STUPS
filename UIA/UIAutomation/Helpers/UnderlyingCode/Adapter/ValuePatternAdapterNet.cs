@@ -32,6 +32,11 @@ namespace UIAutomation
 		{
 		    this._element = element;
 		}
+		
+		public MyValuePatternNet(ValuePattern ValuePattern)
+		{
+		    this._valuePattern = ValuePattern;
+		}
 
 		public struct ValuePatternInformation : IValuePatternInformation
 		{

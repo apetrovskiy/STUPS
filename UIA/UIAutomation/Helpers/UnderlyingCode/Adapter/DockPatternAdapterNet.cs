@@ -32,6 +32,11 @@ namespace UIAutomation
 		{
 			this._element = element;
 		}
+		
+		public MyDockPatternNet(DockPattern DockPattern)
+		{
+		    this._dockPattern = DockPattern;
+		}
 
 		public struct DockPatternInformation : IDockPatternInformation
 		{

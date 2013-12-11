@@ -96,6 +96,13 @@ namespace UIAutomation
                 .InCallScope()
                 .Named(AutomationFactory.NamedParameter_WithoutPattern);
             
+            Bind<IMySuperDockPattern>()
+                .ToConstructor(
+                    x =>
+                    new MyDockPatternNet(x.Inject<DockPattern>()))
+                .InCallScope()
+                .Named(AutomationFactory.NamedParameter_WithoutElement);
+            
             Bind<IDockPatternInformation>().To<MyDockPatternNet.DockPatternInformation>().InCallScope();
             #endregion IMySuperDockPattern
             
@@ -113,6 +120,13 @@ namespace UIAutomation
                     new MyExpandCollapsePatternNet(x.Inject<IUiElement>()))
                 .InCallScope()
                 .Named(AutomationFactory.NamedParameter_WithoutPattern);
+            
+            Bind<IMySuperExpandCollapsePattern>()
+                .ToConstructor(
+                    x =>
+                    new MyExpandCollapsePatternNet(x.Inject<ExpandCollapsePattern>()))
+                .InCallScope()
+                .Named(AutomationFactory.NamedParameter_WithoutElement);
             
             Bind<IExpandCollapsePatternInformation>().To<MyExpandCollapsePatternNet.ExpandCollapsePatternInformation>().InCallScope();
             #endregion IMySuperExpandCollapsePattern
@@ -167,6 +181,13 @@ namespace UIAutomation
                     new MyInvokePatternNet(x.Inject<IUiElement>()))
                 .InCallScope()
                 .Named(AutomationFactory.NamedParameter_WithoutPattern);
+            
+            Bind<IMySuperInvokePattern>()
+                .ToConstructor(
+                    x =>
+                    new MyInvokePatternNet(x.Inject<InvokePattern>()))
+                .InCallScope()
+                .Named(AutomationFactory.NamedParameter_WithoutElement);
             #endregion IMySuperInvokePattern
             
             #region IMySuperRangeValuePattern
@@ -361,6 +382,13 @@ namespace UIAutomation
                     new MyValuePatternNet(x.Inject<IUiElement>()))
                 .InCallScope()
                 .Named(AutomationFactory.NamedParameter_WithoutPattern);
+            
+            Bind<IMySuperValuePattern>()
+                .ToConstructor(
+                    x =>
+                    new MyValuePatternNet(x.Inject<ValuePattern>()))
+                .InCallScope()
+                .Named(AutomationFactory.NamedParameter_WithoutElement);
             
             Bind<IValuePatternInformation>().To<MyValuePatternNet.ValuePatternInformation>().InCallScope();
             #endregion IMySuperValuePattern

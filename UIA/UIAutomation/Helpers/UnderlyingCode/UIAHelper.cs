@@ -863,34 +863,53 @@ namespace UIAutomation
                         
                         // if (WriteCurrentPattern) {
                         // strElementPatterns = String.Empty;
+string strInfo = string.Empty;
+strInfo += element.GetSourceElement().Current.Name;
+AutomationPattern[] ppps = element.GetSourceElement().GetSupportedPatterns();
+foreach (AutomationPattern pppp in ppps) {
+    strInfo += pppp.ProgrammaticName;
+}
                         try {
                             // 20131209
                             // AutomationPattern[] elementPatterns =
                             //     element.GetSupportedPatterns();
                             IBasePattern[] elementPatterns =
                                 element.GetSupportedPatterns();
+                                // element.GetSourceElement().GetSupportedPatterns().ConvertAutomationPatternToBasePattern(element);
+strInfo += "01";
                             
                             if (!cmdlet.NoEvents) {
+strInfo += " 02";
                                 SubscribeToEventsDuringRecording(cmdlet, element, elementPatterns);
+strInfo += " 03";
                             }
                             
                             if (cmdlet.WriteCurrentPattern) {
+strInfo += " 04";
                                 // 20131209
                                 // foreach (AutomationPattern ptrn in elementPatterns)
                                 foreach (IBasePattern ptrn in elementPatterns)
                                 {
+strInfo += " 05";
                                     strElementPatterns += "\r\n\t\t#";
+if (null == ptrn.SourcePattern) {
+    strInfo += " ";
+    strInfo += ptrn.GetType().Name;
+    strInfo += " is null";
+}
                                     strElementPatterns +=
                                         // 20131209
                                         // ptrn.ProgrammaticName.Replace("Identifiers.Pattern", "");
                                         // 20131210
                                         // (ptrn.SourcePattern as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", "");
                                         (ptrn.SourcePattern as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", string.Empty);
+strInfo += " 06";
                                     strElementPatterns += ": use the ";
                                     
                                     string tempControlNameForCmdlet =
                                         "-UIA" +
                                         elementControlType;
+strInfo += " 07";
                                     
                                     // 20131209
                                     // switch (ptrn.ProgrammaticName.Replace("Identifiers.Pattern", "")) {
@@ -977,11 +996,13 @@ namespace UIAutomation
                                 }
                             }
                             strElementPatterns += "\r\n";
-                        } catch { //(Exception ePatterns) {
-                            //                                    Exception ePatterns2 =
-                            //                                        new Exception("Patterns:\r\n" +
-                            //                                                      ePatterns.Message);
-                            //throw(ePatterns2);
+                        } catch (Exception ePatterns) {
+                                                                Exception ePatterns2 =
+                                                                    new Exception("Patterns:\r\n" +
+                                                                                  ePatterns.Message +
+                                                                                  "\r\n" +
+                                                                                  strInfo);
+                            throw(ePatterns2);
                             //return result;
                             // ErrorRecord
                             // 20120126
@@ -1776,7 +1797,7 @@ namespace UIAutomation
             patternName =
                 patternName.Substring(0, patternName.Length - 7) +
                 "Pattern";
-            patternName.Replace("dock", "Dock");
+            patternName.Replace("dock", "Dock"); // ??
             switch (patternName) {
                 case "DockPattern":
                     result = DockPattern.Pattern;

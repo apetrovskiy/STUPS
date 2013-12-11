@@ -887,6 +887,9 @@ namespace UIAutomation
         {
             List<IUiElement> resultCollection = new List<IUiElement>();
             
+            // 20131210
+            if (null == inputCollection) { return resultCollection; }
+            
             WildcardOptions options;
             if (caseSensitive) {
                 options =

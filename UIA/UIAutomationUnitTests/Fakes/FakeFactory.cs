@@ -189,7 +189,8 @@ namespace UIAutomationUnitTests
         }
         
         // private static IUiElement GetAutomationElement(ControlType controlType, string name, string automationId, string className, string txtValue, bool expected)
-        private static IFakeUiElement GetAutomationElement(ControlType controlType, string name, string automationId, string className, IBasePattern[] patterns, bool expected)
+        // private static IFakeUiElement GetAutomationElement(ControlType controlType, string name, string automationId, string className, IBasePattern[] patterns, bool expected)
+        internal static IFakeUiElement GetAutomationElement(ControlType controlType, string name, string automationId, string className, IBasePattern[] patterns, bool expected)
         {
             // IUiElement element = Substitute.For<IUiElement>();
             IFakeUiElement element = Substitute.For<FakeUiElement>();
@@ -210,16 +211,35 @@ namespace UIAutomationUnitTests
             return element;
         }
         
-        public static GetControlCmdletBase Get_GetControlCmdletBase(ControlType controlType, string name, string automationId, string className, string txtValue)
+        // 20131211
+        // public static GetControlCmdletBase Get_GetControlCmdletBase(ControlType controlType, string name, string automationId, string className, string txtValue)
+        public static GetControlCmdletBase Get_GetControlCmdletBase(ControlType[] controlTypes, string name, string automationId, string className, string txtValue)
         {
+Console.WriteLine("gccb 0001");
             GetControlCmdletBase cmdlet = Substitute.For<GetControlCmdletBase>();
-            if (null != controlType) {
-                cmdlet.ControlType.Returns(
-                    new[] {
-                        controlType.ProgrammaticName.Substring(12)
-                    }
-                   );
+//            if (null != controlType) {
+//                cmdlet.ControlType.Returns(
+//                    new[] {
+//                        controlType.ProgrammaticName.Substring(12)
+//                    }
+//                   );
+//            }
+Console.WriteLine("gccb 0002");
+            
+            if (null != controlTypes && 0 < controlTypes.Length) {
+Console.WriteLine("gccb 0003");
+IEnumerable<string> sss = controlTypes.Select(ct => ct.ProgrammaticName.Substring(12));
+Console.WriteLine("gccb 0003.1");
+Console.WriteLine(sss.Count().ToString());
+foreach (string str in sss) {
+    Console.WriteLine(str);
+}
+                cmdlet.ControlType.Returns(controlTypes.Select(ct => ct.ProgrammaticName.Substring(12)).ToArray());
+Console.WriteLine("gccb 0004");
+            } else {
+                cmdlet.ControlType.Returns(new string[] {});
             }
+            
             cmdlet.Name.Returns(!string.IsNullOrEmpty(name) ? name : string.Empty);
             cmdlet.AutomationId.Returns(!string.IsNullOrEmpty(automationId) ? automationId : string.Empty);
             cmdlet.Class.Returns(!string.IsNullOrEmpty(className) ? className : string.Empty);

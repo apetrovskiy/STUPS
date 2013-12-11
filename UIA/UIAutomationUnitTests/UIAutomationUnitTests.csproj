@@ -122,6 +122,7 @@
     <Compile Include="Helpers\Inheritance\SearchByTextViaWin32TestFixture.cs" />
     <Compile Include="Helpers\Inheritance\SearchByWildcardOrRegexViaUiaTestFixture.cs" />
     <Compile Include="Helpers\Inheritance\SearchByWildcardViaWin32TestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Adapter\GetSupportedPatternsTestFixture.cs" />
     <Compile Include="Helpers\UnderlyingCode\elementOfPossibleControlTypeTestFixture.cs" />
     <Compile Include="Helpers\UnderlyingCode\getControlConditionsTestFixture.cs" />
     <Compile Include="Helpers\UnitTestingHelper.cs" />
@@ -175,6 +176,7 @@
     <Folder Include="Helpers\Inheritance" />
     <Folder Include="Helpers\UnderlyingCode" />
     <Folder Include="Fakes" />
+    <Folder Include="Helpers\UnderlyingCode\Adapter" />
     <Folder Include="Ninject" />
     <Folder Include="Ninject" />
     <Folder Include="ParamChecks" />

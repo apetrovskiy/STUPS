@@ -30,6 +30,11 @@ namespace UIAutomation
 		    this._element = element;
 		}
 		
+		public MyInvokePatternNet(InvokePattern InvokePattern)
+		{
+		    this._invokePattern = InvokePattern;
+		}
+		
 		//: BasePattern
 		public static readonly AutomationPattern Pattern = InvokePatternIdentifiers.Pattern;
 		public static readonly AutomationEvent InvokedEvent = InvokePatternIdentifiers.InvokedEvent;

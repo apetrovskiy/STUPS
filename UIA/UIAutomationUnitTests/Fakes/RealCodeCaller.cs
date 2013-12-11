@@ -73,5 +73,37 @@ namespace UIAutomationUnitTests
                 cmdlet.SearchByContainsTextViaUia(cmdlet, element, conditions);
             return cmdlet.ResultListOfControls;
         }
+        
+        public static List<IUiElement> GetResultList_ReturnOnlyRightElements(GetControlCmdletBase cmdlet, IUiElement[] elements, bool useWildcardOrRegex)
+        {
+            HasTimeoutCmdletBase cmdletDerived = new HasTimeoutCmdletBase();
+            
+//            List<IUiElement> resultList =
+//                cmdletDerived.SearchByWildcardOrRegexViaUia(
+//                    cmdlet,
+//                    element,
+//                    cmdlet.Name,
+//                    cmdlet.AutomationId,
+//                    cmdlet.Class,
+//                    cmdlet.Value,
+//                    condition,
+//                    true);
+//            
+//            return resultList;
+            
+            List<IUiElement> resultList =
+                HasTimeoutCmdletBase.ReturnOnlyRightElements(
+                    cmdlet,
+                    elements,
+                    cmdlet.Name,
+                    cmdlet.AutomationId,
+                    cmdlet.Class,
+                    cmdlet.Value,
+                    cmdlet.ControlType,
+                    false,
+                    useWildcardOrRegex);
+            
+            return resultList;
+        }
     }
 }

@@ -25,6 +25,7 @@ namespace UIAutomation
     {
         internal const string NamedParameter_WithPattern = "WithPattern";
         internal const string NamedParameter_WithoutPattern = "WithoutPattern";
+        internal const string NamedParameter_WithoutElement = "WithoutElement";
         
         #region Initialization
         static AutomationFactory()
@@ -123,7 +124,8 @@ namespace UIAutomation
 			}
 		}
 		
-		internal static IUiElement GetUiElement()
+		// internal static IUiElement GetUiElement()
+		public static IUiElement GetUiElement()
 		{
 			try {
     			IUiElement adapterElement = Kernel.Get<IUiElement>("Empty", null);
@@ -231,7 +233,8 @@ namespace UIAutomation
 		#endregion IUiEltCollection
 		
 		#region patterns
-		internal static N GetMySuperPattern<N>(IUiElement element, object pattern)
+		// internal static N GetMySuperPattern<N>(IUiElement element, object pattern)
+		public static N GetMySuperPattern<N>(IUiElement element, object pattern)
 		    where N : IBasePattern
 		{
 			try {
@@ -252,6 +255,27 @@ namespace UIAutomation
                 // }
 		        adapterPattern.SourcePattern = pattern;
 //		        }
+	       		return adapterPattern;
+			}
+			catch (Exception eFailedToIssuePattern) {
+			    // TODO
+			    // write error to error object!!!
+//			    Console.WriteLine("Pattern");
+//			    Console.WriteLine(eFailedToIssuePattern.Message);
+			    // return null;
+			    return default(N);
+			}
+		}
+		
+		public static N GetMySuperPattern<N>(object pattern)
+		    where N : IBasePattern
+		{
+			try {
+                
+                N adapterPattern = default(N);
+                // var argElement = new ConstructorArgument("element", element);
+                adapterPattern = Kernel.Get<N>(NamedParameter_WithoutElement, null);
+		        adapterPattern.SourcePattern = pattern;
 	       		return adapterPattern;
 			}
 			catch (Exception eFailedToIssuePattern) {

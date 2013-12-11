@@ -169,6 +169,9 @@
     <Compile Include="..\UIAutomationUnitTests\Helpers\Inheritance\SearchByWildcardViaWin32TestFixture.cs">
       <Link>Helpers\Inheritance\SearchByWildcardViaWin32TestFixture.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\UnderlyingCode\Adapter\GetSupportedPatternsTestFixture.cs">
+      <Link>Helpers\UnderlyingCode\Adapter\GetSupportedPatternsTestFixture.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomationUnitTests\Helpers\UnderlyingCode\elementOfPossibleControlTypeTestFixture.cs">
       <Link>Helpers\UnderlyingCode\elementOfPossibleControlTypeTestFixture.cs</Link>
     </Compile>
@@ -260,6 +263,7 @@
     <Folder Include="Helpers\Inheritance" />
     <Folder Include="Helpers\UnderlyingCode" />
     <Folder Include="Helpers\UnderlyingCode" />
+    <Folder Include="Helpers\UnderlyingCode\Adapter" />
     <Folder Include="Ninject" />
     <Folder Include="Ninject" />
     <Folder Include="ParamChecks" />

@@ -29,6 +29,8 @@ namespace UIAutomation
             return resultCollection;
         }
         
+        // 20131211
+        // public static IBasePattern[] ConvertAutomationPatternToBasePattern(this AutomationPattern[] patterns) //, IUiElement element)
         public static IBasePattern[] ConvertAutomationPatternToBasePattern(this AutomationPattern[] patterns, IUiElement element)
         {
             var resultList =

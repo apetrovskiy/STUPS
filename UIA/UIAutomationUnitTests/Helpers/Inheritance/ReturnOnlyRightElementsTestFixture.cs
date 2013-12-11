@@ -13,6 +13,8 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
     using System.Collections.Generic;
     using System.Windows.Automation;
     using System.Linq;
+    using System.Management.Automation;
+    using System.Text.RegularExpressions;
     using MbUnit.Framework;
     using UIAutomation;
 
@@ -24,8 +26,6 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         [SetUp]
         public void SetUp()
         {
-//            UnitTestingHelper.PrepareUnitTestDataStore();
-//            ObjectsFactory.InitUnitTests();
             FakeFactory.Init();
         }
         
@@ -36,7 +36,6 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         
         #region helpers
         private void TestParametersAgainstCollection(
-            // ControlType[] controlTypes,
             ControlType controlType,
             string name,
             string automationId,
@@ -56,11 +55,6 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             Condition condition;
             bool useWildcardOrRegex = true;
             switch (selector) {
-                case UIAutomationUnitTests.Helpers.Inheritance.UsualWildcardRegex.Usual:
-                    condition =
-                        cmdlet.GetWildcardSearchCondition(cmdlet);
-                    useWildcardOrRegex = true;
-                    break;
                 case UIAutomationUnitTests.Helpers.Inheritance.UsualWildcardRegex.Wildcard:
                     condition =
                         cmdlet.GetWildcardSearchCondition(cmdlet);
@@ -71,8 +65,6 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                         cmdlet.GetWildcardSearchCondition(cmdlet);
                     useWildcardOrRegex = false;
                     break;
-                // default:
-                //     throw new Exception("Invalid value for UsualWildcardRegex");
             }
             
             // Act
@@ -80,33 +72,95 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             
             // Assert
             Assert.Count(expectedNumberOfElements, resultList);
-            if (!string.IsNullOrEmpty(name)) {
-                Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => x.Current.Name == name);
+            string[] controlTypeNames;
+            switch (selector) {
+                case UIAutomationUnitTests.Helpers.Inheritance.UsualWildcardRegex.Wildcard:
+                    WildcardOptions options = WildcardOptions.IgnoreCase;
+                    WildcardPattern namePatern = new WildcardPattern(name, options);
+                    WildcardPattern automationIdPatern = new WildcardPattern(automationId, options);
+                    WildcardPattern classNamePatern = new WildcardPattern(className, options);
+                    WildcardPattern txtValuePatern = new WildcardPattern(txtValue, options);
+                    
+                    if (!string.IsNullOrEmpty(name)) {
+                        Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => namePatern.IsMatch(x.Current.Name));
+                    }
+                    if (!string.IsNullOrEmpty(automationId)) {
+                        Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => automationIdPatern.IsMatch(x.Current.AutomationId));
+                    }
+                    if (!string.IsNullOrEmpty(className)) {
+                        Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => classNamePatern.IsMatch(x.Current.ClassName));
+                    }
+                    controlTypeNames =
+                        controlTypes.Select(ct => null != ct ? ct.ProgrammaticName.Substring(12) : string.Empty).ToArray();
+                    if (null != controlType) {
+                        Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => controlTypeNames.Contains(x.Current.ControlType.ProgrammaticName.Substring(12)));
+                    }
+                    if (!string.IsNullOrEmpty(txtValue)) {
+                        Assert.ForAll(
+                            resultList
+                            .Cast<IUiElement>()
+                            .ToList<IUiElement>(), x =>
+                            {
+                                IMySuperValuePattern valuePattern = x.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern) as IMySuperValuePattern;
+                                return valuePattern != null && txtValuePatern.IsMatch(valuePattern.Current.Value);
+                            });
+                    }
+                    break;
+                case UIAutomationUnitTests.Helpers.Inheritance.UsualWildcardRegex.Regex:
+                    if (!string.IsNullOrEmpty(name)) {
+                        Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => Regex.IsMatch(x.Current.Name, name));
+                    }
+                    if (!string.IsNullOrEmpty(automationId)) {
+                        Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => Regex.IsMatch(x.Current.AutomationId, automationId));
+                    }
+                    if (!string.IsNullOrEmpty(className)) {
+                        Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => Regex.IsMatch(x.Current.ClassName, className));
+                    }
+                    controlTypeNames =
+                        controlTypes.Select(ct => null != ct ? ct.ProgrammaticName.Substring(12) : string.Empty).ToArray();
+                    if (null != controlType) {
+                        Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => controlTypeNames.Contains(x.Current.ControlType.ProgrammaticName.Substring(12)));
+                    }
+                    if (!string.IsNullOrEmpty(txtValue)) {
+                        Assert.ForAll(
+                            resultList
+                            .Cast<IUiElement>()
+                            .ToList<IUiElement>(), x =>
+                            {
+                                IMySuperValuePattern valuePattern = x.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern) as IMySuperValuePattern;
+                                return valuePattern != null && Regex.IsMatch(valuePattern.Current.Value, txtValue);
+                            });
+                    }
+                    break;
             }
-            if (!string.IsNullOrEmpty(automationId)) {
-                Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => x.Current.AutomationId == automationId);
-            }
-            if (!string.IsNullOrEmpty(className)) {
-                Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => x.Current.ClassName == className);
-            }
-            string[] controlTypeNames =
-                controlTypes.Select(ct => null != ct ? ct.ProgrammaticName.Substring(12) : string.Empty).ToArray();
-            if (null != controlType) {
-                Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => controlTypeNames.Contains(x.Current.ControlType.ProgrammaticName.Substring(12)));
-            }
-            if (!string.IsNullOrEmpty(txtValue)) {
-                Assert.ForAll(
-                    resultList
-                    .Cast<IUiElement>()
-                    .ToList<IUiElement>(), x =>
-                    {
-                        // 20131208
-                        // IMySuperValuePattern valuePattern = x.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern;
-                        // IMySuperValuePattern valuePattern = x.GetCurrentPattern<IMySuperValuePattern, ValuePattern>(ValuePattern.Pattern) as IMySuperValuePattern;
-                        IMySuperValuePattern valuePattern = x.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern) as IMySuperValuePattern;
-                        return valuePattern != null && valuePattern.Current.Value == txtValue;
-                    });
-            }
+            
+//            if (!string.IsNullOrEmpty(name)) {
+//                Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => x.Current.Name == name);
+//            }
+//            if (!string.IsNullOrEmpty(automationId)) {
+//                Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => x.Current.AutomationId == automationId);
+//            }
+//            if (!string.IsNullOrEmpty(className)) {
+//                Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => x.Current.ClassName == className);
+//            }
+//            string[] controlTypeNames =
+//                controlTypes.Select(ct => null != ct ? ct.ProgrammaticName.Substring(12) : string.Empty).ToArray();
+//            if (null != controlType) {
+//                Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => controlTypeNames.Contains(x.Current.ControlType.ProgrammaticName.Substring(12)));
+//            }
+//            if (!string.IsNullOrEmpty(txtValue)) {
+//                Assert.ForAll(
+//                    resultList
+//                    .Cast<IUiElement>()
+//                    .ToList<IUiElement>(), x =>
+//                    {
+//                        // 20131208
+//                        // IMySuperValuePattern valuePattern = x.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern;
+//                        // IMySuperValuePattern valuePattern = x.GetCurrentPattern<IMySuperValuePattern, ValuePattern>(ValuePattern.Pattern) as IMySuperValuePattern;
+//                        IMySuperValuePattern valuePattern = x.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern) as IMySuperValuePattern;
+//                        return valuePattern != null && valuePattern.Current.Value == txtValue;
+//                    });
+//            }
         }
         #endregion helpers
         
@@ -275,13 +329,14 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         public void Get0of3_byName_Wildcard()
         {
             const string name = "aaa";
+            const string expectedName = "*aa";
             string automationId = string.Empty;
             string className = string.Empty;
             string txtValue = string.Empty;
             ControlType controlType = null;
             TestParametersAgainstCollection(
                 controlType,
-                name,
+                expectedName,
                 automationId,
                 className,
                 txtValue,
@@ -298,13 +353,14 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         public void Get0of3_byName_Regex()
         {
             const string name = "aaa";
+            const string expectedName = "[a]{2,3}";
             string automationId = string.Empty;
             string className = string.Empty;
             string txtValue = string.Empty;
             ControlType controlType = null;
             TestParametersAgainstCollection(
                 controlType,
-                name,
+                expectedName,
                 automationId,
                 className,
                 txtValue,
@@ -321,13 +377,14 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         public void Get1of3_byName_Wildcard()
         {
             const string name = "aaa";
+            const string expectedName = "*aa";
             string automationId = string.Empty;
             string className = string.Empty;
             string txtValue = string.Empty;
             ControlType controlType = null;
             TestParametersAgainstCollection(
                 controlType,
-                name,
+                expectedName,
                 automationId,
                 className,
                 txtValue,
@@ -344,13 +401,14 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         public void Get1of3_byName_Regex()
         {
             const string name = "aaa";
+            const string expectedName = "[a]{2,3}";
             string automationId = string.Empty;
             string className = string.Empty;
             string txtValue = string.Empty;
             ControlType controlType = null;
             TestParametersAgainstCollection(
                 controlType,
-                name,
+                expectedName,
                 automationId,
                 className,
                 txtValue,
@@ -367,13 +425,14 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         public void Get3of3_byName_Wildcard()
         {
             const string name = "aaa";
+            const string expectedName = "*aa";
             string automationId = string.Empty;
             string className = string.Empty;
             string txtValue = string.Empty;
             ControlType controlType = null;
             TestParametersAgainstCollection(
                 controlType,
-                name,
+                expectedName,
                 automationId,
                 className,
                 txtValue,
@@ -390,13 +449,14 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         public void Get3of3_byName_Regex()
         {
             const string name = "aaa";
+            const string expectedName = "[a]{2,3}";
             string automationId = string.Empty;
             string className = string.Empty;
             string txtValue = string.Empty;
             ControlType controlType = null;
             TestParametersAgainstCollection(
                 controlType,
-                name,
+                expectedName,
                 automationId,
                 className,
                 txtValue,
@@ -413,7 +473,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
     
     public enum UsualWildcardRegex
     {
-        Usual,
+        // Usual,
         Wildcard,
         Regex
     }

@@ -293,9 +293,6 @@
     <Compile Include="..\UIAutomation\Commands\Get\GetUIAControlCommand.cs">
       <Link>Commands\Get\GetUIAControlCommand.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Commands\Get\GetUIAControlRelativesCommand.cs">
-      <Link>Commands\Get\GetUIAControlRelativesCommand.cs</Link>
-    </Compile>
     <Compile Include="..\UIAutomation\Commands\Get\GetUIADesktopCommand.cs">
       <Link>Commands\Get\GetUIADesktopCommand.cs</Link>
     </Compile>
@@ -427,6 +424,33 @@
     </Compile>
     <Compile Include="..\UIAutomation\Commands\RDP\StopUIARemoteDesktopSessionCommand.cs">
       <Link>Commands\RDP\StopUIARemoteDesktopSessionCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Commands\Relatives\GetUiaControlAncestorsCommand.cs">
+      <Link>Commands\Relatives\GetUiaControlAncestorsCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Commands\Relatives\GetUiaControlChildrenCommand.cs">
+      <Link>Commands\Relatives\GetUiaControlChildrenCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Commands\Relatives\GetUiaControlDescendantsCommand.cs">
+      <Link>Commands\Relatives\GetUiaControlDescendantsCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Commands\Relatives\GetUiaControlFirstChildCommand.cs">
+      <Link>Commands\Relatives\GetUiaControlFirstChildCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Commands\Relatives\GetUiaControlLastChildCommand.cs">
+      <Link>Commands\Relatives\GetUiaControlLastChildCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Commands\Relatives\GetUiaControlNextSiblingCommand.cs">
+      <Link>Commands\Relatives\GetUiaControlNextSiblingCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Commands\Relatives\GetUiaControlParentCommand.cs">
+      <Link>Commands\Relatives\GetUiaControlParentCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Commands\Relatives\GetUiaControlPreviousSiblingCommand.cs">
+      <Link>Commands\Relatives\GetUiaControlPreviousSiblingCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Commands\Relatives\GetUIAControlRelativesCommand.cs">
+      <Link>Commands\Relatives\GetUIAControlRelativesCommand.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Commands\Search\SearchUIAControlCommand.cs">
       <Link>Commands\Search\SearchUIAControlCommand.cs</Link>
@@ -560,6 +584,9 @@
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\Inheritance\Get\GetControlStateCmdletBase.cs">
       <Link>Helpers\Inheritance\Get\GetControlStateCmdletBase.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Inheritance\Get\GetFamilyCmdletBase.cs">
+      <Link>Helpers\Inheritance\Get\GetFamilyCmdletBase.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\Inheritance\Get\GetRelativesCmdletBase.cs">
       <Link>Helpers\Inheritance\Get\GetRelativesCmdletBase.cs</Link>
@@ -926,6 +953,7 @@
     <Folder Include="Commands\ExecutionPlan" />
     <Folder Include="Commands\Container" />
     <Folder Include="Commands\Banner" />
+    <Folder Include="Commands\Relatives" />
     <Folder Include="Commands\No" />
     <Folder Include="Commands\No" />
     <Folder Include="Commands\Win32" />

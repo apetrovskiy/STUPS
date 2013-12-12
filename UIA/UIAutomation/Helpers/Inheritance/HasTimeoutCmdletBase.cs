@@ -887,8 +887,6 @@ namespace UIAutomation
         {
             List<IUiElement> resultCollection = new List<IUiElement>();
             
-Console.WriteLine("ReturnOnlyRightElements 00001");
-            
             // 20131210
             if (null == inputCollection) { return resultCollection; }
             
@@ -901,8 +899,6 @@ Console.WriteLine("ReturnOnlyRightElements 00001");
                     WildcardOptions.IgnoreCase |
                     WildcardOptions.Compiled;
             }
-            
-Console.WriteLine("ReturnOnlyRightElements 00003");
             
             RegexOptions regexOptions = RegexOptions.Compiled;
             if (!caseSensitive) {
@@ -920,22 +916,6 @@ Console.WriteLine("ReturnOnlyRightElements 00003");
                 className = string.IsNullOrEmpty(className) ? ".*" : className;
                 textValue = string.IsNullOrEmpty(textValue) ? ".*" : textValue;
             }
-            
-Console.WriteLine("ReturnOnlyRightElements 00005");
-            
-            /*
-            if (string.IsNullOrEmpty(name) || 0 == name.Length) { name = "*"; }
-            if (string.IsNullOrEmpty(automationId) || 0 == automationId.Length) { automationId = "*"; }
-            if (string.IsNullOrEmpty(className) || 0 == className.Length) { className = "*"; }
-            if (string.IsNullOrEmpty(textValue) || 0 == textValue.Length) { textValue = "*"; }
-            */
-            
-            /*
-            if (null == name || string.Empty == name || 0 == name.Length) { name = "*"; }
-            if (null == automationId || string.Empty == automationId || 0 == automationId.Length) { automationId = "*"; }
-            if (null == className || string.Empty == className || 0 == className.Length) { className = "*"; }
-            if (null == textValue || string.Empty == textValue || 0 == textValue.Length) { textValue = "*"; }
-            */
             
            //if (viaWildcardOrRegex) {
             WildcardPattern wildcardName = 
@@ -969,15 +949,6 @@ Console.WriteLine("ReturnOnlyRightElements 00007");
                     inputList.Count.ToString() +
                     " elements");
             
-            /*
-                foreach (AutomationElement elt in results)
-                {
-
-                    list.Add(elt);
-
-                }
-            */
-
             try {
                 
                

@@ -24,10 +24,10 @@ namespace UIAutomation
         #region Parameters
         [Parameter(Mandatory = false)]
         internal new SwitchParameter CaseSensitive { get; set; }
-        
-        // 20131211
-        [Parameter(Mandatory = false)]
-        internal new string[] ControlType { get; set; }
+//        
+//        // 20131211
+//        [Parameter(Mandatory = false)]
+//        internal new string[] ControlType { get; set; }
         #endregion Parameters
     }
 }

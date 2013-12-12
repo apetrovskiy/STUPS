@@ -181,7 +181,6 @@
     <Compile Include="Commands\ExecutionPlan\ShowUIAExecutionPlanCommand.cs" />
     <Compile Include="Commands\Get\GetUIADesktopCommand.cs" />
     <Compile Include="Commands\Get\TestUIAControlStateCommand.cs" />
-    <Compile Include="Commands\Get\GetUIAControlRelativesCommand.cs" />
     <Compile Include="Commands\Hotkey\InvokeUIAHotKeyCommand.cs" />
     <Compile Include="Commands\Hotkey\ShowUIAContextMenuCommand.cs" />
     <Compile Include="Commands\Hotkey\ShowUIADesktopCommand.cs" />
@@ -225,6 +224,15 @@
     <Compile Include="Commands\RDP\NewUIARemoteDesktopProtocolFileCommand.cs" />
     <Compile Include="Commands\RDP\StartUIARemoteDesktopSessionCommand.cs" />
     <Compile Include="Commands\RDP\StopUIARemoteDesktopSessionCommand.cs" />
+    <Compile Include="Commands\Relatives\GetUiaControlAncestorsCommand.cs" />
+    <Compile Include="Commands\Relatives\GetUiaControlChildrenCommand.cs" />
+    <Compile Include="Commands\Relatives\GetUiaControlDescendantsCommand.cs" />
+    <Compile Include="Commands\Relatives\GetUiaControlFirstChildCommand.cs" />
+    <Compile Include="Commands\Relatives\GetUiaControlLastChildCommand.cs" />
+    <Compile Include="Commands\Relatives\GetUiaControlNextSiblingCommand.cs" />
+    <Compile Include="Commands\Relatives\GetUiaControlParentCommand.cs" />
+    <Compile Include="Commands\Relatives\GetUiaControlPreviousSiblingCommand.cs" />
+    <Compile Include="Commands\Relatives\GetUIAControlRelativesCommand.cs" />
     <Compile Include="Commands\Search\SearchUIAControlCommand.cs" />
     <Compile Include="Commands\Search\SearchUIAWindowCommand.cs" />
     <Compile Include="Commands\Settings\SetUIAHighligherSettingsCommand.cs" />
@@ -272,6 +280,7 @@
     <Compile Include="Commands\Wizard\NewUIAWizardCommand.cs" />
     <Compile Include="Commands\Wizard\RemoveUIAWizardStepCommand.cs" />
     <Compile Include="Commands\Wizard\StepUIAWizardCommand.cs" />
+    <Compile Include="Helpers\Inheritance\Get\GetFamilyCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\Wizard\WizardStepCmdletBase.cs" />
     <Compile Include="Helpers\UnderlyingCode\Adapter\AutomationElementAdapter.cs" />
     <Compile Include="Helpers\UnderlyingCode\Adapter\AutomationElementCollectionAdapter.cs" />
@@ -463,6 +472,7 @@
     <Folder Include="Commands\ExecutionPlan" />
     <Folder Include="Commands\Container" />
     <Folder Include="Commands\Banner" />
+    <Folder Include="Commands\Relatives" />
     <Folder Include="Commands\No" />
     <Folder Include="Commands\Win32" />
     <Folder Include="Commands\RDP" />

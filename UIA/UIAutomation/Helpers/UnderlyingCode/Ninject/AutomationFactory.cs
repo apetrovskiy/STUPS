@@ -110,23 +110,48 @@ namespace UIAutomation
 //        }
         
         // also works
-//        private static T convertToProxy<T>(T element)
-//        {
-//    		// var proxyGenerator =
-//          //           new ProxyGenerator();
-//    		
-//    		T proxiedElement =
-//    		    // (T)proxyGenerator.CreateInterfaceProxyWithTargetInterface(
-//              (T)_generator.CreateInterfaceProxyWithTargetInterface(
-//    		        typeof(IUiElement),
-//    		        element,
-//    		        new LoggingAspect());
-//    		
-//    		return proxiedElement;
-//        }
+        internal static T ConvertToProxiedElement<T>(T element)
+        {
+    		T proxiedElement =
+                (T)_generator.CreateInterfaceProxyWithTargetInterface(
+    		        typeof(T),
+    		        element,
+    		        // new LoggingAspect());
+    		        new LoggingAspect(), new ErrorHandlingAspect(), new InputValidationAspect(), new ParameterValidationAspect());
+    		
+    		return proxiedElement;
+        }
 		
 		#region IUiElement
+            #region original code
 		// internal static IUiElement GetUiElement(AutomationElement element)
+//		public static IUiElement GetUiElement(AutomationElement element)
+//		{
+//	        if (null == element) {
+//	            return null;
+//	        }
+//	        
+//			try {
+//                
+//    			var singleElement = new ConstructorArgument("element", element);
+//    			IUiElement adapterElement = Kernel.Get<IUiElement>("AutomationElement.NET", singleElement);
+//    			
+//    			
+//// PSCmdletBase.WriteTraceTemp("test trace");
+//    			
+//    			return adapterElement;
+//			}
+//			catch (Exception eFailedToIssueElement) {
+//			    // TODO
+//			    // write error to error object!!!
+//			    // Console.WriteLine("Element");
+//			    // Console.WriteLine(eFailedToIssueElement.Message);
+//			    return null;
+//			}
+//		}
+            #endregion original code
+		
+		// this works
 		public static IUiElement GetUiElement(AutomationElement element)
 		{
 	        if (null == element) {
@@ -138,10 +163,14 @@ namespace UIAutomation
     			var singleElement = new ConstructorArgument("element", element);
     			IUiElement adapterElement = Kernel.Get<IUiElement>("AutomationElement.NET", singleElement);
     			
-    			
-// PSCmdletBase.WriteTraceTemp("test trace");
-    			
     			return adapterElement;
+    			
+//    			IUiElement proxiedTypedUiElement =
+//    			    ConvertToProxiedElement(
+//    			        adapterElement);
+//                
+//    			return (IUiElement)proxiedTypedUiElement; // as IUiElement;
+    			
 			}
 			catch (Exception eFailedToIssueElement) {
 			    // TODO
@@ -152,40 +181,6 @@ namespace UIAutomation
 			}
 		}
 		
-		// this works
-//		public static IUiElement GetUiElement(AutomationElement element)
-//		{
-////DateTime startDate = System.DateTime.Now;
-//		    
-//	        if (null == element) {
-//	            return null;
-//	        }
-//	        
-//			try {
-//                
-//    			var singleElement = new ConstructorArgument("element", element);
-//    			IUiElement adapterElement = Kernel.Get<IUiElement>("AutomationElement.NET", singleElement);
-//    			
-//    			// return adapterElement;
-//    			
-//    			IUiElement proxiedTypedUiElement =
-//    			    convertToProxy(
-//    			        adapterElement);
-//                
-////Console.WriteLine((System.DateTime.Now - startDate).Seconds.ToString() + "; " + (System.DateTime.Now - startDate).Ticks.ToString());
-//                
-//    			return (IUiElement)proxiedTypedUiElement; // as IUiElement;
-//    			
-//			}
-//			catch (Exception eFailedToIssueElement) {
-//			    // TODO
-//			    // write error to error object!!!
-//			    // Console.WriteLine("Element");
-//			    // Console.WriteLine(eFailedToIssueElement.Message);
-//			    return null;
-//			}
-//		}
-		
 		internal static IUiElement GetUiElement(IUiElement element)
 		{
 	        if (null == element) {
@@ -194,7 +189,14 @@ namespace UIAutomation
 			try {
     			var singleElement = new ConstructorArgument("element", element);
     			IUiElement adapterElement = Kernel.Get<IUiElement>("UiElement", singleElement);
+    			
     			return adapterElement;
+    			
+//    			IUiElement proxiedTypedUiElement =
+//    			    ConvertToProxiedElement(
+//    			        adapterElement);
+//                
+//    			return (IUiElement)proxiedTypedUiElement; // as IUiElement;
 			}
 			catch (Exception eFailedToIssueElement) {
 			    // TODO
@@ -210,7 +212,14 @@ namespace UIAutomation
 		{
 			try {
     			IUiElement adapterElement = Kernel.Get<IUiElement>("Empty", null);
+    			
     			return adapterElement;
+    			
+//    			IUiElement proxiedTypedUiElement =
+//    			    ConvertToProxiedElement(
+//    			        adapterElement);
+//                
+//    			return (IUiElement)proxiedTypedUiElement; // as IUiElement;
 			}
 			catch (Exception eFailedToIssueElement) {
 			    // TODO

@@ -393,7 +393,10 @@ namespace UIAutomation
             WriteVerbose(this, "outputting the result object");
             if (cmdlet == null) return;
             try {
+                // 20131216
                 IUiElement element = outputObject as IUiElement;
+                // IUiElement element = (outputObject as IUiElementProxy).__target.
+                // IUiElement element = outputObject.__ as IUiElement;
                 WriteVerbose(this, "getting the element again to ensure that it still exists");
                 if (!(cmdlet is WizardCmdletBase) &&
                     (null != element)) {

@@ -551,6 +551,13 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
             }
         }
         
+        public static void WriteTraceTemp(object obj)
+        {
+            if (EnableTrace) {
+                Console.WriteLine(obj);
+            }
+        }
+        
         protected string GetGeneratedTestResultNameByPosition(
             string initialString, 
             int? position)

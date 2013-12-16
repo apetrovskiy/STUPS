@@ -1,4 +1,5 @@
-﻿/*
+﻿using System.Management.Automation;
+/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
  * Date: 11/10/2013
@@ -30,6 +31,8 @@ namespace UIAutomation
         internal const string NamedParameter_WithPattern = "WithPattern";
         internal const string NamedParameter_WithoutPattern = "WithoutPattern";
         internal const string NamedParameter_WithoutElement = "WithoutElement";
+        
+        private static readonly ProxyGenerator _generator = new ProxyGenerator(new PersistentProxyBuilder());
         
         #region Initialization
         static AutomationFactory()
@@ -90,11 +93,12 @@ namespace UIAutomation
         // works
 //        private static IUiElement convertToProxy(IUiElement element) //, IInterceptor[] interceptors)
 //        {
-//    		var proxyGenerator =
-//                    new ProxyGenerator();
+//    		// var proxyGenerator =
+//          //           new ProxyGenerator();
 //    		
 //    		var proxiedElement =
-//    		    proxyGenerator.CreateInterfaceProxyWithTargetInterface(
+//    		    // proxyGenerator.CreateInterfaceProxyWithTargetInterface(
+//              _generator.CreateInterfaceProxyWithTargetInterface(
 //    		        typeof(IUiElement),
 //    		        element,
 //    		        // interceptors);
@@ -108,11 +112,12 @@ namespace UIAutomation
         // also works
 //        private static T convertToProxy<T>(T element)
 //        {
-//    		var proxyGenerator =
-//                    new ProxyGenerator();
+//    		// var proxyGenerator =
+//          //           new ProxyGenerator();
 //    		
 //    		T proxiedElement =
-//    		    (T)proxyGenerator.CreateInterfaceProxyWithTargetInterface(
+//    		    // (T)proxyGenerator.CreateInterfaceProxyWithTargetInterface(
+//              (T)_generator.CreateInterfaceProxyWithTargetInterface(
 //    		        typeof(IUiElement),
 //    		        element,
 //    		        new LoggingAspect());
@@ -132,6 +137,10 @@ namespace UIAutomation
                 
     			var singleElement = new ConstructorArgument("element", element);
     			IUiElement adapterElement = Kernel.Get<IUiElement>("AutomationElement.NET", singleElement);
+    			
+    			
+// PSCmdletBase.WriteTraceTemp("test trace");
+    			
     			return adapterElement;
 			}
 			catch (Exception eFailedToIssueElement) {

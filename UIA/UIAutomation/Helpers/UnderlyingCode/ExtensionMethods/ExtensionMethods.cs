@@ -29,16 +29,11 @@ namespace UIAutomation
             return resultCollection;
         }
         
-        // 20131211
-        // public static IBasePattern[] ConvertAutomationPatternToBasePattern(this AutomationPattern[] patterns) //, IUiElement element)
         public static IBasePattern[] ConvertAutomationPatternToBasePattern(this AutomationPattern[] patterns, IUiElement element)
         {
-Console.WriteLine("ConvertAutomationPatternToBasePattern: 000001");
             var resultList =
                 new List<IBasePattern>();
             foreach (AutomationPattern pattern in patterns) {
-                
-Console.WriteLine("ConvertAutomationPatternToBasePattern: 000002");
                 
                 // resultList.Add(AutomationFactory.GetMySuperPattern<IBasePattern>(element, pattern));
                 // 20131210
@@ -100,8 +95,6 @@ Console.WriteLine("ConvertAutomationPatternToBasePattern: 000002");
                     // 	break;
                 }
             }
-            
-Console.WriteLine("ConvertAutomationPatternToBasePattern: 000009");
             
             return resultList.ToArray();
         }

@@ -93,8 +93,10 @@ namespace UIAutomation
             List<IUiElement> aeWndCollection = new List<IUiElement>();
             
             cmdlet.WriteVerbose(cmdlet, "getting the root element");
+            
             OddRootElement =
                 UiElement.RootElement;
+            
             if (OddRootElement == null)
             {
                 cmdlet.WriteVerbose(cmdlet, "rootElement == null");
@@ -743,7 +745,7 @@ namespace UIAutomation
                     OddRootElement.FindAll(recurse ? TreeScope.Descendants : TreeScope.Children, conditionsSet);
                 
                 WriteVerbose(this, "trying to run the returnOnlyRightElements method");
-                WriteVerbose(this, "collected " + windowCollection.Count.ToString() + " elements for further selection");
+                // WriteVerbose(this, "collected " + windowCollection.Count.ToString() + " elements for further selection");
                 
                 windowCollectionByProperties =
                     ReturnOnlyRightElements(
@@ -766,6 +768,7 @@ namespace UIAutomation
                     foreach (IUiElement aeWndByTitle in windowCollectionByProperties.Cast<IUiElement>().Where(aeWndByTitle => aeWndByTitle != null &&
                                                                                                                                       (int)aeWndByTitle.Current.ProcessId > 0))
                     {
+                        
                         WriteVerbose(this, "aeWndByTitle: " +
                                            aeWndByTitle.Current.Name +
                                            " is caught be title = " + windowTitle);
@@ -773,34 +776,6 @@ namespace UIAutomation
                         resultCollection.Add(aeWndByTitle);
                     }
                     
-                    /*
-                    foreach (AutomationElement aeWndByTitle in windowCollectionByProperties.Cast<AutomationElement>().Where(aeWndByTitle => aeWndByTitle != null &&
-                                                                                                                                      (int)aeWndByTitle.Current.ProcessId > 0))
-                    {
-                        WriteVerbose(this, "aeWndByTitle: " +
-                                           aeWndByTitle.Current.Name +
-                                           " is caught be title = " + windowTitle);
-                                
-                        resultCollection.Add(aeWndByTitle);
-                    }
-                    */
-
-                    /*
-                    foreach (AutomationElement aeWndByTitle in aeWndCollectionByTitle) {
-                        
-                        if (aeWndByTitle != null &&
-                            (int)aeWndByTitle.Current.ProcessId > 0) {
-                            WriteVerbose(this, "aeWndByTitle: " +
-                                         aeWndByTitle.Current.Name +
-                                         " is caught be title = " + windowTitle);
-                                
-                                resultCollection.Add(aeWndByTitle);
-                                
-                        } 
-                        
-                    } // 20120831
-                    */
-
                 } else {
                     
                     IUiElement tempElement = null;
@@ -886,6 +861,8 @@ namespace UIAutomation
             bool viaWildcardOrRegex)
         {
             List<IUiElement> resultCollection = new List<IUiElement>();
+            bool requiresValuePatternCheck =
+                !string.IsNullOrEmpty(textValue);
             
             // 20131210
             if (null == inputCollection) { return resultCollection; }
@@ -941,86 +918,92 @@ namespace UIAutomation
             
             List<IUiElement> inputList = inputCollection.Cast<IUiElement>().ToList();
             
-Console.WriteLine("ReturnOnlyRightElements 00007");
-            
-            cmdlet.WriteVerbose(
-                    cmdlet,
-                    "ReturnOnlyRightElements: there are " +
-                    inputList.Count.ToString() +
-                    " elements");
+//            cmdlet.WriteVerbose(
+//                    cmdlet,
+//                    "ReturnOnlyRightElements: there are " +
+//                    inputList.Count.ToString() +
+//                    " elements");
             
             try {
                 
-               
-foreach (IUiElement el001 in inputList) {
-    try {
-           Console.WriteLine(el001.Current.Name);
-           bool hasPatern = el001.GetSupportedPatterns().AsQueryable<IBasePattern>().Any(p => null != p && null != (p as IMySuperValuePattern));
-    }
-   catch (Exception e00001) {
-       Console.WriteLine(e00001.Message);
-   }
-}
-               
-               
                 List<IUiElement> query;
                 
-                if (viaWildcardOrRegex) {
+                if (requiresValuePatternCheck) {
+                
+                    if (viaWildcardOrRegex) {
+                        
+                        query = inputList
+                            .Where<IUiElement>(
+                                item => (wildcardName.IsMatch(item.Current.Name) &&
+                                         wildcardAutomationId.IsMatch(item.Current.AutomationId) &&
+                                         wildcardClass.IsMatch(item.Current.ClassName) &&
+                                         // check whether a control has or hasn't ValuePattern
+                                         // 20131209
+                                         // 20131211
+                                         // (item.GetSupportedPatterns().AsQueryable<IBasePattern>().Any<IBasePattern>(p => p is IMySuperValuePattern) ?
+                                         (item.GetSupportedPatterns().AsQueryable<IBasePattern>().Any(p => null != p && null != (p as IMySuperValuePattern)) ?
+                                          //.Single<IMySuperValuePattern>() ? //.Contains(ValuePattern.Pattern) ?
+                                          cmdlet.CompareElementValueAndValueParameter(item, textValue, true, wildcardValue, regexOptions) :
+                                          // check whether the -Value parameter has or hasn't value
+                                          ("*" == textValue ? true : false)
+                                         )
+                                        )
+                               )
+                            .ToList<IUiElement>();
+                   } else {
+                        
+                        query = inputList
+                            .Where<IUiElement>(
+                                item => (Regex.IsMatch(item.Current.Name, name, regexOptions) &&
+                                         Regex.IsMatch(item.Current.AutomationId, automationId, regexOptions) &&
+                                         Regex.IsMatch(item.Current.ClassName, className, regexOptions) &&
+                                         // check whether a control has or hasn't ValuePattern
+                                         // 20131209
+                                         // (item.GetSupportedPatterns().Contains(ValuePattern.Pattern) ?
+                                         // 20131209
+                                         // (item.GetSupportedPatterns().Contains(IMySuperValuePattern.Contains(ValuePattern.Pattern) ?
+                                         // (item.GetSupportedPatterns().Contains(IMySuperValuePattern) ?
+                                         // 20131211
+                                         // (item.GetSupportedPatterns().AsQueryable<IBasePattern>().Any<IBasePattern>(p => p is IMySuperValuePattern) ?
+                                         (item.GetSupportedPatterns().AsQueryable<IBasePattern>().Any(p => null != p && null != (p as IMySuperValuePattern)) ?
+                                          cmdlet.CompareElementValueAndValueParameter(item, textValue, false, null, regexOptions) :
+                                          // check whether the -Value parameter has or hasn't value
+                                          (".*" == textValue ? true : false)
+                                         )
+                                        )
+                               )
+                            .ToList<IUiElement>();
+                    }
+                
+                } else {
                     
-Console.WriteLine("ReturnOnlyRightElements 00009");
+                    if (viaWildcardOrRegex) {
+                        query = inputList
+                            .Where<IUiElement>(
+                                item => (wildcardName.IsMatch(item.Current.Name) &&
+                                         wildcardAutomationId.IsMatch(item.Current.AutomationId) &&
+                                         wildcardClass.IsMatch(item.Current.ClassName)
+                                        )
+                               )
+                            .ToList<IUiElement>();
+                    } else {
+                        query = inputList
+                            .Where<IUiElement>(
+                                item => (Regex.IsMatch(item.Current.Name, name, regexOptions) &&
+                                         Regex.IsMatch(item.Current.AutomationId, automationId, regexOptions) &&
+                                         Regex.IsMatch(item.Current.ClassName, className, regexOptions)
+                                        )
+                               )
+                            .ToList<IUiElement>();
+                    }
                     
-                    query = inputList
-                        .Where<IUiElement>(
-                            item => (wildcardName.IsMatch(item.Current.Name) &&
-                                     wildcardAutomationId.IsMatch(item.Current.AutomationId) &&
-                                     wildcardClass.IsMatch(item.Current.ClassName) &&
-                                     // check whether a control has or hasn't ValuePattern
-                                     // 20131209
-                                     // 20131211
-                                     // (item.GetSupportedPatterns().AsQueryable<IBasePattern>().Any<IBasePattern>(p => p is IMySuperValuePattern) ?
-                                     (item.GetSupportedPatterns().AsQueryable<IBasePattern>().Any(p => null != p && null != (p as IMySuperValuePattern)) ?
-                                      //.Single<IMySuperValuePattern>() ? //.Contains(ValuePattern.Pattern) ?
-                                      cmdlet.CompareElementValueAndValueParameter(item, textValue, true, wildcardValue, regexOptions) :
-                                      // check whether the -Value parameter has or hasn't value
-                                      ("*" == textValue ? true : false)
-                                     )
-                                    )
-                           )
-                        .ToList<IUiElement>();
-               } else {
-                   
-Console.WriteLine("ReturnOnlyRightElements 00011");
-                    
-                    query = inputList
-                        .Where<IUiElement>(
-                            item => (Regex.IsMatch(item.Current.Name, name, regexOptions) &&
-                                     Regex.IsMatch(item.Current.AutomationId, automationId, regexOptions) &&
-                                     Regex.IsMatch(item.Current.ClassName, className, regexOptions) &&
-                                     // check whether a control has or hasn't ValuePattern
-                                     // 20131209
-                                     // (item.GetSupportedPatterns().Contains(ValuePattern.Pattern) ?
-                                     // 20131209
-                                     // (item.GetSupportedPatterns().Contains(IMySuperValuePattern.Contains(ValuePattern.Pattern) ?
-                                     // (item.GetSupportedPatterns().Contains(IMySuperValuePattern) ?
-                                     // 20131211
-                                     // (item.GetSupportedPatterns().AsQueryable<IBasePattern>().Any<IBasePattern>(p => p is IMySuperValuePattern) ?
-                                     (item.GetSupportedPatterns().AsQueryable<IBasePattern>().Any(p => null != p && null != (p as IMySuperValuePattern)) ?
-                                      cmdlet.CompareElementValueAndValueParameter(item, textValue, false, null, regexOptions) :
-                                      // check whether the -Value parameter has or hasn't value
-                                      (".*" == textValue ? true : false)
-                                     )
-                                    )
-                           )
-                        .ToList<IUiElement>();
-               }
+                }
                 
                 cmdlet.WriteVerbose(
                         cmdlet,
                         "There are " +
                         query.Count.ToString() +
                         " elements");
-                
-Console.WriteLine("ReturnOnlyRightElements 00015");
                 
                 resultCollection.AddRange(query);
                 
@@ -1056,38 +1039,21 @@ Console.WriteLine("ReturnOnlyRightElements 00015");
         {
             bool result = false;
             
-Console.WriteLine("CompareElementValueAndValueParameter: 00001");
-            
             // getting the real value of a control
             string realValue = string.Empty;
             try {
-Console.WriteLine("CompareElementValueAndValueParameter: 00002");
                 realValue =
                     // 20131208
                     // (item.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern).Current.Value;
                     // (item.GetCurrentPattern<IMySuperValuePattern, ValuePattern>(ValuePattern.Pattern) as IMySuperValuePattern).Current.Value;
                     (item.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern)).Current.Value;
-Console.WriteLine("CompareElementValueAndValueParameter: 00003");
             }
             catch { //(Exception eGetCurrentPattern) {
                 // nothing to do
                 // usually this place never be reached
-Console.WriteLine("CompareElementValueAndValueParameter: 00004");
             }
             
             result = viaWildcardOrRegex ? wildcardValue.IsMatch(realValue) : Regex.IsMatch(realValue, textValue, regexOptions);
-            /*
-            if (viaWildcardOrRegex) {
-                
-                result =
-                    wildcardValue.IsMatch(realValue);
-            } else {
-                
-                result =
-                    Regex.IsMatch(realValue, textValue, regexOptions);
-            }
-            */
-Console.WriteLine("CompareElementValueAndValueParameter: 00005");
             return result;
         }
     }

@@ -93,7 +93,9 @@ namespace UIAutomation.Commands
                     windowsByPid =
                         // 20131109
                         //AutomationElement.RootElement.FindAll(TreeScope.Children,
+                        // 20131215
                         UiElement.RootElement.FindAll(TreeScope.Children,
+                        // UiElement.RootElement().FindAll(TreeScope.Children,
                                                               new AndCondition(
                                                                   new PropertyCondition(
                                                                       AutomationElement.ProcessIdProperty,

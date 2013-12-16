@@ -353,6 +353,12 @@ namespace UIAutomation
                         InputObject);
                 err.ErrorDetails = new ErrorDetails("Exception were thrown during the cycle of selecting items.");
                 WriteObject(this, false);
+                
+//                this.WriteError(
+//                    this,
+//                    "",
+//                    "",
+                    
 
                 // TODO
                 // this.WriteError();

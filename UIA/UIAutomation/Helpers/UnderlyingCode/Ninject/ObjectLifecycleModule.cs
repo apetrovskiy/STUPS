@@ -42,6 +42,9 @@ namespace UIAutomation
                 .Named("UiElement");
             
             Bind<IUiElement>()
+                // .ToConstructor(
+                //     x =>
+                //     new UiElement(x.Inject<bool>()))
                 .To<UiElement>()
                 .InCallScope()
                 .Named("Empty");

@@ -102,6 +102,9 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core">
+      <HintPath>..\..\packages\Castle.Core.3.2.2\lib\net35\Castle.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject">
       <HintPath>..\..\packages\Ninject.3.0.1.10\lib\net35\Ninject.dll</HintPath>
     </Reference>
@@ -304,6 +307,11 @@
     <Compile Include="Helpers\UnderlyingCode\Adapter\TransformPatternAdapterNet.cs" />
     <Compile Include="Helpers\UnderlyingCode\Adapter\ValuePatternAdapterNet.cs" />
     <Compile Include="Helpers\UnderlyingCode\Adapter\WindowPatternAdapter.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Aspect\AbstractInterceptor.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Aspect\ErrorHandlingAspect.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Aspect\InputValidationAspect.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Aspect\LoggingAspect.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Aspect\ParameterValidationAspect.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\RDP\UIANewRemoteDesktopProtocolFileCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Wizard\UIAGetWizardCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Wizard\UIAInvokeWizardCommand.cs" />
@@ -315,6 +323,7 @@
     <Compile Include="Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethodsElement.cs" />
     <Compile Include="Helpers\UnderlyingCode\Ninject\ObjectLifecycleModule.cs" />
     <Compile Include="Helpers\UnderlyingCode\Ninject\AutomationFactory.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Ninject\TemporaryFactory.cs" />
     <Compile Include="Helpers\UnderlyingCode\RDPHelper.cs" />
     <Compile Include="Helpers\UnderlyingCode\RDP\DataProtectionForRDPWrapper.cs" />
     <Compile Include="Helpers\UnderlyingCode\RDP\DataProtector.cs" />
@@ -480,6 +489,7 @@
     <Folder Include="Helpers\UnderlyingCode\Commands\RDP" />
     <Folder Include="Helpers\UnderlyingCode\Adapter" />
     <Folder Include="Helpers\UnderlyingCode\ExtensionMethods" />
+    <Folder Include="Helpers\UnderlyingCode\Aspect" />
     <Folder Include="Helpers\UnderlyingCode\Ninject" />
     <Folder Include="Helpers\UnderlyingCode\RDP" />
     <Folder Include="Helpers\UnderlyingCode\Types" />

@@ -16,7 +16,11 @@ namespace UIAutomation
     using Ninject.Parameters;
     using System.Windows.Automation;
     using System.Collections;
+    using System.Collections.Generic;
     using PSTestLib;
+    
+    using Castle.DynamicProxy;
+    using System.Linq;
     
     /// <summary>
     /// Description of AutomationFactory.
@@ -60,8 +64,8 @@ namespace UIAutomation
 		    catch (Exception eInitFailure) {
 		        // TODO
 		        // write error to error object!!!
-//		        Console.WriteLine("Init Kernel");
-//		        Console.WriteLine(eInitFailure.Message);
+		        // Console.WriteLine("Init Kernel");
+		        // Console.WriteLine(eInitFailure.Message);
 		    }
 
 		    _initFlag = true;
@@ -81,6 +85,40 @@ namespace UIAutomation
 		    }
 		}
 		#endregion Initialization
+        
+        // original
+        // works
+//        private static IUiElement convertToProxy(IUiElement element) //, IInterceptor[] interceptors)
+//        {
+//    		var proxyGenerator =
+//                    new ProxyGenerator();
+//    		
+//    		var proxiedElement =
+//    		    proxyGenerator.CreateInterfaceProxyWithTargetInterface(
+//    		        typeof(IUiElement),
+//    		        element,
+//    		        // interceptors);
+//    		        // new LoggingAspect(), new ErrorHandlingAspect());
+//    		        // new LoggingAspect(), new ErrorHandlingAspect(), new InputValidationAspect(), new ParameterValidationAspect());
+//    		        new LoggingAspect());
+//    		
+//    		return proxiedElement as IUiElement;
+//        }
+        
+        // also works
+//        private static T convertToProxy<T>(T element)
+//        {
+//    		var proxyGenerator =
+//                    new ProxyGenerator();
+//    		
+//    		T proxiedElement =
+//    		    (T)proxyGenerator.CreateInterfaceProxyWithTargetInterface(
+//    		        typeof(IUiElement),
+//    		        element,
+//    		        new LoggingAspect());
+//    		
+//    		return proxiedElement;
+//        }
 		
 		#region IUiElement
 		// internal static IUiElement GetUiElement(AutomationElement element)
@@ -104,6 +142,40 @@ namespace UIAutomation
 			    return null;
 			}
 		}
+		
+		// this works
+//		public static IUiElement GetUiElement(AutomationElement element)
+//		{
+////DateTime startDate = System.DateTime.Now;
+//		    
+//	        if (null == element) {
+//	            return null;
+//	        }
+//	        
+//			try {
+//                
+//    			var singleElement = new ConstructorArgument("element", element);
+//    			IUiElement adapterElement = Kernel.Get<IUiElement>("AutomationElement.NET", singleElement);
+//    			
+//    			// return adapterElement;
+//    			
+//    			IUiElement proxiedTypedUiElement =
+//    			    convertToProxy(
+//    			        adapterElement);
+//                
+////Console.WriteLine((System.DateTime.Now - startDate).Seconds.ToString() + "; " + (System.DateTime.Now - startDate).Ticks.ToString());
+//                
+//    			return (IUiElement)proxiedTypedUiElement; // as IUiElement;
+//    			
+//			}
+//			catch (Exception eFailedToIssueElement) {
+//			    // TODO
+//			    // write error to error object!!!
+//			    // Console.WriteLine("Element");
+//			    // Console.WriteLine(eFailedToIssueElement.Message);
+//			    return null;
+//			}
+//		}
 		
 		internal static IUiElement GetUiElement(IUiElement element)
 		{
@@ -150,7 +222,7 @@ namespace UIAutomation
 			catch (Exception eFailedToIssueInformation) {
 			    // TODO
 			    // write error to error object!!!
-			    // Console.WriteLine("Information");
+                // Console.WriteLine("Information");
 			    // Console.WriteLine(eFailedToIssueInformation.Message);
 			    return null;
 			}
@@ -171,8 +243,8 @@ namespace UIAutomation
 			catch (Exception eFailedToIssueCollection) {
 			    // TODO
 			    // write error to error object!!!
-//			    Console.WriteLine("Collection");
-//			    Console.WriteLine(eFailedToIssueCollection.Message);
+			    // Console.WriteLine("Collection");
+			    // Console.WriteLine(eFailedToIssueCollection.Message);
 			    return null;
 			}
 		}

@@ -100,7 +100,9 @@ namespace UIAutomation
             HelpMessage = "This is usually the output from Get-UiaControl" )] 
         //public System.Windows.Automation.AutomationElement[] InputObject { get; set; }
         //public ICollection InputObject { get; set; }
+        // 20131213
         public IUiElement[] InputObject { get; set; }
+        // public Castle.DynamicProxy.
         /*
         public UiElement[] InputObject { get; set; }
         */
@@ -191,14 +193,22 @@ namespace UIAutomation
                     // UiaHelper.GetAncestorWithHandle(whereToClick);
                     whereToClick.GetAncestorWithHandle();
                 if (whereTheHandle.Current.NativeWindowHandle == 0) {
-                    ErrorRecord err = 
-                        new ErrorRecord(new Exception("The handle of this control equals to zero"),
-                                        "ZeroHandle",
-                                        ErrorCategory.InvalidArgument,
-                                        whereTheHandle);
-                    err.ErrorDetails = 
-                        new ErrorDetails("This control does not have a handle");
-                    WriteError(cmdlet, err, true);
+                    // 20131216
+//                    ErrorRecord err = 
+//                        new ErrorRecord(new Exception("The handle of this control equals to zero"),
+//                                        "ZeroHandle",
+//                                        ErrorCategory.InvalidArgument,
+//                                        whereTheHandle);
+//                    err.ErrorDetails = 
+//                        new ErrorDetails("This control does not have a handle");
+//                    WriteError(cmdlet, err, true);
+                    
+                    this.WriteError(
+                        this,
+                        "The handle of this control equals to zero",
+                        "ZeroHandle",
+                        ErrorCategory.InvalidArgument,
+                        true);
 
                     // TODO: WriteError(...)
                 } else {

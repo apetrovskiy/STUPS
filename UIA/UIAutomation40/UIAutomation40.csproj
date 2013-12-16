@@ -83,6 +83,9 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core">
+      <HintPath>..\..\packages\Castle.Core.3.2.2\lib\net40-client\Castle.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject">
       <HintPath>..\..\packages\Ninject.3.0.1.10\lib\net40\Ninject.dll</HintPath>
     </Reference>
@@ -729,6 +732,21 @@
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\WindowPatternAdapter.cs">
       <Link>Helpers\UnderlyingCode\Adapter\WindowPatternAdapter.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Aspect\AbstractInterceptor.cs">
+      <Link>Helpers\UnderlyingCode\Aspect\AbstractInterceptor.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Aspect\ErrorHandlingAspect.cs">
+      <Link>Helpers\UnderlyingCode\Aspect\ErrorHandlingAspect.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Aspect\InputValidationAspect.cs">
+      <Link>Helpers\UnderlyingCode\Aspect\InputValidationAspect.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Aspect\LoggingAspect.cs">
+      <Link>Helpers\UnderlyingCode\Aspect\LoggingAspect.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Aspect\ParameterValidationAspect.cs">
+      <Link>Helpers\UnderlyingCode\Aspect\ParameterValidationAspect.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Commands\Container\UIANewContainerCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\Container\UIANewContainerCommand.cs</Link>
     </Compile>
@@ -973,6 +991,7 @@
     <Folder Include="Helpers\UnderlyingCode\Adapter" />
     <Folder Include="Helpers\UnderlyingCode\ExtensionMethods" />
     <Folder Include="Helpers\UnderlyingCode\ExtensionMethods" />
+    <Folder Include="Helpers\UnderlyingCode\Aspect" />
     <Folder Include="Helpers\UnderlyingCode\Ninject" />
     <Folder Include="Helpers\UnderlyingCode\RDP" />
     <Folder Include="Helpers\UnderlyingCode\Types" />

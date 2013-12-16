@@ -73,7 +73,8 @@ namespace UIAutomation
 		//T GetSourceElement<T>();
 		//void SetSourceElement<T>(T element);
 		AutomationElement GetSourceElement();
-		void SetSourceElement(AutomationElement element);
+		// void SetSourceElement(AutomationElement element);
+		void SetSourceElement<T>(T element);
 		//IUiElement GetSourceElement();
 		//void SetSourceElement(IUiElement element);
 	    
@@ -82,6 +83,8 @@ namespace UIAutomation
 		
 		// internal methods
 		object GetPatternPropertyValue(AutomationProperty property, bool useCache);
+		
+		// InnerElementTypes InnerElementType { get; set; }
 		
 		// NavigateTo
         IUiElement NavigateToParent();

@@ -169,21 +169,14 @@ namespace UIAutomation.Commands
         {
             if (!CheckAndPrepareInput(this)) { return; }
             
-Console.WriteLine("ProcessRecord 00001");
-            
             foreach (IUiElement inputObject in InputObject) {
                 
-                
-Console.WriteLine("ProcessRecord 00002");
                 // 20120823
                 // 20131210
                 // _currentInputObject = inputObject;
                 
-Console.WriteLine("ProcessRecord 00003");
-                
             if (Full) {
                 
-Console.WriteLine("ProcessRecord 00004");
                 //this.Exclude = null;
                 Exclude =
                     new string[] {};
@@ -191,14 +184,9 @@ Console.WriteLine("ProcessRecord 00004");
 //                    
 //                }
                 
-Console.WriteLine("ProcessRecord 00005");
             }
             
-Console.WriteLine("ProcessRecord 00006");
-            
             string result = "@{";
-            
-Console.WriteLine("ProcessRecord 00007");
             
             // 20131210
             // and further
@@ -228,14 +216,10 @@ Console.WriteLine("ProcessRecord 00007");
             result += GetPropertyCompleteString(inputObject, result, "Orientation");
             result += GetPropertyCompleteString(inputObject, result, "ProcessId");
             
-Console.WriteLine("ProcessRecord 00008");
-            
             // 20130127
             // 20131210
             // result += GetPatternStrings();
             result += GetPatternStrings(inputObject);
-            
-Console.WriteLine("ProcessRecord 00009");
             
             result += "}";
             WriteObject(this, result);
@@ -249,7 +233,7 @@ Console.WriteLine("ProcessRecord 00009");
         private string GetPatternStrings(IUiElement currentElement)
         {
             string result = string.Empty;
-Console.WriteLine("GetPatternStrings 00001");
+            
             if (!Full) return result;
             // 20131209
             // AutomationPattern[] supportedPatterns =
@@ -259,28 +243,11 @@ Console.WriteLine("GetPatternStrings 00001");
                 // _currentInputObject.GetSupportedPatterns();
                 currentElement.GetSupportedPatterns();
             
-Console.WriteLine("GetPatternStrings 00002");
-            
-            // 20131210
-            // if (null == supportedPatterns || 0 >= supportedPatterns.Length) return result;
             if (null == supportedPatterns || 0 == supportedPatterns.Length) return result;
-            
-Console.WriteLine("GetPatternStrings 00003");
             
             // 20131209
             // foreach (AutomationPattern pattern in supportedPatterns) {
             foreach (IBasePattern pattern in supportedPatterns) {
-                
-Console.WriteLine("GetPatternStrings 00004");
-if (null == pattern) {
-    Console.WriteLine("null == pattern");
-} else {
-    if (null == (pattern.SourcePattern as AutomationPattern)) {
-        Console.WriteLine("null == (pattern.SourcePattern as AutomationPattern)");
-    } else {
-        Console.WriteLine((pattern.SourcePattern as AutomationPattern).ProgrammaticName);
-    }
-}
                 
                 result += ";Has";
                 result +=
@@ -291,14 +258,8 @@ if (null == pattern) {
                     // (pattern.SourcePattern as AutomationPattern).ProgrammaticName.Substring(0, (pattern.SourcePattern as AutomationPattern).ProgrammaticName.Length - 19);
                     (pattern.SourcePattern as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", string.Empty); //.Substring(0, (pattern.SourcePattern as AutomationPattern).ProgrammaticName.Length - 19);
                 
-Console.WriteLine("GetPatternStrings 00005");
-                
                 result += "=$true";
-                
-Console.WriteLine("GetPatternStrings 00006");
             }
-            
-Console.WriteLine("GetPatternStrings 00007");
             
             return result;
         }

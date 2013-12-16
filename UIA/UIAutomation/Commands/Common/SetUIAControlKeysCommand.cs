@@ -64,24 +64,32 @@ namespace UIAutomation.Commands
                 WriteObject(this, true);
             }
             catch (Exception eKeys) {
-                ErrorRecord err = 
-                    new ErrorRecord(
-                        new Exception("Failed to send keys to a control"),
-                        "SendKeysFailed",
-                        ErrorCategory.InvalidResult,
-                        null);
-                string controlName = string.Empty;
-                try {
-                    controlName = inputObject.Current.Name;
-                }
-                catch {}
-                err.ErrorDetails = 
-                    new ErrorDetails(
-                        "Failed to send keys to " + 
-                        controlName + 
-                        "\r\n" + 
-                        eKeys.Message);
-                WriteError(this, err, true);
+                // 20131216 
+//                ErrorRecord err = 
+//                    new ErrorRecord(
+//                        new Exception("Failed to send keys to a control"),
+//                        "SendKeysFailed",
+//                        ErrorCategory.InvalidResult,
+//                        null);
+//                string controlName = string.Empty;
+//                try {
+//                    controlName = inputObject.Current.Name;
+//                }
+//                catch {}
+//                err.ErrorDetails = 
+//                    new ErrorDetails(
+//                        "Failed to send keys to " + 
+//                        controlName + 
+//                        "\r\n" + 
+//                        eKeys.Message);
+//                WriteError(this, err, true);
+                
+                this.WriteError(
+                    this,
+                    "Failed to send keys to a control",
+                    "SendKeysFailed",
+                    ErrorCategory.InvalidResult,
+                    true);
             }
 
             } // 20120823

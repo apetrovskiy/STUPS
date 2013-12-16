@@ -29,8 +29,15 @@ namespace UIAutomation
 	{
 		private AutomationElement _elementHolderNet;
 		// //private AutomationElement _elementHolderCom;
-		private readonly IUiElement _elementHolderAdapter;
+		// private readonly IUiElement _elementHolderAdapter;
+		private IUiElement _elementHolderAdapter;
 		private static InnerElementTypes _innerElementType = InnerElementTypes.AutomationElementNet;
+		// internal static InnerElementTypes InnerElementType
+//		internal static InnerElementTypes InnerElementType
+//		{
+//		    get { return _innerElementType; }
+//		    set { _innerElementType = value; }
+//		}
         
 		[Inject]
 		public UiElement(AutomationElement element)
@@ -53,8 +60,12 @@ namespace UIAutomation
 		}
 		
 		[Inject]
+		// public UiElement(bool fake)
 		public UiElement()
 		{
+		    //
+		    _elementHolderNet = AutomationElement.RootElement;
+		    //
 			_innerElementType = InnerElementTypes.Empty;
 		}
 
@@ -305,27 +316,12 @@ namespace UIAutomation
 		{
 			switch (_innerElementType) {
 			    case InnerElementTypes.AutomationElementNet:
-		            // 20131209
-		            // return _elementHolderNet.GetSupportedPatterns(); //.AsQueryable().ToList<IBasePattern>().ToArray();
-		            // 20131210
-		            // return _elementHolderNet.GetSupportedPatterns().ConvertAutomationPatternToBasePattern(AutomationFactory.GetUiElement(_elementHolderNet));
-		            // 20131211
-		            // return _elementHolderNet.GetSupportedPatterns().ConvertAutomationPatternToBasePattern();
-Console.WriteLine("GetSupportedPatterns: 000001");
 		            return _elementHolderNet.GetSupportedPatterns().ConvertAutomationPatternToBasePattern(this);
 //			    case InnerElementTypes.AutomationElementCom:
 //			        //
 			    case InnerElementTypes.UiElement:
-Console.WriteLine("GetSupportedPatterns: 000002");
 			        return _elementHolderAdapter.GetSupportedPatterns();
 			    default:
-			        // 20131209
-			        // return _elementHolderNet.GetSupportedPatterns(); //.ToList<IBasePattern>().ToArray();
-			        // 20131210
-			        // return _elementHolderNet.GetSupportedPatterns().ConvertAutomationPatternToBasePattern(AutomationFactory.GetUiElement(_elementHolderNet));
-			        // 20131211
-			        // return _elementHolderNet.GetSupportedPatterns().ConvertAutomationPatternToBasePattern();
-Console.WriteLine("GetSupportedPatterns: 000003");
 			        return _elementHolderNet.GetSupportedPatterns().ConvertAutomationPatternToBasePattern(this);
 			}
 		}
@@ -550,32 +546,23 @@ Console.WriteLine("GetSupportedPatterns: 000003");
 		    }
 		}
 		
-		public virtual AutomationElement GetSourceElement()
+		// public virtual AutomationElement GetSourceElement()
+		public AutomationElement GetSourceElement()
 		{
 		    return _elementHolderNet;
 		}
-		public virtual void SetSourceElement(AutomationElement element)
+		// public virtual void SetSourceElement(AutomationElement element)
+		// public virtual void SetSourceElement<T>(T element)
+		public void SetSourceElement<T>(T element)
 		{
-		    _elementHolderNet = element;
+		    if (element is AutomationElement) {
+		        _elementHolderNet = element as AutomationElement;
+		    }
+		    // if com
+		    if (element is IUiElement) {
+		        _elementHolderAdapter = (IUiElement)element;
+		    }
 		}
-		
-//		public AutomationElement GetSourceElement()
-//		{
-//		    return this.elementHolderNet;
-//		}
-//		public void SetSourceElement(AutomationElement element)
-//		{
-//		    this.elementHolderNet = element;
-//		}
-		
-//		public IUiElement GetSourceElement()
-//		{
-//		    return this.elementHolderAdapter;
-//		}
-//		public void SetSourceElement(IUiElement element)
-//		{
-//		    this.elementHolderAdapter = element;
-//		}
 		
 		public virtual string Tag { get; set; }
 		

@@ -32,7 +32,8 @@ namespace UIAutomation
         internal const string NamedParameter_WithoutPattern = "WithoutPattern";
         internal const string NamedParameter_WithoutElement = "WithoutElement";
         
-        private static readonly ProxyGenerator _generator = new ProxyGenerator(new PersistentProxyBuilder());
+        // private static readonly ProxyGenerator _generator; // = new ProxyGenerator(new PersistentProxyBuilder());
+        private static ProxyGenerator _generator;
         
         #region Initialization
         static AutomationFactory()
@@ -41,6 +42,9 @@ namespace UIAutomation
             _ninjectModule = new ObjectLifecycleModule();
             CommonCmdletBase.ModuleAlreadyLoaded = true;
             Init();
+            
+		    // 20131217
+		    InitCommonObjects();
         }
         
 		private static INinjectModule _ninjectModule;
@@ -86,6 +90,12 @@ namespace UIAutomation
 //		         Console.WriteLine("Init Kernel");
 //		         Console.WriteLine(eInitFailure.Message);
 		    }
+		}
+		
+		internal static void InitCommonObjects()
+		{
+		    var argument = new ConstructorArgument("builder", new PersistentProxyBuilder());
+		    _generator = Kernel.Get<ProxyGenerator>(argument);
 		}
 		#endregion Initialization
         

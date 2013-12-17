@@ -17,6 +17,7 @@ namespace UIAutomation
     
     using System.Collections;
     using System.Windows.Automation;
+    using Castle.DynamicProxy;
     
     /// <summary>
     /// Description of ObjectLifecycleModule.
@@ -25,6 +26,12 @@ namespace UIAutomation
     {
         public override void Load()
         {
+            #region common objects
+            Bind<ProxyGenerator>()
+                .ToSelf()
+                .InSingletonScope();
+            #endregion common objects
+            
             #region IUiElement
             Bind<IUiElement>()
                 .ToConstructor(

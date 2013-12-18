@@ -123,7 +123,8 @@ namespace UIAutomation
         internal static T ConvertToProxiedElement<T>(T element)
         {
     		T proxiedElement =
-                (T)_generator.CreateInterfaceProxyWithTargetInterface(
+                // (T)_generator.CreateInterfaceProxyWithTargetInterface(
+    		    (T)_generator.CreateInterfaceProxyWithTarget(
     		        typeof(T),
     		        element,
     		        // new LoggingAspect());

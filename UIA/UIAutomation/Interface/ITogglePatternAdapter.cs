@@ -9,15 +9,15 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;
-    using System.Windows.Automation;
-    
-	public interface IMySuperTogglePattern : IBasePattern
+	extern alias UIANET;
+	using System.Windows.Automation;
+
+	public interface IMySuperTogglePattern : IBasePattern //, ISupportsTogglePattern
 	{
 		void Toggle();
 		ITogglePatternInformation Cached { get; }
 		ITogglePatternInformation Current { get; }
-		
+
 //		IUiElement ParentElement { get; set; }
 	}
 }

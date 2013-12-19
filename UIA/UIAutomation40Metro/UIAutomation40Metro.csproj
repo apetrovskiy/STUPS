@@ -744,6 +744,9 @@
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Aspect\LoggingAspect.cs">
       <Link>Helpers\UnderlyingCode\Aspect\LoggingAspect.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Aspect\MethodSelectorAspect.cs">
+      <Link>Helpers\UnderlyingCode\Aspect\MethodSelectorAspect.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Aspect\ParameterValidationAspect.cs">
       <Link>Helpers\UnderlyingCode\Aspect\ParameterValidationAspect.cs</Link>
     </Compile>
@@ -916,6 +919,15 @@
     <Compile Include="..\UIAutomation\Interface\ISupportsInvokePattern.cs">
       <Link>Interface\ISupportsInvokePattern.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Interface\ISupportsSelectionItemPattern.cs">
+      <Link>Interface\ISupportsSelectionItemPattern.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\ISupportsSelectionPattern.cs">
+      <Link>Interface\ISupportsSelectionPattern.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\ISupportsTogglePattern.cs">
+      <Link>Interface\ISupportsTogglePattern.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Interface\ITableItemPatternAdapter.cs">
       <Link>Interface\ITableItemPatternAdapter.cs</Link>
     </Compile>
@@ -981,6 +993,7 @@
     <Folder Include="Commands\RDP" />
     <Folder Include="Commands\Sheridan" />
     <Folder Include="Commands\Win32" />
+    <Folder Include="Helpers\UnderlyingCode\Aspect" />
     <Folder Include="Helpers\UnderlyingCode\Commands" />
     <Folder Include="Helpers\UnderlyingCode\Commands" />
     <Folder Include="Helpers\UnderlyingCode\Commands\Container" />

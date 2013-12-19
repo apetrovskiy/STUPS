@@ -693,15 +693,14 @@ namespace UIAutomation
         #endregion NavigateTo
         
         #region Patterns
-        // public virtual IUiElement Click()
-        internal virtual IUiElement Click()
+        #region InvokePattern
+        internal IUiElement Click()
         {
-            this.GetCurrentPattern<IMySuperInvokePattern>(InvokePattern.Pattern).Invoke();
-            return this;
+            return this.PerformClick();
         }
         
-//        public virtual IUiElement DoubleClick()
-//        {
+        internal IUiElement DoubleClick()
+        {
 //            HasControlInputCmdletBase cmdlet =
 //                new HasControlInputCmdletBase();
 //            cmdlet.ClickControl(
@@ -719,56 +718,61 @@ namespace UIAutomation
 //                Preferences.ClickOnControlByCoordY);
 //            
 //            return this;
-//        }
-//        
-//        public virtual IUiElement Select()
-//        {
-//            this.GetSelectionItemPattern().Select();
-//            return this;
-//        }
-//        
-//        public virtual IUiElement AddToSelection()
-//        {
-//            this.GetSelectionItemPattern().AddToSelection();
-//            return this;
-//        }
-//        
-//        public virtual IUiElement RemoveFromSelection()
-//        {
-//            this.GetSelectionItemPattern().RemoveFromSelection();
-//            return this;
-//        }
-//        
-//        public virtual bool IsSelected
-//        {
-//            get { return this.GetSelectionItemPattern().Current.IsSelected; }
-//        }
-//        
-//        public virtual IUiElement SelectionContainer
-//        {
-//            get { return this.GetSelectionItemPattern().Current.SelectionContainer; }
-//        }
-//        
-//        public virtual IUiElement[] GetSelection()
-//        {
-//            return this.GetSelectionPattern().Current.GetSelection();
-//        }
-//        
-//        public virtual bool CanSelectMultiple
-//        {
-//            get { return this.GetSelectionPattern().Current.CanSelectMultiple; }
-//        }
-//        
-//        public virtual bool IsSelectionRequired
-//        {
-//            get { return this.GetSelectionPattern().Current.IsSelectionRequired; }
-//        }
-//        
-//        public virtual IUiElement Toggle()
-//        {
-//            this.GetTogglePattern().Toggle();
-//            return this;
-//        }
+            return this.PerformDoubleClick();
+        }
+        #endregion InvokePattern
+        #region SelectionItemPattern
+        internal IUiElement Select()
+        {
+            return this.PerformSelect();
+        }
+        
+        internal IUiElement AddToSelection()
+        {
+            return this.PerformAddToSelection();
+        }
+        
+        internal IUiElement RemoveFromSelection()
+        {
+            return this.PerformRemoveFromSelection();
+        }
+        
+        internal bool IsSelected
+        {
+            // get { return this.GetSelectionItemPattern().Current.IsSelected; }
+            get { return this.GetIsSelected(); }
+        }
+        
+        internal IUiElement SelectionContainer
+        {
+            // get { return this.GetSelectionItemPattern().Current.SelectionContainer; }
+            get { return this.GetSelectionContainer(); }
+        }
+        #endregion SelectionItemPattern
+        #region SelectionPattern
+        internal IUiElement[] GetSelection()
+        {
+            // return this.GetSelectionPattern().Current.GetSelection();
+            return this.PerformGetSelection();
+        }
+        
+        internal bool CanSelectMultiple
+        {
+            // get { return this.GetSelectionPattern().Current.CanSelectMultiple; }
+            get { return this.GetCanSelectMultiple(); }
+        }
+        
+        internal bool IsSelectionRequired
+        {
+            // get { return this.GetSelectionPattern().Current.IsSelectionRequired; }
+            get { return this.GetIsSelectionRequired(); }
+        }
+        #endregion SelectionPattern
+        #region TogglePattern
+        internal IUiElement Toggle()
+        {
+            return this.Toggle();
+        }
 //        
 ////        public bool? ToggleState
 ////        {
@@ -808,6 +812,7 @@ namespace UIAutomation
 //            get { return this.GetValuePattern().Current.Value; }
 //            set { this.GetValuePattern().SetValue(value); }
 //        }
+        #endregion TogglePattern
         #endregion Patterns
         
         #region Highlighter

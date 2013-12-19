@@ -311,6 +311,7 @@
     <Compile Include="Helpers\UnderlyingCode\Aspect\ErrorHandlingAspect.cs" />
     <Compile Include="Helpers\UnderlyingCode\Aspect\InputValidationAspect.cs" />
     <Compile Include="Helpers\UnderlyingCode\Aspect\LoggingAspect.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Aspect\MethodSelectorAspect.cs" />
     <Compile Include="Helpers\UnderlyingCode\Aspect\ParameterValidationAspect.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\RDP\UIANewRemoteDesktopProtocolFileCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Wizard\UIAGetWizardCommand.cs" />
@@ -406,6 +407,9 @@
     <Compile Include="Interface\ISelectionPatternAdapter.cs" />
     <Compile Include="Interface\ISelectionPatternInformationAdapter.cs" />
     <Compile Include="Interface\ISupportsInvokePattern.cs" />
+    <Compile Include="Interface\ISupportsSelectionItemPattern.cs" />
+    <Compile Include="Interface\ISupportsSelectionPattern.cs" />
+    <Compile Include="Interface\ISupportsTogglePattern.cs" />
     <Compile Include="Interface\ITableItemPatternAdapter.cs" />
     <Compile Include="Interface\ITableItemPatternInformationAdapter.cs" />
     <Compile Include="Interface\ITablePatternAdapter.cs" />

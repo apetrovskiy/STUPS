@@ -451,6 +451,142 @@ namespace UIAutomation
         }
         
         #region Patterns
+        #region InvokePattern
+        public static IUiElement PerformClick(this IUiElement element)
+        {
+            try {
+                element.GetCurrentPattern<IMySuperInvokePattern>(InvokePattern.Pattern).Invoke();
+            }
+            catch {
+                // click via Win32
+            }
+            return element;
+        }
+        
+        public static IUiElement PerformDoubleClick(this IUiElement element)
+        {
+            HasControlInputCmdletBase cmdlet =
+                new HasControlInputCmdletBase();
+            cmdlet.ClickControl(
+                cmdlet,
+                element,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                true,
+                50,
+                Preferences.ClickOnControlByCoordX,
+                Preferences.ClickOnControlByCoordY);
+            
+            return element;
+        }
+        #endregion InvokePattern
+        
+        #region SelectionItemPattern
+        public static IUiElement PerformSelect(this IUiElement element)
+        {
+            try {
+                element.GetCurrentPattern<IMySuperSelectionItemPattern>(SelectionItemPattern.Pattern).Select();
+            }
+            catch {
+                //
+            }
+            return element;
+        }
+        
+        public static IUiElement PerformAddToSelection(this IUiElement element)
+        {
+            try {
+                element.GetCurrentPattern<IMySuperSelectionItemPattern>(SelectionItemPattern.Pattern).AddToSelection();
+            }
+            catch {
+                // 
+            }
+            return element;
+        }
+        
+        public static IUiElement PerformRemoveFromSelection(this IUiElement element)
+        {
+            try {
+                element.GetCurrentPattern<IMySuperSelectionItemPattern>(SelectionItemPattern.Pattern).RemoveFromSelection();
+            }
+            catch {
+                // 
+            }
+            return element;
+        }
+        
+        public static bool GetIsSelected(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IMySuperSelectionItemPattern>(SelectionItemPattern.Pattern).Current.IsSelected;
+            }
+            catch {
+                //
+            }
+            return false;
+        }
+        
+        public static IUiElement GetSelectionContainer(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IMySuperSelectionItemPattern>(SelectionItemPattern.Pattern).Current.SelectionContainer;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return null;
+        }
+        #endregion SelectionItemPattern
+        #region SelectionPattern
+        public static IUiElement[] PerformGetSelection(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IMySuperSelectionPattern>(SelectionPattern.Pattern).Current.GetSelection();
+            }
+            catch {
+                // 
+            }
+            return new UiElement[] {};
+        }
+        
+        public static bool GetCanSelectMultiple(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IMySuperSelectionPattern>(SelectionPattern.Pattern).Current.CanSelectMultiple;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return false;
+        }
+        
+        public static bool GetIsSelectionRequired(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IMySuperSelectionPattern>(SelectionPattern.Pattern).Current.IsSelectionRequired;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return false;
+        }
+        #endregion SelectionPattern
+        #region TogglePattern
+        public static IUiElement PerformToggle(this IUiElement element)
+        {
+            try {
+                element.GetCurrentPattern<IMySuperTogglePattern>(TogglePattern.Pattern).Toggle();
+            }
+            catch {
+                // maybe, a click
+            }
+            return element;
+        }
+        #endregion TogglePattern
         #endregion Patterns
     }
 }

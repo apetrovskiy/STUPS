@@ -11,16 +11,16 @@ namespace UIAutomation
 {
 	extern alias UIANET;
 	using System.Windows.Automation;
-
-	public interface IMySuperSelectionItemPattern : IBasePattern //, ISupportsSelectionItemPattern
+	public interface ISupportsSelectionItemPattern
 	{
 		void Select();
 		void AddToSelection();
 		void RemoveFromSelection();
-		ISelectionItemPatternInformation Cached { get; }
-		ISelectionItemPatternInformation Current { get; }
-
-//		IUiElement ParentElement { get; set; }
+		// ISelectionItemPatternInformation Cached { get; }
+		// ISelectionItemPatternInformation Current { get; }
+		
+		bool IsSelected { get; }
+		IUiElement SelectionContainer { get; }
 	}
 }
 

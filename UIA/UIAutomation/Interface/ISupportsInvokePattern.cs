@@ -13,5 +13,6 @@ namespace UIAutomation
 	{
 		// void Invoke();
 		void Click();
+		void DoubleClick();
 	}
 }

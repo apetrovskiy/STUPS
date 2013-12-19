@@ -1,5 +1,4 @@
-﻿using System.Management.Automation;
-/*
+﻿/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
  * Date: 11/10/2013
@@ -18,6 +17,12 @@ namespace UIAutomation
     using System.Windows.Automation;
     using System.Collections;
     using System.Collections.Generic;
+    
+    
+    // using System.Management.Automation;
+    
+    
+    
     using PSTestLib;
     
     using Castle.DynamicProxy;
@@ -121,14 +126,23 @@ namespace UIAutomation
             Type[] supportedAdditionalInterfaces =
                 UiaHelper.GetSupportedInterfaces(element);
 //            
-//Console.WriteLine(supportedAdditionalInterfaces.Count().ToString());
+Console.WriteLine(supportedAdditionalInterfaces.Count().ToString());
             
-    		UiElement proxiedElement =
-    		    (UiElement)_generator.CreateClassProxy(
-    		        typeof(UiElement),
-    		        supportedAdditionalInterfaces,
-    		        new LoggingAspect(), new ErrorHandlingAspect(), new InputValidationAspect(), new ParameterValidationAspect());
-    		
+            UiElement proxiedElement;
+            if (null != supportedAdditionalInterfaces && 0 < supportedAdditionalInterfaces.Length) {
+        		proxiedElement =
+        		    (UiElement)_generator.CreateClassProxy(
+        		        typeof(UiElement),
+        		        supportedAdditionalInterfaces,
+    		        // new LoggingAspect(), new ErrorHandlingAspect(), new InputValidationAspect(), new ParameterValidationAspect());
+    		        new MethodSelectorAspect(), new LoggingAspect(), new ErrorHandlingAspect(), new InputValidationAspect(), new ParameterValidationAspect());
+            } else {
+        		proxiedElement =
+        		    (UiElement)_generator.CreateClassProxy(
+        		        typeof(UiElement),
+    		        // new LoggingAspect(), new ErrorHandlingAspect(), new InputValidationAspect(), new ParameterValidationAspect());
+    		        new MethodSelectorAspect(), new LoggingAspect(), new ErrorHandlingAspect(), new InputValidationAspect(), new ParameterValidationAspect());
+            }
     		return proxiedElement;
         }
         #endregion Castle DynamicProxy
@@ -194,8 +208,8 @@ namespace UIAutomation
 			catch (Exception eFailedToIssueElement) {
 			    // TODO
 			    // write error to error object!!!
-			    // Console.WriteLine("Element");
-			    // Console.WriteLine(eFailedToIssueElement.Message);
+			    Console.WriteLine("Element");
+			    Console.WriteLine(eFailedToIssueElement.Message);
 			    return null;
 			}
 		}
@@ -229,8 +243,8 @@ namespace UIAutomation
 			catch (Exception eFailedToIssueElement) {
 			    // TODO
 			    // write error to error object!!!
-			    // Console.WriteLine("Element");
-			    // Console.WriteLine(eFailedToIssueElement.Message);
+			    Console.WriteLine("Element");
+			    Console.WriteLine(eFailedToIssueElement.Message);
 			    return null;
 			}
 		}
@@ -254,8 +268,8 @@ namespace UIAutomation
 			catch (Exception eFailedToIssueElement) {
 			    // TODO
 			    // write error to error object!!!
-			    // Console.WriteLine("Element");
-			    // Console.WriteLine(eFailedToIssueElement.Message);
+			    Console.WriteLine("Element");
+			    Console.WriteLine(eFailedToIssueElement.Message);
 			    return null;
 			}
 		}
@@ -270,8 +284,8 @@ namespace UIAutomation
 			catch (Exception eFailedToIssueInformation) {
 			    // TODO
 			    // write error to error object!!!
-                // Console.WriteLine("Information");
-			    // Console.WriteLine(eFailedToIssueInformation.Message);
+                Console.WriteLine("Information");
+			    Console.WriteLine(eFailedToIssueInformation.Message);
 			    return null;
 			}
 		}

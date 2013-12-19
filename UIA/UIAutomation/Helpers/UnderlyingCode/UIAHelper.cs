@@ -2751,34 +2751,35 @@ strInfo += " 07";
         {
             List<Type> supportedTypes = new List<Type>();
             
-            // if (T == AutomationElement) {
             if (element is AutomationElement) {
                 foreach (AutomationPattern pattern in (element as AutomationElement).GetSupportedPatterns()) {
-//                    switch (pattern) {
-//                        case InvokePattern.Pattern:
-//                            supportedTypes.Add(typeof(ISupportsInvokePattern));
-//                            break;
-//                        default:
-//                            
-//                        	break;
-//                    }
-                    if (pattern is InvokePattern) {
-                        supportedTypes.Add(typeof(ISupportsInvokePattern));
+                    // if (pattern == InvokePattern.Pattern) {
+                    supportedTypes.Add(typeof(ISupportsInvokePattern));
+                    // }
+                    if (pattern == SelectionItemPattern.Pattern) {
+                        supportedTypes.Add(typeof(ISupportsSelectionItemPattern));
+                    }
+                    if (pattern == SelectionPattern.Pattern) {
+                        supportedTypes.Add(typeof(ISupportsSelectionPattern));
+                    }
+                    if (pattern == TogglePattern.Pattern) {
+                        supportedTypes.Add(typeof(ISupportsTogglePattern));
                     }
                 }
             }
             if (element is IUiElement) {
                 foreach (IBasePattern pattern in (element as IUiElement).GetSupportedPatterns()) {
-//                    switch (pattern) {
-//                        case IMySuperInvokePattern:
-//                            supportedTypes.Add(typeof(ISupportsInvokePattern));
-//                            break;
-//                        default:
-//                            
-//                        	break;
-//                    }
-                    if (pattern is IMySuperInvokePattern) {
-                        supportedTypes.Add(typeof(ISupportsInvokePattern));
+                    // if (pattern is IMySuperInvokePattern) {
+                    supportedTypes.Add(typeof(ISupportsInvokePattern));
+                    // }
+                    if (pattern is IMySuperSelectionItemPattern) {
+                        supportedTypes.Add(typeof(ISupportsSelectionItemPattern));
+                    }
+                    if (pattern is IMySuperSelectionPattern) {
+                        supportedTypes.Add(typeof(ISupportsSelectionPattern));
+                    }
+                    if (pattern is IMySuperTogglePattern) {
+                        supportedTypes.Add(typeof(ISupportsTogglePattern));
                     }
                 }
             }

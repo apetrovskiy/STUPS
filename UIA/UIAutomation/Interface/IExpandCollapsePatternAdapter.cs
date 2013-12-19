@@ -9,16 +9,16 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;
-    using System.Windows.Automation;
-    
+	extern alias UIANET;
+	using System.Windows.Automation;
+
 	public interface IMySuperExpandCollapsePattern : IBasePattern
 	{
 		void Expand();
 		void Collapse();
 		IExpandCollapsePatternInformation Cached { get; }
 		IExpandCollapsePatternInformation Current { get; }
-		
+
 //		IUiElement ParentElement { get; set; }
 	}
 }

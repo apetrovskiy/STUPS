@@ -9,11 +9,9 @@
 
 namespace UIAutomation
 {
-	public interface IMySuperInvokePattern : IBasePattern //, ISupportsInvokePattern
+	public interface ISupportsInvokePattern
 	{
-		//IInvokePatternAdapter : IBasePattern
-		void Invoke();
-
-//		IUiElement ParentElement { get; set; }
+		// void Invoke();
+		void Click();
 	}
 }

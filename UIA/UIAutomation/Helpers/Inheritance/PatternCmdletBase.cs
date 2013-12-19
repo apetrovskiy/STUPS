@@ -82,8 +82,8 @@ namespace UIAutomation
                     control =
                         inputObject;
                 } catch (Exception eControlTypeException) {
-                    WriteVerbose("PatternCmdletBase: Control is not an AutomationElement");
-                    WriteVerbose("PatternCmdletBase: " + eControlTypeException.Message);
+                    WriteVerbose(this, "PatternCmdletBase: Control is not an AutomationElement");
+                    WriteVerbose(this, "PatternCmdletBase: " + eControlTypeException.Message);
                     WriteObject(this, false);
                     return;
                 }
@@ -503,15 +503,15 @@ namespace UIAutomation
                 if (togglePattern != null) {
                     if (togglePattern.Current.ToggleState == ToggleState.On && on) {
                         // nothing to do
-                        cmdlet.WriteVerbose("the control is already ON");
+                        cmdlet.WriteVerbose(this, "the control is already ON");
                     } else if (togglePattern.Current.ToggleState == ToggleState.Off && on) {
-                        cmdlet.WriteVerbose("setting the control ON");
+                        cmdlet.WriteVerbose(this, "setting the control ON");
                         togglePattern.Toggle();
                     } else if (togglePattern.Current.ToggleState == ToggleState.On && !on) {
-                        cmdlet.WriteVerbose("setting the control OFF");
+                        cmdlet.WriteVerbose(this, "setting the control OFF");
                         togglePattern.Toggle();
                     } else if (togglePattern.Current.ToggleState == ToggleState.Off && !on) {
-                        cmdlet.WriteVerbose("the control is already OF");
+                        cmdlet.WriteVerbose(this, "the control is already OF");
                         // nothing to do
                     }
 //                    if (ToggleState.On == togglePattern1.Current.ToggleState) {

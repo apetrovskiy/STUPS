@@ -217,7 +217,9 @@ namespace UIAutomationTest.Commands.Get
                 @"if (([uiautomation.currentdata]::currentwindow.current.name" +
                 ")) { 0; } else { 1; }",
                 //"System.Windows.Automation.AutomationElement");
-                "UIAutomation.UiElement");
+                // 20131218
+                // "UIAutomation.UiElement");
+                "Castle.Proxies.UiElementProxy");
         }
         
         [Test] //[Test(Description="TBD")]

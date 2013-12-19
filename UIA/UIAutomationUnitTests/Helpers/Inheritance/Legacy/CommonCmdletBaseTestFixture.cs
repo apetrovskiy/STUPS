@@ -20,7 +20,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
     /// Description of CommonCmdletBase.
     /// </summary>
     [TestFixture] // [TestFixture(Description="CommonCmdletBase test")]
-    [Ignore("Incompatible with contemporary code")]
+    [Ignore("Incompatible with the contemporary code")]
     public class CommonCmdletBaseTestFixture
     {
         UIAutomation.GetControlCmdletBase cmdlet = null;

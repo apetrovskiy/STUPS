@@ -680,114 +680,28 @@ namespace UIAutomation
                     WriteVerbose(this, "selected TreeScope." + scope.ToString());
                     
                     Condition conditions = GetWildcardSearchCondition(this);
-                    //Condition[] conditions = getControlsConditions(this);
                     IUiEltCollection temporaryResults = null;
-                    // 20131129
-                    // if (conditions != null && conditions.Length > 0)
                     if (conditions != null)
                     {
-//                        WriteVerbose(this, "conditions number: " +
-//                                     conditions.Length.ToString());
-                        // 20131129
-                        // foreach (AndCondition andCondition in conditions.Where(andCondition => andCondition != null))
-//                        foreach (Condition condition in conditions.Where(everyCondition => everyCondition != null))
-//                        {
-                            // 20131129
-                            // WriteVerbose(this, andCondition.GetConditions());
                             temporaryResults =
-                                // 20120823
-                                //this.InputObject.FindAll(scope,
                                 inputObject.FindAll(
                                     scope,
-                                    // 20131129
-                                    //andCondition);
                                     conditions);
-//                            if (temporaryResults.Count <= 0) continue;
-                            /*
-                            if (temporaryResults.Count > 0) {
-                            */
-    
-                            // 20131109
-                            //searchResults.AddRange(temporaryResults.Cast<AutomationElement>());
-                            // 20131111
-                            //searchResults.AddRange(temporaryResults.Cast<IUiElement>());
+                            
                             searchResults.AddRange(temporaryResults.Cast<IUiElement>());
-    
-                            /*
-                            foreach (IUiElement singleElement in temporaryResults) {
-                                searchResults.Add(singleElement);
-                            }
-                            */
-                            /*
-                                    foreach (AutomationElement element in temporaryResults)
-                                    {
-                                        searchResults.Add(element);
-                                    }
-                                    */
-//                        }
-    
-                        /*
-                        foreach (AndCondition andCondition in conditions)
-                        {
-                            if (andCondition == null) continue;
-                            WriteVerbose(this, andCondition.GetConditions());
-                            temporaryResults =
-                                // 20120823
-                                //this.InputObject.FindAll(scope,
-                                inputObject.FindAll(scope,
-                                    andCondition);
-                            if (temporaryResults.Count > 0) {
-                                
-                                // 20131109
-                                //searchResults.AddRange(temporaryResults.Cast<AutomationElement>());
-                                // 20131111
-                                //searchResults.AddRange(temporaryResults.Cast<IUiElement>());
-                                foreach (IUiElement singleElement in temporaryResults) {
-                                    searchResults.Add(singleElement);
-                                }
-                            }
-                        }
-                        */
-    
-                        /*
-                        for (int i = 0; i < conditions.Length; i++) {
-                            if (conditions[i] != null) {
-                                WriteVerbose(this, conditions[i].GetConditions());
-                                temporaryResults =
-                                    // 20120823
-                                    //this.InputObject.FindAll(scope,
-                                    inputObject.FindAll(scope,
-                                                             conditions[i]);
-                                if (temporaryResults.Count > 0) {
-                                    searchResults.AddRange(temporaryResults.Cast<AutomationElement>());
-                                    //->
-                                    foreach (AutomationElement element in temporaryResults)
-                                    {
-                                        searchResults.Add(element);
-                                    }
-                                    -//
-                    }
-                    }
-                        }
-                        */
                     }
                     else {
                         WriteVerbose(this, "no conditions. Performing search with TrueCondition");
                         temporaryResults =
-                            // 20120823
-                            //this.InputObject.FindAll(scope,
-                            inputObject.FindAll(scope,
-                                                     Condition.TrueCondition);
+                            inputObject.FindAll(
+                                scope,
+                                Condition.TrueCondition);
                         if (temporaryResults.Count > 0)
                         {
                             WriteVerbose(this, 
                                          "returned " + 
                                          temporaryResults.Count.ToString() + 
                                          " results");
-                            // 20131109
-                            //searchResults.AddRange(temporaryResults.Cast<AutomationElement>());
-                            // 20131111
-                            //searchResults.AddRange(temporaryResults.Cast<IUiElement>());
                             searchResults.AddRange(temporaryResults.Cast<IUiElement>());
                         }
                     }
@@ -796,23 +710,9 @@ namespace UIAutomation
                 } // if (scope == TreeScope.Children ||
                 //scope == TreeScope.Descendants)
                 if (scope != TreeScope.Parent && scope != TreeScope.Ancestors) continue;
-                // 20131109
-                //AutomationElement[] outResult = UiaHelper.GetParentOrAncestor(inputObject, scope);
-                // 20131204
-                // IUiElement[] outResult = UiaHelper.GetParentOrAncestor(inputObject, scope);
+                
                 IUiElement[] outResult = inputObject.GetParentOrAncestor(scope);
                 WriteObject(this, outResult);
-
-                /*
-              if (scope == TreeScope.Parent ||
-                scope == TreeScope.Ancestors) {
-                outResult = 
-                    // 20120823
-                    //UiaHelper.GetParentOrAncestor(this.InputObject, scope);
-                    UiaHelper.GetParentOrAncestor(inputObject, scope);
-                WriteObject(this, outResult);
-            }
-            */
                 
             } // 20120823
             

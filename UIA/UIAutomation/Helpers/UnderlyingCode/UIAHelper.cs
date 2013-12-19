@@ -2746,6 +2746,45 @@ strInfo += " 07";
             return resultList;
         }
         #endregion experimental
+        
+        public static Type[] GetSupportedInterfaces<T>(T element)
+        {
+            List<Type> supportedTypes = new List<Type>();
+            
+            // if (T == AutomationElement) {
+            if (element is AutomationElement) {
+                foreach (AutomationPattern pattern in (element as AutomationElement).GetSupportedPatterns()) {
+//                    switch (pattern) {
+//                        case InvokePattern.Pattern:
+//                            supportedTypes.Add(typeof(ISupportsInvokePattern));
+//                            break;
+//                        default:
+//                            
+//                        	break;
+//                    }
+                    if (pattern is InvokePattern) {
+                        supportedTypes.Add(typeof(ISupportsInvokePattern));
+                    }
+                }
+            }
+            if (element is IUiElement) {
+                foreach (IBasePattern pattern in (element as IUiElement).GetSupportedPatterns()) {
+//                    switch (pattern) {
+//                        case IMySuperInvokePattern:
+//                            supportedTypes.Add(typeof(ISupportsInvokePattern));
+//                            break;
+//                        default:
+//                            
+//                        	break;
+//                    }
+                    if (pattern is IMySuperInvokePattern) {
+                        supportedTypes.Add(typeof(ISupportsInvokePattern));
+                    }
+                }
+            }
+            
+            return supportedTypes.ToArray();
+        }
     }
     
     #region experimental

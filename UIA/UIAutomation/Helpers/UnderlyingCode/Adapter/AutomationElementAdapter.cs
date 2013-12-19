@@ -25,7 +25,7 @@ namespace UIAutomation
 	// public class UiElement <N, O> : IUiElement //, IInitializable
 	//     where N : IBasePattern
 	//     where O : AutomationPattern
-	public class UiElement : IUiElement //, IInitializable
+	public class UiElement : IUiElement //, IMySuperDockPattern //, IInitializable
 	{
 		private AutomationElement _elementHolderNet;
 		// //private AutomationElement _elementHolderCom;
@@ -63,10 +63,12 @@ namespace UIAutomation
 		// public UiElement(bool fake)
 		public UiElement()
 		{
-		    //
+		    // temporary
+		    // later use here an empty proxy
 		    _elementHolderNet = AutomationElement.RootElement;
 		    //
 			_innerElementType = InnerElementTypes.Empty;
+			// _innerElementType = InnerElementTypes.AutomationElementNet;
 		}
 
 		public override bool Equals(object obj)
@@ -142,7 +144,7 @@ namespace UIAutomation
 		public virtual N GetCurrentPattern<N>(AutomationPattern pattern)
 		    where N : IBasePattern
 		{
-            
+		    
 			switch (_innerElementType) {
 			    case InnerElementTypes.AutomationElementNet:
 			        if (Preferences.FromCache) {
@@ -157,6 +159,12 @@ namespace UIAutomation
 			    //     return Preferences.FromCache ? _elementHolderAdapter.GetCachedPattern(pattern) : _elementHolderAdapter.GetCurrentPattern(pattern);
                 // default:
 			    ///    return Preferences.FromCache ? _elementHolderNet.GetCachedPattern(pattern) : _elementHolderNet.GetCurrentPattern(pattern);
+                default:
+                    if (Preferences.FromCache) {
+                        return (N)AutomationFactory.GetMySuperPattern<N>(this, _elementHolderNet.GetCachedPattern(pattern));
+			        } else {
+                        return (N)AutomationFactory.GetMySuperPattern<N>(this, _elementHolderNet.GetCurrentPattern(pattern));
+			        }
             }
 		    
 		    return default(N);
@@ -557,10 +565,12 @@ namespace UIAutomation
 		{
 		    if (element is AutomationElement) {
 		        _elementHolderNet = element as AutomationElement;
+		        _innerElementType = InnerElementTypes.AutomationElementNet;
 		    }
 		    // if com
 		    if (element is IUiElement) {
 		        _elementHolderAdapter = (IUiElement)element;
+		        _innerElementType = InnerElementTypes.UiElement;
 		    }
 		}
 		
@@ -682,13 +692,14 @@ namespace UIAutomation
         }
         #endregion NavigateTo
         
-//        #region Patterns
-//        public virtual IUiElement Click()
-//        {
-//            this.GetInvokePattern().Invoke();
-//            return this;
-//        }
-//        
+        #region Patterns
+        // public virtual IUiElement Click()
+        internal virtual IUiElement Click()
+        {
+            this.GetCurrentPattern<IMySuperInvokePattern>(InvokePattern.Pattern).Invoke();
+            return this;
+        }
+        
 //        public virtual IUiElement DoubleClick()
 //        {
 //            HasControlInputCmdletBase cmdlet =
@@ -797,7 +808,7 @@ namespace UIAutomation
 //            get { return this.GetValuePattern().Current.Value; }
 //            set { this.GetValuePattern().SetValue(value); }
 //        }
-//        #endregion Patterns
+        #endregion Patterns
         
         #region Highlighter
         public virtual IUiElement Highlight()

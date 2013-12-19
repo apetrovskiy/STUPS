@@ -560,7 +560,7 @@ Console.WriteLine("utility 0000005");
             ControlType controlType = null;
             TestParametersAgainstCollection(
                 controlType,
-                expectedValue,
+                name,
                 automationId,
                 className,
                 expectedValue,
@@ -584,7 +584,7 @@ Console.WriteLine("utility 0000005");
             ControlType controlType = null;
             TestParametersAgainstCollection(
                 controlType,
-                expectedValue,
+                name,
                 automationId,
                 className,
                 expectedValue,
@@ -608,10 +608,10 @@ Console.WriteLine("utility 0000005");
             ControlType controlType = null;
             TestParametersAgainstCollection(
                 controlType,
-                expectedValue,
+                name,
                 automationId,
                 className,
-                txtValue,
+                expectedValue,
                 new [] {
                     FakeFactory.GetAutomationElementExpected(ControlType.Button, string.Empty, string.Empty, string.Empty, "xxxx"),
                     FakeFactory.GetAutomationElementExpected(ControlType.Button, string.Empty, string.Empty, string.Empty, txtValue),
@@ -632,10 +632,10 @@ Console.WriteLine("utility 0000005");
             ControlType controlType = null;
             TestParametersAgainstCollection(
                 controlType,
-                expectedValue,
+                name,
                 automationId,
                 className,
-                txtValue,
+                expectedValue,
                 new [] {
                     FakeFactory.GetAutomationElementExpected(ControlType.Button, string.Empty, string.Empty, string.Empty, "xxxx"),
                     FakeFactory.GetAutomationElementExpected(ControlType.Button, string.Empty, string.Empty, string.Empty, txtValue),

@@ -405,6 +405,7 @@
     <Compile Include="Interface\ISelectionItemPatternInformationAdapter.cs" />
     <Compile Include="Interface\ISelectionPatternAdapter.cs" />
     <Compile Include="Interface\ISelectionPatternInformationAdapter.cs" />
+    <Compile Include="Interface\ISupportsInvokePattern.cs" />
     <Compile Include="Interface\ITableItemPatternAdapter.cs" />
     <Compile Include="Interface\ITableItemPatternInformationAdapter.cs" />
     <Compile Include="Interface\ITablePatternAdapter.cs" />

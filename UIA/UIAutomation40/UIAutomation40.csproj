@@ -913,6 +913,9 @@
     <Compile Include="..\UIAutomation\Interface\ISelectionPatternInformationAdapter.cs">
       <Link>Interface\ISelectionPatternInformationAdapter.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Interface\ISupportsInvokePattern.cs">
+      <Link>Interface\ISupportsInvokePattern.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Interface\ITableItemPatternAdapter.cs">
       <Link>Interface\ITableItemPatternAdapter.cs</Link>
     </Compile>

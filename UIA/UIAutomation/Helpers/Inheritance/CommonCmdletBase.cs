@@ -402,7 +402,9 @@ namespace UIAutomation
                     (null != element)) {
                     
                     WriteVerbose(this, "returning the object");
-                    WriteObject(outputObject);
+                    // 20131218
+                    // WriteObject(outputObject);
+                    WriteObject((IUiElement)outputObject);
                 } else if ((cmdlet is WizardCmdletBase)) {
                     WriteVerbose(this, "returning the wizard or step");
                     WriteObject(outputObject);
@@ -1411,19 +1413,8 @@ namespace UIAutomation
             List<IUiElement> tempListWin32 = new List<IUiElement>();
             if (!string.IsNullOrEmpty(cmdlet.Name)) {
                 WriteVerbose(cmdlet, "collecting controls by name (Win32)");
-                // 20131129
-                // tempListWin32.AddRange(UiaHelper.GetControlByName(cmdlet, inputObject, cmdlet.Name));
-                // 20131204
-                // tempListWin32.AddRange(UiaHelper.GetControlByNameViaWin32(cmdlet, inputObject, cmdlet.Name, cmdlet.Value));
                 tempListWin32.AddRange(inputObject.GetControlByNameViaWin32(cmdlet, cmdlet.Name, cmdlet.Value));
             }
-            
-            // 20131129
-//            if (!string.IsNullOrEmpty(cmdlet.Value)) {
-//                WriteVerbose(cmdlet, "collecting controls by value (Win32)");
-//                tempListWin32.AddRange(UiaHelper.GetControlByName(cmdlet, inputObject, cmdlet.Value));
-//                
-//            }
             
             List<IUiElement> resultList = new List<IUiElement>();
             
@@ -1482,7 +1473,7 @@ namespace UIAutomation
         }
         
         internal List<IUiElement> SearchByWildcardOrRegexViaUia(
-            GetControlCmdletBase cmdlet, // 20130318 // ??
+            GetControlCmdletBase cmdlet,
             IUiElement inputObject,
             string name,
             string automationId,
@@ -1671,22 +1662,6 @@ namespace UIAutomation
             IUiEltCollection textSearchCollection = inputObject.FindAll(TreeScope.Descendants, conditionsForTextSearch);
             
             return textSearchCollection.Cast<IUiElement>().ToList();
-            
-            // 20131203
-//            if (null != textSearchCollection && 0 < textSearchCollection.Count) {
-//                
-//                WriteVerbose(cmdlet, "There are " + textSearchCollection.Count.ToString() + " elements");
-//                
-//                foreach (IUiElement element in textSearchCollection) {
-//                    
-//                    ResultListOfControls.Add(element);
-//                }
-//            }
-//            
-//            if (null != textSearchCollection) {
-//                
-//                textSearchCollection = null;
-//            }
         }
         
         internal List<IUiElement> SearchByTextViaWin32(
@@ -1698,18 +1673,11 @@ namespace UIAutomation
             WriteVerbose(cmdlet, "Text search Win32");
             
             List<IUiElement> textSearchWin32List =
-                // 20131204
-                // UiaHelper.GetControlByNameViaWin32(
-                //     cmdlet,
-                //     inputObject,
-                //     cmdlet.ContainsText,
-                //     string.Empty);
                 inputObject.GetControlByNameViaWin32(
                     cmdlet,
                     cmdlet.ContainsText,
                     string.Empty);
             
-            // 20131203
             List<IUiElement> resultList =
                 new List<IUiElement>();
             
@@ -1721,22 +1689,9 @@ namespace UIAutomation
                     
                     if (null != controlTypeNames && 0 < controlTypeNames.Length) {
                         
-                        // 20131128
-//                        if (!elementToChoose.Current.ControlType.ProgrammaticName.ToUpper().Contains(controlType.ToUpper()) || 
-//                            elementToChoose.Current.ControlType.ProgrammaticName.ToUpper().Substring(12).Length != controlType.ToUpper().Length) {
-//                            
-//                            continue;
-//                        } else {
-//                            
-//                            ResultArrayListOfControls.Add(elementToChoose);
-//                        }
-                        
                         foreach (string controlTypeName in controlTypeNames) {
                             
                             if (!String.Equals(elementToChoose.Current.ControlType.ProgrammaticName.Substring(12), controlTypeName, StringComparison.CurrentCultureIgnoreCase)) {
-                            /*
-                            if (elementToChoose.Current.ControlType.ProgrammaticName.Substring(12).ToUpper() != controlTypeName.ToUpper()) {
-                            */
                                 continue;
                             } else {
                                 

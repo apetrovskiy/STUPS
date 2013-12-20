@@ -13,8 +13,10 @@ namespace UIAutomation
 	using System.Windows.Automation;
 	public interface ISupportsTogglePattern
 	{
-		void Toggle();
+		IUiElement Toggle();
 		// ITogglePatternInformation Cached { get; }
 		// ITogglePatternInformation Current { get; }
+		
+		// ToggleState
 	}
 }

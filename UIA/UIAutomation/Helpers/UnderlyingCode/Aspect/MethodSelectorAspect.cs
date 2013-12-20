@@ -18,17 +18,21 @@ namespace UIAutomation
     /// </summary>
     public class MethodSelectorAspect : AbstractInterceptor
     {
-        internal static bool Active { get; set; }
+        internal static bool AlreadySelected { get; set; }
         
         public override void Intercept(IInvocation invocation)
         {
+//            bool returnItself = true;
+            
             try {
-                if (!Active) {
-                    Active = true;
+                if (!AlreadySelected) {
+                    AlreadySelected = true;
+//Console.WriteLine("selection of what to proceed");
                     switch (invocation.Method.Name) {
                         #region InvokePattern
                         case "Click":
                             (invocation.Proxy as IUiElement).PerformClick();
+                            // (invocation.Proxy as UiElement).Click();
                             break;
                         case "DoubleClick":
                             (invocation.Proxy as IUiElement).PerformDoubleClick();
@@ -67,14 +71,40 @@ namespace UIAutomation
                             (invocation.Proxy as IUiElement).PerformToggle();
                             break;
                         #endregion TogglePattern
+                        #region ValuePattern
+                        case "get_Value":
+                            // (invocation.Proxy as IUiElement).v
+                            break;
+                        case "set_Value":
+                            //
+                            break;
+                        case "get_IsReadOnly":
+                            //
+                            break;
+                        #endregion ValuePattern
                         default:
+//Console.WriteLine("selection of what to proceed - default");
+//                            returnItself = false;
                             invocation.Proceed();
                         	break;
                     }
-                    Active = false;
+//Console.WriteLine("resetting the flag");
+                    AlreadySelected = false;
                 } else {
+//Console.WriteLine("Proceed");
+                    // invocation.
                     invocation.Proceed();
                 }
+                
+//if (null != invocation.ReturnValue) {
+    //Console.WriteLine("null != invocation.ReturnValue");
+    //Console.WriteLine(invocation.ReturnValue.GetType().Name);
+    //Console.WriteLine("the proxy itself:");
+    //Console.WriteLine(invocation.Proxy.GetType().Name);
+//}
+//                if (returnItself) {
+//                    invocation.ReturnValue = invocation.Proxy;
+//                }
             }
             catch {
                 // 

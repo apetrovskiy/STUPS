@@ -19,6 +19,7 @@ namespace UIAutomation
     {
         public override void Intercept(IInvocation invocation)
         {
+//Console.WriteLine("logging");
             invocation.Proceed();
         }
     }

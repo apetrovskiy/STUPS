@@ -13,9 +13,9 @@ namespace UIAutomation
 	using System.Windows.Automation;
 	public interface ISupportsSelectionItemPattern
 	{
-		void Select();
-		void AddToSelection();
-		void RemoveFromSelection();
+		IUiElement Select();
+		IUiElement AddToSelection();
+		IUiElement RemoveFromSelection();
 		// ISelectionItemPatternInformation Cached { get; }
 		// ISelectionItemPatternInformation Current { get; }
 		

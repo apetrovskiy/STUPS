@@ -410,6 +410,7 @@
     <Compile Include="Interface\ISupportsSelectionItemPattern.cs" />
     <Compile Include="Interface\ISupportsSelectionPattern.cs" />
     <Compile Include="Interface\ISupportsTogglePattern.cs" />
+    <Compile Include="Interface\ISupportsValuePattern.cs" />
     <Compile Include="Interface\ITableItemPatternAdapter.cs" />
     <Compile Include="Interface\ITableItemPatternInformationAdapter.cs" />
     <Compile Include="Interface\ITablePatternAdapter.cs" />

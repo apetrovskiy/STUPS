@@ -2765,6 +2765,9 @@ strInfo += " 07";
                     if (pattern == TogglePattern.Pattern) {
                         supportedTypes.Add(typeof(ISupportsTogglePattern));
                     }
+                    if (pattern == ValuePattern.Pattern) {
+                        supportedTypes.Add(typeof(ISupportsValuePattern));
+                    }
                 }
             }
             if (element is IUiElement) {
@@ -2780,6 +2783,9 @@ strInfo += " 07";
                     }
                     if (pattern is IMySuperTogglePattern) {
                         supportedTypes.Add(typeof(ISupportsTogglePattern));
+                    }
+                    if (pattern is IMySuperValuePattern) {
+                        supportedTypes.Add(typeof(ISupportsValuePattern));
                     }
                 }
             }

@@ -9,12 +9,13 @@
 
 namespace UIAutomation
 {
-	public interface IMySuperValuePattern : IBasePattern // IValuePatternAdapter
+	public interface IMySuperValuePattern : IBasePattern //, ISupportsValuePattern
 	{
+		// IValuePatternAdapter
 		void SetValue(string value);
 		IValuePatternInformation Cached { get; }
 		IValuePatternInformation Current { get; }
-		
+
 //		IUiElement ParentElement { get; set; }
 	}
 }

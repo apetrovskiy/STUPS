@@ -126,7 +126,7 @@ namespace UIAutomation
             Type[] supportedAdditionalInterfaces =
                 UiaHelper.GetSupportedInterfaces(element);
 //            
-Console.WriteLine(supportedAdditionalInterfaces.Count().ToString());
+//Console.WriteLine(supportedAdditionalInterfaces.Count().ToString());
             
             UiElement proxiedElement;
             if (null != supportedAdditionalInterfaces && 0 < supportedAdditionalInterfaces.Length) {
@@ -208,8 +208,8 @@ Console.WriteLine(supportedAdditionalInterfaces.Count().ToString());
 			catch (Exception eFailedToIssueElement) {
 			    // TODO
 			    // write error to error object!!!
-			    Console.WriteLine("Element");
-			    Console.WriteLine(eFailedToIssueElement.Message);
+			    //Console.WriteLine("Element");
+			    //Console.WriteLine(eFailedToIssueElement.Message);
 			    return null;
 			}
 		}
@@ -243,8 +243,8 @@ Console.WriteLine(supportedAdditionalInterfaces.Count().ToString());
 			catch (Exception eFailedToIssueElement) {
 			    // TODO
 			    // write error to error object!!!
-			    Console.WriteLine("Element");
-			    Console.WriteLine(eFailedToIssueElement.Message);
+			    //Console.WriteLine("Element");
+			    //Console.WriteLine(eFailedToIssueElement.Message);
 			    return null;
 			}
 		}
@@ -268,8 +268,8 @@ Console.WriteLine(supportedAdditionalInterfaces.Count().ToString());
 			catch (Exception eFailedToIssueElement) {
 			    // TODO
 			    // write error to error object!!!
-			    Console.WriteLine("Element");
-			    Console.WriteLine(eFailedToIssueElement.Message);
+			    //Console.WriteLine("Element");
+			    //Console.WriteLine(eFailedToIssueElement.Message);
 			    return null;
 			}
 		}
@@ -284,8 +284,8 @@ Console.WriteLine(supportedAdditionalInterfaces.Count().ToString());
 			catch (Exception eFailedToIssueInformation) {
 			    // TODO
 			    // write error to error object!!!
-                Console.WriteLine("Information");
-			    Console.WriteLine(eFailedToIssueInformation.Message);
+                //Console.WriteLine("Information");
+			    //Console.WriteLine(eFailedToIssueInformation.Message);
 			    return null;
 			}
 		}

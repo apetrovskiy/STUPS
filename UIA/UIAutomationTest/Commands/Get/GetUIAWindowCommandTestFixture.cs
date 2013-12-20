@@ -219,7 +219,8 @@ namespace UIAutomationTest.Commands.Get
                 //"System.Windows.Automation.AutomationElement");
                 // 20131218
                 // "UIAutomation.UiElement");
-                "Castle.Proxies.UiElementProxy");
+                // "Castle.Proxies.UiElementProxy");
+                "Castle.Proxies.UiElementProxy_1");
         }
         
         [Test] //[Test(Description="TBD")]

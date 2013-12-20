@@ -12,7 +12,8 @@ namespace UIAutomation
 	public interface ISupportsInvokePattern
 	{
 		// void Invoke();
-		void Click();
-		void DoubleClick();
+		// void Click();
+		IUiElement Click();
+		IUiElement DoubleClick();
 	}
 }

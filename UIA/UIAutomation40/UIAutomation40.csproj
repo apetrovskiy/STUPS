@@ -928,6 +928,9 @@
     <Compile Include="..\UIAutomation\Interface\ISupportsTogglePattern.cs">
       <Link>Interface\ISupportsTogglePattern.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Interface\ISupportsValuePattern.cs">
+      <Link>Interface\ISupportsValuePattern.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Interface\ITableItemPatternAdapter.cs">
       <Link>Interface\ITableItemPatternAdapter.cs</Link>
     </Compile>

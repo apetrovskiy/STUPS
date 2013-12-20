@@ -696,7 +696,9 @@ namespace UIAutomation
         #region InvokePattern
         internal IUiElement Click()
         {
-            return this.PerformClick();
+            // return this.PerformClick();
+            this.GetCurrentPattern<IMySuperInvokePattern>(InvokePattern.Pattern).Invoke();
+            return this;
         }
         
         internal IUiElement DoubleClick()
@@ -806,13 +808,21 @@ namespace UIAutomation
 ////                }
 ////            }
 ////        }
-//        
-//        public virtual string Value
-//        {
-//            get { return this.GetValuePattern().Current.Value; }
-//            set { this.GetValuePattern().SetValue(value); }
-//        }
         #endregion TogglePattern
+        #region ValuePattern
+        internal bool IsReadOnly
+        {
+            get { return this.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern).Current.IsReadOnly; }
+        }
+        
+        internal string Value
+        {
+            // get { return this.GetValuePattern().Current.Value; }
+            // set { this.GetValuePattern().SetValue(value); }
+            get { return this.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern).Current.Value; }
+            set { this.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern).SetValue(value); }
+        }
+        #endregion ValuePattern
         #endregion Patterns
         
         #region Highlighter

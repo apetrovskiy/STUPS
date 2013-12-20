@@ -11,8 +11,8 @@ namespace UIAutomation
 {
 	extern alias UIANET;
 	using System.Windows.Automation;
-	
-	public interface IMySuperTransformPattern : IBasePattern
+
+	public interface IMySuperTransformPattern : IBasePattern //, ISupportsTransformPattern
 	{
 		void Move(double x, double y);
 		void Resize(double width, double height);

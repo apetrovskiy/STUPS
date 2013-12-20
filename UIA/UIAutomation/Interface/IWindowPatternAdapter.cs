@@ -11,8 +11,8 @@ namespace UIAutomation
 {
 	extern alias UIANET;
 	using System.Windows.Automation;
-	
-	public interface IMySuperWindowPattern : IBasePattern
+
+	public interface IMySuperWindowPattern : IBasePattern //, ISupportsWindowPattern
 	{
 		void SetWindowVisualState(WindowVisualState state);
 		void Close();
@@ -21,7 +21,7 @@ namespace UIAutomation
 		// WindowPattern.WindowPatternInformation Current { get; }
 		IWindowPatternInformation Cached { get; }
 		IWindowPatternInformation Current { get; }
-		
+
 //		IUiElement ParentElement { get; set; }
 	}
 }

@@ -587,6 +587,44 @@ namespace UIAutomation
             return element;
         }
         #endregion TogglePattern
+        #region TransformPattern
+        public static IUiElement PerformMove(this IUiElement element, double x, double y)
+        {
+            try {
+                element.GetCurrentPattern<IMySuperTransformPattern>(TransformPattern.Pattern).Move(x, y);
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return element;
+        }
+		
+		public static IUiElement PerformResize(this IUiElement element, double width, double height)
+		{
+		    try {
+		        element.GetCurrentPattern<IMySuperTransformPattern>(TransformPattern.Pattern).Resize(width, height);
+		    } catch (Exception) {
+		        
+		        throw;
+		    }
+		    return element;
+		}
+		
+		public static IUiElement PerformRotate(this IUiElement element, double degrees)
+		{
+		    try {
+		        element.GetCurrentPattern<IMySuperTransformPattern>(TransformPattern.Pattern).Rotate(degrees);
+		    } catch (Exception) {
+		        
+		        throw;
+		    }
+		    return element;
+		}
+        #endregion TransformPattern
+        #region ValuePattern
+        #endregion ValuePattern
+        #region WindowPattern
+        #endregion WindowPattern
         #endregion Patterns
     }
 }

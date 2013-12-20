@@ -928,8 +928,14 @@
     <Compile Include="..\UIAutomation\Interface\ISupportsTogglePattern.cs">
       <Link>Interface\ISupportsTogglePattern.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Interface\ISupportsTransformPattern.cs">
+      <Link>Interface\ISupportsTransformPattern.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Interface\ISupportsValuePattern.cs">
       <Link>Interface\ISupportsValuePattern.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\ISupportsWindowPattern.cs">
+      <Link>Interface\ISupportsWindowPattern.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Interface\ITableItemPatternAdapter.cs">
       <Link>Interface\ITableItemPatternAdapter.cs</Link>

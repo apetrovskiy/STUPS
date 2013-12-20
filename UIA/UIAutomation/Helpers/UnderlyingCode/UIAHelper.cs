@@ -2765,8 +2765,14 @@ strInfo += " 07";
                     if (pattern == TogglePattern.Pattern) {
                         supportedTypes.Add(typeof(ISupportsTogglePattern));
                     }
+                    if (pattern == TransformPattern.Pattern) {
+                        supportedTypes.Add(typeof(ISupportsTransformPattern));
+                    }
                     if (pattern == ValuePattern.Pattern) {
                         supportedTypes.Add(typeof(ISupportsValuePattern));
+                    }
+                    if (pattern == WindowPattern.Pattern) {
+                        supportedTypes.Add(typeof(ISupportsWindowPattern));
                     }
                 }
             }
@@ -2784,8 +2790,14 @@ strInfo += " 07";
                     if (pattern is IMySuperTogglePattern) {
                         supportedTypes.Add(typeof(ISupportsTogglePattern));
                     }
+                    if (pattern is IMySuperTransformPattern) {
+                        supportedTypes.Add(typeof(ISupportsTransformPattern));
+                    }
                     if (pattern is IMySuperValuePattern) {
                         supportedTypes.Add(typeof(ISupportsValuePattern));
+                    }
+                    if (pattern is IMySuperWindowPattern) {
+                        supportedTypes.Add(typeof(ISupportsWindowPattern));
                     }
                 }
             }

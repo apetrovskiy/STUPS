@@ -71,6 +71,22 @@ namespace UIAutomation
                             (invocation.Proxy as IUiElement).PerformToggle();
                             break;
                         #endregion TogglePattern
+                        #region TransformPattern
+                        case "Move":
+                            (invocation.Proxy as IUiElement).PerformMove(
+                                (double)invocation.Arguments[0],
+                                (double)invocation.Arguments[1]);
+                            break;
+                        case "Resize":
+                            (invocation.Proxy as IUiElement).PerformResize(
+                                (double)invocation.Arguments[0],
+                                (double)invocation.Arguments[1]);
+                            break;
+                        case "Rotate":
+                            (invocation.Proxy as IUiElement).PerformRotate(
+                                (double)invocation.Arguments[0]);
+                            break;
+                        #endregion TransformPattern
                         #region ValuePattern
                         case "get_Value":
                             // (invocation.Proxy as IUiElement).v

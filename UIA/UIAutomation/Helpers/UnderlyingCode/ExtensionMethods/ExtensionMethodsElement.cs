@@ -604,8 +604,8 @@ namespace UIAutomation
 		    try {
 		        element.GetCurrentPattern<IMySuperTransformPattern>(TransformPattern.Pattern).Resize(width, height);
 		    } catch (Exception) {
-		        
-		        throw;
+		        // 
+		        // throw;
 		    }
 		    return element;
 		}
@@ -615,15 +615,145 @@ namespace UIAutomation
 		    try {
 		        element.GetCurrentPattern<IMySuperTransformPattern>(TransformPattern.Pattern).Rotate(degrees);
 		    } catch (Exception) {
-		        
-		        throw;
+		        // 
+		        // throw;
 		    }
 		    return element;
 		}
         #endregion TransformPattern
         #region ValuePattern
+        public static IUiElement PerformSetValue(this IUiElement element, string value)
+        {
+            try {
+                element.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern).SetValue(value);
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return element;
+        }
+        
+        public static string PerformGetValue(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern).Current.Value;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return string.Empty;
+        }
+        
+        public static bool GetIsReadOnly(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern).Current.IsReadOnly;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return false;
+        }
         #endregion ValuePattern
         #region WindowPattern
+        public static IUiElement PerformSetWindowVisualState(this IUiElement element, WindowVisualState state)
+        {
+            try {
+                element.GetCurrentPattern<IMySuperWindowPattern>(WindowPattern.Pattern).SetWindowVisualState(state);
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return element;
+        }
+        
+		public static IUiElement PerformClose(this IUiElement element)
+		{
+		    try {
+		        element.GetCurrentPattern<IMySuperWindowPattern>(WindowPattern.Pattern).Close();
+		    } catch (Exception) {
+		        // 
+		        // throw;
+		    }
+		    return element;
+		}
+		
+		public static bool PerformWaitForInputIdle(this IUiElement element, int milliseconds)
+		{
+		    try {
+		        return element.GetCurrentPattern<IMySuperWindowPattern>(WindowPattern.Pattern).WaitForInputIdle(milliseconds);
+		    } catch (Exception) {
+		        // 
+		        // throw;
+		    }
+		    return false;
+		}
+		
+		public static bool GetCanMaximize(this IUiElement element)
+		{
+		    try {
+		        return element.GetCurrentPattern<IMySuperWindowPattern>(WindowPattern.Pattern).Current.CanMaximize;
+		    } catch (Exception) {
+		        // 
+		        // throw;
+		    }
+		    return false;
+		}
+		
+		public static bool GetCanMinimize(this IUiElement element)
+		{
+		    try {
+		        return element.GetCurrentPattern<IMySuperWindowPattern>(WindowPattern.Pattern).Current.CanMinimize;
+		    } catch (Exception) {
+		        // 
+		        // throw;
+		    }
+		    return false;
+		}
+		
+		public static bool GetIsModal(this IUiElement element)
+		{
+		    try {
+		        return element.GetCurrentPattern<IMySuperWindowPattern>(WindowPattern.Pattern).Current.IsModal;
+		    } catch (Exception) {
+		        // 
+		        // throw;
+		    }
+		    return false;
+		}
+		
+		public static bool GetIsTopmost(this IUiElement element)
+		{
+		    try {
+		        return element.GetCurrentPattern<IMySuperWindowPattern>(WindowPattern.Pattern).Current.IsTopmost;
+		    } catch (Exception) {
+		        // 
+		        // throw;
+		    }
+		    return false;
+		}
+		
+		public static WindowInteractionState GetWindowInteractionState(this IUiElement element)
+		{
+		    try {
+		        return element.GetCurrentPattern<IMySuperWindowPattern>(WindowPattern.Pattern).Current.WindowInteractionState;
+		    } catch (Exception) {
+		        // 
+		        // throw;
+		    }
+		    return WindowInteractionState.NotResponding;
+		}
+		
+		public static WindowVisualState GetWindowVisualState(this IUiElement element)
+		{
+		    try {
+		        return element.GetCurrentPattern<IMySuperWindowPattern>(WindowPattern.Pattern).Current.WindowVisualState;
+		    } catch (Exception) {
+		        // 
+		        // throw;
+		    }
+		    return WindowVisualState.Normal;
+		}
         #endregion WindowPattern
         #endregion Patterns
     }

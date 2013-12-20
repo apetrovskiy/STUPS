@@ -11,6 +11,7 @@ namespace UIAutomation
 {
     using System;
     using System.Reflection;
+    using System.Windows.Automation;
     using Castle.DynamicProxy;
     
     /// <summary>
@@ -31,73 +32,131 @@ namespace UIAutomation
                     switch (invocation.Method.Name) {
                         #region InvokePattern
                         case "Click":
-                            (invocation.Proxy as IUiElement).PerformClick();
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).PerformClick();
                             // (invocation.Proxy as UiElement).Click();
                             break;
                         case "DoubleClick":
-                            (invocation.Proxy as IUiElement).PerformDoubleClick();
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).PerformDoubleClick();
                             break;
                         #endregion InvokePattern
                         #region SelectionItemPattern
                         case "Select":
-                            (invocation.Proxy as IUiElement).PerformSelect();
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).PerformSelect();
                             break;
                         case "AddToSelection":
-                            (invocation.Proxy as IUiElement).PerformAddToSelection();
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).PerformAddToSelection();
                             break;
                         case "RemoveFromSelection":
-                            (invocation.Proxy as IUiElement).PerformRemoveFromSelection();
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).PerformRemoveFromSelection();
                             break;
                         case "get_IsSelected":
-                            (invocation.Proxy as IUiElement).GetIsSelected();
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetIsSelected();
                             break;
                         case "get_SelectionContainer":
-                            (invocation.Proxy as IUiElement).GetSelectionContainer();
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetSelectionContainer();
                             break;
                         #endregion SelectionItemPattern
                         #region SelectionPattern
                         case "GetSelection":
-                            (invocation.Proxy as IUiElement).PerformGetSelection();
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).PerformGetSelection();
                             break;
                         case "CanSelectMultiple":
-                            (invocation.Proxy as IUiElement).GetCanSelectMultiple();
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetCanSelectMultiple();
                             break;
                         case "IsSelectionRequired":
-                            (invocation.Proxy as IUiElement).GetIsSelectionRequired();
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetIsSelectionRequired();
                             break;
                         #endregion SelectionPattern
                         #region TogglePattern
                         case "Toggle":
-                            (invocation.Proxy as IUiElement).PerformToggle();
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).PerformToggle();
                             break;
                         #endregion TogglePattern
                         #region TransformPattern
                         case "Move":
-                            (invocation.Proxy as IUiElement).PerformMove(
-                                (double)invocation.Arguments[0],
-                                (double)invocation.Arguments[1]);
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).PerformMove(
+                                    (double)invocation.Arguments[0],
+                                    (double)invocation.Arguments[1]);
                             break;
                         case "Resize":
-                            (invocation.Proxy as IUiElement).PerformResize(
-                                (double)invocation.Arguments[0],
-                                (double)invocation.Arguments[1]);
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).PerformResize(
+                                    (double)invocation.Arguments[0],
+                                    (double)invocation.Arguments[1]);
                             break;
                         case "Rotate":
-                            (invocation.Proxy as IUiElement).PerformRotate(
-                                (double)invocation.Arguments[0]);
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).PerformRotate(
+                                    (double)invocation.Arguments[0]);
                             break;
                         #endregion TransformPattern
                         #region ValuePattern
                         case "get_Value":
-                            // (invocation.Proxy as IUiElement).v
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).PerformGetValue();
                             break;
                         case "set_Value":
-                            //
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).PerformSetValue(
+                                    invocation.Arguments[0].ToString());
                             break;
                         case "get_IsReadOnly":
-                            //
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetIsReadOnly();
                             break;
                         #endregion ValuePattern
+                        #region WindowPattern
+                        case "SetWindowVisualState": //(WindowVisualState state);
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).PerformSetWindowVisualState(
+                                    (WindowVisualState)invocation.Arguments[0]);
+                            break;
+                        case "Close":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).PerformClose();
+                            break;
+                        case "WaitForInputIdle": //(int milliseconds);
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).PerformWaitForInputIdle(
+                                    (int)invocation.Arguments[0]);
+                            break;
+                        case "get_CanMaximize":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetCanMaximize();
+                            break;
+                        case "get_CanMinimize":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetCanMinimize();
+                            break;
+                        case "get_IsModal":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetIsModal();
+                            break;
+                        case "get_IsTopmost":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetIsTopmost();
+                            break;
+                        case "get_WindowInteractionState":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetWindowInteractionState();
+                            break;
+                        case "get_WindowVisualState":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetWindowVisualState();
+                            break;
+                        #endregion WindowPattern
                         default:
 //Console.WriteLine("selection of what to proceed - default");
 //                            returnItself = false;
@@ -111,7 +170,9 @@ namespace UIAutomation
                     // invocation.
                     invocation.Proceed();
                 }
-                
+                if (invocation.ReturnValue == invocation.InvocationTarget) {
+                    invocation.ReturnValue = invocation.Proxy;
+                }
 //if (null != invocation.ReturnValue) {
     //Console.WriteLine("null != invocation.ReturnValue");
     //Console.WriteLine(invocation.ReturnValue.GetType().Name);
@@ -123,6 +184,7 @@ namespace UIAutomation
 //                }
             }
             catch {
+                AlreadySelected = false;
                 // 
             }
         }

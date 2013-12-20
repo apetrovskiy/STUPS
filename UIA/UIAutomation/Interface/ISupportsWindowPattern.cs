@@ -19,5 +19,12 @@ namespace UIAutomation
 		bool WaitForInputIdle(int milliseconds);
 		// IWindowPatternInformation Cached { get; }
 		// IWindowPatternInformation Current { get; }
+		
+		bool CanMaximize { get; }
+		bool CanMinimize { get; }
+		bool IsModal { get; }
+		bool IsTopmost { get; }
+		WindowInteractionState WindowInteractionState { get; set; } // ?
+		WindowVisualState WindowVisualState { get; set; } // ?
 	}
 }

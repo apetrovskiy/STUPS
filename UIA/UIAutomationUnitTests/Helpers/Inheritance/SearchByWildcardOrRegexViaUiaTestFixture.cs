@@ -56,7 +56,6 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 new[] { controlType };
             
             GetControlCmdletBase cmdlet =
-                // FakeFactory.Get_GetControlCmdletBase(new ControlType[] { controlType }, name, automationId, className, txtValue);
                 FakeFactory.Get_GetControlCmdletBase(controlTypes, name, automationId, className, txtValue);
             
             Condition condition =

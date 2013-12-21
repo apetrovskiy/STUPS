@@ -224,6 +224,7 @@
     <Folder Include="Commands\Get\Win32" />
     <Folder Include="Commands\No" />
     <Folder Include="Commands\Sheridan" />
+    <Folder Include="Helpers\ObjectModel" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">

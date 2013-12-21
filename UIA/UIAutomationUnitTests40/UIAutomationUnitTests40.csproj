@@ -169,6 +169,57 @@
     <Compile Include="..\UIAutomationUnitTests\Helpers\Inheritance\SearchByWildcardOrRegexViaUiaTestFixture.cs">
       <Link>Helpers\Inheritance\SearchByWildcardOrRegexViaUiaTestFixture.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\ObjectModel\ISupportsDockPatternTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsDockPatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\ObjectModel\ISupportsExpandCollapseTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsExpandCollapseTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\ObjectModel\ISupportsGridItemPatternTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsGridItemPatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\ObjectModel\ISupportsGridPatternTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsGridPatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\ObjectModel\ISupportsInvokePatternTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsInvokePatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\ObjectModel\ISupportsRangeValuePatternTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsRangeValuePatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\ObjectModel\ISupportsScrollItemPatternTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsScrollItemPatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\ObjectModel\ISupportsScrollPatternTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsScrollPatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\ObjectModel\ISupportsSelectionItemPatternTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsSelectionItemPatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\ObjectModel\ISupportsSelectionPatternTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsSelectionPatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\ObjectModel\ISupportsTableItemPatternTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsTableItemPatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\ObjectModel\ISupportsTablePatternTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsTablePatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\ObjectModel\ISupportsTextPatternTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsTextPatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\ObjectModel\ISupportsTogglePatternTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsTogglePatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\ObjectModel\ISupportsTransformPatternTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsTransformPatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\ObjectModel\ISupportsValuePatternTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsValuePatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\ObjectModel\ISupportsWindowPatternTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsWindowPatternTestFixture.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomationUnitTests\Helpers\UnderlyingCode\Adapter\GetSupportedPatternsTestFixture.cs">
       <Link>Helpers\UnderlyingCode\Adapter\GetSupportedPatternsTestFixture.cs</Link>
     </Compile>
@@ -263,6 +314,7 @@
     <Folder Include="Helpers\Inheritance" />
     <Folder Include="Helpers\Inheritance\Legacy" />
     <Folder Include="Helpers\Inheritance\new_code" />
+    <Folder Include="Helpers\ObjectModel" />
     <Folder Include="Helpers\UnderlyingCode" />
     <Folder Include="Helpers\UnderlyingCode" />
     <Folder Include="Helpers\UnderlyingCode\Adapter" />

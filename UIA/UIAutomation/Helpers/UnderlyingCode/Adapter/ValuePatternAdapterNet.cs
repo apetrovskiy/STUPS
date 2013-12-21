@@ -35,9 +35,9 @@ namespace UIAutomation
 		    this._patternEmulator = new SourcePatternEmulator(new object());
 		}
 		
-		public MyValuePatternNet(ValuePattern ValuePattern)
+		public MyValuePatternNet(ValuePattern valuePattern)
 		{
-		    this._valuePattern = ValuePattern;
+		    this._valuePattern = valuePattern;
 		}
 
 		public struct ValuePatternInformation : IValuePatternInformation

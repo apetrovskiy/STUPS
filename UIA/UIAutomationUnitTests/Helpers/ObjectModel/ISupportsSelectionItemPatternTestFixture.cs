@@ -1,0 +1,89 @@
+﻿/*
+ * Created by SharpDevelop.
+ * User: Alexander
+ * Date: 12/22/2013
+ * Time: 2:51 AM
+ * 
+ * To change this template use Tools | Options | Coding | Edit Standard Headers.
+ */
+
+namespace UIAutomationUnitTests.Helpers.ObjectModel
+{
+    using System.Windows.Automation;
+    using UIAutomation;
+    using MbUnit.Framework;
+    
+    /// <summary>
+    /// Description of ISupportsSelectionItemPatternTestFixture.
+    /// </summary>
+    [Ignore]
+    public class ISupportsSelectionItemPatternTestFixture
+    {
+        [SetUp]
+        public void SetUp()
+        {
+            FakeFactory.Init();
+        }
+        
+        [TearDown]
+        public void TearDown()
+        {
+        }
+        
+        [Test]
+        public void SelectionItem_ImplementsCommonPattern()
+        {
+            ISupportsInvokePattern element =
+                FakeFactory.GetAutomaitonElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetSelectionItemPattern(new PatternsData()) }) as ISupportsInvokePattern;
+            
+            Assert.IsNotNull(element as ISupportsInvokePattern);
+        }
+        
+        [Test]
+        public void SelectionItem_ImplementsPattern()
+        {
+            ISupportsSelectionItemPattern element =
+                FakeFactory.GetAutomaitonElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetSelectionItemPattern(new PatternsData()) }) as ISupportsSelectionItemPattern;
+            
+            Assert.IsNotNull(element as ISupportsSelectionItemPattern);
+        }
+        
+        [Test]
+        public void SelectionItem_DoesNotImplementOtherPatterns()
+        {
+            ISupportsValuePattern element =
+                FakeFactory.GetAutomaitonElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetSelectionItemPattern(new PatternsData()) }) as ISupportsValuePattern;
+            
+            Assert.IsNull(element as ISupportsValuePattern);
+        }
+        
+        [Test]
+        public void SelectionItem_AddToSelection()
+        {
+            // Arrange
+            ISupportsSelectionItemPattern element =
+                FakeFactory.GetAutomaitonElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetSelectionItemPattern(new PatternsData()) }) as ISupportsSelectionItemPattern;
+            
+            // Act
+            // Assert
+            element.AddToSelection();
+        }
+        
+        [Test]
+        public void SelectionItem_RemoveFromSelection()
+        {
+            // Arrange
+            ISupportsSelectionItemPattern element =
+                FakeFactory.GetAutomaitonElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetSelectionItemPattern(new PatternsData()) }) as ISupportsSelectionItemPattern;
+            
+            // Act
+            // Assert
+            element.RemoveFromSelection();
+        }
+    }
+}

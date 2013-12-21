@@ -30,7 +30,7 @@ namespace UIAutomationUnitTests
         }
         
         #region patterns
-        private static IMySuperDockPattern GetDockPattern(PatternsData data)
+        public static IMySuperDockPattern GetDockPattern(PatternsData data)
         {
             var dockPattern = Substitute.For<IMySuperDockPattern>();
             // dockPattern.SetDockPosition(Arg.Any<DockPosition>()).Received();
@@ -39,7 +39,7 @@ namespace UIAutomationUnitTests
             return dockPattern;
         }
         
-        private static IMySuperExpandCollapsePattern GetExpandCollapsePattern(PatternsData data)
+        public static IMySuperExpandCollapsePattern GetExpandCollapsePattern(PatternsData data)
         {
             IMySuperExpandCollapsePattern expandCollapsePattern = Substitute.For<IMySuperExpandCollapsePattern>();
             // expandCollapsePattern.Collapse().Received();
@@ -49,13 +49,27 @@ namespace UIAutomationUnitTests
             return expandCollapsePattern;
         }
         
-        private static IMySuperInvokePattern GetInvokePattern()
+        public static IMySuperGridItemPattern GetGridItemPattern(PatternsData data)
+        {
+            var gridItemPattern = Substitute.For<IMySuperGridItemPattern>();
+            // dockPattern.SetDockPosition(Arg.Any<DockPosition>()).Received();
+            // gridItemPattern.Current.Column.Returns(data.g.DockPosition.Returns(data.DockPattern_DockPosition);
+            // gridItemPattern.Cached.DockPosition.Returns(data.DockPattern_DockPosition);
+            return gridItemPattern;
+        }
+        
+        public static IMySuperGridPattern GetGridPattern(PatternsData data)
+        {
+            return null;
+        }
+        
+        public static IMySuperInvokePattern GetInvokePattern(PatternsData data)
         {
             IMySuperInvokePattern invokePattern = Substitute.For<IMySuperInvokePattern>();
             return invokePattern;
         }
         
-        private static IMySuperRangeValuePattern GetRangeValuePattern(PatternsData data)
+        public static IMySuperRangeValuePattern GetRangeValuePattern(PatternsData data)
         {
             IMySuperRangeValuePattern rangeValuePattern = Substitute.For<IMySuperRangeValuePattern>();
             // rangeValuePattern.SetValue(Arg.Any<int>()).Returns(data.RangeValuePattern_ValueSet);
@@ -69,14 +83,14 @@ namespace UIAutomationUnitTests
             return rangeValuePattern;
         }
         
-        private static IMySuperScrollItemPattern GetScrollItemPattern()
+        public static IMySuperScrollItemPattern GetScrollItemPattern(PatternsData data)
         {
             IMySuperScrollItemPattern scrollItemPattern = Substitute.For<IMySuperScrollItemPattern>();
             // scrollItemPattern.ScrollIntoView().Received();
             return scrollItemPattern;
         }
         
-        private static IMySuperScrollPattern GetScrollPattern(PatternsData data)
+        public static IMySuperScrollPattern GetScrollPattern(PatternsData data)
         {
             IMySuperScrollPattern scrollPattern = Substitute.For<IMySuperScrollPattern>();
             // scrollPattern.Scroll(Arg.Any<ScrollAmount>(), Arg.Any<ScrollAmount>()).Returns(new[] { data.ScrollPattern_HorizontalAmount, data.ScrollPattern_VerticalAmount });
@@ -101,7 +115,7 @@ namespace UIAutomationUnitTests
             return scrollPattern;
         }
         
-        private static IMySuperSelectionItemPattern GetSelectionItemPattern(PatternsData data)
+        public static IMySuperSelectionItemPattern GetSelectionItemPattern(PatternsData data)
         {
             IMySuperSelectionItemPattern selectionItemPattern = Substitute.For<IMySuperSelectionItemPattern>();
             // selectionItemPattern.AddToSelection()
@@ -117,7 +131,7 @@ namespace UIAutomationUnitTests
             return selectionItemPattern;
         }
         
-        private static IMySuperSelectionPattern GetSelectionPattern(PatternsData data)
+        public static IMySuperSelectionPattern GetSelectionPattern(PatternsData data)
         {
             IMySuperSelectionPattern selectionPattern = Substitute.For<IMySuperSelectionPattern>();
             //selectionPattern.Current.GetSelection()
@@ -131,7 +145,22 @@ namespace UIAutomationUnitTests
             return selectionPattern;
         }
         
-        private static IMySuperTogglePattern GetTogglePattern(PatternsData data)
+        public static IMySuperTableItemPattern GetTableItemPattern(PatternsData data)
+        {
+            return null;
+        }
+        
+        public static IMySuperTablePattern GetTablePattern(PatternsData data)
+        {
+            return null;
+        }
+        
+        public static IMySuperTextPattern GetTextPattern(PatternsData data)
+        {
+            return null;
+        }
+        
+        public static IMySuperTogglePattern GetTogglePattern(PatternsData data)
         {
             IMySuperTogglePattern togglePattern = Substitute.For<IMySuperTogglePattern>();
             // togglePattern.Toggle().Received();
@@ -140,23 +169,24 @@ namespace UIAutomationUnitTests
             return togglePattern;
         }
         
-        private static IMySuperValuePattern GetValuePattern(PatternsData data)
+        public static IMySuperTransformPattern GetTransformPattern(PatternsData data)
         {
-Console.WriteLine("GetValuePattern 00001");
+            return null;
+        }
+        
+        public static IMySuperValuePattern GetValuePattern(PatternsData data)
+        {
             IMySuperValuePattern valuePattern = Substitute.For<IMySuperValuePattern>();
             IValuePatternInformation valuePatternInformation = Substitute.For<IValuePatternInformation>();
             valuePatternInformation.Value.Returns(data.ValuePattern_Value);
-Console.WriteLine("valuePatternInformation.Value = {0}", valuePatternInformation.Value);
             valuePattern.Current.Returns(valuePatternInformation);
-Console.WriteLine("valuePattern.Current.Value = {0}", valuePattern.Current.Value);
-Console.WriteLine("GetValuePattern 00005");
             FakeSourcePattern sourcePattern = new FakeSourcePattern();
             FakeSourcePattern.Pattern = ValuePattern.Pattern;
             valuePattern.SourcePattern = sourcePattern;
             return valuePattern;
         }
         
-        private static IMySuperWindowPattern GetWindowPattern(PatternsData data)
+        public static IMySuperWindowPattern GetWindowPattern(PatternsData data)
         {
             IMySuperWindowPattern windowPattern = Substitute.For<IMySuperWindowPattern>();
             // windowPattern.Close()
@@ -173,26 +203,17 @@ Console.WriteLine("GetValuePattern 00005");
         }
         #endregion patterns
         
-        // public static IUiElement GetAutomationElementExpected(ControlType controlType, string name, string automationId, string className, string txtValue)
         public static IFakeUiElement GetAutomationElementExpected(ControlType controlType, string name, string automationId, string className, string txtValue)
         {
-            // return GetAutomationElement(controlType, name, automationId, className, txtValue, true);
             IMySuperValuePattern valuePattern = null;
-Console.WriteLine("GetAutomationElementExpected 00001");
             if (!string.IsNullOrEmpty(txtValue)) {
-Console.WriteLine("GetAutomationElementExpected 00002");
                 valuePattern = FakeFactory.GetValuePattern(new PatternsData{ ValuePattern_Value = txtValue });
-Console.WriteLine("GetAutomationElementExpected 00003");
-Console.WriteLine("FakeFactory.GetValuePattern -> {0}", valuePattern.Current.Value);
             }
-Console.WriteLine("GetAutomationElementExpected 00004");
             return GetAutomationElement(controlType, name, automationId, className, new IBasePattern[] { valuePattern }, true);
         }
         
-        // public static  IUiElement GetAutomationElementNotExpected(ControlType controlType, string name, string automationId, string className, string txtValue)
         public static  IFakeUiElement GetAutomationElementNotExpected(ControlType controlType, string name, string automationId, string className, string txtValue)
         {
-            // return GetAutomationElement(controlType, name, automationId, className, txtValue, false);
             IMySuperValuePattern valuePattern = null;
             if (!string.IsNullOrEmpty(txtValue)) {
                 valuePattern = FakeFactory.GetValuePattern(new PatternsData{ ValuePattern_Value = txtValue });
@@ -200,45 +221,20 @@ Console.WriteLine("GetAutomationElementExpected 00004");
             return GetAutomationElement(controlType, name, automationId, className, new IBasePattern[] { valuePattern }, false);
         }
         
-        // private static IUiElement GetAutomationElement(ControlType controlType, string name, string automationId, string className, string txtValue, bool expected)
-        // private static IFakeUiElement GetAutomationElement(ControlType controlType, string name, string automationId, string className, IBasePattern[] patterns, bool expected)
         internal static IFakeUiElement GetAutomationElement(ControlType controlType, string name, string automationId, string className, IBasePattern[] patterns, bool expected)
         {
-            // IUiElement element = Substitute.For<IUiElement>();
             IFakeUiElement element = Substitute.For<FakeUiElement>();
             element.Current.ProcessId.Returns(333);
             element.Current.ControlType.Returns(controlType);
             element.Current.Name.Returns(!string.IsNullOrEmpty(name) ? name : string.Empty);
             element.Current.AutomationId.Returns(!string.IsNullOrEmpty(automationId) ? automationId : string.Empty);
             element.Current.ClassName.Returns(!string.IsNullOrEmpty(className) ? className : string.Empty);
-            // IMySuperValuePattern valuePattern = FakeFactory.GetValuePattern(new PatternsData { ValuePattern_Value = txtValue });
             element.Patterns.AddRange(patterns);
-            // element.GetSupportedPatterns().Returns(new AutomationPattern[] { ValuePattern.Pattern });
             element.GetSupportedPatterns().Returns<IBasePattern[]>(element.Patterns.ToArray());
-var aaaaa = element.GetSupportedPatterns();
-if (null == aaaaa) {
-    Console.WriteLine("null == element.GetSupportedPatterns()");
-} else {
-    Console.WriteLine(aaaaa.GetType().Name);
-    Console.WriteLine(aaaaa.Length.ToString());
-    if (0 < aaaaa.Length) {
-        foreach (var ptrn in aaaaa) {
-            if (null == ptrn) {
-                Console.WriteLine("null == ptrn");
-            } else {
-                Console.WriteLine(ptrn.GetType().Name);
-                if (null == ptrn.SourcePattern) {
-                    Console.WriteLine("null == ptrn.SourcePattern");
-                } else {
-                    Console.WriteLine(ptrn.SourcePattern.GetType().Name);
-                    //Console.WriteLine((ptrn.SourcePattern as AutomationPattern).ProgrammaticName);
-                    // Console.WriteLine(ptrn.SourcePattern.Pattern);
-                }
-            }
-        }
-    }
-}
-            // element.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern).Returns(valuePattern);
+            element.GetCurrentPattern<IMySuperDockPattern>(DockPattern.Pattern).Returns<IMySuperDockPattern>(element.Patterns.Find(ptrn => ptrn is IMySuperDockPattern) as IMySuperDockPattern);
+            element.GetCurrentPattern<IMySuperExpandCollapsePattern>(ExpandCollapsePattern.Pattern).Returns<IMySuperExpandCollapsePattern>(element.Patterns.Find(ptrn => ptrn is IMySuperExpandCollapsePattern) as IMySuperExpandCollapsePattern);
+            
+            element.GetCurrentPattern<IMySuperTogglePattern>(TogglePattern.Pattern).Returns<IMySuperTogglePattern>(element.Patterns.Find(ptrn => ptrn is IMySuperTogglePattern) as IMySuperTogglePattern);
             element.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern).Returns<IMySuperValuePattern>(element.Patterns.Find(ptrn => ptrn is IMySuperValuePattern) as IMySuperValuePattern);
             object patternObject;
             element.TryGetCurrentPattern(ValuePattern.Pattern, out patternObject).Returns(true);
@@ -246,49 +242,38 @@ if (null == aaaaa) {
             return element;
         }
         
-        // 20131211
-        // public static GetControlCmdletBase Get_GetControlCmdletBase(ControlType controlType, string name, string automationId, string className, string txtValue)
+        private static IUiElement GetAutomationElementForObjectModelTesting(ControlType controlType, string name, string automationId, string className, IBasePattern[] patterns, bool expected)
+        {
+            var fakeElement =
+                GetAutomationElement(
+                    controlType,
+                    name,
+                    automationId,
+                    className,
+                    patterns,
+                    expected);
+            
+            var proxiedElement =
+                AutomationFactory.GetUiElement(
+                    fakeElement);
+            
+            return proxiedElement;
+        }
+        
+        internal static IUiElement GetAutomaitonElementForMethodsOfObjectModel(IBasePattern[] patterns)
+        {
+            return GetAutomationElementForObjectModelTesting(ControlType.Button, string.Empty, string.Empty, string.Empty, patterns, true);
+        }
+        
         public static GetControlCmdletBase Get_GetControlCmdletBase(ControlType[] controlTypes, string name, string automationId, string className, string txtValue)
         {
-//Console.WriteLine("gccb 0001");
             GetControlCmdletBase cmdlet = Substitute.For<GetControlCmdletBase>();
-//            if (null != controlType) {
-//                cmdlet.ControlType.Returns(
-//                    new[] {
-//                        controlType.ProgrammaticName.Substring(12)
-//                    }
-//                   );
-//            }
-//Console.WriteLine("gccb 0002");
             
             if (null != controlTypes && 0 < controlTypes.Length) {
-//Console.WriteLine("gccb 0003");
-//Console.WriteLine(controlTypes.Count().ToString());
-//if (null == controlTypes[0]) {
-//    Console.WriteLine("null == controlTypes[0]");
-//} else {
-//    Console.WriteLine(controlTypes[0].GetType().Name);
-//}
-//IEnumerable<string> sss = controlTypes.Select(ct => null != ct ? ct.ProgrammaticName.Substring(12) : string.Empty);
-//Console.WriteLine("gccb 0003.1");
-//if (null == sss) {
-//    Console.WriteLine("null == sss");
-//} else {
-//    Console.WriteLine(sss.GetType().Name);
-//    if (sss.Any()) {
-//        // Console.WriteLine(sss.Count().ToString());
-//        foreach (string str in sss) {
-//            Console.WriteLine(str);
-//        }
-//    } else {
-//        Console.WriteLine("there are no elements");
-//    }
-//}
-
+                
                 cmdlet.ControlType.Returns<string[]>(controlTypes.Select(
                     ct =>
                     null != ct ? ct.ProgrammaticName.Substring(12) : string.Empty).ToArray());
-//Console.WriteLine("gccb 0004");
             } else {
                 cmdlet.ControlType.Returns(new string[] {});
             }
@@ -314,12 +299,9 @@ if (null == aaaaa) {
             return cmdlet;
         }
         
-        // public static IUiElement GetElement_ForFindAll(IEnumerable<IUiElement> elements, Condition conditions)
         public static IFakeUiElement GetElement_ForFindAll(IEnumerable<IUiElement> elements, Condition conditions)
         {
-            // IUiElement element =
             IFakeUiElement element =
-                // GetAutomationElement(ControlType.Pane, string.Empty, string.Empty, string.Empty, string.Empty, false);
                 GetAutomationElement(ControlType.Pane, string.Empty, string.Empty, string.Empty, new IBasePattern[] {}, false);
             IUiEltCollection descendants = AutomationFactory.GetUiEltCollection(elements);
             

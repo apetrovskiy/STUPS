@@ -323,6 +323,8 @@
     <Compile Include="Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethodsCollection.cs" />
     <Compile Include="Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethodsElement.cs" />
     <Compile Include="Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethodsElementPatterns.cs" />
+    <Compile Include="Helpers\UnderlyingCode\LogEntry.cs" />
+    <Compile Include="Helpers\UnderlyingCode\LogHelper.cs" />
     <Compile Include="Helpers\UnderlyingCode\Ninject\ObjectLifecycleModule.cs" />
     <Compile Include="Helpers\UnderlyingCode\Ninject\AutomationFactory.cs" />
     <Compile Include="Helpers\UnderlyingCode\Ninject\TemporaryFactory.cs" />

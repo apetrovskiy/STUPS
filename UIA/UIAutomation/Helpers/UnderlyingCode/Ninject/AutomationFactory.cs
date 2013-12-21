@@ -17,14 +17,7 @@ namespace UIAutomation
     using System.Windows.Automation;
     using System.Collections;
     using System.Collections.Generic;
-    
-    
-    // using System.Management.Automation;
-    
-    
-    
     using PSTestLib;
-    
     using Castle.DynamicProxy;
     using System.Linq;
     
@@ -37,7 +30,6 @@ namespace UIAutomation
         internal const string NamedParameter_WithoutPattern = "WithoutPattern";
         internal const string NamedParameter_WithoutElement = "WithoutElement";
         
-        // private static readonly ProxyGenerator _generator; // = new ProxyGenerator(new PersistentProxyBuilder());
         private static ProxyGenerator _generator;
         
         private static bool _useDynamicProxy;
@@ -50,7 +42,6 @@ namespace UIAutomation
             CommonCmdletBase.ModuleAlreadyLoaded = true;
             Init();
             
-		    // 20131217
 		    InitCommonObjects();
 		    
 		    _useDynamicProxy = true;
@@ -92,6 +83,9 @@ namespace UIAutomation
 		    try {
 		        _ninjectModule = new ObjectLifecycleModule();
 		        _kernel = new StandardKernel(_ninjectModule);
+		        
+		        // 20131221
+		        _useDynamicProxy = true;
 		    }
 		    catch (Exception eInitFailure) {
 		        // TODO
@@ -109,74 +103,59 @@ namespace UIAutomation
 		#endregion Initialization
         
 		#region Castle DynamicProxy
-		// this works
-//        internal static T ConvertToProxiedElement<T>(T element)
-//        {
-//    		T proxiedElement =
-//    		    (T)_generator.CreateClassProxyWithTarget(
-//    		        typeof(UiElement),
-//    		        element,
-//    		        new LoggingAspect(), new ErrorHandlingAspect(), new InputValidationAspect(), new ParameterValidationAspect());
-//    		
-//    		return proxiedElement;
-//        }
-		
         internal static IUiElement ConvertToProxiedElement<T>(T element)
         {
             Type[] supportedAdditionalInterfaces =
                 UiaHelper.GetSupportedInterfaces(element);
-//            
-//Console.WriteLine(supportedAdditionalInterfaces.Count().ToString());
             
-            UiElement proxiedElement;
-            if (null != supportedAdditionalInterfaces && 0 < supportedAdditionalInterfaces.Length) {
-        		proxiedElement =
-        		    (UiElement)_generator.CreateClassProxy(
-        		        typeof(UiElement),
-        		        supportedAdditionalInterfaces,
-    		        // new LoggingAspect(), new ErrorHandlingAspect(), new InputValidationAspect(), new ParameterValidationAspect());
-    		        new MethodSelectorAspect(), new LoggingAspect(), new ErrorHandlingAspect(), new InputValidationAspect(), new ParameterValidationAspect());
-            } else {
-        		proxiedElement =
-        		    (UiElement)_generator.CreateClassProxy(
-        		        typeof(UiElement),
-    		        // new LoggingAspect(), new ErrorHandlingAspect(), new InputValidationAspect(), new ParameterValidationAspect());
-    		        new MethodSelectorAspect(), new LoggingAspect(), new ErrorHandlingAspect(), new InputValidationAspect(), new ParameterValidationAspect());
+//Console.WriteLine("ConvertToProxiedElement: 0001");
+//if (null == supportedAdditionalInterfaces) {
+//    Console.WriteLine("ConvertToProxiedElement: 0001.1");
+//    Console.WriteLine("null == supportedAdditionalInterfaces");
+//} else {
+//    Console.WriteLine("ConvertToProxiedElement: 0001.2");
+//    Console.WriteLine(supportedAdditionalInterfaces.Length.ToString());
+//}
+//if (null == element) {
+//    Console.WriteLine("ConvertToProxiedElement: 0001.3");
+//    Console.WriteLine("null == element");
+//}
+            
+            UiElement proxiedElement = null;
+            try {
+                if (null != supportedAdditionalInterfaces && 0 < supportedAdditionalInterfaces.Length) {
+                    
+    //Console.WriteLine("ConvertToProxiedElement: 0002");
+                    
+            		proxiedElement =
+            		    (UiElement)_generator.CreateClassProxy(
+            		        typeof(UiElement),
+            		        supportedAdditionalInterfaces,
+                            new MethodSelectorAspect(), new LoggingAspect(), new ErrorHandlingAspect(), new InputValidationAspect(), new ParameterValidationAspect());
+            		
+    //Console.WriteLine("ConvertToProxiedElement: 0003");
+            		
+                } else {
+                    
+    //Console.WriteLine("ConvertToProxiedElement: 0004");
+                    
+            		proxiedElement =
+            		    (UiElement)_generator.CreateClassProxy(
+            		        typeof(UiElement),
+                            new MethodSelectorAspect(), new LoggingAspect(), new ErrorHandlingAspect(), new InputValidationAspect(), new ParameterValidationAspect());
+            		
+    //Console.WriteLine("ConvertToProxiedElement: 0005");
+            		
+                }
+            }
+            catch (Exception eConvertation) {
+                //Console.WriteLine(eConvertation.Message);
             }
     		return proxiedElement;
         }
         #endregion Castle DynamicProxy
 		
 		#region IUiElement
-            #region original code
-		// internal static IUiElement GetUiElement(AutomationElement element)
-//		public static IUiElement GetUiElement(AutomationElement element)
-//		{
-//	        if (null == element) {
-//	            return null;
-//	        }
-//	        
-//			try {
-//                
-//    			var singleElement = new ConstructorArgument("element", element);
-//    			IUiElement adapterElement = Kernel.Get<IUiElement>("AutomationElement.NET", singleElement);
-//    			
-//    			
-//// PSCmdletBase.WriteTraceTemp("test trace");
-//    			
-//    			return adapterElement;
-//			}
-//			catch (Exception eFailedToIssueElement) {
-//			    // TODO
-//			    // write error to error object!!!
-//			    // Console.WriteLine("Element");
-//			    // Console.WriteLine(eFailedToIssueElement.Message);
-//			    return null;
-//			}
-//		}
-            #endregion original code
-		
-		// this works
 		public static IUiElement GetUiElement(AutomationElement element)
 		{
 	        if (null == element) {
@@ -184,21 +163,19 @@ namespace UIAutomation
 	        }
 	        
 			try {
-                // 
     			var singleElement = new ConstructorArgument("element", element);
     			IUiElement adapterElement = Kernel.Get<IUiElement>("AutomationElement.NET", singleElement);
-    			// IUiElement adapterElement = Kernel.Get<IUiElement>("Empty", null);
     			
     			if (_useDynamicProxy) {
         			IUiElement proxiedTypedUiElement =
         			    ConvertToProxiedElement(
         			        adapterElement);
-                    
+        			
         			proxiedTypedUiElement.SetSourceElement<AutomationElement>(element);
         			
         			return (IUiElement)proxiedTypedUiElement; // as IUiElement;
     			} else {
-    			    
+                    
     			    adapterElement.SetSourceElement<AutomationElement>(element);
     			    
     			    return adapterElement;
@@ -214,27 +191,29 @@ namespace UIAutomation
 			}
 		}
 		
-		internal static IUiElement GetUiElement(IUiElement element)
+		public static IUiElement GetUiElement(IUiElement element)
 		{
 	        if (null == element) {
 	            return null;
 	        }
+	        
 			try {
-		        // 
+                
     			var singleElement = new ConstructorArgument("element", element);
+    			
     			IUiElement adapterElement = Kernel.Get<IUiElement>("UiElement", singleElement);
-    			// IUiElement adapterElement = Kernel.Get<IUiElement>("Empty", null);
     			
     			if (_useDynamicProxy) {
+                    
         			IUiElement proxiedTypedUiElement =
         			    ConvertToProxiedElement(
         			        adapterElement);
-                    
+        			
         			proxiedTypedUiElement.SetSourceElement<IUiElement>(element);
         			
         			return (IUiElement)proxiedTypedUiElement; // as IUiElement;
     			} else {
-    			    
+                    
     			    adapterElement.SetSourceElement<IUiElement>(element);
     			    
     			    return adapterElement;
@@ -249,7 +228,6 @@ namespace UIAutomation
 			}
 		}
 		
-		// internal static IUiElement GetUiElement()
 		public static IUiElement GetUiElement()
 		{
 			try {
@@ -259,9 +237,10 @@ namespace UIAutomation
         			IUiElement proxiedTypedUiElement =
         			    ConvertToProxiedElement(
         			        adapterElement);
-                    
+        			
         			return (IUiElement)proxiedTypedUiElement; // as IUiElement;
     			} else {
+    			    
     			    return adapterElement;
     			}
 			}

@@ -16,7 +16,7 @@ namespace UIAutomationUnitTests
     /// <summary>
     /// Description of FakeUiElement.
     /// </summary>
-    public class FakeUiElement : UiElement, IFakeUiElement
+    public class FakeUiElement : UiElement, IFakeUiElement //, ISupportsTogglePattern
     {
         public List<IBasePattern> Patterns { get; set; }
         
@@ -24,5 +24,17 @@ namespace UIAutomationUnitTests
         {
             Patterns = new List<IBasePattern>();
         }
+        
+        public FakeUiElement(IBasePattern[] patterns)
+        {
+            Patterns = new List<IBasePattern>();
+            Patterns.AddRange(patterns);
+        }
+        
+		public override N GetCurrentPattern<N>(AutomationPattern pattern)
+		    // where N : IBasePattern
+		{
+		    return AutomationFactory.GetMySuperPattern<N>(null);
+		}
     }
 }

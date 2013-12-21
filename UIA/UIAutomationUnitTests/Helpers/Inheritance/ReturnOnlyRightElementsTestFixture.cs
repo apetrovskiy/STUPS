@@ -95,29 +95,17 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                     if (null != controlType) {
                         Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => controlTypeNames.Contains(x.Current.ControlType.ProgrammaticName.Substring(12)));
                     }
-Console.WriteLine("utility 0000001");
+                    
                     if (!string.IsNullOrEmpty(txtValue)) {
                         Assert.ForAll(
                             resultList
                             .Cast<IUiElement>()
                             .ToList<IUiElement>(), x =>
                             {
-Console.WriteLine("utility 0000002");
                                 IMySuperValuePattern valuePattern = x.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern) as IMySuperValuePattern;
-                                
-if (null == valuePattern) {
-    Console.WriteLine("null == valuePattern");
-} else {
-    Console.WriteLine(valuePattern.GetType().Name);
-    // Console.WriteLine(valuePattern.SourcePattern.
-    Console.WriteLine(valuePattern.Current.Value);
-}
-Console.WriteLine("utility 0000003");
                                 return valuePattern != null && txtValuePatern.IsMatch(valuePattern.Current.Value);
                             });
-Console.WriteLine("utility 0000004");
                     }
-Console.WriteLine("utility 0000005");
                     break;
                 case UIAutomationUnitTests.Helpers.Inheritance.UsualWildcardRegex.Regex:
                     if (!string.IsNullOrEmpty(name)) {
@@ -146,34 +134,6 @@ Console.WriteLine("utility 0000005");
                     }
                     break;
             }
-            
-//            if (!string.IsNullOrEmpty(name)) {
-//                Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => x.Current.Name == name);
-//            }
-//            if (!string.IsNullOrEmpty(automationId)) {
-//                Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => x.Current.AutomationId == automationId);
-//            }
-//            if (!string.IsNullOrEmpty(className)) {
-//                Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => x.Current.ClassName == className);
-//            }
-//            string[] controlTypeNames =
-//                controlTypes.Select(ct => null != ct ? ct.ProgrammaticName.Substring(12) : string.Empty).ToArray();
-//            if (null != controlType) {
-//                Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => controlTypeNames.Contains(x.Current.ControlType.ProgrammaticName.Substring(12)));
-//            }
-//            if (!string.IsNullOrEmpty(txtValue)) {
-//                Assert.ForAll(
-//                    resultList
-//                    .Cast<IUiElement>()
-//                    .ToList<IUiElement>(), x =>
-//                    {
-//                        // 20131208
-//                        // IMySuperValuePattern valuePattern = x.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern;
-//                        // IMySuperValuePattern valuePattern = x.GetCurrentPattern<IMySuperValuePattern, ValuePattern>(ValuePattern.Pattern) as IMySuperValuePattern;
-//                        IMySuperValuePattern valuePattern = x.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern) as IMySuperValuePattern;
-//                        return valuePattern != null && valuePattern.Current.Value == txtValue;
-//                    });
-//            }
         }
         #endregion helpers
         

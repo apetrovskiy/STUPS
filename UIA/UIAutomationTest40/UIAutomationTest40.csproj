@@ -428,6 +428,7 @@
     <Folder Include="Commands\Container" />
     <Folder Include="Commands\No" />
     <Folder Include="Commands\Sheridan" />
+    <Folder Include="Helpers\ObjectModel" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>

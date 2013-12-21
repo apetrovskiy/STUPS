@@ -21,6 +21,10 @@ namespace UIAutomation
 		IUiElement Rotate(double degrees);
 		// ITransformPatternInformation Cached { get; }
 		// ITransformPatternInformation Current { get; }
+		
+		bool CanMove { get; }
+		bool CanResize { get; }
+		bool CanRotate { get; }
 	}
 }
 

@@ -11,8 +11,8 @@ namespace UIAutomation
 {
 	extern alias UIANET;
 	using System.Windows.Automation;
-	
-	public interface IMySuperGridPattern : IBasePattern
+
+	public interface IMySuperGridPattern : IBasePattern // , ISupportsGridPattern
 	{
 		// AutomationElement GetItem(int row, int column);
 		IUiElement GetItem(int row, int column);

@@ -11,8 +11,8 @@ namespace UIAutomation
 {
 	extern alias UIANET;
 	using System.Windows.Automation;
-	
-	public interface IMySuperRangeValuePattern : IBasePattern
+
+	public interface IMySuperRangeValuePattern : IBasePattern //, ISupportsRangeValuePattern
 	{
 		void SetValue(double value);
 		// RangeValuePattern.RangeValuePatternInformation Cached { get; }

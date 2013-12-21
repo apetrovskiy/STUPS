@@ -28,8 +28,70 @@ namespace UIAutomation
             try {
                 if (!AlreadySelected) {
                     AlreadySelected = true;
-//Console.WriteLine("selection of what to proceed");
                     switch (invocation.Method.Name) {
+                        #region DockPattern
+                        case "SetDockPosition":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).PerformSetDockPosition(
+                                    (DockPosition)invocation.Arguments[0]);
+                            break;
+                        case "get_DockPosition":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetDockPosition();
+                            break;
+                        #endregion DockPattern
+                        #region ExpandCollapsePattern
+                        case "Expand":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).PerformExpand();
+                            break;
+                        case "Collapse":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).PerformCollapse();
+                            break;
+                        case "get_ExpandCollapseState":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetExpandCollapseState();
+                            break;
+                        #endregion ExpandCollapsePattern
+                        #region GridItemPattern
+                        case "get_GridRow":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetRowGridItemPattern();
+                            break;
+                        case "get_GridColumn":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetColumnGridItemPattern();
+                            break;
+                        case "get_GridRowSpan":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetRowSpanGridItemPattern();
+                            break;
+                        case "get_GridColumnSpan":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetColumnSpanGridItemPattern();
+                            break;
+                        case "get_GridContainingGrid":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetContainingGridGridItemPattern();
+                            break;
+                        #endregion GridItemPattern
+                        #region GridPattern
+                        case "GetItem":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).PerformGetItem(
+                                    (int)invocation.Arguments[0],
+                                    (int)invocation.Arguments[1]);
+                            break;
+                        case "get_GridRowCount":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetRowCountGridPattern();
+                            break;
+                        case "get_GridColumnCount":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetColumnCountGridPattern();
+                            break;
+                        #endregion GridPattern
                         #region InvokePattern
                         case "Click":
                             invocation.ReturnValue =
@@ -41,6 +103,91 @@ namespace UIAutomation
                                 (invocation.Proxy as IUiElement).PerformDoubleClick();
                             break;
                         #endregion InvokePattern
+                        #region RangeValuePattern
+                        case "set_RangeValue":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).PerformSetValueRangeValuePattern(
+                                    (double)invocation.Arguments[0]);
+                            break;
+                        case "get_RangeValue":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).PerformGetValueRangeValuePattern();
+                            break;
+                        case "get_RangeIsReadOnly":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetIsReadOnlyRangeValuePattern();
+                            break;
+                        case "get_Maximum":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetMaximum();
+                            break;
+                        case "get_Minimum":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetMinimum();
+                            break;
+                        case "get_LargeChange":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetLargeChange();
+                            break;
+                        case "get_SmallChange":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetSmallChange();
+                            break;
+                        #endregion RangeValuePattern
+                        #region ScrollItemPattern
+                        case "ScrollIntoView":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).PerformScrollIntoView();
+                            break;
+                        #endregion ScrollItemPattern
+                        #region ScrollPattern
+                        case "SetScrollPercent": //(double horizontalPercent, double verticalPercent);
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).PerformSetScrollPercent(
+                                    (double)invocation.Arguments[0],
+                                    (double)invocation.Arguments[1]);
+                            break;
+                        case "Scroll": //(ScrollAmount horizontalAmount, ScrollAmount verticalAmount);
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).PerformScroll(
+                                    (ScrollAmount)invocation.Arguments[0],
+                                    (ScrollAmount)invocation.Arguments[1]);
+                            break;
+                        case "ScrollHorizontal": //(ScrollAmount amount);
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).PerformScrollHorizontal(
+                                    (ScrollAmount)invocation.Arguments[0]);
+                            break;
+                        case "ScrollVertical": //(ScrollAmount amount);
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).PerformScrollVertical(
+                                    (ScrollAmount)invocation.Arguments[0]);
+                            break;
+                        case "get_HorizontalScrollPercent":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetHorizontalScrollPercent();
+                            break;
+                        case "get_VerticalScrollPercent":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetVerticalScrollPercent();
+                            break;
+                        case "get_HorizontalViewSize":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetHorizontalViewSize();
+                            break;
+                        case "get_VerticalViewSize":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetVerticalViewSize();
+                            break;
+                        case "get_HorizontallyScrollable":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetHorizontallyScrollable();
+                            break;
+                        case "get_VerticallyScrollable":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetVerticallyScrollable();
+                            break;
+                        #endregion ScrollPattern
                         #region SelectionItemPattern
                         case "Select":
                             invocation.ReturnValue =
@@ -68,19 +215,103 @@ namespace UIAutomation
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).PerformGetSelection();
                             break;
-                        case "CanSelectMultiple":
+                        case "get_CanSelectMultiple":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).GetCanSelectMultiple();
                             break;
-                        case "IsSelectionRequired":
+                        case "get_IsSelectionRequired":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).GetIsSelectionRequired();
                             break;
                         #endregion SelectionPattern
+                        #region TableItemPattern
+                        case "GetRowHeaderItems":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).PerformGetRowHeaderItems();
+                            break;
+                        case "GetColumnHeaderItems":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).PerformGetColumnHeaderItems();
+                            break;
+                        case "get_TableRow":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetRowTableItemPattern();
+                            break;
+                        case "get_TableColumn":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetColumnTableItemPattern();
+                            break;
+                        case "get_TableRowSpan":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetRowSpanTableItemPattern();
+                            break;
+                        case "get_TableColumnSpan":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetColumnSpanTableItemPattern();
+                            break;
+                        case "get_TableContainingGrid":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetContainingGridTableItemPattern();
+                            break;
+                        #endregion TableItemPattern
+                        #region TablePattern
+                        case "GetRowHeaders":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).PerformGetRowHeaders();
+                            break;
+                        case "GetColumnHeaders":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).PerformGetColumnHeaders();
+                            break;
+                        case "get_TableRowCount":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetRowCountTablePattern();
+                            break;
+                        case "get_TableColumnCount":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetColumnCountTablePattern();
+                            break;
+                        case "get_RowOrColumnMajor":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetRowOrColumnMajor();
+                            break;
+                        #endregion TablePattern
+                        #region TextPattern
+                        case "GetTextSelection":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).PerformGetSelectionTextPattern();
+                            break;
+                        case "GetVisibleRanges":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).PerformGetVisibleRanges();
+                            break;
+                        case "RangeFromChild": //(AutomationElement childElement);
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).PerformRangeFromChild(
+                                    (IUiElement)invocation.Arguments[0]);
+                            break;
+                        case "RangeFromPoint": //(Point screenLocation);
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).PerformRangeFromPoint(
+                                    (System.Windows.Point)invocation.Arguments[0]);
+                            break;
+                        case "get_DocumentRange":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetDocumentRange();
+                            break;
+                        case "get_SupportedTextSelection":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetSupportedTextSelection();
+                            break;
+                        #endregion TextPattern
                         #region TogglePattern
                         case "Toggle":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).PerformToggle();
+                            break;
+                        case "get_ToggleState":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetToggleState();
                             break;
                         #endregion TogglePattern
                         #region TransformPattern
@@ -101,20 +332,32 @@ namespace UIAutomation
                                 (invocation.Proxy as IUiElement).PerformRotate(
                                     (double)invocation.Arguments[0]);
                             break;
+                        case "get_CanMove":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetCanMove();
+                            break;
+                        case "get_CanResize":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetCanResize();
+                            break;
+                        case "get_CanRotate":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetCanRotate();
+                            break;
                         #endregion TransformPattern
                         #region ValuePattern
                         case "get_Value":
                             invocation.ReturnValue =
-                                (invocation.Proxy as IUiElement).PerformGetValue();
+                                (invocation.Proxy as IUiElement).PerformGetValueValuePattern();
                             break;
                         case "set_Value":
                             invocation.ReturnValue =
-                                (invocation.Proxy as IUiElement).PerformSetValue(
+                                (invocation.Proxy as IUiElement).PerformSetValueValuePattern(
                                     invocation.Arguments[0].ToString());
                             break;
                         case "get_IsReadOnly":
                             invocation.ReturnValue =
-                                (invocation.Proxy as IUiElement).GetIsReadOnly();
+                                (invocation.Proxy as IUiElement).GetIsReadOnlyValuePattern();
                             break;
                         #endregion ValuePattern
                         #region WindowPattern
@@ -158,34 +401,19 @@ namespace UIAutomation
                             break;
                         #endregion WindowPattern
                         default:
-//Console.WriteLine("selection of what to proceed - default");
-//                            returnItself = false;
                             invocation.Proceed();
                         	break;
                     }
-//Console.WriteLine("resetting the flag");
                     AlreadySelected = false;
                 } else {
-//Console.WriteLine("Proceed");
-                    // invocation.
                     invocation.Proceed();
                 }
                 if (invocation.ReturnValue == invocation.InvocationTarget) {
                     invocation.ReturnValue = invocation.Proxy;
                 }
-//if (null != invocation.ReturnValue) {
-    //Console.WriteLine("null != invocation.ReturnValue");
-    //Console.WriteLine(invocation.ReturnValue.GetType().Name);
-    //Console.WriteLine("the proxy itself:");
-    //Console.WriteLine(invocation.Proxy.GetType().Name);
-//}
-//                if (returnItself) {
-//                    invocation.ReturnValue = invocation.Proxy;
-//                }
             }
             catch {
                 AlreadySelected = false;
-                // 
             }
         }
     }

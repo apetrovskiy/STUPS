@@ -12,7 +12,7 @@ namespace UIAutomation
 	extern alias UIANET;
 	using System.Windows.Automation;
 
-	public interface IMySuperExpandCollapsePattern : IBasePattern
+	public interface IMySuperExpandCollapsePattern : IBasePattern //, ISupportsExpandCollapsePattern
 	{
 		void Expand();
 		void Collapse();

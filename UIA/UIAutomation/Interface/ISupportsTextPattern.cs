@@ -13,12 +13,10 @@ namespace UIAutomation
 	using System.Windows.Automation;
 	using System.Windows.Automation.Text;
 	using System.Windows;
-
-	public interface IMySuperTextPattern : IBasePattern // , ISupportsTextPattern
+	public interface ISupportsTextPattern
 	{
-		TextPatternRange[] GetSelection();
+		TextPatternRange[] GetTextSelection();
 		TextPatternRange[] GetVisibleRanges();
-		// TextPatternRange RangeFromChild(AutomationElement childElement);
 		TextPatternRange RangeFromChild(IUiElement childElement);
 		TextPatternRange RangeFromPoint(Point screenLocation);
 		TextPatternRange DocumentRange { get; }

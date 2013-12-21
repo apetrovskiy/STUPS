@@ -2753,14 +2753,43 @@ strInfo += " 07";
             
             if (element is AutomationElement) {
                 foreach (AutomationPattern pattern in (element as AutomationElement).GetSupportedPatterns()) {
-                    // if (pattern == InvokePattern.Pattern) {
+                    // always
                     supportedTypes.Add(typeof(ISupportsInvokePattern));
-                    // }
+                    if (pattern == DockPattern.Pattern) {
+                        supportedTypes.Add(typeof(ISupportsDockPattern));
+                    }
+                    if (pattern == ExpandCollapsePattern.Pattern) {
+                        supportedTypes.Add(typeof(ISupportsExpandCollapsePattern));
+                    }
+                    if (pattern == GridItemPattern.Pattern) {
+                        supportedTypes.Add(typeof(ISupportsGridItemPattern));
+                    }
+                    if (pattern == GridPattern.Pattern) {
+                        supportedTypes.Add(typeof(ISupportsGridPattern));
+                    }
+                    if (pattern == RangeValuePattern.Pattern) {
+                        supportedTypes.Add(typeof(ISupportsRangeValuePattern));
+                    }
                     if (pattern == SelectionItemPattern.Pattern) {
                         supportedTypes.Add(typeof(ISupportsSelectionItemPattern));
                     }
                     if (pattern == SelectionPattern.Pattern) {
                         supportedTypes.Add(typeof(ISupportsSelectionPattern));
+                    }
+                    if (pattern == ScrollItemPattern.Pattern) {
+                        supportedTypes.Add(typeof(ISupportsScrollItemPattern));
+                    }
+                    if (pattern == ScrollPattern.Pattern) {
+                        supportedTypes.Add(typeof(ISupportsScrollPattern));
+                    }
+                    if (pattern == TableItemPattern.Pattern) {
+                        supportedTypes.Add(typeof(ISupportsTableItemPattern));
+                    }
+                    if (pattern == TablePattern.Pattern) {
+                        supportedTypes.Add(typeof(ISupportsTablePattern));
+                    }
+                    if (pattern == TextPattern.Pattern) {
+                        supportedTypes.Add(typeof(ISupportsTextPattern));
                     }
                     if (pattern == TogglePattern.Pattern) {
                         supportedTypes.Add(typeof(ISupportsTogglePattern));
@@ -2778,14 +2807,43 @@ strInfo += " 07";
             }
             if (element is IUiElement) {
                 foreach (IBasePattern pattern in (element as IUiElement).GetSupportedPatterns()) {
-                    // if (pattern is IMySuperInvokePattern) {
+                    // always
                     supportedTypes.Add(typeof(ISupportsInvokePattern));
-                    // }
+                    if (pattern is IMySuperDockPattern) {
+                        supportedTypes.Add(typeof(ISupportsDockPattern));
+                    }
+                    if (pattern is IMySuperExpandCollapsePattern) {
+                        supportedTypes.Add(typeof(ISupportsExpandCollapsePattern));
+                    }
+                    if (pattern is IMySuperGridItemPattern) {
+                        supportedTypes.Add(typeof(ISupportsGridItemPattern));
+                    }
+                    if (pattern is IMySuperGridPattern) {
+                        supportedTypes.Add(typeof(ISupportsGridPattern));
+                    }
+                    if (pattern is IMySuperRangeValuePattern) {
+                        supportedTypes.Add(typeof(ISupportsRangeValuePattern));
+                    }
                     if (pattern is IMySuperSelectionItemPattern) {
                         supportedTypes.Add(typeof(ISupportsSelectionItemPattern));
                     }
                     if (pattern is IMySuperSelectionPattern) {
                         supportedTypes.Add(typeof(ISupportsSelectionPattern));
+                    }
+                    if (pattern is IMySuperScrollItemPattern) {
+                        supportedTypes.Add(typeof(ISupportsScrollItemPattern));
+                    }
+                    if (pattern is IMySuperScrollPattern) {
+                        supportedTypes.Add(typeof(ISupportsScrollPattern));
+                    }
+                    if (pattern is IMySuperTableItemPattern) {
+                        supportedTypes.Add(typeof(ISupportsTableItemPattern));
+                    }
+                    if (pattern is IMySuperTablePattern) {
+                        supportedTypes.Add(typeof(ISupportsTablePattern));
+                    }
+                    if (pattern is IMySuperTextPattern) {
+                        supportedTypes.Add(typeof(ISupportsTextPattern));
                     }
                     if (pattern is IMySuperTogglePattern) {
                         supportedTypes.Add(typeof(ISupportsTogglePattern));

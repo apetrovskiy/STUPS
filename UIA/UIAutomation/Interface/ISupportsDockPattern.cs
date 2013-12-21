@@ -11,14 +11,13 @@ namespace UIAutomation
 {
 	extern alias UIANET;
 	using System.Windows.Automation;
-
-	public interface IMySuperDockPattern : IBasePattern //, ISupportsDockPattern
+	public interface ISupportsDockPattern
 	{
 		void SetDockPosition(DockPosition dockPosition);
-		// DockPattern.DockPatternInformation Cached { get; }
-		IDockPatternInformation Cached { get; }
-		// DockPattern.DockPatternInformation Current { get; }
-		IDockPatternInformation Current { get; }
+		// IDockPatternInformation Cached { get; }
+		// IDockPatternInformation Current { get; }
+		
+		DockPosition DockPosition { get; }
 	}
 }
 

@@ -1,0 +1,927 @@
+﻿/*
+ * Created by SharpDevelop.
+ * User: Alexander Petrovskiy
+ * Date: 12/21/2013
+ * Time: 12:12 AM
+ * 
+ * To change this template use Tools | Options | Coding | Edit Standard Headers.
+ */
+
+namespace UIAutomation
+{
+    extern alias UIANET;
+    using System;
+    using System.Windows.Automation;
+    using System.Windows.Automation.Text;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Management.Automation;
+    using PSTestLib;
+    
+    /// <summary>
+    /// Description of ExtensionMethodsElementPatterns.
+    /// </summary>
+    public static class ExtensionMethodsElementPatterns
+    {
+        #region Patterns
+        #region DockPattern
+        public static IUiElement PerformSetDockPosition(this IUiElement element, DockPosition dockPosition)
+        {
+            try {
+                element.GetCurrentPattern<IMySuperDockPattern>(DockPattern.Pattern).SetDockPosition(dockPosition);
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return element;
+        }
+        
+        public static DockPosition GetDockPosition(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IMySuperDockPattern>(DockPattern.Pattern).Current.DockPosition;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return DockPosition.None;
+        }
+        #endregion DockPattern
+        #region ExpandCollapsePattern
+        public static IUiElement PerformExpand(this IUiElement element)
+        {
+            try {
+                element.GetCurrentPattern<IMySuperExpandCollapsePattern>(ExpandCollapsePattern.Pattern).Expand();
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return element;
+        }
+        
+        public static IUiElement PerformCollapse(this IUiElement element)
+        {
+            try {
+                element.GetCurrentPattern<IMySuperExpandCollapsePattern>(ExpandCollapsePattern.Pattern).Collapse();
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return element;
+        }
+        
+        public static ExpandCollapseState GetExpandCollapseState(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IMySuperExpandCollapsePattern>(ExpandCollapsePattern.Pattern).Current.ExpandCollapseState;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return ExpandCollapseState.LeafNode;
+        }
+        #endregion ExpandCollapsePattern
+        #region GridItemPattern
+        public static int GetRowGridItemPattern(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IMySuperGridItemPattern>(GridPattern.Pattern).Current.Row;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return 0;
+        }
+        
+        public static int GetColumnGridItemPattern(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IMySuperGridItemPattern>(GridPattern.Pattern).Current.Column;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return 0;
+        }
+        
+        
+        public static int GetRowSpanGridItemPattern(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IMySuperGridItemPattern>(GridPattern.Pattern).Current.RowSpan;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return 0;
+        }
+        
+        public static int GetColumnSpanGridItemPattern(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IMySuperGridItemPattern>(GridPattern.Pattern).Current.ColumnSpan;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return 0;
+        }
+        
+        public static IUiElement GetContainingGridGridItemPattern(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IMySuperGridItemPattern>(GridPattern.Pattern).Current.ContainingGrid;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return null;
+        }
+        #endregion GridItemPattern
+        #region GridPattern
+        public static IUiElement PerformGetItem(this IUiElement element, int row, int column)
+        {
+            try {
+                return element.GetCurrentPattern<IMySuperGridPattern>(GridPattern.Pattern).GetItem(row, column);
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return null;
+        }
+        
+        public static int GetRowCountGridPattern(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IMySuperGridPattern>(GridPattern.Pattern).Current.RowCount;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return 0;
+        }
+        
+        public static int GetColumnCountGridPattern(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IMySuperGridPattern>(GridPattern.Pattern).Current.ColumnCount;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return 0;
+        }
+        #endregion GridPattern
+        #region InvokePattern
+        public static IUiElement PerformClick(this IUiElement element)
+        {
+            try {
+                element.GetCurrentPattern<IMySuperInvokePattern>(InvokePattern.Pattern).Invoke();
+            }
+            catch {
+                // click via Win32
+            }
+            return element;
+        }
+        
+        public static IUiElement PerformDoubleClick(this IUiElement element)
+        {
+            HasControlInputCmdletBase cmdlet =
+                new HasControlInputCmdletBase();
+            cmdlet.ClickControl(
+                cmdlet,
+                element,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                true,
+                50,
+                Preferences.ClickOnControlByCoordX,
+                Preferences.ClickOnControlByCoordY);
+            
+            return element;
+        }
+        #endregion InvokePattern
+        #region RangeValuePattern
+        public static IUiElement PerformSetValueRangeValuePattern(this IUiElement element, double value)
+        {
+            try {
+                element.GetCurrentPattern<IMySuperRangeValuePattern>(RangeValuePattern.Pattern).SetValue(value);
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return element;
+        }
+        
+        public static double PerformGetValueRangeValuePattern(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IMySuperRangeValuePattern>(RangeValuePattern.Pattern).Current.Value;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return 0;
+        }
+        
+        public static bool GetIsReadOnlyRangeValuePattern(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IMySuperRangeValuePattern>(RangeValuePattern.Pattern).Current.IsReadOnly;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return true;
+        }
+        
+        public static double GetMaximum(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IMySuperRangeValuePattern>(RangeValuePattern.Pattern).Current.Maximum;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return 0;
+        }
+        
+        public static double GetMinimum(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IMySuperRangeValuePattern>(RangeValuePattern.Pattern).Current.Minimum;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return 0;
+        }
+        
+        public static double GetLargeChange(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IMySuperRangeValuePattern>(RangeValuePattern.Pattern).Current.LargeChange;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return 0;
+        }
+        
+        public static double GetSmallChange(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IMySuperRangeValuePattern>(RangeValuePattern.Pattern).Current.SmallChange;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return 0;
+        }
+        #endregion RangeValuePattern
+        #region ScrollItemPattern
+        public static IUiElement PerformScrollIntoView(this IUiElement element)
+        {
+            try {
+                element.GetCurrentPattern<IMySuperScrollItemPattern>(ScrollItemPattern.Pattern).ScrollIntoView();
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return element;
+        }
+        #endregion ScrollItemPattern
+        #region ScrollPattern
+        public static IUiElement PerformSetScrollPercent(this IUiElement element, double horizontalPercent, double verticalPercent)
+        {
+            try {
+                element.GetCurrentPattern<IMySuperScrollPattern>(ScrollPattern.Pattern).SetScrollPercent(horizontalPercent, verticalPercent);
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return element;
+        }
+        
+        public static IUiElement PerformScroll(this IUiElement element, ScrollAmount horizontalAmount, ScrollAmount verticalAmount)
+        {
+            try {
+                element.GetCurrentPattern<IMySuperScrollPattern>(ScrollPattern.Pattern).Scroll(horizontalAmount, verticalAmount);
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return element;
+        }
+        
+        public static IUiElement PerformScrollHorizontal(this IUiElement element, ScrollAmount amount)
+        {
+            try {
+                element.GetCurrentPattern<IMySuperScrollPattern>(ScrollPattern.Pattern).ScrollHorizontal(amount);
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return element;
+        }
+        
+        public static IUiElement PerformScrollVertical(this IUiElement element, ScrollAmount amount)
+        {
+            try {
+                element.GetCurrentPattern<IMySuperScrollPattern>(ScrollPattern.Pattern).ScrollVertical(amount);
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return element;
+        }
+        
+        public static double GetHorizontalScrollPercent(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IMySuperScrollPattern>(ScrollPattern.Pattern).Current.HorizontalScrollPercent;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return 0;
+        }
+        
+        public static double GetVerticalScrollPercent(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IMySuperScrollPattern>(ScrollPattern.Pattern).Current.VerticalScrollPercent;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return 0;
+        }
+        
+        public static double GetHorizontalViewSize(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IMySuperScrollPattern>(ScrollPattern.Pattern).Current.HorizontalViewSize;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return 0;
+        }
+        
+        public static double GetVerticalViewSize(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IMySuperScrollPattern>(ScrollPattern.Pattern).Current.VerticalViewSize;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return 0;
+        }
+        
+        public static bool GetHorizontallyScrollable(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IMySuperScrollPattern>(ScrollPattern.Pattern).Current.HorizontallyScrollable;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return false;
+        }
+        
+        public static bool GetVerticallyScrollable(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IMySuperScrollPattern>(ScrollPattern.Pattern).Current.VerticallyScrollable;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return false;
+        }
+        #endregion ScrollPattern
+        #region SelectionItemPattern
+        public static IUiElement PerformSelect(this IUiElement element)
+        {
+            try {
+                element.GetCurrentPattern<IMySuperSelectionItemPattern>(SelectionItemPattern.Pattern).Select();
+            }
+            catch {
+                //
+            }
+            return element;
+        }
+        
+        public static IUiElement PerformAddToSelection(this IUiElement element)
+        {
+            try {
+                element.GetCurrentPattern<IMySuperSelectionItemPattern>(SelectionItemPattern.Pattern).AddToSelection();
+            }
+            catch {
+                // 
+            }
+            return element;
+        }
+        
+        public static IUiElement PerformRemoveFromSelection(this IUiElement element)
+        {
+            try {
+                element.GetCurrentPattern<IMySuperSelectionItemPattern>(SelectionItemPattern.Pattern).RemoveFromSelection();
+            }
+            catch {
+                // 
+            }
+            return element;
+        }
+        
+        public static bool GetIsSelected(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IMySuperSelectionItemPattern>(SelectionItemPattern.Pattern).Current.IsSelected;
+            }
+            catch {
+                //
+            }
+            return false;
+        }
+        
+        public static IUiElement GetSelectionContainer(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IMySuperSelectionItemPattern>(SelectionItemPattern.Pattern).Current.SelectionContainer;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return null;
+        }
+        #endregion SelectionItemPattern
+        #region SelectionPattern
+        public static IUiElement[] PerformGetSelection(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IMySuperSelectionPattern>(SelectionPattern.Pattern).Current.GetSelection();
+            }
+            catch {
+                // 
+            }
+            return new UiElement[] {};
+        }
+        
+        public static bool GetCanSelectMultiple(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IMySuperSelectionPattern>(SelectionPattern.Pattern).Current.CanSelectMultiple;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return false;
+        }
+        
+        public static bool GetIsSelectionRequired(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IMySuperSelectionPattern>(SelectionPattern.Pattern).Current.IsSelectionRequired;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return false;
+        }
+        #endregion SelectionPattern
+        #region TableItemPattern
+        public static IUiElement[] PerformGetRowHeaderItems(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IMySuperTableItemPattern>(TableItemPattern.Pattern).Current.GetRowHeaderItems();
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return new UiElement[] {};
+        }
+        
+        public static IUiElement[] PerformGetColumnHeaderItems(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IMySuperTableItemPattern>(TableItemPattern.Pattern).Current.GetColumnHeaderItems();
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return new UiElement[] {};
+        }
+        
+        public static int GetRowTableItemPattern(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IMySuperTableItemPattern>(TableItemPattern.Pattern).Current.Row;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return 0;
+        }
+        
+        public static int GetColumnTableItemPattern(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IMySuperTableItemPattern>(TableItemPattern.Pattern).Current.Column;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return 0;
+        }
+        
+        public static int GetRowSpanTableItemPattern(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IMySuperTableItemPattern>(TableItemPattern.Pattern).Current.RowSpan;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return 0;
+        }
+        
+        public static int GetColumnSpanTableItemPattern(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IMySuperTableItemPattern>(TableItemPattern.Pattern).Current.ColumnSpan;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return 0;
+        }
+        
+        public static IUiElement GetContainingGridTableItemPattern(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IMySuperTableItemPattern>(TableItemPattern.Pattern).Current.ContainingGrid;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return null;
+        }
+        #endregion TableItemPattern
+        #region TablePattern
+        public static IUiElement[] PerformGetRowHeaders(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IMySuperTablePattern>(TablePattern.Pattern).Current.GetRowHeaders();
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return new UiElement[] {};
+        }
+        
+        public static IUiElement[] PerformGetColumnHeaders(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IMySuperTablePattern>(TablePattern.Pattern).Current.GetColumnHeaders();
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return new UiElement[] {};
+        }
+        
+        public static int GetRowCountTablePattern(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IMySuperTablePattern>(TablePattern.Pattern).Current.RowCount;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return 0;
+        }
+        
+		public static int GetColumnCountTablePattern(this IUiElement element)
+		{
+		    try {
+                return element.GetCurrentPattern<IMySuperTablePattern>(TablePattern.Pattern).Current.ColumnCount;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return 0;
+		}
+		
+		public static RowOrColumnMajor GetRowOrColumnMajor(this IUiElement element)
+		{
+		    try {
+		        return element.GetCurrentPattern<IMySuperTablePattern>(TablePattern.Pattern).Current.RowOrColumnMajor;
+		    } catch (Exception) {
+		        // 
+		        // throw;
+		    }
+		    return RowOrColumnMajor.Indeterminate;
+		}
+        #endregion TablePattern
+        #region TextPattern
+        public static TextPatternRange[] PerformGetSelectionTextPattern(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IMySuperTextPattern>(TextPattern.Pattern).GetSelection();
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return new TextPatternRange[] {};
+        }
+        
+		public static TextPatternRange[] PerformGetVisibleRanges(this IUiElement element)
+		{
+		    try {
+		        return element.GetCurrentPattern<IMySuperTextPattern>(TextPattern.Pattern).GetVisibleRanges();
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return new TextPatternRange[] {};
+		}
+		
+		public static TextPatternRange PerformRangeFromChild(this IUiElement element, IUiElement childElement)
+		{
+		    try {
+		        return element.GetCurrentPattern<IMySuperTextPattern>(TextPattern.Pattern).RangeFromChild(childElement);
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+		    return null;
+		}
+		
+		public static TextPatternRange PerformRangeFromPoint(this IUiElement element, System.Windows.Point screenLocation)
+		{
+		    try {
+		        return element.GetCurrentPattern<IMySuperTextPattern>(TextPattern.Pattern).RangeFromPoint(screenLocation);
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+		    return null;
+		}
+		
+		public static TextPatternRange GetDocumentRange(this IUiElement element)
+		{
+		    try {
+		        return element.GetCurrentPattern<IMySuperTextPattern>(TextPattern.Pattern).DocumentRange;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+		    return null;
+		}
+		
+		public static SupportedTextSelection GetSupportedTextSelection(this IUiElement element)
+		{
+		    try {
+		        return element.GetCurrentPattern<IMySuperTextPattern>(TextPattern.Pattern).SupportedTextSelection;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+		    return SupportedTextSelection.None;
+		}
+        #endregion TextPattern
+        #region TogglePattern
+        public static IUiElement PerformToggle(this IUiElement element)
+        {
+            try {
+                element.GetCurrentPattern<IMySuperTogglePattern>(TogglePattern.Pattern).Toggle();
+            }
+            catch {
+                // maybe, a click
+            }
+            return element;
+        }
+        
+        public static ToggleState GetToggleState(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IMySuperTogglePattern>(TogglePattern.Pattern).Current.ToggleState;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return ToggleState.Indeterminate;
+        }
+        #endregion TogglePattern
+        #region TransformPattern
+        public static IUiElement PerformMove(this IUiElement element, double x, double y)
+        {
+            try {
+                element.GetCurrentPattern<IMySuperTransformPattern>(TransformPattern.Pattern).Move(x, y);
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return element;
+        }
+		
+		public static IUiElement PerformResize(this IUiElement element, double width, double height)
+		{
+		    try {
+		        element.GetCurrentPattern<IMySuperTransformPattern>(TransformPattern.Pattern).Resize(width, height);
+		    } catch (Exception) {
+		        // 
+		        // throw;
+		    }
+		    return element;
+		}
+		
+		public static IUiElement PerformRotate(this IUiElement element, double degrees)
+		{
+		    try {
+		        element.GetCurrentPattern<IMySuperTransformPattern>(TransformPattern.Pattern).Rotate(degrees);
+		    } catch (Exception) {
+		        // 
+		        // throw;
+		    }
+		    return element;
+		}
+		
+		public static bool GetCanMove(this IUiElement element)
+		{
+		    try {
+		        return element.GetCurrentPattern<IMySuperTransformPattern>(TransformPattern.Pattern).Current.CanMove;
+		    } catch (Exception) {
+		        // 
+		        // throw;
+		    }
+		    return false;
+		}
+		
+		public static bool GetCanResize(this IUiElement element)
+		{
+		    try {
+		        return element.GetCurrentPattern<IMySuperTransformPattern>(TransformPattern.Pattern).Current.CanResize;
+		    } catch (Exception) {
+		        // 
+		        // throw;
+		    }
+		    return false;
+		}
+		
+		public static bool GetCanRotate(this IUiElement element)
+		{
+		    try {
+		        return element.GetCurrentPattern<IMySuperTransformPattern>(TransformPattern.Pattern).Current.CanRotate;
+		    } catch (Exception) {
+		        // 
+		        // throw;
+		    }
+		    return false;
+		}
+        #endregion TransformPattern
+        #region ValuePattern
+        public static IUiElement PerformSetValueValuePattern(this IUiElement element, string value)
+        {
+            try {
+                element.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern).SetValue(value);
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return element;
+        }
+        
+        public static string PerformGetValueValuePattern(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern).Current.Value;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return string.Empty;
+        }
+        
+        public static bool GetIsReadOnlyValuePattern(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern).Current.IsReadOnly;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return false;
+        }
+        #endregion ValuePattern
+        #region WindowPattern
+        public static IUiElement PerformSetWindowVisualState(this IUiElement element, WindowVisualState state)
+        {
+            try {
+                element.GetCurrentPattern<IMySuperWindowPattern>(WindowPattern.Pattern).SetWindowVisualState(state);
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return element;
+        }
+        
+		public static IUiElement PerformClose(this IUiElement element)
+		{
+		    try {
+		        element.GetCurrentPattern<IMySuperWindowPattern>(WindowPattern.Pattern).Close();
+		    } catch (Exception) {
+		        // 
+		        // throw;
+		    }
+		    return element;
+		}
+		
+		public static bool PerformWaitForInputIdle(this IUiElement element, int milliseconds)
+		{
+		    try {
+		        return element.GetCurrentPattern<IMySuperWindowPattern>(WindowPattern.Pattern).WaitForInputIdle(milliseconds);
+		    } catch (Exception) {
+		        // 
+		        // throw;
+		    }
+		    return false;
+		}
+		
+		public static bool GetCanMaximize(this IUiElement element)
+		{
+		    try {
+		        return element.GetCurrentPattern<IMySuperWindowPattern>(WindowPattern.Pattern).Current.CanMaximize;
+		    } catch (Exception) {
+		        // 
+		        // throw;
+		    }
+		    return false;
+		}
+		
+		public static bool GetCanMinimize(this IUiElement element)
+		{
+		    try {
+		        return element.GetCurrentPattern<IMySuperWindowPattern>(WindowPattern.Pattern).Current.CanMinimize;
+		    } catch (Exception) {
+		        // 
+		        // throw;
+		    }
+		    return false;
+		}
+		
+		public static bool GetIsModal(this IUiElement element)
+		{
+		    try {
+		        return element.GetCurrentPattern<IMySuperWindowPattern>(WindowPattern.Pattern).Current.IsModal;
+		    } catch (Exception) {
+		        // 
+		        // throw;
+		    }
+		    return false;
+		}
+		
+		public static bool GetIsTopmost(this IUiElement element)
+		{
+		    try {
+		        return element.GetCurrentPattern<IMySuperWindowPattern>(WindowPattern.Pattern).Current.IsTopmost;
+		    } catch (Exception) {
+		        // 
+		        // throw;
+		    }
+		    return false;
+		}
+		
+		public static WindowInteractionState GetWindowInteractionState(this IUiElement element)
+		{
+		    try {
+		        return element.GetCurrentPattern<IMySuperWindowPattern>(WindowPattern.Pattern).Current.WindowInteractionState;
+		    } catch (Exception) {
+		        // 
+		        // throw;
+		    }
+		    return WindowInteractionState.NotResponding;
+		}
+		
+		public static WindowVisualState GetWindowVisualState(this IUiElement element)
+		{
+		    try {
+		        return element.GetCurrentPattern<IMySuperWindowPattern>(WindowPattern.Pattern).Current.WindowVisualState;
+		    } catch (Exception) {
+		        // 
+		        // throw;
+		    }
+		    return WindowVisualState.Normal;
+		}
+        #endregion WindowPattern
+        #endregion Patterns
+    }
+}

@@ -11,8 +11,8 @@ namespace UIAutomation
 {
 	extern alias UIANET;
 	using System.Windows.Automation;
-	
-	public interface IMySuperScrollPattern : IBasePattern
+
+	public interface IMySuperScrollPattern : IBasePattern // , ISupportsScrollPattern
 	{
 		void SetScrollPercent(double horizontalPercent, double verticalPercent);
 		void Scroll(ScrollAmount horizontalAmount, ScrollAmount verticalAmount);
@@ -22,7 +22,7 @@ namespace UIAutomation
 		// ScrollPattern.ScrollPatternInformation Current { get; }
 		IScrollPatternInformation Cached { get; }
 		IScrollPatternInformation Current { get; }
-		
+
 //		IUiElement ParentElement { get; set; }
 	}
 }

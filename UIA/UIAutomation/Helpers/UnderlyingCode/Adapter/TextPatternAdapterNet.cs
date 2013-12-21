@@ -105,14 +105,15 @@ namespace UIAutomation
 			// return TextPatternRange.Wrap(hTextRanges, this);
 			return this._textPattern.GetVisibleRanges();
 		}
-		public TextPatternRange RangeFromChild(AutomationElement childElement)
+		// public TextPatternRange RangeFromChild(AutomationElement childElement)
+		public TextPatternRange RangeFromChild(IUiElement childElement)
 		{
 //			if (childElement == null) {
 //				throw new ArgumentNullException("childElement");
 //			}
 //			SafeTextRangeHandle hTextRange = UiaCoreApi.TextPattern_RangeFromChild(this._hPattern, childElement.RawNode);
 //			return TextPatternRange.Wrap(hTextRange, this);
-			return this._textPattern.RangeFromChild(childElement);
+		    return this._textPattern.RangeFromChild(childElement.GetSourceElement());
 		}
 		public TextPatternRange RangeFromPoint(Point screenLocation)
 		{

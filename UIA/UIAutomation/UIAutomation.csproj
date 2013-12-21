@@ -322,6 +322,7 @@
     <Compile Include="Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethods.cs" />
     <Compile Include="Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethodsCollection.cs" />
     <Compile Include="Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethodsElement.cs" />
+    <Compile Include="Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethodsElementPatterns.cs" />
     <Compile Include="Helpers\UnderlyingCode\Ninject\ObjectLifecycleModule.cs" />
     <Compile Include="Helpers\UnderlyingCode\Ninject\AutomationFactory.cs" />
     <Compile Include="Helpers\UnderlyingCode\Ninject\TemporaryFactory.cs" />
@@ -406,9 +407,19 @@
     <Compile Include="Interface\ISelectionItemPatternInformationAdapter.cs" />
     <Compile Include="Interface\ISelectionPatternAdapter.cs" />
     <Compile Include="Interface\ISelectionPatternInformationAdapter.cs" />
+    <Compile Include="Interface\ISupportsDockPattern.cs" />
+    <Compile Include="Interface\ISupportsExpandCollapsePattern.cs" />
+    <Compile Include="Interface\ISupportsGridItemPattern.cs" />
+    <Compile Include="Interface\ISupportsGridPattern.cs" />
     <Compile Include="Interface\ISupportsInvokePattern.cs" />
+    <Compile Include="Interface\ISupportsRangeValuePattern.cs" />
+    <Compile Include="Interface\ISupportsScrollItemPattern.cs" />
+    <Compile Include="Interface\ISupportsScrollPattern.cs" />
     <Compile Include="Interface\ISupportsSelectionItemPattern.cs" />
     <Compile Include="Interface\ISupportsSelectionPattern.cs" />
+    <Compile Include="Interface\ISupportsTableItemPattern.cs" />
+    <Compile Include="Interface\ISupportsTablePattern.cs" />
+    <Compile Include="Interface\ISupportsTextPattern.cs" />
     <Compile Include="Interface\ISupportsTogglePattern.cs" />
     <Compile Include="Interface\ISupportsTransformPattern.cs" />
     <Compile Include="Interface\ISupportsValuePattern.cs" />

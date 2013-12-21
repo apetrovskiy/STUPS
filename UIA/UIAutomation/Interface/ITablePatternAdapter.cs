@@ -11,8 +11,8 @@ namespace UIAutomation
 {
 	extern alias UIANET;
 	using System.Windows.Automation;
-	
-	public interface IMySuperTablePattern : IBasePattern
+
+	public interface IMySuperTablePattern : IBasePattern // , ISupportsTablePattern
 	{
 		// TablePattern.TablePatternInformation Cached { get; }
 		ITablePatternInformation Cached { get; }

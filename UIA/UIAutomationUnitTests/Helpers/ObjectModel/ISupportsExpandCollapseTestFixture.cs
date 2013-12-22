@@ -16,6 +16,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
     /// <summary>
     /// Description of ISupportsExpandCollapseTestFixture.
     /// </summary>
+    [TestFixture]
     public class ISupportsExpandCollapseTestFixture
     {
         [SetUp]

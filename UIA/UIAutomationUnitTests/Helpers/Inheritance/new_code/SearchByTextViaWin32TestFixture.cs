@@ -21,6 +21,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
     /// <summary>
     /// Description of SearchByTextViaWin32TestFixture.
     /// </summary>
+    [TestFixture]
     public class SearchByTextViaWin32TestFixture
     {
         [SetUp]

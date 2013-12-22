@@ -16,7 +16,8 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
     /// <summary>
     /// Description of ISupportsScrollPatternTestFixture.
     /// </summary>
-    [Ignore]
+    // [Ignore]
+    [TestFixture]
     public class ISupportsScrollPatternTestFixture
     {
         [SetUp]

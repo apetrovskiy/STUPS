@@ -213,7 +213,7 @@ namespace UIAutomation
                         #region SelectionPattern
                         case "GetSelection":
                             invocation.ReturnValue =
-                                (invocation.Proxy as IUiElement).PerformGetSelection();
+                                (invocation.Proxy as IUiElement).PerformGetSelectionSelectionPattern();
                             break;
                         case "get_CanSelectMultiple":
                             invocation.ReturnValue =

@@ -16,7 +16,8 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
     /// <summary>
     /// Description of ISupportsGridItemPatternTestFixture.
     /// </summary>
-    [Ignore]
+    // [Ignore]
+    [TestFixture]
     public class ISupportsGridItemPatternTestFixture
     {
         [SetUp]

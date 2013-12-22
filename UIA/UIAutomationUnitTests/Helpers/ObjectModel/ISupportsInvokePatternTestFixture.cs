@@ -16,7 +16,8 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
     /// <summary>
     /// Description of ISupportsInvokePatternTestFixture.
     /// </summary>
-    [Ignore]
+    // [Ignore]
+    [TestFixture]
     public class ISupportsInvokePatternTestFixture
     {
         [SetUp]

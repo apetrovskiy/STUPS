@@ -15,6 +15,8 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
     /// <summary>
     /// Description of AddUiaWizardStepCommandTestFixture.
     /// </summary>
+    [TestFixture]
+    // [Ignore("temporarily")]
     public class AddUiaWizardStepCommandTestFixture
     {
         [SetUp]

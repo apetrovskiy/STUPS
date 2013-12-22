@@ -14,6 +14,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
     /// <summary>
     /// Description of GetUiaWindowCommandTestFixture.
     /// </summary>
+    [TestFixture]
     public class GetUiaWindowCommandTestFixture
     {
         [SetUp]

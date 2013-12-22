@@ -16,7 +16,8 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
     /// <summary>
     /// Description of ISupportsTablePatternTestFixture.
     /// </summary>
-    [Ignore]
+    // [Ignore]
+    [TestFixture]
     public class ISupportsTablePatternTestFixture
     {
         [SetUp]
@@ -61,6 +62,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         }
         
         [Test]
+        [Ignore]
         public void Table_GetColumnHeaders()
         {
             // Arrange
@@ -74,6 +76,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         }
         
         [Test]
+        [Ignore]
         public void Table_GetRowHeaders()
         {
             // Arrange

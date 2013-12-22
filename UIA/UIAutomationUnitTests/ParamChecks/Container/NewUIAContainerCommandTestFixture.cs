@@ -9,9 +9,12 @@
 
 namespace UIAutomationUnitTests.ParamChecks.Container
 {
+    using MbUnit.Framework;
+    
     /// <summary>
     /// Description of NewUiaContainerCommandTestFixture.
     /// </summary>
+    [TestFixture]
     public class NewUiaContainerCommandTestFixture
     {
     }

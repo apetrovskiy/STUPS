@@ -21,6 +21,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
     /// <summary>
     /// Description of SearchByWildcardViaWin32TestFixture.
     /// </summary>
+    [TestFixture]
     public class SearchByWildcardViaWin32TestFixture
     {
         [SetUp]

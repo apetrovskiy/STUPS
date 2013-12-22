@@ -464,7 +464,7 @@ namespace UIAutomation
         }
         #endregion SelectionItemPattern
         #region SelectionPattern
-        public static IUiElement[] PerformGetSelection(this IUiElement element)
+        public static IUiElement[] PerformGetSelectionSelectionPattern(this IUiElement element)
         {
             try {
                 return element.GetCurrentPattern<IMySuperSelectionPattern>(SelectionPattern.Pattern).Current.GetSelection();

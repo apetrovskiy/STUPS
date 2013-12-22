@@ -9,9 +9,12 @@
 
 namespace UIAutomationUnitTests.ParamChecks.Pattern
 {
+    using MbUnit.Framework;
+    
     /// <summary>
     /// Description of InvokeUiaToggleStateSetCommandTestFixture.
     /// </summary>
+    [TestFixture]
     public class InvokeUiaToggleStateSetCommandTestFixture
     {
     }

@@ -9,6 +9,9 @@
 
 namespace UIAutomationUnitTests.Helpers.ObjectModel
 {
+    using System;
+    
+    
     using System.Windows.Automation;
     using UIAutomation;
     using MbUnit.Framework;
@@ -16,6 +19,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
     /// <summary>
     /// Description of ISupportsDockPatternTestFixture.
     /// </summary>
+    [TestFixture]
     public class ISupportsDockPatternTestFixture
     {
         [SetUp]
@@ -32,9 +36,13 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         [Test]
         public void Dock_ImplementsCommonPattern()
         {
+Console.WriteLine("Dock_ImplementsCommonPattern: 0001");
+            
             ISupportsInvokePattern element =
                 FakeFactory.GetAutomaitonElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsInvokePattern;
+            
+Console.WriteLine("Dock_ImplementsCommonPattern: 0002");
             
             Assert.IsNotNull(element as ISupportsInvokePattern);
         }

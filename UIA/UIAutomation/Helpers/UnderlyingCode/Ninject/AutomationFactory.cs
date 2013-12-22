@@ -84,6 +84,10 @@ namespace UIAutomation
 		        _ninjectModule = new ObjectLifecycleModule();
 		        _kernel = new StandardKernel(_ninjectModule);
 		        
+		        //
+		        InitCommonObjects();
+		        //
+		        
 		        // 20131221
 		        _useDynamicProxy = true;
 		    }
@@ -108,49 +112,37 @@ namespace UIAutomation
             Type[] supportedAdditionalInterfaces =
                 UiaHelper.GetSupportedInterfaces(element);
             
-//Console.WriteLine("ConvertToProxiedElement: 0001");
-//if (null == supportedAdditionalInterfaces) {
-//    Console.WriteLine("ConvertToProxiedElement: 0001.1");
-//    Console.WriteLine("null == supportedAdditionalInterfaces");
-//} else {
-//    Console.WriteLine("ConvertToProxiedElement: 0001.2");
-//    Console.WriteLine(supportedAdditionalInterfaces.Length.ToString());
-//}
-//if (null == element) {
-//    Console.WriteLine("ConvertToProxiedElement: 0001.3");
-//    Console.WriteLine("null == element");
-//}
+Console.WriteLine("proxy 0001");
             
             UiElement proxiedElement = null;
             try {
+                
+Console.WriteLine("proxy 0002");
+                
                 if (null != supportedAdditionalInterfaces && 0 < supportedAdditionalInterfaces.Length) {
-                    
-    //Console.WriteLine("ConvertToProxiedElement: 0002");
-                    
+    
+Console.WriteLine("proxy 0003");
             		proxiedElement =
             		    (UiElement)_generator.CreateClassProxy(
             		        typeof(UiElement),
             		        supportedAdditionalInterfaces,
                             new MethodSelectorAspect(), new LoggingAspect(), new ErrorHandlingAspect(), new InputValidationAspect(), new ParameterValidationAspect());
-            		
-    //Console.WriteLine("ConvertToProxiedElement: 0003");
+Console.WriteLine("proxy 0004");
             		
                 } else {
-                    
-    //Console.WriteLine("ConvertToProxiedElement: 0004");
-                    
+Console.WriteLine("proxy 0005");
             		proxiedElement =
             		    (UiElement)_generator.CreateClassProxy(
             		        typeof(UiElement),
                             new MethodSelectorAspect(), new LoggingAspect(), new ErrorHandlingAspect(), new InputValidationAspect(), new ParameterValidationAspect());
-            		
-    //Console.WriteLine("ConvertToProxiedElement: 0005");
-            		
+Console.WriteLine("proxy 0006");
                 }
             }
             catch (Exception eConvertation) {
-                //Console.WriteLine(eConvertation.Message);
+Console.WriteLine("proxy 0007");
+                Console.WriteLine(eConvertation.Message);
             }
+Console.WriteLine("proxy 0008");
     		return proxiedElement;
         }
         #endregion Castle DynamicProxy
@@ -167,16 +159,23 @@ namespace UIAutomation
     			IUiElement adapterElement = Kernel.Get<IUiElement>("AutomationElement.NET", singleElement);
     			
     			if (_useDynamicProxy) {
+Console.WriteLine("use proxy");
         			IUiElement proxiedTypedUiElement =
         			    ConvertToProxiedElement(
         			        adapterElement);
         			
+Console.WriteLine("use proxy 2");
+        			
         			proxiedTypedUiElement.SetSourceElement<AutomationElement>(element);
+        			
+Console.WriteLine("use proxy 3");
         			
         			return (IUiElement)proxiedTypedUiElement; // as IUiElement;
     			} else {
                     
     			    adapterElement.SetSourceElement<AutomationElement>(element);
+    			    
+Console.WriteLine("don't use proxy");
     			    
     			    return adapterElement;
     			}
@@ -185,8 +184,8 @@ namespace UIAutomation
 			catch (Exception eFailedToIssueElement) {
 			    // TODO
 			    // write error to error object!!!
-			    //Console.WriteLine("Element");
-			    //Console.WriteLine(eFailedToIssueElement.Message);
+			    Console.WriteLine("Element 01");
+			    Console.WriteLine(eFailedToIssueElement.Message);
 			    return null;
 			}
 		}
@@ -222,8 +221,8 @@ namespace UIAutomation
 			catch (Exception eFailedToIssueElement) {
 			    // TODO
 			    // write error to error object!!!
-			    //Console.WriteLine("Element");
-			    //Console.WriteLine(eFailedToIssueElement.Message);
+			    Console.WriteLine("Element 02");
+			    Console.WriteLine(eFailedToIssueElement.Message);
 			    return null;
 			}
 		}
@@ -247,8 +246,8 @@ namespace UIAutomation
 			catch (Exception eFailedToIssueElement) {
 			    // TODO
 			    // write error to error object!!!
-			    //Console.WriteLine("Element");
-			    //Console.WriteLine(eFailedToIssueElement.Message);
+			    Console.WriteLine("Element 03");
+			    Console.WriteLine(eFailedToIssueElement.Message);
 			    return null;
 			}
 		}
@@ -263,8 +262,8 @@ namespace UIAutomation
 			catch (Exception eFailedToIssueInformation) {
 			    // TODO
 			    // write error to error object!!!
-                //Console.WriteLine("Information");
-			    //Console.WriteLine(eFailedToIssueInformation.Message);
+                Console.WriteLine("Information");
+			    Console.WriteLine(eFailedToIssueInformation.Message);
 			    return null;
 			}
 		}
@@ -284,8 +283,8 @@ namespace UIAutomation
 			catch (Exception eFailedToIssueCollection) {
 			    // TODO
 			    // write error to error object!!!
-			    // Console.WriteLine("Collection");
-			    // Console.WriteLine(eFailedToIssueCollection.Message);
+			    Console.WriteLine("Collection 01");
+			    Console.WriteLine(eFailedToIssueCollection.Message);
 			    return null;
 			}
 		}
@@ -303,8 +302,8 @@ namespace UIAutomation
 			catch (Exception eFailedToIssueCollection) {
 			    // TODO
 			    // write error to error object!!!
-//			    Console.WriteLine("Collection");
-//			    Console.WriteLine(eFailedToIssueCollection.Message);
+			    Console.WriteLine("Collection 02");
+			    Console.WriteLine(eFailedToIssueCollection.Message);
 			    return null;
 			}
 		}
@@ -322,8 +321,8 @@ namespace UIAutomation
 			catch (Exception eFailedToIssueCollection) {
 			    // TODO
 			    // write error to error object!!!
-//			    Console.WriteLine("Collection");
-//			    Console.WriteLine(eFailedToIssueCollection.Message);
+			    Console.WriteLine("Collection 03");
+			    Console.WriteLine(eFailedToIssueCollection.Message);
 			    return null;
 			}
 		}
@@ -338,8 +337,8 @@ namespace UIAutomation
 			catch (Exception eFailedToIssueCollection) {
 			    // TODO
 			    // write error to error object!!!
-//			    Console.WriteLine("Collection");
-//			    Console.WriteLine(eFailedToIssueCollection.Message);
+			    Console.WriteLine("Collection 04");
+			    Console.WriteLine(eFailedToIssueCollection.Message);
 			    return null;
 			}
 		}

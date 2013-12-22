@@ -21,6 +21,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
     /// <summary>
     /// Description of ReturnOnlyRightElementsTestFixture.
     /// </summary>
+    [TestFixture]
     public class ReturnOnlyRightElementsTestFixture
     {
         [SetUp]

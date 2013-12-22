@@ -16,7 +16,8 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
     /// <summary>
     /// Description of ISupportsSelectionPatternTestFixture.
     /// </summary>
-    [Ignore]
+    // [Ignore]
+    [TestFixture]
     public class ISupportsSelectionPatternTestFixture
     {
         [SetUp]
@@ -61,6 +62,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         }
         
         [Test]
+        [Ignore]
         public void Selection_GetSelection()
         {
             // Arrange

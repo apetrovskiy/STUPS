@@ -9,9 +9,12 @@
 
 namespace UIAutomationUnitTests.Helpers.Inheritance
 {
+    using MbUnit.Framework;
+    
     /// <summary>
     /// Description of GetControlTestFixture.
     /// </summary>
+    [TestFixture]
     public class GetControlTestFixture
     {
     }

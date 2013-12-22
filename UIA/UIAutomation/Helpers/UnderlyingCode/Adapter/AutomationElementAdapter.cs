@@ -30,8 +30,8 @@ namespace UIAutomation
 		private AutomationElement _elementHolderNet;
 		// //private AutomationElement _elementHolderCom;
 		private IUiElement _elementHolderAdapter;
-		// internal static InnerElementTypes InnerElementType = InnerElementTypes.AutomationElementNet;
-		internal static InnerElementTypes InnerElementType { get; set; }
+		internal static InnerElementTypes InnerElementType = InnerElementTypes.AutomationElementNet;
+		// internal static InnerElementTypes InnerElementType { get; set; }
         
 		[Inject]
 		public UiElement(AutomationElement element)
@@ -62,6 +62,7 @@ namespace UIAutomation
 		    //
 			InnerElementType = InnerElementTypes.Empty;
 			// _innerElementType = InnerElementTypes.AutomationElementNet;
+			// InnerElementType = InnerElementTypes.AutomationElementNet;
 		}
 
 		public override bool Equals(object obj)
@@ -148,13 +149,13 @@ namespace UIAutomation
 //			    case InnerElementTypes.AutomationElementCom:
 //			        //
 		        // 20131208
-			    case InnerElementTypes.UiElement:
-                //     return Preferences.FromCache ? _elementHolderAdapter.GetCachedPattern(pattern) : _elementHolderAdapter.GetCurrentPattern(pattern);
-                    if (Preferences.FromCache) {
-                        return (N)AutomationFactory.GetMySuperPattern<N>(this, _elementHolderAdapter.GetCachedPattern(pattern));
-                    } else {
-                        return (N)AutomationFactory.GetMySuperPattern<N>(this, _elementHolderAdapter.GetCurrentPattern(pattern));
-                    }
+//			    case InnerElementTypes.UiElement:
+//                //     return Preferences.FromCache ? _elementHolderAdapter.GetCachedPattern(pattern) : _elementHolderAdapter.GetCurrentPattern(pattern);
+//                    if (Preferences.FromCache) {
+//                        return (N)AutomationFactory.GetMySuperPattern<N>(this, _elementHolderAdapter.GetCachedPattern(pattern));
+//                    } else {
+//                        return (N)AutomationFactory.GetMySuperPattern<N>(this, _elementHolderAdapter.GetCurrentPattern(pattern));
+//                    }
                 // default:
 			    ///    return Preferences.FromCache ? _elementHolderNet.GetCachedPattern(pattern) : _elementHolderNet.GetCurrentPattern(pattern);
                 default:
@@ -395,12 +396,15 @@ namespace UIAutomation
 		    get {
 		        switch (InnerElementType) {
 		            case InnerElementTypes.AutomationElementNet:
+Console.WriteLine("Current 001");
 		                return AutomationFactory.GetUiElementInformation(Preferences.FromCache ? _elementHolderNet.Cached : _elementHolderNet.Current);
                     //		            case InnerElementTypes.AutomationElementCom:
 //		                //
-		            case InnerElementTypes.UiElement:
-		                return Preferences.FromCache ? _elementHolderAdapter.Cached : _elementHolderAdapter.Current;
+//		            case InnerElementTypes.UiElement:
+//Console.WriteLine("Current 002");
+//		                return Preferences.FromCache ? _elementHolderAdapter.Cached : _elementHolderAdapter.Current;
                     default:
+Console.WriteLine("Current 003");		                
 		                return AutomationFactory.GetUiElementInformation(Preferences.FromCache ? _elementHolderNet.Cached : _elementHolderNet.Current);
                 }
 		    }
@@ -497,12 +501,15 @@ namespace UIAutomation
 			get {
 			    switch (InnerElementType) {
 			        case InnerElementTypes.AutomationElementNet:
+Console.WriteLine("0001");
 			            return AutomationFactory.GetUiElement(AutomationElement.RootElement);
 //			        case InnerElementTypes.AutomationElementCom:
 //			            //
-			        case InnerElementTypes.UiElement:
-			            return RootElement;
+//			        case InnerElementTypes.UiElement:
+//Console.WriteLine("0002");
+//			            return RootElement;
 			        default:
+Console.WriteLine("0003");
 			            return AutomationFactory.GetUiElement(AutomationElement.RootElement);
 			    }
 			}
@@ -563,11 +570,19 @@ namespace UIAutomation
 		    if (element is AutomationElement) {
 		        _elementHolderNet = element as AutomationElement;
 		        InnerElementType = InnerElementTypes.AutomationElementNet;
+		        
+		        // 20131222
+		        _elementHolderAdapter = null;
+		        // com
 		    }
 		    // if com
 		    if (element is IUiElement) {
 		        _elementHolderAdapter = (IUiElement)element;
 		        InnerElementType = InnerElementTypes.UiElement;
+		        
+		        // 20131222
+		        _elementHolderNet = null;
+		        // com
 		    }
 		}
 		

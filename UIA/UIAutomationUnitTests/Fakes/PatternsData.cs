@@ -11,6 +11,7 @@ namespace UIAutomationUnitTests
 {
     using System;
     using System.Windows.Automation;
+    using System.Windows.Automation.Text;
     using UIAutomation;
     
     /// <summary>
@@ -64,9 +65,16 @@ namespace UIAutomationUnitTests
         #endregion ExpandCollapsePattern
         
         #region GridItemPattern
+        public int GridItemPattern_Column { get; set; }
+        public int GridItemPattern_ColumnSpan { get; set; }
+        public IUiElement GridItemPattern_ContainingGrid { get; set; }
+        public int GridItemPattern_Row { get; set; }
+        public int GridItemPattern_RowSpan { get; set; }
         #endregion GridItemPattern
         
         #region GridPattern
+        public int GridPattern_ColumnCount { get; set; }
+        public int GridPattern_RowCount { get; set; }
         #endregion GridPattern
         
         #region RangeValuePattern
@@ -105,12 +113,22 @@ namespace UIAutomationUnitTests
         #endregion SelectionPattern
         
         #region TableItemPattern
+        public int TableItemPattern_Column { get; set; }
+        public int TableItemPattern_ColumnSpan { get; set; }
+        public IUiElement TableItemPattern_ContainingGrid { get; set; }
+        public int TableItemPattern_Row { get; set; }
+        public int TableItemPattern_RowSpan { get; set; }
         #endregion TableItemPattern
         
         #region TablePattern
+        public int TablePattern_ColumnCount { get; set; }
+        public int TablePattern_RowCount { get; set; }
+        public RowOrColumnMajor TablePattern_RowOrColumnMajor { get; set; }
         #endregion TablePattern
         
         #region TextPattern
+        public TextPatternRange TextPattern_DocumentRange { get; set; }
+        public SupportedTextSelection TextPattern_SupportedTextSelection { get; set; }
         #endregion TextPattern
         
         #region TogglePattern
@@ -118,6 +136,9 @@ namespace UIAutomationUnitTests
         #endregion TogglePattern
         
         #region TransformPattern
+        public bool TransformPattern_CanMove { get; set; }
+        public bool TransformPattern_CanResize { get; set; }
+        public bool TransformPattern_CanRotate { get; set; }
         #endregion TransformPattern
         
         #region ValuePattern

@@ -49,7 +49,7 @@ namespace UIAutomation
         //internal static System.Collections.Generic.List<object> Events { get; set; }
 public static List<object> Events { get; set; } // temporary ??
         
-        internal static RecorderForm formRecorder { get; set; }
+        internal static RecorderForm FormRecorder { get; set; }
         
         // 20131109
         //public static AutomationElement LastEventSource { get; set; }

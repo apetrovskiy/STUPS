@@ -52,20 +52,34 @@ namespace UIAutomationUnitTests
         public static IMySuperGridItemPattern GetGridItemPattern(PatternsData data)
         {
             var gridItemPattern = Substitute.For<IMySuperGridItemPattern>();
-            // dockPattern.SetDockPosition(Arg.Any<DockPosition>()).Received();
-            // gridItemPattern.Current.Column.Returns(data.g.DockPosition.Returns(data.DockPattern_DockPosition);
-            // gridItemPattern.Cached.DockPosition.Returns(data.DockPattern_DockPosition);
+            gridItemPattern.Current.Column.Returns(data.GridItemPattern_Column);
+            gridItemPattern.Current.ColumnSpan.Returns(data.GridItemPattern_ColumnSpan);
+            gridItemPattern.Current.ContainingGrid.Returns(data.GridItemPattern_ContainingGrid);
+            gridItemPattern.Current.Row.Returns(data.GridItemPattern_Row);
+            gridItemPattern.Current.RowSpan.Returns(data.GridItemPattern_RowSpan);
+            gridItemPattern.Cached.Column.Returns(data.GridItemPattern_Column);
+            gridItemPattern.Cached.ColumnSpan.Returns(data.GridItemPattern_ColumnSpan);
+            gridItemPattern.Cached.ContainingGrid.Returns(data.GridItemPattern_ContainingGrid);
+            gridItemPattern.Cached.Row.Returns(data.GridItemPattern_Row);
+            gridItemPattern.Cached.RowSpan.Returns(data.GridItemPattern_RowSpan);
             return gridItemPattern;
         }
         
         public static IMySuperGridPattern GetGridPattern(PatternsData data)
         {
-            return null;
+            var gridPattern = Substitute.For<IMySuperGridPattern>();
+            // gridPattern.GetItem(
+            gridPattern.Current.ColumnCount.Returns(data.GridPattern_ColumnCount);
+            gridPattern.Current.RowCount.Returns(data.GridPattern_RowCount);
+            gridPattern.Cached.ColumnCount.Returns(data.GridPattern_ColumnCount);
+            gridPattern.Cached.RowCount.Returns(data.GridPattern_RowCount);
+            return gridPattern;
         }
         
         public static IMySuperInvokePattern GetInvokePattern(PatternsData data)
         {
             IMySuperInvokePattern invokePattern = Substitute.For<IMySuperInvokePattern>();
+            // invokePattern.Invoke
             return invokePattern;
         }
         
@@ -147,17 +161,42 @@ namespace UIAutomationUnitTests
         
         public static IMySuperTableItemPattern GetTableItemPattern(PatternsData data)
         {
-            return null;
+            IMySuperTableItemPattern tableItemPattern = Substitute.For<IMySuperTableItemPattern>();
+            tableItemPattern.Current.Column.Returns(data.TableItemPattern_Column);
+            tableItemPattern.Current.ColumnSpan.Returns(data.TableItemPattern_ColumnSpan);
+            tableItemPattern.Current.ContainingGrid.Returns(data.TableItemPattern_ContainingGrid);
+            tableItemPattern.Current.Row.Returns(data.TableItemPattern_Row);
+            tableItemPattern.Current.RowSpan.Returns(data.TableItemPattern_RowSpan);
+            tableItemPattern.Cached.Column.Returns(data.TableItemPattern_Column);
+            tableItemPattern.Cached.ColumnSpan.Returns(data.TableItemPattern_ColumnSpan);
+            tableItemPattern.Cached.ContainingGrid.Returns(data.TableItemPattern_ContainingGrid);
+            tableItemPattern.Cached.Row.Returns(data.TableItemPattern_Row);
+            tableItemPattern.Cached.RowSpan.Returns(data.TableItemPattern_RowSpan);
+            return tableItemPattern;
         }
         
         public static IMySuperTablePattern GetTablePattern(PatternsData data)
         {
-            return null;
+            IMySuperTablePattern tablePattern = Substitute.For<IMySuperTablePattern>();
+            tablePattern.Current.ColumnCount.Returns(data.TablePattern_ColumnCount);
+            tablePattern.Current.RowCount.Returns(data.TablePattern_RowCount);
+            tablePattern.Current.RowOrColumnMajor.Returns(data.TablePattern_RowOrColumnMajor);
+            tablePattern.Cached.ColumnCount.Returns(data.TablePattern_ColumnCount);
+            tablePattern.Cached.RowCount.Returns(data.TablePattern_RowCount);
+            tablePattern.Cached.RowOrColumnMajor.Returns(data.TablePattern_RowOrColumnMajor);
+            return tablePattern;
         }
         
         public static IMySuperTextPattern GetTextPattern(PatternsData data)
         {
-            return null;
+            IMySuperTextPattern textPattern = Substitute.For<IMySuperTextPattern>();
+            // textPattern.GetSelection
+            // textPattern.GetVisibleRanges
+            // textPattern.RangeFromChild
+            // textPattern.RangeFromPoint
+            textPattern.DocumentRange.Returns(data.TextPattern_DocumentRange);
+            textPattern.SupportedTextSelection.Returns(data.TextPattern_SupportedTextSelection);
+            return textPattern;
         }
         
         public static IMySuperTogglePattern GetTogglePattern(PatternsData data)
@@ -171,7 +210,17 @@ namespace UIAutomationUnitTests
         
         public static IMySuperTransformPattern GetTransformPattern(PatternsData data)
         {
-            return null;
+            IMySuperTransformPattern transformPattern = Substitute.For<IMySuperTransformPattern>();
+            // transformPattern.Move
+            // transformPattern.Resize
+            // transformPattern.Rotate
+            transformPattern.Current.CanMove.Returns(data.TransformPattern_CanMove);
+            transformPattern.Current.CanResize.Returns(data.TransformPattern_CanResize);
+            transformPattern.Current.CanRotate.Returns(data.TransformPattern_CanRotate);
+            transformPattern.Cached.CanMove.Returns(data.TransformPattern_CanMove);
+            transformPattern.Cached.CanResize.Returns(data.TransformPattern_CanResize);
+            transformPattern.Cached.CanRotate.Returns(data.TransformPattern_CanRotate);
+            return transformPattern;
         }
         
         public static IMySuperValuePattern GetValuePattern(PatternsData data)
@@ -244,6 +293,7 @@ namespace UIAutomationUnitTests
         
         private static IUiElement GetAutomationElementForObjectModelTesting(ControlType controlType, string name, string automationId, string className, IBasePattern[] patterns, bool expected)
         {
+Console.WriteLine("GetAutomationElementForObjectModelTesting: 0001");
             var fakeElement =
                 GetAutomationElement(
                     controlType,
@@ -253,15 +303,28 @@ namespace UIAutomationUnitTests
                     patterns,
                     expected);
             
+Console.WriteLine("GetAutomationElementForObjectModelTesting: 0002");
+if (null == fakeElement) {
+    Console.WriteLine("GetAutomationElementForObjectModelTesting: 0002.1");
+    Console.WriteLine("null == fakeElement");
+}
+            
             var proxiedElement =
                 AutomationFactory.GetUiElement(
                     fakeElement);
+            
+Console.WriteLine("GetAutomationElementForObjectModelTesting: 0003");
+if (null == proxiedElement) {
+    Console.WriteLine("GetAutomationElementForObjectModelTesting: 0003.1");
+    Console.WriteLine("null == proxiedElement");
+}
             
             return proxiedElement;
         }
         
         internal static IUiElement GetAutomaitonElementForMethodsOfObjectModel(IBasePattern[] patterns)
         {
+Console.WriteLine("GetAutomaitonElementForMethodsOfObjectModel: 001");
             return GetAutomationElementForObjectModelTesting(ControlType.Button, string.Empty, string.Empty, string.Empty, patterns, true);
         }
         

@@ -27,7 +27,7 @@ namespace UIAutomation
 		// object GetCurrentPattern<N, O>(AutomationPattern pattern) where N : IBasePattern; // where O : AutomationIdentifier;
 		// object GetCurrentPattern<N>(AutomationPattern pattern) where N : IBasePattern;
 		// IBasePattern GetCurrentPattern<N>(AutomationPattern pattern) where N : IBasePattern;
-		N GetCurrentPattern<N>(AutomationPattern pattern) where N : IBasePattern;
+		TN GetCurrentPattern<TN>(AutomationPattern pattern) where TN : IBasePattern;
 		object GetCurrentPattern(AutomationPattern pattern);
 		// object GetCurrentPattern<N, O>(object pattern) where N : IBasePattern;
 		bool TryGetCurrentPattern(AutomationPattern pattern, out object patternObject);

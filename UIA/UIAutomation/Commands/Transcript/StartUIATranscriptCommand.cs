@@ -52,13 +52,13 @@ namespace UIAutomation.Commands
             if (!NoUI) {
                 Timeout = 604800000;
                 // frmRecorder formRecorder = 
-                CurrentData.formRecorder = 
+                CurrentData.FormRecorder = 
                     new RecorderForm(this);
                 // formRecorder.ShowDialog();
-                CurrentData.formRecorder.Show();
-                CurrentData.formRecorder.Hide();
+                CurrentData.FormRecorder.Show();
+                CurrentData.FormRecorder.Hide();
                 try {
-                Events.SubscribeEvent((object)CurrentData.formRecorder.btnStop,
+                Events.SubscribeEvent((object)CurrentData.FormRecorder.btnStop,
                                            "BtnStopClick",
                                            "formRecorder",
                                            new PSObject(),
@@ -66,7 +66,7 @@ namespace UIAutomation.Commands
                                            true,
                                            false);
                 } catch { }
-                CurrentData.formRecorder.ShowDialog();
+                CurrentData.FormRecorder.ShowDialog();
                 return;
             } else {
                 UiaHelper.ProcessingTranscript(this);

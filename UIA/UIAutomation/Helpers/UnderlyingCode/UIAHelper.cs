@@ -1960,8 +1960,8 @@ strInfo += " 07";
         public static ControlType
             GetControlTypeByTypeName(string controlType)
         {
-            string _controlType = controlType.ToUpper();
-            switch (_controlType)
+            string controlTypeInUpperCase = controlType.ToUpper();
+            switch (controlTypeInUpperCase)
             {
                     case "BUTTON": { return ControlType.Button; }
                     case "CALENDAR": { return ControlType.Calendar; }

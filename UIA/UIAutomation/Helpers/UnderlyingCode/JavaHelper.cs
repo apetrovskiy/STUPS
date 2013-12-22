@@ -26,7 +26,7 @@ namespace UIAutomation
         }
         
  
-        public static void JavaAPIFunc ()
+        public static void JavaApiFunc ()
         {
             Windows_run();
         }

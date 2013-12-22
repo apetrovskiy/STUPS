@@ -112,30 +112,30 @@ namespace UIAutomation
             Type[] supportedAdditionalInterfaces =
                 UiaHelper.GetSupportedInterfaces(element);
             
-Console.WriteLine("proxy 0001");
+//Console.WriteLine("ConvertToProxiedElement 0001");
             
             UiElement proxiedElement = null;
             try {
                 
-Console.WriteLine("proxy 0002");
+Console.WriteLine("ConvertToProxiedElement 0002");
                 
                 if (null != supportedAdditionalInterfaces && 0 < supportedAdditionalInterfaces.Length) {
     
-Console.WriteLine("proxy 0003");
+Console.WriteLine("ConvertToProxiedElement 0003");
             		proxiedElement =
             		    (UiElement)_generator.CreateClassProxy(
             		        typeof(UiElement),
             		        supportedAdditionalInterfaces,
                             new MethodSelectorAspect(), new LoggingAspect(), new ErrorHandlingAspect(), new InputValidationAspect(), new ParameterValidationAspect());
-Console.WriteLine("proxy 0004");
+Console.WriteLine("ConvertToProxiedElement 0004");
             		
                 } else {
-Console.WriteLine("proxy 0005");
+Console.WriteLine("ConvertToProxiedElement 0005");
             		proxiedElement =
             		    (UiElement)_generator.CreateClassProxy(
             		        typeof(UiElement),
                             new MethodSelectorAspect(), new LoggingAspect(), new ErrorHandlingAspect(), new InputValidationAspect(), new ParameterValidationAspect());
-Console.WriteLine("proxy 0006");
+Console.WriteLine("ConvertToProxiedElement 0006");
                 }
             }
             catch (Exception eConvertation) {
@@ -159,23 +159,23 @@ Console.WriteLine("proxy 0008");
     			IUiElement adapterElement = Kernel.Get<IUiElement>("AutomationElement.NET", singleElement);
     			
     			if (_useDynamicProxy) {
-Console.WriteLine("use proxy");
+Console.WriteLine("GetUiElement use proxy 1");
         			IUiElement proxiedTypedUiElement =
         			    ConvertToProxiedElement(
         			        adapterElement);
         			
-Console.WriteLine("use proxy 2");
+Console.WriteLine("GetUiElement use proxy 2");
         			
         			proxiedTypedUiElement.SetSourceElement<AutomationElement>(element);
         			
-Console.WriteLine("use proxy 3");
+Console.WriteLine("GetUiElement use proxy 3");
         			
         			return (IUiElement)proxiedTypedUiElement; // as IUiElement;
     			} else {
                     
     			    adapterElement.SetSourceElement<AutomationElement>(element);
     			    
-Console.WriteLine("don't use proxy");
+Console.WriteLine("GetUiElement don't use proxy");
     			    
     			    return adapterElement;
     			}

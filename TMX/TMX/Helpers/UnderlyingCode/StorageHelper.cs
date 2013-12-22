@@ -87,7 +87,7 @@ Console.WriteLine("Fluently != null");
 //    			    .ExposeConfiguration(CreateSchema)
 //    			    .BuildConfiguration();
     			
-Console.WriteLine("00001");
+Console.WriteLine("storage 00001");
     			
     			cmdlet.WriteVerbose("creating session factory...");
     			

@@ -29,15 +29,21 @@ namespace UIAutomation
 	{
 		private AutomationElement _elementHolderNet;
 		// //private AutomationElement _elementHolderCom;
+		// private readonly IUiElement _elementHolderAdapter;
 		private IUiElement _elementHolderAdapter;
-		internal static InnerElementTypes InnerElementType = InnerElementTypes.AutomationElementNet;
-		// internal static InnerElementTypes InnerElementType { get; set; }
+		private static InnerElementTypes _innerElementType = InnerElementTypes.AutomationElementNet;
+		// internal static InnerElementTypes InnerElementType
+//		internal static InnerElementTypes InnerElementType
+//		{
+//		    get { return _innerElementType; }
+//		    set { _innerElementType = value; }
+//		}
         
 		[Inject]
 		public UiElement(AutomationElement element)
 		{
 			_elementHolderNet = element;
-			InnerElementType = InnerElementTypes.AutomationElementNet;
+			_innerElementType = InnerElementTypes.AutomationElementNet;
 		}
 		
 		//[Inject]
@@ -50,24 +56,24 @@ namespace UIAutomation
 		public UiElement(IUiElement element)
 		{
 			_elementHolderAdapter = element;
-			InnerElementType = InnerElementTypes.UiElement;
+			_innerElementType = InnerElementTypes.UiElement;
 		}
 		
 		[Inject]
+		// public UiElement(bool fake)
 		public UiElement()
 		{
 		    // temporary
 		    // later use here an empty proxy
 		    _elementHolderNet = AutomationElement.RootElement;
 		    //
-			InnerElementType = InnerElementTypes.Empty;
+			_innerElementType = InnerElementTypes.Empty;
 			// _innerElementType = InnerElementTypes.AutomationElementNet;
-			// InnerElementType = InnerElementTypes.AutomationElementNet;
 		}
 
 		public override bool Equals(object obj)
 		{
-			switch (InnerElementType) {
+			switch (_innerElementType) {
 			    case InnerElementTypes.AutomationElementNet:
 			        return _elementHolderNet.Equals(obj);
 //			    case InnerElementTypes.AutomationElementCom:
@@ -81,7 +87,7 @@ namespace UIAutomation
 
 		public override int GetHashCode()
 		{
-			switch (InnerElementType) {
+			switch (_innerElementType) {
 			    case InnerElementTypes.AutomationElementNet:
 			        return _elementHolderNet.GetHashCode();
 //			    case InnerElementTypes.AutomationElementCom:
@@ -95,7 +101,7 @@ namespace UIAutomation
 
 		public virtual int[] GetRuntimeId()
 		{
-			switch (InnerElementType) {
+			switch (_innerElementType) {
 			    case InnerElementTypes.AutomationElementNet:
 			        return _elementHolderNet.GetRuntimeId();
 //			    case InnerElementTypes.AutomationElementCom:
@@ -109,11 +115,11 @@ namespace UIAutomation
 
 		public virtual object GetCurrentPropertyValue(AutomationProperty property)
 		{
-			switch (InnerElementType) {
+			switch (_innerElementType) {
 			    case InnerElementTypes.AutomationElementNet:
 			        return Preferences.FromCache ? _elementHolderNet.GetCachedPropertyValue(property) : _elementHolderNet.GetCurrentPropertyValue(property);
-                // case InnerElementTypes.AutomationElementCom:
-			        // 
+                //			    case InnerElementTypes.AutomationElementCom:
+//			        //
 			    case InnerElementTypes.UiElement:
 			        return Preferences.FromCache ? _elementHolderAdapter.GetCachedPropertyValue(property) : _elementHolderAdapter.GetCurrentPropertyValue(property);
                 default:
@@ -123,7 +129,7 @@ namespace UIAutomation
 
 		public virtual object GetCurrentPropertyValue(AutomationProperty property, bool ignoreDefaultValue)
 		{
-			switch (InnerElementType) {
+			switch (_innerElementType) {
 			    case InnerElementTypes.AutomationElementNet:
 			        return Preferences.FromCache ? _elementHolderNet.GetCachedPropertyValue(property, ignoreDefaultValue) : _elementHolderNet.GetCurrentPropertyValue(property, ignoreDefaultValue);
                 //			    case InnerElementTypes.AutomationElementCom:
@@ -139,7 +145,7 @@ namespace UIAutomation
 		    where N : IBasePattern
 		{
 		    
-			switch (InnerElementType) {
+			switch (_innerElementType) {
 			    case InnerElementTypes.AutomationElementNet:
 			        if (Preferences.FromCache) {
                         return (N)AutomationFactory.GetMySuperPattern<N>(this, _elementHolderNet.GetCachedPattern(pattern));
@@ -149,13 +155,8 @@ namespace UIAutomation
 //			    case InnerElementTypes.AutomationElementCom:
 //			        //
 		        // 20131208
-//			    case InnerElementTypes.UiElement:
-//                //     return Preferences.FromCache ? _elementHolderAdapter.GetCachedPattern(pattern) : _elementHolderAdapter.GetCurrentPattern(pattern);
-//                    if (Preferences.FromCache) {
-//                        return (N)AutomationFactory.GetMySuperPattern<N>(this, _elementHolderAdapter.GetCachedPattern(pattern));
-//                    } else {
-//                        return (N)AutomationFactory.GetMySuperPattern<N>(this, _elementHolderAdapter.GetCurrentPattern(pattern));
-//                    }
+			    // case InnerElementTypes.UiElement:
+			    //     return Preferences.FromCache ? _elementHolderAdapter.GetCachedPattern(pattern) : _elementHolderAdapter.GetCurrentPattern(pattern);
                 // default:
 			    ///    return Preferences.FromCache ? _elementHolderNet.GetCachedPattern(pattern) : _elementHolderNet.GetCurrentPattern(pattern);
                 default:
@@ -166,18 +167,19 @@ namespace UIAutomation
 			        }
             }
 		    
-		    // return default(N);
+		    return default(N);
 		}
 		
+		// internal virtual object GetCurrentPatternLegacy(AutomationPattern pattern)
 		public virtual object GetCurrentPattern(AutomationPattern pattern)
 		{
-			switch (InnerElementType) {
+			switch (_innerElementType) {
 			    case InnerElementTypes.AutomationElementNet:
 			        return _elementHolderNet.GetCurrentPattern(pattern);
 //			    case InnerElementTypes.AutomationElementCom:
 //			        //
-			    case InnerElementTypes.UiElement:
-			        return _elementHolderAdapter.GetCurrentPattern(pattern);
+			    // case InnerElementTypes.UiElement:
+			    //     return _elementHolderAdapter.GetCurrentPattern(pattern);
 			    default:
 			        return _elementHolderNet.GetCurrentPattern(pattern);
 			}
@@ -185,10 +187,10 @@ namespace UIAutomation
 
 		public virtual bool TryGetCurrentPattern(AutomationPattern pattern, out object patternObject)
 		{
-			switch (InnerElementType) {
+			switch (_innerElementType) {
 			    case InnerElementTypes.AutomationElementNet:
 			        return Preferences.FromCache ? _elementHolderNet.TryGetCachedPattern(pattern, out patternObject) : _elementHolderNet.TryGetCurrentPattern(pattern, out patternObject);
-//			    case InnerElementTypes.AutomationElementCom:
+                //			    case InnerElementTypes.AutomationElementCom:
 //			        //
 			    case InnerElementTypes.UiElement:
 			        return Preferences.FromCache ? _elementHolderAdapter.TryGetCachedPattern(pattern, out patternObject) : _elementHolderAdapter.TryGetCurrentPattern(pattern, out patternObject);
@@ -199,7 +201,7 @@ namespace UIAutomation
 
 		public virtual object GetCachedPropertyValue(AutomationProperty property)
 		{
-			switch (InnerElementType) {
+			switch (_innerElementType) {
 			    case InnerElementTypes.AutomationElementNet:
 			        return _elementHolderNet.GetCachedPropertyValue(property);
 //			    case InnerElementTypes.AutomationElementCom:
@@ -213,7 +215,7 @@ namespace UIAutomation
 
 		public virtual object GetCachedPropertyValue(AutomationProperty property, bool ignoreDefaultValue)
 		{
-			switch (InnerElementType) {
+			switch (_innerElementType) {
 			    case InnerElementTypes.AutomationElementNet:
 			        return _elementHolderNet.GetCachedPropertyValue(property, ignoreDefaultValue);
 //			    case InnerElementTypes.AutomationElementCom:
@@ -227,7 +229,7 @@ namespace UIAutomation
 
 		public virtual object GetCachedPattern(AutomationPattern pattern)
 		{
-			switch (InnerElementType) {
+			switch (_innerElementType) {
 			    case InnerElementTypes.AutomationElementNet:
 			        return _elementHolderNet.GetCachedPattern(pattern);
 //			    case InnerElementTypes.AutomationElementCom:
@@ -241,7 +243,7 @@ namespace UIAutomation
 
 		public virtual bool TryGetCachedPattern(AutomationPattern pattern, out object patternObject)
 		{
-			switch (InnerElementType) {
+			switch (_innerElementType) {
 			    case InnerElementTypes.AutomationElementNet:
 			        return _elementHolderNet.TryGetCachedPattern(pattern, out patternObject);
 //			    case InnerElementTypes.AutomationElementCom:
@@ -255,7 +257,7 @@ namespace UIAutomation
 
 		public virtual AutomationElement GetUpdatedCache(CacheRequest request)
 		{
-			switch (InnerElementType) {
+			switch (_innerElementType) {
 			    case InnerElementTypes.AutomationElementNet:
 			        return _elementHolderNet.GetUpdatedCache(request);
 //			    case InnerElementTypes.AutomationElementCom:
@@ -273,7 +275,7 @@ namespace UIAutomation
 		public virtual IUiElement FindFirst(TreeScope scope, UIANET::System.Windows.Automation.Condition condition)
 		// public IUiElement FindFirst(TreeScope scope, UIANET::Condition condition)
 		{
-			switch (InnerElementType) {
+			switch (_innerElementType) {
 			    case InnerElementTypes.AutomationElementNet:
 			        return AutomationFactory.GetUiElement(_elementHolderNet.FindFirst(scope, condition));
 //			    case InnerElementTypes.AutomationElementCom:
@@ -290,7 +292,7 @@ namespace UIAutomation
 		// public IUiEltCollection FindAll(TreeScope scope, Condition condition)
 		public virtual IUiEltCollection FindAll(TreeScope scope, UIANET::System.Windows.Automation.Condition condition)
 		{
-			switch (InnerElementType) {
+			switch (_innerElementType) {
 			    case InnerElementTypes.AutomationElementNet:
 			        return AutomationFactory.GetUiEltCollection(_elementHolderNet.FindAll(scope, condition));
 //			    case InnerElementTypes.AutomationElementCom:
@@ -304,7 +306,7 @@ namespace UIAutomation
 
 		public virtual AutomationProperty[] GetSupportedProperties()
 		{
-			switch (InnerElementType) {
+			switch (_innerElementType) {
 			    case InnerElementTypes.AutomationElementNet:
 			        return _elementHolderNet.GetSupportedProperties();
 //			    case InnerElementTypes.AutomationElementCom:
@@ -320,7 +322,7 @@ namespace UIAutomation
 		// public virtual AutomationPattern[] GetSupportedPatterns()
 		public virtual IBasePattern[] GetSupportedPatterns()
 		{
-			switch (InnerElementType) {
+			switch (_innerElementType) {
 			    case InnerElementTypes.AutomationElementNet:
 		            return _elementHolderNet.GetSupportedPatterns().ConvertAutomationPatternToBasePattern(this);
 //			    case InnerElementTypes.AutomationElementCom:
@@ -334,7 +336,7 @@ namespace UIAutomation
 
 		public virtual void SetFocus()
 		{
-			switch (InnerElementType) {
+			switch (_innerElementType) {
 			    case InnerElementTypes.AutomationElementNet:
 			        _elementHolderNet.SetFocus();
 			        break;
@@ -351,7 +353,7 @@ namespace UIAutomation
 
 		public virtual bool TryGetClickablePoint(out Point pt)
 		{
-			switch (InnerElementType) {
+			switch (_innerElementType) {
 			    case InnerElementTypes.AutomationElementNet:
 			        return _elementHolderNet.TryGetClickablePoint(out pt);
 //			    case InnerElementTypes.AutomationElementCom:
@@ -365,7 +367,7 @@ namespace UIAutomation
 
 		public virtual Point GetClickablePoint()
 		{
-			switch (InnerElementType) {
+			switch (_innerElementType) {
 			    case InnerElementTypes.AutomationElementNet:
 			        return _elementHolderNet.GetClickablePoint();
 //			    case InnerElementTypes.AutomationElementCom:
@@ -379,7 +381,7 @@ namespace UIAutomation
 
 		public virtual IUiElementInformation Cached {
 			get {
-			    switch (InnerElementType) {
+			    switch (_innerElementType) {
 			        case InnerElementTypes.AutomationElementNet:
 			            return AutomationFactory.GetUiElementInformation(_elementHolderNet.Cached);
 //			        case /InnerElementTypes.AutomationElementCom:
@@ -394,17 +396,14 @@ namespace UIAutomation
 
 		public virtual IUiElementInformation Current {
 		    get {
-		        switch (InnerElementType) {
+		        switch (_innerElementType) {
 		            case InnerElementTypes.AutomationElementNet:
-Console.WriteLine("Current 001");
 		                return AutomationFactory.GetUiElementInformation(Preferences.FromCache ? _elementHolderNet.Cached : _elementHolderNet.Current);
                     //		            case InnerElementTypes.AutomationElementCom:
 //		                //
-//		            case InnerElementTypes.UiElement:
-//Console.WriteLine("Current 002");
-//		                return Preferences.FromCache ? _elementHolderAdapter.Cached : _elementHolderAdapter.Current;
+		            case InnerElementTypes.UiElement:
+		                return Preferences.FromCache ? _elementHolderAdapter.Cached : _elementHolderAdapter.Current;
                     default:
-Console.WriteLine("Current 003");		                
 		                return AutomationFactory.GetUiElementInformation(Preferences.FromCache ? _elementHolderNet.Cached : _elementHolderNet.Current);
                 }
 		    }
@@ -412,7 +411,7 @@ Console.WriteLine("Current 003");
 
 		public virtual IUiElement CachedParent {
 			get {
-			    switch (InnerElementType) {
+			    switch (_innerElementType) {
 			        case InnerElementTypes.AutomationElementNet:
 			            return AutomationFactory.GetUiElement(_elementHolderNet.CachedParent);
 //			        case InnerElementTypes.AutomationElementCom:
@@ -427,7 +426,7 @@ Console.WriteLine("Current 003");
 
 		public virtual IUiEltCollection CachedChildren {
 			get {
-			    switch (InnerElementType) {
+			    switch (_innerElementType) {
 			        case InnerElementTypes.AutomationElementNet:
 			            return AutomationFactory.GetUiEltCollection(_elementHolderNet.CachedChildren);
 //			        case /InnerElementTypes.AutomationElementCom:
@@ -499,17 +498,14 @@ Console.WriteLine("Current 003");
 		
 		public static IUiElement RootElement {
 			get {
-			    switch (InnerElementType) {
+			    switch (_innerElementType) {
 			        case InnerElementTypes.AutomationElementNet:
-Console.WriteLine("0001");
 			            return AutomationFactory.GetUiElement(AutomationElement.RootElement);
 //			        case InnerElementTypes.AutomationElementCom:
 //			            //
-//			        case InnerElementTypes.UiElement:
-//Console.WriteLine("0002");
-//			            return RootElement;
+			        case InnerElementTypes.UiElement:
+			            return RootElement;
 			        default:
-Console.WriteLine("0003");
 			            return AutomationFactory.GetUiElement(AutomationElement.RootElement);
 			    }
 			}
@@ -517,7 +513,7 @@ Console.WriteLine("0003");
 		
 		public static IUiElement FocusedElement {
 		    get {
-		        switch (InnerElementType) {
+		        switch (_innerElementType) {
 		            case InnerElementTypes.AutomationElementNet:
 		                return AutomationFactory.GetUiElement(AutomationElement.FocusedElement);
 //		            case InnerElementTypes.AutomationElementCom:
@@ -532,7 +528,7 @@ Console.WriteLine("0003");
 		
 		public static IUiElement FromPoint(Point pt)
 		{
-		    switch (InnerElementType) {
+		    switch (_innerElementType) {
 		        case InnerElementTypes.AutomationElementNet:
 		            return AutomationFactory.GetUiElement(AutomationElement.FromPoint(pt));
 //		        case InnerElementTypes.AutomationElementCom:
@@ -546,7 +542,7 @@ Console.WriteLine("0003");
 		
 		public static IUiElement FromHandle(IntPtr controlHandle)
 		{
-		    switch (InnerElementType) {
+		    switch (_innerElementType) {
 		        case InnerElementTypes.AutomationElementNet:
 		            return AutomationFactory.GetUiElement(AutomationElement.FromHandle(controlHandle));
 //		        case InnerElementTypes.AutomationElementCom:
@@ -569,20 +565,12 @@ Console.WriteLine("0003");
 		{
 		    if (element is AutomationElement) {
 		        _elementHolderNet = element as AutomationElement;
-		        InnerElementType = InnerElementTypes.AutomationElementNet;
-		        
-		        // 20131222
-		        _elementHolderAdapter = null;
-		        // com
+		        _innerElementType = InnerElementTypes.AutomationElementNet;
 		    }
 		    // if com
 		    if (element is IUiElement) {
 		        _elementHolderAdapter = (IUiElement)element;
-		        InnerElementType = InnerElementTypes.UiElement;
-		        
-		        // 20131222
-		        _elementHolderNet = null;
-		        // com
+		        _innerElementType = InnerElementTypes.UiElement;
 		    }
 		}
 		
@@ -598,7 +586,7 @@ Console.WriteLine("0003");
         {
         	if (useCache)
         	{
-        		switch (InnerElementType) {
+        		switch (_innerElementType) {
         		    case InnerElementTypes.AutomationElementNet:
         		        return _elementHolderNet.GetCachedPropertyValue(property);
         		    //case InnerElementTypes.AutomationElementCom:
@@ -610,7 +598,7 @@ Console.WriteLine("0003");
         		}
         	}
         	
-        	switch (InnerElementType) {
+        	switch (_innerElementType) {
         	    case InnerElementTypes.AutomationElementNet:
         	        return _elementHolderNet.GetCurrentPropertyValue(property);
         	    //case InnerElementTypes.AutomationElementCom:
@@ -703,6 +691,139 @@ Console.WriteLine("0003");
             return result;
         }
         #endregion NavigateTo
+        
+        #region Patterns
+        #region InvokePattern
+        internal IUiElement Click()
+        {
+            // return this.PerformClick();
+            this.GetCurrentPattern<IMySuperInvokePattern>(InvokePattern.Pattern).Invoke();
+            return this;
+        }
+        
+        internal IUiElement DoubleClick()
+        {
+//            HasControlInputCmdletBase cmdlet =
+//                new HasControlInputCmdletBase();
+//            cmdlet.ClickControl(
+//                cmdlet,
+//                this,
+//                false,
+//                false,
+//                false,
+//                false,
+//                false,
+//                false,
+//                true,
+//                50,
+//                Preferences.ClickOnControlByCoordX,
+//                Preferences.ClickOnControlByCoordY);
+//            
+//            return this;
+            return this.PerformDoubleClick();
+        }
+        #endregion InvokePattern
+        #region SelectionItemPattern
+        internal IUiElement Select()
+        {
+            return this.PerformSelect();
+        }
+        
+        internal IUiElement AddToSelection()
+        {
+            return this.PerformAddToSelection();
+        }
+        
+        internal IUiElement RemoveFromSelection()
+        {
+            return this.PerformRemoveFromSelection();
+        }
+        
+        internal bool IsSelected
+        {
+            // get { return this.GetSelectionItemPattern().Current.IsSelected; }
+            get { return this.GetIsSelected(); }
+        }
+        
+        internal IUiElement SelectionContainer
+        {
+            // get { return this.GetSelectionItemPattern().Current.SelectionContainer; }
+            get { return this.GetSelectionContainer(); }
+        }
+        #endregion SelectionItemPattern
+        #region SelectionPattern
+        internal IUiElement[] GetSelection()
+        {
+            // return this.GetSelectionPattern().Current.GetSelection();
+            return this.PerformGetSelection();
+        }
+        
+        internal bool CanSelectMultiple
+        {
+            // get { return this.GetSelectionPattern().Current.CanSelectMultiple; }
+            get { return this.GetCanSelectMultiple(); }
+        }
+        
+        internal bool IsSelectionRequired
+        {
+            // get { return this.GetSelectionPattern().Current.IsSelectionRequired; }
+            get { return this.GetIsSelectionRequired(); }
+        }
+        #endregion SelectionPattern
+        #region TogglePattern
+        internal IUiElement Toggle()
+        {
+            return this.Toggle();
+        }
+//        
+////        public bool? ToggleState
+////        {
+////            get {
+////                using (ToggleState t = ToggleState) {
+////                    
+////                } 
+////                switch (this.GetTogglePattern().Current.ToggleState) {
+////                     case ToggleState.Off:
+////                         return false;
+////                     case ToggleState.On:
+////                         return true;
+////                     case ToggleState.Indeterminate:
+////                         return null;
+//////                     default:
+//////                         throw new Exception("Invalid value for ToggleState");
+////                 }
+////            }
+////            set { 
+////                switch (value) {
+////                    case true:
+////                        this.GetTogglePattern().Current.ToggleState = ToggleState.On;
+////                        break;
+////                    case false:
+////                        this.GetTogglePattern().Current.ToggleState = ToggleState.Off;
+////                    case null:
+////                        this.GetTogglePattern().Current.ToggleState = ToggleState.Indeterminate;
+//////                    default:
+//////                        
+//////                    	break;
+////                }
+////            }
+////        }
+        #endregion TogglePattern
+        #region ValuePattern
+        internal bool IsReadOnly
+        {
+            get { return this.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern).Current.IsReadOnly; }
+        }
+        
+        internal string Value
+        {
+            // get { return this.GetValuePattern().Current.Value; }
+            // set { this.GetValuePattern().SetValue(value); }
+            get { return this.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern).Current.Value; }
+            set { this.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern).SetValue(value); }
+        }
+        #endregion ValuePattern
+        #endregion Patterns
         
         #region Highlighter
         public virtual IUiElement Highlight()

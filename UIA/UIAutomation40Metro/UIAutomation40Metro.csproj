@@ -931,8 +931,14 @@
     <Compile Include="..\UIAutomation\Interface\ISupportsGridPattern.cs">
       <Link>Interface\ISupportsGridPattern.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Interface\ISupportsHighlighter.cs">
+      <Link>Interface\ISupportsHighlighter.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Interface\ISupportsInvokePattern.cs">
       <Link>Interface\ISupportsInvokePattern.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\ISupportsNavigation.cs">
+      <Link>Interface\ISupportsNavigation.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Interface\ISupportsRangeValuePattern.cs">
       <Link>Interface\ISupportsRangeValuePattern.cs</Link>

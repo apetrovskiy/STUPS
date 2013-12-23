@@ -92,13 +92,46 @@ namespace UIAutomation
                         #endregion GridPattern
                         #region InvokePattern
                         case "Click":
-                            invocation.ReturnValue =
-                                (invocation.Proxy as IUiElement).PerformClick();
-                            // (invocation.Proxy as UiElement).Click();
+                            if (0 == invocation.Arguments.Length) {
+                                invocation.ReturnValue =
+                                    (invocation.Proxy as IUiElement).PerformClick();
+                            } else {
+                                invocation.ReturnValue =
+                                    (invocation.Proxy as IUiElement).PerformCoordinatedClick(
+                                        (int)invocation.Arguments[0],
+                                        (int)invocation.Arguments[1]);
+                            }
                             break;
                         case "DoubleClick":
+                            if (0 == invocation.Arguments.Length) {
+                                invocation.ReturnValue =
+                                    (invocation.Proxy as IUiElement).PerformDoubleClick();
+                            } else {
+                                invocation.ReturnValue =
+                                    (invocation.Proxy as IUiElement).PerformCoordinatedDoubleClick(
+                                        (int)invocation.Arguments[0],
+                                        (int)invocation.Arguments[1]);
+                            }
+                            break;
+                        case "RightClick":
                             invocation.ReturnValue =
-                                (invocation.Proxy as IUiElement).PerformDoubleClick();
+                                (invocation.Proxy as IUiElement).PerformRightClick();
+                            break;
+                        case "CtrlClick":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).PerformCtrlClick();
+                            break;
+                        case "AltClick":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).PerformAltClick();
+                            break;
+                        case "ShiftClick":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).PerformShiftClick();
+                            break;
+                        case "InvokeContextMenu":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).PerformInvokeContextMenu();
                             break;
                         #endregion InvokePattern
                         #region RangeValuePattern

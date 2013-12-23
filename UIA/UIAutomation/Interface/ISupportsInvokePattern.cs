@@ -15,5 +15,12 @@ namespace UIAutomation
 		// void Click();
 		IUiElement Click();
 		IUiElement DoubleClick();
+		IUiElement RightClick();
+		IUiElement CtrlClick();
+		IUiElement AltClick();
+		IUiElement ShiftClick();
+		IUiElement Click(int X, int Y);
+		IUiElement DoubleClick(int X, int Y);
+		IUiElement InvokeContextMenu();
 	}
 }

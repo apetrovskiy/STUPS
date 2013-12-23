@@ -178,12 +178,50 @@ namespace UIAutomation
         #region InvokePattern
         public static IUiElement PerformClick(this IUiElement element)
         {
-            try {
-                element.GetCurrentPattern<IMySuperInvokePattern>(InvokePattern.Pattern).Invoke();
-            }
-            catch {
-                // click via Win32
-            }
+//            try {
+//                element.GetCurrentPattern<IMySuperInvokePattern>(InvokePattern.Pattern).Invoke();
+//            }
+//            catch {
+//                // click via Win32
+//            }
+//            return element;
+            HasControlInputCmdletBase cmdlet =
+                new HasControlInputCmdletBase();
+            cmdlet.ClickControl(
+                cmdlet,
+                element,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                50,
+                Preferences.ClickOnControlByCoordX,
+                Preferences.ClickOnControlByCoordY);
+            
+            return element;
+        }
+        
+        public static IUiElement PerformCoordinatedClick(this IUiElement element, int X, int Y)
+        {
+            HasControlInputCmdletBase cmdlet =
+                new HasControlInputCmdletBase();
+            cmdlet.ClickControl(
+                cmdlet,
+                element,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                50,
+                X,
+                Y);
+            
             return element;
         }
         
@@ -204,6 +242,142 @@ namespace UIAutomation
                 50,
                 Preferences.ClickOnControlByCoordX,
                 Preferences.ClickOnControlByCoordY);
+            
+            return element;
+        }
+        
+        public static IUiElement PerformCoordinatedDoubleClick(this IUiElement element, int X, int Y)
+        {
+            HasControlInputCmdletBase cmdlet =
+                new HasControlInputCmdletBase();
+            cmdlet.ClickControl(
+                cmdlet,
+                element,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                true,
+                50,
+                X,
+                Y);
+            
+            return element;
+        }
+        
+        public static IUiElement PerformRightClick(this IUiElement element)
+        {
+            HasControlInputCmdletBase cmdlet =
+                new HasControlInputCmdletBase();
+            cmdlet.ClickControl(
+                cmdlet,
+                element,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                50,
+                Preferences.ClickOnControlByCoordX,
+                Preferences.ClickOnControlByCoordY);
+            
+            return element;
+        }
+        
+        public static IUiElement PerformCtrlClick(this IUiElement element)
+        {
+            HasControlInputCmdletBase cmdlet =
+                new HasControlInputCmdletBase();
+            cmdlet.ClickControl(
+                cmdlet,
+                element,
+                false,
+                false,
+                false,
+                false,
+                true,
+                false,
+                false,
+                50,
+                Preferences.ClickOnControlByCoordX,
+                Preferences.ClickOnControlByCoordY);
+            
+            return element;
+        }
+        
+        public static IUiElement PerformAltClick(this IUiElement element)
+        {
+            HasControlInputCmdletBase cmdlet =
+                new HasControlInputCmdletBase();
+            cmdlet.ClickControl(
+                cmdlet,
+                element,
+                false,
+                false,
+                true,
+                false,
+                false,
+                false,
+                false,
+                50,
+                Preferences.ClickOnControlByCoordX,
+                Preferences.ClickOnControlByCoordY);
+            
+            return element;
+        }
+        
+        public static IUiElement PerformShiftClick(this IUiElement element)
+        {
+            HasControlInputCmdletBase cmdlet =
+                new HasControlInputCmdletBase();
+            cmdlet.ClickControl(
+                cmdlet,
+                element,
+                false,
+                false,
+                false,
+                true,
+                false,
+                false,
+                false,
+                50,
+                Preferences.ClickOnControlByCoordX,
+                Preferences.ClickOnControlByCoordY);
+            
+            return element;
+        }
+        
+        public static IUiElement PerformContextMenu(this IUiElement element)
+        {
+            HasControlInputCmdletBase cmdlet =
+                new HasControlInputCmdletBase();
+            cmdlet.ClickControl(
+                cmdlet,
+                element,
+                false,
+                false,
+                false,
+                true,
+                false,
+                false,
+                false,
+                50,
+                Preferences.ClickOnControlByCoordX,
+                Preferences.ClickOnControlByCoordY);
+            
+            return element;
+        }
+        
+        public static IUiElement PerformInvokeContextMenu(this IUiElement element)
+        {
+            HasControlInputCmdletBase cmdlet =
+                new HasControlInputCmdletBase();
+            
+            element.InvokeContextMenu(cmdlet);
             
             return element;
         }

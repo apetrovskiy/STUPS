@@ -18,6 +18,10 @@ namespace UIAutomation
     using System.Management.Automation;
     using PSTestLib;
     
+    using System.Globalization;
+    using System.Threading;
+    using System.Windows.Forms;
+    
     /// <summary>
     /// Description of ExtensionMethodsElement.
     /// </summary>
@@ -448,6 +452,103 @@ namespace UIAutomation
             resultCollection.Add(elementInput);
             
             return result;
+        }
+        
+        internal static IUiElement InvokeContextMenu(this IUiElement inputObject, HasControlInputCmdletBase cmdlet)
+        {
+            IUiElement resultElement = null;
+            try {
+                if (!cmdlet.ClickControl(
+                        cmdlet,
+                        inputObject,
+                        true,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        0,
+                        Preferences.ClickOnControlByCoordX,
+                        Preferences.ClickOnControlByCoordY)) {
+                    // WriteError(this, "Couldn't click on this control", "couldNotClick", ErrorCategory.InvalidResult, true);
+                    // throw;
+                }
+            }
+            catch {
+                throw; // ??
+            }
+            int x = Cursor.Position.X;
+            int y = Cursor.Position.Y;
+
+            // WriteVerbose(this, "cursor coordinate X = " + x.ToString(CultureInfo.InvariantCulture));
+            // WriteVerbose(this, "cursor coordinate Y = " + y.ToString(CultureInfo.InvariantCulture));
+
+            // get the context menu window
+            int processId = inputObject.Current.ProcessId;
+            // WriteVerbose(this, "process Id = " + processId.ToString());
+            IUiEltCollection windowsByPid = null;
+            DateTime startDate = DateTime.Now;
+            bool breakSearch = false;
+            do {
+                // getting all menus in this process
+                if (processId != 0) {
+                    windowsByPid =
+                        UiElement.RootElement.FindAll(
+                            TreeScope.Children,
+                            new AndCondition(
+                                new PropertyCondition(
+                                    AutomationElement.ProcessIdProperty,
+                                    processId),
+                                new PropertyCondition(
+                                    AutomationElement.ControlTypeProperty,
+                                    ControlType.Menu)));
+                }
+                
+                if (windowsByPid != null && windowsByPid.Count <= 0)
+                    continue;
+                
+                // WriteVerbose(this, "there are " + windowsByPid.Count.ToString() + " menus running within the process");
+                
+                DateTime nowDate = DateTime.Now;
+                if ((nowDate - startDate).TotalSeconds > 3) {
+                    breakSearch = true;
+                    break;
+                }
+                
+                if (windowsByPid.Count == 0) {
+
+                    // WriteVerbose(this, "sleeping");
+                    Thread.Sleep(200);
+                    continue;
+                }
+                
+                foreach (IUiElement element in windowsByPid) {
+
+                    // WriteVerbose(this, element.Current.Name);
+                    // WriteVerbose(this, element.Current.BoundingRectangle.ToString());
+                    try {
+                        // WriteVerbose(this, "the element " + element.Current.Name + " is what we've been searching for");
+                        resultElement = element;
+                        breakSearch = true;
+                        break;
+                        //                            }
+                    } catch {
+                    }
+
+                }
+                
+            }	 while (!breakSearch);
+
+            // WriteObject(this, resultElement);
+            
+            // 20131119
+            // disposal
+            windowsByPid.Dispose();
+            windowsByPid = null;
+            
+            // return the context menu window
+            return resultElement;
         }
     }
 }

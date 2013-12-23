@@ -9,6 +9,11 @@
 
 namespace UIAutomationUnitTests.CheckCmdletParameters
 {
+    
+    
+    using System;
+    
+    
     using PSTestLib;
     
     /// <summary>

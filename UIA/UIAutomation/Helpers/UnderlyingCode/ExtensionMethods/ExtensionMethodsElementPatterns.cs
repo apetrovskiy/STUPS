@@ -30,7 +30,7 @@ namespace UIAutomation
         {
             try {
                 element.GetCurrentPattern<IMySuperDockPattern>(DockPattern.Pattern).SetDockPosition(dockPosition);
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -41,7 +41,7 @@ namespace UIAutomation
         {
             try {
                 return element.GetCurrentPattern<IMySuperDockPattern>(DockPattern.Pattern).Current.DockPosition;
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -53,7 +53,7 @@ namespace UIAutomation
         {
             try {
                 element.GetCurrentPattern<IMySuperExpandCollapsePattern>(ExpandCollapsePattern.Pattern).Expand();
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -64,7 +64,7 @@ namespace UIAutomation
         {
             try {
                 element.GetCurrentPattern<IMySuperExpandCollapsePattern>(ExpandCollapsePattern.Pattern).Collapse();
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -75,7 +75,7 @@ namespace UIAutomation
         {
             try {
                 return element.GetCurrentPattern<IMySuperExpandCollapsePattern>(ExpandCollapsePattern.Pattern).Current.ExpandCollapseState;
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -87,7 +87,7 @@ namespace UIAutomation
         {
             try {
                 return element.GetCurrentPattern<IMySuperGridItemPattern>(GridPattern.Pattern).Current.Row;
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -98,7 +98,7 @@ namespace UIAutomation
         {
             try {
                 return element.GetCurrentPattern<IMySuperGridItemPattern>(GridPattern.Pattern).Current.Column;
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -110,7 +110,7 @@ namespace UIAutomation
         {
             try {
                 return element.GetCurrentPattern<IMySuperGridItemPattern>(GridPattern.Pattern).Current.RowSpan;
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -121,7 +121,7 @@ namespace UIAutomation
         {
             try {
                 return element.GetCurrentPattern<IMySuperGridItemPattern>(GridPattern.Pattern).Current.ColumnSpan;
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -131,8 +131,9 @@ namespace UIAutomation
         public static IUiElement GetContainingGridGridItemPattern(this IUiElement element)
         {
             try {
-                return element.GetCurrentPattern<IMySuperGridItemPattern>(GridPattern.Pattern).Current.ContainingGrid;
-            } catch (Exception) {
+                // return element.GetCurrentPattern<IMySuperGridItemPattern>(GridPattern.Pattern).Current.ContainingGrid;
+                return AutomationFactory.GetUiElement(element.GetCurrentPattern<IMySuperGridItemPattern>(GridPattern.Pattern).Current.ContainingGrid.GetSourceElement());
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -143,8 +144,9 @@ namespace UIAutomation
         public static IUiElement PerformGetItem(this IUiElement element, int row, int column)
         {
             try {
-                return element.GetCurrentPattern<IMySuperGridPattern>(GridPattern.Pattern).GetItem(row, column);
-            } catch (Exception) {
+                // return element.GetCurrentPattern<IMySuperGridPattern>(GridPattern.Pattern).GetItem(row, column);
+                return AutomationFactory.GetUiElement(element.GetCurrentPattern<IMySuperGridPattern>(GridPattern.Pattern).GetItem(row, column).GetSourceElement());
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -155,7 +157,7 @@ namespace UIAutomation
         {
             try {
                 return element.GetCurrentPattern<IMySuperGridPattern>(GridPattern.Pattern).Current.RowCount;
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -166,7 +168,7 @@ namespace UIAutomation
         {
             try {
                 return element.GetCurrentPattern<IMySuperGridPattern>(GridPattern.Pattern).Current.ColumnCount;
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -211,7 +213,7 @@ namespace UIAutomation
         {
             try {
                 element.GetCurrentPattern<IMySuperRangeValuePattern>(RangeValuePattern.Pattern).SetValue(value);
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -222,7 +224,7 @@ namespace UIAutomation
         {
             try {
                 return element.GetCurrentPattern<IMySuperRangeValuePattern>(RangeValuePattern.Pattern).Current.Value;
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -233,7 +235,7 @@ namespace UIAutomation
         {
             try {
                 return element.GetCurrentPattern<IMySuperRangeValuePattern>(RangeValuePattern.Pattern).Current.IsReadOnly;
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -244,7 +246,7 @@ namespace UIAutomation
         {
             try {
                 return element.GetCurrentPattern<IMySuperRangeValuePattern>(RangeValuePattern.Pattern).Current.Maximum;
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -255,7 +257,7 @@ namespace UIAutomation
         {
             try {
                 return element.GetCurrentPattern<IMySuperRangeValuePattern>(RangeValuePattern.Pattern).Current.Minimum;
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -266,7 +268,7 @@ namespace UIAutomation
         {
             try {
                 return element.GetCurrentPattern<IMySuperRangeValuePattern>(RangeValuePattern.Pattern).Current.LargeChange;
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -277,7 +279,7 @@ namespace UIAutomation
         {
             try {
                 return element.GetCurrentPattern<IMySuperRangeValuePattern>(RangeValuePattern.Pattern).Current.SmallChange;
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -289,7 +291,7 @@ namespace UIAutomation
         {
             try {
                 element.GetCurrentPattern<IMySuperScrollItemPattern>(ScrollItemPattern.Pattern).ScrollIntoView();
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -301,7 +303,7 @@ namespace UIAutomation
         {
             try {
                 element.GetCurrentPattern<IMySuperScrollPattern>(ScrollPattern.Pattern).SetScrollPercent(horizontalPercent, verticalPercent);
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -312,7 +314,7 @@ namespace UIAutomation
         {
             try {
                 element.GetCurrentPattern<IMySuperScrollPattern>(ScrollPattern.Pattern).Scroll(horizontalAmount, verticalAmount);
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -323,7 +325,7 @@ namespace UIAutomation
         {
             try {
                 element.GetCurrentPattern<IMySuperScrollPattern>(ScrollPattern.Pattern).ScrollHorizontal(amount);
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -334,7 +336,7 @@ namespace UIAutomation
         {
             try {
                 element.GetCurrentPattern<IMySuperScrollPattern>(ScrollPattern.Pattern).ScrollVertical(amount);
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -345,7 +347,7 @@ namespace UIAutomation
         {
             try {
                 return element.GetCurrentPattern<IMySuperScrollPattern>(ScrollPattern.Pattern).Current.HorizontalScrollPercent;
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -356,7 +358,7 @@ namespace UIAutomation
         {
             try {
                 return element.GetCurrentPattern<IMySuperScrollPattern>(ScrollPattern.Pattern).Current.VerticalScrollPercent;
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -367,7 +369,7 @@ namespace UIAutomation
         {
             try {
                 return element.GetCurrentPattern<IMySuperScrollPattern>(ScrollPattern.Pattern).Current.HorizontalViewSize;
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -378,7 +380,7 @@ namespace UIAutomation
         {
             try {
                 return element.GetCurrentPattern<IMySuperScrollPattern>(ScrollPattern.Pattern).Current.VerticalViewSize;
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -389,7 +391,7 @@ namespace UIAutomation
         {
             try {
                 return element.GetCurrentPattern<IMySuperScrollPattern>(ScrollPattern.Pattern).Current.HorizontallyScrollable;
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -400,7 +402,7 @@ namespace UIAutomation
         {
             try {
                 return element.GetCurrentPattern<IMySuperScrollPattern>(ScrollPattern.Pattern).Current.VerticallyScrollable;
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -456,7 +458,7 @@ namespace UIAutomation
         {
             try {
                 return element.GetCurrentPattern<IMySuperSelectionItemPattern>(SelectionItemPattern.Pattern).Current.SelectionContainer;
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -469,8 +471,9 @@ namespace UIAutomation
             try {
                 return element.GetCurrentPattern<IMySuperSelectionPattern>(SelectionPattern.Pattern).Current.GetSelection();
             }
-            catch {
+            catch (Exception eExtensionMethod) {
                 // 
+                // Console.WriteLine(eExtensionMethod.Message);
             }
             return new UiElement[] {};
         }
@@ -479,7 +482,7 @@ namespace UIAutomation
         {
             try {
                 return element.GetCurrentPattern<IMySuperSelectionPattern>(SelectionPattern.Pattern).Current.CanSelectMultiple;
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -490,7 +493,7 @@ namespace UIAutomation
         {
             try {
                 return element.GetCurrentPattern<IMySuperSelectionPattern>(SelectionPattern.Pattern).Current.IsSelectionRequired;
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -502,9 +505,10 @@ namespace UIAutomation
         {
             try {
                 return element.GetCurrentPattern<IMySuperTableItemPattern>(TableItemPattern.Pattern).Current.GetRowHeaderItems();
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
+                // Console.WriteLine(eExtensionMethod.Message);
             }
             return new UiElement[] {};
         }
@@ -513,9 +517,10 @@ namespace UIAutomation
         {
             try {
                 return element.GetCurrentPattern<IMySuperTableItemPattern>(TableItemPattern.Pattern).Current.GetColumnHeaderItems();
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
+                // Console.WriteLine(eExtensionMethod.Message);
             }
             return new UiElement[] {};
         }
@@ -524,7 +529,7 @@ namespace UIAutomation
         {
             try {
                 return element.GetCurrentPattern<IMySuperTableItemPattern>(TableItemPattern.Pattern).Current.Row;
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -535,7 +540,7 @@ namespace UIAutomation
         {
             try {
                 return element.GetCurrentPattern<IMySuperTableItemPattern>(TableItemPattern.Pattern).Current.Column;
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -546,7 +551,7 @@ namespace UIAutomation
         {
             try {
                 return element.GetCurrentPattern<IMySuperTableItemPattern>(TableItemPattern.Pattern).Current.RowSpan;
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -557,7 +562,7 @@ namespace UIAutomation
         {
             try {
                 return element.GetCurrentPattern<IMySuperTableItemPattern>(TableItemPattern.Pattern).Current.ColumnSpan;
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -567,8 +572,9 @@ namespace UIAutomation
         public static IUiElement GetContainingGridTableItemPattern(this IUiElement element)
         {
             try {
-                return element.GetCurrentPattern<IMySuperTableItemPattern>(TableItemPattern.Pattern).Current.ContainingGrid;
-            } catch (Exception) {
+                // return element.GetCurrentPattern<IMySuperTableItemPattern>(TableItemPattern.Pattern).Current.ContainingGrid;
+                return AutomationFactory.GetUiElement(element.GetCurrentPattern<IMySuperTableItemPattern>(TableItemPattern.Pattern).Current.ContainingGrid.GetSourceElement());
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -580,9 +586,10 @@ namespace UIAutomation
         {
             try {
                 return element.GetCurrentPattern<IMySuperTablePattern>(TablePattern.Pattern).Current.GetRowHeaders();
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
+                // Console.WriteLine(eExtensionMethod.Message);
             }
             return new UiElement[] {};
         }
@@ -591,9 +598,10 @@ namespace UIAutomation
         {
             try {
                 return element.GetCurrentPattern<IMySuperTablePattern>(TablePattern.Pattern).Current.GetColumnHeaders();
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
+                // Console.WriteLine(eExtensionMethod.Message);
             }
             return new UiElement[] {};
         }
@@ -602,7 +610,7 @@ namespace UIAutomation
         {
             try {
                 return element.GetCurrentPattern<IMySuperTablePattern>(TablePattern.Pattern).Current.RowCount;
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -613,7 +621,7 @@ namespace UIAutomation
 		{
 		    try {
                 return element.GetCurrentPattern<IMySuperTablePattern>(TablePattern.Pattern).Current.ColumnCount;
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -624,7 +632,7 @@ namespace UIAutomation
 		{
 		    try {
 		        return element.GetCurrentPattern<IMySuperTablePattern>(TablePattern.Pattern).Current.RowOrColumnMajor;
-		    } catch (Exception) {
+		    } catch (Exception eExtensionMethod) {
 		        // 
 		        // throw;
 		    }
@@ -636,7 +644,7 @@ namespace UIAutomation
         {
             try {
                 return element.GetCurrentPattern<IMySuperTextPattern>(TextPattern.Pattern).GetSelection();
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -647,7 +655,7 @@ namespace UIAutomation
 		{
 		    try {
 		        return element.GetCurrentPattern<IMySuperTextPattern>(TextPattern.Pattern).GetVisibleRanges();
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -658,9 +666,10 @@ namespace UIAutomation
 		{
 		    try {
 		        return element.GetCurrentPattern<IMySuperTextPattern>(TextPattern.Pattern).RangeFromChild(childElement);
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
+                // Console.WriteLine(eExtensionMethod.Message);
             }
 		    return null;
 		}
@@ -669,7 +678,7 @@ namespace UIAutomation
 		{
 		    try {
 		        return element.GetCurrentPattern<IMySuperTextPattern>(TextPattern.Pattern).RangeFromPoint(screenLocation);
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -680,7 +689,7 @@ namespace UIAutomation
 		{
 		    try {
 		        return element.GetCurrentPattern<IMySuperTextPattern>(TextPattern.Pattern).DocumentRange;
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -691,7 +700,7 @@ namespace UIAutomation
 		{
 		    try {
 		        return element.GetCurrentPattern<IMySuperTextPattern>(TextPattern.Pattern).SupportedTextSelection;
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -714,7 +723,7 @@ namespace UIAutomation
         {
             try {
                 return element.GetCurrentPattern<IMySuperTogglePattern>(TogglePattern.Pattern).Current.ToggleState;
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -726,7 +735,7 @@ namespace UIAutomation
         {
             try {
                 element.GetCurrentPattern<IMySuperTransformPattern>(TransformPattern.Pattern).Move(x, y);
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -737,7 +746,7 @@ namespace UIAutomation
 		{
 		    try {
 		        element.GetCurrentPattern<IMySuperTransformPattern>(TransformPattern.Pattern).Resize(width, height);
-		    } catch (Exception) {
+		    } catch (Exception eExtensionMethod) {
 		        // 
 		        // throw;
 		    }
@@ -748,7 +757,7 @@ namespace UIAutomation
 		{
 		    try {
 		        element.GetCurrentPattern<IMySuperTransformPattern>(TransformPattern.Pattern).Rotate(degrees);
-		    } catch (Exception) {
+		    } catch (Exception eExtensionMethod) {
 		        // 
 		        // throw;
 		    }
@@ -759,7 +768,7 @@ namespace UIAutomation
 		{
 		    try {
 		        return element.GetCurrentPattern<IMySuperTransformPattern>(TransformPattern.Pattern).Current.CanMove;
-		    } catch (Exception) {
+		    } catch (Exception eExtensionMethod) {
 		        // 
 		        // throw;
 		    }
@@ -770,7 +779,7 @@ namespace UIAutomation
 		{
 		    try {
 		        return element.GetCurrentPattern<IMySuperTransformPattern>(TransformPattern.Pattern).Current.CanResize;
-		    } catch (Exception) {
+		    } catch (Exception eExtensionMethod) {
 		        // 
 		        // throw;
 		    }
@@ -781,7 +790,7 @@ namespace UIAutomation
 		{
 		    try {
 		        return element.GetCurrentPattern<IMySuperTransformPattern>(TransformPattern.Pattern).Current.CanRotate;
-		    } catch (Exception) {
+		    } catch (Exception eExtensionMethod) {
 		        // 
 		        // throw;
 		    }
@@ -793,7 +802,7 @@ namespace UIAutomation
         {
             try {
                 element.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern).SetValue(value);
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -804,7 +813,7 @@ namespace UIAutomation
         {
             try {
                 return element.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern).Current.Value;
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -815,7 +824,7 @@ namespace UIAutomation
         {
             try {
                 return element.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern).Current.IsReadOnly;
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -827,7 +836,7 @@ namespace UIAutomation
         {
             try {
                 element.GetCurrentPattern<IMySuperWindowPattern>(WindowPattern.Pattern).SetWindowVisualState(state);
-            } catch (Exception) {
+            } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
             }
@@ -838,7 +847,7 @@ namespace UIAutomation
 		{
 		    try {
 		        element.GetCurrentPattern<IMySuperWindowPattern>(WindowPattern.Pattern).Close();
-		    } catch (Exception) {
+		    } catch (Exception eExtensionMethod) {
 		        // 
 		        // throw;
 		    }
@@ -849,7 +858,7 @@ namespace UIAutomation
 		{
 		    try {
 		        return element.GetCurrentPattern<IMySuperWindowPattern>(WindowPattern.Pattern).WaitForInputIdle(milliseconds);
-		    } catch (Exception) {
+		    } catch (Exception eExtensionMethod) {
 		        // 
 		        // throw;
 		    }
@@ -860,7 +869,7 @@ namespace UIAutomation
 		{
 		    try {
 		        return element.GetCurrentPattern<IMySuperWindowPattern>(WindowPattern.Pattern).Current.CanMaximize;
-		    } catch (Exception) {
+		    } catch (Exception eExtensionMethod) {
 		        // 
 		        // throw;
 		    }
@@ -871,7 +880,7 @@ namespace UIAutomation
 		{
 		    try {
 		        return element.GetCurrentPattern<IMySuperWindowPattern>(WindowPattern.Pattern).Current.CanMinimize;
-		    } catch (Exception) {
+		    } catch (Exception eExtensionMethod) {
 		        // 
 		        // throw;
 		    }
@@ -882,7 +891,7 @@ namespace UIAutomation
 		{
 		    try {
 		        return element.GetCurrentPattern<IMySuperWindowPattern>(WindowPattern.Pattern).Current.IsModal;
-		    } catch (Exception) {
+		    } catch (Exception eExtensionMethod) {
 		        // 
 		        // throw;
 		    }
@@ -893,7 +902,7 @@ namespace UIAutomation
 		{
 		    try {
 		        return element.GetCurrentPattern<IMySuperWindowPattern>(WindowPattern.Pattern).Current.IsTopmost;
-		    } catch (Exception) {
+		    } catch (Exception eExtensionMethod) {
 		        // 
 		        // throw;
 		    }
@@ -904,7 +913,7 @@ namespace UIAutomation
 		{
 		    try {
 		        return element.GetCurrentPattern<IMySuperWindowPattern>(WindowPattern.Pattern).Current.WindowInteractionState;
-		    } catch (Exception) {
+		    } catch (Exception eExtensionMethod) {
 		        // 
 		        // throw;
 		    }
@@ -915,7 +924,7 @@ namespace UIAutomation
 		{
 		    try {
 		        return element.GetCurrentPattern<IMySuperWindowPattern>(WindowPattern.Pattern).Current.WindowVisualState;
-		    } catch (Exception) {
+		    } catch (Exception eExtensionMethod) {
 		        // 
 		        // throw;
 		    }

@@ -35,7 +35,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Table_ImplementsCommonPattern()
         {
             ISupportsInvokePattern element =
-                FakeFactory.GetAutomaitonElementForMethodsOfObjectModel(
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTablePattern(new PatternsData()) }) as ISupportsInvokePattern;
             
             Assert.IsNotNull(element as ISupportsInvokePattern);
@@ -45,7 +45,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Table_ImplementsPattern()
         {
             ISupportsTablePattern element =
-                FakeFactory.GetAutomaitonElementForMethodsOfObjectModel(
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTablePattern(new PatternsData()) }) as ISupportsTablePattern;
             
             Assert.IsNotNull(element as ISupportsTablePattern);
@@ -55,19 +55,19 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Table_DoesNotImplementOtherPatterns()
         {
             ISupportsValuePattern element =
-                FakeFactory.GetAutomaitonElementForMethodsOfObjectModel(
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTablePattern(new PatternsData()) }) as ISupportsValuePattern;
             
             Assert.IsNull(element as ISupportsValuePattern);
         }
         
         [Test]
-        [Ignore]
+        // [Ignore]
         public void Table_GetColumnHeaders()
         {
             // Arrange
             ISupportsTablePattern element =
-                FakeFactory.GetAutomaitonElementForMethodsOfObjectModel(
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTablePattern(new PatternsData()) }) as ISupportsTablePattern;
             
             // Act
@@ -76,12 +76,12 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         }
         
         [Test]
-        [Ignore]
+        // [Ignore]
         public void Table_GetRowHeaders()
         {
             // Arrange
             ISupportsTablePattern element =
-                FakeFactory.GetAutomaitonElementForMethodsOfObjectModel(
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTablePattern(new PatternsData()) }) as ISupportsTablePattern;
             
             // Act

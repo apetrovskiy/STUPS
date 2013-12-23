@@ -35,7 +35,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Toggle_ImplementsCommonPattern()
         {
             ISupportsInvokePattern element =
-                FakeFactory.GetAutomaitonElementForMethodsOfObjectModel(
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTogglePattern(new PatternsData()) }) as ISupportsInvokePattern;
             
             Assert.IsNotNull(element as ISupportsInvokePattern);
@@ -45,7 +45,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Toggle_ImplementsPattern()
         {
             ISupportsTogglePattern element =
-                FakeFactory.GetAutomaitonElementForMethodsOfObjectModel(
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTogglePattern(new PatternsData()) }) as ISupportsTogglePattern;
             
             Assert.IsNotNull(element as ISupportsTogglePattern);
@@ -55,7 +55,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Toggle_DoesNotImplementOtherPatterns()
         {
             ISupportsValuePattern element =
-                FakeFactory.GetAutomaitonElementForMethodsOfObjectModel(
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTogglePattern(new PatternsData()) }) as ISupportsValuePattern;
             
             Assert.IsNull(element as ISupportsValuePattern);
@@ -66,7 +66,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         {
             // Arrange
             ISupportsTogglePattern element =
-                FakeFactory.GetAutomaitonElementForMethodsOfObjectModel(
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTogglePattern(new PatternsData()) }) as ISupportsTogglePattern;
             
             // Act

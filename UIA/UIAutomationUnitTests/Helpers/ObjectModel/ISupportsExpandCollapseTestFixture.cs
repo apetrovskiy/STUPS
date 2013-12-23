@@ -34,7 +34,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void ExpandCollapse_ImplementsCommonPattern()
         {
             ISupportsInvokePattern element =
-                FakeFactory.GetAutomaitonElementForMethodsOfObjectModel(
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetExpandCollapsePattern(new PatternsData()) }) as ISupportsInvokePattern;
             
             Assert.IsNotNull(element as ISupportsInvokePattern);
@@ -44,7 +44,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void ExpandCollapse_ImplementsPattern()
         {
             ISupportsExpandCollapsePattern element =
-                FakeFactory.GetAutomaitonElementForMethodsOfObjectModel(
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetExpandCollapsePattern(new PatternsData()) }) as ISupportsExpandCollapsePattern;
             
             Assert.IsNotNull(element as ISupportsExpandCollapsePattern);
@@ -54,7 +54,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void ExpandCollapse_DoesNotImplementOtherPatterns()
         {
             ISupportsValuePattern element =
-                FakeFactory.GetAutomaitonElementForMethodsOfObjectModel(
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetExpandCollapsePattern(new PatternsData()) }) as ISupportsValuePattern;
             
             Assert.IsNull(element as ISupportsValuePattern);
@@ -65,7 +65,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         {
             // Arrange
             ISupportsExpandCollapsePattern element =
-                FakeFactory.GetAutomaitonElementForMethodsOfObjectModel(
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetExpandCollapsePattern(new PatternsData()) }) as ISupportsExpandCollapsePattern;
             
             // Act
@@ -78,7 +78,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         {
             // Arrange
             ISupportsExpandCollapsePattern element =
-                FakeFactory.GetAutomaitonElementForMethodsOfObjectModel(
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetExpandCollapsePattern(new PatternsData()) }) as ISupportsExpandCollapsePattern;
             
             // Act

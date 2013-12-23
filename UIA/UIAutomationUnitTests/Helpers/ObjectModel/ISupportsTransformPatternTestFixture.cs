@@ -35,7 +35,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Transform_ImplementsCommonPattern()
         {
             ISupportsInvokePattern element =
-                FakeFactory.GetAutomaitonElementForMethodsOfObjectModel(
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTransformPattern(new PatternsData()) }) as ISupportsInvokePattern;
             
             Assert.IsNotNull(element as ISupportsInvokePattern);
@@ -45,7 +45,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Transform_ImplementsPattern()
         {
             ISupportsTransformPattern element =
-                FakeFactory.GetAutomaitonElementForMethodsOfObjectModel(
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTransformPattern(new PatternsData()) }) as ISupportsTransformPattern;
             
             Assert.IsNotNull(element as ISupportsTransformPattern);
@@ -55,7 +55,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Transform_DoesNotImplementOtherPatterns()
         {
             ISupportsValuePattern element =
-                FakeFactory.GetAutomaitonElementForMethodsOfObjectModel(
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTransformPattern(new PatternsData()) }) as ISupportsValuePattern;
             
             Assert.IsNull(element as ISupportsValuePattern);
@@ -66,7 +66,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         {
             // Arrange
             ISupportsTransformPattern element =
-                FakeFactory.GetAutomaitonElementForMethodsOfObjectModel(
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTransformPattern(new PatternsData()) }) as ISupportsTransformPattern;
             
             // Act
@@ -79,7 +79,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         {
             // Arrange
             ISupportsTransformPattern element =
-                FakeFactory.GetAutomaitonElementForMethodsOfObjectModel(
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTransformPattern(new PatternsData()) }) as ISupportsTransformPattern;
             
             // Act
@@ -92,7 +92,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         {
             // Arrange
             ISupportsTransformPattern element =
-                FakeFactory.GetAutomaitonElementForMethodsOfObjectModel(
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTransformPattern(new PatternsData()) }) as ISupportsTransformPattern;
             
             // Act

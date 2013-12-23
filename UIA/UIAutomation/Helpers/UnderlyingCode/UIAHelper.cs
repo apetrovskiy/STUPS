@@ -2686,8 +2686,6 @@ strInfo += " 07";
                     
                     automationElements.Add(element);
                     
-                    //Console.WriteLine("title = " + element.Current.Name + "\tautomationId = " + element.Current.AutomationId + "\thandle = " + element.Current.NativeWindowHandle.ToString());
-                    
                 }
                 catch {}
             }
@@ -2700,12 +2698,11 @@ strInfo += " 07";
                 
                 resultElements.AddRange(
                     HasTimeoutCmdletBase.ReturnOnlyRightElements(
-                        // 20130513
                         (HasTimeoutCmdletBase)cmdlet,
                         automationElements,
                         windowName,
-                        cmdlet.AutomationId, //automaitonId,
-                        cmdlet.Class, //className,
+                        cmdlet.AutomationId,
+                        cmdlet.Class,
                         string.Empty,
                         new string[]{ "Window" },
                         false,

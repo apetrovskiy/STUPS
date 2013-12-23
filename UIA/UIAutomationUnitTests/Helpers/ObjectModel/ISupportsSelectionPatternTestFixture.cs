@@ -35,7 +35,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Selection_ImplementsCommonPattern()
         {
             ISupportsInvokePattern element =
-                FakeFactory.GetAutomaitonElementForMethodsOfObjectModel(
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetSelectionPattern(new PatternsData()) }) as ISupportsInvokePattern;
             
             Assert.IsNotNull(element as ISupportsInvokePattern);
@@ -45,7 +45,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Selection_ImplementsPattern()
         {
             ISupportsSelectionPattern element =
-                FakeFactory.GetAutomaitonElementForMethodsOfObjectModel(
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetSelectionPattern(new PatternsData()) }) as ISupportsSelectionPattern;
             
             Assert.IsNotNull(element as ISupportsSelectionPattern);
@@ -55,19 +55,19 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Selection_DoesNotImplementOtherPatterns()
         {
             ISupportsValuePattern element =
-                FakeFactory.GetAutomaitonElementForMethodsOfObjectModel(
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetSelectionPattern(new PatternsData()) }) as ISupportsValuePattern;
             
             Assert.IsNull(element as ISupportsValuePattern);
         }
         
         [Test]
-        [Ignore]
+        // [Ignore]
         public void Selection_GetSelection()
         {
             // Arrange
             ISupportsSelectionPattern element =
-                FakeFactory.GetAutomaitonElementForMethodsOfObjectModel(
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetSelectionPattern(new PatternsData()) }) as ISupportsSelectionPattern;
             
             // Act

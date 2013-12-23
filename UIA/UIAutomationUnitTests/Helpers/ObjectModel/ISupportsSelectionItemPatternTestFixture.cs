@@ -35,7 +35,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void SelectionItem_ImplementsCommonPattern()
         {
             ISupportsInvokePattern element =
-                FakeFactory.GetAutomaitonElementForMethodsOfObjectModel(
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetSelectionItemPattern(new PatternsData()) }) as ISupportsInvokePattern;
             
             Assert.IsNotNull(element as ISupportsInvokePattern);
@@ -45,7 +45,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void SelectionItem_ImplementsPattern()
         {
             ISupportsSelectionItemPattern element =
-                FakeFactory.GetAutomaitonElementForMethodsOfObjectModel(
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetSelectionItemPattern(new PatternsData()) }) as ISupportsSelectionItemPattern;
             
             Assert.IsNotNull(element as ISupportsSelectionItemPattern);
@@ -55,7 +55,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void SelectionItem_DoesNotImplementOtherPatterns()
         {
             ISupportsValuePattern element =
-                FakeFactory.GetAutomaitonElementForMethodsOfObjectModel(
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetSelectionItemPattern(new PatternsData()) }) as ISupportsValuePattern;
             
             Assert.IsNull(element as ISupportsValuePattern);
@@ -66,7 +66,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         {
             // Arrange
             ISupportsSelectionItemPattern element =
-                FakeFactory.GetAutomaitonElementForMethodsOfObjectModel(
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetSelectionItemPattern(new PatternsData()) }) as ISupportsSelectionItemPattern;
             
             // Act
@@ -79,7 +79,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         {
             // Arrange
             ISupportsSelectionItemPattern element =
-                FakeFactory.GetAutomaitonElementForMethodsOfObjectModel(
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetSelectionItemPattern(new PatternsData()) }) as ISupportsSelectionItemPattern;
             
             // Act

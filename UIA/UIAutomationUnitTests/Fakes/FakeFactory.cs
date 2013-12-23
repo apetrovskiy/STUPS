@@ -293,7 +293,6 @@ namespace UIAutomationUnitTests
         
         private static IUiElement GetAutomationElementForObjectModelTesting(ControlType controlType, string name, string automationId, string className, IBasePattern[] patterns, bool expected)
         {
-Console.WriteLine("GetAutomationElementForObjectModelTesting: 0001");
             var fakeElement =
                 GetAutomationElement(
                     controlType,
@@ -303,28 +302,15 @@ Console.WriteLine("GetAutomationElementForObjectModelTesting: 0001");
                     patterns,
                     expected);
             
-Console.WriteLine("GetAutomationElementForObjectModelTesting: 0002");
-if (null == fakeElement) {
-    Console.WriteLine("GetAutomationElementForObjectModelTesting: 0002.1");
-    Console.WriteLine("null == fakeElement");
-}
-            
             var proxiedElement =
                 AutomationFactory.GetUiElement(
                     fakeElement);
             
-Console.WriteLine("GetAutomationElementForObjectModelTesting: 0003");
-if (null == proxiedElement) {
-    Console.WriteLine("GetAutomationElementForObjectModelTesting: 0003.1");
-    Console.WriteLine("null == proxiedElement");
-}
-            
             return proxiedElement;
         }
         
-        internal static IUiElement GetAutomaitonElementForMethodsOfObjectModel(IBasePattern[] patterns)
+        internal static IUiElement GetAutomationElementForMethodsOfObjectModel(IBasePattern[] patterns)
         {
-Console.WriteLine("GetAutomaitonElementForMethodsOfObjectModel: 001");
             return GetAutomationElementForObjectModelTesting(ControlType.Button, string.Empty, string.Empty, string.Empty, patterns, true);
         }
         

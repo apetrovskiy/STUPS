@@ -16,7 +16,6 @@ namespace UIAutomation
 	using Ninject;
     
     public struct UiElementInformation : IUiElementInformation
-    //public class UiElementInformation : IUiElementInformation
     {
     	//private AutomationElement _el;
     	//private bool _useCache;

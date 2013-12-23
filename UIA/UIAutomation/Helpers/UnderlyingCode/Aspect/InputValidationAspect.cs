@@ -20,7 +20,8 @@ namespace UIAutomation
     {
         public override void Intercept(IInvocation invocation)
         {
-            foreach (var argument in invocation.GenericArguments) {
+            // foreach (var argument in invocation.GenericArguments) {
+            foreach (var argument in invocation.Arguments) {
 //                if (null == argument) {
 //                    if (argument is AutomationElement) {
 //                        // throw 

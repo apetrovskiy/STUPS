@@ -25,7 +25,7 @@ namespace UIAutomation
 	// public class UiElement <N, O> : IUiElement //, IInitializable
 	//     where N : IBasePattern
 	//     where O : AutomationPattern
-	public class UiElement : IUiElement //, IMySuperDockPattern //, IInitializable
+	public class UiElement : IUiElement
 	{
 		private AutomationElement _elementHolderNet;
 		// //private AutomationElement _elementHolderCom;
@@ -60,7 +60,6 @@ namespace UIAutomation
 		}
 		
 		[Inject]
-		// public UiElement(bool fake)
 		public UiElement()
 		{
 		    // temporary
@@ -167,10 +166,9 @@ namespace UIAutomation
 			        }
             }
 		    
-		    return default(N);
+		    // return default(N);
 		}
 		
-		// internal virtual object GetCurrentPatternLegacy(AutomationPattern pattern)
 		public virtual object GetCurrentPattern(AutomationPattern pattern)
 		{
 			switch (_innerElementType) {
@@ -269,11 +267,7 @@ namespace UIAutomation
 			}
 		}
         
-		// 20131205
-		// UIANET
-		// public IUiElement FindFirst(TreeScope scope, Condition condition)
 		public virtual IUiElement FindFirst(TreeScope scope, UIANET::System.Windows.Automation.Condition condition)
-		// public IUiElement FindFirst(TreeScope scope, UIANET::Condition condition)
 		{
 			switch (_innerElementType) {
 			    case InnerElementTypes.AutomationElementNet:
@@ -287,9 +281,6 @@ namespace UIAutomation
 			}
 		}
         
-		// 20131205
-		// UIANET
-		// public IUiEltCollection FindAll(TreeScope scope, Condition condition)
 		public virtual IUiEltCollection FindAll(TreeScope scope, UIANET::System.Windows.Automation.Condition condition)
 		{
 			switch (_innerElementType) {
@@ -299,6 +290,8 @@ namespace UIAutomation
 //			        //
 			    case InnerElementTypes.UiElement:
 			        return _elementHolderAdapter.FindAll(scope, condition);
+//			    case InnerElementTypes.Empty:
+//			        return AutomationFactory.GetUiEltCollection(_elementHolderNet.FindAll(scope, condition));
 			    default:
 			        return AutomationFactory.GetUiEltCollection(_elementHolderNet.FindAll(scope, condition));
 			}
@@ -318,8 +311,6 @@ namespace UIAutomation
 			}
 		}
         
-		// 20131209
-		// public virtual AutomationPattern[] GetSupportedPatterns()
 		public virtual IBasePattern[] GetSupportedPatterns()
 		{
 			switch (_innerElementType) {
@@ -399,7 +390,7 @@ namespace UIAutomation
 		        switch (_innerElementType) {
 		            case InnerElementTypes.AutomationElementNet:
 		                return AutomationFactory.GetUiElementInformation(Preferences.FromCache ? _elementHolderNet.Cached : _elementHolderNet.Current);
-                    //		            case InnerElementTypes.AutomationElementCom:
+//		            case InnerElementTypes.AutomationElementCom:
 //		                //
 		            case InnerElementTypes.UiElement:
 		                return Preferences.FromCache ? _elementHolderAdapter.Cached : _elementHolderAdapter.Current;
@@ -554,13 +545,11 @@ namespace UIAutomation
 		    }
 		}
 		
-		// public virtual AutomationElement GetSourceElement()
 		public AutomationElement GetSourceElement()
 		{
 		    return _elementHolderNet;
 		}
-		// public virtual void SetSourceElement(AutomationElement element)
-		// public virtual void SetSourceElement<T>(T element)
+		
 		public void SetSourceElement<T>(T element)
 		{
 		    if (element is AutomationElement) {
@@ -691,139 +680,6 @@ namespace UIAutomation
             return result;
         }
         #endregion NavigateTo
-        
-        #region Patterns
-        #region InvokePattern
-        internal IUiElement Click()
-        {
-            // return this.PerformClick();
-            this.GetCurrentPattern<IMySuperInvokePattern>(InvokePattern.Pattern).Invoke();
-            return this;
-        }
-        
-        internal IUiElement DoubleClick()
-        {
-//            HasControlInputCmdletBase cmdlet =
-//                new HasControlInputCmdletBase();
-//            cmdlet.ClickControl(
-//                cmdlet,
-//                this,
-//                false,
-//                false,
-//                false,
-//                false,
-//                false,
-//                false,
-//                true,
-//                50,
-//                Preferences.ClickOnControlByCoordX,
-//                Preferences.ClickOnControlByCoordY);
-//            
-//            return this;
-            return this.PerformDoubleClick();
-        }
-        #endregion InvokePattern
-        #region SelectionItemPattern
-        internal IUiElement Select()
-        {
-            return this.PerformSelect();
-        }
-        
-        internal IUiElement AddToSelection()
-        {
-            return this.PerformAddToSelection();
-        }
-        
-        internal IUiElement RemoveFromSelection()
-        {
-            return this.PerformRemoveFromSelection();
-        }
-        
-        internal bool IsSelected
-        {
-            // get { return this.GetSelectionItemPattern().Current.IsSelected; }
-            get { return this.GetIsSelected(); }
-        }
-        
-        internal IUiElement SelectionContainer
-        {
-            // get { return this.GetSelectionItemPattern().Current.SelectionContainer; }
-            get { return this.GetSelectionContainer(); }
-        }
-        #endregion SelectionItemPattern
-        #region SelectionPattern
-        internal IUiElement[] GetSelection()
-        {
-            // return this.GetSelectionPattern().Current.GetSelection();
-            return this.PerformGetSelection();
-        }
-        
-        internal bool CanSelectMultiple
-        {
-            // get { return this.GetSelectionPattern().Current.CanSelectMultiple; }
-            get { return this.GetCanSelectMultiple(); }
-        }
-        
-        internal bool IsSelectionRequired
-        {
-            // get { return this.GetSelectionPattern().Current.IsSelectionRequired; }
-            get { return this.GetIsSelectionRequired(); }
-        }
-        #endregion SelectionPattern
-        #region TogglePattern
-        internal IUiElement Toggle()
-        {
-            return this.Toggle();
-        }
-//        
-////        public bool? ToggleState
-////        {
-////            get {
-////                using (ToggleState t = ToggleState) {
-////                    
-////                } 
-////                switch (this.GetTogglePattern().Current.ToggleState) {
-////                     case ToggleState.Off:
-////                         return false;
-////                     case ToggleState.On:
-////                         return true;
-////                     case ToggleState.Indeterminate:
-////                         return null;
-//////                     default:
-//////                         throw new Exception("Invalid value for ToggleState");
-////                 }
-////            }
-////            set { 
-////                switch (value) {
-////                    case true:
-////                        this.GetTogglePattern().Current.ToggleState = ToggleState.On;
-////                        break;
-////                    case false:
-////                        this.GetTogglePattern().Current.ToggleState = ToggleState.Off;
-////                    case null:
-////                        this.GetTogglePattern().Current.ToggleState = ToggleState.Indeterminate;
-//////                    default:
-//////                        
-//////                    	break;
-////                }
-////            }
-////        }
-        #endregion TogglePattern
-        #region ValuePattern
-        internal bool IsReadOnly
-        {
-            get { return this.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern).Current.IsReadOnly; }
-        }
-        
-        internal string Value
-        {
-            // get { return this.GetValuePattern().Current.Value; }
-            // set { this.GetValuePattern().SetValue(value); }
-            get { return this.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern).Current.Value; }
-            set { this.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern).SetValue(value); }
-        }
-        #endregion ValuePattern
-        #endregion Patterns
         
         #region Highlighter
         public virtual IUiElement Highlight()

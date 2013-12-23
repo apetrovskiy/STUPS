@@ -112,37 +112,25 @@ namespace UIAutomation
             Type[] supportedAdditionalInterfaces =
                 UiaHelper.GetSupportedInterfaces(element);
             
-//Console.WriteLine("ConvertToProxiedElement 0001");
-            
             UiElement proxiedElement = null;
             try {
                 
-Console.WriteLine("ConvertToProxiedElement 0002");
-                
                 if (null != supportedAdditionalInterfaces && 0 < supportedAdditionalInterfaces.Length) {
-    
-Console.WriteLine("ConvertToProxiedElement 0003");
             		proxiedElement =
             		    (UiElement)_generator.CreateClassProxy(
             		        typeof(UiElement),
             		        supportedAdditionalInterfaces,
                             new MethodSelectorAspect(), new LoggingAspect(), new ErrorHandlingAspect(), new InputValidationAspect(), new ParameterValidationAspect());
-Console.WriteLine("ConvertToProxiedElement 0004");
-            		
                 } else {
-Console.WriteLine("ConvertToProxiedElement 0005");
             		proxiedElement =
             		    (UiElement)_generator.CreateClassProxy(
             		        typeof(UiElement),
                             new MethodSelectorAspect(), new LoggingAspect(), new ErrorHandlingAspect(), new InputValidationAspect(), new ParameterValidationAspect());
-Console.WriteLine("ConvertToProxiedElement 0006");
                 }
             }
             catch (Exception eConvertation) {
-Console.WriteLine("proxy 0007");
-                Console.WriteLine(eConvertation.Message);
+                // Console.WriteLine(eConvertation.Message);
             }
-Console.WriteLine("proxy 0008");
     		return proxiedElement;
         }
         #endregion Castle DynamicProxy
@@ -159,23 +147,17 @@ Console.WriteLine("proxy 0008");
     			IUiElement adapterElement = Kernel.Get<IUiElement>("AutomationElement.NET", singleElement);
     			
     			if (_useDynamicProxy) {
-Console.WriteLine("GetUiElement use proxy 1");
+                    
         			IUiElement proxiedTypedUiElement =
         			    ConvertToProxiedElement(
         			        adapterElement);
         			
-Console.WriteLine("GetUiElement use proxy 2");
-        			
         			proxiedTypedUiElement.SetSourceElement<AutomationElement>(element);
-        			
-Console.WriteLine("GetUiElement use proxy 3");
         			
         			return (IUiElement)proxiedTypedUiElement; // as IUiElement;
     			} else {
                     
     			    adapterElement.SetSourceElement<AutomationElement>(element);
-    			    
-Console.WriteLine("GetUiElement don't use proxy");
     			    
     			    return adapterElement;
     			}
@@ -184,8 +166,8 @@ Console.WriteLine("GetUiElement don't use proxy");
 			catch (Exception eFailedToIssueElement) {
 			    // TODO
 			    // write error to error object!!!
-			    Console.WriteLine("Element 01");
-			    Console.WriteLine(eFailedToIssueElement.Message);
+			    //Console.WriteLine("Element 01");
+			    //Console.WriteLine(eFailedToIssueElement.Message);
 			    return null;
 			}
 		}
@@ -221,8 +203,8 @@ Console.WriteLine("GetUiElement don't use proxy");
 			catch (Exception eFailedToIssueElement) {
 			    // TODO
 			    // write error to error object!!!
-			    Console.WriteLine("Element 02");
-			    Console.WriteLine(eFailedToIssueElement.Message);
+			    //Console.WriteLine("Element 02");
+			    //Console.WriteLine(eFailedToIssueElement.Message);
 			    return null;
 			}
 		}
@@ -246,8 +228,8 @@ Console.WriteLine("GetUiElement don't use proxy");
 			catch (Exception eFailedToIssueElement) {
 			    // TODO
 			    // write error to error object!!!
-			    Console.WriteLine("Element 03");
-			    Console.WriteLine(eFailedToIssueElement.Message);
+			    //Console.WriteLine("Element 03");
+			    //Console.WriteLine(eFailedToIssueElement.Message);
 			    return null;
 			}
 		}
@@ -262,8 +244,8 @@ Console.WriteLine("GetUiElement don't use proxy");
 			catch (Exception eFailedToIssueInformation) {
 			    // TODO
 			    // write error to error object!!!
-                Console.WriteLine("Information");
-			    Console.WriteLine(eFailedToIssueInformation.Message);
+                //Console.WriteLine("Information");
+			    //Console.WriteLine(eFailedToIssueInformation.Message);
 			    return null;
 			}
 		}
@@ -283,8 +265,8 @@ Console.WriteLine("GetUiElement don't use proxy");
 			catch (Exception eFailedToIssueCollection) {
 			    // TODO
 			    // write error to error object!!!
-			    Console.WriteLine("Collection 01");
-			    Console.WriteLine(eFailedToIssueCollection.Message);
+			    //Console.WriteLine("Collection 01");
+			    //Console.WriteLine(eFailedToIssueCollection.Message);
 			    return null;
 			}
 		}
@@ -302,8 +284,8 @@ Console.WriteLine("GetUiElement don't use proxy");
 			catch (Exception eFailedToIssueCollection) {
 			    // TODO
 			    // write error to error object!!!
-			    Console.WriteLine("Collection 02");
-			    Console.WriteLine(eFailedToIssueCollection.Message);
+			    //Console.WriteLine("Collection 02");
+			    //Console.WriteLine(eFailedToIssueCollection.Message);
 			    return null;
 			}
 		}
@@ -321,8 +303,8 @@ Console.WriteLine("GetUiElement don't use proxy");
 			catch (Exception eFailedToIssueCollection) {
 			    // TODO
 			    // write error to error object!!!
-			    Console.WriteLine("Collection 03");
-			    Console.WriteLine(eFailedToIssueCollection.Message);
+			    //Console.WriteLine("Collection 03");
+			    //Console.WriteLine(eFailedToIssueCollection.Message);
 			    return null;
 			}
 		}
@@ -337,8 +319,8 @@ Console.WriteLine("GetUiElement don't use proxy");
 			catch (Exception eFailedToIssueCollection) {
 			    // TODO
 			    // write error to error object!!!
-			    Console.WriteLine("Collection 04");
-			    Console.WriteLine(eFailedToIssueCollection.Message);
+			    //Console.WriteLine("Collection 04");
+			    //Console.WriteLine(eFailedToIssueCollection.Message);
 			    return null;
 			}
 		}

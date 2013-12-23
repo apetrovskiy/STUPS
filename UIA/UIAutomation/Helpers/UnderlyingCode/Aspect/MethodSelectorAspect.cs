@@ -23,8 +23,6 @@ namespace UIAutomation
         
         public override void Intercept(IInvocation invocation)
         {
-//            bool returnItself = true;
-            
             try {
                 if (!AlreadySelected) {
                     AlreadySelected = true;

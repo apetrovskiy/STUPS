@@ -36,13 +36,9 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         [Test]
         public void Dock_ImplementsCommonPattern()
         {
-Console.WriteLine("Dock_ImplementsCommonPattern: 0001");
-            
             ISupportsInvokePattern element =
-                FakeFactory.GetAutomaitonElementForMethodsOfObjectModel(
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsInvokePattern;
-            
-Console.WriteLine("Dock_ImplementsCommonPattern: 0002");
             
             Assert.IsNotNull(element as ISupportsInvokePattern);
         }
@@ -51,7 +47,7 @@ Console.WriteLine("Dock_ImplementsCommonPattern: 0002");
         public void Dock_ImplementsPattern()
         {
             ISupportsDockPattern element =
-                FakeFactory.GetAutomaitonElementForMethodsOfObjectModel(
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsDockPattern;
             
             Assert.IsNotNull(element as ISupportsDockPattern);
@@ -61,7 +57,7 @@ Console.WriteLine("Dock_ImplementsCommonPattern: 0002");
         public void Dock_DoesNotImplementOtherPatterns()
         {
             ISupportsValuePattern element =
-                FakeFactory.GetAutomaitonElementForMethodsOfObjectModel(
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsValuePattern;
             
             Assert.IsNull(element as ISupportsValuePattern);
@@ -72,7 +68,7 @@ Console.WriteLine("Dock_ImplementsCommonPattern: 0002");
         {
             // Arrange
             ISupportsDockPattern element =
-                FakeFactory.GetAutomaitonElementForMethodsOfObjectModel(
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsDockPattern;
             
             // Act

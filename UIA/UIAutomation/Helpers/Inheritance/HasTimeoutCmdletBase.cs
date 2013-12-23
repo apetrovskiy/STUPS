@@ -171,7 +171,7 @@ namespace UIAutomation
                         
                         foreach (IUiElement window in aeWndCollection) {
                             
-                            cmdlet.WriteVerbose(cmdlet, "Window: name='" + window.Current.Name + "', automaitonId='" + window.Current.AutomationId + "'");
+                            cmdlet.WriteVerbose(cmdlet, "Window: name='" + window.Current.Name + "', automationId='" + window.Current.AutomationId + "'");
                             
 //                            if (exitInnerCycle) {
 //                                //break;
@@ -741,29 +741,10 @@ namespace UIAutomation
                 WriteVerbose(this, "trying to get window: by title = " +
                              windowTitle);
                 
-Console.WriteLine("odd 001");
-if (null == OddRootElement) {
-    Console.WriteLine("null == odd");
-} else {
-    Console.WriteLine("null != OddRootElement");
-    if (null == OddRootElement.Current) {
-        Console.WriteLine("null == OddRootElement.Current");
-    } else {
-        Console.WriteLine(OddRootElement.Current.Name);
-        Console.WriteLine(OddRootElement.Current.AutomationId);
-        Console.WriteLine(OddRootElement.Current.ClassName);
-        Console.WriteLine(OddRootElement.Current.ControlType.ProgrammaticName);
-    }
-}
                 IUiEltCollection windowCollection =
                     OddRootElement.FindAll(recurse ? TreeScope.Descendants : TreeScope.Children, conditionsSet);
                 
-if (null == windowCollection) {
-    Console.WriteLine("null = wnd coll");
-}
-                
                 WriteVerbose(this, "trying to run the returnOnlyRightElements method");
-                // WriteVerbose(this, "collected " + windowCollection.Count.ToString() + " elements for further selection");
                 
                 windowCollectionByProperties =
                     ReturnOnlyRightElements(

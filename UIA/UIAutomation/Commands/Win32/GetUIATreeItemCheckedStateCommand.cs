@@ -27,7 +27,9 @@ namespace UIAutomation.Commands
         
         #region Parameters
         [Parameter(Mandatory = false)]
-        internal string AutomaitonId { get; set; }
+        // 20131222
+        // internal string AutomaitonId { get; set; }
+        internal string AutomationId { get; set; }
         /*
         internal new string AutomaitonId { get; set; }
         */

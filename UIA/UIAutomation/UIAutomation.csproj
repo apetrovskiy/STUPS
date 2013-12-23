@@ -413,7 +413,9 @@
     <Compile Include="Interface\ISupportsExpandCollapsePattern.cs" />
     <Compile Include="Interface\ISupportsGridItemPattern.cs" />
     <Compile Include="Interface\ISupportsGridPattern.cs" />
+    <Compile Include="Interface\ISupportsHighlighter.cs" />
     <Compile Include="Interface\ISupportsInvokePattern.cs" />
+    <Compile Include="Interface\ISupportsNavigation.cs" />
     <Compile Include="Interface\ISupportsRangeValuePattern.cs" />
     <Compile Include="Interface\ISupportsScrollItemPattern.cs" />
     <Compile Include="Interface\ISupportsScrollPattern.cs" />

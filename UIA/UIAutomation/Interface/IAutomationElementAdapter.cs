@@ -9,14 +9,14 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;
-    using System;
-    using System.Collections;
-    using System.ComponentModel;
-    using System.Windows.Automation;
-    using System.Windows;
+	extern alias UIANET;
+	using System;
+	using System.Collections;
+	using System.ComponentModel;
+	using System.Windows.Automation;
+	using System.Windows;
 
-    public interface IUiElement : IDisposable
+	public interface IUiElement : IDisposable //, ISupportsHighlighter
 	{
 		bool Equals(object obj);
 		int GetHashCode();
@@ -67,7 +67,7 @@ namespace UIAutomation
 		// 20131114
 		//AutomationElementCollection CachedChildren { get; }
 		IUiEltCollection CachedChildren { get; }
-		
+
 		//AutomationElement SourceElement { get; }
 		//AutomationElement SourceElement { get; set; }
 		//T GetSourceElement<T>();
@@ -77,28 +77,28 @@ namespace UIAutomation
 		void SetSourceElement<T>(T element);
 		//IUiElement GetSourceElement();
 		//void SetSourceElement(IUiElement element);
-	    
+
 		string Tag { get; set; }
 		//void Dispose();
-		
+
 		// internal methods
 		object GetPatternPropertyValue(AutomationProperty property, bool useCache);
-		
+
 		// InnerElementTypes InnerElementType { get; set; }
-		
+
 		// NavigateTo
-        IUiElement NavigateToParent();
-        IUiElement NavigateToFirstChild();
-        IUiElement NavigateToLastChild();
-        IUiElement NavigateToNextSibling();
-        IUiElement NavigateToPreviousSibling();
-        
-        // Patterns
+		IUiElement NavigateToParent();
+		IUiElement NavigateToFirstChild();
+		IUiElement NavigateToLastChild();
+		IUiElement NavigateToNextSibling();
+		IUiElement NavigateToPreviousSibling();
+
+		// Patterns
 //        IUiElement Click();
 //        IUiElement DoubleClick();
 //        string Value { get; set; }
-        
-        // HIghlighter
-        IUiElement Highlight();
+
+		// HIghlighter
+		IUiElement Highlight();
 	}
 }

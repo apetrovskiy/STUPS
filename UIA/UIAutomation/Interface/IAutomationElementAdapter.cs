@@ -87,11 +87,11 @@ namespace UIAutomation
 		// InnerElementTypes InnerElementType { get; set; }
 
 		// NavigateTo
-		IUiElement NavigateToParent();
-		IUiElement NavigateToFirstChild();
-		IUiElement NavigateToLastChild();
-		IUiElement NavigateToNextSibling();
-		IUiElement NavigateToPreviousSibling();
+//		IUiElement NavigateToParent();
+//		IUiElement NavigateToFirstChild();
+//		IUiElement NavigateToLastChild();
+//		IUiElement NavigateToNextSibling();
+//		IUiElement NavigateToPreviousSibling();
 
 		// Patterns
 //        IUiElement Click();
@@ -99,6 +99,6 @@ namespace UIAutomation
 //        string Value { get; set; }
 
 		// HIghlighter
-		IUiElement Highlight();
+//		IUiElement Highlight();
 	}
 }

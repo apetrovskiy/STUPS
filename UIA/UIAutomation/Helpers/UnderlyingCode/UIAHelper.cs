@@ -2752,6 +2752,9 @@ strInfo += " 07";
                 foreach (AutomationPattern pattern in (element as AutomationElement).GetSupportedPatterns()) {
                     // always
                     supportedTypes.Add(typeof(ISupportsInvokePattern));
+                    supportedTypes.Add(typeof(ISupportsHighlighter));
+                    supportedTypes.Add(typeof(ISupportsNavigation));
+                    // calculated
                     if (pattern == DockPattern.Pattern) {
                         supportedTypes.Add(typeof(ISupportsDockPattern));
                     }
@@ -2806,6 +2809,9 @@ strInfo += " 07";
                 foreach (IBasePattern pattern in (element as IUiElement).GetSupportedPatterns()) {
                     // always
                     supportedTypes.Add(typeof(ISupportsInvokePattern));
+                    supportedTypes.Add(typeof(ISupportsHighlighter));
+                    supportedTypes.Add(typeof(ISupportsNavigation));
+                    // calculated
                     if (pattern is IMySuperDockPattern) {
                         supportedTypes.Add(typeof(ISupportsDockPattern));
                     }

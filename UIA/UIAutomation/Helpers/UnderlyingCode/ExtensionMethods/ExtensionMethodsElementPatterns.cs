@@ -1105,6 +1105,84 @@ namespace UIAutomation
 		    return WindowVisualState.Normal;
 		}
         #endregion WindowPattern
+        #region Navigation
+        public static IUiElement PerformNavigateToParent(this IUiElement element)
+		{
+			IUiElement result = null;
+
+			TreeWalker walker = new TreeWalker(System.Windows.Automation.Condition.TrueCondition);
+
+			try {
+				result = AutomationFactory.GetUiElement(walker.GetParent(element.GetSourceElement()));
+			} catch {
+			}
+
+			return result;
+		}
+
+		public static IUiElement PerformNavigateToFirstChild(this IUiElement element)
+		{
+			IUiElement result = null;
+
+			TreeWalker walker = new TreeWalker(System.Windows.Automation.Condition.TrueCondition);
+
+			try {
+				result = AutomationFactory.GetUiElement(walker.GetFirstChild(element.GetSourceElement()));
+			} catch {
+			}
+
+			return result;
+		}
+
+		public static IUiElement PerformNavigateToLastChild(this IUiElement element)
+		{
+			IUiElement result = null;
+
+			TreeWalker walker = new TreeWalker(System.Windows.Automation.Condition.TrueCondition);
+
+			try {
+				result = AutomationFactory.GetUiElement(walker.GetLastChild(element.GetSourceElement()));
+			} catch {
+			}
+
+			return result;
+		}
+
+		public static IUiElement PerformNavigateToNextSibling(this IUiElement element)
+		{
+			IUiElement result = null;
+
+			TreeWalker walker = new TreeWalker(System.Windows.Automation.Condition.TrueCondition);
+
+			try {
+				result = AutomationFactory.GetUiElement(walker.GetNextSibling(element.GetSourceElement()));
+			} catch {
+			}
+
+			return result;
+		}
+
+		public static IUiElement PerformNavigateToPreviousSibling(this IUiElement element)
+		{
+			IUiElement result = null;
+
+			TreeWalker walker = new TreeWalker(System.Windows.Automation.Condition.TrueCondition);
+
+			try {
+				result = AutomationFactory.GetUiElement(walker.GetPreviousSibling(element.GetSourceElement()));
+			} catch {
+			}
+
+			return result;
+		}
+        #endregion Navigation
+        #region Highlighter
+        public static IUiElement PerformHighlight(this IUiElement element)
+		{
+			UiaHelper.Highlight(element);
+			return element;
+		}
+        #endregion Highlighter
         #endregion Patterns
     }
 }

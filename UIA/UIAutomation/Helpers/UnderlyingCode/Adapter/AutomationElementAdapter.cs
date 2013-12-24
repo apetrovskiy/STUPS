@@ -25,7 +25,7 @@ namespace UIAutomation
 	// public class UiElement <N, O> : IUiElement //, IInitializable
 	//     where N : IBasePattern
 	//     where O : AutomationPattern
-	public class UiElement : IUiElement, ISupportsNavigation, ISupportsHighlighter
+	public class UiElement : IUiElement
 	{
 		private AutomationElement _elementHolderNet;
 		// //private AutomationElement _elementHolderCom;
@@ -598,83 +598,83 @@ namespace UIAutomation
 		}
 
 		#region NavigateTo
-		public virtual IUiElement NavigateToParent()
-		{
-			IUiElement result = null;
-
-			TreeWalker walker = new TreeWalker(System.Windows.Automation.Condition.TrueCondition);
-
-			try {
-				result = AutomationFactory.GetUiElement(walker.GetParent(this.GetSourceElement()));
-			} catch {
-			}
-
-			return result;
-		}
-
-		public virtual IUiElement NavigateToFirstChild()
-		{
-			IUiElement result = null;
-
-			TreeWalker walker = new TreeWalker(System.Windows.Automation.Condition.TrueCondition);
-
-			try {
-				result = AutomationFactory.GetUiElement(walker.GetFirstChild(this.GetSourceElement()));
-			} catch {
-			}
-
-			return result;
-		}
-
-		public virtual IUiElement NavigateToLastChild()
-		{
-			IUiElement result = null;
-
-			TreeWalker walker = new TreeWalker(System.Windows.Automation.Condition.TrueCondition);
-
-			try {
-				result = AutomationFactory.GetUiElement(walker.GetLastChild(this.GetSourceElement()));
-			} catch {
-			}
-
-			return result;
-		}
-
-		public virtual IUiElement NavigateToNextSibling()
-		{
-			IUiElement result = null;
-
-			TreeWalker walker = new TreeWalker(System.Windows.Automation.Condition.TrueCondition);
-
-			try {
-				result = AutomationFactory.GetUiElement(walker.GetNextSibling(this.GetSourceElement()));
-			} catch {
-			}
-
-			return result;
-		}
-
-		public virtual IUiElement NavigateToPreviousSibling()
-		{
-			IUiElement result = null;
-
-			TreeWalker walker = new TreeWalker(System.Windows.Automation.Condition.TrueCondition);
-
-			try {
-				result = AutomationFactory.GetUiElement(walker.GetPreviousSibling(this.GetSourceElement()));
-			} catch {
-			}
-
-			return result;
-		}
+//		public virtual IUiElement NavigateToParent()
+//		{
+//			IUiElement result = null;
+//
+//			TreeWalker walker = new TreeWalker(System.Windows.Automation.Condition.TrueCondition);
+//
+//			try {
+//				result = AutomationFactory.GetUiElement(walker.GetParent(this.GetSourceElement()));
+//			} catch {
+//			}
+//
+//			return result;
+//		}
+//
+//		public virtual IUiElement NavigateToFirstChild()
+//		{
+//			IUiElement result = null;
+//
+//			TreeWalker walker = new TreeWalker(System.Windows.Automation.Condition.TrueCondition);
+//
+//			try {
+//				result = AutomationFactory.GetUiElement(walker.GetFirstChild(this.GetSourceElement()));
+//			} catch {
+//			}
+//
+//			return result;
+//		}
+//
+//		public virtual IUiElement NavigateToLastChild()
+//		{
+//			IUiElement result = null;
+//
+//			TreeWalker walker = new TreeWalker(System.Windows.Automation.Condition.TrueCondition);
+//
+//			try {
+//				result = AutomationFactory.GetUiElement(walker.GetLastChild(this.GetSourceElement()));
+//			} catch {
+//			}
+//
+//			return result;
+//		}
+//
+//		public virtual IUiElement NavigateToNextSibling()
+//		{
+//			IUiElement result = null;
+//
+//			TreeWalker walker = new TreeWalker(System.Windows.Automation.Condition.TrueCondition);
+//
+//			try {
+//				result = AutomationFactory.GetUiElement(walker.GetNextSibling(this.GetSourceElement()));
+//			} catch {
+//			}
+//
+//			return result;
+//		}
+//
+//		public virtual IUiElement NavigateToPreviousSibling()
+//		{
+//			IUiElement result = null;
+//
+//			TreeWalker walker = new TreeWalker(System.Windows.Automation.Condition.TrueCondition);
+//
+//			try {
+//				result = AutomationFactory.GetUiElement(walker.GetPreviousSibling(this.GetSourceElement()));
+//			} catch {
+//			}
+//
+//			return result;
+//		}
 		#endregion NavigateTo
 
 		#region Highlighter
-		public virtual IUiElement Highlight()
-		{
-			UiaHelper.Highlight(this);
-			return this;
-		}
+//		public virtual IUiElement Highlight()
+//		{
+//			UiaHelper.Highlight(this);
+//			return this;
+//		}
 		#endregion Highlighter
 	}
 }

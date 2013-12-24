@@ -431,6 +431,34 @@ namespace UIAutomation
                                 (invocation.Proxy as IUiElement).GetWindowVisualState();
                             break;
                         #endregion WindowPattern
+                        #region Highlighter
+                        case "Highlight":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).PerformHighlight();
+                            break;
+                        #endregion Highlighter
+                        #region Navigation
+                        case "NavigateToParent":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).PerformNavigateToParent();
+                            break;
+                        case "NavigateToFirstChild":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).PerformNavigateToFirstChild();
+                            break;
+                        case "NavigateToLastChild":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).PerformNavigateToLastChild();
+                            break;
+                        case "NavigateToNextSibling":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).PerformNavigateToNextSibling();
+                            break;
+                        case "NavigateToPreviousSibling":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).PerformNavigateToPreviousSibling();
+                            break;
+                        #endregion Navigation
                         default:
                             invocation.Proceed();
                         	break;

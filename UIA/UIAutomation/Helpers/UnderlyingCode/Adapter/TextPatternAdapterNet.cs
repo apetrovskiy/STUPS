@@ -137,16 +137,37 @@ namespace UIAutomation
 //			return Misc.Compare(t1._element, t2._element);
 //		}
 		
-		public virtual IUiElement ParentElement
+		// public virtual IUiElement ParentElement
+//		internal virtual IUiElement ParentElement
+//		{
+//		    get { return this._element; }
+//		    set { this._element = value; }
+//		}
+		
+		public void SetParentElement(IUiElement element)
 		{
-		    get { return this._element; }
-		    set { this._element = value; }
+		    this._element = element;
 		}
 		
-		public object SourcePattern
+		public IUiElement GetParentElement()
 		{
-		    get { return this._textPattern; }
-		    set { this._textPattern = value as TextPattern; }
+		    return this._element;
+		}
+		
+//		public object SourcePattern
+//		{
+//		    get { return this._textPattern; }
+//		    set { this._textPattern = value as TextPattern; }
+//		}
+		
+		public void SetSourcePattern(object pattern)
+		{
+		    this._textPattern = pattern as TextPattern;
+		}
+		
+		public object GetSourcePattern()
+		{
+		    return this._textPattern;
 		}
 	}
 }

@@ -892,17 +892,19 @@ strInfo += " 04";
                                 {
 strInfo += " 05";
                                     strElementPatterns += "\r\n\t\t#";
-if (null == ptrn.SourcePattern) {
-    strInfo += " ";
-    strInfo += ptrn.GetType().Name;
-    strInfo += " is null";
-}
+//if (null == ptrn.SourcePattern) {
+//    strInfo += " ";
+//    strInfo += ptrn.GetType().Name;
+//    strInfo += " is null";
+//}
                                     strElementPatterns +=
                                         // 20131209
                                         // ptrn.ProgrammaticName.Replace("Identifiers.Pattern", "");
                                         // 20131210
                                         // (ptrn.SourcePattern as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", "");
-                                        (ptrn.SourcePattern as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", string.Empty);
+                                        // 20131224
+                                        // (ptrn.SourcePattern as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", string.Empty);
+                                        (ptrn.GetSourcePattern() as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", string.Empty);
 strInfo += " 06";
                                     strElementPatterns += ": use the ";
                                     
@@ -916,7 +918,9 @@ strInfo += " 07";
                                     // 20131210
                                     // switch ((ptrn as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", "")) {
                                     // switch ((ptrn.SourcePattern as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", "")) {
-                                    switch ((ptrn.SourcePattern as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", string.Empty)) {
+                                    // 20131224
+                                    // switch ((ptrn.SourcePattern as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", string.Empty)) {
+                                    switch ((ptrn.GetSourcePattern() as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", string.Empty)) {
                                         case "InvokePattern":
                                             strElementPatterns +=
                                                 "Invoke" + tempControlNameForCmdlet + "Click";
@@ -1409,7 +1413,9 @@ strInfo += " 07";
                             // switch (pattern.ProgrammaticName) {
                             // 20131210
                             // switch ((pattern as AutomationPattern).ProgrammaticName) {
-                            switch ((pattern.SourcePattern as AutomationPattern).ProgrammaticName) {
+                            // 20131224
+                            // switch ((pattern.SourcePattern as AutomationPattern).ProgrammaticName) {
+                            switch ((pattern.GetSourcePattern() as AutomationPattern).ProgrammaticName) {
                                 case "SelectionItemPatternIdentifiers.Pattern":
                                     cmdlet.SubscribeToEvents(cmdlet,
                                                              element,
@@ -1523,7 +1529,9 @@ strInfo += " 07";
                                                 // pattern.ProgrammaticName +
                                                 // 20131210
                                                 // (pattern as AutomationPattern).ProgrammaticName +
-                                                (pattern.SourcePattern as AutomationPattern).ProgrammaticName +
+                                                // 20131224
+                                                // (pattern.SourcePattern as AutomationPattern).ProgrammaticName +
+                                                (pattern.GetSourcePattern() as AutomationPattern).ProgrammaticName +
                                                 " event for " +
                                                 element.Current.Name);
                         }
@@ -1900,7 +1908,9 @@ strInfo += " 07";
                 // foreach (AutomationPattern ptrn in supportedPatterns.Where(ptrn => patternType.ProgrammaticName == ptrn.ProgrammaticName ||
                 // 20131210
                 // foreach (IBasePattern ptrn in supportedPatterns.Where(ptrn => patternType.ProgrammaticName == (ptrn as AutomationPattern).ProgrammaticName ||
-                foreach (IBasePattern ptrn in supportedPatterns.Where(ptrn => patternType.ProgrammaticName == (ptrn.SourcePattern as AutomationPattern).ProgrammaticName ||
+                // 20131224
+                // foreach (IBasePattern ptrn in supportedPatterns.Where(ptrn => patternType.ProgrammaticName == (ptrn.SourcePattern as AutomationPattern).ProgrammaticName ||
+                foreach (IBasePattern ptrn in supportedPatterns.Where(ptrn => patternType.ProgrammaticName == (ptrn.GetSourcePattern() as AutomationPattern).ProgrammaticName ||
                                                                                    patternType == null))
                 {
                     object pattern = null;
@@ -1909,7 +1919,9 @@ strInfo += " 07";
                         // ptrn, out pattern)) continue;
                         // 20131210
                         // (ptrn as AutomationPattern), out pattern)) continue;
-                        (ptrn.SourcePattern as AutomationPattern), out pattern)) continue;
+                        // 20131224
+                        // (ptrn.SourcePattern as AutomationPattern), out pattern)) continue;
+                        (ptrn.GetSourcePattern() as AutomationPattern), out pattern)) continue;
                     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //                    object resPattern =
 //                        // 20131208
@@ -1923,7 +1935,9 @@ strInfo += " 07";
                         // element.GetCurrentPattern(ptrn);
                         // 20131210
                         // element.GetCurrentPattern((ptrn as AutomationPattern));
-                        element.GetCurrentPattern((ptrn.SourcePattern as AutomationPattern));
+                        // 20131224
+                        // element.GetCurrentPattern((ptrn.SourcePattern as AutomationPattern));
+                        element.GetCurrentPattern((ptrn.GetSourcePattern() as AutomationPattern));
                     return result;
                 }
 

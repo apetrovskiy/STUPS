@@ -43,7 +43,9 @@ namespace UIAutomation
 			}
 		    
 			public ToggleState ToggleState {
-				get { return (ToggleState)this._togglePattern.ParentElement.GetPatternPropertyValue(TogglePattern.ToggleStateProperty, this._useCache); }
+			    // 20131224
+				// get { return (ToggleState)this._togglePattern.ParentElement.GetPatternPropertyValue(TogglePattern.ToggleStateProperty, this._useCache); }
+				get { return (ToggleState)this._togglePattern.GetParentElement().GetPatternPropertyValue(TogglePattern.ToggleStateProperty, this._useCache); }
 			}
 		}
 		public static readonly AutomationPattern Pattern = TogglePatternIdentifiers.Pattern;
@@ -67,16 +69,37 @@ namespace UIAutomation
 			this._togglePattern.Toggle();
 		}
 		
-		public virtual IUiElement ParentElement
+		// public virtual IUiElement ParentElement
+//		internal virtual IUiElement ParentElement
+//		{
+//		    get { return this._element; }
+//		    set { this._element = value; }
+//		}
+		
+		public void SetParentElement(IUiElement element)
 		{
-		    get { return this._element; }
-		    set { this._element = value; }
+		    this._element = element;
 		}
 		
-		public object SourcePattern
+		public IUiElement GetParentElement()
 		{
-		    get { return this._togglePattern; }
-		    set { this._togglePattern = value as TogglePattern; }
+		    return this._element;
+		}
+		
+//		public object SourcePattern
+//		{
+//		    get { return this._togglePattern; }
+//		    set { this._togglePattern = value as TogglePattern; }
+//		}
+		
+		public void SetSourcePattern(object pattern)
+		{
+		    this._togglePattern = pattern as TogglePattern;
+		}
+		
+		public object GetSourcePattern()
+		{
+		    return this._togglePattern;
 		}
 	}
 }

@@ -231,7 +231,9 @@ namespace UIAutomationUnitTests
             valuePattern.Current.Returns(valuePatternInformation);
             FakeSourcePattern sourcePattern = new FakeSourcePattern();
             FakeSourcePattern.Pattern = ValuePattern.Pattern;
-            valuePattern.SourcePattern = sourcePattern;
+            // 20131224
+            // valuePattern.SourcePattern = sourcePattern;
+            valuePattern.SetSourcePattern(sourcePattern);
             return valuePattern;
         }
         

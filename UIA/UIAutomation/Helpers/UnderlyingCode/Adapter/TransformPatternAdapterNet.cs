@@ -49,15 +49,21 @@ namespace UIAutomation
 			
 			public bool CanMove {
 				// get { return (bool)this._el.GetPatternPropertyValue(TransformPattern.CanMoveProperty, this._useCache); }
-				get { return (bool)this._transformPattern.ParentElement.GetPatternPropertyValue(TransformPattern.CanMoveProperty, this._useCache); }
+				// 20131224
+				// get { return (bool)this._transformPattern.ParentElement.GetPatternPropertyValue(TransformPattern.CanMoveProperty, this._useCache); }
+				get { return (bool)this._transformPattern.GetParentElement().GetPatternPropertyValue(TransformPattern.CanMoveProperty, this._useCache); }
 			}
 			public bool CanResize {
 				// get { return (bool)this._el.GetPatternPropertyValue(TransformPattern.CanResizeProperty, this._useCache); }
-				get { return (bool)this._transformPattern.ParentElement.GetPatternPropertyValue(TransformPattern.CanResizeProperty, this._useCache); }
+				// 20131224
+				// get { return (bool)this._transformPattern.ParentElement.GetPatternPropertyValue(TransformPattern.CanResizeProperty, this._useCache); }
+				get { return (bool)this._transformPattern.GetParentElement().GetPatternPropertyValue(TransformPattern.CanResizeProperty, this._useCache); }
 			}
 			public bool CanRotate {
 				// get { return (bool)this._el.GetPatternPropertyValue(TransformPattern.CanRotateProperty, this._useCache); }
-				get { return (bool)this._transformPattern.ParentElement.GetPatternPropertyValue(TransformPattern.CanRotateProperty, this._useCache); }
+				// 20131224
+				// get { return (bool)this._transformPattern.ParentElement.GetPatternPropertyValue(TransformPattern.CanRotateProperty, this._useCache); }
+				get { return (bool)this._transformPattern.GetParentElement().GetPatternPropertyValue(TransformPattern.CanRotateProperty, this._useCache); }
 			}
 //			internal TransformPatternInformation(AutomationElement el, bool useCache)
 //			{
@@ -112,15 +118,36 @@ namespace UIAutomation
 //			return new TransformPattern(el, hPattern, cached);
 //		}
 		
-		public virtual IUiElement ParentElement
+		// public virtual IUiElement ParentElement
+//		internal virtual IUiElement ParentElement
+//		{
+//		    get { return this._element; }
+//		    set { this._element = value; }
+//		}
+		
+		public void SetParentElement(IUiElement element)
 		{
-		    get { return this._element; }
-		    set { this._element = value; }
+		    this._element = element;
+		}
+		
+		public IUiElement GetParentElement()
+		{
+		    return this._element;
 		}
 
-		public object SourcePattern {
-			get { return this._transformPattern; }
-			set { this._transformPattern = value as TransformPattern; }
+//		public object SourcePattern {
+//			get { return this._transformPattern; }
+//			set { this._transformPattern = value as TransformPattern; }
+//		}
+		
+		public void SetSourcePattern(object pattern)
+		{
+		    this._transformPattern = pattern as TransformPattern;
+		}
+		
+		public object GetSourcePattern()
+		{
+		    return this._transformPattern;
 		}
 	}
 }

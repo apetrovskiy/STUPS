@@ -49,15 +49,21 @@ namespace UIAutomation
 			
 			public int RowCount {
 				// get { return (int)this._el.GetPatternPropertyValue(GridPattern.RowCountProperty, this._useCache); }
-				get { return (int)this._tablePattern.ParentElement.GetPatternPropertyValue(GridPattern.RowCountProperty, this._useCache); }
+				// 20131224
+				// get { return (int)this._tablePattern.ParentElement.GetPatternPropertyValue(GridPattern.RowCountProperty, this._useCache); }
+				get { return (int)this._tablePattern.GetParentElement().GetPatternPropertyValue(GridPattern.RowCountProperty, this._useCache); }
 			}
 			public int ColumnCount {
 				// get { return (int)this._el.GetPatternPropertyValue(GridPattern.ColumnCountProperty, this._useCache); }
-				get { return (int)this._tablePattern.ParentElement.GetPatternPropertyValue(GridPattern.ColumnCountProperty, this._useCache); }
+				// 20131224
+				// get { return (int)this._tablePattern.ParentElement.GetPatternPropertyValue(GridPattern.ColumnCountProperty, this._useCache); }
+				get { return (int)this._tablePattern.GetParentElement().GetPatternPropertyValue(GridPattern.ColumnCountProperty, this._useCache); }
 			}
 			public RowOrColumnMajor RowOrColumnMajor {
 				// get { return (RowOrColumnMajor)this._el.GetPatternPropertyValue(TablePattern.RowOrColumnMajorProperty, this._useCache); }
-				get { return (RowOrColumnMajor)this._tablePattern.ParentElement.GetPatternPropertyValue(TablePattern.RowOrColumnMajorProperty, this._useCache); }
+				// 20131224
+				// get { return (RowOrColumnMajor)this._tablePattern.ParentElement.GetPatternPropertyValue(TablePattern.RowOrColumnMajorProperty, this._useCache); }
+				get { return (RowOrColumnMajor)this._tablePattern.GetParentElement().GetPatternPropertyValue(TablePattern.RowOrColumnMajorProperty, this._useCache); }
 			}
 //			internal TablePatternInformation(AutomationElement el, bool useCache)
 //			{
@@ -68,13 +74,17 @@ namespace UIAutomation
 			public IUiElement[] GetRowHeaders()
 			{
 				// return (AutomationElement[])this._el.GetPatternPropertyValue(TablePattern.RowHeadersProperty, this._useCache);
-				return AutomationFactory.GetUiEltCollection((AutomationElement[])this._tablePattern.ParentElement.GetPatternPropertyValue(TablePattern.RowHeadersProperty, this._useCache)).ToArray();
+				// 20131224
+				// return AutomationFactory.GetUiEltCollection((AutomationElement[])this._tablePattern.ParentElement.GetPatternPropertyValue(TablePattern.RowHeadersProperty, this._useCache)).ToArray();
+				return AutomationFactory.GetUiEltCollection((AutomationElement[])this._tablePattern.GetParentElement().GetPatternPropertyValue(TablePattern.RowHeadersProperty, this._useCache)).ToArray();
 			}
 			// public AutomationElement[] GetColumnHeaders()
 			public IUiElement[] GetColumnHeaders()
 			{
 				// return (AutomationElement[])this._el.GetPatternPropertyValue(TablePattern.ColumnHeadersProperty, this._useCache);
-				return AutomationFactory.GetUiEltCollection((AutomationElement[])this._tablePattern.ParentElement.GetPatternPropertyValue(TablePattern.ColumnHeadersProperty, this._useCache)).ToArray();
+				// 20131224
+				// return AutomationFactory.GetUiEltCollection((AutomationElement[])this._tablePattern.ParentElement.GetPatternPropertyValue(TablePattern.ColumnHeadersProperty, this._useCache)).ToArray();
+				return AutomationFactory.GetUiEltCollection((AutomationElement[])this._tablePattern.GetParentElement().GetPatternPropertyValue(TablePattern.ColumnHeadersProperty, this._useCache)).ToArray();
 			}
 		}
 		public static new readonly AutomationPattern Pattern = TablePatternIdentifiers.Pattern;
@@ -105,15 +115,36 @@ namespace UIAutomation
 //			return new TablePattern(el, hPattern, cached);
 //		}
 		
-		public virtual IUiElement ParentElement
+		// public virtual IUiElement ParentElement
+//		internal virtual IUiElement ParentElement
+//		{
+//		    get { return this._element; }
+//		    set { this._element = value; }
+//		}
+		
+		public void SetParentElement(IUiElement element)
 		{
-		    get { return this._element; }
-		    set { this._element = value; }
+		    this._element = element;
+		}
+		
+		public IUiElement GetParentElement()
+		{
+		    return this._element;
 		}
 
-		public object SourcePattern {
-			get { return this._tablePattern; }
-			set { this._tablePattern = value as TablePattern; }
+//		public object SourcePattern {
+//			get { return this._tablePattern; }
+//			set { this._tablePattern = value as TablePattern; }
+//		}
+		
+		public void SetSourcePattern(object pattern)
+		{
+		    this._tablePattern = pattern as TablePattern;
+		}
+		
+		public object GetSourcePattern()
+		{
+		    return this._tablePattern;
 		}
 	}
 }

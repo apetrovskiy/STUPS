@@ -256,7 +256,9 @@ namespace UIAutomation.Commands
                     // 20131210
                     // (pattern.SourcePattern as AutomationPattern).ProgrammaticName.Substring(0, (pattern as AutomationPattern).ProgrammaticName.Length - 19);
                     // (pattern.SourcePattern as AutomationPattern).ProgrammaticName.Substring(0, (pattern.SourcePattern as AutomationPattern).ProgrammaticName.Length - 19);
-                    (pattern.SourcePattern as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", string.Empty); //.Substring(0, (pattern.SourcePattern as AutomationPattern).ProgrammaticName.Length - 19);
+                    // 20131224
+                    // (pattern.SourcePattern as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", string.Empty); //.Substring(0, (pattern.SourcePattern as AutomationPattern).ProgrammaticName.Length - 19);
+                    (pattern.GetSourcePattern() as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", string.Empty);
                 
                 result += "=$true";
             }

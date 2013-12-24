@@ -46,18 +46,24 @@ namespace UIAutomation
 			
 			public bool CanSelectMultiple {
 				get {
-			        return (bool)this._selectionPattern.ParentElement.GetPatternPropertyValue(SelectionPattern.CanSelectMultipleProperty, this._useCache);
+			        // 20131224
+			        // return (bool)this._selectionPattern.ParentElement.GetPatternPropertyValue(SelectionPattern.CanSelectMultipleProperty, this._useCache);
+			        return (bool)this._selectionPattern.GetParentElement().GetPatternPropertyValue(SelectionPattern.CanSelectMultipleProperty, this._useCache);
 			    }
 			}
 			public bool IsSelectionRequired {
 				get {
-			        return (bool)this._selectionPattern.ParentElement.GetPatternPropertyValue(SelectionPattern.IsSelectionRequiredProperty, this._useCache);
+			        // 20131224
+			        // return (bool)this._selectionPattern.ParentElement.GetPatternPropertyValue(SelectionPattern.IsSelectionRequiredProperty, this._useCache);
+			        return (bool)this._selectionPattern.GetParentElement().GetPatternPropertyValue(SelectionPattern.IsSelectionRequiredProperty, this._useCache);
 			    }
 			}
             
 			public IUiElement[] GetSelection()
 			{
-				return AutomationFactory.GetUiEltCollection((AutomationElement[])this._selectionPattern.ParentElement.GetPatternPropertyValue(SelectionPattern.SelectionProperty, this._useCache)).ToArray();
+			    // 20131224
+				// return AutomationFactory.GetUiEltCollection((AutomationElement[])this._selectionPattern.ParentElement.GetPatternPropertyValue(SelectionPattern.SelectionProperty, this._useCache)).ToArray();
+				return AutomationFactory.GetUiEltCollection((AutomationElement[])this._selectionPattern.GetParentElement().GetPatternPropertyValue(SelectionPattern.SelectionProperty, this._useCache)).ToArray();
 			}
 		}
 		public static readonly AutomationPattern Pattern = SelectionPatternIdentifiers.Pattern;
@@ -78,16 +84,37 @@ namespace UIAutomation
 			}
 		}
 		
-		public virtual IUiElement ParentElement
+		// public virtual IUiElement ParentElement
+//		internal virtual IUiElement ParentElement
+//		{
+//		    get { return this._element; }
+//		    set { this._element = value; }
+//		}
+		
+		public void SetParentElement(IUiElement element)
 		{
-		    get { return this._element; }
-		    set { this._element = value; }
+		    this._element = element;
 		}
 		
-		public object SourcePattern
+		public IUiElement GetParentElement()
 		{
-		    get { return this._selectionPattern; }
-		    set { this._selectionPattern = value as SelectionPattern; }
+		    return this._element;
+		}
+		
+//		public object SourcePattern
+//		{
+//		    get { return this._selectionPattern; }
+//		    set { this._selectionPattern = value as SelectionPattern; }
+//		}
+		
+		public void SetSourcePattern(object pattern)
+		{
+		    this._selectionPattern = pattern as SelectionPattern;
+		}
+		
+		public object GetSourcePattern()
+		{
+		    return this._selectionPattern;
 		}
 	}
 }

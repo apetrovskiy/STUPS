@@ -48,27 +48,39 @@ namespace UIAutomation
 			
 			public bool CanMaximize {
 				// get { return (bool)this._el.GetPatternPropertyValue(WindowPattern.CanMaximizeProperty, this._useCache); }
-				get { return (bool)this._windowPattern.ParentElement.GetPatternPropertyValue(WindowPattern.CanMaximizeProperty, this._useCache); }
+				// 20131224
+				// get { return (bool)this._windowPattern.ParentElement.GetPatternPropertyValue(WindowPattern.CanMaximizeProperty, this._useCache); }
+				get { return (bool)this._windowPattern.GetParentElement().GetPatternPropertyValue(WindowPattern.CanMaximizeProperty, this._useCache); }
 			}
 			public bool CanMinimize {
 				// get { return (bool)this._el.GetPatternPropertyValue(WindowPattern.CanMinimizeProperty, this._useCache); }
-				get { return (bool)this._windowPattern.ParentElement.GetPatternPropertyValue(WindowPattern.CanMinimizeProperty, this._useCache); }
+				// 20131224
+				// get { return (bool)this._windowPattern.ParentElement.GetPatternPropertyValue(WindowPattern.CanMinimizeProperty, this._useCache); }
+				get { return (bool)this._windowPattern.GetParentElement().GetPatternPropertyValue(WindowPattern.CanMinimizeProperty, this._useCache); }
 			}
 			public bool IsModal {
 				// get { return (bool)this._el.GetPatternPropertyValue(WindowPattern.IsModalProperty, this._useCache); }
-				get { return (bool)this._windowPattern.ParentElement.GetPatternPropertyValue(WindowPattern.IsModalProperty, this._useCache); }
+				// 20131224
+				// get { return (bool)this._windowPattern.ParentElement.GetPatternPropertyValue(WindowPattern.IsModalProperty, this._useCache); }
+				get { return (bool)this._windowPattern.GetParentElement().GetPatternPropertyValue(WindowPattern.IsModalProperty, this._useCache); }
 			}
 			public WindowVisualState WindowVisualState {
 				// get { return (WindowVisualState)this._el.GetPatternPropertyValue(WindowPattern.WindowVisualStateProperty, this._useCache); }
-				get { return (WindowVisualState)this._windowPattern.ParentElement.GetPatternPropertyValue(WindowPattern.WindowVisualStateProperty, this._useCache); }
+				// 20131224
+				// get { return (WindowVisualState)this._windowPattern.ParentElement.GetPatternPropertyValue(WindowPattern.WindowVisualStateProperty, this._useCache); }
+				get { return (WindowVisualState)this._windowPattern.GetParentElement().GetPatternPropertyValue(WindowPattern.WindowVisualStateProperty, this._useCache); }
 			}
 			public WindowInteractionState WindowInteractionState {
 				// get { return (WindowInteractionState)this._el.GetPatternPropertyValue(WindowPattern.WindowInteractionStateProperty, this._useCache); }
-				get { return (WindowInteractionState)this._windowPattern.ParentElement.GetPatternPropertyValue(WindowPattern.WindowInteractionStateProperty, this._useCache); }
+				// 20131224
+				// get { return (WindowInteractionState)this._windowPattern.ParentElement.GetPatternPropertyValue(WindowPattern.WindowInteractionStateProperty, this._useCache); }
+				get { return (WindowInteractionState)this._windowPattern.GetParentElement().GetPatternPropertyValue(WindowPattern.WindowInteractionStateProperty, this._useCache); }
 			}
 			public bool IsTopmost {
 				// get { return (bool)this._el.GetPatternPropertyValue(WindowPattern.IsTopmostProperty, this._useCache); }
-				get { return (bool)this._windowPattern.ParentElement.GetPatternPropertyValue(WindowPattern.IsTopmostProperty, this._useCache); }
+				// 20131224
+				// get { return (bool)this._windowPattern.ParentElement.GetPatternPropertyValue(WindowPattern.IsTopmostProperty, this._useCache); }
+				get { return (bool)this._windowPattern.GetParentElement().GetPatternPropertyValue(WindowPattern.IsTopmostProperty, this._useCache); }
 			}
 //			internal WindowPatternInformation(AutomationElement el, bool useCache)
 //			{
@@ -128,16 +140,37 @@ namespace UIAutomation
 //			return new WindowPattern(el, hPattern, cached);
 //		}
 		
-		public virtual IUiElement ParentElement
+		// public virtual IUiElement ParentElement
+//		internal virtual IUiElement ParentElement
+//		{
+//		    get { return this._element; }
+//		    set { this._element = value; }
+//		}
+		
+		public void SetParentElement(IUiElement element)
 		{
-		    get { return this._element; }
-		    set { this._element = value; }
+		    this._element = element;
 		}
 		
-		public object SourcePattern
+		public IUiElement GetParentElement()
 		{
-		    get { return this._windowPattern; }
-		    set { this._windowPattern = value as WindowPattern; }
+		    return this._element;
+		}
+		
+//		public object SourcePattern
+//		{
+//		    get { return this._windowPattern; }
+//		    set { this._windowPattern = value as WindowPattern; }
+//		}
+		
+		public void SetSourcePattern(object pattern)
+		{
+		    this._windowPattern = pattern as WindowPattern;
+		}
+		
+		public object GetSourcePattern()
+		{
+		    return this._windowPattern;
 		}
 	}
 }

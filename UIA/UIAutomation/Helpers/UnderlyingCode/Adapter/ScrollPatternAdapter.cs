@@ -49,27 +49,39 @@ namespace UIAutomation
 			
 			public double HorizontalScrollPercent {
 				// get { return (double)this._el.GetPatternPropertyValue(ScrollPattern.HorizontalScrollPercentProperty, this._useCache); }
-				get { return (double)this._scrollPattern.ParentElement.GetPatternPropertyValue(ScrollPattern.HorizontalScrollPercentProperty, this._useCache); }
+				// 20131224
+				// get { return (double)this._scrollPattern.ParentElement.GetPatternPropertyValue(ScrollPattern.HorizontalScrollPercentProperty, this._useCache); }
+				get { return (double)this._scrollPattern.GetParentElement().GetPatternPropertyValue(ScrollPattern.HorizontalScrollPercentProperty, this._useCache); }
 			}
 			public double VerticalScrollPercent {
 				// get { return (double)this._el.GetPatternPropertyValue(ScrollPattern.VerticalScrollPercentProperty, this._useCache); }
-				get { return (double)this._scrollPattern.ParentElement.GetPatternPropertyValue(ScrollPattern.VerticalScrollPercentProperty, this._useCache); }
+				// 20131224
+				// get { return (double)this._scrollPattern.ParentElement.GetPatternPropertyValue(ScrollPattern.VerticalScrollPercentProperty, this._useCache); }
+				get { return (double)this._scrollPattern.GetParentElement().GetPatternPropertyValue(ScrollPattern.VerticalScrollPercentProperty, this._useCache); }
 			}
 			public double HorizontalViewSize {
 				// get { return (double)this._el.GetPatternPropertyValue(ScrollPattern.HorizontalViewSizeProperty, this._useCache); }
-				get { return (double)this._scrollPattern.ParentElement.GetPatternPropertyValue(ScrollPattern.HorizontalViewSizeProperty, this._useCache); }
+				// 20131224
+				// get { return (double)this._scrollPattern.ParentElement.GetPatternPropertyValue(ScrollPattern.HorizontalViewSizeProperty, this._useCache); }
+				get { return (double)this._scrollPattern.GetParentElement().GetPatternPropertyValue(ScrollPattern.HorizontalViewSizeProperty, this._useCache); }
 			}
 			public double VerticalViewSize {
 				// get { return (double)this._el.GetPatternPropertyValue(ScrollPattern.VerticalViewSizeProperty, this._useCache); }
-				get { return (double)this._scrollPattern.ParentElement.GetPatternPropertyValue(ScrollPattern.VerticalViewSizeProperty, this._useCache); }
+				// 20131224
+				// get { return (double)this._scrollPattern.ParentElement.GetPatternPropertyValue(ScrollPattern.VerticalViewSizeProperty, this._useCache); }
+				get { return (double)this._scrollPattern.GetParentElement().GetPatternPropertyValue(ScrollPattern.VerticalViewSizeProperty, this._useCache); }
 			}
 			public bool HorizontallyScrollable {
 				// get { return (bool)this._el.GetPatternPropertyValue(ScrollPattern.HorizontallyScrollableProperty, this._useCache); }
-				get { return (bool)this._scrollPattern.ParentElement.GetPatternPropertyValue(ScrollPattern.HorizontallyScrollableProperty, this._useCache); }
+				// 20131224
+				// get { return (bool)this._scrollPattern.ParentElement.GetPatternPropertyValue(ScrollPattern.HorizontallyScrollableProperty, this._useCache); }
+				get { return (bool)this._scrollPattern.GetParentElement().GetPatternPropertyValue(ScrollPattern.HorizontallyScrollableProperty, this._useCache); }
 			}
 			public bool VerticallyScrollable {
 				// get { return (bool)this._el.GetPatternPropertyValue(ScrollPattern.VerticallyScrollableProperty, this._useCache); }
-				get { return (bool)this._scrollPattern.ParentElement.GetPatternPropertyValue(ScrollPattern.VerticallyScrollableProperty, this._useCache); }
+				// 20131224
+				// get { return (bool)this._scrollPattern.ParentElement.GetPatternPropertyValue(ScrollPattern.VerticallyScrollableProperty, this._useCache); }
+				get { return (bool)this._scrollPattern.GetParentElement().GetPatternPropertyValue(ScrollPattern.VerticallyScrollableProperty, this._useCache); }
 			}
 //			internal ScrollPatternInformation(AutomationElement el, bool useCache)
 //			{
@@ -133,16 +145,37 @@ namespace UIAutomation
 //			return new ScrollPattern(el, hPattern, cached);
 //		}
 		
-		public virtual IUiElement ParentElement
+		// public virtual IUiElement ParentElement
+//		internal virtual IUiElement ParentElement
+//		{
+//		    get { return this._element; }
+//		    set { this._element = value; }
+//		}
+		
+		public void SetParentElement(IUiElement element)
 		{
-		    get { return this._element; }
-		    set { this._element = value; }
+		    this._element = element;
 		}
 		
-		public object SourcePattern
+		public IUiElement GetParentElement()
 		{
-		    get { return this._scrollPattern; }
-		    set { this._scrollPattern = value as ScrollPattern; }
+		    return this._element;
+		}
+		
+//		public object SourcePattern
+//		{
+//		    get { return this._scrollPattern; }
+//		    set { this._scrollPattern = value as ScrollPattern; }
+//		}
+		
+		public void SetSourcePattern(object pattern)
+		{
+		    this._scrollPattern = pattern as ScrollPattern;
+		}
+		
+		public object GetSourcePattern()
+		{
+		    return this._scrollPattern;
 		}
 	}
 }

@@ -49,11 +49,15 @@ namespace UIAutomation
 			
 			public int RowCount {
 				// get { return (int)this._el.GetPatternPropertyValue(GridPattern.RowCountProperty, this._useCache); }
-				get { return (int)this._gridPattern.ParentElement.GetPatternPropertyValue(GridPattern.RowCountProperty, this._useCache); }
+				// 20131224
+				// get { return (int)this._gridPattern.ParentElement.GetPatternPropertyValue(GridPattern.RowCountProperty, this._useCache); }
+				get { return (int)this._gridPattern.GetParentElement().GetPatternPropertyValue(GridPattern.RowCountProperty, this._useCache); }
 			}
 			public int ColumnCount {
 				// get { return (int)this._el.GetPatternPropertyValue(GridPattern.ColumnCountProperty, this._useCache); }
-				get { return (int)this._gridPattern.ParentElement.GetPatternPropertyValue(GridPattern.ColumnCountProperty, this._useCache); }
+				// 20131224
+				// get { return (int)this._gridPattern.ParentElement.GetPatternPropertyValue(GridPattern.ColumnCountProperty, this._useCache); }
+				get { return (int)this._gridPattern.GetParentElement().GetPatternPropertyValue(GridPattern.ColumnCountProperty, this._useCache); }
 			}
 //			internal GridPatternInformation(AutomationElement el, bool useCache)
 //			{
@@ -99,15 +103,36 @@ namespace UIAutomation
 //			return new GridPattern(el, hPattern, cached);
 //		}
 		
-		public virtual IUiElement ParentElement
+		// public virtual IUiElement ParentElement
+//		internal virtual IUiElement ParentElement
+//		{
+//		    get { return this._element; }
+//		    set { this._element = value; }
+//		}
+		
+		public void SetParentElement(IUiElement element)
 		{
-		    get { return this._element; }
-		    set { this._element = value; }
+		    this._element = element;
+		}
+		
+		public IUiElement GetParentElement()
+		{
+		    return this._element;
 		}
 
-		public object SourcePattern {
-			get { return this._gridPattern; }
-			set { this._gridPattern = value as GridPattern; }
+//		public object SourcePattern {
+//			get { return this._gridPattern; }
+//			set { this._gridPattern = value as GridPattern; }
+//		}
+		
+		public void SetSourcePattern(object pattern)
+		{
+		    this._gridPattern = pattern as GridPattern;
+		}
+		
+		public object GetSourcePattern()
+		{
+		    return this._gridPattern;
 		}
 	}
 }

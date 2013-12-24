@@ -64,11 +64,15 @@ namespace UIAutomation
 //					}
 //					return (double)patternPropertyValue;
 //				}
-			    get { return (double)this._rangeValuePattern.ParentElement.GetPatternPropertyValue(RangeValuePattern.ValueProperty, this._useCache); }
+			    // 20131224
+			    // get { return (double)this._rangeValuePattern.ParentElement.GetPatternPropertyValue(RangeValuePattern.ValueProperty, this._useCache); }
+			    get { return (double)this._rangeValuePattern.GetParentElement().GetPatternPropertyValue(RangeValuePattern.ValueProperty, this._useCache); }
 			}
 			public bool IsReadOnly {
 				// get { return (bool)this._el.GetPatternPropertyValue(RangeValuePattern.IsReadOnlyProperty, this._useCache); }
-				get { return (bool)this._rangeValuePattern.ParentElement.GetPatternPropertyValue(RangeValuePattern.IsReadOnlyProperty, this._useCache); }
+				// 20131224
+				// get { return (bool)this._rangeValuePattern.ParentElement.GetPatternPropertyValue(RangeValuePattern.IsReadOnlyProperty, this._useCache); }
+				get { return (bool)this._rangeValuePattern.GetParentElement().GetPatternPropertyValue(RangeValuePattern.IsReadOnlyProperty, this._useCache); }
 			}
 			public double Maximum {
 //				get {
@@ -87,7 +91,9 @@ namespace UIAutomation
 //					}
 //					return (double)patternPropertyValue;
 //				}
-			    get { return (double)this._rangeValuePattern.ParentElement.GetPatternPropertyValue(RangeValuePattern.MaximumProperty, this._useCache); }
+			    // 20131224
+			    // get { return (double)this._rangeValuePattern.ParentElement.GetPatternPropertyValue(RangeValuePattern.MaximumProperty, this._useCache); }
+			    get { return (double)this._rangeValuePattern.GetParentElement().GetPatternPropertyValue(RangeValuePattern.MaximumProperty, this._useCache); }
 			}
 			public double Minimum {
 //				get {
@@ -106,7 +112,9 @@ namespace UIAutomation
 //					}
 //					return (double)patternPropertyValue;
 //				}
-			    get { return (double)this._rangeValuePattern.ParentElement.GetPatternPropertyValue(RangeValuePattern.MinimumProperty, this._useCache); }
+			    // 20131224
+			    // get { return (double)this._rangeValuePattern.ParentElement.GetPatternPropertyValue(RangeValuePattern.MinimumProperty, this._useCache); }
+			    get { return (double)this._rangeValuePattern.GetParentElement().GetPatternPropertyValue(RangeValuePattern.MinimumProperty, this._useCache); }
 			}
 			public double LargeChange {
 //				get {
@@ -125,7 +133,9 @@ namespace UIAutomation
 //					}
 //					return (double)patternPropertyValue;
 //				}
-			    get { return (double)this._rangeValuePattern.ParentElement.GetPatternPropertyValue(RangeValuePattern.LargeChangeProperty, this._useCache); }
+			    // 20131224
+			    // get { return (double)this._rangeValuePattern.ParentElement.GetPatternPropertyValue(RangeValuePattern.LargeChangeProperty, this._useCache); }
+			    get { return (double)this._rangeValuePattern.GetParentElement().GetPatternPropertyValue(RangeValuePattern.LargeChangeProperty, this._useCache); }
 			}
 			public double SmallChange {
 //				get {
@@ -144,7 +154,9 @@ namespace UIAutomation
 //					}
 //					return (double)patternPropertyValue;
 //				}
-			    get { return (double)this._rangeValuePattern.ParentElement.GetPatternPropertyValue(RangeValuePattern.SmallChangeProperty, this._useCache); }
+			    // 20131224
+			    // get { return (double)this._rangeValuePattern.ParentElement.GetPatternPropertyValue(RangeValuePattern.SmallChangeProperty, this._useCache); }
+			    get { return (double)this._rangeValuePattern.GetParentElement().GetPatternPropertyValue(RangeValuePattern.SmallChangeProperty, this._useCache); }
 			}
 //			internal RangeValuePatternInformation(AutomationElement el, bool useCache)
 //			{
@@ -200,15 +212,36 @@ namespace UIAutomation
 //			return new RangeValuePattern(el, hPattern, cached);
 //		}
 		
-		public virtual IUiElement ParentElement
+		// public virtual IUiElement ParentElement
+//		internal virtual IUiElement ParentElement
+//		{
+//		    get { return this._element; }
+//		    set { this._element = value; }
+//		}
+		
+		public void SetParentElement(IUiElement element)
 		{
-		    get { return this._element; }
-		    set { this._element = value; }
+		    this._element = element;
+		}
+		
+		public IUiElement GetParentElement()
+		{
+		    return this._element;
 		}
 
-		public object SourcePattern {
-			get { return this._rangeValuePattern; }
-			set { this._rangeValuePattern = value as RangeValuePattern; }
+//		public object SourcePattern {
+//			get { return this._rangeValuePattern; }
+//			set { this._rangeValuePattern = value as RangeValuePattern; }
+//		}
+		
+		public void SetSourcePattern(object pattern)
+		{
+		    this._rangeValuePattern = pattern as RangeValuePattern;
+		}
+		
+		public object GetSourcePattern()
+		{
+		    return this._rangeValuePattern;
 		}
 	}
 }

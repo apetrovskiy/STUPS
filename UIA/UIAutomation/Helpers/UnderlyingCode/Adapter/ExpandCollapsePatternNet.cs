@@ -48,7 +48,9 @@ namespace UIAutomation
 			}
 			
 			public ExpandCollapseState ExpandCollapseState {
-				get { return (ExpandCollapseState)this._expandCollapsePattern.ParentElement.GetPatternPropertyValue(ExpandCollapsePattern.ExpandCollapseStateProperty, this._useCache); }
+			    // 20131224
+				// get { return (ExpandCollapseState)this._expandCollapsePattern.ParentElement.GetPatternPropertyValue(ExpandCollapsePattern.ExpandCollapseStateProperty, this._useCache); }
+				get { return (ExpandCollapseState)this._expandCollapsePattern.GetParentElement().GetPatternPropertyValue(ExpandCollapsePattern.ExpandCollapseStateProperty, this._useCache); }
 			}
 		}
 		public static readonly AutomationPattern Pattern = ExpandCollapsePatternIdentifiers.Pattern;
@@ -77,16 +79,37 @@ namespace UIAutomation
 			this._expandCollapsePattern.Collapse();
 		}
 		
-		public virtual IUiElement ParentElement
+		// public virtual IUiElement ParentElement
+//		internal virtual IUiElement ParentElement
+//		{
+//		    get { return this._element; }
+//		    set { this._element = value; }
+//		}
+		
+		public void SetParentElement(IUiElement element)
 		{
-		    get { return this._element; }
-		    set { this._element = value; }
+		    this._element = element;
 		}
 		
-		public object SourcePattern
+		public IUiElement GetParentElement()
 		{
-		    get { return this._expandCollapsePattern; }
-		    set { this._expandCollapsePattern = value as ExpandCollapsePattern; }
+		    return this._element;
+		}
+		
+//		public object SourcePattern
+//		{
+//		    get { return this._expandCollapsePattern; }
+//		    set { this._expandCollapsePattern = value as ExpandCollapsePattern; }
+//		}
+		
+		public void SetSourcePattern(object pattern)
+		{
+		    this._expandCollapsePattern = pattern as ExpandCollapsePattern;
+		}
+		
+		public object GetSourcePattern()
+		{
+		    return this._expandCollapsePattern;
 		}
 	}
 }

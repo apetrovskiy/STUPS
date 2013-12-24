@@ -54,12 +54,16 @@ namespace UIAutomation
 			public string Value {
 			    get { 
 			        if (null == this._valuePattern) return string.Empty;
-			        return this._valuePattern.ParentElement.GetPatternPropertyValue(ValuePattern.ValueProperty, this._useCache).ToString(); }
+			        // 20131224
+			        // return this._valuePattern.ParentElement.GetPatternPropertyValue(ValuePattern.ValueProperty, this._useCache).ToString(); }
+			        return this._valuePattern.GetParentElement().GetPatternPropertyValue(ValuePattern.ValueProperty, this._useCache).ToString(); }
 			}
 			public bool IsReadOnly {
 				get {
 				    if (null == this._valuePattern) return true;
-				    return (bool)this._valuePattern.ParentElement.GetPatternPropertyValue(ValuePattern.IsReadOnlyProperty, this._useCache);
+				    // 20131224
+				    // return (bool)this._valuePattern.ParentElement.GetPatternPropertyValue(ValuePattern.IsReadOnlyProperty, this._useCache);
+				    return (bool)this._valuePattern.GetParentElement().GetPatternPropertyValue(ValuePattern.IsReadOnlyProperty, this._useCache);
 				}
 			}
 		}
@@ -85,16 +89,37 @@ namespace UIAutomation
 			this._valuePattern.SetValue(value);
 		}
 
-		public virtual IUiElement ParentElement
+		// public virtual IUiElement ParentElement
+//		internal virtual IUiElement ParentElement
+//		{
+//		    get { return this._element; }
+//		    set { this._element = value; }
+//		}
+		
+		public void SetParentElement(IUiElement element)
 		{
-		    get { return this._element; }
-		    set { this._element = value; }
+		    this._element = element;
 		}
 		
-		public object SourcePattern
+		public IUiElement GetParentElement()
 		{
-		    get { return this._valuePattern; }
-		    set { this._valuePattern = value as ValuePattern; }
+		    return this._element;
+		}
+		
+//		public object SourcePattern
+//		{
+//		    get { return this._valuePattern; }
+//		    set { this._valuePattern = value as ValuePattern; }
+//		}
+		
+		public void SetSourcePattern(object pattern)
+		{
+		    this._valuePattern = pattern as ValuePattern;
+		}
+		
+		public object GetSourcePattern()
+		{
+		    return this._valuePattern;
 		}
 	}
 }

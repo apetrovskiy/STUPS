@@ -347,7 +347,9 @@ namespace UIAutomation
                     // N adapterPattern = Kernel.Get<N>(new[] { argElement });
                     adapterPattern = Kernel.Get<N>(NamedParameter_WithoutPattern, new[] { argElement });
                 // }
-		        adapterPattern.SourcePattern = pattern;
+                // 20131224
+		        // adapterPattern.SourcePattern = pattern;
+		        adapterPattern.SetSourcePattern(pattern);
 //		        }
 	       		return adapterPattern;
 			}
@@ -369,7 +371,9 @@ namespace UIAutomation
                 N adapterPattern = default(N);
                 // var argElement = new ConstructorArgument("element", element);
                 adapterPattern = Kernel.Get<N>(NamedParameter_WithoutElement, null);
-		        adapterPattern.SourcePattern = pattern;
+                // 20131224
+		        // adapterPattern.SourcePattern = pattern;
+		        adapterPattern.SetSourcePattern(pattern);
 	       		return adapterPattern;
 			}
 			catch (Exception eFailedToIssuePattern) {

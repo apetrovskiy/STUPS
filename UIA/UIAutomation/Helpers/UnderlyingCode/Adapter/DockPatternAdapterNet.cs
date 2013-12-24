@@ -54,7 +54,9 @@ namespace UIAutomation
 			
 			public DockPosition DockPosition {
 				// get { return (DockPosition)this._el.GetPatternPropertyValue(DockPattern.DockPositionProperty, this._useCache); }
-				get { return (DockPosition)this._dockPattern.ParentElement.GetPatternPropertyValue(DockPattern.DockPositionProperty, this._useCache); }
+				// 20131224
+				// get { return (DockPosition)this._dockPattern.ParentElement.GetPatternPropertyValue(DockPattern.DockPositionProperty, this._useCache); }
+				get { return (DockPosition)this._dockPattern.GetParentElement().GetPatternPropertyValue(DockPattern.DockPositionProperty, this._useCache); }
 			}
 //			internal DockPatternInformation(AutomationElement el, bool useCache)
 //			{
@@ -97,15 +99,36 @@ namespace UIAutomation
 //			return new DockPattern(el, hPattern, cached);
 //		}
 		
-		public virtual IUiElement ParentElement
+		// public virtual IUiElement ParentElement
+//		internal virtual IUiElement ParentElement
+//		{
+//		    get { return this._element; }
+//		    set { this._element = value; }
+//		}
+		
+		public void SetParentElement(IUiElement element)
 		{
-		    get { return this._element; }
-		    set { this._element = value; }
+		    this._element = element;
+		}
+		
+		public IUiElement GetParentElement()
+		{
+		    return this._element;
 		}
 
-		public object SourcePattern {
-			get { return this._dockPattern; }
-			set { this._dockPattern = value as DockPattern; }
+//		public object SourcePattern {
+//			get { return this._dockPattern; }
+//			set { this._dockPattern = value as DockPattern; }
+//		}
+		
+		public void SetSourcePattern(object pattern)
+		{
+		    this._dockPattern = pattern as DockPattern;
+		}
+		
+		public object GetSourcePattern()
+		{
+		    return this._dockPattern;
 		}
 	}
 }

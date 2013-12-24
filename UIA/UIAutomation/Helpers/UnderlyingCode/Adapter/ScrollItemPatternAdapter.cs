@@ -50,16 +50,37 @@ namespace UIAutomation
 //			return new ScrollItemPattern(el, hPattern);
 //		}
 		
-		public virtual IUiElement ParentElement
+		// public virtual IUiElement ParentElement
+//		internal virtual IUiElement ParentElement
+//		{
+//		    get { return this._element; }
+//		    set { this._element = value; }
+//		}
+		
+		public void SetParentElement(IUiElement element)
 		{
-		    get { return this._element; }
-		    set { this._element = value; }
+		    this._element = element;
 		}
 		
-		public object SourcePattern
+		public IUiElement GetParentElement()
 		{
-		    get { return this._scrollItemPattern; }
-		    set { this._scrollItemPattern = value as ScrollItemPattern; }
+		    return this._element;
+		}
+		
+//		public object SourcePattern
+//		{
+//		    get { return this._scrollItemPattern; }
+//		    set { this._scrollItemPattern = value as ScrollItemPattern; }
+//		}
+		
+		public void SetSourcePattern(object pattern)
+		{
+		    this._scrollItemPattern = pattern as ScrollItemPattern;
+		}
+		
+		public object GetSourcePattern()
+		{
+		    return this._scrollItemPattern;
 		}
 	}
 }

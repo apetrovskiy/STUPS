@@ -43,13 +43,17 @@ namespace UIAutomation
 			
 			public bool IsSelected {
 				get {
-			        return (bool)this._selectionItemPattern.ParentElement.GetPatternPropertyValue(SelectionItemPattern.IsSelectedProperty, this._useCache);
+			        // 20131224
+			        // return (bool)this._selectionItemPattern.ParentElement.GetPatternPropertyValue(SelectionItemPattern.IsSelectedProperty, this._useCache);
+			        return (bool)this._selectionItemPattern.GetParentElement().GetPatternPropertyValue(SelectionItemPattern.IsSelectedProperty, this._useCache);
 			    }
 			}
 			
 			public IUiElement SelectionContainer {
 				get {
-			        return (IUiElement)this._selectionItemPattern.ParentElement.GetPatternPropertyValue(SelectionItemPattern.SelectionContainerProperty, this._useCache);
+			        // 20131224
+			        // return (IUiElement)this._selectionItemPattern.ParentElement.GetPatternPropertyValue(SelectionItemPattern.SelectionContainerProperty, this._useCache);
+			        return (IUiElement)this._selectionItemPattern.GetParentElement().GetPatternPropertyValue(SelectionItemPattern.SelectionContainerProperty, this._useCache);
 			    }
 			}
 		}
@@ -88,16 +92,37 @@ namespace UIAutomation
 			this._selectionItemPattern.RemoveFromSelection();
 		}
 		
-		public virtual IUiElement ParentElement
+		// public virtual IUiElement ParentElement
+//		internal virtual IUiElement ParentElement
+//		{
+//		    get { return this._element; }
+//		    set { this._element = value; }
+//		}
+		
+		public void SetParentElement(IUiElement element)
 		{
-		    get { return this._element; }
-		    set { this._element = value; }
+		    this._element = element;
 		}
 		
-		public object SourcePattern
+		public IUiElement GetParentElement()
 		{
-		    get { return this._selectionItemPattern; }
-		    set { this._selectionItemPattern = value as SelectionItemPattern; }
+		    return this._element;
+		}
+		
+//		public object SourcePattern
+//		{
+//		    get { return this._selectionItemPattern; }
+//		    set { this._selectionItemPattern = value as SelectionItemPattern; }
+//		}
+		
+		public void SetSourcePattern(object pattern)
+		{
+		    this._selectionItemPattern = pattern as SelectionItemPattern;
+		}
+		
+		public object GetSourcePattern()
+		{
+		    return this._selectionItemPattern;
 		}
 	}
 }

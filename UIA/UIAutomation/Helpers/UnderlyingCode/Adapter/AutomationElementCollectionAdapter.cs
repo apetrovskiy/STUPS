@@ -53,8 +53,15 @@ namespace UIAutomation
 
 	    public UiEltCollection(IEnumerable elements)
 	    {
-	        foreach (var element in elements.Cast<object>().Where(element => null != element))
-	        {
+	        // 20131224
+//	        foreach (var element in elements.Cast<object>().Where(element => null != element))
+//	        {
+//	            _collectionHolder.Add((IUiElement)element);
+//	        }
+	        foreach (var element in elements.Cast<object>().Where(element => null != element && element is AutomationElement)) {
+	            _collectionHolder.Add(AutomationFactory.GetUiElement(element as AutomationElement));
+	        }
+	        foreach (var element in elements.Cast<object>().Where(element => null != element && element is IUiElement)) {
 	            _collectionHolder.Add((IUiElement)element);
 	        }
 	    }
@@ -68,15 +75,27 @@ namespace UIAutomation
 		{
 			//this._elements.CopyTo(array, index);
 			//this._collectionHolder.CopyTo(array, index);
+			// 20131224
+			// _collectionHolder.CopyTo(array, index);
+			_collectionHolder.ToArray().CopyTo(array, index);
 		}
-		public virtual void CopyTo(AutomationElement[] array, int index)
+//		public virtual void CopyTo(AutomationElement[] array, int index)
+//		{
+//			//((ICollection)this).CopyTo(array, index);
+//			//this._collectionHolder.CopyTo(array, index);
+//		}
+		// 20131224
+		// public virtual void CopyTo(IUiElement[] array, int index)
+		public void CopyTo(IUiElement[] array, int index)
 		{
-			//((ICollection)this).CopyTo(array, index);
-			//this._collectionHolder.CopyTo(array, index);
-		}
-		public virtual void CopyTo(IUiElement[] array, int index)
-		{
-			_collectionHolder.CopyTo(array, index);
+		    // 20131224
+			// _collectionHolder.CopyTo(array, index);
+//			AutomationElement[] nativeArray = new AutomationElement[ this._collectionHolder.Count ];
+//			_collectionHolder.CopyTo(nativeArray, index);
+//			for (int i =0; i < nativeArray.Length; i++) {
+//			    array[i] = AutomationFactory.GetUiElement(nativeArray[i]);
+//			}
+			((ICollection)this).CopyTo(array, index);
 		}
 		public IEnumerator GetEnumerator()
 		{

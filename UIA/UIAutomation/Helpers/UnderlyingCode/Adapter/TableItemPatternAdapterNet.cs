@@ -11,6 +11,9 @@ namespace UIAutomation
 {
 	extern alias UIANET;
 	using System;
+	using System.Collections;
+	using System.Collections.Generic;
+	using System.Linq;
 	using System.Windows.Automation;
 
 	/// <summary>
@@ -90,7 +93,15 @@ namespace UIAutomation
 				// return (AutomationElement[])this._el.GetPatternPropertyValue(TableItemPattern.RowHeaderItemsProperty, this._useCache);
 				// 20131224
 				// return AutomationFactory.GetUiEltCollection((AutomationElement[])this._tableItemPattern.ParentElement.GetPatternPropertyValue(TableItemPattern.RowHeaderItemsProperty, this._useCache)).ToArray();
-				return AutomationFactory.GetUiEltCollection((AutomationElement[])this._tableItemPattern.GetParentElement().GetPatternPropertyValue(TableItemPattern.RowHeaderItemsProperty, this._useCache)).ToArray();
+				// return AutomationFactory.GetUiEltCollection((AutomationElement[])this._tableItemPattern.GetParentElement().GetPatternPropertyValue(TableItemPattern.RowHeaderItemsProperty, this._useCache)).ToArray();
+                AutomationElement[] nativeElements = (AutomationElement[])this._tableItemPattern.GetParentElement().GetPatternPropertyValue(TableItemPattern.RowHeaderItemsProperty, this._useCache);
+                IUiEltCollection tempCollection = AutomationFactory.GetUiEltCollection(nativeElements);
+				if (null == tempCollection || 0 == tempCollection.Count) {
+				    return new UiElement[] {};
+				} else {
+				    // return tempCollection.Cast<IUiElement>().ToArray<IUiElement>();
+				    return tempCollection.Cast<IUiElement>().ToArray();
+				}
 			}
 			// public AutomationElement[] GetColumnHeaderItems()
 			public IUiElement[] GetColumnHeaderItems()
@@ -98,7 +109,17 @@ namespace UIAutomation
 				// return (AutomationElement[])this._el.GetPatternPropertyValue(TableItemPattern.ColumnHeaderItemsProperty, this._useCache);
 				// 20131224
 				// return AutomationFactory.GetUiEltCollection((AutomationElement[])this._tableItemPattern.ParentElement.GetPatternPropertyValue(TableItemPattern.ColumnHeaderItemsProperty, this._useCache)).ToArray();
-				return AutomationFactory.GetUiEltCollection((AutomationElement[])this._tableItemPattern.GetParentElement().GetPatternPropertyValue(TableItemPattern.ColumnHeaderItemsProperty, this._useCache)).ToArray();
+				// return AutomationFactory.GetUiEltCollection((AutomationElement[])this._tableItemPattern.GetParentElement().GetPatternPropertyValue(TableItemPattern.ColumnHeaderItemsProperty, this._useCache)).ToArray();
+				AutomationElement[] nativeElements = (AutomationElement[])this._tableItemPattern.GetParentElement().GetPatternPropertyValue(TableItemPattern.ColumnHeaderItemsProperty, this._useCache);
+                IUiEltCollection tempCollection = AutomationFactory.GetUiEltCollection(nativeElements);
+				if (null == tempCollection || 0 == tempCollection.Count) {
+				    return new UiElement[] {};
+				} else {
+				    // return tempCollection.Cast<IUiElement>().ToArray<IUiElement>();
+				    // return ((ICollection)tempCollection).ToArray();
+				    // return tempCollection as IUiElement[];
+				    return tempCollection.Cast<IUiElement>().ToArray();
+				}
 			}
 	        
 		}

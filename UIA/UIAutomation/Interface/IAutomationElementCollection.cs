@@ -17,15 +17,18 @@ namespace UIAutomation
     
     public interface IUiEltCollection : ICollection, IEnumerable, IDisposable
 	{
-		void CopyTo(Array array, int index);
-		void CopyTo(AutomationElement[] array, int index);
-		IEnumerator GetEnumerator();
+        // 20131224
+		// void CopyTo(Array array, int index);
+		// void CopyTo(AutomationElement[] array, int index);
+		// 20131224
+		// IEnumerator GetEnumerator();
 		//AutomationElement Item { get; }
-		int Count { get; }
-		object SyncRoot { get; }
-		bool IsSynchronized { get; }
-		
-		void Dispose();
+		// 20131224
+		// int Count { get; }
+		// object SyncRoot { get; }
+		// bool IsSynchronized { get; }
+		// 20131224
+		// void Dispose();
 		
 		//AutomationElementCollection SourceCollection { get; set; }
 		//AutomationElementCollection SourceCollection { get; }

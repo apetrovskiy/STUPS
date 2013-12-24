@@ -643,8 +643,8 @@ namespace UIAutomation
         public static IUiElement[] PerformGetSelectionSelectionPattern(this IUiElement element)
         {
             try {
-                // return element.GetCurrentPattern<IMySuperSelectionPattern>(SelectionPattern.Pattern).Current.GetSelection();
-                return AutomationFactory.GetUiEltCollection(element.GetCurrentPattern<IMySuperSelectionPattern>(SelectionPattern.Pattern).Current.GetSelection()).ToArray();
+                return element.GetCurrentPattern<IMySuperSelectionPattern>(SelectionPattern.Pattern).Current.GetSelection();
+                // return AutomationFactory.GetUiEltCollection(element.GetCurrentPattern<IMySuperSelectionPattern>(SelectionPattern.Pattern).Current.GetSelection()).ToArray();
             }
             catch (Exception eExtensionMethod) {
                 // 
@@ -679,8 +679,8 @@ namespace UIAutomation
         public static IUiElement[] PerformGetRowHeaderItems(this IUiElement element)
         {
             try {
-                // return element.GetCurrentPattern<IMySuperTableItemPattern>(TableItemPattern.Pattern).Current.GetRowHeaderItems();
-                return AutomationFactory.GetUiEltCollection(element.GetCurrentPattern<IMySuperTableItemPattern>(TableItemPattern.Pattern).Current.GetRowHeaderItems()).ToArray();
+                return element.GetCurrentPattern<IMySuperTableItemPattern>(TableItemPattern.Pattern).Current.GetRowHeaderItems();
+                // return AutomationFactory.GetUiEltCollection(element.GetCurrentPattern<IMySuperTableItemPattern>(TableItemPattern.Pattern).Current.GetRowHeaderItems()).ToArray();
             } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
@@ -692,8 +692,8 @@ namespace UIAutomation
         public static IUiElement[] PerformGetColumnHeaderItems(this IUiElement element)
         {
             try {
-                // return element.GetCurrentPattern<IMySuperTableItemPattern>(TableItemPattern.Pattern).Current.GetColumnHeaderItems();
-                return AutomationFactory.GetUiEltCollection(element.GetCurrentPattern<IMySuperTableItemPattern>(TableItemPattern.Pattern).Current.GetColumnHeaderItems()).ToArray();
+                return element.GetCurrentPattern<IMySuperTableItemPattern>(TableItemPattern.Pattern).Current.GetColumnHeaderItems();
+                // return AutomationFactory.GetUiEltCollection(element.GetCurrentPattern<IMySuperTableItemPattern>(TableItemPattern.Pattern).Current.GetColumnHeaderItems()).ToArray();
             } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
@@ -762,8 +762,8 @@ namespace UIAutomation
         public static IUiElement[] PerformGetRowHeaders(this IUiElement element)
         {
             try {
-                // return element.GetCurrentPattern<IMySuperTablePattern>(TablePattern.Pattern).Current.GetRowHeaders();
-                return AutomationFactory.GetUiEltCollection(element.GetCurrentPattern<IMySuperTablePattern>(TablePattern.Pattern).Current.GetRowHeaders()).ToArray();
+                return element.GetCurrentPattern<IMySuperTablePattern>(TablePattern.Pattern).Current.GetRowHeaders();
+                // return AutomationFactory.GetUiEltCollection(element.GetCurrentPattern<IMySuperTablePattern>(TablePattern.Pattern).Current.GetRowHeaders()).ToArray();
             } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
@@ -775,8 +775,8 @@ namespace UIAutomation
         public static IUiElement[] PerformGetColumnHeaders(this IUiElement element)
         {
             try {
-                // return element.GetCurrentPattern<IMySuperTablePattern>(TablePattern.Pattern).Current.GetColumnHeaders();
-                return AutomationFactory.GetUiEltCollection(element.GetCurrentPattern<IMySuperTablePattern>(TablePattern.Pattern).Current.GetColumnHeaders()).ToArray();
+                return element.GetCurrentPattern<IMySuperTablePattern>(TablePattern.Pattern).Current.GetColumnHeaders();
+                // return AutomationFactory.GetUiEltCollection(element.GetCurrentPattern<IMySuperTablePattern>(TablePattern.Pattern).Current.GetColumnHeaders()).ToArray();
             } catch (Exception eExtensionMethod) {
                 // 
                 // throw;

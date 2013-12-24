@@ -63,7 +63,14 @@ namespace UIAutomation
 			{
 			    // 20131224
 				// return AutomationFactory.GetUiEltCollection((AutomationElement[])this._selectionPattern.ParentElement.GetPatternPropertyValue(SelectionPattern.SelectionProperty, this._useCache)).ToArray();
-				return AutomationFactory.GetUiEltCollection((AutomationElement[])this._selectionPattern.GetParentElement().GetPatternPropertyValue(SelectionPattern.SelectionProperty, this._useCache)).ToArray();
+				// return AutomationFactory.GetUiEltCollection((AutomationElement[])this._selectionPattern.GetParentElement().GetPatternPropertyValue(SelectionPattern.SelectionProperty, this._useCache)).ToArray();
+				AutomationElement[] nativeElements = (AutomationElement[])this._selectionPattern.GetParentElement().GetPatternPropertyValue(SelectionPattern.SelectionProperty, this._useCache);
+                IUiEltCollection tempCollection = AutomationFactory.GetUiEltCollection(nativeElements);
+				if (null == tempCollection || 0 == tempCollection.Count) {
+				    return new UiElement[] {};
+				} else {
+				    return tempCollection.Cast<IUiElement>().ToArray<IUiElement>();
+				}
 			}
 		}
 		public static readonly AutomationPattern Pattern = SelectionPatternIdentifiers.Pattern;

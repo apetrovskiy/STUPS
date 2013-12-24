@@ -265,8 +265,8 @@ namespace UIAutomation
 			catch (Exception eFailedToIssueCollection) {
 			    // TODO
 			    // write error to error object!!!
-			    //Console.WriteLine("Collection 01");
-			    //Console.WriteLine(eFailedToIssueCollection.Message);
+			    // Console.WriteLine("Collection 01");
+			    // Console.WriteLine(eFailedToIssueCollection.Message);
 			    return null;
 			}
 		}
@@ -284,8 +284,8 @@ namespace UIAutomation
 			catch (Exception eFailedToIssueCollection) {
 			    // TODO
 			    // write error to error object!!!
-			    //Console.WriteLine("Collection 02");
-			    //Console.WriteLine(eFailedToIssueCollection.Message);
+			    // Console.WriteLine("Collection 02");
+			    // Console.WriteLine(eFailedToIssueCollection.Message);
 			    return null;
 			}
 		}
@@ -303,8 +303,8 @@ namespace UIAutomation
 			catch (Exception eFailedToIssueCollection) {
 			    // TODO
 			    // write error to error object!!!
-			    //Console.WriteLine("Collection 03");
-			    //Console.WriteLine(eFailedToIssueCollection.Message);
+			    // Console.WriteLine("Collection 03");
+			    // Console.WriteLine(eFailedToIssueCollection.Message);
 			    return null;
 			}
 		}
@@ -319,8 +319,8 @@ namespace UIAutomation
 			catch (Exception eFailedToIssueCollection) {
 			    // TODO
 			    // write error to error object!!!
-			    //Console.WriteLine("Collection 04");
-			    //Console.WriteLine(eFailedToIssueCollection.Message);
+			    // Console.WriteLine("Collection 04");
+			    // Console.WriteLine(eFailedToIssueCollection.Message);
 			    return null;
 			}
 		}

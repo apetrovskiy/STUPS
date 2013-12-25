@@ -131,8 +131,8 @@ namespace UIAutomation
         public static IUiElement GetContainingGridGridItemPattern(this IUiElement element)
         {
             try {
-                // return element.GetCurrentPattern<IMySuperGridItemPattern>(GridPattern.Pattern).Current.ContainingGrid;
                 return AutomationFactory.GetUiElement(element.GetCurrentPattern<IMySuperGridItemPattern>(GridItemPattern.Pattern).Current.ContainingGrid.GetSourceElement());
+                
             } catch (Exception eExtensionMethod) {
                 // 
                 // throw;

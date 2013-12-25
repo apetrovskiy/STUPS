@@ -309,24 +309,7 @@ namespace UIAutomationUnitTests
             TestPattern<IMySuperTransformPattern>(TransformPattern.Pattern, patterns, ref element);
             TestPattern<IMySuperValuePattern>(ValuePattern.Pattern, patterns, ref element);
             TestPattern<IMySuperWindowPattern>(WindowPattern.Pattern, patterns, ref element);
-            /*
-            if (patterns.Any(ptrn => ptrn is IMySuperDockPattern)) {
-                element.GetCurrentPattern<IMySuperDockPattern>(DockPattern.Pattern).Returns<IMySuperDockPattern>(element.Patterns.Find(ptrn => ptrn is IMySuperDockPattern) as IMySuperDockPattern);
-                element.TryGetCurrentPattern(DockPattern.Pattern, out patternObject).Returns(true);
-            }
-            element.GetCurrentPattern<IMySuperExpandCollapsePattern>(ExpandCollapsePattern.Pattern).Returns<IMySuperExpandCollapsePattern>(element.Patterns.Find(ptrn => ptrn is IMySuperExpandCollapsePattern) as IMySuperExpandCollapsePattern);
-            element.GetCurrentPattern<IMySuperGridItemPattern>(GridItemPattern.Pattern).Returns<IMySuperGridItemPattern>(element.Patterns.Find(ptrn => ptrn is IMySuperGridItemPattern) as IMySuperGridItemPattern);
-            element.GetCurrentPattern<IMySuperGridPattern>(GridPattern.Pattern).Returns<IMySuperGridPattern>(element.Patterns.Find(ptrn => ptrn is IMySuperGridPattern) as IMySuperGridPattern);
-            element.GetCurrentPattern<IMySuperInvokePattern>(InvokePattern.Pattern).Returns<IMySuperInvokePattern>(element.Patterns.Find(ptrn => ptrn is IMySuperInvokePattern) as IMySuperInvokePattern);
-            element.GetCurrentPattern<IMySuperRangeValuePattern>(RangeValuePattern.Pattern).Returns<IMySuperRangeValuePattern>(element.Patterns.Find(ptrn => ptrn is IMySuperRangeValuePattern) as IMySuperRangeValuePattern);
-            element.GetCurrentPattern<IMySuperScrollItemPattern>(ScrollItemPattern.Pattern).Returns<IMySuperScrollItemPattern>(element.Patterns.Find(ptrn => ptrn is IMySuperScrollItemPattern) as IMySuperScrollItemPattern);
-            element.GetCurrentPattern<IMySuperScrollPattern>(ScrollPattern.Pattern).Returns<IMySuperScrollPattern>(element.Patterns.Find(ptrn => ptrn is IMySuperScrollPattern) as IMySuperScrollPattern);
             
-            element.GetCurrentPattern<IMySuperTogglePattern>(TogglePattern.Pattern).Returns<IMySuperTogglePattern>(element.Patterns.Find(ptrn => ptrn is IMySuperTogglePattern) as IMySuperTogglePattern);
-            element.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern).Returns<IMySuperValuePattern>(element.Patterns.Find(ptrn => ptrn is IMySuperValuePattern) as IMySuperValuePattern);
-//            object patternObject;
-            element.TryGetCurrentPattern(ValuePattern.Pattern, out patternObject).Returns(true);
-            */
             if (expected) { element.Tag.Returns("expected"); }
             return element;
         }

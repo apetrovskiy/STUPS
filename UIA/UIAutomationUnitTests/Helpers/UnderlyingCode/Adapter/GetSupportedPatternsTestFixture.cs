@@ -62,11 +62,11 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Adapter
                     "name",
                     "auId",
                     "className",
-                    new[] { AutomationFactory.GetMySuperPattern<IMySuperValuePattern>(AutomationFactory.GetUiElement(), null) },
+                    new[] { AutomationFactory.GetMySuperPattern<IValuePattern>(AutomationFactory.GetUiElement(), null) },
                     true);
             
             Assert.AreEqual(1, element.GetSupportedPatterns().Count());
-            Assert.Exists(element.GetSupportedPatterns(), p => p is IMySuperValuePattern);
+            Assert.Exists(element.GetSupportedPatterns(), p => p is IValuePattern);
         }
         
         [Test]
@@ -79,16 +79,16 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Adapter
                     "auId",
                     "className",
                     new IBasePattern[] {
-                        AutomationFactory.GetMySuperPattern<IMySuperExpandCollapsePattern>(AutomationFactory.GetUiElement(), null),
-                        AutomationFactory.GetMySuperPattern<IMySuperTableItemPattern>(AutomationFactory.GetUiElement(), null),
-                        AutomationFactory.GetMySuperPattern<IMySuperWindowPattern>(AutomationFactory.GetUiElement(), null)
+                        AutomationFactory.GetMySuperPattern<IExpandCollapsePattern>(AutomationFactory.GetUiElement(), null),
+                        AutomationFactory.GetMySuperPattern<ITableItemPattern>(AutomationFactory.GetUiElement(), null),
+                        AutomationFactory.GetMySuperPattern<IWindowPattern>(AutomationFactory.GetUiElement(), null)
                     },
                     true);
             
             Assert.AreEqual(3, element.GetSupportedPatterns().Count());
-            Assert.Exists(element.GetSupportedPatterns(), p => p is IMySuperExpandCollapsePattern);
-            Assert.Exists(element.GetSupportedPatterns(), p => p is IMySuperTableItemPattern);
-            Assert.Exists(element.GetSupportedPatterns(), p => p is IMySuperWindowPattern);
+            Assert.Exists(element.GetSupportedPatterns(), p => p is IExpandCollapsePattern);
+            Assert.Exists(element.GetSupportedPatterns(), p => p is ITableItemPattern);
+            Assert.Exists(element.GetSupportedPatterns(), p => p is IWindowPattern);
         }
     }
 }

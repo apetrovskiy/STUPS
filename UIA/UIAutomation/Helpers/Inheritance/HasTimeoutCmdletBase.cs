@@ -939,9 +939,9 @@ namespace UIAutomation
                                          // check whether a control has or hasn't ValuePattern
                                          // 20131209
                                          // 20131211
-                                         // (item.GetSupportedPatterns().AsQueryable<IBasePattern>().Any<IBasePattern>(p => p is IMySuperValuePattern) ?
-                                         (item.GetSupportedPatterns().AsQueryable<IBasePattern>().Any(p => null != p && null != (p as IMySuperValuePattern)) ?
-                                          //.Single<IMySuperValuePattern>() ? //.Contains(ValuePattern.Pattern) ?
+                                         // (item.GetSupportedPatterns().AsQueryable<IBasePattern>().Any<IBasePattern>(p => p is IValuePattern) ?
+                                         (item.GetSupportedPatterns().AsQueryable<IBasePattern>().Any(p => null != p && null != (p as IValuePattern)) ?
+                                          //.Single<IValuePattern>() ? //.Contains(ValuePattern.Pattern) ?
                                           cmdlet.CompareElementValueAndValueParameter(item, textValue, true, wildcardValue, regexOptions) :
                                           // check whether the -Value parameter has or hasn't value
                                           ("*" == textValue ? true : false)
@@ -960,11 +960,11 @@ namespace UIAutomation
                                          // 20131209
                                          // (item.GetSupportedPatterns().Contains(ValuePattern.Pattern) ?
                                          // 20131209
-                                         // (item.GetSupportedPatterns().Contains(IMySuperValuePattern.Contains(ValuePattern.Pattern) ?
-                                         // (item.GetSupportedPatterns().Contains(IMySuperValuePattern) ?
+                                         // (item.GetSupportedPatterns().Contains(IValuePattern.Contains(ValuePattern.Pattern) ?
+                                         // (item.GetSupportedPatterns().Contains(IValuePattern) ?
                                          // 20131211
-                                         // (item.GetSupportedPatterns().AsQueryable<IBasePattern>().Any<IBasePattern>(p => p is IMySuperValuePattern) ?
-                                         (item.GetSupportedPatterns().AsQueryable<IBasePattern>().Any(p => null != p && null != (p as IMySuperValuePattern)) ?
+                                         // (item.GetSupportedPatterns().AsQueryable<IBasePattern>().Any<IBasePattern>(p => p is IValuePattern) ?
+                                         (item.GetSupportedPatterns().AsQueryable<IBasePattern>().Any(p => null != p && null != (p as IValuePattern)) ?
                                           cmdlet.CompareElementValueAndValueParameter(item, textValue, false, null, regexOptions) :
                                           // check whether the -Value parameter has or hasn't value
                                           (".*" == textValue ? true : false)
@@ -1043,9 +1043,9 @@ namespace UIAutomation
             try {
                 realValue =
                     // 20131208
-                    // (item.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern).Current.Value;
-                    // (item.GetCurrentPattern<IMySuperValuePattern, ValuePattern>(ValuePattern.Pattern) as IMySuperValuePattern).Current.Value;
-                    (item.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern)).Current.Value;
+                    // (item.GetCurrentPattern(ValuePattern.Pattern) as IValuePattern).Current.Value;
+                    // (item.GetCurrentPattern<IValuePattern, ValuePattern>(ValuePattern.Pattern) as IValuePattern).Current.Value;
+                    (item.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern)).Current.Value;
             }
             catch { //(Exception eGetCurrentPattern) {
                 // nothing to do

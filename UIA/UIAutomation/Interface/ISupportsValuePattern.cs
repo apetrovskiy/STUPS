@@ -11,11 +11,7 @@ namespace UIAutomation
 {
 	public interface ISupportsValuePattern
 	{
-		// void SetValue(string value);
-		// IUiElement SetValue(string value);
 		bool IsReadOnly { get; }
 		string Value { get; set; }
-		// IValuePatternInformation Cached { get; }
-		// IValuePatternInformation Current { get; }
 	}
 }

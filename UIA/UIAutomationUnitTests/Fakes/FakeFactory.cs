@@ -30,18 +30,18 @@ namespace UIAutomationUnitTests
         }
         
         #region patterns
-        public static IMySuperDockPattern GetDockPattern(PatternsData data)
+        public static IDockPattern GetDockPattern(PatternsData data)
         {
-            var dockPattern = Substitute.For<IMySuperDockPattern>();
+            var dockPattern = Substitute.For<IDockPattern>();
             // dockPattern.SetDockPosition(Arg.Any<DockPosition>()).Received();
             dockPattern.Current.DockPosition.Returns(data.DockPattern_DockPosition);
             dockPattern.Cached.DockPosition.Returns(data.DockPattern_DockPosition);
             return dockPattern;
         }
         
-        public static IMySuperExpandCollapsePattern GetExpandCollapsePattern(PatternsData data)
+        public static IExpandCollapsePattern GetExpandCollapsePattern(PatternsData data)
         {
-            IMySuperExpandCollapsePattern expandCollapsePattern = Substitute.For<IMySuperExpandCollapsePattern>();
+            IExpandCollapsePattern expandCollapsePattern = Substitute.For<IExpandCollapsePattern>();
             // expandCollapsePattern.Collapse().Received();
             // expandCollapsePattern.Expand().Received();
             expandCollapsePattern.Current.ExpandCollapseState.Returns(data.ExpandCollapsePattern_ExpandCollapseState);
@@ -49,9 +49,9 @@ namespace UIAutomationUnitTests
             return expandCollapsePattern;
         }
         
-        public static IMySuperGridItemPattern GetGridItemPattern(PatternsData data)
+        public static IGridItemPattern GetGridItemPattern(PatternsData data)
         {
-            var gridItemPattern = Substitute.For<IMySuperGridItemPattern>();
+            var gridItemPattern = Substitute.For<IGridItemPattern>();
             gridItemPattern.Current.Column.Returns(data.GridItemPattern_Column);
             gridItemPattern.Current.ColumnSpan.Returns(data.GridItemPattern_ColumnSpan);
             gridItemPattern.Current.ContainingGrid.Returns(data.GridItemPattern_ContainingGrid);
@@ -65,9 +65,9 @@ namespace UIAutomationUnitTests
             return gridItemPattern;
         }
         
-        public static IMySuperGridPattern GetGridPattern(PatternsData data)
+        public static IGridPattern GetGridPattern(PatternsData data)
         {
-            var gridPattern = Substitute.For<IMySuperGridPattern>();
+            var gridPattern = Substitute.For<IGridPattern>();
             // gridPattern.GetItem(
             gridPattern.Current.ColumnCount.Returns(data.GridPattern_ColumnCount);
             gridPattern.Current.RowCount.Returns(data.GridPattern_RowCount);
@@ -76,16 +76,16 @@ namespace UIAutomationUnitTests
             return gridPattern;
         }
         
-        public static IMySuperInvokePattern GetInvokePattern(PatternsData data)
+        public static IInvokePattern GetInvokePattern(PatternsData data)
         {
-            IMySuperInvokePattern invokePattern = Substitute.For<IMySuperInvokePattern>();
+            IInvokePattern invokePattern = Substitute.For<IInvokePattern>();
             // invokePattern.Invoke
             return invokePattern;
         }
         
-        public static IMySuperRangeValuePattern GetRangeValuePattern(PatternsData data)
+        public static IRangeValuePattern GetRangeValuePattern(PatternsData data)
         {
-            IMySuperRangeValuePattern rangeValuePattern = Substitute.For<IMySuperRangeValuePattern>();
+            IRangeValuePattern rangeValuePattern = Substitute.For<IRangeValuePattern>();
             // rangeValuePattern.SetValue(Arg.Any<int>()).Returns(data.RangeValuePattern_ValueSet);
             
             rangeValuePattern.Current.IsReadOnly.Returns(data.RangeValuePattern_IsReadOnly);
@@ -97,16 +97,16 @@ namespace UIAutomationUnitTests
             return rangeValuePattern;
         }
         
-        public static IMySuperScrollItemPattern GetScrollItemPattern(PatternsData data)
+        public static IScrollItemPattern GetScrollItemPattern(PatternsData data)
         {
-            IMySuperScrollItemPattern scrollItemPattern = Substitute.For<IMySuperScrollItemPattern>();
+            IScrollItemPattern scrollItemPattern = Substitute.For<IScrollItemPattern>();
             // scrollItemPattern.ScrollIntoView().Received();
             return scrollItemPattern;
         }
         
-        public static IMySuperScrollPattern GetScrollPattern(PatternsData data)
+        public static IScrollPattern GetScrollPattern(PatternsData data)
         {
-            IMySuperScrollPattern scrollPattern = Substitute.For<IMySuperScrollPattern>();
+            IScrollPattern scrollPattern = Substitute.For<IScrollPattern>();
             // scrollPattern.Scroll(Arg.Any<ScrollAmount>(), Arg.Any<ScrollAmount>()).Returns(new[] { data.ScrollPattern_HorizontalAmount, data.ScrollPattern_VerticalAmount });
             // scrollPattern.ScrollHorizontal(Arg.Any<ScrollAmount>()).Returns(data.ScrollPattern_HorizontalAmount);
             // scrollPattern.ScrollVertical(Arg.Any<ScrollAmount>()).Returns(data.ScrollPattern_VerticalAmount);
@@ -129,9 +129,9 @@ namespace UIAutomationUnitTests
             return scrollPattern;
         }
         
-        public static IMySuperSelectionItemPattern GetSelectionItemPattern(PatternsData data)
+        public static ISelectionItemPattern GetSelectionItemPattern(PatternsData data)
         {
-            IMySuperSelectionItemPattern selectionItemPattern = Substitute.For<IMySuperSelectionItemPattern>();
+            ISelectionItemPattern selectionItemPattern = Substitute.For<ISelectionItemPattern>();
             // selectionItemPattern.AddToSelection()
             // selectionItemPattern.RemoveFromSelection()
             // selectionItemPattern.Select()
@@ -145,9 +145,9 @@ namespace UIAutomationUnitTests
             return selectionItemPattern;
         }
         
-        public static IMySuperSelectionPattern GetSelectionPattern(PatternsData data)
+        public static ISelectionPattern GetSelectionPattern(PatternsData data)
         {
-            IMySuperSelectionPattern selectionPattern = Substitute.For<IMySuperSelectionPattern>();
+            ISelectionPattern selectionPattern = Substitute.For<ISelectionPattern>();
             //selectionPattern.Current.GetSelection()
             
             selectionPattern.Current.CanSelectMultiple.Returns(data.SelectionPattern_CanSelectMultiple);
@@ -159,9 +159,9 @@ namespace UIAutomationUnitTests
             return selectionPattern;
         }
         
-        public static IMySuperTableItemPattern GetTableItemPattern(PatternsData data)
+        public static ITableItemPattern GetTableItemPattern(PatternsData data)
         {
-            IMySuperTableItemPattern tableItemPattern = Substitute.For<IMySuperTableItemPattern>();
+            ITableItemPattern tableItemPattern = Substitute.For<ITableItemPattern>();
             tableItemPattern.Current.Column.Returns(data.TableItemPattern_Column);
             tableItemPattern.Current.ColumnSpan.Returns(data.TableItemPattern_ColumnSpan);
             tableItemPattern.Current.ContainingGrid.Returns(data.TableItemPattern_ContainingGrid);
@@ -175,9 +175,9 @@ namespace UIAutomationUnitTests
             return tableItemPattern;
         }
         
-        public static IMySuperTablePattern GetTablePattern(PatternsData data)
+        public static ITablePattern GetTablePattern(PatternsData data)
         {
-            IMySuperTablePattern tablePattern = Substitute.For<IMySuperTablePattern>();
+            ITablePattern tablePattern = Substitute.For<ITablePattern>();
             tablePattern.Current.ColumnCount.Returns(data.TablePattern_ColumnCount);
             tablePattern.Current.RowCount.Returns(data.TablePattern_RowCount);
             tablePattern.Current.RowOrColumnMajor.Returns(data.TablePattern_RowOrColumnMajor);
@@ -187,9 +187,9 @@ namespace UIAutomationUnitTests
             return tablePattern;
         }
         
-        public static IMySuperTextPattern GetTextPattern(PatternsData data)
+        public static ITextPattern GetTextPattern(PatternsData data)
         {
-            IMySuperTextPattern textPattern = Substitute.For<IMySuperTextPattern>();
+            ITextPattern textPattern = Substitute.For<ITextPattern>();
             // textPattern.GetSelection
             // textPattern.GetVisibleRanges
             // textPattern.RangeFromChild
@@ -199,18 +199,18 @@ namespace UIAutomationUnitTests
             return textPattern;
         }
         
-        public static IMySuperTogglePattern GetTogglePattern(PatternsData data)
+        public static ITogglePattern GetTogglePattern(PatternsData data)
         {
-            IMySuperTogglePattern togglePattern = Substitute.For<IMySuperTogglePattern>();
+            ITogglePattern togglePattern = Substitute.For<ITogglePattern>();
             // togglePattern.Toggle().Received();
             
             togglePattern.Current.ToggleState.Returns(data.TogglePattern_ToggleState);
             return togglePattern;
         }
         
-        public static IMySuperTransformPattern GetTransformPattern(PatternsData data)
+        public static ITransformPattern GetTransformPattern(PatternsData data)
         {
-            IMySuperTransformPattern transformPattern = Substitute.For<IMySuperTransformPattern>();
+            ITransformPattern transformPattern = Substitute.For<ITransformPattern>();
             // transformPattern.Move
             // transformPattern.Resize
             // transformPattern.Rotate
@@ -223,9 +223,9 @@ namespace UIAutomationUnitTests
             return transformPattern;
         }
         
-        public static IMySuperValuePattern GetValuePattern(PatternsData data)
+        public static IValuePattern GetValuePattern(PatternsData data)
         {
-            IMySuperValuePattern valuePattern = Substitute.For<IMySuperValuePattern>();
+            IValuePattern valuePattern = Substitute.For<IValuePattern>();
             IValuePatternInformation valuePatternInformation = Substitute.For<IValuePatternInformation>();
             valuePatternInformation.Value.Returns(data.ValuePattern_Value);
             valuePattern.Current.Returns(valuePatternInformation);
@@ -235,9 +235,9 @@ namespace UIAutomationUnitTests
             return valuePattern;
         }
         
-        public static IMySuperWindowPattern GetWindowPattern(PatternsData data)
+        public static IWindowPattern GetWindowPattern(PatternsData data)
         {
-            IMySuperWindowPattern windowPattern = Substitute.For<IMySuperWindowPattern>();
+            IWindowPattern windowPattern = Substitute.For<IWindowPattern>();
             // windowPattern.Close()
             windowPattern.SetWindowVisualState(data.WindowPattern_WindowVisualStateSet);
             windowPattern.WaitForInputIdle(data.WindowPattern_Milliseconds);
@@ -254,7 +254,7 @@ namespace UIAutomationUnitTests
         
         public static IFakeUiElement GetAutomationElementExpected(ControlType controlType, string name, string automationId, string className, string txtValue)
         {
-            IMySuperValuePattern valuePattern = null;
+            IValuePattern valuePattern = null;
             if (!string.IsNullOrEmpty(txtValue)) {
                 valuePattern = FakeFactory.GetValuePattern(new PatternsData{ ValuePattern_Value = txtValue });
             }
@@ -263,7 +263,7 @@ namespace UIAutomationUnitTests
         
         public static  IFakeUiElement GetAutomationElementNotExpected(ControlType controlType, string name, string automationId, string className, string txtValue)
         {
-            IMySuperValuePattern valuePattern = null;
+            IValuePattern valuePattern = null;
             if (!string.IsNullOrEmpty(txtValue)) {
                 valuePattern = FakeFactory.GetValuePattern(new PatternsData{ ValuePattern_Value = txtValue });
             }
@@ -292,23 +292,23 @@ namespace UIAutomationUnitTests
             element.Patterns.AddRange(patterns);
             element.GetSupportedPatterns().Returns<IBasePattern[]>(element.Patterns.ToArray());
             
-            TestPattern<IMySuperDockPattern>(DockPattern.Pattern, patterns, ref element);
-            TestPattern<IMySuperExpandCollapsePattern>(ExpandCollapsePattern.Pattern, patterns, ref element);
-            TestPattern<IMySuperGridItemPattern>(GridItemPattern.Pattern, patterns, ref element);
-            TestPattern<IMySuperGridPattern>(GridPattern.Pattern, patterns, ref element);
-            TestPattern<IMySuperInvokePattern>(InvokePattern.Pattern, patterns, ref element);
-            TestPattern<IMySuperRangeValuePattern>(RangeValuePattern.Pattern, patterns, ref element);
-            TestPattern<IMySuperScrollItemPattern>(ScrollItemPattern.Pattern, patterns, ref element);
-            TestPattern<IMySuperScrollPattern>(ScrollPattern.Pattern, patterns, ref element);
-            TestPattern<IMySuperSelectionItemPattern>(SelectionItemPattern.Pattern, patterns, ref element);
-            TestPattern<IMySuperSelectionPattern>(SelectionPattern.Pattern, patterns, ref element);
-            TestPattern<IMySuperTableItemPattern>(TableItemPattern.Pattern, patterns, ref element);
-            TestPattern<IMySuperTablePattern>(TablePattern.Pattern, patterns, ref element);
-            TestPattern<IMySuperTextPattern>(TextPattern.Pattern, patterns, ref element);
-            TestPattern<IMySuperTogglePattern>(TogglePattern.Pattern, patterns, ref element);
-            TestPattern<IMySuperTransformPattern>(TransformPattern.Pattern, patterns, ref element);
-            TestPattern<IMySuperValuePattern>(ValuePattern.Pattern, patterns, ref element);
-            TestPattern<IMySuperWindowPattern>(WindowPattern.Pattern, patterns, ref element);
+            TestPattern<IDockPattern>(DockPattern.Pattern, patterns, ref element);
+            TestPattern<IExpandCollapsePattern>(ExpandCollapsePattern.Pattern, patterns, ref element);
+            TestPattern<IGridItemPattern>(GridItemPattern.Pattern, patterns, ref element);
+            TestPattern<IGridPattern>(GridPattern.Pattern, patterns, ref element);
+            TestPattern<IInvokePattern>(InvokePattern.Pattern, patterns, ref element);
+            TestPattern<IRangeValuePattern>(RangeValuePattern.Pattern, patterns, ref element);
+            TestPattern<IScrollItemPattern>(ScrollItemPattern.Pattern, patterns, ref element);
+            TestPattern<IScrollPattern>(ScrollPattern.Pattern, patterns, ref element);
+            TestPattern<ISelectionItemPattern>(SelectionItemPattern.Pattern, patterns, ref element);
+            TestPattern<ISelectionPattern>(SelectionPattern.Pattern, patterns, ref element);
+            TestPattern<ITableItemPattern>(TableItemPattern.Pattern, patterns, ref element);
+            TestPattern<ITablePattern>(TablePattern.Pattern, patterns, ref element);
+            TestPattern<ITextPattern>(TextPattern.Pattern, patterns, ref element);
+            TestPattern<ITogglePattern>(TogglePattern.Pattern, patterns, ref element);
+            TestPattern<ITransformPattern>(TransformPattern.Pattern, patterns, ref element);
+            TestPattern<IValuePattern>(ValuePattern.Pattern, patterns, ref element);
+            TestPattern<IWindowPattern>(WindowPattern.Pattern, patterns, ref element);
             
             if (expected) { element.Tag.Returns("expected"); }
             return element;

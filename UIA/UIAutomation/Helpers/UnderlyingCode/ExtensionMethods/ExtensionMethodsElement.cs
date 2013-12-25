@@ -265,7 +265,7 @@ namespace UIAutomation
             this IUiElement element,
             PSCmdletBase cmdlet,
             string propertyName,
-            IMySuperValuePattern pattern,
+            IValuePattern pattern,
             ref bool hasName)
         {
             cmdlet.WriteVerbose(cmdlet, "getting " + propertyName);
@@ -412,8 +412,8 @@ namespace UIAutomation
                             string elementValue =
                                 // 20131208
                                 // (tempElement.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern).Current.Value;
-                                // (tempElement.GetCurrentPattern<IMySuperValuePattern, ValuePattern>(ValuePattern.Pattern) as ValuePattern).Current.Value;
-                                tempElement.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern).Current.Value;
+                                // (tempElement.GetCurrentPattern<IValuePattern, ValuePattern>(ValuePattern.Pattern) as ValuePattern).Current.Value;
+                                tempElement.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern).Current.Value;
                             if (tempElement.IsMatchWildcardPattern(cmdlet, resultCollection, wildcardName, elementValue)) continue;
                             if (tempElement.IsMatchWildcardPattern(cmdlet, resultCollection, wildcardValue, elementValue)) continue;
                         }

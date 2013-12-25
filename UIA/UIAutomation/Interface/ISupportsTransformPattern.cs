@@ -13,15 +13,9 @@ namespace UIAutomation
 	using System.Windows.Automation;
 	public interface ISupportsTransformPattern
 	{
-		// void Move(double x, double y);
 		IUiElement Move(double x, double y);
-		// void Resize(double width, double height);
 		IUiElement Resize(double width, double height);
-		// void Rotate(double degrees);
 		IUiElement Rotate(double degrees);
-		// ITransformPatternInformation Cached { get; }
-		// ITransformPatternInformation Current { get; }
-		
 		bool CanMove { get; }
 		bool CanResize { get; }
 		bool CanRotate { get; }

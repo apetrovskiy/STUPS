@@ -47,7 +47,7 @@ namespace UIAutomation
                 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 // WindowPattern windowPattern = InputObject.GetCurrentPattern(WindowPattern.Pattern) as WindowPattern;
                 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                IMySuperWindowPattern windowPattern = InputObject.GetCurrentPattern<IMySuperWindowPattern>(WindowPattern.Pattern);
+                IWindowPattern windowPattern = InputObject.GetCurrentPattern<IWindowPattern>(WindowPattern.Pattern);
 
                 try
                 {

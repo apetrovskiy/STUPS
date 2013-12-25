@@ -51,14 +51,14 @@ namespace UIAutomation.Commands
                     inputObject;
                 // 20131208
                 // GridPattern gridPattern = null;
-                IMySuperGridPattern gridPattern = null;
+                IGridPattern gridPattern = null;
     
                 try {
                     gridPattern =
                         // 20131208
                         // inputObject.GetCurrentPattern(GridPattern.Pattern)
-                        // inputObject.GetCurrentPattern<IMySuperGridPattern, GridPattern>(GridPattern.Pattern)
-                        inputObject.GetCurrentPattern<IMySuperGridPattern>(GridPattern.Pattern);
+                        // inputObject.GetCurrentPattern<IGridPattern, GridPattern>(GridPattern.Pattern)
+                        inputObject.GetCurrentPattern<IGridPattern>(GridPattern.Pattern);
                         // as GridPattern;
                     
                 
@@ -80,8 +80,8 @@ namespace UIAutomation.Commands
                         {
                             // 20131208
                             // SelectionPattern selPattern = inputObject.GetCurrentPattern(
-                            // SelectionPattern selPattern = inputObject.GetCurrentPattern<IMySuperSelectionPattern, SelectionPattern>(
-                            IMySuperSelectionPattern selPattern = inputObject.GetCurrentPattern<IMySuperSelectionPattern>(SelectionPattern.Pattern);
+                            // SelectionPattern selPattern = inputObject.GetCurrentPattern<ISelectionPattern, SelectionPattern>(
+                            ISelectionPattern selPattern = inputObject.GetCurrentPattern<ISelectionPattern>(SelectionPattern.Pattern);
                                 // SelectionPattern.Pattern)
                                 // as SelectionPattern;
                             /*
@@ -128,7 +128,7 @@ namespace UIAutomation.Commands
                                 string outString =
                                     // 20131208
                                     // UiaHelper.GetOutputStringUsingTableGridPattern<GridPattern>(
-                                    UiaHelper.GetOutputStringUsingTableGridPattern<IMySuperGridPattern>(
+                                    UiaHelper.GetOutputStringUsingTableGridPattern<IGridPattern>(
                                         gridPattern,
                                         gridPattern.Current.ColumnCount,
                                         rowsCounter,

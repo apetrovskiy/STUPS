@@ -13,13 +13,8 @@ namespace UIAutomation
 	using System.Windows.Automation;
 	public interface ISupportsExpandCollapsePattern
 	{
-		// void Expand();
 		IUiElement Expand();
-		// void Collapse();
 		IUiElement Collapse();
-		// IExpandCollapsePatternInformation Cached { get; }
-		// IExpandCollapsePatternInformation Current { get; }
-		
 		ExpandCollapseState ExpandCollapseState { get; }
 	}
 }

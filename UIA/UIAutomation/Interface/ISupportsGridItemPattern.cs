@@ -13,14 +13,10 @@ namespace UIAutomation
 	using System.Windows.Automation;
 	public interface ISupportsGridItemPattern
 	{
-		// IGridItemPatternInformation Cached { get; }
-		// IGridItemPatternInformation Current { get; }
-		
 		int GridRow { get; }
 		int GridColumn { get; }
 		int GridRowSpan { get; }
 		int GridColumnSpan { get; }
-		// AutomationElement ContainingGrid { get; }
 		IUiElement GridContainingGrid { get; }
 	}
 }

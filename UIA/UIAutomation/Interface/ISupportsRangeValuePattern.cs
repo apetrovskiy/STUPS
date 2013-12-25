@@ -13,12 +13,6 @@ namespace UIAutomation
 	using System.Windows.Automation;
 	public interface ISupportsRangeValuePattern
 	{
-		// void SetValue(double value);
-		// IUiElement SetValue(double value); // ?
-		// IRangeValuePatternInformation Cached { get; }
-		// IRangeValuePatternInformation Current { get; }
-		
-		// double Value { get; }
 		double RangeValue { get; set; }
 		bool IsRangeReadOnly { get; }
 		double Maximum { get; }

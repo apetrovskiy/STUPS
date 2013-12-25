@@ -48,11 +48,11 @@ namespace UIAutomation.Commands.Common
                 // InvokePattern invPtrn =
                     // 20131208
                     // showDesktopButton.GetCurrentPattern(InvokePattern.Pattern) as InvokePattern;
-                //    showDesktopButton.GetCurrentPattern<IMySuperInvokePattern, InvokePattern>(InvokePattern.Pattern) as InvokePattern;
+                //    showDesktopButton.GetCurrentPattern<IInvokePattern, InvokePattern>(InvokePattern.Pattern) as InvokePattern;
                 // invPtrn.Invoke();
                 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                IMySuperInvokePattern invPtrn =
-                    showDesktopButton.GetCurrentPattern<IMySuperInvokePattern>(InvokePattern.Pattern);
+                IInvokePattern invPtrn =
+                    showDesktopButton.GetCurrentPattern<IInvokePattern>(InvokePattern.Pattern);
                 invPtrn.Invoke();
                 /*
                 InvokePattern invPtrn = 

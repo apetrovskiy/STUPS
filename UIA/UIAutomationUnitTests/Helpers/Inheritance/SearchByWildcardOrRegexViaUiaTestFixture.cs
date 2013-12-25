@@ -94,7 +94,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                     .Cast<IUiElement>()
                     .ToList<IUiElement>(), x =>
                     {
-                        IMySuperValuePattern valuePattern = x.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern) as IMySuperValuePattern;
+                        IValuePattern valuePattern = x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern;
                         return valuePattern != null && txtValuePatern.IsMatch(valuePattern.Current.Value);
                     });
             }

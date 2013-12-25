@@ -91,14 +91,14 @@ namespace UIAutomation
                                 string strValue = String.Empty;
                                 // 20131208
                                 // ValuePattern valPattern = null;
-                                IMySuperValuePattern valPattern = null;
+                                IValuePattern valPattern = null;
                                 try {
                                     valPattern =
                                         // 20131208
                                         // grandchild.GetCurrentPattern(ValuePattern.Pattern)
-                                        // grandchild.GetCurrentPattern<IMySuperValuePattern, ValuePattern>(ValuePattern.Pattern)
+                                        // grandchild.GetCurrentPattern<IValuePattern, ValuePattern>(ValuePattern.Pattern)
                                         //    as ValuePattern;
-                                        grandchild.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern);
+                                        grandchild.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern);
                                     WriteVerbose(this, 
                                         "getting the valuePattern of the control");
                                 } catch {

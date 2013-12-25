@@ -13,7 +13,6 @@ namespace UIAutomation
 	using System.Windows.Automation;
 	public interface ISupportsScrollItemPattern
 	{
-		// void ScrollIntoView();
 		IUiElement ScrollIntoView();
 	}
 }

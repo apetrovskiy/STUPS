@@ -90,9 +90,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                     .ToList<IUiElement>(), x =>
                     {
                         // 20131208
-                        // IMySuperValuePattern valuePattern = x.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern;
-                        // IMySuperValuePattern valuePattern = x.GetCurrentPattern<IMySuperValuePattern, ValuePattern>(ValuePattern.Pattern) as IMySuperValuePattern;
-                        IMySuperValuePattern valuePattern = x.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern) as IMySuperValuePattern;
+                        // IValuePattern valuePattern = x.GetCurrentPattern(ValuePattern.Pattern) as IValuePattern;
+                        // IValuePattern valuePattern = x.GetCurrentPattern<IValuePattern, ValuePattern>(ValuePattern.Pattern) as IValuePattern;
+                        IValuePattern valuePattern = x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern;
                         return valuePattern != null && valuePattern.Current.Value == txtValue;
                     });
             }

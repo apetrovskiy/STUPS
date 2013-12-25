@@ -13,17 +13,10 @@ namespace UIAutomation
 	using System.Windows.Automation;
 	public interface ISupportsScrollPattern
 	{
-		// void SetScrollPercent(double horizontalPercent, double verticalPercent);
 		IUiElement SetScrollPercent(double horizontalPercent, double verticalPercent);
-		// void Scroll(ScrollAmount horizontalAmount, ScrollAmount verticalAmount);
 		IUiElement Scroll(ScrollAmount horizontalAmount, ScrollAmount verticalAmount);
-		// void ScrollHorizontal(ScrollAmount amount);
 		IUiElement ScrollHorizontal(ScrollAmount amount);
-		// void ScrollVertical(ScrollAmount amount);
 		IUiElement ScrollVertical(ScrollAmount amount);
-		// IScrollPatternInformation Cached { get; }
-		// IScrollPatternInformation Current { get; }
-		
 		double HorizontalScrollPercent { get; }
 		double VerticalScrollPercent { get; }
 		double HorizontalViewSize { get; }

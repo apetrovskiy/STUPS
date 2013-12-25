@@ -13,18 +13,12 @@ namespace UIAutomation
 	using System.Windows.Automation;
 	public interface ISupportsTableItemPattern
 	{
-		// ITableItemPatternInformation Cached { get; }
-		// ITableItemPatternInformation Current { get; }
-		
-		// AutomationElement[] GetRowHeaderItems();
 		IUiElement[] GetRowHeaderItems();
-		// AutomationElement[] GetColumnHeaderItems();
 		IUiElement[] GetColumnHeaderItems();
 		int TableRow { get; }
 		int TableColumn { get; }
 		int TableRowSpan { get; }
 		int TableColumnSpan { get; }
-		// AutomationElement ContainingGrid { get; }
 		IUiElement TableContainingGrid { get; }
 	}
 }

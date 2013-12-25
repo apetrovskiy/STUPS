@@ -16,9 +16,6 @@ namespace UIAutomation
 		IUiElement Select();
 		IUiElement AddToSelection();
 		IUiElement RemoveFromSelection();
-		// ISelectionItemPatternInformation Cached { get; }
-		// ISelectionItemPatternInformation Current { get; }
-		
 		bool IsSelected { get; }
 		IUiElement SelectionContainer { get; }
 	}

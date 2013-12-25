@@ -17,13 +17,8 @@ namespace UIAutomation
     /// </summary>
     public interface IBasePattern
     {
-        // internal
-        // IUiElement ParentElement { get; set; }
         void SetParentElement(IUiElement element);
         IUiElement GetParentElement();
-        
-        // AutomationPattern SourcePattern { get; set; }
-        // object SourcePattern { get; set; }
         void SetSourcePattern(object pattern);
         object GetSourcePattern();
     }

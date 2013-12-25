@@ -52,11 +52,11 @@ namespace UIAutomation
                       wildcardClassName.IsMatch(collectionItem.Current.ClassName) &&
                       // 20131209
                       // (collectionItem.GetSupportedPatterns().Contains(ValuePattern.Pattern) ?
-                      (collectionItem.GetSupportedPatterns().AsQueryable<IBasePattern>().Any<IBasePattern>(p => p is IMySuperValuePattern) ?
+                      (collectionItem.GetSupportedPatterns().AsQueryable<IBasePattern>().Any<IBasePattern>(p => p is IValuePattern) ?
                       // 20131208
-                      // wildcardValue.IsMatch((collectionItem.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern).Current.Value) :
-                      // wildcardValue.IsMatch((collectionItem.GetCurrentPattern<IMySuperValuePattern, ValuePattern>(ValuePattern.Pattern) as IMySuperValuePattern).Current.Value) :
-                      wildcardValue.IsMatch(collectionItem.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern).Current.Value) :
+                      // wildcardValue.IsMatch((collectionItem.GetCurrentPattern(ValuePattern.Pattern) as IValuePattern).Current.Value) :
+                      // wildcardValue.IsMatch((collectionItem.GetCurrentPattern<IValuePattern, ValuePattern>(ValuePattern.Pattern) as IValuePattern).Current.Value) :
+                      wildcardValue.IsMatch(collectionItem.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern).Current.Value) :
                       // check whether the -Value parameter has or hasn't value
                       ("*" == txtValue ? true : false))
                 select collectionItem;

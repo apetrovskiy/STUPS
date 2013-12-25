@@ -14,9 +14,6 @@ namespace UIAutomation
 	public interface ISupportsGridPattern
 	{
 		IUiElement GetItem(int row, int column);
-		// IGridPatternInformation Cached { get; }
-		// IGridPatternInformation Current { get; }
-		
 		int GridRowCount { get; }
 		int GridColumnCount { get; }
 	}

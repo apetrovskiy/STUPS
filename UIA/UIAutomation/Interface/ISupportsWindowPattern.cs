@@ -13,13 +13,9 @@ namespace UIAutomation
 	using System.Windows.Automation;
 	public interface ISupportsWindowPattern
 	{
-		// void SetWindowVisualState(WindowVisualState state);
 		IUiElement SetWindowVisualState(WindowVisualState state);
 		void Close();
 		bool WaitForInputIdle(int milliseconds);
-		// IWindowPatternInformation Cached { get; }
-		// IWindowPatternInformation Current { get; }
-		
 		bool CanMaximize { get; }
 		bool CanMinimize { get; }
 		bool IsModal { get; }

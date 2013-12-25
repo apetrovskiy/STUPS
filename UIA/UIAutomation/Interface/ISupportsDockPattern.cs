@@ -14,9 +14,6 @@ namespace UIAutomation
 	public interface ISupportsDockPattern
 	{
 		void SetDockPosition(DockPosition dockPosition);
-		// IDockPatternInformation Cached { get; }
-		// IDockPatternInformation Current { get; }
-		
 		DockPosition DockPosition { get; }
 	}
 }

@@ -822,11 +822,11 @@ namespace UIAutomation
                         // GetElementPropertyString(cmdlet, element, "Name", null, ref hasName);
                         element.GetElementPropertyString(cmdlet, "Name", null, ref hasName);
                     try {
-                        IMySuperValuePattern pattern =
+                        IValuePattern pattern =
                             // 20131208
-                            // element.GetCurrentPattern(ValuePattern.Pattern) as IMySuperValuePattern;
-                            // element.GetCurrentPattern<IMySuperValuePattern, ValuePattern>(ValuePattern.Pattern) as IMySuperValuePattern;
-                            element.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern);
+                            // element.GetCurrentPattern(ValuePattern.Pattern) as IValuePattern;
+                            // element.GetCurrentPattern<IValuePattern, ValuePattern>(ValuePattern.Pattern) as IValuePattern;
+                            element.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern);
                         elementVerbosity +=
                             // 20131204
                             // GetElementPropertyString(cmdlet, element, "Value", pattern, ref hasName);
@@ -892,18 +892,11 @@ strInfo += " 04";
                                 {
 strInfo += " 05";
                                     strElementPatterns += "\r\n\t\t#";
-//if (null == ptrn.SourcePattern) {
-//    strInfo += " ";
-//    strInfo += ptrn.GetType().Name;
-//    strInfo += " is null";
-//}
                                     strElementPatterns +=
                                         // 20131209
                                         // ptrn.ProgrammaticName.Replace("Identifiers.Pattern", "");
                                         // 20131210
                                         // (ptrn.SourcePattern as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", "");
-                                        // 20131224
-                                        // (ptrn.SourcePattern as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", string.Empty);
                                         (ptrn.GetSourcePattern() as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", string.Empty);
 strInfo += " 06";
                                     strElementPatterns += ": use the ";
@@ -918,8 +911,6 @@ strInfo += " 07";
                                     // 20131210
                                     // switch ((ptrn as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", "")) {
                                     // switch ((ptrn.SourcePattern as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", "")) {
-                                    // 20131224
-                                    // switch ((ptrn.SourcePattern as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", string.Empty)) {
                                     switch ((ptrn.GetSourcePattern() as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", string.Empty)) {
                                         case "InvokePattern":
                                             strElementPatterns +=
@@ -1097,9 +1088,9 @@ strInfo += " 07";
 //            IUiElement element,
 //            string propertyName,
 //            // 20131124
-//            // ValuePattern -> IMySuperValuePattern
+//            // ValuePattern -> IValuePattern
 //            //ValuePattern pattern,
-//            IMySuperValuePattern pattern,
+//            IValuePattern pattern,
 //            ref bool hasName)
 //        {
 //            cmdlet.WriteVerbose(cmdlet, "getting " + propertyName);
@@ -1413,8 +1404,6 @@ strInfo += " 07";
                             // switch (pattern.ProgrammaticName) {
                             // 20131210
                             // switch ((pattern as AutomationPattern).ProgrammaticName) {
-                            // 20131224
-                            // switch ((pattern.SourcePattern as AutomationPattern).ProgrammaticName) {
                             switch ((pattern.GetSourcePattern() as AutomationPattern).ProgrammaticName) {
                                 case "SelectionItemPatternIdentifiers.Pattern":
                                     cmdlet.SubscribeToEvents(cmdlet,
@@ -1529,8 +1518,6 @@ strInfo += " 07";
                                                 // pattern.ProgrammaticName +
                                                 // 20131210
                                                 // (pattern as AutomationPattern).ProgrammaticName +
-                                                // 20131224
-                                                // (pattern.SourcePattern as AutomationPattern).ProgrammaticName +
                                                 (pattern.GetSourcePattern() as AutomationPattern).ProgrammaticName +
                                                 " event for " +
                                                 element.Current.Name);
@@ -1908,8 +1895,6 @@ strInfo += " 07";
                 // foreach (AutomationPattern ptrn in supportedPatterns.Where(ptrn => patternType.ProgrammaticName == ptrn.ProgrammaticName ||
                 // 20131210
                 // foreach (IBasePattern ptrn in supportedPatterns.Where(ptrn => patternType.ProgrammaticName == (ptrn as AutomationPattern).ProgrammaticName ||
-                // 20131224
-                // foreach (IBasePattern ptrn in supportedPatterns.Where(ptrn => patternType.ProgrammaticName == (ptrn.SourcePattern as AutomationPattern).ProgrammaticName ||
                 foreach (IBasePattern ptrn in supportedPatterns.Where(ptrn => patternType.ProgrammaticName == (ptrn.GetSourcePattern() as AutomationPattern).ProgrammaticName ||
                                                                                    patternType == null))
                 {
@@ -1919,8 +1904,6 @@ strInfo += " 07";
                         // ptrn, out pattern)) continue;
                         // 20131210
                         // (ptrn as AutomationPattern), out pattern)) continue;
-                        // 20131224
-                        // (ptrn.SourcePattern as AutomationPattern), out pattern)) continue;
                         (ptrn.GetSourcePattern() as AutomationPattern), out pattern)) continue;
                     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //                    object resPattern =
@@ -1935,8 +1918,6 @@ strInfo += " 07";
                         // element.GetCurrentPattern(ptrn);
                         // 20131210
                         // element.GetCurrentPattern((ptrn as AutomationPattern));
-                        // 20131224
-                        // element.GetCurrentPattern((ptrn.SourcePattern as AutomationPattern));
                         element.GetCurrentPattern((ptrn.GetSourcePattern() as AutomationPattern));
                     return result;
                 }
@@ -2286,9 +2267,9 @@ strInfo += " 07";
                         {
                             // 20131208
                             // ValuePattern valPattern = rowItem.GetCurrentPattern(ValuePattern.Pattern)
-                            // ValuePattern valPattern = rowItem.GetCurrentPattern<IMySuperValuePattern, ValuePattern>(ValuePattern.Pattern)
+                            // ValuePattern valPattern = rowItem.GetCurrentPattern<IValuePattern, ValuePattern>(ValuePattern.Pattern)
                             //     as ValuePattern;
-                            IMySuperValuePattern valPattern = rowItem.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern);
+                            IValuePattern valPattern = rowItem.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern);
                             strValue += valPattern.Current.Value;
                         }
                         catch {
@@ -2826,52 +2807,52 @@ strInfo += " 07";
                     supportedTypes.Add(typeof(ISupportsHighlighter));
                     supportedTypes.Add(typeof(ISupportsNavigation));
                     // calculated
-                    if (pattern is IMySuperDockPattern) {
+                    if (pattern is IDockPattern) {
                         supportedTypes.Add(typeof(ISupportsDockPattern));
                     }
-                    if (pattern is IMySuperExpandCollapsePattern) {
+                    if (pattern is IExpandCollapsePattern) {
                         supportedTypes.Add(typeof(ISupportsExpandCollapsePattern));
                     }
-                    if (pattern is IMySuperGridItemPattern) {
+                    if (pattern is IGridItemPattern) {
                         supportedTypes.Add(typeof(ISupportsGridItemPattern));
                     }
-                    if (pattern is IMySuperGridPattern) {
+                    if (pattern is IGridPattern) {
                         supportedTypes.Add(typeof(ISupportsGridPattern));
                     }
-                    if (pattern is IMySuperRangeValuePattern) {
+                    if (pattern is IRangeValuePattern) {
                         supportedTypes.Add(typeof(ISupportsRangeValuePattern));
                     }
-                    if (pattern is IMySuperSelectionItemPattern) {
+                    if (pattern is ISelectionItemPattern) {
                         supportedTypes.Add(typeof(ISupportsSelectionItemPattern));
                     }
-                    if (pattern is IMySuperSelectionPattern) {
+                    if (pattern is ISelectionPattern) {
                         supportedTypes.Add(typeof(ISupportsSelectionPattern));
                     }
-                    if (pattern is IMySuperScrollItemPattern) {
+                    if (pattern is IScrollItemPattern) {
                         supportedTypes.Add(typeof(ISupportsScrollItemPattern));
                     }
-                    if (pattern is IMySuperScrollPattern) {
+                    if (pattern is IScrollPattern) {
                         supportedTypes.Add(typeof(ISupportsScrollPattern));
                     }
-                    if (pattern is IMySuperTableItemPattern) {
+                    if (pattern is ITableItemPattern) {
                         supportedTypes.Add(typeof(ISupportsTableItemPattern));
                     }
-                    if (pattern is IMySuperTablePattern) {
+                    if (pattern is ITablePattern) {
                         supportedTypes.Add(typeof(ISupportsTablePattern));
                     }
-                    if (pattern is IMySuperTextPattern) {
+                    if (pattern is ITextPattern) {
                         supportedTypes.Add(typeof(ISupportsTextPattern));
                     }
-                    if (pattern is IMySuperTogglePattern) {
+                    if (pattern is ITogglePattern) {
                         supportedTypes.Add(typeof(ISupportsTogglePattern));
                     }
-                    if (pattern is IMySuperTransformPattern) {
+                    if (pattern is ITransformPattern) {
                         supportedTypes.Add(typeof(ISupportsTransformPattern));
                     }
-                    if (pattern is IMySuperValuePattern) {
+                    if (pattern is IValuePattern) {
                         supportedTypes.Add(typeof(ISupportsValuePattern));
                     }
-                    if (pattern is IMySuperWindowPattern) {
+                    if (pattern is IWindowPattern) {
                         supportedTypes.Add(typeof(ISupportsWindowPattern));
                     }
                 }

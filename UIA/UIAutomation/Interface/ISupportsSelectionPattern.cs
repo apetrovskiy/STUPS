@@ -13,9 +13,6 @@ namespace UIAutomation
 	using System.Windows.Automation;
 	public interface ISupportsSelectionPattern
 	{
-		// ISelectionPatternInformation Cached { get; }
-		// ISelectionPatternInformation Current { get; }
-		
 		IUiElement[] GetSelection();
 		bool CanSelectMultiple { get; }
 		bool IsSelectionRequired { get; }

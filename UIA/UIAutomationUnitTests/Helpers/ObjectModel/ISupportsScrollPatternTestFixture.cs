@@ -112,5 +112,98 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             // Assert
             element.SetScrollPercent(1, 1);
         }
+        
+                
+        [Test]
+        public void Scroll_HorizontallyScrollable()
+        {
+            // Arrange
+            bool expectedValue = true;
+            ISupportsScrollPattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetScrollPattern(new PatternsData() { ScrollPattern_HorizontallyScrollable = expectedValue }) }) as ISupportsScrollPattern;
+            
+            // Act
+            
+            // Assert
+            Assert.AreEqual(expectedValue, element.HorizontallyScrollable);
+        }
+        
+        [Test]
+        public void Scroll_HorizontalScrollPercent()
+        {
+            // Arrange
+            double expectedValue = 12.1;
+            ISupportsScrollPattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetScrollPattern(new PatternsData() { ScrollPattern_HorizontalScrollPercent = expectedValue }) }) as ISupportsScrollPattern;
+            
+            // Act
+            
+            // Assert
+            Assert.AreEqual(expectedValue, element.HorizontalScrollPercent);
+        }
+        
+        [Test]
+        public void Scroll_HorizontalViewSize()
+        {
+            // Arrange
+            double expectedValue = 14.2;
+            ISupportsScrollPattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetScrollPattern(new PatternsData() { ScrollPattern_HorizontalViewSize = expectedValue }) }) as ISupportsScrollPattern;
+            
+            // Act
+            
+            // Assert
+            Assert.AreEqual(expectedValue, element.HorizontalViewSize);
+        }
+        
+        [Test]
+        public void Scroll_VerticallyScrollable()
+        {
+            // Arrange
+            bool expectedValue = false;
+            ISupportsScrollPattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetScrollPattern(new PatternsData() { ScrollPattern_VerticallyScrollable = expectedValue }) }) as ISupportsScrollPattern;
+            
+            // Act
+            
+            // Assert
+            Assert.AreEqual(expectedValue, element.VerticallyScrollable);
+        }
+        
+        
+        
+        [Test]
+        public void Scroll_VerticalScrollPercent()
+        {
+            // Arrange
+            double expectedValue = 16.3;
+            ISupportsScrollPattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetScrollPattern(new PatternsData() { ScrollPattern_VerticalScrollPercent = expectedValue }) }) as ISupportsScrollPattern;
+            
+            // Act
+            
+            // Assert
+            Assert.AreEqual(expectedValue, element.VerticalScrollPercent);
+        }
+        
+        [Test]
+        public void Scroll_VerticalViewSize()
+        {
+            // Arrange
+            double expectedValue = 18.4;
+            ISupportsScrollPattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetScrollPattern(new PatternsData() { ScrollPattern_VerticalViewSize = expectedValue }) }) as ISupportsScrollPattern;
+            
+            // Act
+            
+            // Assert
+            Assert.AreEqual(expectedValue, element.VerticalViewSize);
+        }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-/*
+﻿/*
  * Created by SharpDevelop.
  * User: Alexander
  * Date: 12/22/2013
@@ -11,6 +10,7 @@
 namespace UIAutomationUnitTests.Helpers.ObjectModel
 {
     using System.Windows.Automation;
+    using System.Windows.Automation.Text;
     using UIAutomation;
     using MbUnit.Framework;
     
@@ -89,6 +89,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         }
         
         [Test]
+        [Ignore]
         public void Text_RangeFromChild()
         {
             // Arrange
@@ -102,6 +103,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         }
         
         [Test]
+        [Ignore]
         public void Text_RangeFromPoint()
         {
             // Arrange
@@ -112,6 +114,38 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             // Act
             // Assert
             element.RangeFromPoint(new System.Windows.Point());
+        }
+        
+        
+        [Test]
+        [Ignore]
+        public void Text_DocumentRange()
+        {
+            // Arrange
+            TextPatternRange expectedValue = new object() as TextPatternRange;
+            ISupportsTextPattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetTextPattern(new PatternsData() { TextPattern_DocumentRange = expectedValue }) }) as ISupportsTextPattern;
+            
+            // Act
+            
+            // Assert
+            Assert.AreEqual(expectedValue, element.DocumentRange);
+        }
+        
+        [Test]
+        public void Text_SupportedTextSelection()
+        {
+            // Arrange
+            SupportedTextSelection expectedValue = SupportedTextSelection.Single;
+            ISupportsTextPattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetTextPattern(new PatternsData() { TextPattern_SupportedTextSelection = expectedValue }) }) as ISupportsTextPattern;
+            
+            // Act
+            
+            // Assert
+            Assert.AreEqual(expectedValue, element.SupportedTextSelection);
         }
     }
 }

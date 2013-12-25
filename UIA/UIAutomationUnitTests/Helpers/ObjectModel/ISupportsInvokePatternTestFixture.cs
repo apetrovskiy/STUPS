@@ -83,6 +83,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
                     new IBasePattern[] { FakeFactory.GetInvokePattern(new PatternsData()) }) as ISupportsInvokePattern;
             
             // Act
+            
             // Assert
             element.DoubleClick();
         }

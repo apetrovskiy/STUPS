@@ -61,17 +61,36 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Assert.IsNull(element as ISupportsValuePattern);
         }
         
-//        [Test]
-//        public void Value_Value()
-//        {
-//            // Arrange
-//            ISupportsValuePattern element =
-//                FakeFactory.GetAutomaitonElementForMethodsOfObjectModel(
-//                    new IBasePattern[] { FakeFactory.GetValuePattern(new PatternsData()) }) as ISupportsValuePattern;
-//            
-//            // Act
-//            // Assert
-//            element.Value();
-//        }
+        [Test]
+        public void Value_Value_Get()
+        {
+            // Arrange
+            const string expectedValue = "abc";
+            ISupportsValuePattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetValuePattern(new PatternsData() { ValuePattern_Value = expectedValue }) }) as ISupportsValuePattern;
+            
+            // Act
+            // Assert
+            Assert.AreEqual(expectedValue, element.Value);
+        }
+        
+        [Test]
+        [Ignore]
+        public void Value_Value_Set()
+        {
+            // Arrange
+            const string expectedValue = "abc";
+            ISupportsValuePattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    // new IBasePattern[] { FakeFactory.GetValuePattern(new PatternsData() { ValuePattern_Value = expectedValue }) }) as ISupportsValuePattern;
+                    new IBasePattern[] { FakeFactory.GetValuePattern(new PatternsData()) }) as ISupportsValuePattern;
+            
+            // Act
+            element.Value = expectedValue;
+            
+            // Assert
+            Assert.AreEqual(expectedValue, element.Value);
+        }
     }
 }

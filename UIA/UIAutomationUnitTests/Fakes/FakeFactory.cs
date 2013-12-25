@@ -231,8 +231,6 @@ namespace UIAutomationUnitTests
             valuePattern.Current.Returns(valuePatternInformation);
             FakeSourcePattern sourcePattern = new FakeSourcePattern();
             FakeSourcePattern.Pattern = ValuePattern.Pattern;
-            // 20131224
-            // valuePattern.SourcePattern = sourcePattern;
             valuePattern.SetSourcePattern(sourcePattern);
             return valuePattern;
         }
@@ -272,6 +270,17 @@ namespace UIAutomationUnitTests
             return GetAutomationElement(controlType, name, automationId, className, new IBasePattern[] { valuePattern }, false);
         }
         
+        private static void TestPattern<T>(AutomationPattern pattern, IBasePattern[] patterns, ref IFakeUiElement element) where T : IBasePattern
+        {
+            object patternObject;
+            if (patterns.Any(ptrn => ptrn is T)) {
+                element.GetCurrentPattern<T>(pattern).Returns<T>((T)element.Patterns.Find(ptrn => ptrn is T));
+                element.TryGetCurrentPattern(pattern, out patternObject).Returns(true);
+            } else {
+                element.TryGetCurrentPattern(pattern, out patternObject).Returns(false);
+            }
+        }
+        
         internal static IFakeUiElement GetAutomationElement(ControlType controlType, string name, string automationId, string className, IBasePattern[] patterns, bool expected)
         {
             IFakeUiElement element = Substitute.For<FakeUiElement>();
@@ -282,13 +291,42 @@ namespace UIAutomationUnitTests
             element.Current.ClassName.Returns(!string.IsNullOrEmpty(className) ? className : string.Empty);
             element.Patterns.AddRange(patterns);
             element.GetSupportedPatterns().Returns<IBasePattern[]>(element.Patterns.ToArray());
-            element.GetCurrentPattern<IMySuperDockPattern>(DockPattern.Pattern).Returns<IMySuperDockPattern>(element.Patterns.Find(ptrn => ptrn is IMySuperDockPattern) as IMySuperDockPattern);
+            
+            TestPattern<IMySuperDockPattern>(DockPattern.Pattern, patterns, ref element);
+            TestPattern<IMySuperExpandCollapsePattern>(ExpandCollapsePattern.Pattern, patterns, ref element);
+            TestPattern<IMySuperGridItemPattern>(GridItemPattern.Pattern, patterns, ref element);
+            TestPattern<IMySuperGridPattern>(GridPattern.Pattern, patterns, ref element);
+            TestPattern<IMySuperInvokePattern>(InvokePattern.Pattern, patterns, ref element);
+            TestPattern<IMySuperRangeValuePattern>(RangeValuePattern.Pattern, patterns, ref element);
+            TestPattern<IMySuperScrollItemPattern>(ScrollItemPattern.Pattern, patterns, ref element);
+            TestPattern<IMySuperScrollPattern>(ScrollPattern.Pattern, patterns, ref element);
+            TestPattern<IMySuperSelectionItemPattern>(SelectionItemPattern.Pattern, patterns, ref element);
+            TestPattern<IMySuperSelectionPattern>(SelectionPattern.Pattern, patterns, ref element);
+            TestPattern<IMySuperTableItemPattern>(TableItemPattern.Pattern, patterns, ref element);
+            TestPattern<IMySuperTablePattern>(TablePattern.Pattern, patterns, ref element);
+            TestPattern<IMySuperTextPattern>(TextPattern.Pattern, patterns, ref element);
+            TestPattern<IMySuperTogglePattern>(TogglePattern.Pattern, patterns, ref element);
+            TestPattern<IMySuperTransformPattern>(TransformPattern.Pattern, patterns, ref element);
+            TestPattern<IMySuperValuePattern>(ValuePattern.Pattern, patterns, ref element);
+            TestPattern<IMySuperWindowPattern>(WindowPattern.Pattern, patterns, ref element);
+            /*
+            if (patterns.Any(ptrn => ptrn is IMySuperDockPattern)) {
+                element.GetCurrentPattern<IMySuperDockPattern>(DockPattern.Pattern).Returns<IMySuperDockPattern>(element.Patterns.Find(ptrn => ptrn is IMySuperDockPattern) as IMySuperDockPattern);
+                element.TryGetCurrentPattern(DockPattern.Pattern, out patternObject).Returns(true);
+            }
             element.GetCurrentPattern<IMySuperExpandCollapsePattern>(ExpandCollapsePattern.Pattern).Returns<IMySuperExpandCollapsePattern>(element.Patterns.Find(ptrn => ptrn is IMySuperExpandCollapsePattern) as IMySuperExpandCollapsePattern);
+            element.GetCurrentPattern<IMySuperGridItemPattern>(GridItemPattern.Pattern).Returns<IMySuperGridItemPattern>(element.Patterns.Find(ptrn => ptrn is IMySuperGridItemPattern) as IMySuperGridItemPattern);
+            element.GetCurrentPattern<IMySuperGridPattern>(GridPattern.Pattern).Returns<IMySuperGridPattern>(element.Patterns.Find(ptrn => ptrn is IMySuperGridPattern) as IMySuperGridPattern);
+            element.GetCurrentPattern<IMySuperInvokePattern>(InvokePattern.Pattern).Returns<IMySuperInvokePattern>(element.Patterns.Find(ptrn => ptrn is IMySuperInvokePattern) as IMySuperInvokePattern);
+            element.GetCurrentPattern<IMySuperRangeValuePattern>(RangeValuePattern.Pattern).Returns<IMySuperRangeValuePattern>(element.Patterns.Find(ptrn => ptrn is IMySuperRangeValuePattern) as IMySuperRangeValuePattern);
+            element.GetCurrentPattern<IMySuperScrollItemPattern>(ScrollItemPattern.Pattern).Returns<IMySuperScrollItemPattern>(element.Patterns.Find(ptrn => ptrn is IMySuperScrollItemPattern) as IMySuperScrollItemPattern);
+            element.GetCurrentPattern<IMySuperScrollPattern>(ScrollPattern.Pattern).Returns<IMySuperScrollPattern>(element.Patterns.Find(ptrn => ptrn is IMySuperScrollPattern) as IMySuperScrollPattern);
             
             element.GetCurrentPattern<IMySuperTogglePattern>(TogglePattern.Pattern).Returns<IMySuperTogglePattern>(element.Patterns.Find(ptrn => ptrn is IMySuperTogglePattern) as IMySuperTogglePattern);
             element.GetCurrentPattern<IMySuperValuePattern>(ValuePattern.Pattern).Returns<IMySuperValuePattern>(element.Patterns.Find(ptrn => ptrn is IMySuperValuePattern) as IMySuperValuePattern);
-            object patternObject;
+//            object patternObject;
             element.TryGetCurrentPattern(ValuePattern.Pattern, out patternObject).Returns(true);
+            */
             if (expected) { element.Tag.Returns("expected"); }
             return element;
         }
@@ -306,9 +344,10 @@ namespace UIAutomationUnitTests
             
             var proxiedElement =
                 AutomationFactory.GetUiElement(
-                    fakeElement);
+                    fakeElement as IUiElement);
             
             return proxiedElement;
+            
         }
         
         internal static IUiElement GetAutomationElementForMethodsOfObjectModel(IBasePattern[] patterns)

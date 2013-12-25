@@ -70,8 +70,39 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
                     new IBasePattern[] { FakeFactory.GetGridPattern(new PatternsData()) }) as ISupportsGridPattern;
             
             // Act
+            
             // Assert
             element.GetItem(1, 1);
+        }
+        
+        [Test]
+        public void Grid_ColumnCount()
+        {
+            // Arrange
+            int expectedValue = 3;
+            ISupportsGridPattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetGridPattern(new PatternsData() { GridPattern_ColumnCount = expectedValue }) }) as ISupportsGridPattern;
+            
+            // Act
+            
+            // Assert
+            Assert.AreEqual(expectedValue, element.GridColumnCount);
+        }
+        
+        [Test]
+        public void Grid_RowCount()
+        {
+            // Arrange
+            int expectedValue = 4;
+            ISupportsGridPattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetGridPattern(new PatternsData() { GridPattern_RowCount = expectedValue }) }) as ISupportsGridPattern;
+            
+            // Act
+            
+            // Assert
+            Assert.AreEqual(expectedValue, element.GridRowCount);
         }
     }
 }

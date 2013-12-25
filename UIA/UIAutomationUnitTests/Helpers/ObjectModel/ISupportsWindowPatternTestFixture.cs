@@ -99,5 +99,95 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             // Assert
             element.WaitForInputIdle(1);
         }
+        
+        [Test]
+        public void Window_CanMaximize()
+        {
+            // Arrange
+            bool expectedValue = true;
+            ISupportsWindowPattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetWindowPattern(new PatternsData() { WindowPattern_CanMaximize = expectedValue }) }) as ISupportsWindowPattern;
+            
+            // Act
+            
+            // Assert
+            Assert.AreEqual(expectedValue, element.CanMaximize);
+        }
+        
+        [Test]
+        public void Window_CanMinimize()
+        {
+            // Arrange
+            bool expectedValue = false;
+            ISupportsWindowPattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetWindowPattern(new PatternsData() { WindowPattern_CanMinimize = expectedValue }) }) as ISupportsWindowPattern;
+            
+            // Act
+            
+            // Assert
+            Assert.AreEqual(expectedValue, element.CanMinimize);
+        }
+        
+        [Test]
+        public void Window_IsModal()
+        {
+            // Arrange
+            bool expectedValue = true;
+            ISupportsWindowPattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetWindowPattern(new PatternsData() { WindowPattern_IsModal = expectedValue }) }) as ISupportsWindowPattern;
+            
+            // Act
+            
+            // Assert
+            Assert.AreEqual(expectedValue, element.IsModal);
+        }
+        
+        [Test]
+        public void Window_IsTopmost()
+        {
+            // Arrange
+            bool expectedValue = false;
+            ISupportsWindowPattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetWindowPattern(new PatternsData() { WindowPattern_IsTopmost = expectedValue }) }) as ISupportsWindowPattern;
+            
+            // Act
+            
+            // Assert
+            Assert.AreEqual(expectedValue, element.IsTopmost);
+        }
+        
+        [Test]
+        public void Window_WindowInteractionState()
+        {
+            // Arrange
+            WindowInteractionState expectedValue = WindowInteractionState.ReadyForUserInteraction;
+            ISupportsWindowPattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetWindowPattern(new PatternsData() { WindowPattern_WindowInteractionState = expectedValue }) }) as ISupportsWindowPattern;
+            
+            // Act
+            
+            // Assert
+            Assert.AreEqual(expectedValue, element.WindowInteractionState);
+        }
+        
+        [Test]
+        public void Window_WindowVisualState()
+        {
+            // Arrange
+            WindowVisualState expectedValue = WindowVisualState.Normal;
+            ISupportsWindowPattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetWindowPattern(new PatternsData() { WindowPattern_WindowVisualState = expectedValue }) }) as ISupportsWindowPattern;
+            
+            // Act
+            
+            // Assert
+            Assert.AreEqual(expectedValue, element.WindowVisualState);
+        }
     }
 }

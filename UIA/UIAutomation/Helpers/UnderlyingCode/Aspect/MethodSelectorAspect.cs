@@ -144,7 +144,7 @@ namespace UIAutomation
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).PerformGetValueRangeValuePattern();
                             break;
-                        case "get_RangeIsReadOnly":
+                        case "get_IsRangeReadOnly":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).GetIsReadOnlyRangeValuePattern();
                             break;

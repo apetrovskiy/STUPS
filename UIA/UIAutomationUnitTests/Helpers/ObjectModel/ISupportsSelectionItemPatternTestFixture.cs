@@ -86,5 +86,48 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             // Assert
             element.RemoveFromSelection();
         }
+        
+        [Test]
+        public void SelectionItem_Select()
+        {
+            // Arrange
+            ISupportsSelectionItemPattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetSelectionItemPattern(new PatternsData()) }) as ISupportsSelectionItemPattern;
+            
+            // Act
+            // Assert
+            element.Select();
+        }
+        
+        [Test]
+        public void SelectionItem_IsSelected()
+        {
+            // Arrange
+            bool expectedValue = true;
+            ISupportsSelectionItemPattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetSelectionItemPattern(new PatternsData() { SelectionItemPattern_IsSelected = expectedValue }) }) as ISupportsSelectionItemPattern;
+            
+            // Act
+            
+            // Assert
+            Assert.AreEqual(expectedValue, element.IsSelected);
+        }
+        
+        [Test]
+        public void SelectionItem_SelectionContainer()
+        {
+            // Arrange
+            IUiElement expectedValue = new UiElement();
+            ISupportsSelectionItemPattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetSelectionItemPattern(new PatternsData() { SelectionItemPattern_SelectionContainer = expectedValue }) }) as ISupportsSelectionItemPattern;
+            
+            // Act
+            
+            // Assert
+            Assert.AreEqual(expectedValue, element.SelectionContainer);
+        }
     }
 }

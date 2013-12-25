@@ -61,29 +61,65 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         }
         
         [Test]
-        public void ExpandCollapse_Expand()
+        public void ExpandCollapse_Expand_ExpandCollapseState()
         {
             // Arrange
+            ExpandCollapseState expectedValue = ExpandCollapseState.Expanded;
             ISupportsExpandCollapsePattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-                    new IBasePattern[] { FakeFactory.GetExpandCollapsePattern(new PatternsData()) }) as ISupportsExpandCollapsePattern;
+                    new IBasePattern[] { FakeFactory.GetExpandCollapsePattern(new PatternsData() { ExpandCollapsePattern_ExpandCollapseState = expectedValue }) }) as ISupportsExpandCollapsePattern;
             
             // Act
-            // Assert
             element.Expand();
+            
+            // Assert
+            Assert.AreEqual(expectedValue, element.ExpandCollapseState);
         }
         
         [Test]
-        public void ExpandCollapse_Collapse()
+        public void ExpandCollapse_Collapse_ExpandCollapseState()
         {
             // Arrange
+            ExpandCollapseState expectedValue = ExpandCollapseState.Collapsed;
             ISupportsExpandCollapsePattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-                    new IBasePattern[] { FakeFactory.GetExpandCollapsePattern(new PatternsData()) }) as ISupportsExpandCollapsePattern;
+                    new IBasePattern[] { FakeFactory.GetExpandCollapsePattern(new PatternsData() { ExpandCollapsePattern_ExpandCollapseState = expectedValue }) }) as ISupportsExpandCollapsePattern;
             
             // Act
-            // Assert
             element.Collapse();
+            
+            // Assert
+            Assert.AreEqual(expectedValue, element.ExpandCollapseState);
+        }
+        
+        [Test]
+        public void ExpandCollapse_LeafNode()
+        {
+            // Arrange
+            ExpandCollapseState expectedValue = ExpandCollapseState.LeafNode;
+            ISupportsExpandCollapsePattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetExpandCollapsePattern(new PatternsData() { ExpandCollapsePattern_ExpandCollapseState = expectedValue }) }) as ISupportsExpandCollapsePattern;
+            
+            // Act
+            
+            // Assert
+            Assert.AreEqual(expectedValue, element.ExpandCollapseState);
+        }
+        
+        [Test]
+        public void ExpandCollapse_PartiallyExpanded()
+        {
+            // Arrange
+            ExpandCollapseState expectedValue = ExpandCollapseState.PartiallyExpanded;
+            ISupportsExpandCollapsePattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetExpandCollapsePattern(new PatternsData() { ExpandCollapsePattern_ExpandCollapseState = expectedValue }) }) as ISupportsExpandCollapsePattern;
+            
+            // Act
+            
+            // Assert
+            Assert.AreEqual(expectedValue, element.ExpandCollapseState);
         }
     }
 }

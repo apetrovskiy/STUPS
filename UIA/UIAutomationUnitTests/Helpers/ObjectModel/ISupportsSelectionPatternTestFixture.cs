@@ -62,7 +62,6 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         }
         
         [Test]
-        // [Ignore]
         public void Selection_GetSelection()
         {
             // Arrange
@@ -73,6 +72,36 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             // Act
             // Assert
             element.GetSelection();
+        }
+        
+        [Test]
+        public void Selection_CanSelectMultiple()
+        {
+            // Arrange
+            bool expectedValue = true;
+            ISupportsSelectionPattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetSelectionPattern(new PatternsData() { SelectionPattern_CanSelectMultiple = expectedValue }) }) as ISupportsSelectionPattern;
+            
+            // Act
+            
+            // Assert
+            Assert.AreEqual(expectedValue, element.CanSelectMultiple);
+        }
+        
+        [Test]
+        public void Selection_IsSelectionRequired()
+        {
+            // Arrange
+            bool expectedValue = false;
+            ISupportsSelectionPattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetSelectionPattern(new PatternsData() { SelectionPattern_IsSelectionRequired = expectedValue }) }) as ISupportsSelectionPattern;
+            
+            // Act
+            
+            // Assert
+            Assert.AreEqual(expectedValue, element.IsSelectionRequired);
         }
     }
 }

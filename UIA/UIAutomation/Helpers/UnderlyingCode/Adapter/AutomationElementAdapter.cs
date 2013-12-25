@@ -150,14 +150,16 @@ namespace UIAutomation
 					} else {
 						return (N)AutomationFactory.GetMySuperPattern<N>(this, _elementHolderNet.GetCurrentPattern(pattern));
 					}
-				default:
+				// default:
 //			    case InnerElementTypes.AutomationElementCom:
 //			        //
 					// 20131208
-					// case InnerElementTypes.UiElement:
-					//     return Preferences.FromCache ? _elementHolderAdapter.GetCachedPattern(pattern) : _elementHolderAdapter.GetCurrentPattern(pattern);
+                case InnerElementTypes.UiElement:
+                    // return Preferences.FromCache ? _elementHolderAdapter.GetCachedPattern(pattern) : _elementHolderAdapter.GetCurrentPattern(pattern);
+                    return Preferences.FromCache ? default(N) : _elementHolderAdapter.GetCurrentPattern<N>(pattern);
 					// default:
 					///    return Preferences.FromCache ? _elementHolderNet.GetCachedPattern(pattern) : _elementHolderNet.GetCurrentPattern(pattern);
+                default:
 					if (Preferences.FromCache) {
 						return (N)AutomationFactory.GetMySuperPattern<N>(this, _elementHolderNet.GetCachedPattern(pattern));
 					} else {

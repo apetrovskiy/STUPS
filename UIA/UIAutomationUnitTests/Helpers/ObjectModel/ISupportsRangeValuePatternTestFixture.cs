@@ -61,17 +61,94 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Assert.IsNull(element as ISupportsValuePattern);
         }
         
-//        [Test]
-//        public void RangeValue_RangeValue()
-//        {
-//            // Arrange
-//            ISupportsRangeValuePattern element =
-//                FakeFactory.GetAutomaitonElementForMethodsOfObjectModel(
-//                    new IBasePattern[] { FakeFactory.GetRangeValuePattern(new PatternsData()) }) as ISupportsRangeValuePattern;
-//            
-//            // Act
-//            // Assert
-//            element.RangeValue();
-//        }
+        [Test]
+        public void RangeValue_IsRangeReadOnly()
+        {
+            // Arrange
+            bool expectedValue = true;
+            ISupportsRangeValuePattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetRangeValuePattern(new PatternsData() { RangeValuePattern_IsReadOnly = expectedValue }) }) as ISupportsRangeValuePattern;
+            
+            // Act
+            
+            // Assert
+            Assert.AreEqual(expectedValue, element.IsRangeReadOnly);
+        }
+        
+        [Test]
+        public void RangeValue_LargeChange()
+        {
+            // Arrange
+            double expectedValue = 101.1;
+            ISupportsRangeValuePattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetRangeValuePattern(new PatternsData() { RangeValuePattern_LargeChange = expectedValue }) }) as ISupportsRangeValuePattern;
+            
+            // Act
+            
+            // Assert
+            Assert.AreEqual(expectedValue, element.LargeChange);
+        }
+        
+        [Test]
+        public void RangeValue_Maximum()
+        {
+            // Arrange
+            double expectedValue = 1001.2;
+            ISupportsRangeValuePattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetRangeValuePattern(new PatternsData() { RangeValuePattern_Maximum = expectedValue }) }) as ISupportsRangeValuePattern;
+            
+            // Act
+            
+            // Assert
+            Assert.AreEqual(expectedValue, element.Maximum);
+        }
+        
+        [Test]
+        public void RangeValue_Minimum()
+        {
+            // Arrange
+            double expectedValue = 15.3;
+            ISupportsRangeValuePattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetRangeValuePattern(new PatternsData() { RangeValuePattern_Minimum = expectedValue }) }) as ISupportsRangeValuePattern;
+            
+            // Act
+            
+            // Assert
+            Assert.AreEqual(expectedValue, element.Minimum);
+        }
+        
+        [Test]
+        public void RangeValue_SmallChange()
+        {
+            // Arrange
+            double expectedValue = 5.4;
+            ISupportsRangeValuePattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetRangeValuePattern(new PatternsData() { RangeValuePattern_SmallChange = expectedValue }) }) as ISupportsRangeValuePattern;
+            
+            // Act
+            
+            // Assert
+            Assert.AreEqual(expectedValue, element.SmallChange);
+        }
+        
+        [Test]
+        public void RangeValue_RangeValue()
+        {
+            // Arrange
+            double expectedValue = 3.5;
+            ISupportsRangeValuePattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetRangeValuePattern(new PatternsData() { RangeValuePattern_Value = expectedValue }) }) as ISupportsRangeValuePattern;
+            
+            // Act
+            
+            // Assert
+            Assert.AreEqual(expectedValue, element.RangeValue);
+        }
     }
 }

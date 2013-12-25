@@ -84,11 +84,8 @@ namespace UIAutomation
 		        _ninjectModule = new ObjectLifecycleModule();
 		        _kernel = new StandardKernel(_ninjectModule);
 		        
-		        //
 		        InitCommonObjects();
-		        //
 		        
-		        // 20131221
 		        _useDynamicProxy = true;
 		    }
 		    catch (Exception eInitFailure) {
@@ -166,8 +163,8 @@ namespace UIAutomation
 			catch (Exception eFailedToIssueElement) {
 			    // TODO
 			    // write error to error object!!!
-			    //Console.WriteLine("Element 01");
-			    //Console.WriteLine(eFailedToIssueElement.Message);
+			    // Console.WriteLine("Element 01");
+			    // Console.WriteLine(eFailedToIssueElement.Message);
 			    return null;
 			}
 		}
@@ -194,7 +191,7 @@ namespace UIAutomation
         			
         			return (IUiElement)proxiedTypedUiElement; // as IUiElement;
     			} else {
-                    
+    			    
     			    adapterElement.SetSourceElement<IUiElement>(element);
     			    
     			    return adapterElement;
@@ -203,8 +200,8 @@ namespace UIAutomation
 			catch (Exception eFailedToIssueElement) {
 			    // TODO
 			    // write error to error object!!!
-			    //Console.WriteLine("Element 02");
-			    //Console.WriteLine(eFailedToIssueElement.Message);
+			    // Console.WriteLine("Element 02");
+			    // Console.WriteLine(eFailedToIssueElement.Message);
 			    return null;
 			}
 		}
@@ -228,8 +225,8 @@ namespace UIAutomation
 			catch (Exception eFailedToIssueElement) {
 			    // TODO
 			    // write error to error object!!!
-			    //Console.WriteLine("Element 03");
-			    //Console.WriteLine(eFailedToIssueElement.Message);
+			    // Console.WriteLine("Element 03");
+			    // Console.WriteLine(eFailedToIssueElement.Message);
 			    return null;
 			}
 		}
@@ -244,8 +241,8 @@ namespace UIAutomation
 			catch (Exception eFailedToIssueInformation) {
 			    // TODO
 			    // write error to error object!!!
-                //Console.WriteLine("Information");
-			    //Console.WriteLine(eFailedToIssueInformation.Message);
+                // Console.WriteLine("Information");
+			    // Console.WriteLine(eFailedToIssueInformation.Message);
 			    return null;
 			}
 		}
@@ -327,7 +324,6 @@ namespace UIAutomation
 		#endregion IUiEltCollection
 		
 		#region patterns
-		// internal static N GetMySuperPattern<N>(IUiElement element, object pattern)
 		public static N GetMySuperPattern<N>(IUiElement element, object pattern)
 		    where N : IBasePattern
 		{
@@ -335,22 +331,8 @@ namespace UIAutomation
                 
                 N adapterPattern = default(N);
                 var argElement = new ConstructorArgument("element", element);
-//                if (null != pattern) {
-//                    // var pt = element.GetCurrentPattern<N, O>(pattern as AutomationPattern);
-//                    var argPattern = new ConstructorArgument("pattern", pattern);
-//                    // N adapterPattern = Kernel.Get<N>(new[] { argElement, argPattern });
-//                    adapterPattern = Kernel.Get<N>(NamedParameter_WithPattern, new[] { argElement, argPattern });
-//                } else {
-		        // var argPattern = new ConstructorArgument("pattern", pattern);
-                // var argPattern = new ConstructorArgument("pattern", pt);
-		        // N adapterPattern = Kernel.Get<N>(new[] { argElement, argPattern });
-                    // N adapterPattern = Kernel.Get<N>(new[] { argElement });
-                    adapterPattern = Kernel.Get<N>(NamedParameter_WithoutPattern, new[] { argElement });
-                // }
-                // 20131224
-		        // adapterPattern.SourcePattern = pattern;
+                adapterPattern = Kernel.Get<N>(NamedParameter_WithoutPattern, new[] { argElement });
 		        adapterPattern.SetSourcePattern(pattern);
-//		        }
 	       		return adapterPattern;
 			}
 			catch (Exception eFailedToIssuePattern) {
@@ -369,10 +351,7 @@ namespace UIAutomation
 			try {
                 
                 N adapterPattern = default(N);
-                // var argElement = new ConstructorArgument("element", element);
                 adapterPattern = Kernel.Get<N>(NamedParameter_WithoutElement, null);
-                // 20131224
-		        // adapterPattern.SourcePattern = pattern;
 		        adapterPattern.SetSourcePattern(pattern);
 	       		return adapterPattern;
 			}

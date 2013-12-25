@@ -99,5 +99,50 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             // Assert
             element.Rotate(1);
         }
+        
+        [Test]
+        public void Transform_CanMove()
+        {
+            // Arrange
+            bool expectedValue = true;
+            ISupportsTransformPattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetTransformPattern(new PatternsData() { TransformPattern_CanMove = expectedValue }) }) as ISupportsTransformPattern;
+            
+            // Act
+            
+            // Assert
+            Assert.AreEqual(expectedValue, element.CanMove);
+        }
+        
+        [Test]
+        public void Transform_CanResize()
+        {
+            // Arrange
+            bool expectedValue = false;
+            ISupportsTransformPattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetTransformPattern(new PatternsData() { TransformPattern_CanResize = expectedValue }) }) as ISupportsTransformPattern;
+            
+            // Act
+            
+            // Assert
+            Assert.AreEqual(expectedValue, element.CanResize);
+        }
+        
+        [Test]
+        public void Transform_CanRotate()
+        {
+            // Arrange
+            bool expectedValue = true;
+            ISupportsTransformPattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetTransformPattern(new PatternsData() { TransformPattern_CanRotate = expectedValue }) }) as ISupportsTransformPattern;
+            
+            // Act
+            
+            // Assert
+            Assert.AreEqual(expectedValue, element.CanRotate);
+        }
     }
 }

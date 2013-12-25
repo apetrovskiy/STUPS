@@ -86,7 +86,7 @@ namespace UIAutomation
         public static int GetRowGridItemPattern(this IUiElement element)
         {
             try {
-                return element.GetCurrentPattern<IMySuperGridItemPattern>(GridPattern.Pattern).Current.Row;
+                return element.GetCurrentPattern<IMySuperGridItemPattern>(GridItemPattern.Pattern).Current.Row;
             } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
@@ -97,7 +97,7 @@ namespace UIAutomation
         public static int GetColumnGridItemPattern(this IUiElement element)
         {
             try {
-                return element.GetCurrentPattern<IMySuperGridItemPattern>(GridPattern.Pattern).Current.Column;
+                return element.GetCurrentPattern<IMySuperGridItemPattern>(GridItemPattern.Pattern).Current.Column;
             } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
@@ -109,7 +109,7 @@ namespace UIAutomation
         public static int GetRowSpanGridItemPattern(this IUiElement element)
         {
             try {
-                return element.GetCurrentPattern<IMySuperGridItemPattern>(GridPattern.Pattern).Current.RowSpan;
+                return element.GetCurrentPattern<IMySuperGridItemPattern>(GridItemPattern.Pattern).Current.RowSpan;
             } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
@@ -120,7 +120,7 @@ namespace UIAutomation
         public static int GetColumnSpanGridItemPattern(this IUiElement element)
         {
             try {
-                return element.GetCurrentPattern<IMySuperGridItemPattern>(GridPattern.Pattern).Current.ColumnSpan;
+                return element.GetCurrentPattern<IMySuperGridItemPattern>(GridItemPattern.Pattern).Current.ColumnSpan;
             } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
@@ -132,7 +132,7 @@ namespace UIAutomation
         {
             try {
                 // return element.GetCurrentPattern<IMySuperGridItemPattern>(GridPattern.Pattern).Current.ContainingGrid;
-                return AutomationFactory.GetUiElement(element.GetCurrentPattern<IMySuperGridItemPattern>(GridPattern.Pattern).Current.ContainingGrid.GetSourceElement());
+                return AutomationFactory.GetUiElement(element.GetCurrentPattern<IMySuperGridItemPattern>(GridItemPattern.Pattern).Current.ContainingGrid.GetSourceElement());
             } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
@@ -644,7 +644,6 @@ namespace UIAutomation
         {
             try {
                 return element.GetCurrentPattern<IMySuperSelectionPattern>(SelectionPattern.Pattern).Current.GetSelection();
-                // return AutomationFactory.GetUiEltCollection(element.GetCurrentPattern<IMySuperSelectionPattern>(SelectionPattern.Pattern).Current.GetSelection()).ToArray();
             }
             catch (Exception eExtensionMethod) {
                 // 
@@ -680,7 +679,6 @@ namespace UIAutomation
         {
             try {
                 return element.GetCurrentPattern<IMySuperTableItemPattern>(TableItemPattern.Pattern).Current.GetRowHeaderItems();
-                // return AutomationFactory.GetUiEltCollection(element.GetCurrentPattern<IMySuperTableItemPattern>(TableItemPattern.Pattern).Current.GetRowHeaderItems()).ToArray();
             } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
@@ -693,7 +691,6 @@ namespace UIAutomation
         {
             try {
                 return element.GetCurrentPattern<IMySuperTableItemPattern>(TableItemPattern.Pattern).Current.GetColumnHeaderItems();
-                // return AutomationFactory.GetUiEltCollection(element.GetCurrentPattern<IMySuperTableItemPattern>(TableItemPattern.Pattern).Current.GetColumnHeaderItems()).ToArray();
             } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
@@ -749,7 +746,6 @@ namespace UIAutomation
         public static IUiElement GetContainingGridTableItemPattern(this IUiElement element)
         {
             try {
-                // return element.GetCurrentPattern<IMySuperTableItemPattern>(TableItemPattern.Pattern).Current.ContainingGrid;
                 return AutomationFactory.GetUiElement(element.GetCurrentPattern<IMySuperTableItemPattern>(TableItemPattern.Pattern).Current.ContainingGrid.GetSourceElement());
             } catch (Exception eExtensionMethod) {
                 // 
@@ -763,7 +759,6 @@ namespace UIAutomation
         {
             try {
                 return element.GetCurrentPattern<IMySuperTablePattern>(TablePattern.Pattern).Current.GetRowHeaders();
-                // return AutomationFactory.GetUiEltCollection(element.GetCurrentPattern<IMySuperTablePattern>(TablePattern.Pattern).Current.GetRowHeaders()).ToArray();
             } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
@@ -776,7 +771,6 @@ namespace UIAutomation
         {
             try {
                 return element.GetCurrentPattern<IMySuperTablePattern>(TablePattern.Pattern).Current.GetColumnHeaders();
-                // return AutomationFactory.GetUiEltCollection(element.GetCurrentPattern<IMySuperTablePattern>(TablePattern.Pattern).Current.GetColumnHeaders()).ToArray();
             } catch (Exception eExtensionMethod) {
                 // 
                 // throw;

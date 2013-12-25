@@ -64,16 +64,19 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         }
         
         [Test]
-        public void Dock_SetDockPosition()
+        public void Dock_SetDockPosition_DockPosition()
         {
             // Arrange
+            DockPosition expectedValue = DockPosition.Bottom;
             ISupportsDockPattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-                    new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsDockPattern;
+                    new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData() { DockPattern_DockPosition = expectedValue }) }) as ISupportsDockPattern;
             
             // Act
+            element.SetDockPosition(expectedValue);
+            
             // Assert
-            element.SetDockPosition(DockPosition.Bottom);
+            Assert.AreEqual(expectedValue, element.DockPosition);
         }
     }
 }

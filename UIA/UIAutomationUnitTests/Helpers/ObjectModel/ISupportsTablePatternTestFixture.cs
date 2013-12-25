@@ -62,7 +62,6 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         }
         
         [Test]
-        // [Ignore]
         public void Table_GetColumnHeaders()
         {
             // Arrange
@@ -76,7 +75,6 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         }
         
         [Test]
-        // [Ignore]
         public void Table_GetRowHeaders()
         {
             // Arrange
@@ -87,6 +85,51 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             // Act
             // Assert
             element.GetRowHeaders();
+        }
+        
+        [Test]
+        public void Table_TableColumnCount()
+        {
+            // Arrange
+            int expectedValue = 7;
+            ISupportsTablePattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetTablePattern(new PatternsData() { TablePattern_ColumnCount = expectedValue }) }) as ISupportsTablePattern;
+            
+            // Act
+            
+            // Assert
+            Assert.AreEqual(expectedValue, element.TableColumnCount);
+        }
+        
+        [Test]
+        public void Table_TableRowCount()
+        {
+            // Arrange
+            int expectedValue = 8;
+            ISupportsTablePattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetTablePattern(new PatternsData() { TablePattern_RowCount = expectedValue }) }) as ISupportsTablePattern;
+            
+            // Act
+            
+            // Assert
+            Assert.AreEqual(expectedValue, element.TableRowCount);
+        }
+        
+        [Test]
+        public void Table_RowOrColumnMajor()
+        {
+            // Arrange
+            RowOrColumnMajor expectedValue = RowOrColumnMajor.ColumnMajor;
+            ISupportsTablePattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetTablePattern(new PatternsData() { TablePattern_RowOrColumnMajor = expectedValue }) }) as ISupportsTablePattern;
+            
+            // Act
+            
+            // Assert
+            Assert.AreEqual(expectedValue, element.RowOrColumnMajor);
         }
     }
 }

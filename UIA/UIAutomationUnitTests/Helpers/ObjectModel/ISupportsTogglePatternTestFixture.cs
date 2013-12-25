@@ -74,49 +74,49 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             element.Toggle();
         }
         
-//        [Test]
-//        public void Toggle_ToggleState_Indeterminate()
-//        {
-//            // Arrange
-//            var data =
-//                new PatternsData() { TogglePattern_ToggleState = ToggleState.Indeterminate };
-//            ISupportsTogglePattern element =
-//                FakeFactory.GetAutomaitonElementForMethodsOfObjectModel(
-//                    new IBasePattern[] { FakeFactory.GetTogglePattern(data) }) as ISupportsTogglePattern;
-//            
-//            // Act
-//            // Assert
-//            Assert.AreEqual(ToggleState.Indeterminate, element.ToggleState);
-//        }
-//        
-//        [Test]
-//        public void Toggle_ToggleState_On()
-//        {
-//            // Arrange
-//            var data =
-//                new PatternsData() { TogglePattern_ToggleState = ToggleState.On };
-//            ISupportsTogglePattern element =
-//                FakeFactory.GetAutomaitonElementForMethodsOfObjectModel(
-//                    new IBasePattern[] { FakeFactory.GetTogglePattern(data) }) as ISupportsTogglePattern;
-//            
-//            // Act
-//            // Assert
-//            Assert.AreEqual(ToggleState.On, element.ToggleState);
-//        }
-//        
-//        [Test]
-//        public void Toggle_ToggleState_Off()
-//        {
-//            // Arrange
-//            var data =
-//                new PatternsData() { TogglePattern_ToggleState = ToggleState.Off };
-//            ISupportsTogglePattern element =
-//                FakeFactory.GetAutomaitonElementForMethodsOfObjectModel(
-//                    new IBasePattern[] { FakeFactory.GetTogglePattern(data) }) as ISupportsTogglePattern;
-//            
-//            // Act
-//            // Assert
-//            Assert.AreEqual(ToggleState.Off, element.ToggleState);
-//        }
+        [Test]
+        public void Toggle_ToggleState_Indeterminate()
+        {
+            // Arrange
+            ToggleState expectedValue = ToggleState.Indeterminate;
+            ISupportsTogglePattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetTogglePattern(new PatternsData() { TogglePattern_ToggleState = expectedValue }) }) as ISupportsTogglePattern;
+            
+            // Act
+            
+            // Assert
+            Assert.AreEqual(expectedValue, element.ToggleState);
+        }
+        
+        [Test]
+        public void Toggle_ToggleState_Off()
+        {
+            // Arrange
+            ToggleState expectedValue = ToggleState.Off;
+            ISupportsTogglePattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetTogglePattern(new PatternsData() { TogglePattern_ToggleState = expectedValue }) }) as ISupportsTogglePattern;
+            
+            // Act
+            
+            // Assert
+            Assert.AreEqual(expectedValue, element.ToggleState);
+        }
+        
+        [Test]
+        public void Toggle_ToggleState_On()
+        {
+            // Arrange
+            ToggleState expectedValue = ToggleState.On;
+            ISupportsTogglePattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetTogglePattern(new PatternsData() { TogglePattern_ToggleState = expectedValue }) }) as ISupportsTogglePattern;
+            
+            // Act
+            
+            // Assert
+            Assert.AreEqual(expectedValue, element.ToggleState);
+        }
     }
 }

@@ -463,6 +463,11 @@ namespace UIAutomation
                             invocation.Proceed();
                         	break;
                     }
+                    
+//                    if (null != (invocation.Proxy as IUiElement)) {
+//                        invocation..Method..ReturnType = invocation.Proxy.GetType();
+//                    }
+                    
                     AlreadySelected = false;
                 } else {
                     invocation.Proceed();

@@ -101,9 +101,10 @@ namespace UIAutomation
                 }
             }
             
-            // return resultList.ToArray();
-            IBasePattern[] resultArray = (0 < resultList.Count() ? resultList.ToArray() : new object[] {} as IBasePattern[]);
-            return resultArray;
+            // 20131227
+            return resultList.ToArray();
+            // IBasePattern[] resultArray = (0 < resultList.Count() ? resultList.ToArray() : new object[] {} as IBasePattern[]);
+            // return resultArray;
         }
     }
 }

@@ -233,6 +233,9 @@
     <Compile Include="..\UIAutomation\Commands\Convert\ConvertToUIAHashtableCommand.cs">
       <Link>Commands\Convert\ConvertToUIAHashtableCommand.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Commands\Convert\ConvertToUiaSearchCriteriaCommand.cs">
+      <Link>Commands\Convert\ConvertToUiaSearchCriteriaCommand.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Commands\Discovery\GetUIAControlFromHandleCommand.cs">
       <Link>Commands\Discovery\GetUIAControlFromHandleCommand.cs</Link>
     </Compile>

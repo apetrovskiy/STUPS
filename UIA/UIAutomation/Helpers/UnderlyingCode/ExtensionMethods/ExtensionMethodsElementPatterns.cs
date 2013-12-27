@@ -365,14 +365,23 @@ namespace UIAutomation
             return element;
         }
         
+        /// <summary>
+        /// Invokes the context menu and returns the object representing the menu invoked.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
         public static IUiElement PerformInvokeContextMenu(this IUiElement element)
         {
             HasControlInputCmdletBase cmdlet =
                 new HasControlInputCmdletBase();
             
-            element.InvokeContextMenu(cmdlet);
+            // 20131226
+            // element.InvokeContextMenu(cmdlet);
             
-            return element;
+            // return element;
+            
+            // return the context menu window
+            return element.InvokeContextMenu(cmdlet);
         }
         #endregion InvokePattern
         #region RangeValuePattern

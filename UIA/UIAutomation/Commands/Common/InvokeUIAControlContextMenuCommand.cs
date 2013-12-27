@@ -37,8 +37,11 @@ namespace UIAutomation.Commands
             foreach (IUiElement inputObject in InputObject) {
                 
                 try {
-                // InvokeContextMenu(inputObject);
-                inputObject.InvokeContextMenu(this);
+                    // InvokeContextMenu(inputObject);
+                    // 20131226
+                    var resultElement = inputObject.InvokeContextMenu(this);
+                    // return the context menu window
+                    WriteObject(this, resultElement);
                 } catch {
                     WriteError(
                         this,
@@ -51,7 +54,7 @@ namespace UIAutomation.Commands
             } // 20120823
         }
 
-        
+        #region commented
 //============================================================================================================
 //IUiElement resultElement = null;
 //            
@@ -367,5 +370,6 @@ namespace UIAutomation.Commands
 //            windowsByPid.Dispose();
 //            windowsByPid = null;
 //        }
+        #endregion commented
     }
 }

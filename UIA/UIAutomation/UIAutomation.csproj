@@ -161,6 +161,7 @@
     <Compile Include="Commands\Convert\ConvertFromUIAListCommand.cs" />
     <Compile Include="Commands\Convert\ConvertFromUIATableCommand.cs" />
     <Compile Include="Commands\Convert\ConvertToUIAHashtableCommand.cs" />
+    <Compile Include="Commands\Convert\ConvertToUiaSearchCriteriaCommand.cs" />
     <Compile Include="Commands\Discovery\GetUIAControlFromHandleCommand.cs" />
     <Compile Include="Commands\Discovery\GetUIAControlFromPointCommand.cs" />
     <Compile Include="Commands\Discovery\GetUIACurrentPatternCommand.cs" />

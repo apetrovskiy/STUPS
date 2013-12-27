@@ -97,26 +97,37 @@ namespace UIAutomation
                     
                 if (scope == TreeScope.Parent || scope == TreeScope.Ancestors) {
                     
-                    if (testParent != UiElement.RootElement) {
+                    // 20131226
+                    // if (testParent != UiElement.RootElement) {
+                    if (testParent.Current != UiElement.RootElement.Current) {
                         ancestors.Add(testParent);
                     }
                     
-                    if (testParent == UiElement.RootElement ||
+                    // 20131226
+                    // if (testParent == UiElement.RootElement ||
+                    if ((testParent.Equals(UiElement.RootElement) && testParent.Current.Equals(UiElement.RootElement.Current)) ||
                         scope == TreeScope.Parent) {
                         return ancestors.ToArray();
                     }
                 }
                 while (testParent != null &&
                        (int)testParent.Current.ProcessId > 0 &&
-                       testParent != UiElement.RootElement) {
+                       // 20131226
+                       // testParent != UiElement.RootElement) {
+                       !testParent.Current.Equals(UiElement.RootElement.Current)) {
                     
                     testParent =
                         AutomationFactory.GetUiElement(walker.GetParent(testParent.GetSourceElement()));
                     if (testParent != null &&
                         (int)testParent.Current.ProcessId > 0 &&
-                        testParent != UiElement.RootElement) {
+                        // 20131226
+                        // testParent != UiElement.RootElement) {
+                        // !testParent.Equals(UiElement.RootElement)) {
+                        !testParent.Current.Equals(UiElement.RootElement.Current)) {
                         
                         ancestors.Add(testParent);
+                    } else {
+                        break;
                     }
                 }
                 return ancestors.ToArray();

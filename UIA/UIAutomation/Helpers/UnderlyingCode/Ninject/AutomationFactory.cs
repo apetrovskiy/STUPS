@@ -149,7 +149,7 @@ namespace UIAutomation
     			// 20131227
     			// if (_useDynamicProxy) {
     			if (Preferences.UseElementsPatternObjectModel) {
-                    
+    			    
         			IUiElement proxiedTypedUiElement =
         			    ConvertToProxiedElement(
         			        adapterElement);
@@ -158,7 +158,7 @@ namespace UIAutomation
         			
         			return (IUiElement)proxiedTypedUiElement; // as IUiElement;
     			} else {
-                    
+    			    
     			    adapterElement.SetSourceElement<AutomationElement>(element);
     			    
     			    return adapterElement;
@@ -189,7 +189,7 @@ namespace UIAutomation
     			// 20131227
     			// if (_useDynamicProxy) {
     			if (Preferences.UseElementsPatternObjectModel) {
-                    
+    			    
         			IUiElement proxiedTypedUiElement =
         			    ConvertToProxiedElement(
         			        adapterElement);

@@ -14,6 +14,7 @@ namespace UIAutomation
 	public interface ISupportsTogglePattern
 	{
 		IUiElement Toggle();
+		IUiElement Toggle(bool on);
 		ToggleState ToggleState { get; }
 	}
 }

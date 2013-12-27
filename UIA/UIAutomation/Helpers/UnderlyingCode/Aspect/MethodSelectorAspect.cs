@@ -337,8 +337,17 @@ namespace UIAutomation
                         #endregion TextPattern
                         #region TogglePattern
                         case "Toggle":
-                            invocation.ReturnValue =
-                                (invocation.Proxy as IUiElement).PerformToggle();
+                            // 20131227
+                            // invocation.ReturnValue =
+                            //     (invocation.Proxy as IUiElement).PerformToggle();
+                            if (0 == invocation.Arguments.Length) {
+                                invocation.ReturnValue =
+                                    (invocation.Proxy as IUiElement).PerformToggle();
+                            } else {
+                                invocation.ReturnValue =
+                                    (invocation.Proxy as IUiElement).PerformToggle(
+                                        (bool)invocation.Arguments[0]);
+                            }
                             break;
                         case "get_ToggleState":
                             invocation.ReturnValue =

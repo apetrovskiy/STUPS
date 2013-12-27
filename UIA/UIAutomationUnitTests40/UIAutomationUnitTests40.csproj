@@ -220,6 +220,9 @@
     <Compile Include="..\UIAutomationUnitTests\Helpers\ObjectModel\ISupportsWindowPatternTestFixture.cs">
       <Link>Helpers\ObjectModel\ISupportsWindowPatternTestFixture.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\ObjectModel\NoPatternsTestFixture.cs">
+      <Link>Helpers\ObjectModel\NoPatternsTestFixture.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomationUnitTests\Helpers\UnderlyingCode\Adapter\GetSupportedPatternsTestFixture.cs">
       <Link>Helpers\UnderlyingCode\Adapter\GetSupportedPatternsTestFixture.cs</Link>
     </Compile>
@@ -314,6 +317,7 @@
     <Folder Include="Helpers\Inheritance" />
     <Folder Include="Helpers\Inheritance\Legacy" />
     <Folder Include="Helpers\Inheritance\new_code" />
+    <Folder Include="Helpers\ObjectModel" />
     <Folder Include="Helpers\ObjectModel" />
     <Folder Include="Helpers\UnderlyingCode" />
     <Folder Include="Helpers\UnderlyingCode" />

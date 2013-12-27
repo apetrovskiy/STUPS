@@ -34,11 +34,23 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         [Test]
         public void Value_ImplementsCommonPattern()
         {
-            ISupportsInvokePattern element =
+            ISupportsInvokePattern invokableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetValuePattern(new PatternsData()) }) as ISupportsInvokePattern;
             
-            Assert.IsNotNull(element as ISupportsInvokePattern);
+            Assert.IsNotNull(invokableElement as ISupportsInvokePattern);
+            
+            ISupportsHighlighter highlightableElement =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetValuePattern(new PatternsData()) }) as ISupportsHighlighter;
+            
+            Assert.IsNotNull(highlightableElement as ISupportsHighlighter);
+            
+            ISupportsNavigation navigatableElement =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetValuePattern(new PatternsData()) }) as ISupportsNavigation;
+            
+            Assert.IsNotNull(navigatableElement as ISupportsNavigation);
         }
         
         [Test]

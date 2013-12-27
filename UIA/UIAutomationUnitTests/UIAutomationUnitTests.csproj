@@ -139,6 +139,7 @@
     <Compile Include="Helpers\ObjectModel\ISupportsTransformPatternTestFixture.cs" />
     <Compile Include="Helpers\ObjectModel\ISupportsValuePatternTestFixture.cs" />
     <Compile Include="Helpers\ObjectModel\ISupportsWindowPatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModel\NoPatternsTestFixture.cs" />
     <Compile Include="Helpers\UnderlyingCode\Adapter\GetSupportedPatternsTestFixture.cs" />
     <Compile Include="Helpers\UnderlyingCode\elementOfPossibleControlTypeTestFixture.cs" />
     <Compile Include="Helpers\UnderlyingCode\getControlConditionsTestFixture.cs" />

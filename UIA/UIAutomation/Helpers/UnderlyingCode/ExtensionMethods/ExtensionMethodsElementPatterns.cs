@@ -894,6 +894,22 @@ namespace UIAutomation
             return element;
         }
         
+        public static IUiElement PerformToggle(this IUiElement element, bool on)
+        {
+            try {
+                ITogglePattern togglePattern =
+                    element.GetCurrentPattern<ITogglePattern>(TogglePattern.Pattern);
+                if ((on && ToggleState.Off == togglePattern.Current.ToggleState) ||
+                   !on && ToggleState.On == togglePattern.Current.ToggleState) {
+                    element.GetCurrentPattern<ITogglePattern>(TogglePattern.Pattern).Toggle();
+                }
+            }
+            catch {
+                // maybe, a click
+            }
+            return element;
+        }
+        
         public static ToggleState GetToggleState(this IUiElement element)
         {
             try {

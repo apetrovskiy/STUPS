@@ -2783,13 +2783,14 @@ throw(ePatterns2);
         {
             List<Type> supportedTypes = new List<Type>();
             
+            // always offered patterns
+            supportedTypes.Add(typeof(ISupportsInvokePattern));
+            supportedTypes.Add(typeof(ISupportsHighlighter));
+            supportedTypes.Add(typeof(ISupportsNavigation));
+            
             if (element is AutomationElement) {
                 foreach (AutomationPattern pattern in (element as AutomationElement).GetSupportedPatterns()) {
-                    // always
-                    supportedTypes.Add(typeof(ISupportsInvokePattern));
-                    supportedTypes.Add(typeof(ISupportsHighlighter));
-                    supportedTypes.Add(typeof(ISupportsNavigation));
-                    // calculated
+                    // calculated patterns
                     if (pattern == DockPattern.Pattern) {
                         supportedTypes.Add(typeof(ISupportsDockPattern));
                     }
@@ -2842,11 +2843,7 @@ throw(ePatterns2);
             }
             if (element is IUiElement) {
                 foreach (IBasePattern pattern in (element as IUiElement).GetSupportedPatterns()) {
-                    // always
-                    supportedTypes.Add(typeof(ISupportsInvokePattern));
-                    supportedTypes.Add(typeof(ISupportsHighlighter));
-                    supportedTypes.Add(typeof(ISupportsNavigation));
-                    // calculated
+                    // calculated patterns
                     if (pattern is IDockPattern) {
                         supportedTypes.Add(typeof(ISupportsDockPattern));
                     }

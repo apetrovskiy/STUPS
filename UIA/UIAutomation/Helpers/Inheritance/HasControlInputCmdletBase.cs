@@ -987,7 +987,9 @@ try {
 // }
                 if (specificToEvent.Length > 0) {
                     if (specificToEvent.Substring(0, 1) != "#") {
-                        whatToWrite += "Invoke-UIA";
+                        // 20131227
+                        // whatToWrite += "Invoke-UIA";
+                        whatToWrite += "Invoke-Uia";
                         whatToWrite += elementType;
                         whatToWrite += specificToEvent;
                     } else {

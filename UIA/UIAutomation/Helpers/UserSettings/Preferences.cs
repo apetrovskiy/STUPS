@@ -108,6 +108,10 @@ namespace UIAutomation
             BannerHeight = 100; //80;
             // 20130327
             BannerFontSize = 20;
+            
+            // 20131227
+            UseElementsPatternObjectModel = true;
+            UseElementsSearchObjectModel = true;
         }
         
         /// <summary>
@@ -357,8 +361,12 @@ namespace UIAutomation
         public static int BannerTop { get; set; }
         public static int BannerWidth { get; set; }
         public static int BannerHeight { get; set; }
-        // 201130327
+        // 20130327
         public static int BannerFontSize { get; set; }
+        
+        // 20131227
+        public static bool UseElementsPatternObjectModel { get; set; }
+        public static bool UseElementsSearchObjectModel { get; set; }
     }
     
     public static class Mode

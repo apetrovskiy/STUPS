@@ -32,7 +32,8 @@ namespace UIAutomation
         
         private static ProxyGenerator _generator;
         
-        private static bool _useDynamicProxy;
+        // 20131227
+        // private static bool _useDynamicProxy;
         
         #region Initialization
         static AutomationFactory()
@@ -44,7 +45,8 @@ namespace UIAutomation
             
 		    InitCommonObjects();
 		    
-		    _useDynamicProxy = true;
+		    // 20131227
+		    // _useDynamicProxy = true;
         }
         
 		private static INinjectModule _ninjectModule;
@@ -86,7 +88,8 @@ namespace UIAutomation
 		        
 		        InitCommonObjects();
 		        
-		        _useDynamicProxy = true;
+		        // 20131227
+		        // _useDynamicProxy = true;
 		    }
 		    catch (Exception eInitFailure) {
 		        // TODO
@@ -143,7 +146,9 @@ namespace UIAutomation
     			var singleElement = new ConstructorArgument("element", element);
     			IUiElement adapterElement = Kernel.Get<IUiElement>("AutomationElement.NET", singleElement);
     			
-    			if (_useDynamicProxy) {
+    			// 20131227
+    			// if (_useDynamicProxy) {
+    			if (Preferences.UseElementsPatternObjectModel) {
                     
         			IUiElement proxiedTypedUiElement =
         			    ConvertToProxiedElement(
@@ -181,7 +186,9 @@ namespace UIAutomation
     			
     			IUiElement adapterElement = Kernel.Get<IUiElement>("UiElement", singleElement);
     			
-    			if (_useDynamicProxy) {
+    			// 20131227
+    			// if (_useDynamicProxy) {
+    			if (Preferences.UseElementsPatternObjectModel) {
                     
         			IUiElement proxiedTypedUiElement =
         			    ConvertToProxiedElement(
@@ -211,7 +218,10 @@ namespace UIAutomation
 			try {
     			IUiElement adapterElement = Kernel.Get<IUiElement>("Empty", null);
     			
-    			if (_useDynamicProxy) {
+    			// 20131227
+    			// if (_useDynamicProxy) {
+    			if (Preferences.UseElementsPatternObjectModel) {
+    			    
         			IUiElement proxiedTypedUiElement =
         			    ConvertToProxiedElement(
         			        adapterElement);

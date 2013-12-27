@@ -730,6 +730,7 @@ namespace UIAutomation
             // 20120618 UiaCOMWrapper
             //UiaCOM::System.Windows.Automation.AutomationElement element)
         {
+string strInfo = string.Empty;
             bool result = false;
             // UiaHelper.Highlight(element);
             try {
@@ -863,7 +864,7 @@ namespace UIAutomation
                         
                         // if (WriteCurrentPattern) {
                         // strElementPatterns = String.Empty;
-string strInfo = string.Empty;
+
 strInfo += element.GetSourceElement().Current.Name;
 AutomationPattern[] ppps = element.GetSourceElement().GetSupportedPatterns();
 foreach (AutomationPattern pppp in ppps) {
@@ -892,17 +893,30 @@ strInfo += " 04";
                                 {
 strInfo += " 05";
                                     strElementPatterns += "\r\n\t\t#";
+// 20131227
+strInfo += ptrn.GetType().Name;
+try {
+    strInfo += "\r\n";
+    strInfo += ptrn.GetSourcePattern().GetType().Name;
+}
+catch (Exception eSourcePattern) {
+    strInfo += eSourcePattern.Message;
+}
                                     strElementPatterns +=
                                         // 20131209
                                         // ptrn.ProgrammaticName.Replace("Identifiers.Pattern", "");
                                         // 20131210
                                         // (ptrn.SourcePattern as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", "");
-                                        (ptrn.GetSourcePattern() as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", string.Empty);
+                                        // 20131227
+                                        // (ptrn.GetSourcePattern() as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", string.Empty);
+                                        ptrn.GetType().Name.Replace("Uia", string.Empty);
 strInfo += " 06";
                                     strElementPatterns += ": use the ";
                                     
                                     string tempControlNameForCmdlet =
-                                        "-UIA" +
+                                        // 20131227
+                                        // "-UIA" +
+                                        "-Uia" +
                                         elementControlType;
 strInfo += " 07";
                                     
@@ -911,7 +925,9 @@ strInfo += " 07";
                                     // 20131210
                                     // switch ((ptrn as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", "")) {
                                     // switch ((ptrn.SourcePattern as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", "")) {
-                                    switch ((ptrn.GetSourcePattern() as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", string.Empty)) {
+                                    // 20131227
+                                    // switch ((ptrn.GetSourcePattern() as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", string.Empty)) {
+                                    switch (ptrn.GetType().Name.Replace("Uia", string.Empty)) {
                                         case "InvokePattern":
                                             strElementPatterns +=
                                                 "Invoke" + tempControlNameForCmdlet + "Click";
@@ -986,18 +1002,22 @@ strInfo += " 07";
                                     }
                                     strElementPatterns += " cmdlet(s)";
                                 }
+strInfo += " 08";
                                 if (strElementPatterns.Length == 0) {
                                     strElementPatterns += "\r\n\t\t# no supported pattterns";
                                 }
+strInfo += " 09";
                             }
                             strElementPatterns += "\r\n";
+// strElementPatterns += strInfo;
                         } catch (Exception ePatterns) {
                                                                 Exception ePatterns2 =
                                                                     new Exception("Patterns:\r\n" +
                                                                                   ePatterns.Message +
                                                                                   "\r\n" +
                                                                                   strInfo);
-                            throw(ePatterns2);
+                            // 20131227
+                                                                throw(ePatterns2);
                             //return result;
                             // ErrorRecord
                             // 20120126
@@ -1027,6 +1047,26 @@ strInfo += " 07";
                             //                                                  eCollecingAncestors.Message);
                             //throw(eCollecingAncestors2);
                             //return result;
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+Exception ePatterns2 =
+    new Exception("Patterns:\r\n" +
+                  strInfo);
+// 20131227
+throw(ePatterns2);
+                            
+                            
+                            
+                            
+                            
+                            
+                            
                         }
 
                         if (!_errorInTheInnerCycle) {

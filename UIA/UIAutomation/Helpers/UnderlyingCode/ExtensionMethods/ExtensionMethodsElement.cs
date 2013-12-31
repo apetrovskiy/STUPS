@@ -472,6 +472,13 @@ namespace UIAutomation
                 if (!cmdlet.ClickControl(
                         cmdlet,
                         inputObject,
+                        new ClickSettings() {
+                            RightClick = true,
+                            RelativeX = Preferences.ClickOnControlByCoordX,
+                            RelativeY = Preferences.ClickOnControlByCoordY
+                        })) {
+                    
+                    /*
                         true,
                         false,
                         false,
@@ -482,6 +489,7 @@ namespace UIAutomation
                         0,
                         Preferences.ClickOnControlByCoordX,
                         Preferences.ClickOnControlByCoordY)) {
+                    */
                     // WriteError(this, "Couldn't click on this control", "couldNotClick", ErrorCategory.InvalidResult, true);
                     // throw;
                 }

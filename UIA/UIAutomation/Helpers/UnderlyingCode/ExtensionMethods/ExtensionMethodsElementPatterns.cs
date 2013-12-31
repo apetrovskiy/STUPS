@@ -183,6 +183,12 @@ namespace UIAutomation
             cmdlet.ClickControl(
                 cmdlet,
                 element,
+                new ClickSettings() {
+                    // DoubleClickInterval = 50,
+                    RelativeX = Preferences.ClickOnControlByCoordX,
+                    RelativeY = Preferences.ClickOnControlByCoordY
+                });
+            /*
                 false,
                 false,
                 false,
@@ -193,6 +199,7 @@ namespace UIAutomation
                 50,
                 Preferences.ClickOnControlByCoordX,
                 Preferences.ClickOnControlByCoordY);
+            */
             
             return element;
         }
@@ -204,6 +211,12 @@ namespace UIAutomation
             cmdlet.ClickControl(
                 cmdlet,
                 element,
+                new ClickSettings() {
+                    // DoubleClickInterval = 50,
+                    RelativeX = X,
+                    RelativeY = Y
+                });
+            /*
                 false,
                 false,
                 false,
@@ -214,6 +227,7 @@ namespace UIAutomation
                 50,
                 X,
                 Y);
+            */
             
             return element;
         }
@@ -225,6 +239,14 @@ namespace UIAutomation
             cmdlet.ClickControl(
                 cmdlet,
                 element,
+                new ClickSettings() {
+                    DoubleClick = true,
+                    DoubleClickInterval = 50,
+                    RelativeX = Preferences.ClickOnControlByCoordX,
+                    RelativeY = Preferences.ClickOnControlByCoordY
+                });
+            
+            /*
                 false,
                 false,
                 false,
@@ -235,6 +257,7 @@ namespace UIAutomation
                 50,
                 Preferences.ClickOnControlByCoordX,
                 Preferences.ClickOnControlByCoordY);
+            */
             
             return element;
         }
@@ -246,6 +269,14 @@ namespace UIAutomation
             cmdlet.ClickControl(
                 cmdlet,
                 element,
+                new ClickSettings() {
+                    DoubleClick = true,
+                    DoubleClickInterval = 50,
+                    RelativeX = X,
+                    RelativeY = Y
+                });
+            
+            /*
                 false,
                 false,
                 false,
@@ -256,6 +287,7 @@ namespace UIAutomation
                 50,
                 X,
                 Y);
+            */
             
             return element;
         }
@@ -267,6 +299,14 @@ namespace UIAutomation
             cmdlet.ClickControl(
                 cmdlet,
                 element,
+                new ClickSettings() {
+                    RightClick = true,
+                    // DoubleClickInterval = 50,
+                    RelativeX = Preferences.ClickOnControlByCoordX,
+                    RelativeY = Preferences.ClickOnControlByCoordY
+                });
+            
+            /*
                 true,
                 false,
                 false,
@@ -277,6 +317,7 @@ namespace UIAutomation
                 50,
                 Preferences.ClickOnControlByCoordX,
                 Preferences.ClickOnControlByCoordY);
+            */
             
             return element;
         }
@@ -288,6 +329,14 @@ namespace UIAutomation
             cmdlet.ClickControl(
                 cmdlet,
                 element,
+                new ClickSettings() {
+                    Ctrl = true,
+                    // DoubleClickInterval = 50,
+                    RelativeX = Preferences.ClickOnControlByCoordX,
+                    RelativeY = Preferences.ClickOnControlByCoordY
+                });
+            
+            /*
                 false,
                 false,
                 false,
@@ -298,6 +347,7 @@ namespace UIAutomation
                 50,
                 Preferences.ClickOnControlByCoordX,
                 Preferences.ClickOnControlByCoordY);
+            */
             
             return element;
         }
@@ -309,6 +359,14 @@ namespace UIAutomation
             cmdlet.ClickControl(
                 cmdlet,
                 element,
+                new ClickSettings() {
+                    Alt = true,
+                    // DoubleClickInterval = 50,
+                    RelativeX = Preferences.ClickOnControlByCoordX,
+                    RelativeY = Preferences.ClickOnControlByCoordY
+                });
+            
+            /*
                 false,
                 false,
                 true,
@@ -319,6 +377,7 @@ namespace UIAutomation
                 50,
                 Preferences.ClickOnControlByCoordX,
                 Preferences.ClickOnControlByCoordY);
+            */
             
             return element;
         }
@@ -330,6 +389,14 @@ namespace UIAutomation
             cmdlet.ClickControl(
                 cmdlet,
                 element,
+                new ClickSettings() {
+                    Shift = true,
+                    // DoubleClickInterval = 50,
+                    RelativeX = Preferences.ClickOnControlByCoordX,
+                    RelativeY = Preferences.ClickOnControlByCoordY
+                });
+            
+            /*
                 false,
                 false,
                 false,
@@ -340,30 +407,47 @@ namespace UIAutomation
                 50,
                 Preferences.ClickOnControlByCoordX,
                 Preferences.ClickOnControlByCoordY);
+            */
             
             return element;
         }
         
-        public static IUiElement PerformContextMenu(this IUiElement element)
-        {
-            HasControlInputCmdletBase cmdlet =
-                new HasControlInputCmdletBase();
-            cmdlet.ClickControl(
-                cmdlet,
-                element,
-                false,
-                false,
-                false,
-                true,
-                false,
-                false,
-                false,
-                50,
-                Preferences.ClickOnControlByCoordX,
-                Preferences.ClickOnControlByCoordY);
-            
-            return element;
-        }
+//        public static IUiElement PerformContextMenu(this IUiElement element)
+//        {
+//            HasControlInputCmdletBase cmdlet =
+//                new HasControlInputCmdletBase();
+//            cmdlet.ClickControl(
+//                cmdlet,
+//                element,
+//                new ClickSettings() {
+//                    
+//                }
+//                false,
+//                false,
+//                false,
+//                true,
+//                false,
+//                false,
+//                false,
+//                50,
+//                Preferences.ClickOnControlByCoordX,
+//                Preferences.ClickOnControlByCoordY);
+//            
+//            /*
+//                false,
+//                false,
+//                false,
+//                true,
+//                false,
+//                false,
+//                false,
+//                50,
+//                Preferences.ClickOnControlByCoordX,
+//                Preferences.ClickOnControlByCoordY);
+//            */
+//            
+//            return element;
+//        }
         
         /// <summary>
         /// Invokes the context menu and returns the object representing the menu invoked.

@@ -331,6 +331,7 @@
     <Compile Include="Helpers\UnderlyingCode\RDPHelper.cs" />
     <Compile Include="Helpers\UnderlyingCode\RDP\DataProtectionForRDPWrapper.cs" />
     <Compile Include="Helpers\UnderlyingCode\RDP\DataProtector.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Types\ClickSettings.cs" />
     <Compile Include="Helpers\UnderlyingCode\Types\Enums.cs" />
     <Compile Include="Helpers\UnderlyingCode\Types\Wizard.cs" />
     <Compile Include="Helpers\UnderlyingCode\Types\WizardCollection.cs" />
@@ -387,6 +388,8 @@
     <Compile Include="Helpers\UserSettings\Profile.cs" />
     <Compile Include="Helpers\UserSettings\Testing.cs" />
     <Compile Include="Helpers\UserSettings\UserData.cs" />
+    <Compile Include="Interface\ISupportsConversion.cs" />
+    <Compile Include="Interface\ISupportsExport.cs" />
     <Compile Include="Interface\IUiElement.cs" />
     <Compile Include="Interface\IUiEltCollection.cs" />
     <Compile Include="Interface\IUiElementInformation.cs" />

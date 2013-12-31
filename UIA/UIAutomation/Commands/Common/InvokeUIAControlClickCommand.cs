@@ -68,6 +68,23 @@ namespace UIAutomation.Commands
                 ClickControl(
                     this,
                     inputObject,
+                    new ClickSettings() {
+                        RightClick = this.RightClick,
+                        MidClick = this.MidClick,
+                        Alt = this.Alt,
+                        Shift = this.Shift,
+                        Ctrl = this.Ctrl,
+                        // inSequence = this.ins
+                        DoubleClick = this.DoubleClick,
+                        DoubleClickInterval = this.DoubleClickInterval,
+                        RelativeX = this.X,
+                        RelativeY = this.Y
+                    });
+                
+                /*
+                ClickControl(
+                    this,
+                    inputObject,
                     RightClick,
                     MidClick,
                     Alt,
@@ -79,6 +96,7 @@ namespace UIAutomation.Commands
                     DoubleClickInterval,
                     X,
                     Y);
+                */
     
                 if (PassThru) {
 

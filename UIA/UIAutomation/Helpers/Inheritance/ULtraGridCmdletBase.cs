@@ -141,6 +141,13 @@ namespace UIAutomation
                                             // otherwise, just return the set of rows found
                                             if (ClickControl(this,
                                                 child,
+                                                new ClickSettings() {
+                                                    Ctrl = true,
+                                                    RelativeX = Preferences.ClickOnControlByCoordX,
+                                                    RelativeY = Preferences.ClickOnControlByCoordY
+                                                })) {
+                                                
+                                                /*
                                                 false,
                                                 false,
                                                 false,
@@ -152,6 +159,7 @@ namespace UIAutomation
                                                 0,
                                                 Preferences.ClickOnControlByCoordX,
                                                 Preferences.ClickOnControlByCoordY)) {
+                                                */
                                                     selectedItems.Add(child);
                                                     WriteVerbose(this, 
                                                         "the " + child.Current.Name + 

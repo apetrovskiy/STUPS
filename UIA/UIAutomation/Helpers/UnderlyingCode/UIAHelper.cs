@@ -2787,9 +2787,17 @@ throw(ePatterns2);
             supportedTypes.Add(typeof(ISupportsInvokePattern));
             supportedTypes.Add(typeof(ISupportsHighlighter));
             supportedTypes.Add(typeof(ISupportsNavigation));
+            supportedTypes.Add(typeof(ISupportsConversion));
             
             if (element is AutomationElement) {
-                foreach (AutomationPattern pattern in (element as AutomationElement).GetSupportedPatterns()) {
+                AutomationElement aElement = element as AutomationElement;
+//                if (ControlType.DataGrid == aElement.Current.ControlType ||
+//                    ControlType.List == aElement.Current.ControlType ||
+//                    ControlType.Table == aElement.Current.ControlType) {
+//                    
+//                    supportedTypes.Add(typeof(ISupportsExport));
+//                }
+                foreach (AutomationPattern pattern in aElement.GetSupportedPatterns()) {
                     // calculated patterns
                     if (pattern == DockPattern.Pattern) {
                         supportedTypes.Add(typeof(ISupportsDockPattern));
@@ -2802,6 +2810,7 @@ throw(ePatterns2);
                     }
                     if (pattern == GridPattern.Pattern) {
                         supportedTypes.Add(typeof(ISupportsGridPattern));
+                        supportedTypes.Add(typeof(ISupportsConversion));
                     }
                     if (pattern == RangeValuePattern.Pattern) {
                         supportedTypes.Add(typeof(ISupportsRangeValuePattern));
@@ -2823,6 +2832,7 @@ throw(ePatterns2);
                     }
                     if (pattern == TablePattern.Pattern) {
                         supportedTypes.Add(typeof(ISupportsTablePattern));
+                        supportedTypes.Add(typeof(ISupportsConversion));
                     }
                     if (pattern == TextPattern.Pattern) {
                         supportedTypes.Add(typeof(ISupportsTextPattern));
@@ -2842,7 +2852,15 @@ throw(ePatterns2);
                 }
             }
             if (element is IUiElement) {
-                foreach (IBasePattern pattern in (element as IUiElement).GetSupportedPatterns()) {
+                IUiElement uiElement = element as IUiElement;
+//                if (ControlType.DataGrid == uiElement.Current.ControlType ||
+//                    ControlType.List == uiElement.Current.ControlType ||
+//                    ControlType.Table == uiElement.Current.ControlType) {
+//                    
+//                    supportedTypes.Add(typeof(ISupportsExport));
+//                }
+                foreach (IBasePattern pattern in uiElement.GetSupportedPatterns()) {
+                    
                     // calculated patterns
                     if (pattern is IDockPattern) {
                         supportedTypes.Add(typeof(ISupportsDockPattern));
@@ -2855,6 +2873,7 @@ throw(ePatterns2);
                     }
                     if (pattern is IGridPattern) {
                         supportedTypes.Add(typeof(ISupportsGridPattern));
+                        supportedTypes.Add(typeof(ISupportsConversion));
                     }
                     if (pattern is IRangeValuePattern) {
                         supportedTypes.Add(typeof(ISupportsRangeValuePattern));
@@ -2876,6 +2895,7 @@ throw(ePatterns2);
                     }
                     if (pattern is ITablePattern) {
                         supportedTypes.Add(typeof(ISupportsTablePattern));
+                        supportedTypes.Add(typeof(ISupportsConversion));
                     }
                     if (pattern is ITextPattern) {
                         supportedTypes.Add(typeof(ISupportsTextPattern));

@@ -61,7 +61,7 @@ namespace UIAutomation
             OnSuccessScreenShot = false;
             OnSuccessScreenShotFormat = ImageFormat.Jpeg;
             HideHighlighterOnScreenShotTaking = true;
-
+            
             TranscriptInterval = 200;
             OnSuccessDelay = 500;
             OnSuccessAction = null;

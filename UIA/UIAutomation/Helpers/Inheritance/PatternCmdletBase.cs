@@ -533,8 +533,13 @@ namespace UIAutomation
 
                     // 20131125
                     //ClickControl(this, _control, false, false, false, false, false, false, false, 0,
-                    ClickControl(this, control, false, false, false, false, false, false, false, 0, 0,
-                                 0);
+                    // 20131230
+                    // ClickControl(this, control, false, false, false, false, false, false, false, 0, 0,
+                    //              0);
+                    ClickControl(
+                        this,
+                        control,
+                        new ClickSettings());
                     
                     // 20131109
                     if (PassThru && null != (inputObject as IUiElement)) {
@@ -942,8 +947,13 @@ namespace UIAutomation
                 } else {
                     if (Preferences.PerformWin32ClickOnFail) {
                         
-                        ClickControl(this, control, false, false, false, false, false, false, false, 0, 0,
-                                     0);
+                        // 20131230
+                        // ClickControl(this, control, false, false, false, false, false, false, false, 0, 0,
+                        //              0);
+                        ClickControl(
+                            this,
+                            control,
+                            new ClickSettings());
                         
                         if (PassThru && null != (inputObject as IUiElement)) {
                             WriteObject(this, inputObject);
@@ -961,8 +971,13 @@ namespace UIAutomation
                 if (Preferences.PerformWin32ClickOnFail &&
                     "ElementNotAvailableException" != eInvokePatternException.GetType().Name) {
                     
-                    ClickControl(this, control, false, false, false, false, false, false, false, 0, 0,
-                                 0);
+                    // 20131230
+                    // ClickControl(this, control, false, false, false, false, false, false, false, 0, 0,
+                    //              0);
+                    ClickControl(
+                        this,
+                        control,
+                        new ClickSettings());
 
                     if (PassThru && null != (inputObject as IUiElement)) {
                         WriteObject(this, inputObject);

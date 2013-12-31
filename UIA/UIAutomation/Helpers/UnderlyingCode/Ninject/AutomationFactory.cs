@@ -142,6 +142,8 @@ namespace UIAutomation
 	            return null;
 	        }
 	        
+//System.Windows.Forms.MessageBox.Show("factory:\r\n" + element.Current.Name + "\r\n" + element.Current.AutomationId + "\r\n" + element.Current.ClassName + "\r\n" + element.Current.ProcessId.ToString());
+		    
 			try {
     			var singleElement = new ConstructorArgument("element", element);
     			IUiElement adapterElement = Kernel.Get<IUiElement>("AutomationElement.NET", singleElement);
@@ -244,6 +246,7 @@ namespace UIAutomation
 		internal static IUiElementInformation GetUiElementInformation(AutomationElement.AutomationElementInformation information)
 		{
 			try {
+//System.Windows.Forms.MessageBox.Show("factory: " + information.ProcessId.ToString());
     			var singleInfo = new ConstructorArgument("information", information);
     			IUiElementInformation adapterInformation = Kernel.Get<IUiElementInformation>(singleInfo);
     			return adapterInformation;

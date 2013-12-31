@@ -823,6 +823,9 @@
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\RDP\DataProtector.cs">
       <Link>Helpers\UnderlyingCode\RDP\DataProtector.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Types\ClickSettings.cs">
+      <Link>Helpers\UnderlyingCode\Types\ClickSettings.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Types\Enums.cs">
       <Link>Helpers\UnderlyingCode\Types\Enums.cs</Link>
     </Compile>
@@ -913,11 +916,17 @@
     <Compile Include="..\UIAutomation\Interface\ISelectionPatternInformation.cs">
       <Link>Interface\ISelectionPatternInformation.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Interface\ISupportsConversion.cs">
+      <Link>Interface\ISupportsConversion.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Interface\ISupportsDockPattern.cs">
       <Link>Interface\ISupportsDockPattern.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Interface\ISupportsExpandCollapsePattern.cs">
       <Link>Interface\ISupportsExpandCollapsePattern.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\ISupportsExport.cs">
+      <Link>Interface\ISupportsExport.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Interface\ISupportsGridItemPattern.cs">
       <Link>Interface\ISupportsGridItemPattern.cs</Link>

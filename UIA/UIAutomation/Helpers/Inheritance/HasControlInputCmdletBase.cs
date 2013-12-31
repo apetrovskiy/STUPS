@@ -148,25 +148,26 @@ namespace UIAutomation
                                     // 20131109
                                     //AutomationElement element,
                                     IUiElement element,
-                                    bool RightClick,
-                                    bool MidClick,
-                                    bool Alt,
-                                    bool Shift,
-                                    bool Ctrl,
-                                    bool inSequence,
-                                    bool DoubleClick,
-                                    // 20131125
-                                    int DoubleClickInterval,
-                                    int RelativeX,
-                                    int RelativeY)
+                                    ClickSettings settings)
+//                                    bool RightClick,
+//                                    bool MidClick,
+//                                    bool Alt,
+//                                    bool Shift,
+//                                    bool Ctrl,
+//                                    bool inSequence,
+//                                    bool DoubleClick,
+//                                    // 20131125
+//                                    int settings.DoubleClickInterval,
+//                                    int RelativeX,
+//                                    int RelativeY)
         {
             bool result = false;
             
-            if (-1000000 == RelativeX) {
-                RelativeX = Preferences.ClickOnControlByCoordX;
+            if (-1000000 == settings.RelativeX) {
+                settings.RelativeX = Preferences.ClickOnControlByCoordX;
             }
-            if (-1000000 == RelativeY) {
-                RelativeY = Preferences.ClickOnControlByCoordY;
+            if (-1000000 == settings.RelativeY) {
+                settings.RelativeY = Preferences.ClickOnControlByCoordY;
             }
             
             // 20131109
@@ -232,9 +233,9 @@ namespace UIAutomation
             int x = 0;
             int y = 0;
             // these x and y are window-related coordinates
-            if (RelativeX != 0 && RelativeY != 0) {
-                x = RelativeX + (int)whereToClick.Current.BoundingRectangle.X;
-                y = RelativeY + (int)whereToClick.Current.BoundingRectangle.Y;
+            if (settings.RelativeX != 0 && settings.RelativeY != 0) {
+                x = settings.RelativeX + (int)whereToClick.Current.BoundingRectangle.X;
+                y = settings.RelativeY + (int)whereToClick.Current.BoundingRectangle.Y;
             } else {
                 // these x and y are for the SetCursorPos call
                 // they are screen coordinates
@@ -250,18 +251,20 @@ namespace UIAutomation
             uint uUp = 0;
             
             // these relative coordinates for SendMessage/PostMessage
-            int relativeX = x - (int)whereTheHandle.Current.BoundingRectangle.X;
-            int relativeY = y - (int)whereTheHandle.Current.BoundingRectangle.Y;
+            // int settings.RelativeX = x - (int)whereTheHandle.Current.BoundingRectangle.X;
+            settings.RelativeX = x - (int)whereTheHandle.Current.BoundingRectangle.X;
+            // int settings.RelativeY = y - (int)whereTheHandle.Current.BoundingRectangle.Y;
+            settings.RelativeY = y - (int)whereTheHandle.Current.BoundingRectangle.Y;
             
-            WriteVerbose(cmdlet, "relative X (the base is the control with the handle) = " + relativeX.ToString());            
-            WriteVerbose(cmdlet, "relative Y (the base is the control with the handle) = " + relativeY.ToString());
+            WriteVerbose(cmdlet, "relative X (the base is the control with the handle) = " + settings.RelativeX.ToString());            
+            WriteVerbose(cmdlet, "relative Y (the base is the control with the handle) = " + settings.RelativeY.ToString());
             
             // PostMessage's (click) third and fourth paramters (the third'll be reasigned later)
             IntPtr wParamDown = IntPtr.Zero;
             IntPtr wParamUp = IntPtr.Zero;
             IntPtr lParam = 
-                new IntPtr(((new IntPtr(relativeX)).ToInt32() & 0xFFFF) +
-                           (((new IntPtr(relativeY)).ToInt32() & 0xFFFF) << 16));
+                new IntPtr(((new IntPtr(settings.RelativeX)).ToInt32() & 0xFFFF) +
+                           (((new IntPtr(settings.RelativeY)).ToInt32() & 0xFFFF) << 16));
             
             // PostMessage's (keydown/keyup) fourth parameter
             const uint uCtrlDown = 0x401D;
@@ -271,7 +274,7 @@ namespace UIAutomation
             IntPtr lParamKeyDown = IntPtr.Zero;
             IntPtr lParamKeyUp = IntPtr.Zero;
             
-            if (Ctrl) {
+            if (settings.Ctrl) {
                 lParamKeyDown = 
                     new IntPtr(((new IntPtr(0x0001)).ToInt32() & 0xFFFF) +
                                (((new IntPtr(uCtrlDown)).ToInt32() & 0xFFFF) << 16));
@@ -280,58 +283,58 @@ namespace UIAutomation
                                (((new IntPtr(uCtrlUp)).ToInt32() & 0xFFFF) << 16));
                 WriteVerbose(this, "control parameters for KeyDown/KeyUp have been prepared");
             }
-            if (Shift) {
+            if (settings.Shift) {
                 lParamKeyDown = 
                     new IntPtr(((new IntPtr(0x0001)).ToInt32() & 0xFFFF) +
                                (((new IntPtr(uShiftDown)).ToInt32() & 0xFFFF) << 16));
                 lParamKeyUp = 
                     new IntPtr(((new IntPtr(0x0001)).ToInt32() & 0xFFFF) +
                                (((new IntPtr(uShiftUp)).ToInt32() & 0xFFFF) << 16));
-                WriteVerbose(this, "shift parameters for KeyDown/KeyUp have been prepared");
+                WriteVerbose(this, "settings.Shift parameters for KeyDown/KeyUp have been prepared");
             }
             // PostMessage's (activate) third parameter
             uint ulAct = 0;
             uint uhAct = 0;
             
             uint mask = 0;
-            if (Ctrl) {
+            if (settings.Ctrl) {
                 mask |= NativeMethods.MK_CONTROL;
                 WriteVerbose(this, "control parameters for ButtonDown/ButtonUp have been prepared");
             }
-            if (Shift) {
+            if (settings.Shift) {
                 mask |= NativeMethods.MK_SHIFT;
-                WriteVerbose(this, "shift parameters for ButtonDown/ButtonUp have been prepared");
+                WriteVerbose(this, "settings.Shift parameters for ButtonDown/ButtonUp have been prepared");
             }
             
-            if (RightClick && !DoubleClick) {
+            if (settings.RightClick && !settings.DoubleClick) {
                 WriteVerbose(cmdlet, "right click");
                 uhAct = uDown = NativeMethods.WM_RBUTTONDOWN;
                 uUp = NativeMethods.WM_RBUTTONUP;
                 wParamDown = new IntPtr(NativeMethods.MK_RBUTTON | mask);
                 wParamUp = new IntPtr(mask);
                 ulAct = NativeMethods.MK_RBUTTON;
-            } else if (RightClick && DoubleClick) {
+            } else if (settings.RightClick && settings.DoubleClick) {
                 WriteVerbose(cmdlet, "right double click");
                 uhAct = uDown = NativeMethods.WM_RBUTTONDBLCLK;
                 uUp = NativeMethods.WM_RBUTTONUP;
                 wParamDown = new IntPtr(NativeMethods.MK_RBUTTON | mask);
                 wParamUp = new IntPtr(mask);
                 ulAct = NativeMethods.MK_RBUTTON;
-            } else if (MidClick && !DoubleClick) {
+            } else if (settings.MidClick && !settings.DoubleClick) {
                 WriteVerbose(cmdlet, "middle button click");
                 uhAct = uDown = NativeMethods.WM_MBUTTONDOWN;
                 uUp = NativeMethods.WM_MBUTTONUP;
                 wParamDown = new IntPtr(NativeMethods.MK_MBUTTON | mask);
                 wParamUp = new IntPtr(mask);
                 ulAct = NativeMethods.MK_MBUTTON;
-            } else if (MidClick && DoubleClick) {
+            } else if (settings.MidClick && settings.DoubleClick) {
                 WriteVerbose(cmdlet, "middle button double click");
                 uhAct = uDown = NativeMethods.WM_MBUTTONDBLCLK;
                 uUp = NativeMethods.WM_MBUTTONUP;
                 wParamDown = new IntPtr(NativeMethods.MK_MBUTTON | mask);
                 wParamUp = new IntPtr(mask);
                 ulAct = NativeMethods.MK_MBUTTON;
-            } else if (DoubleClick) {
+            } else if (settings.DoubleClick) {
                 WriteVerbose(cmdlet, "left double click");
                 uhAct = uDown = NativeMethods.WM_LBUTTONDBLCLK;
                 uUp = NativeMethods.WM_LBUTTONUP;
@@ -386,48 +389,48 @@ namespace UIAutomation
                 }
             }
             
-            if (Ctrl) {
+            if (settings.Ctrl) {
                 // press the control key
                 NativeMethods.keybd_event((byte)NativeMethods.VK_LCONTROL, 0x45, NativeMethods.KEYEVENTF_EXTENDEDKEY | 0, 0);
                 WriteVerbose(this, " the control button has been pressed");
             }
-            if (Shift) {
-                // press the shift key
+            if (settings.Shift) {
+                // press the settings.Shift key
                 NativeMethods.keybd_event((byte)NativeMethods.VK_LSHIFT, 0x45, NativeMethods.KEYEVENTF_EXTENDEDKEY | 0, 0);
-                WriteVerbose(this, " the shift button has been pressed");
+                WriteVerbose(this, " the settings.Shift button has been pressed");
             }
             
             // // 20120620 for Home Tab
             bool res1 = NativeMethods.PostMessage1(handle, uDown, wParamDown, lParam);
             
-            int interval = DoubleClickInterval / 2;
-            if (DoubleClick) {
+            int interval = settings.DoubleClickInterval / 2;
+            if (settings.DoubleClick) {
                 Thread.Sleep(interval);
             }
             
             // MouseMove
-            if (RightClick || DoubleClick) {
+            if (settings.RightClick || settings.DoubleClick) {
                 bool resMM = NativeMethods.PostMessage1(handle, NativeMethods.WM_MOUSEMOVE, wParamDown, lParam);
             }
             
             // 20131125
-            if (DoubleClick) {
+            if (settings.DoubleClick) {
                 Thread.Sleep(interval);
             }
             
             // // 20120620 for Home Tab
             bool res2 = NativeMethods.PostMessage1(handle, uUp, wParamUp, lParam);
             
-            if (!inSequence) {
-                if (Ctrl) {
+            if (!settings.inSequence) {
+                if (settings.Ctrl) {
                     // release the control key
                     NativeMethods.keybd_event((byte)NativeMethods.VK_LCONTROL, 0x45, NativeMethods.KEYEVENTF_EXTENDEDKEY | NativeMethods.KEYEVENTF_KEYUP, 0);
                     WriteVerbose(this, " the control button has been released");
                 }
-                if (Shift) {
-                    // release the shift key
+                if (settings.Shift) {
+                    // release the settings.Shift key
                     NativeMethods.keybd_event((byte)NativeMethods.VK_LSHIFT, 0x45, NativeMethods.KEYEVENTF_EXTENDEDKEY | NativeMethods.KEYEVENTF_KEYUP, 0);
-                    WriteVerbose(this, " the shift button has been released");
+                    WriteVerbose(this, " the settings.Shift button has been released");
                 }
             }
             

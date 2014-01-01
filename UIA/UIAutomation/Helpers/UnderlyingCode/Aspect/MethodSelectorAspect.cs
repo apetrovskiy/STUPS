@@ -468,6 +468,16 @@ namespace UIAutomation
                                 (invocation.Proxy as IUiElement).PerformNavigateToPreviousSibling();
                             break;
                         #endregion Navigation
+                        #region Export
+                        case "ExportToCsv":
+                            
+                            break;
+                        #endregion Export
+                        #region Conversion
+                        case "ConvertToSearchCriteria":
+                            
+                            break;
+                        #endregion Conversion
                         default:
                             invocation.Proceed();
                         	break;

@@ -52,6 +52,12 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
                     new IBasePattern[] { FakeFactory.GetTextPattern(new PatternsData()) }) as ISupportsNavigation;
             
             Assert.IsNotNull(navigatableElement as ISupportsNavigation);
+            
+            ISupportsConversion navigatableElement =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsConversion;
+            
+            Assert.IsNotNull(conversibleeElement as ISupportsConversion);
         }
         
         [Test]

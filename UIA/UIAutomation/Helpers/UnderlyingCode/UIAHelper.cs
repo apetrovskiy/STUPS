@@ -2810,7 +2810,7 @@ throw(ePatterns2);
                     }
                     if (pattern == GridPattern.Pattern) {
                         supportedTypes.Add(typeof(ISupportsGridPattern));
-                        supportedTypes.Add(typeof(ISupportsConversion));
+                        supportedTypes.Add(typeof(ISupportsExport));
                     }
                     if (pattern == RangeValuePattern.Pattern) {
                         supportedTypes.Add(typeof(ISupportsRangeValuePattern));
@@ -2873,7 +2873,7 @@ throw(ePatterns2);
                     }
                     if (pattern is IGridPattern) {
                         supportedTypes.Add(typeof(ISupportsGridPattern));
-                        supportedTypes.Add(typeof(ISupportsConversion));
+                        supportedTypes.Add(typeof(ISupportsExport));
                     }
                     if (pattern is IRangeValuePattern) {
                         supportedTypes.Add(typeof(ISupportsRangeValuePattern));

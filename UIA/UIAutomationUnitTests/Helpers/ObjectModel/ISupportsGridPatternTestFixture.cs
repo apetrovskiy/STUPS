@@ -51,6 +51,22 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
                     new IBasePattern[] { FakeFactory.GetGridPattern(new PatternsData()) }) as ISupportsNavigation;
             
             Assert.IsNotNull(navigatableElement as ISupportsNavigation);
+            
+            ISupportsConversion navigatableElement =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsConversion;
+            
+            Assert.IsNotNull(conversibleeElement as ISupportsConversion);
+        }
+        
+        [Test]
+        public void Grid_ImplementsExportPattern()
+        {
+            ISupportsExport invokableElement =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetGridPattern(new PatternsData()) }) as ISupportsExport;
+            
+            Assert.IsNotNull(exportableElement as ISupportsExport);
         }
         
         [Test]
@@ -115,6 +131,21 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             
             // Assert
             Assert.AreEqual(expectedValue, element.GridRowCount);
+        }
+        
+        [Test]
+        public void Grid_RowCount()
+        {
+            // Arrange
+            int expectedValue = 4;
+            ISupportsExport element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetGridPattern(new PatternsData()) }) as ISupportsExport;
+            
+            // Act
+            
+            // Assert
+            element.ExportToCsv();
         }
     }
 }

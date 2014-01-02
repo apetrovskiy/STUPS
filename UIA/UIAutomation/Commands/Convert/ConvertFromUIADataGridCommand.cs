@@ -106,7 +106,6 @@ namespace UIAutomation.Commands
                         }
                     }
                         
-                        
                     // temporary!!!
                     // get rows
                     if (gridPattern != null && gridPattern.Current.RowCount <= 0) continue;
@@ -171,7 +170,8 @@ namespace UIAutomation.Commands
     
                 } catch (Exception eGridPattern) {
                     if (gridPattern != null) continue;
-                    WriteVerbose(this, "couldn't get TablePattern");
+                    // WriteVerbose(this, "couldn't get TablePattern");
+                    WriteVerbose(this, "couldn't get GridPattern");
                     WriteVerbose(this, "trying to enumerate columns and rows");
                         
                         

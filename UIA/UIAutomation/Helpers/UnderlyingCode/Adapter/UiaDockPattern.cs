@@ -67,7 +67,7 @@ namespace UIAutomation
 		// private SafePatternHandle _hPattern;
 		// private bool _cached;
 		
-		public IDockPatternInformation Cached {
+		public virtual IDockPatternInformation Cached {
 			get {
 				// Misc.ValidateCached(this._cached);
 				// return new DockPattern.DockPatternInformation(this._el, true);
@@ -75,7 +75,7 @@ namespace UIAutomation
 			}
 		}
 		
-		public IDockPatternInformation Current {
+		public virtual IDockPatternInformation Current {
 			get {
 				// Misc.ValidateCurrent(this._hPattern);
 				// return new DockPattern.DockPatternInformation(this._el, false);
@@ -87,7 +87,7 @@ namespace UIAutomation
 //			this._hPattern = hPattern;
 //			this._cached = cached;
 //		}
-		public void SetDockPosition(DockPosition dockPosition)
+		public virtual void SetDockPosition(DockPosition dockPosition)
 		{
 			// UiaCoreApi.DockPattern_SetDockPosition(this._hPattern, dockPosition);
 			this._dockPattern.SetDockPosition(dockPosition);

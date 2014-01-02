@@ -547,12 +547,33 @@ namespace UIAutomation
 			}
 		}
 
-		public AutomationElement GetSourceElement()
+//		public virtual AutomationElement GetSourceElement()
+//		{
+//			return _elementHolderNet;
+//		}
+		
+//		public virtual T GetSourceElement<T>()
+//		{
+//		    if (T is AutomationElement) {
+//		        return _elementHolderNet;
+//		    }
+//		    if (T is IUiElement) {
+//		        return _elementHolderAdapter;
+//		    }
+//		}
+		
+		public virtual object GetSourceElement()
 		{
-			return _elementHolderNet;
+		    if (null != _elementHolderNet) {
+		        return _elementHolderNet;
+		    } else if (null != _elementHolderAdapter) {
+		        return _elementHolderAdapter;
+		    } else {
+		        return null;
+		    }
 		}
 
-		public void SetSourceElement<T>(T element)
+		public virtual void SetSourceElement<T>(T element)
 		{
 			if (element is AutomationElement) {
 				_elementHolderNet = element as AutomationElement;

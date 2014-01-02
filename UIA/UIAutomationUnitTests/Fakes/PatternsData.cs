@@ -75,11 +75,14 @@ namespace UIAutomationUnitTests
         #region GridPattern
         public int GridPattern_ColumnCount { get; set; }
         public int GridPattern_RowCount { get; set; }
+        
+        public ControlType GridPattern_GetItem_ControlType { get; set; }
+        public string GridPattern_GetItem_Name { get; set; }
+        public string GridPattern_GetItem_AutomationId { get; set; }
+        public string GridPattern_GetItem_Class { get; set; }
         #endregion GridPattern
         
         #region RangeValuePattern
-        public double RangeValuePattern_ValueSet { get; set; }
-        
         public bool RangeValuePattern_IsReadOnly { get; set; }
         public double RangeValuePattern_LargeChange { get; set; }
         public double RangeValuePattern_Maximum { get; set; }

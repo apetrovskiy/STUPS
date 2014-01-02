@@ -52,15 +52,15 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             
             Assert.IsNotNull(navigatableElement as ISupportsNavigation);
             
-            ISupportsConversion navigatableElement =
+            ISupportsConversion conversibleElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsConversion;
             
-            Assert.IsNotNull(conversibleeElement as ISupportsConversion);
+            Assert.IsNotNull(conversibleElement as ISupportsConversion);
         }
         
         [Test]
-        public void GridItem_ImplementsPattern()
+        public void GridItem_ImplementsPatternInQuestion()
         {
             ISupportsGridItemPattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(

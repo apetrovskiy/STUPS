@@ -14,7 +14,7 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Alexander Petrovskiy")]
 [assembly: AssemblyProduct("UIAutomation Cmdlets")]
-[assembly: AssemblyCopyright("Copyright 2011-2013")]
+[assembly: AssemblyCopyright("Copyright 2011-2014")]
 [assembly: AssemblyTrademark("SoftwareTestingUsingPowerShell.com")]
 [assembly: AssemblyCulture("")]
 

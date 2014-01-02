@@ -1,4 +1,5 @@
-﻿/*
+﻿using System.Management.Automation;
+/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
  * Date: 11/10/2013
@@ -136,6 +137,18 @@ namespace UIAutomation
         #endregion Castle DynamicProxy
 		
 		#region IUiElement
+		public static IUiElement GetUiElement(object element)
+		{
+		    if (element is AutomationElement) {
+		        return GetUiElement(element as AutomationElement);
+		    } else if (element is IUiElement) {
+		        return GetUiElement(element as IUiElement);
+		    } else {
+		        return GetUiElement();
+		    }
+		    
+		}
+		
 		public static IUiElement GetUiElement(AutomationElement element)
 		{
 	        if (null == element) {

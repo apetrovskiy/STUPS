@@ -12,6 +12,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
     using System.Windows.Automation;
     using UIAutomation;
     using MbUnit.Framework;
+    using NSubstitute;
     
     /// <summary>
     /// Description of ISupportsExpandCollapseTestFixture.
@@ -51,15 +52,15 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             
             Assert.IsNotNull(navigatableElement as ISupportsNavigation);
             
-            ISupportsConversion navigatableElement =
+            ISupportsConversion conversibleElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsConversion;
             
-            Assert.IsNotNull(conversibleeElement as ISupportsConversion);
+            Assert.IsNotNull(conversibleElement as ISupportsConversion);
         }
         
         [Test]
-        public void ExpandCollapse_ImplementsPattern()
+        public void ExpandCollapse_ImplementsPatternInQuestion()
         {
             ISupportsExpandCollapsePattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
@@ -135,6 +136,48 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
                     new IBasePattern[] { FakeFactory.GetExpandCollapsePattern(new PatternsData() { ExpandCollapsePattern_ExpandCollapseState = expectedValue }) }) as ISupportsExpandCollapsePattern;
             
             // Act
+            
+            // Assert
+            Assert.AreEqual(expectedValue, element.ExpandCollapseState);
+        }
+        
+        [Test]
+        public void ExpandCollapse_Collapse()
+        {
+            // Arrange
+            ExpandCollapseState expectedValue = ExpandCollapseState.Collapsed;
+            ISupportsExpandCollapsePattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetExpandCollapsePattern(new PatternsData()) }) as ISupportsExpandCollapsePattern;
+            
+            // Act
+            element.Collapse();
+            try {
+                (element as IUiElement).GetCurrentPattern<IExpandCollapsePattern>(ExpandCollapsePattern.Pattern).Received().Collapse();
+                element.ExpandCollapseState.Returns(expectedValue);
+            }
+            catch {}
+            
+            // Assert
+            Assert.AreEqual(expectedValue, element.ExpandCollapseState);
+        }
+        
+        [Test]
+        public void ExpandCollapse_Expand()
+        {
+            // Arrange
+            ExpandCollapseState expectedValue = ExpandCollapseState.Expanded;
+            ISupportsExpandCollapsePattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetExpandCollapsePattern(new PatternsData()) }) as ISupportsExpandCollapsePattern;
+            
+            // Act
+            element.Expand();
+            try {
+                (element as IUiElement).GetCurrentPattern<IExpandCollapsePattern>(ExpandCollapsePattern.Pattern).Received().Expand();
+                element.ExpandCollapseState.Returns(expectedValue);
+            }
+            catch {}
             
             // Assert
             Assert.AreEqual(expectedValue, element.ExpandCollapseState);

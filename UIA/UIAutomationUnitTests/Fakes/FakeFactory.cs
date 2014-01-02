@@ -33,7 +33,7 @@ namespace UIAutomationUnitTests
         public static IDockPattern GetDockPattern(PatternsData data)
         {
             var dockPattern = Substitute.For<IDockPattern>();
-            // dockPattern.SetDockPosition(Arg.Any<DockPosition>()).Received();
+            dockPattern.SetDockPosition(Arg.Do<DockPosition>(pos => data.DockPattern_DockPosition = pos));
             dockPattern.Current.DockPosition.Returns(data.DockPattern_DockPosition);
             dockPattern.Cached.DockPosition.Returns(data.DockPattern_DockPosition);
             return dockPattern;
@@ -42,8 +42,6 @@ namespace UIAutomationUnitTests
         public static IExpandCollapsePattern GetExpandCollapsePattern(PatternsData data)
         {
             IExpandCollapsePattern expandCollapsePattern = Substitute.For<IExpandCollapsePattern>();
-            // expandCollapsePattern.Collapse().Received();
-            // expandCollapsePattern.Expand().Received();
             expandCollapsePattern.Current.ExpandCollapseState.Returns(data.ExpandCollapsePattern_ExpandCollapseState);
             expandCollapsePattern.Cached.ExpandCollapseState.Returns(data.ExpandCollapsePattern_ExpandCollapseState);
             return expandCollapsePattern;
@@ -68,7 +66,16 @@ namespace UIAutomationUnitTests
         public static IGridPattern GetGridPattern(PatternsData data)
         {
             var gridPattern = Substitute.For<IGridPattern>();
-            // gridPattern.GetItem(
+            IUiElement fakeElement =
+                FakeFactory.GetAutomationElement(
+                    data.GridPattern_GetItem_ControlType,
+                    data.GridPattern_GetItem_Name,
+                    data.GridPattern_GetItem_AutomationId,
+                    data.GridPattern_GetItem_Class,
+                    new IBasePattern[] {},
+                    true);
+            
+            gridPattern.GetItem(Arg.Any<int>(), Arg.Any<int>()).Returns(fakeElement);
             gridPattern.Current.ColumnCount.Returns(data.GridPattern_ColumnCount);
             gridPattern.Current.RowCount.Returns(data.GridPattern_RowCount);
             gridPattern.Cached.ColumnCount.Returns(data.GridPattern_ColumnCount);
@@ -86,8 +93,7 @@ namespace UIAutomationUnitTests
         public static IRangeValuePattern GetRangeValuePattern(PatternsData data)
         {
             IRangeValuePattern rangeValuePattern = Substitute.For<IRangeValuePattern>();
-            // rangeValuePattern.SetValue(Arg.Any<int>()).Returns(data.RangeValuePattern_ValueSet);
-            
+            rangeValuePattern.SetValue(Arg.Do<double>(arg => data.RangeValuePattern_Value = arg));
             rangeValuePattern.Current.IsReadOnly.Returns(data.RangeValuePattern_IsReadOnly);
             rangeValuePattern.Current.LargeChange.Returns(data.RangeValuePattern_LargeChange);
             rangeValuePattern.Current.Maximum.Returns(data.RangeValuePattern_Maximum);
@@ -162,6 +168,8 @@ namespace UIAutomationUnitTests
         public static ITableItemPattern GetTableItemPattern(PatternsData data)
         {
             ITableItemPattern tableItemPattern = Substitute.For<ITableItemPattern>();
+            tableItemPattern.Current.GetColumnHeaderItems().Returns(new IUiElement[] {});
+            tableItemPattern.Current.GetRowHeaderItems().Returns(new IUiElement[] {});
             tableItemPattern.Current.Column.Returns(data.TableItemPattern_Column);
             tableItemPattern.Current.ColumnSpan.Returns(data.TableItemPattern_ColumnSpan);
             tableItemPattern.Current.ContainingGrid.Returns(data.TableItemPattern_ContainingGrid);
@@ -178,6 +186,8 @@ namespace UIAutomationUnitTests
         public static ITablePattern GetTablePattern(PatternsData data)
         {
             ITablePattern tablePattern = Substitute.For<ITablePattern>();
+            tablePattern.Current.GetColumnHeaders().Returns(new IUiElement[] {});
+            tablePattern.Current.GetRowHeaders().Returns(new IUiElement[] {});
             tablePattern.Current.ColumnCount.Returns(data.TablePattern_ColumnCount);
             tablePattern.Current.RowCount.Returns(data.TablePattern_RowCount);
             tablePattern.Current.RowOrColumnMajor.Returns(data.TablePattern_RowOrColumnMajor);
@@ -203,7 +213,7 @@ namespace UIAutomationUnitTests
         {
             ITogglePattern togglePattern = Substitute.For<ITogglePattern>();
             // togglePattern.Toggle().Received();
-            
+            // togglePattern.Toggle.SetDockPosition(Arg.Do<DockPosition>(pos => data.DockPattern_DockPosition = pos));
             togglePattern.Current.ToggleState.Returns(data.TogglePattern_ToggleState);
             return togglePattern;
         }
@@ -214,6 +224,7 @@ namespace UIAutomationUnitTests
             // transformPattern.Move
             // transformPattern.Resize
             // transformPattern.Rotate
+            // transformPattern.Move(Arg.Do<double>(x, y => transformPattern.GetParentElement().Current.BoundingRectangle.X.Returns(x); transformPattern.GetParentElement().Current.BoundingRectangle.Y.Returns(y)));
             transformPattern.Current.CanMove.Returns(data.TransformPattern_CanMove);
             transformPattern.Current.CanResize.Returns(data.TransformPattern_CanResize);
             transformPattern.Current.CanRotate.Returns(data.TransformPattern_CanRotate);
@@ -226,6 +237,7 @@ namespace UIAutomationUnitTests
         public static IValuePattern GetValuePattern(PatternsData data)
         {
             IValuePattern valuePattern = Substitute.For<IValuePattern>();
+            valuePattern.SetValue(Arg.Do<string>(arg => data.ValuePattern_Value = arg));
             IValuePatternInformation valuePatternInformation = Substitute.For<IValuePatternInformation>();
             valuePatternInformation.Value.Returns(data.ValuePattern_Value);
             valuePattern.Current.Returns(valuePatternInformation);
@@ -239,7 +251,7 @@ namespace UIAutomationUnitTests
         {
             IWindowPattern windowPattern = Substitute.For<IWindowPattern>();
             // windowPattern.Close()
-            windowPattern.SetWindowVisualState(data.WindowPattern_WindowVisualStateSet);
+            windowPattern.SetWindowVisualState(Arg.Do<WindowVisualState>(state => data.WindowPattern_WindowVisualState = state));
             windowPattern.WaitForInputIdle(data.WindowPattern_Milliseconds);
             
             windowPattern.Current.CanMaximize.Returns(data.WindowPattern_CanMaximize);
@@ -311,6 +323,7 @@ namespace UIAutomationUnitTests
             TestPattern<IWindowPattern>(WindowPattern.Pattern, patterns, ref element);
             
             if (expected) { element.Tag.Returns("expected"); }
+            element.GetSourceElement().Returns<object>(element);
             return element;
         }
         
@@ -330,12 +343,16 @@ namespace UIAutomationUnitTests
                     fakeElement as IUiElement);
             
             return proxiedElement;
-            
         }
         
         internal static IUiElement GetAutomationElementForMethodsOfObjectModel(IBasePattern[] patterns)
         {
             return GetAutomationElementForObjectModelTesting(ControlType.Button, string.Empty, string.Empty, string.Empty, patterns, true);
+            
+            // IUiElement eltNew = GetAutomationElementForObjectModelTesting(ControlType.Button, string.Empty, string.Empty, string.Empty, patterns, true);
+            
+            // return eltNew;
+            
         }
         
         public static GetControlCmdletBase Get_GetControlCmdletBase(ControlType[] controlTypes, string name, string automationId, string className, string txtValue)

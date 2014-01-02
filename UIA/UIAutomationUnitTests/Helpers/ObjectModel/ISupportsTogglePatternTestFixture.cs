@@ -12,6 +12,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
     using System.Windows.Automation;
     using UIAutomation;
     using MbUnit.Framework;
+    using NSubstitute;
     
     /// <summary>
     /// Description of ISupportsTogglePatternTestFixture.
@@ -52,15 +53,15 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             
             Assert.IsNotNull(navigatableElement as ISupportsNavigation);
             
-            ISupportsConversion navigatableElement =
+            ISupportsConversion conversibleElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsConversion;
             
-            Assert.IsNotNull(conversibleeElement as ISupportsConversion);
+            Assert.IsNotNull(conversibleElement as ISupportsConversion);
         }
         
         [Test]
-        public void Toggle_ImplementsPattern()
+        public void Toggle_ImplementsPatternInQuestion()
         {
             ISupportsTogglePattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
@@ -79,18 +80,18 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Assert.IsNull(element as ISupportsValuePattern);
         }
         
-        [Test]
-        public void Toggle_Toggle()
-        {
-            // Arrange
-            ISupportsTogglePattern element =
-                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-                    new IBasePattern[] { FakeFactory.GetTogglePattern(new PatternsData()) }) as ISupportsTogglePattern;
-            
-            // Act
-            // Assert
-            element.Toggle();
-        }
+//        [Test]
+//        public void Toggle_Toggle()
+//        {
+//            // Arrange
+//            ISupportsTogglePattern element =
+//                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+//                    new IBasePattern[] { FakeFactory.GetTogglePattern(new PatternsData()) }) as ISupportsTogglePattern;
+//            
+//            // Act
+//            // Assert
+//            element.Toggle();
+//        }
         
         [Test]
         public void Toggle_ToggleState_Indeterminate()
@@ -132,6 +133,54 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
                     new IBasePattern[] { FakeFactory.GetTogglePattern(new PatternsData() { TogglePattern_ToggleState = expectedValue }) }) as ISupportsTogglePattern;
             
             // Act
+            
+            // Assert
+            Assert.AreEqual(expectedValue, element.ToggleState);
+        }
+        
+        [Test]
+        public void Toggle_Toggle_On()
+        {
+            // Arrange
+            ToggleState expectedValue = ToggleState.On;
+            ISupportsTogglePattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetTogglePattern(new PatternsData()) }) as ISupportsTogglePattern;
+            
+            // Act
+            element.ToggleState.Returns(ToggleState.Off);
+            element.Toggle();
+            try {
+                (element as IUiElement).GetCurrentPattern<ITogglePattern>(TogglePattern.Pattern).Received().Toggle();
+                if (ToggleState.Off == element.ToggleState) {
+                    element.ToggleState.Returns(ToggleState.On);
+                }
+            }
+            catch {}
+            
+            // Assert
+            Assert.AreEqual(expectedValue, element.ToggleState);
+        }
+        
+        [Test]
+        public void Toggle_Toggle_Off()
+        {
+            // Arrange
+            ToggleState expectedValue = ToggleState.Off;
+            ISupportsTogglePattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetTogglePattern(new PatternsData()) }) as ISupportsTogglePattern;
+            
+            // Act
+            element.ToggleState.Returns(ToggleState.On);
+            element.Toggle();
+            try {
+                (element as IUiElement).GetCurrentPattern<ITogglePattern>(TogglePattern.Pattern).Received().Toggle();
+                if (ToggleState.On == element.ToggleState) {
+                    element.ToggleState.Returns(ToggleState.Off);
+                }
+            }
+            catch {}
             
             // Assert
             Assert.AreEqual(expectedValue, element.ToggleState);

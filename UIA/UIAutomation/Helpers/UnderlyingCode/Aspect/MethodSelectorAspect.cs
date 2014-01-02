@@ -491,6 +491,7 @@ namespace UIAutomation
                 } else {
                     invocation.Proceed();
                 }
+                
                 if (invocation.ReturnValue == invocation.InvocationTarget) {
                     invocation.ReturnValue = invocation.Proxy;
                 }

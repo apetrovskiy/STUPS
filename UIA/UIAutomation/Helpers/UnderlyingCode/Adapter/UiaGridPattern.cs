@@ -67,7 +67,7 @@ namespace UIAutomation
 		// internal SafePatternHandle _hPattern;
 		// internal bool _cached;
 		
-		public IGridPatternInformation Cached {
+		public virtual IGridPatternInformation Cached {
 			get {
 				// Misc.ValidateCached(this._cached);
 				// return new GridPattern.GridPatternInformation(this._el, true);
@@ -75,7 +75,7 @@ namespace UIAutomation
 			}
 		}
 		
-		public IGridPatternInformation Current {
+		public virtual IGridPatternInformation Current {
 			get {
 				// Misc.ValidateCurrent(this._hPattern);
 				// return new GridPattern.GridPatternInformation(this._el, false);
@@ -88,7 +88,7 @@ namespace UIAutomation
 //			this._cached = cached;
 //		}
 		
-		public IUiElement GetItem(int row, int column)
+		public virtual IUiElement GetItem(int row, int column)
 		{
 			// SafeNodeHandle hnode = UiaCoreApi.GridPattern_GetItem(this._hPattern, row, column);
 			// return AutomationElement.Wrap(hnode);

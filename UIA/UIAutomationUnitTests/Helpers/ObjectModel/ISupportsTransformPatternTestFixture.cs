@@ -12,6 +12,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
     using System.Windows.Automation;
     using UIAutomation;
     using MbUnit.Framework;
+    using NSubstitute;
     
     /// <summary>
     /// Description of ISupportsTransformPatternTestFixture.
@@ -52,15 +53,15 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             
             Assert.IsNotNull(navigatableElement as ISupportsNavigation);
             
-            ISupportsConversion navigatableElement =
+            ISupportsConversion conversibleElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsConversion;
             
-            Assert.IsNotNull(conversibleeElement as ISupportsConversion);
+            Assert.IsNotNull(conversibleElement as ISupportsConversion);
         }
         
         [Test]
-        public void Transform_ImplementsPattern()
+        public void Transform_ImplementsPatternInQuestion()
         {
             ISupportsTransformPattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
@@ -79,44 +80,44 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Assert.IsNull(element as ISupportsValuePattern);
         }
         
-        [Test]
-        public void Transform_Move()
-        {
-            // Arrange
-            ISupportsTransformPattern element =
-                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-                    new IBasePattern[] { FakeFactory.GetTransformPattern(new PatternsData()) }) as ISupportsTransformPattern;
-            
-            // Act
-            // Assert
-            element.Move(1, 1);
-        }
-        
-        [Test]
-        public void Transform_Resize()
-        {
-            // Arrange
-            ISupportsTransformPattern element =
-                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-                    new IBasePattern[] { FakeFactory.GetTransformPattern(new PatternsData()) }) as ISupportsTransformPattern;
-            
-            // Act
-            // Assert
-            element.Resize(1, 1);
-        }
-        
-        [Test]
-        public void Transform_Rotate()
-        {
-            // Arrange
-            ISupportsTransformPattern element =
-                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-                    new IBasePattern[] { FakeFactory.GetTransformPattern(new PatternsData()) }) as ISupportsTransformPattern;
-            
-            // Act
-            // Assert
-            element.Rotate(1);
-        }
+//        [Test]
+//        public void Transform_Move()
+//        {
+//            // Arrange
+//            ISupportsTransformPattern element =
+//                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+//                    new IBasePattern[] { FakeFactory.GetTransformPattern(new PatternsData()) }) as ISupportsTransformPattern;
+//            
+//            // Act
+//            // Assert
+//            element.Move(1, 1);
+//        }
+//        
+//        [Test]
+//        public void Transform_Resize()
+//        {
+//            // Arrange
+//            ISupportsTransformPattern element =
+//                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+//                    new IBasePattern[] { FakeFactory.GetTransformPattern(new PatternsData()) }) as ISupportsTransformPattern;
+//            
+//            // Act
+//            // Assert
+//            element.Resize(1, 1);
+//        }
+//        
+//        [Test]
+//        public void Transform_Rotate()
+//        {
+//            // Arrange
+//            ISupportsTransformPattern element =
+//                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+//                    new IBasePattern[] { FakeFactory.GetTransformPattern(new PatternsData()) }) as ISupportsTransformPattern;
+//            
+//            // Act
+//            // Assert
+//            element.Rotate(1);
+//        }
         
         [Test]
         public void Transform_CanMove()
@@ -161,6 +162,72 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             
             // Assert
             Assert.AreEqual(expectedValue, element.CanRotate);
+        }
+        
+        [Test]
+        public void Transform_Move()
+        {
+            // Arrange
+            bool expectedResult = true;
+            bool result = false;
+            ISupportsTransformPattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetTransformPattern(new PatternsData()) }) as ISupportsTransformPattern;
+            
+            // Act
+            element.Move(1, 1);
+            try {
+                (element as IUiElement).GetCurrentPattern<ITransformPattern>(TransformPattern.Pattern).Received(1).Move(1, 1);
+                result = true;
+            }
+            catch {}
+            
+            // Assert
+            Assert.AreEqual(expectedResult, result);
+        }
+        
+        [Test]
+        public void Transform_Resize()
+        {
+            // Arrange
+            bool expectedResult = true;
+            bool result = false;
+            ISupportsTransformPattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetTransformPattern(new PatternsData()) }) as ISupportsTransformPattern;
+            
+            // Act
+            element.Resize(1, 1);
+            try {
+                (element as IUiElement).GetCurrentPattern<ITransformPattern>(TransformPattern.Pattern).Received(1).Resize(1, 1);
+                result = true;
+            }
+            catch {}
+            
+            // Assert
+            Assert.AreEqual(expectedResult, result);
+        }
+        
+        [Test]
+        public void Transform_Rotate()
+        {
+            // Arrange
+            bool expectedResult = true;
+            bool result = false;
+            ISupportsTransformPattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetTransformPattern(new PatternsData()) }) as ISupportsTransformPattern;
+            
+            // Act
+            element.Rotate(1);
+            try {
+                (element as IUiElement).GetCurrentPattern<ITransformPattern>(TransformPattern.Pattern).Received(1).Rotate(1);
+                result = true;
+            }
+            catch {}
+            
+            // Assert
+            Assert.AreEqual(expectedResult, result);
         }
     }
 }

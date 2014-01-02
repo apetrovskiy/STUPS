@@ -319,7 +319,9 @@ namespace UIAutomationSpy
                 // 20131118
                 // property to method
                 //if ((new UiElement(walker.GetParent(element.SourceElement))) == UiElement.RootElement) {
-                if (Equals(new UiElement(walker.GetParent(element.GetSourceElement())), UiElement.RootElement)) {
+                // 20140102
+                // if (Equals(new UiElement(walker.GetParent(element.GetSourceElement())), UiElement.RootElement)) {
+                if (Equals(new UiElement(walker.GetParent(element.GetSourceElement() as AutomationElement)), UiElement.RootElement)) {
                     elementControlType = "Window";
                 }
                 /*
@@ -396,7 +398,9 @@ namespace UIAutomationSpy
                         // 20131118
                         // property to method
                         //new UiElement(walker.GetParent(testparent.SourceElement));
-                        new UiElement(walker.GetParent(testparent.GetSourceElement()));
+                        // 20140102
+                        // new UiElement(walker.GetParent(testparent.GetSourceElement()));
+                        new UiElement(walker.GetParent(testparent.GetSourceElement() as AutomationElement));
                     if (testparent.Current.ProcessId <= 0) continue;
                     /*
                     if (testparent == null || (int) testparent.Current.ProcessId <= 0) continue;

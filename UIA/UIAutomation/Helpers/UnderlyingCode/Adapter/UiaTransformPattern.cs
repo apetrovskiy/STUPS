@@ -72,7 +72,7 @@ namespace UIAutomation
 		// private SafePatternHandle _hPattern;
 		// private bool _cached;
 		
-		public ITransformPatternInformation Cached {
+		public virtual ITransformPatternInformation Cached {
 			get {
 				// Misc.ValidateCached(this._cached);
 				// return new TransformPattern.TransformPatternInformation(this._el, true);
@@ -80,7 +80,7 @@ namespace UIAutomation
 			}
 		}
 		
-		public ITransformPatternInformation Current {
+		public virtual ITransformPatternInformation Current {
 			get {
 				// Misc.ValidateCurrent(this._hPattern);
 				// return new TransformPattern.TransformPatternInformation(this._el, false);
@@ -92,17 +92,17 @@ namespace UIAutomation
 //			this._hPattern = hPattern;
 //			this._cached = cached;
 //		}
-		public void Move(double x, double y)
+		public virtual void Move(double x, double y)
 		{
 			// UiaCoreApi.TransformPattern_Move(this._hPattern, x, y);
 			this._transformPattern.Move(x, y);
 		}
-		public void Resize(double width, double height)
+		public virtual void Resize(double width, double height)
 		{
 			// UiaCoreApi.TransformPattern_Resize(this._hPattern, width, height);
 			this._transformPattern.Resize(width, height);
 		}
-		public void Rotate(double degrees)
+		public virtual void Rotate(double degrees)
 		{
 			// UiaCoreApi.TransformPattern_Rotate(this._hPattern, degrees);
 			this._transformPattern.Rotate(degrees);

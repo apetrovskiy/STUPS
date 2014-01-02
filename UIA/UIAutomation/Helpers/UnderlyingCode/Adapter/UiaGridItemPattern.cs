@@ -83,7 +83,7 @@ namespace UIAutomation
 		// private SafePatternHandle _hPattern;
 		// internal bool _cached;
 		
-		public IGridItemPatternInformation Cached {
+		public virtual IGridItemPatternInformation Cached {
 			get {
 				// Misc.ValidateCached(this._cached);
 				// return new GridItemPattern.GridItemPatternInformation(this._el, true);
@@ -91,7 +91,7 @@ namespace UIAutomation
 			}
 		}
 		
-		public IGridItemPatternInformation Current {
+		public virtual IGridItemPatternInformation Current {
 			get {
 				// Misc.ValidateCurrent(this._hPattern);
 				// return new GridItemPattern.GridItemPatternInformation(this._el, false);

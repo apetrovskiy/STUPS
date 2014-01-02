@@ -12,11 +12,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
     using System.Windows.Automation;
     using UIAutomation;
     using MbUnit.Framework;
+    using NSubstitute;
     
     /// <summary>
     /// Description of ISupportsScrollItemPatternTestFixture.
     /// </summary>
-    // [Ignore]
     [TestFixture]
     public class ISupportsScrollItemPatternTestFixture
     {
@@ -52,15 +52,15 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             
             Assert.IsNotNull(navigatableElement as ISupportsNavigation);
             
-            ISupportsConversion navigatableElement =
+            ISupportsConversion conversibleElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsConversion;
             
-            Assert.IsNotNull(conversibleeElement as ISupportsConversion);
+            Assert.IsNotNull(conversibleElement as ISupportsConversion);
         }
         
         [Test]
-        public void ScrollItem_ImplementsPattern()
+        public void ScrollItem_ImplementsPatternInQuestion()
         {
             ISupportsScrollItemPattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
@@ -83,13 +83,22 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void ScrollItem_ScrollIntoView()
         {
             // Arrange
+            bool expectedResult = true;
+            bool result = false;
             ISupportsScrollItemPattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetScrollItemPattern(new PatternsData()) }) as ISupportsScrollItemPattern;
             
             // Act
-            // Assert
             element.ScrollIntoView();
+            try {
+                (element as IUiElement).GetCurrentPattern<IScrollItemPattern>(ScrollItemPattern.Pattern).Received(1).ScrollIntoView();
+                result = true;
+            }
+            catch {}
+            
+            // Assert
+            Assert.AreEqual(expectedResult, result);
         }
     }
 }

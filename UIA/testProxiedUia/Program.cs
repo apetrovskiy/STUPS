@@ -47,9 +47,9 @@ namespace testProxiedUia
             
             var originalElement =
                 proxiedtypedRootElement.GetSourceElement();
-            Console.WriteLine(originalElement.Current.Name);
-            Console.WriteLine(originalElement.Current.AutomationId);
-            Console.WriteLine(originalElement.Current.ClassName);
+//            Console.WriteLine(originalElement.Current.Name);
+//            Console.WriteLine(originalElement.Current.AutomationId);
+//            Console.WriteLine(originalElement.Current.ClassName);
             var arr = proxiedtypedRootElement.GetSupportedPatterns();
             foreach (var ptrn in arr) {
                 Console.WriteLine(ptrn.ToString());

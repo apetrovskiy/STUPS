@@ -36,7 +36,9 @@ namespace UIAutomation
                     System.Windows.Automation.Condition.TrueCondition);
             
             try {
-                result = AutomationFactory.GetUiElement(walker.GetParent(element.GetSourceElement()));
+                // 20140102
+                // result = AutomationFactory.GetUiElement(walker.GetParent(element.GetSourceElement()));
+                result = AutomationFactory.GetUiElement(walker.GetParent(element.GetSourceElement() as AutomationElement));
             }
             catch {}
             
@@ -56,11 +58,15 @@ namespace UIAutomation
             
             try {
                 
-                IUiElement testparent = AutomationFactory.GetUiElement(walker.GetParent(element.GetSourceElement()));
+                // 20140102
+                // IUiElement testparent = AutomationFactory.GetUiElement(walker.GetParent(element.GetSourceElement()));
+                IUiElement testparent = AutomationFactory.GetUiElement(walker.GetParent(element.GetSourceElement() as AutomationElement));
                 while (testparent != null &&
                        testparent.Current.NativeWindowHandle == 0) {
                     testparent =
-                        AutomationFactory.GetUiElement(walker.GetParent(testparent.GetSourceElement()));
+                        // 20140102
+                        // AutomationFactory.GetUiElement(walker.GetParent(testparent.GetSourceElement()));
+                        AutomationFactory.GetUiElement(walker.GetParent(testparent.GetSourceElement() as AutomationElement));
                     if (testparent != null &&
                         (int)testparent.Current.ProcessId > 0 &&
                         testparent.Current.NativeWindowHandle != 0) {
@@ -93,7 +99,9 @@ namespace UIAutomation
             
             try {
                 
-                IUiElement testParent = AutomationFactory.GetUiElement(walker.GetParent(element.GetSourceElement()));
+                // 20140102
+                // IUiElement testParent = AutomationFactory.GetUiElement(walker.GetParent(element.GetSourceElement()));
+                IUiElement testParent = AutomationFactory.GetUiElement(walker.GetParent(element.GetSourceElement() as AutomationElement));
                     
                 if (scope == TreeScope.Parent || scope == TreeScope.Ancestors) {
                     
@@ -117,7 +125,9 @@ namespace UIAutomation
                        !testParent.Current.Equals(UiElement.RootElement.Current)) {
                     
                     testParent =
-                        AutomationFactory.GetUiElement(walker.GetParent(testParent.GetSourceElement()));
+                        // 20140102
+                        // AutomationFactory.GetUiElement(walker.GetParent(testParent.GetSourceElement()));
+                        AutomationFactory.GetUiElement(walker.GetParent(testParent.GetSourceElement() as AutomationElement));
                     if (testParent != null &&
                         (int)testParent.Current.ProcessId > 0 &&
                         // 20131226
@@ -159,7 +169,9 @@ namespace UIAutomation
                 while (testParent != null && (int)testParent.Current.ProcessId > 0) {
                     
                     testParent =
-                        AutomationFactory.GetUiElement(walker.GetParent(testParent.GetSourceElement()));
+                        // 20140102
+                        // AutomationFactory.GetUiElement(walker.GetParent(testParent.GetSourceElement()));
+                        AutomationFactory.GetUiElement(walker.GetParent(testParent.GetSourceElement() as AutomationElement));
                     
                     if (testParent == null || (int) testParent.Current.ProcessId <= 0) continue;
                     if (testParent == cmdlet.OddRootElement)
@@ -191,7 +203,9 @@ namespace UIAutomation
                             // 20131118
                             // property to method
                             //if (ObjectsFactory.GetUiElement(walker.GetParent(testParent.SourceElement)) == cmdlet.oddRootElement) {
-                            if (AutomationFactory.GetUiElement(walker.GetParent(testParent.GetSourceElement())) == cmdlet.OddRootElement) {
+                            // 20140102
+                            // if (AutomationFactory.GetUiElement(walker.GetParent(testParent.GetSourceElement())) == cmdlet.OddRootElement) {
+                            if (AutomationFactory.GetUiElement(walker.GetParent(testParent.GetSourceElement() as AutomationElement)) == cmdlet.OddRootElement) {
                                 parentControlType = "Window";
                             }
                         }

@@ -131,7 +131,9 @@ namespace UIAutomation
         public static IUiElement GetContainingGridGridItemPattern(this IUiElement element)
         {
             try {
-                return AutomationFactory.GetUiElement(element.GetCurrentPattern<IGridItemPattern>(GridItemPattern.Pattern).Current.ContainingGrid.GetSourceElement());
+                // 20140102
+                // return AutomationFactory.GetUiElement(element.GetCurrentPattern<IGridItemPattern>(GridItemPattern.Pattern).Current.ContainingGrid.GetSourceElement());
+                return AutomationFactory.GetUiElement(element.GetCurrentPattern<IGridItemPattern>(GridItemPattern.Pattern).Current.ContainingGrid.GetSourceElement() as AutomationElement);
                 
             } catch (Exception eExtensionMethod) {
                 // 
@@ -146,6 +148,13 @@ namespace UIAutomation
             try {
                 // return element.GetCurrentPattern<IGridPattern>(GridPattern.Pattern).GetItem(row, column);
                 return AutomationFactory.GetUiElement(element.GetCurrentPattern<IGridPattern>(GridPattern.Pattern).GetItem(row, column).GetSourceElement());
+                
+                // 20140102
+                // IUiElement eltInExtMethod = AutomationFactory.GetUiElement(element.GetCurrentPattern<IGridPattern>(GridPattern.Pattern).GetItem(row, column).GetSourceElement());
+                // IUiElement eltInExtMethod = AutomationFactory.GetUiElement(element.GetCurrentPattern<IGridPattern>(GridPattern.Pattern).GetItem(row, column).GetSourceElement()); // as AutomationElement);
+                
+                // return eltInExtMethod;
+                
             } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
@@ -832,7 +841,9 @@ namespace UIAutomation
         public static IUiElement GetContainingGridTableItemPattern(this IUiElement element)
         {
             try {
-                return AutomationFactory.GetUiElement(element.GetCurrentPattern<ITableItemPattern>(TableItemPattern.Pattern).Current.ContainingGrid.GetSourceElement());
+                // 20140102
+                // return AutomationFactory.GetUiElement(element.GetCurrentPattern<ITableItemPattern>(TableItemPattern.Pattern).Current.ContainingGrid.GetSourceElement());
+                return AutomationFactory.GetUiElement(element.GetCurrentPattern<ITableItemPattern>(TableItemPattern.Pattern).Current.ContainingGrid.GetSourceElement() as AutomationElement);
             } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
@@ -1214,7 +1225,9 @@ namespace UIAutomation
 			TreeWalker walker = new TreeWalker(System.Windows.Automation.Condition.TrueCondition);
 
 			try {
-				result = AutomationFactory.GetUiElement(walker.GetParent(element.GetSourceElement()));
+			    // 20140102
+				// result = AutomationFactory.GetUiElement(walker.GetParent(element.GetSourceElement()));
+				result = AutomationFactory.GetUiElement(walker.GetParent(element.GetSourceElement() as AutomationElement));
 			} catch {
 			}
 
@@ -1228,7 +1241,9 @@ namespace UIAutomation
 			TreeWalker walker = new TreeWalker(System.Windows.Automation.Condition.TrueCondition);
 
 			try {
-				result = AutomationFactory.GetUiElement(walker.GetFirstChild(element.GetSourceElement()));
+			    // 20140102
+				// result = AutomationFactory.GetUiElement(walker.GetFirstChild(element.GetSourceElement()));
+				result = AutomationFactory.GetUiElement(walker.GetFirstChild(element.GetSourceElement() as AutomationElement));
 			} catch {
 			}
 
@@ -1242,7 +1257,9 @@ namespace UIAutomation
 			TreeWalker walker = new TreeWalker(System.Windows.Automation.Condition.TrueCondition);
 
 			try {
-				result = AutomationFactory.GetUiElement(walker.GetLastChild(element.GetSourceElement()));
+			    // 20140102
+				// result = AutomationFactory.GetUiElement(walker.GetLastChild(element.GetSourceElement()));
+				result = AutomationFactory.GetUiElement(walker.GetLastChild(element.GetSourceElement() as AutomationElement));
 			} catch {
 			}
 
@@ -1256,7 +1273,9 @@ namespace UIAutomation
 			TreeWalker walker = new TreeWalker(System.Windows.Automation.Condition.TrueCondition);
 
 			try {
-				result = AutomationFactory.GetUiElement(walker.GetNextSibling(element.GetSourceElement()));
+			    // 20140102
+				// result = AutomationFactory.GetUiElement(walker.GetNextSibling(element.GetSourceElement()));
+				result = AutomationFactory.GetUiElement(walker.GetNextSibling(element.GetSourceElement() as AutomationElement));
 			} catch {
 			}
 
@@ -1270,7 +1289,9 @@ namespace UIAutomation
 			TreeWalker walker = new TreeWalker(System.Windows.Automation.Condition.TrueCondition);
 
 			try {
-				result = AutomationFactory.GetUiElement(walker.GetPreviousSibling(element.GetSourceElement()));
+			    // 20140102
+				// result = AutomationFactory.GetUiElement(walker.GetPreviousSibling(element.GetSourceElement()));
+				result = AutomationFactory.GetUiElement(walker.GetPreviousSibling(element.GetSourceElement() as AutomationElement));
 			} catch {
 			}
 
@@ -1284,6 +1305,10 @@ namespace UIAutomation
 			return element;
 		}
         #endregion Highlighter
+        #region Export
+        #endregion Export
+        #region Conversion
+        #endregion Conversion
         #endregion Patterns
     }
 }

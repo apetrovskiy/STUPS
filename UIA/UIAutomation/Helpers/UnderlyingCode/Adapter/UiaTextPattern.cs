@@ -93,29 +93,31 @@ namespace UIAutomation
 //			this._hPattern = hPattern;
 //			this._element = el;
 //		}
-		public TextPatternRange[] GetSelection()
+		public virtual TextPatternRange[] GetSelection()
 		{
 			// SafeTextRangeHandle[] hTextRanges = UiaCoreApi.TextPattern_GetSelection(this._hPattern);
 			// return TextPatternRange.Wrap(hTextRanges, this);
 			return this._textPattern.GetSelection();
 		}
-		public TextPatternRange[] GetVisibleRanges()
+		public virtual TextPatternRange[] GetVisibleRanges()
 		{
 			// SafeTextRangeHandle[] hTextRanges = UiaCoreApi.TextPattern_GetVisibleRanges(this._hPattern);
 			// return TextPatternRange.Wrap(hTextRanges, this);
 			return this._textPattern.GetVisibleRanges();
 		}
 		
-		public TextPatternRange RangeFromChild(IUiElement childElement)
+		public virtual TextPatternRange RangeFromChild(IUiElement childElement)
 		{
 //			if (childElement == null) {
 //				throw new ArgumentNullException("childElement");
 //			}
 //			SafeTextRangeHandle hTextRange = UiaCoreApi.TextPattern_RangeFromChild(this._hPattern, childElement.RawNode);
 //			return TextPatternRange.Wrap(hTextRange, this);
-		    return this._textPattern.RangeFromChild(childElement.GetSourceElement());
+		    // 20140102
+		    // return this._textPattern.RangeFromChild(childElement.GetSourceElement());
+		    return this._textPattern.RangeFromChild(childElement.GetSourceElement() as AutomationElement);
 		}
-		public TextPatternRange RangeFromPoint(Point screenLocation)
+		public virtual TextPatternRange RangeFromPoint(Point screenLocation)
 		{
 //			Rect rect = (Rect)this._element.GetCurrentPropertyValue(AutomationElement.BoundingRectangleProperty);
 //			if (screenLocation.X < rect.Left || screenLocation.X >= rect.Right || screenLocation.Y < rect.Top || screenLocation.Y >= rect.Bottom) {

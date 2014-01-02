@@ -43,7 +43,9 @@ namespace UIAutomation
 		IUiElement CachedParent { get; }
 		IUiEltCollection CachedChildren { get; }
         
-		AutomationElement GetSourceElement();
+		// AutomationElement GetSourceElement();
+		// T GetSourceElement<T>();
+		object GetSourceElement();
 		void SetSourceElement<T>(T element);
 		string Tag { get; set; }
 

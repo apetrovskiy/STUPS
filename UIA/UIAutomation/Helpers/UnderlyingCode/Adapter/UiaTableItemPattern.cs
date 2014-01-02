@@ -110,7 +110,7 @@ namespace UIAutomation
 		
 		// private SafePatternHandle _hPattern;
 		
-		public new ITableItemPatternInformation Cached {
+		public virtual ITableItemPatternInformation Cached {
 			get {
 				// Misc.ValidateCached(this._cached);
 				// return new TableItemPattern.TableItemPatternInformation(this._el, true);
@@ -118,7 +118,7 @@ namespace UIAutomation
 			}
 		}
 		
-		public new ITableItemPatternInformation Current {
+		public virtual ITableItemPatternInformation Current {
 			get {
 				// Misc.ValidateCurrent(this._hPattern);
 				// return new TableItemPattern.TableItemPatternInformation(this._el, false);

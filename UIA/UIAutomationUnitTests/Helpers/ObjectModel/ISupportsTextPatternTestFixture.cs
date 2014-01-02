@@ -13,6 +13,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
     using System.Windows.Automation.Text;
     using UIAutomation;
     using MbUnit.Framework;
+    using NSubstitute;
     
     /// <summary>
     /// Description of ISupportsTextPatternTestFixture.
@@ -53,15 +54,15 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             
             Assert.IsNotNull(navigatableElement as ISupportsNavigation);
             
-            ISupportsConversion navigatableElement =
+            ISupportsConversion conversibleElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsConversion;
             
-            Assert.IsNotNull(conversibleeElement as ISupportsConversion);
+            Assert.IsNotNull(conversibleElement as ISupportsConversion);
         }
         
         [Test]
-        public void Text_ImplementsPattern()
+        public void Text_ImplementsPatternInQuestion()
         {
             ISupportsTextPattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
@@ -84,26 +85,44 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Text_GetTextSelection()
         {
             // Arrange
+            bool expectedResult = true;
+            bool result = false;
             ISupportsTextPattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTextPattern(new PatternsData()) }) as ISupportsTextPattern;
             
             // Act
-            // Assert
             element.GetTextSelection();
+            try {
+                var resultData = (element as IUiElement).GetCurrentPattern<ITextPattern>(TextPattern.Pattern).Received(1).GetSelection();
+                result = true;
+            }
+            catch {}
+            
+            // Assert
+            Assert.AreEqual(expectedResult, result);
         }
         
         [Test]
         public void Text_GetVisibleRanges()
         {
             // Arrange
+            bool expectedResult = true;
+            bool result = false;
             ISupportsTextPattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTextPattern(new PatternsData()) }) as ISupportsTextPattern;
             
             // Act
-            // Assert
             element.GetVisibleRanges();
+            try {
+                var resultData = (element as IUiElement).GetCurrentPattern<ITextPattern>(TextPattern.Pattern).Received(1).GetVisibleRanges();
+                result = true;
+            }
+            catch {}
+            
+            // Assert
+            Assert.AreEqual(expectedResult, result);
         }
         
         [Test]
@@ -111,13 +130,22 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Text_RangeFromChild()
         {
             // Arrange
+            bool expectedResult = true;
+            bool result = false;
             ISupportsTextPattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTextPattern(new PatternsData()) }) as ISupportsTextPattern;
             
             // Act
-            // Assert
             element.RangeFromChild(new UiElement());
+            try {
+                var resultData = (element as IUiElement).GetCurrentPattern<ITextPattern>(TextPattern.Pattern).Received(1).RangeFromChild(new UiElement());
+                result = true;
+            }
+            catch {}
+            
+            // Assert
+            Assert.AreEqual(expectedResult, result);
         }
         
         [Test]
@@ -125,13 +153,22 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Text_RangeFromPoint()
         {
             // Arrange
+            bool expectedResult = true;
+            bool result = false;
             ISupportsTextPattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTextPattern(new PatternsData()) }) as ISupportsTextPattern;
             
             // Act
-            // Assert
             element.RangeFromPoint(new System.Windows.Point());
+            try {
+                var resultData = (element as IUiElement).GetCurrentPattern<ITextPattern>(TextPattern.Pattern).Received(1).RangeFromPoint(new System.Windows.Point());
+                result = true;
+            }
+            catch {}
+            
+            // Assert
+            Assert.AreEqual(expectedResult, result);
         }
         
         

@@ -12,6 +12,8 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
     using System.Windows.Automation;
     using UIAutomation;
     using MbUnit.Framework;
+    using NSubstitute;
+    
     
     /// <summary>
     /// Description of ISupportsTablePatternTestFixture.
@@ -52,17 +54,17 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             
             Assert.IsNotNull(navigatableElement as ISupportsNavigation);
             
-            ISupportsConversion navigatableElement =
+            ISupportsConversion conversibleElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsConversion;
             
-            Assert.IsNotNull(conversibleeElement as ISupportsConversion);
+            Assert.IsNotNull(conversibleElement as ISupportsConversion);
         }
         
         [Test]
         public void Table_ImplementsExportPattern()
         {
-            ISupportsExport invokableElement =
+            ISupportsExport exportableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetGridPattern(new PatternsData()) }) as ISupportsExport;
             
@@ -70,7 +72,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         }
         
         [Test]
-        public void Table_ImplementsPattern()
+        public void Table_ImplementsPatternInQuestion()
         {
             ISupportsTablePattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
@@ -93,26 +95,44 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Table_GetColumnHeaders()
         {
             // Arrange
+            bool expectedResult = true;
+            bool result = false;
             ISupportsTablePattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTablePattern(new PatternsData()) }) as ISupportsTablePattern;
             
             // Act
-            // Assert
             element.GetColumnHeaders();
+            try {
+                (element as IUiElement).GetCurrentPattern<ITablePattern>(TablePattern.Pattern).Current.Received(1).GetColumnHeaders();
+                result = true;
+            }
+            catch {}
+            
+            // Assert
+            Assert.AreEqual(expectedResult, result);
         }
         
         [Test]
         public void Table_GetRowHeaders()
         {
             // Arrange
+            bool expectedResult = true;
+            bool result = false;
             ISupportsTablePattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTablePattern(new PatternsData()) }) as ISupportsTablePattern;
             
             // Act
-            // Assert
             element.GetRowHeaders();
+            try {
+                (element as IUiElement).GetCurrentPattern<ITablePattern>(TablePattern.Pattern).Current.Received(1).GetRowHeaders();
+                result = true;
+            }
+            catch {}
+            
+            // Assert
+            Assert.AreEqual(expectedResult, result);
         }
         
         [Test]
@@ -161,10 +181,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         }
         
         [Test]
-        public void Table_RowCount()
+        public void Table_ExportToCsv()
         {
             // Arrange
-            int expectedValue = 4;
+            // int expectedValue = 4;
             ISupportsExport element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetGridPattern(new PatternsData()) }) as ISupportsExport;
@@ -173,6 +193,6 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             
             // Assert
             element.ExportToCsv();
-        
+        }
     }
 }

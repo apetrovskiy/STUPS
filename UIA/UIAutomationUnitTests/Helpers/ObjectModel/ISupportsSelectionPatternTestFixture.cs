@@ -12,11 +12,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
     using System.Windows.Automation;
     using UIAutomation;
     using MbUnit.Framework;
+    using NSubstitute;
     
     /// <summary>
     /// Description of ISupportsSelectionPatternTestFixture.
     /// </summary>
-    // [Ignore]
     [TestFixture]
     public class ISupportsSelectionPatternTestFixture
     {
@@ -52,15 +52,15 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             
             Assert.IsNotNull(navigatableElement as ISupportsNavigation);
             
-            ISupportsConversion navigatableElement =
+            ISupportsConversion conversibleElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsConversion;
             
-            Assert.IsNotNull(conversibleeElement as ISupportsConversion);
+            Assert.IsNotNull(conversibleElement as ISupportsConversion);
         }
         
         [Test]
-        public void Selection_ImplementsPattern()
+        public void Selection_ImplementsPatternInQuestion()
         {
             ISupportsSelectionPattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
@@ -83,13 +83,22 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Selection_GetSelection()
         {
             // Arrange
+            bool expectedResult = true;
+            bool result = false;
             ISupportsSelectionPattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetSelectionPattern(new PatternsData()) }) as ISupportsSelectionPattern;
             
             // Act
-            // Assert
             element.GetSelection();
+            try {
+                var resultData = (element as IUiElement).GetCurrentPattern<ISelectionPattern>(SelectionPattern.Pattern).Current.Received(1).GetSelection();
+                result = true;
+            }
+            catch {}
+            
+            // Assert
+            Assert.AreEqual(expectedResult, result);
         }
         
         [Test]

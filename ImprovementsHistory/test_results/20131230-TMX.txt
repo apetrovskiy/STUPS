@@ -1,0 +1,6 @@
+SetCurrentTestResult_Failed_OpenTestSuite
++3
+
+NewTestSuite_Name_Duplicated_Id_Duplicated
+OpenTestSuite_WrongId
+OpenTestSuite_WrongName

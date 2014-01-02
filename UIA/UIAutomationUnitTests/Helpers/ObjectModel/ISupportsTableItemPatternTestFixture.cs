@@ -9,9 +9,12 @@
 
 namespace UIAutomationUnitTests.Helpers.ObjectModel
 {
+    using System;
+    
     using System.Windows.Automation;
     using UIAutomation;
     using MbUnit.Framework;
+    using NSubstitute;
     
     /// <summary>
     /// Description of ISupportsTableItemPatternTestFixture.
@@ -52,15 +55,15 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             
             Assert.IsNotNull(navigatableElement as ISupportsNavigation);
             
-            ISupportsConversion navigatableElement =
+            ISupportsConversion conversibleElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsConversion;
             
-            Assert.IsNotNull(conversibleeElement as ISupportsConversion);
+            Assert.IsNotNull(conversibleElement as ISupportsConversion);
         }
         
         [Test]
-        public void TableItem_ImplementsPattern()
+        public void TableItem_ImplementsPatternInQuestion()
         {
             ISupportsTableItemPattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
@@ -83,26 +86,44 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void TableItem_GetColumnHeaderItems()
         {
             // Arrange
+            bool expectedResult = true;
+            bool result = false;
             ISupportsTableItemPattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTableItemPattern(new PatternsData()) }) as ISupportsTableItemPattern;
             
             // Act
-            // Assert
             element.GetColumnHeaderItems();
+            try {
+                (element as IUiElement).GetCurrentPattern<ITableItemPattern>(TableItemPattern.Pattern).Current.Received(1).GetColumnHeaderItems();
+                result = true;
+            }
+            catch {}
+            
+            // Assert
+            Assert.AreEqual(expectedResult, result);
         }
         
         [Test]
         public void TableItem_GetRowHeaderItems()
         {
             // Arrange
+            bool expectedResult = true;
+            bool result = false;
             ISupportsTableItemPattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTableItemPattern(new PatternsData()) }) as ISupportsTableItemPattern;
             
             // Act
-            // Assert
             element.GetRowHeaderItems();
+            try {
+                var resultData = (element as IUiElement).GetCurrentPattern<ITableItemPattern>(TableItemPattern.Pattern).Current.Received(1).GetRowHeaderItems();
+                result = true;
+            }
+            catch {}
+            
+            // Assert
+            Assert.AreEqual(expectedResult, result);
         }
         
         [Test]

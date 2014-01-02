@@ -95,7 +95,7 @@ namespace UIAutomation
 		public static readonly AutomationProperty ColumnHeadersProperty = TablePatternIdentifiers.ColumnHeadersProperty;
 		public static readonly AutomationProperty RowOrColumnMajorProperty = TablePatternIdentifiers.RowOrColumnMajorProperty;
 		
-		public new ITablePatternInformation Cached {
+		public virtual ITablePatternInformation Cached {
 			get {
 				// Misc.ValidateCached(this._cached);
 				// return new TablePattern.TablePatternInformation(this._el, true);
@@ -103,7 +103,7 @@ namespace UIAutomation
 			}
 		}
 		
-		public new ITablePatternInformation Current {
+		public virtual ITablePatternInformation Current {
 			get {
 				// Misc.ValidateCurrent(this._hPattern);
 				// return new TablePattern.TablePatternInformation(this._el, false);

@@ -12,6 +12,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
     using System.Windows.Automation;
     using UIAutomation;
     using MbUnit.Framework;
+    using NSubstitute;
     
     /// <summary>
     /// Description of ISupportsWindowPatternTestFixture.
@@ -52,15 +53,15 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             
             Assert.IsNotNull(navigatableElement as ISupportsNavigation);
             
-            ISupportsConversion navigatableElement =
+            ISupportsConversion conversibleElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsConversion;
             
-            Assert.IsNotNull(conversibleeElement as ISupportsConversion);
+            Assert.IsNotNull(conversibleElement as ISupportsConversion);
         }
         
         [Test]
-        public void Window_ImplementsPattern()
+        public void Window_ImplementsPatternInQuestion()
         {
             ISupportsWindowPattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
@@ -79,44 +80,44 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Assert.IsNull(element as ISupportsValuePattern);
         }
         
-        [Test]
-        public void Window_Close()
-        {
-            // Arrange
-            ISupportsWindowPattern element =
-                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-                    new IBasePattern[] { FakeFactory.GetWindowPattern(new PatternsData()) }) as ISupportsWindowPattern;
-            
-            // Act
-            // Assert
-            element.Close();
-        }
+//        [Test]
+//        public void Window_Close()
+//        {
+//            // Arrange
+//            ISupportsWindowPattern element =
+//                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+//                    new IBasePattern[] { FakeFactory.GetWindowPattern(new PatternsData()) }) as ISupportsWindowPattern;
+//            
+//            // Act
+//            // Assert
+//            element.Close();
+//        }
         
-        [Test]
-        public void Window_SetWindowVisualState()
-        {
-            // Arrange
-            ISupportsWindowPattern element =
-                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-                    new IBasePattern[] { FakeFactory.GetWindowPattern(new PatternsData()) }) as ISupportsWindowPattern;
-            
-            // Act
-            // Assert
-            element.SetWindowVisualState(WindowVisualState.Maximized);
-        }
-        
-        [Test]
-        public void Window_WaitForInputIdle()
-        {
-            // Arrange
-            ISupportsWindowPattern element =
-                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-                    new IBasePattern[] { FakeFactory.GetWindowPattern(new PatternsData()) }) as ISupportsWindowPattern;
-            
-            // Act
-            // Assert
-            element.WaitForInputIdle(1);
-        }
+//        [Test]
+//        public void Window_SetWindowVisualState()
+//        {
+//            // Arrange
+//            ISupportsWindowPattern element =
+//                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+//                    new IBasePattern[] { FakeFactory.GetWindowPattern(new PatternsData()) }) as ISupportsWindowPattern;
+//            
+//            // Act
+//            // Assert
+//            element.SetWindowVisualState(WindowVisualState.Maximized);
+//        }
+//        
+//        [Test]
+//        public void Window_WaitForInputIdle()
+//        {
+//            // Arrange
+//            ISupportsWindowPattern element =
+//                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+//                    new IBasePattern[] { FakeFactory.GetWindowPattern(new PatternsData()) }) as ISupportsWindowPattern;
+//            
+//            // Act
+//            // Assert
+//            element.WaitForInputIdle(1);
+//        }
         
         [Test]
         public void Window_CanMaximize()
@@ -206,6 +207,72 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             
             // Assert
             Assert.AreEqual(expectedValue, element.WindowVisualState);
+        }
+        
+        [Test]
+        public void Window_Close()
+        {
+            // Arrange
+            bool expectedResult = true;
+            bool result = false;
+            ISupportsWindowPattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetWindowPattern(new PatternsData()) }) as ISupportsWindowPattern;
+            
+            // Act
+            element.Close();
+            try {
+                (element as IUiElement).GetCurrentPattern<IWindowPattern>(WindowPattern.Pattern).Received(1).Close();
+                result = true;
+            }
+            catch {}
+            
+            // Assert
+            Assert.AreEqual(expectedResult, result);
+        }
+        
+        [Test]
+        public void Window_SetWindowVisualState()
+        {
+            // Arrange
+            WindowVisualState expectedValue = WindowVisualState.Minimized;
+            ISupportsWindowPattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetWindowPattern(new PatternsData()) }) as ISupportsWindowPattern;
+            
+            // Act
+            element.SetWindowVisualState(expectedValue);
+            try {
+                (element as IUiElement).GetCurrentPattern<IWindowPattern>(WindowPattern.Pattern).Received(1).SetWindowVisualState(expectedValue);
+                element.WindowVisualState.Returns(expectedValue);
+                
+            }
+            catch {}
+            
+            // Assert
+            Assert.AreEqual(expectedValue, element.WindowVisualState);
+        }
+        
+        [Test]
+        public void Window_WaitForInputIdle()
+        {
+            // Arrange
+            bool expectedResult = true;
+            bool result = false;
+            ISupportsWindowPattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetWindowPattern(new PatternsData()) }) as ISupportsWindowPattern;
+            
+            // Act
+            element.WaitForInputIdle(1);
+            try {
+                (element as IUiElement).GetCurrentPattern<IWindowPattern>(WindowPattern.Pattern).Received(1).WaitForInputIdle(1);
+                result = true;
+            }
+            catch {}
+            
+            // Assert
+            Assert.AreEqual(expectedResult, result);
         }
     }
 }

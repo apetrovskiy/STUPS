@@ -12,11 +12,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
     using System.Windows.Automation;
     using UIAutomation;
     using MbUnit.Framework;
+    using NSubstitute;
     
     /// <summary>
     /// Description of ISupportsScrollPatternTestFixture.
     /// </summary>
-    // [Ignore]
     [TestFixture]
     public class ISupportsScrollPatternTestFixture
     {
@@ -53,15 +53,15 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             
             Assert.IsNotNull(navigatableElement as ISupportsNavigation);
             
-            ISupportsConversion navigatableElement =
+            ISupportsConversion conversibleElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsConversion;
             
-            Assert.IsNotNull(conversibleeElement as ISupportsConversion);
+            Assert.IsNotNull(conversibleElement as ISupportsConversion);
         }
         
         [Test]
-        public void Scroll_ImplementsPattern()
+        public void Scroll_ImplementsPatternInQuestion()
         {
             ISupportsScrollPattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
@@ -84,52 +84,88 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Scroll_Scroll()
         {
             // Arrange
+            bool expectedResult = true;
+            bool result = false;
             ISupportsScrollPattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetScrollPattern(new PatternsData()) }) as ISupportsScrollPattern;
             
             // Act
-            // Assert
             element.Scroll(ScrollAmount.LargeIncrement, ScrollAmount.LargeIncrement);
+            try {
+                (element as IUiElement).GetCurrentPattern<IScrollPattern>(ScrollPattern.Pattern).Received(1).Scroll(ScrollAmount.LargeIncrement, ScrollAmount.LargeIncrement);
+                result = true;
+            }
+            catch {}
+            
+            // Assert
+            Assert.AreEqual(expectedResult, result);
         }
         
         [Test]
         public void Scroll_ScrollHorizontal()
         {
             // Arrange
+            bool expectedResult = true;
+            bool result = false;
             ISupportsScrollPattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetScrollPattern(new PatternsData()) }) as ISupportsScrollPattern;
             
             // Act
-            // Assert
             element.ScrollHorizontal(ScrollAmount.LargeIncrement);
+            try {
+                (element as IUiElement).GetCurrentPattern<IScrollPattern>(ScrollPattern.Pattern).Received(1).ScrollHorizontal(ScrollAmount.LargeIncrement);
+                result = true;
+            }
+            catch {}
+            
+            // Assert
+            Assert.AreEqual(expectedResult, result);
         }
         
         [Test]
         public void Scroll_ScrollVertical()
         {
             // Arrange
+            bool expectedResult = true;
+            bool result = false;
             ISupportsScrollPattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetScrollPattern(new PatternsData()) }) as ISupportsScrollPattern;
             
             // Act
-            // Assert
             element.ScrollVertical(ScrollAmount.LargeIncrement);
+            try {
+                (element as IUiElement).GetCurrentPattern<IScrollPattern>(ScrollPattern.Pattern).Received(1).ScrollVertical(ScrollAmount.LargeIncrement);
+                result = true;
+            }
+            catch {}
+            
+            // Assert
+            Assert.AreEqual(expectedResult, result);
         }
         
         [Test]
         public void Scroll_SetScrollPercent()
         {
             // Arrange
+            bool expectedResult = true;
+            bool result = false;
             ISupportsScrollPattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetScrollPattern(new PatternsData()) }) as ISupportsScrollPattern;
             
             // Act
-            // Assert
             element.SetScrollPercent(1, 1);
+            try {
+                (element as IUiElement).GetCurrentPattern<IScrollPattern>(ScrollPattern.Pattern).Received(1).SetScrollPercent(1, 1);
+                result = true;
+            }
+            catch {}
+            
+            // Assert
+            Assert.AreEqual(expectedResult, result);
         }
         
                 
@@ -192,8 +228,6 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             // Assert
             Assert.AreEqual(expectedValue, element.VerticallyScrollable);
         }
-        
-        
         
         [Test]
         public void Scroll_VerticalScrollPercent()

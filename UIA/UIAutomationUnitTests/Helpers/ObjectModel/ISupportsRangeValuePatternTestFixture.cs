@@ -12,11 +12,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
     using System.Windows.Automation;
     using UIAutomation;
     using MbUnit.Framework;
+    using NSubstitute;
     
     /// <summary>
     /// Description of ISupportsRangeValuePatternTestFixture.
     /// </summary>
-    // [Ignore]
     [TestFixture]
     public class ISupportsRangeValuePatternTestFixture
     {
@@ -52,15 +52,15 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             
             Assert.IsNotNull(navigatableElement as ISupportsNavigation);
             
-            ISupportsConversion navigatableElement =
+            ISupportsConversion conversibleElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsConversion;
             
-            Assert.IsNotNull(conversibleeElement as ISupportsConversion);
+            Assert.IsNotNull(conversibleElement as ISupportsConversion);
         }
         
         [Test]
-        public void RangeValue_ImplementsPattern()
+        public void RangeValue_ImplementsPatternInQuestion()
         {
             ISupportsRangeValuePattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
@@ -155,7 +155,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         }
         
         [Test]
-        public void RangeValue_RangeValue()
+        public void RangeValue_RangeValue_Get()
         {
             // Arrange
             double expectedValue = 3.5;
@@ -164,6 +164,28 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
                     new IBasePattern[] { FakeFactory.GetRangeValuePattern(new PatternsData() { RangeValuePattern_Value = expectedValue }) }) as ISupportsRangeValuePattern;
             
             // Act
+            
+            // Assert
+            Assert.AreEqual(expectedValue, element.RangeValue);
+        }
+        
+        [Test]
+        public void RangeValue_RangeValue_Set()
+        {
+            // Arrange
+            double expectedValue = 4.7;
+            ISupportsRangeValuePattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetRangeValuePattern(new PatternsData()) }) as ISupportsRangeValuePattern;
+            
+            // Act
+            element.RangeValue = expectedValue;
+            try {
+                (element as IUiElement).GetCurrentPattern<IRangeValuePattern>(RangeValuePattern.Pattern).Received(1).SetValue(expectedValue);
+                element.RangeValue.Returns(expectedValue);
+                
+            }
+            catch {}
             
             // Assert
             Assert.AreEqual(expectedValue, element.RangeValue);

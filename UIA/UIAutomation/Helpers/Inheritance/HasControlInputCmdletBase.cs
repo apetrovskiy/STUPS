@@ -615,8 +615,10 @@ namespace UIAutomation
                             InvokePattern.InvokedEvent,
                             // 20131118
                             // property to method
-                            //inputObject.SourceElement, 
-                            inputObject.GetSourceElement(),
+                            //inputObject.SourceElement,
+                            // 20140102
+                            // inputObject.GetSourceElement(),
+                            inputObject.GetSourceElement() as AutomationElement,
                             TreeScope.Element, // TreeScope.Subtree, // TreeScope.Element,
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
                         UiaHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
@@ -628,8 +630,10 @@ namespace UIAutomation
                             TextPattern.TextChangedEvent,
                             // 20131118
                             // property to method
-                            //inputObject.SourceElement, 
-                            inputObject.GetSourceElement(),
+                            //inputObject.SourceElement,
+                            // 20140102
+                            // inputObject.GetSourceElement(),
+                            inputObject.GetSourceElement() as AutomationElement,
                             TreeScope.Element,
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
                         UiaHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
@@ -641,8 +645,10 @@ namespace UIAutomation
                             TextPattern.TextSelectionChangedEvent,
                             // 20131118
                             // property to method
-                            //inputObject.SourceElement, 
-                            inputObject.GetSourceElement(),
+                            //inputObject.SourceElement,
+                            // 20140102
+                            // inputObject.GetSourceElement(),
+                            inputObject.GetSourceElement() as AutomationElement,
                             TreeScope.Element,
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
                         UiaHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
@@ -654,8 +660,10 @@ namespace UIAutomation
                             WindowPattern.WindowOpenedEvent,
                             // 20131118
                             // property to method
-                            //inputObject.SourceElement, 
-                            inputObject.GetSourceElement(),
+                            //inputObject.SourceElement,
+                            // 20140102
+                            // inputObject.GetSourceElement(),
+                            inputObject.GetSourceElement() as AutomationElement,
                             TreeScope.Subtree,
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
                         UiaHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
@@ -668,8 +676,10 @@ namespace UIAutomation
                             Automation.AddAutomationPropertyChangedEventHandler(
                                 // 20131118
                                 // property to method
-                                //inputObject.SourceElement, 
-                                inputObject.GetSourceElement(),
+                                //inputObject.SourceElement,
+                                // 20140102
+                                // inputObject.GetSourceElement(),
+                                inputObject.GetSourceElement() as AutomationElement,
                                 TreeScope.Subtree,
                                 uiaPropertyChangedEventHandler = 
                                     new AutomationPropertyChangedEventHandler(cmdlet.AutomationPropertyChangedEventHandler),
@@ -685,7 +695,9 @@ namespace UIAutomation
                             // 20131118
                             // property to method
                             //inputObject.SourceElement,
-                            inputObject.GetSourceElement(),
+                            // 20140102
+                            // inputObject.GetSourceElement(),
+                            inputObject.GetSourceElement() as AutomationElement,
                             TreeScope.Subtree,
                             uiaStructureChangedEventHandler = 
                             new StructureChangedEventHandler(cmdlet.StructureChangedEventHandler));
@@ -698,8 +710,10 @@ namespace UIAutomation
                             WindowPattern.WindowClosedEvent,
                             // 20131118
                             // property to method
-                            //inputObject.SourceElement, 
-                            inputObject.GetSourceElement(),
+                            //inputObject.SourceElement,
+                            // 20140102
+                            // inputObject.GetSourceElement(),
+                            inputObject.GetSourceElement() as AutomationElement,
                             TreeScope.Subtree,
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
                         UiaHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
@@ -711,8 +725,10 @@ namespace UIAutomation
                             AutomationElement.MenuClosedEvent,
                             // 20131118
                             // property to method
-                            //inputObject.SourceElement, 
-                            inputObject.GetSourceElement(),
+                            //inputObject.SourceElement,
+                            // 20140102
+                            // inputObject.GetSourceElement(),
+                            inputObject.GetSourceElement() as AutomationElement,
                             TreeScope.Subtree,
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
                         UiaHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
@@ -724,8 +740,10 @@ namespace UIAutomation
                             AutomationElement.MenuOpenedEvent,
                             // 20131118
                             // property to method
-                            //inputObject.SourceElement, 
-                            inputObject.GetSourceElement(),
+                            //inputObject.SourceElement,
+                            // 20140102
+                            // inputObject.GetSourceElement(),
+                            inputObject.GetSourceElement() as AutomationElement,
                             TreeScope.Subtree,
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
                         UiaHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
@@ -737,8 +755,10 @@ namespace UIAutomation
                             AutomationElement.ToolTipClosedEvent,
                             // 20131118
                             // property to method
-                            //inputObject.SourceElement, 
-                            inputObject.GetSourceElement(),
+                            //inputObject.SourceElement,
+                            // 20140102
+                            // inputObject.GetSourceElement(),
+                            inputObject.GetSourceElement() as AutomationElement,
                             TreeScope.Subtree,
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
                         UiaHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
@@ -750,8 +770,10 @@ namespace UIAutomation
                             AutomationElement.ToolTipOpenedEvent,
                             // 20131118
                             // property to method
-                            //inputObject.SourceElement, 
-                            inputObject.GetSourceElement(),
+                            //inputObject.SourceElement,
+                            // 20140102
+                            // inputObject.GetSourceElement(),
+                            inputObject.GetSourceElement() as AutomationElement,
                             TreeScope.Subtree,
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
                         UiaHelper.WriteEventToCollection(cmdlet, uiaEventHandler);

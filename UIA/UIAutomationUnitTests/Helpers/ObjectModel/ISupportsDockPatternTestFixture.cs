@@ -9,12 +9,10 @@
 
 namespace UIAutomationUnitTests.Helpers.ObjectModel
 {
-    using System;
-    
-    
     using System.Windows.Automation;
     using UIAutomation;
     using MbUnit.Framework;
+    using NSubstitute;
     
     /// <summary>
     /// Description of ISupportsDockPatternTestFixture.
@@ -54,15 +52,15 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             
             Assert.IsNotNull(navigatableElement as ISupportsNavigation);
             
-            ISupportsConversion navigatableElement =
+            ISupportsConversion conversibleElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsConversion;
             
-            Assert.IsNotNull(conversibleeElement as ISupportsConversion);
+            Assert.IsNotNull(conversibleElement as ISupportsConversion);
         }
         
         [Test]
-        public void Dock_ImplementsPattern()
+        public void Dock_ImplementsPatternInQuestion()
         {
             ISupportsDockPattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
@@ -82,7 +80,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         }
         
         [Test]
-        public void Dock_SetDockPosition_DockPosition()
+        public void Dock_DockPosition()
         {
             // Arrange
             DockPosition expectedValue = DockPosition.Bottom;
@@ -92,6 +90,28 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             
             // Act
             element.SetDockPosition(expectedValue);
+            
+            // Assert
+            Assert.AreEqual(expectedValue, element.DockPosition);
+        }
+        
+        [Test]
+        public void Dock_SetDockPosition()
+        {
+            // Arrange
+            DockPosition expectedValue = DockPosition.Left;
+            ISupportsDockPattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsDockPattern;
+            
+            // Act
+            element.SetDockPosition(expectedValue);
+            try {
+                (element as IUiElement).GetCurrentPattern<IDockPattern>(DockPattern.Pattern).Received(1).SetDockPosition(expectedValue);
+                element.DockPosition.Returns(expectedValue);
+                
+            }
+            catch {}
             
             // Assert
             Assert.AreEqual(expectedValue, element.DockPosition);

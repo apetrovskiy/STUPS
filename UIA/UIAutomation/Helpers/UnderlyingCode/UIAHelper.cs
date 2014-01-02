@@ -865,11 +865,11 @@ string strInfo = string.Empty;
                         // if (WriteCurrentPattern) {
                         // strElementPatterns = String.Empty;
 
-strInfo += element.GetSourceElement().Current.Name;
-AutomationPattern[] ppps = element.GetSourceElement().GetSupportedPatterns();
-foreach (AutomationPattern pppp in ppps) {
-    strInfo += pppp.ProgrammaticName;
-}
+//strInfo += element.GetSourceElement().Current.Name;
+//AutomationPattern[] ppps = element.GetSourceElement().GetSupportedPatterns();
+//foreach (AutomationPattern pppp in ppps) {
+//    strInfo += pppp.ProgrammaticName;
+//}
                         try {
                             // 20131209
                             // AutomationPattern[] elementPatterns =
@@ -1597,7 +1597,9 @@ throw(ePatterns2);
                         // 20131202
                         // (AutomationEvent)cmdlet.SubscribedEventsIds[i],
                         cmdlet.SubscribedEventsIds[i],
-                        cmdlet.thePreviouslyUsedElement.GetSourceElement(),
+                        // 20140102
+                        // cmdlet.thePreviouslyUsedElement.GetSourceElement(),
+                        cmdlet.thePreviouslyUsedElement.GetSourceElement() as AutomationElement,
                         // 20131202
                         // (AutomationEventHandler)cmdlet.SubscribedEvents[i]);
                         cmdlet.SubscribedEvents[i]);
@@ -2226,9 +2228,20 @@ throw(ePatterns2);
             for (int columnsCounter = 0;
                  columnsCounter < columnsNumber;
                  columnsCounter++) {
+                
                 onerow += '"';
-                object[] coordinates =
-                { rowsCounter, columnsCounter };
+                // object[] coordinates =
+                // { rowsCounter, columnsCounter };
+                // 20140102
+                IUiElement cell;
+                if (pattern is IGridPattern) {
+                    cell = (pattern as IGridPattern).GetItem(rowsCounter, columnsCounter);
+                    onerow += cell.Current.Name;
+                }
+//                if (pattern is ITablePattern) {
+//                    cell = (pattern as ITablePattern).
+//                }
+                /*
                 onerow +=
                     // 20131109
                     //((System.Windows.Automation.AutomationElement)
@@ -2258,6 +2271,7 @@ throw(ePatterns2);
                 // pattern.GetItem(
                 // rowsCounter,
                 // columnsCounter).Current.Name;
+                */
                 onerow += '"';
                 if (columnsCounter < (columnsNumber - 1)) {
                     onerow += delimiter;

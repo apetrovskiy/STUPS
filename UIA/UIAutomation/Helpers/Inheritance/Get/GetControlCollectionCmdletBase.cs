@@ -253,7 +253,9 @@ namespace UIAutomation
                 // 20131118
                 // property to method
                 //IUiElement oneMoreElement = ObjectsFactory.GetUiElement(walker.GetFirstChild(element.SourceElement));
-                IUiElement oneMoreElement = AutomationFactory.GetUiElement(walker.GetFirstChild(element.GetSourceElement()));
+                // 20140102
+                // IUiElement oneMoreElement = AutomationFactory.GetUiElement(walker.GetFirstChild(element.GetSourceElement()));
+                IUiElement oneMoreElement = AutomationFactory.GetUiElement(walker.GetFirstChild(element.GetSourceElement() as AutomationElement));
 
                 try{
                     WriteVerbose(
@@ -294,7 +296,9 @@ namespace UIAutomation
                     // 20131118
                     // property to method
                     //oneMoreElement = ObjectsFactory.GetUiElement(walker.GetNextSibling(oneMoreElement.SourceElement));
-                    oneMoreElement = AutomationFactory.GetUiElement(walker.GetNextSibling(oneMoreElement.GetSourceElement()));
+                    // 20140102
+                    // oneMoreElement = AutomationFactory.GetUiElement(walker.GetNextSibling(oneMoreElement.GetSourceElement()));
+                    oneMoreElement = AutomationFactory.GetUiElement(walker.GetNextSibling(oneMoreElement.GetSourceElement() as AutomationElement));
 
                     try{
                         WriteVerbose(
@@ -593,7 +597,9 @@ namespace UIAutomation
             foreach (IUiElement inputObject in InputObject) {
                 
                 IUiElement sibling = null;
-                sibling = nextSibling ? AutomationFactory.GetUiElement(walker.GetNextSibling(inputObject.GetSourceElement())) : AutomationFactory.GetUiElement(walker.GetPreviousSibling(inputObject.GetSourceElement()));
+                // 20140102
+                // sibling = nextSibling ? AutomationFactory.GetUiElement(walker.GetNextSibling(inputObject.GetSourceElement())) : AutomationFactory.GetUiElement(walker.GetPreviousSibling(inputObject.GetSourceElement()));
+                sibling = nextSibling ? AutomationFactory.GetUiElement(walker.GetNextSibling(inputObject.GetSourceElement() as AutomationElement)) : AutomationFactory.GetUiElement(walker.GetPreviousSibling(inputObject.GetSourceElement() as AutomationElement));
                 
                 WriteObject(this, sibling);
             
@@ -650,7 +656,9 @@ namespace UIAutomation
             // 20131118
             // property to method
             //sibling = firstChild ? ObjectsFactory.GetUiElement(walker.GetFirstChild(inputObject.SourceElement)) : ObjectsFactory.GetUiElement(walker.GetLastChild(inputObject.GetSourceElement()));
-            sibling = firstChild ? AutomationFactory.GetUiElement(walker.GetFirstChild(inputObject.GetSourceElement())) : AutomationFactory.GetUiElement(walker.GetLastChild(inputObject.GetSourceElement()));
+            // 20140102
+            // sibling = firstChild ? AutomationFactory.GetUiElement(walker.GetFirstChild(inputObject.GetSourceElement())) : AutomationFactory.GetUiElement(walker.GetLastChild(inputObject.GetSourceElement()));
+            sibling = firstChild ? AutomationFactory.GetUiElement(walker.GetFirstChild(inputObject.GetSourceElement() as AutomationElement)) : AutomationFactory.GetUiElement(walker.GetLastChild(inputObject.GetSourceElement() as AutomationElement));
 
             /*
             if (firstChild) {

@@ -88,7 +88,9 @@ namespace UIAutomation.Commands
                             // 20131118
                             // property to method
                             //this.InputObject.SourceElement,
-                            InputObject.GetSourceElement(),
+                            // 20140102
+                            // InputObject.GetSourceElement(),
+                            InputObject.GetSourceElement() as AutomationElement,
                             EventHandler);
 
                     }

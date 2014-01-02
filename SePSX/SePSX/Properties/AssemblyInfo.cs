@@ -15,7 +15,7 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Alexander Petrovskiy")]
 [assembly: AssemblyProduct("SePSX")]
-[assembly: AssemblyCopyright("Copyright 2012-2013")]
+[assembly: AssemblyCopyright("Copyright 2012-2014")]
 [assembly: AssemblyTrademark("SoftwareTestingUsingPowerShell.com")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +32,5 @@ using System.Runtime.CompilerServices;
 //
 // You can specify all the values or you can use the default the Revision and 
 // Build Numbers by using the '*' as shown below:
-[assembly: AssemblyVersion("0.4.8.*")]
+[assembly: AssemblyVersion("0.8.7.*")]
 

@@ -162,7 +162,7 @@ namespace UIAutomation
 		// private SafePatternHandle _hPattern;
 		// private bool _cached;
 		
-		public IRangeValuePatternInformation Cached {
+		public virtual IRangeValuePatternInformation Cached {
 			get {
 				// Misc.ValidateCached(this._cached);
 				// return new RangeValuePattern.RangeValuePatternInformation(this._el, true);
@@ -170,7 +170,7 @@ namespace UIAutomation
 			}
 		}
 		
-		public IRangeValuePatternInformation Current {
+		public virtual IRangeValuePatternInformation Current {
 			get {
 				// Misc.ValidateCurrent(this._hPattern);
 				// return new RangeValuePattern.RangeValuePatternInformation(this._el, false);
@@ -182,7 +182,7 @@ namespace UIAutomation
 //			this._hPattern = hPattern;
 //			this._cached = cached;
 //		}
-		public void SetValue(double value)
+		public virtual void SetValue(double value)
 		{
 //			object currentPropertyValue = this._el.GetCurrentPropertyValue(AutomationElementIdentifiers.IsEnabledProperty);
 //			if (currentPropertyValue is bool && !(bool)currentPropertyValue) {

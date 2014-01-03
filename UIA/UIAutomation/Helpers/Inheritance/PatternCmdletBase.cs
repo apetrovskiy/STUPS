@@ -266,22 +266,28 @@ namespace UIAutomation
         
         internal void CallDockPatternForGet(PatternCmdletBase cmdlet, IUiElement control, IUiElement inputObject)
         {
-            //dockPattern.Current.DockPosition
             try {
-                // 20131208
-                // DockPattern dockPattern = control.GetCurrentPattern(DockPattern.Pattern) as DockPattern;
-                // DockPattern dockPattern = control.GetCurrentPattern<IDockPattern, DockPattern>(DockPattern.Pattern) as DockPattern;
-                IDockPattern dockPattern = control.GetCurrentPattern<IDockPattern>(DockPattern.Pattern);
-                if (null != dockPattern) {
-                    WriteObject(this, dockPattern.Current.DockPosition);
-                } else {
-                    WriteVerbose(this, "couldn't get DockPattern");
-                    WriteObject(this, false);
-                }
+                WriteObject(this, control.GetDockPosition());
+            } catch (Exception) {
+                WriteObject(this, false);
+                // throw;
             }
-            catch {
-                
-            }
+//            //dockPattern.Current.DockPosition
+//            try {
+//                // 20131208
+//                // DockPattern dockPattern = control.GetCurrentPattern(DockPattern.Pattern) as DockPattern;
+//                // DockPattern dockPattern = control.GetCurrentPattern<IDockPattern, DockPattern>(DockPattern.Pattern) as DockPattern;
+//                IDockPattern dockPattern = control.GetCurrentPattern<IDockPattern>(DockPattern.Pattern);
+//                if (null != dockPattern) {
+//                    WriteObject(this, dockPattern.Current.DockPosition);
+//                } else {
+//                    WriteVerbose(this, "couldn't get DockPattern");
+//                    WriteObject(this, false);
+//                }
+//            }
+//            catch {
+//                
+//            }
         }
         
         internal void CallDockPatternForSet(PatternCmdletBase cmdlet, IUiElement control, IUiElement inputObject, DockPosition position)
@@ -436,95 +442,147 @@ namespace UIAutomation
         internal void CallTransformPatternForRotate(PatternCmdletBase cmdlet, IUiElement control, IUiElement inputObject)
         {
             try {
-                // 20131208
-                // TransformPattern transformRotatePattern = control.GetCurrentPattern(TransformPattern.Pattern) as TransformPattern;
-                // TransformPattern transformRotatePattern = control.GetCurrentPattern<ITransformPattern, TransformPattern>(TransformPattern.Pattern) as TransformPattern;
-                ITransformPattern transformRotatePattern = control.GetCurrentPattern<ITransformPattern>(TransformPattern.Pattern);
-                if (transformRotatePattern != null) {
-                    transformRotatePattern.Rotate(((InvokeUiaTransformPatternRotateCommand)Child).TransformRotateDegrees);
-                    
-                    if (PassThru && null != (inputObject as IUiElement)) {
-                        WriteObject(this, inputObject);
-                    } else {
-                        WriteObject(this, true);
-                    }
+                control.PerformRotate(((InvokeUiaTransformPatternRotateCommand)Child).TransformRotateDegrees);
+                if (PassThru) {
+                    WriteObject(this, control);
                 } else {
-                    WriteVerbose(this, "couldn't get TransformPattern");
-                    WriteObject(this, false);
+                    WriteObject(this, true);
                 }
-            } catch (Exception eTransformRotatePatternException) {
+            } catch (Exception) {
+                WriteObject(this, false);
+                // throw;
             }
+//            try {
+//                // 20131208
+//                // TransformPattern transformRotatePattern = control.GetCurrentPattern(TransformPattern.Pattern) as TransformPattern;
+//                // TransformPattern transformRotatePattern = control.GetCurrentPattern<ITransformPattern, TransformPattern>(TransformPattern.Pattern) as TransformPattern;
+//                ITransformPattern transformRotatePattern = control.GetCurrentPattern<ITransformPattern>(TransformPattern.Pattern);
+//                if (transformRotatePattern != null) {
+//                    transformRotatePattern.Rotate(((InvokeUiaTransformPatternRotateCommand)Child).TransformRotateDegrees);
+//                    
+//                    if (PassThru && null != (inputObject as IUiElement)) {
+//                        WriteObject(this, inputObject);
+//                    } else {
+//                        WriteObject(this, true);
+//                    }
+//                } else {
+//                    WriteVerbose(this, "couldn't get TransformPattern");
+//                    WriteObject(this, false);
+//                }
+//            } catch (Exception eTransformRotatePatternException) {
+//            }
         }
         
         internal void CallTransformPatternForResize(PatternCmdletBase cmdlet, IUiElement control, IUiElement inputObject)
         {
             try {
-                // 20131208
-                // TransformPattern transformResizePattern = control.GetCurrentPattern(TransformPattern.Pattern) as TransformPattern;
-                // TransformPattern transformResizePattern = control.GetCurrentPattern<ITransformPattern, TransformPattern>(TransformPattern.Pattern) as TransformPattern;
-                ITransformPattern transformResizePattern = control.GetCurrentPattern<ITransformPattern>(TransformPattern.Pattern);
-                if (transformResizePattern != null) {
-                    transformResizePattern.Resize(((InvokeUiaTransformPatternResizeCommand)Child).TransformResizeWidth, ((InvokeUiaTransformPatternResizeCommand)Child).TransformResizeHeight);
-                    
-                    if (PassThru && null != (inputObject as IUiElement)) {
-                        WriteObject(this, inputObject);
-                    } else {
-                        WriteObject(this, true);
-                    }
+                control.PerformResize(((InvokeUiaTransformPatternResizeCommand)Child).TransformResizeWidth, ((InvokeUiaTransformPatternResizeCommand)Child).TransformResizeHeight);
+                if (PassThru) {
+                    WriteObject(this, control);
                 } else {
-                    WriteVerbose(this, "couldn't get TransformPattern");
-                    WriteObject(this, false);
+                    WriteObject(this, true);
                 }
-            } catch (Exception eTransformResizePatternException) {
+            } catch (Exception) {
+                WriteObject(this, false);
+                // throw;
             }
+//            try {
+//                // 20131208
+//                // TransformPattern transformResizePattern = control.GetCurrentPattern(TransformPattern.Pattern) as TransformPattern;
+//                // TransformPattern transformResizePattern = control.GetCurrentPattern<ITransformPattern, TransformPattern>(TransformPattern.Pattern) as TransformPattern;
+//                ITransformPattern transformResizePattern = control.GetCurrentPattern<ITransformPattern>(TransformPattern.Pattern);
+//                if (transformResizePattern != null) {
+//                    transformResizePattern.Resize(((InvokeUiaTransformPatternResizeCommand)Child).TransformResizeWidth, ((InvokeUiaTransformPatternResizeCommand)Child).TransformResizeHeight);
+//                    
+//                    if (PassThru && null != (inputObject as IUiElement)) {
+//                        WriteObject(this, inputObject);
+//                    } else {
+//                        WriteObject(this, true);
+//                    }
+//                } else {
+//                    WriteVerbose(this, "couldn't get TransformPattern");
+//                    WriteObject(this, false);
+//                }
+//            } catch (Exception eTransformResizePatternException) {
+//            }
         }
         
         internal void CallTransformPatternForMove(PatternCmdletBase cmdlet, IUiElement control, IUiElement inputObject)
         {
             try {
-                // 20131208
-                // TransformPattern transformMovePattern = control.GetCurrentPattern(TransformPattern.Pattern) as TransformPattern;
-                // TransformPattern transformMovePattern = control.GetCurrentPattern<ITransformPattern, TransformPattern>(TransformPattern.Pattern) as TransformPattern;
-                ITransformPattern transformMovePattern = control.GetCurrentPattern<ITransformPattern>(TransformPattern.Pattern);
-                if (transformMovePattern != null) {
-                    transformMovePattern.Move(((InvokeUiaTransformPatternMoveCommand)Child).TransformMoveX, ((InvokeUiaTransformPatternMoveCommand)Child).TransformMoveY);
-                    
-                    if (PassThru && null != (inputObject as IUiElement)) {
-                        WriteObject(this, inputObject);
-                    } else {
-                        WriteObject(this, true);
-                    }
+                control.PerformMove(((InvokeUiaTransformPatternMoveCommand)Child).TransformMoveX, ((InvokeUiaTransformPatternMoveCommand)Child).TransformMoveY);
+                if (PassThru) {
+                    WriteObject(this, control);
                 } else {
-                    WriteVerbose(this, "couldn't get TransformPattern");
-                    WriteObject(this, false);
+                    WriteObject(this, true);
                 }
-            } catch (Exception eTransformMovePatternException) {
+            } catch (Exception) {
+                WriteObject(this, false);
+                // throw;
             }
+//            try {
+//                // 20131208
+//                // TransformPattern transformMovePattern = control.GetCurrentPattern(TransformPattern.Pattern) as TransformPattern;
+//                // TransformPattern transformMovePattern = control.GetCurrentPattern<ITransformPattern, TransformPattern>(TransformPattern.Pattern) as TransformPattern;
+//                ITransformPattern transformMovePattern = control.GetCurrentPattern<ITransformPattern>(TransformPattern.Pattern);
+//                if (transformMovePattern != null) {
+//                    transformMovePattern.Move(((InvokeUiaTransformPatternMoveCommand)Child).TransformMoveX, ((InvokeUiaTransformPatternMoveCommand)Child).TransformMoveY);
+//                    
+//                    if (PassThru && null != (inputObject as IUiElement)) {
+//                        WriteObject(this, inputObject);
+//                    } else {
+//                        WriteObject(this, true);
+//                    }
+//                } else {
+//                    WriteVerbose(this, "couldn't get TransformPattern");
+//                    WriteObject(this, false);
+//                }
+//            } catch (Exception eTransformMovePatternException) {
+//            }
         }
         
         internal void CallTogglePatternForGet(PatternCmdletBase cmdlet, IUiElement control, IUiElement inputObject)
         {
             try {
-                cmdlet.WriteVerbose(cmdlet, "trying to get TogglePattern");
-                // ITogglePattern togglePattern = control.GetTogglePattern();
-                // ITogglePattern togglePattern = control.GetCurrentPattern<ITogglePattern, TogglePattern>();
-                ITogglePattern togglePattern = control.GetCurrentPattern<ITogglePattern>(TogglePattern.Pattern);
-                if (togglePattern != null) {
-                    
-                    cmdlet.WriteVerbose(cmdlet, "TogglePattern != null");
-                    bool toggleState = togglePattern.Current.ToggleState == ToggleState.On;
-                    WriteObject(this, toggleState);
-                } else {
-                    WriteVerbose(this, "couldn't get TogglePattern");
-                    WriteObject(this, false);
-                }
-            } catch (Exception eToggleStatePatternException) {
-                cmdlet.WriteVerbose(eToggleStatePatternException.Message);
+                WriteObject(this, control.GetToggleState());
+            } catch (Exception) {
+                WriteObject(this, false);
+                // throw;
             }
+//            try {
+//                cmdlet.WriteVerbose(cmdlet, "trying to get TogglePattern");
+//                // ITogglePattern togglePattern = control.GetTogglePattern();
+//                // ITogglePattern togglePattern = control.GetCurrentPattern<ITogglePattern, TogglePattern>();
+//                ITogglePattern togglePattern = control.GetCurrentPattern<ITogglePattern>(TogglePattern.Pattern);
+//                if (togglePattern != null) {
+//                    
+//                    cmdlet.WriteVerbose(cmdlet, "TogglePattern != null");
+//                    bool toggleState = togglePattern.Current.ToggleState == ToggleState.On;
+//                    WriteObject(this, toggleState);
+//                } else {
+//                    WriteVerbose(this, "couldn't get TogglePattern");
+//                    WriteObject(this, false);
+//                }
+//            } catch (Exception eToggleStatePatternException) {
+//                cmdlet.WriteVerbose(eToggleStatePatternException.Message);
+//            }
         }
         
         internal void CallTogglePatternForSet(PatternCmdletBase cmdlet, IUiElement control, IUiElement inputObject, bool on)
         {
+            /*
+            try {
+                control.PerformToggle(on);
+                if (PassThru) {
+                    WriteObject(this, control);
+                } else {
+                    WriteObject(this, true);
+                }
+            } catch (Exception) {
+                WriteObject(this, false);
+                // throw;
+            }
+            */
             try {
                 // ITogglePattern togglePattern1 = control.GetTogglePattern();
                 // ITogglePattern togglePattern = control.GetCurrentPattern<ITogglePattern, TogglePattern>();

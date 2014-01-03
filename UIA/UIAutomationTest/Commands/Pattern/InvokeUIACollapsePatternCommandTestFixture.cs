@@ -77,8 +77,9 @@ namespace UIAutomationTest.Commands.Pattern
         
         // TreeItem
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
         public void Invoke_TreeItem_Collapse()
         {
             string expectedResult = "Invoked";

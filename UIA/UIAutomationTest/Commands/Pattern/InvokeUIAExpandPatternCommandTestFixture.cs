@@ -57,8 +57,9 @@ namespace UIAutomationTest.Commands.Pattern
         
         // ComboBox
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
         public void Invoke_ComboBox_Expand()
         {
             string expectedResult = "b2";
@@ -84,8 +85,9 @@ namespace UIAutomationTest.Commands.Pattern
         
         // TreeItem
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
         public void Invoke_TreeItem_Expand()
         {
             string expectedResult = "Invoked";

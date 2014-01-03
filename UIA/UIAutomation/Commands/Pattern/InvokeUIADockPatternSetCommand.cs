@@ -28,6 +28,8 @@ namespace UIAutomation.Commands
         [Parameter(Mandatory = true,
                    Position = 0)]
         [ValidateNotNullOrEmpty()]
+        // 20140102
+        // [ValidateSet("Bottom", "Left", "Right", "Top", "Fill", "None")]
         public DockPosition DockPosition { get; set; }
         #endregion Parameters
     }

@@ -286,27 +286,39 @@ namespace UIAutomation
         
         internal void CallDockPatternForSet(PatternCmdletBase cmdlet, IUiElement control, IUiElement inputObject, DockPosition position)
         {
+//            try {
+//                // 20131208
+//                // DockPattern dockPattern = control.GetCurrentPattern(DockPattern.Pattern) as DockPattern;
+//                // DockPattern dockPattern = control.GetCurrentPattern<IDockPattern, DockPattern>(DockPattern.Pattern) as DockPattern;
+                // 20140102
             try {
-                // 20131208
-                // DockPattern dockPattern = control.GetCurrentPattern(DockPattern.Pattern) as DockPattern;
-                // DockPattern dockPattern = control.GetCurrentPattern<IDockPattern, DockPattern>(DockPattern.Pattern) as DockPattern;
-                IDockPattern dockPattern = control.GetCurrentPattern<IDockPattern>(DockPattern.Pattern);
-                if (null != dockPattern) {
-                    dockPattern.SetDockPosition(position);
-                    
-                    if (PassThru && null != (inputObject as IUiElement)) {
-                        WriteObject(this, inputObject);
-                    } else {
-                        WriteObject(this, true);
-                    }
+                control.PerformSetDockPosition(position);
+                if (PassThru) {
+                    WriteObject(this, control);
                 } else {
-                    WriteVerbose(this, "couldn't get DockPattern");
-                    WriteObject(this, false);
+                    WriteObject(this, true);
                 }
             }
             catch {
-                
+                WriteObject(this, false);
             }
+//                IDockPattern dockPattern = control.GetCurrentPattern<IDockPattern>(DockPattern.Pattern);
+//                if (null != dockPattern) {
+//                    dockPattern.SetDockPosition(position);
+//                    
+//                    if (PassThru && null != (inputObject as IUiElement)) {
+//                        WriteObject(this, inputObject);
+//                    } else {
+//                        WriteObject(this, true);
+//                    }
+//                } else {
+//                    WriteVerbose(this, "couldn't get DockPattern");
+//                    WriteObject(this, false);
+//                }
+//            }
+//            catch {
+//                
+//            }
         }
         
         internal void CallWindowPattern(PatternCmdletBase cmdlet, IUiElement control, IUiElement inputObject)
@@ -356,52 +368,69 @@ namespace UIAutomation
         internal void CallValuePatternForSet(PatternCmdletBase cmdlet, IUiElement control, IUiElement inputObject)
         {
             try {
-                // IValuePattern valuePatternSet = control.GetValuePattern();
-                // IValuePattern valuePatternSet = control.GetCurrentPattern<IValuePattern, ValuePattern>(); //ValuePattern.Pattern);
-                IValuePattern valuePatternSet = control.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern);
-                if (valuePatternSet != null) {
-                    
-                    WriteVerbose(this, "using ValuePattern");
-                    valuePatternSet.SetValue(((InvokeUiaValuePatternSetCommand)Child).Text);
-                    
-                    if (PassThru && null != (inputObject as IUiElement)) {
-                        WriteObject(this, inputObject);
-                    } else {
-                        WriteObject(this, true);
-                    }
+                control.PerformSetValueValuePattern(((InvokeUiaValuePatternSetCommand)Child).Text);
+                if (PassThru) {
+                    WriteObject(this, control);
                 } else {
-                    
-                    WriteVerbose(this, "couldn't get ValuePattern. SendKeys is used");
-                    control.SetFocus();
-                    SendKeys.SendWait(((InvokeUiaValuePatternSetCommand)Child).Text);
-                    
-                    if (PassThru && null != (inputObject as IUiElement)) {
-                        WriteObject(this, inputObject);
-                    } else {
-                        WriteObject(this, true);
-                    }
+                    WriteObject(this, true);
                 }
-            } catch (Exception eValueSetPatternException) {
             }
+            catch {
+                WriteObject(this, false);
+            }
+//            try {
+//                // IValuePattern valuePatternSet = control.GetValuePattern();
+//                // IValuePattern valuePatternSet = control.GetCurrentPattern<IValuePattern, ValuePattern>(); //ValuePattern.Pattern);
+//                IValuePattern valuePatternSet = control.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern);
+//                if (valuePatternSet != null) {
+//                    
+//                    WriteVerbose(this, "using ValuePattern");
+//                    valuePatternSet.SetValue(((InvokeUiaValuePatternSetCommand)Child).Text);
+//                    
+//                    if (PassThru && null != (inputObject as IUiElement)) {
+//                        WriteObject(this, inputObject);
+//                    } else {
+//                        WriteObject(this, true);
+//                    }
+//                } else {
+//                    
+//                    WriteVerbose(this, "couldn't get ValuePattern. SendKeys is used");
+//                    control.SetFocus();
+//                    SendKeys.SendWait(((InvokeUiaValuePatternSetCommand)Child).Text);
+//                    
+//                    if (PassThru && null != (inputObject as IUiElement)) {
+//                        WriteObject(this, inputObject);
+//                    } else {
+//                        WriteObject(this, true);
+//                    }
+//                }
+//            } catch (Exception eValueSetPatternException) {
+//            }
         }
         
         internal void CallValuePatternForGet(PatternCmdletBase cmdlet, IUiElement control, IUiElement inputObject)
         {
             try {
-                // IValuePattern valuePatternGet = control.GetValuePattern();
-                // IValuePattern valuePatternGet = control.GetCurrentPattern<IValuePattern, ValuePattern>();
-                IValuePattern valuePatternGet = control.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern);
-                object result = null;
-                if (valuePatternGet != null) {
-                    result = valuePatternGet.Current.Value;
-                    WriteVerbose(this, "the result is " + result);
-                    WriteObject(this, result);
-                } else {
-                    WriteVerbose(this, "couldn't get ValuePattern");
-                    WriteObject(this, result);
-                }
-            } catch (Exception eValueGetPatternException) {
+                WriteObject(this, control.PerformGetValueValuePattern());
             }
+            catch {
+                WriteObject(this, string.Empty);
+            }
+//            try {
+//                // IValuePattern valuePatternGet = control.GetValuePattern();
+//                // IValuePattern valuePatternGet = control.GetCurrentPattern<IValuePattern, ValuePattern>();
+//                IValuePattern valuePatternGet = control.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern);
+//                object result = null;
+//                if (valuePatternGet != null) {
+//                    result = valuePatternGet.Current.Value;
+//                    WriteVerbose(this, "the result is " + result);
+//                    WriteObject(this, result);
+//                } else {
+//                    WriteVerbose(this, "couldn't get ValuePattern");
+//                    WriteObject(this, result);
+//                }
+//            } catch (Exception eValueGetPatternException) {
+//            }
         }
         
         internal void CallTransformPatternForRotate(PatternCmdletBase cmdlet, IUiElement control, IUiElement inputObject)
@@ -839,26 +868,37 @@ namespace UIAutomation
         internal void CallScrollItemPattern(PatternCmdletBase cmdlet, IUiElement control, IUiElement inputObject)
         {
             try {
-                // 20131208
-                // ScrollItemPattern sciPattern = control.GetCurrentPattern(ScrollItemPattern.Pattern) as ScrollItemPattern;
-                // ScrollItemPattern sciPattern = control.GetCurrentPattern<IScrollItemPattern, ScrollItemPattern>(ScrollItemPattern.Pattern) as ScrollItemPattern;
-                // IScrollItemPattern sciPattern = control.GetScrollItemPattern();
-                // IScrollItemPattern sciPattern = control.GetCurrentPattern<IScrollItemPattern, ScrollItemPattern>();
-                IScrollItemPattern sciPattern = control.GetCurrentPattern<IScrollItemPattern>(ScrollItemPattern.Pattern);
-                if (sciPattern == null) return;
-                try {
-                    sciPattern.ScrollIntoView();
-                    if (PassThru && null != (inputObject as IUiElement)) {
-                        WriteObject(this, inputObject);
-                    } else {
-                        WriteObject(this, true);
-                    }
-                } catch {
-                    WriteObject(this, false);
+                control.PerformScrollIntoView();
+                if (PassThru) {
+                    WriteObject(this, control);
+                } else {
+                    WriteObject(this, true);
                 }
-            } catch {
+            } catch (Exception) {
                 WriteObject(this, false);
+                // throw;
             }
+//            try {
+//                // 20131208
+//                // ScrollItemPattern sciPattern = control.GetCurrentPattern(ScrollItemPattern.Pattern) as ScrollItemPattern;
+//                // ScrollItemPattern sciPattern = control.GetCurrentPattern<IScrollItemPattern, ScrollItemPattern>(ScrollItemPattern.Pattern) as ScrollItemPattern;
+//                // IScrollItemPattern sciPattern = control.GetScrollItemPattern();
+//                // IScrollItemPattern sciPattern = control.GetCurrentPattern<IScrollItemPattern, ScrollItemPattern>();
+//                IScrollItemPattern sciPattern = control.GetCurrentPattern<IScrollItemPattern>(ScrollItemPattern.Pattern);
+//                if (sciPattern == null) return;
+//                try {
+//                    sciPattern.ScrollIntoView();
+//                    if (PassThru && null != (inputObject as IUiElement)) {
+//                        WriteObject(this, inputObject);
+//                    } else {
+//                        WriteObject(this, true);
+//                    }
+//                } catch {
+//                    WriteObject(this, false);
+//                }
+//            } catch {
+//                WriteObject(this, false);
+//            }
         }
         
         internal void CallRangeValuePatternForSet(PatternCmdletBase cmdlet, IUiElement control, IUiElement inputObject)
@@ -1046,45 +1086,67 @@ namespace UIAutomation
         internal void CallCollapsePattern(PatternCmdletBase cmdlet, IUiElement control, IUiElement inputObject)
         {
             try {
-                // IExpandCollapsePattern collapsePattern = control.GetExpandCollapsePattern();
-                // IExpandCollapsePattern collapsePattern = control.GetCurrentPattern<IExpandCollapsePattern, ExpandCollapsePattern>();
-                IExpandCollapsePattern collapsePattern = control.GetCurrentPattern<IExpandCollapsePattern>(ExpandCollapsePattern.Pattern);
-                if (collapsePattern != null) {
-                    collapsePattern.Collapse();
-                    
-                    if (PassThru && null != (inputObject as IUiElement)) {
-                        WriteObject(this, inputObject);
-                    } else {
-                        WriteObject(this, true);
-                    }
+                control.PerformCollapse();
+                if (PassThru) {
+                    WriteObject(this, control);
                 } else {
-                    WriteVerbose(this, "couldn't get ExpandCollapsePattern");
-                    WriteObject(this, false);
+                    WriteObject(this, true);
                 }
-            } catch (Exception eCollPatternException) {
             }
+            catch {
+                WriteObject(this, false);
+            }
+//            try {
+//                // IExpandCollapsePattern collapsePattern = control.GetExpandCollapsePattern();
+//                // IExpandCollapsePattern collapsePattern = control.GetCurrentPattern<IExpandCollapsePattern, ExpandCollapsePattern>();
+//                IExpandCollapsePattern collapsePattern = control.GetCurrentPattern<IExpandCollapsePattern>(ExpandCollapsePattern.Pattern);
+//                if (collapsePattern != null) {
+//                    collapsePattern.Collapse();
+//                    
+//                    if (PassThru && null != (inputObject as IUiElement)) {
+//                        WriteObject(this, inputObject);
+//                    } else {
+//                        WriteObject(this, true);
+//                    }
+//                } else {
+//                    WriteVerbose(this, "couldn't get ExpandCollapsePattern");
+//                    WriteObject(this, false);
+//                }
+//            } catch (Exception eCollPatternException) {
+//            }
         }
         
         internal void CallExpandPattern(PatternCmdletBase cmdlet, IUiElement control, IUiElement inputObject)
         {
             try {
-                // IExpandCollapsePattern expandPattern = control.GetExpandCollapsePattern();
-                // IExpandCollapsePattern expandPattern = control.GetCurrentPattern<IExpandCollapsePattern, ExpandCollapsePattern>();
-                IExpandCollapsePattern expandPattern = control.GetCurrentPattern<IExpandCollapsePattern>(ExpandCollapsePattern.Pattern);
-                if (expandPattern != null) {
-                    expandPattern.Expand();
-                    
-                    if (PassThru && null != (inputObject as IUiElement)) {
-                        WriteObject(this, inputObject);
-                    } else {
-                        WriteObject(this, true);
-                    }
+                control.PerformExpand();
+                if (PassThru) {
+                    WriteObject(this, control);
                 } else {
-                    WriteVerbose(this, "couldn't get ExpandCollapsePattern");
-                    WriteObject(this, false);
+                    WriteObject(this, true);
                 }
-            } catch (Exception eExpPatternException) {
+            } catch (Exception) {
+                WriteObject(this, false);
+                // throw;
             }
+//            try {
+//                // IExpandCollapsePattern expandPattern = control.GetExpandCollapsePattern();
+//                // IExpandCollapsePattern expandPattern = control.GetCurrentPattern<IExpandCollapsePattern, ExpandCollapsePattern>();
+//                IExpandCollapsePattern expandPattern = control.GetCurrentPattern<IExpandCollapsePattern>(ExpandCollapsePattern.Pattern);
+//                if (expandPattern != null) {
+//                    expandPattern.Expand();
+//                    
+//                    if (PassThru && null != (inputObject as IUiElement)) {
+//                        WriteObject(this, inputObject);
+//                    } else {
+//                        WriteObject(this, true);
+//                    }
+//                } else {
+//                    WriteVerbose(this, "couldn't get ExpandCollapsePattern");
+//                    WriteObject(this, false);
+//                }
+//            } catch (Exception eExpPatternException) {
+//            }
         }
         
         protected override void EndProcessing()

@@ -35,8 +35,9 @@ namespace UIAutomationTest.Commands.Pattern
         
         // Button
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
         public void Invoke_Button_Click()
         {
             string expectedResult = "Invoked";
@@ -57,8 +58,9 @@ namespace UIAutomationTest.Commands.Pattern
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
         public void Invoke_ButtonX2_Click()
         {
             string expectedResult = "Invoked*";

@@ -28,12 +28,12 @@ namespace UIAutomation
         #region DockPattern
         public static IUiElement PerformSetDockPosition(this IUiElement element, DockPosition dockPosition)
         {
-            try {
+//            try {
                 element.GetCurrentPattern<IDockPattern>(DockPattern.Pattern).SetDockPosition(dockPosition);
-            } catch (Exception eExtensionMethod) {
-                // 
-                // throw;
-            }
+//            } catch (Exception eExtensionMethod) {
+//                // 
+//                // throw;
+//            }
             return element;
         }
         
@@ -51,23 +51,23 @@ namespace UIAutomation
         #region ExpandCollapsePattern
         public static IUiElement PerformExpand(this IUiElement element)
         {
-            try {
+//            try {
                 element.GetCurrentPattern<IExpandCollapsePattern>(ExpandCollapsePattern.Pattern).Expand();
-            } catch (Exception eExtensionMethod) {
-                // 
-                // throw;
-            }
+//            } catch (Exception eExtensionMethod) {
+//                // 
+//                // throw;
+//            }
             return element;
         }
         
         public static IUiElement PerformCollapse(this IUiElement element)
         {
-            try {
+//            try {
                 element.GetCurrentPattern<IExpandCollapsePattern>(ExpandCollapsePattern.Pattern).Collapse();
-            } catch (Exception eExtensionMethod) {
-                // 
-                // throw;
-            }
+//            } catch (Exception eExtensionMethod) {
+//                // 
+//                // throw;
+//            }
             return element;
         }
         
@@ -558,12 +558,12 @@ namespace UIAutomation
         #region ScrollItemPattern
         public static IUiElement PerformScrollIntoView(this IUiElement element)
         {
-            try {
+//            try {
                 element.GetCurrentPattern<IScrollItemPattern>(ScrollItemPattern.Pattern).ScrollIntoView();
-            } catch (Exception eExtensionMethod) {
-                // 
-                // throw;
-            }
+//            } catch (Exception eExtensionMethod) {
+//                // 
+//                // throw;
+//            }
             return element;
         }
         #endregion ScrollItemPattern
@@ -1086,23 +1086,23 @@ namespace UIAutomation
         #region ValuePattern
         public static IUiElement PerformSetValueValuePattern(this IUiElement element, string value)
         {
-            try {
+//            try {
                 element.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern).SetValue(value);
-            } catch (Exception eExtensionMethod) {
-                // 
-                // throw;
-            }
+//            } catch (Exception eExtensionMethod) {
+//                // 
+//                // throw;
+//            }
             return element;
         }
         
         public static string PerformGetValueValuePattern(this IUiElement element)
         {
-            try {
+//            try {
                 return element.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern).Current.Value;
-            } catch (Exception eExtensionMethod) {
-                // 
-                // throw;
-            }
+//            } catch (Exception eExtensionMethod) {
+//                // 
+//                // throw;
+//            }
             return string.Empty;
         }
         

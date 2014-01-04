@@ -47,7 +47,10 @@ namespace UIAutomation
 		// T GetSourceElement<T>();
 		object GetSourceElement();
 		void SetSourceElement<T>(T element);
-		string Tag { get; set; }
+		// 20130104
+		// string Tag { get; set; }
+		string GetTag();
+		void SetTag(string tag);
 
 		// internal methods
 		object GetPatternPropertyValue(AutomationProperty property, bool useCache);

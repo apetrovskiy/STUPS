@@ -24,7 +24,6 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void SetUp()
         {
             FakeFactory.Init();
-            UIAutomation.Preferences.UseElementsSearchObjectModel = true;
         }
         
         [TearDown]
@@ -55,26 +54,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         #endregion helpers
         
         [Test]
-        public void NoExtension()
-        {
-            // Arrange
-            UIAutomation.Preferences.UseElementsSearchObjectModel = false;
-            
-            // Act
-            IUiElement[] elements = new IUiElement[] {};
-            IUiElement element =
-                FakeFactory.GetElement_ForFindAll(
-                    elements,
-                    new PropertyCondition(
-                        AutomationElement.ControlTypeProperty,
-                        ControlType.Button));
-            
-            // Assert
-            Assert.IsNull(element as ISupportsExtendedModel);
-        }
-        
-        [Test]
-        public void Buttons_Null()
+        public void Buttons_None()
         {
             // Arrange
             IUiElement[] elements = new IUiElement[] {};

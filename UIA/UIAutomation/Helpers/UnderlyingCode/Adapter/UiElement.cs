@@ -585,8 +585,19 @@ namespace UIAutomation
 				_innerElementType = InnerElementTypes.UiElement;
 			}
 		}
-
-		public virtual string Tag { get; set; }
+        
+		// 20130104
+		// public virtual string Tag { get; set; }
+		internal virtual string Tag { get; set; }
+		public virtual string GetTag()
+		{
+		    return Tag;
+		}
+		
+		public virtual void SetTag(string tag)
+		{
+		    Tag = tag;
+		}
 
 		public virtual void Dispose()
 		{

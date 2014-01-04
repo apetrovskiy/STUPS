@@ -226,6 +226,9 @@
     <Compile Include="..\UIAutomationUnitTests\Helpers\ObjectModel\NoPatternsTestFixture.cs">
       <Link>Helpers\ObjectModel\NoPatternsTestFixture.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\ObjectModel\ObjectModelParametersTestFixture.cs">
+      <Link>Helpers\ObjectModel\ObjectModelParametersTestFixture.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomationUnitTests\Helpers\UnderlyingCode\Adapter\GetSupportedPatternsTestFixture.cs">
       <Link>Helpers\UnderlyingCode\Adapter\GetSupportedPatternsTestFixture.cs</Link>
     </Compile>

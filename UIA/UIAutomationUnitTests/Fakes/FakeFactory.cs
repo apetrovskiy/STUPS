@@ -27,6 +27,8 @@ namespace UIAutomationUnitTests
         {
             UnitTestingHelper.PrepareUnitTestDataStore();
             AutomationFactory.InitUnitTests();
+            UIAutomation.Preferences.UseElementsPatternObjectModel = true;
+            UIAutomation.Preferences.UseElementsSearchObjectModel = true;
         }
         
         #region patterns
@@ -322,7 +324,9 @@ namespace UIAutomationUnitTests
             TestPattern<IValuePattern>(ValuePattern.Pattern, patterns, ref element);
             TestPattern<IWindowPattern>(WindowPattern.Pattern, patterns, ref element);
             
-            if (expected) { element.Tag.Returns("expected"); }
+            // 20130104
+            // if (expected) { element.Tag.Returns("expected"); }
+            if (expected) { element.GetTag().Returns("expected"); }
             element.GetSourceElement().Returns<object>(element);
             return element;
         }
@@ -407,7 +411,9 @@ namespace UIAutomationUnitTests
             IUiEltCollection descendants2 = AutomationFactory.GetUiEltCollection();
             foreach (IUiElement elt in descendants
                 .Cast<IUiElement>()
-                .Where(elt => "expected" == elt.Tag))
+                // 20130104
+                // .Where(elt => "expected" == elt.Tag))
+                .Where(elt => "expected" == elt.GetTag()))
             {
                 descendants2.SourceCollection.Add(elt);
             }

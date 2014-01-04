@@ -1,5 +1,4 @@
-﻿using System.Management.Automation;
-/*
+﻿/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
  * Date: 11/10/2013
@@ -16,6 +15,7 @@ namespace UIAutomation
     using Ninject.Modules;
     using Ninject.Parameters;
     using System.Windows.Automation;
+    using System.Management.Automation;
     using System.Collections;
     using System.Collections.Generic;
     using PSTestLib;
@@ -137,6 +137,34 @@ namespace UIAutomation
         #endregion Castle DynamicProxy
 		
 		#region IUiElement
+		internal static IExtendedModelHolder GetUiExtendedModelHolder(IUiElement parentElement)
+		{
+	        if (null == parentElement) {
+	            return null;
+	        }
+		    
+			try {
+    			IExtendedModelHolder holder = Kernel.Get<IExtendedModelHolder>(new IParameter[] {});
+    			
+    			IExtendedModelHolder proxiedHolder =
+    			    (IExtendedModelHolder)_generator.CreateClassProxy(
+    			        typeof(UiExtendedModelHolder),
+    			        new Type[] { typeof(IExtendedModel) },
+    			        new MethodSelectorAspect());
+    			
+    			proxiedHolder.SetParentElement(parentElement);
+    			
+    			return proxiedHolder;
+			}
+			catch (Exception eFailedToIssueHolder) {
+			    // TODO
+			    // write error to error object!!!
+			    // Console.WriteLine("Holder");
+			    // Console.WriteLine(eFailedToIssueHolder.Message);
+			    return null;
+			}
+		}
+		
 		public static IUiElement GetUiElement(object element)
 		{
 		    if (element is AutomationElement) {
@@ -154,15 +182,11 @@ namespace UIAutomation
 	        if (null == element) {
 	            return null;
 	        }
-	        
-//System.Windows.Forms.MessageBox.Show("factory:\r\n" + element.Current.Name + "\r\n" + element.Current.AutomationId + "\r\n" + element.Current.ClassName + "\r\n" + element.Current.ProcessId.ToString());
 		    
 			try {
     			var singleElement = new ConstructorArgument("element", element);
     			IUiElement adapterElement = Kernel.Get<IUiElement>("AutomationElement.NET", singleElement);
     			
-    			// 20131227
-    			// if (_useDynamicProxy) {
     			if (Preferences.UseElementsPatternObjectModel) {
     			    
         			IUiElement proxiedTypedUiElement =
@@ -201,8 +225,6 @@ namespace UIAutomation
     			
     			IUiElement adapterElement = Kernel.Get<IUiElement>("UiElement", singleElement);
     			
-    			// 20131227
-    			// if (_useDynamicProxy) {
     			if (Preferences.UseElementsPatternObjectModel) {
     			    
         			IUiElement proxiedTypedUiElement =
@@ -233,8 +255,6 @@ namespace UIAutomation
 			try {
     			IUiElement adapterElement = Kernel.Get<IUiElement>("Empty", null);
     			
-    			// 20131227
-    			// if (_useDynamicProxy) {
     			if (Preferences.UseElementsPatternObjectModel) {
     			    
         			IUiElement proxiedTypedUiElement =
@@ -259,7 +279,6 @@ namespace UIAutomation
 		internal static IUiElementInformation GetUiElementInformation(AutomationElement.AutomationElementInformation information)
 		{
 			try {
-//System.Windows.Forms.MessageBox.Show("factory: " + information.ProcessId.ToString());
     			var singleInfo = new ConstructorArgument("information", information);
     			IUiElementInformation adapterInformation = Kernel.Get<IUiElementInformation>(singleInfo);
     			return adapterInformation;
@@ -350,7 +369,7 @@ namespace UIAutomation
 		#endregion IUiEltCollection
 		
 		#region patterns
-		public static N GetMySuperPattern<N>(IUiElement element, object pattern)
+		public static N GetPatternAdapter<N>(IUiElement element, object pattern)
 		    where N : IBasePattern
 		{
 			try {
@@ -371,7 +390,7 @@ namespace UIAutomation
 			}
 		}
 		
-		public static N GetMySuperPattern<N>(object pattern)
+		public static N GetPatternAdapter<N>(object pattern)
 		    where N : IBasePattern
 		{
 			try {

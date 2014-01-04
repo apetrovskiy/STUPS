@@ -95,7 +95,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         }
         
         [Test]
-        // [Ignore]
+        [Ignore]
         public void Value_Value_Set()
         {
             // Arrange

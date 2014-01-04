@@ -32,9 +32,8 @@ namespace UIAutomationUnitTests
         }
         
 		public override N GetCurrentPattern<N>(AutomationPattern pattern)
-		    // where N : IBasePattern
 		{
-		    return AutomationFactory.GetMySuperPattern<N>(null);
+		    return AutomationFactory.GetPatternAdapter<N>(null);
 		}
     }
 }

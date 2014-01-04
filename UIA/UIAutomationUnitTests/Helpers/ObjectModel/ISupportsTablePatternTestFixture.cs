@@ -181,6 +181,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         }
         
         [Test]
+        [Ignore("not yet ready")]
         public void Table_ExportToCsv()
         {
             // Arrange

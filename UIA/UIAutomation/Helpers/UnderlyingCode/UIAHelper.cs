@@ -2803,14 +2803,12 @@ throw(ePatterns2);
             supportedTypes.Add(typeof(ISupportsNavigation));
             supportedTypes.Add(typeof(ISupportsConversion));
             
+            if (Preferences.UseElementsSearchObjectModel) {
+                supportedTypes.Add(typeof(ISupportsExtendedModel));
+            }
+            
             if (element is AutomationElement) {
                 AutomationElement aElement = element as AutomationElement;
-//                if (ControlType.DataGrid == aElement.Current.ControlType ||
-//                    ControlType.List == aElement.Current.ControlType ||
-//                    ControlType.Table == aElement.Current.ControlType) {
-//                    
-//                    supportedTypes.Add(typeof(ISupportsExport));
-//                }
                 foreach (AutomationPattern pattern in aElement.GetSupportedPatterns()) {
                     // calculated patterns
                     if (pattern == DockPattern.Pattern) {
@@ -2867,12 +2865,6 @@ throw(ePatterns2);
             }
             if (element is IUiElement) {
                 IUiElement uiElement = element as IUiElement;
-//                if (ControlType.DataGrid == uiElement.Current.ControlType ||
-//                    ControlType.List == uiElement.Current.ControlType ||
-//                    ControlType.Table == uiElement.Current.ControlType) {
-//                    
-//                    supportedTypes.Add(typeof(ISupportsExport));
-//                }
                 foreach (IBasePattern pattern in uiElement.GetSupportedPatterns()) {
                     
                     // calculated patterns

@@ -137,15 +137,15 @@ namespace UIAutomation
 			}
 		}
 
-		public virtual N GetCurrentPattern<N>(AutomationPattern pattern) where N : IBasePattern
+		public virtual TPatternInterface GetCurrentPattern<TPatternInterface>(AutomationPattern pattern) where TPatternInterface : IBasePattern
 		{
 
 			switch (_innerElementType) {
 				case InnerElementTypes.AutomationElementNet:
 					if (Preferences.FromCache) {
-						return (N)AutomationFactory.GetMySuperPattern<N>(this, _elementHolderNet.GetCachedPattern(pattern));
+						return (TPatternInterface)AutomationFactory.GetPatternAdapter<TPatternInterface>(this, _elementHolderNet.GetCachedPattern(pattern));
 					} else {
-						return (N)AutomationFactory.GetMySuperPattern<N>(this, _elementHolderNet.GetCurrentPattern(pattern));
+						return (TPatternInterface)AutomationFactory.GetPatternAdapter<TPatternInterface>(this, _elementHolderNet.GetCurrentPattern(pattern));
 					}
 				// default:
 //			    case InnerElementTypes.AutomationElementCom:
@@ -153,14 +153,14 @@ namespace UIAutomation
 					// 20131208
                 case InnerElementTypes.UiElement:
                     // return Preferences.FromCache ? _elementHolderAdapter.GetCachedPattern(pattern) : _elementHolderAdapter.GetCurrentPattern(pattern);
-                    return Preferences.FromCache ? default(N) : _elementHolderAdapter.GetCurrentPattern<N>(pattern);
+                    return Preferences.FromCache ? default(TPatternInterface) : _elementHolderAdapter.GetCurrentPattern<TPatternInterface>(pattern);
 					// default:
 					///    return Preferences.FromCache ? _elementHolderNet.GetCachedPattern(pattern) : _elementHolderNet.GetCurrentPattern(pattern);
                 default:
 					if (Preferences.FromCache) {
-						return (N)AutomationFactory.GetMySuperPattern<N>(this, _elementHolderNet.GetCachedPattern(pattern));
+						return (TPatternInterface)AutomationFactory.GetPatternAdapter<TPatternInterface>(this, _elementHolderNet.GetCachedPattern(pattern));
 					} else {
-						return (N)AutomationFactory.GetMySuperPattern<N>(this, _elementHolderNet.GetCurrentPattern(pattern));
+						return (TPatternInterface)AutomationFactory.GetPatternAdapter<TPatternInterface>(this, _elementHolderNet.GetCurrentPattern(pattern));
 					}
 			}
 

@@ -308,6 +308,7 @@
     <Compile Include="Helpers\UnderlyingCode\Adapter\UiaTransformPattern.cs" />
     <Compile Include="Helpers\UnderlyingCode\Adapter\UiaValuePattern.cs" />
     <Compile Include="Helpers\UnderlyingCode\Adapter\UiaWindowPattern.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Adapter\UiExtendedModelHolder.cs" />
     <Compile Include="Helpers\UnderlyingCode\Aspect\AbstractInterceptor.cs" />
     <Compile Include="Helpers\UnderlyingCode\Aspect\ErrorHandlingAspect.cs" />
     <Compile Include="Helpers\UnderlyingCode\Aspect\InputValidationAspect.cs" />
@@ -323,6 +324,7 @@
     <Compile Include="Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethods.cs" />
     <Compile Include="Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethodsCollection.cs" />
     <Compile Include="Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethodsElement.cs" />
+    <Compile Include="Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethodsElementChildren.cs" />
     <Compile Include="Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethodsElementPatterns.cs" />
     <Compile Include="Helpers\UnderlyingCode\LogEntry.cs" />
     <Compile Include="Helpers\UnderlyingCode\LogHelper.cs" />
@@ -388,8 +390,11 @@
     <Compile Include="Helpers\UserSettings\Profile.cs" />
     <Compile Include="Helpers\UserSettings\Testing.cs" />
     <Compile Include="Helpers\UserSettings\UserData.cs" />
+    <Compile Include="Interface\IExtendedModel.cs" />
+    <Compile Include="Interface\IExtendedModelHolder.cs" />
     <Compile Include="Interface\ISupportsConversion.cs" />
     <Compile Include="Interface\ISupportsExport.cs" />
+    <Compile Include="Interface\ISupportsExtendedModel.cs" />
     <Compile Include="Interface\IUiElement.cs" />
     <Compile Include="Interface\IUiEltCollection.cs" />
     <Compile Include="Interface\IUiElementInformation.cs" />

@@ -544,7 +544,8 @@ namespace UIAutomation
         internal void CallTogglePatternForGet(PatternCmdletBase cmdlet, IUiElement control, IUiElement inputObject)
         {
             try {
-                WriteObject(this, control.GetToggleState());
+                // WriteObject(this, control.GetToggleState());
+                WriteObject(this, (control.GetToggleState() == ToggleState.On));
             } catch (Exception) {
                 WriteObject(this, false);
                 // throw;

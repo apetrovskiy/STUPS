@@ -35,61 +35,61 @@ namespace UIAutomation
                 new List<IBasePattern>();
             foreach (AutomationPattern pattern in patterns) {
                 
-                // resultList.Add(AutomationFactory.GetMySuperPattern<IBasePattern>(element, pattern));
+                // resultList.Add(AutomationFactory.GetPatternAdapter<IBasePattern>(element, pattern));
                 // 20131210
                 // switch (pattern.ProgrammaticName.Substring(12)) {
                 try {
                     switch (pattern.ProgrammaticName.Replace("Identifiers.Pattern", string.Empty)) {
                         case "DockPattern":
-                            resultList.Add(AutomationFactory.GetMySuperPattern<IDockPattern>(element, pattern));
+                            resultList.Add(AutomationFactory.GetPatternAdapter<IDockPattern>(element, pattern));
                             break;
                         case "ExpandCollapsePattern":
-                            resultList.Add(AutomationFactory.GetMySuperPattern<IExpandCollapsePattern>(element, pattern));
+                            resultList.Add(AutomationFactory.GetPatternAdapter<IExpandCollapsePattern>(element, pattern));
                             break;
                         case "GridItemPattern":
-                            resultList.Add(AutomationFactory.GetMySuperPattern<IGridItemPattern>(element, pattern));
+                            resultList.Add(AutomationFactory.GetPatternAdapter<IGridItemPattern>(element, pattern));
                             break;
                         case "GridPattern":
-                            resultList.Add(AutomationFactory.GetMySuperPattern<IGridPattern>(element, pattern));
+                            resultList.Add(AutomationFactory.GetPatternAdapter<IGridPattern>(element, pattern));
                             break;
                         case "InvokePattern":
-                            resultList.Add(AutomationFactory.GetMySuperPattern<IInvokePattern>(element, pattern));
+                            resultList.Add(AutomationFactory.GetPatternAdapter<IInvokePattern>(element, pattern));
                             break;
                         case "RangeValuePattern":
-                            resultList.Add(AutomationFactory.GetMySuperPattern<IRangeValuePattern>(element, pattern));
+                            resultList.Add(AutomationFactory.GetPatternAdapter<IRangeValuePattern>(element, pattern));
                             break;
                         case "ScrollItemPattern":
-                            resultList.Add(AutomationFactory.GetMySuperPattern<IScrollItemPattern>(element, pattern));
+                            resultList.Add(AutomationFactory.GetPatternAdapter<IScrollItemPattern>(element, pattern));
                             break;
                         case "ScrollPattern":
-                            resultList.Add(AutomationFactory.GetMySuperPattern<IScrollPattern>(element, pattern));
+                            resultList.Add(AutomationFactory.GetPatternAdapter<IScrollPattern>(element, pattern));
                             break;
                         case "SelectionItemPattern":
-                            resultList.Add(AutomationFactory.GetMySuperPattern<ISelectionItemPattern>(element, pattern));
+                            resultList.Add(AutomationFactory.GetPatternAdapter<ISelectionItemPattern>(element, pattern));
                             break;
                         case "SelectionPattern":
-                            resultList.Add(AutomationFactory.GetMySuperPattern<ISelectionPattern>(element, pattern));
+                            resultList.Add(AutomationFactory.GetPatternAdapter<ISelectionPattern>(element, pattern));
                             break;
                         case "TableItemPattern":
-                            resultList.Add(AutomationFactory.GetMySuperPattern<ITableItemPattern>(element, pattern));
+                            resultList.Add(AutomationFactory.GetPatternAdapter<ITableItemPattern>(element, pattern));
                             break;
                         case "TablePattern":
-                            resultList.Add(AutomationFactory.GetMySuperPattern<ITablePattern>(element, pattern));
+                            resultList.Add(AutomationFactory.GetPatternAdapter<ITablePattern>(element, pattern));
                             break;
                         case "TextPattern":
-                            resultList.Add(AutomationFactory.GetMySuperPattern<ITextPattern>(element, pattern));
+                            resultList.Add(AutomationFactory.GetPatternAdapter<ITextPattern>(element, pattern));
                             break;
                         case "TogglePattern":
-                            resultList.Add(AutomationFactory.GetMySuperPattern<ITogglePattern>(element, pattern));
+                            resultList.Add(AutomationFactory.GetPatternAdapter<ITogglePattern>(element, pattern));
                             break;
                         case "TransformPattern":
-                            resultList.Add(AutomationFactory.GetMySuperPattern<ITransformPattern>(element, pattern));
+                            resultList.Add(AutomationFactory.GetPatternAdapter<ITransformPattern>(element, pattern));
                             break;
                         case "ValuePattern":
-                            resultList.Add(AutomationFactory.GetMySuperPattern<IValuePattern>(element, pattern));
+                            resultList.Add(AutomationFactory.GetPatternAdapter<IValuePattern>(element, pattern));
                             break;
                         case "WindowPattern":
-                            resultList.Add(AutomationFactory.GetMySuperPattern<IWindowPattern>(element, pattern));
+                            resultList.Add(AutomationFactory.GetPatternAdapter<IWindowPattern>(element, pattern));
                             break;
                         // default:
                         //     

@@ -36,7 +36,6 @@ namespace UIAutomation
             Bind<IUiElement>()
                 .ToConstructor(
                     x =>
-                    // new UiElement(x.Inject<AutomationElement>()))
                     new UiElement(x.Inject<System.Windows.Automation.AutomationElement>()))
                 .InCallScope()
                 .Named("AutomationElement.NET");
@@ -49,12 +48,13 @@ namespace UIAutomation
                 .Named("UiElement");
             
             Bind<IUiElement>()
-                // .ToConstructor(
-                //     x =>
-                //     new UiElement(x.Inject<bool>()))
                 .To<UiElement>()
                 .InCallScope()
                 .Named("Empty");
+            
+            Bind<IExtendedModelHolder>()
+                .To<UiExtendedModelHolder>()
+                .InCallScope();
             #endregion IUiElement
             
             #region IUiEltCollection

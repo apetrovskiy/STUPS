@@ -165,6 +165,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         }
         
         [Test]
+        [Ignore("not yet ready")]
         public void Grid_ExportToCsv()
         {
             // Arrange

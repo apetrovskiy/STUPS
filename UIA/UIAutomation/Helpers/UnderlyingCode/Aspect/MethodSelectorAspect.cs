@@ -478,6 +478,247 @@ namespace UIAutomation
                             
                             break;
                         #endregion Conversion
+                        #region Extended
+                        case "get_Elements":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetHolder();
+                            break;
+                        case "get_Buttons":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
+                                    TreeScope.Descendants,
+                                    ControlType.Button);
+                            break;
+                        case "get_Calendars":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
+                                    TreeScope.Descendants,
+                                    ControlType.Calendar);
+                            break;
+                        case "get_CheckBoxes":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
+                                    TreeScope.Descendants,
+                                    ControlType.CheckBox);
+                            break;
+                        case "get_ComboBoxes":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
+                                    TreeScope.Descendants,
+                                    ControlType.ComboBox);
+                            break;
+                        case "get_Customs":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
+                                    TreeScope.Descendants,
+                                    ControlType.Custom);
+                            break;
+                        case "get_DataGrids":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
+                                    TreeScope.Descendants,
+                                    ControlType.DataGrid);
+                            break;
+                        case "get_DataItems":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
+                                    TreeScope.Descendants,
+                                    ControlType.DataItem);
+                            break;
+                        case "get_Documents":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
+                                    TreeScope.Descendants,
+                                    ControlType.Document);
+                            break;
+                        case "get_Edits":
+                        // case "Edits":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
+                                    TreeScope.Descendants,
+                                    ControlType.Edit);
+                            break;
+                        case "get_Groups":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
+                                    TreeScope.Descendants,
+                                    ControlType.Group);
+                            break;
+                        case "get_Headers":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
+                                    TreeScope.Descendants,
+                                    ControlType.Header);
+                            break;
+                        case "get_HeaderItems":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
+                                    TreeScope.Descendants,
+                                    ControlType.HeaderItem);
+                            break;
+                        case "get_Hyperlinks":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
+                                    TreeScope.Descendants,
+                                    ControlType.Hyperlink);
+                            break;
+                        case "get_Images":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
+                                    TreeScope.Descendants,
+                                    ControlType.Image);
+                            break;
+                        case "get_Lists":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
+                                    TreeScope.Descendants,
+                                    ControlType.List);
+                            break;
+                        case "get_ListItems":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
+                                    TreeScope.Descendants,
+                                    ControlType.ListItem);
+                            break;
+                        case "get_Menus":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
+                                    TreeScope.Descendants,
+                                    ControlType.Menu);
+                            break;
+                        case "get_MenuBars":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
+                                    TreeScope.Descendants,
+                                    ControlType.MenuBar);
+                            break;
+                        case "get_MenuItems":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
+                                    TreeScope.Descendants,
+                                    ControlType.MenuItem);
+                            break;
+                        case "get_Panes":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
+                                    TreeScope.Descendants,
+                                    ControlType.Pane);
+                            break;
+                        case "get_ProgressBars":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
+                                    TreeScope.Descendants,
+                                    ControlType.ProgressBar);
+                            break;
+                        case "get_RadioButtons":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
+                                    TreeScope.Descendants,
+                                    ControlType.RadioButton);
+                            break;
+                        case "get_ScrollBars":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
+                                    TreeScope.Descendants,
+                                    ControlType.ScrollBar);
+                            break;
+                        case "get_Separators":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
+                                    TreeScope.Descendants,
+                                    ControlType.Separator);
+                            break;
+                        case "get_Sliders":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
+                                    TreeScope.Descendants,
+                                    ControlType.Slider);
+                            break;
+                        case "get_Spinners":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
+                                    TreeScope.Descendants,
+                                    ControlType.Spinner);
+                            break;
+                        case "get_SplitButtons":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
+                                    TreeScope.Descendants,
+                                    ControlType.SplitButton);
+                            break;
+                        case "get_StatusBars":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
+                                    TreeScope.Descendants,
+                                    ControlType.StatusBar);
+                            break;
+                        case "get_Tabs":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
+                                    TreeScope.Descendants,
+                                    ControlType.Tab);
+                            break;
+                        case "get_TabItems":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
+                                    TreeScope.Descendants,
+                                    ControlType.TabItem);
+                            break;
+                        case "get_Tables":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
+                                    TreeScope.Descendants,
+                                    ControlType.Table);
+                            break;
+                        case "get_Texts":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
+                                    TreeScope.Descendants,
+                                    ControlType.Text);
+                            break;
+                        case "get_Thumbs":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
+                                    TreeScope.Descendants,
+                                    ControlType.Thumb);
+                            break;
+                        case "get_TitleBars":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
+                                    TreeScope.Descendants,
+                                    ControlType.TitleBar);
+                            break;
+                        case "get_ToolBars":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
+                                    TreeScope.Descendants,
+                                    ControlType.ToolBar);
+                            break;
+                        case "get_ToolTips":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
+                                    TreeScope.Descendants,
+                                    ControlType.ToolTip);
+                            break;
+                        case "get_Trees":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
+                                    TreeScope.Descendants,
+                                    ControlType.Tree);
+                            break;
+                        case "get_TreeItems":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
+                                    TreeScope.Descendants,
+                                    ControlType.TreeItem);
+                            break;
+                        case "get_Windows":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
+                                    TreeScope.Descendants,
+                                    ControlType.Window);
+                            break;
+                        #endregion Extended
                         default:
                             invocation.Proceed();
                         	break;

@@ -348,11 +348,6 @@ namespace UIAutomationUnitTests
         internal static IUiElement GetAutomationElementForMethodsOfObjectModel(IBasePattern[] patterns)
         {
             return GetAutomationElementForObjectModelTesting(ControlType.Button, string.Empty, string.Empty, string.Empty, patterns, true);
-            
-            // IUiElement eltNew = GetAutomationElementForObjectModelTesting(ControlType.Button, string.Empty, string.Empty, string.Empty, patterns, true);
-            
-            // return eltNew;
-            
         }
         
         public static GetControlCmdletBase Get_GetControlCmdletBase(ControlType[] controlTypes, string name, string automationId, string className, string txtValue)
@@ -389,10 +384,15 @@ namespace UIAutomationUnitTests
             return cmdlet;
         }
         
-        public static IFakeUiElement GetElement_ForFindAll(IEnumerable<IUiElement> elements, Condition conditions)
+        public static IUiElement GetElement_ForFindAll(IEnumerable<IUiElement> elements, Condition conditions)
         {
-            IFakeUiElement element =
+            var elementBeforeProxy =
                 GetAutomationElement(ControlType.Pane, string.Empty, string.Empty, string.Empty, new IBasePattern[] {}, false);
+            
+            var element =
+                AutomationFactory.GetUiElement(
+                    elementBeforeProxy as IUiElement);
+            
             IUiEltCollection descendants = AutomationFactory.GetUiEltCollection(elements);
             
             Condition[] condCollection = null;

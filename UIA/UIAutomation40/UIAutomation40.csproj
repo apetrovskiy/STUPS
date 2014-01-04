@@ -735,6 +735,9 @@
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\UiEltCollection.cs">
       <Link>Helpers\UnderlyingCode\Adapter\UiEltCollection.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\UiExtendedModelHolder.cs">
+      <Link>Helpers\UnderlyingCode\Adapter\UiExtendedModelHolder.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Aspect\AbstractInterceptor.cs">
       <Link>Helpers\UnderlyingCode\Aspect\AbstractInterceptor.cs</Link>
     </Compile>
@@ -791,6 +794,9 @@
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethodsElement.cs">
       <Link>Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethodsElement.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethodsElementChildren.cs">
+      <Link>Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethodsElementChildren.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethodsElementPatterns.cs">
       <Link>Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethodsElementPatterns.cs</Link>
@@ -874,6 +880,12 @@
     <Compile Include="..\UIAutomation\Interface\IExpandCollapsePatternInformation.cs">
       <Link>Interface\IExpandCollapsePatternInformation.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Interface\IExtendedModel.cs">
+      <Link>Interface\IExtendedModel.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\IExtendedModelHolder.cs">
+      <Link>Interface\IExtendedModelHolder.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Interface\IGridItemPattern.cs">
       <Link>Interface\IGridItemPattern.cs</Link>
     </Compile>
@@ -927,6 +939,9 @@
     </Compile>
     <Compile Include="..\UIAutomation\Interface\ISupportsExport.cs">
       <Link>Interface\ISupportsExport.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\ISupportsExtendedModel.cs">
+      <Link>Interface\ISupportsExtendedModel.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Interface\ISupportsGridItemPattern.cs">
       <Link>Interface\ISupportsGridItemPattern.cs</Link>

@@ -175,6 +175,9 @@
     <Compile Include="..\UIAutomationUnitTests\Helpers\ObjectModel\ISupportsExpandCollapseTestFixture.cs">
       <Link>Helpers\ObjectModel\ISupportsExpandCollapseTestFixture.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\ObjectModel\ISupportsExtendedModelTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsExtendedModelTestFixture.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomationUnitTests\Helpers\ObjectModel\ISupportsGridItemPatternTestFixture.cs">
       <Link>Helpers\ObjectModel\ISupportsGridItemPatternTestFixture.cs</Link>
     </Compile>

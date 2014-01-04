@@ -124,6 +124,7 @@
     <Compile Include="Helpers\Inheritance\SearchByWildcardOrRegexViaUiaTestFixture.cs" />
     <Compile Include="Helpers\ObjectModel\ISupportsDockPatternTestFixture.cs" />
     <Compile Include="Helpers\ObjectModel\ISupportsExpandCollapseTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModel\ISupportsExtendedModelTestFixture.cs" />
     <Compile Include="Helpers\ObjectModel\ISupportsGridItemPatternTestFixture.cs" />
     <Compile Include="Helpers\ObjectModel\ISupportsGridPatternTestFixture.cs" />
     <Compile Include="Helpers\ObjectModel\ISupportsInvokePatternTestFixture.cs" />

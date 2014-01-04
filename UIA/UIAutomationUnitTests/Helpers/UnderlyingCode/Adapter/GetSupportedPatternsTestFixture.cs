@@ -62,7 +62,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Adapter
                     "name",
                     "auId",
                     "className",
-                    new[] { AutomationFactory.GetMySuperPattern<IValuePattern>(AutomationFactory.GetUiElement(), null) },
+                    new[] { AutomationFactory.GetPatternAdapter<IValuePattern>(AutomationFactory.GetUiElement(), null) },
                     true);
             
             Assert.AreEqual(1, element.GetSupportedPatterns().Count());
@@ -79,9 +79,9 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Adapter
                     "auId",
                     "className",
                     new IBasePattern[] {
-                        AutomationFactory.GetMySuperPattern<IExpandCollapsePattern>(AutomationFactory.GetUiElement(), null),
-                        AutomationFactory.GetMySuperPattern<ITableItemPattern>(AutomationFactory.GetUiElement(), null),
-                        AutomationFactory.GetMySuperPattern<IWindowPattern>(AutomationFactory.GetUiElement(), null)
+                        AutomationFactory.GetPatternAdapter<IExpandCollapsePattern>(AutomationFactory.GetUiElement(), null),
+                        AutomationFactory.GetPatternAdapter<ITableItemPattern>(AutomationFactory.GetUiElement(), null),
+                        AutomationFactory.GetPatternAdapter<IWindowPattern>(AutomationFactory.GetUiElement(), null)
                     },
                     true);
             

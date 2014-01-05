@@ -16,7 +16,9 @@ namespace UIAutomation
     /// </summary>
     public interface ISupportsExtendedModel
     {
-        IExtendedModelHolder Elements { get; }
+        // IExtendedModelHolder Elements { get; }
+        IExtendedModelHolder Descendants { get; }
+        IExtendedModelHolder Children { get; }
 //        IUiEltCollection Buttons { get; }
 //        IUiEltCollection Calendars { get; }
 //        IUiEltCollection CheckBoxes { get; }

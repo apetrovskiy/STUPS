@@ -44,9 +44,6 @@ namespace UIAutomation.Commands
         public SwitchParameter Full { get; set; }
         #endregion Parameters
         
-        // 20131210
-        // private IUiElement _currentInputObject = null;
-        
         /// <summary>
         /// Processes the pipeline.
         /// </summary>
@@ -54,126 +51,115 @@ namespace UIAutomation.Commands
         {
             if (!CheckAndPrepareInput(this)) { return; }
             
-            foreach (IUiElement inputObject in InputObject) {
-                
-                // 20120823
-                // 20131210
-                // _currentInputObject = inputObject;
-                
             if (Full) {
-                
-                //this.Exclude = null;
-                Exclude =
-                    new string[] {};
-//                for (int i = 0; i < this.Exclude.Length; i++) {
-//                    
-//                }
-                
+                Exclude = new string[] {};
             }
             
+            foreach (string strInclude in Include) {
+                WriteVerbose(this, "include: " + strInclude);
+            }
+            foreach (string strExclude in Exclude) {
+                WriteVerbose(this, "exclude: " + strExclude);
+            }
+            
+            foreach (IUiElement element in InputObject) {
+                WriteObject(this, ConvertElementToSearchCriteria(element));
+            }
+        }
+
+        protected string ConvertElementToSearchCriteria(IUiElement element)
+        {
             string result = "@{";
-            
-            // 20131210
-            // and further
-            // result += GetPropertyCompleteString(result, "Name");
-            result += GetPropertyCompleteString(inputObject, result, "Name");
-            result += GetPropertyCompleteString(inputObject, result, "AutomationId");
-            result += GetPropertyCompleteString(inputObject, result, "ControlType");
-            result += GetPropertyCompleteString(inputObject, result, "Class");
-            result += GetPropertyCompleteString(inputObject, result, "AcceleratorKey");
-            result += GetPropertyCompleteString(inputObject, result, "AccessKey");
-            result += GetPropertyCompleteString(inputObject, result, "BoundingRectangle");
-            result += GetPropertyCompleteString(inputObject, result, "FrameworkId");
-            result += GetPropertyCompleteString(inputObject, result, "HasKeyboardFocus");
-            result += GetPropertyCompleteString(inputObject, result, "HelpText");
-            result += GetPropertyCompleteString(inputObject, result, "IsContentElement");
-            result += GetPropertyCompleteString(inputObject, result, "IsControlElement");
-            result += GetPropertyCompleteString(inputObject, result, "IsEnabled");
-            result += GetPropertyCompleteString(inputObject, result, "IsKeyboardFocusable");
-            result += GetPropertyCompleteString(inputObject, result, "IsOffscreen");
-            result += GetPropertyCompleteString(inputObject, result, "IsPassword");
-            result += GetPropertyCompleteString(inputObject, result, "IsRequiredForForm");
-            result += GetPropertyCompleteString(inputObject, result, "ItemStatus");
-            result += GetPropertyCompleteString(inputObject, result, "ItemType");
+            result += GetPropertyCompleteString(element, result, "Name");
+            result += GetPropertyCompleteString(element, result, "AutomationId");
+            result += GetPropertyCompleteString(element, result, "ControlType");
+            result += GetPropertyCompleteString(element, result, "Class");
+            result += GetPropertyCompleteString(element, result, "AcceleratorKey");
+            result += GetPropertyCompleteString(element, result, "AccessKey");
+            result += GetPropertyCompleteString(element, result, "BoundingRectangle");
+            result += GetPropertyCompleteString(element, result, "FrameworkId");
+            result += GetPropertyCompleteString(element, result, "HasKeyboardFocus");
+            result += GetPropertyCompleteString(element, result, "HelpText");
+            result += GetPropertyCompleteString(element, result, "IsContentElement");
+            result += GetPropertyCompleteString(element, result, "IsControlElement");
+            result += GetPropertyCompleteString(element, result, "IsEnabled");
+            result += GetPropertyCompleteString(element, result, "IsKeyboardFocusable");
+            result += GetPropertyCompleteString(element, result, "IsOffscreen");
+            result += GetPropertyCompleteString(element, result, "IsPassword");
+            result += GetPropertyCompleteString(element, result, "IsRequiredForForm");
+            result += GetPropertyCompleteString(element, result, "ItemStatus");
+            result += GetPropertyCompleteString(element, result, "ItemType");
             //result += getPropertyCompleteString(inputObject, result, "LabeledBy");
-            result += GetPropertyCompleteString(inputObject, result, "LocalizedControlType");
-            result += GetPropertyCompleteString(inputObject, result, "NativeWindowHandle");
-            result += GetPropertyCompleteString(inputObject, result, "Orientation");
-            result += GetPropertyCompleteString(inputObject, result, "ProcessId");
-            
-            // 20130127
-            // 20131210
-            // result += GetPatternStrings();
-            result += GetPatternStrings(inputObject);
-            
+            result += GetPropertyCompleteString(element, result, "LocalizedControlType");
+            result += GetPropertyCompleteString(element, result, "NativeWindowHandle");
+            result += GetPropertyCompleteString(element, result, "Orientation");
+            result += GetPropertyCompleteString(element, result, "ProcessId");
+            result += GetPatternStrings(element);
             result += "}";
-            WriteObject(this, result);
             
-            } // 20120823
-            
+            return result;
         }
         
-        // 20131210
-        // private string GetPatternStrings()
-        private string GetPatternStrings(IUiElement currentElement)
+        private string GetPatternStrings(IUiElement element)
         {
             string result = string.Empty;
             
             if (!Full) return result;
-            // 20131209
-            // AutomationPattern[] supportedPatterns =
-            //     _currentInputObject.GetSupportedPatterns();
+            
             IBasePattern[] supportedPatterns =
-                // 20131210
-                // _currentInputObject.GetSupportedPatterns();
-                currentElement.GetSupportedPatterns();
+                element.GetSupportedPatterns();
             
             if (null == supportedPatterns || 0 == supportedPatterns.Length) return result;
             
-            // 20131209
-            // foreach (AutomationPattern pattern in supportedPatterns) {
             foreach (IBasePattern pattern in supportedPatterns) {
                 
                 result += ";Has";
                 result +=
-                    // 20131209
-                    // pattern.ProgrammaticName.Substring(0, pattern.ProgrammaticName.Length - 19);
-                    // 20131210
-                    // (pattern.SourcePattern as AutomationPattern).ProgrammaticName.Substring(0, (pattern as AutomationPattern).ProgrammaticName.Length - 19);
-                    // (pattern.SourcePattern as AutomationPattern).ProgrammaticName.Substring(0, (pattern.SourcePattern as AutomationPattern).ProgrammaticName.Length - 19);
-                    (pattern.GetSourcePattern() as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", string.Empty);
-                
+                    // (pattern.GetSourcePattern() as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", string.Empty);
+                    pattern.GetType().Name.Substring(2);
                 result += "=$true";
             }
             
             return result;
         }
         
-        private string propertyToString(object property)
+        private string PropertyToString(object propertyValue)
         {
-            string result = "\"\"";
-            string tempResult = 
-                property.ToString();
-            if (tempResult.ToUpper() == "TRUE") {
-                tempResult = "$true";
+            #region commented
+//            string result = "\"\"";
+//            string tempResult =
+//                propertyValue.ToString();
+//            if (tempResult.ToUpper() == "TRUE") {
+//                tempResult = "$true";
+//            }
+//            if (tempResult.ToUpper() == "FALSE") {
+//                tempResult = "$false";
+//            }
+//            if (tempResult != "$true" && tempResult != "$false" && tempResult != string.Empty) {
+//                tempResult =
+//                    "\"" +
+//                    tempResult +
+//                    "\"";
+//            }
+//            if (tempResult != null && tempResult.Length > 0) {
+//                result = tempResult;
+//            }
+//            return result;
+            #endregion commented
+            
+            switch (propertyValue.ToString().ToUpper()) {
+                case "TRUE":
+                    return "$true";
+                case "FALSE":
+                    return "$false";
+                case "":
+                    return "\"\"";
+                default:
+                    return "\"" + propertyValue.ToString() + "\"";
             }
-            if (tempResult.ToUpper() == "FALSE") {
-                tempResult = "$false";
-            }
-            if (tempResult != "$true" && tempResult != "$false" && tempResult != string.Empty) {
-                tempResult = 
-                    "\"" + 
-                    tempResult + 
-                    "\"";
-            }
-            if (tempResult != null && tempResult.Length > 0) {
-                result = tempResult;
-            }
-            return result;
         }
         
         private string GetPropertyCompleteString(
-            // 20131210
             IUiElement currentElement,
             string resultString,
             string propertyName)
@@ -181,86 +167,89 @@ namespace UIAutomation.Commands
             string result = string.Empty;
             
             if ((Full) ||
-                (IsIncluded(propertyName) &&
-                 !IsExcluded(propertyName))) {
+                // (IsIncluded(propertyName) &&
+                // (IsInArray(Include, propertyName) &&
+                // !IsExcluded(propertyName))) {
+                // !IsInArray(Exclude, propertyName))) {
+                
+                (!IsInArray(Exclude, propertyName) &&
+                (0 == Include.Length || IsInArray(Include, propertyName)))) {
+                
                 result = propertyName;
                 result += "=";
                 
                 switch (propertyName) {
                     case "Name":
-                        // 20131210
-                        // and further
-                        // result += propertyToString(_currentInputObject.Current.Name);
-                        result += propertyToString(currentElement.Current.Name);
+                        result += PropertyToString(currentElement.Current.Name);
                         break;
                     case "AutomationId":
-                        result += propertyToString(currentElement.Current.AutomationId);
+                        result += PropertyToString(currentElement.Current.AutomationId);
                         break;
                     case "ControlType":
-                        result += propertyToString(currentElement.Current.ControlType.ProgrammaticName.Substring(12));
+                        result += PropertyToString(currentElement.Current.ControlType.ProgrammaticName.Substring(12));
                         break;
                     case "Class":
-                        result += propertyToString(currentElement.Current.ClassName);
+                        result += PropertyToString(currentElement.Current.ClassName);
                         break;
                     case "AcceleratorKey":
-                        result += propertyToString(currentElement.Current.AcceleratorKey);
+                        result += PropertyToString(currentElement.Current.AcceleratorKey);
                         break;
                     case "AccessKey":
-                        result += propertyToString(currentElement.Current.AccessKey);
+                        result += PropertyToString(currentElement.Current.AccessKey);
                         break;
                     case "BoundingRectangle":
-                        result += propertyToString(currentElement.Current.BoundingRectangle.ToString());
+                        result += PropertyToString(currentElement.Current.BoundingRectangle.ToString());
                         break;
                     case "FrameworkId":
-                        result += propertyToString(currentElement.Current.FrameworkId);
+                        result += PropertyToString(currentElement.Current.FrameworkId);
                         break;
                     case "HasKeyboardFocus":
-                        result += propertyToString(currentElement.Current.HasKeyboardFocus.ToString());
+                        result += PropertyToString(currentElement.Current.HasKeyboardFocus.ToString());
                         break;
                     case "HelpText":
-                        result += propertyToString(currentElement.Current.HelpText);
+                        result += PropertyToString(currentElement.Current.HelpText);
                         break;
                     case "IsContentElement":
-                        result += propertyToString(currentElement.Current.IsContentElement.ToString());
+                        result += PropertyToString(currentElement.Current.IsContentElement.ToString());
                         break;
                     case "IsControlElement":
-                        result += propertyToString(currentElement.Current.IsControlElement.ToString());
+                        result += PropertyToString(currentElement.Current.IsControlElement.ToString());
                         break;
                     case "IsEnabled":
-                        result += propertyToString(currentElement.Current.IsEnabled.ToString());
+                        result += PropertyToString(currentElement.Current.IsEnabled.ToString());
                         break;
                     case "IsKeyboardFocusable":
-                        result += propertyToString(currentElement.Current.IsKeyboardFocusable.ToString());
+                        result += PropertyToString(currentElement.Current.IsKeyboardFocusable.ToString());
                         break;
                     case "IsOffscreen":
-                        result += propertyToString(currentElement.Current.IsOffscreen.ToString());
+                        result += PropertyToString(currentElement.Current.IsOffscreen.ToString());
                         break;
                     case "IsPassword":
-                        result += propertyToString(currentElement.Current.IsPassword.ToString());
+                        result += PropertyToString(currentElement.Current.IsPassword.ToString());
                         break;
                     case "IsRequiredForForm":
-                        result += propertyToString(currentElement.Current.IsRequiredForForm.ToString());
+                        result += PropertyToString(currentElement.Current.IsRequiredForForm.ToString());
                         break;
                     case "ItemStatus":
-                        result += propertyToString(currentElement.Current.ItemStatus);
+                        result += PropertyToString(currentElement.Current.ItemStatus);
                         break;
                     case "ItemType":
-                        result += propertyToString(currentElement.Current.ItemType);
+                        result += PropertyToString(currentElement.Current.ItemType);
                         break;
-                    //case "LabeledBy":
-                    //    result += 
-                    //    break;
+                        //case "LabeledBy":
+                        //    result +=
+                        //    break;
                     case "LocalizedControlType":
-                        result += propertyToString(currentElement.Current.LocalizedControlType);
+                        result += PropertyToString(currentElement.Current.LocalizedControlType);
                         break;
                     case "NativeWindowHandle":
-                        result += propertyToString(currentElement.Current.NativeWindowHandle.ToString());
+                        result += PropertyToString(currentElement.Current.NativeWindowHandle.ToString());
                         break;
                     case "Orientation":
-                        result += propertyToString(currentElement.Current.Orientation.ToString());
+                        result += PropertyToString(currentElement.Current.Orientation.ToString());
                         break;
                     case "ProcessId":
-                        result += propertyToString(currentElement.Current.ProcessId.ToString());
+                        result += PropertyToString(currentElement.Current.ProcessId.ToString());
                         break;
                 }
             }
@@ -268,43 +257,17 @@ namespace UIAutomation.Commands
             if (string.IsNullOrEmpty(resultString) || resultString.Length <= 0) return result;
             if (resultString.Substring(resultString.Length - 1) != "{" &&
                 resultString.Substring(resultString.Length - 1) != ";") {
-                    result = ";" + result;
-                }
+                result = ";" + result;
+            }
             
             return result;
         }
         
-        private bool IsIncluded(string propertyName)
+        private bool IsInArray(string[] inputArray, string propertyName)
         {
-            return Include.Any(t => String.Equals(t, propertyName, StringComparison.CurrentCultureIgnoreCase));
-
-            /*
-            bool result = false;
-            for (int i = 0; i < this.Include.Length; i++) {
-                if (this.Include[i].ToUpper() == propertyName.ToUpper()) {
-                    result = true;
-                    break;
-                }
-            }
-            return result;
-            */
-        }
-
-        private bool IsExcluded(string propertyName)
-        {
-            return Exclude.Any(t => String.Equals(t, propertyName, StringComparison.CurrentCultureIgnoreCase));
-            /*
-            bool result = false;
-            for (int i = 0; i < this.Exclude.Length; i++)
-            {
-                if (this.Exclude[i].ToUpper() == propertyName.ToUpper())
-                {
-                    result = true;
-                    break;
-                }
-            }
-            return result;
-            */
+            if (null == inputArray || 0 == inputArray.Length) return false;
+            
+            return inputArray.Any(name => String.Equals(name, propertyName, StringComparison.CurrentCultureIgnoreCase));
         }
     }
 }

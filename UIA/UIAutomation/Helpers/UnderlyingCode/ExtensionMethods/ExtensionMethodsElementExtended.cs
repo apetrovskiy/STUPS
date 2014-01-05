@@ -22,15 +22,17 @@ namespace UIAutomation
     /// <summary>
     /// Description of ExtensionMethodsElementChildren.
     /// </summary>
-    public static class ExtensionMethodsElementChildren
+    public static class ExtensionMethodsElementExtended
     {
         // public static IUiEltCollection PerformFindAll(this IUiElement element, TreeScope scope, ControlType controlType)
-        public static IUiEltCollection PerformFindAll(this IExtendedModelHolder holder, TreeScope scope, ControlType controlType)
+        // public static IUiEltCollection PerformFindAll(this IExtendedModelHolder holder, TreeScope scope, ControlType controlType)
+        public static IUiEltCollection PerformFindAll(this IExtendedModelHolder holder, ControlType controlType)
         {
             try {
                 return (holder as UiExtendedModelHolder).GetParentElement()
                     .FindAll(
-                        scope,
+                        // scope,
+                        holder.GetScope(),
                         new PropertyCondition(
                             AutomationElement.ControlTypeProperty,
                             controlType));
@@ -40,9 +42,12 @@ namespace UIAutomation
             }
         }
         
-        public static IExtendedModelHolder GetHolder(this IUiElement element)
+        // public static IExtendedModelHolder GetHolder(this IUiElement element)
+        public static IExtendedModelHolder GetHolder(this IUiElement element, TreeScope scope)
         {
-            return AutomationFactory.GetUiExtendedModelHolder(element);
+            // 20140105
+            // return AutomationFactory.GetUiExtendedModelHolder(element);
+            return AutomationFactory.GetUiExtendedModelHolder(element, scope);
         }
     }
 }

@@ -397,7 +397,7 @@ namespace UIAutomationUnitTests
                 AutomationFactory.GetUiElement(
                     elementBeforeProxy as IUiElement);
             
-            IUiEltCollection descendants = AutomationFactory.GetUiEltCollection(elements);
+            IUiEltCollection fullListOfElements = AutomationFactory.GetUiEltCollection(elements);
             
             Condition[] condCollection = null;
             if (null != conditions as AndCondition) {
@@ -408,17 +408,31 @@ namespace UIAutomationUnitTests
                 condCollection = (conditions as OrCondition).GetConditions();
             }
             
-            IUiEltCollection descendants2 = AutomationFactory.GetUiEltCollection();
-            foreach (IUiElement elt in descendants
+            // emulates FindAll(TreeScope.Descendants, ...)
+            IUiEltCollection descendants = AutomationFactory.GetUiEltCollection();
+            foreach (IUiElement elt in fullListOfElements
                 .Cast<IUiElement>()
                 // 20130104
                 // .Where(elt => "expected" == elt.Tag))
                 .Where(elt => "expected" == elt.GetTag()))
             {
-                descendants2.SourceCollection.Add(elt);
+                descendants.SourceCollection.Add(elt);
             }
             
-            element.FindAll(TreeScope.Descendants, Arg.Any<Condition>()).Returns(descendants2);
+            element.FindAll(TreeScope.Descendants, Arg.Any<Condition>()).Returns(descendants);
+            
+            // 20140105
+            // emulates FindAll(TreeScope.Children, ...)
+            IUiEltCollection children = AutomationFactory.GetUiEltCollection();
+            foreach (IUiElement elt in fullListOfElements
+                .Cast<IUiElement>()
+                .Where(elt => "expected" == elt.GetTag()))
+            {
+                children.SourceCollection.Add(elt);
+            }
+            
+            element.FindAll(TreeScope.Children, Arg.Any<Condition>()).Returns(children);
+            
             return element;
         }
     }

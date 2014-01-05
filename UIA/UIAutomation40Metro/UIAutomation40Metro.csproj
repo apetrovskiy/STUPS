@@ -795,8 +795,11 @@
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethodsElement.cs">
       <Link>Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethodsElement.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethodsElementChildren.cs">
-      <Link>Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethodsElementChildren.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethodsElementCommon.cs">
+      <Link>Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethodsElementCommon.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethodsElementExtended.cs">
+      <Link>Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethodsElementExtended.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethodsElementPatterns.cs">
       <Link>Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethodsElementPatterns.cs</Link>
@@ -960,6 +963,9 @@
     </Compile>
     <Compile Include="..\UIAutomation\Interface\ISupportsRangeValuePattern.cs">
       <Link>Interface\ISupportsRangeValuePattern.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\ISupportsRefresh.cs">
+      <Link>Interface\ISupportsRefresh.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Interface\ISupportsScrollItemPattern.cs">
       <Link>Interface\ISupportsScrollItemPattern.cs</Link>

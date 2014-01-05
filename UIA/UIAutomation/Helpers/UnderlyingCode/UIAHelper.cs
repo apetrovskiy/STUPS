@@ -2802,6 +2802,7 @@ throw(ePatterns2);
             supportedTypes.Add(typeof(ISupportsHighlighter));
             supportedTypes.Add(typeof(ISupportsNavigation));
             supportedTypes.Add(typeof(ISupportsConversion));
+            supportedTypes.Add(typeof(ISupportsRefresh));
             
             if (Preferences.UseElementsSearchObjectModel) {
                 supportedTypes.Add(typeof(ISupportsExtendedModel));

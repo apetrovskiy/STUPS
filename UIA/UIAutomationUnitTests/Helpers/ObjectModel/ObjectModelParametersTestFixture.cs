@@ -60,6 +60,12 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
                     new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsConversion;
             
             Assert.IsNull(conversibleElement as ISupportsConversion);
+            
+            ISupportsRefresh refreshableElement =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsRefresh;
+            
+            Assert.IsNull(refreshableElement as ISupportsRefresh);
         }
         
         [Test]

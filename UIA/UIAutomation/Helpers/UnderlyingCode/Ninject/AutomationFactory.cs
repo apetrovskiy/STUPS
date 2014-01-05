@@ -137,20 +137,29 @@ namespace UIAutomation
         #endregion Castle DynamicProxy
 		
 		#region IUiElement
-		internal static IExtendedModelHolder GetUiExtendedModelHolder(IUiElement parentElement)
+		// internal static IExtendedModelHolder GetUiExtendedModelHolder(IUiElement parentElement)
+		internal static IExtendedModelHolder GetUiExtendedModelHolder(IUiElement parentElement, TreeScope scope)
 		{
 	        if (null == parentElement) {
 	            return null;
 	        }
 		    
 			try {
+		        // 20140105
     			IExtendedModelHolder holder = Kernel.Get<IExtendedModelHolder>(new IParameter[] {});
+    			// var scopeParameter = new ConstructorArgument("scope", scope);
+    			// IExtendedModelHolder holder = Kernel.Get<IExtendedModelHolder>(new IParameter[] { scopeParameter });
+    			
+    			// holder.SetScope(scope);
     			
     			IExtendedModelHolder proxiedHolder =
     			    (IExtendedModelHolder)_generator.CreateClassProxy(
     			        typeof(UiExtendedModelHolder),
     			        new Type[] { typeof(IExtendedModel) },
     			        new MethodSelectorAspect());
+    			
+    			// 20140105
+    			proxiedHolder.SetScope(scope);
     			
     			proxiedHolder.SetParentElement(parentElement);
     			

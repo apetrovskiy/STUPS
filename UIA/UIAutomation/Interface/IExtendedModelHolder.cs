@@ -9,6 +9,8 @@
 
 namespace UIAutomation
 {
+    using System.Windows.Automation;
+    
     /// <summary>
     /// Description of IExtendedModelHolder.
     /// </summary>
@@ -16,5 +18,7 @@ namespace UIAutomation
     {
         void SetParentElement(IUiElement parentElement);
         IUiElement GetParentElement();
+        void SetScope(TreeScope scope);
+        TreeScope GetScope();
     }
 }

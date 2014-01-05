@@ -52,9 +52,17 @@ namespace UIAutomation
                 .InCallScope()
                 .Named("Empty");
             
+            // 20140105
             Bind<IExtendedModelHolder>()
                 .To<UiExtendedModelHolder>()
                 .InCallScope();
+            
+//            Bind<IExtendedModelHolder>()
+//                .
+//                .ToConstructor(
+//                    x =>
+//                    x.Inject<TreeScope>())
+//                .InCallScope();
             #endregion IUiElement
             
             #region IUiEltCollection

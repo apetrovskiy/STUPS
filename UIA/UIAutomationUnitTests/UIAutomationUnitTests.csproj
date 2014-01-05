@@ -122,6 +122,7 @@
     <Compile Include="Helpers\Inheritance\SearchByContainsTextViaUiaTextFixture.cs" />
     <Compile Include="Helpers\Inheritance\SearchByExactConditionsViaUiaTestFixture.cs" />
     <Compile Include="Helpers\Inheritance\SearchByWildcardOrRegexViaUiaTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModel\CommonPatternsTestFixture.cs" />
     <Compile Include="Helpers\ObjectModel\ISupportsDockPatternTestFixture.cs" />
     <Compile Include="Helpers\ObjectModel\ISupportsExpandCollapseTestFixture.cs" />
     <Compile Include="Helpers\ObjectModel\ISupportsExtendedModelTestFixture.cs" />

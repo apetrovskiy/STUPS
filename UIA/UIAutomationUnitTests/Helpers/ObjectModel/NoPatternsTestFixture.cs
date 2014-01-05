@@ -50,6 +50,18 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
                     new IBasePattern[] {}) as ISupportsNavigation;
             
             Assert.IsNotNull(navigatableElement as ISupportsNavigation);
+            
+            ISupportsConversion conversibleElement =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] {}) as ISupportsConversion;
+            
+            Assert.IsNotNull(conversibleElement as ISupportsConversion);
+            
+            ISupportsRefresh refreshableElement =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] {}) as ISupportsRefresh;
+            
+            Assert.IsNotNull(refreshableElement as ISupportsRefresh);
         }
     }
 }

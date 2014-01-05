@@ -9,17 +9,25 @@
 
 namespace UIAutomation
 {
+    using System.Windows.Automation;
+    
     /// <summary>
     /// Description of UiExtendedModelHolder.
     /// </summary>
     public class UiExtendedModelHolder : IExtendedModelHolder
     {
         private IUiElement _parentElement;
+        private TreeScope _scope;
         
         public UiExtendedModelHolder()
         {
             
         }
+        
+//        public UiExtendedModelHolder(TreeScope scope)
+//        {
+//            
+//        }
         
         public void SetParentElement(IUiElement parentElement)
         {
@@ -29,6 +37,16 @@ namespace UIAutomation
         public IUiElement GetParentElement()
         {
             return _parentElement;
+        }
+        
+        public void SetScope(TreeScope scope)
+        {
+            _scope = scope;
+        }
+        
+        public TreeScope GetScope()
+        {
+            return _scope;
         }
     }
 }

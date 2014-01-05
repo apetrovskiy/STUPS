@@ -169,6 +169,9 @@
     <Compile Include="..\UIAutomationUnitTests\Helpers\Inheritance\SearchByWildcardOrRegexViaUiaTestFixture.cs">
       <Link>Helpers\Inheritance\SearchByWildcardOrRegexViaUiaTestFixture.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\ObjectModel\CommonPatternsTestFixture.cs">
+      <Link>Helpers\ObjectModel\CommonPatternsTestFixture.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomationUnitTests\Helpers\ObjectModel\ISupportsDockPatternTestFixture.cs">
       <Link>Helpers\ObjectModel\ISupportsDockPatternTestFixture.cs</Link>
     </Compile>

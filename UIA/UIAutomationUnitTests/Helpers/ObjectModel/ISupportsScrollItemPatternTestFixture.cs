@@ -54,9 +54,15 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             
             ISupportsConversion conversibleElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-                    new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsConversion;
+                    new IBasePattern[] { FakeFactory.GetScrollItemPattern(new PatternsData()) }) as ISupportsConversion;
             
             Assert.IsNotNull(conversibleElement as ISupportsConversion);
+            
+            ISupportsRefresh refreshableElement =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetScrollItemPattern(new PatternsData()) }) as ISupportsRefresh;
+            
+            Assert.IsNotNull(refreshableElement as ISupportsRefresh);
         }
         
         [Test]

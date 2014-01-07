@@ -190,6 +190,27 @@
     <Compile Include="Commands\Wizard\AddUIAWizardStepCommandTestFixture.cs" />
     <Compile Include="Commands\Wizard\NewUIAWizardCommandTestFixture.cs" />
     <Compile Include="Enumerations.cs" />
+    <Compile Include="Helpers\ObjectModel\CommonPatternsTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModel\ISupportsDockPatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModel\ISupportsExpandCollapseTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModel\ISupportsExtendedModelTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModel\ISupportsGridItemPatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModel\ISupportsGridPatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModel\ISupportsInvokePatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModel\ISupportsRangeValuePatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModel\ISupportsScrollItemPatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModel\ISupportsScrollPatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModel\ISupportsSelectionItemPatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModel\ISupportsSelectionPatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModel\ISupportsTableItemPatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModel\ISupportsTablePatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModel\ISupportsTextPatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModel\ISupportsTogglePatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModel\ISupportsTransformPatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModel\ISupportsValuePatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModel\ISupportsWindowPatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModel\NoPatternsTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModel\ObjectModelParametersTestFixture.cs" />
     <Compile Include="Helpers\PreferencesTestFixture.cs" />
     <Compile Include="Helpers\TestResultsTestFixture.cs" />
     <Compile Include="MiddleLevelCode.cs" />
@@ -224,6 +245,7 @@
     <Folder Include="Commands\Get\Win32" />
     <Folder Include="Commands\No" />
     <Folder Include="Commands\Sheridan" />
+    <Folder Include="Helpers\ObjectModel" />
     <Folder Include="Helpers\ObjectModel" />
   </ItemGroup>
   <ItemGroup>

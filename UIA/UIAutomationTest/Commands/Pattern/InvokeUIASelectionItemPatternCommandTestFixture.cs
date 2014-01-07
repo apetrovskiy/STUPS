@@ -30,8 +30,9 @@ namespace UIAutomationTest.Commands.Pattern
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
         public void InvokeSelectItem_RadioButton()
         {
             string name1 = "RadioButton1";

@@ -355,6 +355,69 @@
     <Compile Include="..\UIAutomationTest\Enumerations.cs">
       <Link>Enumerations.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModel\CommonPatternsTestFixture.cs">
+      <Link>Helpers\ObjectModel\CommonPatternsTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModel\ISupportsDockPatternTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsDockPatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModel\ISupportsExpandCollapseTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsExpandCollapseTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModel\ISupportsExtendedModelTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsExtendedModelTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModel\ISupportsGridItemPatternTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsGridItemPatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModel\ISupportsGridPatternTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsGridPatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModel\ISupportsInvokePatternTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsInvokePatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModel\ISupportsRangeValuePatternTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsRangeValuePatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModel\ISupportsScrollItemPatternTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsScrollItemPatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModel\ISupportsScrollPatternTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsScrollPatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModel\ISupportsSelectionItemPatternTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsSelectionItemPatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModel\ISupportsSelectionPatternTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsSelectionPatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModel\ISupportsTableItemPatternTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsTableItemPatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModel\ISupportsTablePatternTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsTablePatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModel\ISupportsTextPatternTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsTextPatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModel\ISupportsTogglePatternTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsTogglePatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModel\ISupportsTransformPatternTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsTransformPatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModel\ISupportsValuePatternTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsValuePatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModel\ISupportsWindowPatternTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsWindowPatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModel\NoPatternsTestFixture.cs">
+      <Link>Helpers\ObjectModel\NoPatternsTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModel\ObjectModelParametersTestFixture.cs">
+      <Link>Helpers\ObjectModel\ObjectModelParametersTestFixture.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomationTest\Helpers\PreferencesTestFixture.cs">
       <Link>Helpers\PreferencesTestFixture.cs</Link>
     </Compile>
@@ -428,6 +491,7 @@
     <Folder Include="Commands\Container" />
     <Folder Include="Commands\No" />
     <Folder Include="Commands\Sheridan" />
+    <Folder Include="Helpers\ObjectModel" />
     <Folder Include="Helpers\ObjectModel" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />

@@ -14,7 +14,6 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
     using MbUnit.Framework;
     using NSubstitute;
     
-    
     /// <summary>
     /// Description of ISupportsTablePatternTestFixture.
     /// </summary>

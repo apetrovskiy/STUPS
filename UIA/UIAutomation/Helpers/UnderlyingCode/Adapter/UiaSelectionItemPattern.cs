@@ -49,7 +49,7 @@ namespace UIAutomation
 			
 			public IUiElement SelectionContainer {
 				get {
-			        return (IUiElement)this._selectionItemPattern.GetParentElement().GetPatternPropertyValue(SelectionItemPattern.SelectionContainerProperty, this._useCache);
+			        return AutomationFactory.GetUiElement(this._selectionItemPattern.GetParentElement().GetPatternPropertyValue(SelectionItemPattern.SelectionContainerProperty, this._useCache));
 			    }
 			}
 		}

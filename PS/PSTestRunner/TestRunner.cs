@@ -65,7 +65,7 @@ namespace PSTestRunner
             
             try {
                 result = 
-                    Runner.IitializeRunspace(
+                    Runner.InitializeRunspace(
                         strUIAutomationPath + 
                         strTmxPath +
                         strInitScriptPath);

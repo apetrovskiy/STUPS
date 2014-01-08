@@ -16,6 +16,7 @@ namespace CmdletUnitTest
     
     using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
     
+    using System.Collections;
     using System.Collections.Generic;
     
     /// <summary>
@@ -28,16 +29,20 @@ namespace CmdletUnitTest
 
         // 20130130
         [STAThread]
-        public static bool IitializeRunspace(string command)
+        public static bool InitializeRunspace(string command)
         {
-            return PSRunner.Runner.IitializeRunspace(command);
+            return PSRunner.Runner.InitializeRunspace(command);
         }
         
+        // 20140108
+        [STAThread]
         public static System.Collections.ObjectModel.Collection<PSObject> RunPSCode(string codeSnippet)
         {
             return PSRunner.Runner.RunPSCode(codeSnippet, showCode);
         }
         
+        // 20140108
+        [STAThread]
         public static bool CloseRunspace()
         {
             return PSRunner.Runner.CloseRunspace();
@@ -147,18 +152,44 @@ namespace CmdletUnitTest
             PSRunner.Runner.FinishRunningCode();
         }
         
+        // 20140107
         public static void RunAndEvaluateAreEqual(
             string codeSnippet,
             string strValue)
         {
             //reportRunningCode(codeSnippet);
-            System.Collections.ObjectModel.Collection<PSObject> coll =
-                PSRunner.Runner.RunPSCode(codeSnippet, showCode);
+            // 20140107
+            // System.Collections.ObjectModel.Collection<PSObject> coll =
+            //     PSRunner.Runner.RunPSCode(codeSnippet, showCode);
+            // if (null != coll && 0 < coll.Count) {
+            //     Assert.AreEqual(strValue, coll[0].ToString());
+            // } else {
+            //     Assert.Fail();
+            // }
+            // PSRunner.Runner.FinishRunningCode();
+            RunAndEvaluateAreEqual(codeSnippet, null, strValue);
+        }
+        
+        // 20140107
+        public static void RunAndEvaluateAreEqual(
+            string codeSnippet,
+            IEnumerable inputData,
+            string strValue)
+        {
+            //reportRunningCode(codeSnippet);
+            System.Collections.ObjectModel.Collection<PSObject> coll;
+            if (null == inputData) {
+                coll = PSRunner.Runner.RunPSCode(codeSnippet, showCode);
+            } else {
+                coll = PSRunner.Runner.RunPSCode(codeSnippet, showCode, inputData);
+            }
+            
             if (null != coll && 0 < coll.Count) {
                 Assert.AreEqual(strValue, coll[0].ToString());
             } else {
                 Assert.Fail();
             }
+            
             PSRunner.Runner.FinishRunningCode();
         }
         

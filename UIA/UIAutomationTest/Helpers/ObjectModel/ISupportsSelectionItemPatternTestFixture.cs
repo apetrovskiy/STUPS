@@ -31,6 +31,76 @@ namespace UIAutomationTest.Helpers.ObjectModel
             MiddleLevelCode.DisposeRunspace();
         }
         
+        // ListItem
+        [Test]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
+        public void ListItem_Select()
+        {
+            string expectedResult = "True";
+            MiddleLevelCode.StartProcessWithForm(
+                UIAutomationTestForms.Forms.WinFormsFull, 
+                0);
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+                @"$null = (Get-UiaWindow -pn " + 
+                MiddleLevelCode.TestFormProcess +
+                @" | Get-UiaListItem a001).Select(); " +
+                @"(Get-UiaWindow -pn " + 
+                MiddleLevelCode.TestFormProcess +
+                @" | Get-UiaListItem a001).IsSelected;",
+                expectedResult);
+        }
+        
+        [Test]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
+        public void ListItem_AddToSelection()
+        {
+            string expectedResult = "True";
+            MiddleLevelCode.StartProcessWithForm(
+                UIAutomationTestForms.Forms.WinFormsFull, 
+                0);
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+                @"$null = (Get-UiaWindow -pn " + 
+                MiddleLevelCode.TestFormProcess +
+                @" | Get-UiaListItem b002).Select(); " +
+                @"$null = (Get-UiaWindow -pn " + 
+                MiddleLevelCode.TestFormProcess +
+                @" | Get-UiaListItem a001).AddToSelection();" +
+                @"(Get-UiaWindow -pn " + 
+                MiddleLevelCode.TestFormProcess +
+                @" | Get-UiaListItem a001).IsSelected;",
+                expectedResult);
+        }
+        
+        [Test]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
+        public void ListItem_RemoveFromSelection()
+        {
+            string expectedResult = "False";
+            MiddleLevelCode.StartProcessWithForm(
+                UIAutomationTestForms.Forms.WinFormsFull, 
+                0);
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+                @"$null = (Get-UiaWindow -pn " + 
+                MiddleLevelCode.TestFormProcess +
+                @" | Get-UiaListItem a001).Select(); " +
+                @"$null = (Get-UiaWindow -pn " + 
+                MiddleLevelCode.TestFormProcess +
+                @" | Get-UiaListItem b002).AddToSelection();" +
+                @"$null = (Get-UiaWindow -pn " + 
+                MiddleLevelCode.TestFormProcess +
+                @" | Get-UiaListItem a001).RemoveFromSelection(); " + 
+                @"(Get-UiaWindow -pn " + 
+                MiddleLevelCode.TestFormProcess +
+                @" | Get-UiaListItem a001).IsSelected;",
+                expectedResult);
+        }
+        
         // TreeItem
         [Test]
         [Category("Slow")]
@@ -62,7 +132,7 @@ namespace UIAutomationTest.Helpers.ObjectModel
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$null = (Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                @" | Get-UiaTreeItem -Name Node0).Select();" +
+                @" | Get-UiaTreeItem -Name Node0).Select(); " +
                 @"(Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
                 @" | Get-UiaTreeItem -Name Node0).IsSelected;",
@@ -82,30 +152,7 @@ namespace UIAutomationTest.Helpers.ObjectModel
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$null = (Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                @" | Get-UiaTreeItem -Name Node0).AddToSelection();" +
-                @"(Get-UiaWindow -pn " + 
-                MiddleLevelCode.TestFormProcess +
-                @" | Get-UiaTreeItem -Name Node0).IsSelected;",
-                expectedResult);
-        }
-        
-        [Test]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Control")]
-        public void TreeItem_RemoveFromSelection()
-        {
-            string expectedResult = "False";
-            MiddleLevelCode.StartProcessWithForm(
-                UIAutomationTestForms.Forms.WinFormsFull, 
-                0);
-            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$null = (Get-UiaWindow -pn " + 
-                MiddleLevelCode.TestFormProcess +
-                @" | Get-UiaTreeItem -Name Node0).Select();" +
-                @"$null = (Get-UiaWindow -pn " + 
-                MiddleLevelCode.TestFormProcess +
-                @" | Get-UiaTreeItem -Name Node0).RemoveFromSelection();" + 
+                @" | Get-UiaTreeItem -Name Node0).AddToSelection(); " +
                 @"(Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
                 @" | Get-UiaTreeItem -Name Node0).IsSelected;",

@@ -190,6 +190,10 @@
     <Compile Include="Commands\Wizard\AddUIAWizardStepCommandTestFixture.cs" />
     <Compile Include="Commands\Wizard\NewUIAWizardCommandTestFixture.cs" />
     <Compile Include="Enumerations.cs" />
+    <Compile Include="Helpers\ObjectModelWithMocks\CommonPatternsTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModelWithMocks\ISupportsDockPatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModelWithMocks\ISupportsExpandCollapseTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModelWithMocks\ISupportsExtendedModelTestFixture.cs" />
     <Compile Include="Helpers\ObjectModel\CommonPatternsTestFixture.cs" />
     <Compile Include="Helpers\ObjectModel\ISupportsDockPatternTestFixture.cs" />
     <Compile Include="Helpers\ObjectModel\ISupportsExpandCollapseTestFixture.cs" />
@@ -245,6 +249,7 @@
     <Folder Include="Commands\Get\Win32" />
     <Folder Include="Commands\No" />
     <Folder Include="Commands\Sheridan" />
+    <Folder Include="Helpers\ObjectModelWithMocks" />
     <Folder Include="Helpers\ObjectModel" />
     <Folder Include="Helpers\ObjectModel" />
   </ItemGroup>
@@ -260,6 +265,10 @@
     <ProjectReference Include="..\UIAutomationTestForms\UIAutomationTestForms.csproj">
       <Project>{93D529FA-32F9-41AA-BCF9-6271572503CA}</Project>
       <Name>UIAutomationTestForms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UIAutomationUnitTests\UIAutomationUnitTests.csproj">
+      <Project>{4270678E-76B2-4B90-8D00-ABE4726B4589}</Project>
+      <Name>UIAutomationUnitTests</Name>
     </ProjectReference>
     <ProjectReference Include="..\UIAutomation\UIAutomation.csproj">
       <Project>{BF63F595-4A58-49E8-97F2-7701F51F0CD1}</Project>

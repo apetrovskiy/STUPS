@@ -21,7 +21,7 @@ namespace PSTestLibraryTest
     {
         public static void PrepareRunspace() //string command)
         {
-            CmdletUnitTest.TestRunspace.IitializeRunspace(Settings.RunspaceCommand);
+            CmdletUnitTest.TestRunspace.InitializeRunspace(Settings.RunspaceCommand);
         }
         
         public static void DisposeRunspace()

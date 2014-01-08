@@ -50,7 +50,7 @@ namespace PSRunner
 //            runspace = RunspaceFactory.CreateRunspace(this);
 //            runspace.Open();
 
-            Runner.IitializeRunspace(command);
+            Runner.InitializeRunspace(command);
 
         }
         

@@ -169,6 +169,69 @@
     <Compile Include="..\UIAutomationUnitTests\Helpers\Inheritance\SearchByWildcardOrRegexViaUiaTestFixture.cs">
       <Link>Helpers\Inheritance\SearchByWildcardOrRegexViaUiaTestFixture.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\ObjectModelViaPS\CommonPatternsTestFixture.cs">
+      <Link>Helpers\ObjectModelViaPS\CommonPatternsTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\ObjectModelViaPS\ISupportsDockPatternTestFixture.cs">
+      <Link>Helpers\ObjectModelViaPS\ISupportsDockPatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\ObjectModelViaPS\ISupportsExpandCollapseTestFixture.cs">
+      <Link>Helpers\ObjectModelViaPS\ISupportsExpandCollapseTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\ObjectModelViaPS\ISupportsExtendedModelTestFixture.cs">
+      <Link>Helpers\ObjectModelViaPS\ISupportsExtendedModelTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\ObjectModelViaPS\ISupportsGridItemPatternTestFixture.cs">
+      <Link>Helpers\ObjectModelViaPS\ISupportsGridItemPatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\ObjectModelViaPS\ISupportsGridPatternTestFixture.cs">
+      <Link>Helpers\ObjectModelViaPS\ISupportsGridPatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\ObjectModelViaPS\ISupportsInvokePatternTestFixture.cs">
+      <Link>Helpers\ObjectModelViaPS\ISupportsInvokePatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\ObjectModelViaPS\ISupportsRangeValuePatternTestFixture.cs">
+      <Link>Helpers\ObjectModelViaPS\ISupportsRangeValuePatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\ObjectModelViaPS\ISupportsScrollItemPatternTestFixture.cs">
+      <Link>Helpers\ObjectModelViaPS\ISupportsScrollItemPatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\ObjectModelViaPS\ISupportsScrollPatternTestFixture.cs">
+      <Link>Helpers\ObjectModelViaPS\ISupportsScrollPatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\ObjectModelViaPS\ISupportsSelectionItemPatternTestFixture.cs">
+      <Link>Helpers\ObjectModelViaPS\ISupportsSelectionItemPatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\ObjectModelViaPS\ISupportsSelectionPatternTestFixture.cs">
+      <Link>Helpers\ObjectModelViaPS\ISupportsSelectionPatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\ObjectModelViaPS\ISupportsTableItemPatternTestFixture.cs">
+      <Link>Helpers\ObjectModelViaPS\ISupportsTableItemPatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\ObjectModelViaPS\ISupportsTablePatternTestFixture.cs">
+      <Link>Helpers\ObjectModelViaPS\ISupportsTablePatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\ObjectModelViaPS\ISupportsTextPatternTestFixture.cs">
+      <Link>Helpers\ObjectModelViaPS\ISupportsTextPatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\ObjectModelViaPS\ISupportsTogglePatternTestFixture.cs">
+      <Link>Helpers\ObjectModelViaPS\ISupportsTogglePatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\ObjectModelViaPS\ISupportsTransformPatternTestFixture.cs">
+      <Link>Helpers\ObjectModelViaPS\ISupportsTransformPatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\ObjectModelViaPS\ISupportsValuePatternTestFixture.cs">
+      <Link>Helpers\ObjectModelViaPS\ISupportsValuePatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\ObjectModelViaPS\ISupportsWindowPatternTestFixture.cs">
+      <Link>Helpers\ObjectModelViaPS\ISupportsWindowPatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\ObjectModelViaPS\NoPatternsTestFixture.cs">
+      <Link>Helpers\ObjectModelViaPS\NoPatternsTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\ObjectModelViaPS\ObjectModelParametersTestFixture.cs">
+      <Link>Helpers\ObjectModelViaPS\ObjectModelParametersTestFixture.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomationUnitTests\Helpers\ObjectModel\CommonPatternsTestFixture.cs">
       <Link>Helpers\ObjectModel\CommonPatternsTestFixture.cs</Link>
     </Compile>
@@ -326,6 +389,7 @@
     <Folder Include="Helpers\Inheritance" />
     <Folder Include="Helpers\Inheritance\Legacy" />
     <Folder Include="Helpers\Inheritance\new_code" />
+    <Folder Include="Helpers\ObjectModelViaPS" />
     <Folder Include="Helpers\ObjectModel" />
     <Folder Include="Helpers\ObjectModel" />
     <Folder Include="Helpers\UnderlyingCode" />

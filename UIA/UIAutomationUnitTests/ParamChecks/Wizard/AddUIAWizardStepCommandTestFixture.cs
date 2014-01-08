@@ -28,7 +28,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         [TearDown]
         public void DisposeRunspace()
         {
-            MiddleLevelCode.DisposeRunspace();
+            // MiddleLevelCode.DisposeRunspace();
             WizardCollection.ResetData();
         }
         

@@ -57,7 +57,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         [SetUp]
         public void PrepareRunspace()
         {
-// MiddleLevelCode.PrepareRunspace();
+// // MiddleLevelCode.PrepareRunspace();
         }
         
         [Test] //[Test(Description="TBD")]
@@ -233,7 +233,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         [TearDown]
         public void DisposeRunspace()
         {
-// MiddleLevelCode.DisposeRunspace();
+// // MiddleLevelCode.DisposeRunspace();
             cmdlet = null;
         }
     }

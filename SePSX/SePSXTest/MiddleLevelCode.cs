@@ -22,13 +22,13 @@ namespace SePSXTest
         [STAThread]
         public static void PrepareRunspace()
         {
-            CmdletUnitTest.TestRunspace.IitializeRunspace(Settings.RunspaceCommand);
+            CmdletUnitTest.TestRunspace.InitializeRunspace(Settings.RunspaceCommand);
             CmdletUnitTest.TestRunspace.RunPSCode("[PSTestLib.PSCmdletBase]::SetCmdletParametersCheckingOn($false);");
         }
         
         public static void PrepareRunspaceForParamChecks()
         {
-            CmdletUnitTest.TestRunspace.IitializeRunspace(Settings.RunspaceCommand);
+            CmdletUnitTest.TestRunspace.InitializeRunspace(Settings.RunspaceCommand);
             CmdletUnitTest.TestRunspace.RunPSCode("[PSTestLib.PSCmdletBase]::SetCmdletParametersCheckingOn($true);");
             CmdletUnitTest.TestRunspace.RunPSCode(
                 @"Add-Type -Path '.\SePSXTest.dll';");

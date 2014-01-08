@@ -38,52 +38,52 @@ namespace UIAutomationTestForms.FormsCollection.WinForms
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewGroup listViewGroup5 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup6 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewItem listViewItem11 = new System.Windows.Forms.ListViewItem(new string[] {
                                     "",
                                     "",
                                     "",
                                     ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem12 = new System.Windows.Forms.ListViewItem(new string[] {
                                     "",
                                     "",
                                     "",
                                     "",
                                     ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem13 = new System.Windows.Forms.ListViewItem(new string[] {
                                     "",
                                     "",
                                     ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Node6");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Node7");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Node4", new System.Windows.Forms.TreeNode[] {
-                                    treeNode1,
-                                    treeNode2});
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Node8");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Node9");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Node5", new System.Windows.Forms.TreeNode[] {
-                                    treeNode4,
-                                    treeNode5});
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Node1", new System.Windows.Forms.TreeNode[] {
-                                    treeNode3,
-                                    treeNode6});
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Node10");
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Node11");
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Node2", new System.Windows.Forms.TreeNode[] {
-                                    treeNode8,
-                                    treeNode9});
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Node12");
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Node13");
-            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Node3", new System.Windows.Forms.TreeNode[] {
-                                    treeNode11,
-                                    treeNode12});
-            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Node0", new System.Windows.Forms.TreeNode[] {
-                                    treeNode7,
-                                    treeNode10,
-                                    treeNode13});
+            System.Windows.Forms.ListViewItem listViewItem14 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem15 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.TreeNode treeNode29 = new System.Windows.Forms.TreeNode("Node6");
+            System.Windows.Forms.TreeNode treeNode30 = new System.Windows.Forms.TreeNode("Node7");
+            System.Windows.Forms.TreeNode treeNode31 = new System.Windows.Forms.TreeNode("Node4", new System.Windows.Forms.TreeNode[] {
+                                    treeNode29,
+                                    treeNode30});
+            System.Windows.Forms.TreeNode treeNode32 = new System.Windows.Forms.TreeNode("Node8");
+            System.Windows.Forms.TreeNode treeNode33 = new System.Windows.Forms.TreeNode("Node9");
+            System.Windows.Forms.TreeNode treeNode34 = new System.Windows.Forms.TreeNode("Node5", new System.Windows.Forms.TreeNode[] {
+                                    treeNode32,
+                                    treeNode33});
+            System.Windows.Forms.TreeNode treeNode35 = new System.Windows.Forms.TreeNode("Node1", new System.Windows.Forms.TreeNode[] {
+                                    treeNode31,
+                                    treeNode34});
+            System.Windows.Forms.TreeNode treeNode36 = new System.Windows.Forms.TreeNode("Node10");
+            System.Windows.Forms.TreeNode treeNode37 = new System.Windows.Forms.TreeNode("Node11");
+            System.Windows.Forms.TreeNode treeNode38 = new System.Windows.Forms.TreeNode("Node2", new System.Windows.Forms.TreeNode[] {
+                                    treeNode36,
+                                    treeNode37});
+            System.Windows.Forms.TreeNode treeNode39 = new System.Windows.Forms.TreeNode("Node12");
+            System.Windows.Forms.TreeNode treeNode40 = new System.Windows.Forms.TreeNode("Node13");
+            System.Windows.Forms.TreeNode treeNode41 = new System.Windows.Forms.TreeNode("Node3", new System.Windows.Forms.TreeNode[] {
+                                    treeNode39,
+                                    treeNode40});
+            System.Windows.Forms.TreeNode treeNode42 = new System.Windows.Forms.TreeNode("Node0", new System.Windows.Forms.TreeNode[] {
+                                    treeNode35,
+                                    treeNode38,
+                                    treeNode41});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WinFormsFull));
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -221,6 +221,7 @@ namespace UIAutomationTestForms.FormsCollection.WinForms
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.listBox3 = new System.Windows.Forms.ListBox();
             this.flowLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
@@ -537,19 +538,19 @@ namespace UIAutomationTestForms.FormsCollection.WinForms
                                     this.columnHeader1,
                                     this.columnHeader2,
                                     this.columnHeader3});
-            listViewGroup1.Header = "ListViewGroup";
-            listViewGroup1.Name = "listViewGroup1";
-            listViewGroup2.Header = "ListViewGroup";
-            listViewGroup2.Name = "listViewGroup2";
+            listViewGroup5.Header = "ListViewGroup";
+            listViewGroup5.Name = "listViewGroup1";
+            listViewGroup6.Header = "ListViewGroup";
+            listViewGroup6.Name = "listViewGroup2";
             this.listView1.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-                                    listViewGroup1,
-                                    listViewGroup2});
+                                    listViewGroup5,
+                                    listViewGroup6});
             this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-                                    listViewItem1,
-                                    listViewItem2,
-                                    listViewItem3,
-                                    listViewItem4,
-                                    listViewItem5});
+                                    listViewItem11,
+                                    listViewItem12,
+                                    listViewItem13,
+                                    listViewItem14,
+                                    listViewItem15});
             this.listView1.Location = new System.Drawing.Point(189, 374);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(221, 101);
@@ -567,13 +568,16 @@ namespace UIAutomationTestForms.FormsCollection.WinForms
             // maskedTextBox1
             // 
             this.maskedTextBox1.Location = new System.Drawing.Point(223, 588);
+            this.maskedTextBox1.Mask = "00/00/0000";
             this.maskedTextBox1.Name = "maskedTextBox1";
             this.maskedTextBox1.Size = new System.Drawing.Size(187, 20);
             this.maskedTextBox1.TabIndex = 28;
+            this.maskedTextBox1.ValidatingType = typeof(System.DateTime);
             // 
             // maskedTextBox2
             // 
             this.maskedTextBox2.Location = new System.Drawing.Point(223, 613);
+            this.maskedTextBox2.Mask = "(999) 000-0000";
             this.maskedTextBox2.Name = "maskedTextBox2";
             this.maskedTextBox2.Size = new System.Drawing.Size(187, 20);
             this.maskedTextBox2.TabIndex = 29;
@@ -816,36 +820,36 @@ namespace UIAutomationTestForms.FormsCollection.WinForms
             // 
             this.treeView1.Location = new System.Drawing.Point(685, 110);
             this.treeView1.Name = "treeView1";
-            treeNode1.Name = "Node6";
-            treeNode1.Text = "Node6";
-            treeNode2.Name = "Node7";
-            treeNode2.Text = "Node7";
-            treeNode3.Name = "Node4";
-            treeNode3.Text = "Node4";
-            treeNode4.Name = "Node8";
-            treeNode4.Text = "Node8";
-            treeNode5.Name = "Node9";
-            treeNode5.Text = "Node9";
-            treeNode6.Name = "Node5";
-            treeNode6.Text = "Node5";
-            treeNode7.Name = "Node1";
-            treeNode7.Text = "Node1";
-            treeNode8.Name = "Node10";
-            treeNode8.Text = "Node10";
-            treeNode9.Name = "Node11";
-            treeNode9.Text = "Node11";
-            treeNode10.Name = "Node2";
-            treeNode10.Text = "Node2";
-            treeNode11.Name = "Node12";
-            treeNode11.Text = "Node12";
-            treeNode12.Name = "Node13";
-            treeNode12.Text = "Node13";
-            treeNode13.Name = "Node3";
-            treeNode13.Text = "Node3";
-            treeNode14.Name = "Node0";
-            treeNode14.Text = "Node0";
+            treeNode29.Name = "Node6";
+            treeNode29.Text = "Node6";
+            treeNode30.Name = "Node7";
+            treeNode30.Text = "Node7";
+            treeNode31.Name = "Node4";
+            treeNode31.Text = "Node4";
+            treeNode32.Name = "Node8";
+            treeNode32.Text = "Node8";
+            treeNode33.Name = "Node9";
+            treeNode33.Text = "Node9";
+            treeNode34.Name = "Node5";
+            treeNode34.Text = "Node5";
+            treeNode35.Name = "Node1";
+            treeNode35.Text = "Node1";
+            treeNode36.Name = "Node10";
+            treeNode36.Text = "Node10";
+            treeNode37.Name = "Node11";
+            treeNode37.Text = "Node11";
+            treeNode38.Name = "Node2";
+            treeNode38.Text = "Node2";
+            treeNode39.Name = "Node12";
+            treeNode39.Text = "Node12";
+            treeNode40.Name = "Node13";
+            treeNode40.Text = "Node13";
+            treeNode41.Name = "Node3";
+            treeNode41.Text = "Node3";
+            treeNode42.Name = "Node0";
+            treeNode42.Text = "Node0";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-                                    treeNode14});
+                                    treeNode42});
             this.treeView1.Size = new System.Drawing.Size(143, 103);
             this.treeView1.TabIndex = 42;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TreeView1AfterSelect);
@@ -927,7 +931,7 @@ namespace UIAutomationTestForms.FormsCollection.WinForms
             this.dropDown2ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
                                     this.dropDowns2ToolStripMenuItem});
             this.dropDown2ToolStripMenuItem.Name = "dropDown2ToolStripMenuItem";
-            this.dropDown2ToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.dropDown2ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.dropDown2ToolStripMenuItem.Text = "DropDown2";
             // 
             // dropDowns2ToolStripMenuItem
@@ -947,7 +951,7 @@ namespace UIAutomationTestForms.FormsCollection.WinForms
             // dropDown1ToolStripMenuItem
             // 
             this.dropDown1ToolStripMenuItem.Name = "dropDown1ToolStripMenuItem";
-            this.dropDown1ToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.dropDown1ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.dropDown1ToolStripMenuItem.Text = "DropDown1";
             // 
             // toolStripSplitButton2
@@ -1347,11 +1351,25 @@ namespace UIAutomationTestForms.FormsCollection.WinForms
             this.groupBox2.TabIndex = 59;
             this.groupBox2.TabStop = false;
             // 
+            // listBox3
+            // 
+            this.listBox3.FormattingEnabled = true;
+            this.listBox3.Items.AddRange(new object[] {
+                                    "a001",
+                                    "b002",
+                                    "c003"});
+            this.listBox3.Location = new System.Drawing.Point(168, 494);
+            this.listBox3.Name = "listBox3";
+            this.listBox3.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.listBox3.Size = new System.Drawing.Size(62, 30);
+            this.listBox3.TabIndex = 60;
+            // 
             // WinFormsFull
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(846, 896);
+            this.Controls.Add(this.listBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.comboBox4);
             this.Controls.Add(this.toolStrip2);
@@ -1439,6 +1457,7 @@ namespace UIAutomationTestForms.FormsCollection.WinForms
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+        private System.Windows.Forms.ListBox listBox3;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ComboBox comboBox4;
         private System.Windows.Forms.ColumnHeader columnHeader3;

@@ -25,7 +25,7 @@ namespace TmxTest
         
         public static void PrepareRunspace()
         {
-            CmdletUnitTest.TestRunspace.IitializeRunspace(Settings.RunspaceCommand);
+            CmdletUnitTest.TestRunspace.InitializeRunspace(Settings.RunspaceCommand);
         }
         
         public static void DisposeRunspace()

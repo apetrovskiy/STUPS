@@ -154,9 +154,11 @@ namespace UIAutomationTest
             // System.Threading.Thread.Sleep(200); // just to check
         }
         
+        // 20140108
+        [STAThread]
         public static void PrepareRunspace() //string command)
         {
-            CmdletUnitTest.TestRunspace.IitializeRunspace(Settings.RunspaceCommand);
+            CmdletUnitTest.TestRunspace.InitializeRunspace(Settings.RunspaceCommand);
 // string codeSnippet = 
 // @"$ErrorPreference = [System.Management.Automation.ActionPreference]::SilentlyContinue;";
             TestProcessStartInfo =
@@ -169,6 +171,8 @@ namespace UIAutomationTest
                 @"[void]([UIAutomation.Preferences]::OnSuccessDelay = 0);");
         }
         
+        // 20140108
+        [STAThread]
         public static void DisposeRunspace()
         {
             CmdletUnitTest.TestRunspace.RunPSCode(
@@ -199,8 +203,6 @@ namespace UIAutomationTest
             TestProcessStartInfo = null;
             TestProcess = null;
         }
-        
-        
     }
     
     public class ControlToForm

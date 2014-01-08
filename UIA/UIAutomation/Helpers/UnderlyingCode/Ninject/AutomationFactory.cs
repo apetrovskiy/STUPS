@@ -88,15 +88,12 @@ namespace UIAutomation
 		        _kernel = new StandardKernel(_ninjectModule);
 		        
 		        InitCommonObjects();
-		        
-		        // 20131227
-		        // _useDynamicProxy = true;
 		    }
 		    catch (Exception eInitFailure) {
 		        // TODO
 		        // write error to error object!!!
-//		         Console.WriteLine("Init Kernel");
-//		         Console.WriteLine(eInitFailure.Message);
+		        // Console.WriteLine("Init Kernel");
+		        // Console.WriteLine(eInitFailure.Message);
 		    }
 		}
 		

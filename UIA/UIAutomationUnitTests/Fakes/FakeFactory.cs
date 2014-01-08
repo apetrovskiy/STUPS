@@ -26,6 +26,15 @@ namespace UIAutomationUnitTests
         public static void Init()
         {
             UnitTestingHelper.PrepareUnitTestDataStore();
+            InitForPowerShell();
+            // AutomationFactory.InitUnitTests();
+            // UIAutomation.Preferences.UseElementsPatternObjectModel = true;
+            // UIAutomation.Preferences.UseElementsSearchObjectModel = true;
+        }
+        
+        public static void InitForPowerShell()
+        {
+            // UnitTestingHelper.PrepareUnitTestDataStore();
             AutomationFactory.InitUnitTests();
             UIAutomation.Preferences.UseElementsPatternObjectModel = true;
             UIAutomation.Preferences.UseElementsSearchObjectModel = true;
@@ -349,7 +358,7 @@ namespace UIAutomationUnitTests
             return proxiedElement;
         }
         
-        internal static IUiElement GetAutomationElementForMethodsOfObjectModel(IBasePattern[] patterns)
+        public static IUiElement GetAutomationElementForMethodsOfObjectModel(IBasePattern[] patterns)
         {
             return GetAutomationElementForObjectModelTesting(ControlType.Button, string.Empty, string.Empty, string.Empty, patterns, true);
         }

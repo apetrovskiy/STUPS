@@ -33,13 +33,13 @@ namespace SePSXUnitTests
             //
             //
             
-            CmdletUnitTest.TestRunspace.IitializeRunspace(Settings.RunspaceCommand);
+            CmdletUnitTest.TestRunspace.InitializeRunspace(Settings.RunspaceCommand);
             CmdletUnitTest.TestRunspace.RunPSCode("[PSTestLib.PSCmdletBase]::SetCmdletParametersCheckingOn($false);");
         }
         
         public static void PrepareRunspaceForParamChecks()
         {
-            CmdletUnitTest.TestRunspace.IitializeRunspace(Settings.RunspaceCommand);
+            CmdletUnitTest.TestRunspace.InitializeRunspace(Settings.RunspaceCommand);
             CmdletUnitTest.TestRunspace.RunPSCode("[PSTestLib.PSCmdletBase]::SetCmdletParametersCheckingOn($true);");
             CmdletUnitTest.TestRunspace.RunPSCode(
                 @"Add-Type -Path '.\SePSXUnitTests.dll';");

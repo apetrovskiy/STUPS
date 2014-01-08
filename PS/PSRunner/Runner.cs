@@ -10,6 +10,7 @@
 namespace PSRunner
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
 //    using System.Diagnostics;
     using System.Management.Automation;
@@ -129,7 +130,7 @@ namespace PSRunner
 
         // 20130130
         [STAThread]
-        public static bool IitializeRunspace(string command)
+        public static bool InitializeRunspace(string command)
         {
             bool result = false;
             try {
@@ -145,7 +146,7 @@ namespace PSRunner
                 result = true;
             } 
             catch (Exception eInitRunspace) {
-                //Console.WriteLine(eInitRunspace.Message);
+                Console.WriteLine(eInitRunspace.Message);
                 //result = false;
                 throw (eInitRunspace);
             }
@@ -175,11 +176,28 @@ namespace PSRunner
 //            return result;
 //        }
         
+        // 20140107
+        // 20140108
+        [STAThread]
         public static System.Collections.ObjectModel.Collection<PSObject> RunPSCode(
             string codeSnippet,
             bool displayRunningCode)
         {
-            System.Collections.ObjectModel.Collection<PSObject> result = null;
+            return RunPSCode(codeSnippet, displayRunningCode, null);
+        }
+        
+        // 20140108
+        [STAThread]
+        public static System.Collections.ObjectModel.Collection<PSObject> RunPSCode(
+            string codeSnippet,
+            // 20140107
+            // bool displayRunningCode)
+            bool displayRunningCode,
+            IEnumerable inputData)
+        {
+            // 20140107
+            // System.Collections.ObjectModel.Collection<PSObject> result = null;
+            System.Collections.ObjectModel.Collection<PSObject> resultObject;
             try {
                 if (displayRunningCode) {
                     reportRunningCode(codeSnippet);
@@ -187,17 +205,27 @@ namespace PSRunner
                 pipeline =
                     testRunSpace.CreatePipeline(codeSnippet);
                 pipeline.StateChanged += new EventHandler<PipelineStateEventArgs>(pipeline_StateChanged);
-                System.Collections.ObjectModel.Collection<PSObject> resultObject =
-                    pipeline.Invoke();
+                // 20140107
+                // System.Collections.ObjectModel.Collection<PSObject> resultObject =
+                //     pipeline.Invoke();
+                if (null == inputData) {
+                    resultObject = pipeline.Invoke();
+                } else {
+                    resultObject = pipeline.Invoke(inputData);
+                }
                     //pipeline.InvokeAsync();
                 //pipeline.Output.
                 return resultObject;
             } 
             catch (Exception eRunspace) {
                 throw(eRunspace); // 20120819 ON
-                result = null;
+                // 20140107
+                // result = null;
+                resultObject = null;
             }
-            return result;
+            // 20140107
+            // return result;
+            return resultObject;
         }
         
         public static bool RunPSCodeAsync(string codeSnippet)
@@ -432,8 +460,9 @@ namespace PSRunner
                 testRunSpace = null;
                 result = true;
             }
-            catch {
+            catch (Exception eClosingRunspace) {
                 //
+Console.WriteLine("The runspice could not be disposed. {0}", eClosingRunspace.Message);
             }
             return result;
         }

@@ -23,7 +23,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
 		
         public static void PrepareRunspace()
         {
-            CmdletUnitTest.TestRunspace.IitializeRunspace(Settings.RunspaceCommand);
+            CmdletUnitTest.TestRunspace.InitializeRunspace(Settings.RunspaceCommand);
             CmdletUnitTest.TestRunspace.RunPSCode("[PSTestLib.PSCmdletBase]::SetCmdletParametersCheckingOn($false);");
         }
         
@@ -31,7 +31,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         {
             PSCmdletBase.UnitTestMode = false;
             
-            CmdletUnitTest.TestRunspace.IitializeRunspace(Settings.RunspaceCommand);
+            CmdletUnitTest.TestRunspace.InitializeRunspace(Settings.RunspaceCommand);
             CmdletUnitTest.TestRunspace.RunPSCode("[PSTestLib.PSCmdletBase]::SetCmdletParametersCheckingOn($true);");
         }
         

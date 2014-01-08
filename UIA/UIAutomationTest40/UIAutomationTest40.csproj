@@ -459,6 +459,10 @@
       <Project>{93D529FA-32F9-41AA-BCF9-6271572503CA}</Project>
       <Name>UIAutomationTestForms</Name>
     </ProjectReference>
+    <ProjectReference Include="..\UIAutomationUnitTests40\UIAutomationUnitTests40.csproj">
+      <Project>{B63278E9-C2A9-47DD-BC0D-8AC41C8314D3}</Project>
+      <Name>UIAutomationUnitTests40</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UIAutomation\UIAutomation.csproj">
       <Project>{BF63F595-4A58-49E8-97F2-7701F51F0CD1}</Project>
       <Name>UIAutomation</Name>
@@ -491,6 +495,7 @@
     <Folder Include="Commands\Container" />
     <Folder Include="Commands\No" />
     <Folder Include="Commands\Sheridan" />
+    <Folder Include="Helpers\ObjectModelWithMocks" />
     <Folder Include="Helpers\ObjectModel" />
     <Folder Include="Helpers\ObjectModel" />
   </ItemGroup>

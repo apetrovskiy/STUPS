@@ -14,11 +14,11 @@ namespace UIAutomation
     /// <summary>
     /// Description of Testing.
     /// </summary>
-    public static class Testing
-    {
-        static Testing()
-        {
-        }
-        
-    }
+//    public static class Testing
+//    {
+//        static Testing()
+//        {
+//        }
+//        
+//    }
 }

@@ -40,6 +40,11 @@ namespace UIAutomationUnitTests
             UIAutomation.Preferences.UseElementsSearchObjectModel = true;
         }
         
+        public static void Reset()
+        {
+            AutomationFactory.Reset();
+        }
+        
         #region patterns
         public static IDockPattern GetDockPattern(PatternsData data)
         {
@@ -293,6 +298,19 @@ namespace UIAutomationUnitTests
             return GetAutomationElement(controlType, name, automationId, className, new IBasePattern[] { valuePattern }, false);
         }
         
+//        private static void TestPattern<T>(AutomationPattern pattern, IBasePattern[] patterns, ref IFakeUiElement element) where T : IBasePattern
+//        {
+//            object patternObject;
+//            if (patterns.Any(ptrn => ptrn is T)) {
+//                element.GetCurrentPattern<T>(pattern).Returns<T>((T)element.Patterns.Find(ptrn => ptrn is T));
+//                element.TryGetCurrentPattern(pattern, out patternObject).Returns(true);
+//            } else {
+//                element.TryGetCurrentPattern(pattern, out patternObject).Returns(false);
+//            }
+//        }
+        
+        
+        /*
         private static void TestPattern<T>(AutomationPattern pattern, IBasePattern[] patterns, ref IFakeUiElement element) where T : IBasePattern
         {
             object patternObject;
@@ -302,6 +320,20 @@ namespace UIAutomationUnitTests
             } else {
                 element.TryGetCurrentPattern(pattern, out patternObject).Returns(false);
             }
+        }
+        */
+       
+        private static IFakeUiElement AddPatternAction<T>(AutomationPattern pattern, IBasePattern[] patterns, IFakeUiElement element) where T : IBasePattern
+        {
+            object patternObject;
+            if (patterns.Any(ptrn => ptrn is T)) {
+                element.GetCurrentPattern<T>(pattern).Returns<T>((T)element.Patterns.Find(ptrn => ptrn is T));
+                element.TryGetCurrentPattern(pattern, out patternObject).Returns(true);
+            } else {
+                element.TryGetCurrentPattern(pattern, out patternObject).Returns(false);
+            }
+            
+            return element;
         }
         
         internal static IFakeUiElement GetAutomationElement(ControlType controlType, string name, string automationId, string className, IBasePattern[] patterns, bool expected)
@@ -314,29 +346,60 @@ namespace UIAutomationUnitTests
             element.Current.ClassName.Returns(!string.IsNullOrEmpty(className) ? className : string.Empty);
             element.Patterns.AddRange(patterns);
             element.GetSupportedPatterns().Returns<IBasePattern[]>(element.Patterns.ToArray());
+//Console.WriteLine("GetAutomationElement 0010");
+//if (null == element) {
+//    Console.WriteLine("null == element");
+//} else {
+//    Console.WriteLine("null != element");
+//}
             
-            TestPattern<IDockPattern>(DockPattern.Pattern, patterns, ref element);
-            TestPattern<IExpandCollapsePattern>(ExpandCollapsePattern.Pattern, patterns, ref element);
-            TestPattern<IGridItemPattern>(GridItemPattern.Pattern, patterns, ref element);
-            TestPattern<IGridPattern>(GridPattern.Pattern, patterns, ref element);
-            TestPattern<IInvokePattern>(InvokePattern.Pattern, patterns, ref element);
-            TestPattern<IRangeValuePattern>(RangeValuePattern.Pattern, patterns, ref element);
-            TestPattern<IScrollItemPattern>(ScrollItemPattern.Pattern, patterns, ref element);
-            TestPattern<IScrollPattern>(ScrollPattern.Pattern, patterns, ref element);
-            TestPattern<ISelectionItemPattern>(SelectionItemPattern.Pattern, patterns, ref element);
-            TestPattern<ISelectionPattern>(SelectionPattern.Pattern, patterns, ref element);
-            TestPattern<ITableItemPattern>(TableItemPattern.Pattern, patterns, ref element);
-            TestPattern<ITablePattern>(TablePattern.Pattern, patterns, ref element);
-            TestPattern<ITextPattern>(TextPattern.Pattern, patterns, ref element);
-            TestPattern<ITogglePattern>(TogglePattern.Pattern, patterns, ref element);
-            TestPattern<ITransformPattern>(TransformPattern.Pattern, patterns, ref element);
-            TestPattern<IValuePattern>(ValuePattern.Pattern, patterns, ref element);
-            TestPattern<IWindowPattern>(WindowPattern.Pattern, patterns, ref element);
+//            TestPattern<IDockPattern>(DockPattern.Pattern, patterns, ref element);
+//            TestPattern<IExpandCollapsePattern>(ExpandCollapsePattern.Pattern, patterns, ref element);
+//            TestPattern<IGridItemPattern>(GridItemPattern.Pattern, patterns, ref element);
+//            TestPattern<IGridPattern>(GridPattern.Pattern, patterns, ref element);
+//            TestPattern<IInvokePattern>(InvokePattern.Pattern, patterns, ref element);
+//            TestPattern<IRangeValuePattern>(RangeValuePattern.Pattern, patterns, ref element);
+//            TestPattern<IScrollItemPattern>(ScrollItemPattern.Pattern, patterns, ref element);
+//            TestPattern<IScrollPattern>(ScrollPattern.Pattern, patterns, ref element);
+//            TestPattern<ISelectionItemPattern>(SelectionItemPattern.Pattern, patterns, ref element);
+//            TestPattern<ISelectionPattern>(SelectionPattern.Pattern, patterns, ref element);
+//            TestPattern<ITableItemPattern>(TableItemPattern.Pattern, patterns, ref element);
+//            TestPattern<ITablePattern>(TablePattern.Pattern, patterns, ref element);
+//            TestPattern<ITextPattern>(TextPattern.Pattern, patterns, ref element);
+//            TestPattern<ITogglePattern>(TogglePattern.Pattern, patterns, ref element);
+//            TestPattern<ITransformPattern>(TransformPattern.Pattern, patterns, ref element);
+//            TestPattern<IValuePattern>(ValuePattern.Pattern, patterns, ref element);
+//            TestPattern<IWindowPattern>(WindowPattern.Pattern, patterns, ref element);
+
+            element = AddPatternAction<IDockPattern>(DockPattern.Pattern, patterns, element);
+            element = AddPatternAction<IExpandCollapsePattern>(ExpandCollapsePattern.Pattern, patterns, element);
+            element = AddPatternAction<IGridItemPattern>(GridItemPattern.Pattern, patterns, element);
+            element = AddPatternAction<IGridPattern>(GridPattern.Pattern, patterns, element);
+            element = AddPatternAction<IInvokePattern>(InvokePattern.Pattern, patterns, element);
+            element = AddPatternAction<IRangeValuePattern>(RangeValuePattern.Pattern, patterns, element);
+            element = AddPatternAction<IScrollItemPattern>(ScrollItemPattern.Pattern, patterns, element);
+            element = AddPatternAction<IScrollPattern>(ScrollPattern.Pattern, patterns, element);
+            element = AddPatternAction<ISelectionItemPattern>(SelectionItemPattern.Pattern, patterns, element);
+            element = AddPatternAction<ISelectionPattern>(SelectionPattern.Pattern, patterns, element);
+            element = AddPatternAction<ITableItemPattern>(TableItemPattern.Pattern, patterns, element);
+            element = AddPatternAction<ITablePattern>(TablePattern.Pattern, patterns, element);
+            element = AddPatternAction<ITextPattern>(TextPattern.Pattern, patterns, element);
+            element = AddPatternAction<ITogglePattern>(TogglePattern.Pattern, patterns, element);
+            element = AddPatternAction<ITransformPattern>(TransformPattern.Pattern, patterns, element);
+            element = AddPatternAction<IValuePattern>(ValuePattern.Pattern, patterns, element);
+            element = AddPatternAction<IWindowPattern>(WindowPattern.Pattern, patterns, element);
             
             // 20130104
             // if (expected) { element.Tag.Returns("expected"); }
             if (expected) { element.GetTag().Returns("expected"); }
             element.GetSourceElement().Returns<object>(element);
+            
+//if (null == element) {
+//    Console.WriteLine("null == element");
+//} else {
+//    Console.WriteLine("null != element");
+//}
+            
             return element;
         }
         
@@ -351,9 +414,21 @@ namespace UIAutomationUnitTests
                     patterns,
                     expected);
             
+//if (null == fakeElement) {
+//    Console.WriteLine("null == fakeElement");
+//} else {
+//    Console.WriteLine("null != fakeElement");
+//}
+            
             var proxiedElement =
                 AutomationFactory.GetUiElement(
                     fakeElement as IUiElement);
+            
+//if (null == proxiedElement) {
+//    Console.WriteLine("null == proxiedElement");
+//} else {
+//    Console.WriteLine("null != proxiedElement");
+//}
             
             return proxiedElement;
         }

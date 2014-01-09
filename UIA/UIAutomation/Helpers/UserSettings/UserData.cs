@@ -16,14 +16,14 @@ namespace UIAutomation
     /// <summary>
     /// Description of UserData.
     /// </summary>
-    public static class UserData
-    {
-        //public UserData()
-        static UserData()
-        {
-            UserDictionary = new Dictionary<string, object>();
-        }
-        
-        public static Dictionary<string, object> UserDictionary = null;
-    }
+//    public static class UserData
+//    {
+//        //public UserData()
+//        static UserData()
+//        {
+//            UserDictionary = new Dictionary<string, object>();
+//        }
+//        
+//        public static Dictionary<string, object> UserDictionary = null;
+//    }
 }

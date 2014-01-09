@@ -139,14 +139,22 @@ namespace PSRunner
                 testRunSpace.AvailabilityChanged += new EventHandler<RunspaceAvailabilityEventArgs>(runspace_AvailabilityChanged);
                 testRunSpace.StateChanged += new EventHandler<RunspaceStateEventArgs>(runspace_StateChanged);
                 testRunSpace.Open();
+                
+                pipeline = null;
+                
                 pipeline =
                     testRunSpace.CreatePipeline(command);
                 pipeline.StateChanged += new EventHandler<PipelineStateEventArgs>(pipeline_StateChanged);
+                
+//if (PipelineState.Running == pipeline.PipelineStateInfo.State) {
+//    pipeline.Stop();
+//}
+                
                 pipeline.Invoke();
                 result = true;
             } 
             catch (Exception eInitRunspace) {
-                Console.WriteLine(eInitRunspace.Message);
+                // Console.WriteLine(eInitRunspace.Message);
                 //result = false;
                 throw (eInitRunspace);
             }
@@ -455,14 +463,26 @@ namespace PSRunner
         {
             bool result = false;
             try {
+                try {
+                    pipeline.Stop();
+                }
+                catch (Exception eClosingPipeline) {
+                    // Console.WriteLine(eClosingPipeline.Message);
+                }
+                
                 testRunSpace.Close();
+                
                 testRunSpace.Dispose();
+                
                 testRunSpace = null;
+                
+                pipeline = null;
+                
                 result = true;
             }
             catch (Exception eClosingRunspace) {
                 //
-Console.WriteLine("The runspice could not be disposed. {0}", eClosingRunspace.Message);
+// Console.WriteLine("The runspace could not be disposed. {0}", eClosingRunspace.Message);
             }
             return result;
         }

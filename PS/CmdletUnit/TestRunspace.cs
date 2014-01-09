@@ -22,27 +22,29 @@ namespace CmdletUnitTest
     /// <summary>
     /// Description of TestRunspace.
     /// </summary>
-    public static class TestRunspace
+    // 20140108
+    // public static class TestRunspace
+    public class TestRunspace
     {
         
         private static bool showCode = true;
 
         // 20130130
-        [STAThread]
+        // [STAThread]
         public static bool InitializeRunspace(string command)
         {
             return PSRunner.Runner.InitializeRunspace(command);
         }
         
         // 20140108
-        [STAThread]
+        // [STAThread]
         public static System.Collections.ObjectModel.Collection<PSObject> RunPSCode(string codeSnippet)
         {
             return PSRunner.Runner.RunPSCode(codeSnippet, showCode);
         }
         
         // 20140108
-        [STAThread]
+        // [STAThread]
         public static bool CloseRunspace()
         {
             return PSRunner.Runner.CloseRunspace();

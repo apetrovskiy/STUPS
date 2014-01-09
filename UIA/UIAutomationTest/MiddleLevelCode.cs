@@ -186,19 +186,21 @@ namespace UIAutomationTest
                 try { TestProcess.Kill(); }
                 catch { }
             }
+            
             System.Diagnostics.Process[] processes = 
                 System.Diagnostics.Process.GetProcessesByName(
                     MiddleLevelCode.TestFormProcess);
+            
             foreach (System.Diagnostics.Process p in processes)
             {
                 try {
                     p.CloseMainWindow();
                 }
-                catch { }
+                catch {}
                 try {
                     p.Kill();
                 } 
-                catch { }
+                catch {}
             }
             TestProcessStartInfo = null;
             TestProcess = null;

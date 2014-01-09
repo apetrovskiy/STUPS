@@ -83,6 +83,9 @@ namespace UIAutomation
 		
 		internal static void InitUnitTests()
 		{
+		    // 20140109
+		    if (null != _ninjectModule && null != _kernel && _initFlag) return;
+		    
 		    try {
 		        _ninjectModule = new ObjectLifecycleModule();
 		        _kernel = new StandardKernel(_ninjectModule);
@@ -92,15 +95,35 @@ namespace UIAutomation
 		    catch (Exception eInitFailure) {
 		        // TODO
 		        // write error to error object!!!
-		        // Console.WriteLine("Init Kernel");
+		        // Console.WriteLine("Init Kernel for unit tests");
 		        // Console.WriteLine(eInitFailure.Message);
 		    }
+		    
+		    // 20140109
+		    _initFlag = true;
 		}
 		
 		internal static void InitCommonObjects()
 		{
 		    var argument = new ConstructorArgument("builder", new PersistentProxyBuilder());
 		    _generator = Kernel.Get<ProxyGenerator>(argument);
+		}
+		
+		// public static void Reset()
+		internal static void Reset()
+		{
+		    _generator = null;
+		    try {
+                _kernel.Dispose();
+		    }
+		    catch {}
+		    try {
+                _kernel = null;
+		    }
+		    catch {}
+		    _ninjectModule = null;
+		    _initFlag = false;
+		    // _initFlag = true;
 		}
 		#endregion Initialization
         

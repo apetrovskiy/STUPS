@@ -24,9 +24,9 @@ namespace UIAutomation
     /// </summary>
     public static class WizardHelper
     {
-        static WizardHelper()
-        {
-        }
+//        static WizardHelper()
+//        {
+//        }
         
         //public static void CreateWizard(WizardContainerCmdletBase cmdlet)
         public static void CreateWizard(NewUiaWizardCommand cmdlet)

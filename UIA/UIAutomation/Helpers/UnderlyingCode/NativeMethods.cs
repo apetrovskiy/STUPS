@@ -23,9 +23,9 @@ namespace UIAutomation
     /// </summary>
     internal static class NativeMethods
     {
-        static NativeMethods()
-        {
-        }
+//        static NativeMethods()
+//        {
+//        }
         
         #region Screenshot taking
         [DllImport("user32.dll")] 

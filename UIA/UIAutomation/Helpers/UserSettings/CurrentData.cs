@@ -99,6 +99,18 @@ public static List<object> Events { get; set; } // temporary ??
             catch {
                 
             }
+            
+            // 20140109
+            WizardCollection.ResetData();
+            ExecutionPlan.DisposeHighlighers();
+            
+            // 20140108
+            //
+//            try {
+//                AutomationFactory.Reset();
+//            }
+//            catch {}
+            //
         }
         
         public static void SetCurrentWindow(IUiElement window)

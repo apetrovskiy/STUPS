@@ -25,10 +25,15 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
         [SetUp]
         public void SetUp()
         {
-            FakeFactory.InitForPowerShell();
+//            FakeFactory.InitForPowerShell();
+//            MiddleLevelCode.PrepareRunspace();
+//            CmdletUnitTest.TestRunspace.RunPSCode(
+//                @"[void]([UIAutomation.CurrentData]::ResetData());");
+            
             MiddleLevelCode.PrepareRunspace();
             CmdletUnitTest.TestRunspace.RunPSCode(
                 @"[void]([UIAutomation.CurrentData]::ResetData());");
+            FakeFactory.InitForPowerShell();
         }
         
         [TearDown]
@@ -91,21 +96,36 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.IsNull(element as ISupportsValuePattern);
 //        }
 //        
-//        [Test]
-//        public void Dock_DockPosition()
-//        {
+        [Test]
+        [Ignore]
+        public void Dock_DockPosition()
+        {
+            // Arrange
+            DockPosition expectedValue = DockPosition.Bottom;
+            ISupportsDockPattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData() { DockPattern_DockPosition = expectedValue }) }) as ISupportsDockPattern;
+            
 //            // Arrange
-//            DockPosition expectedValue = DockPosition.Bottom;
-//            ISupportsDockPattern element =
+//            ExpandCollapseState expectedValue = ExpandCollapseState.Expanded;
+//            ISupportsExpandCollapsePattern element =
 //                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-//                    new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData() { DockPattern_DockPosition = expectedValue }) }) as ISupportsDockPattern;
-//            
+//                    new IBasePattern[] { FakeFactory.GetExpandCollapsePattern(new PatternsData() { ExpandCollapsePattern_ExpandCollapseState = expectedValue }) }) as ISupportsExpandCollapsePattern;
+            
+            
 //            // Act
 //            element.SetDockPosition(expectedValue);
 //            
 //            // Assert
 //            Assert.AreEqual(expectedValue, element.DockPosition);
-//        }
+            
+            // Act
+            // Assert
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+                @"$input | %{ $_.DockPosition; }",
+                new [] { element },
+                expectedValue.ToString());
+        }
 //        
 //        [Test]
 //        public void Dock_SetDockPosition()

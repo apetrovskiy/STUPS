@@ -598,7 +598,52 @@ namespace UIAutomation
 		{
 		    Tag = tag;
 		}
-
+		
+		// 20140110
+		public bool IsValid()
+		{
+		    return this.GetIsValid();
+		}
+//		{
+//		    get { return this.GetIsValid(); }
+//		}
+		
+		// 20140110
+//		public string Info
+//		{
+//		    get { return this.GetInfo(); }
+//		}
+        
+//		public string this[int index]
+//        {
+//            get { return this.GetInfo(); }
+//        }
+//		public IUiElement this[string info]
+//        {
+//            get
+//            {
+//                // return (GetDay(day));
+//                if (string.IsNullOrEmpty(info)) return null;
+//                
+//                try {
+//                    if (null == this.Current) return null;
+//                    
+//                    // TODO: wildcard support
+//                    if (this.Current.Name == info ||
+//                        this.Current.AutomationId == info ||
+//                        this.Current.ClassName == info) {
+//                        
+//                        return this;
+//                    }
+//                }
+//                catch {
+//                    return null;
+//                }
+//                
+//                return null;
+//            }
+//        }
+		
 		public virtual void Dispose()
 		{
 			GC.SuppressFinalize(this);

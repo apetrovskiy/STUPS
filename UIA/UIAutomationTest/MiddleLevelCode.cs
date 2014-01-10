@@ -154,8 +154,6 @@ namespace UIAutomationTest
             // System.Threading.Thread.Sleep(200); // just to check
         }
         
-        // 20140108
-        [STAThread]
         public static void PrepareRunspace() //string command)
         {
             CmdletUnitTest.TestRunspace.InitializeRunspace(Settings.RunspaceCommand);
@@ -171,8 +169,6 @@ namespace UIAutomationTest
                 @"[void]([UIAutomation.Preferences]::OnSuccessDelay = 0);");
         }
         
-        // 20140108
-        [STAThread]
         public static void DisposeRunspace()
         {
             CmdletUnitTest.TestRunspace.RunPSCode(

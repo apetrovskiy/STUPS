@@ -583,5 +583,52 @@ namespace UIAutomation
             // return the context menu window
             return resultElement;
         }
+        
+        public static bool GetIsValid(this IUiElement element)
+        {
+            if (null == element) return false;
+            
+            //if (null != element.GetSourceElement(
+            if (null == element.GetSourceElement()) return false;
+            
+            try {
+                AutomationElement elementNet = element.GetSourceElement() as AutomationElement;
+                if (null != elementNet) {
+                    // if (null == elementNet.Current) return false;
+                    try {
+                        var testVariable = elementNet.Current.Name;
+                    } catch (Exception) {
+                        return false;
+                        // throw;
+                    }
+                    // if (null == elementNet.Cached) return false;
+                    if (null == elementNet.Current.ProcessId || 0 == elementNet.Current.ProcessId) return false;
+                }
+            }
+            catch {}
+            
+            return true;
+        }
+        
+        public static string GetInfo(this IUiElement element)
+        {
+            string resultString = string.Empty;
+            
+            if (null == element) return resultString;
+            
+            try {
+                if (null == element.Current) return resultString;
+                
+                if (!string.IsNullOrEmpty(element.Current.Name)) return element.Current.Name;
+                if (!string.IsNullOrEmpty(element.Current.AutomationId)) return element.Current.AutomationId;
+                if (!string.IsNullOrEmpty(element.Current.ClassName)) return element.Current.ClassName;
+                
+            } catch (Exception) {
+                return resultString;
+                // throw;
+            }
+            
+            return resultString;
+        }
     }
 }

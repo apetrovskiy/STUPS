@@ -30,31 +30,23 @@ namespace CmdletUnitTest
         private static bool showCode = true;
 
         // 20130130
-        // 20140109
-        [STAThread]
         public static bool InitializeRunspace(string command)
         {
             return PSRunner.Runner.InitializeRunspace(command);
         }
         
         // 20140108
-        // 20140109
-        [STAThread]
         public static System.Collections.ObjectModel.Collection<PSObject> RunPSCode(string codeSnippet)
         {
             return PSRunner.Runner.RunPSCode(codeSnippet, showCode);
         }
         
         // 20140108
-        // 20140109
-        [STAThread]
         public static bool CloseRunspace()
         {
             return PSRunner.Runner.CloseRunspace();
         }
         
-        // 20140109
-        [STAThread]
         public static void RunAndGetTheException(
             string codeSnippet, 
             string exceptionType,
@@ -87,8 +79,6 @@ namespace CmdletUnitTest
         /// Throws an exception if all parameters and their values are okay.
         /// </summary>
         /// <param name="codeSnippet"></param>
-        // 20140109
-        [STAThread]
         public static void RunAndCheckCmdletParameters_ParamsAccepted(string codeSnippet)
         {
             RunAndGetTheException(
@@ -100,8 +90,6 @@ namespace CmdletUnitTest
                 "An assertion failed.");
         }
         
-        // 20140109
-        [STAThread]
         public static void RunAndCheckCmdletParameters_ParamsOK_CmdletException(string codeSnippet)
         {
             RunAndGetTheException(
@@ -113,8 +101,6 @@ namespace CmdletUnitTest
         }
         
         // 20130918
-        // 20140109
-        [STAThread]
         public static void RunAndCheckCmdletParameters_ParamsBinding_ValidationException(string codeSnippet)
         {
             RunAndGetTheException(
@@ -123,8 +109,6 @@ namespace CmdletUnitTest
                 "Cannot bind argument to parameter 'InputObject' because it is null.");
         }
         
-        // 20140109
-        [STAThread]
         public static void RunAndCheckCmdletParameters_ParameterMissing(string codeSnippet)
         {
             RunAndGetTheException(
@@ -133,15 +117,11 @@ namespace CmdletUnitTest
                 "Cannot process command because of one or more missing mandatory parameters:");
         }
         
-        // 20140109
-        [STAThread]
         public static void RunAndEvaluateAreEqual1(string codeSnippet)
         {
             RunAndEvaluateAreEqual(codeSnippet, "1");
         }
         
-        // 20140109
-        [STAThread]
         public static void RunAndEvaluateIsNull(string codeSnippet)
         {
             //reportRunningCode(codeSnippet);
@@ -151,8 +131,6 @@ namespace CmdletUnitTest
             PSRunner.Runner.FinishRunningCode();
         }
         
-        // 20140109
-        [STAThread]
         public static void RunAndEvaluateIsEmpty(string codeSnippet)
         {
             //reportRunningCode(codeSnippet);
@@ -162,8 +140,6 @@ namespace CmdletUnitTest
             PSRunner.Runner.FinishRunningCode();
         }
         
-        // 20140109
-        [STAThread]
         public static void RunAndEvaluateIsTrue(
             string codeSnippet,
             string strValue)
@@ -176,8 +152,6 @@ namespace CmdletUnitTest
         }
         
         // 20140107
-        // 20140109
-        [STAThread]
         public static void RunAndEvaluateAreEqual(
             string codeSnippet,
             string strValue)
@@ -196,8 +170,6 @@ namespace CmdletUnitTest
         }
         
         // 20140107
-        // 20140109
-        [STAThread]
         public static void RunAndEvaluateAreEqual(
             string codeSnippet,
             IEnumerable inputData,
@@ -220,8 +192,6 @@ namespace CmdletUnitTest
             PSRunner.Runner.FinishRunningCode();
         }
         
-        // 20140109
-        [STAThread]
         public static void RunAndEvaluateAreEqual(
             string codeSnippet,
             System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> strValues)
@@ -233,8 +203,6 @@ namespace CmdletUnitTest
             PSRunner.Runner.FinishRunningCode();
         }
         
-        // 20140109
-        [STAThread]
         public static void RunAndCompareTwoOutputs(
             string codeSnippet,
             List<int> sourceIndices,

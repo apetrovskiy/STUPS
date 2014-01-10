@@ -109,185 +109,195 @@ namespace UIAutomation
             
             bool wasFound = false;
             do {
-                
-                if (win32) {
-                    
-                    cmdlet.WriteVerbose(cmdlet, "getting a window via Win32 API");
-                    aeWndCollection = GetWindowCollectionViaWin32(cmdlet.First, cmdlet.Recurse, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class);
-                    
-                } else if (null != processes && processes.Length > 0) {
-                    cmdlet.WriteVerbose(cmdlet, "getting a window by process");
-                    aeWndCollection = GetWindowCollectionFromProcess(processes, cmdlet.First, cmdlet.Recurse, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class);
-
-                } else if (null != processIds && processIds.Length > 0) {
-
-                    cmdlet.WriteVerbose(cmdlet, "getting a window by PID");
-                    aeWndCollection = GetWindowCollectionByPid(processIds, cmdlet.First, cmdlet.Recurse, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class);
-
-                } else if (null != processNames && processNames.Length > 0) {
-
-                    cmdlet.WriteVerbose(cmdlet, "getting a window by name");
-                    aeWndCollection = GetWindowCollectionByProcessName(processNames, cmdlet.First, cmdlet.Recurse, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class);
-
-                } else if ((null != windowNames && windowNames.Length > 0) ||
-                           !string.IsNullOrEmpty(automationId) ||
-                           !string.IsNullOrEmpty(className)) {
-                            
-                            cmdlet.WriteVerbose(cmdlet, "getting a window by name, automationId, className");
-                            aeWndCollection = GetWindowCollectionByName(windowNames, automationId, className, cmdlet.Recurse);
-                }
-                
-                // filtering result window collection by SearchCriteria
-                if (null != aeWndCollection && 0 < aeWndCollection.Count) {
-                    
-                    cmdlet.WriteVerbose(cmdlet, "one or several windows were found by name, process name, process id or process object");
-                    
-                    if (null != cmdlet.SearchCriteria && 0 < cmdlet.SearchCriteria.Length) {
-                    
-                        cmdlet.WriteVerbose(cmdlet, "processing SearchCriteria");
+                // 20140110
+                try {
+                    if (win32) {
                         
-                        aeWndCollection =
-                            cmdlet.GetFilteredElementsCollection(
-                                cmdlet,
-                                aeWndCollection);
+                        cmdlet.WriteVerbose(cmdlet, "getting a window via Win32 API");
+                        aeWndCollection = GetWindowCollectionViaWin32(cmdlet.First, cmdlet.Recurse, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class);
+                        
+                    } else if (null != processes && processes.Length > 0) {
+                        cmdlet.WriteVerbose(cmdlet, "getting a window by process");
+                        aeWndCollection = GetWindowCollectionFromProcess(processes, cmdlet.First, cmdlet.Recurse, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class);
+    
+                    } else if (null != processIds && processIds.Length > 0) {
+    
+                        cmdlet.WriteVerbose(cmdlet, "getting a window by PID");
+                        aeWndCollection = GetWindowCollectionByPid(processIds, cmdlet.First, cmdlet.Recurse, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class);
+    
+                    } else if (null != processNames && processNames.Length > 0) {
+    
+                        cmdlet.WriteVerbose(cmdlet, "getting a window by name");
+                        aeWndCollection = GetWindowCollectionByProcessName(processNames, cmdlet.First, cmdlet.Recurse, cmdlet.Name, cmdlet.AutomationId, cmdlet.Class);
+    
+                    } else if ((null != windowNames && windowNames.Length > 0) ||
+                               !string.IsNullOrEmpty(automationId) ||
+                               !string.IsNullOrEmpty(className)) {
+                                
+                                cmdlet.WriteVerbose(cmdlet, "getting a window by name, automationId, className");
+                                aeWndCollection = GetWindowCollectionByName(windowNames, automationId, className, cmdlet.Recurse);
                     }
-                }
                     
-                // filtering result window collection by having a control(s) with properties as from WithControl
-                if (null != aeWndCollection && 0 < aeWndCollection.Count) {
-                
-                    cmdlet.WriteVerbose(cmdlet, "one or several windows were not excluded by SearchCriteria");
-                    
-                    if (null != cmdlet.WithControl && 0 < cmdlet.WithControl.Length) {
-                    
-                        cmdlet.WriteVerbose(cmdlet, "processing WithControl");
+                    // filtering result window collection by SearchCriteria
+                    if (null != aeWndCollection && 0 < aeWndCollection.Count) {
                         
-                        List<IUiElement> filteredWindows =
-                            new List<IUiElement>();
-        
-                        cmdlet.WriteVerbose(cmdlet, "searching for control(s) for every window, one by one");
+                        cmdlet.WriteVerbose(cmdlet, "one or several windows were found by name, process name, process id or process object");
                         
-                        bool exitInnerCycle = false;
+                        if (null != cmdlet.SearchCriteria && 0 < cmdlet.SearchCriteria.Length) {
                         
-                        foreach (IUiElement window in aeWndCollection) {
+                            cmdlet.WriteVerbose(cmdlet, "processing SearchCriteria");
                             
-                            cmdlet.WriteVerbose(cmdlet, "Window: name='" + window.Current.Name + "', automationId='" + window.Current.AutomationId + "'");
-                            
-//                            if (exitInnerCycle) {
-//                                //break;
-//                                window = null;
-//                                continue;
-//                            }
-                            
-                            GetControlCmdletBase cmdletCtrl =
-                                new GetControlCmdletBase
-                                {
-                                    InputObject = new UiElement[] {(UiElement) window},
-                                    Timeout = 0
-                                };
-
-                            exitInnerCycle = false;
-                            bool addToResultCollection = false;
-                            foreach (Hashtable ht in cmdlet.WithControl)
-                            {
-                                cmdletCtrl.SearchCriteria = new Hashtable[] { ht };
-
-                                cmdlet.WriteVerbose(cmdlet, "searching for controls that match the following critetion: " + ht.ToString());
-                                
-                                try {
-                                    List<IUiElement> controlsList =
-                                        GetControl(cmdletCtrl);
-                                    
-                                    if (null != controlsList && 0 < controlsList.Count) {
-                                        
-                                        cmdlet.WriteVerbose(cmdlet, "there are " + controlsList.Count.ToString() + " result(s) after the search");
-                                        addToResultCollection = true;
-                                    } else { //20130713
-                                        
-                                        cmdlet.WriteVerbose(cmdlet, "there weren't found controls that match the criterion");
-                                        exitInnerCycle = true;
-                                        addToResultCollection = false;
-                                        break;
-                                    }
-                            
-                                }
-                                
-                                catch (Exception eWindowIsGone) {
-                                    
-                                    // forcing to a next loop
-                                    aeWndCollection.Clear();
-                                    break;
-                                    
-                                }
-                            }
-
-                            /*
-                            for (int iSearchCriterion = 0; iSearchCriterion < cmdlet.WithControl.Length; iSearchCriterion++) {
-                                
-                                cmdletCtrl.SearchCriteria = new Hashtable[]{ cmdlet.WithControl[iSearchCriterion] };
-                                
-                                cmdlet.WriteVerbose(cmdlet, "searching for controls that match the following critetion: " + cmdlet.WithControl[iSearchCriterion].ToString());
-                                
-                                try {
-                                
-                                    ArrayList controlsList =
-                                        GetControl(cmdletCtrl);
-                                    
-                                    if (null != controlsList && 0 < controlsList.Count) {
-                                        
-                                        cmdlet.WriteVerbose(cmdlet, "there are " + controlsList.Count.ToString() + " result(s) after the search");
-                                        addToResultCollection = true;
-                                    } else { //20130713
-                                        
-                                        cmdlet.WriteVerbose(cmdlet, "there weren't found controls that match the criterion");
-                                        exitInnerCycle = true;
-                                        addToResultCollection = false;
-                                        break;
-                                    }
-                            
-                                }
-                                
-                                catch (Exception eWindowIsGone) {
-                                    
-                                    // forcing to a next loop
-                                    aeWndCollection.Clear();
-                                    break;
-                                    
-                                }
-                            
-                            } //20130713
-                            */
-
-                            if (addToResultCollection) {
-                                filteredWindows.Add(window);
-                            }
+                            aeWndCollection =
+                                cmdlet.GetFilteredElementsCollection(
+                                    cmdlet,
+                                    aeWndCollection);
                         }
-                        
-                        aeWndCollection = filteredWindows;
                     }
-                }
-                
-                if (cmdlet.WaitNoWindow && wasFound && (null == aeWndCollection || 0 == aeWndCollection.Count)) {
+                        
+                    // filtering result window collection by having a control(s) with properties as from WithControl
+                    if (null != aeWndCollection && 0 < aeWndCollection.Count) {
                     
-                    cmdlet.Wait = false;
-                }
-                
-                if (cmdlet.WaitNoWindow && !wasFound && null != aeWndCollection && 0 != aeWndCollection.Count) {
-
-                    wasFound = true;
-                    aeWndCollection = null;
-                }
-                
-                if (null != aeWndCollection && aeWndCollection.Count > 0) {
-
-                    cmdlet.WriteVerbose(cmdlet, "aeWndCollection != null");
+                        cmdlet.WriteVerbose(cmdlet, "one or several windows were not excluded by SearchCriteria");
+                        
+                        if (null != cmdlet.WithControl && 0 < cmdlet.WithControl.Length) {
+                        
+                            cmdlet.WriteVerbose(cmdlet, "processing WithControl");
+                            
+                            List<IUiElement> filteredWindows =
+                                new List<IUiElement>();
+            
+                            cmdlet.WriteVerbose(cmdlet, "searching for control(s) for every window, one by one");
+                            
+                            bool exitInnerCycle = false;
+                            
+                            // 20140110
+                            // try { // this was added as an experiment
+                                
+                                foreach (IUiElement window in aeWndCollection) {
+                                    
+                                    // 20140110
+                                    if (!window.IsValid()) continue;
+                                    
+                                    cmdlet.WriteVerbose(cmdlet, "Window: name='" + window.Current.Name + "', automationId='" + window.Current.AutomationId + "'");
+                                    
+        //                            if (exitInnerCycle) {
+        //                                //break;
+        //                                window = null;
+        //                                continue;
+        //                            }
+                                    
+                                    GetControlCmdletBase cmdletCtrl =
+                                        new GetControlCmdletBase
+                                        {
+                                            InputObject = new UiElement[] {(UiElement) window},
+                                            Timeout = 0
+                                        };
+        
+                                    exitInnerCycle = false;
+                                    bool addToResultCollection = false;
+                                    foreach (Hashtable ht in cmdlet.WithControl)
+                                    {
+                                        cmdletCtrl.SearchCriteria = new Hashtable[] { ht };
+        
+                                        cmdlet.WriteVerbose(cmdlet, "searching for controls that match the following critetion: " + ht.ToString());
+                                        
+                                        try {
+                                            List<IUiElement> controlsList =
+                                                GetControl(cmdletCtrl);
+                                            
+                                            if (null != controlsList && 0 < controlsList.Count) {
+                                                
+                                                cmdlet.WriteVerbose(cmdlet, "there are " + controlsList.Count.ToString() + " result(s) after the search");
+                                                addToResultCollection = true;
+                                            } else { //20130713
+                                                
+                                                cmdlet.WriteVerbose(cmdlet, "there weren't found controls that match the criterion");
+                                                exitInnerCycle = true;
+                                                addToResultCollection = false;
+                                                break;
+                                            }
+                                    
+                                        }
+                                        
+                                        catch (Exception eWindowIsGone) {
+                                            
+                                            // forcing to a next loop
+                                            aeWndCollection.Clear();
+                                            break;
+                                            
+                                        }
+                                    }
+        
+                                    /*
+                                    for (int iSearchCriterion = 0; iSearchCriterion < cmdlet.WithControl.Length; iSearchCriterion++) {
+                                        
+                                        cmdletCtrl.SearchCriteria = new Hashtable[]{ cmdlet.WithControl[iSearchCriterion] };
+                                        
+                                        cmdlet.WriteVerbose(cmdlet, "searching for controls that match the following critetion: " + cmdlet.WithControl[iSearchCriterion].ToString());
+                                        
+                                        try {
+                                        
+                                            ArrayList controlsList =
+                                                GetControl(cmdletCtrl);
+                                            
+                                            if (null != controlsList && 0 < controlsList.Count) {
+                                                
+                                                cmdlet.WriteVerbose(cmdlet, "there are " + controlsList.Count.ToString() + " result(s) after the search");
+                                                addToResultCollection = true;
+                                            } else { //20130713
+                                                
+                                                cmdlet.WriteVerbose(cmdlet, "there weren't found controls that match the criterion");
+                                                exitInnerCycle = true;
+                                                addToResultCollection = false;
+                                                break;
+                                            }
+                                    
+                                        }
+                                        
+                                        catch (Exception eWindowIsGone) {
+                                            
+                                            // forcing to a next loop
+                                            aeWndCollection.Clear();
+                                            break;
+                                            
+                                        }
+                                    
+                                    } //20130713
+                                    */
+        
+                                    if (addToResultCollection) {
+                                        filteredWindows.Add(window);
+                                    }
+                                }
+                                
+                                aeWndCollection = filteredWindows;
+                            // }
+                            // catch {}
+                        }
+                    }
                     
+                    if (cmdlet.WaitNoWindow && wasFound && (null == aeWndCollection || 0 == aeWndCollection.Count)) {
+                        
+                        cmdlet.Wait = false;
+                    }
+                    
+                    if (cmdlet.WaitNoWindow && !wasFound && null != aeWndCollection && 0 != aeWndCollection.Count) {
+    
+                        wasFound = true;
+                        aeWndCollection = null;
+                    }
+                    
+                    if (null != aeWndCollection && aeWndCollection.Count > 0) {
+    
+                        cmdlet.WriteVerbose(cmdlet, "aeWndCollection != null");
+                        
+                    }
+                    
+                    CheckTimeout(cmdlet, aeWndCollection, true);
+                    
+                    Thread.Sleep(Preferences.OnSleepDelay);
                 }
-                
-                CheckTimeout(cmdlet, aeWndCollection, true);
-                
-                Thread.Sleep(Preferences.OnSleepDelay);
-                
+                catch {}
             } while (cmdlet.Wait);
             try {
                 
@@ -746,54 +756,83 @@ namespace UIAutomation
                 
                 WriteVerbose(this, "trying to run the returnOnlyRightElements method");
                 
-                windowCollectionByProperties =
-                    ReturnOnlyRightElements(
-                        this,
-                        windowCollection,
-                        windowTitle,
-                        automationId,
-                        className,
-                        string.Empty,
-                        (new string[]{ "Window", "Pane", "Menu" }),
-                        false,
-                        true);
+                // 20140110
+                try {
+                    windowCollectionByProperties =
+                        ReturnOnlyRightElements(
+                            this,
+                            windowCollection,
+                            windowTitle,
+                            automationId,
+                            className,
+                            string.Empty,
+                            (new string[]{ "Window", "Pane", "Menu" }),
+                            false,
+                            true);
+                }
+                catch {
+                    
+                    // 20140110
+                    // ???
+                    try {
+                        windowCollectionByProperties =
+                            ReturnOnlyRightElements(
+                                this,
+                                windowCollection,
+                                windowTitle,
+                                automationId,
+                                className,
+                                string.Empty,
+                                (new string[]{ "Window", "Pane", "Menu" }),
+                                false,
+                                true);
+                    }
+                    catch {
+                        
+                        
+                    }
+                }
                 
                 WriteVerbose(this, "after running the returnOnlyRightElements method");
                 WriteVerbose(this, "collected " + windowCollectionByProperties.Count.ToString() + " elements");
                 
-                if (null != windowCollectionByProperties && 0 < windowCollectionByProperties.Count) {
-                    
-                    // 20131109
-                    foreach (IUiElement aeWndByTitle in windowCollectionByProperties.Cast<IUiElement>().Where(aeWndByTitle => aeWndByTitle != null &&
-                                                                                                                                      (int)aeWndByTitle.Current.ProcessId > 0))
-                    {
+                // 20140110
+                try {
+                    if (null != windowCollectionByProperties && 0 < windowCollectionByProperties.Count) {
                         
+                        // 20131109
+                        foreach (IUiElement aeWndByTitle in windowCollectionByProperties.Cast<IUiElement>().Where(aeWndByTitle => aeWndByTitle != null &&
+                                                                                                                                          (int)aeWndByTitle.Current.ProcessId > 0))
+                        {
+                            
+                            WriteVerbose(this, "aeWndByTitle: " +
+                                               aeWndByTitle.Current.Name +
+                                               " is caught be title = " + windowTitle);
+                                    
+                            resultCollection.Add(aeWndByTitle);
+                        }
+                        
+                    } else {
+                        
+                        IUiElement tempElement = null;
+                        
+                        // one more attempt using the FindWindow function
+                        IntPtr wndHandle =
+                            FindWindowByCaption(IntPtr.Zero, windowTitle);
+                        if (wndHandle != null && wndHandle != IntPtr.Zero) {
+                            tempElement =
+                                UiElement.FromHandle(wndHandle);
+                        }
+    
+                        if (null == tempElement || (int) tempElement.Current.ProcessId <= 0) continue;
                         WriteVerbose(this, "aeWndByTitle: " +
-                                           aeWndByTitle.Current.Name +
-                                           " is caught be title = " + windowTitle);
-                                
-                        resultCollection.Add(aeWndByTitle);
+                                           " is caught by title = " + windowTitle +
+                                           " using the FindWindow function");
+                            
+                        resultCollection.Add(tempElement);
                     }
-                    
-                } else {
-                    
-                    IUiElement tempElement = null;
-                    
-                    // one more attempt using the FindWindow function
-                    IntPtr wndHandle =
-                        FindWindowByCaption(IntPtr.Zero, windowTitle);
-                    if (wndHandle != null && wndHandle != IntPtr.Zero) {
-                        tempElement =
-                            UiElement.FromHandle(wndHandle);
-                    }
-
-                    if (null == tempElement || (int) tempElement.Current.ProcessId <= 0) continue;
-                    WriteVerbose(this, "aeWndByTitle: " +
-                                       " is caught by title = " + windowTitle +
-                                       " using the FindWindow function");
-                        
-                    resultCollection.Add(tempElement);
                 }
+                catch {}
                 
             } // 20120824
             

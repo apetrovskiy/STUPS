@@ -85,78 +85,88 @@ namespace UIAutomation.Commands
                 
             } // describe
             
-            _returnedWindows =
-                GetWindow(this, Win32, InputObject, ProcessName, ProcessId, Name, AutomationId, Class, TestMode);
+            // 20140110
+            try {
+                _returnedWindows =
+                    GetWindow(this, Win32, InputObject, ProcessName, ProcessId, Name, AutomationId, Class, TestMode);
+            }
+            catch {}
             
-            if (null != _returnedWindows && _returnedWindows.Count > 0) {
-                
-                if (TestMode) {
+            // 20140110
+            try {
+                if (null != _returnedWindows && _returnedWindows.Count > 0) {
                     
-                    WriteObject(this, !WaitNoWindow);
+                    if (TestMode) {
+                        
+                        WriteObject(this, !WaitNoWindow);
+                        
+                    } else {
+                        
+                        WriteObject(this, _returnedWindows);
+                    }
                     
                 } else {
                     
-                    WriteObject(this, _returnedWindows);
-                }
-                
-            } else {
-                
-                if (TestMode) {
+                    if (TestMode) {
+                        
+                        WriteObject(this, WaitNoWindow);
+                        
+                    } else {
                     
-                    WriteObject(this, WaitNoWindow);
-                    
-                } else {
-                
-                    string name = string.Empty;
-                    string procName = string.Empty;
-                    string procId = string.Empty;
-    
-                    try{ 
-                        foreach(string n in Name) { 
-                            name += n; name += ","; 
+                        string name = string.Empty;
+                        string procName = string.Empty;
+                        string procId = string.Empty;
+        
+                        try{ 
+                            foreach(string n in Name) { 
+                                name += n; name += ","; 
+                            }
+                            name = name.Substring(0, name.Length - 1);
                         }
-                        name = name.Substring(0, name.Length - 1);
-                    }
-                    catch {}
-    
-                    try{ 
-                        foreach(string s in ProcessName) { 
-                            procName += s; procName += ","; 
+                        catch {}
+        
+                        try{ 
+                            foreach(string s in ProcessName) { 
+                                procName += s; procName += ","; 
+                            }
+                            procName = procName.Substring(0, procName.Length - 1);
                         }
-                        procName = procName.Substring(0, procName.Length - 1);
-                    }
-                    catch {}
-    
-                    try {
-                        foreach (int i in ProcessId) {
-                            procId += i.ToString();
-                            procId += ",";
+                        catch {}
+        
+                        try {
+                            foreach (int i in ProcessId) {
+                                procId += i.ToString();
+                                procId += ",";
+                            }
+                            procId = procId.Substring(0, procId.Length - 1);
                         }
-                        procId = procId.Substring(0, procId.Length - 1);
+                        catch {}
+        
+                        WriteError(
+                            this,
+                            "Failed to get window in " + 
+                            Timeout.ToString() +
+                            // 20140110
+                            // " seconds by:" +
+                            " milliseconds by:" +
+                            " process name: '" +
+                            procName +
+                            "', process Id: " + 
+                            procId + 
+                            ", window title: '" + 
+                            name +
+                            "', automationId: '" +
+                            AutomationId +
+                            "', className: '" +
+                            Class +
+                            "'",
+                            "FailedToGetWindow",
+                            ErrorCategory.InvalidResult,
+                            true);
                     }
-                    catch {}
-    
-                    WriteError(
-                        this,
-                        "Failed to get window in " + 
-                        Timeout.ToString() +
-                        " seconds by:" +
-                        " process name: '" +
-                        procName +
-                        "', process Id: " + 
-                        procId + 
-                        ", window title: '" + 
-                        name +
-                        "', automationId: '" +
-                        AutomationId +
-                        "', className: '" +
-                        Class +
-                        "'",
-                        "FailedToGetWindow",
-                        ErrorCategory.InvalidResult,
-                        true);
                 }
             }
+            catch {}
         }
         
         protected override void EndProcessing()

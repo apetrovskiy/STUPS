@@ -51,6 +51,9 @@ namespace UIAutomation
 		// string Tag { get; set; }
 		string GetTag();
 		void SetTag(string tag);
+		// 20140110
+		bool IsValid(); // { get; }
+		// string Info { get; }
 
 		// internal methods
 		object GetPatternPropertyValue(AutomationProperty property, bool useCache);

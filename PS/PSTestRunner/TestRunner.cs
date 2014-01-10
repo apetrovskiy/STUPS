@@ -28,8 +28,6 @@ namespace PSTestRunner
         public static string ScriptParameters { get; set; }
         public static System.IO.StreamWriter testLogWriter = null;
         
-        // 20140109
-        [STAThread]
         public static bool InitScript()
         //public static void InitScript()
         {
@@ -105,8 +103,6 @@ namespace PSTestRunner
 //            //return result;
 //        }
         
-        // 20140109
-        [STAThread]
         public static bool RunScriptCode() //bool fromCommandLine)
         {
             bool result = false;
@@ -156,15 +152,11 @@ namespace PSTestRunner
             return result;
         }
         
-        // 20140109
-        [STAThread]
         public static bool RunScript() //bool fromCommandLine)
         {
             return RunScript(ScriptPath, false); //fromCommandLine);
         }
         
-        // 20140109
-        [STAThread]
         public static bool RunScript(string scriptPath, bool fromCommandLine)
         {
             bool result = false;
@@ -254,23 +246,17 @@ namespace PSTestRunner
             return result;
         }
         
-        // 20140109
-        [STAThread]
         public static void BreakScript()
         {
             PSRunner.Runner.StopScriptAsync();
         }
         
-        // 20140109
-        [STAThread]
         public static object GetVariable(string variableName)
         {
             return Runner.GetVariable(variableName);
         }
         
         //internal static void SetTestResultsCounters(
-        // 20140109
-        [STAThread]
         public static void SetTestResultsCounters(
             TestResultTypes type, 
             int count,
@@ -316,16 +302,12 @@ namespace PSTestRunner
         }
         
         //internal static void NewTestResultClosed(object sender, EventArgs e)
-        // 20140109
-        [STAThread]
         public static void NewTestResultClosed(object sender, EventArgs e)
         {
             WriteTestResultToLog(((ITestResult)sender));
         }
         
         //internal static void WriteTestResultToLog(ITestResult testResult)
-        // 20140109
-        [STAThread]
         public static void WriteTestResultToLog(ITestResult testResult)
         {
             try {
@@ -367,8 +349,6 @@ namespace PSTestRunner
             }
         }
         
-        // 20140109
-        [STAThread]
         public static void WriteTestResultToLog(
             string timestamp,
             string testResultStatus,
@@ -426,8 +406,6 @@ namespace PSTestRunner
             }
         }
         
-        // 20140109
-        [STAThread]
         private static void StartTestLogger()
         {
             try {
@@ -459,8 +437,6 @@ namespace PSTestRunner
             catch {}
         }
         
-        // 20140109
-        [STAThread]
         private static void StopTestLogger()
         {
             try {

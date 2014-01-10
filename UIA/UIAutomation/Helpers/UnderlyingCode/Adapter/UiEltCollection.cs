@@ -16,6 +16,7 @@ namespace UIAutomation
     using System.Windows.Automation;
     using System.Linq;
     using Ninject;
+    using System.Management.Automation;
     
 	public class UiEltCollection : IUiEltCollection
 	{
@@ -25,6 +26,40 @@ namespace UIAutomation
 		public virtual IUiElement this[int index] {
 		    get { return _collectionHolder[index]; }
 		}
+		public virtual IUiEltCollection this[string infoString]
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(infoString)) return null;
+                
+                try {
+                    
+                    if (null == this || 0 == this.Count) return null;
+                    
+                    WildcardOptions options =
+                        WildcardOptions.IgnoreCase |
+                        WildcardOptions.Compiled;
+                    
+                    WildcardPattern wildcardInfoString = 
+                        new WildcardPattern(infoString, options);
+                    
+                    var queryByStringData = from collectionItem
+                        in this._collectionHolder //.ToArray()
+                        where wildcardInfoString.IsMatch(collectionItem.Current.Name) ||
+                              wildcardInfoString.IsMatch(collectionItem.Current.AutomationId) ||
+                              wildcardInfoString.IsMatch(collectionItem.Current.ClassName)
+//                        where collectionItem.Current.Name == infoString ||
+//                              collectionItem.Current.AutomationId == infoString ||
+//                              collectionItem.Current.ClassName == info
+                        select collectionItem;
+                    
+                    return AutomationFactory.GetUiEltCollection(queryByStringData);
+                }
+                catch {
+                    return null;
+                }
+            }
+        }
 		public virtual int Count {
 		    get { return _collectionHolder.Count; } //return this._elements.Length; }
 		}

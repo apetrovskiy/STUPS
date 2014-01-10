@@ -81,6 +81,7 @@ namespace UIAutomation
 		    _initFlag = true;
         }
 		
+		internal static void InitUnitTests()
 		{
 		    // 20140109
 		    if (null != _ninjectModule && null != _kernel && _initFlag) return;

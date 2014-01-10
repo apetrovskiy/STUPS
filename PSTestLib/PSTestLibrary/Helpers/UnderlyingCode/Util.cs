@@ -24,6 +24,8 @@ namespace PSTestLib
         {
         }
         
+        // 20140109
+        [STAThread]
         public static System.Collections.Generic.List<T> AsList<T>(this IEnumerable<object> collection)
         /*
         public static System.Collections.Generic.List<T> AsList<T>(this System.Collections.ObjectModel.Collection<object> collection)
@@ -41,6 +43,8 @@ namespace PSTestLib
             return resultList;
         }
         
+        // 20140109
+        [STAThread]
         public static T[] AsArray<T>(this System.Collections.ObjectModel.Collection<object> collection)
         {
             System.Collections.Generic.List<T> resultList =

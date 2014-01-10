@@ -17,10 +17,12 @@ namespace PSTestLib
     /// </summary>
     public static class PSTestHelper
     {
-        static PSTestHelper()
-        {
-        }
+//        static PSTestHelper()
+//        {
+//        }
         
+        // 20140109
+        [STAThread]
         internal static string GetZeroesLine(int desiredLength)
         {
             string result = string.Empty;
@@ -30,6 +32,8 @@ namespace PSTestLib
             return result;
         }
         
+        // 20140109
+        [STAThread]
         internal static string AddLeadingZeroes(string inputString, int desiredLength)
         {
             if (string.IsNullOrEmpty(inputString)) return GetZeroesLine(desiredLength);
@@ -41,6 +45,8 @@ namespace PSTestLib
             }
         }
         
+        // 20140109
+        [STAThread]
         public static string GetTimedFileName()
         {
             string result = 

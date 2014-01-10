@@ -63,6 +63,8 @@ namespace PSRunner
         public static event PSDataArrivedEventHandler PSOutputArrived;
         public static event PSDataArrivedEventHandler PSErrorArrived;
         
+        // 20140109
+        [STAThread]
         internal static void OnPSCodeRunning(string msg) //object sender, EventArgs e)
         {
             if (PSCodeRunning != null) {
@@ -70,6 +72,8 @@ namespace PSRunner
             }
         }
         
+        // 20140109
+        [STAThread]
         internal static void OnPSCodeCompleted(string msg)
         {
             if (PSCodeCompleted != null) {
@@ -77,6 +81,8 @@ namespace PSRunner
             }
         }
         
+        // 20140109
+        [STAThread]
         internal static void OnPSErrorThrown(string msg)
         {
             if (PSErrorThrown != null) {
@@ -91,6 +97,8 @@ namespace PSRunner
 //            }
 //        }
         
+        // 20140109
+        [STAThread]
         internal static void OnPSCodeStopping(string msg)
         {
             if (PSCodeStopping != null) {
@@ -98,6 +106,8 @@ namespace PSRunner
             }
         }
         
+        // 20140109
+        [STAThread]
         internal static void OnPSCodeStopped(string msg)
         {
             if (PSCodeStopped != null) {
@@ -105,6 +115,8 @@ namespace PSRunner
             }
         }
         
+        // 20140109
+        [STAThread]
         internal static void OnPSCodeNotStarted(string msg)
         {
             if (PSCodeNotStarted != null) {
@@ -112,6 +124,8 @@ namespace PSRunner
             }
         }
         
+        // 20140109
+        [STAThread]
         internal static void OnPSOutputArrived(object data)
         {
             if (PSOutputArrived != null) {
@@ -119,6 +133,8 @@ namespace PSRunner
             }
         }
         
+        // 20140109
+        [STAThread]
         internal static void OnPSErrorArrived(object data)
         {
             if (PSErrorArrived != null) {
@@ -236,6 +252,8 @@ namespace PSRunner
             return resultObject;
         }
         
+        // 20140109
+        [STAThread]
         public static bool RunPSCodeAsync(string codeSnippet)
         {
             bool result = false;
@@ -282,6 +300,8 @@ namespace PSRunner
             return result;
         }
         
+        // 20140109
+        [STAThread]
         public static System.Collections.ObjectModel.Collection<PSObject> RunPSScript(string scriptCode)
         {
             System.Collections.ObjectModel.Collection<PSObject> result = null;
@@ -306,6 +326,8 @@ namespace PSRunner
         // 20120716
         //public static bool RunPSScriptAsync(string scriptCode)
         //public static bool RunPSScriptAsync(string scriptPath, string parameters)
+        // 20140109
+        [STAThread]
         public static bool RunPSScriptAsync(string scriptCode) //, string parameters)
         {
             bool result = false;
@@ -368,11 +390,15 @@ namespace PSRunner
             return result;
         }
         
+        // 20140109
+        [STAThread]
         public static void StopScript()
         {
             pipeline.Stop();
         }
         
+        // 20140109
+        [STAThread]
         public static void StopScriptAsync()
         {
             pipeline.StopAsync();
@@ -384,6 +410,8 @@ namespace PSRunner
 //            //System.Console.WriteLine(e.ToString());
 //        }
         
+        // 20140109
+        [STAThread]
         static void pipeline_StateChanged(object sender, PipelineStateEventArgs e)
         {
             if (e.PipelineStateInfo.State == PipelineState.Failed) {
@@ -415,11 +443,15 @@ namespace PSRunner
 //            }
         }
         
+        // 20140109
+        [STAThread]
         static void runspace_AvailabilityChanged(object sender, RunspaceAvailabilityEventArgs e)
         {
 //            Console.WriteLine("RunspaceAvailability = " + e.RunspaceAvailability.ToString());
         }
         
+        // 20140109
+        [STAThread]
         static void runspace_StateChanged(object sender, RunspaceStateEventArgs e)
         {
 //            Console.WriteLine("RunspaceState = " + e.RunspaceStateInfo.ToString());
@@ -427,6 +459,8 @@ namespace PSRunner
 //            Console.WriteLine("e.RunspaceStateInfo.State = " + e.RunspaceStateInfo.State.ToString());
         }
         
+        // 20140109
+        [STAThread]
         public static bool SetVariable(
             string variableName, 
             object variableValue)
@@ -443,6 +477,8 @@ namespace PSRunner
             return result;
         }
         
+        // 20140109
+        [STAThread]
         public static object GetVariable(
             string variableName)
         {
@@ -459,6 +495,8 @@ namespace PSRunner
             return result;
         }
         
+        // 20140109
+        [STAThread]
         public static bool CloseRunspace()
         {
             bool result = false;
@@ -497,13 +535,17 @@ namespace PSRunner
 //            catch {}
 //            return result;
 //        }
-
+        
+        // 20140109
+        [STAThread]
         private static void reportRunningCode(string codeSnippet)
         {
             FinishRunningCode();
             Console.WriteLine(codeSnippet);
         }
         
+        // 20140109
+        [STAThread]
         public static void FinishRunningCode()
         {
             Console.WriteLine("# ==  ==  ==  ==  ==  ==  ==  ==  ==  == Running code: ==  ==  ==  ==  ==  ==  ==  ==  ==  == =");

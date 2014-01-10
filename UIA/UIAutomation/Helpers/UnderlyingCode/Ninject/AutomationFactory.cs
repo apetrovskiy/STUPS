@@ -110,7 +110,8 @@ namespace UIAutomation
 		}
 		
 		// public static void Reset()
-		internal static void Reset()
+		// internal static void Reset()
+		public static void Reset()
 		{
 		    _generator = null;
 		    try {

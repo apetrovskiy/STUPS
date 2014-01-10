@@ -339,6 +339,9 @@ namespace UIAutomationUnitTests
         internal static IFakeUiElement GetAutomationElement(ControlType controlType, string name, string automationId, string className, IBasePattern[] patterns, bool expected)
         {
             IFakeUiElement element = Substitute.For<FakeUiElement>();
+            //
+            // element.GetSourceElement().Returns(AutomationElement.RootElement);
+            //
             element.Current.ProcessId.Returns(333);
             element.Current.ControlType.Returns(controlType);
             element.Current.Name.Returns(!string.IsNullOrEmpty(name) ? name : string.Empty);
@@ -392,15 +395,19 @@ namespace UIAutomationUnitTests
             // 20130104
             // if (expected) { element.Tag.Returns("expected"); }
             if (expected) { element.GetTag().Returns("expected"); }
+            
+            // 20140109
             element.GetSourceElement().Returns<object>(element);
+            // var elementWrapper = AutomationFactory.GetUiElement(element);
             
 //if (null == element) {
 //    Console.WriteLine("null == element");
 //} else {
 //    Console.WriteLine("null != element");
 //}
-            
+            // 20140109
             return element;
+            // return elementWrapper as IFakeUiElement;
         }
         
         private static IUiElement GetAutomationElementForObjectModelTesting(ControlType controlType, string name, string automationId, string className, IBasePattern[] patterns, bool expected)

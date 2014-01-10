@@ -15,6 +15,8 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
     using System.Management.Automation;
     using UIAutomation;
     using UIAutomationUnitTests;
+    using System.Collections;
+    using System.Threading;
     
     /// <summary>
     /// Description of ISupportsExpandCollapseTestFixture.
@@ -25,6 +27,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
         [SetUp]
         public void SetUp()
         {
+            #region commented
             // the current 3
             // CurrentData.ResetData();
             
@@ -34,25 +37,36 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
             // the current 4
             // the current 6
             // FakeFactory.InitForPowerShell();
+            #endregion commented
+            
+            try {
+                MiddleLevelCode.DisposeRunspace();
+            } catch (Exception) {
+                
+                // throw;
+            }
+            
             MiddleLevelCode.PrepareRunspace();
             
             // the current 2
             CmdletUnitTest.TestRunspace.RunPSCode(
                 @"[void]([UIAutomation.CurrentData]::ResetData());");
-            
+            #region commented
             // the current 4
 //            FakeFactory.InitForPowerShell();
 //            MiddleLevelCode.PrepareRunspace();
             
             // the current 6
+            #endregion commented
             FakeFactory.InitForPowerShell();
         }
         
         [TearDown]
         public void TearDown()
         {
-            MiddleLevelCode.DisposeRunspace();
+            // MiddleLevelCode.DisposeRunspace();
             
+            #region commented
             // CurrentData.ResetData();
             // the current
             // FakeFactory.Reset();
@@ -61,8 +75,10 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
             // CurrentData.ResetData();
             
             // MiddleLevelCode.DisposeRunspace();
+            #endregion commented
         }
         
+        #region commented
         /*
         $rootNode = Get-UiaWindow -n *win*full* | Get-UiaTree | Get-UiaTreeItem
         $rootNode | Get-UiaTreeItemCheckedState ### ?
@@ -153,7 +169,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //                expectedResult);
 //        }
         
-        
+        #endregion commented
         
         
         [Test]
@@ -166,6 +182,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetExpandCollapsePattern(new PatternsData() { ExpandCollapsePattern_ExpandCollapseState = expectedValue }) }) as ISupportsExpandCollapsePattern;
             
+            #region commented
 //if (null == element) {
 //    Console.WriteLine("null == element");
 //} else {
@@ -189,13 +206,32 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //        // throw;
 //    }
 //}
+            #endregion commented
             
             // Act
             // Assert
+            var data = new object[] { @"$input | %{ $_.ExpandCollapseState; }", new [] { element }, expectedValue.ToString() };
+            Thread thread = new Thread(RunTest);
+            thread.SetApartmentState(ApartmentState.STA);
+            thread.Start(data);
+            
+            #region commented
+//            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+//                // @"$input | %{ $_.ExpandCollapseState; }",
+//                @"[System.EventHandler]$handler = { $input | %{ $_.ExpandCollapseState; } }; $handler.Invoke();",
+//                null, //new [] { element },
+//                expectedValue.ToString());
+            #endregion commented
+        }
+        
+        public static void RunTest(object data)
+        {
+            var dataArray = data as object[];
+            
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$input | %{ $_.ExpandCollapseState; }",
-                new [] { element },
-                expectedValue.ToString());
+                dataArray[0].ToString(),
+                dataArray[1] as IEnumerable,
+                dataArray[2].ToString());
         }
         
         [Test]
@@ -208,6 +244,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetExpandCollapsePattern(new PatternsData() { ExpandCollapsePattern_ExpandCollapseState = expectedValue }) }) as ISupportsExpandCollapsePattern;
             
+            #region commented
 //if (null == element) {
 //    Console.WriteLine("null == element");
 //} else {
@@ -231,13 +268,20 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //        // throw;
 //    }
 //}
+            #endregion commented
             
             // Act
             // Assert
-            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"$input | %{ $_.ExpandCollapseState; }",
-                new [] { element },
-                expectedValue.ToString());
+            var data = new object[] { @"$input | %{ $_.ExpandCollapseState; }", new [] { element }, expectedValue.ToString() };
+            Thread thread = new Thread(RunTest);
+            thread.SetApartmentState(ApartmentState.STA);
+            thread.Start(data);
+            
+//            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+//                // @"$input | %{ $_.ExpandCollapseState; }",
+//                @"[System.EventHandler]$handler = { $input | %{ $_.ExpandCollapseState; } }; $handler.Invoke();",
+//                null, //new [] { element },
+//                expectedValue.ToString());
         }
         
         [Test]
@@ -249,7 +293,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
             ISupportsExpandCollapsePattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetExpandCollapsePattern(new PatternsData() { ExpandCollapsePattern_ExpandCollapseState = expectedValue }) }) as ISupportsExpandCollapsePattern;
-            
+            #region commented
 //if (null == element) {
 //    Console.WriteLine("null == element");
 //} else {
@@ -273,12 +317,15 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //        // throw;
 //    }
 //}
+            #endregion commented
             
             // Act
             // Assert
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$input | %{ $_.ExpandCollapseState; }",
+                // @"$input | %{ $_.GetSourceElement().ExpandCollapseState; }",
                 new [] { element },
+                // new [] { (element as IUiElement).GetSourceElement() },
                 expectedValue.ToString());
         }
         
@@ -292,6 +339,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetExpandCollapsePattern(new PatternsData() { ExpandCollapsePattern_ExpandCollapseState = expectedValue }) }) as ISupportsExpandCollapsePattern;
             
+            #region commented
 //if (null == element) {
 //    Console.WriteLine("null == element");
 //} else {
@@ -315,12 +363,15 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //        // throw;
 //    }
 //}
+            #endregion commented
             
             // Act
             // Assert
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$input | %{ $_.ExpandCollapseState; }",
+                // @"$input | %{ $_.GetSourceElement().ExpandCollapseState; }",
                 new [] { element },
+                // new [] { (element as IUiElement).GetSourceElement() },
                 expectedValue.ToString());
         }
         

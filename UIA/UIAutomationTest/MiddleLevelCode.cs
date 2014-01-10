@@ -176,7 +176,9 @@ namespace UIAutomationTest
         public static void DisposeRunspace()
         {
             CmdletUnitTest.TestRunspace.RunPSCode(
-                @"[void]([UIAutomation.CurrentData]::ResetData());");
+                @"[void]([UIAutomation.CurrentData]::ResetData()); " +
+                @"rmo UIAutomation; " + 
+                @"exit; ");
             CmdletUnitTest.TestRunspace.CloseRunspace();
 
             if (TestProcess != null)

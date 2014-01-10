@@ -65,8 +65,6 @@ namespace UIAutomation
 		    get { return _kernel; }
 		}
 		
-		// 20140109
-        [STAThread]
 		public static void Init()
 		{
 		    if (_initFlag) return;
@@ -83,10 +81,6 @@ namespace UIAutomation
 		    _initFlag = true;
         }
 		
-		// 20140109
-        [STAThread]
-		// internal static void InitUnitTests()
-		public static void InitUnitTests()
 		{
 		    // 20140109
 		    if (null != _ninjectModule && null != _kernel && _initFlag) return;
@@ -108,8 +102,6 @@ namespace UIAutomation
 		    _initFlag = true;
 		}
 		
-		// 20140109
-        [STAThread]
 		internal static void InitCommonObjects()
 		{
 		    var argument = new ConstructorArgument("builder", new PersistentProxyBuilder());
@@ -117,8 +109,6 @@ namespace UIAutomation
 		}
 		
 		// public static void Reset()
-		// 20140109
-        [STAThread]
 		// internal static void Reset()
 		public static void Reset()
 		{
@@ -138,9 +128,7 @@ namespace UIAutomation
 		#endregion Initialization
         
 		#region Castle DynamicProxy
-        // 20140109
-        [STAThread]
-		internal static IUiElement ConvertToProxiedElement<T>(T element)
+        internal static IUiElement ConvertToProxiedElement<T>(T element)
         {
             Type[] supportedAdditionalInterfaces =
                 UiaHelper.GetSupportedInterfaces(element);
@@ -170,8 +158,6 @@ namespace UIAutomation
 		
 		#region IUiElement
 		// internal static IExtendedModelHolder GetUiExtendedModelHolder(IUiElement parentElement)
-		// 20140109
-        [STAThread]
 		internal static IExtendedModelHolder GetUiExtendedModelHolder(IUiElement parentElement, TreeScope scope)
 		{
 	        if (null == parentElement) {
@@ -208,8 +194,6 @@ namespace UIAutomation
 			}
 		}
 		
-		// 20140109
-        [STAThread]
 		public static IUiElement GetUiElement(object element)
 		{
 		    if (element is AutomationElement) {
@@ -222,8 +206,6 @@ namespace UIAutomation
 		    
 		}
 		
-		// 20140109
-        [STAThread]
 		public static IUiElement GetUiElement(AutomationElement element)
 		{
 	        if (null == element) {
@@ -260,8 +242,6 @@ namespace UIAutomation
 			}
 		}
 		
-		// 20140109
-        [STAThread]
 		public static IUiElement GetUiElement(IUiElement element)
 		{
 	        if (null == element) {
@@ -299,8 +279,6 @@ namespace UIAutomation
 			}
 		}
 		
-		// 20140109
-        [STAThread]
 		public static IUiElement GetUiElement()
 		{
 			try {
@@ -327,8 +305,6 @@ namespace UIAutomation
 			}
 		}
 		
-		// 20140109
-        [STAThread]
 		internal static IUiElementInformation GetUiElementInformation(AutomationElement.AutomationElementInformation information)
 		{
 			try {
@@ -347,8 +323,6 @@ namespace UIAutomation
 		#endregion IUiElement
 		
 		#region IUiEltCollection
-		// 20140109
-        [STAThread]
 		internal static IUiEltCollection GetUiEltCollection(AutomationElementCollection elements)
 		{
 	        if (null == elements) {
@@ -368,8 +342,6 @@ namespace UIAutomation
 			}
 		}
 		
-		// 20140109
-        [STAThread]
 		internal static IUiEltCollection GetUiEltCollection(IUiEltCollection elements)
 		{
 	        if (null == elements) {
@@ -389,8 +361,6 @@ namespace UIAutomation
 			}
 		}
 		
-		// 20140109
-        [STAThread]
 		internal static IUiEltCollection GetUiEltCollection(IEnumerable elements)
 		{
 	        if (null == elements) {
@@ -410,8 +380,6 @@ namespace UIAutomation
 			}
 		}
 		
-		// 20140109
-        [STAThread]
 		internal static IUiEltCollection GetUiEltCollection()
 		{
 			try {
@@ -430,8 +398,6 @@ namespace UIAutomation
 		#endregion IUiEltCollection
 		
 		#region patterns
-		// 20140109
-        [STAThread]
 		public static N GetPatternAdapter<N>(IUiElement element, object pattern)
 		    where N : IBasePattern
 		{
@@ -453,8 +419,6 @@ namespace UIAutomation
 			}
 		}
 		
-		// 20140109
-        [STAThread]
 		public static N GetPatternAdapter<N>(object pattern)
 		    where N : IBasePattern
 		{

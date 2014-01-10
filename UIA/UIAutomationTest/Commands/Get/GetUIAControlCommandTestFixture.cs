@@ -633,7 +633,9 @@ namespace UIAutomationTest.Commands.Get
         [Category("Get_UiaControl")]
         public void GetAllButtons_TimeoutDefault()
         {
-            string answer = "34";
+            // 20140109
+            // string answer = "34";
+            string answer = "36";
             MiddleLevelCode.StartProcessWithForm(
                 UIAutomationTestForms.Forms.WinFormsFull, 
                 TimeoutsAndDelays.Form_Delay0);

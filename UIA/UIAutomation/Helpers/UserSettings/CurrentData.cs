@@ -101,8 +101,8 @@ public static List<object> Events { get; set; } // temporary ??
             }
             
             // 20140109
-            WizardCollection.ResetData();
-            ExecutionPlan.DisposeHighlighers();
+            // WizardCollection.ResetData();
+            // ExecutionPlan.DisposeHighlighers();
             
             // 20140108
             //

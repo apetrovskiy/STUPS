@@ -1412,7 +1412,9 @@ namespace UIAutomation
             
             List<IUiElement> tempListWin32 = new List<IUiElement>();
             if (!string.IsNullOrEmpty(cmdlet.Name)) {
-                WriteVerbose(cmdlet, "collecting controls by name (Win32)");
+                // 20140110
+                // WriteVerbose(cmdlet, "collecting controls by name (Win32)");
+                WriteVerbose(cmdlet, "collecting controls by name or value (Win32)");
                 tempListWin32.AddRange(inputObject.GetControlByNameViaWin32(cmdlet, cmdlet.Name, cmdlet.Value));
             }
             

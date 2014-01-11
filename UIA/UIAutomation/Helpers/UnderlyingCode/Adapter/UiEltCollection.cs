@@ -27,6 +27,8 @@ namespace UIAutomation
 		    get { return _collectionHolder[index]; }
 		}
 		public virtual IUiEltCollection this[string infoString]
+		// public virtual IEnumerable<IUiElement> this[string infoString]
+		// public virtual IUiElement[] this[string infoString]
         {
             get
             {
@@ -53,10 +55,12 @@ namespace UIAutomation
 //                              collectionItem.Current.ClassName == info
                         select collectionItem;
                     
+                    // return AutomationFactory.GetUiEltCollection(queryByStringData).ToArray();
                     return AutomationFactory.GetUiEltCollection(queryByStringData);
                 }
                 catch {
                     return null;
+                    // return new IUiElement[] {};
                 }
             }
         }

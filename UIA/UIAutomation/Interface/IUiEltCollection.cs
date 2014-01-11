@@ -18,6 +18,9 @@ namespace UIAutomation
     public interface IUiEltCollection : ICollection, IEnumerable, IDisposable
 	{
 		List<IUiElement> SourceCollection { get; }
+		IUiElement this[int index] { get; }
 		IUiEltCollection this[string infoString] { get; }
+		// IEnumerable<IUiElement> this[string infoString] { get; }
+		// IUiElement[] this[string infoString] { get; }
 	}
 }

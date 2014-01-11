@@ -1,4 +1,5 @@
-﻿/*
+﻿using System;
+/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
  * Date: 1/4/2014
@@ -1239,6 +1240,303 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             
             // Assert
             Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+        }
+        
+        // ==========================================================================================================================
+        
+        [Test]
+        public void VariousTypes_Children_Three()
+        {
+            // Arrange
+            IUiElement[] elementsArray =
+                new[] {
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, "1", string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Document, "2", string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Image, "3", string.Empty, string.Empty, string.Empty)
+                };
+//            IUiElement element =
+//                FakeFactory.GetElement_ForFindAll(
+//                    elementsArray,
+//                    new PropertyCondition(
+//                        AutomationElement.ControlTypeProperty,
+//                        ControlType.Button));
+            IUiElement element =
+                FakeFactory.GetElement_ForFindAll(
+                    elementsArray,
+                    new OrCondition(
+                        new PropertyCondition(
+                            AutomationElement.ControlTypeProperty,
+                            ControlType.Button),
+                        new PropertyCondition(
+                            AutomationElement.ControlTypeProperty,
+                            ControlType.Document),
+                        new PropertyCondition(
+                            AutomationElement.ControlTypeProperty,
+                            ControlType.Image)));
+            
+            // Act
+            var elementButton = ((element as ISupportsExtendedModel).Children as IExtendedModel).Buttons[0];
+            var elementDocument = ((element as ISupportsExtendedModel).Children as IExtendedModel).Documents[1];
+            var elementImage = ((element as ISupportsExtendedModel).Children as IExtendedModel).Images[2];
+            
+            // Assert
+            Assert.AreEqual(ControlType.Button, elementButton.Current.ControlType); // (elementButton as IUiElement).Current.ControlType);
+            Assert.AreEqual(ControlType.Document, elementDocument.Current.ControlType); // (elementDocument as IUiElement).Current.ControlType);
+            Assert.AreEqual(ControlType.Image, elementImage.Current.ControlType); // (elementImage as IUiElement).Current.ControlType);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Calendars);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).CheckBoxes);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Customs);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).DataItems);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Edits);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Trees);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Windows);
+        }
+        
+        [Test]
+        public void VariousTypes_Descendants_Three()
+        {
+            // Arrange
+            IUiElement[] elementsArray =
+                new[] {
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, string.Empty, string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Document, string.Empty, string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Image, string.Empty, string.Empty, string.Empty, string.Empty)
+                };
+            IUiElement element =
+                FakeFactory.GetElement_ForFindAll(
+                    elementsArray,
+                    new PropertyCondition(
+                        AutomationElement.ControlTypeProperty,
+                        ControlType.Button));
+            
+            // Act
+            var elementButton = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Buttons[0];
+            var elementDocument = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Documents[1];
+            var elementImage = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Images[2];
+            
+            // Assert
+            Assert.AreEqual(ControlType.Button, elementButton.Current.ControlType); // (elementButton as IUiElement).Current.ControlType);
+            Assert.AreEqual(ControlType.Document, elementDocument.Current.ControlType); // (elementDocument as IUiElement).Current.ControlType);
+            Assert.AreEqual(ControlType.Image, elementImage.Current.ControlType); // (elementImage as IUiElement).Current.ControlType);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Calendars);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).CheckBoxes);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Customs);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).DataItems);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Edits);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Trees);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Windows);
+        }
+        
+        // ==========================================================================================================================
+        
+        [Test]
+        public void Search_Children_Name_1of3()
+        {
+            // Arrange
+            const string expectedName = "btn";
+            IUiElement[] elementsArray =
+                new[] {
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, expectedName, string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Document, string.Empty, string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Image, string.Empty, string.Empty, string.Empty, string.Empty)
+                };
+            IUiElement element =
+                FakeFactory.GetElement_ForFindAll(
+                    elementsArray,
+                    new PropertyCondition(
+                        AutomationElement.ControlTypeProperty,
+                        ControlType.Button));
+            
+            // Act
+            var elementButton = ((element as ISupportsExtendedModel).Children as IExtendedModel).Buttons[expectedName][0];
+            var elementDocument = ((element as ISupportsExtendedModel).Children as IExtendedModel).Documents[expectedName][0];
+            var elementImage = ((element as ISupportsExtendedModel).Children as IExtendedModel).Images[expectedName][0];
+            
+            // Assert
+            Assert.AreEqual(expectedName, (elementButton as IUiElement).Current.Name);
+//            Assert.IsNull(elementDocument);
+//            Assert.IsNull(elementImage);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Customs);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).DataItems);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Edits);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Trees);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Windows);
+        }
+        
+        [Test]
+        public void Search_Children_AutomationId_1of3()
+        {
+            // Arrange
+            const string expectedAutomationId = "auId";
+            IUiElement[] elementsArray =
+                new[] {
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, string.Empty, expectedAutomationId, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Document, string.Empty, string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Image, string.Empty, string.Empty, string.Empty, string.Empty)
+                };
+            IUiElement element =
+                FakeFactory.GetElement_ForFindAll(
+                    elementsArray,
+                    new PropertyCondition(
+                        AutomationElement.ControlTypeProperty,
+                        ControlType.Button));
+            
+            // Act
+            var elementButton = ((element as ISupportsExtendedModel).Children as IExtendedModel).Buttons[expectedAutomationId][0];
+            var elementDocument = ((element as ISupportsExtendedModel).Children as IExtendedModel).Documents[expectedAutomationId][0];
+            var elementImage = ((element as ISupportsExtendedModel).Children as IExtendedModel).Images[expectedAutomationId][0];
+            
+            // Assert
+            Assert.AreEqual(expectedAutomationId, (elementButton as IUiElement).Current.AutomationId);
+//            Assert.IsNull(elementDocument);
+//            Assert.IsNull(elementImage);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Customs);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).DataItems);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Edits);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Trees);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Windows);
+        }
+        
+        [Test]
+        public void Search_Children_ClassName_1of3()
+        {
+            // Arrange
+            const string expectedClassName = "class";
+            IUiElement[] elementsArray =
+                new[] {
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, string.Empty, string.Empty, expectedClassName, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Document, string.Empty, string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Image, string.Empty, string.Empty, string.Empty, string.Empty)
+                };
+            IUiElement element =
+                FakeFactory.GetElement_ForFindAll(
+                    elementsArray,
+                    new PropertyCondition(
+                        AutomationElement.ControlTypeProperty,
+                        ControlType.Button));
+            
+            // Act
+            var elementButton = ((element as ISupportsExtendedModel).Children as IExtendedModel).Buttons[expectedClassName][0];
+            var elementDocument = ((element as ISupportsExtendedModel).Children as IExtendedModel).Documents[expectedClassName][0];
+            var elementImage = ((element as ISupportsExtendedModel).Children as IExtendedModel).Images[expectedClassName][0];
+            
+            // Assert
+            Assert.AreEqual(expectedClassName, (elementButton as IUiElement).Current.ClassName);
+//            Assert.IsNull(elementDocument);
+//            Assert.IsNull(elementImage);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Customs);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).DataItems);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Edits);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Trees);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Windows);
+        }
+        
+        [Test]
+        public void Search_Descendants_Name_1of3()
+        {
+            // Arrange
+            const string expectedName = "img";
+            IUiElement[] elementsArray =
+                new[] {
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, string.Empty, string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Document, string.Empty, string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Image, expectedName, string.Empty, string.Empty, string.Empty)
+                };
+            IUiElement element =
+                FakeFactory.GetElement_ForFindAll(
+                    elementsArray,
+                    new PropertyCondition(
+                        AutomationElement.ControlTypeProperty,
+                        ControlType.Image));
+            
+            // Act
+            var elementButton = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Buttons[expectedName][0];
+            var elementDocument = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Documents[expectedName][0];
+            var elementImage = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Images[expectedName][0];
+            
+            // Assert
+            Assert.AreEqual(expectedName, (elementImage as IUiElement).Current.Name);
+//            Assert.IsNull(elementButton);
+//            Assert.IsNull(elementDocument);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Calendars);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).CheckBoxes);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Customs);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).DataItems);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Edits);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Trees);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Windows);
+        }
+        
+        [Test]
+        public void Search_Descendants_AutomationId_1of3()
+        {
+            // Arrange
+            const string expectedAutomationId = "aaa";
+            IUiElement[] elementsArray =
+                new[] {
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, string.Empty, string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Document, string.Empty, string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Image, string.Empty, expectedAutomationId, string.Empty, string.Empty)
+                };
+            IUiElement element =
+                FakeFactory.GetElement_ForFindAll(
+                    elementsArray,
+                    new PropertyCondition(
+                        AutomationElement.ControlTypeProperty,
+                        ControlType.Image));
+            
+            // Act
+            var elementButton = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Buttons[expectedAutomationId][0];
+            var elementDocument = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Documents[expectedAutomationId][0];
+            var elementImage = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Images[expectedAutomationId][0];
+            
+            // Assert
+            Assert.AreEqual(expectedAutomationId, (elementImage as IUiElement).Current.AutomationId);
+//            Assert.IsNull(elementButton);
+//            Assert.IsNull(elementDocument);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Calendars);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).CheckBoxes);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Customs);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).DataItems);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Edits);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Trees);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Windows);
+        }
+        
+        [Test]
+        public void Search_Descendants_ClassName_1of3()
+        {
+            // Arrange
+            const string expectedClassName = "cl01";
+            IUiElement[] elementsArray =
+                new[] {
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Button, string.Empty, string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Document, string.Empty, string.Empty, string.Empty, string.Empty),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Image, string.Empty, string.Empty, expectedClassName, string.Empty)
+                };
+            IUiElement element =
+                FakeFactory.GetElement_ForFindAll(
+                    elementsArray,
+                    new PropertyCondition(
+                        AutomationElement.ControlTypeProperty,
+                        ControlType.Image));
+            
+            // Act
+            var elementButton = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Buttons[expectedClassName][0];
+            var elementDocument = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Documents[expectedClassName][0];
+            var elementImage = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Images[expectedClassName][0];
+            
+            // Assert
+            Assert.AreEqual(expectedClassName, (elementImage as IUiElement).Current.ClassName);
+//            Assert.IsNull(elementButton);
+//            Assert.IsNull(elementDocument);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Calendars);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).CheckBoxes);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Customs);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).DataItems);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Edits);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Trees);
+//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Windows);
         }
     }
 }

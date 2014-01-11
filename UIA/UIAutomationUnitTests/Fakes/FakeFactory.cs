@@ -298,31 +298,6 @@ namespace UIAutomationUnitTests
             return GetAutomationElement(controlType, name, automationId, className, new IBasePattern[] { valuePattern }, false);
         }
         
-//        private static void TestPattern<T>(AutomationPattern pattern, IBasePattern[] patterns, ref IFakeUiElement element) where T : IBasePattern
-//        {
-//            object patternObject;
-//            if (patterns.Any(ptrn => ptrn is T)) {
-//                element.GetCurrentPattern<T>(pattern).Returns<T>((T)element.Patterns.Find(ptrn => ptrn is T));
-//                element.TryGetCurrentPattern(pattern, out patternObject).Returns(true);
-//            } else {
-//                element.TryGetCurrentPattern(pattern, out patternObject).Returns(false);
-//            }
-//        }
-        
-        
-        /*
-        private static void TestPattern<T>(AutomationPattern pattern, IBasePattern[] patterns, ref IFakeUiElement element) where T : IBasePattern
-        {
-            object patternObject;
-            if (patterns.Any(ptrn => ptrn is T)) {
-                element.GetCurrentPattern<T>(pattern).Returns<T>((T)element.Patterns.Find(ptrn => ptrn is T));
-                element.TryGetCurrentPattern(pattern, out patternObject).Returns(true);
-            } else {
-                element.TryGetCurrentPattern(pattern, out patternObject).Returns(false);
-            }
-        }
-        */
-       
         private static IFakeUiElement AddPatternAction<T>(AutomationPattern pattern, IBasePattern[] patterns, IFakeUiElement element) where T : IBasePattern
         {
             object patternObject;
@@ -349,31 +324,7 @@ namespace UIAutomationUnitTests
             element.Current.ClassName.Returns(!string.IsNullOrEmpty(className) ? className : string.Empty);
             element.Patterns.AddRange(patterns);
             element.GetSupportedPatterns().Returns<IBasePattern[]>(element.Patterns.ToArray());
-//Console.WriteLine("GetAutomationElement 0010");
-//if (null == element) {
-//    Console.WriteLine("null == element");
-//} else {
-//    Console.WriteLine("null != element");
-//}
             
-//            TestPattern<IDockPattern>(DockPattern.Pattern, patterns, ref element);
-//            TestPattern<IExpandCollapsePattern>(ExpandCollapsePattern.Pattern, patterns, ref element);
-//            TestPattern<IGridItemPattern>(GridItemPattern.Pattern, patterns, ref element);
-//            TestPattern<IGridPattern>(GridPattern.Pattern, patterns, ref element);
-//            TestPattern<IInvokePattern>(InvokePattern.Pattern, patterns, ref element);
-//            TestPattern<IRangeValuePattern>(RangeValuePattern.Pattern, patterns, ref element);
-//            TestPattern<IScrollItemPattern>(ScrollItemPattern.Pattern, patterns, ref element);
-//            TestPattern<IScrollPattern>(ScrollPattern.Pattern, patterns, ref element);
-//            TestPattern<ISelectionItemPattern>(SelectionItemPattern.Pattern, patterns, ref element);
-//            TestPattern<ISelectionPattern>(SelectionPattern.Pattern, patterns, ref element);
-//            TestPattern<ITableItemPattern>(TableItemPattern.Pattern, patterns, ref element);
-//            TestPattern<ITablePattern>(TablePattern.Pattern, patterns, ref element);
-//            TestPattern<ITextPattern>(TextPattern.Pattern, patterns, ref element);
-//            TestPattern<ITogglePattern>(TogglePattern.Pattern, patterns, ref element);
-//            TestPattern<ITransformPattern>(TransformPattern.Pattern, patterns, ref element);
-//            TestPattern<IValuePattern>(ValuePattern.Pattern, patterns, ref element);
-//            TestPattern<IWindowPattern>(WindowPattern.Pattern, patterns, ref element);
-
             element = AddPatternAction<IDockPattern>(DockPattern.Pattern, patterns, element);
             element = AddPatternAction<IExpandCollapsePattern>(ExpandCollapsePattern.Pattern, patterns, element);
             element = AddPatternAction<IGridItemPattern>(GridItemPattern.Pattern, patterns, element);
@@ -522,6 +473,15 @@ namespace UIAutomationUnitTests
                 children.SourceCollection.Add(elt);
             }
             
+//            element.FindAll(
+//                TreeScope.Children,
+//                new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.Button)).Returns<IEnumerable>(children.ToArray().Select(elt => elt.Current.ControlType == ControlType.Button));
+//            element.FindAll(
+//                TreeScope.Children,
+//                new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.Document)).Returns<IEnumerable>(children.ToArray().Select(elt => elt.Current.ControlType == ControlType.Document));
+//            element.FindAll(
+//                TreeScope.Children,
+//                new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.Image)).Returns<IEnumerable>(children.ToArray().Select(elt => elt.Current.ControlType == ControlType.Image));
             element.FindAll(TreeScope.Children, Arg.Any<Condition>()).Returns(children);
             
             return element;

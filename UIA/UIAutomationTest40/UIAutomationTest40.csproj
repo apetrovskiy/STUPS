@@ -124,6 +124,9 @@
     <Compile Include="..\UIAutomationTest\Commands\Common\HideUIACurrentHighlighterCommandTestFixture.cs">
       <Link>Commands\Common\HideUIACurrentHighlighterCommandTestFixture.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Common\InvokeUIAControlClickCommandTestFixture.cs">
+      <Link>Commands\Common\InvokeUIAControlClickCommandTestFixture.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomationTest\Commands\Common\MoveUIACursorCommandTestFixture.cs">
       <Link>Commands\Common\MoveUIACursorCommandTestFixture.cs</Link>
     </Compile>
@@ -135,6 +138,9 @@
     </Compile>
     <Compile Include="..\UIAutomationTest\Commands\Common\ReadUIAControlNameCommandTestFixture.cs">
       <Link>Commands\Common\ReadUIAControlNameCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Common\SaveUIAScreenshotCommandTestFixture.cs">
+      <Link>Commands\Common\SaveUIAScreenshotCommandTestFixture.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomationTest\Commands\Common\SetUIAFocusCommandTextFixture.cs">
       <Link>Commands\Common\SetUIAFocusCommandTextFixture.cs</Link>
@@ -231,6 +237,9 @@
     </Compile>
     <Compile Include="..\UIAutomationTest\Commands\Get\NamedCommands\GetUIATreeViewCommandTestFixture.cs">
       <Link>Commands\Get\NamedCommands\GetUIATreeViewCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Get\Parameterless\ParameterlessSearchTestFixture.cs">
+      <Link>Commands\Get\Parameterless\ParameterlessSearchTestFixture.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomationTest\Commands\Get\Relatives\GetUIAControlRelativesTestFixture.cs">
       <Link>Commands\Get\Relatives\GetUIAControlRelativesTestFixture.cs</Link>
@@ -355,6 +364,18 @@
     <Compile Include="..\UIAutomationTest\Enumerations.cs">
       <Link>Enumerations.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModelWithMocks\CommonPatternsTestFixture.cs">
+      <Link>Helpers\ObjectModelWithMocks\CommonPatternsTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModelWithMocks\ISupportsDockPatternTestFixture.cs">
+      <Link>Helpers\ObjectModelWithMocks\ISupportsDockPatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModelWithMocks\ISupportsExpandCollapseTestFixture.cs">
+      <Link>Helpers\ObjectModelWithMocks\ISupportsExpandCollapseTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModelWithMocks\ISupportsExtendedModelTestFixture.cs">
+      <Link>Helpers\ObjectModelWithMocks\ISupportsExtendedModelTestFixture.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomationTest\Helpers\ObjectModel\CommonPatternsTestFixture.cs">
       <Link>Helpers\ObjectModel\CommonPatternsTestFixture.cs</Link>
     </Compile>
@@ -455,9 +476,9 @@
       <Project>{36F73FA0-C636-48CF-BB7A-FE10FE52C391}</Project>
       <Name>CmdletUnit</Name>
     </ProjectReference>
-    <ProjectReference Include="..\UIAutomationTestForms\UIAutomationTestForms.csproj">
-      <Project>{93D529FA-32F9-41AA-BCF9-6271572503CA}</Project>
-      <Name>UIAutomationTestForms</Name>
+    <ProjectReference Include="..\UIAutomationTestForms40\UIAutomationTestForms40.csproj">
+      <Project>{F7605B82-4F23-41E9-B7C9-0EE95EF6EBEC}</Project>
+      <Name>UIAutomationTestForms40</Name>
     </ProjectReference>
     <ProjectReference Include="..\UIAutomationUnitTests40\UIAutomationUnitTests40.csproj">
       <Project>{B63278E9-C2A9-47DD-BC0D-8AC41C8314D3}</Project>
@@ -493,6 +514,8 @@
   <ItemGroup>
     <Folder Include="Commands\ExecutionPlan" />
     <Folder Include="Commands\Container" />
+    <Folder Include="Commands\Get\Win32" />
+    <Folder Include="Commands\Get\Parameterless" />
     <Folder Include="Commands\No" />
     <Folder Include="Commands\Sheridan" />
     <Folder Include="Helpers\ObjectModelWithMocks" />

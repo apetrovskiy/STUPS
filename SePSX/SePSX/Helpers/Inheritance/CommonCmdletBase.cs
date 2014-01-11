@@ -625,10 +625,12 @@ Console.WriteLine("WriteSingleObject 00008");
                     outputObject,
                     CmdletName(cmdlet), //string.Empty,
                     true,
-                    0,
-                    0,
-                    0,
-                    0,
+                    // 20140111
+                    // 0,
+                    // 0,
+                    // 0,
+                    // 0,
+                    new ScreenshotRect(),
                     string.Empty,
                     SePSX.Preferences.OnSuccessScreenShotFormat);
             }
@@ -842,10 +844,12 @@ Console.WriteLine("WriteSingleObject 00008");
                     UiElement.RootElement,
                     CmdletName(cmdlet),
                     true,
-                    0,
-                    0,
-                    0,
-                    0,
+                    // 20140111
+                    // 0,
+                    // 0,
+                    // 0,
+                    // 0,
+                    new ScreenshotRect(),
                     string.Empty,
                     SePSX.Preferences.OnErrorScreenShotFormat);
                 

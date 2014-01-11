@@ -838,6 +838,9 @@
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Types\Enums.cs">
       <Link>Helpers\UnderlyingCode\Types\Enums.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Types\ScreenshotSquare.cs">
+      <Link>Helpers\UnderlyingCode\Types\ScreenshotSquare.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Types\Wizard.cs">
       <Link>Helpers\UnderlyingCode\Types\Wizard.cs</Link>
     </Compile>

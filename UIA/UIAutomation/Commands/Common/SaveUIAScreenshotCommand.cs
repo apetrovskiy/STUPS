@@ -84,10 +84,17 @@ namespace UIAutomation.Commands
                 this,
                 Description,
                 save,
-                Left,
-                Top,
-                Height,
-                Width,
+                // 20140111
+                // Left,
+                // Top,
+                // Height,
+                // Width,
+                new ScreenshotRect() {
+                    Left = this.Left,
+                    Top = this.Top,
+                    Height = this.Height,
+                    Width = this.Width
+                },
                 Path + @"\" + Name,
                 As);
         }

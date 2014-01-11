@@ -52,60 +52,60 @@ namespace UIAutomation
         
         // 20131204
         // private static List<IntPtr> GetControlByNameViaWin32Recursively(
-        internal static List<IntPtr> GetControlByNameViaWin32Recursively(
-            PSCmdletBase cmdlet,
-            IntPtr containerHandle,
-            string name,
-            int level)
-        {
-            IntPtr resultHandle = IntPtr.Zero;
-            IntPtr controlHandle = IntPtr.Zero;
-            
-            List<IntPtr> controlHandles = new List<IntPtr>();
-            List<IntPtr> tempControlHandles = new List<IntPtr>();
-            
-//            cmdlet.WriteVerbose(cmdlet, "name = " + name);
+//        internal static List<IntPtr> GetControlByNameViaWin32Recursively(
+//            PSCmdletBase cmdlet,
+//            IntPtr containerHandle,
+//            string name,
+//            int level)
+//        {
+//            IntPtr resultHandle = IntPtr.Zero;
+//            IntPtr controlHandle = IntPtr.Zero;
 //            
-//            cmdlet.WriteVerbose(cmdlet, "using null instead of name");
-//            cmdlet.WriteVerbose(cmdlet, "test >>>>>>>>>>>>>>>>>>>>>>>>>");
-//            try{ cmdlet.WriteVerbose(cmdlet, "name = " + UiElement.FromHandle(controlHandle).Current.Name); } catch {}
-//            try{ cmdlet.WriteVerbose(cmdlet, "automationid = " + UiElement.FromHandle(controlHandle).Current.AutomationId); } catch {}
-//            try{ cmdlet.WriteVerbose(cmdlet, "class = " + UiElement.FromHandle(controlHandle).Current.ClassName); } catch {}
-//            try{ cmdlet.WriteVerbose(cmdlet, "control type = " + UiElement.FromHandle(controlHandle).Current.ControlType.ProgrammaticName); } catch {}
-            
-            // search at this level
-            do {
-//                cmdlet.WriteVerbose(
-//                    cmdlet,
-//                    "performing the search at level " + level.ToString());
-                // 20131130
-                // using null instead of name
-                controlHandle =
-                    NativeMethods.FindWindowEx(containerHandle, controlHandle, null, null);
-
-                if (controlHandle == IntPtr.Zero) continue;
-                controlHandles.Add(controlHandle);
-                    
-                    
-//                cmdlet.WriteVerbose(
-//                    cmdlet,
-//                    "performing the recursive search at level " + (level + 1).ToString());
-                    
-                tempControlHandles =
-                    GetControlByNameViaWin32Recursively(cmdlet, controlHandle, name, level + 1);
-                //break;
-                if (null == tempControlHandles || 0 == tempControlHandles.Count) continue;
-                controlHandles.AddRange(tempControlHandles);
-                /*
-                foreach (IntPtr oneMoreHandle in tempControlHandles) {
-                    controlHandles.Add(oneMoreHandle);
-                }
-                */
-
-            } while (controlHandle != IntPtr.Zero);
-            
-            return controlHandles;
-        }
+//            List<IntPtr> controlHandles = new List<IntPtr>();
+//            List<IntPtr> tempControlHandles = new List<IntPtr>();
+//            
+////            cmdlet.WriteVerbose(cmdlet, "name = " + name);
+////            
+////            cmdlet.WriteVerbose(cmdlet, "using null instead of name");
+////            cmdlet.WriteVerbose(cmdlet, "test >>>>>>>>>>>>>>>>>>>>>>>>>");
+////            try{ cmdlet.WriteVerbose(cmdlet, "name = " + UiElement.FromHandle(controlHandle).Current.Name); } catch {}
+////            try{ cmdlet.WriteVerbose(cmdlet, "automationid = " + UiElement.FromHandle(controlHandle).Current.AutomationId); } catch {}
+////            try{ cmdlet.WriteVerbose(cmdlet, "class = " + UiElement.FromHandle(controlHandle).Current.ClassName); } catch {}
+////            try{ cmdlet.WriteVerbose(cmdlet, "control type = " + UiElement.FromHandle(controlHandle).Current.ControlType.ProgrammaticName); } catch {}
+//            
+//            // search at this level
+//            do {
+////                cmdlet.WriteVerbose(
+////                    cmdlet,
+////                    "performing the search at level " + level.ToString());
+//                // 20131130
+//                // using null instead of name
+//                controlHandle =
+//                    NativeMethods.FindWindowEx(containerHandle, controlHandle, null, null);
+//
+//                if (controlHandle == IntPtr.Zero) continue;
+//                controlHandles.Add(controlHandle);
+//                    
+//                    
+////                cmdlet.WriteVerbose(
+////                    cmdlet,
+////                    "performing the recursive search at level " + (level + 1).ToString());
+//                    
+//                tempControlHandles =
+//                    GetControlByNameViaWin32Recursively(cmdlet, controlHandle, name, level + 1);
+//                //break;
+//                if (null == tempControlHandles || 0 == tempControlHandles.Count) continue;
+//                controlHandles.AddRange(tempControlHandles);
+//                /*
+//                foreach (IntPtr oneMoreHandle in tempControlHandles) {
+//                    controlHandles.Add(oneMoreHandle);
+//                }
+//                */
+//
+//            } while (controlHandle != IntPtr.Zero);
+//            
+//            return controlHandles;
+//        }
         
 //        internal static List<IUiElement> GetControlByNameViaWin32(
 //            GetControlCmdletBase cmdlet,
@@ -340,10 +340,12 @@ namespace UIAutomation
             HasControlInputCmdletBase cmdlet,
             string description,
             bool save,
-            int Left,
-            int Top,
-            int Height,
-            int Width,
+            // 20140111
+            // int Left,
+            // int Top,
+            // int Height,
+            // int Width,
+            ScreenshotRect relativeRect,
             string path,
             ImageFormat format)
         {
@@ -363,6 +365,38 @@ namespace UIAutomation
             foreach (IUiElement inputObject in cmdlet.InputObject) {
                 
                 cmdlet.WriteVerbose(cmdlet, "calculating the size");
+                ScreenshotRect absoluteRect =
+                    new ScreenshotRect() {
+                    Left = 0,
+                    Top = 0,
+                    Width = Screen.PrimaryScreen.Bounds.Width,
+                    Height = Screen.PrimaryScreen.Bounds.Height
+                };
+                
+                if (inputObject == null) {
+                    if (relativeRect.Left > 0) { absoluteRect.Left = relativeRect.Left; }
+                    if (relativeRect.Top > 0) { absoluteRect.Top = relativeRect.Top; }
+                    if (relativeRect.Height > 0) { absoluteRect.Height = relativeRect.Height; }
+                    if (relativeRect.Width > 0) { absoluteRect.Width = relativeRect.Width; }
+                }
+                
+//                cmdlet.WriteVerbose(cmdlet, "X = " + absoluteX.ToString());
+//                cmdlet.WriteVerbose(cmdlet, "Y = " + absoluteY.ToString());
+//                cmdlet.WriteVerbose(cmdlet, "Height = " + absoluteHeight.ToString());
+//                cmdlet.WriteVerbose(cmdlet, "Width = " + absoluteWidth.ToString());
+
+                if (inputObject != null && (int)inputObject.Current.ProcessId > 0) {
+                    
+                    absoluteRect.Left = (int)inputObject.Current.BoundingRectangle.X + relativeRect.Left;
+                    absoluteRect.Top = (int)inputObject.Current.BoundingRectangle.Y + relativeRect.Top;
+                    absoluteRect.Height = (int)inputObject.Current.BoundingRectangle.Height + relativeRect.Height;
+                    absoluteRect.Width = (int)inputObject.Current.BoundingRectangle.Width + relativeRect.Width;
+                }
+                
+                if (relativeRect.Height == 0) { relativeRect.Height = Screen.PrimaryScreen.Bounds.Height; }
+                if (relativeRect.Width == 0) { relativeRect.Width = Screen.PrimaryScreen.Bounds.Width; }
+                
+                /*
                 int absoluteX = 0;
                 int absoluteY = 0;
                 int absoluteWidth =
@@ -392,6 +426,7 @@ namespace UIAutomation
                 
                 if (Height == 0) {Height = Screen.PrimaryScreen.Bounds.Height; }
                 if (Width == 0) {Width = Screen.PrimaryScreen.Bounds.Width; }
+                */
                 
                 if (inputObject != null && (int)inputObject.Current.ProcessId > 0) {
                     
@@ -409,10 +444,12 @@ namespace UIAutomation
                     cmdlet,
                     description,
                     save,
-                    absoluteX,
-                    absoluteY,
-                    absoluteHeight,
-                    absoluteWidth,
+                    // 20140111
+                    // absoluteX,
+                    // absoluteY,
+                    // absoluteHeight,
+                    // absoluteWidth,
+                    absoluteRect,
                     path,
                     format);
             }
@@ -423,10 +460,12 @@ namespace UIAutomation
             IUiElement element,
             string description,
             bool save,
-            int Left,
-            int Top,
-            int Height,
-            int Width,
+            // 20140111
+            // int Left,
+            // int Top,
+            // int Height,
+            // int Width,
+            ScreenshotRect relativeRect,
             string path,
             ImageFormat format)
         {
@@ -442,33 +481,63 @@ namespace UIAutomation
             }
             
             cmdlet.WriteVerbose(cmdlet, "calculating the size");
+            // 20140111
+            ScreenshotRect absoluteRect =
+                new ScreenshotRect() {
+                Left = 0,
+                Top = 0,
+                Width = Screen.PrimaryScreen.Bounds.Width,
+                Height = Screen.PrimaryScreen.Bounds.Height
+            };
+//            int absoluteX = 0;
+//            int absoluteY = 0;
+//            int absoluteWidth =
+//                Screen.PrimaryScreen.Bounds.Width;
+//            int absoluteHeight =
+//                Screen.PrimaryScreen.Bounds.Height;
+            
+            /*
             int absoluteX = 0;
             int absoluteY = 0;
             int absoluteWidth =
                 Screen.PrimaryScreen.Bounds.Width;
             int absoluteHeight =
                 Screen.PrimaryScreen.Bounds.Height;
+            */
             
             if (null == element) {
+                if (relativeRect.Left > 0) { absoluteRect.Left = relativeRect.Left; }
+                if (relativeRect.Top > 0) { absoluteRect.Top = relativeRect.Top; }
+                if (relativeRect.Height > 0) { absoluteRect.Height = relativeRect.Height; }
+                if (relativeRect.Width > 0) { absoluteRect.Width = relativeRect.Width; }
+                /*
                 if (Left > 0) { absoluteX = Left; }
                 if (Top > 0) { absoluteY = Top; }
                 if (Height > 0) { absoluteHeight = Height; }
                 if (Width > 0) { absoluteWidth = Width; }
+                */
             }
-            cmdlet.WriteVerbose(cmdlet, "X = " + absoluteX.ToString());
-            cmdlet.WriteVerbose(cmdlet, "Y = " + absoluteY.ToString());
-            cmdlet.WriteVerbose(cmdlet, "Height = " + absoluteHeight.ToString());
-            cmdlet.WriteVerbose(cmdlet, "Width = " + absoluteWidth.ToString());
+//            cmdlet.WriteVerbose(cmdlet, "X = " + absoluteX.ToString());
+//            cmdlet.WriteVerbose(cmdlet, "Y = " + absoluteY.ToString());
+//            cmdlet.WriteVerbose(cmdlet, "Height = " + absoluteHeight.ToString());
+//            cmdlet.WriteVerbose(cmdlet, "Width = " + absoluteWidth.ToString());
 
             if (null != element && 0 < (int)element.Current.ProcessId) {
+                absoluteRect.Left = (int)element.Current.BoundingRectangle.X + relativeRect.Left;
+                absoluteRect.Top = (int)element.Current.BoundingRectangle.Y + relativeRect.Top;
+                absoluteRect.Height = (int)element.Current.BoundingRectangle.Height + relativeRect.Height;
+                absoluteRect.Width = (int)element.Current.BoundingRectangle.Width + relativeRect.Width;
+                
+                /*
                 absoluteX = (int)element.Current.BoundingRectangle.X + Left;
                 absoluteY = (int)element.Current.BoundingRectangle.Y + Top;
                 absoluteHeight = (int)element.Current.BoundingRectangle.Height + Height;
                 absoluteWidth = (int)element.Current.BoundingRectangle.Width + Width;
+                */
             }
             
-            if (0 == Height) {Height = Screen.PrimaryScreen.Bounds.Height; }
-            if (0 == Width) {Width = Screen.PrimaryScreen.Bounds.Width; }
+            if (0 == relativeRect.Height) { relativeRect.Height = Screen.PrimaryScreen.Bounds.Height; }
+            if (0 == relativeRect.Width) { relativeRect.Width = Screen.PrimaryScreen.Bounds.Width; }
 
             if (element != null && (int)element.Current.ProcessId > 0) {
                 
@@ -486,28 +555,56 @@ namespace UIAutomation
                 cmdlet,
                 description,
                 save,
-                absoluteX,
-                absoluteY,
-                absoluteHeight,
-                absoluteWidth,
+                // 20140111
+                // absoluteX,
+                // absoluteY,
+                // absoluteHeight,
+                // absoluteWidth,
+                absoluteRect,
                 path,
                 format);
             }
             catch {}
         }
         
-        [STAThread]
+        // 20140111
+        // [STAThread]
         public static void GetScreenshotOfSquare(//HasTimeoutCmdletBase cmdlet,
                                                  PSCmdletBase cmdlet,
                                                  string description,
                                                  bool save,
-                                                 int absoluteX, //int Left, //, = 0,
-                                                 int absoluteY, //int Top, // = 0,
-                                                 int absoluteHeight, //int Height, // = 0,
-                                                 int absoluteWidth, //int Width,
+                                                 // 20140111
+                                                 // int absoluteX, //int Left, //, = 0,
+                                                 // int absoluteY, //int Top, // = 0,
+                                                 // int absoluteHeight, //int Height, // = 0,
+                                                 // int absoluteWidth, //int Width,
+                                                 ScreenshotRect absRect,
                                                  string path, //)// = 0) //, int monitor)
                                                  ImageFormat format)
         {
+            Image myImage =
+                new Bitmap(absRect.Width,
+                           absRect.Height);
+            
+            Graphics gr1 = Graphics.FromImage(myImage);
+            IntPtr dc1 = gr1.GetHdc();
+            
+            // for now, the primary display only
+            IntPtr desktopHandle = NativeMethods.GetDesktopWindow();
+            IntPtr dc2 = NativeMethods.GetWindowDC(desktopHandle);
+            // IntPtr dc2 = GetWindowDC(GetDesktopWindow());
+            NativeMethods.BitBlt(
+                dc1,
+                0,
+                0,
+                absRect.Width,
+                absRect.Height,
+                dc2,
+                absRect.Left,
+                absRect.Top,
+                13369376);
+            
+            /*
             Image myImage =
                 new Bitmap(absoluteWidth,
                            absoluteHeight);
@@ -521,6 +618,8 @@ namespace UIAutomation
             // IntPtr dc2 = GetWindowDC(GetDesktopWindow());
             NativeMethods.BitBlt(dc1, 0, 0, absoluteWidth,
                                  absoluteHeight, dc2, absoluteX, absoluteY, 13369376);
+            */
+            
             gr1.ReleaseHdc(dc1);
             //  // 
             NativeMethods.ReleaseDC(desktopHandle, dc2);

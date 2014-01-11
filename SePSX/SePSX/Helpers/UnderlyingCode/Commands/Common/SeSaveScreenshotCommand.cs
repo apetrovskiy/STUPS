@@ -42,10 +42,17 @@ namespace SePSX
                 this.Cmdlet,
                 ((SaveSeScreenshotCommand)this.Cmdlet).Description,
                 save,
-                ((SaveSeScreenshotCommand)this.Cmdlet).Left,
-                ((SaveSeScreenshotCommand)this.Cmdlet).Top,
-                ((SaveSeScreenshotCommand)this.Cmdlet).Height,
-                ((SaveSeScreenshotCommand)this.Cmdlet).Width,
+                // 20140111
+                // ((SaveSeScreenshotCommand)this.Cmdlet).Left,
+                // ((SaveSeScreenshotCommand)this.Cmdlet).Top,
+                // ((SaveSeScreenshotCommand)this.Cmdlet).Height,
+                // ((SaveSeScreenshotCommand)this.Cmdlet).Width,
+                new UIAutomation.ScreenshotRect() {
+                    Left = ((SaveSeScreenshotCommand)this.Cmdlet).Left,
+                    Top = ((SaveSeScreenshotCommand)this.Cmdlet).Top,
+                    Height = ((SaveSeScreenshotCommand)this.Cmdlet).Height,
+                    Width = ((SaveSeScreenshotCommand)this.Cmdlet).Width
+                },
                 ((SaveSeScreenshotCommand)this.Cmdlet).Path + @"\" + ((SaveSeScreenshotCommand)this.Cmdlet).Name,
                 ((SaveSeScreenshotCommand)this.Cmdlet).As);
             

@@ -60,8 +60,6 @@ namespace UIAutomation
         #endregion Constructor
         
         internal static bool ModuleAlreadyLoaded { get; set; }
-        
-        // 20131204
         internal static int HighlighterGeneration = 0;
         
         protected override void EndProcessing()
@@ -185,14 +183,6 @@ namespace UIAutomation
         {
             
             bool result = false || null != outputObject;
-
-            /*
-            bool result = false;
-            
-            if (null != outputObject) {
-                result = true;
-            }
-            */
             return result;
         }
 
@@ -339,10 +329,12 @@ namespace UIAutomation
                     (outputObject as IUiElement),
                     CmdletName(cmdlet),
                     true,
-                    0,
-                    0,
-                    0,
-                    0,
+                    // 20140111
+                    // 0,
+                    // 0,
+                    // 0,
+                    // 0,
+                    new ScreenshotRect(),
                     string.Empty,
                     Preferences.OnSuccessScreenShotFormat);
             }
@@ -720,10 +712,12 @@ namespace UIAutomation
                 elementToTakeScreenShot,
                 CmdletName(cmdlet),
                 true,
-                0,
-                0,
-                0,
-                0,
+                // 20140111
+                // 0,
+                // 0,
+                // 0,
+                // 0,
+                new ScreenshotRect(),
                 string.Empty,
                 Preferences.OnErrorScreenShotFormat);
                 
@@ -1411,7 +1405,9 @@ namespace UIAutomation
             WriteVerbose(cmdlet, "[getting the control] using FindWindowEx");
             
             List<IUiElement> tempListWin32 = new List<IUiElement>();
-            if (!string.IsNullOrEmpty(cmdlet.Name)) {
+            // 20140111
+            // if (!string.IsNullOrEmpty(cmdlet.Name)) {
+            if (!string.IsNullOrEmpty(cmdlet.Name) || !string.IsNullOrEmpty(cmdlet.Value)) {
                 // 20140110
                 // WriteVerbose(cmdlet, "collecting controls by name (Win32)");
                 WriteVerbose(cmdlet, "collecting controls by name or value (Win32)");
@@ -1716,6 +1712,60 @@ namespace UIAutomation
             }
             return resultList;
         }
+        
+        
+        /*
+        internal List<IUiElement> SearchByTextViaWin32(
+            GetControlCmdletBase cmdlet,
+            IUiElement inputObject,
+            string[] controlTypeNames)
+        {
+
+            WriteVerbose(cmdlet, "Text search Win32");
+            
+            List<IUiElement> textSearchWin32List =
+                inputObject.GetControlByNameViaWin32(
+                    cmdlet,
+                    cmdlet.ContainsText,
+                    string.Empty);
+            
+            List<IUiElement> resultList =
+                new List<IUiElement>();
+            
+            if (null != textSearchWin32List && 0 < textSearchWin32List.Count) {
+                
+                WriteVerbose(cmdlet, "There are " + textSearchWin32List.Count.ToString() + " elements");
+                
+                foreach (IUiElement elementToChoose in textSearchWin32List) {
+                    
+                    if (null != controlTypeNames && 0 < controlTypeNames.Length) {
+                        
+                        foreach (string controlTypeName in controlTypeNames) {
+                            
+                            if (!String.Equals(elementToChoose.Current.ControlType.ProgrammaticName.Substring(12), controlTypeName, StringComparison.CurrentCultureIgnoreCase)) {
+                                continue;
+                            } else {
+                                
+                                resultList.Add(elementToChoose);
+                                break;
+                            }
+                            
+                        }
+                        
+                    } else {
+                        
+                        resultList.Add(elementToChoose);
+                    }
+                }
+            }
+            
+            if (null != textSearchWin32List) {
+                textSearchWin32List.Clear();
+                textSearchWin32List = null;
+            }
+            return resultList;
+        }
+        */
         
         protected bool TestControlByPropertiesFromDictionary(
             Dictionary<string, object> dict,

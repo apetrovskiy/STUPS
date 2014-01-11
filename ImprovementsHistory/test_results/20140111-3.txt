@@ -1,0 +1,22 @@
+GetControlByValue_Win32_WildCard_TimeoutDefault
+UIAutomationTestForms.exe 1 0 Edit 0 aaa Edit1
+$null = Get-UiaWindow -pn UIAutomationTestForms | Get-UiaControl -AutomationId Edit1 | Set-UiaEditText -Text 'my text';
+Get-UiaEdit -Value 'my text' -Win32 | Get-UiaEditText;
+
+WaitWindow_ByProcessId_Timeout2000
+UIAutomationTestForms.exe 1 0
+Wait-UiaWindow -pid (Get-Process 'UIAutomationTestForms').Id -Seconds 2;
+
+4.0:
+Invoke_Control_Click_Button
+MoveUiaCursor_TestParameterInputAutomationElement
+
+GetUiaControlCommandTestFixture:
+GetAllButtons_TimeoutDefault
+
+GetUiaLabelCommandTestFixture:
+GetLabelByAutomationIDTimeout2000
+
+
+
+

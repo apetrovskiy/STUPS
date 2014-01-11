@@ -54,19 +54,7 @@ namespace UIAutomation.Commands
                 
                 WriteError(
                     this,
-                    // 20140110
-//                    CmdletSignature(this) + "timeout expired for control with class: + '" +
-//                    Class + 
-//                    "', control type: '" + 
-//                    ControlType + 
-//                    "', title: '" +
-//                    Name +
-//                    "', automationId: '" +
-//                    AutomationId +
-//                    "', value: '" +
-//                    Value +
-//                    "'"
-                    CmdletSignature(this) + "failed to get control in " + 
+                    "failed to get control in " + 
                     Timeout.ToString() +
                     " milliseconds by:" +
                     " title: '" +

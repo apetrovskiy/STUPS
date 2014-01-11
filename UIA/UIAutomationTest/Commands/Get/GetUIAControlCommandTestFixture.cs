@@ -768,7 +768,9 @@ namespace UIAutomationTest.Commands.Get
                 // 20140110
                 // @"Get-UiaControl: timeout expired for control with class: + '', control type: '', title: '', automationId: '', value: ''.");
                 //@"Get-UiaControl: timeout expired for control with class: + '', control type: '', title: '', automationId: '', value: ''");
-                @"Get-UiaControl: failed to get control in 3000 milliseconds by: title: '', automationId: '', className: '', value: ''.");
+                // 20140111
+                // @"Get-UiaControl: failed to get control in 3000 milliseconds by: title: '', automationId: '', className: '', value: ''.");
+                @"failed to get control in 3000 milliseconds by: title: '', automationId: '', className: '', value: ''.");
         }
         
         [Test] //[Test(Description="TBD")]
@@ -806,7 +808,9 @@ namespace UIAutomationTest.Commands.Get
                 // 20140110
                 // @"Get-UiaControl: failed to get control in 3000 milliseconds by: title: 'Button222', automationId: '', className: '', value: ''");
                 // @"Get-UiaControl: failed to get control in 3000 milliseconds by: title: '', automationId: '', className: '', value: ''.");
-                @"Get-UiaControl: failed to get control in 3000 milliseconds by: title: 'Button222', automationId: '', className: '', value: ''.");
+                // 20140111
+                // @"Get-UiaControl: failed to get control in 3000 milliseconds by: title: 'Button222', automationId: '', className: '', value: ''.");
+                @"failed to get control in 3000 milliseconds by: title: 'Button222', automationId: '', className: '', value: ''.");
         }
         
 //        [Test] //[Test(Description="TBD")]
@@ -1253,7 +1257,9 @@ namespace UIAutomationTest.Commands.Get
                 // @"Get-UiaButton: timeout expired for control with class: + '', control type: 'Button', title: '', automationId: 'Button1', value: 'my text'");
                 // 20140110
                 // @"Get-UiaButton: timeout expired for control with class: + '', control type: 'System.String[]', title: '', automationId: 'Button1', value: 'my text'");
-                @"Get-UiaButton: failed to get control in 2000 milliseconds by: title: '', automationId: 'Button1', className: '', value: 'my text'.");
+                // 20140111
+                // @"Get-UiaButton: failed to get control in 2000 milliseconds by: title: '', automationId: 'Button1', className: '', value: 'my text'.");
+                @"failed to get control in 2000 milliseconds by: title: '', automationId: 'Button1', className: '', value: 'my text'.");
         }
 
 // =========================================================

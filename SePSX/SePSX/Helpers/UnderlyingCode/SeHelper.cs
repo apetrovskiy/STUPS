@@ -2778,10 +2778,12 @@ Console.WriteLine("NavigatoTo: 00003");
             CommonCmdletBase cmdlet,
             string description,
             bool save,
-            int Left,
-            int Top,
-            int Height,
-            int Width,
+            // 20140111
+            // int Left,
+            // int Top,
+            // int Height,
+            // int Width,
+            ScreenshotRect relativeRect,
             string path,
             System.Drawing.Imaging.ImageFormat format)
         {
@@ -2838,10 +2840,12 @@ Console.WriteLine("NavigatoTo: 00003");
                         UiElement.RootElement,
                         cmdlet.CmdletName(cmdlet),
                         true,
-                        0,
-                        0,
-                        0,
-                        0,
+                        // 20140111
+                        // 0,
+                        // 0,
+                        // 0,
+                        // 0,
+                        new ScreenshotRect(),
                         string.Empty,
                         SePSX.Preferences.OnSuccessScreenShotFormat);
                 }
@@ -2864,10 +2868,12 @@ Console.WriteLine("NavigatoTo: 00003");
                     UiElement.RootElement,
                     cmdlet.CmdletName(cmdlet),
                     true,
-                    0,
-                    0,
-                    0,
-                    0,
+                    // 20140111
+                    // 0,
+                    // 0,
+                    // 0,
+                    // 0,
+                    new ScreenshotRect(),
                     string.Empty,
                     SePSX.Preferences.OnSuccessScreenShotFormat);
                 
@@ -3002,6 +3008,45 @@ Console.WriteLine("NavigatoTo: 00003");
             foreach (WebElementDecorator inputObject in inputCollection) {
                 
                 cmdlet.WriteVerbose(cmdlet, "calculating the size");
+                ScreenshotRect absoluteRect =
+                    new ScreenshotRect() {
+                    Left = 0,
+                    Top = 0,
+                    Width = Screen.PrimaryScreen.Bounds.Width,
+                    Height = Screen.PrimaryScreen.Bounds.Height
+                };
+                
+                if (inputObject == null) {
+                    if (relativeRect.Left > 0) { absoluteRect.Left = relativeRect.Left; }
+                    if (relativeRect.Top > 0) { absoluteRect.Top = relativeRect.Top; }
+                    if (relativeRect.Height > 0) { absoluteRect.Height = relativeRect.Height; }
+                    if (relativeRect.Width > 0) { absoluteRect.Width = relativeRect.Width; }
+                }
+//                cmdlet.WriteVerbose(cmdlet, "X = " + absoluteX.ToString());
+//                cmdlet.WriteVerbose(cmdlet, "Y = " + absoluteY.ToString());
+//                cmdlet.WriteVerbose(cmdlet, "Height = " + absoluteHeight.ToString());
+//                cmdlet.WriteVerbose(cmdlet, "Width = " + absoluteWidth.ToString());
+
+                if (inputObject != null) { //&& (int)inputObject.Current.ProcessId > 0) {
+                    //absoluteX = (int)inputObject.Current.BoundingRectangle.X + Left;
+                    //absoluteX = inputObject.Location.X;
+                    //absoluteY = (int)inputObject.Current.BoundingRectangle.Y + Top;
+                    //absoluteY = inputObject.Location.Y;
+                    
+                    int[] absoluteCoordinates =
+                        SeHelper.getWebElementCoordinates(inputObject);
+                    absoluteRect.Left = absoluteCoordinates[0];
+                    absoluteRect.Top = absoluteCoordinates[1];
+                    //absoluteHeight = (int)inputObject.Current.BoundingRectangle.Height + Height;
+                    absoluteRect.Height = inputObject.Size.Height;
+                    //absoluteWidth = (int)inputObject.Current.BoundingRectangle.Width + Width;
+                    absoluteRect.Width = inputObject.Size.Width;
+                }
+
+                if (relativeRect.Height == 0) { relativeRect.Height = Screen.PrimaryScreen.Bounds.Height; }
+                if (relativeRect.Width == 0) { relativeRect.Width = Screen.PrimaryScreen.Bounds.Width; }
+                
+                /*
                 int absoluteX = 0;
                 int absoluteY = 0;
                 int absoluteWidth =
@@ -3038,6 +3083,7 @@ Console.WriteLine("NavigatoTo: 00003");
 
                 if (Height == 0) {Height = Screen.PrimaryScreen.Bounds.Height; }
                 if (Width == 0) {Width = Screen.PrimaryScreen.Bounds.Width; }
+                */
 
                 //                if (inputObject != null) { // && (int)inputObject.Current.ProcessId > 0) {
 //
@@ -3056,10 +3102,12 @@ Console.WriteLine("NavigatoTo: 00003");
                     cmdlet,
                     description,
                     save,
-                    absoluteX,
-                    absoluteY,
-                    absoluteHeight,
-                    absoluteWidth,
+                    // 20140111
+                    // absoluteX,
+                    // absoluteY,
+                    // absoluteHeight,
+                    // absoluteWidth,
+                    absoluteRect,
                     path,
                     format);
 
@@ -3071,10 +3119,12 @@ Console.WriteLine("NavigatoTo: 00003");
             object element,
             string description,
             bool save,
-            int Left,
-            int Top,
-            int Height,
-            int Width,
+            // 20140111
+            // int Left,
+            // int Top,
+            // int Height,
+            // int Width,
+            ScreenshotRect relativeRect,
             string path,
             System.Drawing.Imaging.ImageFormat format)
         {
@@ -3097,16 +3147,59 @@ Console.WriteLine("NavigatoTo: 00003");
                     UiElement.RootElement,
                     cmdlet.CmdletName(cmdlet),
                     true,
-                    0,
-                    0,
-                    0,
-                    0,
+                    // 20140111
+                    // 0,
+                    // 0,
+                    // 0,
+                    // 0,
+                    new ScreenshotRect(),
                     string.Empty,
                     format);
                 return;
             }
             
             cmdlet.WriteVerbose(cmdlet, "calculating the size");
+            ScreenshotRect absoluteRect =
+                new ScreenshotRect() {
+                Left = 0,
+                Top = 0,
+                Width = Screen.PrimaryScreen.Bounds.Width,
+                Height = Screen.PrimaryScreen.Bounds.Height
+            };
+            
+            if (elementToTakeScreenShot == null) {
+                if (relativeRect.Left > 0) { absoluteRect.Left = relativeRect.Left; }
+                if (relativeRect.Top > 0) { absoluteRect.Top = relativeRect.Top; }
+                if (relativeRect.Height > 0) { absoluteRect.Height = relativeRect.Height; }
+                if (relativeRect.Width > 0) { absoluteRect.Width = relativeRect.Width; }
+            }
+//            cmdlet.WriteVerbose(cmdlet, "X = " + absoluteX.ToString());
+//            cmdlet.WriteVerbose(cmdlet, "Y = " + absoluteY.ToString());
+//            cmdlet.WriteVerbose(cmdlet, "Height = " + absoluteHeight.ToString());
+//            cmdlet.WriteVerbose(cmdlet, "Width = " + absoluteWidth.ToString());
+
+            if (elementToTakeScreenShot != null) { //&& (int)elementToTakeScreenShot.Current.ProcessId > 0) {
+                //absoluteX = (int)elementToTakeScreenShot.Current.BoundingRectangle.X + Left;
+                //absoluteX = elementToTakeScreenShot.Location.X;
+                //absoluteY = (int)elementToTakeScreenShot.Current.BoundingRectangle.Y + Top;
+                //absoluteY = elementToTakeScreenShot.Location.Y;
+                
+                int[] absoluteCoordinates =
+                    // 20121212
+                    //SeHelper.getWebElementCoordinates((OpenQA.Selenium.Remote.RemoteWebElement)elementToTakeScreenShot);
+                    SeHelper.getWebElementCoordinates((WebElementDecorator)elementToTakeScreenShot);
+                absoluteRect.Left = absoluteCoordinates[0];
+                absoluteRect.Top = absoluteCoordinates[1];
+                //absoluteHeight = (int)elementToTakeScreenShot.Current.BoundingRectangle.Height + Height;
+                absoluteRect.Height = elementToTakeScreenShot.Size.Height;
+                //absoluteWidth = (int)elementToTakeScreenShot.Current.BoundingRectangle.Width + Width;
+                absoluteRect.Width = elementToTakeScreenShot.Size.Width;
+            }
+
+            if (relativeRect.Height == 0) { relativeRect.Height = Screen.PrimaryScreen.Bounds.Height; }
+            if (relativeRect.Width == 0) { relativeRect.Width = Screen.PrimaryScreen.Bounds.Width; }
+            
+            /*
             int absoluteX = 0;
             int absoluteY = 0;
             int absoluteWidth =
@@ -3145,7 +3238,8 @@ Console.WriteLine("NavigatoTo: 00003");
 
             if (Height == 0) {Height = Screen.PrimaryScreen.Bounds.Height; }
             if (Width == 0) {Width = Screen.PrimaryScreen.Bounds.Width; }
-
+            */
+            
             //                if (elementToTakeScreenShot != null) { // && (int)elementToTakeScreenShot.Current.ProcessId > 0) {
 //
             //                    try {
@@ -3163,10 +3257,12 @@ Console.WriteLine("NavigatoTo: 00003");
                 cmdlet,
                 description,
                 save,
-                absoluteX,
-                absoluteY,
-                absoluteHeight,
-                absoluteWidth,
+                // 20140111
+                // absoluteX,
+                // absoluteY,
+                // absoluteHeight,
+                // absoluteWidth,
+                absoluteRect,
                 path,
                 format);
 

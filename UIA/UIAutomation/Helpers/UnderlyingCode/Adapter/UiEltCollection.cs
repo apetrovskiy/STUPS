@@ -38,9 +38,8 @@ namespace UIAutomation
                     
                     if (null == this || 0 == this.Count) return null;
                     
-                    WildcardOptions options =
-                        WildcardOptions.IgnoreCase |
-                        WildcardOptions.Compiled;
+                    const WildcardOptions options = WildcardOptions.IgnoreCase |
+                                                    WildcardOptions.Compiled;
                     
                     WildcardPattern wildcardInfoString = 
                         new WildcardPattern(infoString, options);

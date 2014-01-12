@@ -29,7 +29,10 @@ namespace UIAutomation.Commands
         [Parameter(Mandatory = false)]
         // 20131222
         // internal string AutomaitonId { get; set; }
+        internal new string AutomationId { get; set; }
+        /*
         internal string AutomationId { get; set; }
+        */
         /*
         internal new string AutomaitonId { get; set; }
         */

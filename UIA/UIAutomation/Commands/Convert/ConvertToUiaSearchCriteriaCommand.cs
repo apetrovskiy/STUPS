@@ -263,9 +263,12 @@ namespace UIAutomation.Commands
             return result;
         }
         
+        private bool IsInArray(ICollection<string> inputArray, string propertyName)
+        /*
         private bool IsInArray(string[] inputArray, string propertyName)
+        */
         {
-            if (null == inputArray || 0 == inputArray.Length) return false;
+            if (null == inputArray || 0 == inputArray.Count) return false;
             
             return inputArray.Any(name => String.Equals(name, propertyName, StringComparison.CurrentCultureIgnoreCase));
         }

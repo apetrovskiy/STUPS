@@ -52,9 +52,14 @@ namespace UIAutomation
 			}
 
 			public string Value {
-			    get { 
-			        if (null == this._valuePattern) return string.Empty;
-			        return this._valuePattern.GetParentElement().GetPatternPropertyValue(ValuePattern.ValueProperty, this._useCache).ToString(); }
+			    get
+			    {
+			        return null == this._valuePattern ? string.Empty : this._valuePattern.GetParentElement().GetPatternPropertyValue(ValuePattern.ValueProperty, this._useCache).ToString();
+			        /*
+                    if (null == this._valuePattern) return string.Empty;
+                    return this._valuePattern.GetParentElement().GetPatternPropertyValue(ValuePattern.ValueProperty, this._useCache).ToString(); }
+                    */
+			    }
 			}
 			public bool IsReadOnly {
 				get {

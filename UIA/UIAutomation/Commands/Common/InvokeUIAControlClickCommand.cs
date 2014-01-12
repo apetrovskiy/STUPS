@@ -68,7 +68,7 @@ namespace UIAutomation.Commands
                 ClickControl(
                     this,
                     inputObject,
-                    new ClickSettings() {
+                    new ClickSettings {
                         RightClick = this.RightClick,
                         MidClick = this.MidClick,
                         Alt = this.Alt,

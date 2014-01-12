@@ -11,14 +11,14 @@ namespace UIAutomation.Commands
 {
     extern alias UIANET;
     
-    using System;
-    using System.Globalization;
-    using System.Threading;
-    using System.Windows.Forms;
+    // using System;
+    // using System.Globalization;
+    // using System.Threading;
+    // using System.Windows.Forms;
     
     
     using System.Management.Automation;
-    using System.Windows.Automation;
+    // using System.Windows.Automation;
     
     /// <summary>
     /// Description of GetUiaControlContextMenuCommand.

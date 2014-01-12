@@ -58,18 +58,14 @@ namespace UIAutomation
 		}
 		
 		private static bool _initFlag = false;
-		
-		private static StandardKernel _kernel;
-		internal static StandardKernel Kernel
-		{
-		    get { return _kernel; }
-		}
-		
-		public static void Init()
+
+        internal static StandardKernel Kernel { get; private set; }
+
+        public static void Init()
 		{
 		    if (_initFlag) return;
 		    try {
-		        _kernel = new StandardKernel(_ninjectModule);
+		        Kernel = new StandardKernel(_ninjectModule);
 		    }
 		    catch (Exception eInitFailure) {
 		        // TODO
@@ -84,11 +80,11 @@ namespace UIAutomation
 		internal static void InitUnitTests()
 		{
 		    // 20140109
-		    if (null != _ninjectModule && null != _kernel && _initFlag) return;
+		    if (null != _ninjectModule && null != Kernel && _initFlag) return;
 		    
 		    try {
 		        _ninjectModule = new ObjectLifecycleModule();
-		        _kernel = new StandardKernel(_ninjectModule);
+		        Kernel = new StandardKernel(_ninjectModule);
 		        
 		        InitCommonObjects();
 		    }
@@ -115,11 +111,11 @@ namespace UIAutomation
 		{
 		    _generator = null;
 		    try {
-                _kernel.Dispose();
+                Kernel.Dispose();
 		    }
 		    catch {}
 		    try {
-                _kernel = null;
+                Kernel = null;
 		    }
 		    catch {}
 		    _ninjectModule = null;

@@ -1019,7 +1019,10 @@ namespace UIAutomation
             return resultCondition;
         }
         
+        protected internal Condition GetControlTypeCondition(IEnumerable<string> controlTypeNames)
+        /*
         protected internal Condition GetControlTypeCondition(string[] controlTypeNames)
+        */
         {
             if (null == controlTypeNames) return Condition.TrueCondition;
             
@@ -1035,6 +1038,8 @@ namespace UIAutomation
             }
             */
 
+            // return 1 == controlTypeCollection.Count ? controlTypeCollection[0] : GetOrCondition(controlTypeCollection);
+            
             if (1 == controlTypeCollection.Count) {
                 return controlTypeCollection[0];
             } else {
@@ -1400,7 +1405,10 @@ namespace UIAutomation
 
         }
         
+        internal IEnumerable<IUiElement> SearchByWildcardViaWin32(GetControlCmdletBase cmdlet, IUiElement inputObject)
+        /*
         internal List<IUiElement> SearchByWildcardViaWin32(GetControlCmdletBase cmdlet, IUiElement inputObject)
+        */
         {
             WriteVerbose(cmdlet, "[getting the control] using FindWindowEx");
             
@@ -1466,7 +1474,13 @@ namespace UIAutomation
                 tempListWin32.Clear();
                 tempListWin32 = null;
             }
-            
+            /*
+            if (null != tempListWin32) {
+                tempListWin32.Clear();
+                tempListWin32 = null;
+            }
+            */
+
             return resultList;
         }
         
@@ -1538,7 +1552,14 @@ namespace UIAutomation
                         tempList.Clear();
                         tempList = null;
                     }
-                    
+
+                    /*
+                    if (null != tempList) {
+                        tempList.Clear();
+                        tempList = null;
+                    }
+                    */
+
                     // 20131203
                     return resultCollection;
                     
@@ -1662,7 +1683,10 @@ namespace UIAutomation
             return textSearchCollection.Cast<IUiElement>().ToList();
         }
         
+        internal IEnumerable<IUiElement> SearchByTextViaWin32(
+        /*
         internal List<IUiElement> SearchByTextViaWin32(
+        */
             GetControlCmdletBase cmdlet,
             IUiElement inputObject,
             string[] controlTypeNames)

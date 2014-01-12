@@ -2894,6 +2894,18 @@ throw(ePatterns2);
         
         public static Type[] GetSupportedInterfaces<T>(T element)
         {
+            List<Type> supportedTypes = new List<Type>
+            {
+                typeof (ISupportsInvokePattern),
+                typeof (ISupportsHighlighter),
+                typeof (ISupportsNavigation),
+                typeof (ISupportsConversion),
+                typeof (ISupportsRefresh)
+            };
+            
+            // always offered patterns
+
+            /*
             List<Type> supportedTypes = new List<Type>();
             
             // always offered patterns
@@ -2902,7 +2914,8 @@ throw(ePatterns2);
             supportedTypes.Add(typeof(ISupportsNavigation));
             supportedTypes.Add(typeof(ISupportsConversion));
             supportedTypes.Add(typeof(ISupportsRefresh));
-            
+            */
+
             if (Preferences.UseElementsSearchObjectModel) {
                 supportedTypes.Add(typeof(ISupportsExtendedModel));
             }

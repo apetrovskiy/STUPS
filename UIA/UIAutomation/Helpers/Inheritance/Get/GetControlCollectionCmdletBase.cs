@@ -594,6 +594,12 @@ namespace UIAutomation
             }
             */
 
+            // 20140111
+            // foreach (IUiElement sibling in from inputObject in InputObject let sibling = null select nextSibling ? AutomationFactory.GetUiElement(walker.GetNextSibling(inputObject.GetSourceElement() as AutomationElement)) : AutomationFactory.GetUiElement(walker.GetPreviousSibling(inputObject.GetSourceElement() as AutomationElement)))
+            // {
+            //     WriteObject(this, sibling);
+            // }
+            
             foreach (IUiElement inputObject in InputObject) {
                 
                 IUiElement sibling = null;
@@ -604,6 +610,7 @@ namespace UIAutomation
                 WriteObject(this, sibling);
             
             } // 20120823
+            
 
             /*
             foreach (IUiElement inputObject in this.InputObject) {

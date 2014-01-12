@@ -1103,7 +1103,7 @@ namespace UIAutomation
 //                // 
 //                // throw;
 //            }
-            return string.Empty;
+            // return string.Empty;
         }
         
         public static bool GetIsReadOnlyValuePattern(this IUiElement element)

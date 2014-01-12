@@ -104,8 +104,11 @@ namespace UIAutomation
 	        
 		}
 		
-		public static new readonly AutomationPattern Pattern = TableItemPatternIdentifiers.Pattern;
-		public static readonly AutomationProperty RowHeaderItemsProperty = TableItemPatternIdentifiers.RowHeaderItemsProperty;
+		public static readonly AutomationPattern Pattern = TableItemPatternIdentifiers.Pattern;
+        /*
+        public static new readonly AutomationPattern Pattern = TableItemPatternIdentifiers.Pattern;
+        */
+        public static readonly AutomationProperty RowHeaderItemsProperty = TableItemPatternIdentifiers.RowHeaderItemsProperty;
 		public static readonly AutomationProperty ColumnHeaderItemsProperty = TableItemPatternIdentifiers.ColumnHeaderItemsProperty;
 		
 		// private SafePatternHandle _hPattern;

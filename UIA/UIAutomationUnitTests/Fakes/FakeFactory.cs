@@ -1,4 +1,5 @@
-﻿/*
+﻿using System.Runtime.InteropServices.ComTypes;
+/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
  * Date: 11/20/2013
@@ -461,6 +462,16 @@ namespace UIAutomationUnitTests
                 descendants.SourceCollection.Add(elt);
             }
             
+//            element.FindAll(TreeScope.Descendants, Arg.Is<PropertyCondition>(x => (x as PropertyCondition).Value == ControlType.Button)).Returns<IEnumerable<IUiElement>>(descendants.ToArray().Select(elt => elt.Current.ControlType == ControlType.Button));
+//            element.FindAll(TreeScope.Descendants, Arg.Is<PropertyCondition>(x => (x as PropertyCondition).Value == ControlType.Calendar)).Returns<IEnumerable<IUiElement>>(descendants.ToArray().Select(elt => elt.Current.ControlType == ControlType.Calendar));
+//            element.FindAll(TreeScope.Descendants, Arg.Is<PropertyCondition>(x => (x as PropertyCondition).Value == ControlType.CheckBox)).Returns<IEnumerable<IUiElement>>(descendants.ToArray().Select(elt => elt.Current.ControlType == ControlType.CheckBox));
+//            element.FindAll(TreeScope.Descendants, Arg.Is<PropertyCondition>(x => (x as PropertyCondition).Value == ControlType.ComboBox)).Returns<IEnumerable<IUiElement>>(descendants.ToArray().Select(elt => elt.Current.ControlType == ControlType.ComboBox));
+//            element.FindAll(TreeScope.Descendants, Arg.Is<PropertyCondition>(x => (x as PropertyCondition).Value == ControlType.Custom)).Returns<IEnumerable<IUiElement>>(descendants.ToArray().Select(elt => elt.Current.ControlType == ControlType.Custom));
+//            element.FindAll(TreeScope.Descendants, Arg.Is<PropertyCondition>(x => (x as PropertyCondition).Value == ControlType.DataItem)).Returns<IEnumerable<IUiElement>>(descendants.ToArray().Select(elt => elt.Current.ControlType == ControlType.DataItem));
+//            element.FindAll(TreeScope.Descendants, Arg.Is<PropertyCondition>(x => (x as PropertyCondition).Value == ControlType.Document)).Returns<IEnumerable<IUiElement>>(descendants.ToArray().Select(elt => elt.Current.ControlType == ControlType.Document));
+//            element.FindAll(TreeScope.Descendants, Arg.Is<PropertyCondition>(x => (x as PropertyCondition).Value == ControlType.Image)).Returns<IEnumerable<IUiElement>>(descendants.ToArray().Select(elt => elt.Current.ControlType == ControlType.Image));
+//            element.FindAll(TreeScope.Descendants, Arg.Is<PropertyCondition>(x => (x as PropertyCondition).Value == ControlType.TreeItem)).Returns<IEnumerable<IUiElement>>(descendants.ToArray().Select(elt => elt.Current.ControlType == ControlType.TreeItem));
+//            element.FindAll(TreeScope.Descendants, Arg.Is<PropertyCondition>(x => (x as PropertyCondition).Value == ControlType.Window)).Returns<IEnumerable<IUiElement>>(descendants.ToArray().Select(elt => elt.Current.ControlType == ControlType.Window));
             element.FindAll(TreeScope.Descendants, Arg.Any<Condition>()).Returns(descendants);
             
             // 20140105
@@ -482,6 +493,16 @@ namespace UIAutomationUnitTests
 //            element.FindAll(
 //                TreeScope.Children,
 //                new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.Image)).Returns<IEnumerable>(children.ToArray().Select(elt => elt.Current.ControlType == ControlType.Image));
+//            element.FindAll(TreeScope.Children, Arg.Is<PropertyCondition>(x => (x as PropertyCondition).Value == ControlType.Button)).Returns<IEnumerable<IUiElement>>(children.ToArray().Select(elt => elt.Current.ControlType == ControlType.Button));
+//            element.FindAll(TreeScope.Children, Arg.Is<PropertyCondition>(x => (x as PropertyCondition).Value == ControlType.Calendar)).Returns<IEnumerable<IUiElement>>(children.ToArray().Select(elt => elt.Current.ControlType == ControlType.Calendar));
+//            element.FindAll(TreeScope.Children, Arg.Is<PropertyCondition>(x => (x as PropertyCondition).Value == ControlType.CheckBox)).Returns<IEnumerable<IUiElement>>(children.ToArray().Select(elt => elt.Current.ControlType == ControlType.CheckBox));
+//            element.FindAll(TreeScope.Children, Arg.Is<PropertyCondition>(x => (x as PropertyCondition).Value == ControlType.ComboBox)).Returns<IEnumerable<IUiElement>>(children.ToArray().Select(elt => elt.Current.ControlType == ControlType.ComboBox));
+//            element.FindAll(TreeScope.Children, Arg.Is<PropertyCondition>(x => (x as PropertyCondition).Value == ControlType.Custom)).Returns<IEnumerable<IUiElement>>(children.ToArray().Select(elt => elt.Current.ControlType == ControlType.Custom));
+//            element.FindAll(TreeScope.Children, Arg.Is<PropertyCondition>(x => (x as PropertyCondition).Value == ControlType.DataItem)).Returns<IEnumerable<IUiElement>>(children.ToArray().Select(elt => elt.Current.ControlType == ControlType.DataItem));
+//            element.FindAll(TreeScope.Children, Arg.Is<PropertyCondition>(x => (x as PropertyCondition).Value == ControlType.Document)).Returns<IEnumerable<IUiElement>>(children.ToArray().Select(elt => elt.Current.ControlType == ControlType.Document));
+//            element.FindAll(TreeScope.Children, Arg.Is<PropertyCondition>(x => (x as PropertyCondition).Value == ControlType.Image)).Returns<IEnumerable<IUiElement>>(children.ToArray().Select(elt => elt.Current.ControlType == ControlType.Image));
+//            element.FindAll(TreeScope.Children, Arg.Is<PropertyCondition>(x => (x as PropertyCondition).Value == ControlType.TreeItem)).Returns<IEnumerable<IUiElement>>(children.ToArray().Select(elt => elt.Current.ControlType == ControlType.TreeItem));
+//            element.FindAll(TreeScope.Children, Arg.Is<PropertyCondition>(x => (x as PropertyCondition).Value == ControlType.Window)).Returns<IEnumerable<IUiElement>>(children.ToArray().Select(elt => elt.Current.ControlType == ControlType.Window));
             element.FindAll(TreeScope.Children, Arg.Any<Condition>()).Returns(children);
             
             return element;

@@ -89,7 +89,7 @@ namespace UIAutomation.Commands
                 // Top,
                 // Height,
                 // Width,
-                new ScreenshotRect() {
+                new ScreenshotRect {
                     Left = this.Left,
                     Top = this.Top,
                     Height = this.Height,

@@ -152,7 +152,7 @@
             false if there were no errors</returns>returns>
             <param name="exceptedErrorCodes">a list of integers that should not result in an exception to be processed</param>
         </member>
-        <member name="M:Meyn.TestLink.TestLink.decodeErrors(System.Object[])">
+        <member name="M:Meyn.TestLink.TestLink.decodeErrors(System.Collections.Generic.IEnumerable{System.Object})">
             <summary>
             internal. try to conver the struct to an error message. Return null if it wasn't one
             </summary>

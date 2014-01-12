@@ -224,7 +224,10 @@ namespace UIAutomation
             bool interrupt = false;
             
             DateTime nowDate = DateTime.Now;
+            if (!((nowDate - cmdlet.StartDate).TotalSeconds > Preferences.Timeout/1000)) return interrupt;
+            /*
             if (!((nowDate - cmdlet.StartDate).TotalSeconds > (Preferences.Timeout/1000))) return interrupt;
+            */
             cmdlet.WriteVerbose(
                 cmdlet,
                 "Timout expired. Running the StopAction scriptblock");

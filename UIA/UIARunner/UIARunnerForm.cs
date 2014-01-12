@@ -129,6 +129,7 @@ namespace UiaRunner
                 
                 res =
                     PSTestRunner.TestRunner.InitScript();
+                /*
                 if (res) return;
                 index = 
                     this.dgvTestResults.Rows.Add(
@@ -144,7 +145,8 @@ namespace UiaRunner
                 setToReadyToRunState();
                 Application.DoEvents();
                 return;
-                /*
+                */
+                
                 if (!res)
                 {
                     index =
@@ -162,7 +164,7 @@ namespace UiaRunner
                     Application.DoEvents();
                     return;
                 }
-                */
+                
             }
             catch (Exception eInitException) {
                 index = 

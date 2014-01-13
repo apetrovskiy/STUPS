@@ -41,6 +41,8 @@ namespace UIAutomation.Commands
         {
             CheckCmdletParameters();
             
+            try {
+            
             WriteVerbose(this, "Input parameters:");
             WriteVerbose(this, "ProcessName = " + ProcessName);
             WriteVerbose(this, "ProcessId = " + ProcessId);
@@ -166,12 +168,30 @@ namespace UIAutomation.Commands
                     }
                 }
             }
-            catch {}
+            catch (Exception eOuter) {
+                WriteVerbose(
+                    this,
+                    eOuter.Message);
+            }
+            
+            }
+            catch (Exception eTheOutest) {
+                WriteVerbose(
+                    this,
+                    eTheOutest.Message);
+            }
         }
         
         protected override void EndProcessing()
         {
-            OddRootElement = null;
+            try {
+                OddRootElement = null;
+            }
+            catch (Exception eEndProcessing) {
+                WriteVerbose(
+                    this,
+                    eEndProcessing.Message);
+            }
         }
         
 //        protected override void StopProcessing()

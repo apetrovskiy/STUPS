@@ -22,8 +22,8 @@ namespace UIAutomationSpy
     public partial class SpyForm //: Form
     {
         // 20131102
-        //private int tabooPID = 0;
-        private readonly int tabooPID = 0;
+        private int tabooPID = 0;
+        // private readonly int tabooPID = 0;
         private string codeToRun = string.Empty;
         private static Runspace testRunSpace;
 
@@ -362,8 +362,6 @@ namespace UIAutomationSpy
         private void collectAncestry(
             ref System.Collections.Generic.List<string> listForNodes,
             ref System.Collections.Generic.List<string> listForCode,
-            // 20131109
-            //IUiElement element)
             IUiElement element)
         {
             this.cleanAncestry();
@@ -1098,85 +1096,41 @@ namespace UIAutomationSpy
 
         public void ProcessSpyingCycle() //TranscriptCmdletBase cmdlet, IUiElement element)
         {
-//string tempString = string.Empty;
             do {
                 Application.DoEvents();
                 
-                // TranscriptCmdletBase cmdlet = null;
-                // IUiElement element = null;
-                
                 try {
-                    // 20131227
-                    // element = ExSpyCode.GetElementFromPoint(Cursor.Position);
-//                    IUiElement element =
-//                        UiElement.FromPoint(
-//                            new System.Windows.Point(
-//                                Cursor.Position.X,
-//                                Cursor.Position.Y));
-                    IUiElement element =
-                        AutomationFactory.GetUiElement(
-                            System.Windows.Automation.AutomationElement.FromPoint(
-                                new System.Windows.Point(
-                                    Cursor.Position.X,
-                                    Cursor.Position.Y)));
-                    
-//                    AutomationElement elt =
-//                        System.Windows.Automation.AutomationElement.FromPoint(
-//                            new System.Windows.Point(
-//                                Cursor.Position.X,
-//                                Cursor.Position.Y));
-//                    System.Windows.Forms.MessageBox.Show("ae pid = " + elt.Current.ProcessId.ToString() + ", uia pid = " + element.Current.ProcessId.ToString());
+                    // use Windows forms mouse code instead of WPF
+                    IUiElement element = ExSpyCode.GetElementFromPoint(Cursor.Position);
                     
                     if (null != element) {
-//tempString += "element is not null\r\n";
                         
-                        // cmdlet = ExSpyCode.CreateTranscriptingCmdlet();
                         TranscriptCmdletBase cmdlet = ExSpyCode.CreateTranscriptingCmdlet();
                         try {
                             bool res = UiaHelper.ProcessingElement(cmdlet, element);
-//tempString += "processed the element\r\n";
                             if (!res) {
                             }
                         } catch (Exception eProcessingElement) {
-//tempString += "failed to process the element\r\n";
                             this.txtFullCode.Text = "eProcessingElement element method:\r\n" + eProcessingElement.Message;
                             element = null;
                             System.Threading.Thread.Sleep(Preferences.TranscriptInterval);
                             continue;
                         }
-// System.Windows.Forms.MessageBox.Show(tempString);
+                        
                         int elementPID = 0;
                         try {
                             elementPID = element.Current.ProcessId;
-//tempString += "current processId = ";
-//tempString += element.Current.ProcessId.ToString();
-//tempString += "\r\n";
                         } catch {
                             try {
                                 elementPID = element.Cached.ProcessId;
-//tempString += "cached processId = ";
-//tempString += element.Cached.ProcessId.ToString();
-//tempString += "\r\n";
                             } catch (Exception eUhh) {
-//tempString += eUhh.Message;
-//tempString += "\r\n";
                             }
                         }
                         
                         // 20131227
                         // int elementPID = UiaHelper.GetElementProcessIdSafely(element);
-//tempString += "taboo pid = ";
-//tempString += this.tabooPID.ToString();
-//tempString += "\r\n";
-//System.Windows.Forms.MessageBox.Show(tempString);
-// System.Windows.Forms.MessageBox.Show(tempString);
-                        
                         if (elementPID != this.tabooPID) {
-//tempString += "pid is not taboo\r\n";
-//System.Windows.Forms.MessageBox.Show(tempString);
                             if (cmdlet.LastRecordedItem.Count > 0) {
-//tempString += "cmdlet.LastRecordedItem.Count > 0\r\n";
-//System.Windows.Forms.MessageBox.Show(tempString);
                                 try {
                                     this.richControlCode.Text = cmdlet.WritingRecord(cmdlet.LastRecordedItem, null, null, null);
                                     if (this.chkClipboard.Checked) {
@@ -1199,13 +1153,13 @@ namespace UIAutomationSpy
                             this.richPatterns.Text = ExSpyCode.WritingAvailablePatterns(element);
                         }
                     }
-                    // element = null;
+                    
                     System.Threading.Thread.Sleep(Preferences.TranscriptInterval);
                 } catch (Exception eUnknown) {
                     this.txtFullCode.Text += "External cycle (eUnknown):\r\n" + eUnknown.Message;
-                    // element = null;
                     System.Threading.Thread.Sleep(Preferences.TranscriptInterval);
                 }
+                
             } while (!this.stopNow);
         }
     }

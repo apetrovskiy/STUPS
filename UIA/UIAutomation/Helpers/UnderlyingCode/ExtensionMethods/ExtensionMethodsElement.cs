@@ -293,32 +293,39 @@ namespace UIAutomation
             IValuePattern pattern,
             ref bool hasName)
         {
-            cmdlet.WriteVerbose(cmdlet, "getting " + propertyName);
+            // cmdlet.WriteVerbose(cmdlet, "getting " + propertyName);
             string tempString = string.Empty;
             try {
                 
                 switch (propertyName) {
                     case "Name":
-                        if (0 < element.Current.Name.Length) {
+                        // if (0 < element.Current.Name.Length) {
+                        if (!string.IsNullOrEmpty(element.Current.Name)) {
                             tempString = element.Current.Name;
                             hasName = true;
                         }
                         break;
                     case "AutomationId":
-                        if (0 < element.Current.AutomationId.Length) {
+                        // if (0 < element.Current.AutomationId.Length) {
+                        if (!string.IsNullOrEmpty(element.Current.AutomationId)) {
                             tempString = element.Current.AutomationId;
                         }
                         break;
                     case "Class":
-                        if (0 < element.Current.ClassName.Length) {
+                        // if (0 < element.Current.ClassName.Length) {
+                        if (!string.IsNullOrEmpty(element.Current.ClassName)) {
                             tempString = element.Current.ClassName;
                         }
                         break;
                     case "Value":
-                        if (!string.IsNullOrEmpty(pattern.Current.Value)) {
-                            tempString = pattern.Current.Value;
-                            hasName = true;
+                        // if (!string.IsNullOrEmpty(pattern.Current.Value)) {
+                        try {
+                            if (!string.IsNullOrEmpty(pattern.Current.Value)) {
+                                tempString = pattern.Current.Value;
+                                hasName = true;
+                            }
                         }
+                        catch {}
                         break;
                     case "Win32":
                         if (0 < element.Current.NativeWindowHandle) {
@@ -332,26 +339,33 @@ namespace UIAutomation
             } catch {
                 switch (propertyName) {
                     case "Name":
-                        if (0 < element.Cached.Name.Length) {
+                        // if (0 < element.Cached.Name.Length) {
+                        if (!string.IsNullOrEmpty(element.Cached.Name)) {
                             tempString = element.Cached.Name;
                             hasName = true;
                         }
                         break;
                     case "AutomationId":
-                        if (0 < element.Cached.AutomationId.Length) {
+                        // if (0 < element.Cached.AutomationId.Length) {
+                        if (!string.IsNullOrEmpty(element.Cached.AutomationId)) {
                             tempString = element.Cached.AutomationId;
                         }
                         break;
                     case "Class":
-                        if (0 < element.Cached.ClassName.Length) {
+                        // if (0 < element.Cached.ClassName.Length) {
+                        if (!string.IsNullOrEmpty(element.Cached.ClassName)) {
                             tempString = element.Cached.ClassName;
                         }
                         break;
                     case "Value":
-                        if (!string.IsNullOrEmpty(pattern.Cached.Value)) {
-                            tempString = pattern.Cached.Value;
-                            hasName = true;
+                        // if (!string.IsNullOrEmpty(pattern.Cached.Value)) {
+                        try {
+                            if (!string.IsNullOrEmpty(pattern.Cached.Value)) {
+                                tempString = pattern.Cached.Value;
+                                hasName = true;
+                            }
                         }
+                        catch {}
                         break;
                     case "Win32":
                         if (0 < element.Cached.NativeWindowHandle) {

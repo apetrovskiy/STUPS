@@ -829,7 +829,6 @@ namespace UIAutomation
             // 20120618 UiaCOMWrapper
             //UiaCOM::System.Windows.Automation.AutomationElement element)
         {
-string strInfo = string.Empty;
             bool result = false;
             // UiaHelper.Highlight(element);
             try {
@@ -927,12 +926,15 @@ string strInfo = string.Empty;
                             // element.GetCurrentPattern(ValuePattern.Pattern) as IValuePattern;
                             // element.GetCurrentPattern<IValuePattern, ValuePattern>(ValuePattern.Pattern) as IValuePattern;
                             element.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern);
-                        elementVerbosity +=
-                            // 20131204
-                            // GetElementPropertyString(cmdlet, element, "Value", pattern, ref hasName);
-                            element.GetElementPropertyString(cmdlet, "Value", pattern, ref hasName);
+                        if (null != pattern) {
+                            elementVerbosity +=
+                                // 20131204
+                                // GetElementPropertyString(cmdlet, element, "Value", pattern, ref hasName);
+                                element.GetElementPropertyString(cmdlet, "Value", pattern, ref hasName);
+                        }
                     }
-                    catch {}
+                    catch (Exception eeeee) {
+                    }
                     if (hasName) {
                         elementVerbosity +=
                             // 20131204
@@ -943,6 +945,8 @@ string strInfo = string.Empty;
                                         "the concatenated result is: " +
                                         elementVerbosity);
                     // collected
+                    
+
                     
                     if (cmdlet.LastRecordedItem.Count == 0 || elementVerbosity != cmdlet.LastRecordedItem[0].ToString()) {
                         
@@ -963,44 +967,26 @@ string strInfo = string.Empty;
                         
                         // if (WriteCurrentPattern) {
                         // strElementPatterns = String.Empty;
-
-//strInfo += element.GetSourceElement().Current.Name;
-//AutomationPattern[] ppps = element.GetSourceElement().GetSupportedPatterns();
-//foreach (AutomationPattern pppp in ppps) {
-//    strInfo += pppp.ProgrammaticName;
-//}
                         try {
                             // 20131209
                             // AutomationPattern[] elementPatterns =
                             //     element.GetSupportedPatterns();
                             IBasePattern[] elementPatterns =
                                 element.GetSupportedPatterns();
-                                // element.GetSourceElement().GetSupportedPatterns().ConvertAutomationPatternToBasePattern(element);
-strInfo += "01";
                             
+                                // element.GetSourceElement().GetSupportedPatterns().ConvertAutomationPatternToBasePattern(element);
+                     
+                               
                             if (!cmdlet.NoEvents) {
-strInfo += " 02";
                                 SubscribeToEventsDuringRecording(cmdlet, element, elementPatterns);
-strInfo += " 03";
                             }
                             
                             if (cmdlet.WriteCurrentPattern) {
-strInfo += " 04";
                                 // 20131209
                                 // foreach (AutomationPattern ptrn in elementPatterns)
                                 foreach (IBasePattern ptrn in elementPatterns)
                                 {
-strInfo += " 05";
                                     strElementPatterns += "\r\n\t\t#";
-// 20131227
-strInfo += ptrn.GetType().Name;
-try {
-    strInfo += "\r\n";
-    strInfo += ptrn.GetSourcePattern().GetType().Name;
-}
-catch (Exception eSourcePattern) {
-    strInfo += eSourcePattern.Message;
-}
                                     strElementPatterns +=
                                         // 20131209
                                         // ptrn.ProgrammaticName.Replace("Identifiers.Pattern", "");
@@ -1008,8 +994,8 @@ catch (Exception eSourcePattern) {
                                         // (ptrn.SourcePattern as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", "");
                                         // 20131227
                                         // (ptrn.GetSourcePattern() as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", string.Empty);
+                                        // gets name of pattern from the name of type like UiaInvokePattern -> InvokePattern
                                         ptrn.GetType().Name.Replace("Uia", string.Empty);
-strInfo += " 06";
                                     strElementPatterns += ": use the ";
                                     
                                     string tempControlNameForCmdlet =
@@ -1017,7 +1003,6 @@ strInfo += " 06";
                                         // "-UIA" +
                                         "-Uia" +
                                         elementControlType;
-strInfo += " 07";
                                     
                                     // 20131209
                                     // switch (ptrn.ProgrammaticName.Replace("Identifiers.Pattern", "")) {
@@ -1101,22 +1086,19 @@ strInfo += " 07";
                                     }
                                     strElementPatterns += " cmdlet(s)";
                                 }
-strInfo += " 08";
                                 if (strElementPatterns.Length == 0) {
                                     strElementPatterns += "\r\n\t\t# no supported pattterns";
                                 }
-strInfo += " 09";
                             }
                             strElementPatterns += "\r\n";
-// strElementPatterns += strInfo;
                         } catch (Exception ePatterns) {
-                                                                Exception ePatterns2 =
-                                                                    new Exception("Patterns:\r\n" +
-                                                                                  ePatterns.Message +
-                                                                                  "\r\n" +
-                                                                                  strInfo);
-                            // 20131227
-                                                                throw(ePatterns2);
+//                                                                Exception ePatterns2 =
+//                                                                    new Exception("Patterns:\r\n" +
+//                                                                                  ePatterns.Message +
+//                                                                                  "\r\n" +
+//                                                                                  strInfo);
+//                            // 20131227
+//                                                                throw(ePatterns2);
                             //return result;
                             // ErrorRecord
                             // 20120126
@@ -1146,26 +1128,6 @@ strInfo += " 09";
                             //                                                  eCollecingAncestors.Message);
                             //throw(eCollecingAncestors2);
                             //return result;
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-Exception ePatterns2 =
-    new Exception("Patterns:\r\n" +
-                  strInfo);
-// 20131227
-throw(ePatterns2);
-                            
-                            
-                            
-                            
-                            
-                            
-                            
                         }
 
                         if (!_errorInTheInnerCycle) {
@@ -1190,7 +1152,11 @@ throw(ePatterns2);
                         new Exception(
                             "Gathering cycle\r\n" +
                             eGatheringCycle.Message);
-                    throw (eGatheringCycle2);
+                    
+                    
+                    
+                    
+                    // throw (eGatheringCycle2);
                 }
                 cacheRequest.Pop();
                 result = true;
@@ -1511,26 +1477,33 @@ throw(ePatterns2);
                     supportedPatterns.Length < 1) { return; }
                 try {
                     
-                    // cache requiest object for collecting properties
+                    // cache request object for collecting properties
                     CacheRequest cacheRequest = null;
                     
-                    try {
-                        cacheRequest = new CacheRequest
-                        {
-                            AutomationElementMode = AutomationElementMode.None,
-                            TreeFilter = Automation.RawViewCondition
-                        };
-                        cacheRequest.Add(AutomationElement.NameProperty);
-                        // cacheRequest.Add(AutomationElement.AutomationIdProperty);
-                        cacheRequest.Add(AutomationElement.ControlTypeProperty);
-                        // cacheRequest.Add(AutomationElement.ClassNameProperty);
-                        // cacheRequest.Push();
-                        cacheRequest.Activate();
-                        // element.FindFirst(TreeScope.Element, Condition.TrueCondition);
-                    } catch (Exception eCacheRequest) {
-                        cmdlet.WriteVerbose(cmdlet, "Cache request failed for " + element.Current.Name);
-                        cmdlet.WriteVerbose(cmdlet, eCacheRequest.Message);
-                    }
+// return;
+                    
+//                    try {
+//                        cacheRequest = new CacheRequest
+//                        {
+//                            AutomationElementMode = AutomationElementMode.None,
+//                            TreeFilter = Automation.RawViewCondition
+//                        };
+//// return;
+//                        cacheRequest.Add(AutomationElement.NameProperty);
+//                        // cacheRequest.Add(AutomationElement.AutomationIdProperty);
+//                        cacheRequest.Add(AutomationElement.ControlTypeProperty);
+//                        // cacheRequest.Add(AutomationElement.ClassNameProperty);
+//                        // cacheRequest.Push();
+//// return;
+//                        cacheRequest.Activate();
+//// return;
+//                        // element.FindFirst(TreeScope.Element, Condition.TrueCondition);
+//                    } catch (Exception eCacheRequest) {
+////                        cmdlet.WriteVerbose(cmdlet, "Cache request failed for " + element.Current.Name);
+////                        cmdlet.WriteVerbose(cmdlet, eCacheRequest.Message);
+//                    }
+                    
+// return;
                     
                     // 20131209
                     // foreach (AutomationPattern pattern in supportedPatterns) {
@@ -1543,6 +1516,7 @@ throw(ePatterns2);
                             // switch (pattern.ProgrammaticName) {
                             // 20131210
                             // switch ((pattern as AutomationPattern).ProgrammaticName) {
+//return;
                             switch ((pattern.GetSourcePattern() as AutomationPattern).ProgrammaticName) {
                                 case "SelectionItemPatternIdentifiers.Pattern":
                                     cmdlet.SubscribeToEvents(cmdlet,

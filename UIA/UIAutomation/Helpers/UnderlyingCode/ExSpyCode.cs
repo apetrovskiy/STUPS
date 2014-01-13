@@ -28,23 +28,28 @@ namespace UIAutomation
                 // 20131209
                 // AutomationPattern[] supportedPatterns =
                 //     element.GetSupportedPatterns();
+                
                 IBasePattern[] supportedPatterns =
                     element.GetSupportedPatterns();
                 //UiaCOM::System.Windows.Automation.AutomationPattern[] supportedPatterns =
                 //    element.GetSupportedPatterns();                                    
 
                 if (supportedPatterns == null || supportedPatterns.Length <= 0) return resultString;
+                
                 for (int i = 0; i < supportedPatterns.Length; i++) {
                     if (i > 0) {
                         resultString += "\r\n";
                     }
+                    
                     resultString +=
                         // 20131209
                         // supportedPatterns[i].ProgrammaticName.Replace("Identifiers.Pattern", "");
                         // 20131210
                         // (supportedPatterns[i] as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", "");
                         // (supportedPatterns[i].SourcePattern as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", "");
-                        (supportedPatterns[i].GetSourcePattern() as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", string.Empty);
+                        // 20140112
+                        // (supportedPatterns[i].GetSourcePattern() as AutomationPattern).ProgrammaticName.Replace("Identifiers.Pattern", string.Empty);
+                        supportedPatterns[i].GetType().Name.Substring(3);
                 }
 
                 /*
@@ -87,21 +92,10 @@ namespace UIAutomation
         
         public static IUiElement GetElementFromPoint(System.Drawing.Point mousePoint)
         {
-            // 20131109
-            //AutomatIUiElement element = null;
             IUiElement element = null;
-            
-            // use Windows forms mouse code instead of WPF
-            // 20131114
-            //System.Drawing.Point mouse = System.Windows.Forms.Cursor.Position;
-
             // commented 20120618 to switch to UiaCOMWrapper
             element =
-                // 20131109
-                //System.Windows.Automation.AutomationElement.FromPoint(
                 UiElement.FromPoint(
-                    // 20131114
-                    //new System.Windows.Point(mouse.X, mouse.Y));
                     new System.Windows.Point(mousePoint.X, mousePoint.Y));
             //element = 
             //	//(UiaNET::System.Windows.Automation.AutomationElement)

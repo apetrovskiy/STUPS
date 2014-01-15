@@ -1693,7 +1693,7 @@ namespace UIAutomation
         /// <param name="handle"></param>
         /// <returns></returns>
         public static IUiElement GetAutomationElementFromHandle(
-            PSCmdletBase cmdlet,
+            // PSCmdletBase cmdlet,
             int handle)
         {
             // 20131109
@@ -1702,13 +1702,13 @@ namespace UIAutomation
             IUiElement result = null;
             
             if (handle == 0) {
-                cmdlet.WriteVerbose(cmdlet, "handle == 0");
+                // cmdlet.WriteVerbose(cmdlet, "handle == 0");
                 return result;
             }
             try {
                 //System.IntPtr pHwnd = IntPtr.Zero;
                 IntPtr pHwnd = new IntPtr(handle);
-                cmdlet.WriteVerbose(cmdlet, "getting the control");
+                // cmdlet.WriteVerbose(cmdlet, "getting the control");
                 // 20131109
                 //element =
                 //    AutomationElement.FromHandle(pHwnd);
@@ -1718,12 +1718,12 @@ namespace UIAutomation
                 _element =
                     AutomationFactory.GetUiElement(AutomationElement.FromHandle(pHwnd));
                 if (_element != null) {
-                    cmdlet.WriteVerbose(cmdlet, _element.Current.Name);
+                    // cmdlet.WriteVerbose(cmdlet, _element.Current.Name);
                 }
                 result = _element;
             }
             catch (Exception e) {
-                cmdlet.WriteVerbose(cmdlet, e.Message);
+                // cmdlet.WriteVerbose(cmdlet, e.Message);
             }
             return result;
         }
@@ -2639,7 +2639,7 @@ namespace UIAutomation
                     if (0 == resultHandle) continue;
                     resultElement =
                         GetAutomationElementFromHandle(
-                            (DiscoveryCmdletBase)cmdlet,
+                            // (DiscoveryCmdletBase)cmdlet,
                             resultHandle);
                     if (treeItemName == resultElement.Current.Name) {
                         return resultElement;
@@ -2656,7 +2656,7 @@ namespace UIAutomation
                     if (0 == childHandle) continue;
                     resultElement =
                         GetAutomationElementFromHandle(
-                            (DiscoveryCmdletBase)cmdlet,
+                            // (DiscoveryCmdletBase)cmdlet,
                             childHandle);
                     if (treeItemName == resultElement.Current.Name) {
                         return resultElement;
@@ -2788,7 +2788,123 @@ namespace UIAutomation
             return true;
         }
         
+        // internal static List<IUiElement> EnumChildWindowsFromHandle(GetWindowCmdletBase cmdlet, IntPtr parentHandle)
+        internal static List<IUiElement> EnumChildWindowsFromHandle(string[] names, string automationId, string className, IntPtr parentHandle)
+        {
+            IEnumerable<IntPtr> list =
+                GetChildWindows(parentHandle);
+            
+            List<IUiElement> resultElements =
+                new List<IUiElement>();
+            
+            ArrayList automationElements =
+                new ArrayList();
+            
+            foreach (IntPtr handle in list) {
+                
+                try {
+                    
+                    IUiElement element =
+                        // GetAutomationElementFromHandle(cmdlet, handle.ToInt32());
+                        GetAutomationElementFromHandle(handle.ToInt32());
+                    
+                    automationElements.Add(element);
+                    
+                }
+                catch {}
+            }
+            
+            if (null == names || 0 == names.Length) {
+                names = new string[] { "*" };
+            }
+            
+            foreach (string windowName in names) {
+                
+                resultElements.AddRange(
+                    WindowSearch.ReturnOnlyRightElements(
+                        // (HasTimeoutCmdletBase)cmdlet,
+                        automationElements,
+                        windowName,
+                        automationId,
+                        className,
+                        string.Empty,
+                        new string[]{ "Window" },
+                        false,
+                        // 20131122
+                        true));
+            }
+            
+            //
+            // extra?
+            automationElements.Clear();
+            //
+            
+            //};
+            
+            //return automationElements;
+            return resultElements;
+        }
+        
+        /*
         internal static List<IUiElement> EnumChildWindowsFromHandle(GetWindowCmdletBase cmdlet, IntPtr parentHandle)
+        {
+            IEnumerable<IntPtr> list =
+                GetChildWindows(parentHandle);
+            
+            List<IUiElement> resultElements =
+                new List<IUiElement>();
+            
+            ArrayList automationElements =
+                new ArrayList();
+            
+            foreach (IntPtr handle in list) {
+                
+                try {
+                    
+                    IUiElement element =
+                        // GetAutomationElementFromHandle(cmdlet, handle.ToInt32());
+                        GetAutomationElementFromHandle(handle.ToInt32());
+                    
+                    automationElements.Add(element);
+                    
+                }
+                catch {}
+            }
+            
+            if (null == cmdlet.Name || 0 == cmdlet.Name.Length) {
+                cmdlet.Name = new string[] { "*" };
+            }
+            
+            foreach (string windowName in cmdlet.Name) {
+                
+                resultElements.AddRange(
+                    WindowSearch.ReturnOnlyRightElements(
+                        // (HasTimeoutCmdletBase)cmdlet,
+                        automationElements,
+                        windowName,
+                        cmdlet.AutomationId,
+                        cmdlet.Class,
+                        string.Empty,
+                        new string[]{ "Window" },
+                        false,
+                        // 20131122
+                        true));
+            }
+            
+            //
+            // extra?
+            automationElements.Clear();
+            //
+            
+            //};
+            
+            //return automationElements;
+            return resultElements;
+        }
+        */
+        
+        /*
+internal static List<IUiElement> EnumChildWindowsFromHandle(GetWindowCmdletBase cmdlet, IntPtr parentHandle)
         {
             IEnumerable<IntPtr> list =
                 GetChildWindows(parentHandle);
@@ -2842,6 +2958,7 @@ namespace UIAutomation
             //return automationElements;
             return resultElements;
         }
+        */
         
         public static List<IUiElement> Enum1ChildWindows(IntPtr parentHandle)
         {
@@ -2849,7 +2966,8 @@ namespace UIAutomation
             //PSCmdletBase cmdlet = new GetUiaWindowCommand();
             GetWindowCmdletBase cmdlet = new GetWindowCmdletBase();
             List<IUiElement> resultList =
-                EnumChildWindowsFromHandle(cmdlet, parentHandle);
+                // EnumChildWindowsFromHandle(cmdlet, parentHandle);
+                EnumChildWindowsFromHandle(cmdlet.Name, cmdlet.AutomationId, cmdlet.Class, parentHandle);
             
             return resultList;
         }
@@ -2860,7 +2978,8 @@ namespace UIAutomation
             //PSCmdletBase cmdlet = new GetUiaWindowCommand();
             GetWindowCmdletBase cmdlet = new GetWindowCmdletBase();
             List<IUiElement> resultList =
-                EnumChildWindowsFromHandle(cmdlet, IntPtr.Zero);
+                // EnumChildWindowsFromHandle(cmdlet, IntPtr.Zero);
+                EnumChildWindowsFromHandle(cmdlet.Name, cmdlet.AutomationId, cmdlet.Class, IntPtr.Zero);
             
             return resultList;
         }

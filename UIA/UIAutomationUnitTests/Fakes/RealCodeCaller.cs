@@ -79,8 +79,9 @@ namespace UIAutomationUnitTests
             HasTimeoutCmdletBase cmdletDerived = new HasTimeoutCmdletBase();
             
             List<IUiElement> resultList =
-                HasTimeoutCmdletBase.ReturnOnlyRightElements(
-                    cmdletDerived,
+                // HasTimeoutCmdletBase.ReturnOnlyRightElements(
+                WindowSearch.ReturnOnlyRightElements(
+                    // cmdletDerived,
                     elements,
                     cmdlet.Name,
                     cmdlet.AutomationId,

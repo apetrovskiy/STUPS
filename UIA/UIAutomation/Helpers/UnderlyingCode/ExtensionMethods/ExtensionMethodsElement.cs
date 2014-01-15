@@ -21,6 +21,7 @@ namespace UIAutomation
     using System.Globalization;
     using System.Threading;
     using System.Windows.Forms;
+    using System.Text.RegularExpressions;
     
     /// <summary>
     /// Description of ExtensionMethodsElement.
@@ -718,5 +719,41 @@ namespace UIAutomation
 //            }
 //            catch {}
 //        }
+        
+        /// <summary>
+        /// Checks that the -Value parameter matches the value ValuePattern of the element returns
+        /// </summary>
+        /// <param name="item">IUiElement element</param>
+        /// <param name="textValue">the -Value parameter</param>
+        /// <param name="viaWildcardOrRegex">true is wildcard, false is regexp</param>
+        /// <param name="wildcardValue">a wildcard object</param>
+        /// <param name="regexOptions">a regex options object</param>
+        /// <returns></returns>
+        internal static bool CompareElementValueAndValueParameter(
+            this IUiElement element,
+            string textValue,
+            bool viaWildcardOrRegex,
+            WildcardPattern wildcardValue,
+            RegexOptions regexOptions)
+        {
+            bool result = false;
+            
+            // getting the real value of a control
+            string realValue = string.Empty;
+            try {
+                realValue =
+                    // 20131208
+                    // (item.GetCurrentPattern(ValuePattern.Pattern) as IValuePattern).Current.Value;
+                    // (item.GetCurrentPattern<IValuePattern, ValuePattern>(ValuePattern.Pattern) as IValuePattern).Current.Value;
+                    (element.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern)).Current.Value;
+            }
+            catch { //(Exception eGetCurrentPattern) {
+                // nothing to do
+                // usually this place never be reached
+            }
+            
+            result = viaWildcardOrRegex ? wildcardValue.IsMatch(realValue) : Regex.IsMatch(realValue, textValue, regexOptions);
+            return result;
+        }
     }
 }

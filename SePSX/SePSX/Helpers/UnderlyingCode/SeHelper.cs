@@ -3281,7 +3281,7 @@ Console.WriteLine("NavigatoTo: 00003");
             if (Preferences.SetBrowserWindowForeground) {
                 try {
                     UIAutomation.UiaHelper.GetAutomationElementFromHandle(
-                        (new UIAutomation.DiscoveryCmdletBase()),
+                        // (new UIAutomation.DiscoveryCmdletBase()),
                         CurrentData.CurrentWebDriverHandle.ToInt32()).SetFocus();
                     
                     bool result =

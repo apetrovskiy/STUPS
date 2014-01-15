@@ -223,7 +223,9 @@ namespace UIAutomation
                 // nothing to do
                 // just failed to highlight
             }
-            if (element == null || !(element is IUiElement) || (int) element.Current.ProcessId <= 0) return;
+            // 20140113
+            // if (element == null || !(element is IUiElement) || (int) element.Current.ProcessId <= 0) return;
+            if (element == null || !(element is IUiElement) || null == element.Current || (int) element.Current.ProcessId <= 0) return;
             
             WriteVerbose(this, "as it is an IUiElement, it should be highlighted");
             
@@ -257,6 +259,8 @@ namespace UIAutomation
         
         protected void WriteObjectMethod030RunScriptBlocks(PSCmdletBase cmdlet, object outputObject)
         {
+            // 20140113
+            try {
             WriteVerbose(this, "is going to run scriptblocks");
             if (cmdlet == null) return;
             // run scriptblocks
@@ -272,6 +276,8 @@ namespace UIAutomation
                 WriteVerbose(this, "run OnSuccess script blocks");
                 RunOnSuccessScriptBlocks(((HasScriptBlockCmdletBase)cmdlet), null);
             }
+            }
+            catch {}
         }
         
         protected void WriteObjectMethod040SetTestResult(PSCmdletBase cmdlet, object outputObject)
@@ -420,6 +426,9 @@ namespace UIAutomation
         
         protected void WriteObjectMethod070Report(PSCmdletBase cmdlet, object outputObject)
         {
+            // 20140113
+            try {
+            
             if (!Preferences.AutoLog) return;
             string reportString =
                 CmdletSignature(((CommonCmdletBase)cmdlet));
@@ -521,6 +530,9 @@ namespace UIAutomation
                 WriteVerbose(reportString);
             }
             WriteLog(LogLevels.Info, reportString);
+            
+            }
+            catch {}
         }
         
         // 20131204

@@ -146,8 +146,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 new HasTimeoutCmdletBase();
             
             List<IUiElement> resultList =
-                HasTimeoutCmdletBase.ReturnOnlyRightElements(
-                    cmdlet,
+                // HasTimeoutCmdletBase.ReturnOnlyRightElements(
+                WindowSearch.ReturnOnlyRightElements(
+                    // cmdlet,
                     null,
                     string.Empty,
                     string.Empty,
@@ -167,8 +168,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 new HasTimeoutCmdletBase();
             
             List<IUiElement> resultList =
-                HasTimeoutCmdletBase.ReturnOnlyRightElements(
-                    cmdlet,
+                // HasTimeoutCmdletBase.ReturnOnlyRightElements(
+                WindowSearch.ReturnOnlyRightElements(
+                    // cmdlet,
                     new UiElement[] {},
                     string.Empty,
                     string.Empty,
@@ -198,8 +200,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                     string.Empty);
             
             List<IUiElement> resultList =
-                HasTimeoutCmdletBase.ReturnOnlyRightElements(
-                    cmdlet,
+                // HasTimeoutCmdletBase.ReturnOnlyRightElements(
+                WindowSearch.ReturnOnlyRightElements(
+                    // cmdlet,
                     new[] { element },
                     expectedName,
                     string.Empty,
@@ -254,8 +257,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                     string.Empty);
             
             List<IUiElement> resultList =
-                HasTimeoutCmdletBase.ReturnOnlyRightElements(
-                    cmdlet,
+                // HasTimeoutCmdletBase.ReturnOnlyRightElements(
+                WindowSearch.ReturnOnlyRightElements(
+                    // cmdlet,
                     new[] { element01, element02, element03, element04 },
                     expectedName,
                     string.Empty,

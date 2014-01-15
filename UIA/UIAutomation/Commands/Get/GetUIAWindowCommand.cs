@@ -52,7 +52,7 @@ namespace UIAutomation.Commands
             WriteVerbose(this, "Recurse = " + Recurse.ToString());
             WriteVerbose(this, "Timeout " + Timeout.ToString());
             
-            List<IUiElement> _returnedWindows = new List<IUiElement>();
+            List<IUiElement> returnedWindows = new List<IUiElement>();
             
             try {
 
@@ -89,14 +89,62 @@ namespace UIAutomation.Commands
             
             // 20140110
             try {
-                _returnedWindows =
-                    GetWindow(this, Win32, InputObject, ProcessName, ProcessId, Name, AutomationId, Class, TestMode);
+                // returnedWindows =
+                //     GetWindow(this, Win32, InputObject, ProcessName, ProcessId, Name, AutomationId, Class, TestMode);
+//            GetWindowCmdletBase cmdlet,
+//            bool win32,
+//            Process[] processes,
+//            string[] processNames,
+//            int[] processIds,
+//            string[] windowNames,
+//            string automationId,
+//            string className,
+//            bool testMode)
+                
+                var windowSearch =
+                    AutomationFactory.GetSearchImpl<WindowSearch>();
+                
+                var windowSearchData =
+                    new WindowSearchData {
+                    Win32 = this.Win32,
+                    InputObject = this.InputObject,
+                    ProcessNames = this.ProcessName,
+                    ProcessIds = this.ProcessId,
+                    Name = this.Name,
+                    AutomationId = this.AutomationId,
+                    Class = this.Class,
+                    WithControl = this.WithControl,
+                    // OddRootElement = this.OddRootElement,
+                    TestMode = this.TestMode,
+                    SearchCriteria = this.SearchCriteria,
+                    First = this.First,
+                    Recurse = this.Recurse,
+                    WaitNoWindow = this.WaitNoWindow
+                };
+                
+//Console.WriteLine("before processing");
+//if (null == windowSearchData.OddRootElement) {
+//    Console.WriteLine("null == windowSearchData.OddRootElement");
+//} else {
+//    Console.WriteLine("null != windowSearchData.OddRootElement");
+//    if (null == windowSearchData.OddRootElement.Current) {
+//        Console.WriteLine("null == windowSearchData.OddRootElement.Current");
+//    } else {
+//        Console.WriteLine("null != windowSearchData.OddRootElement.Current");
+//        Console.WriteLine("root element = " + windowSearchData.OddRootElement.Current.Name);
+//        Console.WriteLine("root element = " + windowSearchData.OddRootElement.Current.AutomationId);
+//        Console.WriteLine("root element = " + windowSearchData.OddRootElement.Current.ClassName);
+//    }
+//}
+                
+                returnedWindows =
+                    windowSearch.GetElements(windowSearchData, Timeout);
             }
             catch {}
             
             // 20140110
             try {
-                if (null != _returnedWindows && _returnedWindows.Count > 0) {
+                if (null != returnedWindows && returnedWindows.Count > 0) {
                     
                     if (TestMode) {
                         
@@ -104,7 +152,7 @@ namespace UIAutomation.Commands
                         
                     } else {
                         
-                        WriteObject(this, _returnedWindows);
+                        WriteObject(this, returnedWindows);
                     }
                     
                 } else {

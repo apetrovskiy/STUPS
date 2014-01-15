@@ -151,6 +151,27 @@ namespace UIAutomation
             }
     		return proxiedElement;
         }
+        
+        internal static T ConvertToProxiedObject<T>(T objectToConvert)
+        {
+            T proxiedObject = default(T);
+            
+            try {
+                
+                proxiedObject =
+                    (T)_generator.CreateClassProxy(
+                        typeof(T),
+                        new LoggingAspect(), new ErrorHandlingAspect());
+                
+            } catch (Exception eProxying) {
+                
+                // Console.WriteLine("ProxiedObject");
+                // Console.WriteLine(eProxying.Message);
+                // throw;
+            }
+            
+            return proxiedObject;
+        }
         #endregion Castle DynamicProxy
 		
 		#region IUiElement
@@ -239,7 +260,10 @@ namespace UIAutomation
 			}
 		}
 		
-		public static IUiElement GetUiElement(IUiElement element)
+		// 20140114
+		// to prevent from threading lock
+		// public static IUiElement GetUiElement(IUiElement element)
+		internal static IUiElement GetUiElement(IUiElement element)
 		{
 	        if (null == element) {
 	            return null;
@@ -276,7 +300,10 @@ namespace UIAutomation
 			}
 		}
 		
-		public static IUiElement GetUiElement()
+		// 20140114
+		// to prevent from threading lock
+		// public static IUiElement GetUiElement()
+		internal static IUiElement GetUiElement()
 		{
 			try {
     			IUiElement adapterElement = Kernel.Get<IUiElement>("Empty", null);
@@ -436,5 +463,11 @@ namespace UIAutomation
 			}
 		}
 		#endregion patterns
+        
+        public static SearchTemplate GetSearchImpl<T>()
+        {
+            var newObject = Kernel.Get<T>(new IParameter[] {});
+            return ConvertToProxiedObject<T>(newObject) as SearchTemplate;
+        }
     }
 }

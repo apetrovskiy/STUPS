@@ -71,5 +71,14 @@ namespace UIAutomation
         {
             return collection.ToArray();
         }
+        
+        internal static List<IUiElement> GetFilteredElementsCollection(this List<IUiElement> elementCollection)
+        {
+            List<IUiElement> resultCollection = new List<IUiElement>();
+            
+            
+            
+            return resultCollection;
+        }
     }
 }

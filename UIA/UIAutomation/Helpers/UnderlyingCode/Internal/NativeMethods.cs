@@ -68,6 +68,11 @@ namespace UIAutomation
         [DllImport("user32.dll")] 
         internal extern static IntPtr GetFocus();
         
+        // http://pinvoke.net/default.aspx/user32.FindWindow
+        [DllImport("user32.dll", EntryPoint="FindWindow", SetLastError = true)]
+        internal static extern IntPtr FindWindowByCaption(IntPtr zeroOnly, string lpWindowName);
+        // You can also call FindWindow(default(string), lpWindowName) or FindWindow((string)null, lpWindowName)
+        
         #region getting a control
         [DllImport("user32.dll", EntryPoint="FindWindowEx", CharSet=CharSet.Auto)]
         internal static extern IntPtr FindWindowEx(IntPtr hwndParent, 

@@ -364,6 +364,57 @@ namespace UIAutomation
                     " elements");
                 
                 resultCollection =
+                    WindowSearch.ReturnOnlyRightElements(
+                        // this,
+                        results,
+                        name,
+                        automationId,
+                        className,
+                        textValue,
+                        controlType,
+                        caseSensitiveParam,
+                        viaWildcardOrRegex);
+                
+                // 20130608
+                results = null;
+                
+            }
+            catch { //(Exception eWildCardSearch) {
+                
+            }
+            
+            return resultCollection;
+        }
+        
+        /*
+        internal List<IUiElement> GetAutomationElementsWithFindAll(
+            IUiElement element,
+            string name,
+            string automationId,
+            string className,
+            string textValue,
+            string[] controlType,
+            Condition conditions,
+            bool caseSensitiveParam,
+            bool onlyOneResult,
+            bool onlyTopLevel,
+            bool viaWildcardOrRegex)
+        {
+            List<IUiElement> resultCollection = new List<IUiElement>();
+
+            try {
+                
+                IUiEltCollection results =
+                    element.FindAll(
+                        TreeScope.Descendants,
+                        conditions);
+                WriteVerbose(
+                    this,
+                    "There are roughly " +
+                    results.Count.ToString() +
+                    " elements");
+                
+                resultCollection =
                     ReturnOnlyRightElements(
                         this,
                         results,
@@ -385,6 +436,7 @@ namespace UIAutomation
             
             return resultCollection;
         }
+        */
         
         private List<IUiElement> ProcessAutomationElement(
             IUiElement element,

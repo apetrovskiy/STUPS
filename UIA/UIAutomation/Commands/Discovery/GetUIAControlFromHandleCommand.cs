@@ -47,7 +47,7 @@ namespace UIAutomation.Commands
             */
 
             foreach (IUiElement result in InputObject.Select(handle => UiaHelper.GetAutomationElementFromHandle(
-                this,
+                // this,
                 handle)))
             {
                 if (result != null) {
@@ -95,7 +95,7 @@ namespace UIAutomation.Commands
             //System.Windows.Automation.AutomationElement result = null;
             // 20131113
             foreach (IUiElement result in InputObject.Select(handle => UiaHelper.GetAutomationElementFromHandle(
-                this,
+                // this,
                 handle)))
             {
                 if (result != null) {

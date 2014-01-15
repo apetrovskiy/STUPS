@@ -783,9 +783,6 @@
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Commands\Wizard\UIAStepWizardCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\Wizard\UIAStepWizardCommand.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\ExecutionPlan.cs">
-      <Link>Helpers\UnderlyingCode\ExecutionPlan.cs</Link>
-    </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethods.cs">
       <Link>Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethods.cs</Link>
     </Compile>
@@ -804,27 +801,62 @@
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethodsElementPatterns.cs">
       <Link>Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethodsElementPatterns.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Global.cs">
-      <Link>Helpers\UnderlyingCode\Global.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Internal\ExecutionPlan.cs">
+      <Link>Helpers\UnderlyingCode\Internal\ExecutionPlan.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Highligher.cs">
-      <Link>Helpers\UnderlyingCode\Highligher.cs</Link>
-      <SubType>Form</SubType>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Internal\ExSpyCode.cs">
+      <Link>Helpers\UnderlyingCode\Internal\ExSpyCode.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\JavaHelper.cs">
-      <Link>Helpers\UnderlyingCode\JavaHelper.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Internal\Global.cs">
+      <Link>Helpers\UnderlyingCode\Internal\Global.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NativeMethods.cs">
-      <Link>Helpers\UnderlyingCode\NativeMethods.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Internal\Highligher.cs">
+      <Link>Helpers\UnderlyingCode\Internal\Highligher.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Internal\JavaHelper.cs">
+      <Link>Helpers\UnderlyingCode\Internal\JavaHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Internal\LogEntry.cs">
+      <Link>Helpers\UnderlyingCode\Internal\LogEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Internal\LogHelper.cs">
+      <Link>Helpers\UnderlyingCode\Internal\LogHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Internal\NativeMethods.cs">
+      <Link>Helpers\UnderlyingCode\Internal\NativeMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Internal\RDPHelper.cs">
+      <Link>Helpers\UnderlyingCode\Internal\RDPHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Internal\UIAHelper.cs">
+      <Link>Helpers\UnderlyingCode\Internal\UIAHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Internal\WizardHelper.cs">
+      <Link>Helpers\UnderlyingCode\Internal\WizardHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\ControlSearch.cs">
+      <Link>Helpers\UnderlyingCode\NewModel\ControlSearch.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\ControlSearchData.cs">
+      <Link>Helpers\UnderlyingCode\NewModel\ControlSearchData.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\SearchTemplate.cs">
+      <Link>Helpers\UnderlyingCode\NewModel\SearchTemplate.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\SearchTemplateData.cs">
+      <Link>Helpers\UnderlyingCode\NewModel\SearchTemplateData.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\WindowSearch.cs">
+      <Link>Helpers\UnderlyingCode\NewModel\WindowSearch.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\WindowSearchData.cs">
+      <Link>Helpers\UnderlyingCode\NewModel\WindowSearchData.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Ninject\AutomationFactory.cs">
       <Link>Helpers\UnderlyingCode\Ninject\AutomationFactory.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Ninject\ObjectLifecycleModule.cs">
       <Link>Helpers\UnderlyingCode\Ninject\ObjectLifecycleModule.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\RDPHelper.cs">
-      <Link>Helpers\UnderlyingCode\RDPHelper.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\RDP\DataProtectionForRDPWrapper.cs">
       <Link>Helpers\UnderlyingCode\RDP\DataProtectionForRDPWrapper.cs</Link>
@@ -849,12 +881,6 @@
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Types\WizardStep.cs">
       <Link>Helpers\UnderlyingCode\Types\WizardStep.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\UIAHelper.cs">
-      <Link>Helpers\UnderlyingCode\UIAHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\WizardHelper.cs">
-      <Link>Helpers\UnderlyingCode\WizardHelper.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UserSettings\CurrentData.cs">
       <Link>Helpers\UserSettings\CurrentData.cs</Link>
@@ -1092,6 +1118,8 @@
     <Folder Include="Helpers\UnderlyingCode\ExtensionMethods" />
     <Folder Include="Helpers\UnderlyingCode\ExtensionMethods" />
     <Folder Include="Helpers\UnderlyingCode\Aspect" />
+    <Folder Include="Helpers\UnderlyingCode\Internal" />
+    <Folder Include="Helpers\UnderlyingCode\NewModel" />
     <Folder Include="Helpers\UnderlyingCode\Ninject" />
     <Folder Include="Helpers\UnderlyingCode\RDP" />
     <Folder Include="Helpers\UnderlyingCode\Types" />

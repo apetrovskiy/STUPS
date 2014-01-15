@@ -1,8 +1,8 @@
 ﻿/*
  * Created by SharpDevelop.
- * User: Alexander Petrovskiy
- * Date: 1/11/2014
- * Time: 6:38 PM
+ * User: Alexander
+ * Date: 1/15/2014
+ * Time: 1:40 AM
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
@@ -12,25 +12,25 @@ namespace UIAutomation
     using System;
     
     /// <summary>
-    /// Description of ScreenshotSquare.
+    /// Description of SearchTemplateStruct.
     /// </summary>
-    public struct ScreenshotRect // : IEquatable<ScreenshotRect>
+    public abstract class SearchTemplateData // : IEquatable<SearchTemplateData>
     {
 //        int member; // this is just an example member, replace it with your own struct members!
 //        
 //        #region Equals and GetHashCode implementation
 //        // The code in this region is useful if you want to use this structure in collections.
-//        // If you don't need it, you can just remove the region and the ": IEquatable<ScreenshotSquare>" declaration.
+//        // If you don't need it, you can just remove the region and the ": IEquatable<SearchTemplateStruct>" declaration.
 //        
 //        public override bool Equals(object obj)
 //        {
-//            if (obj is ScreenshotSquare)
-//                return Equals((ScreenshotSquare)obj); // use Equals method below
+//            if (obj is SearchTemplateStruct)
+//                return Equals((SearchTemplateStruct)obj); // use Equals method below
 //            else
 //                return false;
 //        }
 //        
-//        public bool Equals(ScreenshotSquare other)
+//        public bool Equals(SearchTemplateStruct other)
 //        {
 //            // add comparisions for all members here
 //            return this.member == other.member;
@@ -42,20 +42,15 @@ namespace UIAutomation
 //            return member.GetHashCode();
 //        }
 //        
-//        public static bool operator ==(ScreenshotSquare left, ScreenshotSquare right)
+//        public static bool operator ==(SearchTemplateStruct left, SearchTemplateStruct right)
 //        {
 //            return left.Equals(right);
 //        }
 //        
-//        public static bool operator !=(ScreenshotSquare left, ScreenshotSquare right)
+//        public static bool operator !=(SearchTemplateStruct left, SearchTemplateStruct right)
 //        {
 //            return !left.Equals(right);
 //        }
 //        #endregion
-        
-        public int Left { get; set; }
-        public int Top { get; set; }
-        public int Height { get; set; }
-        public int Width { get; set; }
     }
 }

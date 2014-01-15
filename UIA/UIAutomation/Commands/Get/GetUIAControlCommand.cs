@@ -79,7 +79,7 @@ namespace UIAutomation.Commands
                 Win32 = this.Win32,
                 // timeo
                 // wai
-            }
+            };
             
 //            returnCollection =
 //                controlSearch.GetElements(

@@ -52,5 +52,8 @@ namespace UIAutomation
 //            return !left.Equals(right);
 //        }
 //        #endregion
+
+        public string AutomationId { get; set; }
+        public string Class { get; set; }
     }
 }

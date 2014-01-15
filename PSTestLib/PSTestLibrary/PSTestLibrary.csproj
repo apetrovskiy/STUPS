@@ -163,6 +163,7 @@
     <Folder Include="Commands\C#" />
     <Folder Include="Helpers\Inheritance" />
     <Folder Include="Helpers\UnderlyingCode" />
+    <Folder Include="Helpers\UnderlyingCode\Interface" />
     <Folder Include="Helpers\UnderlyingCode\Types" />
     <Folder Include="Interfaces" />
     <Folder Include="Commands" />

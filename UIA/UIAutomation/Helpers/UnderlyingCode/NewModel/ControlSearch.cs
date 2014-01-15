@@ -12,6 +12,7 @@ namespace UIAutomation
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using PSTestLib;
     
     /// <summary>
     /// Description of ControlSearch.
@@ -20,7 +21,12 @@ namespace UIAutomation
     {
         public override string TimeoutExpirationInformation { get; set; }
         
-        public override void OnSleepAction()
+        public override void OnSleepHook()
+        {
+            
+        }
+        
+        public override void OnSuccessHook()
         {
             
         }

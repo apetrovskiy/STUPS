@@ -43,14 +43,14 @@ namespace UIAutomation.Commands
             
             try {
             
-            WriteVerbose(this, "Input parameters:");
-            WriteVerbose(this, "ProcessName = " + ProcessName);
-            WriteVerbose(this, "ProcessId = " + ProcessId);
-            WriteVerbose(this, "Name = " + Name);
-            WriteVerbose(this, "AutomationId = " + AutomationId);
-            WriteVerbose(this, "Class = " + Class);
-            WriteVerbose(this, "Recurse = " + Recurse.ToString());
-            WriteVerbose(this, "Timeout " + Timeout.ToString());
+//            WriteVerbose(this, "Input parameters:");
+//            WriteVerbose(this, "ProcessName = " + ProcessName);
+//            WriteVerbose(this, "ProcessId = " + ProcessId);
+//            WriteVerbose(this, "Name = " + Name);
+//            WriteVerbose(this, "AutomationId = " + AutomationId);
+//            WriteVerbose(this, "Class = " + Class);
+//            WriteVerbose(this, "Recurse = " + Recurse.ToString());
+//            WriteVerbose(this, "Timeout " + Timeout.ToString());
             
             List<IUiElement> returnedWindows = new List<IUiElement>();
             
@@ -91,6 +91,8 @@ namespace UIAutomation.Commands
             try {
                 // returnedWindows =
                 //     GetWindow(this, Win32, InputObject, ProcessName, ProcessId, Name, AutomationId, Class, TestMode);
+                
+                #region commented
 //            GetWindowCmdletBase cmdlet,
 //            bool win32,
 //            Process[] processes,
@@ -100,6 +102,7 @@ namespace UIAutomation.Commands
 //            string automationId,
 //            string className,
 //            bool testMode)
+                #endregion commented
                 
                 var windowSearch =
                     AutomationFactory.GetSearchImpl<WindowSearch>();
@@ -114,7 +117,6 @@ namespace UIAutomation.Commands
                     AutomationId = this.AutomationId,
                     Class = this.Class,
                     WithControl = this.WithControl,
-                    // OddRootElement = this.OddRootElement,
                     TestMode = this.TestMode,
                     SearchCriteria = this.SearchCriteria,
                     First = this.First,
@@ -122,23 +124,10 @@ namespace UIAutomation.Commands
                     WaitNoWindow = this.WaitNoWindow
                 };
                 
-//Console.WriteLine("before processing");
-//if (null == windowSearchData.OddRootElement) {
-//    Console.WriteLine("null == windowSearchData.OddRootElement");
-//} else {
-//    Console.WriteLine("null != windowSearchData.OddRootElement");
-//    if (null == windowSearchData.OddRootElement.Current) {
-//        Console.WriteLine("null == windowSearchData.OddRootElement.Current");
-//    } else {
-//        Console.WriteLine("null != windowSearchData.OddRootElement.Current");
-//        Console.WriteLine("root element = " + windowSearchData.OddRootElement.Current.Name);
-//        Console.WriteLine("root element = " + windowSearchData.OddRootElement.Current.AutomationId);
-//        Console.WriteLine("root element = " + windowSearchData.OddRootElement.Current.ClassName);
-//    }
-//}
-                
                 returnedWindows =
-                    windowSearch.GetElements(windowSearchData, Timeout);
+                    windowSearch.GetElements(
+                        windowSearchData,
+                        Timeout);
             }
             catch {}
             

@@ -17,6 +17,7 @@ namespace UIAutomation
     using System.Linq;
     using System.Management.Automation;
     using System.Text.RegularExpressions;
+    using PSTestLib;
     
     /// <summary>
     /// Description of WindowSeatch.
@@ -28,9 +29,39 @@ namespace UIAutomation
                         // cmdlet.ProcessName + ", title: " + cmdlet.Name
         internal bool wasFound = false;
         
-        public override void OnSleepAction()
+        public override void OnSleepHook()
         {
             
+        }
+        
+        public override void OnSuccessHook()
+        {
+            try {
+                
+                if (null != ResultCollection && (int)((IUiElement)ResultCollection[0]).Current.ProcessId > 0) {
+                    
+                    // cmdlet.WriteVerbose(cmdlet, "" + aeWndCollection.ToString());
+                    
+                    // cmdlet.WriteVerbose(cmdlet, 
+                    //                     "aeWnd.Current.GetType() = " +
+                    //                     ((IUiElement)aeWndCollection[0]).GetType().Name);
+                    
+                } // 20120127
+                
+                CurrentData.CurrentWindow = (IUiElement)ResultCollection[ResultCollection.Count -1];
+                
+            } catch (Exception eEvaluatingWindowAndWritingToPipeline) {
+                
+                // cmdlet.WriteVerbose(
+                //     cmdlet,
+                //     "exception: " +
+                //     eEvaluatingWindowAndWritingToPipeline.Message);
+                
+                // cmdlet.WriteVerbose(this, "<<<< ==  ==  writing/nullifying CurrentWindow  ==  == >>>>>");
+                    
+                CurrentData.CurrentWindow = null;
+                
+            }
         }
         
         public override void BeforeSearchHook()
@@ -171,50 +202,23 @@ namespace UIAutomation
                 
                 WindowSearchData data = searchData as WindowSearchData;
                 
-                
-//Console.WriteLine(data.Names = 
-                
                 // if (win32) {
                 if (data.Win32) {
                     
-//Console.WriteLine("Win32");
                     // cmdlet.WriteVerbose(cmdlet, "getting a window via Win32 API");
                     ResultCollection = GetWindowCollectionViaWin32(data.First, data.Recurse, data.Name, data.AutomationId, data.Class);
                     
                 } else if (null != data.InputObject && data.InputObject.Length > 0) {
                     
-//Console.WriteLine("Processes");
-//foreach (var p in data.InputObject) {
-//    Console.WriteLine(p.ProcessName);
-//}
-//Console.WriteLine("first = " + data.First.ToString());
-//Console.WriteLine("recurse = " + data.Recurse.ToString());
-////foreach (var n in data.Name) {
-////    Console.WriteLine(n);
-////}
-////Console.WriteLine("auId = " + data.AutomationId);
-////Console.WriteLine("class = " + data.Class);
-                    
                     // cmdlet.WriteVerbose(cmdlet, "getting a window by process");
                     ResultCollection = GetWindowCollectionFromProcess(data.InputObject, data.First, data.Recurse, data.Name, data.AutomationId, data.Class);
-
-//if (null == ResultCollection) {
-//    Console.WriteLine("null == ResultCollection");
-//} else {
-//    Console.WriteLine("null != ResultCollection");
-//    Console.WriteLine(ResultCollection.Count.ToString());
-//}
                     
                 } else if (null != data.ProcessIds && data.ProcessIds.Length > 0) {
-                    
-//Console.WriteLine("ProcessIds");
                     
                     // cmdlet.WriteVerbose(cmdlet, "getting a window by PID");
                     ResultCollection = GetWindowCollectionByPid(data.ProcessIds, data.First, data.Recurse, data.Name, data.AutomationId, data.Class);
 
                 } else if (null != data.ProcessNames && data.ProcessNames.Length > 0) {
-                    
-//Console.WriteLine("Process names");
                     
                     // cmdlet.WriteVerbose(cmdlet, "getting a window by name");
                     ResultCollection = GetWindowCollectionByProcessName(data.ProcessNames, data.First, data.Recurse, data.Name, data.AutomationId, data.Class);
@@ -222,14 +226,6 @@ namespace UIAutomation
                 } else if ((null != data.Name && data.Name.Length > 0) ||
                            !string.IsNullOrEmpty(data.AutomationId) ||
                            !string.IsNullOrEmpty(data.Class)) {
-                            
-//Console.WriteLine("Names");
-//foreach (string singleName in data.Names) {
-//    Console.WriteLine("name = " + singleName);
-//}
-//Console.WriteLine("AutomationId = " + data.AutomationId);
-//Console.WriteLine("Class = " + data.Class);
-//Console.WriteLine("Recurse = " + data.Recurse.ToString());
                     
                             // cmdlet.WriteVerbose(cmdlet, "getting a window by name, automationId, className");
                             ResultCollection = GetWindowCollectionByName(data.Name, data.AutomationId, data.Class, data.Recurse);
@@ -245,25 +241,6 @@ namespace UIAutomation
             
             return ResultCollection;
         }
-        
-        
-//        public void test()
-//        {
-//                // 20140110
-//                try {
-//
-//                    
-//
-//                    
-//                    CheckTimeout(cmdlet, ResultCollection, true);
-//                    
-//                    Thread.Sleep(Preferences.OnSleepDelay);
-//                }
-//                catch {}
-//        }
-        
-        
-        
         
         private List<IUiElement> GetWindowCollectionViaWin32(
             bool first,
@@ -300,9 +277,6 @@ namespace UIAutomation
             
             List<int> processIdList =
                 new List<int>();
-//try{
-//Console.WriteLine("processes.Count = " + processes.Count().ToString());
-//} catch {}
             
             foreach (Process process in processes) {
                 
@@ -319,13 +293,6 @@ namespace UIAutomation
                 // if (null == processIds) {
                 //     WriteVerbose(this, "!!!!!!!!!!!!!!!!!!!! null == processIds !!!!!!!!!");
                 // }
-                
-
-//Console.WriteLine("ids.count = " + processIds.Count().ToString());
-//foreach (int id in processIds) {
-//    Console.WriteLine(id.ToString());
-//}
-
                 
                 tempCollection = GetWindowCollectionByPid(processIds, first, recurse, name, automationId, className);
 
@@ -385,19 +352,6 @@ namespace UIAutomation
                 }
                 // WriteVerbose(this, "trying to get window: by title = " +
                 //              windowTitle);
-                
-                
-//if (null == (SearchData as WindowSearchData)) {
-//    Console.WriteLine("null == (SearchData as WindowSearchData)");
-//} else {
-//    Console.WriteLine("null != (SearchData as WindowSearchData)");
-//    if (null == (SearchData as WindowSearchData).OddRootElement) {
-//        Console.WriteLine("null == (SearchData as WindowSearchData).OddRootElement");
-//    } else {
-//        Console.WriteLine("null != (SearchData as WindowSearchData).OddRootElement");
-//    }
-//}
-
                 
                 IUiEltCollection windowCollection =
                     // (SearchData as WindowSearchData).OddRootElement.FindAll(recurse ? TreeScope.Descendants : TreeScope.Children, conditionsSet);

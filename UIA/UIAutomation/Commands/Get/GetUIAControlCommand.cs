@@ -46,6 +46,46 @@ namespace UIAutomation.Commands
             List<IUiElement> returnCollection =
                 GetControl(this);
             
+            /*
+            GetControlCmdletBase cmdlet
+            cmdlet.ControlType
+            cmdlet.ContainsText
+            cmdlet.Regex
+            cmdlet.CaseSensitive
+            cmdlet.InputObject
+            cmdlet.Win32
+            cmdlet.Name,
+            cmdlet.AutomationId,
+            cmdlet.Class,
+            cmdlet.Value,
+            cmdlet.Timeout
+            cmdlet.Wait
+            */
+            
+            var controlSearch =
+                AutomationFactory.GetSearchImpl<ControlSearch>();
+            
+            var controlSearchData =
+                new ControlSearchData {
+                InputObject = this.InputObject,
+                ContainsText = this.ContainsText,
+                Name = this.Name,
+                AutomationId = this.AutomationId,
+                Class = this.Class,
+                Value = this.Value,
+                ControlType = this.ControlType,
+                Regex = this.Regex,
+                CaseSensitive = this.CaseSensitive,
+                Win32 = this.Win32,
+                // timeo
+                // wai
+            }
+            
+//            returnCollection =
+//                controlSearch.GetElements(
+//                    controlSearchData,
+//                    Timeout);
+            
             if (null != returnCollection && 0 < returnCollection.Count) {
 
                 WriteObject(this, returnCollection);

@@ -27,10 +27,12 @@ namespace UIAutomation
     /// </summary>
     public class HasTimeoutCmdletBase : HasControlInputCmdletBase
     {
+        #region commented
 //        // http://pinvoke.net/default.aspx/user32.FindWindow
 //        [DllImport("user32.dll", EntryPoint="FindWindow", SetLastError = true)]
 //        private static extern IntPtr FindWindowByCaption(IntPtr zeroOnly, string lpWindowName);
 //        // You can also call FindWindow(default(string), lpWindowName) or FindWindow((string)null, lpWindowName)
+        #endregion commented
         
         #region Constructor
         public HasTimeoutCmdletBase()
@@ -79,6 +81,7 @@ namespace UIAutomation
             Wait = false;
         }
         
+        #region commented
 //        internal List<IUiElement> GetWindow(
 //            GetWindowCmdletBase cmdlet,
 //            bool win32,
@@ -328,7 +331,9 @@ namespace UIAutomation
 //            
 //            return aeWndCollection;
 //        }
+        #endregion commented
         
+        #region commented
 //        private List<IUiElement> GetWindowCollectionByProcessName(
 //            IEnumerable<string> processNames,
 //            bool first,
@@ -642,7 +647,9 @@ namespace UIAutomation
 //            // return aeWndCollectionByProcessId;
 //            return elementsByProcessId;
 //        }
+        #endregion commented
         
+        #region commented
 //        private List<IUiElement> GetWindowCollectionViaWin32(
 //            bool first,
 //            bool recurse,
@@ -661,7 +668,9 @@ namespace UIAutomation
 //            
 ////            }
 //        }
+        #endregion commented
         
+        #region commented
 //        private List<IUiElement> GetWindowCollectionFromProcess(
 //            IEnumerable<Process> processes,
 //            bool first,
@@ -838,6 +847,7 @@ namespace UIAutomation
 //            
 //            return resultCollection;
 //        }
+        #endregion commented
         
         private void CheckTimeout(GetWindowCmdletBase cmdlet,
                                   ICollection aeWindowList,
@@ -887,6 +897,7 @@ namespace UIAutomation
             }
         }
         
+        #region commented
 //        internal static List<IUiElement> ReturnOnlyRightElements(
 //            HasTimeoutCmdletBase cmdlet,
 //            IEnumerable inputCollection,
@@ -1058,7 +1069,9 @@ namespace UIAutomation
 //            
 //            return resultCollection;
 //        }
+        #endregion commented
         
+        #region commented
 //        /// <summary>
 //        /// Checks that the -Value parameter matches the value ValuePattern of the element returns
 //        /// </summary>
@@ -1094,5 +1107,6 @@ namespace UIAutomation
 //            result = viaWildcardOrRegex ? wildcardValue.IsMatch(realValue) : Regex.IsMatch(realValue, textValue, regexOptions);
 //            return result;
 //        }
+        #endregion commented
     }
 }

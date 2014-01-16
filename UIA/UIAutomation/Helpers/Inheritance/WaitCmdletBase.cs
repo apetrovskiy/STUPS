@@ -7,16 +7,12 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-using System;
-
 namespace UIAutomation
 {
-    //using System;
+    using System;
     using System.Management.Automation;
-    //using System.Windows.Automation;
-    
     using System.Linq;
-
+    
     /// <summary>
     /// Description of WaitCmdletBase.
     /// </summary>

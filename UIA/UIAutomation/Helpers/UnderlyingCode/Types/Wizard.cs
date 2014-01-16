@@ -137,9 +137,27 @@ namespace UIAutomation
 	        	List<IUiElement> controlsList = new List<IUiElement>();
 	        	
 	        	try {
-
+                    // 20140116
+	        		// controlsList =
+	        		// 	cmdletCtrl.GetControl(cmdletCtrl);
+	        		
+	        		var controlSearch =
+	        		    AutomationFactory.GetSearchImpl<ControlSearch>();
+	        		
 	        		controlsList =
-	        			cmdletCtrl.GetControl(cmdletCtrl);
+	        		    controlSearch.GetElements(
+	        		        new ControlSearchData {
+	        		            InputObject = cmdletCtrl.InputObject,
+	        		            ContainsText = cmdletCtrl.ContainsText,
+	        		            Name = cmdletCtrl.Name,
+	        		            AutomationId = cmdletCtrl.AutomationId,
+	        		            Class = cmdletCtrl.Class,
+	        		            Value = cmdletCtrl.Value,
+	        		            ControlType = cmdletCtrl.ControlType,
+	        		            SearchCriteria = cmdletCtrl.SearchCriteria,
+	        		            Win32 = cmdletCtrl.Win32
+	        		        },
+	        		        cmdletCtrl.Timeout);
 	        		
 	        	}
 	        	catch {}

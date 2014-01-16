@@ -13,7 +13,6 @@ namespace UIAutomation.Commands
     using System;
     using System.Management.Automation;
     using System.Windows.Automation;
-    //using System.Xml.Serialization.Configuration;
 
     /// <summary>
     /// Description of GetUiaTreeItemCheckedStateCommand.

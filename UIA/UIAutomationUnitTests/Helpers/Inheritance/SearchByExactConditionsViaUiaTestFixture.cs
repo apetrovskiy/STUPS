@@ -59,7 +59,15 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 FakeFactory.Get_GetControlCmdletBase(controlTypes, name, automationId, className, txtValue);
             
             Condition condition =
-                cmdlet.GetExactSearchCondition(cmdlet);
+                // cmdlet.GetExactSearchCondition(cmdlet);
+                ControlSearch.GetExactSearchCondition(
+                    new ControlSearchData {
+                        ControlType = FakeFactory.ConvertControlTypeToStringArray(controlTypes),
+                        Name = name,
+                        AutomationId = automationId,
+                        Class = className,
+                        Value = txtValue
+                    });
             
             IUiElement element =
                 FakeFactory.GetElement_ForFindAll(

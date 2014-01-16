@@ -9,7 +9,6 @@
 
 namespace UIAutomation
 {
-    //using System;
     using System.Management.Automation;
     
     /// <summary>
@@ -17,10 +16,6 @@ namespace UIAutomation
     /// </summary>
     public class RdpCmdletBase : CommonCmdletBase
     {
-        public RdpCmdletBase()
-        {
-        }
-        
         #region Parameters
 #region file
 //screen mode id:i:1

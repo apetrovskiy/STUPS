@@ -58,12 +58,28 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             switch (selector) {
                 case UIAutomationUnitTests.Helpers.Inheritance.UsualWildcardRegex.Wildcard:
                     condition =
-                        cmdlet.GetWildcardSearchCondition(cmdlet);
+                        // cmdlet.GetWildcardSearchCondition(cmdlet);
+                        ControlSearch.GetWildcardSearchCondition(
+                            new ControlSearchData {
+                                ControlType = FakeFactory.ConvertControlTypeToStringArray(controlTypes),
+                                Name = name,
+                                AutomationId = automationId,
+                                Class = className,
+                                Value = txtValue
+                            });
                     useWildcardOrRegex = true;
                     break;
                 case UIAutomationUnitTests.Helpers.Inheritance.UsualWildcardRegex.Regex:
                     condition =
-                        cmdlet.GetWildcardSearchCondition(cmdlet);
+                        // cmdlet.GetWildcardSearchCondition(cmdlet);
+                        ControlSearch.GetWildcardSearchCondition(
+                            new ControlSearchData {
+                                ControlType = FakeFactory.ConvertControlTypeToStringArray(controlTypes),
+                                Name = name,
+                                AutomationId = automationId,
+                                Class = className,
+                                Value = txtValue
+                            });
                     useWildcardOrRegex = false;
                     break;
             }

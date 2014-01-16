@@ -16,9 +16,7 @@ namespace UIAutomation
 	using Ninject;
 	using System.Windows;
 	using System.Linq;
-
-	// using TMX.Commands;
-
+    
 	/// <summary>
 	/// Description of UiElement.
 	/// </summary>

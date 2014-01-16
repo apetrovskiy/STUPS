@@ -15,6 +15,7 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
     using System.Collections;
     using System.Collections.Generic;
+    using PSTestLib;
 
     /// <summary>
     /// Description of InvokeUiaWizardCommand.
@@ -43,7 +44,11 @@ namespace UIAutomation.Commands
                     this.ParametersDictionaries.Add(dictParameters);
                 }
                 */
-                foreach (Dictionary<string, object> dictParameters in Parameters.Select(ConvertHashtableToDictionary))
+//                foreach (Dictionary<string, object> dictParameters in Parameters.Select(ConvertHashtableToDictionary))
+//                {
+//                    ParametersDictionaries.Add(dictParameters);
+//                }
+                foreach (Dictionary<string, object> dictParameters in Parameters.Select(x => x.ConvertHashtableToDictionary()))
                 {
                     ParametersDictionaries.Add(dictParameters);
                 }
@@ -78,7 +83,11 @@ namespace UIAutomation.Commands
                     this.DirectionsDictionaries.Add(dictDirections);
                 }
                 */
-                foreach (Dictionary<string, object> dictDirections in Directions.Select(ConvertHashtableToDictionary))
+//                foreach (Dictionary<string, object> dictDirections in Directions.Select(ConvertHashtableToDictionary))
+//                {
+//                    DirectionsDictionaries.Add(dictDirections);
+//                }
+                foreach (Dictionary<string, object> dictDirections in Directions.Select(x => x.ConvertHashtableToDictionary()))
                 {
                     DirectionsDictionaries.Add(dictDirections);
                 }

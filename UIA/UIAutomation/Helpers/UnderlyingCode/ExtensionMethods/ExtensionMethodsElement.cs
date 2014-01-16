@@ -394,16 +394,16 @@ namespace UIAutomation
         
         internal static List<IUiElement> GetControlByNameViaWin32(
             this IUiElement containerElement,
-            GetControlCmdletBase cmdlet,
+            // GetControlCmdletBase cmdlet,
             string controlTitle,
             string controlValue)
         {
             List<IUiElement> resultCollection = new List<IUiElement>();
             
-            cmdlet.WriteVerbose(cmdlet, "checking the container control");
+            // cmdlet.WriteVerbose(cmdlet, "checking the container control");
 
             if (null == containerElement) { return resultCollection; }
-            cmdlet.WriteVerbose(cmdlet, "checking the Name parameter");
+            // cmdlet.WriteVerbose(cmdlet, "checking the Name parameter");
             
             // ??
             // controlTitle = string.IsNullOrEmpty(controlTitle) ? "*" : controlTitle;
@@ -426,17 +426,17 @@ namespace UIAutomation
                     new WildcardPattern(controlValue, options);
                 
                 if (null == handlesCollection || 0 == handlesCollection.Count) return resultCollection;
-                cmdlet.WriteVerbose(cmdlet, "handles.Count = " + handlesCollection.Count.ToString());
+                // cmdlet.WriteVerbose(cmdlet, "handles.Count = " + handlesCollection.Count.ToString());
                 
                 foreach (IntPtr controlHandle in handlesCollection) {
                     try {
-                        cmdlet.WriteVerbose(cmdlet, "checking a handle");
+                        // cmdlet.WriteVerbose(cmdlet, "checking a handle");
                         if (IntPtr.Zero == controlHandle) continue;
-                        cmdlet.WriteVerbose(cmdlet, "the handle is not null");
+                        // cmdlet.WriteVerbose(cmdlet, "the handle is not null");
                         
                         IUiElement tempElement =
                             UiElement.FromHandle(controlHandle);
-                        cmdlet.WriteVerbose(cmdlet, "adding the handle to the collection");
+                        // cmdlet.WriteVerbose(cmdlet, "adding the handle to the collection");
                         
                         if (tempElement.IsMatchWildcardPattern(resultCollection, wildcardName, tempElement.Current.Name)) continue;
                         if (tempElement.IsMatchWildcardPattern(resultCollection, wildcardName, tempElement.Current.AutomationId)) continue;
@@ -451,13 +451,13 @@ namespace UIAutomation
                         }
                     }
                     catch (Exception eGetAutomationElementFromHandle) {
-                        cmdlet.WriteVerbose(cmdlet, eGetAutomationElementFromHandle.Message);
+                        // cmdlet.WriteVerbose(cmdlet, eGetAutomationElementFromHandle.Message);
                     }
                 }
                 return resultCollection;
             } catch (Exception eWin32Control) {
-                cmdlet.WriteVerbose(cmdlet, "UiaHelper.GetControlByName() failed");
-                cmdlet.WriteVerbose(cmdlet, eWin32Control.Message);
+                // cmdlet.WriteVerbose(cmdlet, "UiaHelper.GetControlByName() failed");
+                // cmdlet.WriteVerbose(cmdlet, eWin32Control.Message);
                 return resultCollection;
             }
         }

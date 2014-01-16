@@ -9,7 +9,6 @@
 
 namespace UIAutomation
 {
-    //using System;
     using System.Management.Automation;
     using System.Diagnostics;
     using System.Collections;
@@ -23,16 +22,8 @@ namespace UIAutomation
         public GetWindowCmdletBase()
         {
             Class = string.Empty;
-            //this.Name = string.Empty;
-            //this.ControlType = string.Empty;
             AutomationId = string.Empty;
-            
-            // 20130222
-            //this.Recurse = true;
-            // 20130223
             Recurse = false;
-            
-            // 20130224
             UseNameAuIdClass = true;
         }
         #endregion Constructor

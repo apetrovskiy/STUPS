@@ -127,6 +127,7 @@
     <Compile Include="Commands\C#\NewPSClassCommand.cs" />
     <Compile Include="Commands\C#\NewPSEnumCommand.cs" />
     <Compile Include="Helpers\Inheritance\PSCmdletBase.cs" />
+    <Compile Include="Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethods.cs" />
     <Compile Include="Helpers\UnderlyingCode\Types\UnitTestOutput.cs" />
     <Compile Include="Helpers\UnderlyingCode\Util.cs" />
     <Compile Include="Interfaces\Commands\PSTestLibCommand.cs" />
@@ -164,6 +165,8 @@
     <Folder Include="Helpers\Inheritance" />
     <Folder Include="Helpers\UnderlyingCode" />
     <Folder Include="Helpers\UnderlyingCode\Interface" />
+    <Folder Include="Helpers\UnderlyingCode\Interface" />
+    <Folder Include="Helpers\UnderlyingCode\ExtensionMethods" />
     <Folder Include="Helpers\UnderlyingCode\Types" />
     <Folder Include="Interfaces" />
     <Folder Include="Commands" />

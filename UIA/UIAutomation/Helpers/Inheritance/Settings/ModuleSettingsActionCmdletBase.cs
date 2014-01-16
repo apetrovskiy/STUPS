@@ -9,7 +9,6 @@
 
 namespace UIAutomation
 {
-    //using System;
     using System.Management.Automation;
     
     /// <summary>
@@ -17,9 +16,9 @@ namespace UIAutomation
     /// </summary>
     public class ModuleSettingsActionCmdletBase : ModuleSettingsCmdletBase
     {
-        public ModuleSettingsActionCmdletBase()
-        {
-        }
+//        public ModuleSettingsActionCmdletBase()
+//        {
+//        }
         
         #region Parameters
         [Parameter(Mandatory=false)]

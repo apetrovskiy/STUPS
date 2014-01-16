@@ -696,46 +696,46 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
         }
         #endregion utilities
         
-        // 20130318
-        //protected System.Collections.Generic.Dictionary<string, string> ConvertHashtableToDictionary(
-        protected System.Collections.Generic.Dictionary<string, object> ConvertHashtableToDictionary(
-            Hashtable hashtable)
-        {
-            // 20130318
-            //System.Collections.Generic.Dictionary<string, string> dict = 
-            //    new System.Collections.Generic.Dictionary<string, string>();
-            System.Collections.Generic.Dictionary<string, object> dict =
-                new System.Collections.Generic.Dictionary<string, object>();
-            
-            this.WriteVerbose(this, hashtable.Keys.Count.ToString());
-            
-            foreach (string key1 in hashtable.Keys) {
-                
-                string keyUpper = key1.ToUpper();
-
-                this.WriteVerbose(this, "found key: " + keyUpper);
-                
-                // 20130318
-                //dict.Add(keyUpper, hashtable[key1].ToString());
-                // 20130506
-                //dict.Add(keyUpper, hashtable[key1]);
-                var rawData = hashtable[key1];
-                dict.Add(keyUpper, rawData);
-                
-                this.WriteVerbose(
-                    this,
-                    "added to the dictionary: " +
-                    keyUpper +
-                    " = " +
-                    dict[keyUpper].ToString());
-            }
-            
-//            foreach (string key2 in hashtable.Keys.Cast<string>().ToList().Any<string>(k => dict.Add(k.ToUpper(), hashtable[k.ToUpper()]))) {
+//        // 20130318
+//        //protected System.Collections.Generic.Dictionary<string, string> ConvertHashtableToDictionary(
+//        protected System.Collections.Generic.Dictionary<string, object> ConvertHashtableToDictionary(
+//            Hashtable hashtable)
+//        {
+//            // 20130318
+//            //System.Collections.Generic.Dictionary<string, string> dict = 
+//            //    new System.Collections.Generic.Dictionary<string, string>();
+//            System.Collections.Generic.Dictionary<string, object> dict =
+//                new System.Collections.Generic.Dictionary<string, object>();
+//            
+//            this.WriteVerbose(this, hashtable.Keys.Count.ToString());
+//            
+//            foreach (string key1 in hashtable.Keys) {
 //                
+//                string keyUpper = key1.ToUpper();
+//
+//                this.WriteVerbose(this, "found key: " + keyUpper);
+//                
+//                // 20130318
+//                //dict.Add(keyUpper, hashtable[key1].ToString());
+//                // 20130506
+//                //dict.Add(keyUpper, hashtable[key1]);
+//                var rawData = hashtable[key1];
+//                dict.Add(keyUpper, rawData);
+//                
+//                this.WriteVerbose(
+//                    this,
+//                    "added to the dictionary: " +
+//                    keyUpper +
+//                    " = " +
+//                    dict[keyUpper].ToString());
 //            }
-            
-            return dict;
-        }
+//            
+////            foreach (string key2 in hashtable.Keys.Cast<string>().ToList().Any<string>(k => dict.Add(k.ToUpper(), hashtable[k.ToUpper()]))) {
+////                
+////            }
+//            
+//            return dict;
+//        }
         
         protected internal void runTwoScriptBlockCollections(
             ScriptBlock[] scriptblocksSet1,

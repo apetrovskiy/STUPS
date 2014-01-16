@@ -38,7 +38,16 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 new UIAutomation.GetControlCmdletBase();
             
             Condition condition =
-                cmdlet.GetWildcardSearchCondition(cmdlet);
+                // cmdlet.GetWildcardSearchCondition(cmdlet);
+                ControlSearch.GetWildcardSearchCondition(
+                    new ControlSearchData {
+                        // completely new
+                        Name = cmdlet.Name,
+                        AutomationId = cmdlet.AutomationId,
+                        Class = cmdlet.Class,
+                        Value = cmdlet.Value,
+                        ControlType = cmdlet.ControlType
+                    });
             conditions = ((AndCondition)condition).GetConditions();
             foreach (Condition cond in conditions) {
                 if ((cond as PropertyCondition) != null) {

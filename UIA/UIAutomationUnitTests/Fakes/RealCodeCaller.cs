@@ -47,13 +47,17 @@ namespace UIAutomationUnitTests
             GetControlCollectionCmdletBase cmdletDerived = new GetControlCollectionCmdletBase();
             
             List<IUiElement> resultList =
-                cmdletDerived.SearchByWildcardOrRegexViaUia(
-                    cmdlet,
+                // cmdletDerived.SearchByWildcardOrRegexViaUia(
+                ControlSearch.SearchByWildcardOrRegexViaUia(
+                    // cmdlet,
                     element,
+                    cmdlet.InputObject,
                     cmdlet.Name,
                     cmdlet.AutomationId,
                     cmdlet.Class,
                     cmdlet.Value,
+                    cmdlet.SearchCriteria,
+                    cmdlet.ControlType,
                     condition,
                     true);
             
@@ -63,14 +67,20 @@ namespace UIAutomationUnitTests
         public static List<IUiElement> GetResultList_ExactSearch(GetControlCmdletBase cmdlet, IUiElement element, Condition conditions)
         {
             cmdlet.ResultListOfControls =
-                cmdlet.SearchByExactConditionsViaUia(cmdlet, element, conditions);
+                // cmdlet.SearchByExactConditionsViaUia(cmdlet, element, conditions);
+                // ControlSearch.SearchByWildcardOrRegexViaUia(cmdlet, element, conditions);
+                ControlSearch.SearchByExactConditionsViaUia(
+                    element,
+                    cmdlet.SearchCriteria,
+                    conditions);
             return cmdlet.ResultListOfControls;
         }
         
         public static List<IUiElement> GetResultList_TextSearch(GetControlCmdletBase cmdlet, IUiElement element, Condition conditions)
         {
             cmdlet.ResultListOfControls =
-                cmdlet.SearchByContainsTextViaUia(cmdlet, element, conditions);
+                // cmdlet.SearchByContainsTextViaUia(cmdlet, element, conditions);
+                ControlSearch.SearchByContainsTextViaUia(element, conditions);
             return cmdlet.ResultListOfControls;
         }
         

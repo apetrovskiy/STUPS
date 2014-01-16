@@ -9,15 +9,13 @@
 
 namespace UIAutomation
 {
-    //using System;
-    
     /// <summary>
     /// Description of ModuleSettingsCmdletBase.
     /// </summary>
     public class ModuleSettingsCmdletBase : CommonCmdletBase
     {
-        public ModuleSettingsCmdletBase()
-        {
-        }
+//        public ModuleSettingsCmdletBase()
+//        {
+//        }
     }
 }

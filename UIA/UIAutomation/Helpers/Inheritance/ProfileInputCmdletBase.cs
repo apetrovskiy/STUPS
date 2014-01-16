@@ -9,19 +9,13 @@
  
 namespace UIAutomation
 {
-    //using System;
     using System.Management.Automation;
-    //using System.Management.Automation.Runspaces;
     
     /// <summary>
     /// Description of ProfileInputCmdletBase.
     /// </summary>
     public class ProfileInputCmdletBase : ProfileCmdletBase
     {
-        public ProfileInputCmdletBase()
-        {
-        }
-        
         #region Parameters
         [Parameter(Mandatory = true,
                    ParameterSetName = "Input",

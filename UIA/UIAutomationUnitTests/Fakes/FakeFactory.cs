@@ -507,6 +507,18 @@ namespace UIAutomationUnitTests
             
             return element;
         }
+        
+        public static string[] ConvertControlTypeToStringArray(ControlType[] controlTypes)
+        {
+            List<string> resultCollection = new List<string>();
+            
+            foreach (ControlType controlType in controlTypes) {
+                resultCollection.Add(
+                    controlType.ProgrammaticName.Substring(29).Replace("Property", string.Empty));
+            }
+            
+            return resultCollection.ToArray();
+        }
     }
     
     public class FakeSourcePattern

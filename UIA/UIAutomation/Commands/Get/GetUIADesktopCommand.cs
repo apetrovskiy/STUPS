@@ -17,18 +17,14 @@ namespace UIAutomation.Commands
     /// Description of GetUiaDesktopCommand.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaDesktop")]
-    [OutputType(typeof(object))]
+    [OutputType(typeof(UIAutomation.IUiElement[]))] // [OutputType(typeof(object))]
     public class GetUiaDesktopCommand : GetCmdletBase
     {
         protected override void BeginProcessing()
         {
-            // 20131109
-            //UIAutomation.CurrentData.CurrentWindow = 
-            //    AutomationElement.RootElement;
             CurrentData.CurrentWindow =
                 UiElement.RootElement;
-            // 20131109
-            //this.WriteObject(this, AutomationElement.RootElement);
+            
             WriteObject(this, UiElement.RootElement);
         }
     }

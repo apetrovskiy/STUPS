@@ -33,18 +33,13 @@
                                             IntPtr.Zero, ref prompt, dwFlags,
                                             ref plainTextBlob);
  */
-//using System;
-//using System.Text;
-//using System.Runtime.InteropServices;
 
 //namespace DataProtection
-
-using System.Collections.Generic;
 
 namespace UIAutomation
 {
     using System;
-    //using System.Text;
+    using System.Collections.Generic;
     using System.Runtime.InteropServices;
 
     public class DataProtector

@@ -7,15 +7,11 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-using System.Linq;
-
 namespace UIAutomation
 {
-    //using System;
-    //using System.Collections;
     using System.Collections.Generic;
-    //using System.Management.Automation;
-
+    using System.Linq;
+    
     /// <summary>
     /// Description of WizardCollection.
     /// </summary>

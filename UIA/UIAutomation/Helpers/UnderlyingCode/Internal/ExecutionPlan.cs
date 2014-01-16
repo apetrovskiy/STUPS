@@ -11,7 +11,6 @@ namespace UIAutomation
 {
 	using System;
 	using System.Collections.Generic;
-	//using System.Windows.Automation;
 	using System.Drawing;
 	
 	/// <summary>

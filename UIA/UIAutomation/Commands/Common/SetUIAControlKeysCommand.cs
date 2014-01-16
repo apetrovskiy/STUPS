@@ -14,10 +14,6 @@ namespace UIAutomation.Commands
     using System;
     using System.Management.Automation;
     
-    // 20120823
-    //using System.Windows.Automation;
-    
-    
     /// <summary>
     /// Description of SetUiaControlKeysCommand.
     /// </summary>

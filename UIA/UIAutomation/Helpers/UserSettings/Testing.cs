@@ -9,8 +9,6 @@
 
 namespace UIAutomation
 {
-    //using System;
-    
     /// <summary>
     /// Description of Testing.
     /// </summary>

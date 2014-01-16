@@ -13,7 +13,6 @@ namespace UIAutomation
 {
     using System;
     using System.Management.Automation;
-    //using System.Windows.Automation;
     using System.Collections;
     using System.Collections.Generic;
 
@@ -25,16 +24,8 @@ namespace UIAutomation
         public WizardRunCmdletBase()
         {
             Timeout = Preferences.Timeout;
-            // 20130322
-            //this.Automatic = false;
-            // 20130322
-            //this.ForwardDirection = true;
-            
-            // 20130318
             ParametersDictionaries =
                 new List<Dictionary<string, object>>();
-            
-            // 20130322
             DirectionsDictionaries =
                 new List<Dictionary<string, object>>();
         }

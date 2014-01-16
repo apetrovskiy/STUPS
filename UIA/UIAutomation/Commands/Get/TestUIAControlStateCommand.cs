@@ -17,8 +17,6 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of TestUiaControlStateCommand.
     /// </summary>
-    // 20130130
-    //[Cmdlet(VerbsDiagnostic.Test, "UiaControlState")]
     [Cmdlet(VerbsDiagnostic.Test, "UiaControlState", DefaultParameterSetName = "Search")]
     [OutputType(new[] { typeof(object) })]
     public class TestUiaControlStateCommand : GetControlStateCmdletBase

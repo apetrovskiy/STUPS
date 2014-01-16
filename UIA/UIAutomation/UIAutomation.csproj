@@ -270,7 +270,6 @@
     <Compile Include="Commands\UltraGrid\GetUIAifUltraGridRowCommand.cs" />
     <Compile Include="Commands\UltraGrid\GetUIAifUltraGridSelectionCommand.cs" />
     <Compile Include="Commands\UltraGrid\InvokeUIAifULtraGridSelectItemByNameCommand.cs" />
-    <Compile Include="Commands\UsingStatements.cs" />
     <Compile Include="Commands\Wait\WaitUIAControlIsEnabledCommand.cs" />
     <Compile Include="Commands\Wait\WaitUIAControlIsVisibleCommand.cs" />
     <Compile Include="Commands\Wait\WaitUIAControlStateCommand.cs" />

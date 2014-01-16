@@ -9,9 +9,7 @@
 
 namespace UIAutomation
 {
-    //using System;
     using System.Management.Automation;
-    //using System.Windows.Automation;
     using System.Collections;
 
     /// <summary>
@@ -19,9 +17,9 @@ namespace UIAutomation
     /// </summary>
     public class GetControlStateCmdletBase : GetControlCmdletBase
     {
-        public GetControlStateCmdletBase()
-        {
-        }
+//        public GetControlStateCmdletBase()
+//        {
+//        }
         
         #region Parameters
         [Parameter(Mandatory = false)]

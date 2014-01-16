@@ -746,7 +746,23 @@ namespace UIAutomation
                     scope == TreeScope.Descendants) {
                     WriteVerbose(this, "selected TreeScope." + scope.ToString());
                     
-                    Condition conditions = GetWildcardSearchCondition(this);
+                    // Condition conditions = GetWildcardSearchCondition(this);
+                    Condition conditions =
+                        ControlSearch.GetWildcardSearchCondition(
+                            new ControlSearchData {
+                                InputObject = this.InputObject,
+                                ContainsText = this.ContainsText,
+                                Name = this.Name,
+                                AutomationId = this.AutomationId,
+                                Class = this.Class,
+                                Value = this.Value,
+                                ControlType = this.ControlType,
+                                SearchCriteria = this.SearchCriteria,
+                                Win32 = this.Win32,
+                                CaseSensitive = this.CaseSensitive,
+                                Regex = this.Regex
+                            });
+                    
                     IUiEltCollection temporaryResults = null;
                     if (conditions != null)
                     {

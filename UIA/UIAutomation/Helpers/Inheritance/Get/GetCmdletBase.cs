@@ -9,25 +9,15 @@
 
 namespace UIAutomation
 {
-    //using System;
     using System.Management.Automation;
-//    using System.Windows.Automation;
     using System.Collections;
     using System.Collections.Generic;
-//    using System.Linq;
-//    using System.Linq.Expressions;
-
+    
     /// <summary>
     /// Description of GetCmdletBase.
     /// </summary>
     public class GetCmdletBase : HasTimeoutCmdletBase
     {
-        #region Constructor
-        public GetCmdletBase()
-        {
-        }
-        #endregion Constructor
-        
         #region Parameters
         [Parameter(Mandatory = false)]
         internal new SwitchParameter PassThru { get; set; }

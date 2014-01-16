@@ -11,15 +11,13 @@ namespace UIAutomation.Commands
 {
     using System;
     using System.Management.Automation;
-    // using System.Collections;
     using System.Collections.Generic;
-
+    
     /// <summary>
     /// Description of GetUiaWindow.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaWindow", DefaultParameterSetName = "UIA")]
-    [OutputType(typeof(object))]
-    
+    [OutputType(typeof(UIAutomation.IUiElement[]))] // [OutputType(typeof(object))]
     public class GetUiaWindowCommand : GetWindowCmdletBase
     {
         #region Parameters
@@ -42,15 +40,6 @@ namespace UIAutomation.Commands
             CheckCmdletParameters();
             
             try {
-            
-//            WriteVerbose(this, "Input parameters:");
-//            WriteVerbose(this, "ProcessName = " + ProcessName);
-//            WriteVerbose(this, "ProcessId = " + ProcessId);
-//            WriteVerbose(this, "Name = " + Name);
-//            WriteVerbose(this, "AutomationId = " + AutomationId);
-//            WriteVerbose(this, "Class = " + Class);
-//            WriteVerbose(this, "Recurse = " + Recurse.ToString());
-//            WriteVerbose(this, "Timeout " + Timeout.ToString());
             
             List<IUiElement> returnedWindows = new List<IUiElement>();
             
@@ -87,22 +76,7 @@ namespace UIAutomation.Commands
                 
             } // describe
             
-            // 20140110
             try {
-                // returnedWindows =
-                //     GetWindow(this, Win32, InputObject, ProcessName, ProcessId, Name, AutomationId, Class, TestMode);
-                
-                #region commented
-//            GetWindowCmdletBase cmdlet,
-//            bool win32,
-//            Process[] processes,
-//            string[] processNames,
-//            int[] processIds,
-//            string[] windowNames,
-//            string automationId,
-//            string className,
-//            bool testMode)
-                #endregion commented
                 
                 var windowSearch =
                     AutomationFactory.GetSearchImpl<WindowSearch>();
@@ -131,7 +105,6 @@ namespace UIAutomation.Commands
             }
             catch {}
             
-            // 20140110
             try {
                 if (null != returnedWindows && returnedWindows.Count > 0) {
                     
@@ -185,8 +158,6 @@ namespace UIAutomation.Commands
                             this,
                             "Failed to get window in " + 
                             Timeout.ToString() +
-                            // 20140110
-                            // " seconds by:" +
                             " milliseconds by:" +
                             " process name: '" +
                             procName +
@@ -231,14 +202,6 @@ namespace UIAutomation.Commands
             }
         }
         
-//        protected override void StopProcessing()
-//        {
-//            // 20120620
-//            WriteVerbose(this, "User interrupted");
-//            this.Wait = false;
-//        }
-
-        // 20131019
         protected override void StopProcessing()
         {
             WriteVerbose(this, "User interrupted");

@@ -9,16 +9,10 @@
 
 namespace UIAutomation
 {
-    //using System;
-    //using System.Windows.Automation;
-    
     /// <summary>
     /// Description of CacheRequestCmdletBase.
     /// </summary>
     public class CacheRequestCmdletBase : HasScriptBlockCmdletBase
     {
-        public CacheRequestCmdletBase()
-        {
-        }
     }
 }

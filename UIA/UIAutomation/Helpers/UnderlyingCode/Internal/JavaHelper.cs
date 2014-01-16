@@ -9,9 +9,7 @@
 
 namespace UIAutomation
 {
-    //using System;
     using System.Runtime.InteropServices;
-    //using 
     
     /// <summary>
     /// Description of JavaHelper.

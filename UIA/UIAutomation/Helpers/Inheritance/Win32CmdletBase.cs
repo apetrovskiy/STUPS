@@ -9,7 +9,6 @@
 
 namespace UIAutomation
 {
-    //using System;
     using System.Management.Automation;
     
     /// <summary>
@@ -17,10 +16,6 @@ namespace UIAutomation
     /// </summary>
     public class Win32CmdletBase : GetControlCmdletBase
     {
-        public Win32CmdletBase()
-        {
-        }
-        
         #region Parameters
         [Parameter(Mandatory = false)]
         internal new string ContainsText { get; set; }

@@ -9,54 +9,12 @@
 
 namespace UIAutomation
 {
-	// extern alias UIANET;
-	// using System.Windows.Automation;
     /// <summary>
     /// Description of ISupportsExtendedModel.
     /// </summary>
     public interface ISupportsExtendedModel
     {
-        // IExtendedModelHolder Elements { get; }
         IExtendedModelHolder Descendants { get; }
         IExtendedModelHolder Children { get; }
-//        IUiEltCollection Buttons { get; }
-//        IUiEltCollection Calendars { get; }
-//        IUiEltCollection CheckBoxes { get; }
-//        IUiEltCollection ComboBoxes { get; }
-//        IUiEltCollection Customs { get; }
-//        IUiEltCollection DataGrids { get; }
-//	    IUiEltCollection DataItems { get; }
-//	    IUiEltCollection Documents { get; }
-//        IUiEltCollection Edits { get; }
-//        // IUiEltCollection Edits();
-//        IUiEltCollection Groups { get; }
-//        IUiEltCollection Headers { get; }
-//	    IUiEltCollection HeaderItems { get; }
-//        IUiEltCollection Hyperlinks { get; }
-//        IUiEltCollection ListItems { get; }
-//        IUiEltCollection Lists { get; }
-//        IUiEltCollection Menus { get; }
-//        IUiEltCollection MenuBars { get; }
-//        IUiEltCollection MenuItems { get; }
-//        IUiEltCollection Panes { get; }
-//        IUiEltCollection ProgressBars { get; }
-//        IUiEltCollection RadioButtons { get; }
-//        IUiEltCollection ScrollBars { get; }
-//        IUiEltCollection Separators { get; }
-//        IUiEltCollection Sliders { get; }
-//        IUiEltCollection Spinners { get; }
-//        IUiEltCollection SplitButtons { get; }
-//        IUiEltCollection StatusBars { get; }
-//	    IUiEltCollection Tabs { get; }
-//	    IUiEltCollection TabItems { get; }
-//        IUiEltCollection Tables { get; }
-//	    IUiEltCollection Texts { get; }
-//        IUiEltCollection Thumbs { get; }
-//	    IUiEltCollection TitleBars { get; }
-//        IUiEltCollection ToolBars { get; }
-//	    IUiEltCollection ToolTips { get; }
-//	    IUiEltCollection Trees { get; }
-//	    IUiEltCollection TreeItems { get; }
-//	    IUiEltCollection Windows { get; }
     }
 }

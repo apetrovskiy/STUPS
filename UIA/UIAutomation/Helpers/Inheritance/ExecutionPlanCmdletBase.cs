@@ -9,18 +9,10 @@
 
 namespace UIAutomation
 {
-	//using System;
-    //using System.Management.Automation;
-    //using System.Collections.Generic;
-	//using System.Windows.Automation;
-    
 	/// <summary>
 	/// Description of ExecutionPlanCmdletBase.
 	/// </summary>
 	public class ExecutionPlanCmdletBase : CommonCmdletBase
 	{
-		public ExecutionPlanCmdletBase()
-		{
-		}
 	}
 }

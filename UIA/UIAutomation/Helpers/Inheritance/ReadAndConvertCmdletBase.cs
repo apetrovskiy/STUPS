@@ -9,7 +9,6 @@
 
 namespace UIAutomation
 {
-    //using System;
     using System.Management.Automation;
 
     /// <summary>
@@ -17,12 +16,6 @@ namespace UIAutomation
     /// </summary>
     public class ReadAndConvertCmdletBase : HasControlInputCmdletBase
     {
-        #region Constructor
-        public ReadAndConvertCmdletBase()
-        {
-        }
-        #endregion Constructor
-        
         #region Parameters
         [Parameter(Mandatory = false)]
         internal new SwitchParameter PassThru { get; set; }

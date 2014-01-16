@@ -13,7 +13,6 @@ namespace UIAutomation
     using System;
     using System.Management.Automation;
     using System.Windows.Automation;
-    //using System.Runtime.InteropServices;
     using System.Collections;
     using System.Collections.Generic;
 

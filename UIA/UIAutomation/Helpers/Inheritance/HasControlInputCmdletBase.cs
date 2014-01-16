@@ -1,4 +1,5 @@
-﻿/*
+﻿using PSTestLib;
+/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
  * Date: 08.12.2011
@@ -1086,7 +1087,8 @@ try {
             foreach (Hashtable ht in SearchCriteria)
             {
                 Dictionary<string, object> dict =
-                    ConvertHashtableToDictionary(ht);
+                    // ConvertHashtableToDictionary(ht);
+                    ht.ConvertHashtableToDictionary();
                 
                 GetControlCmdletBase cmdlet = 
                     new GetControlCmdletBase();
@@ -1124,7 +1126,24 @@ try {
                 
                 WriteVerbose(this, "getting the control");
                 
-                List<IUiElement> elementsToWorkWith = GetControl(cmdlet);
+                // 20140116
+                // List<IUiElement> elementsToWorkWith = GetControl(cmdlet);
+                var controlSearch =
+                    AutomationFactory.GetSearchImpl<ControlSearch>();
+                
+                List<IUiElement> elementsToWorkWith =
+                    controlSearch.GetElements(
+                        new ControlSearchData {
+                            InputObject = cmdlet.InputObject,
+                            ContainsText = cmdlet.ContainsText,
+                            Name = cmdlet.Name,
+                            AutomationId = cmdlet.AutomationId,
+                            Class = cmdlet.Class,
+                            Value = cmdlet.Value,
+                            ControlType = cmdlet.ControlType,
+                            Win32 = cmdlet.Win32                            
+                        },
+                        cmdlet.Timeout);
                 
                 if (null == elementsToWorkWith) {
 
@@ -1141,9 +1160,10 @@ try {
                         try {WriteVerbose(this, "ControlType = " + elementToWorkWith.Current.ControlType.ProgrammaticName); }catch {}
                         
                         bool oneControlResult = 
-                            TestControlByPropertiesFromDictionary(
-                                dict,
-                                elementToWorkWith);
+                            // TestControlByPropertiesFromDictionary(
+                            //     dict,
+                            //     elementToWorkWith);
+                            elementToWorkWith.TestControlByPropertiesFromDictionary(dict);
                         
                         if (oneControlResult) {
                             

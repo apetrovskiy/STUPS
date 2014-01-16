@@ -51,7 +51,14 @@ namespace UIAutomationUnitTests
             // ResultAndCondition =
             //     (common.GetControlConditionsForWildcardSearch(cmdlet, controlType, cmdlet.CaseSensitive));
             ResultAndCondition =
-                common.GetWildcardSearchCondition(cmdlet) as AndCondition;
+                // common.GetWildcardSearchCondition(cmdlet) as AndCondition;
+                ControlSearch.GetWildcardSearchCondition(
+                    new ControlSearchData {
+                        Name = name,
+                        AutomationId = automationId,
+                        Class = className,
+                        CaseSensitive = false
+                    }) as AndCondition;
         }
         
         private void getOrConditions(string searchString, string controlType)
@@ -68,7 +75,8 @@ namespace UIAutomationUnitTests
             // ResultOrCondition =
             //     (common.GetControlConditionsForExactSearch(cmdlet, controlType, cmdlet.CaseSensitive, false) as OrCondition);
             ResultOrCondition =
-                common.GetTextSearchCondition(searchString, new string[] { controlType }, cmdlet.CaseSensitive) as OrCondition;
+                // common.GetTextSearchCondition(searchString, new string[] { controlType }, cmdlet.CaseSensitive) as OrCondition;
+                ControlSearch.GetTextSearchCondition(searchString, new string[] { controlType }, cmdlet.CaseSensitive) as OrCondition;
         }
         
         [Test]

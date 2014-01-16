@@ -22,10 +22,12 @@ namespace UIAutomation
         internal virtual bool Wait { get; set; }
         internal virtual SearchTemplateData SearchData { get; set; }
         internal virtual List<IUiElement> ResultCollection { get; set; }
+        public abstract void OnStartHook();
         public abstract void BeforeSearchHook();
         public abstract List<IUiElement> SearchForElements(SearchTemplateData data);
         public abstract void AfterSearchHook();
         public abstract void OnSleepHook();
+        public abstract void OnFailureHook();
         public abstract void OnSuccessHook();
         public abstract string TimeoutExpirationInformation { get; set; }
         
@@ -55,6 +57,8 @@ namespace UIAutomation
             var startTime = System.DateTime.Now;
             Wait = true;
             
+            OnStartHook();
+            
             do {
                 
                 BeforeSearchHook();
@@ -71,6 +75,8 @@ namespace UIAutomation
                 OnSleepHook();
                 
             } while (Wait);
+            
+            OnFailureHook();
             
             OnSuccessHook();
             

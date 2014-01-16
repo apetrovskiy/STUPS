@@ -9,19 +9,15 @@ Application Developer - Anomalist Designs LLC
  * TAKE NOTE:
  * This can't Decrypt MSTSC Password!
 */
-//using System;
-//using System.Collections.Generic;
-//using System.Text;
 
 //namespace DataProtection
-
-using System.Linq;
 
 namespace UIAutomation
 {
     using System;
     using System.Collections.Generic;
     using System.Text;
+    using System.Linq;
 
     public class DataProtectionForRDPWrapper
     {

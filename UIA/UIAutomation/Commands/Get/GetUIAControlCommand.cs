@@ -19,8 +19,7 @@ namespace UIAutomation.Commands
     /// Description of GetUiaControl.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaControl", DefaultParameterSetName = "UiaWildCard")]
-    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
-    
+    [OutputType(typeof(UIAutomation.IUiElement[]))]
     public class GetUiaControlCommand : GetControlCmdletBase
     {
         #region Parameters
@@ -43,24 +42,8 @@ namespace UIAutomation.Commands
 
             WriteVerbose(this, "getting the control");
             
-            List<IUiElement> returnCollection =
-                GetControl(this);
-            
-            /*
-            GetControlCmdletBase cmdlet
-            cmdlet.ControlType
-            cmdlet.ContainsText
-            cmdlet.Regex
-            cmdlet.CaseSensitive
-            cmdlet.InputObject
-            cmdlet.Win32
-            cmdlet.Name,
-            cmdlet.AutomationId,
-            cmdlet.Class,
-            cmdlet.Value,
-            cmdlet.Timeout
-            cmdlet.Wait
-            */
+//            List<IUiElement> returnCollection =
+//                GetControl(this);
             
             var controlSearch =
                 AutomationFactory.GetSearchImpl<ControlSearch>();
@@ -77,14 +60,15 @@ namespace UIAutomation.Commands
                 Regex = this.Regex,
                 CaseSensitive = this.CaseSensitive,
                 Win32 = this.Win32,
+                SearchCriteria = this.SearchCriteria
                 // timeo
                 // wai
             };
             
-//            returnCollection =
-//                controlSearch.GetElements(
-//                    controlSearchData,
-//                    Timeout);
+            List<IUiElement> returnCollection =
+                controlSearch.GetElements(
+                    controlSearchData,
+                    Timeout);
             
             if (null != returnCollection && 0 < returnCollection.Count) {
 
@@ -117,7 +101,7 @@ namespace UIAutomation.Commands
     /// Description of GetUiaButton.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaButton", DefaultParameterSetName = "UiaWildCard")]
-    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    [OutputType(typeof(UIAutomation.IUiElement[]))]
     
     public class GetUiaButtonCommand : GetUiaControlCommand
     { public GetUiaButtonCommand() { ControlType = new string[] { "Button" }; } }
@@ -126,7 +110,7 @@ namespace UIAutomation.Commands
     /// Description of GetUiaCalendar.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaCalendar", DefaultParameterSetName = "UiaWildCard")]
-    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    [OutputType(typeof(UIAutomation.IUiElement[]))]
     
     public class GetUiaCalendarCommand : GetUiaControlCommand
     { public GetUiaCalendarCommand() { ControlType = new string[] { "Calendar" }; } }
@@ -135,7 +119,7 @@ namespace UIAutomation.Commands
     /// Description of GetUiaCheckBox.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaCheckBox", DefaultParameterSetName = "UiaWildCard")]
-    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    [OutputType(typeof(UIAutomation.IUiElement[]))]
     
     public class GetUiaCheckBoxCommand : GetUiaControlCommand
     { public GetUiaCheckBoxCommand() { ControlType = new string[] { "CheckBox" }; } }
@@ -144,7 +128,7 @@ namespace UIAutomation.Commands
     /// Description of GetUiaComboBox.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaComboBox", DefaultParameterSetName = "UiaWildCard")]
-    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    [OutputType(typeof(UIAutomation.IUiElement[]))]
     
     public class GetUiaComboBoxCommand : GetUiaControlCommand
     { public GetUiaComboBoxCommand() { ControlType = new string[] { "ComboBox" }; } }
@@ -153,7 +137,7 @@ namespace UIAutomation.Commands
     /// Description of GetUiaCustom.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaCustom", DefaultParameterSetName = "UiaWildCard")]
-    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    [OutputType(typeof(UIAutomation.IUiElement[]))]
     
     public class GetUiaCustomCommand : GetUiaControlCommand
     { public GetUiaCustomCommand() { ControlType = new string[] { "Custom" }; } }
@@ -162,7 +146,7 @@ namespace UIAutomation.Commands
     /// Description of GetUiaDataGrid.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaDataGrid", DefaultParameterSetName = "UiaWildCard")]
-    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    [OutputType(typeof(UIAutomation.IUiElement[]))]
     
     public class GetUiaDataGridCommand : GetUiaControlCommand
     { public GetUiaDataGridCommand() { ControlType = new string[] { "DataGrid" }; } }
@@ -171,7 +155,7 @@ namespace UIAutomation.Commands
     /// Description of GetUiaDataItem.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaDataItem", DefaultParameterSetName = "UiaWildCard")]
-    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    [OutputType(typeof(UIAutomation.IUiElement[]))]
     
     public class GetUiaDataItemCommand : GetUiaControlCommand
     { public GetUiaDataItemCommand() { ControlType = new string[] { "DataItem" }; } }
@@ -180,7 +164,7 @@ namespace UIAutomation.Commands
     /// Description of GetUiaDocument.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaDocument", DefaultParameterSetName = "UiaWildCard")]
-    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    [OutputType(typeof(UIAutomation.IUiElement[]))]
     
     public class GetUiaDocumentCommand : GetUiaControlCommand
     { public GetUiaDocumentCommand() { ControlType = new string[] { "Document" }; } }
@@ -189,7 +173,7 @@ namespace UIAutomation.Commands
     /// Description of GetUiaEdit.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaEdit", DefaultParameterSetName = "UiaWildCard")]
-    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    [OutputType(typeof(UIAutomation.IUiElement[]))]
     
     public class GetUiaEditCommand : GetUiaControlCommand
     { public GetUiaEditCommand() { ControlType = new string[] { "Edit" }; } }
@@ -198,7 +182,7 @@ namespace UIAutomation.Commands
     /// Description of GetUiaTextBox.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaTextBox", DefaultParameterSetName = "UiaWildCard")]
-    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    [OutputType(typeof(UIAutomation.IUiElement[]))]
     
     public class GetUiaTextBoxCommand : GetUiaEditCommand
     { public GetUiaTextBoxCommand() { ControlType = new string[] { "Edit" }; } }
@@ -207,7 +191,7 @@ namespace UIAutomation.Commands
     /// Description of GetUiaGroup.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaGroup", DefaultParameterSetName = "UiaWildCard")]
-    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    [OutputType(typeof(UIAutomation.IUiElement[]))]
     
     public class GetUiaGroupCommand : GetUiaControlCommand
     { public GetUiaGroupCommand() { ControlType = new string[] { "Group" }; } }
@@ -216,7 +200,7 @@ namespace UIAutomation.Commands
     /// Description of GetUiaGroupBox.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaGroupBox", DefaultParameterSetName = "UiaWildCard")]
-    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    [OutputType(typeof(UIAutomation.IUiElement[]))]
     
     public class GetUiaGroupBoxCommand : GetUiaGroupCommand
     { public GetUiaGroupBoxCommand() { ControlType = new string[] { "Group" }; } }
@@ -225,7 +209,7 @@ namespace UIAutomation.Commands
     /// Description of GetUiaHeader.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaHeader", DefaultParameterSetName = "UiaWildCard")]
-    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    [OutputType(typeof(UIAutomation.IUiElement[]))]
     
     public class GetUiaHeaderCommand : GetUiaControlCommand
     { public GetUiaHeaderCommand() { ControlType = new string[] { "Header" }; } }
@@ -234,7 +218,7 @@ namespace UIAutomation.Commands
     /// Description of GetUiaHeaderItem.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaHeaderItem", DefaultParameterSetName = "UiaWildCard")]
-    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    [OutputType(typeof(UIAutomation.IUiElement[]))]
     
     public class GetUiaHeaderItemCommand : GetUiaControlCommand
     { public GetUiaHeaderItemCommand() { ControlType = new string[] { "HeaderItem" }; } }
@@ -243,7 +227,7 @@ namespace UIAutomation.Commands
     /// Description of GetUiaHyperlink.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaHyperlink", DefaultParameterSetName = "UiaWildCard")]
-    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    [OutputType(typeof(UIAutomation.IUiElement[]))]
     
     public class GetUiaHyperlinkCommand : GetUiaControlCommand
     { public GetUiaHyperlinkCommand() { ControlType = new string[] { "Hyperlink" }; } }
@@ -252,7 +236,7 @@ namespace UIAutomation.Commands
     /// Description of GetUiaLinkLabel.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaLinkLabel", DefaultParameterSetName = "UiaWildCard")]
-    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    [OutputType(typeof(UIAutomation.IUiElement[]))]
     
     public class GetUiaLinkLabelCommand : GetUiaHyperlinkCommand
     { public GetUiaLinkLabelCommand() { ControlType = new string[] { "Hyperlink" }; } }
@@ -261,7 +245,7 @@ namespace UIAutomation.Commands
     /// Description of GetUiaImage.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaImage", DefaultParameterSetName = "UiaWildCard")]
-    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    [OutputType(typeof(UIAutomation.IUiElement[]))]
     
     public class GetUiaImageCommand : GetUiaControlCommand
     { public GetUiaImageCommand() { ControlType = new string[] { "Image" }; } }
@@ -270,7 +254,7 @@ namespace UIAutomation.Commands
     /// Description of GetUiaList.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaList", DefaultParameterSetName = "UiaWildCard")]
-    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    [OutputType(typeof(UIAutomation.IUiElement[]))]
     
     public class GetUiaListCommand : GetUiaControlCommand
     { public GetUiaListCommand() { ControlType = new string[] { "List" }; } }
@@ -279,7 +263,7 @@ namespace UIAutomation.Commands
     /// Description of GetUiaListItem.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaListItem", DefaultParameterSetName = "UiaWildCard")]
-    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    [OutputType(typeof(UIAutomation.IUiElement[]))]
     
     public class GetUiaListItemCommand : GetUiaControlCommand
     { public GetUiaListItemCommand() { ControlType = new string[] { "ListItem" }; } }
@@ -288,7 +272,7 @@ namespace UIAutomation.Commands
     /// Description of GetUiaMenu.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaMenu", DefaultParameterSetName = "UiaWildCard")]
-    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    [OutputType(typeof(UIAutomation.IUiElement[]))]
     
     public class GetUiaMenuCommand : GetUiaControlCommand
     { public GetUiaMenuCommand() { ControlType = new string[] { "Menu" }; } }
@@ -297,7 +281,7 @@ namespace UIAutomation.Commands
     /// Description of GetUiaMenuBar.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaMenuBar", DefaultParameterSetName = "UiaWildCard")]
-    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    [OutputType(typeof(UIAutomation.IUiElement[]))]
     
     public class GetUiaMenuBarCommand : GetUiaControlCommand
     { public GetUiaMenuBarCommand() { ControlType = new string[] { "MenuBar" }; } }
@@ -306,7 +290,7 @@ namespace UIAutomation.Commands
     /// Description of GetUiaMenuItem.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaMenuItem", DefaultParameterSetName = "UiaWildCard")]
-    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    [OutputType(typeof(UIAutomation.IUiElement[]))]
     
     public class GetUiaMenuItemCommand : GetUiaControlCommand
     { public GetUiaMenuItemCommand() { ControlType = new string[] { "MenuItem" }; } }
@@ -315,7 +299,7 @@ namespace UIAutomation.Commands
     /// Description of GetUiaPane.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaPane", DefaultParameterSetName = "UiaWildCard")]
-    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    [OutputType(typeof(UIAutomation.IUiElement[]))]
     
     public class GetUiaPaneCommand : GetUiaControlCommand
     { public GetUiaPaneCommand() { ControlType = new string[] { "Pane" }; } }
@@ -324,7 +308,7 @@ namespace UIAutomation.Commands
     /// Description of GetUiaProgressBar.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaProgressBar", DefaultParameterSetName = "UiaWildCard")]
-    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    [OutputType(typeof(UIAutomation.IUiElement[]))]
     
     public class GetUiaProgressBarCommand : GetUiaControlCommand
     { public GetUiaProgressBarCommand() { ControlType = new string[] { "ProgressBar" }; } }
@@ -333,7 +317,7 @@ namespace UIAutomation.Commands
     /// Description of GetUiaRadioButton.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaRadioButton", DefaultParameterSetName = "UiaWildCard")]
-    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    [OutputType(typeof(UIAutomation.IUiElement[]))]
     
     public class GetUiaRadioButtonCommand : GetUiaControlCommand
     { public GetUiaRadioButtonCommand() { ControlType = new string[] { "RadioButton" }; } }
@@ -342,7 +326,7 @@ namespace UIAutomation.Commands
     /// Description of GetUiaScrollBar.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaScrollBar", DefaultParameterSetName = "UiaWildCard")]
-    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    [OutputType(typeof(UIAutomation.IUiElement[]))]
     
     public class GetUiaScrollBarCommand : GetUiaControlCommand
     { public GetUiaScrollBarCommand() { ControlType = new string[] { "ScrollBar" }; } }
@@ -351,7 +335,7 @@ namespace UIAutomation.Commands
     /// Description of GetUiaSeparator.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaSeparator", DefaultParameterSetName = "UiaWildCard")]
-    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    [OutputType(typeof(UIAutomation.IUiElement[]))]
     
     public class GetUiaSeparatorCommand : GetUiaControlCommand
     { public GetUiaSeparatorCommand() { ControlType = new string[] { "Separator" }; } }
@@ -360,7 +344,7 @@ namespace UIAutomation.Commands
     /// Description of GetUiaSlider.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaSlider", DefaultParameterSetName = "UiaWildCard")]
-    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    [OutputType(typeof(UIAutomation.IUiElement[]))]
     
     public class GetUiaSliderCommand : GetUiaControlCommand
     { public GetUiaSliderCommand() { ControlType = new string[] { "Slider" }; } }
@@ -369,7 +353,7 @@ namespace UIAutomation.Commands
     /// Description of GetUiaSpinner.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaSpinner", DefaultParameterSetName = "UiaWildCard")]
-    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    [OutputType(typeof(UIAutomation.IUiElement[]))]
     
     public class GetUiaSpinnerCommand : GetUiaControlCommand
     { public GetUiaSpinnerCommand() { ControlType = new string[] { "Spinner" }; } }
@@ -378,7 +362,7 @@ namespace UIAutomation.Commands
     /// Description of GetUiaSplitButton.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaSplitButton", DefaultParameterSetName = "UiaWildCard")]
-    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    [OutputType(typeof(UIAutomation.IUiElement[]))]
     
     public class GetUiaSplitButtonCommand : GetUiaControlCommand
     { public GetUiaSplitButtonCommand() { ControlType = new string[] { "SplitButton" }; } }
@@ -387,7 +371,7 @@ namespace UIAutomation.Commands
     /// Description of GetUiaStatusBar.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaStatusBar", DefaultParameterSetName = "UiaWildCard")]
-    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    [OutputType(typeof(UIAutomation.IUiElement[]))]
     
     public class GetUiaStatusBarCommand : GetUiaControlCommand
     { public GetUiaStatusBarCommand() { ControlType = new string[] { "StatusBar" }; } }
@@ -396,7 +380,7 @@ namespace UIAutomation.Commands
     /// Description of GetUiaTab.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaTab", DefaultParameterSetName = "UiaWildCard")]
-    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    [OutputType(typeof(UIAutomation.IUiElement[]))]
     
     public class GetUiaTabCommand : GetUiaControlCommand
     { public GetUiaTabCommand() { ControlType = new string[] { "Tab" }; } }
@@ -405,7 +389,7 @@ namespace UIAutomation.Commands
     /// Description of GetUiaTabItem.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaTabItem", DefaultParameterSetName = "UiaWildCard")]
-    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    [OutputType(typeof(UIAutomation.IUiElement[]))]
     
     public class GetUiaTabItemCommand : GetUiaControlCommand
     { public GetUiaTabItemCommand() { ControlType = new string[] { "TabItem" }; } }
@@ -414,7 +398,7 @@ namespace UIAutomation.Commands
     /// Description of GetUiaTable.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaTable", DefaultParameterSetName = "UiaWildCard")]
-    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    [OutputType(typeof(UIAutomation.IUiElement[]))]
     
     public class GetUiaTableCommand : GetUiaControlCommand
     { public GetUiaTableCommand() { ControlType = new string[] { "Table" }; } }
@@ -423,7 +407,7 @@ namespace UIAutomation.Commands
     /// Description of GetUiaText.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaText", DefaultParameterSetName = "UiaWildCard")]
-    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    [OutputType(typeof(UIAutomation.IUiElement[]))]
     
     public class GetUiaTextCommand : GetUiaControlCommand
     { public GetUiaTextCommand() { ControlType = new string[] { "Text" }; } }
@@ -432,7 +416,7 @@ namespace UIAutomation.Commands
     /// Description of GetUiaLabel.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaLabel", DefaultParameterSetName = "UiaWildCard")]
-    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    [OutputType(typeof(UIAutomation.IUiElement[]))]
     
     public class GetUiaLabelCommand : GetUiaTextCommand
     { public GetUiaLabelCommand() { ControlType = new string[] { "Text" }; } }
@@ -441,7 +425,7 @@ namespace UIAutomation.Commands
     /// Description of GetUiaThumb.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaThumb", DefaultParameterSetName = "UiaWildCard")]
-    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    [OutputType(typeof(UIAutomation.IUiElement[]))]
     
     public class GetUiaThumbCommand : GetUiaControlCommand
     { public GetUiaThumbCommand() { ControlType = new string[] { "Thumb" }; } }
@@ -450,7 +434,7 @@ namespace UIAutomation.Commands
     /// Description of GetUiaTitleBar.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaTitleBar", DefaultParameterSetName = "UiaWildCard")]
-    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    [OutputType(typeof(UIAutomation.IUiElement[]))]
     
     public class GetUiaTitleBarCommand : GetUiaControlCommand
     { public GetUiaTitleBarCommand() { ControlType = new string[] { "TitleBar" }; } }
@@ -459,7 +443,7 @@ namespace UIAutomation.Commands
     /// Description of GetUiaToolBar.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaToolBar", DefaultParameterSetName = "UiaWildCard")]
-    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    [OutputType(typeof(UIAutomation.IUiElement[]))]
     
     public class GetUiaToolBarCommand : GetUiaControlCommand
     { public GetUiaToolBarCommand() { ControlType = new string[] { "ToolBar" }; } }
@@ -468,7 +452,7 @@ namespace UIAutomation.Commands
     /// Description of GetUiaToolTip.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaToolTip", DefaultParameterSetName = "UiaWildCard")]
-    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    [OutputType(typeof(UIAutomation.IUiElement[]))]
     
     public class GetUiaToolTipCommand : GetUiaControlCommand
     { public GetUiaToolTipCommand() { ControlType = new string[] { "ToolTip" }; } }
@@ -477,7 +461,7 @@ namespace UIAutomation.Commands
     /// Description of GetUiaTree.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaTree", DefaultParameterSetName = "UiaWildCard")]
-    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    [OutputType(typeof(UIAutomation.IUiElement[]))]
     
     public class GetUiaTreeCommand : GetUiaControlCommand
     { public GetUiaTreeCommand() { ControlType = new string[] { "Tree" }; } }
@@ -486,7 +470,7 @@ namespace UIAutomation.Commands
     /// Description of GetUiaTreeItem.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaTreeItem", DefaultParameterSetName = "UiaWildCard")]
-    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    [OutputType(typeof(UIAutomation.IUiElement[]))]
     
     public class GetUiaTreeItemCommand : GetUiaControlCommand
     { public GetUiaTreeItemCommand() { ControlType = new string[] { "TreeItem" }; } }
@@ -495,7 +479,7 @@ namespace UIAutomation.Commands
     /// Description of GetUiaChildWindow.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaChildWindow", DefaultParameterSetName = "UiaWildCard")]
-    [OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
+    [OutputType(typeof(UIAutomation.IUiElement[]))]
     
     public class GetUiaChildWindowCommand : GetUiaControlCommand
     { public GetUiaChildWindowCommand() { ControlType = new string[] { "Window" }; } }

@@ -18,8 +18,6 @@ namespace UIAutomation.Commands
     // 20131024
     //[Cmdlet(VerbsCommon.Get, "UiaSelectionPattern")]
     [Cmdlet(VerbsLifecycle.Invoke, "UiaSelectionPattern")]
-    ////[OutputType(typeof(UIAutomation.IUiElement))] //[OutputType(typeof(UIAutomation.UiElement[]))] // [OutputType(typeof(System.Windows.Automation.AutomationElement[]))]
-    
     public class InvokeUiaSelectionPatternCommand : PatternCmdletBase
     { public InvokeUiaSelectionPatternCommand() { WhatToDo = "Selection"; PassThru = false; }
         
@@ -32,7 +30,6 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaCalendarSelection")]
     ////[OutputType(typeof(bool))]
-    
     public class GetUiaCalendarSelectionCommand : InvokeUiaSelectionPatternCommand 
     { public GetUiaCalendarSelectionCommand() { } }
     
@@ -41,7 +38,6 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaComboBoxSelection")]
     ////[OutputType(typeof(bool))]
-    
     public class GetUiaComboBoxSelectionCommand : InvokeUiaSelectionPatternCommand 
     { public GetUiaComboBoxSelectionCommand() { } }
     
@@ -50,7 +46,6 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaCustomSelection")]
     ////[OutputType(typeof(bool))]
-    
     public class GetUiaCustomSelectionCommand : InvokeUiaSelectionPatternCommand 
     { public GetUiaCustomSelectionCommand() { } }
     
@@ -59,7 +54,6 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaDataGridSelection")]
     ////[OutputType(typeof(bool))]
-    
     public class GetUiaDataGridSelectionCommand : InvokeUiaSelectionPatternCommand 
     { public GetUiaDataGridSelectionCommand() { } }
     
@@ -68,7 +62,6 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaListSelection")]
     ////[OutputType(typeof(bool))]
-    
     public class GetUiaListSelectionCommand : InvokeUiaSelectionPatternCommand 
     { public GetUiaListSelectionCommand() { } }
     
@@ -77,7 +70,6 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaSliderSelection")]
     ////[OutputType(typeof(bool))]
-    
     public class GetUiaSliderSelectionCommand : InvokeUiaSelectionPatternCommand 
     { public GetUiaSliderSelectionCommand() { } }
     
@@ -86,7 +78,6 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaSpinnerSelection")]
     ////[OutputType(typeof(bool))]
-    
     public class GetUiaSpinnerSelectionCommand : InvokeUiaSelectionPatternCommand 
     { public GetUiaSpinnerSelectionCommand() { } }
     
@@ -95,7 +86,6 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaTabSelection")]
     ////[OutputType(typeof(bool))]
-    
     public class GetUiaTabSelectionCommand : InvokeUiaSelectionPatternCommand 
     { public GetUiaTabSelectionCommand() { } }
     
@@ -104,7 +94,6 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaTreeSelection")]
     ////[OutputType(typeof(bool))]
-    
     public class GetUiaTreeSelectionCommand : InvokeUiaSelectionPatternCommand 
     { public GetUiaTreeSelectionCommand() { } }
 }

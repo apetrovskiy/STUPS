@@ -9,7 +9,6 @@
 
 namespace UIAutomation
 {
-    //using System;
     using System.Management.Automation;
 
     /// <summary>
@@ -17,10 +16,6 @@ namespace UIAutomation
     /// </summary>
     public class SheridanCmdletBase : HasControlInputCmdletBase
     {
-        public SheridanCmdletBase()
-        {
-        }
-        
         #region Parameters
         [Parameter(Mandatory = true,
                    Position = 0)]

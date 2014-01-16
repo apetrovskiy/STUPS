@@ -1129,20 +1129,21 @@ try {
                 // 20140116
                 // List<IUiElement> elementsToWorkWith = GetControl(cmdlet);
                 var controlSearch =
-                    AutomationFactory.GetSearchImpl<ControlSearch>();
+                    AutomationFactory.GetSearchImpl<ControlSearch>() as ControlSearch;
                 
                 List<IUiElement> elementsToWorkWith =
                     controlSearch.GetElements(
-                        new ControlSearchData {
-                            InputObject = cmdlet.InputObject,
-                            ContainsText = cmdlet.ContainsText,
-                            Name = cmdlet.Name,
-                            AutomationId = cmdlet.AutomationId,
-                            Class = cmdlet.Class,
-                            Value = cmdlet.Value,
-                            ControlType = cmdlet.ControlType,
-                            Win32 = cmdlet.Win32                            
-                        },
+//                        new ControlSearchData {
+//                            InputObject = cmdlet.InputObject,
+//                            ContainsText = cmdlet.ContainsText,
+//                            Name = cmdlet.Name,
+//                            AutomationId = cmdlet.AutomationId,
+//                            Class = cmdlet.Class,
+//                            Value = cmdlet.Value,
+//                            ControlType = cmdlet.ControlType,
+//                            Win32 = cmdlet.Win32                            
+//                        },
+                        controlSearch.ConvertCmdletToControlSearchData(cmdlet),
                         cmdlet.Timeout);
                 
                 if (null == elementsToWorkWith) {

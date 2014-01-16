@@ -804,5 +804,25 @@ namespace UIAutomation
             */
         }
         #endregion condition methods
+        
+        public ControlSearchData ConvertCmdletToControlSearchData(GetControlCmdletBase cmdlet)
+        {
+            var controlSearchData =
+                new ControlSearchData {
+                InputObject = cmdlet.InputObject,
+                ContainsText = cmdlet.ContainsText,
+                Name = cmdlet.Name,
+                AutomationId = cmdlet.AutomationId,
+                Class = cmdlet.Class,
+                Value = cmdlet.Value,
+                ControlType = cmdlet.ControlType,
+                Regex = cmdlet.Regex,
+                CaseSensitive = cmdlet.CaseSensitive,
+                Win32 = cmdlet.Win32,
+                SearchCriteria = cmdlet.SearchCriteria
+            };
+            
+            return controlSearchData;
+        }
     }
 }

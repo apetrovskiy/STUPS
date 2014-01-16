@@ -142,21 +142,22 @@ namespace UIAutomation
 	        		// 	cmdletCtrl.GetControl(cmdletCtrl);
 	        		
 	        		var controlSearch =
-	        		    AutomationFactory.GetSearchImpl<ControlSearch>();
+	        		    AutomationFactory.GetSearchImpl<ControlSearch>() as ControlSearch;
 	        		
 	        		controlsList =
 	        		    controlSearch.GetElements(
-	        		        new ControlSearchData {
-	        		            InputObject = cmdletCtrl.InputObject,
-	        		            ContainsText = cmdletCtrl.ContainsText,
-	        		            Name = cmdletCtrl.Name,
-	        		            AutomationId = cmdletCtrl.AutomationId,
-	        		            Class = cmdletCtrl.Class,
-	        		            Value = cmdletCtrl.Value,
-	        		            ControlType = cmdletCtrl.ControlType,
-	        		            SearchCriteria = cmdletCtrl.SearchCriteria,
-	        		            Win32 = cmdletCtrl.Win32
-	        		        },
+//	        		        new ControlSearchData {
+//	        		            InputObject = cmdletCtrl.InputObject,
+//	        		            ContainsText = cmdletCtrl.ContainsText,
+//	        		            Name = cmdletCtrl.Name,
+//	        		            AutomationId = cmdletCtrl.AutomationId,
+//	        		            Class = cmdletCtrl.Class,
+//	        		            Value = cmdletCtrl.Value,
+//	        		            ControlType = cmdletCtrl.ControlType,
+//	        		            SearchCriteria = cmdletCtrl.SearchCriteria,
+//	        		            Win32 = cmdletCtrl.Win32
+//	        		        },
+	        		        controlSearch.ConvertCmdletToControlSearchData(cmdletCtrl),
 	        		        cmdletCtrl.Timeout);
 	        		
 	        	}

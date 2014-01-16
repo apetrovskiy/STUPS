@@ -512,9 +512,13 @@ namespace UIAutomationUnitTests
         {
             List<string> resultCollection = new List<string>();
             
+            if (null == controlTypes || 0 == controlTypes.Length) return resultCollection.ToArray();
+            
             foreach (ControlType controlType in controlTypes) {
-                resultCollection.Add(
-                    controlType.ProgrammaticName.Substring(29).Replace("Property", string.Empty));
+                if (null != controlType) {
+                    resultCollection.Add(
+                        controlType.ProgrammaticName.Substring(12));
+                }
             }
             
             return resultCollection.ToArray();

@@ -431,6 +431,7 @@
     <Compile Include="Interface\Holder\IInputSimulatorHolder.cs" />
     <Compile Include="Interface\Holder\IKeyboardInput.cs" />
     <Compile Include="Interface\Holder\IMouseInput.cs" />
+    <Compile Include="Interface\Holder\ITouchInput.cs" />
     <Compile Include="Interface\IUiElement.cs" />
     <Compile Include="Interface\IUiEltCollection.cs" />
     <Compile Include="Interface\IUiElementInformation.cs" />

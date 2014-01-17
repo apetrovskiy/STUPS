@@ -990,6 +990,9 @@
     <Compile Include="..\UIAutomation\Interface\Holder\IMouseInput.cs">
       <Link>Interface\Holder\IMouseInput.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Interface\Holder\ITouchInput.cs">
+      <Link>Interface\Holder\ITouchInput.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Interface\IUiElement.cs">
       <Link>Interface\IUiElement.cs</Link>
     </Compile>
@@ -1145,7 +1148,10 @@
     <Folder Include="Helpers\UnderlyingCode\Types" />
     <Folder Include="Interface" />
     <Folder Include="Interface\Element" />
+    <Folder Include="Interface\Element" />
     <Folder Include="Interface\Holder" />
+    <Folder Include="Interface\Holder" />
+    <Folder Include="Interface\Pattern" />
     <Folder Include="Interface\Pattern" />
   </ItemGroup>
   <ItemGroup>

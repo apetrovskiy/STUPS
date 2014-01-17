@@ -84,6 +84,10 @@ namespace UIAutomation
             tempCmdlet = null;
             // int processId = 0;
             
+            // 20140117
+            // bool exactSearchDone = false;
+            // bool wildcardSearchDone = false;
+            
             foreach (IUiElement inputObject in data.InputObject) {
                 
                 int processId = 0;
@@ -102,10 +106,9 @@ namespace UIAutomation
                 if (0 == ResultCollection.Count) {
                     if (!notTextSearch && !data.Win32) {
                         
-                        UsedSearchType = UsedSearchType.TextSearch;
+                        UsedSearchType = UsedSearchType.Control_TextSearch;
                         ResultCollection.AddRange(
                             SearchByContainsTextViaUia(
-                                // cmdlet,
                                 inputObject,
                                 conditionsForTextSearch));
                     }
@@ -116,10 +119,9 @@ namespace UIAutomation
                 if (0 == ResultCollection.Count) {
                     if (!notTextSearch && data.Win32) {
                         
-                        UsedSearchType = UsedSearchType.TextSearchWin32;
+                        UsedSearchType = UsedSearchType.Control_TextSearchWin32;
                         ResultCollection.AddRange(
                             SearchByTextViaWin32(
-                                // cmdlet,
                                 inputObject,
                                 data.ContainsText,
                                 data.ControlType));
@@ -130,14 +132,19 @@ namespace UIAutomation
                 #region exact search
                 if (0 == ResultCollection.Count && notTextSearch && !data.Regex) {
                     if (!Preferences.DisableExactSearch && !data.Win32 ) {
-                        
-                        UsedSearchType = UsedSearchType.ExactSearch;
-                        ResultCollection.AddRange(
-                            SearchByExactConditionsViaUia(
-                                // cmdlet,
-                                inputObject,
-                                data.SearchCriteria,
-                                conditionsForExactSearch));
+                        // if (!exactSearchDone || !wildcardSearchDone) {
+                            
+                            UsedSearchType = UsedSearchType.Control_ExactSearch;
+                            ResultCollection.AddRange(
+                                SearchByExactConditionsViaUia(
+                                    inputObject,
+                                    data.SearchCriteria,
+                                    conditionsForExactSearch));
+                            
+                        //     exactSearchDone = true;
+                        // }
+                        // 
+                        // wildcardSearchDone = false;
                     }
                 }
                 #endregion exact search
@@ -145,33 +152,37 @@ namespace UIAutomation
                 #region wildcard search
                 if (0 == ResultCollection.Count && notTextSearch && !data.Regex) {
                     if (!Preferences.DisableWildCardSearch && !data.Win32) {
-                        
-                        UsedSearchType = UsedSearchType.WildcardSearch;
-                        ResultCollection.AddRange(
-                            SearchByWildcardOrRegexViaUia(
-                                // cmdlet,
-                                inputObject,
-                                data.InputObject,
-                                data.Name,
-                                data.AutomationId,
-                                data.Class,
-                                data.Value,
-                                data.SearchCriteria,
-                                data.ControlType,
-                                conditionsForWildCards,
-                                true));
+                        // if (!wildcardSearchDone || !exactSearchDone) {
+                            
+                            UsedSearchType = UsedSearchType.Control_WildcardSearch;
+                            ResultCollection.AddRange(
+                                SearchByWildcardOrRegexViaUia(
+                                    inputObject,
+                                    data.InputObject,
+                                    data.Name,
+                                    data.AutomationId,
+                                    data.Class,
+                                    data.Value,
+                                    data.SearchCriteria,
+                                    data.ControlType,
+                                    conditionsForWildCards,
+                                    true));
+                            
+                        //     wildcardSearchDone = true;
+                        // }
                     }
                 }
                 #endregion wildcard search
+                
+                // exactSearchDone = false;
                 
                 #region Regex search
                 if (0 == ResultCollection.Count && notTextSearch && data.Regex) {
                     if (!Preferences.DisableWildCardSearch && !data.Win32) {
                         
-                        UsedSearchType = UsedSearchType.RegexSsearch;
+                        UsedSearchType = UsedSearchType.Control_RegexSearch;
                         ResultCollection.AddRange(
                             SearchByWildcardOrRegexViaUia(
-                                // cmdlet,
                                 inputObject,
                                 data.InputObject,
                                 data.Name,
@@ -188,13 +199,13 @@ namespace UIAutomation
                 
                 #region Win32 search
                 if (0 == ResultCollection.Count && notTextSearch && !data.Regex) {
-                    
-                    if (!Preferences.DisableWin32Search || data.Win32) {
+                    // 20140117
+                    // if (!Preferences.DisableWin32Search || data.Win32) {
+                    if (!Preferences.DisableWin32Search && data.Win32) {
                         
-                        UsedSearchType = UsedSearchType.WildcardSearch;
+                        UsedSearchType = UsedSearchType.Control_Win32Search;
                         ResultCollection.AddRange(
                             SearchByWildcardViaWin32(
-                                // cmdlet,
                                 inputObject,
                                 data.Name,
                                 data.Value,
@@ -840,11 +851,15 @@ namespace UIAutomation
     internal enum UsedSearchType
     {
         None,
-        TextSearch,
-        TextSearchWin32,
-        ExactSearch,
-        WildcardSearch,
-        RegexSsearch,
-        Win32Search
+        Control_TextSearch,
+        Control_TextSearchWin32,
+        Control_ExactSearch,
+        Control_WildcardSearch,
+        Control_RegexSearch,
+        Control_Win32Search,
+        Name,
+        ProcessName,
+        ProcessId,
+        Process
     }
 }

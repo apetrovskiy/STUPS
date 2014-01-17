@@ -13,7 +13,6 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
     using System.Windows.Automation;
     using UIAutomation;
     using MbUnit.Framework;
-    // using NSubstitute;
     
     /// <summary>
     /// Description of ControlSearchTestFixture.
@@ -36,34 +35,53 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
         }
         
         #region helpers
-        private IUiElement[] GetCmdletInputObject()
+        private IUiElement[] GetCmdletInputObject_Empty()
         {
             return new [] {
                 FakeFactory.GetElement_ForFindAll(
-                    new [] { FakeFactory.GetAutomationElementExpected(ControlType.Button, "name", "automaitonId", "className", "value") },
-                    null)
+                    new IUiElement [] {
+                        null
+                    },
+                    new PropertyCondition(
+                        AutomationElement.ControlTypeProperty,
+                        ControlType.Button))
             };
         }
         
-        private GetControlCmdletBase GetInputCmdlet()
+        private IUiElement[] GetCmdletInputObject_Three()
+        {
+            return new [] {
+                FakeFactory.GetElement_ForFindAll(
+                    new IUiElement [] {
+                        FakeFactory.GetAutomationElementExpected(ControlType.Button, "name1", "automationId1", "className1", "value1"),
+                        FakeFactory.GetAutomationElementExpected(ControlType.Button, "name2", "automationId2", "className2", "value2"),
+                        FakeFactory.GetAutomationElementExpected(ControlType.Button, "name3", "automationId3", "className3", "value3"),
+                    },
+                    new PropertyCondition(
+                        AutomationElement.ControlTypeProperty,
+                        ControlType.Button))
+            };
+        }
+        
+        private GetControlCmdletBase GetInputCmdlet(bool empty)
         {
             var cmdlet =
                 new GetControlCmdletBase();
             
-            cmdlet.InputObject = GetCmdletInputObject();
+            cmdlet.Win32 = false;
+            cmdlet.Regex = false;
+            
+            if (empty) {
+                cmdlet.InputObject = GetCmdletInputObject_Empty();
+            } else {
+                cmdlet.InputObject = GetCmdletInputObject_Three();
+            }
             
             return cmdlet;
         }
-        #endregion helpers
         
-        [Test]
-        public void TextSearch()
+        private ControlSearch PerformGetElements(GetControlCmdletBase cmdlet)
         {
-            // Arrange
-            var cmdlet = GetInputCmdlet();
-            cmdlet.ContainsText = "abc";
-            
-            // Act
             var controlSearch =
                 AutomationFactory.GetSearchImpl<ControlSearch>() as ControlSearch;
             
@@ -71,107 +89,546 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
                 controlSearch.ConvertCmdletToControlSearchData(cmdlet),
                 0);
             
+            return controlSearch;
+        }
+        #endregion helpers
+        
+        // ============================================= empty result ===============================================
+        
+        [Test]
+        public void TextSearch_DefaultGlobalSettings_EmptyInput()
+        {
+            // Arrange
+            var cmdlet = GetInputCmdlet(true);
+            cmdlet.ContainsText = "name1";
+            
+            // Act
+            var controlSearch = PerformGetElements(cmdlet);
+            
             // Assert
-            Assert.AreEqual(UsedSearchType.TextSearch, controlSearch.UsedSearchType);
+            Assert.AreEqual(UsedSearchType.Control_TextSearch, controlSearch.UsedSearchType);
         }
         
         [Test]
-        public void TextSearchWin32()
+        public void TextSearchWin32_DefaultGlobalSettings_EmptyInput()
         {
             // Arrange
-            var cmdlet = GetInputCmdlet();
-            cmdlet.ContainsText = "abc";
+            var cmdlet = GetInputCmdlet(true);
+            cmdlet.ContainsText = "name1";
             cmdlet.Win32 = true;
             
             // Act
-            var controlSearch =
-                AutomationFactory.GetSearchImpl<ControlSearch>() as ControlSearch;
-            
-            controlSearch.GetElements(
-                controlSearch.ConvertCmdletToControlSearchData(cmdlet),
-                0);
+            var controlSearch = PerformGetElements(cmdlet);
             
             // Assert
-            Assert.AreEqual(UsedSearchType.TextSearchWin32, controlSearch.UsedSearchType);
+            Assert.AreEqual(UsedSearchType.Control_TextSearchWin32, controlSearch.UsedSearchType);
         }
         
         [Test]
-        public void ExactSearch_Name()
+        public void ExactSearch_NotDisableExactSearch_Name_EmptyInput()
         {
             // Arrange
-            var cmdlet = GetInputCmdlet();
-            cmdlet.Name = "abc";
+            var cmdlet = GetInputCmdlet(true);
+            cmdlet.Name = "Name2";
             Preferences.DisableExactSearch = false;
+            Preferences.DisableWildCardSearch = true;
             
             // Act
-            var controlSearch =
-                AutomationFactory.GetSearchImpl<ControlSearch>() as ControlSearch;
-            
-            controlSearch.GetElements(
-                controlSearch.ConvertCmdletToControlSearchData(cmdlet),
-                0);
+            var controlSearch = PerformGetElements(cmdlet);
             
             // Assert
-            Assert.AreEqual(UsedSearchType.ExactSearch, controlSearch.UsedSearchType);
+            Assert.AreEqual(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
         }
         
         [Test]
-        public void WildcardSearch_Name()
+        public void ExactSearch_NotDisableExactSearch_AutomationId_EmptyInput()
         {
             // Arrange
-            var cmdlet = GetInputCmdlet();
-            cmdlet.Name = "abc";
+            var cmdlet = GetInputCmdlet(true);
+            cmdlet.AutomationId = "AutomationId3";
+            Preferences.DisableExactSearch = false;
+            Preferences.DisableWildCardSearch = true;
             
             // Act
-            var controlSearch =
-                AutomationFactory.GetSearchImpl<ControlSearch>() as ControlSearch;
-            
-            controlSearch.GetElements(
-                controlSearch.ConvertCmdletToControlSearchData(cmdlet),
-                0);
+            var controlSearch = PerformGetElements(cmdlet);
             
             // Assert
-            Assert.AreEqual(UsedSearchType.WildcardSearch, controlSearch.UsedSearchType);
+            Assert.AreEqual(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
         }
         
         [Test]
-        public void RegexSsearch_Name()
+        public void ExactSearch_NotDisableExactSearch_Class_EmptyInput()
         {
             // Arrange
-            var cmdlet = GetInputCmdlet();
-            cmdlet.Name = "abc";
+            var cmdlet = GetInputCmdlet(true);
+            cmdlet.Class = "Class1";
+            Preferences.DisableExactSearch = false;
+            Preferences.DisableWildCardSearch = true;
+            
+            // Act
+            var controlSearch = PerformGetElements(cmdlet);
+            
+            // Assert
+            Assert.AreEqual(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
+        }
+        
+        [Test]
+        public void ExactSearch_NotDisableExactSearch_Value_EmptyInput()
+        {
+            // Arrange
+            var cmdlet = GetInputCmdlet(true);
+            cmdlet.Value = "Value2";
+            Preferences.DisableExactSearch = false;
+            Preferences.DisableWildCardSearch = true;
+            
+            // Act
+            var controlSearch = PerformGetElements(cmdlet);
+            
+            // Assert
+            Assert.AreEqual(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
+        }
+        
+        [Test]
+        public void WildcardSearch_DefaultGlobalSettings_Name_EmptyInput()
+        {
+            // Arrange
+            var cmdlet = GetInputCmdlet(true);
+            cmdlet.Name = "Name1";
+            
+            // Act
+            var controlSearch = PerformGetElements(cmdlet);
+            
+            // Assert
+            Assert.AreEqual(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
+        }
+        
+        [Test]
+        public void WildcardSearch_DefaultGlobalSettings_AutomationId_EmptyInput()
+        {
+            // Arrange
+            var cmdlet = GetInputCmdlet(true);
+            cmdlet.AutomationId = "AutomationId2";
+            
+            // Act
+            var controlSearch = PerformGetElements(cmdlet);
+            
+            // Assert
+            Assert.AreEqual(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
+        }
+        
+        [Test]
+        public void WildcardSearch_DefaultGlobalSettings_Class_EmptyInput()
+        {
+            // Arrange
+            var cmdlet = GetInputCmdlet(true);
+            cmdlet.Class = "ClassName3";
+            
+            // Act
+            var controlSearch = PerformGetElements(cmdlet);
+            
+            // Assert
+            Assert.AreEqual(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
+        }
+        
+        [Test]
+        public void WildcardSearch_DefaultGlobalSettings_Value_EmptyInput()
+        {
+            // Arrange
+            var cmdlet = GetInputCmdlet(true);
+            cmdlet.Value = "Value3";
+            
+            // Act
+            var controlSearch = PerformGetElements(cmdlet);
+            
+            // Assert
+            Assert.AreEqual(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
+        }
+        
+        [Test]
+        public void RegexSearch_DefaultGlobalSettings_Name_EmptyInput()
+        {
+            // Arrange
+            var cmdlet = GetInputCmdlet(true);
+            cmdlet.Name = "Name1";
             cmdlet.Regex = true;
             
             // Act
-            var controlSearch =
-                AutomationFactory.GetSearchImpl<ControlSearch>() as ControlSearch;
-            
-            controlSearch.GetElements(
-                controlSearch.ConvertCmdletToControlSearchData(cmdlet),
-                0);
+            var controlSearch = PerformGetElements(cmdlet);
             
             // Assert
-            Assert.AreEqual(UsedSearchType.RegexSsearch, controlSearch.UsedSearchType);
+            Assert.AreEqual(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
         }
         
         [Test]
-        public void Win32Search_Name()
+        public void RegexSearch_DefaultGlobalSettings_AutomationId_EmptyInput()
         {
             // Arrange
-            var cmdlet = GetInputCmdlet();
-            cmdlet.Name = "abc";
+            var cmdlet = GetInputCmdlet(true);
+            cmdlet.AutomationId = "AutomationId3";
+            cmdlet.Regex = true;
+            
+            // Act
+            var controlSearch = PerformGetElements(cmdlet);
+            
+            // Assert
+            Assert.AreEqual(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
+        }
+        
+        [Test]
+        public void RegexSearch_DefaultGlobalSettings_Class_EmptyInput()
+        {
+            // Arrange
+            var cmdlet = GetInputCmdlet(true);
+            cmdlet.Class = "Class3";
+            cmdlet.Regex = true;
+            
+            // Act
+            var controlSearch = PerformGetElements(cmdlet);
+            
+            // Assert
+            Assert.AreEqual(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
+        }
+        
+        [Test]
+        public void RegexSearch_DefaultGlobalSettings_Value_EmptyInput()
+        {
+            // Arrange
+            var cmdlet = GetInputCmdlet(true);
+            cmdlet.Value = "Value1";
+            cmdlet.Regex = true;
+            
+            // Act
+            var controlSearch = PerformGetElements(cmdlet);
+            
+            // Assert
+            Assert.AreEqual(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
+        }
+        
+        [Test]
+        public void Win32Search_Name_EmptyInput()
+        {
+            // Arrange
+            var cmdlet = GetInputCmdlet(true);
+            cmdlet.Name = "Name3";
             cmdlet.Win32 = true;
             
             // Act
-            var controlSearch =
-                AutomationFactory.GetSearchImpl<ControlSearch>() as ControlSearch;
-            
-            controlSearch.GetElements(
-                controlSearch.ConvertCmdletToControlSearchData(cmdlet),
-                0);
+            var controlSearch = PerformGetElements(cmdlet);
             
             // Assert
-            Assert.AreEqual(UsedSearchType.Win32Search, controlSearch.UsedSearchType);
+            Assert.AreEqual(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
+        }
+        
+        [Test]
+        public void Win32Search_AutomationId_EmptyInput()
+        {
+            // Arrange
+            var cmdlet = GetInputCmdlet(true);
+            cmdlet.AutomationId = "AutomationId2";
+            cmdlet.Win32 = true;
+            
+            // Act
+            var controlSearch = PerformGetElements(cmdlet);
+            
+            // Assert
+            Assert.AreEqual(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
+        }
+        
+        [Test]
+        public void Win32Search_Class_EmptyInput()
+        {
+            // Arrange
+            var cmdlet = GetInputCmdlet(true);
+            cmdlet.Class = "Class3";
+            cmdlet.Win32 = true;
+            
+            // Act
+            var controlSearch = PerformGetElements(cmdlet);
+            
+            // Assert
+            Assert.AreEqual(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
+        }
+        
+        [Test]
+        public void Win32Search_Value_EmptyInput()
+        {
+            // Arrange
+            var cmdlet = GetInputCmdlet(true);
+            cmdlet.Value = "Value1";
+            cmdlet.Win32 = true;
+            
+            // Act
+            var controlSearch = PerformGetElements(cmdlet);
+            
+            // Assert
+            Assert.AreEqual(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
+        }
+        
+        // =========================================== non-empty result =============================================
+        
+        [Test]
+        public void TextSearch_DefaultGlobalSettings_NonEmptyInput()
+        {
+            // Arrange
+            var cmdlet = GetInputCmdlet(false);
+            cmdlet.ContainsText = "name1";
+            
+            // Act
+            var controlSearch = PerformGetElements(cmdlet);
+            
+            // Assert
+            Assert.AreEqual(UsedSearchType.Control_TextSearch, controlSearch.UsedSearchType);
+        }
+        
+        [Test]
+        public void TextSearchWin32_DefaultGlobalSettings_NonEmptyInput()
+        {
+            // Arrange
+            var cmdlet = GetInputCmdlet(false);
+            cmdlet.ContainsText = "name1";
+            cmdlet.Win32 = true;
+            
+            // Act
+            var controlSearch = PerformGetElements(cmdlet);
+            
+            // Assert
+            Assert.AreEqual(UsedSearchType.Control_TextSearchWin32, controlSearch.UsedSearchType);
+        }
+        
+        [Test]
+        public void ExactSearch_NotDisableExactSearch_Name_NonEmptyInput()
+        {
+            // Arrange
+            var cmdlet = GetInputCmdlet(false);
+            cmdlet.Name = "Name2";
+            Preferences.DisableExactSearch = false;
+            
+            // Act
+            var controlSearch = PerformGetElements(cmdlet);
+            
+            // Assert
+            Assert.AreEqual(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
+        }
+        
+        [Test]
+        public void ExactSearch_NotDisableExactSearch_AutomationId_NonEmptyInput()
+        {
+            // Arrange
+            var cmdlet = GetInputCmdlet(false);
+            cmdlet.AutomationId = "AutomationId3";
+            Preferences.DisableExactSearch = false;
+            
+            // Act
+            var controlSearch = PerformGetElements(cmdlet);
+            
+            // Assert
+            Assert.AreEqual(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
+        }
+        
+        [Test]
+        public void ExactSearch_NotDisableExactSearch_Class_NonEmptyInput()
+        {
+            // Arrange
+            var cmdlet = GetInputCmdlet(false);
+            cmdlet.Class = "Class1";
+            Preferences.DisableExactSearch = false;
+            
+            // Act
+            var controlSearch = PerformGetElements(cmdlet);
+            
+            // Assert
+            Assert.AreEqual(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
+        }
+        
+        [Test]
+        public void ExactSearch_NotDisableExactSearch_Value_NonEmptyInput()
+        {
+            // Arrange
+            var cmdlet = GetInputCmdlet(false);
+            cmdlet.Value = "Value2";
+            Preferences.DisableExactSearch = false;
+            
+            // Act
+            var controlSearch = PerformGetElements(cmdlet);
+            
+            // Assert
+            Assert.AreEqual(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
+        }
+        
+        [Test]
+        public void WildcardSearch_DefaultGlobalSettings_Name_NonEmptyInput()
+        {
+            // Arrange
+            var cmdlet = GetInputCmdlet(false);
+            cmdlet.Name = "Name1";
+            
+            // Act
+            var controlSearch = PerformGetElements(cmdlet);
+            
+            // Assert
+            Assert.AreEqual(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
+        }
+        
+        [Test]
+        public void WildcardSearch_DefaultGlobalSettings_AutomationId_NonEmptyInput()
+        {
+            // Arrange
+            var cmdlet = GetInputCmdlet(false);
+            cmdlet.AutomationId = "AutomationId2";
+            
+            // Act
+            var controlSearch = PerformGetElements(cmdlet);
+            
+            // Assert
+            Assert.AreEqual(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
+        }
+        
+        [Test]
+        public void WildcardSearch_DefaultGlobalSettings_Class_NonEmptyInput()
+        {
+            // Arrange
+            var cmdlet = GetInputCmdlet(false);
+            cmdlet.Class = "ClassName3";
+            
+            // Act
+            var controlSearch = PerformGetElements(cmdlet);
+            
+            // Assert
+            Assert.AreEqual(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
+        }
+        
+        [Test]
+        public void WildcardSearch_DefaultGlobalSettings_Value_NonEmptyInput()
+        {
+            // Arrange
+            var cmdlet = GetInputCmdlet(false);
+            cmdlet.Value = "Value3";
+            
+            // Act
+            var controlSearch = PerformGetElements(cmdlet);
+            
+            // Assert
+            Assert.AreEqual(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
+        }
+        
+        [Test]
+        public void RegexSearch_DefaultGlobalSettings_Name_NonEmptyInput()
+        {
+            // Arrange
+            var cmdlet = GetInputCmdlet(false);
+            cmdlet.Name = "Name1";
+            cmdlet.Regex = true;
+            
+            // Act
+            var controlSearch = PerformGetElements(cmdlet);
+            
+            // Assert
+            Assert.AreEqual(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
+        }
+        
+        [Test]
+        public void RegexSearch_DefaultGlobalSettings_AutomationId_NonEmptyInput()
+        {
+            // Arrange
+            var cmdlet = GetInputCmdlet(false);
+            cmdlet.AutomationId = "AutomationId3";
+            cmdlet.Regex = true;
+            
+            // Act
+            var controlSearch = PerformGetElements(cmdlet);
+            
+            // Assert
+            Assert.AreEqual(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
+        }
+        
+        [Test]
+        public void RegexSearch_DefaultGlobalSettings_Class_NonEmptyInput()
+        {
+            // Arrange
+            var cmdlet = GetInputCmdlet(false);
+            cmdlet.Class = "Class3";
+            cmdlet.Regex = true;
+            
+            // Act
+            var controlSearch = PerformGetElements(cmdlet);
+            
+            // Assert
+            Assert.AreEqual(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
+        }
+        
+        [Test]
+        public void RegexSearch_DefaultGlobalSettings_Value_NonEmptyInput()
+        {
+            // Arrange
+            var cmdlet = GetInputCmdlet(false);
+            cmdlet.Value = "Value1";
+            cmdlet.Regex = true;
+            
+            // Act
+            var controlSearch = PerformGetElements(cmdlet);
+            
+            // Assert
+            Assert.AreEqual(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
+        }
+        
+        [Test]
+        public void Win32Search_Name_NonEmptyInput()
+        {
+            // Arrange
+            var cmdlet = GetInputCmdlet(false);
+            cmdlet.Name = "Name3";
+            cmdlet.Win32 = true;
+            
+            // Act
+            var controlSearch = PerformGetElements(cmdlet);
+            
+            // Assert
+            Assert.AreEqual(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
+        }
+        
+        [Test]
+        public void Win32Search_AutomationId_NonEmptyInput()
+        {
+            // Arrange
+            var cmdlet = GetInputCmdlet(false);
+            cmdlet.AutomationId = "AutomationId2";
+            cmdlet.Win32 = true;
+            
+            // Act
+            var controlSearch = PerformGetElements(cmdlet);
+            
+            // Assert
+            Assert.AreEqual(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
+        }
+        
+        [Test]
+        public void Win32Search_Class_NonEmptyInput()
+        {
+            // Arrange
+            var cmdlet = GetInputCmdlet(false);
+            cmdlet.Class = "Class3";
+            cmdlet.Win32 = true;
+            
+            // Act
+            var controlSearch = PerformGetElements(cmdlet);
+            
+            // Assert
+            Assert.AreEqual(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
+        }
+        
+        [Test]
+        public void Win32Search_Value_NonEmptyInput()
+        {
+            // Arrange
+            var cmdlet = GetInputCmdlet(false);
+            cmdlet.Value = "Value1";
+            cmdlet.Win32 = true;
+            
+            // Act
+            var controlSearch = PerformGetElements(cmdlet);
+            
+            // Assert
+            Assert.AreEqual(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
         }
     }
 }

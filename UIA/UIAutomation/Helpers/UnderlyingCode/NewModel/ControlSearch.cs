@@ -33,8 +33,12 @@ namespace UIAutomation
         
         protected static bool caseSensitive { get; set; }
         
+        internal UsedSearchType UsedSearchType { get; set; }
+        
         public override void OnStartHook()
         {
+            UsedSearchType = UsedSearchType.None;
+            
             ControlSearchData data = SearchData as ControlSearchData;
             
             #region conditions
@@ -97,6 +101,8 @@ namespace UIAutomation
                 #region text search
                 if (0 == ResultCollection.Count) {
                     if (!notTextSearch && !data.Win32) {
+                        
+                        UsedSearchType = UsedSearchType.TextSearch;
                         ResultCollection.AddRange(
                             SearchByContainsTextViaUia(
                                 // cmdlet,
@@ -110,6 +116,7 @@ namespace UIAutomation
                 if (0 == ResultCollection.Count) {
                     if (!notTextSearch && data.Win32) {
                         
+                        UsedSearchType = UsedSearchType.TextSearchWin32;
                         ResultCollection.AddRange(
                             SearchByTextViaWin32(
                                 // cmdlet,
@@ -124,6 +131,7 @@ namespace UIAutomation
                 if (0 == ResultCollection.Count && notTextSearch && !data.Regex) {
                     if (!Preferences.DisableExactSearch && !data.Win32 ) {
                         
+                        UsedSearchType = UsedSearchType.ExactSearch;
                         ResultCollection.AddRange(
                             SearchByExactConditionsViaUia(
                                 // cmdlet,
@@ -138,6 +146,7 @@ namespace UIAutomation
                 if (0 == ResultCollection.Count && notTextSearch && !data.Regex) {
                     if (!Preferences.DisableWildCardSearch && !data.Win32) {
                         
+                        UsedSearchType = UsedSearchType.WildcardSearch;
                         ResultCollection.AddRange(
                             SearchByWildcardOrRegexViaUia(
                                 // cmdlet,
@@ -159,6 +168,7 @@ namespace UIAutomation
                 if (0 == ResultCollection.Count && notTextSearch && data.Regex) {
                     if (!Preferences.DisableWildCardSearch && !data.Win32) {
                         
+                        UsedSearchType = UsedSearchType.RegexSsearch;
                         ResultCollection.AddRange(
                             SearchByWildcardOrRegexViaUia(
                                 // cmdlet,
@@ -181,6 +191,7 @@ namespace UIAutomation
                     
                     if (!Preferences.DisableWin32Search || data.Win32) {
                         
+                        UsedSearchType = UsedSearchType.WildcardSearch;
                         ResultCollection.AddRange(
                             SearchByWildcardViaWin32(
                                 // cmdlet,
@@ -824,5 +835,16 @@ namespace UIAutomation
             
             return controlSearchData;
         }
+    }
+    
+    internal enum UsedSearchType
+    {
+        None,
+        TextSearch,
+        TextSearchWin32,
+        ExactSearch,
+        WildcardSearch,
+        RegexSsearch,
+        Win32Search
     }
 }

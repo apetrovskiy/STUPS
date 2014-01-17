@@ -130,6 +130,9 @@
     <Reference Include="WindowsBase">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="WindowsInput">
+      <HintPath>..\..\packages\InputSimulator.1.0.4.0\lib\net20\WindowsInput.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
@@ -897,164 +900,95 @@
     <Compile Include="..\UIAutomation\Helpers\UserSettings\UserData.cs">
       <Link>Helpers\UserSettings\UserData.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Interface\IBasePattern.cs">
-      <Link>Interface\IBasePattern.cs</Link>
+    <Compile Include="..\UIAutomation\Interface\Element\ISupportsConversion.cs">
+      <Link>Interface\Element\ISupportsConversion.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Interface\IDockPattern.cs">
-      <Link>Interface\IDockPattern.cs</Link>
+    <Compile Include="..\UIAutomation\Interface\Element\ISupportsDockPattern.cs">
+      <Link>Interface\Element\ISupportsDockPattern.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Interface\IDockPatternInformation.cs">
-      <Link>Interface\IDockPatternInformation.cs</Link>
+    <Compile Include="..\UIAutomation\Interface\Element\ISupportsExpandCollapsePattern.cs">
+      <Link>Interface\Element\ISupportsExpandCollapsePattern.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Interface\IExpandCollapsePattern.cs">
-      <Link>Interface\IExpandCollapsePattern.cs</Link>
+    <Compile Include="..\UIAutomation\Interface\Element\ISupportsExport.cs">
+      <Link>Interface\Element\ISupportsExport.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Interface\IExpandCollapsePatternInformation.cs">
-      <Link>Interface\IExpandCollapsePatternInformation.cs</Link>
+    <Compile Include="..\UIAutomation\Interface\Element\ISupportsExtendedModel.cs">
+      <Link>Interface\Element\ISupportsExtendedModel.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Interface\IExtendedModel.cs">
-      <Link>Interface\IExtendedModel.cs</Link>
+    <Compile Include="..\UIAutomation\Interface\Element\ISupportsGridItemPattern.cs">
+      <Link>Interface\Element\ISupportsGridItemPattern.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Interface\IExtendedModelHolder.cs">
-      <Link>Interface\IExtendedModelHolder.cs</Link>
+    <Compile Include="..\UIAutomation\Interface\Element\ISupportsGridPattern.cs">
+      <Link>Interface\Element\ISupportsGridPattern.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Interface\IGridItemPattern.cs">
-      <Link>Interface\IGridItemPattern.cs</Link>
+    <Compile Include="..\UIAutomation\Interface\Element\ISupportsHighlighter.cs">
+      <Link>Interface\Element\ISupportsHighlighter.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Interface\IGridItemPatternInformation.cs">
-      <Link>Interface\IGridItemPatternInformation.cs</Link>
+    <Compile Include="..\UIAutomation\Interface\Element\ISupportsInvokePattern.cs">
+      <Link>Interface\Element\ISupportsInvokePattern.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Interface\IGridPattern.cs">
-      <Link>Interface\IGridPattern.cs</Link>
+    <Compile Include="..\UIAutomation\Interface\Element\ISupportsNavigation.cs">
+      <Link>Interface\Element\ISupportsNavigation.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Interface\IGridPatternInformation.cs">
-      <Link>Interface\IGridPatternInformation.cs</Link>
+    <Compile Include="..\UIAutomation\Interface\Element\ISupportsRangeValuePattern.cs">
+      <Link>Interface\Element\ISupportsRangeValuePattern.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Interface\IInvokePattern.cs">
-      <Link>Interface\IInvokePattern.cs</Link>
+    <Compile Include="..\UIAutomation\Interface\Element\ISupportsRefresh.cs">
+      <Link>Interface\Element\ISupportsRefresh.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Interface\IRangeValuePattern.cs">
-      <Link>Interface\IRangeValuePattern.cs</Link>
+    <Compile Include="..\UIAutomation\Interface\Element\ISupportsScrollItemPattern.cs">
+      <Link>Interface\Element\ISupportsScrollItemPattern.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Interface\IRangeValuePatternInformation.cs">
-      <Link>Interface\IRangeValuePatternInformation.cs</Link>
+    <Compile Include="..\UIAutomation\Interface\Element\ISupportsScrollPattern.cs">
+      <Link>Interface\Element\ISupportsScrollPattern.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Interface\IScrollItemPattern.cs">
-      <Link>Interface\IScrollItemPattern.cs</Link>
+    <Compile Include="..\UIAutomation\Interface\Element\ISupportsSelectionItemPattern.cs">
+      <Link>Interface\Element\ISupportsSelectionItemPattern.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Interface\IScrollPattern.cs">
-      <Link>Interface\IScrollPattern.cs</Link>
+    <Compile Include="..\UIAutomation\Interface\Element\ISupportsSelectionPattern.cs">
+      <Link>Interface\Element\ISupportsSelectionPattern.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Interface\IScrollPatternInformation.cs">
-      <Link>Interface\IScrollPatternInformation.cs</Link>
+    <Compile Include="..\UIAutomation\Interface\Element\ISupportsTableItemPattern.cs">
+      <Link>Interface\Element\ISupportsTableItemPattern.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Interface\ISelectionItemPattern.cs">
-      <Link>Interface\ISelectionItemPattern.cs</Link>
+    <Compile Include="..\UIAutomation\Interface\Element\ISupportsTablePattern.cs">
+      <Link>Interface\Element\ISupportsTablePattern.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Interface\ISelectionItemPatternInformation.cs">
-      <Link>Interface\ISelectionItemPatternInformation.cs</Link>
+    <Compile Include="..\UIAutomation\Interface\Element\ISupportsTextPattern.cs">
+      <Link>Interface\Element\ISupportsTextPattern.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Interface\ISelectionPattern.cs">
-      <Link>Interface\ISelectionPattern.cs</Link>
+    <Compile Include="..\UIAutomation\Interface\Element\ISupportsTogglePattern.cs">
+      <Link>Interface\Element\ISupportsTogglePattern.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Interface\ISelectionPatternInformation.cs">
-      <Link>Interface\ISelectionPatternInformation.cs</Link>
+    <Compile Include="..\UIAutomation\Interface\Element\ISupportsTransformPattern.cs">
+      <Link>Interface\Element\ISupportsTransformPattern.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Interface\ISupportsConversion.cs">
-      <Link>Interface\ISupportsConversion.cs</Link>
+    <Compile Include="..\UIAutomation\Interface\Element\ISupportsValuePattern.cs">
+      <Link>Interface\Element\ISupportsValuePattern.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Interface\ISupportsDockPattern.cs">
-      <Link>Interface\ISupportsDockPattern.cs</Link>
+    <Compile Include="..\UIAutomation\Interface\Element\ISupportsWindowPattern.cs">
+      <Link>Interface\Element\ISupportsWindowPattern.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Interface\ISupportsExpandCollapsePattern.cs">
-      <Link>Interface\ISupportsExpandCollapsePattern.cs</Link>
+    <Compile Include="..\UIAutomation\Interface\Holder\IControlInput.cs">
+      <Link>Interface\Holder\IControlInput.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Interface\ISupportsExport.cs">
-      <Link>Interface\ISupportsExport.cs</Link>
+    <Compile Include="..\UIAutomation\Interface\Holder\IControlInputHolder.cs">
+      <Link>Interface\Holder\IControlInputHolder.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Interface\ISupportsExtendedModel.cs">
-      <Link>Interface\ISupportsExtendedModel.cs</Link>
+    <Compile Include="..\UIAutomation\Interface\Holder\IExtendedModel.cs">
+      <Link>Interface\Holder\IExtendedModel.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Interface\ISupportsGridItemPattern.cs">
-      <Link>Interface\ISupportsGridItemPattern.cs</Link>
+    <Compile Include="..\UIAutomation\Interface\Holder\IExtendedModelHolder.cs">
+      <Link>Interface\Holder\IExtendedModelHolder.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Interface\ISupportsGridPattern.cs">
-      <Link>Interface\ISupportsGridPattern.cs</Link>
+    <Compile Include="..\UIAutomation\Interface\Holder\IInputSimulatorHolder.cs">
+      <Link>Interface\Holder\IInputSimulatorHolder.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Interface\ISupportsHighlighter.cs">
-      <Link>Interface\ISupportsHighlighter.cs</Link>
+    <Compile Include="..\UIAutomation\Interface\Holder\IKeyboardInput.cs">
+      <Link>Interface\Holder\IKeyboardInput.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Interface\ISupportsInvokePattern.cs">
-      <Link>Interface\ISupportsInvokePattern.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Interface\ISupportsNavigation.cs">
-      <Link>Interface\ISupportsNavigation.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Interface\ISupportsRangeValuePattern.cs">
-      <Link>Interface\ISupportsRangeValuePattern.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Interface\ISupportsRefresh.cs">
-      <Link>Interface\ISupportsRefresh.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Interface\ISupportsScrollItemPattern.cs">
-      <Link>Interface\ISupportsScrollItemPattern.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Interface\ISupportsScrollPattern.cs">
-      <Link>Interface\ISupportsScrollPattern.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Interface\ISupportsSelectionItemPattern.cs">
-      <Link>Interface\ISupportsSelectionItemPattern.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Interface\ISupportsSelectionPattern.cs">
-      <Link>Interface\ISupportsSelectionPattern.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Interface\ISupportsTableItemPattern.cs">
-      <Link>Interface\ISupportsTableItemPattern.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Interface\ISupportsTablePattern.cs">
-      <Link>Interface\ISupportsTablePattern.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Interface\ISupportsTextPattern.cs">
-      <Link>Interface\ISupportsTextPattern.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Interface\ISupportsTogglePattern.cs">
-      <Link>Interface\ISupportsTogglePattern.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Interface\ISupportsTransformPattern.cs">
-      <Link>Interface\ISupportsTransformPattern.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Interface\ISupportsValuePattern.cs">
-      <Link>Interface\ISupportsValuePattern.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Interface\ISupportsWindowPattern.cs">
-      <Link>Interface\ISupportsWindowPattern.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Interface\ITableItemPattern.cs">
-      <Link>Interface\ITableItemPattern.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Interface\ITableItemPatternInformation.cs">
-      <Link>Interface\ITableItemPatternInformation.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Interface\ITablePattern.cs">
-      <Link>Interface\ITablePattern.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Interface\ITablePatternInformation.cs">
-      <Link>Interface\ITablePatternInformation.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Interface\ITextPattern.cs">
-      <Link>Interface\ITextPattern.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Interface\ITogglePattern.cs">
-      <Link>Interface\ITogglePattern.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Interface\ITogglePatternInformation.cs">
-      <Link>Interface\ITogglePatternInformation.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Interface\ITransformPattern.cs">
-      <Link>Interface\ITransformPattern.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Interface\ITransformPatternInformation.cs">
-      <Link>Interface\ITransformPatternInformation.cs</Link>
+    <Compile Include="..\UIAutomation\Interface\Holder\IMouseInput.cs">
+      <Link>Interface\Holder\IMouseInput.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Interface\IUiElement.cs">
       <Link>Interface\IUiElement.cs</Link>
@@ -1065,17 +999,101 @@
     <Compile Include="..\UIAutomation\Interface\IUiEltCollection.cs">
       <Link>Interface\IUiEltCollection.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Interface\IValuePattern.cs">
-      <Link>Interface\IValuePattern.cs</Link>
+    <Compile Include="..\UIAutomation\Interface\Pattern\IBasePattern.cs">
+      <Link>Interface\Pattern\IBasePattern.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Interface\IValuePatternInformation.cs">
-      <Link>Interface\IValuePatternInformation.cs</Link>
+    <Compile Include="..\UIAutomation\Interface\Pattern\IDockPattern.cs">
+      <Link>Interface\Pattern\IDockPattern.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Interface\IWindowPattern.cs">
-      <Link>Interface\IWindowPattern.cs</Link>
+    <Compile Include="..\UIAutomation\Interface\Pattern\IDockPatternInformation.cs">
+      <Link>Interface\Pattern\IDockPatternInformation.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Interface\IWindowPatternInformation.cs">
-      <Link>Interface\IWindowPatternInformation.cs</Link>
+    <Compile Include="..\UIAutomation\Interface\Pattern\IExpandCollapsePattern.cs">
+      <Link>Interface\Pattern\IExpandCollapsePattern.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\Pattern\IExpandCollapsePatternInformation.cs">
+      <Link>Interface\Pattern\IExpandCollapsePatternInformation.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\Pattern\IGridItemPattern.cs">
+      <Link>Interface\Pattern\IGridItemPattern.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\Pattern\IGridItemPatternInformation.cs">
+      <Link>Interface\Pattern\IGridItemPatternInformation.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\Pattern\IGridPattern.cs">
+      <Link>Interface\Pattern\IGridPattern.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\Pattern\IGridPatternInformation.cs">
+      <Link>Interface\Pattern\IGridPatternInformation.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\Pattern\IInvokePattern.cs">
+      <Link>Interface\Pattern\IInvokePattern.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\Pattern\IRangeValuePattern.cs">
+      <Link>Interface\Pattern\IRangeValuePattern.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\Pattern\IRangeValuePatternInformation.cs">
+      <Link>Interface\Pattern\IRangeValuePatternInformation.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\Pattern\IScrollItemPattern.cs">
+      <Link>Interface\Pattern\IScrollItemPattern.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\Pattern\IScrollPattern.cs">
+      <Link>Interface\Pattern\IScrollPattern.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\Pattern\IScrollPatternInformation.cs">
+      <Link>Interface\Pattern\IScrollPatternInformation.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\Pattern\ISelectionItemPattern.cs">
+      <Link>Interface\Pattern\ISelectionItemPattern.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\Pattern\ISelectionItemPatternInformation.cs">
+      <Link>Interface\Pattern\ISelectionItemPatternInformation.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\Pattern\ISelectionPattern.cs">
+      <Link>Interface\Pattern\ISelectionPattern.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\Pattern\ISelectionPatternInformation.cs">
+      <Link>Interface\Pattern\ISelectionPatternInformation.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\Pattern\ITableItemPattern.cs">
+      <Link>Interface\Pattern\ITableItemPattern.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\Pattern\ITableItemPatternInformation.cs">
+      <Link>Interface\Pattern\ITableItemPatternInformation.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\Pattern\ITablePattern.cs">
+      <Link>Interface\Pattern\ITablePattern.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\Pattern\ITablePatternInformation.cs">
+      <Link>Interface\Pattern\ITablePatternInformation.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\Pattern\ITextPattern.cs">
+      <Link>Interface\Pattern\ITextPattern.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\Pattern\ITogglePattern.cs">
+      <Link>Interface\Pattern\ITogglePattern.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\Pattern\ITogglePatternInformation.cs">
+      <Link>Interface\Pattern\ITogglePatternInformation.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\Pattern\ITransformPattern.cs">
+      <Link>Interface\Pattern\ITransformPattern.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\Pattern\ITransformPatternInformation.cs">
+      <Link>Interface\Pattern\ITransformPatternInformation.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\Pattern\IValuePattern.cs">
+      <Link>Interface\Pattern\IValuePattern.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\Pattern\IValuePatternInformation.cs">
+      <Link>Interface\Pattern\IValuePatternInformation.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\Pattern\IWindowPattern.cs">
+      <Link>Interface\Pattern\IWindowPattern.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\Pattern\IWindowPatternInformation.cs">
+      <Link>Interface\Pattern\IWindowPatternInformation.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
@@ -1126,6 +1144,9 @@
     <Folder Include="Helpers\UnderlyingCode\Types" />
     <Folder Include="Helpers\UnderlyingCode\Types" />
     <Folder Include="Interface" />
+    <Folder Include="Interface\Element" />
+    <Folder Include="Interface\Holder" />
+    <Folder Include="Interface\Pattern" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

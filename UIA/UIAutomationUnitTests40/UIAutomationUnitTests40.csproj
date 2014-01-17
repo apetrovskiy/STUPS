@@ -304,6 +304,9 @@
     <Compile Include="..\UIAutomationUnitTests\Helpers\UnderlyingCode\getControlConditionsTestFixture.cs">
       <Link>Helpers\UnderlyingCode\getControlConditionsTestFixture.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\UnderlyingCode\NewModel\ControlSearchTestFixture.cs">
+      <Link>Helpers\UnderlyingCode\NewModel\ControlSearchTestFixture.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomationUnitTests\Helpers\UnitTestingHelper.cs">
       <Link>Helpers\UnitTestingHelper.cs</Link>
     </Compile>
@@ -395,6 +398,7 @@
     <Folder Include="Helpers\UnderlyingCode" />
     <Folder Include="Helpers\UnderlyingCode" />
     <Folder Include="Helpers\UnderlyingCode\Adapter" />
+    <Folder Include="Helpers\UnderlyingCode\NewModel" />
     <Folder Include="Ninject" />
     <Folder Include="Ninject" />
     <Folder Include="ParamChecks" />

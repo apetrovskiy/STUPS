@@ -19,6 +19,23 @@ namespace UIAutomation.Commands
     
     public class GetUiaControlContextMenuCommand : HasControlInputCmdletBase
     {
+        // TEMPORARY!
+        // 20140116
+        public GetUiaControlContextMenuCommand()
+        {
+            X = Preferences.ClickOnControlByCoordX;
+            Y = Preferences.ClickOnControlByCoordY;
+        }
+        
+        // TEMPORARY!
+        // 20140116
+        #region Parameters
+        [Parameter(Mandatory = false)]
+        public int X { get; set; }
+        [Parameter(Mandatory = false)]
+        public int Y { get; set; }
+        #endregion Parameters
+        
         /// <summary>
         /// Processes the pipeline.
         /// </summary>
@@ -31,7 +48,9 @@ namespace UIAutomation.Commands
                 try {
                     // InvokeContextMenu(inputObject);
                     // 20131226
-                    var resultElement = inputObject.InvokeContextMenu(this);
+                    // 20140116
+                    // var resultElement = inputObject.InvokeContextMenu(this);
+                    var resultElement = inputObject.InvokeContextMenu(this, X, Y);
                     // return the context menu window
                     WriteObject(this, resultElement);
                 } catch {

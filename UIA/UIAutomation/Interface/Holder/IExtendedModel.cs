@@ -11,6 +11,7 @@ namespace UIAutomation
 {
 	extern alias UIANET;
 	using System.Windows.Automation;
+	
     /// <summary>
     /// Description of IExtendedModel.
     /// </summary>

@@ -11,6 +11,9 @@ namespace UIAutomation
 {
 	public interface ISupportsInvokePattern
 	{
+	    // TODO: Invoke();
+	    
+	    // TODO: move all the below to IControlInput
 		IUiElement Click();
 		IUiElement DoubleClick();
 		IUiElement RightClick();
@@ -20,5 +23,6 @@ namespace UIAutomation
 		IUiElement Click(int X, int Y);
 		IUiElement DoubleClick(int X, int Y);
 		IUiElement InvokeContextMenu();
+		IUiElement InvokeContextMenu(int X, int Y);
 	}
 }

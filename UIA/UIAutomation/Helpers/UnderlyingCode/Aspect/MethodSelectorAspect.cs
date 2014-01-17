@@ -130,8 +130,18 @@ namespace UIAutomation
                                 (invocation.Proxy as IUiElement).PerformShiftClick();
                             break;
                         case "InvokeContextMenu":
-                            invocation.ReturnValue =
-                                (invocation.Proxy as IUiElement).PerformInvokeContextMenu();
+                            // 20140117
+                            // invocation.ReturnValue =
+                            //     (invocation.Proxy as IUiElement).PerformInvokeContextMenu();
+                            if (0 == invocation.Arguments.Length) {
+                                invocation.ReturnValue =
+                                    (invocation.Proxy as IUiElement).PerformInvokeContextMenu();
+                            } else {
+                                invocation.ReturnValue =
+                                    (invocation.Proxy as IUiElement).PerformCoordinatedInvokeContextMenu(
+                                        (int)invocation.Arguments[0],
+                                        (int)invocation.Arguments[1]);
+                            }
                             break;
                         #endregion InvokePattern
                         #region RangeValuePattern

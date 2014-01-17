@@ -81,23 +81,6 @@ namespace UIAutomation.Commands
                         RelativeY = this.Y
                     });
                 
-                /*
-                ClickControl(
-                    this,
-                    inputObject,
-                    RightClick,
-                    MidClick,
-                    Alt,
-                    Shift,
-                    Ctrl,
-                    false,
-                    DoubleClick,
-                    // 20131125
-                    DoubleClickInterval,
-                    X,
-                    Y);
-                */
-    
                 if (PassThru) {
 
                     WriteObject(this, inputObject);

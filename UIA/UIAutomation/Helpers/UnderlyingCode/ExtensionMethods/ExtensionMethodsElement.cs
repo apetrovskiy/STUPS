@@ -518,25 +518,40 @@ namespace UIAutomation
             return result;
         }
         
-        internal static IUiElement InvokeContextMenu(this IUiElement inputObject, HasControlInputCmdletBase cmdlet)
+        internal static IUiElement InvokeContextMenu(this IUiElement inputObject, HasControlInputCmdletBase cmdlet, int x, int y)
         {
             IUiElement resultElement = null;
             try {
+                
+                // 20140116
+                if (x < 0) {
+                    x = Preferences.ClickOnControlByCoordX;
+                }
+                if (y < 0) {
+                    y = Preferences.ClickOnControlByCoordY;
+                }
+                
                 if (!cmdlet.ClickControl(
                         cmdlet,
                         inputObject,
                         new ClickSettings() {
                             RightClick = true,
-                            RelativeX = Preferences.ClickOnControlByCoordX,
-                            RelativeY = Preferences.ClickOnControlByCoordY
+                            // 20140116
+                            // RelativeX = Preferences.ClickOnControlByCoordX,
+                            // RelativeY = Preferences.ClickOnControlByCoordY
+                            RelativeX = x,
+                            RelativeY = y
                         })) {
                 }
             }
             catch {
                 throw; // ??
             }
-            int x = Cursor.Position.X;
-            int y = Cursor.Position.Y;
+            
+            // 20140116
+            // what are these x and y?
+            // int x = Cursor.Position.X;
+            // int y = Cursor.Position.Y;
 
             // get the context menu window
             int processId = inputObject.Current.ProcessId;

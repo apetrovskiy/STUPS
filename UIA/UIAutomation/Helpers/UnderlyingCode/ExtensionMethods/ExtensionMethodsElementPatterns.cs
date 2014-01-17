@@ -197,18 +197,6 @@ namespace UIAutomation
                     RelativeX = Preferences.ClickOnControlByCoordX,
                     RelativeY = Preferences.ClickOnControlByCoordY
                 });
-            /*
-                false,
-                false,
-                false,
-                false,
-                false,
-                false,
-                false,
-                50,
-                Preferences.ClickOnControlByCoordX,
-                Preferences.ClickOnControlByCoordY);
-            */
             
             return element;
         }
@@ -225,18 +213,6 @@ namespace UIAutomation
                     RelativeX = X,
                     RelativeY = Y
                 });
-            /*
-                false,
-                false,
-                false,
-                false,
-                false,
-                false,
-                false,
-                50,
-                X,
-                Y);
-            */
             
             return element;
         }
@@ -255,19 +231,6 @@ namespace UIAutomation
                     RelativeY = Preferences.ClickOnControlByCoordY
                 });
             
-            /*
-                false,
-                false,
-                false,
-                false,
-                false,
-                false,
-                true,
-                50,
-                Preferences.ClickOnControlByCoordX,
-                Preferences.ClickOnControlByCoordY);
-            */
-            
             return element;
         }
         
@@ -284,19 +247,6 @@ namespace UIAutomation
                     RelativeX = X,
                     RelativeY = Y
                 });
-            
-            /*
-                false,
-                false,
-                false,
-                false,
-                false,
-                false,
-                true,
-                50,
-                X,
-                Y);
-            */
             
             return element;
         }
@@ -315,19 +265,6 @@ namespace UIAutomation
                     RelativeY = Preferences.ClickOnControlByCoordY
                 });
             
-            /*
-                true,
-                false,
-                false,
-                false,
-                false,
-                false,
-                false,
-                50,
-                Preferences.ClickOnControlByCoordX,
-                Preferences.ClickOnControlByCoordY);
-            */
-            
             return element;
         }
         
@@ -344,19 +281,6 @@ namespace UIAutomation
                     RelativeX = Preferences.ClickOnControlByCoordX,
                     RelativeY = Preferences.ClickOnControlByCoordY
                 });
-            
-            /*
-                false,
-                false,
-                false,
-                false,
-                true,
-                false,
-                false,
-                50,
-                Preferences.ClickOnControlByCoordX,
-                Preferences.ClickOnControlByCoordY);
-            */
             
             return element;
         }
@@ -375,19 +299,6 @@ namespace UIAutomation
                     RelativeY = Preferences.ClickOnControlByCoordY
                 });
             
-            /*
-                false,
-                false,
-                true,
-                false,
-                false,
-                false,
-                false,
-                50,
-                Preferences.ClickOnControlByCoordX,
-                Preferences.ClickOnControlByCoordY);
-            */
-            
             return element;
         }
         
@@ -405,58 +316,8 @@ namespace UIAutomation
                     RelativeY = Preferences.ClickOnControlByCoordY
                 });
             
-            /*
-                false,
-                false,
-                false,
-                true,
-                false,
-                false,
-                false,
-                50,
-                Preferences.ClickOnControlByCoordX,
-                Preferences.ClickOnControlByCoordY);
-            */
-            
             return element;
         }
-        
-//        public static IUiElement PerformContextMenu(this IUiElement element)
-//        {
-//            HasControlInputCmdletBase cmdlet =
-//                new HasControlInputCmdletBase();
-//            cmdlet.ClickControl(
-//                cmdlet,
-//                element,
-//                new ClickSettings() {
-//                    
-//                }
-//                false,
-//                false,
-//                false,
-//                true,
-//                false,
-//                false,
-//                false,
-//                50,
-//                Preferences.ClickOnControlByCoordX,
-//                Preferences.ClickOnControlByCoordY);
-//            
-//            /*
-//                false,
-//                false,
-//                false,
-//                true,
-//                false,
-//                false,
-//                false,
-//                50,
-//                Preferences.ClickOnControlByCoordX,
-//                Preferences.ClickOnControlByCoordY);
-//            */
-//            
-//            return element;
-//        }
         
         /// <summary>
         /// Invokes the context menu and returns the object representing the menu invoked.
@@ -474,7 +335,21 @@ namespace UIAutomation
             // return element;
             
             // return the context menu window
-            return element.InvokeContextMenu(cmdlet);
+            return element.InvokeContextMenu(cmdlet, Preferences.ClickOnControlByCoordX, Preferences.ClickOnControlByCoordY);
+        }
+        
+        public static IUiElement PerformCoordinatedInvokeContextMenu(this IUiElement element, int X, int Y)
+        {
+            HasControlInputCmdletBase cmdlet =
+                new HasControlInputCmdletBase();
+            
+            // 20131226
+            // element.InvokeContextMenu(cmdlet);
+            
+            // return element;
+            
+            // return the context menu window
+            return element.InvokeContextMenu(cmdlet, X, Y);
         }
         #endregion InvokePattern
         #region RangeValuePattern

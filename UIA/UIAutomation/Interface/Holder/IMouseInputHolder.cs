@@ -1,8 +1,8 @@
 ﻿/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
- * Date: 1/17/2014
- * Time: 10:56 AM
+ * Date: 1/18/2014
+ * Time: 1:04 AM
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
@@ -10,9 +10,9 @@
 namespace UIAutomation
 {
     /// <summary>
-    /// Description of IControlInputHolder.
+    /// Description of IMouseInputHolder.
     /// </summary>
-    public interface IControlInputHolder : IHolder
+    public interface IMouseInputHolder : IHolder
     {
         
     }

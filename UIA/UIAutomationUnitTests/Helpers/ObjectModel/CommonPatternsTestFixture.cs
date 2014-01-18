@@ -31,30 +31,30 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         {
         }
         
-        [Test]
-        public void InvokePattern()
-        {
-            // Arrange
-            // DockPosition expectedValue = DockPosition.Bottom;
-            ISupportsInvokePattern element =
-                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-                    new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsInvokePattern;
-            
-            // Act
-            // element.SetDockPosition(expectedValue);
-            element.Click();
-            element.Click(1, 1);
-            element.DoubleClick();
-            element.DoubleClick(1, 1);
-            element.RightClick();
-            element.AltClick();
-            element.CtrlClick();
-            element.ShiftClick();
-            element.InvokeContextMenu();
-            
-            // Assert
-            // Assert.AreEqual(expectedValue, element.DockPosition);
-        }
+//        [Test]
+//        public void InvokePattern()
+//        {
+//            // Arrange
+//            // DockPosition expectedValue = DockPosition.Bottom;
+//            ISupportsInvokePattern element =
+//                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+//                    new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsInvokePattern;
+//            
+//            // Act
+//            // element.SetDockPosition(expectedValue);
+//            element.Click();
+//            element.Click(1, 1);
+//            element.DoubleClick();
+//            element.DoubleClick(1, 1);
+//            element.RightClick();
+//            element.AltClick();
+//            element.CtrlClick();
+//            element.ShiftClick();
+//            element.InvokeContextMenu();
+//            
+//            // Assert
+//            // Assert.AreEqual(expectedValue, element.DockPosition);
+//        }
         
         [Test]
         public void Highlighter()

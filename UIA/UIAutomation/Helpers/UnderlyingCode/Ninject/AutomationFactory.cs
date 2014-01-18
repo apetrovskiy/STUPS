@@ -21,6 +21,7 @@ namespace UIAutomation
     using PSTestLib;
     using Castle.DynamicProxy;
     using System.Linq;
+    using WindowsInput;
     
     /// <summary>
     /// Description of AutomationFactory.
@@ -60,7 +61,7 @@ namespace UIAutomation
 		private static bool _initFlag = false;
 
         internal static StandardKernel Kernel { get; private set; }
-
+        
         public static void Init()
 		{
 		    if (_initFlag) return;
@@ -183,12 +184,7 @@ namespace UIAutomation
 	        }
 		    
 			try {
-		        // 20140105
     			IExtendedModelHolder holder = Kernel.Get<IExtendedModelHolder>(new IParameter[] {});
-    			// var scopeParameter = new ConstructorArgument("scope", scope);
-    			// IExtendedModelHolder holder = Kernel.Get<IExtendedModelHolder>(new IParameter[] { scopeParameter });
-    			
-    			// holder.SetScope(scope);
     			
     			IExtendedModelHolder proxiedHolder =
     			    (IExtendedModelHolder)_generator.CreateClassProxy(
@@ -196,7 +192,6 @@ namespace UIAutomation
     			        new Type[] { typeof(IExtendedModel) },
     			        new MethodSelectorAspect());
     			
-    			// 20140105
     			proxiedHolder.SetScope(scope);
     			
     			proxiedHolder.SetParentElement(parentElement);
@@ -211,6 +206,69 @@ namespace UIAutomation
 			    return null;
 			}
 		}
+		
+        internal static T GetHolder<T>(IUiElement parentElement)
+        {
+	        if (null == parentElement) {
+                return default(T);
+	        }
+            
+            try {
+                T holder = Kernel.Get<T>(new IParameter[] {});
+                
+                Type typeOfClass = null;
+                Type wearedInterface = null;
+                switch (typeof(T).Name) {
+                    case "IControlInputHolder":
+                        typeOfClass = typeof(UiControlInputHolder);
+                        wearedInterface = typeof(IControlInput);
+                        break;
+                    case "IKeyboardInputHolder":
+                        typeOfClass = typeof(UiKeyboardInputHolder);
+                        wearedInterface = typeof(IKeyboardInput);
+                        break;
+                    case "IMouseInputHolder":
+                        typeOfClass = typeof(UiMouseInputHolder);
+                        wearedInterface = typeof(IMouseInput);
+                        break;
+                    case "ITouchInputHolder":
+                        typeOfClass = typeof(UiTouchInputHolder);
+                        wearedInterface = typeof(ITouchInput);
+                        break;
+                }
+                
+    			T proxiedHolder =
+    			    (T)_generator.CreateClassProxy(
+    			        typeOfClass,
+    			        new Type[] { wearedInterface },
+    			        new MethodSelectorAspect());
+    			
+    			(proxiedHolder as IHolder).SetParentElement(parentElement);
+    			
+    			return proxiedHolder;
+    			
+            } catch (Exception eFailedToIssueHolder) {
+                // TODO
+			    // write error to error object!!!
+			    // Console.WriteLine("Holder");
+			    // Console.WriteLine(eFailedToIssueHolder.Message);
+			    return default(T);
+            }
+        }
+        
+        internal static IInputSimulator GetInputSimulator()
+        {
+            try {
+                return Kernel.Get<InputSimulator>(new IParameter[] {});
+                
+            } catch (Exception eFailedToIssueInputSimulator) {
+                // TODO
+			    // write error to error object!!!
+			    // Console.WriteLine("InputSimulator");
+			    // Console.WriteLine(eFailedToIssueInputSimulator.Message);
+                return null;
+            }
+        }
 		
 		public static IUiElement GetUiElement(object element)
 		{
@@ -422,7 +480,8 @@ namespace UIAutomation
 		#endregion IUiEltCollection
 		
 		#region patterns
-		public static N GetPatternAdapter<N>(IUiElement element, object pattern)
+		// public static N GetPatternAdapter<N>(IUiElement element, object pattern)
+		internal static N GetPatternAdapter<N>(IUiElement element, object pattern)
 		    where N : IBasePattern
 		{
 			try {
@@ -443,7 +502,8 @@ namespace UIAutomation
 			}
 		}
 		
-		public static N GetPatternAdapter<N>(object pattern)
+		// public static N GetPatternAdapter<N>(object pattern)
+		internal static N GetPatternAdapter<N>(object pattern)
 		    where N : IBasePattern
 		{
 			try {
@@ -464,7 +524,8 @@ namespace UIAutomation
 		}
 		#endregion patterns
         
-        public static SearchTemplate GetSearchImpl<T>()
+        // public static SearchTemplate GetSearchImpl<T>()
+        internal static SearchTemplate GetSearchImpl<T>()
         {
             var newObject = Kernel.Get<T>(new IParameter[] {});
             return ConvertToProxiedObject<T>(newObject) as SearchTemplate;

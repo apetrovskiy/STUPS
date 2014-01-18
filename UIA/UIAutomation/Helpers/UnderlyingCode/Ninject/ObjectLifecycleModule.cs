@@ -19,6 +19,8 @@ namespace UIAutomation
     using System.Windows.Automation;
     using Castle.DynamicProxy;
     
+    using WindowsInput;
+    
     /// <summary>
     /// Description of ObjectLifecycleModule.
     /// </summary>
@@ -52,10 +54,29 @@ namespace UIAutomation
                 .InCallScope()
                 .Named("Empty");
             
-            // 20140105
             Bind<IExtendedModelHolder>()
                 .To<UiExtendedModelHolder>()
                 .InCallScope();
+            
+            Bind<IControlInputHolder>()
+                .To<UiControlInputHolder>()
+                .InCallScope();
+            
+            Bind<IKeyboardInputHolder>()
+                .To<UiKeyboardInputHolder>()
+                .InCallScope();
+            
+            Bind<IMouseInputHolder>()
+                .To<UiMouseInputHolder>()
+                .InCallScope();
+            
+            Bind<ITouchInputHolder>()
+                .To<UiTouchInputHolder>()
+                .InCallScope();
+            
+            Bind<IInputSimulator>()
+                .To<InputSimulator>()
+                .InSingletonScope();
             
 //            Bind<IExtendedModelHolder>()
 //                .

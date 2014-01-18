@@ -34,11 +34,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         [Test]
         public void Invoke_ImplementsCommonPattern()
         {
-            ISupportsInvokePattern invokableElement =
-                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-                    new IBasePattern[] { FakeFactory.GetInvokePattern(new PatternsData()) }) as ISupportsInvokePattern;
-            
-            Assert.IsNotNull(invokableElement as ISupportsInvokePattern);
+//            ISupportsInvokePattern invokableElement =
+//                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+//                    new IBasePattern[] { FakeFactory.GetInvokePattern(new PatternsData()) }) as ISupportsInvokePattern;
+//            
+//            Assert.IsNotNull(invokableElement as ISupportsInvokePattern);
             
             ISupportsHighlighter highlightableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
@@ -65,6 +65,19 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Assert.IsNotNull(refreshableElement as ISupportsRefresh);
         }
         
+        [Test]
+        public void Invoke_Invoke()
+        {
+            // Arrange
+            ISupportsInvokePattern element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetInvokePattern(new PatternsData()) }) as ISupportsInvokePattern;
+            
+            // Act
+            // Assert
+            element.Invoke();
+        }
+        
 //        [Test]
 //        public void Invoke_ImplementsPatternInQuestion()
 //        {
@@ -85,31 +98,31 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Assert.IsNull(element as ISupportsValuePattern);
         }
         
-        [Test]
-        public void Invoke_Click()
-        {
-            // Arrange
-            ISupportsInvokePattern element =
-                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-                    new IBasePattern[] { FakeFactory.GetInvokePattern(new PatternsData()) }) as ISupportsInvokePattern;
-            
-            // Act
-            // Assert
-            element.Click();
-        }
-        
-        [Test]
-        public void Invoke_DoubleClick()
-        {
-            // Arrange
-            ISupportsInvokePattern element =
-                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-                    new IBasePattern[] { FakeFactory.GetInvokePattern(new PatternsData()) }) as ISupportsInvokePattern;
-            
-            // Act
-            
-            // Assert
-            element.DoubleClick();
-        }
+//        [Test]
+//        public void Invoke_Click()
+//        {
+//            // Arrange
+//            ISupportsInvokePattern element =
+//                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+//                    new IBasePattern[] { FakeFactory.GetInvokePattern(new PatternsData()) }) as ISupportsInvokePattern;
+//            
+//            // Act
+//            // Assert
+//            element.Click();
+//        }
+//        
+//        [Test]
+//        public void Invoke_DoubleClick()
+//        {
+//            // Arrange
+//            ISupportsInvokePattern element =
+//                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+//                    new IBasePattern[] { FakeFactory.GetInvokePattern(new PatternsData()) }) as ISupportsInvokePattern;
+//            
+//            // Act
+//            
+//            // Assert
+//            element.DoubleClick();
+//        }
     }
 }

@@ -595,7 +595,8 @@ namespace UIAutomation
                         breakSearch = true;
                         break;
                         //                            }
-                    } catch {
+                    }
+                    catch {
                     }
 
                 }

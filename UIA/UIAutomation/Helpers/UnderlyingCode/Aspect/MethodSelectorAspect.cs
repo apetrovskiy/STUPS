@@ -91,58 +91,62 @@ namespace UIAutomation
                             break;
                         #endregion GridPattern
                         #region InvokePattern
-                        case "Click":
-                            if (0 == invocation.Arguments.Length) {
-                                invocation.ReturnValue =
-                                    (invocation.Proxy as IUiElement).PerformClick();
-                            } else {
-                                invocation.ReturnValue =
-                                    (invocation.Proxy as IUiElement).PerformCoordinatedClick(
-                                        (int)invocation.Arguments[0],
-                                        (int)invocation.Arguments[1]);
-                            }
-                            break;
-                        case "DoubleClick":
-                            if (0 == invocation.Arguments.Length) {
-                                invocation.ReturnValue =
-                                    (invocation.Proxy as IUiElement).PerformDoubleClick();
-                            } else {
-                                invocation.ReturnValue =
-                                    (invocation.Proxy as IUiElement).PerformCoordinatedDoubleClick(
-                                        (int)invocation.Arguments[0],
-                                        (int)invocation.Arguments[1]);
-                            }
-                            break;
-                        case "RightClick":
+                        case "Invoke":
                             invocation.ReturnValue =
-                                (invocation.Proxy as IUiElement).PerformRightClick();
+                                (invocation.Proxy as IUiElement).PerformInvoke();
                             break;
-                        case "CtrlClick":
-                            invocation.ReturnValue =
-                                (invocation.Proxy as IUiElement).PerformCtrlClick();
-                            break;
-                        case "AltClick":
-                            invocation.ReturnValue =
-                                (invocation.Proxy as IUiElement).PerformAltClick();
-                            break;
-                        case "ShiftClick":
-                            invocation.ReturnValue =
-                                (invocation.Proxy as IUiElement).PerformShiftClick();
-                            break;
-                        case "InvokeContextMenu":
-                            // 20140117
-                            // invocation.ReturnValue =
-                            //     (invocation.Proxy as IUiElement).PerformInvokeContextMenu();
-                            if (0 == invocation.Arguments.Length) {
-                                invocation.ReturnValue =
-                                    (invocation.Proxy as IUiElement).PerformInvokeContextMenu();
-                            } else {
-                                invocation.ReturnValue =
-                                    (invocation.Proxy as IUiElement).PerformCoordinatedInvokeContextMenu(
-                                        (int)invocation.Arguments[0],
-                                        (int)invocation.Arguments[1]);
-                            }
-                            break;
+//                        case "Click":
+//                            if (0 == invocation.Arguments.Length) {
+//                                invocation.ReturnValue =
+//                                    (invocation.Proxy as IUiElement).PerformClick();
+//                            } else {
+//                                invocation.ReturnValue =
+//                                    (invocation.Proxy as IUiElement).PerformCoordinatedClick(
+//                                        (int)invocation.Arguments[0],
+//                                        (int)invocation.Arguments[1]);
+//                            }
+//                            break;
+//                        case "DoubleClick":
+//                            if (0 == invocation.Arguments.Length) {
+//                                invocation.ReturnValue =
+//                                    (invocation.Proxy as IUiElement).PerformDoubleClick();
+//                            } else {
+//                                invocation.ReturnValue =
+//                                    (invocation.Proxy as IUiElement).PerformCoordinatedDoubleClick(
+//                                        (int)invocation.Arguments[0],
+//                                        (int)invocation.Arguments[1]);
+//                            }
+//                            break;
+//                        case "RightClick":
+//                            invocation.ReturnValue =
+//                                (invocation.Proxy as IUiElement).PerformRightClick();
+//                            break;
+//                        case "CtrlClick":
+//                            invocation.ReturnValue =
+//                                (invocation.Proxy as IUiElement).PerformCtrlClick();
+//                            break;
+//                        case "AltClick":
+//                            invocation.ReturnValue =
+//                                (invocation.Proxy as IUiElement).PerformAltClick();
+//                            break;
+//                        case "ShiftClick":
+//                            invocation.ReturnValue =
+//                                (invocation.Proxy as IUiElement).PerformShiftClick();
+//                            break;
+//                        case "InvokeContextMenu":
+//                            // 20140117
+//                            // invocation.ReturnValue =
+//                            //     (invocation.Proxy as IUiElement).PerformInvokeContextMenu();
+//                            if (0 == invocation.Arguments.Length) {
+//                                invocation.ReturnValue =
+//                                    (invocation.Proxy as IUiElement).PerformInvokeContextMenu();
+//                            } else {
+//                                invocation.ReturnValue =
+//                                    (invocation.Proxy as IUiElement).PerformCoordinatedInvokeContextMenu(
+//                                        (int)invocation.Arguments[0],
+//                                        (int)invocation.Arguments[1]);
+//                            }
+//                            break;
                         #endregion InvokePattern
                         #region RangeValuePattern
                         case "set_RangeValue":
@@ -498,11 +502,11 @@ namespace UIAutomation
                         #region Extended
                         case "get_Descendants":
                             invocation.ReturnValue =
-                                (invocation.Proxy as IUiElement).GetHolder(TreeScope.Descendants);
+                                (invocation.Proxy as IUiElement).GetExtendedModelHolder(TreeScope.Descendants);
                             break;
                         case "get_Children":
                             invocation.ReturnValue =
-                                (invocation.Proxy as IUiElement).GetHolder(TreeScope.Children);
+                                (invocation.Proxy as IUiElement).GetExtendedModelHolder(TreeScope.Children);
                             break;
                         case "get_Buttons":
                             invocation.ReturnValue =
@@ -701,6 +705,108 @@ namespace UIAutomation
                                     ControlType.Window);
                             break;
                         #endregion Extended
+                        #region ControlInput
+                        case "get_Control":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetHolder<IControlInputHolder>();
+                            break;
+                        case "get_c":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IControlInputHolder).GetC();
+                            break;
+                        case "Click":
+                            if (0 == invocation.Arguments.Length) {
+                                invocation.ReturnValue =
+                                    (invocation.Proxy as IControlInputHolder).PerformClick();
+                            } else {
+                                invocation.ReturnValue =
+                                    (invocation.Proxy as IControlInputHolder).PerformCoordinatedClick(
+                                        (int)invocation.Arguments[0],
+                                        (int)invocation.Arguments[1]);
+                            }
+                            break;
+                        case "DoubleClick":
+                            if (0 == invocation.Arguments.Length) {
+                                invocation.ReturnValue =
+                                    (invocation.Proxy as IControlInputHolder).PerformDoubleClick();
+                            } else {
+                                invocation.ReturnValue =
+                                    (invocation.Proxy as IControlInputHolder).PerformCoordinatedDoubleClick(
+                                        (int)invocation.Arguments[0],
+                                        (int)invocation.Arguments[1]);
+                            }
+                            break;
+                        case "RightClick":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IControlInputHolder).PerformRightClick();
+                            break;
+                        case "CtrlClick":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IControlInputHolder).PerformCtrlClick();
+                            break;
+                        case "AltClick":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IControlInputHolder).PerformAltClick();
+                            break;
+                        case "ShiftClick":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IControlInputHolder).PerformShiftClick();
+                            break;
+                        case "InvokeContextMenu":
+                            if (0 == invocation.Arguments.Length) {
+                                invocation.ReturnValue =
+                                    (invocation.Proxy as IControlInputHolder).PerformInvokeContextMenu();
+                            } else {
+                                invocation.ReturnValue =
+                                    (invocation.Proxy as IControlInputHolder).PerformCoordinatedInvokeContextMenu(
+                                        (int)invocation.Arguments[0],
+                                        (int)invocation.Arguments[1]);
+                            }
+                            break;
+                        #endregion ControlInput
+                        #region KeyboardInput
+                        case "get_Keyboard":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetHolder<IKeyboardInputHolder>();
+                            break;
+                        case "get_k":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IKeyboardInputHolder).GetK();
+                            break;
+                        case "TypeText":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IKeyboardInputHolder).PerformTypeText(
+                                    (string)invocation.Arguments[0]);
+                            break;
+                        #endregion KeyboardInput
+                        #region MouseInput
+                        case "get_Mouse":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetHolder<IMouseInputHolder>();
+                            break;
+                        case "get_m":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IMouseInputHolder).GetM();
+                            break;
+                        case "LeftButtonClick":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IMouseInputHolder).PerformLeftButtonClick();
+                            break;
+                        case "LeftButtonDoubleClick":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IMouseInputHolder).PerformLeftButtonDoubleClick();
+                            break;
+                        #endregion MouseInput
+                        #region TouchInput
+                        case "get_Touch":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetHolder<ITouchInputHolder>();
+                            break;
+                        case "get_t":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as ITouchInputHolder).GetT();
+                            break;
+                        #endregion TouchInput
                         default:
                             invocation.Proceed();
                         	break;

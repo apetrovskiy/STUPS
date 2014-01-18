@@ -185,172 +185,185 @@ namespace UIAutomation
         }
         #endregion GridPattern
         #region InvokePattern
-        public static IUiElement PerformClick(this IUiElement element)
+        public static IUiElement PerformInvoke(this IUiElement element)
         {
-            HasControlInputCmdletBase cmdlet =
-                new HasControlInputCmdletBase();
-            cmdlet.ClickControl(
-                cmdlet,
-                element,
-                new ClickSettings() {
-                    // DoubleClickInterval = 50,
-                    RelativeX = Preferences.ClickOnControlByCoordX,
-                    RelativeY = Preferences.ClickOnControlByCoordY
-                });
-            
-            return element;
+            try {
+                element.GetCurrentPattern<IInvokePattern>(InvokePattern.Pattern).Invoke();
+                return element;
+                
+            } catch (Exception) {
+                // 
+                // throw;
+                return null;
+            }
         }
         
-        public static IUiElement PerformCoordinatedClick(this IUiElement element, int X, int Y)
-        {
-            HasControlInputCmdletBase cmdlet =
-                new HasControlInputCmdletBase();
-            cmdlet.ClickControl(
-                cmdlet,
-                element,
-                new ClickSettings() {
-                    // DoubleClickInterval = 50,
-                    RelativeX = X,
-                    RelativeY = Y
-                });
-            
-            return element;
-        }
-        
-        public static IUiElement PerformDoubleClick(this IUiElement element)
-        {
-            HasControlInputCmdletBase cmdlet =
-                new HasControlInputCmdletBase();
-            cmdlet.ClickControl(
-                cmdlet,
-                element,
-                new ClickSettings() {
-                    DoubleClick = true,
-                    DoubleClickInterval = 50,
-                    RelativeX = Preferences.ClickOnControlByCoordX,
-                    RelativeY = Preferences.ClickOnControlByCoordY
-                });
-            
-            return element;
-        }
-        
-        public static IUiElement PerformCoordinatedDoubleClick(this IUiElement element, int X, int Y)
-        {
-            HasControlInputCmdletBase cmdlet =
-                new HasControlInputCmdletBase();
-            cmdlet.ClickControl(
-                cmdlet,
-                element,
-                new ClickSettings() {
-                    DoubleClick = true,
-                    DoubleClickInterval = 50,
-                    RelativeX = X,
-                    RelativeY = Y
-                });
-            
-            return element;
-        }
-        
-        public static IUiElement PerformRightClick(this IUiElement element)
-        {
-            HasControlInputCmdletBase cmdlet =
-                new HasControlInputCmdletBase();
-            cmdlet.ClickControl(
-                cmdlet,
-                element,
-                new ClickSettings() {
-                    RightClick = true,
-                    // DoubleClickInterval = 50,
-                    RelativeX = Preferences.ClickOnControlByCoordX,
-                    RelativeY = Preferences.ClickOnControlByCoordY
-                });
-            
-            return element;
-        }
-        
-        public static IUiElement PerformCtrlClick(this IUiElement element)
-        {
-            HasControlInputCmdletBase cmdlet =
-                new HasControlInputCmdletBase();
-            cmdlet.ClickControl(
-                cmdlet,
-                element,
-                new ClickSettings() {
-                    Ctrl = true,
-                    // DoubleClickInterval = 50,
-                    RelativeX = Preferences.ClickOnControlByCoordX,
-                    RelativeY = Preferences.ClickOnControlByCoordY
-                });
-            
-            return element;
-        }
-        
-        public static IUiElement PerformAltClick(this IUiElement element)
-        {
-            HasControlInputCmdletBase cmdlet =
-                new HasControlInputCmdletBase();
-            cmdlet.ClickControl(
-                cmdlet,
-                element,
-                new ClickSettings() {
-                    Alt = true,
-                    // DoubleClickInterval = 50,
-                    RelativeX = Preferences.ClickOnControlByCoordX,
-                    RelativeY = Preferences.ClickOnControlByCoordY
-                });
-            
-            return element;
-        }
-        
-        public static IUiElement PerformShiftClick(this IUiElement element)
-        {
-            HasControlInputCmdletBase cmdlet =
-                new HasControlInputCmdletBase();
-            cmdlet.ClickControl(
-                cmdlet,
-                element,
-                new ClickSettings() {
-                    Shift = true,
-                    // DoubleClickInterval = 50,
-                    RelativeX = Preferences.ClickOnControlByCoordX,
-                    RelativeY = Preferences.ClickOnControlByCoordY
-                });
-            
-            return element;
-        }
-        
-        /// <summary>
-        /// Invokes the context menu and returns the object representing the menu invoked.
-        /// </summary>
-        /// <param name="element"></param>
-        /// <returns></returns>
-        public static IUiElement PerformInvokeContextMenu(this IUiElement element)
-        {
-            HasControlInputCmdletBase cmdlet =
-                new HasControlInputCmdletBase();
-            
-            // 20131226
-            // element.InvokeContextMenu(cmdlet);
-            
-            // return element;
-            
-            // return the context menu window
-            return element.InvokeContextMenu(cmdlet, Preferences.ClickOnControlByCoordX, Preferences.ClickOnControlByCoordY);
-        }
-        
-        public static IUiElement PerformCoordinatedInvokeContextMenu(this IUiElement element, int X, int Y)
-        {
-            HasControlInputCmdletBase cmdlet =
-                new HasControlInputCmdletBase();
-            
-            // 20131226
-            // element.InvokeContextMenu(cmdlet);
-            
-            // return element;
-            
-            // return the context menu window
-            return element.InvokeContextMenu(cmdlet, X, Y);
-        }
+//        public static IUiElement PerformClick(this IUiElement element)
+//        {
+//            HasControlInputCmdletBase cmdlet =
+//                new HasControlInputCmdletBase();
+//            cmdlet.ClickControl(
+//                cmdlet,
+//                element,
+//                new ClickSettings() {
+//                    // DoubleClickInterval = 50,
+//                    RelativeX = Preferences.ClickOnControlByCoordX,
+//                    RelativeY = Preferences.ClickOnControlByCoordY
+//                });
+//            
+//            return element;
+//        }
+//        
+//        public static IUiElement PerformCoordinatedClick(this IUiElement element, int X, int Y)
+//        {
+//            HasControlInputCmdletBase cmdlet =
+//                new HasControlInputCmdletBase();
+//            cmdlet.ClickControl(
+//                cmdlet,
+//                element,
+//                new ClickSettings() {
+//                    // DoubleClickInterval = 50,
+//                    RelativeX = X,
+//                    RelativeY = Y
+//                });
+//            
+//            return element;
+//        }
+//        
+//        public static IUiElement PerformDoubleClick(this IUiElement element)
+//        {
+//            HasControlInputCmdletBase cmdlet =
+//                new HasControlInputCmdletBase();
+//            cmdlet.ClickControl(
+//                cmdlet,
+//                element,
+//                new ClickSettings() {
+//                    DoubleClick = true,
+//                    DoubleClickInterval = 50,
+//                    RelativeX = Preferences.ClickOnControlByCoordX,
+//                    RelativeY = Preferences.ClickOnControlByCoordY
+//                });
+//            
+//            return element;
+//        }
+//        
+//        public static IUiElement PerformCoordinatedDoubleClick(this IUiElement element, int X, int Y)
+//        {
+//            HasControlInputCmdletBase cmdlet =
+//                new HasControlInputCmdletBase();
+//            cmdlet.ClickControl(
+//                cmdlet,
+//                element,
+//                new ClickSettings() {
+//                    DoubleClick = true,
+//                    DoubleClickInterval = 50,
+//                    RelativeX = X,
+//                    RelativeY = Y
+//                });
+//            
+//            return element;
+//        }
+//        
+//        public static IUiElement PerformRightClick(this IUiElement element)
+//        {
+//            HasControlInputCmdletBase cmdlet =
+//                new HasControlInputCmdletBase();
+//            cmdlet.ClickControl(
+//                cmdlet,
+//                element,
+//                new ClickSettings() {
+//                    RightClick = true,
+//                    // DoubleClickInterval = 50,
+//                    RelativeX = Preferences.ClickOnControlByCoordX,
+//                    RelativeY = Preferences.ClickOnControlByCoordY
+//                });
+//            
+//            return element;
+//        }
+//        
+//        public static IUiElement PerformCtrlClick(this IUiElement element)
+//        {
+//            HasControlInputCmdletBase cmdlet =
+//                new HasControlInputCmdletBase();
+//            cmdlet.ClickControl(
+//                cmdlet,
+//                element,
+//                new ClickSettings() {
+//                    Ctrl = true,
+//                    // DoubleClickInterval = 50,
+//                    RelativeX = Preferences.ClickOnControlByCoordX,
+//                    RelativeY = Preferences.ClickOnControlByCoordY
+//                });
+//            
+//            return element;
+//        }
+//        
+//        public static IUiElement PerformAltClick(this IUiElement element)
+//        {
+//            HasControlInputCmdletBase cmdlet =
+//                new HasControlInputCmdletBase();
+//            cmdlet.ClickControl(
+//                cmdlet,
+//                element,
+//                new ClickSettings() {
+//                    Alt = true,
+//                    // DoubleClickInterval = 50,
+//                    RelativeX = Preferences.ClickOnControlByCoordX,
+//                    RelativeY = Preferences.ClickOnControlByCoordY
+//                });
+//            
+//            return element;
+//        }
+//        
+//        public static IUiElement PerformShiftClick(this IUiElement element)
+//        {
+//            HasControlInputCmdletBase cmdlet =
+//                new HasControlInputCmdletBase();
+//            cmdlet.ClickControl(
+//                cmdlet,
+//                element,
+//                new ClickSettings() {
+//                    Shift = true,
+//                    // DoubleClickInterval = 50,
+//                    RelativeX = Preferences.ClickOnControlByCoordX,
+//                    RelativeY = Preferences.ClickOnControlByCoordY
+//                });
+//            
+//            return element;
+//        }
+//        
+//        /// <summary>
+//        /// Invokes the context menu and returns the object representing the menu invoked.
+//        /// </summary>
+//        /// <param name="element"></param>
+//        /// <returns></returns>
+//        public static IUiElement PerformInvokeContextMenu(this IUiElement element)
+//        {
+//            HasControlInputCmdletBase cmdlet =
+//                new HasControlInputCmdletBase();
+//            
+//            // 20131226
+//            // element.InvokeContextMenu(cmdlet);
+//            
+//            // return element;
+//            
+//            // return the context menu window
+//            return element.InvokeContextMenu(cmdlet, Preferences.ClickOnControlByCoordX, Preferences.ClickOnControlByCoordY);
+//        }
+//        
+//        public static IUiElement PerformCoordinatedInvokeContextMenu(this IUiElement element, int X, int Y)
+//        {
+//            HasControlInputCmdletBase cmdlet =
+//                new HasControlInputCmdletBase();
+//            
+//            // 20131226
+//            // element.InvokeContextMenu(cmdlet);
+//            
+//            // return element;
+//            
+//            // return the context menu window
+//            return element.InvokeContextMenu(cmdlet, X, Y);
+//        }
         #endregion InvokePattern
         #region RangeValuePattern
         public static IUiElement PerformSetValueRangeValuePattern(this IUiElement element, double value)

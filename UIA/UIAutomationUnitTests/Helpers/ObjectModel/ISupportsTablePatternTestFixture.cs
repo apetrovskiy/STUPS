@@ -35,11 +35,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         [Test]
         public void Table_ImplementsCommonPattern()
         {
-            ISupportsInvokePattern invokableElement =
-                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-                    new IBasePattern[] { FakeFactory.GetTablePattern(new PatternsData()) }) as ISupportsInvokePattern;
-            
-            Assert.IsNotNull(invokableElement as ISupportsInvokePattern);
+//            ISupportsInvokePattern invokableElement =
+//                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+//                    new IBasePattern[] { FakeFactory.GetTablePattern(new PatternsData()) }) as ISupportsInvokePattern;
+//            
+//            Assert.IsNotNull(invokableElement as ISupportsInvokePattern);
             
             ISupportsHighlighter highlightableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(

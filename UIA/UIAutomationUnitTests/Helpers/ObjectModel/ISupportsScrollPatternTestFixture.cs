@@ -34,11 +34,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         [Test]
         public void Scroll_ImplementsCommonPattern()
         {
-            ISupportsInvokePattern invokableElement =
-                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-                    new IBasePattern[] { FakeFactory.GetScrollPattern(new PatternsData()) }) as ISupportsInvokePattern;
-            
-            Assert.IsNotNull(invokableElement as ISupportsInvokePattern);
+//            ISupportsInvokePattern invokableElement =
+//                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+//                    new IBasePattern[] { FakeFactory.GetScrollPattern(new PatternsData()) }) as ISupportsInvokePattern;
+//            
+//            Assert.IsNotNull(invokableElement as ISupportsInvokePattern);
             
             
             ISupportsHighlighter highlightableElement =

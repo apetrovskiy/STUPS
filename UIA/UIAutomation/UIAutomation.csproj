@@ -289,6 +289,7 @@
     <Compile Include="Commands\Wizard\StepUIAWizardCommand.cs" />
     <Compile Include="Helpers\Inheritance\Get\GetFamilyCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\Wizard\WizardStepCmdletBase.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Adapter\UiControlInputHolder.cs" />
     <Compile Include="Helpers\UnderlyingCode\Adapter\UiElement.cs" />
     <Compile Include="Helpers\UnderlyingCode\Adapter\UiEltCollection.cs" />
     <Compile Include="Helpers\UnderlyingCode\Adapter\UiElementInformation.cs" />
@@ -312,6 +313,9 @@
     <Compile Include="Helpers\UnderlyingCode\Adapter\UiaValuePattern.cs" />
     <Compile Include="Helpers\UnderlyingCode\Adapter\UiaWindowPattern.cs" />
     <Compile Include="Helpers\UnderlyingCode\Adapter\UiExtendedModelHolder.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Adapter\UiKeyboardInputHolder.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Adapter\UiMouseInputHolder.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Adapter\UiTouchInputHolder.cs" />
     <Compile Include="Helpers\UnderlyingCode\Aspect\AbstractInterceptor.cs" />
     <Compile Include="Helpers\UnderlyingCode\Aspect\ErrorHandlingAspect.cs" />
     <Compile Include="Helpers\UnderlyingCode\Aspect\InputValidationAspect.cs" />
@@ -428,10 +432,14 @@
     <Compile Include="Interface\Holder\IControlInputHolder.cs" />
     <Compile Include="Interface\Holder\IExtendedModel.cs" />
     <Compile Include="Interface\Holder\IExtendedModelHolder.cs" />
+    <Compile Include="Interface\Holder\IHolder.cs" />
     <Compile Include="Interface\Holder\IInputSimulatorHolder.cs" />
     <Compile Include="Interface\Holder\IKeyboardInput.cs" />
+    <Compile Include="Interface\Holder\IKeyboardInputHolder.cs" />
     <Compile Include="Interface\Holder\IMouseInput.cs" />
+    <Compile Include="Interface\Holder\IMouseInputHolder.cs" />
     <Compile Include="Interface\Holder\ITouchInput.cs" />
+    <Compile Include="Interface\Holder\ITouchInputHolder.cs" />
     <Compile Include="Interface\IUiElement.cs" />
     <Compile Include="Interface\IUiEltCollection.cs" />
     <Compile Include="Interface\IUiElementInformation.cs" />

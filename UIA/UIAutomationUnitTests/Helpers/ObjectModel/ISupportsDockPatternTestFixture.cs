@@ -34,11 +34,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         [Test]
         public void Dock_ImplementsCommonPattern()
         {
-            ISupportsInvokePattern invokableElement =
-                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-                    new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsInvokePattern;
-            
-            Assert.IsNotNull(invokableElement as ISupportsInvokePattern);
+//            ISupportsInvokePattern invokableElement =
+//                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+//                    new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsInvokePattern;
+//            
+//            Assert.IsNotNull(invokableElement as ISupportsInvokePattern);
             
             ISupportsHighlighter highlightableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(

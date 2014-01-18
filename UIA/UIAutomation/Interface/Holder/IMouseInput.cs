@@ -14,6 +14,9 @@ namespace UIAutomation
     /// </summary>
     public interface IMouseInput
     {
+        string m { get; }
         
+        IUiElement LeftButtonDoubleClick();
+        IUiElement LeftButtonClick();
     }
 }

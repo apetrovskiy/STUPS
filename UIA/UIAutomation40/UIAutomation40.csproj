@@ -729,6 +729,9 @@
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\UiaWindowPattern.cs">
       <Link>Helpers\UnderlyingCode\Adapter\UiaWindowPattern.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\UiControlInputHolder.cs">
+      <Link>Helpers\UnderlyingCode\Adapter\UiControlInputHolder.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\UiElement.cs">
       <Link>Helpers\UnderlyingCode\Adapter\UiElement.cs</Link>
     </Compile>
@@ -740,6 +743,15 @@
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\UiExtendedModelHolder.cs">
       <Link>Helpers\UnderlyingCode\Adapter\UiExtendedModelHolder.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\UiKeyboardInputHolder.cs">
+      <Link>Helpers\UnderlyingCode\Adapter\UiKeyboardInputHolder.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\UiMouseInputHolder.cs">
+      <Link>Helpers\UnderlyingCode\Adapter\UiMouseInputHolder.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\UiTouchInputHolder.cs">
+      <Link>Helpers\UnderlyingCode\Adapter\UiTouchInputHolder.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Aspect\AbstractInterceptor.cs">
       <Link>Helpers\UnderlyingCode\Aspect\AbstractInterceptor.cs</Link>
@@ -981,17 +993,29 @@
     <Compile Include="..\UIAutomation\Interface\Holder\IExtendedModelHolder.cs">
       <Link>Interface\Holder\IExtendedModelHolder.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Interface\Holder\IHolder.cs">
+      <Link>Interface\Holder\IHolder.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Interface\Holder\IInputSimulatorHolder.cs">
       <Link>Interface\Holder\IInputSimulatorHolder.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Interface\Holder\IKeyboardInput.cs">
       <Link>Interface\Holder\IKeyboardInput.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Interface\Holder\IKeyboardInputHolder.cs">
+      <Link>Interface\Holder\IKeyboardInputHolder.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Interface\Holder\IMouseInput.cs">
       <Link>Interface\Holder\IMouseInput.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Interface\Holder\IMouseInputHolder.cs">
+      <Link>Interface\Holder\IMouseInputHolder.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Interface\Holder\ITouchInput.cs">
       <Link>Interface\Holder\ITouchInput.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\Holder\ITouchInputHolder.cs">
+      <Link>Interface\Holder\ITouchInputHolder.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Interface\IUiElement.cs">
       <Link>Interface\IUiElement.cs</Link>

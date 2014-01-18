@@ -24,5 +24,7 @@ namespace UIAutomation
 		IUiElement DoubleClick(int X, int Y);
 		IUiElement InvokeContextMenu();
 		IUiElement InvokeContextMenu(int X, int Y);
+		
+		string c { get; }
     }
 }

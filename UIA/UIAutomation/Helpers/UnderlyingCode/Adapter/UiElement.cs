@@ -323,19 +323,24 @@ namespace UIAutomation
 
 		public virtual void SetFocus()
 		{
-			switch (_innerElementType) {
-				case InnerElementTypes.AutomationElementNet:
-					_elementHolderNet.SetFocus();
-					break;
-//			    case InnerElementTypes.AutomationElementCom:
-//			        //
-				case InnerElementTypes.UiElement:
-					_elementHolderAdapter.SetFocus();
-					break;
-				default:
-					_elementHolderNet.SetFocus();
-					break;
-			}
+		    //
+		    try {
+    			switch (_innerElementType) {
+    				case InnerElementTypes.AutomationElementNet:
+    					_elementHolderNet.SetFocus();
+    					break;
+    //			    case InnerElementTypes.AutomationElementCom:
+    //			        //
+    				case InnerElementTypes.UiElement:
+    					_elementHolderAdapter.SetFocus();
+    					break;
+    				default:
+    					_elementHolderNet.SetFocus();
+    					break;
+    			}
+		    }
+		    catch {}
+		    //
 		}
 
 		public virtual bool TryGetClickablePoint(out Point pt)

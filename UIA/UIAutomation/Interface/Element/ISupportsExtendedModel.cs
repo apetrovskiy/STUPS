@@ -17,8 +17,11 @@ namespace UIAutomation
         IExtendedModelHolder Descendants { get; }
         IExtendedModelHolder Children { get; }
         IControlInputHolder Control { get; }
-        IInputSimulatorHolder Mouse { get; }
-        IInputSimulatorHolder Keyboard { get; }
-        IInputSimulatorHolder Touch { get; }
+//        IInputSimulatorHolder Mouse { get; }
+//        IInputSimulatorHolder Keyboard { get; }
+//        IInputSimulatorHolder Touch { get; }
+        IMouseInputHolder Mouse { get; }
+        IKeyboardInputHolder Keyboard { get; }
+        ITouchInputHolder Touch { get; }
     }
 }

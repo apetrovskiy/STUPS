@@ -14,6 +14,6 @@ namespace UIAutomation
     /// </summary>
     public interface ITouchInput
     {
-        
+        string t { get; }
     }
 }

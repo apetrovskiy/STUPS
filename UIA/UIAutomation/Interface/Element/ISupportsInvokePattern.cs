@@ -12,17 +12,18 @@ namespace UIAutomation
 	public interface ISupportsInvokePattern
 	{
 	    // TODO: Invoke();
+	    IUiElement Invoke();
 	    
 	    // TODO: move all the below to IControlInput
-		IUiElement Click();
-		IUiElement DoubleClick();
-		IUiElement RightClick();
-		IUiElement CtrlClick();
-		IUiElement AltClick();
-		IUiElement ShiftClick();
-		IUiElement Click(int X, int Y);
-		IUiElement DoubleClick(int X, int Y);
-		IUiElement InvokeContextMenu();
-		IUiElement InvokeContextMenu(int X, int Y);
+//		IUiElement Click();
+//		IUiElement DoubleClick();
+//		IUiElement RightClick();
+//		IUiElement CtrlClick();
+//		IUiElement AltClick();
+//		IUiElement ShiftClick();
+//		IUiElement Click(int X, int Y);
+//		IUiElement DoubleClick(int X, int Y);
+//		IUiElement InvokeContextMenu();
+//		IUiElement InvokeContextMenu(int X, int Y);
 	}
 }

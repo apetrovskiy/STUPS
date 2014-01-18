@@ -2989,7 +2989,7 @@ internal static List<IUiElement> EnumChildWindowsFromHandle(GetWindowCmdletBase 
         {
             List<Type> supportedTypes = new List<Type>
             {
-                typeof (ISupportsInvokePattern),
+                // typeof (ISupportsInvokePattern),
                 typeof (ISupportsHighlighter),
                 typeof (ISupportsNavigation),
                 typeof (ISupportsConversion),
@@ -3029,6 +3029,9 @@ internal static List<IUiElement> EnumChildWindowsFromHandle(GetWindowCmdletBase 
                     if (pattern == GridPattern.Pattern) {
                         supportedTypes.Add(typeof(ISupportsGridPattern));
                         supportedTypes.Add(typeof(ISupportsExport));
+                    }
+                    if (pattern == InvokePattern.Pattern) {
+                        supportedTypes.Add(typeof(ISupportsInvokePattern));
                     }
                     if (pattern == RangeValuePattern.Pattern) {
                         supportedTypes.Add(typeof(ISupportsRangeValuePattern));
@@ -3086,6 +3089,9 @@ internal static List<IUiElement> EnumChildWindowsFromHandle(GetWindowCmdletBase 
                     if (pattern is IGridPattern) {
                         supportedTypes.Add(typeof(ISupportsGridPattern));
                         supportedTypes.Add(typeof(ISupportsExport));
+                    }
+                    if (pattern is IInvokePattern) {
+                        supportedTypes.Add(typeof(ISupportsInvokePattern));
                     }
                     if (pattern is IRangeValuePattern) {
                         supportedTypes.Add(typeof(ISupportsRangeValuePattern));

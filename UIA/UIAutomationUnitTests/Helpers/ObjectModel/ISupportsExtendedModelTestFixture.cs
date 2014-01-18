@@ -1538,5 +1538,68 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 //            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Trees);
 //            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Windows);
         }
+        
+        // ==========================================================================================================================
+        
+        [Test]
+        public void Control_Click()
+        {
+            // Arrange
+            IUiElement element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] {}) as IUiElement;
+            
+            // Act
+            // Assert
+            var elementWithControlInput = ((element as ISupportsExtendedModel).Control as IControlInput).Click();
+        }
+        
+        [Test]
+        public void Control_DoubleClick()
+        {
+            // Arrange
+            IUiElement element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] {}) as IUiElement;
+            
+            // Act
+            // Assert
+            var elementWithControlInput = ((element as ISupportsExtendedModel).Control as IControlInput).Click();
+        }
+        
+        // ==========================================================================================================================
+        
+        
+        // ==========================================================================================================================
+        
+        [Test]
+        public void Mouse_LeftButtonClick()
+        {
+            // Arrange
+            IUiElement element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] {}) as IUiElement;
+            
+            // Act
+            // Assert
+            var elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).LeftButtonClick();
+        }
+        
+        [Test]
+        public void Mouse_LeftButtonDoubleClick()
+        {
+            // Arrange
+            IUiElement element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] {}) as IUiElement;
+            
+            // Act
+            // Assert
+            var elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).LeftButtonDoubleClick();
+        }
+        
+        // ==========================================================================================================================
+        
+        // ==========================================================================================================================
     }
 }

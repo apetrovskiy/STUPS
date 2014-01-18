@@ -14,6 +14,10 @@ namespace UIAutomation
     /// </summary>
     public interface IKeyboardInput
     {
+        string k { get; }
         
+        // IUiElement TextEntry(string text);
+        IUiElement TypeText(string text);
+        // property ??
     }
 }

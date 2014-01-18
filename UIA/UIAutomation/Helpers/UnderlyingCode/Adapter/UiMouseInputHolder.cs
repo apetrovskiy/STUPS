@@ -12,22 +12,22 @@ namespace UIAutomation
     /// <summary>
     /// Description of UiMouseInputHolder.
     /// </summary>
-    public class UiMouseInputHolder : IMouseInputHolder
+    public class UiMouseInputHolder : UiInputHolder, IMouseInputHolder
     {
-        private IUiElement _parentElement;
-        
-        public UiMouseInputHolder()
-        {
-        }
-        
-        public void SetParentElement(IUiElement parentElement)
-        {
-            _parentElement = parentElement;
-        }
-        
-        public IUiElement GetParentElement()
-        {
-            return _parentElement;
-        }
+//        private IUiElement _parentElement;
+//        
+//        public UiMouseInputHolder()
+//        {
+//        }
+//        
+//        public void SetParentElement(IUiElement parentElement)
+//        {
+//            _parentElement = parentElement;
+//        }
+//        
+//        public IUiElement GetParentElement()
+//        {
+//            return _parentElement;
+//        }
     }
 }

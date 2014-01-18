@@ -1,4 +1,5 @@
-﻿/*
+﻿using WindowsInput.Native;
+/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
  * Date: 1/4/2014
@@ -26,6 +27,15 @@ namespace UIAutomation
     /// </summary>
     public static class ExtensionMethodsElementExtended
     {
+        // 20140118
+        internal static IInputSimulator InputSimulator { get; set; }
+        
+        // 20140118
+        static ExtensionMethodsElementExtended()
+        {
+            InputSimulator = AutomationFactory.GetInputSimulator();
+        }
+        
         internal static IUiEltCollection PerformFindAll(this IExtendedModelHolder holder, ControlType controlType)
         {
             try {
@@ -226,57 +236,154 @@ namespace UIAutomation
         }
         #endregion IControlInputHolder
         #region IKeyboardInputHolder
-        // internal static IKeyboardInputHolder GetK(this IKeyboardInputHolder holder)
-        internal static string GetK(this IKeyboardInputHolder holder)
+        internal static IUiElement PerformKeyDown(this IKeyboardInputHolder holder, VirtualKeyCode keyCode)
         {
-            return "k"; // holder;
+            holder.GetParentElement().MoveCursorToControlPosition();
+            InputSimulator.Keyboard.KeyDown(keyCode);
+            return holder.GetParentElement();
+        }
+        
+        internal static IUiElement PerformKeyPressSingle(this IKeyboardInputHolder holder, VirtualKeyCode keyCode)
+        {
+            holder.GetParentElement().MoveCursorToControlPosition();
+            InputSimulator.Keyboard.KeyPress(keyCode);
+            return holder.GetParentElement();
+        }
+        
+//        internal static IUiElement PerformKeyPressMultiple(this IKeyboardInputHolder holder, IEnumerable<VirtualKeyCode> keyCodes)
+//        {
+//            holder.GetParentElement().MoveCursorToControlPosition();
+//            InputSimulator.Keyboard.KeyPress(keyCodes);
+//            return holder.GetParentElement();
+//        }
+        
+        internal static IUiElement PerformKeyUp(this IKeyboardInputHolder holder, VirtualKeyCode keyCode)
+        {
+            holder.GetParentElement().MoveCursorToControlPosition();
+            InputSimulator.Keyboard.KeyUp(keyCode);
+            return holder.GetParentElement();
         }
         
         internal static IUiElement PerformTypeText(this IKeyboardInputHolder holder, string text)
         {
-            IInputSimulator inputSimulator = AutomationFactory.GetInputSimulator();
             holder.GetParentElement().MoveCursorToControlPosition();
-            holder.GetParentElement().SetFocus();
-            inputSimulator.Keyboard.TextEntry(text);
+            InputSimulator.Keyboard.TextEntry(text);
             return holder.GetParentElement();
         }
         #endregion IKeyboardInputHolder
         #region IMouseInputHolder
-        // internal static IMouseInputHolder GetM(this IMouseInputHolder holder)
-        internal static string GetM(this IMouseInputHolder holder)
-        {
-            return "m"; // holder;
-        }
-        
-//        private static double GetAbsoluteX(this IUiElement element)
-//        {
-//            return element.Current.BoundingRectangle.
-//        }
-        
         internal static void MoveCursorToControlPosition(this IUiElement element)
         {
-            IInputSimulator inputSimulator = AutomationFactory.GetInputSimulator();
-            
             element.SetFocus();
             
-            inputSimulator.Mouse.MoveMouseTo(
+            // inputSimulator.Mouse.MoveMouseTo(
+            InputSimulator.Mouse.MoveMouseTo(
                 (element.Current.BoundingRectangle.X + Preferences.ClickOnControlByCoordX) / Screen.PrimaryScreen.Bounds.Width * 65535,
                 (element.Current.BoundingRectangle.Y + Preferences.ClickOnControlByCoordY) / Screen.PrimaryScreen.Bounds.Height * 65535);
         }
         
-        internal static IUiElement PerformLeftButtonDoubleClick(this IMouseInputHolder holder)
+        internal static IUiElement PerformHorizontalScroll(this IMouseInputHolder holder, int scrollAmountInClicks)
         {
-            IInputSimulator inputSimulator = AutomationFactory.GetInputSimulator();
             holder.GetParentElement().MoveCursorToControlPosition();
-            inputSimulator.Mouse.LeftButtonDoubleClick();
+            InputSimulator.Mouse.HorizontalScroll(scrollAmountInClicks);
             return holder.GetParentElement();
         }
         
         internal static IUiElement PerformLeftButtonClick(this IMouseInputHolder holder)
         {
-            IInputSimulator inputSimulator = AutomationFactory.GetInputSimulator();
             holder.GetParentElement().MoveCursorToControlPosition();
-            inputSimulator.Mouse.LeftButtonClick();
+            InputSimulator.Mouse.LeftButtonClick();
+            return holder.GetParentElement();
+        }
+        
+        internal static IUiElement PerformLeftButtonDoubleClick(this IMouseInputHolder holder)
+        {
+            holder.GetParentElement().MoveCursorToControlPosition();
+            InputSimulator.Mouse.LeftButtonDoubleClick();
+            return holder.GetParentElement();
+        }
+        
+        internal static IUiElement PerformLeftButtonDown(this IMouseInputHolder holder)
+        {
+            holder.GetParentElement().MoveCursorToControlPosition();
+            InputSimulator.Mouse.LeftButtonDown();
+            return holder.GetParentElement();
+        }
+        
+        internal static IUiElement PerformLeftButtonUp(this IMouseInputHolder holder)
+        {
+            holder.GetParentElement().MoveCursorToControlPosition();
+            InputSimulator.Mouse.LeftButtonUp();
+            return holder.GetParentElement();
+        }
+        
+//        IUiElement MoveMouseBy(int pixelDeltaX, int pixelDeltaY);
+//        IUiElement MoveMouseTo(double absoluteX, double absoluteY);
+//        IUiElement MoveMouseToPositionOnVirtualDesktop(double absoluteX, double absoluteY);
+        
+        internal static IUiElement PerformRightButtonClick(this IMouseInputHolder holder)
+        {
+            holder.GetParentElement().MoveCursorToControlPosition();
+            InputSimulator.Mouse.RightButtonClick();
+            return holder.GetParentElement();
+        }
+        
+        internal static IUiElement PerformRightButtonDoubleClick(this IMouseInputHolder holder)
+        {
+            holder.GetParentElement().MoveCursorToControlPosition();
+            InputSimulator.Mouse.RightButtonDoubleClick();
+            return holder.GetParentElement();
+        }
+        
+        internal static IUiElement PerformRightButtonDown(this IMouseInputHolder holder)
+        {
+            holder.GetParentElement().MoveCursorToControlPosition();
+            InputSimulator.Mouse.RightButtonDown();
+            return holder.GetParentElement();
+        }
+        
+        internal static IUiElement PerformRightButtonUp(this IMouseInputHolder holder)
+        {
+            holder.GetParentElement().MoveCursorToControlPosition();
+            InputSimulator.Mouse.RightButtonUp();
+            return holder.GetParentElement();
+        }
+
+//        IUiElement Sleep(int milliseconds);
+//        IUiElement Sleep(TimeSpan timeout);
+
+        internal static IUiElement PerformVerticalScroll(this IMouseInputHolder holder, int scrollAmountInClicks)
+        {
+            holder.GetParentElement().MoveCursorToControlPosition();
+            InputSimulator.Mouse.VerticalScroll(scrollAmountInClicks);
+            return holder.GetParentElement();
+        }
+        
+        internal static IUiElement PerformXButtonClick(this IMouseInputHolder holder, int buttonId)
+        {
+            holder.GetParentElement().MoveCursorToControlPosition();
+            InputSimulator.Mouse.XButtonClick(buttonId);
+            return holder.GetParentElement();
+        }
+        
+        internal static IUiElement PerformXButtonDoubleClick(this IMouseInputHolder holder, int buttonId)
+        {
+            holder.GetParentElement().MoveCursorToControlPosition();
+            InputSimulator.Mouse.XButtonDoubleClick(buttonId);
+            return holder.GetParentElement();
+        }
+        
+        internal static IUiElement PerformXButtonDown(this IMouseInputHolder holder, int buttonId)
+        {
+            holder.GetParentElement().MoveCursorToControlPosition();
+            InputSimulator.Mouse.XButtonDown(buttonId);
+            return holder.GetParentElement();
+        }
+        
+        internal static IUiElement PerformXButtonUp(this IMouseInputHolder holder, int buttonId)
+        {
+            holder.GetParentElement().MoveCursorToControlPosition();
+            InputSimulator.Mouse.XButtonUp(buttonId);
             return holder.GetParentElement();
         }
         #endregion IMouseInputHolder

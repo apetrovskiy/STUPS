@@ -34,9 +34,6 @@ namespace UIAutomation
         
         private static ProxyGenerator _generator;
         
-        // 20131227
-        // private static bool _useDynamicProxy;
-        
         #region Initialization
         static AutomationFactory()
         {
@@ -47,8 +44,9 @@ namespace UIAutomation
             
 		    InitCommonObjects();
 		    
-		    // 20131227
-		    // _useDynamicProxy = true;
+		    // ProxyGenerationOptions options;
+		    // options.AdditionalAttributes
+		    // options.AttributesToAddToGeneratedTypes
         }
         
 		private static INinjectModule _ninjectModule;

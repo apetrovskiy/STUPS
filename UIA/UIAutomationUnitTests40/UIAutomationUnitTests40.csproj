@@ -104,6 +104,9 @@
     <Reference Include="WindowsBase">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="WindowsInput">
+      <HintPath>..\..\packages\InputSimulator.1.0.4.0\lib\net20\WindowsInput.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\UIAutomationUnitTests\Commands\Common\HideUIACurrentHighlighterCommandTestFixture.cs">

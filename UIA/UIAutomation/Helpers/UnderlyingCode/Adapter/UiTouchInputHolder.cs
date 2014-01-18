@@ -12,22 +12,22 @@ namespace UIAutomation
     /// <summary>
     /// Description of UiTouchInputHolder.
     /// </summary>
-    public class UiTouchInputHolder : ITouchInputHolder
+    public class UiTouchInputHolder : UiInputHolder, ITouchInputHolder
     {
-        private IUiElement _parentElement;
-        
-        public UiTouchInputHolder()
-        {
-        }
-        
-        public void SetParentElement(IUiElement parentElement)
-        {
-            _parentElement = parentElement;
-        }
-        
-        public IUiElement GetParentElement()
-        {
-            return _parentElement;
-        }
+//        private IUiElement _parentElement;
+//        
+//        public UiTouchInputHolder()
+//        {
+//        }
+//        
+//        public void SetParentElement(IUiElement parentElement)
+//        {
+//            _parentElement = parentElement;
+//        }
+//        
+//        public IUiElement GetParentElement()
+//        {
+//            return _parentElement;
+//        }
     }
 }

@@ -744,6 +744,9 @@
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\UiExtendedModelHolder.cs">
       <Link>Helpers\UnderlyingCode\Adapter\UiExtendedModelHolder.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\UiInputHolder.cs">
+      <Link>Helpers\UnderlyingCode\Adapter\UiInputHolder.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\UiKeyboardInputHolder.cs">
       <Link>Helpers\UnderlyingCode\Adapter\UiKeyboardInputHolder.cs</Link>
     </Compile>

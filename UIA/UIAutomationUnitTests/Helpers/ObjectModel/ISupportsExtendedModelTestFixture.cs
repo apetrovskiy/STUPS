@@ -1,5 +1,4 @@
-﻿using System;
-/*
+﻿/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
  * Date: 1/4/2014
@@ -10,10 +9,14 @@
 
 namespace UIAutomationUnitTests.Helpers.ObjectModel
 {
+    using System;
+    
     using System.Windows.Automation;
     using UIAutomation;
     using MbUnit.Framework;
     using NSubstitute;
+    using WindowsInput;
+    using WindowsInput.Native;
     
     /// <summary>
     /// Description of ISupportsExtendedModelTestFixture.
@@ -25,6 +28,8 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void SetUp()
         {
             FakeFactory.Init();
+            
+            ExtensionMethodsElementExtended.InputSimulator = Substitute.For<IInputSimulator>();
         }
         
         [TearDown]
@@ -1569,8 +1574,129 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         
         // ==========================================================================================================================
         
+        [Test]
+        public void Keyboard_KeyDown()
+        {
+            // Arrange
+            IUiElement element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] {}) as IUiElement;
+            
+            // Act
+            ((element as ISupportsExtendedModel).Keyboard as IKeyboardInput).KeyDown(VirtualKeyCode.VK_F);
+            
+            // Assert
+            ExtensionMethodsElementExtended.InputSimulator.Keyboard.Received(1).KeyDown(VirtualKeyCode.VK_F);
+        }
+        
+        [Test]
+        public void Keyboard_KeyPress_Single()
+        {
+            // Arrange
+            IUiElement element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] {}) as IUiElement;
+            
+            // Act
+            ((element as ISupportsExtendedModel).Keyboard as IKeyboardInput).KeyPress(VirtualKeyCode.VK_F);
+            
+            // Assert
+            ExtensionMethodsElementExtended.InputSimulator.Keyboard.Received(1).KeyPress(VirtualKeyCode.VK_F);
+        }
+        
+        [Test]
+        [Ignore]
+        public void Keyboard_KeyPress_Multiple()
+        {
+            // Arrange
+            IUiElement element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] {}) as IUiElement;
+            
+            // Act
+            ((element as ISupportsExtendedModel).Keyboard as IKeyboardInput).KeyPress(new [] { VirtualKeyCode.VK_A, VirtualKeyCode.VK_B, VirtualKeyCode.VK_C });
+            
+            // Assert
+            ExtensionMethodsElementExtended.InputSimulator.Keyboard.Received(1).KeyPress(new [] { VirtualKeyCode.VK_A, VirtualKeyCode.VK_B, VirtualKeyCode.VK_C });
+        }
+        
+        [Test]
+        public void Keyboard_KeyUp()
+        {
+            // Arrange
+            IUiElement element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] {}) as IUiElement;
+            
+            // Act
+            ((element as ISupportsExtendedModel).Keyboard as IKeyboardInput).KeyUp(VirtualKeyCode.VK_F);
+            
+            // Assert
+            ExtensionMethodsElementExtended.InputSimulator.Keyboard.Received(1).KeyUp(VirtualKeyCode.VK_F);
+        }
+        
+        [Test]
+        public void Keyboard_TypeText()
+        {
+            // Arrange
+            IUiElement element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] {}) as IUiElement;
+            
+            // Act
+            ((element as ISupportsExtendedModel).Keyboard as IKeyboardInput).TypeText("abc");
+            
+            // Assert
+            ExtensionMethodsElementExtended.InputSimulator.Keyboard.Received(1).TextEntry("abc");
+        }
         
         // ==========================================================================================================================
+        
+//        [Test]
+//        public void Mouse_Consolidated()
+//        {
+//            // Arrange
+//            IUiElement element =
+//                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+//                    new IBasePattern[] {}) as IUiElement;
+//            
+//            // Act
+//            // Assert
+//            var elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).HorizontalScroll(1);
+//            elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).LeftButtonClick();
+//            elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).LeftButtonDoubleClick();
+//            elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).LeftButtonDown();
+//            elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).LeftButtonUp();
+//            elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).MoveMouseBy(1, 1);
+//            elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).MoveMouseTo(1, 1);
+//            elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).MoveMouseToPositionOnVirtualDesktop(1, 1);
+//            elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).RightButtonClick();
+//            elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).RightButtonDoubleClick();
+//            elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).RightButtonDown();
+//            elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).RightButtonUp();
+//            elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).Sleep(1);
+//            elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).Sleep(new System.TimeSpan(111));
+//            elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).VerticalScroll(1);
+//            elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).XButtonClick(1);
+//            elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).XButtonDoubleClick(1);
+//            elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).XButtonDown(1);
+//            elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).XButtonUp(1);
+//        }
+        
+        [Test]
+        public void Mouse_HorizontalScroll()
+        {
+            // Arrange
+            IUiElement element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] {}) as IUiElement;
+            
+            // Act
+            var elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).HorizontalScroll(1);
+            
+            // Assert
+            ExtensionMethodsElementExtended.InputSimulator.Mouse.Received(1).HorizontalScroll(1);
+        }
         
         [Test]
         public void Mouse_LeftButtonClick()
@@ -1581,8 +1707,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
                     new IBasePattern[] {}) as IUiElement;
             
             // Act
-            // Assert
             var elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).LeftButtonClick();
+            
+            // Assert
+            ExtensionMethodsElementExtended.InputSimulator.Mouse.Received(1).LeftButtonClick();
         }
         
         [Test]
@@ -1594,8 +1722,181 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
                     new IBasePattern[] {}) as IUiElement;
             
             // Act
-            // Assert
             var elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).LeftButtonDoubleClick();
+            
+            // Assert
+            ExtensionMethodsElementExtended.InputSimulator.Mouse.Received(1).LeftButtonDoubleClick();
+        }
+        
+        [Test]
+        public void Mouse_LeftButtonDown()
+        {
+            // Arrange
+            IUiElement element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] {}) as IUiElement;
+            
+            // Act
+            var elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).LeftButtonDown();
+            
+            // Assert
+            ExtensionMethodsElementExtended.InputSimulator.Mouse.Received(1).LeftButtonDown();
+        }
+        
+        [Test]
+        public void Mouse_LeftButtonUp()
+        {
+            // Arrange
+            IUiElement element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] {}) as IUiElement;
+            
+            // Act
+            var elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).LeftButtonUp();
+            
+            // Assert
+            ExtensionMethodsElementExtended.InputSimulator.Mouse.Received(1).LeftButtonUp();
+        }
+        
+        //
+        //
+        
+        [Test]
+        public void Mouse_RightButtonClick()
+        {
+            // Arrange
+            IUiElement element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] {}) as IUiElement;
+            
+            // Act
+            var elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).RightButtonClick();
+            
+            // Assert
+            ExtensionMethodsElementExtended.InputSimulator.Mouse.Received(1).RightButtonClick();
+        }
+        
+        [Test]
+        public void Mouse_RightButtonDoubleClick()
+        {
+            // Arrange
+            IUiElement element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] {}) as IUiElement;
+            
+            // Act
+            var elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).RightButtonDoubleClick();
+            
+            // Assert
+            ExtensionMethodsElementExtended.InputSimulator.Mouse.Received(1).RightButtonDoubleClick();
+        }
+        
+        [Test]
+        public void Mouse_RightButtonDown()
+        {
+            // Arrange
+            IUiElement element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] {}) as IUiElement;
+            
+            // Act
+            var elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).RightButtonDown();
+            
+            // Assert
+            ExtensionMethodsElementExtended.InputSimulator.Mouse.Received(1).RightButtonDown();
+        }
+        
+        [Test]
+        public void Mouse_RightButtonUp()
+        {
+            // Arrange
+            IUiElement element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] {}) as IUiElement;
+            
+            // Act
+            var elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).RightButtonUp();
+            
+            // Assert
+            ExtensionMethodsElementExtended.InputSimulator.Mouse.Received(1).RightButtonUp();
+        }
+        
+        //
+        //
+        
+        [Test]
+        public void Mouse_VerticalScroll()
+        {
+            // Arrange
+            IUiElement element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] {}) as IUiElement;
+            
+            // Act
+            var elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).VerticalScroll(1);
+            
+            // Assert
+            ExtensionMethodsElementExtended.InputSimulator.Mouse.Received(1).VerticalScroll(1);
+        }
+        
+        [Test]
+        public void Mouse_XButtonClick()
+        {
+            // Arrange
+            IUiElement element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] {}) as IUiElement;
+            
+            // Act
+            var elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).XButtonClick(1);
+            
+            // Assert
+            ExtensionMethodsElementExtended.InputSimulator.Mouse.Received(1).XButtonClick(1);
+        }
+        
+        [Test]
+        public void Mouse_XButtonDoubleClick()
+        {
+            // Arrange
+            IUiElement element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] {}) as IUiElement;
+            
+            // Act
+            var elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).XButtonDoubleClick(1);
+            
+            // Assert
+            ExtensionMethodsElementExtended.InputSimulator.Mouse.Received(1).XButtonDoubleClick(1);
+        }
+        
+        [Test]
+        public void Mouse_XButtonDown()
+        {
+            // Arrange
+            IUiElement element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] {}) as IUiElement;
+            
+            // Act
+            var elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).XButtonDown(1);
+            
+            // Assert
+            ExtensionMethodsElementExtended.InputSimulator.Mouse.Received(1).XButtonDown(1);
+        }
+        
+        [Test]
+        public void Mouse_XButtonUp()
+        {
+            // Arrange
+            IUiElement element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] {}) as IUiElement;
+            
+            // Act
+            var elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).XButtonUp(1);
+            
+            // Assert
+            ExtensionMethodsElementExtended.InputSimulator.Mouse.Received(1).XButtonUp(1);
         }
         
         // ==========================================================================================================================

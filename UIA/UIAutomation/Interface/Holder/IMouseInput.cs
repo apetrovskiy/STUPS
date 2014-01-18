@@ -9,14 +9,31 @@
 
 namespace UIAutomation
 {
+    using System;
+    
     /// <summary>
     /// Description of IMouseInput.
     /// </summary>
     public interface IMouseInput
     {
-        string m { get; }
-        
-        IUiElement LeftButtonDoubleClick();
+        IUiElement HorizontalScroll(int scrollAmountInClicks);
         IUiElement LeftButtonClick();
+        IUiElement LeftButtonDoubleClick();
+        IUiElement LeftButtonDown();
+        IUiElement LeftButtonUp();
+        IUiElement MoveMouseBy(int pixelDeltaX, int pixelDeltaY);
+        IUiElement MoveMouseTo(double absoluteX, double absoluteY);
+        IUiElement MoveMouseToPositionOnVirtualDesktop(double absoluteX, double absoluteY);
+        IUiElement RightButtonClick();
+        IUiElement RightButtonDoubleClick();
+        IUiElement RightButtonDown();
+        IUiElement RightButtonUp();
+        IUiElement Sleep(int milliseconds);
+        IUiElement Sleep(TimeSpan timeout);
+        IUiElement VerticalScroll(int scrollAmountInClicks);
+        IUiElement XButtonClick(int buttonId);
+        IUiElement XButtonDoubleClick(int buttonId);
+        IUiElement XButtonDown(int buttonId);
+        IUiElement XButtonUp(int buttonId);
     }
 }

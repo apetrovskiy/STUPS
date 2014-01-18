@@ -12,7 +12,11 @@ namespace UIAutomation
     using System;
     using System.Reflection;
     using System.Windows.Automation;
+    using System.Collections;
+    using System.Collections.Generic;
     using Castle.DynamicProxy;
+    using WindowsInput;
+    using WindowsInput.Native;
     
     /// <summary>
     /// Description of MethodSelectorAspect.
@@ -351,9 +355,6 @@ namespace UIAutomation
                         #endregion TextPattern
                         #region TogglePattern
                         case "Toggle":
-                            // 20131227
-                            // invocation.ReturnValue =
-                            //     (invocation.Proxy as IUiElement).PerformToggle();
                             if (0 == invocation.Arguments.Length) {
                                 invocation.ReturnValue =
                                     (invocation.Proxy as IUiElement).PerformToggle();
@@ -549,7 +550,6 @@ namespace UIAutomation
                                     ControlType.Document);
                             break;
                         case "get_Edits":
-                        // case "Edits":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
                                     ControlType.Edit);
@@ -710,10 +710,6 @@ namespace UIAutomation
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).GetHolder<IControlInputHolder>();
                             break;
-                        case "get_c":
-                            invocation.ReturnValue =
-                                (invocation.Proxy as IControlInputHolder).GetC();
-                            break;
                         case "Click":
                             if (0 == invocation.Arguments.Length) {
                                 invocation.ReturnValue =
@@ -769,9 +765,27 @@ namespace UIAutomation
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).GetHolder<IKeyboardInputHolder>();
                             break;
-                        case "get_k":
+                        case "KeyDown":
                             invocation.ReturnValue =
-                                (invocation.Proxy as IKeyboardInputHolder).GetK();
+                                (invocation.Proxy as IKeyboardInputHolder).PerformKeyDown(
+                                    (VirtualKeyCode)invocation.Arguments[0]);
+                            break;
+                        case "KeyPress":
+                            if (invocation.Arguments[0] is VirtualKeyCode) {
+                                invocation.ReturnValue =
+                                    (invocation.Proxy as IKeyboardInputHolder).PerformKeyPressSingle(
+                                        (VirtualKeyCode)invocation.Arguments[0]);
+                            }
+//                            if (invocation.Arguments[0] is VirtualKeyCode[]) {
+//                                invocation.ReturnValue =
+//                                    (invocation.Proxy as IKeyboardInputHolder).PerformKeyPressMultiple(
+//                                        (IEnumerable<VirtualKeyCode>)invocation.Arguments[0]);
+//                            }
+                            break;
+                        case "KeyUp":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IKeyboardInputHolder).PerformKeyUp(
+                                    (VirtualKeyCode)invocation.Arguments[0]);
                             break;
                         case "TypeText":
                             invocation.ReturnValue =
@@ -784,9 +798,10 @@ namespace UIAutomation
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).GetHolder<IMouseInputHolder>();
                             break;
-                        case "get_m":
+                        case "HorizontalScroll":
                             invocation.ReturnValue =
-                                (invocation.Proxy as IMouseInputHolder).GetM();
+                                (invocation.Proxy as IMouseInputHolder).PerformHorizontalScroll(
+                                    (int)invocation.Arguments[0]);
                             break;
                         case "LeftButtonClick":
                             invocation.ReturnValue =
@@ -795,6 +810,60 @@ namespace UIAutomation
                         case "LeftButtonDoubleClick":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IMouseInputHolder).PerformLeftButtonDoubleClick();
+                            break;
+                        case "LeftButtonDown":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IMouseInputHolder).PerformLeftButtonDown();
+                            break;
+                        case "LeftButtonUp":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IMouseInputHolder).PerformLeftButtonUp();
+                            break;
+//        IUiElement MoveMouseBy(int pixelDeltaX, int pixelDeltaY);
+//        IUiElement MoveMouseTo(double absoluteX, double absoluteY);
+//        IUiElement MoveMouseToPositionOnVirtualDesktop(double absoluteX, double absoluteY);
+                        case "RightButtonClick":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IMouseInputHolder).PerformRightButtonClick();
+                            break;
+                        case "RightButtonDoubleClick":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IMouseInputHolder).PerformRightButtonDoubleClick();
+                            break;
+                        case "RightButtonDown":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IMouseInputHolder).PerformRightButtonDown();
+                            break;
+                        case "RightButtonUp":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IMouseInputHolder).PerformRightButtonUp();
+                            break;
+//        IUiElement Sleep(int milliseconds);
+//        IUiElement Sleep(TimeSpan timeout);
+                        case "VerticalScroll":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IMouseInputHolder).PerformVerticalScroll(
+                                    (int)invocation.Arguments[0]);
+                            break;
+                        case "XButtonClick":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IMouseInputHolder).PerformXButtonClick(
+                                    (int)invocation.Arguments[0]);
+                            break;
+                        case "XButtonDoubleClick":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IMouseInputHolder).PerformXButtonDoubleClick(
+                                    (int)invocation.Arguments[0]);
+                            break;
+                        case "XButtonDown":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IMouseInputHolder).PerformXButtonDown(
+                                    (int)invocation.Arguments[0]);
+                            break;
+                        case "XButtonUp":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IMouseInputHolder).PerformXButtonUp(
+                                    (int)invocation.Arguments[0]);
                             break;
                         #endregion MouseInput
                         #region TouchInput

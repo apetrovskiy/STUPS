@@ -12,22 +12,22 @@ namespace UIAutomation
     /// <summary>
     /// Description of UiKeyboardInputHolder.
     /// </summary>
-    public class UiKeyboardInputHolder : IKeyboardInputHolder
+    public class UiKeyboardInputHolder : UiInputHolder, IKeyboardInputHolder
     {
-        private IUiElement _parentElement;
-        
-        public UiKeyboardInputHolder()
-        {
-        }
-        
-        public void SetParentElement(IUiElement parentElement)
-        {
-            _parentElement = parentElement;
-        }
-        
-        public IUiElement GetParentElement()
-        {
-            return _parentElement;
-        }
+//        private IUiElement _parentElement;
+//        
+//        public UiKeyboardInputHolder()
+//        {
+//        }
+//        
+//        public void SetParentElement(IUiElement parentElement)
+//        {
+//            _parentElement = parentElement;
+//        }
+//        
+//        public IUiElement GetParentElement()
+//        {
+//            return _parentElement;
+//        }
     }
 }

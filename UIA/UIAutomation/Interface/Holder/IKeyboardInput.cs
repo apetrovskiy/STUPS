@@ -9,15 +9,31 @@
 
 namespace UIAutomation
 {
+    using WindowsInput;
+    using WindowsInput.Native;
+    
     /// <summary>
     /// Description of IKeyboardInput.
     /// </summary>
     public interface IKeyboardInput
     {
-        string k { get; }
-        
         // IUiElement TextEntry(string text);
         IUiElement TypeText(string text);
         // property ??
+
+        IUiElement KeyDown(VirtualKeyCode virtualKeyCode);
+        IUiElement KeyPress(VirtualKeyCode virtualKeyCode);
+        IUiElement KeyPress(VirtualKeyCode[] virtualKeyCodes);
+        IUiElement KeyUp(VirtualKeyCode virtualKeyCode);
+        /*
+        IUiElement ModifiedKeyStroke(new [] { VirtualKeyCode.SHIFT, VirtualKeyCode.CONTROL }, new [] { VirtualKeyCode.VK_G, VirtualKeyCode.VK_F });
+        IUiElement ModifiedKeyStroke(new [] { VirtualKeyCode.SHIFT, VirtualKeyCode.CONTROL }, VirtualKeyCode.VK_F);
+        IUiElement ModifiedKeyStroke(VirtualKeyCode.SHIFT, new [] { VirtualKeyCode.VK_G, VirtualKeyCode.VK_F });
+        IUiElement ModifiedKeyStroke(VirtualKeyCode.SHIFT, VirtualKeyCode.VK_F);
+        IUiElement Sleep(1000);
+        // IUiElement Sleep(timespan);
+        IUiElement TextEntry("aaaaaaaaaaaa");
+        IUiElement TextEntry('b');
+        */
     }
 }

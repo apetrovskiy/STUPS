@@ -313,6 +313,7 @@
     <Compile Include="Helpers\UnderlyingCode\Adapter\UiaValuePattern.cs" />
     <Compile Include="Helpers\UnderlyingCode\Adapter\UiaWindowPattern.cs" />
     <Compile Include="Helpers\UnderlyingCode\Adapter\UiExtendedModelHolder.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Adapter\UiInputHolder.cs" />
     <Compile Include="Helpers\UnderlyingCode\Adapter\UiKeyboardInputHolder.cs" />
     <Compile Include="Helpers\UnderlyingCode\Adapter\UiMouseInputHolder.cs" />
     <Compile Include="Helpers\UnderlyingCode\Adapter\UiTouchInputHolder.cs" />
@@ -405,6 +406,7 @@
     <Compile Include="Helpers\UserSettings\Profile.cs" />
     <Compile Include="Helpers\UserSettings\Testing.cs" />
     <Compile Include="Helpers\UserSettings\UserData.cs" />
+    <Compile Include="Interface\Element\ISupportsControlPattern.cs" />
     <Compile Include="Interface\Element\ISupportsConversion.cs" />
     <Compile Include="Interface\Element\ISupportsDockPattern.cs" />
     <Compile Include="Interface\Element\ISupportsExpandCollapsePattern.cs" />

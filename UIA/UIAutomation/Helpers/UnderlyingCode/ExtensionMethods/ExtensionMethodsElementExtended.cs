@@ -270,6 +270,13 @@ namespace UIAutomation
             InputSimulator.Keyboard.TextEntry(text);
             return holder.GetParentElement();
         }
+        
+        internal static IUiElement PerformTypeChar(this IKeyboardInputHolder holder, char character)
+        {
+            holder.GetParentElement().MoveCursorToControlPosition();
+            InputSimulator.Keyboard.TextEntry(character);
+            return holder.GetParentElement();
+        }
         #endregion IKeyboardInputHolder
         #region IMouseInputHolder
         internal static void MoveCursorToControlPosition(this IUiElement element)

@@ -1650,38 +1650,22 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             ExtensionMethodsElementExtended.InputSimulator.Keyboard.Received(1).TextEntry("abc");
         }
         
-        // ==========================================================================================================================
+        [Test]
+        public void Keyboard_TypeChar()
+        {
+            // Arrange
+            IUiElement element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] {}) as IUiElement;
+            
+            // Act
+            ((element as ISupportsExtendedModel).Keyboard as IKeyboardInput).TypeChar('d');
+            
+            // Assert
+            ExtensionMethodsElementExtended.InputSimulator.Keyboard.Received(1).TextEntry('d');
+        }
         
-//        [Test]
-//        public void Mouse_Consolidated()
-//        {
-//            // Arrange
-//            IUiElement element =
-//                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-//                    new IBasePattern[] {}) as IUiElement;
-//            
-//            // Act
-//            // Assert
-//            var elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).HorizontalScroll(1);
-//            elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).LeftButtonClick();
-//            elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).LeftButtonDoubleClick();
-//            elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).LeftButtonDown();
-//            elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).LeftButtonUp();
-//            elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).MoveMouseBy(1, 1);
-//            elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).MoveMouseTo(1, 1);
-//            elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).MoveMouseToPositionOnVirtualDesktop(1, 1);
-//            elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).RightButtonClick();
-//            elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).RightButtonDoubleClick();
-//            elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).RightButtonDown();
-//            elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).RightButtonUp();
-//            elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).Sleep(1);
-//            elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).Sleep(new System.TimeSpan(111));
-//            elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).VerticalScroll(1);
-//            elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).XButtonClick(1);
-//            elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).XButtonDoubleClick(1);
-//            elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).XButtonDown(1);
-//            elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).XButtonUp(1);
-//        }
+        // ==========================================================================================================================
         
         [Test]
         public void Mouse_HorizontalScroll()

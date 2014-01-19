@@ -19,6 +19,7 @@ namespace UIAutomation
     {
         // IUiElement TextEntry(string text);
         IUiElement TypeText(string text);
+        IUiElement TypeChar(char character);
         // property ??
 
         IUiElement KeyDown(VirtualKeyCode virtualKeyCode);

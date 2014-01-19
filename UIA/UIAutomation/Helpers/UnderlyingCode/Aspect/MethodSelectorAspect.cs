@@ -792,6 +792,11 @@ namespace UIAutomation
                                 (invocation.Proxy as IKeyboardInputHolder).PerformTypeText(
                                     (string)invocation.Arguments[0]);
                             break;
+                        case "TypeChar":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IKeyboardInputHolder).PerformTypeChar(
+                                    (char)invocation.Arguments[0]);
+                            break;
                         #endregion KeyboardInput
                         #region MouseInput
                         case "get_Mouse":

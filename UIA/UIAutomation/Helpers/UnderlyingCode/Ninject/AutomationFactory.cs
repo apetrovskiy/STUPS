@@ -78,7 +78,6 @@ namespace UIAutomation
 		
 		internal static void InitUnitTests()
 		{
-		    // 20140109
 		    if (null != _ninjectModule && null != Kernel && _initFlag) return;
 		    
 		    try {
@@ -94,7 +93,6 @@ namespace UIAutomation
 		        // Console.WriteLine(eInitFailure.Message);
 		    }
 		    
-		    // 20140109
 		    _initFlag = true;
 		}
 		
@@ -104,8 +102,6 @@ namespace UIAutomation
 		    _generator = Kernel.Get<ProxyGenerator>(argument);
 		}
 		
-		// public static void Reset()
-		// internal static void Reset()
 		public static void Reset()
 		{
 		    _generator = null;
@@ -119,7 +115,6 @@ namespace UIAutomation
 		    catch {}
 		    _ninjectModule = null;
 		    _initFlag = false;
-		    // _initFlag = true;
 		}
 		#endregion Initialization
         
@@ -174,7 +169,6 @@ namespace UIAutomation
         #endregion Castle DynamicProxy
 		
 		#region IUiElement
-		// internal static IExtendedModelHolder GetUiExtendedModelHolder(IUiElement parentElement)
 		internal static IExtendedModelHolder GetUiExtendedModelHolder(IUiElement parentElement, TreeScope scope)
 		{
 	        if (null == parentElement) {
@@ -316,9 +310,7 @@ namespace UIAutomation
 			}
 		}
 		
-		// 20140114
 		// to prevent from threading lock
-		// public static IUiElement GetUiElement(IUiElement element)
 		internal static IUiElement GetUiElement(IUiElement element)
 		{
 	        if (null == element) {
@@ -339,7 +331,7 @@ namespace UIAutomation
         			
         			proxiedTypedUiElement.SetSourceElement<IUiElement>(element);
         			
-        			return (IUiElement)proxiedTypedUiElement; // as IUiElement;
+        			return (IUiElement)proxiedTypedUiElement;
     			} else {
     			    
     			    adapterElement.SetSourceElement<IUiElement>(element);
@@ -356,9 +348,7 @@ namespace UIAutomation
 			}
 		}
 		
-		// 20140114
 		// to prevent from threading lock
-		// public static IUiElement GetUiElement()
 		internal static IUiElement GetUiElement()
 		{
 			try {
@@ -370,7 +360,7 @@ namespace UIAutomation
         			    ConvertToProxiedElement(
         			        adapterElement);
         			
-        			return (IUiElement)proxiedTypedUiElement; // as IUiElement;
+        			return (IUiElement)proxiedTypedUiElement;
     			} else {
     			    
     			    return adapterElement;
@@ -478,7 +468,6 @@ namespace UIAutomation
 		#endregion IUiEltCollection
 		
 		#region patterns
-		// public static N GetPatternAdapter<N>(IUiElement element, object pattern)
 		internal static N GetPatternAdapter<N>(IUiElement element, object pattern)
 		    where N : IBasePattern
 		{
@@ -493,14 +482,13 @@ namespace UIAutomation
 			catch (Exception eFailedToIssuePattern) {
 			    // TODO
 			    // write error to error object!!!
-//			    Console.WriteLine("Pattern");
-//			    Console.WriteLine(eFailedToIssuePattern.Message);
+			    // Console.WriteLine("Pattern");
+			    // Console.WriteLine(eFailedToIssuePattern.Message);
 			    // return null;
 			    return default(N);
 			}
 		}
 		
-		// public static N GetPatternAdapter<N>(object pattern)
 		internal static N GetPatternAdapter<N>(object pattern)
 		    where N : IBasePattern
 		{
@@ -514,15 +502,14 @@ namespace UIAutomation
 			catch (Exception eFailedToIssuePattern) {
 			    // TODO
 			    // write error to error object!!!
-//			    Console.WriteLine("Pattern");
-//			    Console.WriteLine(eFailedToIssuePattern.Message);
+			    // Console.WriteLine("Pattern");
+			    // Console.WriteLine(eFailedToIssuePattern.Message);
 			    // return null;
 			    return default(N);
 			}
 		}
 		#endregion patterns
         
-        // public static SearchTemplate GetSearchImpl<T>()
         internal static SearchTemplate GetSearchImpl<T>()
         {
             var newObject = Kernel.Get<T>(new IParameter[] {});

@@ -77,13 +77,6 @@ namespace UIAutomation
             Bind<IInputSimulator>()
                 .To<InputSimulator>()
                 .InSingletonScope();
-            
-//            Bind<IExtendedModelHolder>()
-//                .
-//                .ToConstructor(
-//                    x =>
-//                    x.Inject<TreeScope>())
-//                .InCallScope();
             #endregion IUiElement
             
             #region IUiEltCollection

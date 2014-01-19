@@ -82,11 +82,6 @@ namespace UIAutomation
         {
             ControlSearchData data = searchData as ControlSearchData;
             tempCmdlet = null;
-            // int processId = 0;
-            
-            // 20140117
-            // bool exactSearchDone = false;
-            // bool wildcardSearchDone = false;
             
             foreach (IUiElement inputObject in data.InputObject) {
                 
@@ -174,8 +169,6 @@ namespace UIAutomation
                 }
                 #endregion wildcard search
                 
-                // exactSearchDone = false;
-                
                 #region Regex search
                 if (0 == ResultCollection.Count && notTextSearch && data.Regex) {
                     if (!Preferences.DisableWildCardSearch && !data.Win32) {
@@ -251,8 +244,6 @@ namespace UIAutomation
             IUiElement inputObject,
             Condition conditionsForTextSearch)
         {
-            // WriteVerbose(cmdlet, "Text search");
-            
             IUiEltCollection textSearchCollection = inputObject.FindAll(TreeScope.Descendants, conditionsForTextSearch);
             
             return textSearchCollection.Cast<IUiElement>().ToList();
@@ -262,18 +253,12 @@ namespace UIAutomation
         /*
         internal List<IUiElement> SearchByTextViaWin32(
         */
-            // GetControlCmdletBase cmdlet,
             IUiElement inputObject,
             string containsText,
             string[] controlTypeNames)
         {
-
-            // WriteVerbose(cmdlet, "Text search Win32");
-            
             List<IUiElement> textSearchWin32List =
                 inputObject.GetControlByNameViaWin32(
-                    // cmdlet,
-                    // cmdlet.ContainsText,
                     containsText,
                     string.Empty);
             
@@ -281,8 +266,6 @@ namespace UIAutomation
                 new List<IUiElement>();
             
             if (null != textSearchWin32List && 0 < textSearchWin32List.Count) {
-                
-                // WriteVerbose(cmdlet, "There are " + textSearchWin32List.Count.ToString() + " elements");
                 
                 foreach (IUiElement elementToChoose in textSearchWin32List) {
                     
@@ -314,9 +297,7 @@ namespace UIAutomation
             return resultList;
         }
         
-        // protected internal List<IUiElement> SearchByExactConditionsViaUia(
         internal static List<IUiElement> SearchByExactConditionsViaUia(
-            // GetControlCmdletBase cmdlet,
             IUiElement inputObject,
             Hashtable[] searchCriteria,
             Condition conditions)
@@ -367,7 +348,6 @@ namespace UIAutomation
             
             foreach (IUiElement tempElement in tempCollection) {
                 
-                // if (null == cmdlet.SearchCriteria || 0 == cmdlet.SearchCriteria.Length) {
                 if (null == searchCriteria || 0 == searchCriteria.Length) {
                     
                     listOfColllectedResults.Add(tempElement);
@@ -376,13 +356,9 @@ namespace UIAutomation
                     
                 } else {
                     
-                    // cmdlet.WriteVerbose(cmdlet, "ExactSearch: checking search criteria");
                     if (!TestControlWithAllSearchCriteria(searchCriteria, tempElement)) continue;
                     
-                    // cmdlet.WriteVerbose(cmdlet, "ExactSearch: the control matches the search criteria");
                     listOfColllectedResults.Add(tempElement);
-                    
-                    // cmdlet.WriteVerbose(cmdlet, "ExactSearch: element added to the result collection");
                 }
             }
             
@@ -395,7 +371,6 @@ namespace UIAutomation
         
         // internal List<IUiElement> SearchByWildcardOrRegexViaUia(
         internal static List<IUiElement> SearchByWildcardOrRegexViaUia(
-            // GetControlCmdletBase cmdlet,
             IUiElement inputObject,
             IUiElement[] InputObject,
             string name,
@@ -407,8 +382,6 @@ namespace UIAutomation
             Condition conditionsForWildCards,
             bool viaWildcardOrRegex)
         {
-            // WriteVerbose((cmdlet as PSCmdletBase), "[getting the control] using WildCard/Regex search");
-            
             List<IUiElement> resultCollection =
                 new List<IUiElement>();
             
@@ -455,13 +428,9 @@ namespace UIAutomation
                         
                         foreach (IUiElement tempElement2 in tempList) {
                             
-                            // cmdlet.WriteVerbose(cmdlet, "WildCard/Regex search: checking search criteria");
-                            // if (!TestControlWithAllSearchCriteria(cmdlet, cmdlet.SearchCriteria, tempElement2))
-                            if (!TestControlWithAllSearchCriteria(searchCriteria, tempElement2))
-                                continue;
-                            // cmdlet.WriteVerbose(cmdlet, "WildCard/Regex search: the control matches the search criteria");
+                            if (!TestControlWithAllSearchCriteria(searchCriteria, tempElement2)) continue;
+                            
                             resultCollection.Add(tempElement2);
-                            // cmdlet.WriteVerbose(cmdlet, "WildCard/Regex search: element added to the result collection (SearchCriteria)");
                         }
                     }
                     
@@ -480,7 +449,6 @@ namespace UIAutomation
                     // 20131203
                     return resultCollection;
                     
-                    // cmdlet.WriteVerbose(cmdlet, "WildCard/Regex search: element(s) added to the result collection: " + resultCollection.Count.ToString());
                 } catch (Exception eUnexpected) {
 
                     (new GetControlCmdletBase()).WriteError(
@@ -495,13 +463,11 @@ namespace UIAutomation
                 
                 cmdlet1 = null;
                 
-                // 20131203
                 return resultCollection;
                 
             } catch (Exception eWildCardSearch) {
 
                 (new GetControlCmdletBase()).WriteError(
-                    // cmdlet,
                     new GetControlCmdletBase(),
                     "The input control or window has been possibly lost." +
                     eWildCardSearch.Message,
@@ -509,7 +475,6 @@ namespace UIAutomation
                     ErrorCategory.ObjectNotFound,
                     true);
                 
-                // 20131203
                 return resultCollection;
             }
         }
@@ -525,16 +490,11 @@ namespace UIAutomation
         internal List<IUiElement> SearchByWildcardViaWin32(GetControlCmdletBase cmdlet, IUiElement inputObject)
         */
         {
-            // WriteVerbose(cmdlet, "[getting the control] using FindWindowEx");
-            
             List<IUiElement> tempListWin32 = new List<IUiElement>();
             // 20140111
             // if (!string.IsNullOrEmpty(cmdlet.Name)) {
             // if (!string.IsNullOrEmpty(cmdlet.Name) || !string.IsNullOrEmpty(cmdlet.Value)) {
             if (!string.IsNullOrEmpty(name) || !string.IsNullOrEmpty(value)) {
-                // 20140110
-                // WriteVerbose(cmdlet, "collecting controls by name (Win32)");
-                // WriteVerbose(cmdlet, "collecting controls by name or value (Win32)");
                 // tempListWin32.AddRange(inputObject.GetControlByNameViaWin32(cmdlet, cmdlet.Name, cmdlet.Value));
                 tempListWin32.AddRange(inputObject.GetControlByNameViaWin32(name, value));
             }
@@ -607,7 +567,6 @@ namespace UIAutomation
         
         // protected internal bool TestControlWithAllSearchCriteria(
         internal static bool TestControlWithAllSearchCriteria(
-            // GetCmdletBase cmdlet,
             IEnumerable<Hashtable> hashtables,
             IUiElement element)
         {
@@ -631,8 +590,6 @@ namespace UIAutomation
                     
                     return result;
                 }
-                
-                // cmdlet.WriteVerbose(cmdlet, "test of the control has finished");
             }
             
             return result;
@@ -647,18 +604,15 @@ namespace UIAutomation
             if (null != data.ControlType && 0 < data.ControlType.Length) {
                 foreach (string controlTypeName in data.ControlType)
                 {
-                    // WriteVerbose(this, "control type: " + controlTypeName);
                     conditions.Add(GetWildcardSearchCondition(data));
                 }
             } else{
-                // WriteVerbose(this, "without control type");
                 conditions.Add(GetWildcardSearchCondition(data));
             }
             return conditions.ToArray();
         }
         
         #region condition methods
-        // protected internal AndCondition GetAndCondition(List<PropertyCondition> propertyCollection)
         internal static AndCondition GetAndCondition(List<PropertyCondition> propertyCollection)
         {
             if (null == propertyCollection) return null;
@@ -666,7 +620,6 @@ namespace UIAutomation
             return resultCondition;
         }
         
-        // protected internal OrCondition GetOrCondition(List<PropertyCondition> propertyCollection)
         internal static OrCondition GetOrCondition(List<PropertyCondition> propertyCollection)
         {
             if (null == propertyCollection) return null;
@@ -674,7 +627,6 @@ namespace UIAutomation
             return resultCondition;
         }
         
-        // protected internal Condition GetControlTypeCondition(IEnumerable<string> controlTypeNames)
         internal static Condition GetControlTypeCondition(IEnumerable<string> controlTypeNames)
         /*
         protected internal Condition GetControlTypeCondition(string[] controlTypeNames)
@@ -703,7 +655,6 @@ namespace UIAutomation
             }
         }
         
-        // protected internal Condition GetTextSearchCondition(string searchString, string[] controlTypeNames, bool caseSensitive1)
         internal static Condition GetTextSearchCondition(string searchString, string[] controlTypeNames, bool caseSensitive1)
         {
             if (string.IsNullOrEmpty(searchString)) return null;
@@ -747,15 +698,11 @@ namespace UIAutomation
             return resultCondition;
         }
         
-        // protected internal Condition GetExactSearchCondition(GetControlCmdletBase cmdlet)
-        // protected internal Condition GetExactSearchCondition(ControlSearchData data)
         internal static Condition GetExactSearchCondition(ControlSearchData data)
         {
             PropertyConditionFlags flags =
                 data.CaseSensitive ? PropertyConditionFlags.None : PropertyConditionFlags.IgnoreCase;
             
-            // 20131203
-            // Condition controlTypeCondition = null;
             Condition controlTypeCondition = Condition.TrueCondition;
             if (null != data.ControlType && 0 < data.ControlType.Length) {
                 controlTypeCondition =
@@ -806,8 +753,6 @@ namespace UIAutomation
             }
         }
         
-        // protected internal Condition GetWildcardSearchCondition(GetControlCmdletBase cmdlet)
-        // protected internal Condition GetWildcardSearchCondition(ControlSearchData data)
         internal static Condition GetWildcardSearchCondition(ControlSearchData data)
         {
             Condition controlTypeCondition = Condition.TrueCondition;

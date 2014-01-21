@@ -16,8 +16,11 @@ namespace UIAutomation
     {
         private IUiElement _parentElement;
         
+//        public System.DateTime CreationTime { get; set; }
+        
         public UiInputHolder()
         {
+//            CreationTime = System.DateTime.Now;
         }
         
         public void SetParentElement(IUiElement parentElement)

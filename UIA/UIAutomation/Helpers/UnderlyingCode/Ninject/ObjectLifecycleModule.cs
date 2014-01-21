@@ -64,15 +64,18 @@ namespace UIAutomation
             
             Bind<IKeyboardInputHolder>()
                 .To<UiKeyboardInputHolder>()
-                .InCallScope();
+                // .InCallScope();
+                .InSingletonScope();
             
             Bind<IMouseInputHolder>()
                 .To<UiMouseInputHolder>()
-                .InCallScope();
+                // .InCallScope();
+                .InSingletonScope();
             
             Bind<ITouchInputHolder>()
                 .To<UiTouchInputHolder>()
-                .InCallScope();
+                // .InCallScope();
+                .InSingletonScope();
             
             Bind<IInputSimulator>()
                 .To<InputSimulator>()

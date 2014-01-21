@@ -78,8 +78,9 @@ namespace UIAutomationTest.Commands.Wait
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [Category("WinForms")]
+        [Category("Slow")]
+        [Category("Control")]
         public void WaitControlIsEnabled_Text()
         {
             string name = "label2";
@@ -90,8 +91,9 @@ namespace UIAutomationTest.Commands.Wait
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [Category("WinForms")]
+        [Category("Slow")]
+        [Category("Control")]
         public void WaitControlIsEnabled_RadioButton()
         {
             string name = "radioButton2";
@@ -102,8 +104,9 @@ namespace UIAutomationTest.Commands.Wait
         }
         
         [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [Category("WinForms")]
+        [Category("Slow")]
+        [Category("Control")]
         public void WaitControlIsEnabled_Spinner()
         {
             string name = "domainUpDown2";

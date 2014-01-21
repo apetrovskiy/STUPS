@@ -16,5 +16,7 @@ namespace UIAutomation
     {
         void SetParentElement(IUiElement parentElement);
         IUiElement GetParentElement();
+        
+//        System.DateTime CreationTime { get; }
     }
 }

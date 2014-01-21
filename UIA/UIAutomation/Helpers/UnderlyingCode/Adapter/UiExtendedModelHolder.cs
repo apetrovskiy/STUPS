@@ -19,9 +19,11 @@ namespace UIAutomation
         private IUiElement _parentElement;
         private TreeScope _scope;
         
+//        public System.DateTime CreationTime { get; set; }
+        
         public UiExtendedModelHolder()
         {
-            
+//            CreationTime = System.DateTime.Now;
         }
         
         public void SetParentElement(IUiElement parentElement)

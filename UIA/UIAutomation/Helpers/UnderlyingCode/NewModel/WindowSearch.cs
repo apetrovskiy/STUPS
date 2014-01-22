@@ -67,8 +67,8 @@ namespace UIAutomation
                            !string.IsNullOrEmpty(data.AutomationId) ||
                            !string.IsNullOrEmpty(data.Class)) {
                     
-                            // cmdlet.WriteVerbose(cmdlet, "getting a window by name, automationId, className");
-                            ResultCollection = GetWindowCollectionByName(data.Name, data.AutomationId, data.Class, data.Recurse);
+                    // cmdlet.WriteVerbose(cmdlet, "getting a window by name, automationId, className");
+                    ResultCollection = GetWindowCollectionByName(data.Name, data.AutomationId, data.Class, data.Recurse);
                 }
                 
             } catch (Exception eSearchFailure) {
@@ -179,6 +179,12 @@ namespace UIAutomation
                         }
                         
                         ResultCollection = filteredWindows;
+                        
+                        // 20140121
+                        if (null != filteredWindows) {
+                            filteredWindows.Clear();
+                            filteredWindows = null;
+                        }
                     // }
                     // catch {}
                 }
@@ -192,13 +198,21 @@ namespace UIAutomation
             if ((SearchData as WindowSearchData).WaitNoWindow && !wasFound && null != ResultCollection && 0 != ResultCollection.Count) {
 
                 wasFound = true;
+                
+                // 20140121
+                ResultCollection.Clear();
+                
                 ResultCollection = null;
             }
         }
         
         public override void OnSleepHook()
         {
-            
+            int timeout = Timeout;
+            if (0 == timeout) {
+                timeout = 5;
+            }
+            System.Threading.Thread.Sleep(Timeout / 20);
         }
         
         public override void OnFailureHook()
@@ -293,8 +307,17 @@ namespace UIAutomation
             } // 20120824
             
             // 20131202
-            tempCollection = null;
-            processIdList = null;
+            // 20140121
+            if (null != tempCollection) {
+                tempCollection.Clear();
+                tempCollection = null;
+            }
+            if (null != processIdList) {
+                processIdList.Clear();
+                processIdList = null;
+            }
+            // tempCollection = null;
+            // processIdList = null;
 
             return aeWndCollectionByProcId;
         }
@@ -348,6 +371,12 @@ namespace UIAutomation
                             (new string[]{ "Window", "Pane", "Menu" }),
                             false,
                             true);
+                    
+                    // 20140121
+                    if (null != windowCollection) {
+                        windowCollection.Dispose();
+                        windowCollection = null;
+                    }
                 }
                 catch {
                     
@@ -365,10 +394,20 @@ namespace UIAutomation
                                 (new string[]{ "Window", "Pane", "Menu" }),
                                 false,
                                 true);
+                        
+                        // 20140121
+                        if (null != windowCollection) {
+                            windowCollection.Dispose();
+                            windowCollection = null;
+                        }
                     }
                     catch {
                         
-                        
+                        // 20140121
+                        if (null != windowCollection) {
+                            windowCollection.Dispose();
+                            windowCollection = null;
+                        }
                     }
                 }
                 
@@ -380,6 +419,9 @@ namespace UIAutomation
                         {
                             resultCollection.Add(aeWndByTitle);
                         }
+                        
+                        // 20140121
+                        windowCollectionByProperties.Clear();
                         
                     } else {
                         
@@ -432,6 +474,12 @@ namespace UIAutomation
             
             int[] processIds = processIdList.ToArray();
             aeWndCollectionByProcId = GetWindowCollectionByPid(processIds, first, recurse, name, automationId, className);
+            
+            // 20140121
+            if (null != processIdList) {
+                processIdList.Clear();
+                processIdList = null;
+            }
             
             return aeWndCollectionByProcId;
         }
@@ -679,6 +727,12 @@ namespace UIAutomation
             
             elementsByProcessId = resultList;
             
+            // 20140121
+            if (null != resultList) {
+                resultList.Clear();
+                resultList = null;
+            }
+            
             return elementsByProcessId;
         }
         
@@ -850,6 +904,18 @@ namespace UIAutomation
             catch (Exception eProcessing) {
 //                cmdlet.WriteVerbose(eProcessing.Message);
             }
+            
+            // 20140121
+            if (null != inputList) {
+                inputList.Clear();
+                inputList = null;
+            }
+            
+            // 20140121
+            // inputCollection ??
+            
+            // 20140121
+            wildcardName = wildcardAutomationId = wildcardClass = wildcardValue = null;
             
             return resultCollection;
         }

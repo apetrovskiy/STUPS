@@ -39,6 +39,9 @@ namespace UIAutomation
                 .ToConstructor(
                     x =>
                     new UiElement(x.Inject<System.Windows.Automation.AutomationElement>()))
+//                .InSingletonScope()
+//                .InTransientScope()
+//                .InThreadScope()
                 .InCallScope()
                 .Named("AutomationElement.NET");
             
@@ -46,35 +49,43 @@ namespace UIAutomation
                 .ToConstructor(
                     x =>
                     new UiElement(x.Inject<IUiElement>()))
+//                .InSingletonScope()
+//                .InTransientScope()
+//                .InThreadScope()
                 .InCallScope()
                 .Named("UiElement");
             
             Bind<IUiElement>()
                 .To<UiElement>()
+//                .InSingletonScope()
+//                .InTransientScope()
+//                .InThreadScope()
                 .InCallScope()
                 .Named("Empty");
             
             Bind<IExtendedModelHolder>()
                 .To<UiExtendedModelHolder>()
+//                .InSingletonScope();
                 .InCallScope();
             
             Bind<IControlInputHolder>()
                 .To<UiControlInputHolder>()
-                .InCallScope();
+                .InSingletonScope();
+//                .InCallScope();
             
             Bind<IKeyboardInputHolder>()
                 .To<UiKeyboardInputHolder>()
-                // .InCallScope();
+//                 .InCallScope();
                 .InSingletonScope();
             
             Bind<IMouseInputHolder>()
                 .To<UiMouseInputHolder>()
-                // .InCallScope();
+//                 .InCallScope();
                 .InSingletonScope();
             
             Bind<ITouchInputHolder>()
                 .To<UiTouchInputHolder>()
-                // .InCallScope();
+//                 .InCallScope();
                 .InSingletonScope();
             
             Bind<IInputSimulator>()
@@ -87,6 +98,9 @@ namespace UIAutomation
                 .ToConstructor(
                     x => 
                     new UiEltCollection(x.Inject<AutomationElementCollection>()))
+//                .InSingletonScope()
+//                .InTransientScope()
+//                .InThreadScope()
                 .InCallScope()
                 .Named("AutomationElementCollection.NET");
             
@@ -94,6 +108,9 @@ namespace UIAutomation
                 .ToConstructor(
                     x =>
                     new UiEltCollection(x.Inject<IUiEltCollection>()))
+//                .InSingletonScope()
+//                .InTransientScope()
+//                .InThreadScope()
                 .InCallScope()
                 .Named("UiEltCollection");
             
@@ -101,6 +118,9 @@ namespace UIAutomation
                 .ToConstructor(
                     x =>
                     new UiEltCollection(x.Inject<IEnumerable>()))
+//                .InSingletonScope()
+//                .InTransientScope()
+//                .InThreadScope()
                 .InCallScope()
                 .Named("AnyCollection");
             
@@ -108,6 +128,9 @@ namespace UIAutomation
                 .ToConstructor(
                     x =>
                     new UiEltCollection(x.Inject<bool>()))
+//                .InSingletonScope()
+//                .InTransientScope()
+//                .InThreadScope()
                 .InCallScope()
                 .Named("Empty");
             #endregion IUiEltCollection

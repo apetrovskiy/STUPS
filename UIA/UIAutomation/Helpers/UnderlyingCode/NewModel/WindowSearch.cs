@@ -45,6 +45,7 @@ namespace UIAutomation
                 
                 // 20140122
                 // var childKernel = AutomationFactory.GetChildKernel();
+                // AutomationFactory.DisposeChildKernel();
                 AutomationFactory.InitializeChildKernel();
                 
                 if (data.Win32) {
@@ -77,7 +78,7 @@ namespace UIAutomation
                 
                 // 20140122
                 // childKernel.Dispose();
-                AutomationFactory.DisposeChildKernel();
+                // AutomationFactory.DisposeChildKernel();
                 
             } catch (Exception eSearchFailure) {
                 

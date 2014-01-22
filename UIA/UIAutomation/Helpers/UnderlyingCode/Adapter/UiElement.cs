@@ -16,6 +16,8 @@ namespace UIAutomation
 	using Ninject;
 	using System.Windows;
 	using System.Linq;
+	
+//	using Ninject.Extensions.ChildKernel;
     
 	/// <summary>
 	/// Description of UiElement.
@@ -33,6 +35,8 @@ namespace UIAutomation
 //		    get { return _innerElementType; }
 //		    set { _innerElementType = value; }
 //		}
+		
+//		internal IChildKernel ChildKernel { get; set; }
 
 		[Inject()]
 		public UiElement(AutomationElement element)
@@ -655,6 +659,9 @@ namespace UIAutomation
 		    // ?     this._elementHolderAdapter.Dispose();
 		    // ?     this._elementHolderAdapter = null;
 		    // ? }
+		    
+//		    this.ChildKernel.Dispose();
+		    
 			GC.SuppressFinalize(this);
 		}
 

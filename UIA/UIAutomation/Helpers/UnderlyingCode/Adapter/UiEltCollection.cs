@@ -18,11 +18,15 @@ namespace UIAutomation
     using Ninject;
     using System.Management.Automation;
     
+//    using Ninject.Extensions.ChildKernel;
+    
 	public class UiEltCollection : IUiEltCollection
 	{
 	    // private readonly List<IUiElement> _collectionHolder =
 	    private List<IUiElement> _collectionHolder =
 	        new List<IUiElement>();
+	    
+//	    internal IChildKernel ChildKernel { get; set; }
 	    
 		public virtual IUiElement this[int index] {
 		    get { return _collectionHolder[index]; }
@@ -142,6 +146,9 @@ namespace UIAutomation
 		    // ?     this._collectionHolder.Clear();
 		    // ?     this._collectionHolder = null;
 		    // ? }
+		    
+//		    this.ChildKernel.Dispose();
+		    
 		    GC.SuppressFinalize(this);
 		}
 	}

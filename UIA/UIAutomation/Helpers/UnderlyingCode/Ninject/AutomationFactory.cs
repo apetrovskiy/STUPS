@@ -94,6 +94,9 @@ namespace UIAutomation
 		        Kernel.Settings.ActivationCacheDisabled = true;
 		        
 		        InitCommonObjects();
+		        
+		        // 20140122
+		        InitializeChildKernel();
 		    }
 		    catch (Exception eInitFailure) {
 		        // TODO
@@ -187,6 +190,10 @@ namespace UIAutomation
         
         internal static void InitializeChildKernel()
         {
+            if (null != ChildKernel) {
+                ChildKernel.Dispose();
+                ChildKernel = null;
+            }
             ChildKernel = new ChildKernel(Kernel, new ChildKernelModule());
             ChildKernel.Settings.ActivationCacheDisabled = true;
         }
@@ -208,7 +215,23 @@ namespace UIAutomation
 	        }
 		    
 			try {
-    			IExtendedModelHolder holder = Kernel.Get<IExtendedModelHolder>(new IParameter[] {});
+		        // 20140122
+    			// IExtendedModelHolder holder = Kernel.Get<IExtendedModelHolder>(new IParameter[] {});
+    			IExtendedModelHolder holder;
+//    			if (null != ChildKernel) {
+    			    // holder = ChildKernel.Get<IExtendedModelHolder>(new IParameter[] {});
+    			    // var childKernel = GetChildKernel();
+//    			    if (null == (parentElement as UiElement).ChildKernel) {
+//    			        (parentElement as UiElement).ChildKernel = GetChildKernel();
+//    			    }
+    			    // holder = childKernel.Get<IExtendedModelHolder>(new IParameter[] {});
+    			    // holder = (parentElement as UiElement).ChildKernel.Get<IExtendedModelHolder>(new IParameter[] {});
+    			    // childKernel.Dispose();
+    			    holder = ChildKernel.Get<IExtendedModelHolder>(new IParameter[] {});
+    			    // (parentElement as UiElement).ChildKernel.Dispose();
+//    			} else {
+//    			    holder = Kernel.Get<IExtendedModelHolder>(new IParameter[] {});
+//    			}
     			
     			IExtendedModelHolder proxiedHolder =
     			    (IExtendedModelHolder)_generator.CreateClassProxy(
@@ -238,7 +261,24 @@ namespace UIAutomation
 	        }
             
             try {
-                T holder = Kernel.Get<T>(new IParameter[] {});
+                // 20140122
+                // T holder = Kernel.Get<T>(new IParameter[] {});
+                T holder;
+//                if (null != ChildKernel) {
+                    // holder = ChildKernel.Get<T>(new IParameter[] {});
+                    // var childKernel = GetChildKernel();
+//                    if (null == (parentElement as UiElement).ChildKernel) {
+//    			        (parentElement as UiElement).ChildKernel = GetChildKernel();
+//    			    }
+                    // holder = childKernel.Get<T>(new IParameter[] {});
+                    // holder = (parentElement as UiElement).ChildKernel.Get<T>(new IParameter[] {});
+                    holder = ChildKernel.Get<T>(new IParameter[] {});
+                    // childKernel.Dispose();
+                    // (parentElement as UiElement).ChildKernel.Dispose();
+                    // ChildKernel.Dispose();
+//                } else {
+//                    holder = Kernel.Get<T>(new IParameter[] {});
+//                }
                 
                 Type typeOfClass = null;
                 Type wearedInterface = null;
@@ -283,7 +323,17 @@ namespace UIAutomation
         internal static IInputSimulator GetInputSimulator()
         {
             try {
-                return Kernel.Get<InputSimulator>(new IParameter[] {});
+                // 20140122
+                // return Kernel.Get<InputSimulator>(new IParameter[] {});
+//                if (null != ChildKernel) {
+                    // return ChildKernel.Get<InputSimulator>(new IParameter[] {});
+                    // var childKernel = GetChildKernel();
+                    // return childKernel.Get<InputSimulator>(new IParameter[] {});
+                    // childKernel.Dispose();
+                    return ChildKernel.Get<InputSimulator>(new IParameter[] {});
+//                } else {
+//                    return Kernel.Get<InputSimulator>(new IParameter[] {});
+//                }
                 
             } catch (Exception eFailedToIssueInputSimulator) {
                 // TODO
@@ -306,41 +356,41 @@ namespace UIAutomation
 		    
 		}
 		
-		public static IUiElement GetUiElementViaChildKernel(AutomationElement element, IChildKernel childKernel)
-		{
-	        if (null == element) {
-	            return null;
-	        }
-		    
-			try {
-    			var singleElement = new ConstructorArgument("element", element);
-    			IUiElement adapterElement = childKernel.Get<IUiElement>("AutomationElement.NET", singleElement);
-    			
-    			if (Preferences.UseElementsPatternObjectModel) {
-    			    
-        			IUiElement proxiedTypedUiElement =
-        			    ConvertToProxiedElement(
-        			        adapterElement);
-        			
-        			proxiedTypedUiElement.SetSourceElement<AutomationElement>(element);
-        			
-        			return (IUiElement)proxiedTypedUiElement; // as IUiElement;
-    			} else {
-    			    
-    			    adapterElement.SetSourceElement<AutomationElement>(element);
-    			    
-    			    return adapterElement;
-    			}
-    			
-			}
-			catch (Exception eFailedToIssueElement) {
-			    // TODO
-			    // write error to error object!!!
-			    // Console.WriteLine("Element 01 via ChildKernel");
-			    // Console.WriteLine(eFailedToIssueElement.Message);
-			    return null;
-			}
-		}
+//		public static IUiElement GetUiElementViaChildKernel(AutomationElement element, IChildKernel childKernel)
+//		{
+//	        if (null == element) {
+//	            return null;
+//	        }
+//		    
+//			try {
+//    			var singleElement = new ConstructorArgument("element", element);
+//    			IUiElement adapterElement = childKernel.Get<IUiElement>("AutomationElement.NET", singleElement);
+//    			
+//    			if (Preferences.UseElementsPatternObjectModel) {
+//    			    
+//        			IUiElement proxiedTypedUiElement =
+//        			    ConvertToProxiedElement(
+//        			        adapterElement);
+//        			
+//        			proxiedTypedUiElement.SetSourceElement<AutomationElement>(element);
+//        			
+//        			return (IUiElement)proxiedTypedUiElement; // as IUiElement;
+//    			} else {
+//    			    
+//    			    adapterElement.SetSourceElement<AutomationElement>(element);
+//    			    
+//    			    return adapterElement;
+//    			}
+//    			
+//			}
+//			catch (Exception eFailedToIssueElement) {
+//			    // TODO
+//			    // write error to error object!!!
+//			    // Console.WriteLine("Element 01 via ChildKernel");
+//			    // Console.WriteLine(eFailedToIssueElement.Message);
+//			    return null;
+//			}
+//		}
 		
 		public static IUiElement GetUiElement(AutomationElement element)
 		{
@@ -353,12 +403,17 @@ namespace UIAutomation
     			// 20140122
     			IUiElement adapterElement; // = Kernel.Get<IUiElement>("AutomationElement.NET", singleElement);
     			
-    			if (null != ChildKernel) {
+//    			if (null != ChildKernel) {
 //Console.WriteLine("child elt");
+    			    // adapterElement = ChildKernel.Get<IUiElement>("AutomationElement.NET", singleElement);
+    			    // var childKernel = GetChildKernel();
+    			    // adapterElement = childKernel.Get<IUiElement>("AutomationElement.NET", singleElement);
     			    adapterElement = ChildKernel.Get<IUiElement>("AutomationElement.NET", singleElement);
-    			} else {
-    			    adapterElement = Kernel.Get<IUiElement>("AutomationElement.NET", singleElement);
-    			}
+    			    // childKernel.Dispose();
+    			    // (adapterElement as UiElement).ChildKernel = childKernel;
+//    			} else {
+//    			    adapterElement = Kernel.Get<IUiElement>("AutomationElement.NET", singleElement);
+//    			}
     			
     			if (Preferences.UseElementsPatternObjectModel) {
     			    
@@ -397,7 +452,13 @@ namespace UIAutomation
                 
     			var singleElement = new ConstructorArgument("element", element);
     			
-    			IUiElement adapterElement = Kernel.Get<IUiElement>("UiElement", singleElement);
+    			// 20140122
+    			IUiElement adapterElement; // = Kernel.Get<IUiElement>("UiElement", singleElement);
+    			// var childKernel = GetChildKernel();
+			    // adapterElement = childKernel.Get<IUiElement>("UiElement", singleElement);
+			    adapterElement = ChildKernel.Get<IUiElement>("UiElement", singleElement);
+			    // childKernel.Dispose();
+			    // (adapterElement as UiElement).ChildKernel = childKernel;
     			
     			if (Preferences.UseElementsPatternObjectModel) {
     			    
@@ -428,7 +489,13 @@ namespace UIAutomation
 		internal static IUiElement GetUiElement()
 		{
 			try {
-    			IUiElement adapterElement = Kernel.Get<IUiElement>("Empty", null);
+		        // 20140122
+    			IUiElement adapterElement; // = Kernel.Get<IUiElement>("Empty", null);
+    			// var childKernel = GetChildKernel();
+			    // adapterElement = childKernel.Get<IUiElement>("Empty", null);
+			    adapterElement = ChildKernel.Get<IUiElement>("Empty", null);
+			    // childKernel.Dispose();
+			    // (adapterElement as UiElement).ChildKernel = childKernel;
     			
     			if (Preferences.UseElementsPatternObjectModel) {
     			    
@@ -455,7 +522,18 @@ namespace UIAutomation
 		{
 			try {
     			var singleInfo = new ConstructorArgument("information", information);
-    			IUiElementInformation adapterInformation = Kernel.Get<IUiElementInformation>(singleInfo);
+    			// 20140122
+    			// IUiElementInformation adapterInformation = Kernel.Get<IUiElementInformation>(singleInfo);
+    			IUiElementInformation adapterInformation;
+//    			if (null != ChildKernel) {
+    			    // adapterInformation = ChildKernel.Get<IUiElementInformation>(singleInfo);
+    			    // var childKernel = GetChildKernel();
+    			    // adapterInformation = childKernel.Get<IUiElementInformation>(singleInfo);
+    			    adapterInformation = ChildKernel.Get<IUiElementInformation>(singleInfo);
+    			    // childKernel.Dispose();
+//    			} else {
+//    			    adapterInformation = Kernel.Get<IUiElementInformation>(singleInfo);
+//    			}
     			return adapterInformation;
 			}
 			catch (Exception eFailedToIssueInformation) {
@@ -469,24 +547,24 @@ namespace UIAutomation
 		#endregion IUiElement
 		
 		#region IUiEltCollection
-		internal static IUiEltCollection GetUiEltCollectionViaChildKerne(AutomationElementCollection elements, IChildKernel childKernel)
-		{
-	        if (null == elements) {
-	            return null;
-	        }
-			try {
-    			var manyElements = new ConstructorArgument("elements", elements);
-	      		IUiEltCollection adapterCollection = childKernel.Get<IUiEltCollection>("AutomationElementCollection.NET", manyElements);
-	       		return adapterCollection;
-			}
-			catch (Exception eFailedToIssueCollection) {
-			    // TODO
-			    // write error to error object!!!
-			    // Console.WriteLine("Collection 01 via ChildKernel");
-			    // Console.WriteLine(eFailedToIssueCollection.Message);
-			    return null;
-			}
-		}
+//		internal static IUiEltCollection GetUiEltCollectionViaChildKerne(AutomationElementCollection elements, IChildKernel childKernel)
+//		{
+//	        if (null == elements) {
+//	            return null;
+//	        }
+//			try {
+//    			var manyElements = new ConstructorArgument("elements", elements);
+//	      		IUiEltCollection adapterCollection = childKernel.Get<IUiEltCollection>("AutomationElementCollection.NET", manyElements);
+//	       		return adapterCollection;
+//			}
+//			catch (Exception eFailedToIssueCollection) {
+//			    // TODO
+//			    // write error to error object!!!
+//			    // Console.WriteLine("Collection 01 via ChildKernel");
+//			    // Console.WriteLine(eFailedToIssueCollection.Message);
+//			    return null;
+//			}
+//		}
 		
 		internal static IUiEltCollection GetUiEltCollection(AutomationElementCollection elements)
 		{
@@ -497,12 +575,16 @@ namespace UIAutomation
     			var manyElements = new ConstructorArgument("elements", elements);
     			// 20140122
 	      		IUiEltCollection adapterCollection; // = Kernel.Get<IUiEltCollection>("AutomationElementCollection.NET", manyElements);
-	      		if (null != ChildKernel) {
+//	      		if (null != ChildKernel) {
 //Console.WriteLine("child coll");
+	      		    // adapterCollection = ChildKernel.Get<IUiEltCollection>("AutomationElementCollection.NET", manyElements);
+	      		    // var childKernel = GetChildKernel();
+	      		    // adapterCollection = childKernel.Get<IUiEltCollection>("AutomationElementCollection.NET", manyElements);
 	      		    adapterCollection = ChildKernel.Get<IUiEltCollection>("AutomationElementCollection.NET", manyElements);
-	      		} else {
-	      		    adapterCollection = Kernel.Get<IUiEltCollection>("AutomationElementCollection.NET", manyElements);
-	      		}
+	      		    // childKernel.Dispose();
+//	      		} else {
+//	      		    adapterCollection = Kernel.Get<IUiEltCollection>("AutomationElementCollection.NET", manyElements);
+//	      		}
 	       		return adapterCollection;
 			}
 			catch (Exception eFailedToIssueCollection) {
@@ -521,7 +603,8 @@ namespace UIAutomation
 	        }
 			try {
     			var manyElements = new ConstructorArgument("elements", elements);
-	      		IUiEltCollection adapterCollection = Kernel.Get<IUiEltCollection>("UiEltCollection", manyElements);
+	      		// IUiEltCollection adapterCollection = Kernel.Get<IUiEltCollection>("UiEltCollection", manyElements);
+	      		IUiEltCollection adapterCollection = ChildKernel.Get<IUiEltCollection>("UiEltCollection", manyElements);
 	       		return adapterCollection;
 			}
 			catch (Exception eFailedToIssueCollection) {
@@ -540,7 +623,8 @@ namespace UIAutomation
 	        }
 			try {
     			var manyElements = new ConstructorArgument("elements", elements);
-	      		IUiEltCollection adapterCollection = Kernel.Get<IUiEltCollection>("AnyCollection", manyElements);
+	      		// IUiEltCollection adapterCollection = Kernel.Get<IUiEltCollection>("AnyCollection", manyElements);
+	      		IUiEltCollection adapterCollection = ChildKernel.Get<IUiEltCollection>("AnyCollection", manyElements);
 	       		return adapterCollection;
 			}
 			catch (Exception eFailedToIssueCollection) {
@@ -556,7 +640,8 @@ namespace UIAutomation
 		{
 			try {
 		        var boolArgument = new ConstructorArgument("fake", true);
-	      		IUiEltCollection adapterCollection = Kernel.Get<IUiEltCollection>("Empty", boolArgument);
+	      		// IUiEltCollection adapterCollection = Kernel.Get<IUiEltCollection>("Empty", boolArgument);
+	      		IUiEltCollection adapterCollection = ChildKernel.Get<IUiEltCollection>("Empty", boolArgument);
 	       		return adapterCollection;
 			}
 			catch (Exception eFailedToIssueCollection) {
@@ -577,7 +662,8 @@ namespace UIAutomation
                 
                 N adapterPattern = default(N);
                 var argElement = new ConstructorArgument("element", element);
-                adapterPattern = Kernel.Get<N>(NamedParameter_WithoutPattern, new[] { argElement });
+                // adapterPattern = Kernel.Get<N>(NamedParameter_WithoutPattern, new[] { argElement });
+                adapterPattern = ChildKernel.Get<N>(NamedParameter_WithoutPattern, new[] { argElement });
 		        adapterPattern.SetSourcePattern(pattern);
 	       		return adapterPattern;
 			}
@@ -597,7 +683,8 @@ namespace UIAutomation
 			try {
                 
                 N adapterPattern = default(N);
-                adapterPattern = Kernel.Get<N>(NamedParameter_WithoutElement, null);
+                // adapterPattern = Kernel.Get<N>(NamedParameter_WithoutElement, null);
+                adapterPattern = ChildKernel.Get<N>(NamedParameter_WithoutElement, null);
 		        adapterPattern.SetSourcePattern(pattern);
 	       		return adapterPattern;
 			}

@@ -109,6 +109,9 @@
     <Reference Include="Ninject">
       <HintPath>..\..\packages\Ninject.3.0.1.10\lib\net35\Ninject.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject.Extensions.ChildKernel">
+      <HintPath>..\..\packages\Ninject.Extensions.ChildKernel.3.0.0.5\lib\net35\Ninject.Extensions.ChildKernel.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject.Extensions.NamedScope">
       <HintPath>..\..\packages\Ninject.Extensions.NamedScope.3.0.0.5\lib\net35\Ninject.Extensions.NamedScope.dll</HintPath>
     </Reference>
@@ -353,6 +356,7 @@
     <Compile Include="Helpers\UnderlyingCode\NewModel\SearchTemplateData.cs" />
     <Compile Include="Helpers\UnderlyingCode\NewModel\WindowSearch.cs" />
     <Compile Include="Helpers\UnderlyingCode\NewModel\WindowSearchData.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Ninject\ChildKernelModule.cs" />
     <Compile Include="Helpers\UnderlyingCode\Ninject\ObjectLifecycleModule.cs" />
     <Compile Include="Helpers\UnderlyingCode\Ninject\AutomationFactory.cs" />
     <Compile Include="Helpers\UnderlyingCode\RDP\DataProtectionForRDPWrapper.cs" />

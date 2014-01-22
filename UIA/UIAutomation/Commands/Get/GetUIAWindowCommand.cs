@@ -41,9 +41,7 @@ namespace UIAutomation.Commands
             
             try {
             
-                // 20140121
             List<IUiElement> returnedWindows = new List<IUiElement>();
-            // List<IUiElement> returnedWindows = null;
             
             try {
 

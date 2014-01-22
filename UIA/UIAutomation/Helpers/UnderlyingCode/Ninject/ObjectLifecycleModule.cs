@@ -11,14 +11,13 @@ namespace UIAutomation
 {
     extern alias UIANET;
     using System;
+    using System.Collections;
+    using System.Windows.Automation;
     using Ninject;
     using Ninject.Modules;
     using Ninject.Extensions.NamedScope;
-    
-    using System.Collections;
-    using System.Windows.Automation;
+    using Ninject.Extensions.ChildKernel;
     using Castle.DynamicProxy;
-    
     using WindowsInput;
     
     /// <summary>
@@ -32,6 +31,8 @@ namespace UIAutomation
             Bind<ProxyGenerator>()
                 .ToSelf()
                 .InSingletonScope();
+            
+            Bind<IChildKernel>().ToSelf().InSingletonScope();
             #endregion common objects
             
             #region IUiElement
@@ -44,15 +45,6 @@ namespace UIAutomation
 //                .InThreadScope()
                 .InCallScope()
                 .Named("AutomationElement.NET");
-            
-//            Bind<IUiElement>()
-//                // .ToSelf()
-//                .ToConstructor(
-//                    x =>
-//                    new UiElement(x.Inject<System.Windows.Automation.AutomationElement>()))
-//                .InScope(ctx => UiElement.RootElement)
-//                // .InSingletonScope()
-//                .Named("Static");
             
             Bind<IUiElement>()
                 .ToConstructor(
@@ -112,14 +104,6 @@ namespace UIAutomation
 //                .InThreadScope()
                 .InCallScope()
                 .Named("AutomationElementCollection.NET");
-            
-//            Bind<IUiEltCollection>()
-//                // .ToSelf()
-//                .ToConstructor(
-//                    x => 
-//                    new UiEltCollection(x.Inject<AutomationElementCollection>()))
-//                .InSingletonScope()
-//                .Named("Static");
             
             Bind<IUiEltCollection>()
                 .ToConstructor(

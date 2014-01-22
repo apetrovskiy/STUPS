@@ -14,6 +14,7 @@ namespace UIAutomation
     using Ninject;
     using Ninject.Modules;
     using Ninject.Parameters;
+    using Ninject.Extensions.ChildKernel;
     using System.Windows.Automation;
     using System.Management.Automation;
     using System.Collections;
@@ -22,23 +23,6 @@ namespace UIAutomation
     using Castle.DynamicProxy;
     using System.Linq;
     using WindowsInput;
-    
-    
-//    using Ninject.Activation;
-//    using Ninject.Components;
-//    using Ninject.Extensions;
-//    using Ninject.Planning.Targets;
-//    using Ninject.Planning.Bindings;
-//    using Ninject.Planning.Directives;
-//    using Ninject.Planning.Strategies;
-//    using Ninject.Planning;
-//    using Ninject.Infrastructure.Disposal;
-//    using Ninject.Infrastructure.Introspection;
-//    using Ninject.Infrastructure.Language;
-//    using Ninject.Injection;
-//    using Ninject.Selection.Heuristics;
-//    using Ninject.Syntax;
-    
     
     /// <summary>
     /// Description of AutomationFactory.
@@ -76,6 +60,8 @@ namespace UIAutomation
 		private static bool _initFlag = false;
 
         internal static StandardKernel Kernel { get; private set; }
+        // 20140122
+        internal static IChildKernel ChildKernel { get; private set; }
         
         public static void Init()
 		{
@@ -190,6 +176,29 @@ namespace UIAutomation
             return proxiedObject;
         }
         #endregion Castle DynamicProxy
+        
+        #region Common objects
+        internal static IChildKernel GetChildKernel()
+        {
+            var childKernel = new ChildKernel(Kernel, new ChildKernelModule());
+            childKernel.Settings.ActivationCacheDisabled = true;
+            return childKernel;
+        }
+        
+        internal static void InitializeChildKernel()
+        {
+            ChildKernel = new ChildKernel(Kernel, new ChildKernelModule());
+            ChildKernel.Settings.ActivationCacheDisabled = true;
+        }
+        
+        internal static void DisposeChildKernel()
+        {
+            ChildKernel.Dispose();
+            ChildKernel = null;
+        }
+        
+        // internal static 
+        #endregion Common objects
 		
 		#region IUiElement
 		internal static IExtendedModelHolder GetUiExtendedModelHolder(IUiElement parentElement, TreeScope scope)
@@ -297,6 +306,42 @@ namespace UIAutomation
 		    
 		}
 		
+		public static IUiElement GetUiElementViaChildKernel(AutomationElement element, IChildKernel childKernel)
+		{
+	        if (null == element) {
+	            return null;
+	        }
+		    
+			try {
+    			var singleElement = new ConstructorArgument("element", element);
+    			IUiElement adapterElement = childKernel.Get<IUiElement>("AutomationElement.NET", singleElement);
+    			
+    			if (Preferences.UseElementsPatternObjectModel) {
+    			    
+        			IUiElement proxiedTypedUiElement =
+        			    ConvertToProxiedElement(
+        			        adapterElement);
+        			
+        			proxiedTypedUiElement.SetSourceElement<AutomationElement>(element);
+        			
+        			return (IUiElement)proxiedTypedUiElement; // as IUiElement;
+    			} else {
+    			    
+    			    adapterElement.SetSourceElement<AutomationElement>(element);
+    			    
+    			    return adapterElement;
+    			}
+    			
+			}
+			catch (Exception eFailedToIssueElement) {
+			    // TODO
+			    // write error to error object!!!
+			    // Console.WriteLine("Element 01 via ChildKernel");
+			    // Console.WriteLine(eFailedToIssueElement.Message);
+			    return null;
+			}
+		}
+		
 		public static IUiElement GetUiElement(AutomationElement element)
 		{
 	        if (null == element) {
@@ -305,7 +350,15 @@ namespace UIAutomation
 		    
 			try {
     			var singleElement = new ConstructorArgument("element", element);
-    			IUiElement adapterElement = Kernel.Get<IUiElement>("AutomationElement.NET", singleElement);
+    			// 20140122
+    			IUiElement adapterElement; // = Kernel.Get<IUiElement>("AutomationElement.NET", singleElement);
+    			
+    			if (null != ChildKernel) {
+//Console.WriteLine("child elt");
+    			    adapterElement = ChildKernel.Get<IUiElement>("AutomationElement.NET", singleElement);
+    			} else {
+    			    adapterElement = Kernel.Get<IUiElement>("AutomationElement.NET", singleElement);
+    			}
     			
     			if (Preferences.UseElementsPatternObjectModel) {
     			    
@@ -332,42 +385,6 @@ namespace UIAutomation
 			    return null;
 			}
 		}
-		
-//		public static IUiElement GetUiElementStatic(AutomationElement element)
-//		{
-//	        if (null == element) {
-//	            return null;
-//	        }
-//		    
-//			try {
-//    			var singleElement = new ConstructorArgument("element", element);
-//    			IUiElement adapterElement = Kernel.Get<IUiElement>("Static", singleElement);
-//    			
-//    			if (Preferences.UseElementsPatternObjectModel) {
-//    			    
-//        			IUiElement proxiedTypedUiElement =
-//        			    ConvertToProxiedElement(
-//        			        adapterElement);
-//        			
-//        			proxiedTypedUiElement.SetSourceElement<AutomationElement>(element);
-//        			
-//        			return (IUiElement)proxiedTypedUiElement; // as IUiElement;
-//    			} else {
-//    			    
-//    			    adapterElement.SetSourceElement<AutomationElement>(element);
-//    			    
-//    			    return adapterElement;
-//    			}
-//    			
-//			}
-//			catch (Exception eFailedToIssueElement) {
-//			    // TODO
-//			    // write error to error object!!!
-//			    // Console.WriteLine("Element 01");
-//			    // Console.WriteLine(eFailedToIssueElement.Message);
-//			    return null;
-//			}
-//		}
 		
 		// to prevent from threading lock
 		internal static IUiElement GetUiElement(IUiElement element)
@@ -452,6 +469,25 @@ namespace UIAutomation
 		#endregion IUiElement
 		
 		#region IUiEltCollection
+		internal static IUiEltCollection GetUiEltCollectionViaChildKerne(AutomationElementCollection elements, IChildKernel childKernel)
+		{
+	        if (null == elements) {
+	            return null;
+	        }
+			try {
+    			var manyElements = new ConstructorArgument("elements", elements);
+	      		IUiEltCollection adapterCollection = childKernel.Get<IUiEltCollection>("AutomationElementCollection.NET", manyElements);
+	       		return adapterCollection;
+			}
+			catch (Exception eFailedToIssueCollection) {
+			    // TODO
+			    // write error to error object!!!
+			    // Console.WriteLine("Collection 01 via ChildKernel");
+			    // Console.WriteLine(eFailedToIssueCollection.Message);
+			    return null;
+			}
+		}
+		
 		internal static IUiEltCollection GetUiEltCollection(AutomationElementCollection elements)
 		{
 	        if (null == elements) {
@@ -459,7 +495,14 @@ namespace UIAutomation
 	        }
 			try {
     			var manyElements = new ConstructorArgument("elements", elements);
-	      		IUiEltCollection adapterCollection = Kernel.Get<IUiEltCollection>("AutomationElementCollection.NET", manyElements);
+    			// 20140122
+	      		IUiEltCollection adapterCollection; // = Kernel.Get<IUiEltCollection>("AutomationElementCollection.NET", manyElements);
+	      		if (null != ChildKernel) {
+//Console.WriteLine("child coll");
+	      		    adapterCollection = ChildKernel.Get<IUiEltCollection>("AutomationElementCollection.NET", manyElements);
+	      		} else {
+	      		    adapterCollection = Kernel.Get<IUiEltCollection>("AutomationElementCollection.NET", manyElements);
+	      		}
 	       		return adapterCollection;
 			}
 			catch (Exception eFailedToIssueCollection) {
@@ -470,25 +513,6 @@ namespace UIAutomation
 			    return null;
 			}
 		}
-		
-//		internal static IUiEltCollection GetUiEltCollectionStatic(AutomationElementCollection elements)
-//		{
-//	        if (null == elements) {
-//	            return null;
-//	        }
-//			try {
-//    			var manyElements = new ConstructorArgument("elements", elements);
-//	      		IUiEltCollection adapterCollection = Kernel.Get<IUiEltCollection>("Static", manyElements);
-//	       		return adapterCollection;
-//			}
-//			catch (Exception eFailedToIssueCollection) {
-//			    // TODO
-//			    // write error to error object!!!
-//			    // Console.WriteLine("Collection 01");
-//			    // Console.WriteLine(eFailedToIssueCollection.Message);
-//			    return null;
-//			}
-//		}
 		
 		internal static IUiEltCollection GetUiEltCollection(IUiEltCollection elements)
 		{

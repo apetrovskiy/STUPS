@@ -89,6 +89,9 @@
     <Reference Include="Ninject">
       <HintPath>..\..\packages\Ninject.3.0.1.10\lib\net40\Ninject.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject.Extensions.ChildKernel">
+      <HintPath>..\..\packages\Ninject.Extensions.ChildKernel.3.0.0.5\lib\net40\Ninject.Extensions.ChildKernel.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject.Extensions.NamedScope">
       <HintPath>..\..\packages\Ninject.Extensions.NamedScope.3.0.0.5\lib\net40\Ninject.Extensions.NamedScope.dll</HintPath>
     </Reference>
@@ -873,6 +876,9 @@
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Ninject\AutomationFactory.cs">
       <Link>Helpers\UnderlyingCode\Ninject\AutomationFactory.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Ninject\ChildKernelModule.cs">
+      <Link>Helpers\UnderlyingCode\Ninject\ChildKernelModule.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Ninject\ObjectLifecycleModule.cs">
       <Link>Helpers\UnderlyingCode\Ninject\ObjectLifecycleModule.cs</Link>
     </Compile>
@@ -1167,6 +1173,8 @@
     <Folder Include="Helpers\UnderlyingCode\ExtensionMethods" />
     <Folder Include="Helpers\UnderlyingCode\Aspect" />
     <Folder Include="Helpers\UnderlyingCode\Internal" />
+    <Folder Include="Helpers\UnderlyingCode\Internal" />
+    <Folder Include="Helpers\UnderlyingCode\NewModel" />
     <Folder Include="Helpers\UnderlyingCode\NewModel" />
     <Folder Include="Helpers\UnderlyingCode\Ninject" />
     <Folder Include="Helpers\UnderlyingCode\RDP" />

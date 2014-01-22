@@ -144,13 +144,5 @@ namespace UIAutomation
 		    // ? }
 		    GC.SuppressFinalize(this);
 		}
-		
-//		~UiEltCollection()
-//		{
-//		    if (null != this._collectionHolder) {
-//		        this._collectionHolder.Clear();
-//		    }
-//		    this._collectionHolder = null;
-//		}
 	}
 }

@@ -43,8 +43,9 @@ namespace UIAutomation
                 
                 WindowSearchData data = searchData as WindowSearchData;
                 
-                // 20140121
-                ResultCollection = new List<IUiElement>();
+                // 20140122
+                // var childKernel = AutomationFactory.GetChildKernel();
+                AutomationFactory.InitializeChildKernel();
                 
                 if (data.Win32) {
                     
@@ -74,9 +75,9 @@ namespace UIAutomation
                     ResultCollection = GetWindowCollectionByName(data.Name, data.AutomationId, data.Class, data.Recurse);
                 }
                 
-                // 20140121
-                // GC.Collect();
-                // GC.Collect(0, GCCollectionMode.Forced);
+                // 20140122
+                // childKernel.Dispose();
+                AutomationFactory.DisposeChildKernel();
                 
             } catch (Exception eSearchFailure) {
                 
@@ -223,11 +224,11 @@ namespace UIAutomation
         
         public override void OnSleepHook()
         {
-            int timeout = Timeout;
-            if (0 == timeout) {
-                timeout = 5;
-            }
-            System.Threading.Thread.Sleep(Timeout / 20);
+//            int timeout = Timeout;
+//            if (0 == timeout) {
+//                timeout = 5;
+//            }
+//            System.Threading.Thread.Sleep(Timeout / 20);
         }
         
         public override void OnFailureHook()
@@ -308,25 +309,25 @@ namespace UIAutomation
             
             foreach (Process process in processes) {
                 
-                try {
-                    int processId = process.Id;
-                    if (0 != processId) {
-                        processIdList.Add(processId);
-                    }
-                    
-                    int[] processIds = processIdList.ToArray();
-                    
-                    tempCollection = GetWindowCollectionByPid(processIds, first, recurse, name, automationId, className);
-    
-                    aeWndCollectionByProcId.AddRange(tempCollection);
-                }
-                catch (Exception tempException) {
-                    
-                    // WriteVerbose(this, tempException.Message);
-                    
-                    //return aeWndCollectionByProcId;
+            try {
+                int processId = process.Id;
+                if (0 != processId) {
+                    processIdList.Add(processId);
                 }
                 
+                int[] processIds = processIdList.ToArray();
+                
+                tempCollection = GetWindowCollectionByPid(processIds, first, recurse, name, automationId, className);
+
+                aeWndCollectionByProcId.AddRange(tempCollection);
+            }
+            catch (Exception tempException) {
+                
+                // WriteVerbose(this, tempException.Message);
+                
+                //return aeWndCollectionByProcId;
+            }
+            
             } // 20120824
             
             // 20131202
@@ -347,9 +348,8 @@ namespace UIAutomation
         
         private List<IUiElement> GetWindowCollectionByName(string[] windowNames, string automationId, string className, bool recurse)
         {
-            // 20140121
-            List<IUiElement> windowCollectionByProperties = null;
-                // new List<IUiElement>();
+            List<IUiElement> windowCollectionByProperties =
+                new List<IUiElement>();
             List<IUiElement> resultCollection =
                 new List<IUiElement>();
             
@@ -381,15 +381,11 @@ namespace UIAutomation
                                 ControlType.Menu));
                 }
                 
+                // 20140122
+                // AutomationFactory.InitializeChildKernel();
+                
                 IUiEltCollection windowCollection =
                     UiElement.RootElement.FindAll(recurse ? TreeScope.Descendants : TreeScope.Children, conditionsSet);
-                    // AutomationFactory.GetUiEltCollection(new [] { UiElement.RootElement });
-                    // AutomationFactory.GetUiEltCollection();
-                    // AutomationFactory.GetUiEltCollectionStatic(AutomationElement.RootElement.FindAll(recurse ? TreeScope.Descendants : TreeScope.Children, conditionsSet)); // works ?
-                
-                    // 20140121
-                // GC.Collect();
-                // GC.Collect(0, GCCollectionMode.Forced);
                 
                 try {
                     windowCollectionByProperties =
@@ -473,11 +469,10 @@ namespace UIAutomation
                 }
                 catch {}
                 
+                // 20140122
+                // AutomationFactory.DisposeChildKernel();
+                
             } // 20120824
-            
-            // 20140121
-            // wrong!!!
-            windowCollectionByProperties = null;
             
             return resultCollection;
         }
@@ -781,9 +776,7 @@ namespace UIAutomation
             bool caseSensitive,
             bool viaWildcardOrRegex)
         {
-            // 20140121
-            // List<IUiElement> resultCollection = new List<IUiElement>();
-            List<IUiElement> resultCollection = null;
+            List<IUiElement> resultCollection = new List<IUiElement>();
             bool requiresValuePatternCheck =
                 !string.IsNullOrEmpty(textValue);
             
@@ -923,24 +916,13 @@ namespace UIAutomation
                     
                 }
                 
-                // 20140121
-                if (null != inputList) inputList.Clear();
-                inputList = null;
-                wildcardName = wildcardAutomationId = wildcardClass = wildcardValue = null;
-                
 //                cmdlet.WriteVerbose(
 //                        cmdlet,
 //                        "There are " +
 //                        query.Count.ToString() +
 //                        " elements");
                 
-                // 20140121
-                resultCollection = new List<IUiElement>();
-                
                 resultCollection.AddRange(query);
-                
-                // 20140121
-                query = null;
                 
 //                cmdlet.WriteVerbose(
 //                    cmdlet,
@@ -951,9 +933,6 @@ namespace UIAutomation
             }
             catch (Exception eProcessing) {
 //                cmdlet.WriteVerbose(eProcessing.Message);
-                
-                // 20140121
-                resultCollection = null;
             }
             
             // 20140121

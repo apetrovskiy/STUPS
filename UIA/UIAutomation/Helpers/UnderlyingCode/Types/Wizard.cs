@@ -176,6 +176,12 @@ namespace UIAutomation
 	        	        
         	        continue;
         	    }
+        	    
+        	    // 20140121
+        	    if (null != controlsList) {
+        	        controlsList.Clear();
+        	        controlsList = null;
+        	    }
 	        	    
         	    resultStep = step;
         	    ActiveStep = step;

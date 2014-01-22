@@ -660,13 +660,14 @@ namespace UIAutomation
 //        }
 		
 		public virtual void Dispose()
+		// public void Dispose()
 		{
-		    RootElement.Dispose();
-		    this._elementHolderNet = null;
-		    //
-		    this._elementHolderAdapter = null;
-			// GC.SuppressFinalize(this);
-			// GC.Collect();
+		    // ? if (null != this._elementHolderNet) this._elementHolderNet = null;
+		    // ? if (null != this._elementHolderAdapter) {
+		    // ?     this._elementHolderAdapter.Dispose();
+		    // ?     this._elementHolderAdapter = null;
+		    // ? }
+			GC.SuppressFinalize(this);
 		}
 		
 //		~UiElement()

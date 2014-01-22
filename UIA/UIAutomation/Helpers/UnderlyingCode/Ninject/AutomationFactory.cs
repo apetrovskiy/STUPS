@@ -82,6 +82,9 @@ namespace UIAutomation
 		    if (_initFlag) return;
 		    try {
 		        Kernel = new StandardKernel(_ninjectModule);
+		        
+		        // 20140121
+		        Kernel.Settings.ActivationCacheDisabled = true;
 		    }
 		    catch (Exception eInitFailure) {
 		        // TODO
@@ -100,6 +103,9 @@ namespace UIAutomation
 		    try {
 		        _ninjectModule = new ObjectLifecycleModule();
 		        Kernel = new StandardKernel(_ninjectModule);
+		        
+		        // 20140121
+		        Kernel.Settings.ActivationCacheDisabled = true;
 		        
 		        InitCommonObjects();
 		    }

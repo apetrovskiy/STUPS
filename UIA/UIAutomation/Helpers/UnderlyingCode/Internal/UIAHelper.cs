@@ -2837,6 +2837,8 @@ namespace UIAutomation
             //
             // extra?
             automationElements.Clear();
+            // 20140121
+            automationElements = null;
             //
             
             //};

@@ -122,6 +122,8 @@ namespace UIAutomation.Commands
                         WriteObject(this, returnedWindows);
                     }
                     
+                    // 20140121
+                    returnedWindows.Clear();
                     returnedWindows = null;
                     
                 } else {

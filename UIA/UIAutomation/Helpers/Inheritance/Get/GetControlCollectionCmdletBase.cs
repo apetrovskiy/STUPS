@@ -118,7 +118,7 @@ namespace UIAutomation
             
             cmdlet.WriteVerbose(cmdlet, "still in the GetAutomationElementsViaWildcards_FindAll method");
             
-            List<IUiElement> resultCollection = new List<IUiElement>();
+            List<IUiElement> resultCollection = new List<IUiElement>(); // ? make it null ??
             
             resultCollection =
                 GetAutomationElementsWithFindAll(
@@ -333,6 +333,9 @@ namespace UIAutomation
             }
             catch {}
             
+            // 20140121
+            walker = null;
+            
             return resultCollection;
         }
         
@@ -376,7 +379,12 @@ namespace UIAutomation
                         viaWildcardOrRegex);
                 
                 // 20130608
-                results = null;
+                // 20140121
+                if (null != results) {
+                    // results.Dispose(); // taboo!
+                    results = null;
+                }
+                // results = null;
                 
             }
             catch { //(Exception eWildCardSearch) {
@@ -534,6 +542,8 @@ namespace UIAutomation
                     }
                 }
                 
+                // 20140121
+                wildcardName = wildcardAutomationId = wildcardClass = null;
                 
             }
             
@@ -796,10 +806,22 @@ namespace UIAutomation
                     WriteObject(this, searchResults.ToArray());
                 } // if (scope == TreeScope.Children ||
                 //scope == TreeScope.Descendants)
+                
+                // 20140121
+                if (null != searchResults) {
+                    searchResults.Clear();
+                    searchResults = null;
+                }
+                
                 if (scope != TreeScope.Parent && scope != TreeScope.Ancestors) continue;
                 
                 IUiElement[] outResult = inputObject.GetParentOrAncestor(scope);
                 WriteObject(this, outResult);
+                
+                // 20140121
+                if (null != outResult) {
+                    outResult = null;
+                }
                 
             } // 20120823
             

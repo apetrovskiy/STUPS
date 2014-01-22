@@ -130,10 +130,19 @@ namespace UIAutomation
 		}
 		
 		public virtual void Dispose()
+		// public void Dispose()
 		{
-		    // GC.SuppressFinalize(this);
-		    this._collectionHolder = null;
-		    // GC.Collect();
+		    // ? try {
+    		// ?     foreach (IUiElement element in this.ToArray().ToList()) {
+    		// ?         element.Dispose();
+    		// ?     }
+		    // ? }
+		    // ? catch {}
+		    // ? if (null != this._collectionHolder) {
+		    // ?     this._collectionHolder.Clear();
+		    // ?     this._collectionHolder = null;
+		    // ? }
+		    GC.SuppressFinalize(this);
 		}
 		
 //		~UiEltCollection()

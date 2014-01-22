@@ -28,7 +28,8 @@ namespace UIAutomation
         private Condition conditionsForWildCards = null;
         private Condition conditionsForTextSearch = null;
         
-        private GetControlCmdletBase tempCmdlet;
+        // 20140121
+        // private GetControlCmdletBase tempCmdlet;
         private bool notTextSearch;
         
         protected static bool caseSensitive { get; set; }
@@ -43,13 +44,14 @@ namespace UIAutomation
             
             #region conditions
             // GetControlCmdletBase tempCmdlet =
-            tempCmdlet =
-                new GetControlCmdletBase {ControlType = data.ControlType};
+            // 20140121
+            // tempCmdlet =
+            //     new GetControlCmdletBase {ControlType = data.ControlType};
 
             // bool notTextSearch = true;
             notTextSearch = true;
             if (!string.IsNullOrEmpty(data.ContainsText) && !data.Regex) {
-                tempCmdlet.ContainsText = data.ContainsText;
+                // tempCmdlet.ContainsText = data.ContainsText;
                 notTextSearch = false;
                 
                 conditionsForTextSearch =
@@ -81,7 +83,7 @@ namespace UIAutomation
         public override List<IUiElement> SearchForElements(SearchTemplateData searchData)
         {
             ControlSearchData data = searchData as ControlSearchData;
-            tempCmdlet = null;
+            // tempCmdlet = null;
             
             foreach (IUiElement inputObject in data.InputObject) {
                 
@@ -224,7 +226,11 @@ namespace UIAutomation
         
         public override void OnSleepHook()
         {
-            
+            int timeout = Timeout;
+            if (0 == timeout) {
+                timeout = 5;
+            }
+            System.Threading.Thread.Sleep(Timeout / 20);
         }
         
         public override void OnFailureHook()
@@ -363,6 +369,8 @@ namespace UIAutomation
             }
             
             if (null != tempCollection) {
+                // 20140121
+                // tempCollection.Dispose(); // taboo?
                 tempCollection = null;
             }
             

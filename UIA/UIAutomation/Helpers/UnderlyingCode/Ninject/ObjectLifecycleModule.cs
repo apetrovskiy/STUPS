@@ -42,6 +42,15 @@ namespace UIAutomation
                 .InCallScope()
                 .Named("AutomationElement.NET");
             
+//            Bind<IUiElement>()
+//                // .ToSelf()
+//                .ToConstructor(
+//                    x =>
+//                    new UiElement(x.Inject<System.Windows.Automation.AutomationElement>()))
+//                .InScope(ctx => UiElement.RootElement)
+//                // .InSingletonScope()
+//                .Named("Static");
+            
             Bind<IUiElement>()
                 .ToConstructor(
                     x =>
@@ -56,11 +65,15 @@ namespace UIAutomation
             
             Bind<IExtendedModelHolder>()
                 .To<UiExtendedModelHolder>()
-                .InCallScope();
+                // 20140121
+                // .InCallScope();
+                .InSingletonScope();
             
             Bind<IControlInputHolder>()
                 .To<UiControlInputHolder>()
-                .InCallScope();
+                // 20140121
+                // .InCallScope();
+                .InSingletonScope();
             
             Bind<IKeyboardInputHolder>()
                 .To<UiKeyboardInputHolder>()
@@ -89,6 +102,14 @@ namespace UIAutomation
                     new UiEltCollection(x.Inject<AutomationElementCollection>()))
                 .InCallScope()
                 .Named("AutomationElementCollection.NET");
+            
+//            Bind<IUiEltCollection>()
+//                // .ToSelf()
+//                .ToConstructor(
+//                    x => 
+//                    new UiEltCollection(x.Inject<AutomationElementCollection>()))
+//                .InSingletonScope()
+//                .Named("Static");
             
             Bind<IUiEltCollection>()
                 .ToConstructor(

@@ -41,7 +41,9 @@ namespace UIAutomation.Commands
             
             try {
             
+                // 20140121
             List<IUiElement> returnedWindows = new List<IUiElement>();
+            // List<IUiElement> returnedWindows = null;
             
             try {
 
@@ -102,6 +104,9 @@ namespace UIAutomation.Commands
                     windowSearch.GetElements(
                         windowSearchData,
                         Timeout);
+                
+                // 20140121
+                windowSearchData = null;
             }
             catch {}
             
@@ -116,6 +121,8 @@ namespace UIAutomation.Commands
                         
                         WriteObject(this, returnedWindows);
                     }
+                    
+                    returnedWindows = null;
                     
                 } else {
                     

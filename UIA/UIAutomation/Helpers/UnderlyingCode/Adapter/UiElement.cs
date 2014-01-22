@@ -281,7 +281,9 @@ namespace UIAutomation
 		{
 			switch (_innerElementType) {
 				case InnerElementTypes.AutomationElementNet:
+		            // 20140121
 					return AutomationFactory.GetUiEltCollection(_elementHolderNet.FindAll(scope, condition));
+					// return AutomationFactory.GetUiEltCollectionStatic(_elementHolderNet.FindAll(scope, condition)); // works ?
 //			    case InnerElementTypes.AutomationElementCom:
 //			        //
 				case InnerElementTypes.UiElement:
@@ -289,7 +291,9 @@ namespace UIAutomation
 				default:
 //			    case InnerElementTypes.Empty:
 //			        return AutomationFactory.GetUiEltCollection(_elementHolderNet.FindAll(scope, condition));
+					// 20140121
 					return AutomationFactory.GetUiEltCollection(_elementHolderNet.FindAll(scope, condition));
+					// return AutomationFactory.GetUiEltCollectionStatic(_elementHolderNet.FindAll(scope, condition)); // works ?
 			}
 		}
 
@@ -424,13 +428,17 @@ namespace UIAutomation
 			get {
 				switch (_innerElementType) {
 					case InnerElementTypes.AutomationElementNet:
+		                // 20140121
 						return AutomationFactory.GetUiEltCollection(_elementHolderNet.CachedChildren);
+						// return AutomationFactory.GetUiEltCollectionStatic(_elementHolderNet.CachedChildren);
 //			        case /InnerElementTypes.AutomationElementCom:
 //			            //
 					case InnerElementTypes.UiElement:
 						return _elementHolderAdapter.CachedChildren;
 					default:
+						// 20140121
 						return AutomationFactory.GetUiEltCollection(_elementHolderNet.CachedChildren);
+						// return AutomationFactory.GetUiEltCollectionStatic(_elementHolderNet.CachedChildren);
 				}
 			}
 		}
@@ -496,13 +504,17 @@ namespace UIAutomation
 			get {
 				switch (_innerElementType) {
 					case InnerElementTypes.AutomationElementNet:
-						return AutomationFactory.GetUiElement(AutomationElement.RootElement);
+                        // 20140121
+                        return AutomationFactory.GetUiElement(AutomationElement.RootElement);
+		                // return AutomationFactory.GetUiElementStatic(AutomationElement.RootElement); // works ?
 //			        case InnerElementTypes.AutomationElementCom:
 //			            //
 					case InnerElementTypes.UiElement:
 						return RootElement;
 					default:
+						// 20140121
 						return AutomationFactory.GetUiElement(AutomationElement.RootElement);
+						// return AutomationFactory.GetUiElementStatic(AutomationElement.RootElement); // works ?
 				}
 			}
 		}
@@ -649,8 +661,19 @@ namespace UIAutomation
 		
 		public virtual void Dispose()
 		{
-			GC.SuppressFinalize(this);
+		    RootElement.Dispose();
+		    this._elementHolderNet = null;
+		    //
+		    this._elementHolderAdapter = null;
+			// GC.SuppressFinalize(this);
+			// GC.Collect();
 		}
+		
+//		~UiElement()
+//		{
+//		    this._elementHolderNet = null;
+//		    this._elementHolderAdapter = null;
+//		}
 
 		// internal methods
 		public virtual object GetPatternPropertyValue(AutomationProperty property, bool useCache)

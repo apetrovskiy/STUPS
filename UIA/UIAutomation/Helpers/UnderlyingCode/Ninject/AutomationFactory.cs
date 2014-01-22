@@ -23,6 +23,23 @@ namespace UIAutomation
     using System.Linq;
     using WindowsInput;
     
+    
+//    using Ninject.Activation;
+//    using Ninject.Components;
+//    using Ninject.Extensions;
+//    using Ninject.Planning.Targets;
+//    using Ninject.Planning.Bindings;
+//    using Ninject.Planning.Directives;
+//    using Ninject.Planning.Strategies;
+//    using Ninject.Planning;
+//    using Ninject.Infrastructure.Disposal;
+//    using Ninject.Infrastructure.Introspection;
+//    using Ninject.Infrastructure.Language;
+//    using Ninject.Injection;
+//    using Ninject.Selection.Heuristics;
+//    using Ninject.Syntax;
+    
+    
     /// <summary>
     /// Description of AutomationFactory.
     /// </summary>
@@ -310,6 +327,42 @@ namespace UIAutomation
 			}
 		}
 		
+//		public static IUiElement GetUiElementStatic(AutomationElement element)
+//		{
+//	        if (null == element) {
+//	            return null;
+//	        }
+//		    
+//			try {
+//    			var singleElement = new ConstructorArgument("element", element);
+//    			IUiElement adapterElement = Kernel.Get<IUiElement>("Static", singleElement);
+//    			
+//    			if (Preferences.UseElementsPatternObjectModel) {
+//    			    
+//        			IUiElement proxiedTypedUiElement =
+//        			    ConvertToProxiedElement(
+//        			        adapterElement);
+//        			
+//        			proxiedTypedUiElement.SetSourceElement<AutomationElement>(element);
+//        			
+//        			return (IUiElement)proxiedTypedUiElement; // as IUiElement;
+//    			} else {
+//    			    
+//    			    adapterElement.SetSourceElement<AutomationElement>(element);
+//    			    
+//    			    return adapterElement;
+//    			}
+//    			
+//			}
+//			catch (Exception eFailedToIssueElement) {
+//			    // TODO
+//			    // write error to error object!!!
+//			    // Console.WriteLine("Element 01");
+//			    // Console.WriteLine(eFailedToIssueElement.Message);
+//			    return null;
+//			}
+//		}
+		
 		// to prevent from threading lock
 		internal static IUiElement GetUiElement(IUiElement element)
 		{
@@ -411,6 +464,25 @@ namespace UIAutomation
 			    return null;
 			}
 		}
+		
+//		internal static IUiEltCollection GetUiEltCollectionStatic(AutomationElementCollection elements)
+//		{
+//	        if (null == elements) {
+//	            return null;
+//	        }
+//			try {
+//    			var manyElements = new ConstructorArgument("elements", elements);
+//	      		IUiEltCollection adapterCollection = Kernel.Get<IUiEltCollection>("Static", manyElements);
+//	       		return adapterCollection;
+//			}
+//			catch (Exception eFailedToIssueCollection) {
+//			    // TODO
+//			    // write error to error object!!!
+//			    // Console.WriteLine("Collection 01");
+//			    // Console.WriteLine(eFailedToIssueCollection.Message);
+//			    return null;
+//			}
+//		}
 		
 		internal static IUiEltCollection GetUiEltCollection(IUiEltCollection elements)
 		{

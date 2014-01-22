@@ -20,7 +20,8 @@ namespace UIAutomation
     
 	public class UiEltCollection : IUiEltCollection
 	{
-	    private readonly List<IUiElement> _collectionHolder =
+	    // private readonly List<IUiElement> _collectionHolder =
+	    private List<IUiElement> _collectionHolder =
 	        new List<IUiElement>();
 	    
 		public virtual IUiElement this[int index] {
@@ -130,7 +131,17 @@ namespace UIAutomation
 		
 		public virtual void Dispose()
 		{
-		    GC.SuppressFinalize(this);
+		    // GC.SuppressFinalize(this);
+		    this._collectionHolder = null;
+		    // GC.Collect();
 		}
+		
+//		~UiEltCollection()
+//		{
+//		    if (null != this._collectionHolder) {
+//		        this._collectionHolder.Clear();
+//		    }
+//		    this._collectionHolder = null;
+//		}
 	}
 }

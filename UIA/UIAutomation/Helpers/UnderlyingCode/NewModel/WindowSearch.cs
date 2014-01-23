@@ -113,7 +113,6 @@ namespace UIAutomation
                     // cmdlet.WriteVerbose(cmdlet, "processing WithControl");
                     List<IUiElement> filteredWindows =
                         new List<IUiElement>();
-    
                     // cmdlet.WriteVerbose(cmdlet, "searching for control(s) for every window, one by one");
                     bool exitInnerCycle = false;
                     
@@ -133,19 +132,24 @@ namespace UIAutomation
 //                                continue;
 //                            }
                             
-                            GetControlCmdletBase cmdletCtrl =
-                                new GetControlCmdletBase
-                                {
-                                    InputObject = new UiElement[] {(UiElement) window},
-                                    Timeout = 0
-                                };
+//                            GetControlCmdletBase cmdletCtrl =
+//                                new GetControlCmdletBase
+//                                {
+//                                    InputObject = new UiElement[] {(UiElement) window},
+//                                    Timeout = 0
+//                                };
+                            
+                            var controlSearchData =
+                                new ControlSearchData {
+                                InputObject = new UiElement[] { (UiElement) window }
+                            };
 
                             exitInnerCycle = false;
                             bool addToResultCollection = false;
                             foreach (Hashtable ht in (SearchData as WindowSearchData).WithControl)
                             {
-                                cmdletCtrl.SearchCriteria = new Hashtable[] { ht };
-
+//                                cmdletCtrl.SearchCriteria = new Hashtable[] { ht };
+                                controlSearchData.SearchCriteria = new Hashtable[] { ht };
                                 // cmdlet.WriteVerbose(cmdlet, "searching for controls that match the following critetion: " + ht.ToString());
                                 try {
                                     
@@ -157,8 +161,10 @@ namespace UIAutomation
                                         // (new CommonCmdletBase()).GetControl(cmdletCtrl);
                                         controlSearch.GetElements(
 
-                                            controlSearch.ConvertCmdletToControlSearchData(cmdletCtrl),
-                                            cmdletCtrl.Timeout);
+                                            // controlSearch.ConvertCmdletToControlSearchData(cmdletCtrl),
+                                            controlSearchData,
+                                            0);
+//                                            cmdletCtrl.Timeout);
                                     
                                     if (null != controlsList && 0 < controlsList.Count) {
                                         
@@ -166,8 +172,8 @@ namespace UIAutomation
                                         addToResultCollection = true;
                                         
                                         // 20140121
-                                        if (null != controlsList) controlsList.Clear();
-                                        controlsList = null;
+//                                        if (null != controlsList) controlsList.Clear();
+//                                        controlsList = null;
                                         
                                     } else { //20130713
                                         
@@ -188,7 +194,8 @@ namespace UIAutomation
                             }
                             
                             // 20140121
-                            cmdletCtrl = null;
+                            controlSearchData = null;
+//                            cmdletCtrl = null;
 
                             if (addToResultCollection) {
                                 filteredWindows.Add(window);
@@ -198,10 +205,10 @@ namespace UIAutomation
                         ResultCollection = filteredWindows;
                         
                         // 20140121
-                        if (null != filteredWindows) {
-                            filteredWindows.Clear();
-                            filteredWindows = null;
-                        }
+//                        if (null != filteredWindows) {
+//                            filteredWindows.Clear(); // taboo
+//                            filteredWindows = null; // taboo
+//                        }
                     // }
                     // catch {}
                 }
@@ -223,14 +230,14 @@ namespace UIAutomation
             }
         }
         
-        public override void OnSleepHook()
-        {
-//            int timeout = Timeout;
-//            if (0 == timeout) {
-//                timeout = 5;
-//            }
-//            System.Threading.Thread.Sleep(Timeout / 20);
-        }
+//        public override void OnSleepHook()
+//        {
+////            int timeout = Timeout;
+////            if (0 == timeout) {
+////                timeout = 5;
+////            }
+////            System.Threading.Thread.Sleep(Timeout / 20);
+//        }
         
         public override void OnFailureHook()
         {
@@ -401,10 +408,10 @@ namespace UIAutomation
                             true);
                     
                     // 20140121
-                    if (null != windowCollection) {
-                        windowCollection.Dispose();
-                        windowCollection = null;
-                    }
+//                    if (null != windowCollection) {
+//                        // windowCollection.Dispose();
+//                        windowCollection = null;
+//                    }
                 }
                 catch {
                     
@@ -424,18 +431,18 @@ namespace UIAutomation
                                 true);
                         
                         // 20140121
-                        if (null != windowCollection) {
-                            windowCollection.Dispose();
-                            windowCollection = null;
-                        }
+//                        if (null != windowCollection) {
+//                            // windowCollection.Dispose();
+//                            windowCollection = null;
+//                        }
                     }
                     catch {
                         
                         // 20140121
-                        if (null != windowCollection) {
-                            windowCollection.Dispose();
-                            windowCollection = null;
-                        }
+//                        if (null != windowCollection) {
+//                            // windowCollection.Dispose();
+//                            windowCollection = null;
+//                        }
                     }
                 }
                 
@@ -937,10 +944,10 @@ namespace UIAutomation
             }
             
             // 20140121
-            if (null != inputList) {
-                inputList.Clear();
-                inputList = null;
-            }
+//            if (null != inputList) {
+//                inputList.Clear();
+//                inputList = null;
+//            }
             
             // 20140121
             // inputCollection ??

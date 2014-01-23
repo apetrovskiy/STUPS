@@ -13,6 +13,8 @@ namespace TestUtils
     using System.Management.Automation;
     using TestUtils.Commands;
     using Ionic.Zip;
+    using NUnrar.Archive;
+    using NUnrar.Common;
     
     /// <summary>
     /// Description of ArchivingHelper.
@@ -88,7 +90,7 @@ namespace TestUtils
             }
         }
         
-        public static void ExtractFromArchive(ExpandTuZipArchiveCommand cmdlet)
+        public static void ExtractFromZipArchive(ExpandTuZipArchiveCommand cmdlet)
         {
             string[] pathToArchive = cmdlet.ArchiveName;
             string pathToTargetDirectory = cmdlet.TargetFolder;
@@ -123,6 +125,65 @@ namespace TestUtils
                                     entry.FileName);
                             }
                         }
+                    }
+                    catch (Exception eExtract) {
+                        cmdlet.WriteError(
+                            cmdlet,
+                            "Failed to extract archive '" +
+                            path +
+                            "'. " +
+                            eExtract.Message,
+                            "FailedToExtract",
+                            ErrorCategory.InvalidOperation,
+                            false);
+                    }
+                }
+            }
+        }
+        
+        public static void ExtractFromRarArchive(ExpandTuRarArchiveCommand cmdlet)
+        {
+            string[] pathToArchive = cmdlet.ArchiveName;
+            string pathToTargetDirectory = cmdlet.TargetFolder;
+//            ExtractExistingFileAction fileAction = ExtractExistingFileAction.DoNotOverwrite;
+//            if (cmdlet.Overwrite) {
+//                fileAction = ExtractExistingFileAction.OverwriteSilently;
+//            }
+            ExtractOptions options = ExtractOptions.Overwrite;
+            
+            foreach (string path in pathToArchive) {
+                
+                if (null != path && string.Empty != path) {
+                    
+                    cmdlet.WriteVerbose(
+                        cmdlet,
+                        "extracting '" +
+                        path +
+                        "'");
+                    
+                    try {
+                        
+//                        using (Ionic.zipARchive = ZipFile.Read(path)) {
+//                            
+//                            cmdlet.WriteVerbose(cmdlet, "opening the archive");
+//                            
+//                            foreach (ZipEntry entry in zipARchive) {
+//                                
+//                                entry.Extract(pathToTargetDirectory, fileAction);
+//                                cmdlet.WriteObject(
+//                                    cmdlet,
+//                                    pathToTargetDirectory +
+//                                    @"\" +
+//                                    entry.FileName);
+//                            }
+//                        }
+                        
+                        RarArchive.WriteToDirectory(
+                            path,
+                            pathToTargetDirectory,
+                            options);
+                            
+                        // RarArchive.IsRarFile
                     }
                     catch (Exception eExtract) {
                         cmdlet.WriteError(

@@ -27,7 +27,7 @@ namespace TestUtils
             ExpandTuZipArchiveCommand cmdlet =
                 (ExpandTuZipArchiveCommand)this.Cmdlet;
             
-            ArchivingHelper.ExtractFromArchive(cmdlet);
+            ArchivingHelper.ExtractFromZipArchive(cmdlet);
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+<Project ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
   <PropertyGroup>
     <ProjectGuid>{FFD78ABA-4388-421F-85CA-69D68FBC982C}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -57,6 +57,9 @@
     <Reference Include="Ionic.Zip">
       <HintPath>..\binaries\Ionic\zip-v1.9\Release\Ionic.Zip.dll</HintPath>
     </Reference>
+    <Reference Include="NUnrar.3.5">
+      <HintPath>..\packages\nunrar.1.0.1\lib\net35\NUnrar.3.5.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -68,14 +71,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\Archiving\ExpandTuRarArchiveCommand.cs" />
     <Compile Include="Commands\Archiving\ExpandTuZipArchiveCommand.cs" />
     <Compile Include="Commands\Archiving\NewTuZipArchiveCommand.cs" />
     <Compile Include="Commands\Security\GrantWin32LocalAccountPrivilegeCommand.cs" />
     <Compile Include="Helpers\ArchivingHelper.cs" />
     <Compile Include="Helpers\Inheritance\ArchivingCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\CommonCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\ExtractCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\PrivilegeCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\SecurityCmdletBase.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Archiving\TuExpandRarArchiveCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Archiving\TuExpandZipArchiveCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Archiving\TuNewZipArchiveCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Security\Win32GrantLocalAccountPrivilegeCommand.cs" />
@@ -106,6 +112,9 @@
       <Project>{DFFF7F28-CFA4-4EE5-84F0-4A12A415BC0C}</Project>
       <Name>TMX</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>

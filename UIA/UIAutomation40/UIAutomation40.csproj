@@ -867,6 +867,9 @@
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\SearchTemplateData.cs">
       <Link>Helpers\UnderlyingCode\NewModel\SearchTemplateData.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\TimeoutManager.cs">
+      <Link>Helpers\UnderlyingCode\NewModel\TimeoutManager.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\WindowSearch.cs">
       <Link>Helpers\UnderlyingCode\NewModel\WindowSearch.cs</Link>
     </Compile>

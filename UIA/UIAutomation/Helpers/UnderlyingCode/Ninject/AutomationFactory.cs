@@ -100,7 +100,7 @@ namespace UIAutomation
 		        InitCommonObjects();
 		        
 		        // 20140122
-		        InitializeChildKernel();
+		        // InitializeChildKernel();
 		    }
 		    catch (Exception eInitFailure) {
 		        // TODO
@@ -116,6 +116,9 @@ namespace UIAutomation
 		{
 		    var argument = new ConstructorArgument("builder", new PersistentProxyBuilder());
 		    _generator = Kernel.Get<ProxyGenerator>(argument);
+		    
+		    // 20140124
+		    InitializeChildKernel();
 		}
 		
 		public static void Reset()

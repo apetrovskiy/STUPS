@@ -35,12 +35,13 @@ namespace UIAutomation
         {
             int timeout = Timeout;
             if (0 == timeout) {
-                timeout = 5;
-            }
-            if (timeout <= 20000) {
+                timeout = 10;
+            } else if (timeout <= 5000) {
                 timeout /= 20;
+            } else if (timeout <= 20000) {
+                timeout /= 40;
             } else if (timeout <= 60000) {
-                timeout /= 30;
+                timeout /= 60;
             } else if (timeout <= 600000) {
                 timeout /= 100;
             }

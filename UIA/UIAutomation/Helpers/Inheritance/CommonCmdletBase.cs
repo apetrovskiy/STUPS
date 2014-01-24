@@ -53,6 +53,13 @@ namespace UIAutomation
             
             //CurrentData.Init();
             AutomationFactory.Init();
+            
+            // 20140124
+//            runTwoScriptBlockCollections(
+//                new ScriptBlock[] { Preferences.ModuleEcoSystem },
+//                null,
+//                this,
+//                new object[] {});
         }
         #endregion Constructor
         

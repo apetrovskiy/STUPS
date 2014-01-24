@@ -112,6 +112,12 @@ namespace UIAutomation
             // 20131227
             UseElementsPatternObjectModel = true;
             UseElementsSearchObjectModel = true;
+            
+            // 20140124
+            ModuleEcoSystem =
+                System.Management.Automation.ScriptBlock.Create(
+                    @"$Keyboard = (New-Object WindowsInput.InputSimulator).Keyboard; " +
+                    @"$Mouse = (New-Object WindowsInput.InputSimulator).Mouse; ");
         }
         
         /// <summary>
@@ -367,6 +373,9 @@ namespace UIAutomation
         // 20131227
         public static bool UseElementsPatternObjectModel { get; set; }
         public static bool UseElementsSearchObjectModel { get; set; }
+        
+        // 20140124
+        internal static ScriptBlock ModuleEcoSystem { get; set; }
     }
     
     public static class Mode

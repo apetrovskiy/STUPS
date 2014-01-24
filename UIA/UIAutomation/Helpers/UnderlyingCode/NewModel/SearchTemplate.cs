@@ -37,7 +37,13 @@ namespace UIAutomation
             if (0 == timeout) {
                 timeout = 5;
             }
-            timeout /= 20;
+            if (timeout <= 20000) {
+                timeout /= 20;
+            } else if (timeout <= 60000) {
+                timeout /= 30;
+            } else if (timeout <= 600000) {
+                timeout /= 100;
+            }
             if (timeout < Preferences.Timeout) {
                 timeout = Preferences.Timeout;
             }

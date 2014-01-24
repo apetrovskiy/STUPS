@@ -70,7 +70,9 @@ namespace UIAutomation
 		        Kernel = new StandardKernel(_ninjectModule);
 		        
 		        // 20140121
-		        Kernel.Settings.ActivationCacheDisabled = true;
+		        // 20140123
+		        // Kernel.Settings.ActivationCacheDisabled = true;
+		        Kernel.Settings.ActivationCacheDisabled = false;
 		    }
 		    catch (Exception eInitFailure) {
 		        // TODO
@@ -91,7 +93,9 @@ namespace UIAutomation
 		        Kernel = new StandardKernel(_ninjectModule);
 		        
 		        // 20140121
-		        Kernel.Settings.ActivationCacheDisabled = true;
+		        // 20140123
+		        // Kernel.Settings.ActivationCacheDisabled = true;
+		        Kernel.Settings.ActivationCacheDisabled = false;
 		        
 		        InitCommonObjects();
 		        
@@ -184,7 +188,9 @@ namespace UIAutomation
         internal static IChildKernel GetChildKernel()
         {
             var childKernel = new ChildKernel(Kernel, new ChildKernelModule());
-            childKernel.Settings.ActivationCacheDisabled = true;
+            // 20140123
+            // childKernel.Settings.ActivationCacheDisabled = true;
+            childKernel.Settings.ActivationCacheDisabled = false;
             return childKernel;
         }
         
@@ -195,7 +201,9 @@ namespace UIAutomation
                 ChildKernel = null;
             }
             ChildKernel = new ChildKernel(Kernel, new ChildKernelModule());
-            ChildKernel.Settings.ActivationCacheDisabled = true;
+            // 20140123
+            // ChildKernel.Settings.ActivationCacheDisabled = true;
+            ChildKernel.Settings.ActivationCacheDisabled = false;
         }
         
         internal static void DisposeChildKernel()

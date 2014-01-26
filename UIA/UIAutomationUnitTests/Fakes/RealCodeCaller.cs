@@ -9,10 +9,10 @@
 
 namespace UIAutomationUnitTests
 {
-    using System;
-    using System.Collections;
+    // using System;
+    // using System.Collections;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
+    // using System.Collections.ObjectModel;
     using UIAutomation;
     using System.Windows.Automation;
     
@@ -44,7 +44,7 @@ namespace UIAutomationUnitTests
         
         public static List<IUiElement> GetResultList_ViaWildcards(GetControlCmdletBase cmdlet, IUiElement element, Condition condition)
         {
-            GetControlCollectionCmdletBase cmdletDerived = new GetControlCollectionCmdletBase();
+            // GetControlCollectionCmdletBase cmdletDerived = new GetControlCollectionCmdletBase();
             
             List<IUiElement> resultList =
                 // cmdletDerived.SearchByWildcardOrRegexViaUia(
@@ -84,9 +84,12 @@ namespace UIAutomationUnitTests
             return cmdlet.ResultListOfControls;
         }
         
+        public static List<IUiElement> GetResultList_ReturnOnlyRightElements(GetControlCmdletBase cmdlet, IEnumerable<IUiElement> elements, bool useWildcardOrRegex)
+        /*
         public static List<IUiElement> GetResultList_ReturnOnlyRightElements(GetControlCmdletBase cmdlet, IUiElement[] elements, bool useWildcardOrRegex)
+        */
         {
-            HasTimeoutCmdletBase cmdletDerived = new HasTimeoutCmdletBase();
+            // HasTimeoutCmdletBase cmdletDerived = new HasTimeoutCmdletBase();
             
             List<IUiElement> resultList =
                 // HasTimeoutCmdletBase.ReturnOnlyRightElements(

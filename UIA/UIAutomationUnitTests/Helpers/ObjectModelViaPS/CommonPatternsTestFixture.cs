@@ -11,7 +11,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 {
     using System;
     using System.Windows.Automation;
-    using MbUnit.Framework;
+    using MbUnit.Framework;// using Xunit;
     using System.Management.Automation;
     using NSubstitute;
     using UIAutomation;
@@ -20,7 +20,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
     /// <summary>
     /// Description of CommonPatternsTestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture]
     public class CommonPatternsTestFixture
     {
         [SetUp]
@@ -35,7 +35,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
             // MiddleLevelCode.DisposeRunspace();
         }
         
-//        [Test]
+//        [Test]// [Fact]
 //        public void InvokePattern()
 //        {
 //            // Arrange
@@ -60,7 +60,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            // Assert.AreEqual(expectedValue, element.DockPosition);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Highlighter()
 //        {
 //            // Arrange
@@ -77,7 +77,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            // Assert.AreEqual(expectedValue, element.DockPosition);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Navigation()
 //        {
 //            // Arrange
@@ -98,7 +98,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            // Assert.AreEqual(expectedValue, element.DockPosition);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Conversion()
 //        {
 //            // Arrange
@@ -115,7 +115,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            // Assert.AreEqual(expectedValue, element.DockPosition);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Refresh()
 //        {
 //            // Arrange

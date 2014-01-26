@@ -9,12 +9,12 @@
 
 namespace UIAutomationUnitTests.CheckCmdletParameters
 {
-    using MbUnit.Framework;
+    using MbUnit.Framework;// using Xunit;
     
     /// <summary>
     /// Description of WaitUiaWindowCommandTestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture]
     public class WaitUiaWindowCommandTestFixture
     {
         [SetUp]
@@ -31,7 +31,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         
         
         
-//        [Test]
+//        [Test]// [Fact]
 //        [Category("Fast")]
 //        public void Get_UiaWindow_NoParameters()
 //        {
@@ -40,7 +40,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
 //        		"Get-UiaWindow;");
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        [Category("Fast")]
 //        public void Get_UiaWindow_ProcessName()
 //        {

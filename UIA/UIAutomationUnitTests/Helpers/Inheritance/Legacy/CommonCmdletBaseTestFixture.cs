@@ -10,16 +10,16 @@
 // namespace UIAutomationTest.Commands.Select
 namespace UIAutomationUnitTests.Helpers.Inheritance
 {
-    using System;
-    using System.Diagnostics;
-    using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
+    // using System;
+    // using System.Diagnostics;
+    using MbUnit.Framework;// using Xunit;//using MbUnit.Framework;// using Xunit; // using MbUnit.Framework;// using Xunit;
     using System.Windows.Automation;
     using UIAutomation;
     
     /// <summary>
     /// Description of CommonCmdletBase.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="CommonCmdletBase test")]
+    [MbUnit.Framework.TestFixture] // [TestFixture(Description="CommonCmdletBase test")]
     [Ignore("Incompatible with the contemporary code")]
     public class CommonCmdletBaseTestFixture
     {
@@ -51,14 +51,14 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             conditions = ((AndCondition)condition).GetConditions();
             foreach (Condition cond in conditions) {
                 if ((cond as PropertyCondition) != null) {
-                    Assert.AreEqual(
+                    MbUnit.Framework.Assert.AreEqual(
                         controlTypeProperty, 
                         (cond as PropertyCondition).Property.ProgrammaticName);
-                    Assert.AreEqual(
+                    MbUnit.Framework.Assert.AreEqual(
                         controlTypeValue, 
                         (cond as PropertyCondition).Value.ToString());
                 } else {
-                    Assert.AreEqual(cond, Condition.TrueCondition);
+                    MbUnit.Framework.Assert.AreEqual(cond, Condition.TrueCondition);
                 }
             }
         }
@@ -69,7 +69,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
 // // MiddleLevelCode.PrepareRunspace();
         }
         
-        [Test] //[Test(Description="TBD")]
+        [Test]// [Fact] //[Test(Description="TBD")]
         [Category("Slow")][Category("CSCode")]
         public void SelectParameterControlTypeButton()
         {
@@ -79,7 +79,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 "50000");
         }
         
-        [Test] //[Test(Description="TBD")]
+        [Test]// [Fact] //[Test(Description="TBD")]
         [Category("Slow")][Category("CSCode")]
         public void SelectParameterControlTypeCalendar()
         {
@@ -89,7 +89,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 "50001");
         }
         
-        [Test] //[Test(Description="TBD")]
+        [Test]// [Fact] //[Test(Description="TBD")]
         [Category("Slow")][Category("CSCode")]
         public void SelectParameterControlTypeCheckBox()
         {
@@ -99,7 +99,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 "50002");
         }
         
-        [Test] //[Test(Description="TBD")]
+        [Test]// [Fact] //[Test(Description="TBD")]
         [Category("Slow")][Category("CSCode")]
         public void SelectParameterControlTypeComboBox()
         {
@@ -109,7 +109,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 "50003");
         }
         
-        [Test] //[Test(Description="TBD")]
+        [Test]// [Fact] //[Test(Description="TBD")]
         [Category("Slow")][Category("CSCode")]
         public void SelectParameterControlTypeCustom()
         {
@@ -119,7 +119,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 "50025");
         }
         
-        [Test] //[Test(Description="TBD")]
+        [Test]// [Fact] //[Test(Description="TBD")]
         [Category("Slow")][Category("CSCode")]
         public void SelectParameterControlTypeDataGrid()
         {
@@ -129,7 +129,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 "50028");
         }
         
-        [Test] //[Test(Description="TBD")]
+        [Test]// [Fact] //[Test(Description="TBD")]
         [Category("Slow")][Category("CSCode")]
         public void SelectParameterControlTypeDataItem()
         {
@@ -139,7 +139,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 "50029");
         }
         
-        [Test] //[Test(Description="TBD")]
+        [Test]// [Fact] //[Test(Description="TBD")]
         [Category("Slow")][Category("CSCode")]
         public void SelectParameterControlTypeDocument()
         {
@@ -149,7 +149,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 "50030");
         }
         
-        [Test] //[Test(Description="TBD")]
+        [Test]// [Fact] //[Test(Description="TBD")]
         [Category("Slow")][Category("CSCode")]
         public void SelectParameterControlTypeEdit()
         {
@@ -159,7 +159,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 "50004");
         }
         
-        [Test] //[Test(Description="TBD")]
+        [Test]// [Fact] //[Test(Description="TBD")]
         [Category("Slow")][Category("CSCode")]
         public void SelectParameterControlTypeHyperlink()
         {
@@ -169,7 +169,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 "50005");
         }
         
-        [Test] //[Test(Description="TBD")]
+        [Test]// [Fact] //[Test(Description="TBD")]
         [Category("Slow")][Category("CSCode")]
         public void SelectParameterControlTypeList()
         {
@@ -179,7 +179,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 "50008");
         }
         
-        [Test] //[Test(Description="TBD")]
+        [Test]// [Fact] //[Test(Description="TBD")]
         [Category("Slow")][Category("CSCode")]
         public void SelectParameterControlTypeRadioButton()
         {
@@ -189,7 +189,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 "50013");
         }
         
-        [Test] //[Test(Description="TBD")]
+        [Test]// [Fact] //[Test(Description="TBD")]
         [Category("Slow")][Category("CSCode")]
         public void SelectParameterControlTypeTable()
         {
@@ -199,7 +199,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 "50036");
         }
         
-        [Test] //[Test(Description="TBD")]
+        [Test]// [Fact] //[Test(Description="TBD")]
         [Category("Slow")][Category("CSCode")]
         public void SelectParameterControlTypeText()
         {
@@ -209,7 +209,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 "50020");
         }
         
-        [Test] //[Test(Description="TBD")]
+        [Test]// [Fact] //[Test(Description="TBD")]
         [Category("Slow")][Category("CSCode")]
         public void SelectParameterControlTypeTree()
         {
@@ -219,7 +219,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 "50023");
         }
         
-        [Test] //[Test(Description="TBD")]
+        [Test]// [Fact] //[Test(Description="TBD")]
         [Category("Slow")][Category("CSCode")]
         public void SelectParameterControlTypeTreeItem()
         {
@@ -229,7 +229,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 "50024");
         }
         
-        [Test] //[Test(Description="TBD")]
+        [Test]// [Fact] //[Test(Description="TBD")]
         [Category("Slow")][Category("CSCode")]
         public void SelectParameterControlTypeWindow()
         {

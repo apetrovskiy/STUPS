@@ -11,7 +11,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 {
     using System;
     using System.Windows.Automation;
-    using MbUnit.Framework;
+    using MbUnit.Framework;// using Xunit;
     using System.Management.Automation;
     using NSubstitute;
     using UIAutomation;
@@ -21,7 +21,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
     /// Description of ISupportsTablePatternTestFixture.
     /// </summary>
     // [Ignore]
-    [TestFixture]
+    [MbUnit.Framework.TestFixture]
     public class ISupportsTablePatternTestFixture
     {
         [SetUp]
@@ -36,71 +36,71 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
             // MiddleLevelCode.DisposeRunspace();
         }
         
-//        [Test]
+//        [Test]// [Fact]
 //        public void Table_ImplementsCommonPattern()
 //        {
 //            ISupportsInvokePattern invokableElement =
 //                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
 //                    new IBasePattern[] { FakeFactory.GetTablePattern(new PatternsData()) }) as ISupportsInvokePattern;
 //            
-//            Assert.IsNotNull(invokableElement as ISupportsInvokePattern);
+//            MbUnit.Framework.Assert.IsNotNull(invokableElement as ISupportsInvokePattern);
 //            
 //            ISupportsHighlighter highlightableElement =
 //                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
 //                    new IBasePattern[] { FakeFactory.GetTablePattern(new PatternsData()) }) as ISupportsHighlighter;
 //            
-//            Assert.IsNotNull(highlightableElement as ISupportsHighlighter);
+//            MbUnit.Framework.Assert.IsNotNull(highlightableElement as ISupportsHighlighter);
 //            
 //            ISupportsNavigation navigatableElement =
 //                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
 //                    new IBasePattern[] { FakeFactory.GetTablePattern(new PatternsData()) }) as ISupportsNavigation;
 //            
-//            Assert.IsNotNull(navigatableElement as ISupportsNavigation);
+//            MbUnit.Framework.Assert.IsNotNull(navigatableElement as ISupportsNavigation);
 //            
 //            ISupportsConversion conversibleElement =
 //                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
 //                    new IBasePattern[] { FakeFactory.GetTablePattern(new PatternsData()) }) as ISupportsConversion;
 //            
-//            Assert.IsNotNull(conversibleElement as ISupportsConversion);
+//            MbUnit.Framework.Assert.IsNotNull(conversibleElement as ISupportsConversion);
 //            
 //            ISupportsRefresh refreshableElement =
 //                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
 //                    new IBasePattern[] { FakeFactory.GetTablePattern(new PatternsData()) }) as ISupportsRefresh;
 //            
-//            Assert.IsNotNull(refreshableElement as ISupportsRefresh);
+//            MbUnit.Framework.Assert.IsNotNull(refreshableElement as ISupportsRefresh);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Table_ImplementsExportPattern()
 //        {
 //            ISupportsExport exportableElement =
 //                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
 //                    new IBasePattern[] { FakeFactory.GetGridPattern(new PatternsData()) }) as ISupportsExport;
 //            
-//            Assert.IsNotNull(exportableElement as ISupportsExport);
+//            MbUnit.Framework.Assert.IsNotNull(exportableElement as ISupportsExport);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Table_ImplementsPatternInQuestion()
 //        {
 //            ISupportsTablePattern element =
 //                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
 //                    new IBasePattern[] { FakeFactory.GetTablePattern(new PatternsData()) }) as ISupportsTablePattern;
 //            
-//            Assert.IsNotNull(element as ISupportsTablePattern);
+//            MbUnit.Framework.Assert.IsNotNull(element as ISupportsTablePattern);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Table_DoesNotImplementOtherPatterns()
 //        {
 //            ISupportsValuePattern element =
 //                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
 //                    new IBasePattern[] { FakeFactory.GetTablePattern(new PatternsData()) }) as ISupportsValuePattern;
 //            
-//            Assert.IsNull(element as ISupportsValuePattern);
+//            MbUnit.Framework.Assert.IsNull(element as ISupportsValuePattern);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Table_GetColumnHeaders()
 //        {
 //            // Arrange
@@ -119,10 +119,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            catch {}
 //            
 //            // Assert
-//            Assert.AreEqual(expectedResult, result);
+//            MbUnit.Framework.Assert.AreEqual(expectedResult, result);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Table_GetRowHeaders()
 //        {
 //            // Arrange
@@ -141,10 +141,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            catch {}
 //            
 //            // Assert
-//            Assert.AreEqual(expectedResult, result);
+//            MbUnit.Framework.Assert.AreEqual(expectedResult, result);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Table_TableColumnCount()
 //        {
 //            // Arrange
@@ -156,10 +156,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            // Act
 //            
 //            // Assert
-//            Assert.AreEqual(expectedValue, element.TableColumnCount);
+//            MbUnit.Framework.Assert.AreEqual(expectedValue, element.TableColumnCount);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Table_TableRowCount()
 //        {
 //            // Arrange
@@ -171,10 +171,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            // Act
 //            
 //            // Assert
-//            Assert.AreEqual(expectedValue, element.TableRowCount);
+//            MbUnit.Framework.Assert.AreEqual(expectedValue, element.TableRowCount);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Table_RowOrColumnMajor()
 //        {
 //            // Arrange
@@ -186,10 +186,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            // Act
 //            
 //            // Assert
-//            Assert.AreEqual(expectedValue, element.RowOrColumnMajor);
+//            MbUnit.Framework.Assert.AreEqual(expectedValue, element.RowOrColumnMajor);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        [Ignore("not yet ready")]
 //        public void Table_ExportToCsv()
 //        {

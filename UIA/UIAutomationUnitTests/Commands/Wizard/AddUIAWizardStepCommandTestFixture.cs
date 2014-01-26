@@ -9,13 +9,13 @@
 
 namespace UIAutomationUnitTests.Commands.Wizard
 {
-    using MbUnit.Framework;
+    using MbUnit.Framework;// using Xunit;
     using UIAutomation;
     
 	/// <summary>
 	/// Description of AddUiaWizardStepCommandTestFixture.
 	/// </summary>
-	[TestFixture]
+	[MbUnit.Framework.TestFixture]
 	public class AddUiaWizardStepCommandTestFixture
 	{
 	    [SetUp]
@@ -30,7 +30,7 @@ namespace UIAutomationUnitTests.Commands.Wizard
             WizardCollection.ResetData();
         }
         
-        [Test]
+        [Test]// [Fact]
         [Description("Add-UiaWizardStep")]
         [Category("Fast")]
         [Category("Wizard")]
@@ -39,12 +39,12 @@ namespace UIAutomationUnitTests.Commands.Wizard
             const string expectedName = "name";
             UnitTestingHelper.AddWizardStep(expectedName, null, null);
 
-            Assert.AreEqual(
+            MbUnit.Framework.Assert.AreEqual(
                 expectedName,
                 ((Wizard)PSTestLib.UnitTestOutput.LastOutput[0]).Steps[0].Name);
         }
         
-        [Test]
+        [Test]// [Fact]
         [Description("Add-UiaWizardStep")]
         [Category("Fast")]
         [Category("Wizard")]
@@ -53,7 +53,7 @@ namespace UIAutomationUnitTests.Commands.Wizard
             const string expectedName = @"\\st//ep`` name;;";
             UnitTestingHelper.AddWizardStep(expectedName, null, null);
 
-            Assert.AreEqual(
+            MbUnit.Framework.Assert.AreEqual(
                 expectedName,
                 ((Wizard)PSTestLib.UnitTestOutput.LastOutput[0]).Steps[0].Name);
         }

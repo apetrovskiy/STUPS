@@ -15,15 +15,20 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
     using System.Collections.ObjectModel;
     using System.Windows.Automation;
     using UIAutomation;
-    using MbUnit.Framework;
+    using MbUnit.Framework;using Xunit;
     using System.Linq;
     
     /// <summary>
     /// Description of SearchByExactConditionsViaUiaTestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture]
     public class SearchByContainsTextViaUiaTextFixture
     {
+        public SearchByContainsTextViaUiaTextFixture()
+        {
+            FakeFactory.Init();
+        }
+        
         [SetUp]
         public void SetUp()
         {
@@ -62,27 +67,43 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             List<IUiElement> resultList = RealCodeCaller.GetResultList_TextSearch(cmdlet, element, condition);
             
             // Assert
-            Assert.Count(expectedNumberOfElements, resultList);
+            MbUnit.Framework.Assert.Count(expectedNumberOfElements, resultList);
             if (!string.IsNullOrEmpty(searchString)) {
-                Assert.ForAll(
+                MbUnit.Framework.Assert.ForAll(
                     resultList.Cast<IUiElement>().ToList<IUiElement>(),
                     x => x.Current.Name == searchString || x.Current.AutomationId == searchString || x.Current.ClassName == searchString ||
                     // 20131208
                     // (null != (x.GetCurrentPattern(ValuePattern.Pattern) as IValuePattern) ? (x.GetCurrentPattern(ValuePattern.Pattern) as IValuePattern).Current.Value == searchString : false));
                     // (null != (x.GetCurrentPattern<IValuePattern, ValuePattern>(ValuePattern.Pattern) as IValuePattern) ? 
-                    (null != (x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern) ? 
+                    (null != (x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern) && (x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern).Current.Value == searchString));
+                /*
+                (null != (x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern) ? 
                      // (x.GetCurrentPattern<IValuePattern, ValuePattern>(ValuePattern.Pattern) as IValuePattern).Current.Value == searchString : 
                      (x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern).Current.Value == searchString : 
                      false));
+                */
             }
 //            if (null != controlType) {
-//                Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => x.Current.ControlType == controlType);
+//                MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => x.Current.ControlType == controlType);
 //            }
+            
+            Xunit.Assert.Equal(expectedNumberOfElements, resultList.Count);
+            if (!string.IsNullOrEmpty(searchString)) {
+                resultList.All(
+                    x => x.Current.Name == searchString || x.Current.AutomationId == searchString || x.Current.ClassName == searchString ||
+                    (null != (x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern) && (x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern).Current.Value == searchString));
+                /*
+                (null != (x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern) ?
+                     (x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern).Current.Value == searchString :
+                     false));
+                */
+            }
+            
         }
         #endregion helpers
         
         #region no parameters (impossible)
-        [Test]
+        [Test][Fact]
         public void Get0_NoParam()
         {
             string searchString = string.Empty;
@@ -94,7 +115,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get0of3_NoParam()
         {
             string searchString = string.Empty;
@@ -110,7 +131,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get0of3_NoParam_2()
         {
             string searchString = string.Empty;
@@ -128,10 +149,10 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         #endregion no parameters (impossible)
         
         #region ContainsText + ControlType
-        [Test]
+        [Test][Fact]
         public void Get0_byContainsTextControlType()
         {
-            string searchString = "str";
+            const string searchString = "str";
             ControlType controlType = ControlType.Button;
             TestParametersAgainstCollection(
                 controlType,
@@ -140,10 +161,10 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get0of3_byContainsTextControlType_None()
         {
-            string searchString = "str";
+            const string searchString = "str";
             ControlType controlType = ControlType.Button;
             TestParametersAgainstCollection(
                 controlType,
@@ -156,10 +177,10 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get0of3_byContainsTextControlType_OneControlType()
         {
-            string searchString = "str";
+            const string searchString = "str";
             ControlType controlType = ControlType.Button;
             TestParametersAgainstCollection(
                 controlType,
@@ -172,10 +193,10 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [Test]//
+        [Test][Fact]//
         public void Get0of3_byContainsTextControlType_ThreeControlType()
         {
-            string searchString = "str";
+            const string searchString = "str";
             ControlType controlType = ControlType.Button;
             TestParametersAgainstCollection(
                 controlType,
@@ -188,10 +209,10 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get1of3_byContainsTextControlType_Name()
         {
-            string searchString = "str";
+            const string searchString = "str";
             ControlType controlType = ControlType.Button;
             TestParametersAgainstCollection(
                 controlType,
@@ -204,10 +225,10 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 1);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get1of3_byContainsTextControlType_AutomationId()
         {
-            string searchString = "str";
+            const string searchString = "str";
             ControlType controlType = ControlType.Button;
             TestParametersAgainstCollection(
                 controlType,
@@ -220,10 +241,10 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 1);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get1of3_byContainsTextControlType_Class()
         {
-            string searchString = "str";
+            const string searchString = "str";
             ControlType controlType = ControlType.Button;
             TestParametersAgainstCollection(
                 controlType,
@@ -236,10 +257,10 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 1);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get1of3_byContainsTextControlType_Value()
         {
-            string searchString = "str";
+            const string searchString = "str";
             ControlType controlType = ControlType.Button;
             TestParametersAgainstCollection(
                 controlType,
@@ -252,10 +273,10 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 1);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get3of3_byContainsTextControlType_Name()
         {
-            string searchString = "str";
+            const string searchString = "str";
             ControlType controlType = ControlType.Button;
             TestParametersAgainstCollection(
                 controlType,
@@ -268,10 +289,10 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 3);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get3of3_byContainsTextControlType_NameAutomationIdClass()
         {
-            string searchString = "str";
+            const string searchString = "str";
             ControlType controlType = ControlType.Button;
             TestParametersAgainstCollection(
                 controlType,
@@ -284,10 +305,10 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 3);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get3of3_byContainsTextControlType_AutomationIdClassValue()
         {
-            string searchString = "str";
+            const string searchString = "str";
             ControlType controlType = ControlType.Button;
             TestParametersAgainstCollection(
                 controlType,
@@ -300,10 +321,10 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 3);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get3of3_byContainsTextControlType_AutomationId()
         {
-            string searchString = "str";
+            const string searchString = "str";
             ControlType controlType = ControlType.Button;
             TestParametersAgainstCollection(
                 controlType,
@@ -316,10 +337,10 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 3);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get3of3_byContainsTextControlType_Class()
         {
-            string searchString = "str";
+            const string searchString = "str";
             ControlType controlType = ControlType.Button;
             TestParametersAgainstCollection(
                 controlType,
@@ -332,10 +353,10 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 3);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get3of3_byContainsTextControlType_ClassValue()
         {
-            string searchString = "str";
+            const string searchString = "str";
             ControlType controlType = ControlType.Button;
             TestParametersAgainstCollection(
                 controlType,
@@ -350,7 +371,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         #endregion ContainsText + ControlType
         
         #region ContainsText
-        [Test]
+        [Test][Fact]
         public void Get0_byContainsText()
         {
             const string searchString = "str";
@@ -364,7 +385,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         #endregion ContainsText
         
         #region ContainsText vs Name
-        [Test]
+        [Test][Fact]
         public void Get0of3_byContainsText_Name()
         {
             const string searchString = "str";
@@ -380,7 +401,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get1of3_byContainsText_Name()
         {
             const string searchString = "str";
@@ -396,7 +417,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 1);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get3of3_byContainsText_Name()
         {
             const string searchString = "str";
@@ -414,7 +435,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         #endregion ContainsText vs Name
         
         #region ContainsText vs AutomationId
-        [Test]
+        [Test][Fact]
         public void Get0of3_byContainsText_AutomationId()
         {
             const string searchString = "str";
@@ -430,7 +451,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get1of3_byContainsText_AutomationId()
         {
             const string searchString = "str";
@@ -446,7 +467,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 1);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get3of3_byContainsText_AutomationId()
         {
             const string searchString = "str";
@@ -464,7 +485,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         #endregion ContainsText vs AutomationId
         
         #region ContainsText vs Class
-        [Test]
+        [Test][Fact]
         public void Get0of3_byContainsText_Class()
         {
             const string searchString = "str";
@@ -480,7 +501,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get1of3_byContainsText_Class()
         {
             const string searchString = "str";
@@ -496,7 +517,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 1);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get3of3_byContainsText_Class()
         {
             const string searchString = "str";
@@ -514,7 +535,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         #endregion ContainsText vs Class
         
         #region ContainsText vs Value
-        [Test]
+        [Test][Fact]
         public void Get0of3_byContainsText_Value()
         {
             const string searchString = "str";
@@ -530,7 +551,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get1of3_byContainsText_Value()
         {
             const string searchString = "str";
@@ -546,7 +567,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 1);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get3of3_byContainsText_Value()
         {
             const string searchString = "str";
@@ -564,7 +585,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         #endregion ContainsText vs Value
         
         #region ContainsText vs Mix
-        [Test]
+        [Test][Fact]
         public void Get0of3_byContainsText_NameAutomationIdClass()
         {
             const string searchString = "str";
@@ -580,7 +601,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get1of3_byContainsText_NameAutomationIdClass()
         {
             const string searchString = "str";
@@ -596,7 +617,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 1);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get3of3_byContainsText_AutomationIdClassValue()
         {
             const string searchString = "str";

@@ -15,15 +15,20 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Adapter
     using System.Collections.ObjectModel;
     using System.Windows.Automation;
     using UIAutomation;
-    using MbUnit.Framework;
+    using MbUnit.Framework;using Xunit;
     using System.Linq;
     
     /// <summary>
     /// Description of GetSupportedPatternsTestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture]
     public class GetSupportedPatternsTestFixture
     {
+        public GetSupportedPatternsTestFixture()
+        {
+            FakeFactory.Init();
+        }
+        
         [SetUp]
         public void SetUp()
         {
@@ -38,7 +43,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Adapter
         #region helpers
         #endregion helpers
         
-        [Test]
+        [Test][Fact]
         public void NoPatterns()
         {
             IFakeUiElement element =
@@ -50,10 +55,11 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Adapter
                     new IBasePattern[] {},
                     true);
             
-            Assert.AreEqual(0, element.GetSupportedPatterns().Count());
+            MbUnit.Framework.Assert.AreEqual(0, element.GetSupportedPatterns().Count());
+            Xunit.Assert.Equal(0, element.GetSupportedPatterns().Count());
         }
         
-        [Test]
+        [Test]// [Fact]
         public void OnePattern()
         {
             IFakeUiElement element =
@@ -65,11 +71,13 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Adapter
                     new[] { AutomationFactory.GetPatternAdapter<IValuePattern>(AutomationFactory.GetUiElement(), null) },
                     true);
             
-            Assert.AreEqual(1, element.GetSupportedPatterns().Count());
-            Assert.Exists(element.GetSupportedPatterns(), p => p is IValuePattern);
+            MbUnit.Framework.Assert.AreEqual(1, element.GetSupportedPatterns().Count());
+            MbUnit.Framework.Assert.Exists(element.GetSupportedPatterns(), p => p is IValuePattern);
+            Xunit.Assert.Equal(1, element.GetSupportedPatterns().Count());
+            // Xunit.Assert.Contains<IBasePattern>(AutomationFactory.GetPatternAdapter<IValuePattern>(AutomationFactory.GetUiElement(), null) as IBasePattern, element.GetSupportedPatterns());
         }
         
-        [Test]
+        [Test]// [Fact]
         public void ThreePatterns()
         {
             IFakeUiElement element =
@@ -85,10 +93,14 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Adapter
                     },
                     true);
             
-            Assert.AreEqual(3, element.GetSupportedPatterns().Count());
-            Assert.Exists(element.GetSupportedPatterns(), p => p is IExpandCollapsePattern);
-            Assert.Exists(element.GetSupportedPatterns(), p => p is ITableItemPattern);
-            Assert.Exists(element.GetSupportedPatterns(), p => p is IWindowPattern);
+            MbUnit.Framework.Assert.AreEqual(3, element.GetSupportedPatterns().Count());
+            MbUnit.Framework.Assert.Exists(element.GetSupportedPatterns(), p => p is IExpandCollapsePattern);
+            MbUnit.Framework.Assert.Exists(element.GetSupportedPatterns(), p => p is ITableItemPattern);
+            MbUnit.Framework.Assert.Exists(element.GetSupportedPatterns(), p => p is IWindowPattern);
+            Xunit.Assert.Equal(3, element.GetSupportedPatterns().Count());
+            // Xunit.Assert.Contains<IBasePattern>(AutomationFactory.GetPatternAdapter<IExpandCollapsePattern>(AutomationFactory.GetUiElement(), null) as IBasePattern, element.GetSupportedPatterns());
+            // Xunit.Assert.Contains<IBasePattern>(AutomationFactory.GetPatternAdapter<ITableItemPattern>(AutomationFactory.GetUiElement(), null), element.GetSupportedPatterns());
+            // Xunit.Assert.Contains<IBasePattern>(AutomationFactory.GetPatternAdapter<IWindowPattern>(AutomationFactory.GetUiElement(), null), element.GetSupportedPatterns());
         }
     }
 }

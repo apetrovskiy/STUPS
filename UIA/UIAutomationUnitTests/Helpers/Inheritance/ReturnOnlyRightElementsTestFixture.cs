@@ -15,15 +15,20 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
     using System.Linq;
     using System.Management.Automation;
     using System.Text.RegularExpressions;
-    using MbUnit.Framework;
+    using MbUnit.Framework;using Xunit;
     using UIAutomation;
 
     /// <summary>
     /// Description of ReturnOnlyRightElementsTestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture]
     public class ReturnOnlyRightElementsTestFixture
     {
+        public ReturnOnlyRightElementsTestFixture()
+        {
+            FakeFactory.Init();
+        }
+        
         [SetUp]
         public void SetUp()
         {
@@ -88,63 +93,83 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             List<IUiElement> resultList = RealCodeCaller.GetResultList_ReturnOnlyRightElements(cmdlet, collection.ToArray(), useWildcardOrRegex);
             
             // Assert
-            Assert.Count(expectedNumberOfElements, resultList);
+            MbUnit.Framework.Assert.Count(expectedNumberOfElements, resultList);
             string[] controlTypeNames;
             switch (selector) {
                 case UIAutomationUnitTests.Helpers.Inheritance.UsualWildcardRegex.Wildcard:
-                    WildcardOptions options = WildcardOptions.IgnoreCase;
-                    WildcardPattern namePatern = new WildcardPattern(name, options);
-                    WildcardPattern automationIdPatern = new WildcardPattern(automationId, options);
-                    WildcardPattern classNamePatern = new WildcardPattern(className, options);
-                    WildcardPattern txtValuePatern = new WildcardPattern(txtValue, options);
+                    const WildcardOptions options = WildcardOptions.IgnoreCase;
+                    WildcardPattern namePattern = new WildcardPattern(name, options);
+                    WildcardPattern automationIdPattern = new WildcardPattern(automationId, options);
+                    WildcardPattern classNamePattern = new WildcardPattern(className, options);
+                    WildcardPattern txtValuePattern = new WildcardPattern(txtValue, options);
                     
                     if (!string.IsNullOrEmpty(name)) {
-                        Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => namePatern.IsMatch(x.Current.Name));
+                        MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => namePattern.IsMatch(x.Current.Name));
+                        resultList.All(x => namePattern.IsMatch(x.Current.Name));
                     }
                     if (!string.IsNullOrEmpty(automationId)) {
-                        Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => automationIdPatern.IsMatch(x.Current.AutomationId));
+                        MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => automationIdPattern.IsMatch(x.Current.AutomationId));
+                        resultList.All(x => automationIdPattern.IsMatch(x.Current.AutomationId));
                     }
                     if (!string.IsNullOrEmpty(className)) {
-                        Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => classNamePatern.IsMatch(x.Current.ClassName));
+                        MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => classNamePattern.IsMatch(x.Current.ClassName));
+                        resultList.All(x => classNamePattern.IsMatch(x.Current.ClassName));
                     }
                     controlTypeNames =
                         controlTypes.Select(ct => null != ct ? ct.ProgrammaticName.Substring(12) : string.Empty).ToArray();
                     if (null != controlType) {
-                        Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => controlTypeNames.Contains(x.Current.ControlType.ProgrammaticName.Substring(12)));
+                        MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => controlTypeNames.Contains(x.Current.ControlType.ProgrammaticName.Substring(12)));
+                        resultList.All(x => controlTypeNames.Contains(x.Current.ControlType.ProgrammaticName.Substring(12)));
                     }
                     
                     if (!string.IsNullOrEmpty(txtValue)) {
-                        Assert.ForAll(
+                        MbUnit.Framework.Assert.ForAll(
                             resultList
                             .Cast<IUiElement>()
                             .ToList<IUiElement>(), x =>
                             {
                                 IValuePattern valuePattern = x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern;
-                                return valuePattern != null && txtValuePatern.IsMatch(valuePattern.Current.Value);
+                                return valuePattern != null && txtValuePattern.IsMatch(valuePattern.Current.Value);
+                            });
+                        
+                        resultList.All(
+                            x => {
+                                IValuePattern valuePattern = x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern;
+                                return valuePattern != null && txtValuePattern.IsMatch(valuePattern.Current.Value);
                             });
                     }
                     break;
                 case UIAutomationUnitTests.Helpers.Inheritance.UsualWildcardRegex.Regex:
                     if (!string.IsNullOrEmpty(name)) {
-                        Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => Regex.IsMatch(x.Current.Name, name));
+                        MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => Regex.IsMatch(x.Current.Name, name));
+                        resultList.All(x => Regex.IsMatch(x.Current.Name, name));
                     }
                     if (!string.IsNullOrEmpty(automationId)) {
-                        Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => Regex.IsMatch(x.Current.AutomationId, automationId));
+                        MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => Regex.IsMatch(x.Current.AutomationId, automationId));
+                        resultList.All(x => Regex.IsMatch(x.Current.AutomationId, automationId));
                     }
                     if (!string.IsNullOrEmpty(className)) {
-                        Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => Regex.IsMatch(x.Current.ClassName, className));
+                        MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => Regex.IsMatch(x.Current.ClassName, className));
+                        resultList.All(x => Regex.IsMatch(x.Current.ClassName, className));
                     }
                     controlTypeNames =
                         controlTypes.Select(ct => null != ct ? ct.ProgrammaticName.Substring(12) : string.Empty).ToArray();
                     if (null != controlType) {
-                        Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => controlTypeNames.Contains(x.Current.ControlType.ProgrammaticName.Substring(12)));
+                        MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => controlTypeNames.Contains(x.Current.ControlType.ProgrammaticName.Substring(12)));
+                        resultList.All(x => controlTypeNames.Contains(x.Current.ControlType.ProgrammaticName.Substring(12)));
                     }
                     if (!string.IsNullOrEmpty(txtValue)) {
-                        Assert.ForAll(
+                        MbUnit.Framework.Assert.ForAll(
                             resultList
                             .Cast<IUiElement>()
                             .ToList<IUiElement>(), x =>
                             {
+                                IValuePattern valuePattern = x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern;
+                                return valuePattern != null && Regex.IsMatch(valuePattern.Current.Value, txtValue);
+                            });
+                        
+                        resultList.All(
+                            x => {
                                 IValuePattern valuePattern = x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern;
                                 return valuePattern != null && Regex.IsMatch(valuePattern.Current.Value, txtValue);
                             });
@@ -155,7 +180,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         #endregion helpers
         
         #region for starers
-        [Test]
+        [Test][Fact]
         public void NoResults_NullInput()
         {
             HasTimeoutCmdletBase cmdlet =
@@ -174,10 +199,10 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                     false,
                     true);
             
-            Assert.AreEqual(0, resultList.Count);
+            MbUnit.Framework.Assert.AreEqual(0, resultList.Count);
         }
         
-        [Test]
+        [Test][Fact]
         public void NoResults_ZeroInput()
         {
             HasTimeoutCmdletBase cmdlet =
@@ -196,13 +221,13 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                     false,
                     true);
             
-            Assert.AreEqual(0, resultList.Count);
+            MbUnit.Framework.Assert.AreEqual(0, resultList.Count);
         }
         
-        [Test]
+        [Test][Fact]
         public void OneResult_Name_Simple()
         {
-            string expectedName = "name";
+            const string expectedName = "name";
             
             HasTimeoutCmdletBase cmdlet =
                 new HasTimeoutCmdletBase();
@@ -228,14 +253,14 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                     false,
                     true);
             
-            Assert.AreEqual(1, resultList.Count);
-            Assert.Exists(resultList, e => e.Current.Name == expectedName);
+            MbUnit.Framework.Assert.AreEqual(1, resultList.Count);
+            MbUnit.Framework.Assert.Exists(resultList, e => e.Current.Name == expectedName);
         }
         
-        [Test]
+        [Test][Fact]
         public void ThreeResults()
         {
-            string expectedName = "name";
+            const string expectedName = "name";
             
             HasTimeoutCmdletBase cmdlet =
                 new HasTimeoutCmdletBase();
@@ -285,12 +310,12 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                     false,
                     true);
             
-            Assert.AreEqual(3, resultList.Count);
-            Assert.Exists(resultList, e => e.Current.Name == expectedName); // ??
+            MbUnit.Framework.Assert.AreEqual(3, resultList.Count);
+            MbUnit.Framework.Assert.Exists(resultList, e => e.Current.Name == expectedName); // ??
         }
         #endregion for starers
         
-//        [Test]
+//        [Test][Fact]
 //        public void MaximumResults()
 //        {
 //            HasTimeoutCmdletBase cmdlet =
@@ -300,7 +325,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         
         
         #region Name
-        [Test]
+        [Test][Fact]
         public void Get0_byName()
         {
             const string name = "aaa";
@@ -319,7 +344,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get0of3_byName_Wildcard()
         {
             const string name = "aaa";
@@ -343,7 +368,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get0of3_byName_Regex()
         {
             const string name = "aaa";
@@ -367,7 +392,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get1of3_byName_Wildcard()
         {
             const string name = "aaa";
@@ -391,7 +416,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 1);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get1of3_byName_Regex()
         {
             const string name = "aaa";
@@ -415,7 +440,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 1);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get3of3_byName_Wildcard()
         {
             const string name = "aaa";
@@ -439,7 +464,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 3);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get3of3_byName_Regex()
         {
             const string name = "aaa";
@@ -465,7 +490,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         #endregion Name
         
         #region Value
-        [Test]
+        [Test][Fact]
         public void Get0_byValue()
         {
             string name = string.Empty;
@@ -484,7 +509,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get0of3_byValue_Wildcard()
         {
             string name = string.Empty;
@@ -507,7 +532,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get0of3_byValue_Regex()
         {
             string name = string.Empty;
@@ -530,7 +555,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get1of3_byValue_Wildcard()
         {
             string name = string.Empty;
@@ -554,7 +579,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 1);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get1of3_byValue_Regex()
         {
             string name = string.Empty;
@@ -578,7 +603,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 1);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get3of3_byValue_Wildcard()
         {
             string name = string.Empty;
@@ -602,7 +627,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 3);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get3of3_byValue_Regex()
         {
             string name = string.Empty;

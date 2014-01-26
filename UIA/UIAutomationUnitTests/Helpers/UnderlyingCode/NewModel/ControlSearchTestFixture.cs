@@ -12,14 +12,22 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
 {
     using System.Windows.Automation;
     using UIAutomation;
-    using MbUnit.Framework;
+    using MbUnit.Framework;using Xunit;
     
     /// <summary>
     /// Description of ControlSearchTestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture]
     public class ControlSearchTestFixture
     {
+        public ControlSearchTestFixture()
+        {
+            FakeFactory.Init();
+            Preferences.DisableExactSearch = true;
+            Preferences.DisableWildCardSearch = false;
+            Preferences.DisableWin32Search = false;
+        }
+        
         [SetUp]
         public void SetUp()
         {
@@ -66,6 +74,13 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
         private GetControlCmdletBase GetInputCmdlet(bool empty)
         {
             var cmdlet =
+                new GetControlCmdletBase {Win32 = false, Regex = false};
+
+            cmdlet.InputObject = empty ? GetCmdletInputObject_Empty() : GetCmdletInputObject_Three();
+            
+            return cmdlet;
+            /*
+            var cmdlet =
                 new GetControlCmdletBase();
             
             cmdlet.Win32 = false;
@@ -78,6 +93,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             }
             
             return cmdlet;
+            */
         }
         
         private ControlSearch PerformGetElements(GetControlCmdletBase cmdlet)
@@ -95,7 +111,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
         
         // ============================================= empty result ===============================================
         
-        [Test]
+        [Test][Fact]
         public void TextSearch_DefaultGlobalSettings_EmptyInput()
         {
             // Arrange
@@ -106,10 +122,11 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             var controlSearch = PerformGetElements(cmdlet);
             
             // Assert
-            Assert.AreEqual(UsedSearchType.Control_TextSearch, controlSearch.UsedSearchType);
+            MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_TextSearch, controlSearch.UsedSearchType);
+            Xunit.Assert.Equal(UsedSearchType.Control_TextSearch, controlSearch.UsedSearchType);
         }
         
-        [Test]
+        [Test][Fact]
         public void TextSearchWin32_DefaultGlobalSettings_EmptyInput()
         {
             // Arrange
@@ -121,10 +138,11 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             var controlSearch = PerformGetElements(cmdlet);
             
             // Assert
-            Assert.AreEqual(UsedSearchType.Control_TextSearchWin32, controlSearch.UsedSearchType);
+            MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_TextSearchWin32, controlSearch.UsedSearchType);
+            Xunit.Assert.Equal(UsedSearchType.Control_TextSearchWin32, controlSearch.UsedSearchType);
         }
         
-        [Test]
+        [Test][Fact]
         public void ExactSearch_NotDisableExactSearch_Name_EmptyInput()
         {
             // Arrange
@@ -137,10 +155,11 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             var controlSearch = PerformGetElements(cmdlet);
             
             // Assert
-            Assert.AreEqual(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
+            MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
+            Xunit.Assert.Equal(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
         }
         
-        [Test]
+        [Test][Fact]
         public void ExactSearch_NotDisableExactSearch_AutomationId_EmptyInput()
         {
             // Arrange
@@ -153,10 +172,11 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             var controlSearch = PerformGetElements(cmdlet);
             
             // Assert
-            Assert.AreEqual(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
+            MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
+            Xunit.Assert.Equal(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
         }
         
-        [Test]
+        [Test][Fact]
         public void ExactSearch_NotDisableExactSearch_Class_EmptyInput()
         {
             // Arrange
@@ -169,10 +189,11 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             var controlSearch = PerformGetElements(cmdlet);
             
             // Assert
-            Assert.AreEqual(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
+            MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
+            Xunit.Assert.Equal(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
         }
         
-        [Test]
+        [Test][Fact]
         public void ExactSearch_NotDisableExactSearch_Value_EmptyInput()
         {
             // Arrange
@@ -185,10 +206,11 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             var controlSearch = PerformGetElements(cmdlet);
             
             // Assert
-            Assert.AreEqual(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
+            MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
+            Xunit.Assert.Equal(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
         }
         
-        [Test]
+        [Test][Fact]
         public void WildcardSearch_DefaultGlobalSettings_Name_EmptyInput()
         {
             // Arrange
@@ -199,10 +221,11 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             var controlSearch = PerformGetElements(cmdlet);
             
             // Assert
-            Assert.AreEqual(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
+            MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
+            Xunit.Assert.Equal(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
         }
         
-        [Test]
+        [Test][Fact]
         public void WildcardSearch_DefaultGlobalSettings_AutomationId_EmptyInput()
         {
             // Arrange
@@ -213,10 +236,11 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             var controlSearch = PerformGetElements(cmdlet);
             
             // Assert
-            Assert.AreEqual(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
+            MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
+            Xunit.Assert.Equal(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
         }
         
-        [Test]
+        [Test][Fact]
         public void WildcardSearch_DefaultGlobalSettings_Class_EmptyInput()
         {
             // Arrange
@@ -227,10 +251,11 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             var controlSearch = PerformGetElements(cmdlet);
             
             // Assert
-            Assert.AreEqual(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
+            MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
+            Xunit.Assert.Equal(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
         }
         
-        [Test]
+        [Test][Fact]
         public void WildcardSearch_DefaultGlobalSettings_Value_EmptyInput()
         {
             // Arrange
@@ -241,10 +266,11 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             var controlSearch = PerformGetElements(cmdlet);
             
             // Assert
-            Assert.AreEqual(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
+            MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
+            Xunit.Assert.Equal(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
         }
         
-        [Test]
+        [Test][Fact]
         public void RegexSearch_DefaultGlobalSettings_Name_EmptyInput()
         {
             // Arrange
@@ -256,10 +282,11 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             var controlSearch = PerformGetElements(cmdlet);
             
             // Assert
-            Assert.AreEqual(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
+            MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
+            Xunit.Assert.Equal(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
         }
         
-        [Test]
+        [Test][Fact]
         public void RegexSearch_DefaultGlobalSettings_AutomationId_EmptyInput()
         {
             // Arrange
@@ -271,10 +298,11 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             var controlSearch = PerformGetElements(cmdlet);
             
             // Assert
-            Assert.AreEqual(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
+            MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
+            Xunit.Assert.Equal(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
         }
         
-        [Test]
+        [Test][Fact]
         public void RegexSearch_DefaultGlobalSettings_Class_EmptyInput()
         {
             // Arrange
@@ -286,10 +314,11 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             var controlSearch = PerformGetElements(cmdlet);
             
             // Assert
-            Assert.AreEqual(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
+            MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
+            Xunit.Assert.Equal(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
         }
         
-        [Test]
+        [Test][Fact]
         public void RegexSearch_DefaultGlobalSettings_Value_EmptyInput()
         {
             // Arrange
@@ -301,10 +330,11 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             var controlSearch = PerformGetElements(cmdlet);
             
             // Assert
-            Assert.AreEqual(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
+            MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
+            Xunit.Assert.Equal(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
         }
         
-        [Test]
+        [Test][Fact]
         public void Win32Search_Name_EmptyInput()
         {
             // Arrange
@@ -316,10 +346,11 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             var controlSearch = PerformGetElements(cmdlet);
             
             // Assert
-            Assert.AreEqual(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
+            MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
+            Xunit.Assert.Equal(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
         }
         
-        [Test]
+        [Test][Fact]
         public void Win32Search_AutomationId_EmptyInput()
         {
             // Arrange
@@ -331,10 +362,11 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             var controlSearch = PerformGetElements(cmdlet);
             
             // Assert
-            Assert.AreEqual(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
+            MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
+            Xunit.Assert.Equal(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
         }
         
-        [Test]
+        [Test][Fact]
         public void Win32Search_Class_EmptyInput()
         {
             // Arrange
@@ -346,10 +378,11 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             var controlSearch = PerformGetElements(cmdlet);
             
             // Assert
-            Assert.AreEqual(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
+            MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
+            Xunit.Assert.Equal(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
         }
         
-        [Test]
+        [Test][Fact]
         public void Win32Search_Value_EmptyInput()
         {
             // Arrange
@@ -361,12 +394,13 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             var controlSearch = PerformGetElements(cmdlet);
             
             // Assert
-            Assert.AreEqual(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
+            MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
+            Xunit.Assert.Equal(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
         }
         
         // =========================================== non-empty result =============================================
         
-        [Test]
+        [Test][Fact]
         public void TextSearch_DefaultGlobalSettings_NonEmptyInput()
         {
             // Arrange
@@ -377,10 +411,11 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             var controlSearch = PerformGetElements(cmdlet);
             
             // Assert
-            Assert.AreEqual(UsedSearchType.Control_TextSearch, controlSearch.UsedSearchType);
+            MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_TextSearch, controlSearch.UsedSearchType);
+            Xunit.Assert.Equal(UsedSearchType.Control_TextSearch, controlSearch.UsedSearchType);
         }
         
-        [Test]
+        [Test][Fact]
         public void TextSearchWin32_DefaultGlobalSettings_NonEmptyInput()
         {
             // Arrange
@@ -392,10 +427,11 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             var controlSearch = PerformGetElements(cmdlet);
             
             // Assert
-            Assert.AreEqual(UsedSearchType.Control_TextSearchWin32, controlSearch.UsedSearchType);
+            MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_TextSearchWin32, controlSearch.UsedSearchType);
+            Xunit.Assert.Equal(UsedSearchType.Control_TextSearchWin32, controlSearch.UsedSearchType);
         }
         
-        [Test]
+        [Test][Fact]
         public void ExactSearch_NotDisableExactSearch_Name_NonEmptyInput()
         {
             // Arrange
@@ -407,10 +443,11 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             var controlSearch = PerformGetElements(cmdlet);
             
             // Assert
-            Assert.AreEqual(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
+            MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
+            Xunit.Assert.Equal(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
         }
         
-        [Test]
+        [Test][Fact]
         public void ExactSearch_NotDisableExactSearch_AutomationId_NonEmptyInput()
         {
             // Arrange
@@ -422,10 +459,11 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             var controlSearch = PerformGetElements(cmdlet);
             
             // Assert
-            Assert.AreEqual(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
+            MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
+            Xunit.Assert.Equal(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
         }
         
-        [Test]
+        [Test][Fact]
         public void ExactSearch_NotDisableExactSearch_Class_NonEmptyInput()
         {
             // Arrange
@@ -437,10 +475,11 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             var controlSearch = PerformGetElements(cmdlet);
             
             // Assert
-            Assert.AreEqual(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
+            MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
+            Xunit.Assert.Equal(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
         }
         
-        [Test]
+        [Test][Fact]
         public void ExactSearch_NotDisableExactSearch_Value_NonEmptyInput()
         {
             // Arrange
@@ -452,10 +491,11 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             var controlSearch = PerformGetElements(cmdlet);
             
             // Assert
-            Assert.AreEqual(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
+            MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
+            Xunit.Assert.Equal(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
         }
         
-        [Test]
+        [Test][Fact]
         public void WildcardSearch_DefaultGlobalSettings_Name_NonEmptyInput()
         {
             // Arrange
@@ -466,10 +506,11 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             var controlSearch = PerformGetElements(cmdlet);
             
             // Assert
-            Assert.AreEqual(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
+            MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
+            Xunit.Assert.Equal(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
         }
         
-        [Test]
+        [Test][Fact]
         public void WildcardSearch_DefaultGlobalSettings_AutomationId_NonEmptyInput()
         {
             // Arrange
@@ -480,10 +521,11 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             var controlSearch = PerformGetElements(cmdlet);
             
             // Assert
-            Assert.AreEqual(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
+            MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
+            Xunit.Assert.Equal(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
         }
         
-        [Test]
+        [Test][Fact]
         public void WildcardSearch_DefaultGlobalSettings_Class_NonEmptyInput()
         {
             // Arrange
@@ -494,10 +536,11 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             var controlSearch = PerformGetElements(cmdlet);
             
             // Assert
-            Assert.AreEqual(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
+            MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
+            Xunit.Assert.Equal(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
         }
         
-        [Test]
+        [Test][Fact]
         public void WildcardSearch_DefaultGlobalSettings_Value_NonEmptyInput()
         {
             // Arrange
@@ -508,10 +551,11 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             var controlSearch = PerformGetElements(cmdlet);
             
             // Assert
-            Assert.AreEqual(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
+            MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
+            Xunit.Assert.Equal(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
         }
         
-        [Test]
+        [Test][Fact]
         public void RegexSearch_DefaultGlobalSettings_Name_NonEmptyInput()
         {
             // Arrange
@@ -523,10 +567,11 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             var controlSearch = PerformGetElements(cmdlet);
             
             // Assert
-            Assert.AreEqual(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
+            MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
+            Xunit.Assert.Equal(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
         }
         
-        [Test]
+        [Test][Fact]
         public void RegexSearch_DefaultGlobalSettings_AutomationId_NonEmptyInput()
         {
             // Arrange
@@ -538,10 +583,11 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             var controlSearch = PerformGetElements(cmdlet);
             
             // Assert
-            Assert.AreEqual(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
+            MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
+            Xunit.Assert.Equal(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
         }
         
-        [Test]
+        [Test][Fact]
         public void RegexSearch_DefaultGlobalSettings_Class_NonEmptyInput()
         {
             // Arrange
@@ -553,10 +599,11 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             var controlSearch = PerformGetElements(cmdlet);
             
             // Assert
-            Assert.AreEqual(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
+            MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
+            Xunit.Assert.Equal(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
         }
         
-        [Test]
+        [Test][Fact]
         public void RegexSearch_DefaultGlobalSettings_Value_NonEmptyInput()
         {
             // Arrange
@@ -568,10 +615,11 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             var controlSearch = PerformGetElements(cmdlet);
             
             // Assert
-            Assert.AreEqual(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
+            MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
+            Xunit.Assert.Equal(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
         }
         
-        [Test]
+        [Test][Fact]
         public void Win32Search_Name_NonEmptyInput()
         {
             // Arrange
@@ -583,10 +631,11 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             var controlSearch = PerformGetElements(cmdlet);
             
             // Assert
-            Assert.AreEqual(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
+            MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
+            Xunit.Assert.Equal(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
         }
         
-        [Test]
+        [Test][Fact]
         public void Win32Search_AutomationId_NonEmptyInput()
         {
             // Arrange
@@ -598,10 +647,11 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             var controlSearch = PerformGetElements(cmdlet);
             
             // Assert
-            Assert.AreEqual(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
+            MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
+            Xunit.Assert.Equal(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
         }
         
-        [Test]
+        [Test][Fact]
         public void Win32Search_Class_NonEmptyInput()
         {
             // Arrange
@@ -613,10 +663,11 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             var controlSearch = PerformGetElements(cmdlet);
             
             // Assert
-            Assert.AreEqual(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
+            MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
+            Xunit.Assert.Equal(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
         }
         
-        [Test]
+        [Test][Fact]
         public void Win32Search_Value_NonEmptyInput()
         {
             // Arrange
@@ -628,7 +679,8 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             var controlSearch = PerformGetElements(cmdlet);
             
             // Assert
-            Assert.AreEqual(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
+            MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
+            Xunit.Assert.Equal(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
         }
     }
 }

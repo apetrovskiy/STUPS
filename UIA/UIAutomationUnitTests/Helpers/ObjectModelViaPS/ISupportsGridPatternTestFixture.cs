@@ -11,7 +11,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 {
     using System;
     using System.Windows.Automation;
-    using MbUnit.Framework;
+    using MbUnit.Framework;// using Xunit;
     using System.Management.Automation;
     using NSubstitute;
     using UIAutomation;
@@ -21,7 +21,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
     /// Description of ISupportsGridPatternTestFixture.
     /// </summary>
     // [Ignore]
-    [TestFixture]
+    [MbUnit.Framework.TestFixture]
     public class ISupportsGridPatternTestFixture
     {
         [SetUp]
@@ -36,71 +36,71 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
             // MiddleLevelCode.DisposeRunspace();
         }
         
-//        [Test]
+//        [Test]// [Fact]
 //        public void Grid_ImplementsCommonPattern()
 //        {
 //            ISupportsInvokePattern invokableElement =
 //                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
 //                    new IBasePattern[] { FakeFactory.GetGridPattern(new PatternsData()) }) as ISupportsInvokePattern;
 //            
-//            Assert.IsNotNull(invokableElement as ISupportsInvokePattern);
+//            MbUnit.Framework.Assert.IsNotNull(invokableElement as ISupportsInvokePattern);
 //            
 //            ISupportsHighlighter highlightableElement =
 //                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
 //                    new IBasePattern[] { FakeFactory.GetGridPattern(new PatternsData()) }) as ISupportsHighlighter;
 //            
-//            Assert.IsNotNull(highlightableElement as ISupportsHighlighter);
+//            MbUnit.Framework.Assert.IsNotNull(highlightableElement as ISupportsHighlighter);
 //            
 //            ISupportsNavigation navigatableElement =
 //                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
 //                    new IBasePattern[] { FakeFactory.GetGridPattern(new PatternsData()) }) as ISupportsNavigation;
 //            
-//            Assert.IsNotNull(navigatableElement as ISupportsNavigation);
+//            MbUnit.Framework.Assert.IsNotNull(navigatableElement as ISupportsNavigation);
 //            
 //            ISupportsConversion conversibleElement =
 //                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
 //                    new IBasePattern[] { FakeFactory.GetGridPattern(new PatternsData()) }) as ISupportsConversion;
 //            
-//            Assert.IsNotNull(conversibleElement as ISupportsConversion);
+//            MbUnit.Framework.Assert.IsNotNull(conversibleElement as ISupportsConversion);
 //            
 //            ISupportsRefresh refreshableElement =
 //                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
 //                    new IBasePattern[] { FakeFactory.GetGridPattern(new PatternsData()) }) as ISupportsRefresh;
 //            
-//            Assert.IsNotNull(refreshableElement as ISupportsRefresh);
+//            MbUnit.Framework.Assert.IsNotNull(refreshableElement as ISupportsRefresh);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Grid_ImplementsExportPattern()
 //        {
 //            ISupportsExport exportableElement =
 //                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
 //                    new IBasePattern[] { FakeFactory.GetGridPattern(new PatternsData()) }) as ISupportsExport;
 //            
-//            Assert.IsNotNull(exportableElement as ISupportsExport);
+//            MbUnit.Framework.Assert.IsNotNull(exportableElement as ISupportsExport);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Grid_ImplementsPatternInQuestion()
 //        {
 //            ISupportsGridPattern element =
 //                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
 //                    new IBasePattern[] { FakeFactory.GetGridPattern(new PatternsData()) }) as ISupportsGridPattern;
 //            
-//            Assert.IsNotNull(element as ISupportsGridPattern);
+//            MbUnit.Framework.Assert.IsNotNull(element as ISupportsGridPattern);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Grid_DoesNotImplementOtherPatterns()
 //        {
 //            ISupportsValuePattern element =
 //                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
 //                    new IBasePattern[] { FakeFactory.GetGridPattern(new PatternsData()) }) as ISupportsValuePattern;
 //            
-//            Assert.IsNull(element as ISupportsValuePattern);
+//            MbUnit.Framework.Assert.IsNull(element as ISupportsValuePattern);
 //        }
 //        
-////        [Test]
+////        [Test]// [Fact]
 ////        public void Grid_GetItem()
 ////        {
 ////            // Arrange
@@ -114,7 +114,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 ////            element.GetItem(1, 1);
 ////        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Grid_ColumnCount()
 //        {
 //            // Arrange
@@ -126,10 +126,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            // Act
 //            
 //            // Assert
-//            Assert.AreEqual(expectedValue, element.GridColumnCount);
+//            MbUnit.Framework.Assert.AreEqual(expectedValue, element.GridColumnCount);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Grid_RowCount()
 //        {
 //            // Arrange
@@ -141,10 +141,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            // Act
 //            
 //            // Assert
-//            Assert.AreEqual(expectedValue, element.GridRowCount);
+//            MbUnit.Framework.Assert.AreEqual(expectedValue, element.GridRowCount);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Grid_GetItem()
 //        {
 //            // Arrange
@@ -166,13 +166,13 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            IUiElement gottenElement = element.GetItem(1, 1);
 //            
 //            // Assert
-//            Assert.AreEqual(expectedControlType, gottenElement.Current.ControlType);
-//            Assert.AreEqual(expectedName, gottenElement.Current.Name);
-//            Assert.AreEqual(expectedAutomationId, gottenElement.Current.AutomationId);
-//            Assert.AreEqual(expectedClassName, gottenElement.Current.ClassName);
+//            MbUnit.Framework.Assert.AreEqual(expectedControlType, gottenElement.Current.ControlType);
+//            MbUnit.Framework.Assert.AreEqual(expectedName, gottenElement.Current.Name);
+//            MbUnit.Framework.Assert.AreEqual(expectedAutomationId, gottenElement.Current.AutomationId);
+//            MbUnit.Framework.Assert.AreEqual(expectedClassName, gottenElement.Current.ClassName);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        [Ignore("not yet ready")]
 //        public void Grid_ExportToCsv()
 //        {

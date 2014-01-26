@@ -32,7 +32,13 @@ namespace UIAutomation
                 .ToSelf()
                 .InSingletonScope();
             
+            // 20140125
             Bind<IChildKernel>().ToSelf().InSingletonScope();
+            // Bind<IChildKernel>().ToSelf().InThreadScope();
+            
+            // 20140125
+            Bind<WindowSearch>().ToSelf().InScope(ctx => AutomationFactory.ScopeChangeFlag);
+            Bind<ControlSearch>().ToSelf().InScope(ctx => AutomationFactory.ScopeChangeFlag);
             #endregion common objects
             
 //            #region IUiElement
@@ -469,6 +475,423 @@ namespace UIAutomation
 //            
 //            Bind<IWindowPatternInformation>().To<UiaWindowPattern.WindowPatternInformation>().InCallScope();
 //            #endregion IWindowPattern
+
+// =============================================================================================================================
+            #region IUiElement
+            Bind<IUiElement>()
+                .ToConstructor(
+                    x =>
+                    new UiElement(x.Inject<System.Windows.Automation.AutomationElement>()))
+                .InScope(ctx => AutomationFactory.ScopeChangeFlag)
+                .Named("AutomationElement.NET");
+            
+            Bind<IUiElement>()
+                .ToConstructor(
+                    x =>
+                    new UiElement(x.Inject<IUiElement>()))
+                .InScope(ctx => AutomationFactory.ScopeChangeFlag)
+                .Named("UiElement");
+            
+            Bind<IUiElement>()
+                .To<UiElement>()
+                .InScope(ctx => AutomationFactory.ScopeChangeFlag)
+                .Named("Empty");
+            
+            Bind<IExtendedModelHolder>()
+                .To<UiExtendedModelHolder>()
+//                .InSingletonScope();
+                .InScope(ctx => AutomationFactory.ScopeChangeFlag);
+            
+            Bind<IControlInputHolder>()
+                .To<UiControlInputHolder>()
+//                .InSingletonScope();
+                .InScope(ctx => AutomationFactory.ScopeChangeFlag);
+            
+            Bind<IKeyboardInputHolder>()
+                .To<UiKeyboardInputHolder>()
+//                 .InScope(ctx => AutomationFactory.ScopeChangeFlag);
+                .InSingletonScope();
+            
+            Bind<IMouseInputHolder>()
+                .To<UiMouseInputHolder>()
+//                 .InScope(ctx => AutomationFactory.ScopeChangeFlag);
+                .InSingletonScope();
+            
+            Bind<ITouchInputHolder>()
+                .To<UiTouchInputHolder>()
+//                 .InScope(ctx => AutomationFactory.ScopeChangeFlag);
+                .InSingletonScope();
+            
+            Bind<IInputSimulator>()
+                .To<InputSimulator>()
+//                .InScope(ctx => AutomationFactory.ScopeChangeFlag);
+                .InSingletonScope();
+            #endregion IUiElement
+            
+            #region IUiEltCollection
+            Bind<IUiEltCollection>()
+                .ToConstructor(
+                    x => 
+                    new UiEltCollection(x.Inject<AutomationElementCollection>()))
+                .InScope(ctx => AutomationFactory.ScopeChangeFlag)
+                .Named("AutomationElementCollection.NET");
+            
+            Bind<IUiEltCollection>()
+                .ToConstructor(
+                    x =>
+                    new UiEltCollection(x.Inject<IUiEltCollection>()))
+                .InScope(ctx => AutomationFactory.ScopeChangeFlag)
+                .Named("UiEltCollection");
+            
+            Bind<IUiEltCollection>()
+                .ToConstructor(
+                    x =>
+                    new UiEltCollection(x.Inject<IEnumerable>()))
+                .InScope(ctx => AutomationFactory.ScopeChangeFlag)
+                .Named("AnyCollection");
+            
+            Bind<IUiEltCollection>()
+                .ToConstructor(
+                    x =>
+                    new UiEltCollection(x.Inject<bool>()))
+                .InScope(ctx => AutomationFactory.ScopeChangeFlag)
+                .Named("Empty");
+            #endregion IUiEltCollection
+            
+            #region IUiElementInformation
+            Bind<IUiElementInformation>().To<UiElementInformation>().InScope(ctx => AutomationFactory.ScopeChangeFlag);
+            #endregion IUiElementInformation
+            
+            #region IDockPattern
+            Bind<IDockPattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaDockPattern(x.Inject<IUiElement>(), x.Inject<DockPattern>()))
+                .InScope(ctx => AutomationFactory.ScopeChangeFlag)
+                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<IDockPattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaDockPattern(x.Inject<IUiElement>()))
+                .InScope(ctx => AutomationFactory.ScopeChangeFlag)
+                .Named(AutomationFactory.NamedParameter_WithoutPattern);
+            
+            Bind<IDockPattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaDockPattern(x.Inject<DockPattern>()))
+                .InScope(ctx => AutomationFactory.ScopeChangeFlag)
+                .Named(AutomationFactory.NamedParameter_WithoutElement);
+            
+            Bind<IDockPatternInformation>().To<UiaDockPattern.DockPatternInformation>().InScope(ctx => AutomationFactory.ScopeChangeFlag);
+            #endregion IDockPattern
+            
+            #region IExpandCollapsePattern
+            Bind<IExpandCollapsePattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaExpandCollapsePattern(x.Inject<IUiElement>(), x.Inject<ExpandCollapsePattern>()))
+                .InScope(ctx => AutomationFactory.ScopeChangeFlag)
+                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<IExpandCollapsePattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaExpandCollapsePattern(x.Inject<IUiElement>()))
+                .InScope(ctx => AutomationFactory.ScopeChangeFlag)
+                .Named(AutomationFactory.NamedParameter_WithoutPattern);
+            
+            Bind<IExpandCollapsePattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaExpandCollapsePattern(x.Inject<ExpandCollapsePattern>()))
+                .InScope(ctx => AutomationFactory.ScopeChangeFlag)
+                .Named(AutomationFactory.NamedParameter_WithoutElement);
+            
+            Bind<IExpandCollapsePatternInformation>().To<UiaExpandCollapsePattern.ExpandCollapsePatternInformation>().InScope(ctx => AutomationFactory.ScopeChangeFlag);
+            #endregion IExpandCollapsePattern
+            
+            #region IGridItemPattern
+            Bind<IGridItemPattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaGridItemPattern(x.Inject<IUiElement>(), x.Inject<GridItemPattern>()))
+                .InScope(ctx => AutomationFactory.ScopeChangeFlag)
+                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<IGridItemPattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaGridItemPattern(x.Inject<IUiElement>()))
+                .InScope(ctx => AutomationFactory.ScopeChangeFlag)
+                .Named(AutomationFactory.NamedParameter_WithoutPattern);
+            
+            Bind<IGridItemPatternInformation>().To<UiaGridItemPattern.GridItemPatternInformation>().InScope(ctx => AutomationFactory.ScopeChangeFlag);
+            #endregion IGridItemPattern
+            
+            #region IGridPattern
+            Bind<IGridPattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaGridPattern(x.Inject<IUiElement>(), x.Inject<GridPattern>()))
+                .InScope(ctx => AutomationFactory.ScopeChangeFlag)
+                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<IGridPattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaGridPattern(x.Inject<IUiElement>()))
+                .InScope(ctx => AutomationFactory.ScopeChangeFlag)
+                .Named(AutomationFactory.NamedParameter_WithoutPattern);
+            
+            Bind<IGridPatternInformation>().To<UiaGridPattern.GridPatternInformation>().InScope(ctx => AutomationFactory.ScopeChangeFlag);
+            #endregion IGridPattern
+            
+            #region IInvokePattern
+            Bind<IInvokePattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaInvokePattern(x.Inject<IUiElement>(), x.Inject<InvokePattern>()))
+                .InScope(ctx => AutomationFactory.ScopeChangeFlag)
+                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<IInvokePattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaInvokePattern(x.Inject<IUiElement>()))
+                .InScope(ctx => AutomationFactory.ScopeChangeFlag)
+                .Named(AutomationFactory.NamedParameter_WithoutPattern);
+            
+            Bind<IInvokePattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaInvokePattern(x.Inject<InvokePattern>()))
+                .InScope(ctx => AutomationFactory.ScopeChangeFlag)
+                .Named(AutomationFactory.NamedParameter_WithoutElement);
+            #endregion IInvokePattern
+            
+            #region IRangeValuePattern
+            Bind<IRangeValuePattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaRangeValuePattern(x.Inject<IUiElement>(), x.Inject<RangeValuePattern>()))
+                .InScope(ctx => AutomationFactory.ScopeChangeFlag)
+                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<IRangeValuePattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaRangeValuePattern(x.Inject<IUiElement>()))
+                .InScope(ctx => AutomationFactory.ScopeChangeFlag)
+                .Named(AutomationFactory.NamedParameter_WithoutPattern);
+            
+            Bind<IRangeValuePatternInformation>().To<UiaRangeValuePattern.RangeValuePatternInformation>().InScope(ctx => AutomationFactory.ScopeChangeFlag);
+            #endregion IRangeValuePattern
+            
+            #region IScrollItemPattern
+            Bind<IScrollItemPattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaScrollItemPattern(x.Inject<IUiElement>(), x.Inject<ScrollItemPattern>()))
+                .InScope(ctx => AutomationFactory.ScopeChangeFlag)
+                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<IScrollItemPattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaScrollItemPattern(x.Inject<IUiElement>()))
+                .InScope(ctx => AutomationFactory.ScopeChangeFlag)
+                .Named(AutomationFactory.NamedParameter_WithoutPattern);
+            
+            // Bind<IScrollItemPatternInformation>().To<UiaScrollItemPattern.ScrollItemPatternInformation>().InScope(ctx => AutomationFactory.ScopeChangeFlag);
+            #endregion IScrollItemPattern
+            
+            #region IScrollPattern
+            Bind<IScrollPattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaScrollPattern(x.Inject<IUiElement>(), x.Inject<ScrollPattern>()))
+                .InScope(ctx => AutomationFactory.ScopeChangeFlag)
+                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<IScrollPattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaScrollPattern(x.Inject<IUiElement>()))
+                .InScope(ctx => AutomationFactory.ScopeChangeFlag)
+                .Named(AutomationFactory.NamedParameter_WithoutPattern);
+            
+            Bind<IScrollPatternInformation>().To<UiaScrollPattern.ScrollPatternInformation>().InScope(ctx => AutomationFactory.ScopeChangeFlag);
+            #endregion IScrollPattern
+            
+            #region ISelectionItemPattern
+            Bind<ISelectionItemPattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaSelectionItemPattern(x.Inject<IUiElement>(), x.Inject<SelectionItemPattern>()))
+                .InScope(ctx => AutomationFactory.ScopeChangeFlag)
+                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<ISelectionItemPattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaSelectionItemPattern(x.Inject<IUiElement>()))
+                .InScope(ctx => AutomationFactory.ScopeChangeFlag)
+                .Named(AutomationFactory.NamedParameter_WithoutPattern);
+            
+            // Bind<ISelectionItemPatternInformation>().To<UiaSelectionItemPattern.SelectionItemPatternInformation>().InScope(ctx => AutomationFactory.ScopeChangeFlag);
+            #endregion ISelectionItemPattern
+            
+            #region ISelectionPattern
+            Bind<ISelectionPattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaSelectionPattern(x.Inject<IUiElement>(), x.Inject<SelectionPattern>()))
+                .InScope(ctx => AutomationFactory.ScopeChangeFlag)
+                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<ISelectionPattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaSelectionPattern(x.Inject<IUiElement>()))
+                .InScope(ctx => AutomationFactory.ScopeChangeFlag)
+                .Named(AutomationFactory.NamedParameter_WithoutPattern);
+            
+            Bind<ISelectionPatternInformation>().To<UiaSelectionPattern.SelectionPatternInformation>().InScope(ctx => AutomationFactory.ScopeChangeFlag);
+            #endregion ISelectionPattern
+            
+            #region ITableItemPattern
+            Bind<ITableItemPattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaTableItemPattern(x.Inject<IUiElement>(), x.Inject<TableItemPattern>()))
+                .InScope(ctx => AutomationFactory.ScopeChangeFlag)
+                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<ITableItemPattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaTableItemPattern(x.Inject<IUiElement>()))
+                .InScope(ctx => AutomationFactory.ScopeChangeFlag)
+                .Named(AutomationFactory.NamedParameter_WithoutPattern);
+            
+            Bind<ITableItemPatternInformation>().To<UiaTableItemPattern.TableItemPatternInformation>().InScope(ctx => AutomationFactory.ScopeChangeFlag);
+            #endregion ITableItemPattern
+            
+            #region ITablePattern
+            Bind<ITablePattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaTablePattern(x.Inject<IUiElement>(), x.Inject<TablePattern>()))
+                .InScope(ctx => AutomationFactory.ScopeChangeFlag)
+                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<ITablePattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaTablePattern(x.Inject<IUiElement>()))
+                .InScope(ctx => AutomationFactory.ScopeChangeFlag)
+                .Named(AutomationFactory.NamedParameter_WithoutPattern);
+            
+            Bind<ITablePatternInformation>().To<UiaTablePattern.TablePatternInformation>().InScope(ctx => AutomationFactory.ScopeChangeFlag);
+            #endregion ITablePattern
+            
+            #region ITextPattern
+            Bind<ITextPattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaTextPattern(x.Inject<IUiElement>(), x.Inject<TextPattern>()))
+                .InScope(ctx => AutomationFactory.ScopeChangeFlag)
+                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<ITextPattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaTextPattern(x.Inject<IUiElement>()))
+                .InScope(ctx => AutomationFactory.ScopeChangeFlag)
+                .Named(AutomationFactory.NamedParameter_WithoutPattern);
+            #endregion ITextPattern
+            
+            #region ITogglePattern
+            Bind<ITogglePattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaTogglePattern(x.Inject<IUiElement>(), x.Inject<TogglePattern>()))
+                .InScope(ctx => AutomationFactory.ScopeChangeFlag)
+                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<ITogglePattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaTogglePattern(x.Inject<IUiElement>()))
+                .InScope(ctx => AutomationFactory.ScopeChangeFlag)
+                .Named(AutomationFactory.NamedParameter_WithoutPattern);
+            
+            Bind<ITogglePatternInformation>().To<UiaTogglePattern.TogglePatternInformation>().InScope(ctx => AutomationFactory.ScopeChangeFlag);
+            #endregion ITogglePattern
+            
+            #region ITransformPattern
+            Bind<ITransformPattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaTransformPattern(x.Inject<IUiElement>(), x.Inject<TransformPattern>()))
+                .InScope(ctx => AutomationFactory.ScopeChangeFlag)
+                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<ITransformPattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaTransformPattern(x.Inject<IUiElement>()))
+                .InScope(ctx => AutomationFactory.ScopeChangeFlag)
+                .Named(AutomationFactory.NamedParameter_WithoutPattern);
+            
+            Bind<ITransformPatternInformation>().To<UiaTransformPattern.TransformPatternInformation>().InScope(ctx => AutomationFactory.ScopeChangeFlag);
+            #endregion ITransformPattern
+            
+            #region IValuePattern
+            Bind<IValuePattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaValuePattern(x.Inject<IUiElement>(), x.Inject<ValuePattern>()))
+                .InScope(ctx => AutomationFactory.ScopeChangeFlag)
+                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<IValuePattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaValuePattern(x.Inject<IUiElement>()))
+                .InScope(ctx => AutomationFactory.ScopeChangeFlag)
+                .Named(AutomationFactory.NamedParameter_WithoutPattern);
+            
+            Bind<IValuePattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaValuePattern(x.Inject<ValuePattern>()))
+                .InScope(ctx => AutomationFactory.ScopeChangeFlag)
+                .Named(AutomationFactory.NamedParameter_WithoutElement);
+            
+            Bind<IValuePatternInformation>().To<UiaValuePattern.ValuePatternInformation>().InScope(ctx => AutomationFactory.ScopeChangeFlag);
+            #endregion IValuePattern
+            
+            #region IWindowPattern
+            Bind<IWindowPattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaWindowPattern(x.Inject<IUiElement>(), x.Inject<WindowPattern>()))
+                .InScope(ctx => AutomationFactory.ScopeChangeFlag)
+                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<IWindowPattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaWindowPattern(x.Inject<IUiElement>()))
+                .InScope(ctx => AutomationFactory.ScopeChangeFlag)
+                .Named(AutomationFactory.NamedParameter_WithoutPattern);
+            
+            Bind<IWindowPatternInformation>().To<UiaWindowPattern.WindowPatternInformation>().InScope(ctx => AutomationFactory.ScopeChangeFlag);
+            #endregion IWindowPattern
+
         }
     }
 }

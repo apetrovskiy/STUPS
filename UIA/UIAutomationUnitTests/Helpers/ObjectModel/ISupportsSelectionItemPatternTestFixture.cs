@@ -11,15 +11,20 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 {
     using System.Windows.Automation;
     using UIAutomation;
-    using MbUnit.Framework;
+    using MbUnit.Framework;using Xunit;
     using NSubstitute;
     
     /// <summary>
     /// Description of ISupportsSelectionItemPatternTestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture]
     public class ISupportsSelectionItemPatternTestFixture
     {
+        public ISupportsSelectionItemPatternTestFixture()
+        {
+            FakeFactory.Init();
+        }
+        
         [SetUp]
         public void SetUp()
         {
@@ -31,61 +36,67 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         {
         }
         
-        [Test]
+        [Test][Fact]
         public void SelectionItem_ImplementsCommonPattern()
         {
 //            ISupportsInvokePattern invokableElement =
 //                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
 //                    new IBasePattern[] { FakeFactory.GetSelectionItemPattern(new PatternsData()) }) as ISupportsInvokePattern;
 //            
-//            Assert.IsNotNull(invokableElement as ISupportsInvokePattern);
+//            MbUnit.Framework.Assert.IsNotNull(invokableElement as ISupportsInvokePattern);
             
             ISupportsHighlighter highlightableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetSelectionItemPattern(new PatternsData()) }) as ISupportsHighlighter;
             
-            Assert.IsNotNull(highlightableElement as ISupportsHighlighter);
+            MbUnit.Framework.Assert.IsNotNull(highlightableElement as ISupportsHighlighter);
+            Xunit.Assert.NotNull(highlightableElement as ISupportsHighlighter);
             
             ISupportsNavigation navigatableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetSelectionItemPattern(new PatternsData()) }) as ISupportsNavigation;
             
-            Assert.IsNotNull(navigatableElement as ISupportsNavigation);
+            MbUnit.Framework.Assert.IsNotNull(navigatableElement as ISupportsNavigation);
+            Xunit.Assert.NotNull(navigatableElement as ISupportsNavigation);
             
             ISupportsConversion conversibleElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetSelectionItemPattern(new PatternsData()) }) as ISupportsConversion;
             
-            Assert.IsNotNull(conversibleElement as ISupportsConversion);
+            MbUnit.Framework.Assert.IsNotNull(conversibleElement as ISupportsConversion);
+            Xunit.Assert.NotNull(conversibleElement as ISupportsConversion);
             
             ISupportsRefresh refreshableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetSelectionItemPattern(new PatternsData()) }) as ISupportsRefresh;
             
-            Assert.IsNotNull(refreshableElement as ISupportsRefresh);
+            MbUnit.Framework.Assert.IsNotNull(refreshableElement as ISupportsRefresh);
+            Xunit.Assert.NotNull(refreshableElement as ISupportsRefresh);
         }
         
-        [Test]
+        [Test][Fact]
         public void SelectionItem_ImplementsPatternInQuestion()
         {
             ISupportsSelectionItemPattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetSelectionItemPattern(new PatternsData()) }) as ISupportsSelectionItemPattern;
             
-            Assert.IsNotNull(element as ISupportsSelectionItemPattern);
+            MbUnit.Framework.Assert.IsNotNull(element as ISupportsSelectionItemPattern);
+            Xunit.Assert.NotNull(element as ISupportsSelectionItemPattern);
         }
         
-        [Test]
+        [Test][Fact]
         public void SelectionItem_DoesNotImplementOtherPatterns()
         {
             ISupportsValuePattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetSelectionItemPattern(new PatternsData()) }) as ISupportsValuePattern;
             
-            Assert.IsNull(element as ISupportsValuePattern);
+            MbUnit.Framework.Assert.IsNull(element as ISupportsValuePattern);
+            Xunit.Assert.Null(element as ISupportsValuePattern);
         }
         
-        [Test]
+        [Test][Fact]
         public void SelectionItem_AddToSelection()
         {
             // Arrange
@@ -104,10 +115,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             catch {}
             
             // Assert
-            Assert.AreEqual(expectedResult, result);
+            MbUnit.Framework.Assert.AreEqual(expectedResult, result);
+            Xunit.Assert.Equal(expectedResult, result);
         }
         
-        [Test]
+        [Test][Fact]
         public void SelectionItem_RemoveFromSelection()
         {
             // Arrange
@@ -126,10 +138,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             catch {}
             
             // Assert
-            Assert.AreEqual(expectedResult, result);
+            MbUnit.Framework.Assert.AreEqual(expectedResult, result);
+            Xunit.Assert.Equal(expectedResult, result);
         }
         
-        [Test]
+        [Test][Fact]
         public void SelectionItem_Select()
         {
             // Arrange
@@ -148,10 +161,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             catch {}
             
             // Assert
-            Assert.AreEqual(expectedResult, result);
+            MbUnit.Framework.Assert.AreEqual(expectedResult, result);
+            Xunit.Assert.Equal(expectedResult, result);
         }
         
-        [Test]
+        [Test][Fact]
         public void SelectionItem_IsSelected()
         {
             // Arrange
@@ -163,10 +177,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             // Act
             
             // Assert
-            Assert.AreEqual(expectedValue, element.IsSelected);
+            MbUnit.Framework.Assert.AreEqual(expectedValue, element.IsSelected);
+            Xunit.Assert.Equal(expectedValue, element.IsSelected);
         }
         
-        [Test]
+        [Test][Fact]
         public void SelectionItem_SelectionContainer()
         {
             // Arrange
@@ -178,7 +193,8 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             // Act
             
             // Assert
-            Assert.AreEqual(expectedValue, element.SelectionContainer);
+            MbUnit.Framework.Assert.AreEqual(expectedValue, element.SelectionContainer);
+            Xunit.Assert.Equal(expectedValue, element.SelectionContainer);
         }
     }
 }

@@ -11,16 +11,20 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 {
     using System.Windows.Automation;
     using UIAutomation;
-    using MbUnit.Framework;
+    using MbUnit.Framework;using Xunit;
     using NSubstitute;
     
     /// <summary>
     /// Description of ISupportsValuePatternTestFixture.
     /// </summary>
-    // [Ignore]
-    [TestFixture]
+    [MbUnit.Framework.TestFixture]
     public class ISupportsValuePatternTestFixture
     {
+        public ISupportsValuePatternTestFixture()
+        {
+            FakeFactory.Init();
+        }
+        
         [SetUp]
         public void SetUp()
         {
@@ -32,61 +36,67 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         {
         }
         
-        [Test]
+        [Test][Fact]
         public void Value_ImplementsCommonPattern()
         {
 //            ISupportsInvokePattern invokableElement =
 //                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
 //                    new IBasePattern[] { FakeFactory.GetValuePattern(new PatternsData()) }) as ISupportsInvokePattern;
 //            
-//            Assert.IsNotNull(invokableElement as ISupportsInvokePattern);
+//            MbUnit.Framework.Assert.IsNotNull(invokableElement as ISupportsInvokePattern);
             
             ISupportsHighlighter highlightableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetValuePattern(new PatternsData()) }) as ISupportsHighlighter;
             
-            Assert.IsNotNull(highlightableElement as ISupportsHighlighter);
+            MbUnit.Framework.Assert.IsNotNull(highlightableElement as ISupportsHighlighter);
+            Xunit.Assert.NotNull(highlightableElement as ISupportsHighlighter);
             
             ISupportsNavigation navigatableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetValuePattern(new PatternsData()) }) as ISupportsNavigation;
             
-            Assert.IsNotNull(navigatableElement as ISupportsNavigation);
+            MbUnit.Framework.Assert.IsNotNull(navigatableElement as ISupportsNavigation);
+            Xunit.Assert.NotNull(navigatableElement as ISupportsNavigation);
             
             ISupportsConversion conversibleElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetValuePattern(new PatternsData()) }) as ISupportsConversion;
             
-            Assert.IsNotNull(conversibleElement as ISupportsConversion);
+            MbUnit.Framework.Assert.IsNotNull(conversibleElement as ISupportsConversion);
+            Xunit.Assert.NotNull(conversibleElement as ISupportsConversion);
             
             ISupportsRefresh refreshableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetValuePattern(new PatternsData()) }) as ISupportsRefresh;
             
-            Assert.IsNotNull(refreshableElement as ISupportsRefresh);
+            MbUnit.Framework.Assert.IsNotNull(refreshableElement as ISupportsRefresh);
+            Xunit.Assert.NotNull(refreshableElement as ISupportsRefresh);
         }
         
-        [Test]
+        [Test][Fact]
         public void Value_ImplementsPatternInQuestion()
         {
             ISupportsValuePattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetValuePattern(new PatternsData()) }) as ISupportsValuePattern;
             
-            Assert.IsNotNull(element as ISupportsValuePattern);
+            MbUnit.Framework.Assert.IsNotNull(element as ISupportsValuePattern);
+            Xunit.Assert.NotNull(element as ISupportsValuePattern);
         }
         
-        [Test]
+        [Test][Fact]
         public void Value_DoesNotImplementOtherPatterns()
         {
             ISupportsDockPattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetValuePattern(new PatternsData()) }) as ISupportsDockPattern;
             
-            Assert.IsNull(element as ISupportsValuePattern);
+            MbUnit.Framework.Assert.IsNull(element as ISupportsDockPattern);
+            Xunit.Assert.Null(element as ISupportsDockPattern);
         }
         
-        [Test]
+        [Test][Fact]
         public void Value_Value_Get()
         {
             // Arrange
@@ -97,10 +107,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             
             // Act
             // Assert
-            Assert.AreEqual(expectedValue, element.Value);
+            MbUnit.Framework.Assert.AreEqual(expectedValue, element.Value);
+            Xunit.Assert.Equal(expectedValue, element.Value);
         }
         
-        [Test]
+        [Test]// [Fact]
         [Ignore]
         public void Value_Value_Set()
         {
@@ -120,7 +131,8 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             catch {}
             
             // Assert
-            Assert.AreEqual(expectedValue, element.Value);
+            MbUnit.Framework.Assert.AreEqual(expectedValue, element.Value);
+            Xunit.Assert.Equal(expectedValue, element.Value);
         }
     }
 }

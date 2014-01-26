@@ -11,15 +11,20 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 {
     using System.Windows.Automation;
     using UIAutomation;
-    using MbUnit.Framework;
+    using MbUnit.Framework;using Xunit;
     using NSubstitute;
     
     /// <summary>
     /// Description of ISupportsRangeValuePatternTestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture]
     public class ISupportsRangeValuePatternTestFixture
     {
+        public ISupportsRangeValuePatternTestFixture()
+        {
+            FakeFactory.Init();
+        }
+        
         [SetUp]
         public void SetUp()
         {
@@ -31,61 +36,67 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         {
         }
         
-        [Test]
+        [Test][Fact]
         public void RangeValue_ImplementsCommonPattern()
         {
 //            ISupportsInvokePattern invokableElement =
 //                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
 //                    new IBasePattern[] { FakeFactory.GetRangeValuePattern(new PatternsData()) }) as ISupportsInvokePattern;
 //            
-//            Assert.IsNotNull(invokableElement as ISupportsInvokePattern);
+//            MbUnit.Framework.Assert.IsNotNull(invokableElement as ISupportsInvokePattern);
             
             ISupportsHighlighter highlightableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetRangeValuePattern(new PatternsData()) }) as ISupportsHighlighter;
             
-            Assert.IsNotNull(highlightableElement as ISupportsHighlighter);
+            MbUnit.Framework.Assert.IsNotNull(highlightableElement as ISupportsHighlighter);
+            Xunit.Assert.NotNull(highlightableElement as ISupportsHighlighter);
             
             ISupportsNavigation navigatableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetRangeValuePattern(new PatternsData()) }) as ISupportsNavigation;
             
-            Assert.IsNotNull(navigatableElement as ISupportsNavigation);
+            MbUnit.Framework.Assert.IsNotNull(navigatableElement as ISupportsNavigation);
+            Xunit.Assert.NotNull(navigatableElement as ISupportsNavigation);
             
             ISupportsConversion conversibleElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetRangeValuePattern(new PatternsData()) }) as ISupportsConversion;
             
-            Assert.IsNotNull(conversibleElement as ISupportsConversion);
+            MbUnit.Framework.Assert.IsNotNull(conversibleElement as ISupportsConversion);
+            Xunit.Assert.NotNull(conversibleElement as ISupportsConversion);
             
             ISupportsRefresh refreshableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetRangeValuePattern(new PatternsData()) }) as ISupportsRefresh;
             
-            Assert.IsNotNull(refreshableElement as ISupportsRefresh);
+            MbUnit.Framework.Assert.IsNotNull(refreshableElement as ISupportsRefresh);
+            Xunit.Assert.NotNull(refreshableElement as ISupportsRefresh);
         }
         
-        [Test]
+        [Test][Fact]
         public void RangeValue_ImplementsPatternInQuestion()
         {
             ISupportsRangeValuePattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetRangeValuePattern(new PatternsData()) }) as ISupportsRangeValuePattern;
             
-            Assert.IsNotNull(element as ISupportsRangeValuePattern);
+            MbUnit.Framework.Assert.IsNotNull(element as ISupportsRangeValuePattern);
+            Xunit.Assert.NotNull(element as ISupportsRangeValuePattern);
         }
         
-        [Test]
+        [Test][Fact]
         public void RangeValue_DoesNotImplementOtherPatterns()
         {
             ISupportsValuePattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetRangeValuePattern(new PatternsData()) }) as ISupportsValuePattern;
             
-            Assert.IsNull(element as ISupportsValuePattern);
+            MbUnit.Framework.Assert.IsNull(element as ISupportsValuePattern);
+            Xunit.Assert.Null(element as ISupportsValuePattern);
         }
         
-        [Test]
+        [Test][Fact]
         public void RangeValue_IsRangeReadOnly()
         {
             // Arrange
@@ -97,10 +108,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             // Act
             
             // Assert
-            Assert.AreEqual(expectedValue, element.IsRangeReadOnly);
+            MbUnit.Framework.Assert.AreEqual(expectedValue, element.IsRangeReadOnly);
+            Xunit.Assert.Equal(expectedValue, element.IsRangeReadOnly);
         }
         
-        [Test]
+        [Test][Fact]
         public void RangeValue_LargeChange()
         {
             // Arrange
@@ -112,10 +124,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             // Act
             
             // Assert
-            Assert.AreEqual(expectedValue, element.LargeChange);
+            MbUnit.Framework.Assert.AreEqual(expectedValue, element.LargeChange);
+            Xunit.Assert.Equal(expectedValue, element.LargeChange);
         }
         
-        [Test]
+        [Test][Fact]
         public void RangeValue_Maximum()
         {
             // Arrange
@@ -127,10 +140,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             // Act
             
             // Assert
-            Assert.AreEqual(expectedValue, element.Maximum);
+            MbUnit.Framework.Assert.AreEqual(expectedValue, element.Maximum);
+            Xunit.Assert.Equal(expectedValue, element.Maximum);
         }
         
-        [Test]
+        [Test][Fact]
         public void RangeValue_Minimum()
         {
             // Arrange
@@ -142,10 +156,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             // Act
             
             // Assert
-            Assert.AreEqual(expectedValue, element.Minimum);
+            MbUnit.Framework.Assert.AreEqual(expectedValue, element.Minimum);
+            Xunit.Assert.Equal(expectedValue, element.Minimum);
         }
         
-        [Test]
+        [Test][Fact]
         public void RangeValue_SmallChange()
         {
             // Arrange
@@ -157,10 +172,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             // Act
             
             // Assert
-            Assert.AreEqual(expectedValue, element.SmallChange);
+            MbUnit.Framework.Assert.AreEqual(expectedValue, element.SmallChange);
+            Xunit.Assert.Equal(expectedValue, element.SmallChange);
         }
         
-        [Test]
+        [Test][Fact]
         public void RangeValue_RangeValue_Get()
         {
             // Arrange
@@ -172,10 +188,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             // Act
             
             // Assert
-            Assert.AreEqual(expectedValue, element.RangeValue);
+            MbUnit.Framework.Assert.AreEqual(expectedValue, element.RangeValue);
+            Xunit.Assert.Equal(expectedValue, element.RangeValue);
         }
         
-        [Test]
+        [Test][Fact]
         public void RangeValue_RangeValue_Set()
         {
             // Arrange
@@ -194,7 +211,8 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             catch {}
             
             // Assert
-            Assert.AreEqual(expectedValue, element.RangeValue);
+            MbUnit.Framework.Assert.AreEqual(expectedValue, element.RangeValue);
+            Xunit.Assert.Equal(expectedValue, element.RangeValue);
         }
     }
 }

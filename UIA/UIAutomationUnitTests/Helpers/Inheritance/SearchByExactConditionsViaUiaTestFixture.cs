@@ -15,15 +15,20 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
     using System.Collections.ObjectModel;
     using System.Windows.Automation;
     using UIAutomation;
-    using MbUnit.Framework;
+    using MbUnit.Framework;using Xunit;
     using System.Linq;
     
     /// <summary>
     /// Description of SearchByExactConditionsViaUiaTestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture]
     public class SearchByExactConditionsViaUiaTestFixture
     {
+        public SearchByExactConditionsViaUiaTestFixture()
+        {
+            FakeFactory.Init();
+        }
+        
         [SetUp]
         public void SetUp()
         {
@@ -78,21 +83,43 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             List<IUiElement> resultList = RealCodeCaller.GetResultList_ExactSearch(cmdlet, element, condition);
             
             // Assert
-            Assert.Count(expectedNumberOfElements, resultList);
+            MbUnit.Framework.Assert.Count(expectedNumberOfElements, resultList);
             if (!string.IsNullOrEmpty(name)) {
-                Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => x.Current.Name == name);
+                MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => x.Current.Name == name);
+                resultList.All(x => x.Current.Name == name);
             }
             if (!string.IsNullOrEmpty(automationId)) {
-                Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => x.Current.AutomationId == automationId);
+                MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => x.Current.AutomationId == automationId);
+                resultList.All(x => x.Current.AutomationId == automationId);
             }
             if (!string.IsNullOrEmpty(className)) {
-                Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => x.Current.ClassName == className);
+                MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => x.Current.ClassName == className);
+                resultList.All(x => x.Current.ClassName == className);
             }
             if (null != controlType) {
-                Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => x.Current.ControlType == controlType);
+                MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => x.Current.ControlType == controlType);
+                resultList.All(x => x.Current.ControlType == controlType);
             }
+            if (string.IsNullOrEmpty(txtValue)) return;
+            MbUnit.Framework.Assert.ForAll(
+                resultList
+                    .Cast<IUiElement>()
+                    .ToList<IUiElement>(), x =>
+                    {
+                        // 20131208
+                        // IValuePattern valuePattern = x.GetCurrentPattern(ValuePattern.Pattern) as IValuePattern;
+                        // IValuePattern valuePattern = x.GetCurrentPattern<IValuePattern, ValuePattern>(ValuePattern.Pattern) as IValuePattern;
+                        IValuePattern valuePattern = x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern;
+                        return valuePattern != null && valuePattern.Current.Value == txtValue;
+                    });
+            resultList.All(
+                x => {
+                         IValuePattern valuePattern = x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern;
+                         return valuePattern != null && valuePattern.Current.Value == txtValue;
+                });
+            /*
             if (!string.IsNullOrEmpty(txtValue)) {
-                Assert.ForAll(
+                MbUnit.Framework.Assert.ForAll(
                     resultList
                     .Cast<IUiElement>()
                     .ToList<IUiElement>(), x =>
@@ -103,12 +130,18 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                         IValuePattern valuePattern = x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern;
                         return valuePattern != null && valuePattern.Current.Value == txtValue;
                     });
+                resultList.All(
+                    x => {
+                        IValuePattern valuePattern = x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern;
+                        return valuePattern != null && valuePattern.Current.Value == txtValue;
+                    });
             }
+            */
         }
         #endregion helpers
         
         #region no parameters
-        [Test]
+        [Test][Fact]
         public void Get0_NoParam()
         {
             string name = string.Empty;
@@ -126,7 +159,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get3of3_NoParam()
         {
             string name = string.Empty;
@@ -150,7 +183,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         #endregion no parameters
         
         #region ControlType
-        [Test]
+        [Test][Fact]
         public void Get0_byControlType()
         {
             string name = string.Empty;
@@ -168,7 +201,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get0of3_byControlType()
         {
             string name = string.Empty;
@@ -190,7 +223,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get1of3_byControlType()
         {
             string name = string.Empty;
@@ -212,7 +245,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 1);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get3of3_byControlType()
         {
             string name = string.Empty;
@@ -236,7 +269,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         #endregion ControlType
         
         #region Name
-        [Test]
+        [Test][Fact]
         public void Get0_byName()
         {
             const string name = "aaa";
@@ -254,7 +287,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get0of3_byName()
         {
             const string name = "aaa";
@@ -276,7 +309,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get1of3_byName()
         {
             const string name = "aaa";
@@ -298,7 +331,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 1);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get3of3_byName()
         {
             const string name = "aaa";
@@ -322,7 +355,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         #endregion Name
         
         #region AutomationId
-        [Test]
+        [Test][Fact]
         public void Get0_byAutomationId()
         {
             string name = string.Empty;
@@ -340,7 +373,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get0of3_byAutomationId()
         {
             string name = string.Empty;
@@ -362,7 +395,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get1of3_byAutomationId()
         {
             string name = string.Empty;
@@ -384,7 +417,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 1);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get3of3_byAutomationId()
         {
             string name = string.Empty;
@@ -408,7 +441,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         #endregion AutomationId
         
         #region Class
-        [Test]
+        [Test][Fact]
         public void Get0_byClass()
         {
             string name = string.Empty;
@@ -426,7 +459,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get0of3_byClass()
         {
             string name = string.Empty;
@@ -448,7 +481,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get1of3_byClass()
         {
             string name = string.Empty;
@@ -470,7 +503,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 1);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get3of3_byClass()
         {
             string name = string.Empty;
@@ -494,7 +527,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         #endregion Class
         
         #region Value
-        [Test]
+        [Test][Fact]
         public void Get0_byValue()
         {
             string name = string.Empty;
@@ -512,7 +545,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get0of3_byValue()
         {
             string name = string.Empty;
@@ -534,7 +567,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get1of3_byValue()
         {
             string name = string.Empty;
@@ -556,7 +589,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 1);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get3of3_byValue()
         {
             string name = string.Empty;
@@ -580,7 +613,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         #endregion Value
         
         #region ControlType + Name
-        [Test]
+        [Test][Fact]
         public void Get0_byControlTypeName()
         {
             const string name = "aaa";
@@ -598,7 +631,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get0of4_byControlTypeName()
         {
             const string name = "aaa";
@@ -621,7 +654,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get1of4_byControlTypeName()
         {
             const string name = "aaa";
@@ -644,7 +677,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 1);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get3of3_byControlTypeName()
         {
             const string name = "aaa";
@@ -668,7 +701,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         #endregion ControlType + Name
         
         #region ControlType + AutomationId
-        [Test]
+        [Test][Fact]
         public void Get0_byControlTypeAutomationId()
         {
             string name = string.Empty;
@@ -686,7 +719,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get0of4_byControlTypeAutomationId()
         {
             string name = string.Empty;
@@ -709,7 +742,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get1of4_byControlTypeAutomationId()
         {
             string name = string.Empty;
@@ -732,7 +765,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 1);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get3of3_byControlTypeAutomationId()
         {
             string name = string.Empty;
@@ -756,7 +789,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         #endregion ControlType + AutomationId
         
         #region ControlType + Class
-        [Test]
+        [Test][Fact]
         public void Get0_byControlTypeClass()
         {
             string name = string.Empty;
@@ -774,7 +807,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get0of4_byControlTypeClass()
         {
             string name = string.Empty;
@@ -797,7 +830,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get1of4_byControlTypeClass()
         {
             string name = string.Empty;
@@ -820,7 +853,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 1);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get3of3_byControlTypeClass()
         {
             string name = string.Empty;
@@ -844,7 +877,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         #endregion ControlType + Class
         
         #region ControlType + Value
-        [Test]
+        [Test][Fact]
         public void Get0_byControlTypeValue()
         {
             string name = string.Empty;
@@ -862,7 +895,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get0of4_byControlTypeValue()
         {
             string name = string.Empty;
@@ -885,7 +918,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get1of4_byControlTypeValue()
         {
             string name = string.Empty;
@@ -908,7 +941,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 1);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get3of3_byControlTypeValue()
         {
             string name = string.Empty;
@@ -932,7 +965,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         #endregion ControlType + Value
         
         #region Name + AutomationId
-        [Test]
+        [Test][Fact]
         public void Get0_byNameAutomationId()
         {
             const string name = "aaa";
@@ -950,7 +983,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get0of4_byNameAutomationId()
         {
             const string name = "aaa";
@@ -973,7 +1006,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get1of4_byNameAutomationId()
         {
             const string name = "aaa";
@@ -996,7 +1029,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 1);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get3of3_byNameAutomationId()
         {
             const string name = "aaa";
@@ -1020,7 +1053,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         #endregion Name + AutomationId
         
         #region Name + Class
-        [Test]
+        [Test][Fact]
         public void Get0_byNameClass()
         {
             const string name = "aaa";
@@ -1038,7 +1071,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get0of4_byNameClass()
         {
             const string name = "aaa";
@@ -1061,7 +1094,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get1of4_byNameClass()
         {
             const string name = "aaa";
@@ -1084,7 +1117,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 1);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get3of3_byNameClass()
         {
             const string name = "aaa";
@@ -1108,7 +1141,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         #endregion Name + Class
         
         #region Name + Value
-        [Test]
+        [Test][Fact]
         public void Get0_byNameValue()
         {
             const string name = "aaa";
@@ -1126,7 +1159,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get0of4_byNameValue()
         {
             const string name = "aaa";
@@ -1149,7 +1182,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get1of4_byNameValue()
         {
             const string name = "aaa";
@@ -1172,7 +1205,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 1);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get3of3_byNameValue()
         {
             const string name = "aaa";
@@ -1196,7 +1229,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         #endregion Name + Value
         
         #region AutomationId + Class
-        [Test]
+        [Test][Fact]
         public void Get0_byAutomationIdClass()
         {
             string name = string.Empty;
@@ -1214,7 +1247,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get0of4_byAutomationIdClass()
         {
             string name = string.Empty;
@@ -1237,7 +1270,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get1of4_byAutomationIdClass()
         {
             string name = string.Empty;
@@ -1260,7 +1293,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 1);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get3of3_byAutomationIdClass()
         {
             string name = string.Empty;
@@ -1284,7 +1317,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         #endregion AutomationId + Class
         
         #region Name + AutomationId + Class + Value + ControlType
-        [Test]
+        [Test][Fact]
         public void Get0_byNameAutomationIdClassValueControlType()
         {
             const string name = "aaa";
@@ -1302,7 +1335,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get0of4_byNameAutomationIdClassValueControlType()
         {
             const string name = "aaa";
@@ -1325,7 +1358,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get1of4_byNameAutomationIdClassValueControlType()
         {
             const string name = "aaa";
@@ -1348,7 +1381,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 1);
         }
         
-        [Test]
+        [Test][Fact]
         public void Get3of3_byNameAutomationIdClassValueControlType()
         {
             const string name = "aaa";

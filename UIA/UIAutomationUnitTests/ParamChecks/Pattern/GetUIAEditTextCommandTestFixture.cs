@@ -9,12 +9,12 @@
 
 namespace UIAutomationUnitTests.CheckCmdletParameters
 {
-    using MbUnit.Framework;
+    using MbUnit.Framework;// using Xunit;
     
     /// <summary>
     /// Description of GetUiaEditTextCommandTestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture]
     public class GetUiaEditTextCommandTestFixture
     {
         [SetUp]
@@ -29,7 +29,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
             // MiddleLevelCode.DisposeRunspace();
         }
         
-        [Test]
+        [Test]// [Fact]
         [Category("Fast")]
         [Description("Get-UiaEditText")]
         public void Get_UiaEditText_NoParameters()

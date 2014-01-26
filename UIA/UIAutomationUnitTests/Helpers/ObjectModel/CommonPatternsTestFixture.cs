@@ -11,15 +11,20 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 {
     using System.Windows.Automation;
     using UIAutomation;
-    using MbUnit.Framework;
+    using MbUnit.Framework;using Xunit;
     using NSubstitute;
     
     /// <summary>
     /// Description of CommonPatternsTestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture]
     public class CommonPatternsTestFixture
     {
+        public CommonPatternsTestFixture()
+        {
+            FakeFactory.Init();
+        }
+        
         [SetUp]
         public void SetUp()
         {
@@ -31,7 +36,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         {
         }
         
-//        [Test]
+//        [Test][Fact]
 //        public void InvokePattern()
 //        {
 //            // Arrange
@@ -56,7 +61,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 //            // Assert.AreEqual(expectedValue, element.DockPosition);
 //        }
         
-        [Test]
+        [Test][Fact]
         public void Highlighter()
         {
             // Arrange
@@ -73,7 +78,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             // Assert.AreEqual(expectedValue, element.DockPosition);
         }
         
-        [Test]
+        [Test][Fact]
         public void Navigation()
         {
             // Arrange
@@ -94,7 +99,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             // Assert.AreEqual(expectedValue, element.DockPosition);
         }
         
-        [Test]
+        [Test][Fact]
         public void Conversion()
         {
             // Arrange
@@ -111,7 +116,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             // Assert.AreEqual(expectedValue, element.DockPosition);
         }
         
-        [Test]
+        [Test][Fact]
         public void Refresh()
         {
             // Arrange

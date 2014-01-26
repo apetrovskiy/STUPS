@@ -11,7 +11,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 {
     using System;
     using System.Windows.Automation;
-    using MbUnit.Framework;
+    using MbUnit.Framework;// using Xunit;
     using System.Management.Automation;
     using NSubstitute;
     using UIAutomation;
@@ -20,7 +20,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
     /// <summary>
     /// Description of ISupportsExtendedModelTestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture]
     public class ISupportsExtendedModelTestFixture
     {
         [SetUp]
@@ -57,7 +57,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //        }
 //        #endregion helpers
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Buttons_Descendants_None()
 //        {
 //            // Arrange
@@ -73,10 +73,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Buttons;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Buttons_Descendants_One()
 //        {
 //            // Arrange
@@ -94,10 +94,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Buttons;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Buttons_Descendants_Three()
 //        {
 //            // Arrange
@@ -108,10 +108,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Buttons;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Calendars_Descendants_Three()
 //        {
 //            // Arrange
@@ -122,10 +122,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Calendars;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void CheckBoxes_Descendants_Three()
 //        {
 //            // Arrange
@@ -136,10 +136,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).CheckBoxes;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void ComboBoxes_Descendants_Three()
 //        {
 //            // Arrange
@@ -150,10 +150,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).ComboBoxes;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Customs_Descendants_Three()
 //        {
 //            // Arrange
@@ -164,10 +164,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Customs;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void DataGrids_Descendants_Three()
 //        {
 //            // Arrange
@@ -178,10 +178,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).DataGrids;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void DataItems_Descendants_Three()
 //        {
 //            // Arrange
@@ -192,10 +192,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).DataItems;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Documents_Descendants_Three()
 //        {
 //            // Arrange
@@ -206,10 +206,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Documents;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Edits_Descendants_Three()
 //        {
 //            // Arrange
@@ -220,10 +220,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Edits;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Groups_Descendants_Three()
 //        {
 //            // Arrange
@@ -234,10 +234,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Groups;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Headers_Descendants_Three()
 //        {
 //            // Arrange
@@ -248,10 +248,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Headers;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void HeaderItems_Descendants_Three()
 //        {
 //            // Arrange
@@ -262,10 +262,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).HeaderItems;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Hyperlinks_Descendants_Three()
 //        {
 //            // Arrange
@@ -276,11 +276,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Hyperlinks;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Images_Descendants_Three()
 //        {
 //            // Arrange
@@ -291,10 +291,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Images;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Lists_Descendants_Three()
 //        {
 //            // Arrange
@@ -305,10 +305,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Lists;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void ListItems_Descendants_Three()
 //        {
 //            // Arrange
@@ -319,10 +319,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).ListItems;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Menus_Descendants_Three()
 //        {
 //            // Arrange
@@ -333,11 +333,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Menus;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void MenuBars_Descendants_Three()
 //        {
 //            // Arrange
@@ -348,10 +348,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).MenuBars;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void MenuItems_Descendants_Three()
 //        {
 //            // Arrange
@@ -362,10 +362,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).MenuItems;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Panes_Descendants_Three()
 //        {
 //            // Arrange
@@ -376,10 +376,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Panes;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void ProgressBars_Descendants_Three()
 //        {
 //            // Arrange
@@ -390,11 +390,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).ProgressBars;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void RadioButtons_Descendants_Three()
 //        {
 //            // Arrange
@@ -405,10 +405,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).RadioButtons;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void ScrollBars_Descendants_Three()
 //        {
 //            // Arrange
@@ -419,10 +419,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).ScrollBars;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Separators_Descendants_Three()
 //        {
 //            // Arrange
@@ -433,10 +433,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Separators;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Sliders_Descendants_Three()
 //        {
 //            // Arrange
@@ -447,11 +447,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Sliders;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Spinners_Descendants_Three()
 //        {
 //            // Arrange
@@ -462,10 +462,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Spinners;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void SplitButtons_Descendants_Three()
 //        {
 //            // Arrange
@@ -476,10 +476,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).SplitButtons;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void StatusBars_Descendants_Three()
 //        {
 //            // Arrange
@@ -490,10 +490,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).StatusBars;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Tabs_Descendants_Three()
 //        {
 //            // Arrange
@@ -504,11 +504,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Tabs;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void TabItems_Descendants_Three()
 //        {
 //            // Arrange
@@ -519,10 +519,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).TabItems;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Tables_Descendants_Three()
 //        {
 //            // Arrange
@@ -533,10 +533,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Tables;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Texts_Descendants_Three()
 //        {
 //            // Arrange
@@ -547,10 +547,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Texts;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Thumbs_Descendants_Three()
 //        {
 //            // Arrange
@@ -561,11 +561,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Thumbs;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void TitleBars_Descendants_Three()
 //        {
 //            // Arrange
@@ -576,10 +576,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).TitleBars;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void ToolBars_Descendants_Three()
 //        {
 //            // Arrange
@@ -590,10 +590,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).ToolBars;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void ToolTips_Descendants_Three()
 //        {
 //            // Arrange
@@ -604,10 +604,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).ToolTips;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Trees_Descendants_Three()
 //        {
 //            // Arrange
@@ -618,11 +618,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Trees;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void TreeItems_Descendants_Three()
 //        {
 //            // Arrange
@@ -633,10 +633,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).TreeItems;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Windows_Descendants_Three()
 //        {
 //            // Arrange
@@ -647,12 +647,12 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Windows;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
 //        // =============================================================================================================
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Buttons_Children_None()
 //        {
 //            // Arrange
@@ -668,10 +668,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).Buttons;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Buttons_Children_One()
 //        {
 //            // Arrange
@@ -689,10 +689,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).Buttons;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Buttons_Children_Three()
 //        {
 //            // Arrange
@@ -703,10 +703,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).Buttons;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Calendars_Children_Three()
 //        {
 //            // Arrange
@@ -717,10 +717,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).Calendars;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void CheckBoxes_Children_Three()
 //        {
 //            // Arrange
@@ -731,10 +731,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).CheckBoxes;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void ComboBoxes_Children_Three()
 //        {
 //            // Arrange
@@ -745,10 +745,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).ComboBoxes;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Customs_Children_Three()
 //        {
 //            // Arrange
@@ -759,10 +759,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).Customs;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void DataGrids_Children_Three()
 //        {
 //            // Arrange
@@ -773,10 +773,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).DataGrids;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void DataItems_Children_Three()
 //        {
 //            // Arrange
@@ -787,10 +787,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).DataItems;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Documents_Children_Three()
 //        {
 //            // Arrange
@@ -801,10 +801,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).Documents;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Edits_Children_Three()
 //        {
 //            // Arrange
@@ -815,10 +815,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).Edits;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Groups_Children_Three()
 //        {
 //            // Arrange
@@ -829,10 +829,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).Groups;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Headers_Children_Three()
 //        {
 //            // Arrange
@@ -843,10 +843,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).Headers;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void HeaderItems_Children_Three()
 //        {
 //            // Arrange
@@ -857,10 +857,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).HeaderItems;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Hyperlinks_Children_Three()
 //        {
 //            // Arrange
@@ -871,11 +871,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).Hyperlinks;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Images_Children_Three()
 //        {
 //            // Arrange
@@ -886,10 +886,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).Images;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Lists_Children_Three()
 //        {
 //            // Arrange
@@ -900,10 +900,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).Lists;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void ListItems_Children_Three()
 //        {
 //            // Arrange
@@ -914,10 +914,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).ListItems;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Menus_Children_Three()
 //        {
 //            // Arrange
@@ -928,11 +928,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).Menus;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void MenuBars_Children_Three()
 //        {
 //            // Arrange
@@ -943,10 +943,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).MenuBars;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void MenuItems_Children_Three()
 //        {
 //            // Arrange
@@ -957,10 +957,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).MenuItems;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Panes_Children_Three()
 //        {
 //            // Arrange
@@ -971,10 +971,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).Panes;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void ProgressBars_Children_Three()
 //        {
 //            // Arrange
@@ -985,11 +985,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).ProgressBars;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void RadioButtons_Children_Three()
 //        {
 //            // Arrange
@@ -1000,10 +1000,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).RadioButtons;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void ScrollBars_Children_Three()
 //        {
 //            // Arrange
@@ -1014,10 +1014,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).ScrollBars;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Separators_Children_Three()
 //        {
 //            // Arrange
@@ -1028,10 +1028,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).Separators;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Sliders_Children_Three()
 //        {
 //            // Arrange
@@ -1042,11 +1042,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).Sliders;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Spinners_Children_Three()
 //        {
 //            // Arrange
@@ -1057,10 +1057,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).Spinners;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void SplitButtons_Children_Three()
 //        {
 //            // Arrange
@@ -1071,10 +1071,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).SplitButtons;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void StatusBars_Children_Three()
 //        {
 //            // Arrange
@@ -1085,10 +1085,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).StatusBars;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Tabs_Children_Three()
 //        {
 //            // Arrange
@@ -1099,11 +1099,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).Tabs;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void TabItems_Children_Three()
 //        {
 //            // Arrange
@@ -1114,10 +1114,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).TabItems;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Tables_Children_Three()
 //        {
 //            // Arrange
@@ -1128,10 +1128,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).Tables;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Texts_Children_Three()
 //        {
 //            // Arrange
@@ -1142,10 +1142,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).Texts;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Thumbs_Children_Three()
 //        {
 //            // Arrange
@@ -1156,11 +1156,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).Thumbs;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void TitleBars_Children_Three()
 //        {
 //            // Arrange
@@ -1171,10 +1171,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).TitleBars;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void ToolBars_Children_Three()
 //        {
 //            // Arrange
@@ -1185,10 +1185,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).ToolBars;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void ToolTips_Children_Three()
 //        {
 //            // Arrange
@@ -1199,10 +1199,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).ToolTips;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Trees_Children_Three()
 //        {
 //            // Arrange
@@ -1213,11 +1213,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).Trees;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void TreeItems_Children_Three()
 //        {
 //            // Arrange
@@ -1228,10 +1228,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).TreeItems;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void Windows_Children_Three()
 //        {
 //            // Arrange
@@ -1242,7 +1242,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).Windows;
 //            
 //            // Assert
-//            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+//            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
     }
 }

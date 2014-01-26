@@ -9,12 +9,12 @@
 
 namespace UIAutomationUnitTests.CheckCmdletParameters
 {
-    using MbUnit.Framework;
+    using MbUnit.Framework;// using Xunit;
     
     /// <summary>
     /// Description of SetUiaEditTextCommandTestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture]
     public class SetUiaEditTextCommandTestFixture
     {
         [SetUp]
@@ -29,7 +29,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
             // MiddleLevelCode.DisposeRunspace();
         }
         
-        [Test]
+        [Test]// [Fact]
         [Category("Fast")]
         [Ignore("It's difficult to learn now what is the problem with it")]
         [Description("Set-UiaEditText -Text 'text' -InputObject $obj")]
@@ -39,7 +39,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         		"Set-UiaEditText -Text 'text' -InputObject $obj;");
         }
         
-        [Test]
+        [Test]// [Fact]
         [Category("Fast")]
         [Ignore("It's difficult to learn now what is the problem with it")]
         [Description("Set-UiaEditText 'text' -InputObject $obj")]

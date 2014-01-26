@@ -11,7 +11,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 {
     using System;
     using System.Windows.Automation;
-    using MbUnit.Framework;
+    using MbUnit.Framework;// using Xunit;
     using System.Management.Automation;
     using NSubstitute;
     using UIAutomation;
@@ -34,7 +34,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
             // MiddleLevelCode.DisposeRunspace();
         }
         
-//        [Test]
+//        [Test]// [Fact]
 //        [Description("Checks that there is no elements' object model available when the  parameter if $false")]
 //        public void DoenNotImplementCommonPatterns()
 //        {
@@ -45,34 +45,34 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
 //                    new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsInvokePattern;
 //            
-//            Assert.IsNull(invokableElement as ISupportsInvokePattern);
+//            MbUnit.Framework.Assert.IsNull(invokableElement as ISupportsInvokePattern);
 //            
 //            ISupportsHighlighter highlightableElement =
 //                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
 //                    new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsHighlighter;
 //            
-//            Assert.IsNull(highlightableElement as ISupportsHighlighter);
+//            MbUnit.Framework.Assert.IsNull(highlightableElement as ISupportsHighlighter);
 //            
 //            ISupportsNavigation navigatableElement =
 //                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
 //                    new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsNavigation;
 //            
-//            Assert.IsNull(navigatableElement as ISupportsNavigation);
+//            MbUnit.Framework.Assert.IsNull(navigatableElement as ISupportsNavigation);
 //            
 //            ISupportsConversion conversibleElement =
 //                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
 //                    new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsConversion;
 //            
-//            Assert.IsNull(conversibleElement as ISupportsConversion);
+//            MbUnit.Framework.Assert.IsNull(conversibleElement as ISupportsConversion);
 //            
 //            ISupportsRefresh refreshableElement =
 //                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
 //                    new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsRefresh;
 //            
-//            Assert.IsNull(refreshableElement as ISupportsRefresh);
+//            MbUnit.Framework.Assert.IsNull(refreshableElement as ISupportsRefresh);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        [Description("Checks that the extended elements' object model is off when the UseElementsSearchObjectModel parameter is $false")]
 //        public void NoExtension()
 //        {
@@ -89,10 +89,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //                        ControlType.Button));
 //            
 //            // Assert
-//            Assert.IsNull(element as ISupportsExtendedModel);
+//            MbUnit.Framework.Assert.IsNull(element as ISupportsExtendedModel);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        [Description("Checks that the basic elements' object model works, while the extended elements' object model is off")]
 //        public void Toggle_Toggle_Off_ExtendedObjectModel_Off()
 //        {
@@ -116,10 +116,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            catch {}
 //            
 //            // Assert
-//            Assert.AreEqual(expectedValue, element.ToggleState);
+//            MbUnit.Framework.Assert.AreEqual(expectedValue, element.ToggleState);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        [Description("Checks that the basic elements' object model works, while the extended elements' object model is also on")]
 //        public void Toggle_Toggle_Off_ExtendedObjectModel_On()
 //        {
@@ -143,7 +143,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            catch {}
 //            
 //            // Assert
-//            Assert.AreEqual(expectedValue, element.ToggleState);
+//            MbUnit.Framework.Assert.AreEqual(expectedValue, element.ToggleState);
 //        }
     }
 }

@@ -11,16 +11,20 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 {
     using System.Windows.Automation;
     using UIAutomation;
-    using MbUnit.Framework;
+    using MbUnit.Framework;using Xunit;
     using NSubstitute;
     
     /// <summary>
     /// Description of ISupportsTransformPatternTestFixture.
     /// </summary>
-    // [Ignore]
-    [TestFixture]
+    [MbUnit.Framework.TestFixture]
     public class ISupportsTransformPatternTestFixture
     {
+        public ISupportsTransformPatternTestFixture()
+        {
+            FakeFactory.Init();
+        }
+        
         [SetUp]
         public void SetUp()
         {
@@ -32,61 +36,67 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         {
         }
         
-        [Test]
+        [Test][Fact]
         public void Transform_ImplementsCommonPattern()
         {
 //            ISupportsInvokePattern invokableElement =
 //                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
 //                    new IBasePattern[] { FakeFactory.GetTransformPattern(new PatternsData()) }) as ISupportsInvokePattern;
 //            
-//            Assert.IsNotNull(invokableElement as ISupportsInvokePattern);
+//            MbUnit.Framework.Assert.IsNotNull(invokableElement as ISupportsInvokePattern);
             
             ISupportsHighlighter highlightableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTransformPattern(new PatternsData()) }) as ISupportsHighlighter;
             
-            Assert.IsNotNull(highlightableElement as ISupportsHighlighter);
+            MbUnit.Framework.Assert.IsNotNull(highlightableElement as ISupportsHighlighter);
+            Xunit.Assert.NotNull(highlightableElement as ISupportsHighlighter);
             
             ISupportsNavigation navigatableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTransformPattern(new PatternsData()) }) as ISupportsNavigation;
             
-            Assert.IsNotNull(navigatableElement as ISupportsNavigation);
+            MbUnit.Framework.Assert.IsNotNull(navigatableElement as ISupportsNavigation);
+            Xunit.Assert.NotNull(navigatableElement as ISupportsNavigation);
             
             ISupportsConversion conversibleElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTransformPattern(new PatternsData()) }) as ISupportsConversion;
             
-            Assert.IsNotNull(conversibleElement as ISupportsConversion);
+            MbUnit.Framework.Assert.IsNotNull(conversibleElement as ISupportsConversion);
+            Xunit.Assert.NotNull(conversibleElement as ISupportsConversion);
             
             ISupportsRefresh refreshableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTransformPattern(new PatternsData()) }) as ISupportsRefresh;
             
-            Assert.IsNotNull(refreshableElement as ISupportsRefresh);
+            MbUnit.Framework.Assert.IsNotNull(refreshableElement as ISupportsRefresh);
+            Xunit.Assert.NotNull(refreshableElement as ISupportsRefresh);
         }
         
-        [Test]
+        [Test][Fact]
         public void Transform_ImplementsPatternInQuestion()
         {
             ISupportsTransformPattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTransformPattern(new PatternsData()) }) as ISupportsTransformPattern;
             
-            Assert.IsNotNull(element as ISupportsTransformPattern);
+            MbUnit.Framework.Assert.IsNotNull(element as ISupportsTransformPattern);
+            Xunit.Assert.NotNull(element as ISupportsTransformPattern);
         }
         
-        [Test]
+        [Test][Fact]
         public void Transform_DoesNotImplementOtherPatterns()
         {
             ISupportsValuePattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTransformPattern(new PatternsData()) }) as ISupportsValuePattern;
             
-            Assert.IsNull(element as ISupportsValuePattern);
+            MbUnit.Framework.Assert.IsNull(element as ISupportsValuePattern);
+            Xunit.Assert.Null(element as ISupportsValuePattern);
         }
         
-//        [Test]
+//        [Test][Fact]
 //        public void Transform_Move()
 //        {
 //            // Arrange
@@ -99,7 +109,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 //            element.Move(1, 1);
 //        }
 //        
-//        [Test]
+//        [Test][Fact]
 //        public void Transform_Resize()
 //        {
 //            // Arrange
@@ -112,7 +122,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 //            element.Resize(1, 1);
 //        }
 //        
-//        [Test]
+//        [Test][Fact]
 //        public void Transform_Rotate()
 //        {
 //            // Arrange
@@ -125,7 +135,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 //            element.Rotate(1);
 //        }
         
-        [Test]
+        [Test][Fact]
         public void Transform_CanMove()
         {
             // Arrange
@@ -137,10 +147,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             // Act
             
             // Assert
-            Assert.AreEqual(expectedValue, element.CanMove);
+            MbUnit.Framework.Assert.AreEqual(expectedValue, element.CanMove);
+            Xunit.Assert.Equal(expectedValue, element.CanMove);
         }
         
-        [Test]
+        [Test][Fact]
         public void Transform_CanResize()
         {
             // Arrange
@@ -152,10 +163,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             // Act
             
             // Assert
-            Assert.AreEqual(expectedValue, element.CanResize);
+            MbUnit.Framework.Assert.AreEqual(expectedValue, element.CanResize);
+            Xunit.Assert.Equal(expectedValue, element.CanResize);
         }
         
-        [Test]
+        [Test][Fact]
         public void Transform_CanRotate()
         {
             // Arrange
@@ -167,10 +179,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             // Act
             
             // Assert
-            Assert.AreEqual(expectedValue, element.CanRotate);
+            MbUnit.Framework.Assert.AreEqual(expectedValue, element.CanRotate);
+            Xunit.Assert.Equal(expectedValue, element.CanRotate);
         }
         
-        [Test]
+        [Test][Fact]
         public void Transform_Move()
         {
             // Arrange
@@ -189,10 +202,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             catch {}
             
             // Assert
-            Assert.AreEqual(expectedResult, result);
+            MbUnit.Framework.Assert.AreEqual(expectedResult, result);
+            Xunit.Assert.Equal(expectedResult, result);
         }
         
-        [Test]
+        [Test][Fact]
         public void Transform_Resize()
         {
             // Arrange
@@ -211,10 +225,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             catch {}
             
             // Assert
-            Assert.AreEqual(expectedResult, result);
+            MbUnit.Framework.Assert.AreEqual(expectedResult, result);
+            Xunit.Assert.Equal(expectedResult, result);
         }
         
-        [Test]
+        [Test][Fact]
         public void Transform_Rotate()
         {
             // Arrange
@@ -233,7 +248,8 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             catch {}
             
             // Assert
-            Assert.AreEqual(expectedResult, result);
+            MbUnit.Framework.Assert.AreEqual(expectedResult, result);
+            Xunit.Assert.Equal(expectedResult, result);
         }
     }
 }

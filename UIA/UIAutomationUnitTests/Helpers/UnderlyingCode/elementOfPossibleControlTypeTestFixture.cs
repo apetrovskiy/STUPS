@@ -10,14 +10,19 @@
 namespace UIAutomationUnitTests
 {
     using UIAutomation;
-    using MbUnit.Framework;
+    using MbUnit.Framework;using Xunit;
     
     /// <summary>
     /// Description of elementOfPossibleControlTypeTestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture]
     public class elementOfPossibleControlTypeTestFixture
     {
+        public elementOfPossibleControlTypeTestFixture()
+        {
+            UnitTestingHelper.PrepareUnitTestDataStore();
+        }
+        
         [SetUp]
         public void SetUp()
         {
@@ -34,84 +39,126 @@ namespace UIAutomationUnitTests
             return new GetControlCollectionCmdletBase();
         }
         
-        [Test]
+        [Test][Fact]
         [Description("GetControlCollectionCmdletBase.ElementOfPossibleControlType(string[], string)")]
         [Category("Fast")]
         public void Nothing_to_compare()
         {
-            Assert.AreEqual(
+            MbUnit.Framework.Assert.AreEqual(
+                false,
+                getClass().ElementOfPossibleControlType(
+                    null,
+                    null));
+            
+            Xunit.Assert.Equal(
                 false,
                 getClass().ElementOfPossibleControlType(
                     null,
                     null));
         }
         
-        [Test]
+        [Test][Fact]
         [Description("GetControlCollectionCmdletBase.ElementOfPossibleControlType(string[], string)")]
         [Category("Fast")]
         public void No_ControlTypeArray()
         {
-            Assert.AreEqual(
+            MbUnit.Framework.Assert.AreEqual(
+                false,
+                getClass().ElementOfPossibleControlType(
+                    null,
+                    "Button"));
+            
+            Xunit.Assert.Equal(
                 false,
                 getClass().ElementOfPossibleControlType(
                     null,
                     "Button"));
         }
         
-        [Test]
+        [Test][Fact]
         [Description("GetControlCollectionCmdletBase.ElementOfPossibleControlType(string[], string)")]
         [Category("Fast")]
         public void No_ControlType()
         {
-            Assert.AreEqual(
+            MbUnit.Framework.Assert.AreEqual(
+                false,
+                getClass().ElementOfPossibleControlType(
+                    (new[]{ "Button" }),
+                    null));
+            
+            Xunit.Assert.Equal(
                 false,
                 getClass().ElementOfPossibleControlType(
                     (new[]{ "Button" }),
                     null));
         }
         
-        [Test]
+        [Test][Fact]
         [Description("GetControlCollectionCmdletBase.ElementOfPossibleControlType(string[], string)")]
         [Category("Fast")]
         public void One_ControlType_That_Matches()
         {
-            Assert.AreEqual(
+            MbUnit.Framework.Assert.AreEqual(
+                true,
+                getClass().ElementOfPossibleControlType(
+                    (new[]{ "Button" }),
+                    "Button"));
+            
+            Xunit.Assert.Equal(
                 true,
                 getClass().ElementOfPossibleControlType(
                     (new[]{ "Button" }),
                     "Button"));
         }
         
-        [Test]
+        [Test][Fact]
         [Description("GetControlCollectionCmdletBase.ElementOfPossibleControlType(string[], string)")]
         [Category("Fast")]
         public void One_ControlType_That_DoesNot_Match()
         {
-            Assert.AreEqual(
+            MbUnit.Framework.Assert.AreEqual(
+                false,
+                getClass().ElementOfPossibleControlType(
+                    (new[]{ "Button" }),
+                    "CheckBox"));
+            
+            Xunit.Assert.Equal(
                 false,
                 getClass().ElementOfPossibleControlType(
                     (new[]{ "Button" }),
                     "CheckBox"));
         }
         
-        [Test]
+        [Test][Fact]
         [Description("GetControlCollectionCmdletBase.ElementOfPossibleControlType(string[], string)")]
         [Category("Fast")]
         public void Three_ControlType_That_Match()
         {
-            Assert.AreEqual(
+            MbUnit.Framework.Assert.AreEqual(
+                true,
+                getClass().ElementOfPossibleControlType(
+                    (new[]{ "TreeItem", "Button", "Edit" }),
+                    "Button"));
+            
+            Xunit.Assert.Equal(
                 true,
                 getClass().ElementOfPossibleControlType(
                     (new[]{ "TreeItem", "Button", "Edit" }),
                     "Button"));
         }
         
-        [Test]
+        [Test][Fact]
         [Description("GetControlCollectionCmdletBase.ElementOfPossibleControlType(string[], string)")]
         [Category("Fast")]
         public void Three_ControlType_That_DonT_Match()
         {
-            Assert.AreEqual(
+            MbUnit.Framework.Assert.AreEqual(
+                false,
+                getClass().ElementOfPossibleControlType(
+                    (new[]{ "TreeItem", "ComboBox", "Edit" }),
+                    "Button"));
+            
+            Xunit.Assert.Equal(
                 false,
                 getClass().ElementOfPossibleControlType(
                     (new[]{ "TreeItem", "ComboBox", "Edit" }),

@@ -10,7 +10,7 @@
 namespace UIAutomationUnitTests
 {
     using System.Collections.Generic;
-    using System.Windows.Automation;
+    // using System.Windows.Automation;
     using UIAutomation;
     
     /// <summary>

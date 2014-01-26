@@ -11,7 +11,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 {
     using System;
     using System.Windows.Automation;
-    using MbUnit.Framework;
+    using MbUnit.Framework;// using Xunit;
     using System.Management.Automation;
     using NSubstitute;
     using UIAutomation;
@@ -20,7 +20,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
     /// <summary>
     /// Description of ISupportsSelectionItemPatternTestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture]
     public class ISupportsSelectionItemPatternTestFixture
     {
         [SetUp]
@@ -36,7 +36,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
         }
         
 //        // ListItem
-//        [Test]
+//        [Test]// [Fact]
 //        [Category("Slow")]
 //        [Category("WinForms")]
 //        [Category("Control")]
@@ -53,7 +53,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //                expectedResult);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        [Category("Slow")]
 //        [Category("WinForms")]
 //        [Category("Control")]
@@ -73,7 +73,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //                expectedResult);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        [Category("Slow")]
 //        [Category("WinForms")]
 //        [Category("Control")]
@@ -97,7 +97,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //        }
 //        
 //        // TreeItem
-//        [Test]
+//        [Test]// [Fact]
 //        [Category("Slow")]
 //        [Category("WinForms")]
 //        [Category("Control")]
@@ -111,7 +111,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //                expectedResult);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        [Category("Slow")]
 //        [Category("WinForms")]
 //        [Category("Control")]
@@ -128,7 +128,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //                expectedResult);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        [Category("Slow")]
 //        [Category("WinForms")]
 //        [Category("Control")]
@@ -146,7 +146,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //        }
         
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void SelectionItem_AddToSelection()
 //        {
 //            // Arrange
@@ -165,10 +165,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            catch {}
 //            
 //            // Assert
-//            Assert.AreEqual(expectedResult, result);
+//            MbUnit.Framework.Assert.AreEqual(expectedResult, result);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void SelectionItem_RemoveFromSelection()
 //        {
 //            // Arrange
@@ -187,10 +187,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            catch {}
 //            
 //            // Assert
-//            Assert.AreEqual(expectedResult, result);
+//            MbUnit.Framework.Assert.AreEqual(expectedResult, result);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void SelectionItem_Select()
 //        {
 //            // Arrange
@@ -209,10 +209,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            catch {}
 //            
 //            // Assert
-//            Assert.AreEqual(expectedResult, result);
+//            MbUnit.Framework.Assert.AreEqual(expectedResult, result);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void SelectionItem_IsSelected()
 //        {
 //            // Arrange
@@ -224,10 +224,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            // Act
 //            
 //            // Assert
-//            Assert.AreEqual(expectedValue, element.IsSelected);
+//            MbUnit.Framework.Assert.AreEqual(expectedValue, element.IsSelected);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void SelectionItem_SelectionContainer()
 //        {
 //            // Arrange
@@ -239,7 +239,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            // Act
 //            
 //            // Assert
-//            Assert.AreEqual(expectedValue, element.SelectionContainer);
+//            MbUnit.Framework.Assert.AreEqual(expectedValue, element.SelectionContainer);
 //        }
     }
 }

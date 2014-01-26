@@ -11,15 +11,19 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 {
     using System.Windows.Automation;
     using UIAutomation;
-    using MbUnit.Framework;
+    using MbUnit.Framework;using Xunit;
     
     /// <summary>
     /// Description of ISupportsGridItemPatternTestFixture.
     /// </summary>
-    // [Ignore]
-    [TestFixture]
+    [MbUnit.Framework.TestFixture]
     public class ISupportsGridItemPatternTestFixture
     {
+        public ISupportsGridItemPatternTestFixture()
+        {
+            FakeFactory.Init();
+        }
+        
         [SetUp]
         public void SetUp()
         {
@@ -31,65 +35,71 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         {
         }
         
-        [Test]
+        [Test][Fact]
         public void GridItem_ImplementsCommonPattern()
         {
 //            ISupportsInvokePattern invokableElement =
 //                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
 //                    new IBasePattern[] { FakeFactory.GetGridItemPattern(new PatternsData()) }) as ISupportsInvokePattern;
 //            
-//            Assert.IsNotNull(invokableElement as ISupportsInvokePattern);
+//            MbUnit.Framework.Assert.IsNotNull(invokableElement as ISupportsInvokePattern);
             
             ISupportsHighlighter highlightableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetGridItemPattern(new PatternsData()) }) as ISupportsHighlighter;
             
-            Assert.IsNotNull(highlightableElement as ISupportsHighlighter);
+            MbUnit.Framework.Assert.IsNotNull(highlightableElement as ISupportsHighlighter);
+            Xunit.Assert.NotNull(highlightableElement as ISupportsHighlighter);
             
             ISupportsNavigation navigatableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetGridItemPattern(new PatternsData()) }) as ISupportsNavigation;
             
-            Assert.IsNotNull(navigatableElement as ISupportsNavigation);
+            MbUnit.Framework.Assert.IsNotNull(navigatableElement as ISupportsNavigation);
+            Xunit.Assert.NotNull(navigatableElement as ISupportsNavigation);
             
             ISupportsConversion conversibleElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetGridItemPattern(new PatternsData()) }) as ISupportsConversion;
             
-            Assert.IsNotNull(conversibleElement as ISupportsConversion);
+            MbUnit.Framework.Assert.IsNotNull(conversibleElement as ISupportsConversion);
+            Xunit.Assert.NotNull(conversibleElement as ISupportsConversion);
             
             ISupportsRefresh refreshableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetGridItemPattern(new PatternsData()) }) as ISupportsRefresh;
             
-            Assert.IsNotNull(refreshableElement as ISupportsRefresh);
+            MbUnit.Framework.Assert.IsNotNull(refreshableElement as ISupportsRefresh);
+            Xunit.Assert.NotNull(refreshableElement as ISupportsRefresh);
         }
         
-        [Test]
+        [Test][Fact]
         public void GridItem_ImplementsPatternInQuestion()
         {
             ISupportsGridItemPattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetGridItemPattern(new PatternsData()) }) as ISupportsGridItemPattern;
             
-            Assert.IsNotNull(element as ISupportsGridItemPattern);
+            MbUnit.Framework.Assert.IsNotNull(element as ISupportsGridItemPattern);
+            Xunit.Assert.NotNull(element as ISupportsGridItemPattern);
         }
         
-        [Test]
+        [Test][Fact]
         public void GridItem_DoesNotImplementOtherPatterns()
         {
             ISupportsValuePattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetGridItemPattern(new PatternsData()) }) as ISupportsValuePattern;
             
-            Assert.IsNull(element as ISupportsValuePattern);
+            MbUnit.Framework.Assert.IsNull(element as ISupportsValuePattern);
+            Xunit.Assert.Null(element as ISupportsValuePattern);
         }
         
-        [Test]
+        [Test][Fact]
         public void GridItem_GridColumn()
         {
             // Arrange
-            int expectedValue = 3;
+            const int expectedValue = 3;
             ISupportsGridItemPattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetGridItemPattern(new PatternsData() { GridItemPattern_Column = expectedValue }) }) as ISupportsGridItemPattern;
@@ -97,14 +107,15 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             // Act
             
             // Assert
-            Assert.AreEqual(expectedValue, element.GridColumn);
+            MbUnit.Framework.Assert.AreEqual(expectedValue, element.GridColumn);
+            Xunit.Assert.Equal(expectedValue, element.GridColumn);
         }
         
-        [Test]
+        [Test][Fact]
         public void GridItem_ColumnSpan()
         {
             // Arrange
-            int expectedValue = 4;
+            const int expectedValue = 4;
             ISupportsGridItemPattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetGridItemPattern(new PatternsData() { GridItemPattern_ColumnSpan = expectedValue }) }) as ISupportsGridItemPattern;
@@ -112,10 +123,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             // Act
             
             // Assert
-            Assert.AreEqual(expectedValue, element.GridColumnSpan);
+            MbUnit.Framework.Assert.AreEqual(expectedValue, element.GridColumnSpan);
+            Xunit.Assert.Equal(expectedValue, element.GridColumnSpan);
         }
         
-        [Test]
+        [Test]// [Fact]
         [Ignore]
         public void GridItem_ContainingGrid()
         {
@@ -129,23 +141,34 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             
             // Assert
             // Assert.AreEqual(expectedValue as IUiElement, element.GridContainingGrid as IUiElement);
-            Assert.AreEqual(expectedValue.Current.Name, element.GridContainingGrid.Current.Name);
-            Assert.AreEqual(expectedValue.Current.AutomationId, element.GridContainingGrid.Current.AutomationId);
-            Assert.AreEqual(expectedValue.Current.ClassName, element.GridContainingGrid.Current.ClassName);
-            Assert.AreEqual(expectedValue.Current.ControlType, element.GridContainingGrid.Current.ControlType);
-            Assert.AreEqual(expectedValue.Current.BoundingRectangle, element.GridContainingGrid.Current.BoundingRectangle);
-            Assert.AreEqual(expectedValue.Current.NativeWindowHandle, element.GridContainingGrid.Current.NativeWindowHandle);
-            Assert.AreEqual(expectedValue.Current.ProcessId, element.GridContainingGrid.Current.ProcessId);
-            Assert.AreEqual(expectedValue.Current.IsEnabled, element.GridContainingGrid.Current.IsEnabled);
-            Assert.AreEqual(expectedValue.Current.IsOffscreen, element.GridContainingGrid.Current.IsOffscreen);
-            Assert.AreEqual(expectedValue.Current.AcceleratorKey, element.GridContainingGrid.Current.AcceleratorKey);
+            MbUnit.Framework.Assert.AreEqual(expectedValue.Current.Name, element.GridContainingGrid.Current.Name);
+            MbUnit.Framework.Assert.AreEqual(expectedValue.Current.AutomationId, element.GridContainingGrid.Current.AutomationId);
+            MbUnit.Framework.Assert.AreEqual(expectedValue.Current.ClassName, element.GridContainingGrid.Current.ClassName);
+            MbUnit.Framework.Assert.AreEqual(expectedValue.Current.ControlType, element.GridContainingGrid.Current.ControlType);
+            MbUnit.Framework.Assert.AreEqual(expectedValue.Current.BoundingRectangle, element.GridContainingGrid.Current.BoundingRectangle);
+            MbUnit.Framework.Assert.AreEqual(expectedValue.Current.NativeWindowHandle, element.GridContainingGrid.Current.NativeWindowHandle);
+            MbUnit.Framework.Assert.AreEqual(expectedValue.Current.ProcessId, element.GridContainingGrid.Current.ProcessId);
+            MbUnit.Framework.Assert.AreEqual(expectedValue.Current.IsEnabled, element.GridContainingGrid.Current.IsEnabled);
+            MbUnit.Framework.Assert.AreEqual(expectedValue.Current.IsOffscreen, element.GridContainingGrid.Current.IsOffscreen);
+            MbUnit.Framework.Assert.AreEqual(expectedValue.Current.AcceleratorKey, element.GridContainingGrid.Current.AcceleratorKey);
+            
+            Xunit.Assert.Equal(expectedValue.Current.Name, element.GridContainingGrid.Current.Name);
+            Xunit.Assert.Equal(expectedValue.Current.AutomationId, element.GridContainingGrid.Current.AutomationId);
+            Xunit.Assert.Equal(expectedValue.Current.ClassName, element.GridContainingGrid.Current.ClassName);
+            Xunit.Assert.Equal(expectedValue.Current.ControlType, element.GridContainingGrid.Current.ControlType);
+            Xunit.Assert.Equal(expectedValue.Current.BoundingRectangle, element.GridContainingGrid.Current.BoundingRectangle);
+            Xunit.Assert.Equal(expectedValue.Current.NativeWindowHandle, element.GridContainingGrid.Current.NativeWindowHandle);
+            Xunit.Assert.Equal(expectedValue.Current.ProcessId, element.GridContainingGrid.Current.ProcessId);
+            Xunit.Assert.Equal(expectedValue.Current.IsEnabled, element.GridContainingGrid.Current.IsEnabled);
+            Xunit.Assert.Equal(expectedValue.Current.IsOffscreen, element.GridContainingGrid.Current.IsOffscreen);
+            Xunit.Assert.Equal(expectedValue.Current.AcceleratorKey, element.GridContainingGrid.Current.AcceleratorKey);
         }
         
-        [Test]
+        [Test][Fact]
         public void GridItem_Row()
         {
             // Arrange
-            int expectedValue = 5;
+            const int expectedValue = 5;
             ISupportsGridItemPattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetGridItemPattern(new PatternsData() { GridItemPattern_Row = expectedValue }) }) as ISupportsGridItemPattern;
@@ -153,14 +176,15 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             // Act
             
             // Assert
-            Assert.AreEqual(expectedValue, element.GridRow);
+            MbUnit.Framework.Assert.AreEqual(expectedValue, element.GridRow);
+            Xunit.Assert.Equal(expectedValue, element.GridRow);
         }
         
-        [Test]
+        [Test][Fact]
         public void GridItem_RowSpan()
         {
             // Arrange
-            int expectedValue = 6;
+            const int expectedValue = 6;
             ISupportsGridItemPattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetGridItemPattern(new PatternsData() { GridItemPattern_RowSpan = expectedValue }) }) as ISupportsGridItemPattern;
@@ -168,7 +192,8 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             // Act
             
             // Assert
-            Assert.AreEqual(expectedValue, element.GridRowSpan);
+            MbUnit.Framework.Assert.AreEqual(expectedValue, element.GridRowSpan);
+            Xunit.Assert.Equal(expectedValue, element.GridRowSpan);
         }
     }
 }

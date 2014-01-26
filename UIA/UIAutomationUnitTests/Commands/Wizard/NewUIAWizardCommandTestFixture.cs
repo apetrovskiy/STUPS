@@ -9,13 +9,13 @@
 
 namespace UIAutomationUnitTests.Commands.Wizard
 {
-    using MbUnit.Framework;
+    using MbUnit.Framework;// using Xunit;
     using UIAutomation;
     
     /// <summary>
     /// Description of NewUiaWizardCommandTestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture]
     public class NewUiaWizardCommandTestFixture
     {
         [SetUp]
@@ -30,7 +30,7 @@ namespace UIAutomationUnitTests.Commands.Wizard
             WizardCollection.ResetData();
         }
         
-        [Test]
+        [Test]// [Fact]
         [Description("New-UiaWizard")]
         [Category("Fast")]
         [Category("Wizard")]
@@ -39,12 +39,12 @@ namespace UIAutomationUnitTests.Commands.Wizard
             const string expectedName = "name";
             UnitTestingHelper.CreateWizard(expectedName, null);
             
-            Assert.AreEqual(
+            MbUnit.Framework.Assert.AreEqual(
                 expectedName,
                 ((Wizard)PSTestLib.UnitTestOutput.LastOutput[0]).Name);
         }
         
-        [Test]
+        [Test]// [Fact]
         [Description("New-UiaWizard")]
         [Category("Fast")]
         [Category("Wizard")]
@@ -53,12 +53,12 @@ namespace UIAutomationUnitTests.Commands.Wizard
             const string expectedName = @"\\aa//bb``cc";
             UnitTestingHelper.CreateWizard(expectedName, null);
             
-            Assert.AreEqual(
+            MbUnit.Framework.Assert.AreEqual(
                 expectedName,
                 ((Wizard)PSTestLib.UnitTestOutput.LastOutput[0]).Name);
         }
         
-        [Test]
+        [Test]// [Fact]
         [Description("New-UiaWizard")]
         [Category("Fast")]
         [Category("Wizard")]
@@ -72,7 +72,7 @@ namespace UIAutomationUnitTests.Commands.Wizard
             
 //            createWizard(expectedName, null);
 //            
-//            Assert.AreEqual(
+//            MbUnit.Framework.Assert.AreEqual(
 //                expectedName,
 //                ((Wizard)(object)PSTestLib.UnitTestOutput.LastOutput[0]).Name);
         }

@@ -10,12 +10,12 @@
 namespace UIAutomationUnitTests.CheckCmdletParameters
 {
     using UIAutomation;
-    using MbUnit.Framework;
+    using MbUnit.Framework;// using Xunit;
     
     /// <summary>
     /// Description of AddUiaWizardStepCommandTestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture]
     [Ignore("temporarily")]
     public class AddUiaWizardStepCommandTestFixture
     {
@@ -32,7 +32,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
             WizardCollection.ResetData();
         }
         
-        [Test]
+        [Test]// [Fact]
         [Category("Fast")]
         public void AddWizardStep_Name()
         {
@@ -40,7 +40,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         		@"Add-UiaWizardStep -Name 'stepName' -InputObject (New-UiaWizard -Name wizardName -StartAction {});");
         }
         
-        [Test]
+        [Test]// [Fact]
         [Category("Fast")]
         public void AddWizardStep_Name_StepForwardAction()
         {
@@ -48,7 +48,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         		@"Add-UiaWizardStep -Name 'stepName' -InputObject (New-UiaWizard -Name wizardName -StartAction {}) -StepForwardAction {};");
         }
         
-        [Test]
+        [Test]// [Fact]
         [Category("Fast")]
         public void AddWizardStep_Name_StepBackwardAction()
         {
@@ -56,7 +56,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         		@"Add-UiaWizardStep -Name 'stepName' -InputObject (New-UiaWizard -Name wizardName -StartAction {}) -StepBackwardAction {};");
         }
         
-        [Test]
+        [Test]// [Fact]
         [Category("Fast")]
         public void AddWizardStep_Name_StepForwardAction_StepBackwardAction()
         {

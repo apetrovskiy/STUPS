@@ -114,12 +114,17 @@ namespace UIAutomation
         	
         	//GetControlCmdletBase cmdletCtrl =
         	//	new GetControlCmdletBase();
-        	GetUiaControlCommand cmdletCtrl =
-        	    new GetUiaControlCommand
-        	    {
-        	        InputObject = new UiElement[] {(UiElement) CurrentData.CurrentWindow},
-        	        Timeout = 0
-        	    };
+        	// 20140127
+        	// GetUiaControlCommand cmdletCtrl =
+        	//     new GetUiaControlCommand
+        	//     {
+        	//         InputObject = new UiElement[] {(UiElement) CurrentData.CurrentWindow},
+        	//         Timeout = 0
+        	//     };
+        	var controlSearchData =
+        	    new ControlSearchData {
+        	    InputObject = new IUiElement[] { CurrentData.CurrentWindow }
+        	};
             
             foreach (WizardStep step in Steps) {
 
@@ -132,7 +137,9 @@ namespace UIAutomation
 			    // sleep interval
 			    Thread.Sleep(Preferences.OnSelectWizardStepDelay);
         	    
-        		cmdletCtrl.SearchCriteria = step.SearchCriteria;
+			    // 20140127
+        		// cmdletCtrl.SearchCriteria = step.SearchCriteria;
+        		controlSearchData.SearchCriteria = step.SearchCriteria;
                 
 	        	List<IUiElement> controlsList = new List<IUiElement>();
 	        	
@@ -157,8 +164,12 @@ namespace UIAutomation
 //	        		            SearchCriteria = cmdletCtrl.SearchCriteria,
 //	        		            Win32 = cmdletCtrl.Win32
 //	        		        },
-	        		        controlSearch.ConvertCmdletToControlSearchData(cmdletCtrl),
-	        		        cmdletCtrl.Timeout);
+	        		        // 20140127
+	        		        // controlSearch.ConvertCmdletToControlSearchData(cmdletCtrl),
+	        		        controlSearchData,
+	        		        // 20140127
+	        		        // cmdletCtrl.Timeout);
+	        		        0);
 	        		
 	        	}
 	        	catch {}
@@ -192,24 +203,25 @@ namespace UIAutomation
         	// moving the current step to the end of the step collection
         	try {
         	   int currentIndex = Steps.IndexOf(resultStep);
-        	   try {
-        	       cmdletCtrl.WriteInfo(cmdletCtrl, "current index = " + currentIndex.ToString());
-        	   }
-        	   catch {
-        	       cmdletCtrl.WriteInfo(cmdletCtrl, "failed to show the current index");
-        	   }
+        	   // 20140127
+        	   // try {
+        	   //     cmdletCtrl.WriteInfo(cmdletCtrl, "current index = " + currentIndex.ToString());
+        	   // }
+        	   // catch {
+        	   //     cmdletCtrl.WriteInfo(cmdletCtrl, "failed to show the current index");
+        	   // }
         	   // 20130712
         	   if (0 <= currentIndex && (Steps.Count - 1) != currentIndex) {
             	   Steps.Insert(Steps.Count, resultStep);
-            	   cmdletCtrl.WriteInfo(cmdletCtrl, "inserted after the last step");
+            	   // cmdletCtrl.WriteInfo(cmdletCtrl, "inserted after the last step");
             	   Steps.RemoveAt(currentIndex);
-            	   cmdletCtrl.WriteInfo(cmdletCtrl, "deleted from the previous position");
+            	   // cmdletCtrl.WriteInfo(cmdletCtrl, "deleted from the previous position");
         	   } else {
-        	       cmdletCtrl.WriteInfo(cmdletCtrl, "there was no manipulation with wizard steps' order");
+        	       // cmdletCtrl.WriteInfo(cmdletCtrl, "there was no manipulation with wizard steps' order");
         	   }
         	}
         	catch (Exception eMovingToTheEnd) {
-        	    cmdletCtrl.WriteInfo(cmdletCtrl, eMovingToTheEnd.Message);
+        	    // cmdletCtrl.WriteInfo(cmdletCtrl, eMovingToTheEnd.Message);
         	}
         	
         	return resultStep;

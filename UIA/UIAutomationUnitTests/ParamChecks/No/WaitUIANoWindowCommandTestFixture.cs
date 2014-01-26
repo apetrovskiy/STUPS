@@ -9,12 +9,12 @@
 
 namespace UIAutomationUnitTests.ParamChecks.No
 {
-    using MbUnit.Framework;
+    using MbUnit.Framework;// using Xunit;
     
     /// <summary>
     /// Description of WaitUiaNoWindowCommandTestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture]
     public class WaitUiaNoWindowCommandTestFixture
     {
     }

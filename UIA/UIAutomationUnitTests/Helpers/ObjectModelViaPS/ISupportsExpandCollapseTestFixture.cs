@@ -11,7 +11,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 {
     using System;
     using System.Windows.Automation;
-    using MbUnit.Framework;
+    using MbUnit.Framework;// using Xunit;
     using System.Management.Automation;
     using NSubstitute;
     using UIAutomation;
@@ -20,7 +20,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
     /// <summary>
     /// Description of ISupportsExpandCollapseTestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture]
     public class ISupportsExpandCollapseTestFixture
     {
         [SetUp]
@@ -47,7 +47,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
         */
         
         // ComboBox
-//        [Test]
+//        [Test]// [Fact]
 //        [Category("Slow")]
 //        [Category("WinForms")]
 //        [Category("Control")]
@@ -66,7 +66,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //        }
         
         // TreeItem
-//        [Test]
+//        [Test]// [Fact]
 //        [Category("Slow")]
 //        [Category("WinForms")]
 //        [Category("Control")]
@@ -89,7 +89,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //                expectedResult);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        [Category("Slow")]
 //        [Category("ISupportsExpandCollapse")]
 //        public void TreeItem_ExpandCollapseState_Expanded()
@@ -108,7 +108,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //                expectedResult);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        [Category("Slow")]
 //        [Category("ISupportsExpandCollapse")]
 //        public void TreeItem_ExpandCollapseState_Collapsed()
@@ -130,7 +130,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
         
         
         
-//        [Test]
+//        [Test]// [Fact]
 //        public void ExpandCollapseState_Expanded()
 //        {
 //            // Arrange
@@ -149,7 +149,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //                expectedValue.ToString());
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void ExpandCollapseState_Collapsed()
 //        {
 //            // Arrange
@@ -168,7 +168,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //                expectedValue.ToString());
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void ExpandCollapseState_LeafNode()
 //        {
 //            // Arrange
@@ -187,7 +187,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //                expectedValue.ToString());
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void ExpandCollapseState_PartiallyExpanded()
 //        {
 //            // Arrange
@@ -206,7 +206,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //                expectedValue.ToString());
 //        }
         
-//        [Test]
+//        [Test]// [Fact]
 //        public void ExpandCollapse_Collapse()
 //        {
 //            // Arrange
@@ -224,10 +224,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            catch {}
 //            
 //            // Assert
-//            Assert.AreEqual(expectedValue, element.ExpandCollapseState);
+//            MbUnit.Framework.Assert.AreEqual(expectedValue, element.ExpandCollapseState);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void ExpandCollapse_Expand()
 //        {
 //            // Arrange
@@ -245,7 +245,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            catch {}
 //            
 //            // Assert
-//            Assert.AreEqual(expectedValue, element.ExpandCollapseState);
+//            MbUnit.Framework.Assert.AreEqual(expectedValue, element.ExpandCollapseState);
 //        }
     }
 }

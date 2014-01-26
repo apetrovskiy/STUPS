@@ -9,12 +9,12 @@
 
 namespace UIAutomationUnitTests.ParamChecks.Common
 {
-    using MbUnit.Framework;
+    using MbUnit.Framework;// using Xunit;
     
     /// <summary>
     /// Description of HideUiaCurrentHighlighterCommandTestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture]
     public class HideUiaCurrentHighlighterCommandTestFixture
     {
     }

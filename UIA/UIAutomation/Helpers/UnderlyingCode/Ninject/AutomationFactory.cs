@@ -35,6 +35,15 @@ namespace UIAutomation
         
         private static ProxyGenerator _generator;
         
+        // 20140125
+        internal static DateTime ScopeChangeFlag { get; set; }
+        // internal static PlaceholderType ScopeChangeFlag { get; set; }
+        internal static void InitNewCustomScope()
+        {
+            ScopeChangeFlag = DateTime.Now;
+            // ScopeChangeFlag = new PlaceholderType();
+        }
+        
         #region Initialization
         static AutomationFactory()
         {
@@ -71,8 +80,8 @@ namespace UIAutomation
 		        
 		        // 20140121
 		        // 20140123
-		         Kernel.Settings.ActivationCacheDisabled = true;
-//		        Kernel.Settings.ActivationCacheDisabled = false;
+                // Kernel.Settings.ActivationCacheDisabled = true;
+		        Kernel.Settings.ActivationCacheDisabled = false;
 		    }
 		    catch (Exception eInitFailure) {
 		        // TODO
@@ -94,8 +103,8 @@ namespace UIAutomation
 		        
 		        // 20140121
 		        // 20140123
-		         Kernel.Settings.ActivationCacheDisabled = true;
-//		        Kernel.Settings.ActivationCacheDisabled = false;
+                // Kernel.Settings.ActivationCacheDisabled = true;
+		        Kernel.Settings.ActivationCacheDisabled = false;
 		        
 		        InitCommonObjects();
 		        
@@ -119,6 +128,9 @@ namespace UIAutomation
 		    
 		    // 20140124
 		    InitializeChildKernel();
+		    
+		    // 20140125
+		    ScopeChangeFlag = DateTime.Now;
 		}
 		
 		public static void Reset()
@@ -192,21 +204,27 @@ namespace UIAutomation
         {
             var childKernel = new ChildKernel(Kernel, new ChildKernelModule());
             // 20140123
-             childKernel.Settings.ActivationCacheDisabled = true;
-//            childKernel.Settings.ActivationCacheDisabled = false;
+            // childKernel.Settings.ActivationCacheDisabled = true;
+            childKernel.Settings.ActivationCacheDisabled = false;
             return childKernel;
         }
         
         internal static void InitializeChildKernel()
         {
-            if (null != ChildKernel) {
-                ChildKernel.Dispose();
-                ChildKernel = null;
+//            if (null != ChildKernel) {
+//                ChildKernel.Dispose();
+//                ChildKernel = null;
+//            }
+            
+            // 20140125
+            if (null == ChildKernel) {
+            
+                ChildKernel = new ChildKernel(Kernel, new ChildKernelModule());
+                // 20140123
+                // ChildKernel.Settings.ActivationCacheDisabled = true;
+                ChildKernel.Settings.ActivationCacheDisabled = false;
+            
             }
-            ChildKernel = new ChildKernel(Kernel, new ChildKernelModule());
-            // 20140123
-             ChildKernel.Settings.ActivationCacheDisabled = true;
-//            ChildKernel.Settings.ActivationCacheDisabled = false;
         }
         
         internal static void DisposeChildKernel()

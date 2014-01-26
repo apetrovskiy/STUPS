@@ -9,12 +9,12 @@
 
 namespace UIAutomationUnitTests.CheckCmdletParameters
 {
-    using MbUnit.Framework;
+    using MbUnit.Framework;// using Xunit;
     
     /// <summary>
     /// Description of InvokeUiaInvokePatternCommandTestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture]
     public class InvokeUiaInvokePatternCommandTestFixture
     {
         [SetUp]
@@ -29,7 +29,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
             // MiddleLevelCode.DisposeRunspace();
         }
         
-        [Test]
+        [Test]// [Fact]
         [Category("Fast")]
         [Description("Invoke-UiaInvokePattern")]
         public void Invoke_UiaInvokePattern_NoParameters()
@@ -38,7 +38,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         		"Invoke-UiaInvokePattern;");
         }
         
-        [Test]
+        [Test]// [Fact]
         [Category("Fast")]
         [Description("Invoke-UiaInvokePattern -PassThru")]
         public void Invoke_UiaInvokePattern_PassThru()
@@ -47,7 +47,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         		"Invoke-UiaInvokePattern -PassThru;");
         }
         
-//        [Test]
+//        [Test]// [Fact]
 //        [Category("Fast")]
 //        [Description("Invoke-UiaInvokePattern 'text'")]
 //        public void Invoke_UiaInvokePattern_ContainsText_Position0()
@@ -56,7 +56,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
 //        		"Invoke-UiaInvokePattern 'text';");
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        [Category("Fast")]
 //        [Description("Invoke-UiaInvokePattern -ContainsText 'text'")]
 //        public void Invoke_UiaInvokePattern_ContainsText()
@@ -65,7 +65,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
 //        		"Invoke-UiaInvokePattern -ContainsText 'text';");
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        [Category("Fast")]
 //        [Description("Invoke-UiaInvokePattern -ContainsText 'text' -PassThru")]
 //        public void Invoke_UiaInvokePattern_ContainsText_PassThru()
@@ -74,7 +74,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
 //        		"Invoke-UiaInvokePattern -ContainsText 'text' -PassThru;");
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        [Category("Fast")]
 //        [Description("Invoke-UiaInvokePattern -Name 'text'")]
 //        public void Invoke_UiaInvokePattern_Name()
@@ -83,7 +83,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
 //        		"Invoke-UiaInvokePattern -Name 'text';");
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        [Category("Fast")]
 //        [Description("Invoke-UiaInvokePattern -Name 'text' -Win32")]
 //        public void Invoke_UiaInvokePattern_Name_Win32()
@@ -92,7 +92,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
 //        		"Invoke-UiaInvokePattern -Name 'text' -Win32;");
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        [Category("Fast")]
 //        [Description("Invoke-UiaInvokePattern -AutomationId 'text'")]
 //        public void Invoke_UiaInvokePattern_AutomationId()
@@ -101,7 +101,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
 //        		"Invoke-UiaInvokePattern -AutomationId 'text';");
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        [Category("Fast")]
 //        [Description("Invoke-UiaInvokePattern -Class 'text'")]
 //        public void Invoke_UiaInvokePattern_Class()
@@ -110,7 +110,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
 //        		"Invoke-UiaInvokePattern -Class 'text';");
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        [Category("Fast")]
 //        [Description("Invoke-UiaInvokePattern -Value 'text'")]
 //        public void Invoke_UiaInvokePattern_Value()
@@ -119,7 +119,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
 //        		"Invoke-UiaInvokePattern -Value 'text';");
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        [Category("Fast")]
 //        [Description("Invoke-UiaInvokePattern -Name 'text' -AutomationId 'text2' -Class 'text3' -Value 'text4' -PassThru")]
 //        public void Invoke_UiaInvokePattern_Name_AutomationId_Class_Value_PassThru()

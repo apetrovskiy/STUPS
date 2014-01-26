@@ -9,12 +9,12 @@
 
 namespace UIAutomationUnitTests.CheckCmdletParameters
 {
-    using MbUnit.Framework;
+    using MbUnit.Framework;// using Xunit;
     
     /// <summary>
     /// Description of InvokeUiaButtonClickCommandTestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture]
     public class InvokeUiaButtonClickCommandTestFixture
     {
         [SetUp]
@@ -29,7 +29,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
             // MiddleLevelCode.DisposeRunspace();
         }
         
-        [Test]
+        [Test]// [Fact]
         [Category("Fast")]
         [Description("Invoke-UiaButtonClick")]
         public void Invoke_UiaButtonClick_NoParameters()
@@ -38,7 +38,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         		"Invoke-UiaButtonClick;");
         }
         
-        [Test]
+        [Test]// [Fact]
         [Category("Fast")]
         [Description("Invoke-UiaButtonClick -PassThru")]
         public void Invoke_UiaButtonClick_PassThru()
@@ -47,7 +47,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         		"Invoke-UiaButtonClick -PassThru;");
         }
         
-//        [Test]
+//        [Test]// [Fact]
 //        [Category("Fast")]
 //        [Description("Invoke-UiaButtonClick 'text'")]
 //        public void Invoke_UiaButtonClick_ContainsText_Position0()
@@ -56,7 +56,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
 //        		"Invoke-UiaButtonClick 'text';");
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        [Category("Fast")]
 //        [Description("Invoke-UiaButtonClick -ContainsText 'text'")]
 //        public void Invoke_UiaButtonClick_ContainsText()
@@ -65,7 +65,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
 //        		"Invoke-UiaButtonClick -ContainsText 'text';");
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        [Category("Fast")]
 //        [Description("Invoke-UiaButtonClick -ContainsText 'text' -PassThru")]
 //        public void Invoke_UiaButtonClick_ContainsText_PassThru()
@@ -74,7 +74,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
 //        		"Invoke-UiaButtonClick -ContainsText 'text' -PassThru;");
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        [Category("Fast")]
 //        [Description("Invoke-UiaButtonClick -Name 'text'")]
 //        public void Invoke_UiaButtonClick_Name()
@@ -83,7 +83,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
 //        		"Invoke-UiaButtonClick -Name 'text';");
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        [Category("Fast")]
 //        [Description("Invoke-UiaButtonClick -Name 'text' -Win32")]
 //        public void Invoke_UiaButtonClick_Name_Win32()
@@ -92,7 +92,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
 //        		"Invoke-UiaButtonClick -Name 'text' -Win32;");
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        [Category("Fast")]
 //        [Description("Invoke-UiaButtonClick -AutomationId 'text'")]
 //        public void Invoke_UiaButtonClick_AutomationId()
@@ -101,7 +101,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
 //        		"Invoke-UiaButtonClick -AutomationId 'text';");
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        [Category("Fast")]
 //        [Description("Invoke-UiaButtonClick -Class 'text'")]
 //        public void Invoke_UiaButtonClick_Class()
@@ -110,7 +110,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
 //        		"Invoke-UiaButtonClick -Class 'text';");
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        [Category("Fast")]
 //        [Description("Invoke-UiaButtonClick -Value 'text'")]
 //        public void Invoke_UiaButtonClick_Value()
@@ -119,7 +119,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
 //        		"Invoke-UiaButtonClick -Value 'text';");
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        [Category("Fast")]
 //        [Description("Invoke-UiaButtonClick -Name 'text' -AutomationId 'text2' -Class 'text3' -Value 'text4' -PassThru")]
 //        public void Invoke_UiaButtonClick_Name_AutomationId_Class_Value_PassThru()

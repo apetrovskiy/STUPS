@@ -10,13 +10,13 @@
 namespace UIAutomationUnitTests.CheckCmdletParameters
 {
     using UIAutomation;
-    using MbUnit.Framework;
+    using MbUnit.Framework;// using Xunit;
     
     /// <summary>
     /// Description of NewUiaWizardCommandTestFixture.
     /// </summary>
     [Ignore("temporarily")]
-    [TestFixture]
+    [MbUnit.Framework.TestFixture]
     public class NewUiaWizardCommandTestFixture
     {
         [SetUp]
@@ -32,7 +32,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
             WizardCollection.ResetData();
         }
         
-        [Test]
+        [Test]// [Fact]
         [Category("Fast")]
         public void NewWizard_Name_StartAction()
         {
@@ -40,7 +40,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         		@"New-UiaWizard -Name 'wizardName' -StartAction { 'var' };");
         }
         
-        [Test]
+        [Test]// [Fact]
         [Category("Fast")]
         public void NewWizard_Name_StartActionX3()
         {

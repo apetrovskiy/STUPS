@@ -11,16 +11,20 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 {
     using System.Windows.Automation;
     using UIAutomation;
-    using MbUnit.Framework;
+    using MbUnit.Framework;using Xunit;
     using NSubstitute;
     
     /// <summary>
     /// Description of ISupportsTogglePatternTestFixture.
     /// </summary>
-    [TestFixture]
-    // [Ignore("not yet ready")]
+    [MbUnit.Framework.TestFixture]
     public class ISupportsTogglePatternTestFixture
     {
+        public ISupportsTogglePatternTestFixture()
+        {
+            FakeFactory.Init();
+        }
+        
         [SetUp]
         public void SetUp()
         {
@@ -32,61 +36,67 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         {
         }
         
-        [Test]
+        [Test][Fact]
         public void Toggle_ImplementsCommonPattern()
         {
 //            ISupportsInvokePattern invokableElement =
 //                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
 //                    new IBasePattern[] { FakeFactory.GetTogglePattern(new PatternsData()) }) as ISupportsInvokePattern;
 //            
-//            Assert.IsNotNull(invokableElement as ISupportsInvokePattern);
+//            MbUnit.Framework.Assert.IsNotNull(invokableElement as ISupportsInvokePattern);
             
             ISupportsHighlighter highlightableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTogglePattern(new PatternsData()) }) as ISupportsHighlighter;
             
-            Assert.IsNotNull(highlightableElement as ISupportsHighlighter);
+            MbUnit.Framework.Assert.IsNotNull(highlightableElement as ISupportsHighlighter);
+            Xunit.Assert.NotNull(highlightableElement as ISupportsHighlighter);
             
             ISupportsNavigation navigatableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTogglePattern(new PatternsData()) }) as ISupportsNavigation;
             
-            Assert.IsNotNull(navigatableElement as ISupportsNavigation);
+            MbUnit.Framework.Assert.IsNotNull(navigatableElement as ISupportsNavigation);
+            Xunit.Assert.NotNull(navigatableElement as ISupportsNavigation);
             
             ISupportsConversion conversibleElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTogglePattern(new PatternsData()) }) as ISupportsConversion;
             
-            Assert.IsNotNull(conversibleElement as ISupportsConversion);
+            MbUnit.Framework.Assert.IsNotNull(conversibleElement as ISupportsConversion);
+            Xunit.Assert.NotNull(conversibleElement as ISupportsConversion);
             
             ISupportsRefresh refreshableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTogglePattern(new PatternsData()) }) as ISupportsRefresh;
             
-            Assert.IsNotNull(refreshableElement as ISupportsRefresh);
+            MbUnit.Framework.Assert.IsNotNull(refreshableElement as ISupportsRefresh);
+            Xunit.Assert.NotNull(refreshableElement as ISupportsRefresh);
         }
         
-        [Test]
+        [Test][Fact]
         public void Toggle_ImplementsPatternInQuestion()
         {
             ISupportsTogglePattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTogglePattern(new PatternsData()) }) as ISupportsTogglePattern;
             
-            Assert.IsNotNull(element as ISupportsTogglePattern);
+            MbUnit.Framework.Assert.IsNotNull(element as ISupportsTogglePattern);
+            Xunit.Assert.NotNull(element as ISupportsTogglePattern);
         }
         
-        [Test]
+        [Test][Fact]
         public void Toggle_DoesNotImplementOtherPatterns()
         {
             ISupportsValuePattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTogglePattern(new PatternsData()) }) as ISupportsValuePattern;
             
-            Assert.IsNull(element as ISupportsValuePattern);
+            MbUnit.Framework.Assert.IsNull(element as ISupportsValuePattern);
+            Xunit.Assert.Null(element as ISupportsValuePattern);
         }
         
-//        [Test]
+//        [Test][Fact]
 //        public void Toggle_Toggle()
 //        {
 //            // Arrange
@@ -99,7 +109,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 //            element.Toggle();
 //        }
         
-        [Test]
+        [Test][Fact]
         public void Toggle_ToggleState_Indeterminate()
         {
             // Arrange
@@ -111,10 +121,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             // Act
             
             // Assert
-            Assert.AreEqual(expectedValue, element.ToggleState);
+            MbUnit.Framework.Assert.AreEqual(expectedValue, element.ToggleState);
+            Xunit.Assert.Equal(expectedValue, element.ToggleState);
         }
         
-        [Test]
+        [Test][Fact]
         public void Toggle_ToggleState_Off()
         {
             // Arrange
@@ -126,10 +137,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             // Act
             
             // Assert
-            Assert.AreEqual(expectedValue, element.ToggleState);
+            MbUnit.Framework.Assert.AreEqual(expectedValue, element.ToggleState);
+            Xunit.Assert.Equal(expectedValue, element.ToggleState);
         }
         
-        [Test]
+        [Test][Fact]
         public void Toggle_ToggleState_On()
         {
             // Arrange
@@ -141,10 +153,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             // Act
             
             // Assert
-            Assert.AreEqual(expectedValue, element.ToggleState);
+            MbUnit.Framework.Assert.AreEqual(expectedValue, element.ToggleState);
+            Xunit.Assert.Equal(expectedValue, element.ToggleState);
         }
         
-        [Test]
+        [Test][Fact]
         public void Toggle_Toggle_On()
         {
             // Arrange
@@ -165,10 +178,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             catch {}
             
             // Assert
-            Assert.AreEqual(expectedValue, element.ToggleState);
+            MbUnit.Framework.Assert.AreEqual(expectedValue, element.ToggleState);
+            Xunit.Assert.Equal(expectedValue, element.ToggleState);
         }
         
-        [Test]
+        [Test][Fact]
         public void Toggle_Toggle_Off()
         {
             // Arrange
@@ -189,7 +203,8 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             catch {}
             
             // Assert
-            Assert.AreEqual(expectedValue, element.ToggleState);
+            MbUnit.Framework.Assert.AreEqual(expectedValue, element.ToggleState);
+            Xunit.Assert.Equal(expectedValue, element.ToggleState);
         }
     }
 }

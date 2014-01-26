@@ -11,7 +11,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 {
     using System;
     using System.Windows.Automation;
-    using MbUnit.Framework;
+    using MbUnit.Framework;// using Xunit;
     using System.Management.Automation;
     using NSubstitute;
     using UIAutomation;
@@ -20,7 +20,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
     /// <summary>
     /// Description of ISupportsScrollItemPatternTestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture]
     public class ISupportsScrollItemPatternTestFixture
     {
         [SetUp]
@@ -35,61 +35,61 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
             // MiddleLevelCode.DisposeRunspace();
         }
         
-//        [Test]
+//        [Test]// [Fact]
 //        public void ScrollItem_ImplementsCommonPattern()
 //        {
 //            ISupportsInvokePattern invokableElement =
 //                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
 //                    new IBasePattern[] { FakeFactory.GetScrollItemPattern(new PatternsData()) }) as ISupportsInvokePattern;
 //            
-//            Assert.IsNotNull(invokableElement as ISupportsInvokePattern);
+//            MbUnit.Framework.Assert.IsNotNull(invokableElement as ISupportsInvokePattern);
 //            
 //            ISupportsHighlighter highlightableElement =
 //                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
 //                    new IBasePattern[] { FakeFactory.GetScrollItemPattern(new PatternsData()) }) as ISupportsHighlighter;
 //            
-//            Assert.IsNotNull(highlightableElement as ISupportsHighlighter);
+//            MbUnit.Framework.Assert.IsNotNull(highlightableElement as ISupportsHighlighter);
 //            
 //            ISupportsNavigation navigatableElement =
 //                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
 //                    new IBasePattern[] { FakeFactory.GetScrollItemPattern(new PatternsData()) }) as ISupportsNavigation;
 //            
-//            Assert.IsNotNull(navigatableElement as ISupportsNavigation);
+//            MbUnit.Framework.Assert.IsNotNull(navigatableElement as ISupportsNavigation);
 //            
 //            ISupportsConversion conversibleElement =
 //                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
 //                    new IBasePattern[] { FakeFactory.GetScrollItemPattern(new PatternsData()) }) as ISupportsConversion;
 //            
-//            Assert.IsNotNull(conversibleElement as ISupportsConversion);
+//            MbUnit.Framework.Assert.IsNotNull(conversibleElement as ISupportsConversion);
 //            
 //            ISupportsRefresh refreshableElement =
 //                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
 //                    new IBasePattern[] { FakeFactory.GetScrollItemPattern(new PatternsData()) }) as ISupportsRefresh;
 //            
-//            Assert.IsNotNull(refreshableElement as ISupportsRefresh);
+//            MbUnit.Framework.Assert.IsNotNull(refreshableElement as ISupportsRefresh);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void ScrollItem_ImplementsPatternInQuestion()
 //        {
 //            ISupportsScrollItemPattern element =
 //                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
 //                    new IBasePattern[] { FakeFactory.GetScrollItemPattern(new PatternsData()) }) as ISupportsScrollItemPattern;
 //            
-//            Assert.IsNotNull(element as ISupportsScrollItemPattern);
+//            MbUnit.Framework.Assert.IsNotNull(element as ISupportsScrollItemPattern);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void ScrollItem_DoesNotImplementOtherPatterns()
 //        {
 //            ISupportsValuePattern element =
 //                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
 //                    new IBasePattern[] { FakeFactory.GetScrollItemPattern(new PatternsData()) }) as ISupportsValuePattern;
 //            
-//            Assert.IsNull(element as ISupportsValuePattern);
+//            MbUnit.Framework.Assert.IsNull(element as ISupportsValuePattern);
 //        }
 //        
-//        [Test]
+//        [Test]// [Fact]
 //        public void ScrollItem_ScrollIntoView()
 //        {
 //            // Arrange
@@ -108,7 +108,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            catch {}
 //            
 //            // Assert
-//            Assert.AreEqual(expectedResult, result);
+//            MbUnit.Framework.Assert.AreEqual(expectedResult, result);
 //        }
     }
 }

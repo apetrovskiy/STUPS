@@ -1,4 +1,4 @@
-﻿using System.Runtime.InteropServices.ComTypes;
+﻿// using System.Runtime.InteropServices.ComTypes;
 /*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
@@ -10,13 +10,13 @@
 
 namespace UIAutomationUnitTests
 {
-    using System;
+    // using System;
     using System.Windows.Automation;
     using UIAutomation;
     using NSubstitute;
     using System.Linq;
-    using System.Linq.Expressions;
-    using System.Collections;
+    // using System.Linq.Expressions;
+    // using System.Collections;
     using System.Collections.Generic;
     
     /// <summary>
@@ -299,7 +299,10 @@ namespace UIAutomationUnitTests
             return GetAutomationElement(controlType, name, automationId, className, new IBasePattern[] { valuePattern }, false);
         }
         
+        private static IFakeUiElement AddPatternAction<T>(AutomationPattern pattern, IEnumerable<IBasePattern> patterns, IFakeUiElement element) where T : IBasePattern
+        /*
         private static IFakeUiElement AddPatternAction<T>(AutomationPattern pattern, IBasePattern[] patterns, IFakeUiElement element) where T : IBasePattern
+        */
         {
             object patternObject;
             if (patterns.Any(ptrn => ptrn is T)) {
@@ -324,8 +327,11 @@ namespace UIAutomationUnitTests
             element.Current.AutomationId.Returns(!string.IsNullOrEmpty(automationId) ? automationId : string.Empty);
             element.Current.ClassName.Returns(!string.IsNullOrEmpty(className) ? className : string.Empty);
             element.Patterns.AddRange(patterns);
+            element.GetSupportedPatterns().Returns(element.Patterns.ToArray());
+            /*
             element.GetSupportedPatterns().Returns<IBasePattern[]>(element.Patterns.ToArray());
-            
+            */
+
             element = AddPatternAction<IDockPattern>(DockPattern.Pattern, patterns, element);
             element = AddPatternAction<IExpandCollapsePattern>(ExpandCollapsePattern.Pattern, patterns, element);
             element = AddPatternAction<IGridItemPattern>(GridItemPattern.Pattern, patterns, element);
@@ -349,7 +355,10 @@ namespace UIAutomationUnitTests
             if (expected) { element.GetTag().Returns("expected"); }
             
             // 20140109
+            element.GetSourceElement().Returns(element);
+            /*
             element.GetSourceElement().Returns<object>(element);
+            */
             // var elementWrapper = AutomationFactory.GetUiElement(element);
             
 //if (null == element) {
@@ -513,14 +522,17 @@ namespace UIAutomationUnitTests
             List<string> resultCollection = new List<string>();
             
             if (null == controlTypes || 0 == controlTypes.Length) return resultCollection.ToArray();
-            
+
+            resultCollection.AddRange(from controlType in controlTypes where null != controlType select controlType.ProgrammaticName.Substring(12));
+            /*
             foreach (ControlType controlType in controlTypes) {
                 if (null != controlType) {
                     resultCollection.Add(
                         controlType.ProgrammaticName.Substring(12));
                 }
             }
-            
+            */
+
             return resultCollection.ToArray();
         }
     }

@@ -11,16 +11,20 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 {
     using System.Windows.Automation;
     using UIAutomation;
-    using MbUnit.Framework;
+    using MbUnit.Framework;using Xunit;
     using NSubstitute;
     
     /// <summary>
     /// Description of ISupportsTablePatternTestFixture.
     /// </summary>
-    // [Ignore]
-    [TestFixture]
+    [MbUnit.Framework.TestFixture]
     public class ISupportsTablePatternTestFixture
     {
+        public ISupportsTablePatternTestFixture()
+        {
+            FakeFactory.Init();
+        }
+        
         [SetUp]
         public void SetUp()
         {
@@ -32,71 +36,78 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         {
         }
         
-        [Test]
+        [Test][Fact]
         public void Table_ImplementsCommonPattern()
         {
 //            ISupportsInvokePattern invokableElement =
 //                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
 //                    new IBasePattern[] { FakeFactory.GetTablePattern(new PatternsData()) }) as ISupportsInvokePattern;
 //            
-//            Assert.IsNotNull(invokableElement as ISupportsInvokePattern);
+//            MbUnit.Framework.Assert.IsNotNull(invokableElement as ISupportsInvokePattern);
             
             ISupportsHighlighter highlightableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTablePattern(new PatternsData()) }) as ISupportsHighlighter;
             
-            Assert.IsNotNull(highlightableElement as ISupportsHighlighter);
+            MbUnit.Framework.Assert.IsNotNull(highlightableElement as ISupportsHighlighter);
+            Xunit.Assert.NotNull(highlightableElement as ISupportsHighlighter);
             
             ISupportsNavigation navigatableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTablePattern(new PatternsData()) }) as ISupportsNavigation;
             
-            Assert.IsNotNull(navigatableElement as ISupportsNavigation);
+            MbUnit.Framework.Assert.IsNotNull(navigatableElement as ISupportsNavigation);
+            Xunit.Assert.NotNull(navigatableElement as ISupportsNavigation);
             
             ISupportsConversion conversibleElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTablePattern(new PatternsData()) }) as ISupportsConversion;
             
-            Assert.IsNotNull(conversibleElement as ISupportsConversion);
+            MbUnit.Framework.Assert.IsNotNull(conversibleElement as ISupportsConversion);
+            Xunit.Assert.NotNull(conversibleElement as ISupportsConversion);
             
             ISupportsRefresh refreshableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTablePattern(new PatternsData()) }) as ISupportsRefresh;
             
-            Assert.IsNotNull(refreshableElement as ISupportsRefresh);
+            MbUnit.Framework.Assert.IsNotNull(refreshableElement as ISupportsRefresh);
+            Xunit.Assert.NotNull(refreshableElement as ISupportsRefresh);
         }
         
-        [Test]
+        [Test][Fact]
         public void Table_ImplementsExportPattern()
         {
             ISupportsExport exportableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetGridPattern(new PatternsData()) }) as ISupportsExport;
             
-            Assert.IsNotNull(exportableElement as ISupportsExport);
+            MbUnit.Framework.Assert.IsNotNull(exportableElement as ISupportsExport);
+            Xunit.Assert.NotNull(exportableElement as ISupportsExport);
         }
         
-        [Test]
+        [Test][Fact]
         public void Table_ImplementsPatternInQuestion()
         {
             ISupportsTablePattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTablePattern(new PatternsData()) }) as ISupportsTablePattern;
             
-            Assert.IsNotNull(element as ISupportsTablePattern);
+            MbUnit.Framework.Assert.IsNotNull(element as ISupportsTablePattern);
+            Xunit.Assert.NotNull(element as ISupportsTablePattern);
         }
         
-        [Test]
+        [Test][Fact]
         public void Table_DoesNotImplementOtherPatterns()
         {
             ISupportsValuePattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTablePattern(new PatternsData()) }) as ISupportsValuePattern;
             
-            Assert.IsNull(element as ISupportsValuePattern);
+            MbUnit.Framework.Assert.IsNull(element as ISupportsValuePattern);
+            Xunit.Assert.Null(element as ISupportsValuePattern);
         }
         
-        [Test]
+        [Test][Fact]
         public void Table_GetColumnHeaders()
         {
             // Arrange
@@ -115,10 +126,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             catch {}
             
             // Assert
-            Assert.AreEqual(expectedResult, result);
+            MbUnit.Framework.Assert.AreEqual(expectedResult, result);
+            Xunit.Assert.Equal(expectedResult, result);
         }
         
-        [Test]
+        [Test][Fact]
         public void Table_GetRowHeaders()
         {
             // Arrange
@@ -137,10 +149,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             catch {}
             
             // Assert
-            Assert.AreEqual(expectedResult, result);
+            MbUnit.Framework.Assert.AreEqual(expectedResult, result);
+            Xunit.Assert.Equal(expectedResult, result);
         }
         
-        [Test]
+        [Test][Fact]
         public void Table_TableColumnCount()
         {
             // Arrange
@@ -152,10 +165,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             // Act
             
             // Assert
-            Assert.AreEqual(expectedValue, element.TableColumnCount);
+            MbUnit.Framework.Assert.AreEqual(expectedValue, element.TableColumnCount);
+            Xunit.Assert.Equal(expectedValue, element.TableColumnCount);
         }
         
-        [Test]
+        [Test][Fact]
         public void Table_TableRowCount()
         {
             // Arrange
@@ -167,10 +181,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             // Act
             
             // Assert
-            Assert.AreEqual(expectedValue, element.TableRowCount);
+            MbUnit.Framework.Assert.AreEqual(expectedValue, element.TableRowCount);
+            Xunit.Assert.Equal(expectedValue, element.TableRowCount);
         }
         
-        [Test]
+        [Test][Fact]
         public void Table_RowOrColumnMajor()
         {
             // Arrange
@@ -182,10 +197,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             // Act
             
             // Assert
-            Assert.AreEqual(expectedValue, element.RowOrColumnMajor);
+            MbUnit.Framework.Assert.AreEqual(expectedValue, element.RowOrColumnMajor);
+            Xunit.Assert.Equal(expectedValue, element.RowOrColumnMajor);
         }
         
-        [Test]
+        [Test]// [Fact]
         [Ignore("not yet ready")]
         public void Table_ExportToCsv()
         {

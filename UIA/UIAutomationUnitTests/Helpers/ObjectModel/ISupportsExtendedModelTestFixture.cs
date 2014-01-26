@@ -13,7 +13,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
     
     using System.Windows.Automation;
     using UIAutomation;
-    using MbUnit.Framework;
+    using MbUnit.Framework;// using Xunit;
     using NSubstitute;
     using WindowsInput;
     using WindowsInput.Native;
@@ -21,7 +21,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
     /// <summary>
     /// Description of ISupportsExtendedModelTestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture]
     public class ISupportsExtendedModelTestFixture
     {
         [SetUp]
@@ -59,7 +59,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         }
         #endregion helpers
         
-        [Test]
+        [Test]// [Fact]
         public void Buttons_Descendants_None()
         {
             // Arrange
@@ -75,10 +75,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Buttons;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Buttons_Descendants_One()
         {
             // Arrange
@@ -96,10 +96,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Buttons;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Buttons_Descendants_Three()
         {
             // Arrange
@@ -110,10 +110,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Buttons;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Calendars_Descendants_Three()
         {
             // Arrange
@@ -124,10 +124,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Calendars;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void CheckBoxes_Descendants_Three()
         {
             // Arrange
@@ -138,10 +138,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).CheckBoxes;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void ComboBoxes_Descendants_Three()
         {
             // Arrange
@@ -152,10 +152,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).ComboBoxes;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Customs_Descendants_Three()
         {
             // Arrange
@@ -166,10 +166,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Customs;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void DataGrids_Descendants_Three()
         {
             // Arrange
@@ -180,10 +180,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).DataGrids;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void DataItems_Descendants_Three()
         {
             // Arrange
@@ -194,10 +194,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).DataItems;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Documents_Descendants_Three()
         {
             // Arrange
@@ -208,10 +208,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Documents;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Edits_Descendants_Three()
         {
             // Arrange
@@ -222,10 +222,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Edits;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Groups_Descendants_Three()
         {
             // Arrange
@@ -236,10 +236,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Groups;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Headers_Descendants_Three()
         {
             // Arrange
@@ -250,10 +250,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Headers;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void HeaderItems_Descendants_Three()
         {
             // Arrange
@@ -264,10 +264,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).HeaderItems;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Hyperlinks_Descendants_Three()
         {
             // Arrange
@@ -278,11 +278,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Hyperlinks;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
         
-        [Test]
+        [Test]// [Fact]
         public void Images_Descendants_Three()
         {
             // Arrange
@@ -293,10 +293,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Images;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Lists_Descendants_Three()
         {
             // Arrange
@@ -307,10 +307,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Lists;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void ListItems_Descendants_Three()
         {
             // Arrange
@@ -321,10 +321,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).ListItems;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Menus_Descendants_Three()
         {
             // Arrange
@@ -335,11 +335,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Menus;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
         
-        [Test]
+        [Test]// [Fact]
         public void MenuBars_Descendants_Three()
         {
             // Arrange
@@ -350,10 +350,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).MenuBars;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void MenuItems_Descendants_Three()
         {
             // Arrange
@@ -364,10 +364,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).MenuItems;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Panes_Descendants_Three()
         {
             // Arrange
@@ -378,10 +378,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Panes;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void ProgressBars_Descendants_Three()
         {
             // Arrange
@@ -392,11 +392,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).ProgressBars;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
         
-        [Test]
+        [Test]// [Fact]
         public void RadioButtons_Descendants_Three()
         {
             // Arrange
@@ -407,10 +407,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).RadioButtons;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void ScrollBars_Descendants_Three()
         {
             // Arrange
@@ -421,10 +421,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).ScrollBars;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Separators_Descendants_Three()
         {
             // Arrange
@@ -435,10 +435,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Separators;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Sliders_Descendants_Three()
         {
             // Arrange
@@ -449,11 +449,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Sliders;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
         
-        [Test]
+        [Test]// [Fact]
         public void Spinners_Descendants_Three()
         {
             // Arrange
@@ -464,10 +464,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Spinners;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void SplitButtons_Descendants_Three()
         {
             // Arrange
@@ -478,10 +478,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).SplitButtons;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void StatusBars_Descendants_Three()
         {
             // Arrange
@@ -492,10 +492,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).StatusBars;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Tabs_Descendants_Three()
         {
             // Arrange
@@ -506,11 +506,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Tabs;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
         
-        [Test]
+        [Test]// [Fact]
         public void TabItems_Descendants_Three()
         {
             // Arrange
@@ -521,10 +521,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).TabItems;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Tables_Descendants_Three()
         {
             // Arrange
@@ -535,10 +535,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Tables;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Texts_Descendants_Three()
         {
             // Arrange
@@ -549,10 +549,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Texts;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Thumbs_Descendants_Three()
         {
             // Arrange
@@ -563,11 +563,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Thumbs;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
         
-        [Test]
+        [Test]// [Fact]
         public void TitleBars_Descendants_Three()
         {
             // Arrange
@@ -578,10 +578,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).TitleBars;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void ToolBars_Descendants_Three()
         {
             // Arrange
@@ -592,10 +592,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).ToolBars;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void ToolTips_Descendants_Three()
         {
             // Arrange
@@ -606,10 +606,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).ToolTips;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Trees_Descendants_Three()
         {
             // Arrange
@@ -620,11 +620,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Trees;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
         
-        [Test]
+        [Test]// [Fact]
         public void TreeItems_Descendants_Three()
         {
             // Arrange
@@ -635,10 +635,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).TreeItems;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Windows_Descendants_Three()
         {
             // Arrange
@@ -649,12 +649,12 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Windows;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
         // =============================================================================================================
         
-        [Test]
+        [Test]// [Fact]
         public void Buttons_Children_None()
         {
             // Arrange
@@ -670,10 +670,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).Buttons;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Buttons_Children_One()
         {
             // Arrange
@@ -691,10 +691,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).Buttons;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Buttons_Children_Three()
         {
             // Arrange
@@ -705,10 +705,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).Buttons;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Calendars_Children_Three()
         {
             // Arrange
@@ -719,10 +719,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).Calendars;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void CheckBoxes_Children_Three()
         {
             // Arrange
@@ -733,10 +733,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).CheckBoxes;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void ComboBoxes_Children_Three()
         {
             // Arrange
@@ -747,10 +747,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).ComboBoxes;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Customs_Children_Three()
         {
             // Arrange
@@ -761,10 +761,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).Customs;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void DataGrids_Children_Three()
         {
             // Arrange
@@ -775,10 +775,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).DataGrids;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void DataItems_Children_Three()
         {
             // Arrange
@@ -789,10 +789,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).DataItems;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Documents_Children_Three()
         {
             // Arrange
@@ -803,10 +803,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).Documents;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Edits_Children_Three()
         {
             // Arrange
@@ -817,10 +817,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).Edits;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Groups_Children_Three()
         {
             // Arrange
@@ -831,10 +831,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).Groups;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Headers_Children_Three()
         {
             // Arrange
@@ -845,10 +845,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).Headers;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void HeaderItems_Children_Three()
         {
             // Arrange
@@ -859,10 +859,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).HeaderItems;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Hyperlinks_Children_Three()
         {
             // Arrange
@@ -873,11 +873,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).Hyperlinks;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
         
-        [Test]
+        [Test]// [Fact]
         public void Images_Children_Three()
         {
             // Arrange
@@ -888,10 +888,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).Images;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Lists_Children_Three()
         {
             // Arrange
@@ -902,10 +902,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).Lists;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void ListItems_Children_Three()
         {
             // Arrange
@@ -916,10 +916,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).ListItems;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Menus_Children_Three()
         {
             // Arrange
@@ -930,11 +930,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).Menus;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
         
-        [Test]
+        [Test]// [Fact]
         public void MenuBars_Children_Three()
         {
             // Arrange
@@ -945,10 +945,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).MenuBars;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void MenuItems_Children_Three()
         {
             // Arrange
@@ -959,10 +959,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).MenuItems;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Panes_Children_Three()
         {
             // Arrange
@@ -973,10 +973,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).Panes;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void ProgressBars_Children_Three()
         {
             // Arrange
@@ -987,11 +987,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).ProgressBars;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
         
-        [Test]
+        [Test]// [Fact]
         public void RadioButtons_Children_Three()
         {
             // Arrange
@@ -1002,10 +1002,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).RadioButtons;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void ScrollBars_Children_Three()
         {
             // Arrange
@@ -1016,10 +1016,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).ScrollBars;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Separators_Children_Three()
         {
             // Arrange
@@ -1030,10 +1030,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).Separators;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Sliders_Children_Three()
         {
             // Arrange
@@ -1044,11 +1044,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).Sliders;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
         
-        [Test]
+        [Test]// [Fact]
         public void Spinners_Children_Three()
         {
             // Arrange
@@ -1059,10 +1059,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).Spinners;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void SplitButtons_Children_Three()
         {
             // Arrange
@@ -1073,10 +1073,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).SplitButtons;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void StatusBars_Children_Three()
         {
             // Arrange
@@ -1087,10 +1087,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).StatusBars;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Tabs_Children_Three()
         {
             // Arrange
@@ -1101,11 +1101,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).Tabs;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
         
-        [Test]
+        [Test]// [Fact]
         public void TabItems_Children_Three()
         {
             // Arrange
@@ -1116,10 +1116,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).TabItems;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Tables_Children_Three()
         {
             // Arrange
@@ -1130,10 +1130,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).Tables;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Texts_Children_Three()
         {
             // Arrange
@@ -1144,10 +1144,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).Texts;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Thumbs_Children_Three()
         {
             // Arrange
@@ -1158,11 +1158,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).Thumbs;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
         
-        [Test]
+        [Test]// [Fact]
         public void TitleBars_Children_Three()
         {
             // Arrange
@@ -1173,10 +1173,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).TitleBars;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void ToolBars_Children_Three()
         {
             // Arrange
@@ -1187,10 +1187,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).ToolBars;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void ToolTips_Children_Three()
         {
             // Arrange
@@ -1201,10 +1201,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).ToolTips;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Trees_Children_Three()
         {
             // Arrange
@@ -1215,11 +1215,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).Trees;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
         
-        [Test]
+        [Test]// [Fact]
         public void TreeItems_Children_Three()
         {
             // Arrange
@@ -1230,10 +1230,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).TreeItems;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Windows_Children_Three()
         {
             // Arrange
@@ -1244,12 +1244,12 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var resultCollection = ((element as ISupportsExtendedModel).Children as IExtendedModel).Windows;
             
             // Assert
-            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
+            MbUnit.Framework.Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
         }
         
         // ==========================================================================================================================
         
-        [Test]
+        [Test]// [Fact]
         public void VariousTypes_Children_Three()
         {
             // Arrange
@@ -1285,19 +1285,19 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var elementImage = ((element as ISupportsExtendedModel).Children as IExtendedModel).Images[2];
             
             // Assert
-            Assert.AreEqual(ControlType.Button, elementButton.Current.ControlType); // (elementButton as IUiElement).Current.ControlType);
-            Assert.AreEqual(ControlType.Document, elementDocument.Current.ControlType); // (elementDocument as IUiElement).Current.ControlType);
-            Assert.AreEqual(ControlType.Image, elementImage.Current.ControlType); // (elementImage as IUiElement).Current.ControlType);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Calendars);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).CheckBoxes);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Customs);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).DataItems);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Edits);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Trees);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Windows);
+            MbUnit.Framework.Assert.AreEqual(ControlType.Button, elementButton.Current.ControlType); // (elementButton as IUiElement).Current.ControlType);
+            MbUnit.Framework.Assert.AreEqual(ControlType.Document, elementDocument.Current.ControlType); // (elementDocument as IUiElement).Current.ControlType);
+            MbUnit.Framework.Assert.AreEqual(ControlType.Image, elementImage.Current.ControlType); // (elementImage as IUiElement).Current.ControlType);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Calendars);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).CheckBoxes);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Customs);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).DataItems);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Edits);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Trees);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Windows);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void VariousTypes_Descendants_Three()
         {
             // Arrange
@@ -1320,21 +1320,21 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var elementImage = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Images[2];
             
             // Assert
-            Assert.AreEqual(ControlType.Button, elementButton.Current.ControlType); // (elementButton as IUiElement).Current.ControlType);
-            Assert.AreEqual(ControlType.Document, elementDocument.Current.ControlType); // (elementDocument as IUiElement).Current.ControlType);
-            Assert.AreEqual(ControlType.Image, elementImage.Current.ControlType); // (elementImage as IUiElement).Current.ControlType);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Calendars);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).CheckBoxes);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Customs);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).DataItems);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Edits);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Trees);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Windows);
+            MbUnit.Framework.Assert.AreEqual(ControlType.Button, elementButton.Current.ControlType); // (elementButton as IUiElement).Current.ControlType);
+            MbUnit.Framework.Assert.AreEqual(ControlType.Document, elementDocument.Current.ControlType); // (elementDocument as IUiElement).Current.ControlType);
+            MbUnit.Framework.Assert.AreEqual(ControlType.Image, elementImage.Current.ControlType); // (elementImage as IUiElement).Current.ControlType);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Calendars);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).CheckBoxes);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Customs);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).DataItems);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Edits);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Trees);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Windows);
         }
         
         // ==========================================================================================================================
         
-        [Test]
+        [Test]// [Fact]
         public void Search_Children_Name_1of3()
         {
             // Arrange
@@ -1358,17 +1358,17 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var elementImage = ((element as ISupportsExtendedModel).Children as IExtendedModel).Images[expectedName][0];
             
             // Assert
-            Assert.AreEqual(expectedName, (elementButton as IUiElement).Current.Name);
-//            Assert.IsNull(elementDocument);
-//            Assert.IsNull(elementImage);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Customs);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).DataItems);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Edits);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Trees);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Windows);
+            MbUnit.Framework.Assert.AreEqual(expectedName, (elementButton as IUiElement).Current.Name);
+//            MbUnit.Framework.Assert.IsNull(elementDocument);
+//            MbUnit.Framework.Assert.IsNull(elementImage);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Customs);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).DataItems);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Edits);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Trees);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Windows);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Search_Children_AutomationId_1of3()
         {
             // Arrange
@@ -1392,17 +1392,17 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var elementImage = ((element as ISupportsExtendedModel).Children as IExtendedModel).Images[expectedAutomationId][0];
             
             // Assert
-            Assert.AreEqual(expectedAutomationId, (elementButton as IUiElement).Current.AutomationId);
-//            Assert.IsNull(elementDocument);
-//            Assert.IsNull(elementImage);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Customs);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).DataItems);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Edits);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Trees);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Windows);
+            MbUnit.Framework.Assert.AreEqual(expectedAutomationId, (elementButton as IUiElement).Current.AutomationId);
+//            MbUnit.Framework.Assert.IsNull(elementDocument);
+//            MbUnit.Framework.Assert.IsNull(elementImage);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Customs);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).DataItems);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Edits);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Trees);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Windows);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Search_Children_ClassName_1of3()
         {
             // Arrange
@@ -1426,17 +1426,17 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var elementImage = ((element as ISupportsExtendedModel).Children as IExtendedModel).Images[expectedClassName][0];
             
             // Assert
-            Assert.AreEqual(expectedClassName, (elementButton as IUiElement).Current.ClassName);
-//            Assert.IsNull(elementDocument);
-//            Assert.IsNull(elementImage);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Customs);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).DataItems);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Edits);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Trees);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Windows);
+            MbUnit.Framework.Assert.AreEqual(expectedClassName, (elementButton as IUiElement).Current.ClassName);
+//            MbUnit.Framework.Assert.IsNull(elementDocument);
+//            MbUnit.Framework.Assert.IsNull(elementImage);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Customs);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).DataItems);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Edits);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Trees);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Windows);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Search_Descendants_Name_1of3()
         {
             // Arrange
@@ -1460,19 +1460,19 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var elementImage = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Images[expectedName][0];
             
             // Assert
-            Assert.AreEqual(expectedName, (elementImage as IUiElement).Current.Name);
-//            Assert.IsNull(elementButton);
-//            Assert.IsNull(elementDocument);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Calendars);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).CheckBoxes);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Customs);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).DataItems);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Edits);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Trees);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Windows);
+            MbUnit.Framework.Assert.AreEqual(expectedName, (elementImage as IUiElement).Current.Name);
+//            MbUnit.Framework.Assert.IsNull(elementButton);
+//            MbUnit.Framework.Assert.IsNull(elementDocument);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Calendars);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).CheckBoxes);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Customs);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).DataItems);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Edits);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Trees);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Windows);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Search_Descendants_AutomationId_1of3()
         {
             // Arrange
@@ -1496,19 +1496,19 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var elementImage = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Images[expectedAutomationId][0];
             
             // Assert
-            Assert.AreEqual(expectedAutomationId, (elementImage as IUiElement).Current.AutomationId);
-//            Assert.IsNull(elementButton);
-//            Assert.IsNull(elementDocument);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Calendars);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).CheckBoxes);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Customs);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).DataItems);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Edits);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Trees);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Windows);
+            MbUnit.Framework.Assert.AreEqual(expectedAutomationId, (elementImage as IUiElement).Current.AutomationId);
+//            MbUnit.Framework.Assert.IsNull(elementButton);
+//            MbUnit.Framework.Assert.IsNull(elementDocument);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Calendars);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).CheckBoxes);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Customs);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).DataItems);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Edits);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Trees);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Windows);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Search_Descendants_ClassName_1of3()
         {
             // Arrange
@@ -1532,21 +1532,21 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var elementImage = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Images[expectedClassName][0];
             
             // Assert
-            Assert.AreEqual(expectedClassName, (elementImage as IUiElement).Current.ClassName);
-//            Assert.IsNull(elementButton);
-//            Assert.IsNull(elementDocument);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Calendars);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).CheckBoxes);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Customs);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).DataItems);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Edits);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Trees);
-//            Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Windows);
+            MbUnit.Framework.Assert.AreEqual(expectedClassName, (elementImage as IUiElement).Current.ClassName);
+//            MbUnit.Framework.Assert.IsNull(elementButton);
+//            MbUnit.Framework.Assert.IsNull(elementDocument);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Calendars);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).CheckBoxes);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Customs);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).DataItems);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Edits);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Trees);
+//            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Windows);
         }
         
         // ==========================================================================================================================
         
-        [Test]
+        [Test]// [Fact]
         public void Control_Click()
         {
             // Arrange
@@ -1559,7 +1559,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var elementWithControlInput = ((element as ISupportsExtendedModel).Control as IControlInput).Click();
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Control_DoubleClick()
         {
             // Arrange
@@ -1574,7 +1574,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         
         // ==========================================================================================================================
         
-        [Test]
+        [Test]// [Fact]
         public void Keyboard_KeyDown()
         {
             // Arrange
@@ -1589,7 +1589,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             ExtensionMethodsElementExtended.InputSimulator.Keyboard.Received(1).KeyDown(VirtualKeyCode.VK_F);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Keyboard_KeyPress_Single()
         {
             // Arrange
@@ -1604,7 +1604,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             ExtensionMethodsElementExtended.InputSimulator.Keyboard.Received(1).KeyPress(VirtualKeyCode.VK_F);
         }
         
-        [Test]
+        [Test]// [Fact]
         [Ignore]
         public void Keyboard_KeyPress_Multiple()
         {
@@ -1620,7 +1620,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             ExtensionMethodsElementExtended.InputSimulator.Keyboard.Received(1).KeyPress(new [] { VirtualKeyCode.VK_A, VirtualKeyCode.VK_B, VirtualKeyCode.VK_C });
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Keyboard_KeyUp()
         {
             // Arrange
@@ -1635,7 +1635,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             ExtensionMethodsElementExtended.InputSimulator.Keyboard.Received(1).KeyUp(VirtualKeyCode.VK_F);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Keyboard_TypeText()
         {
             // Arrange
@@ -1650,7 +1650,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             ExtensionMethodsElementExtended.InputSimulator.Keyboard.Received(1).TextEntry("abc");
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Keyboard_TypeChar()
         {
             // Arrange
@@ -1667,7 +1667,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         
         // ==========================================================================================================================
         
-        [Test]
+        [Test]// [Fact]
         public void Mouse_HorizontalScroll()
         {
             // Arrange
@@ -1682,7 +1682,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             ExtensionMethodsElementExtended.InputSimulator.Mouse.Received(1).HorizontalScroll(1);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Mouse_LeftButtonClick()
         {
             // Arrange
@@ -1697,7 +1697,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             ExtensionMethodsElementExtended.InputSimulator.Mouse.Received(1).LeftButtonClick();
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Mouse_LeftButtonDoubleClick()
         {
             // Arrange
@@ -1712,7 +1712,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             ExtensionMethodsElementExtended.InputSimulator.Mouse.Received(1).LeftButtonDoubleClick();
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Mouse_LeftButtonDown()
         {
             // Arrange
@@ -1727,7 +1727,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             ExtensionMethodsElementExtended.InputSimulator.Mouse.Received(1).LeftButtonDown();
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Mouse_LeftButtonUp()
         {
             // Arrange
@@ -1745,7 +1745,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         //
         //
         
-        [Test]
+        [Test]// [Fact]
         public void Mouse_RightButtonClick()
         {
             // Arrange
@@ -1760,7 +1760,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             ExtensionMethodsElementExtended.InputSimulator.Mouse.Received(1).RightButtonClick();
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Mouse_RightButtonDoubleClick()
         {
             // Arrange
@@ -1775,7 +1775,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             ExtensionMethodsElementExtended.InputSimulator.Mouse.Received(1).RightButtonDoubleClick();
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Mouse_RightButtonDown()
         {
             // Arrange
@@ -1790,7 +1790,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             ExtensionMethodsElementExtended.InputSimulator.Mouse.Received(1).RightButtonDown();
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Mouse_RightButtonUp()
         {
             // Arrange
@@ -1808,7 +1808,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         //
         //
         
-        [Test]
+        [Test]// [Fact]
         public void Mouse_VerticalScroll()
         {
             // Arrange
@@ -1823,7 +1823,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             ExtensionMethodsElementExtended.InputSimulator.Mouse.Received(1).VerticalScroll(1);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Mouse_XButtonClick()
         {
             // Arrange
@@ -1838,7 +1838,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             ExtensionMethodsElementExtended.InputSimulator.Mouse.Received(1).XButtonClick(1);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Mouse_XButtonDoubleClick()
         {
             // Arrange
@@ -1853,7 +1853,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             ExtensionMethodsElementExtended.InputSimulator.Mouse.Received(1).XButtonDoubleClick(1);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Mouse_XButtonDown()
         {
             // Arrange
@@ -1868,7 +1868,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             ExtensionMethodsElementExtended.InputSimulator.Mouse.Received(1).XButtonDown(1);
         }
         
-        [Test]
+        [Test]// [Fact]
         public void Mouse_XButtonUp()
         {
             // Arrange

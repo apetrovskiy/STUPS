@@ -25,7 +25,10 @@ namespace UIAutomationUnitTests
             Patterns = new List<IBasePattern>();
         }
         
+        public FakeUiElement(IEnumerable<IBasePattern> patterns)
+        /*
         public FakeUiElement(IBasePattern[] patterns)
+        */
         {
             Patterns = new List<IBasePattern>();
             Patterns.AddRange(patterns);

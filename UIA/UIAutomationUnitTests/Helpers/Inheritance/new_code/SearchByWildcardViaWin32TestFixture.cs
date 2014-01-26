@@ -15,13 +15,13 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
     using System.Collections.ObjectModel;
     using System.Windows.Automation;
     using UIAutomation;
-    using MbUnit.Framework;
+    using MbUnit.Framework;// using Xunit;
     using System.Linq;
     
     /// <summary>
     /// Description of SearchByWildcardViaWin32TestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture]
     public class SearchByWildcardViaWin32TestFixture
     {
         [SetUp]

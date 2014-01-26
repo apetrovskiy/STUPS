@@ -46,34 +46,47 @@ namespace UIAutomation
                 // 20140122
                 // var childKernel = AutomationFactory.GetChildKernel();
                 // AutomationFactory.DisposeChildKernel();
+                // 20140125
                 AutomationFactory.InitializeChildKernel();
+                // AutomationFactory.InitNewCustomScope();
                 
                 if (data.Win32) {
                     
                     // cmdlet.WriteVerbose(cmdlet, "getting a window via Win32 API");
+                    if (null == ResultCollection || 0 == ResultCollection.Count) {
                     ResultCollection = GetWindowCollectionViaWin32(data.First, data.Recurse, data.Name, data.AutomationId, data.Class);
-                    
+                    }
                 } else if (null != data.InputObject && data.InputObject.Length > 0) {
                     
                     // cmdlet.WriteVerbose(cmdlet, "getting a window by process");
+                    if (null == ResultCollection || 0 == ResultCollection.Count) {
                     ResultCollection = GetWindowCollectionFromProcess(data.InputObject, data.First, data.Recurse, data.Name, data.AutomationId, data.Class);
-                    
+                    }
                 } else if (null != data.ProcessIds && data.ProcessIds.Length > 0) {
                     
                     // cmdlet.WriteVerbose(cmdlet, "getting a window by PID");
+                    if (null == ResultCollection || 0 == ResultCollection.Count) {
                     ResultCollection = GetWindowCollectionByPid(data.ProcessIds, data.First, data.Recurse, data.Name, data.AutomationId, data.Class);
-
+                    }
                 } else if (null != data.ProcessNames && data.ProcessNames.Length > 0) {
                     
                     // cmdlet.WriteVerbose(cmdlet, "getting a window by name");
+                    if (null == ResultCollection || 0 == ResultCollection.Count) {
                     ResultCollection = GetWindowCollectionByProcessName(data.ProcessNames, data.First, data.Recurse, data.Name, data.AutomationId, data.Class);
-
+                    }
                 } else if ((null != data.Name && data.Name.Length > 0) ||
                            !string.IsNullOrEmpty(data.AutomationId) ||
                            !string.IsNullOrEmpty(data.Class)) {
                     
                     // cmdlet.WriteVerbose(cmdlet, "getting a window by name, automationId, className");
+                    if (null == ResultCollection || 0 == ResultCollection.Count) {
                     ResultCollection = GetWindowCollectionByName(data.Name, data.AutomationId, data.Class, data.Recurse);
+                    }
+                }
+                
+                if (null == ResultCollection || 0 == ResultCollection.Count) {
+                    
+                    AutomationFactory.ChildKernel.Release(ResultCollection);
                 }
                 
                 // 20140122

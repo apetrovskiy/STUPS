@@ -12,16 +12,20 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
     using System.Windows.Automation;
     using System.Windows.Automation.Text;
     using UIAutomation;
-    using MbUnit.Framework;
+    using MbUnit.Framework;using Xunit;
     using NSubstitute;
     
     /// <summary>
     /// Description of ISupportsTextPatternTestFixture.
     /// </summary>
-    // [Ignore]
-    [TestFixture]
+    [MbUnit.Framework.TestFixture]
     public class ISupportsTextPatternTestFixture
     {
+        public ISupportsTextPatternTestFixture()
+        {
+            FakeFactory.Init();
+        }
+        
         [SetUp]
         public void SetUp()
         {
@@ -33,61 +37,67 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         {
         }
         
-        [Test]
+        [Test][Fact]
         public void Text_ImplementsCommonPattern()
         {
 //            ISupportsInvokePattern invokableElement =
 //                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
 //                    new IBasePattern[] { FakeFactory.GetTextPattern(new PatternsData()) }) as ISupportsInvokePattern;
 //            
-//            Assert.IsNotNull(invokableElement as ISupportsInvokePattern);
+//            MbUnit.Framework.Assert.IsNotNull(invokableElement as ISupportsInvokePattern);
             
             ISupportsHighlighter highlightableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTextPattern(new PatternsData()) }) as ISupportsHighlighter;
             
-            Assert.IsNotNull(highlightableElement as ISupportsHighlighter);
+            MbUnit.Framework.Assert.IsNotNull(highlightableElement as ISupportsHighlighter);
+            Xunit.Assert.NotNull(highlightableElement as ISupportsHighlighter);
             
             ISupportsNavigation navigatableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTextPattern(new PatternsData()) }) as ISupportsNavigation;
             
-            Assert.IsNotNull(navigatableElement as ISupportsNavigation);
+            MbUnit.Framework.Assert.IsNotNull(navigatableElement as ISupportsNavigation);
+            Xunit.Assert.NotNull(navigatableElement as ISupportsNavigation);
             
             ISupportsConversion conversibleElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTextPattern(new PatternsData()) }) as ISupportsConversion;
             
-            Assert.IsNotNull(conversibleElement as ISupportsConversion);
+            MbUnit.Framework.Assert.IsNotNull(conversibleElement as ISupportsConversion);
+            Xunit.Assert.NotNull(conversibleElement as ISupportsConversion);
             
             ISupportsRefresh refreshableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTextPattern(new PatternsData()) }) as ISupportsRefresh;
             
-            Assert.IsNotNull(refreshableElement as ISupportsRefresh);
+            MbUnit.Framework.Assert.IsNotNull(refreshableElement as ISupportsRefresh);
+            Xunit.Assert.NotNull(refreshableElement as ISupportsRefresh);
         }
         
-        [Test]
+        [Test][Fact]
         public void Text_ImplementsPatternInQuestion()
         {
             ISupportsTextPattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTextPattern(new PatternsData()) }) as ISupportsTextPattern;
             
-            Assert.IsNotNull(element as ISupportsTextPattern);
+            MbUnit.Framework.Assert.IsNotNull(element as ISupportsTextPattern);
+            Xunit.Assert.NotNull(element as ISupportsTextPattern);
         }
         
-        [Test]
+        [Test][Fact]
         public void Text_DoesNotImplementOtherPatterns()
         {
             ISupportsValuePattern element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTextPattern(new PatternsData()) }) as ISupportsValuePattern;
             
-            Assert.IsNull(element as ISupportsValuePattern);
+            MbUnit.Framework.Assert.IsNull(element as ISupportsValuePattern);
+            Xunit.Assert.Null(element as ISupportsValuePattern);
         }
         
-        [Test]
+        [Test][Fact]
         public void Text_GetTextSelection()
         {
             // Arrange
@@ -106,10 +116,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             catch {}
             
             // Assert
-            Assert.AreEqual(expectedResult, result);
+            MbUnit.Framework.Assert.AreEqual(expectedResult, result);
+            Xunit.Assert.Equal(expectedResult, result);
         }
         
-        [Test]
+        [Test][Fact]
         public void Text_GetVisibleRanges()
         {
             // Arrange
@@ -128,10 +139,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             catch {}
             
             // Assert
-            Assert.AreEqual(expectedResult, result);
+            MbUnit.Framework.Assert.AreEqual(expectedResult, result);
+            Xunit.Assert.Equal(expectedResult, result);
         }
         
-        [Test]
+        [Test]// [Fact]
         [Ignore]
         public void Text_RangeFromChild()
         {
@@ -151,10 +163,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             catch {}
             
             // Assert
-            Assert.AreEqual(expectedResult, result);
+            MbUnit.Framework.Assert.AreEqual(expectedResult, result);
+            Xunit.Assert.Equal(expectedResult, result);
         }
         
-        [Test]
+        [Test]// [Fact]
         [Ignore]
         public void Text_RangeFromPoint()
         {
@@ -174,11 +187,12 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             catch {}
             
             // Assert
-            Assert.AreEqual(expectedResult, result);
+            MbUnit.Framework.Assert.AreEqual(expectedResult, result);
+            Xunit.Assert.Equal(expectedResult, result);
         }
         
         
-        [Test]
+        [Test]// [Fact]
         [Ignore]
         public void Text_DocumentRange()
         {
@@ -191,10 +205,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             // Act
             
             // Assert
-            Assert.AreEqual(expectedValue, element.DocumentRange);
+            MbUnit.Framework.Assert.AreEqual(expectedValue, element.DocumentRange);
         }
         
-        [Test]
+        [Test][Fact]
         public void Text_SupportedTextSelection()
         {
             // Arrange
@@ -206,7 +220,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             // Act
             
             // Assert
-            Assert.AreEqual(expectedValue, element.SupportedTextSelection);
+            MbUnit.Framework.Assert.AreEqual(expectedValue, element.SupportedTextSelection);
         }
     }
 }

@@ -33,29 +33,8 @@ namespace UIAutomation
         
         public virtual void OnSleepHook()
         {
-//            int timeout = Timeout;
-//            if (0 == timeout) {
-//                timeout = 10;
-//            } else if (timeout <= 5000) {
-//                timeout /= 20;
-//            } else if (timeout <= 20000) {
-//                timeout /= 40;
-//            } else if (timeout <= 60000) {
-//                timeout /= 60;
-//            } else if (timeout <= 600000) {
-//                timeout /= 100;
-//            } else {
-//                timeout /= 200;
-//            }
-//            if (timeout < Preferences.Timeout) {
-//                timeout = Preferences.Timeout;
-//            }
-            
-            TimeoutManager timeoutManager = new TimeoutManager(Timeout);
-            
-            // System.Threading.Thread.Sleep(timeout);
-            
-            System.Threading.Thread.Sleep(timeoutManager.CalculateAdaptiveTimeout());
+//            TimeoutManager timeoutManager = new TimeoutManager(Timeout);
+//            System.Threading.Thread.Sleep(timeoutManager.CalculateAdaptiveTimeout());
         }
         
         internal virtual bool ContinueSearch(int timeout, DateTime startTime)
@@ -86,7 +65,12 @@ namespace UIAutomation
             
             OnStartHook();
             
+            // 20140125
+            // AutomationFactory.InitNewCustomScope();
+            
             do {
+                // 20140125
+                // AutomationFactory.InitNewCustomScope();
                 
                 BeforeSearchHook();
                 

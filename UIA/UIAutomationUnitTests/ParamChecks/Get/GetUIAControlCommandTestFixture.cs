@@ -9,12 +9,12 @@
 
 namespace UIAutomationUnitTests.CheckCmdletParameters
 {
-    using MbUnit.Framework;
+    using MbUnit.Framework;// using Xunit;
     
     /// <summary>
     /// Description of GetUiaControlCommandTestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture]
     public class GetUiaControlCommandTestFixture
     {
         [SetUp]
@@ -29,7 +29,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
             // MiddleLevelCode.DisposeRunspace();
         }
         
-        [Test]
+        [Test]// [Fact]
         [Category("Fast")]
         public void Get_UiaControl_NoParameters()
         {
@@ -39,7 +39,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         		"Get-UiaControl;");
         }
         
-        [Test]
+        [Test]// [Fact]
         [Category("Fast")]
         public void Get_UiaControl_ControlType()
         {
@@ -49,7 +49,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         		"Get-UiaControl -ControlType Button;");
         }
         
-        [Test]
+        [Test]// [Fact]
         [Category("Fast")]
         public void Get_UiaControl_Name()
         {
@@ -59,7 +59,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         		"Get-UiaControl -Name 'aaa';");
         }
         
-        [Test]
+        [Test]// [Fact]
         [Category("Fast")]
         public void Get_UiaControl_ControlType_Name()
         {
@@ -69,7 +69,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         		"Get-UiaControl -ControlType Button -Name 'aaa';");
         }
         
-        [Test]
+        [Test]// [Fact]
         [Category("Fast")]
         public void Get_UiaControl_AutomationId()
         {
@@ -79,7 +79,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         		"Get-UiaControl -AutomationId '111';");
         }
         
-        [Test]
+        [Test]// [Fact]
         [Category("Fast")]
         public void Get_UiaControl_ControlType_AutomationId()
         {
@@ -89,7 +89,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         		"Get-UiaControl -ControlType Button -AutomationId '111';");
         }
         
-        [Test]
+        [Test]// [Fact]
         [Category("Fast")]
         public void Get_UiaControl_ClassName()
         {
@@ -99,7 +99,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         		"Get-UiaControl -Class 'class';");
         }
         
-        [Test]
+        [Test]// [Fact]
         [Category("Fast")]
         public void Get_UiaControl_ControlType_ClassName()
         {

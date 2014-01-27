@@ -10,7 +10,7 @@
 namespace UIAutomationUnitTests
 {
     // using System;
-    // using System.Collections;
+    using System.Collections;
     using System.Collections.Generic;
     // using System.Collections.ObjectModel;
     using UIAutomation;
@@ -44,12 +44,8 @@ namespace UIAutomationUnitTests
         
         public static List<IUiElement> GetResultList_ViaWildcards(GetControlCmdletBase cmdlet, IUiElement element, Condition condition)
         {
-            // GetControlCollectionCmdletBase cmdletDerived = new GetControlCollectionCmdletBase();
-            
             List<IUiElement> resultList =
-                // cmdletDerived.SearchByWildcardOrRegexViaUia(
                 ControlSearch.SearchByWildcardOrRegexViaUia(
-                    // cmdlet,
                     element,
                     cmdlet.InputObject,
                     cmdlet.Name,
@@ -67,8 +63,6 @@ namespace UIAutomationUnitTests
         public static List<IUiElement> GetResultList_ExactSearch(GetControlCmdletBase cmdlet, IUiElement element, Condition conditions)
         {
             cmdlet.ResultListOfControls =
-                // cmdlet.SearchByExactConditionsViaUia(cmdlet, element, conditions);
-                // ControlSearch.SearchByWildcardOrRegexViaUia(cmdlet, element, conditions);
                 ControlSearch.SearchByExactConditionsViaUia(
                     element,
                     cmdlet.SearchCriteria,
@@ -79,22 +73,14 @@ namespace UIAutomationUnitTests
         public static List<IUiElement> GetResultList_TextSearch(GetControlCmdletBase cmdlet, IUiElement element, Condition conditions)
         {
             cmdlet.ResultListOfControls =
-                // cmdlet.SearchByContainsTextViaUia(cmdlet, element, conditions);
                 ControlSearch.SearchByContainsTextViaUia(element, conditions);
             return cmdlet.ResultListOfControls;
         }
         
         public static List<IUiElement> GetResultList_ReturnOnlyRightElements(GetControlCmdletBase cmdlet, IEnumerable<IUiElement> elements, bool useWildcardOrRegex)
-        /*
-        public static List<IUiElement> GetResultList_ReturnOnlyRightElements(GetControlCmdletBase cmdlet, IUiElement[] elements, bool useWildcardOrRegex)
-        */
         {
-            // HasTimeoutCmdletBase cmdletDerived = new HasTimeoutCmdletBase();
-            
             List<IUiElement> resultList =
-                // HasTimeoutCmdletBase.ReturnOnlyRightElements(
                 WindowSearch.ReturnOnlyRightElements(
-                    // cmdletDerived,
                     elements,
                     cmdlet.Name,
                     cmdlet.AutomationId,
@@ -105,6 +91,18 @@ namespace UIAutomationUnitTests
                     useWildcardOrRegex);
             
             return resultList;
+        }
+        
+        public static bool GetResult_IsStepActive(Hashtable[] searchCriteria, IUiEltCollection elements)
+        {
+            var step = new WizardStep("stepName", 1) {
+                Description = "description",
+                SearchCriteria = searchCriteria
+            };
+            
+            var wizard = new Wizard("wizardName");
+            
+            return wizard.IsStepActive(step, elements);
         }
     }
 }

@@ -113,6 +113,9 @@ namespace UIAutomation
         {
             bool result = false;
             
+            // 20140127
+            if (null == dict || 0 == dict.Keys.Count()) return result;
+            
             foreach (string key in dict.Keys) {
 
                 // WriteVerbose(this, "Key = " + key + "; Value = " + dict[key].ToString());

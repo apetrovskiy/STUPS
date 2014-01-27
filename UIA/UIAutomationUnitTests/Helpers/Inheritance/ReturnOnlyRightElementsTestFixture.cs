@@ -1,5 +1,4 @@
-﻿using System;
-/*
+﻿/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
  * Date: 11/18/2013
@@ -10,6 +9,8 @@
 
 namespace UIAutomationUnitTests.Helpers.Inheritance
 {
+    using System;
+    
     using System.Collections.Generic;
     using System.Windows.Automation;
     using System.Linq;
@@ -63,7 +64,6 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             switch (selector) {
                 case UIAutomationUnitTests.Helpers.Inheritance.UsualWildcardRegex.Wildcard:
                     condition =
-                        // cmdlet.GetWildcardSearchCondition(cmdlet);
                         ControlSearch.GetWildcardSearchCondition(
                             new ControlSearchData {
                                 ControlType = FakeFactory.ConvertControlTypeToStringArray(controlTypes),
@@ -76,7 +76,6 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                     break;
                 case UIAutomationUnitTests.Helpers.Inheritance.UsualWildcardRegex.Regex:
                     condition =
-                        // cmdlet.GetWildcardSearchCondition(cmdlet);
                         ControlSearch.GetWildcardSearchCondition(
                             new ControlSearchData {
                                 ControlType = FakeFactory.ConvertControlTypeToStringArray(controlTypes),
@@ -167,12 +166,13 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                                 IValuePattern valuePattern = x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern;
                                 return valuePattern != null && Regex.IsMatch(valuePattern.Current.Value, txtValue);
                             });
-                        
-                        resultList.All(
-                            x => {
-                                IValuePattern valuePattern = x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern;
-                                return valuePattern != null && Regex.IsMatch(valuePattern.Current.Value, txtValue);
-                            });
+                        Xunit.Assert.True(
+                            resultList.All(
+                                x => {
+                                    IValuePattern valuePattern = x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern;
+                                    return valuePattern != null && Regex.IsMatch(valuePattern.Current.Value, txtValue);
+                                })
+                           );
                     }
                     break;
             }
@@ -187,9 +187,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 new HasTimeoutCmdletBase();
             
             List<IUiElement> resultList =
-                // HasTimeoutCmdletBase.ReturnOnlyRightElements(
                 WindowSearch.ReturnOnlyRightElements(
-                    // cmdlet,
                     null,
                     string.Empty,
                     string.Empty,
@@ -209,9 +207,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 new HasTimeoutCmdletBase();
             
             List<IUiElement> resultList =
-                // HasTimeoutCmdletBase.ReturnOnlyRightElements(
                 WindowSearch.ReturnOnlyRightElements(
-                    // cmdlet,
                     new UiElement[] {},
                     string.Empty,
                     string.Empty,
@@ -241,9 +237,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                     string.Empty);
             
             List<IUiElement> resultList =
-                // HasTimeoutCmdletBase.ReturnOnlyRightElements(
                 WindowSearch.ReturnOnlyRightElements(
-                    // cmdlet,
                     new[] { element },
                     expectedName,
                     string.Empty,
@@ -298,9 +292,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                     string.Empty);
             
             List<IUiElement> resultList =
-                // HasTimeoutCmdletBase.ReturnOnlyRightElements(
                 WindowSearch.ReturnOnlyRightElements(
-                    // cmdlet,
                     new[] { element01, element02, element03, element04 },
                     expectedName,
                     string.Empty,
@@ -314,15 +306,6 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             MbUnit.Framework.Assert.Exists(resultList, e => e.Current.Name == expectedName); // ??
         }
         #endregion for starers
-        
-//        [Test][Fact]
-//        public void MaximumResults()
-//        {
-//            HasTimeoutCmdletBase cmdlet =
-//                new HasTimeoutCmdletBase();
-//            
-//        }
-        
         
         #region Name
         [Test][Fact]

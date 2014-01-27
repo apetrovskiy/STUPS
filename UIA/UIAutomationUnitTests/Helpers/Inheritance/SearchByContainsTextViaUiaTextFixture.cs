@@ -56,7 +56,6 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             GetControlCmdletBase cmdlet =
                 FakeFactory.Get_GetControlCmdletBase(controlType, searchString);
             Condition condition =
-                // cmdlet.GetTextSearchCondition(searchString, new string[]{ controlTypeString }, false);
                 ControlSearch.GetTextSearchCondition(searchString, new string[]{ controlTypeString }, false);
             IUiElement element =
                 FakeFactory.GetElement_ForFindAll(
@@ -72,9 +71,6 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 MbUnit.Framework.Assert.ForAll(
                     resultList.Cast<IUiElement>().ToList<IUiElement>(),
                     x => x.Current.Name == searchString || x.Current.AutomationId == searchString || x.Current.ClassName == searchString ||
-                    // 20131208
-                    // (null != (x.GetCurrentPattern(ValuePattern.Pattern) as IValuePattern) ? (x.GetCurrentPattern(ValuePattern.Pattern) as IValuePattern).Current.Value == searchString : false));
-                    // (null != (x.GetCurrentPattern<IValuePattern, ValuePattern>(ValuePattern.Pattern) as IValuePattern) ? 
                     (null != (x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern) && (x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern).Current.Value == searchString));
                 /*
                 (null != (x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern) ? 

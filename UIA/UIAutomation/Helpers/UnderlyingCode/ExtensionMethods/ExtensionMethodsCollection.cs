@@ -67,9 +67,10 @@ namespace UIAutomation
             return queryByBigFour;
         }
 
+        
         public static IUiElement[] ToArray(this IUiEltCollection collection)
         {
-            return collection.ToArray();
+            return collection.SourceCollection.ToArray();
         }
         
         internal static List<IUiElement> GetFilteredElementsCollection(this List<IUiElement> elementCollection)

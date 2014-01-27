@@ -316,6 +316,9 @@
     <Compile Include="..\UIAutomationUnitTests\Helpers\UnderlyingCode\NewModel\ControlSearchTestFixture.cs">
       <Link>Helpers\UnderlyingCode\NewModel\ControlSearchTestFixture.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\UnderlyingCode\Types\IsStepActiveTestFixture.cs">
+      <Link>Helpers\UnderlyingCode\Types\IsStepActiveTestFixture.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomationUnitTests\Helpers\UnitTestingHelper.cs">
       <Link>Helpers\UnitTestingHelper.cs</Link>
     </Compile>
@@ -407,6 +410,7 @@
     <Folder Include="Helpers\UnderlyingCode" />
     <Folder Include="Helpers\UnderlyingCode" />
     <Folder Include="Helpers\UnderlyingCode\Adapter" />
+    <Folder Include="Helpers\UnderlyingCode\Types" />
     <Folder Include="Helpers\UnderlyingCode\NewModel" />
     <Folder Include="Ninject" />
     <Folder Include="Ninject" />

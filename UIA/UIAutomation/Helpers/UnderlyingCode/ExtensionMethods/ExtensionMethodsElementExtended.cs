@@ -51,6 +51,20 @@ namespace UIAutomation
             }
         }
         
+        // 20140127
+        internal static IUiEltCollection PerformFindAll(this IExtendedModelHolder holder)
+        {
+            try {
+                return (holder as UiExtendedModelHolder).GetParentElement()
+                    .FindAll(
+                        holder.GetScope(),
+                        Condition.TrueCondition);
+            } catch (Exception) {
+                return new UiEltCollection(true);
+                // throw;
+            }
+        }
+        
         internal static IExtendedModelHolder GetExtendedModelHolder(this IUiElement element, TreeScope scope)
         {
             return AutomationFactory.GetUiExtendedModelHolder(element, scope);

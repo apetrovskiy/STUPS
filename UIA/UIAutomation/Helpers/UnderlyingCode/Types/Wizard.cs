@@ -112,6 +112,150 @@ namespace UIAutomation
             
         	WizardStep resultStep = null;
         	
+        	// load controls from the wizard's window
+        	var allWizardControls =
+        	    (CurrentData.CurrentWindow as ISupportsExtendedModel).Descendants.PerformFindAll();
+        	
+        	//GetControlCmdletBase cmdletCtrl =
+        	//	new GetControlCmdletBase();
+        	// 20140127
+        	// GetUiaControlCommand cmdletCtrl =
+        	//     new GetUiaControlCommand
+        	//     {
+        	//         InputObject = new UiElement[] {(UiElement) CurrentData.CurrentWindow},
+        	//         Timeout = 0
+        	//     };
+        	
+        	// 20140127
+        	// var controlSearchData =
+        	//     new ControlSearchData {
+        	//     InputObject = new IUiElement[] { CurrentData.CurrentWindow }
+        	// };
+            
+            foreach (WizardStep step in Steps) {
+
+        	    if (StopImmediately) {
+        	        resultStep = step;
+        	        break;
+        	    }
+        	    
+        	    // 20130320
+			    // sleep interval
+			    
+			    // 20140127
+			    // Thread.Sleep(Preferences.OnSelectWizardStepDelay);
+        	    
+			    // 20140127
+        		// cmdletCtrl.SearchCriteria = step.SearchCriteria;
+        		// controlSearchData.SearchCriteria = step.SearchCriteria;
+        		
+//        		if (step.SearchCriteria.All(x => {
+//        		                                  foreach (IUiElement element in allWizardControls) {
+//        		                                      return ControlSearch.TestControlWithAllSearchCriteria(step.SearchCriteria, element); 
+//        		                                  }
+//        		                                return false;
+//        		                            })) {
+//                    
+//        		    
+//        		    Console.WriteLine("there is global match");
+//                    
+//        		    
+//            	    resultStep = step;
+//            	    ActiveStep = step;
+//            	    break;
+//                    
+//                }
+        		
+        		if (IsStepActive(step, allWizardControls)) {
+        		    resultStep = step;
+        		    ActiveStep = step;
+        		    break;
+        		}
+        		
+//	        	List<IUiElement> controlsList = new List<IUiElement>();
+//	        	
+//
+//        	    if (null == controlsList || 0 >= controlsList.Count) continue;
+//        	    if (step == ActiveStep) {
+//	        	        
+//        	        // 20130423
+//        	        if (Preferences.HighlightCheckedControl) {
+//        	            
+//        	            foreach (IUiElement elementChecked in controlsList) {
+//        	                UiaHelper.HighlightCheckedControl(elementChecked);
+//        	            }
+//        	        }
+//	        	        
+//        	        continue;
+//        	    }
+//        	    
+//        	    // 20140121
+//        	    if (null != controlsList) {
+//        	        controlsList.Clear();
+//        	        controlsList = null;
+//        	    }
+//	        	    
+//        	    resultStep = step;
+//        	    ActiveStep = step;
+//        	    break;
+            }
+        	
+        	// 20130515
+        	// moving the current step to the end of the step collection
+        	try {
+        	   int currentIndex = Steps.IndexOf(resultStep);
+        	   // 20140127
+        	   // try {
+        	   //     cmdletCtrl.WriteInfo(cmdletCtrl, "current index = " + currentIndex.ToString());
+        	   // }
+        	   // catch {
+        	   //     cmdletCtrl.WriteInfo(cmdletCtrl, "failed to show the current index");
+        	   // }
+        	   // 20130712
+        	   if (0 <= currentIndex && (Steps.Count - 1) != currentIndex) {
+            	   Steps.Insert(Steps.Count, resultStep);
+            	   // cmdletCtrl.WriteInfo(cmdletCtrl, "inserted after the last step");
+            	   Steps.RemoveAt(currentIndex);
+            	   // cmdletCtrl.WriteInfo(cmdletCtrl, "deleted from the previous position");
+        	   } else {
+        	       // cmdletCtrl.WriteInfo(cmdletCtrl, "there was no manipulation with wizard steps' order");
+        	   }
+        	}
+        	catch (Exception eMovingToTheEnd) {
+        	    // cmdletCtrl.WriteInfo(cmdletCtrl, eMovingToTheEnd.Message);
+        	}
+        	
+        	return resultStep;
+        }
+        
+        internal bool IsStepActive(WizardStep step, IUiEltCollection elements)
+        {
+            bool result = false;
+            
+Console.WriteLine("testing step '" + step.Name + "'");
+Console.WriteLine("there are {0} elements", elements.Count);
+            
+            if (step.SearchCriteria.All(criterion => {
+                                            foreach (IUiElement element in elements) {
+                                                return ControlSearch.TestControlWithAllSearchCriteria(step.SearchCriteria, element);
+                                            }
+                                            return false;
+                                        })) {
+                result = true;
+Console.WriteLine("step active? " + result.ToString());
+            }
+            
+            return result;
+        }
+        
+        // 20140127
+        /*
+        public WizardStep GetActiveStep()
+        {
+            StopImmediately = false;
+            
+        	WizardStep resultStep = null;
+        	
         	//GetControlCmdletBase cmdletCtrl =
         	//	new GetControlCmdletBase();
         	// 20140127
@@ -226,6 +370,7 @@ namespace UIAutomation
         	
         	return resultStep;
         }
+        */
         
         public void Stop()
         {

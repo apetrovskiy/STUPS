@@ -28,8 +28,6 @@ namespace UIAutomation
         private Condition conditionsForWildCards = null;
         private Condition conditionsForTextSearch = null;
         
-        // 20140121
-        // private GetControlCmdletBase tempCmdlet;
         private bool notTextSearch;
         
         protected static bool caseSensitive { get; set; }
@@ -83,7 +81,6 @@ namespace UIAutomation
         public override List<IUiElement> SearchForElements(SearchTemplateData searchData)
         {
             ControlSearchData data = searchData as ControlSearchData;
-            // tempCmdlet = null;
             
             foreach (IUiElement inputObject in data.InputObject) {
                 
@@ -224,15 +221,6 @@ namespace UIAutomation
 //            }
         }
         
-//        public override void OnSleepHook()
-//        {
-////            int timeout = Timeout;
-////            if (0 == timeout) {
-////                timeout = 5;
-////            }
-////            System.Threading.Thread.Sleep(Timeout / 20);
-//        }
-        
         public override void OnFailureHook()
         {
             
@@ -243,10 +231,7 @@ namespace UIAutomation
             
         }
         
-        
-        // internal List<IUiElement> SearchByContainsTextViaUia(
         internal static List<IUiElement> SearchByContainsTextViaUia(
-            // GetControlCmdletBase cmdlet,
             IUiElement inputObject,
             Condition conditionsForTextSearch)
         {
@@ -377,7 +362,6 @@ namespace UIAutomation
             return listOfColllectedResults;
         }
         
-        // internal List<IUiElement> SearchByWildcardOrRegexViaUia(
         internal static List<IUiElement> SearchByWildcardOrRegexViaUia(
             IUiElement inputObject,
             IUiElement[] InputObject,
@@ -487,7 +471,6 @@ namespace UIAutomation
             }
         }
         
-        // internal IEnumerable<IUiElement> SearchByWildcardViaWin32(GetControlCmdletBase cmdlet, IUiElement inputObject)
         internal IEnumerable<IUiElement> SearchByWildcardViaWin32(
             IUiElement inputObject,
             string name,
@@ -573,7 +556,6 @@ namespace UIAutomation
             return resultList;
         }
         
-        // protected internal bool TestControlWithAllSearchCriteria(
         internal static bool TestControlWithAllSearchCriteria(
             IEnumerable<Hashtable> hashtables,
             IUiElement element)
@@ -603,7 +585,6 @@ namespace UIAutomation
             return result;
         }
         
-        // public Condition[] GetControlsConditions(GetControlCollectionCmdletBase cmdlet)
         public Condition[] GetControlsConditions(ControlSearchData data)
         {
             List<Condition> conditions =

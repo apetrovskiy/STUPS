@@ -178,6 +178,7 @@
     <Compile Include="Helpers\UnderlyingCode\elementOfPossibleControlTypeTestFixture.cs" />
     <Compile Include="Helpers\UnderlyingCode\getControlConditionsTestFixture.cs" />
     <Compile Include="Helpers\UnderlyingCode\NewModel\ControlSearchTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Types\IsStepActiveTestFixture.cs" />
     <Compile Include="Helpers\UnitTestingHelper.cs" />
     <Compile Include="ParamChecks\Common\HideUIACurrentHighlighterCommandTestFixture.cs" />
     <Compile Include="ParamChecks\Common\InvokeUIAControlClickCommandTestFixture.cs" />
@@ -234,6 +235,7 @@
     <Folder Include="Helpers\UnderlyingCode" />
     <Folder Include="Fakes" />
     <Folder Include="Helpers\UnderlyingCode\Adapter" />
+    <Folder Include="Helpers\UnderlyingCode\Types" />
     <Folder Include="Helpers\UnderlyingCode\NewModel" />
     <Folder Include="Ninject" />
     <Folder Include="Ninject" />

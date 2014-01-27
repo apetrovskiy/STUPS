@@ -1,5 +1,4 @@
-﻿using System;
-/*
+﻿/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
  * Date: 1/17/2014
@@ -10,6 +9,8 @@
 
 namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
 {
+    using System;
+    
     using System.Windows.Automation;
     using UIAutomation;
     using MbUnit.Framework;using Xunit;

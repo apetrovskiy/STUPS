@@ -243,15 +243,6 @@ namespace UIAutomation
             }
         }
         
-//        public override void OnSleepHook()
-//        {
-////            int timeout = Timeout;
-////            if (0 == timeout) {
-////                timeout = 5;
-////            }
-////            System.Threading.Thread.Sleep(Timeout / 20);
-//        }
-        
         public override void OnFailureHook()
         {
             

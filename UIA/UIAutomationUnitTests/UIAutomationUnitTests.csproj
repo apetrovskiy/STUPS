@@ -178,6 +178,7 @@
     <Compile Include="Helpers\UnderlyingCode\elementOfPossibleControlTypeTestFixture.cs" />
     <Compile Include="Helpers\UnderlyingCode\getControlConditionsTestFixture.cs" />
     <Compile Include="Helpers\UnderlyingCode\NewModel\ControlSearchTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\NewModel\TimeoutManagerTestFixture.cs" />
     <Compile Include="Helpers\UnderlyingCode\Types\IsStepActiveTestFixture.cs" />
     <Compile Include="Helpers\UnitTestingHelper.cs" />
     <Compile Include="ParamChecks\Common\HideUIACurrentHighlighterCommandTestFixture.cs" />

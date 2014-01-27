@@ -14,29 +14,5 @@ namespace UIAutomation
     /// </summary>
     public class UiKeyboardInputHolder : UiInputHolder, IKeyboardInputHolder
     {
-        
-//        public System.DateTime CreationTime { get; set; }
-        
-        public UiKeyboardInputHolder()
-        {
-//            CreationTime = System.DateTime.Now;
-        }
-        
-        
-//        private IUiElement _parentElement;
-//        
-//        public UiKeyboardInputHolder()
-//        {
-//        }
-//        
-//        public void SetParentElement(IUiElement parentElement)
-//        {
-//            _parentElement = parentElement;
-//        }
-//        
-//        public IUiElement GetParentElement()
-//        {
-//            return _parentElement;
-//        }
     }
 }

@@ -99,7 +99,9 @@ namespace SePSX
             OnErrorDelay = 0; //500;
             OnErrorAction = null;
             //OnSleepDelay = 1000;
-            OnSleepDelay = 200; //500;
+            // 20140127
+            // OnSleepDelay = 200; //500;
+            OnSleepDelay = 50;
             OnSleepAction = null;
 //            OnClickDelay = 0;
             Log = true;

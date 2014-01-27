@@ -29,7 +29,7 @@ namespace UIAutomation
         {
             int timeout = _givenTimeout;
             if (0 == timeout) {
-                timeout = 10;
+                timeout = Preferences.OnSleepDelay;
             } else if (timeout <= 5000) {
                 timeout /= 20;
             } else if (timeout <= 20000) {
@@ -41,8 +41,8 @@ namespace UIAutomation
             } else {
                 timeout /= 200;
             }
-            if (timeout < Preferences.Timeout) {
-                timeout = Preferences.Timeout;
+            if (timeout < Preferences.OnSleepDelay) {
+                timeout = Preferences.OnSleepDelay;
             }
             CalculatedTimeout = timeout;
             return CalculatedTimeout;

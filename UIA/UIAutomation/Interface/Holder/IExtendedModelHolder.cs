@@ -16,8 +16,6 @@ namespace UIAutomation
     /// </summary>
     public interface IExtendedModelHolder : IHolder
     {
-        // void SetParentElement(IUiElement parentElement);
-        // IUiElement GetParentElement();
         void SetScope(TreeScope scope);
         TreeScope GetScope();
     }

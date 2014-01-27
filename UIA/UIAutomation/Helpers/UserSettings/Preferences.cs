@@ -68,7 +68,9 @@ namespace UIAutomation
             OnErrorDelay = 500;
             OnErrorAction = null;
             //OnSleepDelay = 1000;
-            OnSleepDelay = 500;
+            // 20140127
+            // OnSleepDelay = 500;
+            // OnSleepDelay = 100;
             OnSleepAction = null;
             OnClickDelay = 0;
             Log = true;
@@ -82,6 +84,9 @@ namespace UIAutomation
             MaximumErrorCount = 256;
             MaximumEventCount = 256;
             Mode.Profile = Modes.Presentation;
+            
+            // 20140127
+            OnSleepDelay = 50;
             
             // CacheRequest
             //FromCache = true;

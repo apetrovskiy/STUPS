@@ -43,21 +43,13 @@ namespace UIAutomation
 		IUiElement CachedParent { get; }
 		IUiEltCollection CachedChildren { get; }
         
-		// AutomationElement GetSourceElement();
-		// T GetSourceElement<T>();
 		object GetSourceElement();
 		void SetSourceElement<T>(T element);
-		// 20130104
-		// string Tag { get; set; }
 		string GetTag();
 		void SetTag(string tag);
-		// 20140110
-		bool IsValid(); // { get; }
-		// string Info { get; }
-
+		bool IsValid();
+		
 		// internal methods
 		object GetPatternPropertyValue(AutomationProperty property, bool useCache);
-
-		// InnerElementTypes InnerElementType { get; set; }
 	}
 }

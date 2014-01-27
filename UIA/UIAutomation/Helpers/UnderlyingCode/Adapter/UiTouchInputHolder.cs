@@ -14,27 +14,5 @@ namespace UIAutomation
     /// </summary>
     public class UiTouchInputHolder : UiInputHolder, ITouchInputHolder
     {
-//        public System.DateTime CreationTime { get; set; }
-        
-        public UiTouchInputHolder()
-        {
-//            CreationTime = System.DateTime.Now;
-        }
-        
-//        private IUiElement _parentElement;
-//        
-//        public UiTouchInputHolder()
-//        {
-//        }
-//        
-//        public void SetParentElement(IUiElement parentElement)
-//        {
-//            _parentElement = parentElement;
-//        }
-//        
-//        public IUiElement GetParentElement()
-//        {
-//            return _parentElement;
-//        }
     }
 }

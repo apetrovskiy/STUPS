@@ -14,27 +14,5 @@ namespace UIAutomation
     /// </summary>
     public class UiMouseInputHolder : UiInputHolder, IMouseInputHolder
     {
-//        public System.DateTime CreationTime { get; set; }
-        
-        public UiMouseInputHolder()
-        {
-//            CreationTime = System.DateTime.Now;            
-        }
-        
-//        private IUiElement _parentElement;
-//        
-//        public UiMouseInputHolder()
-//        {
-//        }
-//        
-//        public void SetParentElement(IUiElement parentElement)
-//        {
-//            _parentElement = parentElement;
-//        }
-//        
-//        public IUiElement GetParentElement()
-//        {
-//            return _parentElement;
-//        }
     }
 }

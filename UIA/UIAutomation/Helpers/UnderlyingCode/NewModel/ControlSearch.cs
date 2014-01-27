@@ -126,7 +126,6 @@ namespace UIAutomation
                 #region exact search
                 if (0 == ResultCollection.Count && notTextSearch && !data.Regex) {
                     if (!Preferences.DisableExactSearch && !data.Win32 ) {
-                        // if (!exactSearchDone || !wildcardSearchDone) {
                             
                             UsedSearchType = UsedSearchType.Control_ExactSearch;
                             ResultCollection.AddRange(
@@ -134,11 +133,6 @@ namespace UIAutomation
                                     inputObject,
                                     data.SearchCriteria,
                                     conditionsForExactSearch));
-                            
-                        //     exactSearchDone = true;
-                        // }
-                        // 
-                        // wildcardSearchDone = false;
                     }
                 }
                 #endregion exact search
@@ -146,7 +140,6 @@ namespace UIAutomation
                 #region wildcard search
                 if (0 == ResultCollection.Count && notTextSearch && !data.Regex) {
                     if (!Preferences.DisableWildCardSearch && !data.Win32) {
-                        // if (!wildcardSearchDone || !exactSearchDone) {
                             
                             UsedSearchType = UsedSearchType.Control_WildcardSearch;
                             ResultCollection.AddRange(
@@ -161,9 +154,6 @@ namespace UIAutomation
                                     data.ControlType,
                                     conditionsForWildCards,
                                     true));
-                            
-                        //     wildcardSearchDone = true;
-                        // }
                     }
                 }
                 #endregion wildcard search
@@ -191,8 +181,6 @@ namespace UIAutomation
                 
                 #region Win32 search
                 if (0 == ResultCollection.Count && notTextSearch && !data.Regex) {
-                    // 20140117
-                    // if (!Preferences.DisableWin32Search || data.Win32) {
                     if (!Preferences.DisableWin32Search && data.Win32) {
                         
                         UsedSearchType = UsedSearchType.Control_Win32Search;
@@ -562,17 +550,12 @@ namespace UIAutomation
         {
             bool result = false;
             
-            // 20140127
             if (null == hashtables || 0 == hashtables.Count()) return result;
             
             foreach (Hashtable hashtable in hashtables) {
                 
                 result =
-                    // TestControlByPropertiesFromDictionary(
-                    //     ConvertHashtableToDictionary(hashtable),
-                    //     element);
                     element.TestControlByPropertiesFromDictionary(
-                        // ConvertHashtableToDictionary(hashtable));
                         hashtable.ConvertHashtableToDictionary());
                 
                 if (result) {

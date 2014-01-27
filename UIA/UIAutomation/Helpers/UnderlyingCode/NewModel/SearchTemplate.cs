@@ -26,15 +26,14 @@ namespace UIAutomation
         public abstract void BeforeSearchHook();
         public abstract List<IUiElement> SearchForElements(SearchTemplateData data);
         public abstract void AfterSearchHook();
-        // public abstract void OnSleepHook();
         public abstract void OnFailureHook();
         public abstract void OnSuccessHook();
         public abstract string TimeoutExpirationInformation { get; set; }
         
         public virtual void OnSleepHook()
         {
-//            TimeoutManager timeoutManager = new TimeoutManager(Timeout);
-//            System.Threading.Thread.Sleep(timeoutManager.CalculateAdaptiveTimeout());
+            TimeoutManager timeoutManager = new TimeoutManager(Timeout);
+            System.Threading.Thread.Sleep(timeoutManager.CalculateAdaptiveTimeout());
         }
         
         internal virtual bool ContinueSearch(int timeout, DateTime startTime)

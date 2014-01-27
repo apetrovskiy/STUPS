@@ -316,6 +316,9 @@
     <Compile Include="..\UIAutomationUnitTests\Helpers\UnderlyingCode\NewModel\ControlSearchTestFixture.cs">
       <Link>Helpers\UnderlyingCode\NewModel\ControlSearchTestFixture.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\UnderlyingCode\NewModel\TimeoutManagerTestFixture.cs">
+      <Link>Helpers\UnderlyingCode\NewModel\TimeoutManagerTestFixture.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomationUnitTests\Helpers\UnderlyingCode\Types\IsStepActiveTestFixture.cs">
       <Link>Helpers\UnderlyingCode\Types\IsStepActiveTestFixture.cs</Link>
     </Compile>

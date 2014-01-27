@@ -101,10 +101,7 @@ namespace UIAutomation
                 }
             }
             
-            // 20131227
             return resultList.ToArray();
-            // IBasePattern[] resultArray = (0 < resultList.Count() ? resultList.ToArray() : new object[] {} as IBasePattern[]);
-            // return resultArray;
         }
         
         internal static bool TestControlByPropertiesFromDictionary(
@@ -113,12 +110,10 @@ namespace UIAutomation
         {
             bool result = false;
             
-            // 20140127
             if (null == dict || 0 == dict.Keys.Count()) return result;
             
             foreach (string key in dict.Keys) {
 
-                // WriteVerbose(this, "Key = " + key + "; Value = " + dict[key].ToString());
                 string keyValue = dict[key].ToString();
                 
                 const WildcardOptions options = WildcardOptions.IgnoreCase |

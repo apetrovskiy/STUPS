@@ -1087,7 +1087,6 @@ try {
             foreach (Hashtable ht in SearchCriteria)
             {
                 Dictionary<string, object> dict =
-                    // ConvertHashtableToDictionary(ht);
                     ht.ConvertHashtableToDictionary();
                 
                 GetControlCmdletBase cmdlet = 
@@ -1112,10 +1111,8 @@ try {
                 /*
                 if (null != inputElements && null != (inputElements as IUiElement[]) && 0 < inputElements.Count()) {
                 */
-
-                    // 20131109
-                    //cmdlet.InputObject = inputElements;
-                    cmdlet.InputObject = inputElements; //.ConvertCmdletInputToCollectionAdapter();
+                
+                    cmdlet.InputObject = inputElements;
                 } else {
                     if (CurrentData.CurrentWindow == null) {
                         return result;
@@ -1126,23 +1123,11 @@ try {
                 
                 WriteVerbose(this, "getting the control");
                 
-                // 20140116
-                // List<IUiElement> elementsToWorkWith = GetControl(cmdlet);
                 var controlSearch =
                     AutomationFactory.GetSearchImpl<ControlSearch>() as ControlSearch;
                 
                 List<IUiElement> elementsToWorkWith =
                     controlSearch.GetElements(
-//                        new ControlSearchData {
-//                            InputObject = cmdlet.InputObject,
-//                            ContainsText = cmdlet.ContainsText,
-//                            Name = cmdlet.Name,
-//                            AutomationId = cmdlet.AutomationId,
-//                            Class = cmdlet.Class,
-//                            Value = cmdlet.Value,
-//                            ControlType = cmdlet.ControlType,
-//                            Win32 = cmdlet.Win32                            
-//                        },
                         controlSearch.ConvertCmdletToControlSearchData(cmdlet),
                         cmdlet.Timeout);
                 
@@ -1161,9 +1146,6 @@ try {
                         try {WriteVerbose(this, "ControlType = " + elementToWorkWith.Current.ControlType.ProgrammaticName); }catch {}
                         
                         bool oneControlResult = 
-                            // TestControlByPropertiesFromDictionary(
-                            //     dict,
-                            //     elementToWorkWith);
                             elementToWorkWith.TestControlByPropertiesFromDictionary(dict);
                         
                         if (oneControlResult) {

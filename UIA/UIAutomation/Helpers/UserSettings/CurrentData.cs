@@ -121,26 +121,6 @@ public static List<object> Events { get; set; } // temporary ??
         internal static Profile GetProfile(string name)
         {
             return Profiles.FirstOrDefault(profile => name == profile.Name);
-            /*
-            Profile result = null;
-            foreach (Profile profile in CurrentData.Profiles)
-            {
-                if (name == profile.Name)
-                {
-                    result = profile;
-                    break;
-                }
-            }
-
-            return result;
-            */
         }
-
-// private static void initTestResults()
-// {
-// if (TestResults.Count<1) {
-// TestResults.Add(new TestResult());
-// }
-// }
     }
 }

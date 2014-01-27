@@ -50,16 +50,7 @@ namespace UIAutomation
                 wizard = wzd;
                 return wizard;
             }
-
-            /*
-            foreach (Wizard wzd in WizardCollection.Wizards) {
-                if (name == wzd.Name) {
-                    wizard = wzd;
-                    return wizard;
-                }
-            }
-            */
-
+            
             return wizard;
         }
     }

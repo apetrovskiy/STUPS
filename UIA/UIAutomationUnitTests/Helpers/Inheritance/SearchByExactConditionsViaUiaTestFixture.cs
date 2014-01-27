@@ -60,11 +60,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 new[] { controlType };
             
             GetControlCmdletBase cmdlet =
-                // FakeFactory.Get_GetControlCmdletBase(new ControlType[] { controlType }, name, automationId, className, txtValue);
                 FakeFactory.Get_GetControlCmdletBase(controlTypes, name, automationId, className, txtValue);
             
             Condition condition =
-                // cmdlet.GetExactSearchCondition(cmdlet);
                 ControlSearch.GetExactSearchCondition(
                     new ControlSearchData {
                         ControlType = FakeFactory.ConvertControlTypeToStringArray(controlTypes),
@@ -106,9 +104,6 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                     .Cast<IUiElement>()
                     .ToList<IUiElement>(), x =>
                     {
-                        // 20131208
-                        // IValuePattern valuePattern = x.GetCurrentPattern(ValuePattern.Pattern) as IValuePattern;
-                        // IValuePattern valuePattern = x.GetCurrentPattern<IValuePattern, ValuePattern>(ValuePattern.Pattern) as IValuePattern;
                         IValuePattern valuePattern = x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern;
                         return valuePattern != null && valuePattern.Current.Value == txtValue;
                     });

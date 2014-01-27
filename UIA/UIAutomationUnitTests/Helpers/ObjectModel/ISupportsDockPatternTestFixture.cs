@@ -105,7 +105,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             // Act
             element.SetDockPosition(expectedValue);
             
-            // MbUnit.Framework.Assert
+            // Assert
             MbUnit.Framework.Assert.AreEqual(expectedValue, element.DockPosition);
             Xunit.Assert.Equal(expectedValue, element.DockPosition);
         }
@@ -128,7 +128,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             }
             catch {}
             
-            // MbUnit.Framework.Assert
+            // Assert
             MbUnit.Framework.Assert.AreEqual(expectedValue, element.DockPosition);
             Xunit.Assert.Equal(expectedValue, element.DockPosition);
         }

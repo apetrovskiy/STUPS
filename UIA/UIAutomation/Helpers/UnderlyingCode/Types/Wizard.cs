@@ -34,30 +34,13 @@ namespace UIAutomation
         public string Name { get; set; }
         public List<WizardStep> Steps { get; set; }
         public ScriptBlock[] StartAction { get; set; }
-        //public ScriptBlock[] StopAction { get; set; }
-        // 20130317
         public ScriptBlock[] StopAction { get; set; }
-        // 20130317
         public ScriptBlock[] DefaultStepForwardAction { get; set; }
-        // 20130317
         public ScriptBlock[] DefaultStepBackwardAction { get; set; }
-        // 20130317
         public ScriptBlock[] DefaultStepCancelAction { get; set; }
-        // 20130317
-        // 20130319
-        //public ScriptBlock[] DefaultStepGetWindowAction { get; set; }
         public ScriptBlock[] GetWindowAction { get; set; }
-        // 20130322
-        // // 20130317
-        //public bool Automatic { get; set; }
-        // 20130322
-        // // 20130317
-        //public bool ForwardDirection { get; set; }
-        // 20130318
         public WizardStep ActiveStep { get; set; }
-        // 20130318
         internal bool StopImmediately { get; set; }
-        // 20130325
         public object[] StartActionParameters { get; set; }
         public object[] StopActionParameters { get; set; }
         
@@ -91,6 +74,7 @@ namespace UIAutomation
         public WizardStep GetStep(string name)
         {
             return Steps.FirstOrDefault(step => String.Equals(name, step.Name, StringComparison.CurrentCultureIgnoreCase));
+            #region commented
             // return this.Steps.FirstOrDefault(step => name.ToUpper() == step.Name.ToUpper());
             /*
             foreach (WizardStep step in this.Steps)
@@ -104,6 +88,7 @@ namespace UIAutomation
                 }
             }
             */
+            #endregion commented
         }
 
         public WizardStep GetActiveStep()
@@ -115,22 +100,6 @@ namespace UIAutomation
         	// load controls from the wizard's window
         	var allWizardControls =
         	    (CurrentData.CurrentWindow as ISupportsExtendedModel).Descendants.PerformFindAll();
-        	
-        	//GetControlCmdletBase cmdletCtrl =
-        	//	new GetControlCmdletBase();
-        	// 20140127
-        	// GetUiaControlCommand cmdletCtrl =
-        	//     new GetUiaControlCommand
-        	//     {
-        	//         InputObject = new UiElement[] {(UiElement) CurrentData.CurrentWindow},
-        	//         Timeout = 0
-        	//     };
-        	
-        	// 20140127
-        	// var controlSearchData =
-        	//     new ControlSearchData {
-        	//     InputObject = new IUiElement[] { CurrentData.CurrentWindow }
-        	// };
             
             foreach (WizardStep step in Steps) {
 
@@ -138,66 +107,12 @@ namespace UIAutomation
         	        resultStep = step;
         	        break;
         	    }
-        	    
-        	    // 20130320
-			    // sleep interval
-			    
-			    // 20140127
-			    // Thread.Sleep(Preferences.OnSelectWizardStepDelay);
-        	    
-			    // 20140127
-        		// cmdletCtrl.SearchCriteria = step.SearchCriteria;
-        		// controlSearchData.SearchCriteria = step.SearchCriteria;
-        		
-//        		if (step.SearchCriteria.All(x => {
-//        		                                  foreach (IUiElement element in allWizardControls) {
-//        		                                      return ControlSearch.TestControlWithAllSearchCriteria(step.SearchCriteria, element); 
-//        		                                  }
-//        		                                return false;
-//        		                            })) {
-//                    
-//        		    
-//        		    Console.WriteLine("there is global match");
-//                    
-//        		    
-//            	    resultStep = step;
-//            	    ActiveStep = step;
-//            	    break;
-//                    
-//                }
         		
         		if (IsStepActive(step, allWizardControls)) {
         		    resultStep = step;
         		    ActiveStep = step;
         		    break;
         		}
-        		
-//	        	List<IUiElement> controlsList = new List<IUiElement>();
-//	        	
-//
-//        	    if (null == controlsList || 0 >= controlsList.Count) continue;
-//        	    if (step == ActiveStep) {
-//	        	        
-//        	        // 20130423
-//        	        if (Preferences.HighlightCheckedControl) {
-//        	            
-//        	            foreach (IUiElement elementChecked in controlsList) {
-//        	                UiaHelper.HighlightCheckedControl(elementChecked);
-//        	            }
-//        	        }
-//	        	        
-//        	        continue;
-//        	    }
-//        	    
-//        	    // 20140121
-//        	    if (null != controlsList) {
-//        	        controlsList.Clear();
-//        	        controlsList = null;
-//        	    }
-//	        	    
-//        	    resultStep = step;
-//        	    ActiveStep = step;
-//        	    break;
             }
         	
         	// 20130515
@@ -232,22 +147,22 @@ namespace UIAutomation
         {
             bool result = false;
             
-Console.WriteLine("testing step '" + step.Name + "'");
-Console.WriteLine("there are {0} elements", elements.Count);
+            if (null == step) return result;
+            if (null == step.SearchCriteria || 0 == step.SearchCriteria.Count()) return result;
+            var searchCriteria = step.SearchCriteria.Where(hashtable => null != hashtable);
+            if (null == searchCriteria || 0 == searchCriteria.Count()) return result;
+            if (null == elements || 0 == elements.Count) return result;
             
-            if (step.SearchCriteria.All(criterion => {
-                                            foreach (IUiElement element in elements) {
-                                                return ControlSearch.TestControlWithAllSearchCriteria(step.SearchCriteria, element);
-                                            }
-                                            return false;
-                                        })) {
+            if (searchCriteria.All(criterion =>   
+                                   elements.ToArray().Any(elt => ControlSearch.TestControlWithAllSearchCriteria(new Hashtable[] { criterion }, elt))
+                                  )) {
                 result = true;
-Console.WriteLine("step active? " + result.ToString());
             }
             
             return result;
         }
         
+        #region commented
         // 20140127
         /*
         public WizardStep GetActiveStep()
@@ -371,6 +286,7 @@ Console.WriteLine("step active? " + result.ToString());
         	return resultStep;
         }
         */
+        #endregion commented
         
         public void Stop()
         {

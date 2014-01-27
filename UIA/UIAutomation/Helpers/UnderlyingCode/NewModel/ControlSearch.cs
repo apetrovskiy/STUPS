@@ -562,6 +562,9 @@ namespace UIAutomation
         {
             bool result = false;
             
+            // 20140127
+            if (null == hashtables || 0 == hashtables.Count()) return result;
+            
             foreach (Hashtable hashtable in hashtables) {
                 
                 result =

@@ -63,10 +63,8 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 FakeFactory.Get_GetControlCmdletBase(controlTypes, name, automationId, className, txtValue);
             
             Condition condition =
-                // cmdlet.GetWildcardSearchCondition(cmdlet);
                 ControlSearch.GetWildcardSearchCondition(
                     new ControlSearchData {
-                        // ControlType = new string[] { controlTypeString },
                         ControlType = FakeFactory.ConvertControlTypeToStringArray(controlTypes),
                         Name = name,
                         AutomationId = automationId,
@@ -109,30 +107,13 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                         IValuePattern valuePattern = x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern;
                         return valuePattern != null && valuePattern.Current.Value == txtValue;
                     });
-                
-            resultList.All(
-                x => {
-                         IValuePattern valuePattern = x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern;
-                         return valuePattern != null && valuePattern.Current.Value == txtValue;
-                });
-            /*
-            if (!string.IsNullOrEmpty(txtValue)) {
-                MbUnit.Framework.Assert.ForAll(
-                    resultList
-                    .Cast<IUiElement>()
-                    .ToList<IUiElement>(), x =>
-                    {
-                        IValuePattern valuePattern = x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern;
-                        return valuePattern != null && valuePattern.Current.Value == txtValue;
-                    });
-                
+            Xunit.Assert.True(    
                 resultList.All(
                     x => {
-                        IValuePattern valuePattern = x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern;
-                        return valuePattern != null && valuePattern.Current.Value == txtValue;
-                    });
-            }
-            */
+                             IValuePattern valuePattern = x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern;
+                             return valuePattern != null && valuePattern.Current.Value == txtValue;
+                    })
+                             );
         }
         #endregion helpers
         

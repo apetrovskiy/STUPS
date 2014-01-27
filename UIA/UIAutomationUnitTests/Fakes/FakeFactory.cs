@@ -535,6 +535,14 @@ namespace UIAutomationUnitTests
 
             return resultCollection.ToArray();
         }
+        
+        public static IUiEltCollection GetFakeCollection(IEnumerable<IUiElement> elements)
+        {
+            var collection = Substitute.For<IUiEltCollection>();
+            collection.Count.Returns(elements.Count());
+            collection.ToArray().Returns(elements);
+            return collection;
+        }
     }
     
     public class FakeSourcePattern

@@ -93,6 +93,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             
             // Assert
             MbUnit.Framework.Assert.Count(expectedNumberOfElements, resultList);
+            Xunit.Assert.Equal(expectedNumberOfElements, resultList.Count);
             string[] controlTypeNames;
             switch (selector) {
                 case UIAutomationUnitTests.Helpers.Inheritance.UsualWildcardRegex.Wildcard:
@@ -330,7 +331,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         [Test][Fact]
         public void Get0of3_byName_Wildcard()
         {
-            const string name = "aaa";
+            // const string name = "aaa";
             const string expectedName = "*aa";
             string automationId = string.Empty;
             string className = string.Empty;
@@ -354,7 +355,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         [Test][Fact]
         public void Get0of3_byName_Regex()
         {
-            const string name = "aaa";
+            // const string name = "aaa";
             const string expectedName = "[a]{2,3}";
             string automationId = string.Empty;
             string className = string.Empty;

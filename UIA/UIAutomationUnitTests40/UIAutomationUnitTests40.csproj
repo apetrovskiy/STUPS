@@ -136,6 +136,9 @@
     <Compile Include="..\UIAutomationUnitTests\Commands\Wizard\NewUIAWizardCommandTestFixture.cs">
       <Link>Commands\Wizard\NewUIAWizardCommandTestFixture.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Fakes\ElementData.cs">
+      <Link>Fakes\ElementData.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomationUnitTests\Fakes\FakeFactory.cs">
       <Link>Fakes\FakeFactory.cs</Link>
     </Compile>
@@ -153,6 +156,9 @@
     </Compile>
     <Compile Include="..\UIAutomationUnitTests\Helpers\Inheritance\GetAutomationElementsWithFindAllTestFixture.cs">
       <Link>Helpers\Inheritance\GetAutomationElementsWithFindAllTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\Inheritance\GetWindowCollectionByPidTestFixture.cs">
+      <Link>Helpers\Inheritance\GetWindowCollectionByPidTestFixture.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomationUnitTests\Helpers\Inheritance\Legacy\CommonCmdletBaseTestFixture.cs">
       <Link>Helpers\Inheritance\Legacy\CommonCmdletBaseTestFixture.cs</Link>
@@ -406,10 +412,13 @@
     <Folder Include="Helpers\Inheritance" />
     <Folder Include="Helpers\Inheritance" />
     <Folder Include="Helpers\Inheritance\Legacy" />
+    <Folder Include="Helpers\Inheritance\Legacy" />
+    <Folder Include="Helpers\Inheritance\new_code" />
     <Folder Include="Helpers\Inheritance\new_code" />
     <Folder Include="Helpers\ObjectModelViaPS" />
     <Folder Include="Helpers\ObjectModel" />
     <Folder Include="Helpers\ObjectModel" />
+    <Folder Include="Helpers\ObjectModelViaPS" />
     <Folder Include="Helpers\UnderlyingCode" />
     <Folder Include="Helpers\UnderlyingCode" />
     <Folder Include="Helpers\UnderlyingCode\Adapter" />

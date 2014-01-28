@@ -9,7 +9,9 @@
 
 namespace UIAutomationUnitTests
 {
-    // using System;
+    using System;
+    
+    
     using System.Collections;
     using System.Collections.Generic;
     // using System.Collections.ObjectModel;
@@ -103,6 +105,31 @@ namespace UIAutomationUnitTests
             var wizard = new Wizard("wizardName");
             
             return wizard.IsStepActive(step, elements);
+        }
+        
+        public static List<IUiElement> GetResultList_GetWindowCollectionByPid(
+            IUiElement rootElement,
+            IEnumerable<int> processIds,
+            bool first,
+            bool recurse,
+            ICollection<string> names,
+            string automationId,
+            string className)
+        {
+            var windowSearch = new WindowSearch();
+            
+            List<IUiElement> resultList =
+                windowSearch.GetWindowCollectionByPid(
+                    rootElement,
+                    processIds,
+                    first,
+                    recurse,
+                    names,
+                    automationId,
+                    className);
+            
+            return resultList;
+                    
         }
     }
 }

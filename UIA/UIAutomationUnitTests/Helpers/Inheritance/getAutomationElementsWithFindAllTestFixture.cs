@@ -82,6 +82,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             
             // Assert
             MbUnit.Framework.Assert.Count(expectedNumberOfElements, resultList);
+            Xunit.Assert.Equal(expectedNumberOfElements, resultList.Count);
             if (!string.IsNullOrEmpty(name)) {
                 MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => x.Current.Name == name);
                 resultList.All(x => x.Current.Name == name);

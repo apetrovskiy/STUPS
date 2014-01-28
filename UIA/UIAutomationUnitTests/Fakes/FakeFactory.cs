@@ -283,26 +283,71 @@ namespace UIAutomationUnitTests
         
         public static IFakeUiElement GetAutomationElementExpected(ControlType controlType, string name, string automationId, string className, string txtValue)
         {
+            return GetAutomationElementExpected(
+                new ElementData {
+                    Current_ControlType = controlType,
+                    Current_Name = name,
+                    Current_AutomationId = automationId,
+                    Current_ClassName = className,
+                    Current_Value = txtValue,
+                    Current_ProcessId = 333
+                });
+        }
+        
+        // 20140128
+        // public static IFakeUiElement GetAutomationElementExpected(ControlType controlType, string name, string automationId, string className, string txtValue)
+        public static IFakeUiElement GetAutomationElementExpected(ElementData data)
+        {
+            IValuePattern valuePattern = null;
+            if (!string.IsNullOrEmpty(data.Current_Value)) {
+                valuePattern = FakeFactory.GetValuePattern(new PatternsData{ ValuePattern_Value = data.Current_Value });
+            }
+            // return GetAutomationElement(controlType, name, automationId, className, new IBasePattern[] { valuePattern }, true);
+            return GetAutomationElement(data, new IBasePattern[] { valuePattern }, true);
+            
+            /*
             IValuePattern valuePattern = null;
             if (!string.IsNullOrEmpty(txtValue)) {
                 valuePattern = FakeFactory.GetValuePattern(new PatternsData{ ValuePattern_Value = txtValue });
             }
             return GetAutomationElement(controlType, name, automationId, className, new IBasePattern[] { valuePattern }, true);
+            */
         }
         
         public static  IFakeUiElement GetAutomationElementNotExpected(ControlType controlType, string name, string automationId, string className, string txtValue)
         {
+            return GetAutomationElementNotExpected(
+                new ElementData {
+                    Current_ControlType = controlType,
+                    Current_Name = name,
+                    Current_AutomationId = automationId,
+                    Current_ClassName = className,
+                    Current_Value = txtValue,
+                    Current_ProcessId = 333
+                });
+        }
+        
+        // 20140128
+        // public static  IFakeUiElement GetAutomationElementNotExpected(ControlType controlType, string name, string automationId, string className, string txtValue)
+        public static  IFakeUiElement GetAutomationElementNotExpected(ElementData data)
+        {
+            IValuePattern valuePattern = null;
+            if (!string.IsNullOrEmpty(data.Current_Value)) {
+                valuePattern = FakeFactory.GetValuePattern(new PatternsData{ ValuePattern_Value = data.Current_Value });
+            }
+            // return GetAutomationElement(controlType, name, automationId, className, new IBasePattern[] { valuePattern }, false);
+            return GetAutomationElement(data, new IBasePattern[] { valuePattern }, false);
+            
+            /*
             IValuePattern valuePattern = null;
             if (!string.IsNullOrEmpty(txtValue)) {
                 valuePattern = FakeFactory.GetValuePattern(new PatternsData{ ValuePattern_Value = txtValue });
             }
             return GetAutomationElement(controlType, name, automationId, className, new IBasePattern[] { valuePattern }, false);
+            */
         }
         
         private static IFakeUiElement AddPatternAction<T>(AutomationPattern pattern, IEnumerable<IBasePattern> patterns, IFakeUiElement element) where T : IBasePattern
-        /*
-        private static IFakeUiElement AddPatternAction<T>(AutomationPattern pattern, IBasePattern[] patterns, IFakeUiElement element) where T : IBasePattern
-        */
         {
             object patternObject;
             if (patterns.Any(ptrn => ptrn is T)) {
@@ -315,23 +360,36 @@ namespace UIAutomationUnitTests
             return element;
         }
         
+        // 20140128
         internal static IFakeUiElement GetAutomationElement(ControlType controlType, string name, string automationId, string className, IBasePattern[] patterns, bool expected)
+        {
+            var elementData = new ElementData {
+                Current_ControlType = controlType,
+                Current_Name = name,
+                Current_AutomationId = automationId,
+                Current_ClassName = className,
+                Current_ProcessId = 333
+            };
+            
+            return GetAutomationElement(elementData, patterns, expected);
+        }
+        
+        // 20140128
+        // internal static IFakeUiElement GetAutomationElement(ControlType controlType, string name, string automationId, string className, IBasePattern[] patterns, bool expected)
+        internal static IFakeUiElement GetAutomationElement(ElementData data, IBasePattern[] patterns, bool expected)
         {
             IFakeUiElement element = Substitute.For<FakeUiElement>();
             //
             // element.GetSourceElement().Returns(AutomationElement.RootElement);
             //
-            element.Current.ProcessId.Returns(333);
-            element.Current.ControlType.Returns(controlType);
-            element.Current.Name.Returns(!string.IsNullOrEmpty(name) ? name : string.Empty);
-            element.Current.AutomationId.Returns(!string.IsNullOrEmpty(automationId) ? automationId : string.Empty);
-            element.Current.ClassName.Returns(!string.IsNullOrEmpty(className) ? className : string.Empty);
+            element.Current.ProcessId.Returns(data.Current_ProcessId);
+            element.Current.ControlType.Returns(data.Current_ControlType);
+            element.Current.Name.Returns(!string.IsNullOrEmpty(data.Current_Name) ? data.Current_Name : string.Empty);
+            element.Current.AutomationId.Returns(!string.IsNullOrEmpty(data.Current_AutomationId) ? data.Current_AutomationId : string.Empty);
+            element.Current.ClassName.Returns(!string.IsNullOrEmpty(data.Current_ClassName) ? data.Current_ClassName : string.Empty);
             element.Patterns.AddRange(patterns);
             element.GetSupportedPatterns().Returns(element.Patterns.ToArray());
-            /*
-            element.GetSupportedPatterns().Returns<IBasePattern[]>(element.Patterns.ToArray());
-            */
-
+            
             element = AddPatternAction<IDockPattern>(DockPattern.Pattern, patterns, element);
             element = AddPatternAction<IExpandCollapsePattern>(ExpandCollapsePattern.Pattern, patterns, element);
             element = AddPatternAction<IGridItemPattern>(GridItemPattern.Pattern, patterns, element);
@@ -350,25 +408,11 @@ namespace UIAutomationUnitTests
             element = AddPatternAction<IValuePattern>(ValuePattern.Pattern, patterns, element);
             element = AddPatternAction<IWindowPattern>(WindowPattern.Pattern, patterns, element);
             
-            // 20130104
-            // if (expected) { element.Tag.Returns("expected"); }
             if (expected) { element.GetTag().Returns("expected"); }
             
-            // 20140109
             element.GetSourceElement().Returns(element);
-            /*
-            element.GetSourceElement().Returns<object>(element);
-            */
-            // var elementWrapper = AutomationFactory.GetUiElement(element);
             
-//if (null == element) {
-//    Console.WriteLine("null == element");
-//} else {
-//    Console.WriteLine("null != element");
-//}
-            // 20140109
             return element;
-            // return elementWrapper as IFakeUiElement;
         }
         
         private static IUiElement GetAutomationElementForObjectModelTesting(ControlType controlType, string name, string automationId, string className, IBasePattern[] patterns, bool expected)
@@ -382,21 +426,9 @@ namespace UIAutomationUnitTests
                     patterns,
                     expected);
             
-//if (null == fakeElement) {
-//    Console.WriteLine("null == fakeElement");
-//} else {
-//    Console.WriteLine("null != fakeElement");
-//}
-            
             var proxiedElement =
                 AutomationFactory.GetUiElement(
                     fakeElement as IUiElement);
-            
-//if (null == proxiedElement) {
-//    Console.WriteLine("null == proxiedElement");
-//} else {
-//    Console.WriteLine("null != proxiedElement");
-//}
             
             return proxiedElement;
         }

@@ -66,7 +66,9 @@ namespace UIAutomation
                     
                     // cmdlet.WriteVerbose(cmdlet, "getting a window by PID");
                     if (null == ResultCollection || 0 == ResultCollection.Count) {
-                        ResultCollection = GetWindowCollectionByPid(data.ProcessIds, data.First, data.Recurse, data.Name, data.AutomationId, data.Class);
+                        // 20140128
+                        // ResultCollection = GetWindowCollectionByPid(data.ProcessIds, data.First, data.Recurse, data.Name, data.AutomationId, data.Class);
+                        ResultCollection = GetWindowCollectionByPid(UiElement.RootElement, data.ProcessIds, data.First, data.Recurse, data.Name, data.AutomationId, data.Class);
                     }
                 } else if (null != data.ProcessNames && data.ProcessNames.Length > 0) {
                     
@@ -295,6 +297,8 @@ namespace UIAutomation
             return aeWndCollectionViaWin32;
         }
         
+        #region commented
+        /*
         private List<IUiElement> GetWindowCollectionFromProcess(
             IEnumerable<Process> processes,
             bool first,
@@ -343,9 +347,11 @@ namespace UIAutomation
                 processIdList = null;
             }
         }
+        */
+        #endregion commented
         
-        #region commented
-        /*
+        #region uncommented
+        
         private List<IUiElement> GetWindowCollectionFromProcess(
             IEnumerable<Process> processes,
             bool first,
@@ -371,7 +377,9 @@ namespace UIAutomation
                     
                     int[] processIds = processIdList.ToArray();
                     
-                    tempCollection = GetWindowCollectionByPid(processIds, first, recurse, name, automationId, className);
+                    // 20140128
+                    // tempCollection = GetWindowCollectionByPid(processIds, first, recurse, name, automationId, className);
+                    tempCollection = GetWindowCollectionByPid(UiElement.RootElement, processIds, first, recurse, name, automationId, className);
 
                     aeWndCollectionByProcId.AddRange(tempCollection);
                 }
@@ -399,8 +407,8 @@ namespace UIAutomation
 
             return aeWndCollectionByProcId;
         }
-         */
-        #endregion commented
+        
+        #endregion uncommented
         
         private List<IUiElement> GetWindowCollectionByName(string[] windowNames, string automationId, string className, bool recurse)
         {
@@ -533,6 +541,8 @@ namespace UIAutomation
             return resultCollection;
         }
         
+        #region commented (new)
+        /*
         private List<IUiElement> GetWindowCollectionByProcessName(
             IEnumerable<string> processNames,
             bool first,
@@ -576,9 +586,11 @@ namespace UIAutomation
             
             return processIds;
         }
+        */
+        #endregion commented (new)
         
-        #region commented
-        /*
+        #region uncommented
+        
         private List<IUiElement> GetWindowCollectionByProcessName(
             IEnumerable<string> processNames,
             bool first,
@@ -599,30 +611,35 @@ namespace UIAutomation
                     processIdList.AddRange(processes.Select(process => process.Id));
                 }
                 catch {
-                    return aeWndCollectionByProcId;
+                    // 20140128
+                    // return aeWndCollectionByProcId;
+                    continue;
                 }
             
             } // 20120824
             
             int[] processIds = processIdList.ToArray();
-            aeWndCollectionByProcId = GetWindowCollectionByPid(processIds, first, recurse, name, automationId, className);
+            // 20140128
+            // aeWndCollectionByProcId = GetWindowCollectionByPid(processIds, first, recurse, name, automationId, className);
+            aeWndCollectionByProcId = GetWindowCollectionByPid(UiElement.RootElement, processIds, first, recurse, name, automationId, className);
             
             // 20140121
-            if (null != processIdList) {
-                processIdList.Clear();
-                processIdList = null;
-            }
+//            if (null != processIdList) {
+//                processIdList.Clear();
+//                processIdList = null;
+//            }
             
             return aeWndCollectionByProcId;
         }
-         */
-        #endregion commented
+         
+        #endregion uncommented
         
-        private List<IUiElement> GetWindowCollectionByPid(
+        internal List<IUiElement> GetWindowCollectionByPid(
+            IUiElement rootElement,
             IEnumerable<int> processIds,
             bool first,
             bool recurse,
-            ICollection<string> name,
+            ICollection<string> names,
             string automationId,
             string className)
         {
@@ -631,7 +648,7 @@ namespace UIAutomation
             List<IUiElement> elementsByProcessId =
                 new List<IUiElement>();
             
-            if ((null != name && 0 < name.Count) ||
+            if ((null != names && 0 < names.Count) ||
                 !string.IsNullOrEmpty(automationId) ||
                 !string.IsNullOrEmpty(className)) {
                 
@@ -642,6 +659,7 @@ namespace UIAutomation
                 
                 AndCondition conditionsProcessId = null;
                 try {
+                    
                     conditionsProcessId =
                         new AndCondition(
                             new PropertyCondition(
@@ -659,6 +677,7 @@ namespace UIAutomation
                                     ControlType.Menu)));
                     
                     if (recurse) {
+                        
                         conditionsForRecurseSearch =
                             new AndCondition(
                                 new PropertyCondition(
@@ -667,6 +686,7 @@ namespace UIAutomation
                                 new PropertyCondition(
                                     AutomationElement.ControlTypeProperty,
                                     ControlType.Window));
+                        
                     }
                 } catch { // 20120206  (Exception eCouldNotGetProcessId) {
                     // if (fromCmdlet) WriteDebug(this, "" + eCouldNotGetProcessId.Message);
@@ -688,6 +708,7 @@ namespace UIAutomation
                                     ControlType.Menu)));
                     
                     if (recurse) {
+                        
                         conditionsForRecurseSearch =
                             new AndCondition(
                                 new PropertyCondition(
@@ -695,7 +716,7 @@ namespace UIAutomation
                                     processId),
                                 new PropertyCondition(
                                     AutomationElement.ControlTypeProperty,
-                                    ControlType.Window));
+                                    ControlType.Window));                       
                     }
                     
                 }
@@ -706,19 +727,20 @@ namespace UIAutomation
                         if (first) {
                             
                             IUiElement rootWindowElement =
-                                UiElement.RootElement.FindFirst(
+                                // UiElement.RootElement.FindFirst(
+                                rootElement.FindFirst(
                                     TreeScope.Children,
                                     conditionsProcessId);
                             
                             if (null != rootWindowElement) {
-                                
                                 elementsByProcessId.Add(rootWindowElement);
                             }
                             
                         } else {
                             
                             IUiEltCollection rootCollection =
-                                UiElement.RootElement.FindAll(
+                                // UiElement.RootElement.FindAll(
+                                rootElement.FindAll(
                                     TreeScope.Children,
                                     conditionsProcessId);
                             
@@ -786,8 +808,10 @@ namespace UIAutomation
                         if (first) {
                             
                             IUiElement tempElement =
-                                UiElement.RootElement.FindFirst(TreeScope.Children,
-                                                                conditionsProcessId);
+                                // UiElement.RootElement.FindFirst(TreeScope.Children,
+                                rootElement.FindFirst(
+                                    TreeScope.Children,
+                                    conditionsProcessId);
                             
                             if (null != tempElement) {
                                 
@@ -796,8 +820,10 @@ namespace UIAutomation
                         } else {
                             
                             IUiEltCollection tempCollection =
-                                UiElement.RootElement.FindAll(TreeScope.Children,
-                                                              conditionsProcessId);
+                                // UiElement.RootElement.FindAll(TreeScope.Children,
+                                rootElement.FindAll(
+                                    TreeScope.Children,
+                                    conditionsProcessId);
                             
                             if (null != tempCollection && 0 < tempCollection.Count) {
                                 
@@ -824,19 +850,19 @@ namespace UIAutomation
             } // 20120824
             
             if (!recurse ||
-                ((null == name || 0 >= name.Count) && string.IsNullOrEmpty(automationId) &&
+                ((null == names || 0 >= names.Count) && string.IsNullOrEmpty(automationId) &&
                  string.IsNullOrEmpty(className))) return elementsByProcessId;
             
             List<IUiElement> resultList =
                 new List<IUiElement>();
             
-            if (null != name && 0 < name.Count) {
-                foreach (string n in name) {
+            if (null != names && 0 < names.Count) {
+                foreach (string name in names) {
                     
                     resultList.AddRange(
                         ReturnOnlyRightElements(
                             elementsByProcessId,
-                            n,
+                            name,
                             automationId,
                             className,
                             string.Empty,
@@ -862,10 +888,11 @@ namespace UIAutomation
             elementsByProcessId = resultList;
             
             // 20140121
-            if (null != resultList) {
-                resultList.Clear();
-                resultList = null;
-            }
+            // never !
+//            if (null != resultList) {
+//                resultList.Clear();
+//                resultList = null;
+//            }
             
             return elementsByProcessId;
         }

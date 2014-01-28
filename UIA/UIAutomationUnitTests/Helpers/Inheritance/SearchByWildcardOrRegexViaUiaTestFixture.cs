@@ -89,6 +89,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             WildcardPattern classNamePattern = new WildcardPattern(className, options);
             WildcardPattern txtValuePattern = new WildcardPattern(txtValue, options);
             MbUnit.Framework.Assert.Count(expectedNumberOfElements, resultList);
+            Xunit.Assert.Equal(expectedNumberOfElements, resultList.Count);
             if (!string.IsNullOrEmpty(name)) {
                 MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => namePattern.IsMatch(x.Current.Name));
                 resultList.All(x => namePattern.IsMatch(x.Current.Name));

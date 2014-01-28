@@ -406,10 +406,16 @@ namespace UIAutomation
                         resultCollection.AddRange(tempList);
                     } else {
                         
+                        /*
                         foreach (IUiElement tempElement2 in tempList) {
                             
                             if (!TestControlWithAllSearchCriteria(searchCriteria, tempElement2)) continue;
                             
+                            resultCollection.Add(tempElement2);
+                        }
+                        */
+                        
+                        foreach (IUiElement tempElement2 in tempList.Where(elt => TestControlWithAllSearchCriteria(searchCriteria, elt))) {
                             resultCollection.Add(tempElement2);
                         }
                     }

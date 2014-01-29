@@ -9,7 +9,7 @@
 
 namespace UIAutomationUnitTests.Commands.Wizard
 {
-    using MbUnit.Framework;// using Xunit;
+    using MbUnit.Framework;using Xunit;
     using UIAutomation;
     
     /// <summary>
@@ -18,6 +18,11 @@ namespace UIAutomationUnitTests.Commands.Wizard
     [MbUnit.Framework.TestFixture]
     public class NewUiaWizardCommandTestFixture
     {
+        public NewUiaWizardCommandTestFixture()
+        {
+            UnitTestingHelper.PrepareUnitTestDataStore();
+        }
+        
         [SetUp]
         public void SetUp()
         {
@@ -30,7 +35,7 @@ namespace UIAutomationUnitTests.Commands.Wizard
             WizardCollection.ResetData();
         }
         
-        [Test]// [Fact]
+        [Test][Fact]
         [Description("New-UiaWizard")]
         [Category("Fast")]
         [Category("Wizard")]
@@ -44,7 +49,7 @@ namespace UIAutomationUnitTests.Commands.Wizard
                 ((Wizard)PSTestLib.UnitTestOutput.LastOutput[0]).Name);
         }
         
-        [Test]// [Fact]
+        [Test][Fact]
         [Description("New-UiaWizard")]
         [Category("Fast")]
         [Category("Wizard")]
@@ -58,7 +63,7 @@ namespace UIAutomationUnitTests.Commands.Wizard
                 ((Wizard)PSTestLib.UnitTestOutput.LastOutput[0]).Name);
         }
         
-        [Test]// [Fact]
+        [Test][Fact]
         [Description("New-UiaWizard")]
         [Category("Fast")]
         [Category("Wizard")]

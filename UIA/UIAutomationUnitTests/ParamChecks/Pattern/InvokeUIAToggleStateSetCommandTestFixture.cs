@@ -15,6 +15,7 @@ namespace UIAutomationUnitTests.ParamChecks.Pattern
     /// Description of InvokeUiaToggleStateSetCommandTestFixture.
     /// </summary>
     [MbUnit.Framework.TestFixture]
+    [Ignore("20140128")]
     public class InvokeUiaToggleStateSetCommandTestFixture
     {
     }

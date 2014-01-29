@@ -15,6 +15,7 @@ namespace UIAutomationUnitTests.ParamChecks.Common
     /// Description of HideUiaCurrentHighlighterCommandTestFixture.
     /// </summary>
     [MbUnit.Framework.TestFixture]
+    [Ignore("20140128")]
     public class HideUiaCurrentHighlighterCommandTestFixture
     {
     }

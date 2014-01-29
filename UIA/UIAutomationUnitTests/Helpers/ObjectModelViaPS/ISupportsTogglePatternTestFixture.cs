@@ -21,7 +21,6 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
     /// Description of ISupportsTogglePatternTestFixture.
     /// </summary>
     [MbUnit.Framework.TestFixture]
-    // [Ignore("not yet ready")]
     public class ISupportsTogglePatternTestFixture
     {
         [SetUp]

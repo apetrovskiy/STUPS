@@ -15,6 +15,7 @@ namespace UIAutomationUnitTests.ParamChecks.Container
     /// Description of NewUiaContainerCommandTestFixture.
     /// </summary>
     [MbUnit.Framework.TestFixture]
+    [Ignore("20140128")]
     public class NewUiaContainerCommandTestFixture
     {
     }

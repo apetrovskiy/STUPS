@@ -20,7 +20,6 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
     /// <summary>
     /// Description of ISupportsGridItemPatternTestFixture.
     /// </summary>
-    // [Ignore]
     [MbUnit.Framework.TestFixture]
     public class ISupportsGridItemPatternTestFixture
     {

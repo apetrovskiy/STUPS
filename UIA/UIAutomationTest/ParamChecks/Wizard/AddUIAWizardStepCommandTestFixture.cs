@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace UIAutomationUnitTests.CheckCmdletParameters
+namespace UIAutomationTest.CheckCmdletParameters
 {
     using UIAutomation;
     using MbUnit.Framework;// using Xunit;
@@ -22,7 +22,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         [SetUp]
         public void PrepareRunspace()
         {
-            MiddleLevelCode.PrepareRunspaceForParamChecks();
+            MiddleLevelCode2.PrepareRunspaceForParamChecks();
         }
         
         [TearDown]
@@ -33,7 +33,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         }
         
         [Test]// [Fact]
-        [Ignore("20140128")]
+        // [Ignore("20140128")]
         [Category("Fast")]
         public void AddWizardStep_Name()
         {
@@ -42,7 +42,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         }
         
         [Test]// [Fact]
-        [Ignore("20140128")]
+        // [Ignore("20140128")]
         [Category("Fast")]
         public void AddWizardStep_Name_StepForwardAction()
         {
@@ -51,7 +51,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         }
         
         [Test]// [Fact]
-        [Ignore("20140128")]
+        // [Ignore("20140128")]
         [Category("Fast")]
         public void AddWizardStep_Name_StepBackwardAction()
         {
@@ -60,7 +60,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         }
         
         [Test]// [Fact]
-        [Ignore("20140128")]
+        // [Ignore("20140128")]
         [Category("Fast")]
         public void AddWizardStep_Name_StepForwardAction_StepBackwardAction()
         {

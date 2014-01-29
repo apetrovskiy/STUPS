@@ -33,6 +33,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         }
         
         [Test]// [Fact]
+        [Ignore("20140128")]
         [Category("Fast")]
         public void NewWizard_Name_StartAction()
         {
@@ -41,6 +42,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         }
         
         [Test]// [Fact]
+        [Ignore("20140128")]
         [Category("Fast")]
         public void NewWizard_Name_StartActionX3()
         {

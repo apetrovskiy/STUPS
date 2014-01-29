@@ -639,7 +639,8 @@ namespace UIAutomation
             IEnumerable<int> processIds,
             bool first,
             bool recurse,
-            ICollection<string> names,
+            // ICollection<string> names,
+            IEnumerable<string> names,
             string automationId,
             string className)
         {
@@ -648,7 +649,8 @@ namespace UIAutomation
             List<IUiElement> elementsByProcessId =
                 new List<IUiElement>();
             
-            if ((null != names && 0 < names.Count) ||
+            // if ((null != names && 0 < names.Count) ||
+            if ((null != names && 0 < names.Count()) ||
                 !string.IsNullOrEmpty(automationId) ||
                 !string.IsNullOrEmpty(className)) {
                 
@@ -850,13 +852,15 @@ namespace UIAutomation
             } // 20120824
             
             if (!recurse ||
-                ((null == names || 0 >= names.Count) && string.IsNullOrEmpty(automationId) &&
+                // ((null == names || 0 >= names.Count) && string.IsNullOrEmpty(automationId) &&
+                ((null == names || 0 >= names.Count()) && string.IsNullOrEmpty(automationId) &&
                  string.IsNullOrEmpty(className))) return elementsByProcessId;
             
             List<IUiElement> resultList =
                 new List<IUiElement>();
             
-            if (null != names && 0 < names.Count) {
+            // if (null != names && 0 < names.Count) {
+            if (null != names && 0 < names.Count()) {
                 foreach (string name in names) {
                     
                     resultList.AddRange(

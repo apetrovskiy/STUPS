@@ -112,7 +112,8 @@ namespace UIAutomationUnitTests
             IEnumerable<int> processIds,
             bool first,
             bool recurse,
-            ICollection<string> names,
+            // ICollection<string> names,
+            IEnumerable<string> names,
             string automationId,
             string className)
         {

@@ -20,7 +20,6 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
     /// <summary>
     /// Description of ISupportsValuePatternTestFixture.
     /// </summary>
-    // [Ignore]
     [MbUnit.Framework.TestFixture]
     public class ISupportsValuePatternTestFixture
     {

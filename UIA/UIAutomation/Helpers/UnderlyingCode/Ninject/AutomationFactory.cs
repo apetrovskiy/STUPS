@@ -209,12 +209,22 @@ namespace UIAutomation
             return childKernel;
         }
         
+        // 20140129
+        internal static int ChildKernelCheckCounter { get; set; }
+        
         internal static void InitializeChildKernel()
         {
 //            if (null != ChildKernel) {
 //                ChildKernel.Dispose();
 //                ChildKernel = null;
 //            }
+            
+            // 20140129
+            if (null != ChildKernel && 5 == ChildKernelCheckCounter) {
+                ChildKernel.Dispose();
+                ChildKernel = null;
+                ChildKernelCheckCounter = 0;
+            }            
             
             // 20140125
             if (null == ChildKernel) {
@@ -223,7 +233,9 @@ namespace UIAutomation
                 // 20140123
                 // ChildKernel.Settings.ActivationCacheDisabled = true;
                 ChildKernel.Settings.ActivationCacheDisabled = false;
-            
+                
+                // 20140129
+                ChildKernelCheckCounter++;
             }
         }
         

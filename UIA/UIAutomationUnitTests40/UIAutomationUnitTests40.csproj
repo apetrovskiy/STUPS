@@ -331,54 +331,6 @@
     <Compile Include="..\UIAutomationUnitTests\Helpers\UnitTestingHelper.cs">
       <Link>Helpers\UnitTestingHelper.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomationUnitTests\ParamChecks\Common\HideUIACurrentHighlighterCommandTestFixture.cs">
-      <Link>ParamChecks\Common\HideUIACurrentHighlighterCommandTestFixture.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomationUnitTests\ParamChecks\Common\InvokeUIAControlClickCommandTestFixture.cs">
-      <Link>ParamChecks\Common\InvokeUIAControlClickCommandTestFixture.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomationUnitTests\ParamChecks\Container\NewUIAContainerCommandTestFixture.cs">
-      <Link>ParamChecks\Container\NewUIAContainerCommandTestFixture.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomationUnitTests\ParamChecks\Get\GetUIAControlCommandTestFixture.cs">
-      <Link>ParamChecks\Get\GetUIAControlCommandTestFixture.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomationUnitTests\ParamChecks\Get\GetUIAWindowCommandTestFixture.cs">
-      <Link>ParamChecks\Get\GetUIAWindowCommandTestFixture.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomationUnitTests\ParamChecks\MiddleLevelCode.cs">
-      <Link>ParamChecks\MiddleLevelCode.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomationUnitTests\ParamChecks\No\WaitUIANoWindowCommandTestFixture.cs">
-      <Link>ParamChecks\No\WaitUIANoWindowCommandTestFixture.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomationUnitTests\ParamChecks\Pattern\GetUIAEditTextCommandTestFixture.cs">
-      <Link>ParamChecks\Pattern\GetUIAEditTextCommandTestFixture.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomationUnitTests\ParamChecks\Pattern\InvokeUIAButtonClickCommandTestFixture.cs">
-      <Link>ParamChecks\Pattern\InvokeUIAButtonClickCommandTestFixture.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomationUnitTests\ParamChecks\Pattern\InvokeUIAInvokePatternCommandTestFixture.cs">
-      <Link>ParamChecks\Pattern\InvokeUIAInvokePatternCommandTestFixture.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomationUnitTests\ParamChecks\Pattern\InvokeUIAToggleStateSetCommandTestFixture.cs">
-      <Link>ParamChecks\Pattern\InvokeUIAToggleStateSetCommandTestFixture.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomationUnitTests\ParamChecks\Pattern\SetUIAEditTextCommandTestFixture.cs">
-      <Link>ParamChecks\Pattern\SetUIAEditTextCommandTestFixture.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomationUnitTests\ParamChecks\Settings.cs">
-      <Link>ParamChecks\Settings.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomationUnitTests\ParamChecks\Wait\WaitUIAWindowCommandTestFixture.cs">
-      <Link>ParamChecks\Wait\WaitUIAWindowCommandTestFixture.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomationUnitTests\ParamChecks\Wizard\AddUIAWizardStepCommandTestFixture.cs">
-      <Link>ParamChecks\Wizard\AddUIAWizardStepCommandTestFixture.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomationUnitTests\ParamChecks\Wizard\NewUIAWizardCommandTestFixture.cs">
-      <Link>ParamChecks\Wizard\NewUIAWizardCommandTestFixture.cs</Link>
-    </Compile>
     <Compile Include="..\UIAutomation\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>

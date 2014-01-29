@@ -33,7 +33,7 @@ namespace UIAutomation
         public virtual void OnSleepHook()
         {
             TimeoutManager timeoutManager = new TimeoutManager(Timeout);
-            System.Threading.Thread.Sleep(timeoutManager.CalculateAdaptiveTimeout());
+            System.Threading.Thread.Sleep(timeoutManager.CalculateAdaptiveDelay());
         }
         
         internal virtual bool ContinueSearch(int timeout, DateTime startTime)

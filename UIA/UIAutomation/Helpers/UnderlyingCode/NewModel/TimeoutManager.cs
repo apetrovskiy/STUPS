@@ -18,14 +18,14 @@ namespace UIAutomation
     {
         private int _givenTimeout;
         
-        public int CalculatedTimeout { get; set; }
+        public int CalculatedDelay { get; set; }
         
         public TimeoutManager(int timeout)
         {
             _givenTimeout = timeout;
         }
         
-        public int CalculateAdaptiveTimeout()
+        public int CalculateAdaptiveDelay()
         {
             int timeout = _givenTimeout;
             if (0 == timeout) {
@@ -44,8 +44,8 @@ namespace UIAutomation
             if (timeout < Preferences.OnSleepDelay) {
                 timeout = Preferences.OnSleepDelay;
             }
-            CalculatedTimeout = timeout;
-            return CalculatedTimeout;
+            CalculatedDelay = timeout;
+            return CalculatedDelay;
         }
     }
 }

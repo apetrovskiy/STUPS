@@ -20,7 +20,6 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
     /// <summary>
     /// Description of ISupportsTableItemPatternTestFixture.
     /// </summary>
-    // [Ignore]
     [MbUnit.Framework.TestFixture]
     public class ISupportsTableItemPatternTestFixture
     {

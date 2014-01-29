@@ -1,53 +1,53 @@
 ﻿/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
- * Date: 2/5/2013
- * Time: 2:28 AM
+ * Date: 3/15/2013
+ * Time: 10:54 AM
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace UIAutomationUnitTests.CheckCmdletParameters
+namespace UIAutomationTest.CheckCmdletParameters
 {
+    using UIAutomation;
     using MbUnit.Framework;// using Xunit;
     
     /// <summary>
-    /// Description of SetUiaEditTextCommandTestFixture.
+    /// Description of NewUiaWizardCommandTestFixture.
     /// </summary>
+    [Ignore("temporarily")]
     [MbUnit.Framework.TestFixture]
-    [Ignore("20140128")]
-    public class SetUiaEditTextCommandTestFixture
+    public class NewUiaWizardCommandTestFixture
     {
         [SetUp]
         public void PrepareRunspace()
         {
-            MiddleLevelCode.PrepareRunspaceForParamChecks();
+            MiddleLevelCode2.PrepareRunspaceForParamChecks();
         }
         
         [TearDown]
         public void DisposeRunspace()
         {
             // MiddleLevelCode.DisposeRunspace();
+            WizardCollection.ResetData();
         }
         
         [Test]// [Fact]
+        // [Ignore("20140128")]
         [Category("Fast")]
-        [Ignore("It's difficult to learn now what is the problem with it")]
-        [Description("Set-UiaEditText -Text 'text' -InputObject $obj")]
-        public void Set_UiaEditText_Text()
+        public void NewWizard_Name_StartAction()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsAccepted(
-        		"Set-UiaEditText -Text 'text' -InputObject $obj;");
+        		@"New-UiaWizard -Name 'wizardName' -StartAction { 'var' };");
         }
         
         [Test]// [Fact]
+        // [Ignore("20140128")]
         [Category("Fast")]
-        [Ignore("It's difficult to learn now what is the problem with it")]
-        [Description("Set-UiaEditText 'text' -InputObject $obj")]
-        public void Set_UiaEditText_Text_Position0()
+        public void NewWizard_Name_StartActionX3()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsAccepted(
-        		"Set-UiaEditText 'text' -InputObject $obj;");
+        		@"New-UiaWizard -Name 'wizardName' -StartAction { 'var1' },{ 'var2' },{ 'var3' };");
         }
     }
 }

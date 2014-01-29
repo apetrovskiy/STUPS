@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace UIAutomationUnitTests.ParamChecks.No
+namespace UIAutomationTest.ParamChecks.No
 {
     using MbUnit.Framework;// using Xunit;
     
@@ -15,7 +15,7 @@ namespace UIAutomationUnitTests.ParamChecks.No
     /// Description of WaitUiaNoWindowCommandTestFixture.
     /// </summary>
     [MbUnit.Framework.TestFixture]
-    [Ignore("20140128")]
+    // [Ignore("20140128")]
     public class WaitUiaNoWindowCommandTestFixture
     {
     }

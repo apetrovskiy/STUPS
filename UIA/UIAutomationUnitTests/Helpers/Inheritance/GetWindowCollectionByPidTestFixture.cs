@@ -22,7 +22,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
     /// <summary>
     /// Description of GetWindowCollectionByPidTestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture]
     public class GetWindowCollectionByPidTestFixture
     {
         public GetWindowCollectionByPidTestFixture()
@@ -44,6 +44,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         #region helpers
         private void TestParametersAgainstCollection(
             IEnumerable<int> processIds,
+            IEnumerable<string> names,
+            string automationId,
+            string className,
             IEnumerable<IUiElement> collection,
             int expectedNumberOfElements)
         {
@@ -61,21 +64,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                     false,
                     false,
                     // new[] { string.Empty },
-                    null,
-                    string.Empty,
-                    string.Empty);
-            
-//if (null == resultList) {
-//    Console.WriteLine("null == resultList");
-//} else {
-//    Console.WriteLine("null != resultList");
-//    if (0 == resultList.Count) {
-//        Console.WriteLine("0 == resultList.Count");
-//    } else {
-//        Console.WriteLine("0 != resultList.Count");
-//        Console.WriteLine(resultList.Count.ToString());
-//    }
-//}
+                    names, //null,
+                    automationId, // string.Empty,
+                    className); // string.Empty);
             
             // Assert
             MbUnit.Framework.Assert.Count(expectedNumberOfElements, resultList);
@@ -166,13 +157,17 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         }
         #endregion helpers
         
+        #region no recursion
         [Test][Fact]
-        public void Get0of1()
+        public void Get0of1_NoRecurison()
         {
             // Arrange
             const int pid = 555;
             TestParametersAgainstCollection(
                 new[] { pid },
+                null,
+                string.Empty,
+                string.Empty,
                 new IUiElement[] {
                     FakeFactory.GetAutomationElementNotExpected(
                         new ElementData {
@@ -184,12 +179,15 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         }
         
         [Test][Fact]
-        public void Get1of1()
+        public void Get1of1_NoRecurison()
         {
             // Arrange
             const int pid = 555;
             TestParametersAgainstCollection(
                 new[] { pid },
+                null,
+                string.Empty,
+                string.Empty,
                 new IUiElement[] {
                     FakeFactory.GetAutomationElementExpected(
                         new ElementData {
@@ -201,12 +199,15 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         }
         
         [Test][Fact]
-        public void Get0of3()
+        public void Get0of3_NoRecurison()
         {
             // Arrange
             const int pid = 555;
             TestParametersAgainstCollection(
                 new[] { pid },
+                null,
+                string.Empty,
+                string.Empty,
                 new IUiElement[] {
                     FakeFactory.GetAutomationElementNotExpected(
                         new ElementData {
@@ -228,12 +229,15 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         }
         
         [Test][Fact]
-        public void Get1of3()
+        public void Get1of3_NoRecurison()
         {
             // Arrange
             const int pid = 555;
             TestParametersAgainstCollection(
                 new[] { pid },
+                null,
+                string.Empty,
+                string.Empty,
                 new IUiElement[] {
                     FakeFactory.GetAutomationElementExpected(
                         new ElementData {
@@ -255,14 +259,15 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         }
         
         [Test][Fact]
-        public void Get3of3_TheSamePid()
+        public void Get3of3_NoRecurison_TheSamePid()
         {
             // Arrange
             const int pid01 = 111;
-            // const int pid02 = 222;
-            // const int pid03 = 333;
             TestParametersAgainstCollection(
-                new[] { pid01 }, //, pid02, pid03 },
+                new[] { pid01 },
+                null,
+                string.Empty,
+                string.Empty,
                 new IUiElement[] {
                     FakeFactory.GetAutomationElementExpected(
                         new ElementData {
@@ -271,12 +276,12 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                         }),
                     FakeFactory.GetAutomationElementExpected(
                         new ElementData {
-                            Current_ProcessId = pid01, //pid02,
+                            Current_ProcessId = pid01,
                             Current_ControlType = ControlType.Window
                         }),
                     FakeFactory.GetAutomationElementExpected(
                         new ElementData {
-                            Current_ProcessId = pid01, // pid03,
+                            Current_ProcessId = pid01,
                             Current_ControlType = ControlType.Window
                         })
                 },
@@ -285,7 +290,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         
         [Test]// [Fact]
         [Ignore]
-        public void Get3of3_DifferentPids()
+        public void Get3of3_NoRecurison_DifferentPids()
         {
             // Arrange
             const int pid01 = 111;
@@ -293,6 +298,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             const int pid03 = 333;
             TestParametersAgainstCollection(
                 new[] { pid01, pid02, pid03 },
+                null,
+                string.Empty,
+                string.Empty,
                 new IUiElement[] {
                     FakeFactory.GetAutomationElementExpected(
                         new ElementData {
@@ -312,5 +320,131 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 },
                3);
         }
+        #endregion no recursion
+        
+        #region recursion
+        [Test][Fact]
+        public void Get0of1_Name()
+        {
+            // Arrange
+            const int pid = 555;
+            TestParametersAgainstCollection(
+                new[] { pid },
+                new string[] { "aaaa" },
+                string.Empty,
+                string.Empty,
+                new IUiElement[] {
+                    FakeFactory.GetAutomationElementNotExpected(
+                        new ElementData {
+                            Current_ProcessId = 1,
+                            Current_ControlType = ControlType.Window
+                        })
+                },
+               0);
+        }
+        
+        [Test]// [Fact]
+        [Ignore]
+        public void Get1of1_Name()
+        {
+            // Arrange
+            const int pid = 555;
+            TestParametersAgainstCollection(
+                new[] { pid },
+                new string[] { "aaaa" },
+                string.Empty,
+                string.Empty,
+                new IUiElement[] {
+                    FakeFactory.GetAutomationElementExpected(
+                        new ElementData {
+                            Current_ProcessId = pid,
+                            Current_ControlType = ControlType.Window
+                        })
+                },
+               1);
+        }
+        
+        [Test][Fact]
+        public void Get0of1_AutomaitonId()
+        {
+            // Arrange
+            const int pid = 555;
+            TestParametersAgainstCollection(
+                new[] { pid },
+                null,
+                "auId",
+                string.Empty,
+                new IUiElement[] {
+                    FakeFactory.GetAutomationElementNotExpected(
+                        new ElementData {
+                            Current_ProcessId = 1,
+                            Current_ControlType = ControlType.Window
+                        })
+                },
+               0);
+        }
+        
+        [Test]// [Fact]
+        [Ignore]
+        public void Get1of1_AutomaitonId()
+        {
+            // Arrange
+            const int pid = 555;
+            TestParametersAgainstCollection(
+                new[] { pid },
+                null,
+                "auId",
+                string.Empty,
+                new IUiElement[] {
+                    FakeFactory.GetAutomationElementExpected(
+                        new ElementData {
+                            Current_ProcessId = pid,
+                            Current_ControlType = ControlType.Window
+                        })
+                },
+               1);
+        }
+        
+        [Test][Fact]
+        public void Get0of1_ClassName()
+        {
+            // Arrange
+            const int pid = 555;
+            TestParametersAgainstCollection(
+                new[] { pid },
+                null,
+                string.Empty,
+                "class",
+                new IUiElement[] {
+                    FakeFactory.GetAutomationElementNotExpected(
+                        new ElementData {
+                            Current_ProcessId = 1,
+                            Current_ControlType = ControlType.Window
+                        })
+                },
+               0);
+        }
+        
+        [Test]// [Fact]
+        [Ignore]
+        public void Get1of1_ClassName()
+        {
+            // Arrange
+            const int pid = 555;
+            TestParametersAgainstCollection(
+                new[] { pid },
+                null,
+                string.Empty,
+                "class",
+                new IUiElement[] {
+                    FakeFactory.GetAutomationElementExpected(
+                        new ElementData {
+                            Current_ProcessId = pid,
+                            Current_ControlType = ControlType.Window
+                        })
+                },
+               1);
+        }
+        #endregion recursion
     }
 }

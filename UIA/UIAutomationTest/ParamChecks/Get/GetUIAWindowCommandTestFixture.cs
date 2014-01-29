@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace UIAutomationUnitTests.CheckCmdletParameters
+namespace UIAutomationTest.CheckCmdletParameters
 {
     using MbUnit.Framework;// using Xunit;
     
@@ -15,13 +15,13 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
     /// Description of GetUiaWindowCommandTestFixture.
     /// </summary>
     [MbUnit.Framework.TestFixture]
-    [Ignore("20140128")]
+    // [Ignore("20140128")]
     public class GetUiaWindowCommandTestFixture
     {
         [SetUp]
         public void PrepareRunspace()
         {
-            MiddleLevelCode.PrepareRunspaceForParamChecks();
+            MiddleLevelCode2.PrepareRunspaceForParamChecks();
         }
         
         [TearDown]
@@ -31,7 +31,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         }
         
         [Test]// [Fact]
-        [Ignore("20140128")]
+        // [Ignore("20140128")]
         [Category("Fast")]
         public void Get_UiaWindow_NoParameters()
         {
@@ -43,7 +43,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         }
         
         [Test]// [Fact]
-        [Ignore("20140128")]
+        // [Ignore("20140128")]
         [Category("Fast")]
         public void Get_UiaWindow_ProcessName()
         {
@@ -52,7 +52,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         }
         
         [Test]// [Fact]
-        [Ignore("20140128")]
+        // [Ignore("20140128")]
         [Category("Fast")]
         public void Get_UiaWindow_ProcessId()
         {
@@ -61,7 +61,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         }
         
         [Test]// [Fact]
-        [Ignore("20140128")]
+        // [Ignore("20140128")]
         [Category("Fast")]
         public void Get_UiaWindow_Process()
         {
@@ -72,7 +72,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         }
         
         [Test]// [Fact]
-        [Ignore("20140128")]
+        // [Ignore("20140128")]
         [Category("Fast")]
         public void Get_UiaWindow_ProcessName_Name_AuId_Class()
         {
@@ -81,7 +81,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         }
         
         [Test]// [Fact]
-        [Ignore("20140128")]
+        // [Ignore("20140128")]
         [Category("Fast")]
         public void Get_UiaWindow_ProcessId_Name_AuId_Class()
         {
@@ -90,7 +90,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         }
         
         [Test]// [Fact]
-        [Ignore("20140128")]
+        // [Ignore("20140128")]
         [Category("Fast")]
         public void Get_UiaWindow_Process_Name_AuId_Class()
         {
@@ -101,7 +101,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         }
         
         [Test]// [Fact]
-        [Ignore("20140128")]
+        // [Ignore("20140128")]
         [Category("Fast")]
         public void Get_UiaWindow_ProcessName_First()
         {
@@ -110,7 +110,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         }
         
         [Test]// [Fact]
-        [Ignore("20140128")]
+        // [Ignore("20140128")]
         [Category("Fast")]
         public void Get_UiaWindow_ProcessId_First()
         {
@@ -119,7 +119,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         }
         
         [Test]// [Fact]
-        [Ignore("20140128")]
+        // [Ignore("20140128")]
         [Category("Fast")]
         public void Get_UiaWindow_Process_First()
         {
@@ -130,7 +130,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         }
         
         [Test]// [Fact]
-        [Ignore("20140128")]
+        // [Ignore("20140128")]
         [Category("Fast")]
         public void Get_UiaWindow_ProcessName_Recurse()
         {
@@ -139,7 +139,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         }
         
         [Test]// [Fact]
-        [Ignore("20140128")]
+        // [Ignore("20140128")]
         [Category("Fast")]
         public void Get_UiaWindow_ProcessId_Recurse()
         {
@@ -148,7 +148,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         }
         
         [Test]// [Fact]
-        [Ignore("20140128")]
+        // [Ignore("20140128")]
         [Category("Fast")]
         public void Get_UiaWindow_Process_Recurse()
         {
@@ -159,7 +159,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         }
         
         [Test]// [Fact]
-        [Ignore("20140128")]
+        // [Ignore("20140128")]
         [Category("Fast")]
         public void Get_UiaWindow_Name()
         {
@@ -170,7 +170,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         }
         
         [Test]// [Fact]
-        [Ignore("20140128")]
+        // [Ignore("20140128")]
         [Category("Fast")]
         public void Get_UiaWindow_Name_Array()
         {
@@ -181,7 +181,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         }
         
         [Test]// [Fact]
-        [Ignore("20140128")]
+        // [Ignore("20140128")]
         [Category("Fast")]
         public void Get_UiaWindow_Name_AuId()
         {
@@ -192,7 +192,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         }
         
         [Test]// [Fact]
-        [Ignore("20140128")]
+        // [Ignore("20140128")]
         [Category("Fast")]
         public void Get_UiaWindow_Name_Class()
         {
@@ -203,7 +203,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         }
         
         [Test]// [Fact]
-        [Ignore("20140128")]
+        // [Ignore("20140128")]
         [Category("Fast")]
         public void Get_UiaWindow_Name_AuId_Class()
         {
@@ -214,7 +214,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         }
         
         [Test]// [Fact]
-        [Ignore("20140128")]
+        // [Ignore("20140128")]
         [Category("Fast")]
         public void Get_UiaWindow_Name_First()
         {

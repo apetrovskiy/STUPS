@@ -218,6 +218,22 @@
     <Compile Include="Helpers\PreferencesTestFixture.cs" />
     <Compile Include="Helpers\TestResultsTestFixture.cs" />
     <Compile Include="MiddleLevelCode.cs" />
+    <Compile Include="ParamChecks\Common\HideUIACurrentHighlighterCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\Common\InvokeUIAControlClickCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\Container\NewUIAContainerCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\Get\GetUIAControlCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\Get\GetUIAWindowCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\MiddleLevelCode.cs" />
+    <Compile Include="ParamChecks\No\WaitUIANoWindowCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\Pattern\GetUIAEditTextCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\Pattern\InvokeUIAButtonClickCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\Pattern\InvokeUIAInvokePatternCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\Pattern\InvokeUIAToggleStateSetCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\Pattern\SetUIAEditTextCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\Settings.cs" />
+    <Compile Include="ParamChecks\Wait\WaitUIAWindowCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\Wizard\AddUIAWizardStepCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\Wizard\NewUIAWizardCommandTestFixture.cs" />
     <Compile Include="Provider\UIAProviderTestFixture.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="StartUp.cs" />
@@ -252,6 +268,24 @@
     <Folder Include="Helpers\ObjectModelWithMocks" />
     <Folder Include="Helpers\ObjectModel" />
     <Folder Include="Helpers\ObjectModel" />
+    <Folder Include="ParamChecks" />
+    <Folder Include="ParamChecks\Cache" />
+    <Folder Include="ParamChecks\Common" />
+    <Folder Include="ParamChecks\Container" />
+    <Folder Include="ParamChecks\Convert" />
+    <Folder Include="ParamChecks\Discovery" />
+    <Folder Include="ParamChecks\Event" />
+    <Folder Include="ParamChecks\ExecutionPlan" />
+    <Folder Include="ParamChecks\Get" />
+    <Folder Include="ParamChecks\Hotkey" />
+    <Folder Include="ParamChecks\No" />
+    <Folder Include="ParamChecks\Pattern" />
+    <Folder Include="ParamChecks\Profile" />
+    <Folder Include="ParamChecks\Search" />
+    <Folder Include="ParamChecks\Transcript" />
+    <Folder Include="ParamChecks\UltraGrid" />
+    <Folder Include="ParamChecks\Wait" />
+    <Folder Include="ParamChecks\Wizard" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">

@@ -166,7 +166,10 @@ namespace UIAutomationTest
             CmdletUnitTest.TestRunspace.RunPSCode(
                 // 20120920
                 //@"[void]([UIAutomation.Preferences]::OnSuccessDelay = 100);");
-                @"[void]([UIAutomation.Preferences]::OnSuccessDelay = 0);");
+                // 20140129
+                // @"[void]([UIAutomation.Preferences]::OnSuccessDelay = 0);");
+                @"[void]([UIAutomation.Preferences]::OnSuccessDelay = 0); " + 
+                @"[PSTestLib.PSCmdletBase]::SetCmdletParametersCheckingOn($false);");
         }
         
         public static void DisposeRunspace()

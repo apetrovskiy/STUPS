@@ -15,7 +15,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
     /// <summary>
     /// Description of TimeoutManagerTestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture]
     public class TimeoutManagerTestFixture
     {
         internal TimeoutManager TimeoutManager { get; set; }

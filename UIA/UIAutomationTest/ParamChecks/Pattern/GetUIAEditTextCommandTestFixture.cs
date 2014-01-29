@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace UIAutomationUnitTests.CheckCmdletParameters
+namespace UIAutomationTest.CheckCmdletParameters
 {
     using MbUnit.Framework;// using Xunit;
     
@@ -15,13 +15,13 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
     /// Description of GetUiaEditTextCommandTestFixture.
     /// </summary>
     [MbUnit.Framework.TestFixture]
-    [Ignore("20140128")]
+    // [Ignore("20140128")]
     public class GetUiaEditTextCommandTestFixture
     {
         [SetUp]
         public void PrepareRunspace()
         {
-            MiddleLevelCode.PrepareRunspaceForParamChecks();
+            MiddleLevelCode2.PrepareRunspaceForParamChecks();
         }
         
         [TearDown]
@@ -31,7 +31,7 @@ namespace UIAutomationUnitTests.CheckCmdletParameters
         }
         
         [Test]// [Fact]
-        [Ignore("20140128")]
+        // [Ignore("20140128")]
         [Category("Fast")]
         [Description("Get-UiaEditText")]
         public void Get_UiaEditText_NoParameters()

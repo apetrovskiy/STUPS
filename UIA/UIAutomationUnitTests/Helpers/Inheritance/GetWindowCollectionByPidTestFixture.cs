@@ -22,7 +22,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
     /// <summary>
     /// Description of GetWindowCollectionByPidTestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture]
     public class GetWindowCollectionByPidTestFixture
     {
         public GetWindowCollectionByPidTestFixture()
@@ -65,104 +65,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                     string.Empty,
                     string.Empty);
             
-//if (null == resultList) {
-//    Console.WriteLine("null == resultList");
-//} else {
-//    Console.WriteLine("null != resultList");
-//    if (0 == resultList.Count) {
-//        Console.WriteLine("0 == resultList.Count");
-//    } else {
-//        Console.WriteLine("0 != resultList.Count");
-//        Console.WriteLine(resultList.Count.ToString());
-//    }
-//}
-            
             // Assert
             MbUnit.Framework.Assert.Count(expectedNumberOfElements, resultList);
             Xunit.Assert.Equal(expectedNumberOfElements, resultList.Count);
-//            string[] controlTypeNames;
-//            switch (selector) {
-//                case UIAutomationUnitTests.Helpers.Inheritance.UsualWildcardRegex.Wildcard:
-//                    const WildcardOptions options = WildcardOptions.IgnoreCase;
-//                    WildcardPattern namePattern = new WildcardPattern(name, options);
-//                    WildcardPattern automationIdPattern = new WildcardPattern(automationId, options);
-//                    WildcardPattern classNamePattern = new WildcardPattern(className, options);
-//                    WildcardPattern txtValuePattern = new WildcardPattern(txtValue, options);
-//                    
-//                    if (!string.IsNullOrEmpty(name)) {
-//                        MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => namePattern.IsMatch(x.Current.Name));
-//                        resultList.All(x => namePattern.IsMatch(x.Current.Name));
-//                    }
-//                    if (!string.IsNullOrEmpty(automationId)) {
-//                        MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => automationIdPattern.IsMatch(x.Current.AutomationId));
-//                        resultList.All(x => automationIdPattern.IsMatch(x.Current.AutomationId));
-//                    }
-//                    if (!string.IsNullOrEmpty(className)) {
-//                        MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => classNamePattern.IsMatch(x.Current.ClassName));
-//                        resultList.All(x => classNamePattern.IsMatch(x.Current.ClassName));
-//                    }
-//                    controlTypeNames =
-//                        controlTypes.Select(ct => null != ct ? ct.ProgrammaticName.Substring(12) : string.Empty).ToArray();
-//                    if (null != controlType) {
-//                        MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => controlTypeNames.Contains(x.Current.ControlType.ProgrammaticName.Substring(12)));
-//                        resultList.All(x => controlTypeNames.Contains(x.Current.ControlType.ProgrammaticName.Substring(12)));
-//                    }
-//                    
-//                    if (!string.IsNullOrEmpty(txtValue)) {
-//                        MbUnit.Framework.Assert.ForAll(
-//                            resultList
-//                            .Cast<IUiElement>()
-//                            .ToList<IUiElement>(), x =>
-//                            {
-//                                IValuePattern valuePattern = x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern;
-//                                return valuePattern != null && txtValuePattern.IsMatch(valuePattern.Current.Value);
-//                            });
-//                        
-//                        resultList.All(
-//                            x => {
-//                                IValuePattern valuePattern = x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern;
-//                                return valuePattern != null && txtValuePattern.IsMatch(valuePattern.Current.Value);
-//                            });
-//                    }
-//                    break;
-//                case UIAutomationUnitTests.Helpers.Inheritance.UsualWildcardRegex.Regex:
-//                    if (!string.IsNullOrEmpty(name)) {
-//                        MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => Regex.IsMatch(x.Current.Name, name));
-//                        resultList.All(x => Regex.IsMatch(x.Current.Name, name));
-//                    }
-//                    if (!string.IsNullOrEmpty(automationId)) {
-//                        MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => Regex.IsMatch(x.Current.AutomationId, automationId));
-//                        resultList.All(x => Regex.IsMatch(x.Current.AutomationId, automationId));
-//                    }
-//                    if (!string.IsNullOrEmpty(className)) {
-//                        MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => Regex.IsMatch(x.Current.ClassName, className));
-//                        resultList.All(x => Regex.IsMatch(x.Current.ClassName, className));
-//                    }
-//                    controlTypeNames =
-//                        controlTypes.Select(ct => null != ct ? ct.ProgrammaticName.Substring(12) : string.Empty).ToArray();
-//                    if (null != controlType) {
-//                        MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => controlTypeNames.Contains(x.Current.ControlType.ProgrammaticName.Substring(12)));
-//                        resultList.All(x => controlTypeNames.Contains(x.Current.ControlType.ProgrammaticName.Substring(12)));
-//                    }
-//                    if (!string.IsNullOrEmpty(txtValue)) {
-//                        MbUnit.Framework.Assert.ForAll(
-//                            resultList
-//                            .Cast<IUiElement>()
-//                            .ToList<IUiElement>(), x =>
-//                            {
-//                                IValuePattern valuePattern = x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern;
-//                                return valuePattern != null && Regex.IsMatch(valuePattern.Current.Value, txtValue);
-//                            });
-//                        Xunit.Assert.True(
-//                            resultList.All(
-//                                x => {
-//                                    IValuePattern valuePattern = x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern;
-//                                    return valuePattern != null && Regex.IsMatch(valuePattern.Current.Value, txtValue);
-//                                })
-//                           );
-//                    }
-//                    break;
-//            }
         }
         #endregion helpers
         

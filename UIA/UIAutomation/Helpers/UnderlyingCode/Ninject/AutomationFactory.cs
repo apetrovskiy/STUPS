@@ -209,12 +209,23 @@ namespace UIAutomation
             return childKernel;
         }
         
+        internal static int ChildKernelCreationCounter { get; set; }
+        
         internal static void InitializeChildKernel()
         {
 //            if (null != ChildKernel) {
 //                ChildKernel.Dispose();
 //                ChildKernel = null;
 //            }
+            
+            // 20140129
+            if (null != ChildKernel && 5 == ChildKernelCreationCounter) {
+                ChildKernel.Dispose();
+                ChildKernel = null;
+                ChildKernelCreationCounter = 0;
+            } // else {
+            //     ChildKernelCreationCounter++;
+            // }
             
             // 20140125
             if (null == ChildKernel) {
@@ -223,7 +234,9 @@ namespace UIAutomation
                 // 20140123
                 // ChildKernel.Settings.ActivationCacheDisabled = true;
                 ChildKernel.Settings.ActivationCacheDisabled = false;
-            
+                
+                // 20140129
+                ChildKernelCreationCounter++;
             }
         }
         

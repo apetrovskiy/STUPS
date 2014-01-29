@@ -42,7 +42,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             var timeoutManager = new TimeoutManager(0);
             
             // Act
-            var result = timeoutManager.CalculateAdaptiveTimeout();
+            var result = timeoutManager.CalculateAdaptiveDelay();
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(Preferences.OnSleepDelay, result);
@@ -56,7 +56,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             var timeoutManager = new TimeoutManager(100);
             
             // Act
-            var result = timeoutManager.CalculateAdaptiveTimeout();
+            var result = timeoutManager.CalculateAdaptiveDelay();
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(Preferences.OnSleepDelay, result);
@@ -70,7 +70,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             var timeoutManager = new TimeoutManager(5000);
             
             // Act
-            var result = timeoutManager.CalculateAdaptiveTimeout();
+            var result = timeoutManager.CalculateAdaptiveDelay();
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(250, result);
@@ -84,7 +84,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             var timeoutManager = new TimeoutManager(20000);
             
             // Act
-            var result = timeoutManager.CalculateAdaptiveTimeout();
+            var result = timeoutManager.CalculateAdaptiveDelay();
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(500, result);
@@ -98,7 +98,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             var timeoutManager = new TimeoutManager(60000);
             
             // Act
-            var result = timeoutManager.CalculateAdaptiveTimeout();
+            var result = timeoutManager.CalculateAdaptiveDelay();
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(1000, result);
@@ -112,7 +112,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             var timeoutManager = new TimeoutManager(600000);
             
             // Act
-            var result = timeoutManager.CalculateAdaptiveTimeout();
+            var result = timeoutManager.CalculateAdaptiveDelay();
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(6000, result);
@@ -126,7 +126,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             var timeoutManager = new TimeoutManager(1200000);
             
             // Act
-            var result = timeoutManager.CalculateAdaptiveTimeout();
+            var result = timeoutManager.CalculateAdaptiveDelay();
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(6000, result);

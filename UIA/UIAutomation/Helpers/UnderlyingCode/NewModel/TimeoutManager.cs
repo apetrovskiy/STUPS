@@ -18,34 +18,34 @@ namespace UIAutomation
     {
         private int _givenTimeout;
         
-        public int CalculatedTimeout { get; set; }
+        public int CalculatedDelay { get; set; }
         
         public TimeoutManager(int timeout)
         {
             _givenTimeout = timeout;
         }
         
-        public int CalculateAdaptiveTimeout()
+        public int CalculateAdaptiveDelay()
         {
-            int timeout = _givenTimeout;
-            if (0 == timeout) {
-                timeout = Preferences.OnSleepDelay;
-            } else if (timeout <= 5000) {
-                timeout /= 20;
-            } else if (timeout <= 20000) {
-                timeout /= 40;
-            } else if (timeout <= 60000) {
-                timeout /= 60;
-            } else if (timeout <= 600000) {
-                timeout /= 100;
+            int delay = _givenTimeout;
+            if (0 == delay) {
+                delay = Preferences.OnSleepDelay;
+            } else if (delay <= 5000) {
+                delay /= 20;
+            } else if (delay <= 20000) {
+                delay /= 40;
+            } else if (delay <= 60000) {
+                delay /= 60;
+            } else if (delay <= 600000) {
+                delay /= 100;
             } else {
-                timeout /= 200;
+                delay /= 200;
             }
-            if (timeout < Preferences.OnSleepDelay) {
-                timeout = Preferences.OnSleepDelay;
+            if (delay < Preferences.OnSleepDelay) {
+                delay = Preferences.OnSleepDelay;
             }
-            CalculatedTimeout = timeout;
-            return CalculatedTimeout;
+            CalculatedDelay = delay;
+            return CalculatedDelay;
         }
     }
 }

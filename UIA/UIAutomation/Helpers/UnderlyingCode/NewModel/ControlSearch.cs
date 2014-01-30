@@ -379,7 +379,7 @@ namespace UIAutomation
                         tempList.Clear();
                         tempList = null;
                     }
-
+                    
                     return resultCollection;
                     
                 } catch (Exception eUnexpected) {

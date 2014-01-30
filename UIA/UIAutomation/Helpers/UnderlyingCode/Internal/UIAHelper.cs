@@ -835,6 +835,8 @@ namespace UIAutomation
                 CacheRequest cacheRequest = new CacheRequest
                 {
                     AutomationElementMode = AutomationElementMode.Full,
+                    // 20140130
+                    // TODO:
                     TreeFilter = Automation.RawViewCondition
                 };
                 //cacheRequest.AutomationElementMode = AutomationElementMode.None;
@@ -1666,12 +1668,16 @@ namespace UIAutomation
                 if (cmdlet.SubscribedEvents == null || cmdlet.SubscribedEvents.Count <= 0 ||
                     cmdlet.thePreviouslyUsedElement == null) return;
                 for (int i = 0; i < cmdlet.SubscribedEvents.Count; i++) {
+                    // 20140130
+                    // TODO:
                     Automation.RemoveAutomationEventHandler(
                         // 20131202
                         // (AutomationEvent)cmdlet.SubscribedEventsIds[i],
                         cmdlet.SubscribedEventsIds[i],
                         // 20140102
                         // cmdlet.thePreviouslyUsedElement.GetSourceElement(),
+                        // 20140130
+                        // TODO:
                         cmdlet.thePreviouslyUsedElement.GetSourceElement() as AutomationElement,
                         // 20131202
                         // (AutomationEventHandler)cmdlet.SubscribedEvents[i]);

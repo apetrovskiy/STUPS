@@ -93,6 +93,8 @@ public static List<object> Events { get; set; } // temporary ??
             
             // 20130109
             try {
+                // 20140130
+                // TODO:
                 Automation.RemoveAllEventHandlers();
                 Events.Clear();
             }

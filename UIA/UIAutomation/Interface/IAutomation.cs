@@ -36,5 +36,9 @@ namespace UIAutomation
 		void AddAutomationFocusChangedEventHandler(AutomationFocusChangedEventHandler eventHandler);
 		void RemoveAutomationFocusChangedEventHandler(AutomationFocusChangedEventHandler eventHandler);
 		void RemoveAllEventHandlers();
+		
+		Condition RawViewCondition { get; }
+		Condition ControlViewCondition { get; }
+		Condition ContentViewCondition { get; }
 	}
 }

@@ -48,6 +48,7 @@ namespace UIAutomation.Commands
             
             bool notFoundYet = true;
             
+            // TODO: move to SearchTemplate
             do {
 WriteTrace(this, "do");
                 if (CurrentData.LastEventInfoAdded) {
@@ -124,18 +125,6 @@ WriteTrace(this, "eventId 002");
 
                 if ((nowDate - StartDate).TotalSeconds > Timeout / 1000)
                 {
-                    //ErrorRecord err =
-                    //    new ErrorRecord(
-                    //        new Exception("Failed to catch the event"),
-                    //        "NoEventFound",
-                    //        ErrorCategory.ObjectNotFound,
-                    //        null);
-                    //err.ErrorDetails = 
-                    //    new ErrorDetails(
-                    //        "Could not catch the event");
-                    //WriteError(this, err, true);
-
-                    // TODO
                     this.WriteError(
                         this,
                         "Failed to catch the event",
@@ -148,32 +137,12 @@ WriteTrace(this, "eventId 002");
                 CurrentData.LastEventInfoAdded = false;
                 WriteObject(this, CurrentData.LastEventSource);
 
-                /*
-                if (!notFoundYet) {
-                    CurrentData.LastEventInfoAdded = false;
-                    WriteObject(this, CurrentData.LastEventSource);
-                }
-                */
-
             } while (notFoundYet);
         }
         
-        //private bool IsInArray(string whatToSearch, string[] whereToSearch)
         private bool IsInArray(string whatToSearch, IEnumerable<string> whereToSearch)
         {
             return whereToSearch.Any(t => String.Equals(whatToSearch, t, StringComparison.CurrentCultureIgnoreCase));
-            /*
-            bool result = false;
-            for (int i = 0; i < whereToSearch.Length; i++)
-            {
-                if (whatToSearch.ToUpper() == whereToSearch[i].ToUpper())
-                {
-                    result = true;
-                    break;
-                }
-            }
-            return result;
-            */
         }
     }
 }

@@ -110,6 +110,9 @@ namespace UIAutomation
 		        
 		        // 20140122
 		        // InitializeChildKernel();
+		        
+		        // 20140130
+		        // HasScriptBlockCmdletBase.
 		    }
 		    catch (Exception eInitFailure) {
 		        // TODO
@@ -131,6 +134,10 @@ namespace UIAutomation
 		    
 		    // 20140125
 		    ScopeChangeFlag = DateTime.Now;
+		    
+		    // 20140130
+		    // temporary?
+		    
 		}
 		
 		public static void Reset()
@@ -745,6 +752,11 @@ namespace UIAutomation
         {
             var newObject = Kernel.Get<T>(new IParameter[] {});
             return ConvertToProxiedObject<T>(newObject) as SearchTemplate;
+        }
+        
+        internal static IAutomation GetMyAutomation()
+        {
+            return Kernel.Get<IAutomation>();
         }
     }
 }

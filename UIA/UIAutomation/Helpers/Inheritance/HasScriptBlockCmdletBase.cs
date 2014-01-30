@@ -31,6 +31,9 @@ namespace UIAutomation
 //            this.HighlightFirstChild = Preferences.HighlightFirstChild;
             KnownIssue = false;
             Banner = string.Empty;
+            
+            // 20140130
+            MyAutomation = AutomationFactory.GetMyAutomation();
         }
         #endregion Constructor
 
@@ -52,6 +55,9 @@ namespace UIAutomation
             new List<AutomationEventHandler>();
         protected internal readonly List<AutomationEvent> SubscribedEventsIds =
             new List<AutomationEvent>();
+        
+        // 20140130
+        protected internal IAutomation MyAutomation { get; set; }
         
         #region for script recording
         public List<List<string>> Recording =

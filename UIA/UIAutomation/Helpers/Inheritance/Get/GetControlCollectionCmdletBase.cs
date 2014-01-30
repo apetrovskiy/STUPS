@@ -105,11 +105,7 @@ namespace UIAutomation
             bool onlyTopLevel,
             bool viaWildcardOrRegex)
         {
-//            cmdlet.WriteVerbose(cmdlet, "in the GetAutomationElementsViaWildcards_FindAll method");
-            
             if (!cmdlet.CheckAndPrepareInput(cmdlet)) { return null; } // ?? 20131107
-            
-//            cmdlet.WriteVerbose(cmdlet, "still in the GetAutomationElementsViaWildcards_FindAll method");
             
             List<IUiElement> resultCollection = new List<IUiElement>(); // ? make it null ??
             
@@ -126,31 +122,6 @@ namespace UIAutomation
                     onlyOneResult,
                     onlyTopLevel,
                     viaWildcardOrRegex);
-            
-//            cmdlet.WriteVerbose(cmdlet, "with some resultCollection");
-            
-//            if (null == resultCollection || resultCollection.Count == 0) {
-//                
-//                WriteVerbose(
-//                    cmdlet, 
-//                    "getAutomationElementsWithWalker (" +
-//                    inputObject.Current.Name +
-//                    "," +
-//                    cmdlet.Name +
-//                    "," +
-//                    cmdlet.AutomationId +
-//                    "," +
-//                    cmdlet.Class +
-//                    "," +
-//                    cmdlet.ControlType +
-//                    "," +
-//                    caseSensitive.ToString() +
-//                    "," +
-//                    onlyOneResult.ToString() +
-//                    "," +
-//                    onlyTopLevel.ToString() +
-//                    ") returned null");
-//            }
             
             return resultCollection;
         }
@@ -337,11 +308,6 @@ namespace UIAutomation
                     element.FindAll(
                         TreeScope.Descendants,
                         conditions);
-//                WriteVerbose(
-//                    this,
-//                    "There are roughly " +
-//                    results.Count.ToString() +
-//                    " elements");
                 
                 resultCollection =
                     WindowSearch.ReturnOnlyRightElements(

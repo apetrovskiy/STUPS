@@ -25,19 +25,38 @@ namespace UIAutomation
 //	    }
 	    
 		// public static readonly Condition RawViewCondition = Condition.TrueCondition;
-		public readonly Condition RawViewCondition = Condition.TrueCondition;
+		// public readonly Condition RawViewCondition = Condition.TrueCondition;
+		public Condition RawViewCondition
+		{
+		    get { return Condition.TrueCondition; }
+		}
 		// public static readonly Condition ControlViewCondition = new NotCondition(new PropertyCondition(AutomationElement.IsControlElementProperty, false));
-		public readonly Condition ControlViewCondition = new NotCondition(new PropertyCondition(AutomationElement.IsControlElementProperty, false));
+		// public readonly Condition ControlViewCondition = new NotCondition(new PropertyCondition(AutomationElement.IsControlElementProperty, false));
+		public Condition ControlViewCondition
+		{
+		    get { return new NotCondition(new PropertyCondition(AutomationElement.IsControlElementProperty, false)); }
+		}
 		// public static readonly Condition ContentViewCondition = new NotCondition(new OrCondition(new Condition[]
-		public readonly Condition ContentViewCondition = new NotCondition(new OrCondition(new Condition[] {
-			new PropertyCondition(AutomationElement.IsControlElementProperty, false),
-			new PropertyCondition(AutomationElement.IsContentElementProperty, false)
-		}));
+//		public readonly Condition ContentViewCondition = new NotCondition(new OrCondition(new Condition[] {
+//			new PropertyCondition(AutomationElement.IsControlElementProperty, false),
+//			new PropertyCondition(AutomationElement.IsContentElementProperty, false)
+//		}));
+		public Condition ContentViewCondition
+		{
+		    get { return new NotCondition(
+		              new OrCondition(
+		                  new Condition[] {
+		                      new PropertyCondition(AutomationElement.IsControlElementProperty, false),
+		                      new PropertyCondition(AutomationElement.IsContentElementProperty, false)
+		                                  }
+		                              )
+		              ); }
+		}
 		// public static bool Compare(AutomationElement el1, AutomationElement el2)
 		public bool Compare(IUiElement el1, IUiElement el2)
 		{
 			// return Misc.Compare(el1, el2);
-			return Automation.Compare(el1, el2);
+			return Automation.Compare(el1.GetSourceElement() as AutomationElement, el2.GetSourceElement() as AutomationElement);
 		}
 		// public static bool Compare(int[] runtimeId1, int[] runtimeId2)
 		public bool Compare(int[] runtimeId1, int[] runtimeId2)
@@ -59,7 +78,7 @@ namespace UIAutomation
 //			Misc.ValidateArgumentNonNull(pattern, "pattern");
 //			string programmaticName = pattern.ProgrammaticName;
 //			return programmaticName.Substring(0, programmaticName.Length - 26);
-			return Automation.PatternName(pattern);
+		    return Automation.PatternName(pattern.GetSourcePattern() as AutomationPattern);
 		}
 		// public static void AddAutomationEventHandler(AutomationEvent eventId, AutomationElement element, TreeScope scope, AutomationEventHandler eventHandler)
 		public void AddAutomationEventHandler(AutomationEvent eventId, IUiElement element, TreeScope scope, AutomationEventHandler eventHandler)
@@ -96,7 +115,7 @@ namespace UIAutomation
 			
 			Automation.AddAutomationEventHandler(
 			    eventId,
-			    element.GetSourceElement(),
+			    element.GetSourceElement() as AutomationElement,
 			    scope,
 			    eventHandler);
 		}
@@ -112,7 +131,7 @@ namespace UIAutomation
 			
 			Automation.RemoveAutomationEventHandler(
 			    eventId,
-			    element.GetSourceElement(),
+			    element.GetSourceElement() as AutomationElement,
 			    eventHandler);
 		}
 		// public static void AddAutomationPropertyChangedEventHandler(AutomationElement element, TreeScope scope, AutomationPropertyChangedEventHandler eventHandler, params AutomationProperty[] properties)
@@ -132,7 +151,7 @@ namespace UIAutomation
 //			ClientEventManager.AddListener(element, eventHandler, l);
 			
 			Automation.AddAutomationPropertyChangedEventHandler(
-		        element.GetSourceElement(),
+		        element.GetSourceElement() as AutomationElement,
 			    scope,
 			    eventHandler,
 			    properties);
@@ -145,7 +164,7 @@ namespace UIAutomation
 //			ClientEventManager.RemoveListener(AutomationElement.AutomationPropertyChangedEvent, element, eventHandler);
 			
 			Automation.RemoveAutomationPropertyChangedEventHandler(
-		        element.GetSourceElement(),
+		        element.GetSourceElement() as AutomationElement,
 			    eventHandler);
 		}
 		// public static void AddStructureChangedEventHandler(AutomationElement element, TreeScope scope, StructureChangedEventHandler eventHandler)
@@ -157,7 +176,7 @@ namespace UIAutomation
 //			ClientEventManager.AddListener(element, eventHandler, l);
 			
 			Automation.AddStructureChangedEventHandler(
-		        element.GetSourceElement(),
+		        element.GetSourceElement() as AutomationElement,
 			    scope,
 			    eventHandler);
 		}
@@ -169,7 +188,7 @@ namespace UIAutomation
 //			ClientEventManager.RemoveListener(AutomationElement.StructureChangedEvent, element, eventHandler);
 			
 			Automation.RemoveStructureChangedEventHandler(
-		        element.GetSourceElement(),
+		        element.GetSourceElement() as AutomationElement,
 			    eventHandler);
 		}
 		// public static void AddAutomationFocusChangedEventHandler(AutomationFocusChangedEventHandler eventHandler)

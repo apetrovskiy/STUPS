@@ -21,6 +21,8 @@ namespace UIAutomationUnitTests.Commands.Wizard
         public NewUiaWizardCommandTestFixture()
         {
             UnitTestingHelper.PrepareUnitTestDataStore();
+            // 20140130
+            AutomationFactory.InitUnitTests();
         }
         
         [SetUp]

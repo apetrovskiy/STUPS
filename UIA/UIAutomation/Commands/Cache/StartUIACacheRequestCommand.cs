@@ -98,13 +98,19 @@ namespace UIAutomation.Commands
                 
                 switch (Filter.ToUpper()) {
                     case "RAW":
-                        CurrentData.CacheRequest.TreeFilter = Automation.RawViewCondition;
+                        // 20140130
+                        // CurrentData.CacheRequest.TreeFilter = Automation.RawViewCondition;
+                        CurrentData.CacheRequest.TreeFilter = MyAutomation.RawViewCondition; 
                         break;
                     case "CONTENT":
-                        CurrentData.CacheRequest.TreeFilter = Automation.ContentViewCondition;
+                        // 20140130
+                        // CurrentData.CacheRequest.TreeFilter = Automation.ContentViewCondition;
+                        CurrentData.CacheRequest.TreeFilter = MyAutomation.ContentViewCondition;
                         break;
                     case "CONTROL":
-                        CurrentData.CacheRequest.TreeFilter = Automation.ControlViewCondition;
+                        // 20140130
+                        // CurrentData.CacheRequest.TreeFilter = Automation.ControlViewCondition;
+                        CurrentData.CacheRequest.TreeFilter = MyAutomation.ControlViewCondition;
                         break;
                     //default:
                     //    CurrentData.CacheRequest.TreeFilter = Automation.RawViewCondition;

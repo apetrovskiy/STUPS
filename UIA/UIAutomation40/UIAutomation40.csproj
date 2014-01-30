@@ -681,6 +681,9 @@
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\SourcePatternEmulator.cs">
       <Link>Helpers\UnderlyingCode\Adapter\SourcePatternEmulator.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\UiaAutomation.cs">
+      <Link>Helpers\UnderlyingCode\Adapter\UiaAutomation.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\UiaDockPattern.cs">
       <Link>Helpers\UnderlyingCode\Adapter\UiaDockPattern.cs</Link>
     </Compile>
@@ -1028,6 +1031,9 @@
     </Compile>
     <Compile Include="..\UIAutomation\Interface\Holder\ITouchInputHolder.cs">
       <Link>Interface\Holder\ITouchInputHolder.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\IAutomation.cs">
+      <Link>Interface\IAutomation.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Interface\IUiElement.cs">
       <Link>Interface\IUiElement.cs</Link>

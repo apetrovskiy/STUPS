@@ -292,6 +292,7 @@
     <Compile Include="Commands\Wizard\StepUIAWizardCommand.cs" />
     <Compile Include="Helpers\Inheritance\Get\GetFamilyCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\Wizard\WizardStepCmdletBase.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Adapter\UiaAutomation.cs" />
     <Compile Include="Helpers\UnderlyingCode\Adapter\UiControlInputHolder.cs" />
     <Compile Include="Helpers\UnderlyingCode\Adapter\UiElement.cs" />
     <Compile Include="Helpers\UnderlyingCode\Adapter\UiEltCollection.cs" />
@@ -448,6 +449,7 @@
     <Compile Include="Interface\Holder\IMouseInputHolder.cs" />
     <Compile Include="Interface\Holder\ITouchInput.cs" />
     <Compile Include="Interface\Holder\ITouchInputHolder.cs" />
+    <Compile Include="Interface\IAutomation.cs" />
     <Compile Include="Interface\IUiElement.cs" />
     <Compile Include="Interface\IUiEltCollection.cs" />
     <Compile Include="Interface\IUiElementInformation.cs" />

@@ -39,6 +39,9 @@ namespace UIAutomation
             // 20140125
             Bind<WindowSearch>().ToSelf().InScope(ctx => AutomationFactory.ScopeChangeFlag);
             Bind<ControlSearch>().ToSelf().InScope(ctx => AutomationFactory.ScopeChangeFlag);
+            
+            // 20140130
+            Bind<IAutomation>().To<UiaAutomation>().InSingletonScope();
             #endregion common objects
             
 //            #region IUiElement

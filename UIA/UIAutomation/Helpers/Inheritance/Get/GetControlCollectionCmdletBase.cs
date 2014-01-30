@@ -32,21 +32,31 @@ namespace UIAutomation
         }
         
         public GetControlCollectionCmdletBase(
-            IUiElement[] inputObjectCollection,
-            string name,
-            string automationId,
-            string className,
-            string textValue,
-            string[] controlType,
-            bool caseSensitive)
+            // 20140130
+            ControlSearchData data)
+//            IUiElement[] inputObjectCollection,
+//            string name,
+//            string automationId,
+//            string className,
+//            string textValue,
+//            string[] controlType,
+//            bool caseSensitive)
         {
-            InputObject = inputObjectCollection;
-            Name = name;
-            AutomationId = automationId;
-            Class = className;
-            Value = textValue;
-            ControlType = controlType;
-            CaseSensitive = caseSensitive;
+            // 20140130
+//            InputObject = inputObjectCollection;
+//            Name = name;
+//            AutomationId = automationId;
+//            Class = className;
+//            Value = textValue;
+//            ControlType = controlType;
+//            CaseSensitive = caseSensitive;
+            InputObject = data.InputObject;
+            Name = data.Name;
+            AutomationId = data.AutomationId;
+            Class = data.Class;
+            Value = data.Value;
+            ControlType = data.ControlType;
+            CaseSensitive = data.CaseSensitive;
         }
         
         #region Parameters

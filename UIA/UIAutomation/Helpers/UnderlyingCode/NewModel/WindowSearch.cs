@@ -62,8 +62,6 @@ namespace UIAutomation
                 } else if (null != data.ProcessNames && data.ProcessNames.Length > 0) {
                     
                     if (null == ResultCollection || 0 == ResultCollection.Count) {
-                        // 20140129
-                        // ResultCollection = GetWindowCollectionByProcessName(data.ProcessNames, data.First, data.Recurse, data.Name, data.AutomationId, data.Class);
                         ResultCollection = GetWindowCollectionByProcessName(UiElement.RootElement, data.ProcessNames, data.First, data.Recurse, data.Name, data.AutomationId, data.Class);
                     }
                 } else if ((null != data.Name && data.Name.Length > 0) ||
@@ -71,8 +69,6 @@ namespace UIAutomation
                            !string.IsNullOrEmpty(data.Class)) {
                     
                     if (null == ResultCollection || 0 == ResultCollection.Count) {
-                        // 20140129
-                        // ResultCollection = GetWindowCollectionByName(data.Name, data.AutomationId, data.Class, data.Recurse);
                         ResultCollection = GetWindowCollectionByName(UiElement.RootElement, data.Name, data.AutomationId, data.Class, data.Recurse);
                     }
                 }
@@ -152,15 +148,12 @@ namespace UIAutomation
                         if (null != controlsList && 0 < controlsList.Count) {
 
                             addToResultCollection = true;
-                            // 20140129
                             break;
 
                         } else {
 
                             exitInnerCycle = true;
                             addToResultCollection = false;
-                            // 20140129
-                            // break;
                             continue;
                         }
 
@@ -218,59 +211,6 @@ namespace UIAutomation
             return aeWndCollectionViaWin32;
         }
         
-        #region commented
-        /*
-        private List<IUiElement> GetWindowCollectionFromProcess(
-            IEnumerable<Process> processes,
-            bool first,
-            bool recurse,
-            ICollection<string> name,
-            string automationId,
-            string className)
-        {
-            List<IUiElement> aeWndCollectionByProcId = new List<IUiElement>();
-            
-            GetProcessIdsFromProcesses(ref aeWndCollectionByProcId, processes, first, recurse, name, automationId, className);
-            
-            return aeWndCollectionByProcId;
-        }
-        
-        private void GetProcessIdsFromProcesses(
-            ref List<IUiElement> aeWndCollectionByProcId,
-            IEnumerable<Process> processes,
-            bool first,
-            bool recurse,
-            ICollection<string> name,
-            string automationId,
-            string className)
-        {
-            List<IUiElement> tempCollection = null;
-            List<int> processIdList = new List<int>();
-            foreach (Process process in processes) {
-                try {
-                    int processId = process.Id;
-                    if (0 != processId) {
-                        processIdList.Add(processId);
-                    }
-                    int[] processIds = processIdList.ToArray();
-                    tempCollection = GetWindowCollectionByPid(processIds, first, recurse, name, automationId, className);
-                    aeWndCollectionByProcId.AddRange(tempCollection);
-                } catch (Exception tempException) {
-                    continue;
-                }
-            }
-            if (null != tempCollection) {
-                tempCollection.Clear();
-                tempCollection = null;
-            }
-            if (null != processIdList) {
-                processIdList.Clear();
-                processIdList = null;
-            }
-        }
-         */
-        #endregion commented
-        
         #region uncommented
         
         private List<IUiElement> GetWindowCollectionFromProcess(
@@ -302,12 +242,6 @@ namespace UIAutomation
                     aeWndCollectionByProcId.AddRange(tempCollection);
                 }
                 catch (Exception tempException) {
-                    
-                    // WriteVerbose(this, tempException.Message);
-                    
-                    //return aeWndCollectionByProcId;
-                    
-                    // 20140129
                     continue;
                 }
                 
@@ -343,7 +277,6 @@ namespace UIAutomation
                 windowNames = new string[]{ string.Empty };
             }
             
-            // 20140129
             OrCondition conditionsSet = null;
             if (recurse) {
                 conditionsSet =
@@ -368,78 +301,19 @@ namespace UIAutomation
             
             foreach (string windowTitle in windowNames) {
                 
-                #region commented
-                // 20140129
-                /*
-                OrCondition conditionsSet = null;
-                if (recurse) {
-                    conditionsSet =
-                        new OrCondition(
-                            new PropertyCondition(
-                                AutomationElement.ControlTypeProperty,
-                                ControlType.Window),
-                            Condition.FalseCondition);
-                } else {
-                    conditionsSet =
-                        new OrCondition(
-                            new PropertyCondition(
-                                AutomationElement.ControlTypeProperty,
-                                ControlType.Window),
-                            new PropertyCondition(
-                                AutomationElement.ControlTypeProperty,
-                                ControlType.Pane),
-                            new PropertyCondition(
-                                AutomationElement.ControlTypeProperty,
-                                ControlType.Menu));
-                }
-                */
-                #endregion commented
-                
                 IUiEltCollection windowCollection =
-                    // 20140129
-                    // UiElement.RootElement.FindAll(recurse ? TreeScope.Descendants : TreeScope.Children, conditionsSet);
                     rootElement.FindAll(recurse ? TreeScope.Descendants : TreeScope.Children, conditionsSet);
                 
-                // 20140129
-                // try {
-                    windowCollectionByProperties =
-                        ReturnOnlyRightElements(
-                            windowCollection,
-                            windowTitle,
-                            automationId,
-                            className,
-                            string.Empty,
-                            (new string[]{ "Window", "Pane", "Menu" }),
-                            false,
-                            true);
-                    
-                    #region commented
-                // 20140129
-                // }
-                // catch {
-                    // 20140129
-//                    try {
-//                        windowCollectionByProperties =
-//                            ReturnOnlyRightElements(
-//                                windowCollection,
-//                                windowTitle,
-//                                automationId,
-//                                className,
-//                                string.Empty,
-//                                (new string[]{ "Window", "Pane", "Menu" }),
-//                                false,
-//                                true);
-//                    }
-//                    catch {
-//                        
-//                        // 20140121
-//                        //                        if (null != windowCollection) {
-//                        //                            // windowCollection.Dispose();
-//                        //                            windowCollection = null;
-//                        //                        }
-//                    }
-                // }
-                    #endregion commented
+                windowCollectionByProperties =
+                    ReturnOnlyRightElements(
+                        windowCollection,
+                        windowTitle,
+                        automationId,
+                        className,
+                        string.Empty,
+                        (new string[]{ "Window", "Pane", "Menu" }),
+                        false,
+                        true);
                     
                 try {
                     if (null != windowCollectionByProperties && 0 < windowCollectionByProperties.Count) {
@@ -479,58 +353,9 @@ namespace UIAutomation
             return resultCollection;
         }
         
-        #region commented (new)
-        /*
-        private List<IUiElement> GetWindowCollectionByProcessName(
-            IEnumerable<string> processNames,
-            bool first,
-            bool recurse,
-            ICollection<string> name,
-            string automationId,
-            string className)
-        {
-            List<IUiElement> aeWndCollectionByProcId = new List<IUiElement>();
-
-            int[] processIds = GetProcessIdsFromProcessNames(processNames);
-            aeWndCollectionByProcId =
-                GetWindowCollectionByPid(
-                    processIds,
-                    first,
-                    recurse,
-                    name,
-                    automationId,
-                    className);
-            
-            return aeWndCollectionByProcId;
-        }
-        
-        private int[] GetProcessIdsFromProcessNames(IEnumerable<string> processNames)
-        {
-            List<int> processIdList = new List<int>();
-            foreach (string processName in processNames) {
-                try {
-                    Process[] processes = Process.GetProcessesByName(processName);
-                    processIdList.AddRange(processes.Select(process => process.Id));
-                } catch {
-                    continue;
-                }
-            }
-            int[] processIds = processIdList.ToArray();
-            
-            if (null != processIdList) {
-                processIdList.Clear();
-                processIdList = null;
-            }
-            
-            return processIds;
-        }
-         */
-        #endregion commented (new)
-        
         #region uncommented
         
         private List<IUiElement> GetWindowCollectionByProcessName(
-            // 20140129
             IUiElement rootElement,
             IEnumerable<string> processNames,
             bool first,
@@ -551,16 +376,12 @@ namespace UIAutomation
                     processIdList.AddRange(processes.Select(process => process.Id));
                 }
                 catch {
-                    // 20140128
-                    // return aeWndCollectionByProcId;
                     continue;
                 }
                 
             }
             
             int[] processIds = processIdList.ToArray();
-            // 20140129
-            // aeWndCollectionByProcId = GetWindowCollectionByPid(UiElement.RootElement, processIds, first, recurse, name, automationId, className);
             aeWndCollectionByProcId = GetWindowCollectionByPid(rootElement, processIds, first, recurse, name, automationId, className);
             
             // 20140121
@@ -595,7 +416,6 @@ namespace UIAutomation
                 recurse = true;
             }
             
-            // 20140129
             OrCondition conditionWindowPaneMenu =
                 new OrCondition(
                     new PropertyCondition(
@@ -611,7 +431,6 @@ namespace UIAutomation
             foreach (int processId in processIds) {
                 
                 AndCondition conditionsProcessId = null;
-                // 20140129
                 conditionsForRecurseSearch =
                     new AndCondition(
                         new PropertyCondition(
@@ -620,72 +439,13 @@ namespace UIAutomation
                         new PropertyCondition(
                             AutomationElement.ControlTypeProperty,
                             ControlType.Window));
-                // 20140129
-//                try {
                     
-                    conditionsProcessId =
-                        new AndCondition(
-                            new PropertyCondition(
-                                AutomationElement.ProcessIdProperty,
-                                processId),
-                            // 20140129
-                            conditionWindowPaneMenu);
-//                            new OrCondition(
-//                                new PropertyCondition(
-//                                    AutomationElement.ControlTypeProperty,
-//                                    ControlType.Window),
-//                                new PropertyCondition(
-//                                    AutomationElement.ControlTypeProperty,
-//                                    ControlType.Pane),
-//                                new PropertyCondition(
-//                                    AutomationElement.ControlTypeProperty,
-//                                    ControlType.Menu)));
-                    // 20140129
-//                    if (recurse) {
-//                        
-//                        conditionsForRecurseSearch =
-//                            new AndCondition(
-//                                new PropertyCondition(
-//                                    AutomationElement.ProcessIdProperty,
-//                                    processId),
-//                                new PropertyCondition(
-//                                    AutomationElement.ControlTypeProperty,
-//                                    ControlType.Window));
-//                        
-//                    }
-//                } catch {
-//                    
-//                    conditionsProcessId =
-//                        new AndCondition(
-//                            new PropertyCondition(
-//                                AutomationElement.ProcessIdProperty,
-//                                processId),
-//                            // 20140129
-//                            conditionWindowPaneMenu);
-////                            new OrCondition(
-////                                new PropertyCondition(
-////                                    AutomationElement.ControlTypeProperty,
-////                                    ControlType.Window),
-////                                new PropertyCondition(
-////                                    AutomationElement.ControlTypeProperty,
-////                                    ControlType.Pane),
-////                                new PropertyCondition(
-////                                    AutomationElement.ControlTypeProperty,
-////                                    ControlType.Menu)));
-//                    
-//                    if (recurse) {
-//                        
-//                        conditionsForRecurseSearch =
-//                            new AndCondition(
-//                                new PropertyCondition(
-//                                    AutomationElement.ProcessIdProperty,
-//                                    processId),
-//                                new PropertyCondition(
-//                                    AutomationElement.ControlTypeProperty,
-//                                    ControlType.Window));
-//                    }
-//                    
-//                }
+                conditionsProcessId =
+                    new AndCondition(
+                        new PropertyCondition(
+                            AutomationElement.ProcessIdProperty,
+                            processId),
+                        conditionWindowPaneMenu);
                 
                 try {
                     

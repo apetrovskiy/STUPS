@@ -46,16 +46,29 @@ namespace UIAutomationUnitTests
         
         public static List<IUiElement> GetResultList_ViaWildcards(GetControlCmdletBase cmdlet, IUiElement element, Condition condition)
         {
+            // 20140130
+            var data =
+                new ControlSearchData {
+                InputObject = cmdlet.InputObject,
+                Name = cmdlet.Name,
+                AutomationId = cmdlet.AutomationId,
+                Class = cmdlet.Class,
+                Value = cmdlet.Value,
+                ControlType = cmdlet.ControlType,
+                SearchCriteria = cmdlet.SearchCriteria
+            };
+            
             List<IUiElement> resultList =
                 ControlSearch.SearchByWildcardOrRegexViaUia(
                     element,
-                    cmdlet.InputObject,
-                    cmdlet.Name,
-                    cmdlet.AutomationId,
-                    cmdlet.Class,
-                    cmdlet.Value,
-                    cmdlet.SearchCriteria,
-                    cmdlet.ControlType,
+                    data,
+//                    cmdlet.InputObject,
+//                    cmdlet.Name,
+//                    cmdlet.AutomationId,
+//                    cmdlet.Class,
+//                    cmdlet.Value,
+//                    cmdlet.SearchCriteria,
+//                    cmdlet.ControlType,
                     condition,
                     true);
             

@@ -145,13 +145,15 @@ namespace UIAutomation
                             ResultCollection.AddRange(
                                 SearchByWildcardOrRegexViaUia(
                                     inputObject,
-                                    data.InputObject,
-                                    data.Name,
-                                    data.AutomationId,
-                                    data.Class,
-                                    data.Value,
-                                    data.SearchCriteria,
-                                    data.ControlType,
+                                    // 20140130
+                                    data,
+//                                    data.InputObject,
+//                                    data.Name,
+//                                    data.AutomationId,
+//                                    data.Class,
+//                                    data.Value,
+//                                    data.SearchCriteria,
+//                                    data.ControlType,
                                     conditionsForWildCards,
                                     true));
                     }
@@ -166,13 +168,15 @@ namespace UIAutomation
                         ResultCollection.AddRange(
                             SearchByWildcardOrRegexViaUia(
                                 inputObject,
-                                data.InputObject,
-                                data.Name,
-                                data.AutomationId,
-                                data.Class,
-                                data.Value,
-                                data.SearchCriteria,
-                                data.ControlType,
+                                // 20140130
+                                data,
+//                                data.InputObject,
+//                                data.Name,
+//                                data.AutomationId,
+//                                data.Class,
+//                                data.Value,
+//                                data.SearchCriteria,
+//                                data.ControlType,
                                 conditionsForWildCards,
                                 false));
                     }
@@ -187,10 +191,12 @@ namespace UIAutomation
                         ResultCollection.AddRange(
                             SearchByWildcardViaWin32(
                                 inputObject,
-                                data.Name,
-                                data.Value,
-                                data.SearchCriteria,
-                                data.ControlType));
+                                // 20140130
+                                data));
+//                                data.Name,
+//                                data.Value,
+//                                data.SearchCriteria,
+//                                data.ControlType));
                         
                     } // if (!Preferences.DisableWin32Search || cmdlet.Win32)
                 } // FindWindowEx
@@ -229,9 +235,6 @@ namespace UIAutomation
         }
         
         internal IEnumerable<IUiElement> SearchByTextViaWin32(
-        /*
-        internal List<IUiElement> SearchByTextViaWin32(
-        */
             IUiElement inputObject,
             string containsText,
             string[] controlTypeNames)
@@ -331,8 +334,6 @@ namespace UIAutomation
                     
                     listOfColllectedResults.Add(tempElement);
                     
-                    // cmdlet.WriteVerbose(cmdlet, "ExactSearch: element added to the result collection");
-                    
                 } else {
                     
                     if (!TestControlWithAllSearchCriteria(searchCriteria, tempElement)) continue;
@@ -352,13 +353,15 @@ namespace UIAutomation
         
         internal static List<IUiElement> SearchByWildcardOrRegexViaUia(
             IUiElement inputObject,
-            IUiElement[] InputObject,
-            string name,
-            string automationId,
-            string className,
-            string strValue,
-            Hashtable[] searchCriteria,
-            string[] controlType,
+            // 20140130
+            ControlSearchData data,
+            // IUiElement[] InputObject,
+            // string name,
+            // string automationId,
+            // string className,
+            // string strValue,
+            // Hashtable[] searchCriteria,
+            // string[] controlType,
             Condition conditionsForWildCards,
             bool viaWildcardOrRegex)
         {
@@ -369,20 +372,31 @@ namespace UIAutomation
                 
                 GetControlCollectionCmdletBase cmdlet1 =
                     new GetControlCollectionCmdletBase(
-                        // cmdlet.InputObject ?? (new UiElement[]{ (UiElement)UiElement.RootElement }),
-                        InputObject ?? (new UiElement[]{ (UiElement)UiElement.RootElement }),
-                        name, //cmdlet.Name,
-                        automationId, //cmdlet.AutomationId,
-                        className, //cmdlet.Class,
-                        strValue,
-                        // 20131128
-                        // null != cmdlet.ControlType ? (new string[] {cmdlet.ControlType}) : (new string[] {}),
-                        // null != cmdlet.ControlType && 0 < cmdlet.ControlType.Length ? cmdlet.ControlType : (new string[] {}),
-                        null != controlType && 0 < controlType.Length ? controlType : (new string[] {}),
-                        caseSensitive);
+                        // 20140130
+                        // InputObject ?? (new UiElement[]{ (UiElement)UiElement.RootElement }),
+                        // name, //cmdlet.Name,
+                        // automationId, //cmdlet.AutomationId,
+                        // className, //cmdlet.Class,
+                        // strValue,
+                        // null != controlType && 0 < controlType.Length ? controlType : (new string[] {}),
+                        new ControlSearchData {
+                            InputObject = data.InputObject ?? (new UiElement[]{ (UiElement)UiElement.RootElement }),
+                            Name = data.Name,
+                            AutomationId = data.AutomationId,
+                            Class = data.Class,
+                            Value = data.Value,
+                            ControlType = null != data.ControlType && 0 < data.ControlType.Length ? data.ControlType : (new string[] {}),
+                            CaseSensitive = caseSensitive
+                        });
+//                        data.InputObject ?? (new UiElement[]{ (UiElement)UiElement.RootElement }),
+//                        data.Name,
+//                        data.AutomationId,
+//                        data.Class,
+//                        data.Value,
+//                        null != data.ControlType && 0 < data.ControlType.Length ? data.ControlType : (new string[] {}),
+//                        caseSensitive);
                 
                 try {
-                    // WriteVerbose((cmdlet as PSCmdletBase), "using the GetAutomationElementsViaWildcards_FindAll method");
                     
                     List<IUiElement> tempList =
                         cmdlet1.GetAutomationElementsViaWildcards_FindAll(
@@ -393,29 +407,17 @@ namespace UIAutomation
                             false,
                             false,
                             viaWildcardOrRegex);
-
-                    // cmdlet.WriteVerbose(
-                    //     cmdlet, 
-                    //     "there are " +
-                    //     tempList.Count.ToString() +
-                    //     " elements that match the conditions");
                     
-                    // if (null == cmdlet.SearchCriteria || 0 == cmdlet.SearchCriteria.Length) {
-                    if (null == searchCriteria || 0 == searchCriteria.Length) {
+                    // 20140130
+                    // if (null == searchCriteria || 0 == searchCriteria.Length) {
+                    if (null == data.SearchCriteria || 0 == data.SearchCriteria.Length) {
                         
                         resultCollection.AddRange(tempList);
                     } else {
                         
-                        /*
-                        foreach (IUiElement tempElement2 in tempList) {
-                            
-                            if (!TestControlWithAllSearchCriteria(searchCriteria, tempElement2)) continue;
-                            
-                            resultCollection.Add(tempElement2);
-                        }
-                        */
-                        
-                        foreach (IUiElement tempElement2 in tempList.Where(elt => TestControlWithAllSearchCriteria(searchCriteria, elt))) {
+                        // 20140130
+                        // foreach (IUiElement tempElement2 in tempList.Where(elt => TestControlWithAllSearchCriteria(searchCriteria, elt))) {
+                        foreach (IUiElement tempElement2 in tempList.Where(elt => TestControlWithAllSearchCriteria(data.SearchCriteria, elt))) {
                             resultCollection.Add(tempElement2);
                         }
                     }
@@ -425,20 +427,11 @@ namespace UIAutomation
                         tempList = null;
                     }
 
-                    /*
-                    if (null != tempList) {
-                        tempList.Clear();
-                        tempList = null;
-                    }
-                    */
-
-                    // 20131203
                     return resultCollection;
                     
                 } catch (Exception eUnexpected) {
 
                     (new GetControlCmdletBase()).WriteError(
-                        // this,
                         new GetControlCmdletBase(),
                         "The input control or window has been possibly lost." +
                         eUnexpected.Message,
@@ -467,10 +460,12 @@ namespace UIAutomation
         
         internal IEnumerable<IUiElement> SearchByWildcardViaWin32(
             IUiElement inputObject,
-            string name,
-            string value,
-            Hashtable[] searchCriteria,
-            string[] controlType)
+            // 20140130
+            ControlSearchData data)
+//            string name,
+//            string value,
+//            Hashtable[] searchCriteria,
+//            string[] controlType)
         /*
         internal List<IUiElement> SearchByWildcardViaWin32(GetControlCmdletBase cmdlet, IUiElement inputObject)
         */
@@ -479,9 +474,13 @@ namespace UIAutomation
             // 20140111
             // if (!string.IsNullOrEmpty(cmdlet.Name)) {
             // if (!string.IsNullOrEmpty(cmdlet.Name) || !string.IsNullOrEmpty(cmdlet.Value)) {
-            if (!string.IsNullOrEmpty(name) || !string.IsNullOrEmpty(value)) {
+            // 20140130
+            // if (!string.IsNullOrEmpty(name) || !string.IsNullOrEmpty(value)) {
+            if (!string.IsNullOrEmpty(data.Name) || !string.IsNullOrEmpty(data.Value)) {
                 // tempListWin32.AddRange(inputObject.GetControlByNameViaWin32(cmdlet, cmdlet.Name, cmdlet.Value));
-                tempListWin32.AddRange(inputObject.GetControlByNameViaWin32(name, value));
+                // 20140130
+                // tempListWin32.AddRange(inputObject.GetControlByNameViaWin32(name, value));
+                tempListWin32.AddRange(inputObject.GetControlByNameViaWin32(data.Name, data.Value));
             }
             
             List<IUiElement> resultList = new List<IUiElement>();
@@ -497,10 +496,16 @@ namespace UIAutomation
 //                }
                 bool goFurther = true;
                 // if (null != cmdlet.ControlType && 0 < cmdlet.ControlType.Length) {
-                if (null != controlType && 0 < controlType.Length) {
+                // 20140130
+                // if (null != controlType && 0 < controlType.Length) {
+                if (null != data.ControlType && 0 < data.ControlType.Length) {
                     
                     // if (cmdlet.ControlType.Any(controlTypeName => String.Equals(tempElement3.Current.ControlType.ProgrammaticName.Substring(12), controlTypeName, StringComparison.CurrentCultureIgnoreCase)))
-                    if (controlType.Any(controlTypeName => String.Equals(tempElement3.Current.ControlType.ProgrammaticName.Substring(12), controlTypeName, StringComparison.CurrentCultureIgnoreCase)))
+                    // 20140130
+                    // if (controlType.Any(controlTypeName => String.Equals(tempElement3.Current.ControlType.ProgrammaticName.Substring(12), controlTypeName, StringComparison.CurrentCultureIgnoreCase)))
+                    if (data.ControlType.Any(
+                        controlTypeName => String.Equals(
+                            tempElement3.Current.ControlType.ProgrammaticName.Substring(12), controlTypeName, StringComparison.CurrentCultureIgnoreCase)))
                     {
                         goFurther = false;
                     }
@@ -521,7 +526,9 @@ namespace UIAutomation
                 if (goFurther) continue;
                 
                 // if (null == cmdlet.SearchCriteria || 0 == cmdlet.SearchCriteria.Length) {
-                if (null == searchCriteria || 0 == searchCriteria.Length) {
+                // 20140130
+                // if (null == searchCriteria || 0 == searchCriteria.Length) {
+                if (null == data.SearchCriteria || 0 == data.SearchCriteria.Length) {
                     
                     resultList.Add(tempElement3);
                     // cmdlet.WriteVerbose(cmdlet, "Win32Search: element added to the result collection");
@@ -529,7 +536,9 @@ namespace UIAutomation
                     
                     // cmdlet.WriteVerbose(cmdlet, "Win32Search: checking search criteria");
                     // if (!TestControlWithAllSearchCriteria(cmdlet, cmdlet.SearchCriteria, tempElement3)) continue;
-                    if (!TestControlWithAllSearchCriteria(searchCriteria, tempElement3)) continue;
+                    // 20140130
+                    // if (!TestControlWithAllSearchCriteria(searchCriteria, tempElement3)) continue;
+                    if (!TestControlWithAllSearchCriteria(data.SearchCriteria, tempElement3)) continue;
                     // cmdlet.WriteVerbose(cmdlet, "Win32Search: the control matches the search criteria");
                     resultList.Add(tempElement3);
                     // cmdlet.WriteVerbose(cmdlet, "Win32Search: element added to the result collection");

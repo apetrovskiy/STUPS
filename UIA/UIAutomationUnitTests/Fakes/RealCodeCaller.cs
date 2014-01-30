@@ -46,7 +46,6 @@ namespace UIAutomationUnitTests
         
         public static List<IUiElement> GetResultList_ViaWildcards(GetControlCmdletBase cmdlet, IUiElement element, Condition condition)
         {
-            // 20140130
             var data =
                 new ControlSearchData {
                 InputObject = cmdlet.InputObject,
@@ -62,13 +61,6 @@ namespace UIAutomationUnitTests
                 ControlSearch.SearchByWildcardOrRegexViaUia(
                     element,
                     data,
-//                    cmdlet.InputObject,
-//                    cmdlet.Name,
-//                    cmdlet.AutomationId,
-//                    cmdlet.Class,
-//                    cmdlet.Value,
-//                    cmdlet.SearchCriteria,
-//                    cmdlet.ControlType,
                     condition,
                     true);
             
@@ -125,7 +117,6 @@ namespace UIAutomationUnitTests
             IEnumerable<int> processIds,
             bool first,
             bool recurse,
-            // ICollection<string> names,
             IEnumerable<string> names,
             string automationId,
             string className)

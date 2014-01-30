@@ -31,25 +31,8 @@ namespace UIAutomation
             PassThru = false;
         }
         
-        public GetControlCollectionCmdletBase(
-            // 20140130
-            ControlSearchData data)
-//            IUiElement[] inputObjectCollection,
-//            string name,
-//            string automationId,
-//            string className,
-//            string textValue,
-//            string[] controlType,
-//            bool caseSensitive)
+        public GetControlCollectionCmdletBase(ControlSearchData data)
         {
-            // 20140130
-//            InputObject = inputObjectCollection;
-//            Name = name;
-//            AutomationId = automationId;
-//            Class = className;
-//            Value = textValue;
-//            ControlType = controlType;
-//            CaseSensitive = caseSensitive;
             InputObject = data.InputObject;
             Name = data.Name;
             AutomationId = data.AutomationId;
@@ -82,12 +65,12 @@ namespace UIAutomation
 //        public SwitchParameter CaseSensitive { get; set; }
         #endregion Parameters
 
-        protected override void BeginProcessing() {
-            WriteVerbose(this, "ControlType = " + ControlType);
-            WriteVerbose(this, "Class = " + Class);
-            WriteVerbose(this, "Name = " + Name);
-            WriteVerbose(this, "AutomationId = " + AutomationId);
-        }
+//        protected override void BeginProcessing() {
+//            WriteVerbose(this, "ControlType = " + ControlType);
+//            WriteVerbose(this, "Class = " + Class);
+//            WriteVerbose(this, "Name = " + Name);
+//            WriteVerbose(this, "AutomationId = " + AutomationId);
+//        }
         
         protected void GetAutomationElementsViaWildcards_FindAll(
             IUiElement inputObject,
@@ -122,11 +105,11 @@ namespace UIAutomation
             bool onlyTopLevel,
             bool viaWildcardOrRegex)
         {
-            cmdlet.WriteVerbose(cmdlet, "in the GetAutomationElementsViaWildcards_FindAll method");
+//            cmdlet.WriteVerbose(cmdlet, "in the GetAutomationElementsViaWildcards_FindAll method");
             
             if (!cmdlet.CheckAndPrepareInput(cmdlet)) { return null; } // ?? 20131107
             
-            cmdlet.WriteVerbose(cmdlet, "still in the GetAutomationElementsViaWildcards_FindAll method");
+//            cmdlet.WriteVerbose(cmdlet, "still in the GetAutomationElementsViaWildcards_FindAll method");
             
             List<IUiElement> resultCollection = new List<IUiElement>(); // ? make it null ??
             
@@ -144,30 +127,30 @@ namespace UIAutomation
                     onlyTopLevel,
                     viaWildcardOrRegex);
             
-            cmdlet.WriteVerbose(cmdlet, "with some resultCollection");
+//            cmdlet.WriteVerbose(cmdlet, "with some resultCollection");
             
-            if (null == resultCollection || resultCollection.Count == 0) {
-                
-                WriteVerbose(
-                    cmdlet, 
-                    "getAutomationElementsWithWalker (" +
-                    inputObject.Current.Name +
-                    "," +
-                    cmdlet.Name +
-                    "," +
-                    cmdlet.AutomationId +
-                    "," +
-                    cmdlet.Class +
-                    "," +
-                    cmdlet.ControlType +
-                    "," +
-                    caseSensitive.ToString() +
-                    "," +
-                    onlyOneResult.ToString() +
-                    "," +
-                    onlyTopLevel.ToString() +
-                    ") returned null");
-            }
+//            if (null == resultCollection || resultCollection.Count == 0) {
+//                
+//                WriteVerbose(
+//                    cmdlet, 
+//                    "getAutomationElementsWithWalker (" +
+//                    inputObject.Current.Name +
+//                    "," +
+//                    cmdlet.Name +
+//                    "," +
+//                    cmdlet.AutomationId +
+//                    "," +
+//                    cmdlet.Class +
+//                    "," +
+//                    cmdlet.ControlType +
+//                    "," +
+//                    caseSensitive.ToString() +
+//                    "," +
+//                    onlyOneResult.ToString() +
+//                    "," +
+//                    onlyTopLevel.ToString() +
+//                    ") returned null");
+//            }
             
             return resultCollection;
         }
@@ -214,27 +197,27 @@ namespace UIAutomation
                         onlyOneResult,
                         onlyTopLevel);
 
-                if (null == resultCollection) {
-                    WriteVerbose(
-                        cmdlet, 
-                        "getAutomationElementsWithWalker (" +
-                        inputObject.Current.Name +
-                        "," +
-                        cmdlet.Name +
-                        "," +
-                        cmdlet.AutomationId +
-                        "," +
-                        cmdlet.Class +
-                        "," +
-                        cmdlet.ControlType +
-                        "," +
-                        caseSensitive.ToString() +
-                        "," +
-                        onlyOneResult.ToString() +
-                        "," +
-                        onlyTopLevel.ToString() +
-                        ") returrned null");
-                }
+//                if (null == resultCollection) {
+//                    WriteVerbose(
+//                        cmdlet, 
+//                        "getAutomationElementsWithWalker (" +
+//                        inputObject.Current.Name +
+//                        "," +
+//                        cmdlet.Name +
+//                        "," +
+//                        cmdlet.AutomationId +
+//                        "," +
+//                        cmdlet.Class +
+//                        "," +
+//                        cmdlet.ControlType +
+//                        "," +
+//                        caseSensitive.ToString() +
+//                        "," +
+//                        onlyOneResult.ToString() +
+//                        "," +
+//                        onlyTopLevel.ToString() +
+//                        ") returrned null");
+//                }
             
             }
             
@@ -256,27 +239,21 @@ namespace UIAutomation
             TreeWalker walker = 
                 new TreeWalker(
                     Condition.TrueCondition);
-            // 20131109
-            //System.Windows.Automation.AutomationElement oneMoreElement;
-
+            
             try {
-                // 20131118
-                // property to method
-                //IUiElement oneMoreElement = ObjectsFactory.GetUiElement(walker.GetFirstChild(element.SourceElement));
-                // 20140102
-                // IUiElement oneMoreElement = AutomationFactory.GetUiElement(walker.GetFirstChild(element.GetSourceElement()));
+                
                 IUiElement oneMoreElement = AutomationFactory.GetUiElement(walker.GetFirstChild(element.GetSourceElement() as AutomationElement));
 
-                try{
-                    WriteVerbose(
-                        this, 
-                        oneMoreElement.Current.ControlType.ProgrammaticName +
-                        "\t" +
-                        oneMoreElement.Current.Name + 
-                        "\t" +
-                        oneMoreElement.Current.AutomationId);
-                }
-                catch {}
+//                try{
+//                    WriteVerbose(
+//                        this, 
+//                        oneMoreElement.Current.ControlType.ProgrammaticName +
+//                        "\t" +
+//                        oneMoreElement.Current.Name + 
+//                        "\t" +
+//                        oneMoreElement.Current.AutomationId);
+//                }
+//                catch {}
 
                 resultCollection = ProcessAutomationElement(
                         oneMoreElement,
@@ -299,27 +276,18 @@ namespace UIAutomation
                 
                 while (oneMoreElement != null) {
                     
-                    // 20131109
-                    //oneMoreElement = walker.GetNextSibling(oneMoreElement.SourceElement);
-                    // 20131112
-                    //oneMoreElement = new UiElement(walker.GetNextSibling(oneMoreElement.SourceElement));
-                    // 20131118
-                    // property to method
-                    //oneMoreElement = ObjectsFactory.GetUiElement(walker.GetNextSibling(oneMoreElement.SourceElement));
-                    // 20140102
-                    // oneMoreElement = AutomationFactory.GetUiElement(walker.GetNextSibling(oneMoreElement.GetSourceElement()));
                     oneMoreElement = AutomationFactory.GetUiElement(walker.GetNextSibling(oneMoreElement.GetSourceElement() as AutomationElement));
 
-                    try{
-                        WriteVerbose(
-                            this, 
-                            oneMoreElement.Current.ControlType.ProgrammaticName +
-                            "\t" +
-                            oneMoreElement.Current.Name + 
-                            "\t" +
-                            oneMoreElement.Current.AutomationId);
-                    }
-                    catch {}
+//                    try{
+//                        WriteVerbose(
+//                            this, 
+//                            oneMoreElement.Current.ControlType.ProgrammaticName +
+//                            "\t" +
+//                            oneMoreElement.Current.Name + 
+//                            "\t" +
+//                            oneMoreElement.Current.AutomationId);
+//                    }
+//                    catch {}
 
                     resultCollection = ProcessAutomationElement(
                         oneMoreElement,
@@ -343,7 +311,6 @@ namespace UIAutomation
             }
             catch {}
             
-            // 20140121
             walker = null;
             
             return resultCollection;
@@ -370,15 +337,14 @@ namespace UIAutomation
                     element.FindAll(
                         TreeScope.Descendants,
                         conditions);
-                WriteVerbose(
-                    this,
-                    "There are roughly " +
-                    results.Count.ToString() +
-                    " elements");
+//                WriteVerbose(
+//                    this,
+//                    "There are roughly " +
+//                    results.Count.ToString() +
+//                    " elements");
                 
                 resultCollection =
                     WindowSearch.ReturnOnlyRightElements(
-                        // this,
                         results,
                         name,
                         automationId,
@@ -388,8 +354,6 @@ namespace UIAutomation
                         caseSensitiveParam,
                         viaWildcardOrRegex);
                 
-                // 20130608
-                // 20140121
                 if (null != results) {
                     // results.Dispose(); // taboo!
                     results = null;
@@ -403,58 +367,6 @@ namespace UIAutomation
             
             return resultCollection;
         }
-        
-        /*
-        internal List<IUiElement> GetAutomationElementsWithFindAll(
-            IUiElement element,
-            string name,
-            string automationId,
-            string className,
-            string textValue,
-            string[] controlType,
-            Condition conditions,
-            bool caseSensitiveParam,
-            bool onlyOneResult,
-            bool onlyTopLevel,
-            bool viaWildcardOrRegex)
-        {
-            List<IUiElement> resultCollection = new List<IUiElement>();
-
-            try {
-                
-                IUiEltCollection results =
-                    element.FindAll(
-                        TreeScope.Descendants,
-                        conditions);
-                WriteVerbose(
-                    this,
-                    "There are roughly " +
-                    results.Count.ToString() +
-                    " elements");
-                
-                resultCollection =
-                    ReturnOnlyRightElements(
-                        this,
-                        results,
-                        name,
-                        automationId,
-                        className,
-                        textValue,
-                        controlType,
-                        caseSensitiveParam,
-                        viaWildcardOrRegex);
-                
-                // 20130608
-                results = null;
-                
-            }
-            catch { //(Exception eWildCardSearch) {
-                
-            }
-            
-            return resultCollection;
-        }
-        */
         
         private List<IUiElement> ProcessAutomationElement(
             IUiElement element,
@@ -552,7 +464,6 @@ namespace UIAutomation
                     }
                 }
                 
-                // 20140121
                 wildcardName = wildcardAutomationId = wildcardClass = null;
                 
             }
@@ -586,13 +497,7 @@ namespace UIAutomation
             if (string.IsNullOrEmpty(elementControlType)) {
                 return result;
             }
-
-            /*
-            if (null == elementControlType || string.Empty == elementControlType) {
-                return result;
-            }
-            */
-
+            
             // if all the item are empty strings
             string tempString = controlType.Aggregate(string.Empty, (current, t) => current + t);
             /*
@@ -613,26 +518,7 @@ namespace UIAutomation
             {
                 result = true;
             }
-
-            /*
-            foreach (string controlTypeName in controlType)
-            {
-                if (controlTypeName.ToUpper() == elementControlType.ToUpper())
-                {
-                    result = true;
-                }
-
-            }
-            */
-
-            /*
-            for (int i = 0; i < controlType.Length; i++) {
-                if (controlType[i].ToUpper() == elementControlType.ToUpper()) {
-                    result = true;
-            	}
-            }
-            */
-
+            
             return result;
         }
         
@@ -713,8 +599,6 @@ namespace UIAutomation
             
         }
         
-        // 20131109
-        //protected void GetAutomationElementsChildren(AutomationElement inputObject, bool firstChild)
         protected void GetAutomationElementsChildren(IUiElement inputObject, bool firstChild)
         {
             if (!CheckAndPrepareInput(this)) { return; }
@@ -723,33 +607,11 @@ namespace UIAutomation
                 new TreeWalker(
                     Condition.TrueCondition);
             
-            // 20131109
-            //AutomationElement sibling = null;
-            //sibling = firstChild ? walker.GetFirstChild(inputObject) : walker.GetLastChild(inputObject);
-            IUiElement sibling = null;
-            // 20131112
-            //sibling = firstChild ? (new UiElement(walker.GetFirstChild(inputObject.SourceElement))) : (new UiElement(walker.GetLastChild(inputObject.SourceElement)));
-            // 20131118
-            // property to method
-            //sibling = firstChild ? ObjectsFactory.GetUiElement(walker.GetFirstChild(inputObject.SourceElement)) : ObjectsFactory.GetUiElement(walker.GetLastChild(inputObject.SourceElement));
-            // 20131118
-            // property to method
-            //sibling = firstChild ? ObjectsFactory.GetUiElement(walker.GetFirstChild(inputObject.SourceElement)) : ObjectsFactory.GetUiElement(walker.GetLastChild(inputObject.GetSourceElement()));
-            // 20140102
-            // sibling = firstChild ? AutomationFactory.GetUiElement(walker.GetFirstChild(inputObject.GetSourceElement())) : AutomationFactory.GetUiElement(walker.GetLastChild(inputObject.GetSourceElement()));
-            sibling = firstChild ? AutomationFactory.GetUiElement(walker.GetFirstChild(inputObject.GetSourceElement() as AutomationElement)) : AutomationFactory.GetUiElement(walker.GetLastChild(inputObject.GetSourceElement() as AutomationElement));
-
-            /*
-            if (firstChild) {
-                // 20120824
-                //sibling = walker.GetFirstChild(this.InputObject);
-                sibling = walker.GetFirstChild(inputObject);
-            } else {
-                // 20120824
-                //sibling = walker.GetLastChild(this.InputObject);
-                sibling = walker.GetLastChild(inputObject);
-            }
-            */
+            IUiElement sibling =
+                firstChild ?
+                    AutomationFactory.GetUiElement(walker.GetFirstChild(inputObject.GetSourceElement() as AutomationElement)) :
+                        AutomationFactory.GetUiElement(walker.GetLastChild(inputObject.GetSourceElement() as AutomationElement));
+            
             WriteObject(this, sibling);
         }
         
@@ -764,27 +626,13 @@ namespace UIAutomation
                 
                 if (scope == TreeScope.Children ||
                     scope == TreeScope.Descendants) {
-                    WriteVerbose(this, "selected TreeScope." + scope.ToString());
+                    // WriteVerbose(this, "selected TreeScope." + scope.ToString());
                     
-                    // Condition conditions = GetWildcardSearchCondition(this);
                     var controlSearch =
                         AutomationFactory.GetSearchImpl<ControlSearch>() as ControlSearch;
                     
                     Condition conditions =
                         ControlSearch.GetWildcardSearchCondition(
-//                            new ControlSearchData {
-//                                InputObject = this.InputObject,
-//                                ContainsText = this.ContainsText,
-//                                Name = this.Name,
-//                                AutomationId = this.AutomationId,
-//                                Class = this.Class,
-//                                Value = this.Value,
-//                                ControlType = this.ControlType,
-//                                SearchCriteria = this.SearchCriteria,
-//                                Win32 = this.Win32,
-//                                CaseSensitive = this.CaseSensitive,
-//                                Regex = this.Regex
-//                            },
                             controlSearch.ConvertCmdletToControlSearchData(this));
                     
                     IUiEltCollection temporaryResults = null;
@@ -798,26 +646,24 @@ namespace UIAutomation
                             searchResults.AddRange(temporaryResults.Cast<IUiElement>());
                     }
                     else {
-                        WriteVerbose(this, "no conditions. Performing search with TrueCondition");
+                        // WriteVerbose(this, "no conditions. Performing search with TrueCondition");
                         temporaryResults =
                             inputObject.FindAll(
                                 scope,
                                 Condition.TrueCondition);
                         if (temporaryResults.Count > 0)
                         {
-                            WriteVerbose(this, 
-                                         "returned " + 
-                                         temporaryResults.Count.ToString() + 
-                                         " results");
+//                            WriteVerbose(this, 
+//                                         "returned " + 
+//                                         temporaryResults.Count.ToString() + 
+//                                         " results");
                             searchResults.AddRange(temporaryResults.Cast<IUiElement>());
                         }
                     }
-                    WriteVerbose(this, "results found: " + searchResults.Count.ToString());
+                    // WriteVerbose(this, "results found: " + searchResults.Count.ToString());
                     WriteObject(this, searchResults.ToArray());
-                } // if (scope == TreeScope.Children ||
-                //scope == TreeScope.Descendants)
+                }
                 
-                // 20140121
                 if (null != searchResults) {
                     searchResults.Clear();
                     searchResults = null;
@@ -828,12 +674,11 @@ namespace UIAutomation
                 IUiElement[] outResult = inputObject.GetParentOrAncestor(scope);
                 WriteObject(this, outResult);
                 
-                // 20140121
                 if (null != outResult) {
                     outResult = null;
                 }
                 
-            } // 20120823
+            }
             
         }
     }

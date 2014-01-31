@@ -131,8 +131,6 @@ namespace UIAutomation
         #endregion Properties
         
         protected bool GetColorProbe(HasControlInputCmdletBase cmdlet,
-                                     // 20131109
-                                     //AutomationElement element)
                                      IUiElement element)
         {
             bool result = false;
@@ -144,24 +142,9 @@ namespace UIAutomation
             return result;
         }
         
-        // 20131205
-        // protected bool ClickControl(HasControlInputCmdletBase cmdlet,
         protected internal bool ClickControl(HasControlInputCmdletBase cmdlet,
-                                    // 20131109
-                                    //AutomationElement element,
                                     IUiElement element,
                                     ClickSettings settings)
-//                                    bool RightClick,
-//                                    bool MidClick,
-//                                    bool Alt,
-//                                    bool Shift,
-//                                    bool Ctrl,
-//                                    bool inSequence,
-//                                    bool DoubleClick,
-//                                    // 20131125
-//                                    int settings.DoubleClickInterval,
-//                                    int RelativeX,
-//                                    int RelativeY)
         {
             bool result = false;
             
@@ -172,17 +155,11 @@ namespace UIAutomation
                 settings.RelativeY = Preferences.ClickOnControlByCoordY;
             }
             
-            // 20131109
-            //AutomationElement whereToClick = 
-            //    element;
             IUiElement whereToClick = 
                 element;
-            WriteVerbose(cmdlet, 
-                         "where the click will be performed: " +
-                         element.Current.Name);
-            // 20131109
-            //AutomationElement whereTheHandle = 
-            //    whereToClick;
+//            WriteVerbose(cmdlet, 
+//                         "where the click will be performed: " +
+//                         element.Current.Name);
             IUiElement whereTheHandle = 
                 whereToClick;
             
@@ -192,19 +169,8 @@ namespace UIAutomation
                 WriteVerbose(cmdlet, "trying to use one of its ancestors");
                 
                 whereTheHandle =
-                    // 20131204
-                    // UiaHelper.GetAncestorWithHandle(whereToClick);
                     whereToClick.GetAncestorWithHandle();
                 if (whereTheHandle.Current.NativeWindowHandle == 0) {
-                    // 20131216
-//                    ErrorRecord err = 
-//                        new ErrorRecord(new Exception("The handle of this control equals to zero"),
-//                                        "ZeroHandle",
-//                                        ErrorCategory.InvalidArgument,
-//                                        whereTheHandle);
-//                    err.ErrorDetails = 
-//                        new ErrorDetails("This control does not have a handle");
-//                    WriteError(cmdlet, err, true);
                     
                     this.WriteError(
                         this,
@@ -929,16 +895,13 @@ try {
         {
             try { // experimental
             
-            // 20131109
-            //AutomationElement sourceElement;
             IUiElement sourceElement;
             string elementTitle = String.Empty;
             string elementType = String.Empty;
             AutomationEvent eventId = null;
             
             try {
-                // 20131109
-                //sourceElement = src as AutomationElement;
+                
                 sourceElement = src as IUiElement;
                 try { elementTitle = sourceElement.Cached.Name; } catch { }
                 try {
@@ -1152,14 +1115,7 @@ try {
                 
                 cmdlet.Timeout = timeout;
                 
-                //if (null != inputElements && null != (inputElements as AutomationElement[]) && 0 < inputElements.Length) {
-                // 20131109
-                //if (null != inputElements && null != (inputElements as AutomationElement[]) && 0 < inputElements.Count) {
                 if (null != inputElements && null != (inputElements as IUiElement[]) && inputElements.Any()) {
-
-                /*
-                if (null != inputElements && null != (inputElements as IUiElement[]) && 0 < inputElements.Count()) {
-                */
                 
                     cmdlet.InputObject = inputElements;
                 } else {
@@ -1210,71 +1166,7 @@ try {
                     } // 20120824
                 }
             }
-
-            /*
-            for (int i = 0; i < SearchCriteria.Length; i++) {
-                
-                System.Collections.Generic.Dictionary<string, object> dict =
-                    this.ConvertHashtableToDictionary(SearchCriteria[i]);
-                
-                GetControlCmdletBase cmdlet = 
-                    new GetControlCmdletBase();
-                
-                try{ cmdlet.Class = dict["CLASS"].ToString(); } catch {}
-                try{ cmdlet.AutomationId = dict["AUTOMATIONID"].ToString(); } catch {}
-                try{ cmdlet.ControlType = dict["CONTROLTYPE"].ToString(); } catch {}
-                try{ cmdlet.Name = dict["NAME"].ToString(); } catch {}
-                try{ cmdlet.Value = dict["VALUE"].ToString(); } catch {}
-                
-                cmdlet.Timeout = timeout;
-                
-                if (null != inputElements && null != (inputElements as AutomationElement[]) && 0 < inputElements.Length) {
-                    cmdlet.InputObject = inputElements;
-                } else {
-                    if (UIAutomation.CurrentData.CurrentWindow == null) {
-                        return result;
-                    }
-                    cmdlet.InputObject = new AutomationElement[]{ UIAutomation.CurrentData.CurrentWindow };
-                }
-                
-                WriteVerbose(this, "getting the control");
-                
-                ArrayList elementsToWorkWith = GetControl(cmdlet);
-                
-                if (null == elementsToWorkWith) {
-
-                    WriteVerbose(this, "couldn't get the control(s)");
-                    return result;
-                } else {
-
-                    foreach (AutomationElement elementToWorkWith in elementsToWorkWith) {
-                        
-                        WriteVerbose(this, "found the control:");
-                        try {WriteVerbose(this, "Name = " + elementToWorkWith.Current.Name); }catch {}
-                        try {WriteVerbose(this, "AutomationId = " + elementToWorkWith.Current.AutomationId); }catch {}
-                        try {WriteVerbose(this, "ClassName = " + elementToWorkWith.Current.ClassName); }catch {}
-                        try {WriteVerbose(this, "ControlType = " + elementToWorkWith.Current.ControlType.ProgrammaticName); }catch {}
-                        
-                        bool oneControlResult = 
-                            testControlByPropertiesFromDictionary(
-                                dict,
-                                elementToWorkWith);
-                        
-                        if (oneControlResult) {
-                            
-                            if (Preferences.HighlightCheckedControl) {
-                                UiaHelper.HighlightCheckedControl(elementToWorkWith);
-                            }
-                            
-                        } else { // 20130710
-                            return result;
-                        }
-                    
-                    } // 20120824
-                }
-            }
-            */
-
+            
             result = true;
             
             return result;

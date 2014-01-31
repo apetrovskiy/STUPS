@@ -27,13 +27,6 @@ namespace UIAutomation
     /// </summary>
     public class HasTimeoutCmdletBase : HasControlInputCmdletBase
     {
-        #region commented
-//        // http://pinvoke.net/default.aspx/user32.FindWindow
-//        [DllImport("user32.dll", EntryPoint="FindWindow", SetLastError = true)]
-//        private static extern IntPtr FindWindowByCaption(IntPtr zeroOnly, string lpWindowName);
-//        // You can also call FindWindow(default(string), lpWindowName) or FindWindow((string)null, lpWindowName)
-        #endregion commented
-        
         #region Constructor
         public HasTimeoutCmdletBase()
         {
@@ -98,12 +91,8 @@ namespace UIAutomation
                             CmdletName(this) + ": timeout expired for process: " +
                             cmdlet.ProcessName + ", title: " + cmdlet.Name);
                     throw(eReturn);
-                }else{
-//                        WriteVerbose(this, "got the window: " +
-//                                     // 20120824
-//                                     //aeWindow.Current.Name);
-//                                     ((AutomationElement)aeWindowList[0]).Current.Name);
-                }
+                } // else{ // OK
+                // }
                     
                 if (!cmdlet.WaitNoWindow) {
                     Wait = false;

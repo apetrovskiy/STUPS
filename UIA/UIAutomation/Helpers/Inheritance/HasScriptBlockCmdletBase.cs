@@ -71,19 +71,11 @@ namespace UIAutomation
             try {
                 IntPtr hWnd = 
                     NativeMethods.GetForegroundWindow();
-                WriteVerbose(this, 
-                             "the handle to the active window is " + 
-                             hWnd.ToInt32());
-                            /*
-                            _hWnd.ToInt32().ToString());
-                            */
+//                WriteVerbose(this, 
+//                             "the handle to the active window is " + 
+//                             hWnd.ToInt32());
                 if (hWnd == IntPtr.Zero) return result;
-                // 20131109
-                //result = 
-                //    AutomationElement.FromHandle(_hWnd);
-                // 20131112
-                //result =
-                //    new UiElement(AutomationElement.FromHandle(_hWnd));
+                
                 result =
                     AutomationFactory.GetUiElement(AutomationElement.FromHandle(hWnd));
                 WriteVerbose(this, 

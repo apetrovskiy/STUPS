@@ -30,13 +30,9 @@ namespace UIAutomation
         #endregion Parameters
         
         protected void WaitIfCondition(
-            // 20131109
-            //AutomationElement _control,
             IUiElement _control,
             bool isEnabledOrIsVisible)
         {
-            // 20131109
-            //_control = this.InputObject[0];
             _control = InputObject.Cast<IUiElement>().ToArray()[0];
             
             if (isEnabledOrIsVisible) {
@@ -52,23 +48,16 @@ namespace UIAutomation
                 try {
                     string tempIsReport = string.Empty;
                     tempIsReport = isEnabledOrIsVisible ? _control.Current.IsEnabled.ToString() : _control.Current.IsOffscreen.ToString();
-
-                    /*
-                    if (isEnabledOrIsVisible) {
-                        tempIsReport = _control.Current.IsEnabled.ToString();
-                    } else {
-                        tempIsReport = _control.Current.IsOffscreen.ToString();
-                    }
-                    */
-                    WriteVerbose(this,
-                                 "AutomationID: " + 
-                                 _control.Current.AutomationId +
-                                 ", title: " + 
-                                 _control.Current.Name + 
-                                 ", Enabled = " + 
-                                 tempIsReport +
-                                 ", seconds: " + 
-                                 ((nowDate - StartDate).TotalSeconds).ToString());
+                    
+//                    WriteVerbose(this,
+//                                 "AutomationID: " + 
+//                                 _control.Current.AutomationId +
+//                                 ", title: " + 
+//                                 _control.Current.Name + 
+//                                 ", Enabled = " + 
+//                                 tempIsReport +
+//                                 ", seconds: " + 
+//                                 ((nowDate - StartDate).TotalSeconds).ToString());
                 } catch { }
                 if (!CheckAndPrepareInput(this))
                 {
@@ -108,36 +97,6 @@ namespace UIAutomation
                 }
                 if (_control != null) continue;
                 
-                /*
-                // code is heuristically unavailable
-                WriteVerbose(this, "the control is unavailable");
-                    
-                this.WriteError(
-                    this,
-                    CmdletName(this) + ": control is unavailable. AutomationId: " + 
-                    _control.Current.AutomationId +
-                    ", title: " +
-                    _control.Current.Name,
-                    "TimeoutExpired",
-                    ErrorCategory.OperationTimeout,
-                    true);
-                */
-
-                /*
-                if (_control == null) {
-                    WriteVerbose(this, "the control is unavailable");
-                    
-                    this.WriteError(
-                        this,
-                        CmdletName(this) + ": control is unavailable. AutomationId: " + 
-                        _control.Current.AutomationId +
-                        ", title: " +
-                        _control.Current.Name,
-                        "TimeoutExpired",
-                        ErrorCategory.OperationTimeout,
-                        true);
-                }
-                */
             } while (Wait);
         }
     }

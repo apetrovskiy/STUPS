@@ -1,0 +1,14 @@
+ISupportsExpandCollapseTestFixture:
+Invoke_ComboBox_Expand
+
+WaitUiaControlIsEnabledCommandTestFixture:
+WaitControlIsEnabled_Spinner
+
+GetUiaControlCommandTestFixture:
+GetControlByValue_WildCard_TimeoutDefault
+
+GetUiaWindowCommandTestFixture:
+GetWindowByHandle1TimeoutDefault
+
+WaitUiaWindowCommandTestFixture:
+WaitWindow_ByProcessId_Timeout2000

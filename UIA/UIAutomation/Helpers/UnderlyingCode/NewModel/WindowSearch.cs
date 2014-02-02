@@ -248,6 +248,13 @@ namespace UIAutomation
             }
             
             if (null != tempCollection) {
+                // 20140131
+                // 20140201
+//                if (0 < tempCollection.Count) {
+//                    foreach (IUiElement element in tempCollection) {
+//                        element.Dispose();
+//                    }
+//                }
                 tempCollection.Clear();
                 tempCollection = null;
             }
@@ -348,6 +355,17 @@ namespace UIAutomation
                 // 20140122
                 // AutomationFactory.DisposeChildKernel();
                 
+                // 20140131
+//                if (null != windowCollectionByProperties && 0 < windowCollectionByProperties.Count) {
+//                    foreach (IUiElement element in windowCollectionByProperties) {
+//                        element.Dispose();
+//                    }
+//                }
+//                if (null != windowCollection && 0 < windowCollection.Count) {
+//                    foreach (IUiElement element in windowCollection) {
+//                        element.Dispose();
+//                    }
+//                }
             }
             
             return resultCollection;
@@ -698,6 +716,11 @@ namespace UIAutomation
             //                inputList.Clear();
             //                inputList = null;
             //            }
+            
+            // 20140131
+//            foreach (IUiElement element in inputList) {
+//                element.Dispose();
+//            }
             
             // 20140121
             // inputCollection ??

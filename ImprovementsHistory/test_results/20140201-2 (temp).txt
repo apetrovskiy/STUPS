@@ -1,0 +1,5 @@
+InvokeUiaCollapsePatternCommandTestFixture:
+Invoke_TreeItem_Collapse
+
+WaitUiaWindowCommandTestFixture:
+WaitWindow_ByProcessId_Timeout2000

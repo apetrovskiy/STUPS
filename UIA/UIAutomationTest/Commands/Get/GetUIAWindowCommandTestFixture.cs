@@ -517,7 +517,7 @@ namespace UIAutomationTest.Commands.Get
         
         
         
-        // =============== Recurse ======================
+        // ================ Recurse ======================
         
         private void prepareThreeForms()
         {
@@ -585,7 +585,7 @@ namespace UIAutomationTest.Commands.Get
 //                "3");
 //        }
         
-        // ================================================
+        // =============== WithControl ====================
         
         [Test]
         [Category("Slow")]

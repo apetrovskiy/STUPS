@@ -2794,7 +2794,6 @@ namespace UIAutomation
             return true;
         }
         
-        // internal static List<IUiElement> EnumChildWindowsFromHandle(GetWindowCmdletBase cmdlet, IntPtr parentHandle)
         internal static List<IUiElement> EnumChildWindowsFromHandle(string[] names, string automationId, string className, IntPtr parentHandle)
         {
             IEnumerable<IntPtr> list =
@@ -2811,7 +2810,6 @@ namespace UIAutomation
                 try {
                     
                     IUiElement element =
-                        // GetAutomationElementFromHandle(cmdlet, handle.ToInt32());
                         GetAutomationElementFromHandle(handle.ToInt32());
                     
                     automationElements.Add(element);
@@ -2828,7 +2826,6 @@ namespace UIAutomation
                 
                 resultElements.AddRange(
                     WindowSearch.ReturnOnlyRightElements(
-                        // (HasTimeoutCmdletBase)cmdlet,
                         automationElements,
                         windowName,
                         automationId,
@@ -2836,11 +2833,15 @@ namespace UIAutomation
                         string.Empty,
                         new string[]{ "Window" },
                         false,
-                        // 20131122
                         true));
             }
             
-            //
+            // 20140131
+//            if (null != automationElements && 0 < automationElements.Count) {
+//                foreach (IUiElement element in automationElements) {
+//                    element.Dispose();
+//                }
+//            }
             // extra?
             automationElements.Clear();
             // 20140121

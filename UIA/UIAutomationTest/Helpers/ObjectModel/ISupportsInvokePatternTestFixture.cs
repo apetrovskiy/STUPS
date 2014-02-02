@@ -32,85 +32,26 @@ namespace UIAutomationTest.Helpers.ObjectModel
             MiddleLevelCode.DisposeRunspace();
         }
         
-//        [Test]
-//        public void Invoke_ImplementsCommonPattern()
-//        {
-//            ISupportsInvokePattern invokableElement =
-//                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-//                    new IBasePattern[] { FakeFactory.GetInvokePattern(new PatternsData()) }) as ISupportsInvokePattern;
-//            
-//            Assert.IsNotNull(invokableElement as ISupportsInvokePattern);
-//            
-//            ISupportsHighlighter highlightableElement =
-//                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-//                    new IBasePattern[] { FakeFactory.GetInvokePattern(new PatternsData()) }) as ISupportsHighlighter;
-//            
-//            Assert.IsNotNull(highlightableElement as ISupportsHighlighter);
-//            
-//            ISupportsNavigation navigatableElement =
-//                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-//                    new IBasePattern[] { FakeFactory.GetInvokePattern(new PatternsData()) }) as ISupportsNavigation;
-//            
-//            Assert.IsNotNull(navigatableElement as ISupportsNavigation);
-//            
-//            ISupportsConversion conversibleElement =
-//                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-//                    new IBasePattern[] { FakeFactory.GetInvokePattern(new PatternsData()) }) as ISupportsConversion;
-//            
-//            Assert.IsNotNull(conversibleElement as ISupportsConversion);
-//            
-//            ISupportsRefresh refreshableElement =
-//                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-//                    new IBasePattern[] { FakeFactory.GetInvokePattern(new PatternsData()) }) as ISupportsRefresh;
-//            
-//            Assert.IsNotNull(refreshableElement as ISupportsRefresh);
-//        }
-//        
-////        [Test]
-////        public void Invoke_ImplementsPatternInQuestion()
-////        {
-////            ISupportsInvokePattern element =
-////                FakeFactory.GetAutomaitonElementForMethodsOfObjectModel(
-////                    new IBasePattern[] { FakeFactory.GetInvokePattern(new PatternsData()) }) as ISupportsInvokePattern;
-////            
-////            Assert.IsNotNull(element as ISupportsInvokePattern);
-////        }
-//        
-//        [Test]
-//        public void Invoke_DoesNotImplementOtherPatterns()
-//        {
-//            ISupportsValuePattern element =
-//                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-//                    new IBasePattern[] { FakeFactory.GetInvokePattern(new PatternsData()) }) as ISupportsValuePattern;
-//            
-//            Assert.IsNull(element as ISupportsValuePattern);
-//        }
-//        
-//        [Test]
-//        public void Invoke_Click()
-//        {
-//            // Arrange
-//            ISupportsInvokePattern element =
-//                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-//                    new IBasePattern[] { FakeFactory.GetInvokePattern(new PatternsData()) }) as ISupportsInvokePattern;
-//            
-//            // Act
-//            // Assert
-//            element.Click();
-//        }
-//        
-//        [Test]
-//        public void Invoke_DoubleClick()
-//        {
-//            // Arrange
-//            ISupportsInvokePattern element =
-//                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-//                    new IBasePattern[] { FakeFactory.GetInvokePattern(new PatternsData()) }) as ISupportsInvokePattern;
-//            
-//            // Act
-//            
-//            // Assert
-//            element.DoubleClick();
-//        }
+        [Test]
+        [Category("Slow")]
+        [Category("ISupportsInvoke")]
+        public void Button_Invoked()
+        {
+            const string expectedResult = "Invoked";
+            MiddleLevelCode.StartProcessWithForm(
+                UIAutomationTestForms.Forms.WinFormsFull,
+                0);
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+                @"$null = Get-UiaWindow -pn " + 
+                MiddleLevelCode.TestFormProcess +
+                " | Get-UiaButton -Name button1 | Invoke-UiaControlClick;" + 
+                @"Get-UiaWindow -pn " + 
+                MiddleLevelCode.TestFormProcess +
+                " | Get-UiaList -AutomationId listBox1 | " + 
+                "Get-UiaListItem -Name " + 
+                expectedResult +
+                " | Read-UiaControlName;",
+                expectedResult);
+        }
     }
 }

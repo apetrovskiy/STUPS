@@ -29,15 +29,13 @@ namespace UIAutomation
         #endregion Constructor
         
         #region Parameters
-        // 20130725
-        //[Parameter(Mandatory = false,
         [Parameter(Mandatory = true,
                    ValueFromPipeline = true,
                    ParameterSetName = "Process1",
                    HelpMessage="Accepts a process object")]
         [Alias("Process", "p")]
         public new Process[] InputObject { get; set; }
-        // 20130513
+        
         [Parameter(Mandatory = true,
                    ParameterSetName = "Win32")]
         public SwitchParameter Win32 { get; set; }
@@ -51,12 +49,8 @@ namespace UIAutomation
                    ParameterSetName = "ProcessId")]
         [Parameter(Mandatory = false,
                    ParameterSetName = "Process")]
-        // 20130513
         [Parameter(Mandatory = false,
                    ParameterSetName = "Win32")]
-
-//        [Parameter(Mandatory = false,
-//                   HelpMessage="Accepts the name (title) of a window")]
         [Alias("Title")]
         public string[] Name { get; set; }
         
@@ -69,12 +63,8 @@ namespace UIAutomation
                    ParameterSetName = "ProcessId")]
         [Parameter(Mandatory = false,
                    ParameterSetName = "Process")]
-        // 20130513
         [Parameter(Mandatory = false,
                    ParameterSetName = "Win32")]
-
-//        [Parameter(Mandatory = false,
-//                   HelpMessage="Accepts AutomationId of a window")]
         public string AutomationId { get; set; }
         
         [Parameter(Mandatory = false,
@@ -86,12 +76,8 @@ namespace UIAutomation
                    ParameterSetName = "ProcessId")]
         [Parameter(Mandatory = false,
                    ParameterSetName = "Process")]
-        // 20130513
         [Parameter(Mandatory = false,
                    ParameterSetName = "Win32")]
-        
-//        [Parameter(Mandatory = false,
-//                   HelpMessage="Accepts ClassName of a window")]
         public string Class { get; set; }
         
         [Parameter(Mandatory = false,
@@ -99,13 +85,6 @@ namespace UIAutomation
                    HelpMessage="Accepts the name of a process")]
         [Alias("pn")]
         public string[] ProcessName { get; set; }
-        
-//        [Parameter(Mandatory = false,
-//                   ValueFromPipeline = true,
-//                   ParameterSetName = "Process",
-//                   HelpMessage="Accepts a process object")]
-//        [Alias("Process", "p")]
-//        public new Process[] InputObject { get; set; }
         
         [Parameter(Mandatory = false,
                    ParameterSetName = "ProcessId",
@@ -129,21 +108,13 @@ namespace UIAutomation
                    ParameterSetName = "ProcessId")]
         [Parameter(Mandatory = false,
                    ParameterSetName = "Process")]
-        // 20130316
         // experimental
         [Parameter(Mandatory = false,
                    ParameterSetName = "UIA")]
-        // 20130805
         [Parameter(Mandatory = false,
                    ParameterSetName = "Process1")]
         public SwitchParameter Recurse { get; set; }
         
-//        [Parameter(Mandatory = false,
-//                   ParameterSetName = "ProcessName")]
-//        [Parameter(Mandatory = false,
-//                   ParameterSetName = "ProcessId")]
-//        [Parameter(Mandatory = false,
-//                   ParameterSetName = "Process")]
         [Parameter(Mandatory = false)]
         public Hashtable[] WithControl { get; set; }
         

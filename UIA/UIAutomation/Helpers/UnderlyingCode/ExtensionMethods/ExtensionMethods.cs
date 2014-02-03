@@ -319,5 +319,14 @@ namespace UIAutomation
             result = true;
             return result;
         }
+        
+        internal static IUiEltCollection GetOnlyNewElements(this AutomationElementCollection nativeCollection, IEnumerable<IUiElement> excludeElements)
+        {
+            nativeCollection.Cast<IEnumerable<AutomationElement>>()
+                .Where(nativeElement =>
+                       excludeElements.ToArray().
+                .SelectMany(nativeElement =>
+                            excludeElements.ToArray()
+        }
     }
 }

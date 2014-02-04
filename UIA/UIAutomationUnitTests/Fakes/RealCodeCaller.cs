@@ -47,7 +47,7 @@ namespace UIAutomationUnitTests
         public static List<IUiElement> GetResultList_ViaWildcards(GetControlCmdletBase cmdlet, IUiElement element, Condition condition)
         {
             var data =
-                new ControlSearchData {
+                new ControlSearcherData {
                 InputObject = cmdlet.InputObject,
                 Name = cmdlet.Name,
                 AutomationId = cmdlet.AutomationId,
@@ -58,7 +58,7 @@ namespace UIAutomationUnitTests
             };
             
             List<IUiElement> resultList =
-                ControlSearch.SearchByWildcardOrRegexViaUia(
+                ControlSearcher.SearchByWildcardOrRegexViaUia(
                     element,
                     data,
                     condition,
@@ -70,7 +70,7 @@ namespace UIAutomationUnitTests
         public static List<IUiElement> GetResultList_ExactSearch(GetControlCmdletBase cmdlet, IUiElement element, Condition conditions)
         {
             cmdlet.ResultListOfControls =
-                ControlSearch.SearchByExactConditionsViaUia(
+                ControlSearcher.SearchByExactConditionsViaUia(
                     element,
                     cmdlet.SearchCriteria,
                     conditions);
@@ -80,14 +80,14 @@ namespace UIAutomationUnitTests
         public static List<IUiElement> GetResultList_TextSearch(GetControlCmdletBase cmdlet, IUiElement element, Condition conditions)
         {
             cmdlet.ResultListOfControls =
-                ControlSearch.SearchByContainsTextViaUia(element, conditions);
+                ControlSearcher.SearchByContainsTextViaUia(element, conditions);
             return cmdlet.ResultListOfControls;
         }
         
         public static List<IUiElement> GetResultList_ReturnOnlyRightElements(GetControlCmdletBase cmdlet, IEnumerable<IUiElement> elements, bool useWildcardOrRegex)
         {
             List<IUiElement> resultList =
-                WindowSearch.ReturnOnlyRightElements(
+                WindowSearcher.ReturnOnlyRightElements(
                     elements,
                     cmdlet.Name,
                     cmdlet.AutomationId,
@@ -121,7 +121,7 @@ namespace UIAutomationUnitTests
             string automationId,
             string className)
         {
-            var windowSearch = new WindowSearch();
+            var windowSearch = new WindowSearcher();
             
             List<IUiElement> resultList =
                 windowSearch.GetWindowCollectionByPid(

@@ -64,8 +64,8 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             switch (selector) {
                 case UIAutomationUnitTests.Helpers.Inheritance.UsualWildcardRegex.Wildcard:
                     condition =
-                        ControlSearch.GetWildcardSearchCondition(
-                            new ControlSearchData {
+                        ControlSearcher.GetWildcardSearchCondition(
+                            new ControlSearcherData {
                                 ControlType = FakeFactory.ConvertControlTypeToStringArray(controlTypes),
                                 Name = name,
                                 AutomationId = automationId,
@@ -76,8 +76,8 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                     break;
                 case UIAutomationUnitTests.Helpers.Inheritance.UsualWildcardRegex.Regex:
                     condition =
-                        ControlSearch.GetWildcardSearchCondition(
-                            new ControlSearchData {
+                        ControlSearcher.GetWildcardSearchCondition(
+                            new ControlSearcherData {
                                 ControlType = FakeFactory.ConvertControlTypeToStringArray(controlTypes),
                                 Name = name,
                                 AutomationId = automationId,
@@ -188,7 +188,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 new HasTimeoutCmdletBase();
             
             List<IUiElement> resultList =
-                WindowSearch.ReturnOnlyRightElements(
+                WindowSearcher.ReturnOnlyRightElements(
                     null,
                     string.Empty,
                     string.Empty,
@@ -208,7 +208,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 new HasTimeoutCmdletBase();
             
             List<IUiElement> resultList =
-                WindowSearch.ReturnOnlyRightElements(
+                WindowSearcher.ReturnOnlyRightElements(
                     new UiElement[] {},
                     string.Empty,
                     string.Empty,
@@ -238,7 +238,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                     string.Empty);
             
             List<IUiElement> resultList =
-                WindowSearch.ReturnOnlyRightElements(
+                WindowSearcher.ReturnOnlyRightElements(
                     new[] { element },
                     expectedName,
                     string.Empty,
@@ -293,7 +293,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                     string.Empty);
             
             List<IUiElement> resultList =
-                WindowSearch.ReturnOnlyRightElements(
+                WindowSearcher.ReturnOnlyRightElements(
                     new[] { element01, element02, element03, element04 },
                     expectedName,
                     string.Empty,

@@ -21,9 +21,9 @@ namespace UIAutomation
     using PSTestLib;
     
     /// <summary>
-    /// Description of WindowSeatch.
+    /// Description of WindowSeatcher.
     /// </summary>
-    public class WindowSearch : SearchTemplate
+    public class WindowSearcher : SearcherTemplate
     {
         public override string TimeoutExpirationInformation { get; set; }
         internal bool wasFound = false;
@@ -36,11 +36,11 @@ namespace UIAutomation
         {
         }
         
-        public override List<IUiElement> SearchForElements(SearchTemplateData searchData)
+        public override List<IUiElement> SearchForElements(SearcherTemplateData searchData)
         {
             try {
                 
-                WindowSearchData data = searchData as WindowSearchData;
+                WindowSearcherData data = searchData as WindowSearcherData;
                 
                 AutomationFactory.InitializeChildKernel();
                 
@@ -92,7 +92,7 @@ namespace UIAutomation
             // filtering result window collection by SearchCriteria
             if (null != ResultCollection && 0 < ResultCollection.Count) {
                 
-                if (null != (SearchData as WindowSearchData).SearchCriteria && 0 < (SearchData as WindowSearchData).SearchCriteria.Length) {
+                if (null != (SearcherData as WindowSearcherData).SearchCriteria && 0 < (SearcherData as WindowSearcherData).SearchCriteria.Length) {
                     
                     ResultCollection =
                         ResultCollection.GetFilteredElementsCollection();
@@ -102,18 +102,18 @@ namespace UIAutomation
             // filtering result window collection by having a control(s) with properties as from WithControl
             if (null != ResultCollection && 0 < ResultCollection.Count) {
                 
-                if (null != (SearchData as WindowSearchData).WithControl && 0 < (SearchData as WindowSearchData).WithControl.Length) {
+                if (null != (SearcherData as WindowSearcherData).WithControl && 0 < (SearcherData as WindowSearcherData).WithControl.Length) {
                     
                     FilterResultCollectionByWithControlParameter();
                 }
             }
             
-            if ((SearchData as WindowSearchData).WaitNoWindow && wasFound && (null == ResultCollection || 0 == ResultCollection.Count)) {
+            if ((SearcherData as WindowSearcherData).WaitNoWindow && wasFound && (null == ResultCollection || 0 == ResultCollection.Count)) {
                 
                 Wait = false;
             }
             
-            if ((SearchData as WindowSearchData).WaitNoWindow && !wasFound && null != ResultCollection && 0 != ResultCollection.Count) {
+            if ((SearcherData as WindowSearcherData).WaitNoWindow && !wasFound && null != ResultCollection && 0 != ResultCollection.Count) {
 
                 wasFound = true;
                 
@@ -132,18 +132,18 @@ namespace UIAutomation
                 if (!window.IsValid())
                     continue;
 
-                var controlSearchData = new ControlSearchData { InputObject = new UiElement[] { (UiElement)window } };
+                var ControlSearcherData = new ControlSearcherData { InputObject = new UiElement[] { (UiElement)window } };
 
                 exitInnerCycle = false;
                 bool addToResultCollection = false;
-                foreach (Hashtable ht in (SearchData as WindowSearchData).WithControl) {
-                    controlSearchData.SearchCriteria = new Hashtable[] { ht };
+                foreach (Hashtable ht in (SearcherData as WindowSearcherData).WithControl) {
+                    ControlSearcherData.SearchCriteria = new Hashtable[] { ht };
 
                     try {
 
-                        var controlSearch = AutomationFactory.GetSearchImpl<ControlSearch>() as ControlSearch;
+                        var controlSearch = AutomationFactory.GetSearchImpl<ControlSearcher>() as ControlSearcher;
 
-                        List<IUiElement> controlsList = controlSearch.GetElements(controlSearchData, 0);
+                        List<IUiElement> controlsList = controlSearch.GetElements(ControlSearcherData, 0);
 
                         if (null != controlsList && 0 < controlsList.Count) {
 
@@ -166,7 +166,7 @@ namespace UIAutomation
                     }
                 }
 
-                controlSearchData = null;
+                ControlSearcherData = null;
 
                 if (addToResultCollection) {
                     filteredWindows.Add(window);
@@ -490,6 +490,7 @@ namespace UIAutomation
                             {
                                 elementsByProcessId.AddRange(rootCollection.Cast<IUiElement>());
                                 
+                                // 20140203-20140205
 //                                foreach (IUiElement singleElement in (
 //                                    from IUiElement rootWindowElement in rootCollection select rootWindowElement.FindAll(
 //                                        TreeScope.Descendants,

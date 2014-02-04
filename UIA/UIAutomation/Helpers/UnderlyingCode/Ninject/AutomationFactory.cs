@@ -748,10 +748,10 @@ namespace UIAutomation
 		}
 		#endregion patterns
         
-        internal static SearchTemplate GetSearchImpl<T>()
+        internal static SearcherTemplate GetSearchImpl<T>()
         {
             var newObject = Kernel.Get<T>(new IParameter[] {});
-            return ConvertToProxiedObject<T>(newObject) as SearchTemplate;
+            return ConvertToProxiedObject<T>(newObject) as SearcherTemplate;
         }
         
         internal static IAutomation GetMyAutomation()

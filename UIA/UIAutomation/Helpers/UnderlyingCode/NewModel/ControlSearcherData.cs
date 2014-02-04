@@ -16,9 +16,9 @@ namespace UIAutomation
     using PSTestLib;
     
     /// <summary>
-    /// Description of ControlSearchData.
+    /// Description of ControlSearcherData.
     /// </summary>
-    public class ControlSearchData : SearchTemplateData
+    public class ControlSearcherData : SearcherTemplateData
     {
         public IUiElement[] InputObject { get; set; }
         public string ContainsText { get; set; }

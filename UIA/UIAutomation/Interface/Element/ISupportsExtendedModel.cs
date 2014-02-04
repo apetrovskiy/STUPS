@@ -22,6 +22,7 @@ namespace UIAutomation
 //        IInputSimulatorHolder Touch { get; }
         IMouseInputHolder Mouse { get; }
         IKeyboardInputHolder Keyboard { get; }
-        ITouchInputHolder Touch { get; }
+        // 20140205
+        // ITouchInputHolder Touch { get; }
     }
 }

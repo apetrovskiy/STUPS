@@ -46,10 +46,10 @@ namespace UIAutomation.Commands
 //                GetControl(this);
             
             var controlSearch =
-                AutomationFactory.GetSearchImpl<ControlSearch>() as ControlSearch;
+                AutomationFactory.GetSearchImpl<ControlSearcher>() as ControlSearcher;
             
-//            var controlSearchData =
-//                new ControlSearchData {
+//            var ControlSearcherData =
+//                new ControlSearcherData {
 //                InputObject = this.InputObject,
 //                ContainsText = this.ContainsText,
 //                Name = this.Name,
@@ -67,8 +67,8 @@ namespace UIAutomation.Commands
             
             List<IUiElement> returnCollection =
                 controlSearch.GetElements(
-                    // controlSearchData,
-                    controlSearch.ConvertCmdletToControlSearchData(this),
+                    // ControlSearcherData,
+                    controlSearch.ConvertCmdletToControlSearcherData(this),
                     Timeout);
             
             if (null != returnCollection && 0 < returnCollection.Count) {

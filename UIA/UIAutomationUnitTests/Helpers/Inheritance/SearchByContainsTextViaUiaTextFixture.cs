@@ -56,7 +56,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             GetControlCmdletBase cmdlet =
                 FakeFactory.Get_GetControlCmdletBase(controlType, searchString);
             Condition condition =
-                ControlSearch.GetTextSearchCondition(searchString, new string[]{ controlTypeString }, false);
+                ControlSearcher.GetTextSearchCondition(searchString, new string[]{ controlTypeString }, false);
             IUiElement element =
                 FakeFactory.GetElement_ForFindAll(
                     collection,

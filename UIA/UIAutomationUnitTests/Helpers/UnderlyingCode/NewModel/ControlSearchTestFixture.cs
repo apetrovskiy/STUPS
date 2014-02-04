@@ -80,30 +80,15 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             cmdlet.InputObject = empty ? GetCmdletInputObject_Empty() : GetCmdletInputObject_Three();
             
             return cmdlet;
-            /*
-            var cmdlet =
-                new GetControlCmdletBase();
-            
-            cmdlet.Win32 = false;
-            cmdlet.Regex = false;
-            
-            if (empty) {
-                cmdlet.InputObject = GetCmdletInputObject_Empty();
-            } else {
-                cmdlet.InputObject = GetCmdletInputObject_Three();
-            }
-            
-            return cmdlet;
-            */
         }
         
-        private ControlSearch PerformGetElements(GetControlCmdletBase cmdlet)
+        private ControlSearcher PerformGetElements(GetControlCmdletBase cmdlet)
         {
             var controlSearch =
-                AutomationFactory.GetSearchImpl<ControlSearch>() as ControlSearch;
+                AutomationFactory.GetSearchImpl<ControlSearcher>() as ControlSearcher;
             
             controlSearch.GetElements(
-                controlSearch.ConvertCmdletToControlSearchData(cmdlet),
+                controlSearch.ConvertCmdletToControlSearcherData(cmdlet),
                 0);
             
             return controlSearch;

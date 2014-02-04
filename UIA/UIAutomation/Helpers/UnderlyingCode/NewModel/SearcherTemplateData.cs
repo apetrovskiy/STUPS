@@ -12,9 +12,9 @@ namespace UIAutomation
     using System;
     
     /// <summary>
-    /// Description of SearchTemplateStruct.
+    /// Description of SearcherTemplateData.
     /// </summary>
-    public abstract class SearchTemplateData
+    public abstract class SearcherTemplateData
     {
         public string AutomationId { get; set; }
         public string Class { get; set; }

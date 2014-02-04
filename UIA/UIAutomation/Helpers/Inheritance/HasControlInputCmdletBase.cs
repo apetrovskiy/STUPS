@@ -1129,11 +1129,11 @@ try {
                 WriteVerbose(this, "getting the control");
                 
                 var controlSearch =
-                    AutomationFactory.GetSearchImpl<ControlSearch>() as ControlSearch;
+                    AutomationFactory.GetSearchImpl<ControlSearcher>() as ControlSearcher;
                 
                 List<IUiElement> elementsToWorkWith =
                     controlSearch.GetElements(
-                        controlSearch.ConvertCmdletToControlSearchData(cmdlet),
+                        controlSearch.ConvertCmdletToControlSearcherData(cmdlet),
                         cmdlet.Timeout);
                 
                 if (null == elementsToWorkWith) {

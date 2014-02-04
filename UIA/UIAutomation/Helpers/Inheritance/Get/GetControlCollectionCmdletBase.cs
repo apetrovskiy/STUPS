@@ -31,7 +31,7 @@ namespace UIAutomation
             PassThru = false;
         }
         
-        public GetControlCollectionCmdletBase(ControlSearchData data)
+        public GetControlCollectionCmdletBase(ControlSearcherData data)
         {
             InputObject = data.InputObject;
             Name = data.Name;
@@ -310,7 +310,7 @@ namespace UIAutomation
                         conditions);
                 
                 resultCollection =
-                    WindowSearch.ReturnOnlyRightElements(
+                    WindowSearcher.ReturnOnlyRightElements(
                         results,
                         name,
                         automationId,
@@ -595,11 +595,11 @@ namespace UIAutomation
                     // WriteVerbose(this, "selected TreeScope." + scope.ToString());
                     
                     var controlSearch =
-                        AutomationFactory.GetSearchImpl<ControlSearch>() as ControlSearch;
+                        AutomationFactory.GetSearchImpl<ControlSearcher>() as ControlSearcher;
                     
                     Condition conditions =
-                        ControlSearch.GetWildcardSearchCondition(
-                            controlSearch.ConvertCmdletToControlSearchData(this));
+                        ControlSearcher.GetWildcardSearchCondition(
+                            controlSearch.ConvertCmdletToControlSearcherData(this));
                     
                     IUiEltCollection temporaryResults = null;
                     if (conditions != null)

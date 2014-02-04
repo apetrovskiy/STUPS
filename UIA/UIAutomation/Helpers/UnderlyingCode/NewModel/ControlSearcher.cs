@@ -18,9 +18,9 @@ namespace UIAutomation
     using PSTestLib;
     
     /// <summary>
-    /// Description of ControlSearch.
+    /// Description of ControlSearcher.
     /// </summary>
-    public class ControlSearch : SearchTemplate
+    public class ControlSearcher : SearcherTemplate
     {
         public override string TimeoutExpirationInformation { get; set; }
         
@@ -38,7 +38,7 @@ namespace UIAutomation
         {
             UsedSearchType = UsedSearchType.None;
             
-            ControlSearchData data = SearchData as ControlSearchData;
+            ControlSearcherData data = SearcherData as ControlSearcherData;
             
             #region conditions
             // GetControlCmdletBase tempCmdlet =
@@ -78,9 +78,9 @@ namespace UIAutomation
             
         }
         
-        public override List<IUiElement> SearchForElements(SearchTemplateData searchData)
+        public override List<IUiElement> SearchForElements(SearcherTemplateData searchData)
         {
-            ControlSearchData data = searchData as ControlSearchData;
+            ControlSearcherData data = searchData as ControlSearcherData;
             
             foreach (IUiElement inputObject in data.InputObject) {
                 
@@ -332,7 +332,7 @@ namespace UIAutomation
         
         internal static List<IUiElement> SearchByWildcardOrRegexViaUia(
             IUiElement inputObject,
-            ControlSearchData data,
+            ControlSearcherData data,
             Condition conditionsForWildCards,
             bool viaWildcardOrRegex)
         {
@@ -343,7 +343,7 @@ namespace UIAutomation
                 
                 GetControlCollectionCmdletBase cmdlet1 =
                     new GetControlCollectionCmdletBase(
-                        new ControlSearchData {
+                        new ControlSearcherData {
                             InputObject = data.InputObject ?? (new UiElement[]{ (UiElement)UiElement.RootElement }),
                             Name = data.Name,
                             AutomationId = data.AutomationId,
@@ -413,7 +413,7 @@ namespace UIAutomation
         
         internal IEnumerable<IUiElement> SearchByWildcardViaWin32(
             IUiElement inputObject,
-            ControlSearchData data)
+            ControlSearcherData data)
         {
             List<IUiElement> tempListWin32 = new List<IUiElement>();
             
@@ -486,7 +486,7 @@ namespace UIAutomation
             return result;
         }
         
-        public Condition[] GetControlsConditions(ControlSearchData data)
+        public Condition[] GetControlsConditions(ControlSearcherData data)
         {
             List<Condition> conditions =
                 new List<Condition>();
@@ -576,7 +576,7 @@ namespace UIAutomation
             return resultCondition;
         }
         
-        internal static Condition GetExactSearchCondition(ControlSearchData data)
+        internal static Condition GetExactSearchCondition(ControlSearcherData data)
         {
             PropertyConditionFlags flags =
                 data.CaseSensitive ? PropertyConditionFlags.None : PropertyConditionFlags.IgnoreCase;
@@ -631,7 +631,7 @@ namespace UIAutomation
             }
         }
         
-        internal static Condition GetWildcardSearchCondition(ControlSearchData data)
+        internal static Condition GetWildcardSearchCondition(ControlSearcherData data)
         {
             Condition controlTypeCondition = Condition.TrueCondition;
             if (null == data.ControlType || 0 >= data.ControlType.Length) return controlTypeCondition;
@@ -642,10 +642,10 @@ namespace UIAutomation
         }
         #endregion condition methods
         
-        public ControlSearchData ConvertCmdletToControlSearchData(GetControlCmdletBase cmdlet)
+        public ControlSearcherData ConvertCmdletToControlSearcherData(GetControlCmdletBase cmdlet)
         {
-            var controlSearchData =
-                new ControlSearchData {
+            var ControlSearcherData =
+                new ControlSearcherData {
                 InputObject = cmdlet.InputObject,
                 ContainsText = cmdlet.ContainsText,
                 Name = cmdlet.Name,
@@ -659,7 +659,7 @@ namespace UIAutomation
                 SearchCriteria = cmdlet.SearchCriteria
             };
             
-            return controlSearchData;
+            return ControlSearcherData;
         }
     }
     

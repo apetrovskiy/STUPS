@@ -63,8 +63,8 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 FakeFactory.Get_GetControlCmdletBase(controlTypes, name, automationId, className, txtValue);
             
             Condition condition =
-                ControlSearch.GetWildcardSearchCondition(
-                    new ControlSearchData {
+                ControlSearcher.GetWildcardSearchCondition(
+                    new ControlSearcherData {
                         ControlType = FakeFactory.ConvertControlTypeToStringArray(controlTypes),
                         Name = name,
                         AutomationId = automationId,

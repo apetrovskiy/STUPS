@@ -603,8 +603,9 @@ namespace UIAutomation
                 
             }	 while (!breakSearch);
             
-            windowsByPid.Dispose();
-            windowsByPid = null;
+            // 20140205
+            // windowsByPid.Dispose();
+            // windowsByPid = null;
             
             // return the context menu window
             return resultElement;

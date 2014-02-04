@@ -2825,7 +2825,7 @@ namespace UIAutomation
             foreach (string windowName in names) {
                 
                 resultElements.AddRange(
-                    WindowSearch.ReturnOnlyRightElements(
+                    WindowSearcher.ReturnOnlyRightElements(
                         automationElements,
                         windowName,
                         automationId,

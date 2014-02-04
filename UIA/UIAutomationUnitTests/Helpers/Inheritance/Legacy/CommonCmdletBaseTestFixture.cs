@@ -39,8 +39,8 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             
             Condition condition =
                 // cmdlet.GetWildcardSearchCondition(cmdlet);
-                ControlSearch.GetWildcardSearchCondition(
-                    new ControlSearchData {
+                ControlSearcher.GetWildcardSearchCondition(
+                    new ControlSearcherData {
                         // completely new
                         Name = cmdlet.Name,
                         AutomationId = cmdlet.AutomationId,

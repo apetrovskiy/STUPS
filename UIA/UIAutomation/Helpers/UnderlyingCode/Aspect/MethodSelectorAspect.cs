@@ -872,6 +872,8 @@ namespace UIAutomation
                             break;
                         #endregion MouseInput
                         #region TouchInput
+                        // 20140205
+                        /*
                         case "get_Touch":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).GetHolder<ITouchInputHolder>();
@@ -880,6 +882,7 @@ namespace UIAutomation
                             invocation.ReturnValue =
                                 (invocation.Proxy as ITouchInputHolder).GetT();
                             break;
+                        */
                         #endregion TouchInput
                         default:
                             invocation.Proceed();

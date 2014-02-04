@@ -37,8 +37,8 @@ namespace UIAutomation
             // Bind<IChildKernel>().ToSelf().InThreadScope();
             
             // 20140125
-            Bind<WindowSearch>().ToSelf().InScope(ctx => AutomationFactory.ScopeChangeFlag);
-            Bind<ControlSearch>().ToSelf().InScope(ctx => AutomationFactory.ScopeChangeFlag);
+            Bind<WindowSearcher>().ToSelf().InScope(ctx => AutomationFactory.ScopeChangeFlag);
+            Bind<ControlSearcher>().ToSelf().InScope(ctx => AutomationFactory.ScopeChangeFlag);
             
             // 20140130
             Bind<IAutomation>().To<UiaAutomation>().InSingletonScope();

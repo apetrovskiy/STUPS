@@ -858,26 +858,26 @@
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Internal\WizardHelper.cs">
       <Link>Helpers\UnderlyingCode\Internal\WizardHelper.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\ControlSearch.cs">
-      <Link>Helpers\UnderlyingCode\NewModel\ControlSearch.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\ControlSearcher.cs">
+      <Link>Helpers\UnderlyingCode\NewModel\ControlSearcher.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\ControlSearchData.cs">
-      <Link>Helpers\UnderlyingCode\NewModel\ControlSearchData.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\ControlSearcherData.cs">
+      <Link>Helpers\UnderlyingCode\NewModel\ControlSearcherData.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\SearchTemplate.cs">
-      <Link>Helpers\UnderlyingCode\NewModel\SearchTemplate.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\SearcherTemplate.cs">
+      <Link>Helpers\UnderlyingCode\NewModel\SearcherTemplate.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\SearchTemplateData.cs">
-      <Link>Helpers\UnderlyingCode\NewModel\SearchTemplateData.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\SearcherTemplateData.cs">
+      <Link>Helpers\UnderlyingCode\NewModel\SearcherTemplateData.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\TimeoutManager.cs">
       <Link>Helpers\UnderlyingCode\NewModel\TimeoutManager.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\WindowSearch.cs">
-      <Link>Helpers\UnderlyingCode\NewModel\WindowSearch.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\WindowSearcher.cs">
+      <Link>Helpers\UnderlyingCode\NewModel\WindowSearcher.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\WindowSearchData.cs">
-      <Link>Helpers\UnderlyingCode\NewModel\WindowSearchData.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\WindowSearcherData.cs">
+      <Link>Helpers\UnderlyingCode\NewModel\WindowSearcherData.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Ninject\AutomationFactory.cs">
       <Link>Helpers\UnderlyingCode\Ninject\AutomationFactory.cs</Link>

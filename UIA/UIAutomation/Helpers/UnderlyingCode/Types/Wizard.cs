@@ -154,7 +154,7 @@ namespace UIAutomation
             if (null == elements || 0 == elements.Count) return result;
             
             if (searchCriteria.All(criterion =>   
-                                   elements.ToArray().Any(elt => ControlSearch.TestControlWithAllSearchCriteria(new Hashtable[] { criterion }, elt))
+                                   elements.ToArray().Any(elt => ControlSearcher.TestControlWithAllSearchCriteria(new Hashtable[] { criterion }, elt))
                                   )) {
                 result = true;
             }
@@ -180,8 +180,8 @@ namespace UIAutomation
         	//         InputObject = new UiElement[] {(UiElement) CurrentData.CurrentWindow},
         	//         Timeout = 0
         	//     };
-        	var controlSearchData =
-        	    new ControlSearchData {
+        	var ControlSearcherData =
+        	    new ControlSearcherData {
         	    InputObject = new IUiElement[] { CurrentData.CurrentWindow }
         	};
             
@@ -198,7 +198,7 @@ namespace UIAutomation
         	    
 			    // 20140127
         		// cmdletCtrl.SearchCriteria = step.SearchCriteria;
-        		controlSearchData.SearchCriteria = step.SearchCriteria;
+        		ControlSearcherData.SearchCriteria = step.SearchCriteria;
                 
 	        	List<IUiElement> controlsList = new List<IUiElement>();
 	        	
@@ -212,7 +212,7 @@ namespace UIAutomation
 	        		
 	        		controlsList =
 	        		    controlSearch.GetElements(
-//	        		        new ControlSearchData {
+//	        		        new ControlSearcherData {
 //	        		            InputObject = cmdletCtrl.InputObject,
 //	        		            ContainsText = cmdletCtrl.ContainsText,
 //	        		            Name = cmdletCtrl.Name,
@@ -224,8 +224,8 @@ namespace UIAutomation
 //	        		            Win32 = cmdletCtrl.Win32
 //	        		        },
 	        		        // 20140127
-	        		        // controlSearch.ConvertCmdletToControlSearchData(cmdletCtrl),
-	        		        controlSearchData,
+	        		        // controlSearch.ConvertCmdletToControlSearcherData(cmdletCtrl),
+	        		        ControlSearcherData,
 	        		        // 20140127
 	        		        // cmdletCtrl.Timeout);
 	        		        0);

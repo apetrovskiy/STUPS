@@ -16,9 +16,9 @@ namespace UIAutomation
     using PSTestLib;
     
     /// <summary>
-    /// Description of WindowSearchData.
+    /// Description of WindowSearcherData.
     /// </summary>
-    public class WindowSearchData : SearchTemplateData
+    public class WindowSearcherData : SearcherTemplateData
     {
         public Process[] InputObject { get; set; }
         public string[] Name { get; set; }

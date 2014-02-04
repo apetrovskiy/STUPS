@@ -14,17 +14,17 @@ namespace UIAutomation
     using System.Collections.Generic;
     
     /// <summary>
-    /// Description of SearchTemplate.
+    /// Description of SearcherTemplate.
     /// </summary>
-    public abstract class SearchTemplate
+    public abstract class SearcherTemplate
     {
         internal virtual int Timeout { get; set; }
         internal virtual bool Wait { get; set; }
-        internal virtual SearchTemplateData SearchData { get; set; }
+        internal virtual SearcherTemplateData SearcherData { get; set; }
         internal virtual List<IUiElement> ResultCollection { get; set; }
         public abstract void OnStartHook();
         public abstract void BeforeSearchHook();
-        public abstract List<IUiElement> SearchForElements(SearchTemplateData data);
+        public abstract List<IUiElement> SearchForElements(SearcherTemplateData data);
         public abstract void AfterSearchHook();
         public abstract void OnFailureHook();
         public abstract void OnSuccessHook();
@@ -55,10 +55,10 @@ namespace UIAutomation
             return result;
         }
         
-        public List<IUiElement> GetElements(SearchTemplateData data, int timeout)
+        public List<IUiElement> GetElements(SearcherTemplateData data, int timeout)
         {
             Timeout = timeout;
-            SearchData = data;
+            SearcherData = data;
             var startTime = System.DateTime.Now;
             Wait = true;
             

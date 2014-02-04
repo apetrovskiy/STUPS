@@ -320,13 +320,10 @@ namespace UIAutomation
             return result;
         }
         
-        internal static IUiEltCollection GetOnlyNewElements(this AutomationElementCollection nativeCollection, IEnumerable<IUiElement> excludeElements)
-        {
-            nativeCollection.Cast<IEnumerable<AutomationElement>>()
-                .Where(nativeElement =>
-                       excludeElements.ToArray().
-                .SelectMany(nativeElement =>
-                            excludeElements.ToArray()
-        }
+//        internal static IUiEltCollection GetOnlyNewElements(this AutomationElementCollection nativeCollection, IEnumerable<IUiElement> excludeElements)
+//        {
+//            return nativeCollection.Cast<IEnumerable<AutomationElement>>()
+//                .Except(excludeElements.Select<IUiElement, AutomationElement>(elt => elt.GetSourceElement()));
+//        }
     }
 }

@@ -490,17 +490,17 @@ namespace UIAutomation
                             {
                                 elementsByProcessId.AddRange(rootCollection.Cast<IUiElement>());
                                 
-                                foreach (IUiElement singleElement in (
-                                    from IUiElement rootWindowElement in rootCollection select rootWindowElement.FindAll(
-                                        TreeScope.Descendants,
-                                        conditionsForRecurseSearch)
-                                    into tempCollection
-                                    where null != tempCollection && 0 < tempCollection.Count
-                                    select tempCollection)
-                                    .SelectMany(tempCollection => rootCollection.Cast<IUiElement>()))
-                                {
-                                    elementsByProcessId.Add(singleElement);
-                                }
+//                                foreach (IUiElement singleElement in (
+//                                    from IUiElement rootWindowElement in rootCollection select rootWindowElement.FindAll(
+//                                        TreeScope.Descendants,
+//                                        conditionsForRecurseSearch)
+//                                    into tempCollection
+//                                    where null != tempCollection && 0 < tempCollection.Count
+//                                    select tempCollection)
+//                                    .SelectMany(tempCollection => rootCollection.Cast<IUiElement>()))
+//                                {
+//                                    elementsByProcessId.Add(singleElement);
+//                                }
                             }
                         }
                         

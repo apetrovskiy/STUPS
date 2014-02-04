@@ -12,6 +12,9 @@ namespace UIAutomation
 	extern alias UIANET;
 	using System;
 	using System.Collections;
+	
+//	using System.Collections.Generic;
+	
 	using System.ComponentModel;
 	using System.Windows.Automation;
 	using System.Windows;
@@ -34,7 +37,7 @@ namespace UIAutomation
 		IUiElement FindFirst(TreeScope scope, System.Windows.Automation.Condition condition);
 		IUiEltCollection FindAll(TreeScope scope, System.Windows.Automation.Condition condition);
 		// 20140203
-		IUiEltCollection FindAll(TreeScope scope, System.Windows.Automation.Condition condition, IEnumerable<IUiElement> excludeElements);
+//		IUiEltCollection FindAll(TreeScope scope, System.Windows.Automation.Condition condition, IEnumerable<IUiElement> excludeElements);
 		AutomationProperty[] GetSupportedProperties();
 		IBasePattern[] GetSupportedPatterns();
 		void SetFocus();

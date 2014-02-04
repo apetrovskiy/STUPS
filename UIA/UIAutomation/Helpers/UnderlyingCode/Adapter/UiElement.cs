@@ -17,6 +17,9 @@ namespace UIAutomation
 	using System.Windows;
 	using System.Linq;
 	
+//	using System.Collections;
+//	using System.Collections.Generic;
+	
 //	using Ninject.Extensions.ChildKernel;
     
 	/// <summary>
@@ -297,23 +300,23 @@ namespace UIAutomation
 			}
 		}
 		
-		public virtual IUiEltCollection FindAll(TreeScope scope, UIANET.System.Windows.Automation.Condition condition, IEnumerable<IUiElement> excludeElements)
-		{
-			switch (_innerElementType) {
-				case InnerElementTypes.AutomationElementNet:
-					// return AutomationFactory.GetUiEltCollection(_elementHolderNet.FindAll(scope, condition));
-					return _elementHolderNet.FindAll(scope, condition).GetOnlyNewElements(excludeElements);
-//			    case InnerElementTypes.AutomationElementCom:
-//			        //
-				case InnerElementTypes.UiElement:
-					return _elementHolderAdapter.FindAll(scope, condition);
-				default:
-//			    case InnerElementTypes.Empty:
-//			        return AutomationFactory.GetUiEltCollection(_elementHolderNet.FindAll(scope, condition));
-					// return AutomationFactory.GetUiEltCollection(_elementHolderNet.FindAll(scope, condition));
-					return _elementHolderNet.FindAll(scope, condition).GetOnlyNewElements(excludeElements);
-			}
-		}
+//		public virtual IUiEltCollection FindAll(TreeScope scope, UIANET.System.Windows.Automation.Condition condition, IEnumerable<IUiElement> excludeElements)
+//		{
+//			switch (_innerElementType) {
+//				case InnerElementTypes.AutomationElementNet:
+//					// return AutomationFactory.GetUiEltCollection(_elementHolderNet.FindAll(scope, condition));
+//					return _elementHolderNet.FindAll(scope, condition).GetOnlyNewElements(excludeElements);
+////			    case InnerElementTypes.AutomationElementCom:
+////			        //
+//				case InnerElementTypes.UiElement:
+//					return _elementHolderAdapter.FindAll(scope, condition);
+//				default:
+////			    case InnerElementTypes.Empty:
+////			        return AutomationFactory.GetUiEltCollection(_elementHolderNet.FindAll(scope, condition));
+//					// return AutomationFactory.GetUiEltCollection(_elementHolderNet.FindAll(scope, condition));
+//					return _elementHolderNet.FindAll(scope, condition).GetOnlyNewElements(excludeElements);
+//			}
+//		}
 
 		public virtual AutomationProperty[] GetSupportedProperties()
 		{

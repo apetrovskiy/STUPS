@@ -111,6 +111,7 @@
     <Compile Include="Commands\Cache\StopUIACacheRequestCommandTestFixture.cs" />
     <Compile Include="Commands\Common\HideUIACurrentHighlighterCommandTestFixture.cs" />
     <Compile Include="Commands\Common\InvokeUIAControlClickCommandTestFixture.cs" />
+    <Compile Include="Commands\Common\InvokeUIAControlContextMenuCommandTestFixture.cs" />
     <Compile Include="Commands\Common\MoveUIACursorCommandTestFixture.cs" />
     <Compile Include="Commands\Common\ReadUIAControlAutomationIdCommandTextFixture.cs" />
     <Compile Include="Commands\Common\ReadUIAControlClassCommandTestFixture.cs" />

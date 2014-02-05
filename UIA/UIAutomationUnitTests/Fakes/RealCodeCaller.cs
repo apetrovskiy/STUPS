@@ -121,10 +121,10 @@ namespace UIAutomationUnitTests
             string automationId,
             string className)
         {
-            var windowSearch = new WindowSearcher();
+            var windowSearcher = new WindowSearcher();
             
             List<IUiElement> resultList =
-                windowSearch.GetWindowCollectionByPid(
+                windowSearcher.GetWindowCollectionByPid(
                     rootElement,
                     processIds,
                     first,

@@ -351,6 +351,8 @@
     <Compile Include="Helpers\UnderlyingCode\Internal\RDPHelper.cs" />
     <Compile Include="Helpers\UnderlyingCode\Internal\UIAHelper.cs" />
     <Compile Include="Helpers\UnderlyingCode\Internal\WizardHelper.cs" />
+    <Compile Include="Helpers\UnderlyingCode\NewModel\ContextMenuSearcher.cs" />
+    <Compile Include="Helpers\UnderlyingCode\NewModel\ContextMenuSearcherData.cs" />
     <Compile Include="Helpers\UnderlyingCode\NewModel\ControlSearcher.cs" />
     <Compile Include="Helpers\UnderlyingCode\NewModel\ControlSearcherData.cs" />
     <Compile Include="Helpers\UnderlyingCode\NewModel\SearcherTemplate.cs" />

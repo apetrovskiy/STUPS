@@ -858,6 +858,12 @@
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Internal\WizardHelper.cs">
       <Link>Helpers\UnderlyingCode\Internal\WizardHelper.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\ContextMenuSearcher.cs">
+      <Link>Helpers\UnderlyingCode\NewModel\ContextMenuSearcher.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\ContextMenuSearcherData.cs">
+      <Link>Helpers\UnderlyingCode\NewModel\ContextMenuSearcherData.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\ControlSearcher.cs">
       <Link>Helpers\UnderlyingCode\NewModel\ControlSearcher.cs</Link>
     </Compile>

@@ -684,9 +684,11 @@ namespace UIAutomation
 //		    this.ChildKernel.Dispose();
 		    
 		    // 20140131
-		    if (null != this._elementHolderNet) this._elementHolderNet = null;
+		    // 20140205
+		    // if (null != this._elementHolderNet) this._elementHolderNet = null;
 		    // if (null != this._elementHolderAdapter) this._elementHolderAdapter = null;
-		    if (null != this._elementHolderAdapter) this._elementHolderAdapter.Dispose();
+		    // 20140205
+		    // if (null != this._elementHolderAdapter) this._elementHolderAdapter.Dispose();
 		    
 			GC.SuppressFinalize(this);
 		}

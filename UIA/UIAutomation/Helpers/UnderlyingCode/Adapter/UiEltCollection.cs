@@ -150,9 +150,10 @@ namespace UIAutomation
 //		    this.ChildKernel.Dispose();
 		    
 		    // 20140131
-		    foreach (IUiElement element in this.ToArray().ToList()) {
-		        element.Dispose();
-		    }
+		    // 20140205
+		    // foreach (IUiElement element in this.ToArray().ToList()) {
+		    //     element.Dispose();
+		    // }
 		    
 		    GC.SuppressFinalize(this);
 		}

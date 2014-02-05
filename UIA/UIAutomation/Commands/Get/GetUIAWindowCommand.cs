@@ -78,10 +78,10 @@ namespace UIAutomation.Commands
             
             try {
                 
-                var windowSearch =
+                var windowSearcher =
                     AutomationFactory.GetSearchImpl<WindowSearcher>();
                 
-                var WindowSearcherData =
+                var windowSearcherData =
                     new WindowSearcherData {
                     Win32 = this.Win32,
                     InputObject = this.InputObject,
@@ -99,12 +99,12 @@ namespace UIAutomation.Commands
                 };
                 
                 returnedWindows =
-                    windowSearch.GetElements(
-                        WindowSearcherData,
+                    windowSearcher.GetElements(
+                        windowSearcherData,
                         Timeout);
                 
                 // 20140121
-                WindowSearcherData = null;
+                windowSearcherData = null;
             }
             catch {}
             

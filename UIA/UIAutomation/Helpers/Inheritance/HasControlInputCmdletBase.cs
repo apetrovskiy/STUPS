@@ -165,8 +165,8 @@ namespace UIAutomation
             
             if (whereToClick.Current.NativeWindowHandle == 0) {
             
-                WriteVerbose(cmdlet, "The handle of this control equals to zero");
-                WriteVerbose(cmdlet, "trying to use one of its ancestors");
+//                WriteVerbose(cmdlet, "The handle of this control equals to zero");
+//                WriteVerbose(cmdlet, "trying to use one of its ancestors");
                 
                 whereTheHandle =
                     whereToClick.GetAncestorWithHandle();
@@ -181,21 +181,21 @@ namespace UIAutomation
 
                     // TODO: WriteError(...)
                 } else {
-                    WriteVerbose(cmdlet, 
-                                 "the control with a handle is " + 
-                                 whereTheHandle.Current.Name);
-                    WriteVerbose(cmdlet, 
-                                 "its handle is " + 
-                                 whereTheHandle.Current.NativeWindowHandle.ToString());
-                    WriteVerbose(cmdlet, 
-                                 "its rectangle is " + 
-                                 whereTheHandle.Current.BoundingRectangle.ToString());
+//                    WriteVerbose(cmdlet, 
+//                                 "the control with a handle is " + 
+//                                 whereTheHandle.Current.Name);
+//                    WriteVerbose(cmdlet, 
+//                                 "its handle is " + 
+//                                 whereTheHandle.Current.NativeWindowHandle.ToString());
+//                    WriteVerbose(cmdlet, 
+//                                 "its rectangle is " + 
+//                                 whereTheHandle.Current.BoundingRectangle.ToString());
                 }
             }
             
-            WriteVerbose(cmdlet, 
-                         "the element the click will be performed on has rectangle: " + 
-                         whereToClick.Current.BoundingRectangle.ToString());
+//            WriteVerbose(cmdlet, 
+//                         "the element the click will be performed on has rectangle: " + 
+//                         whereToClick.Current.BoundingRectangle.ToString());
             
             
             int x = 0;
@@ -224,8 +224,8 @@ namespace UIAutomation
             // int settings.RelativeY = y - (int)whereTheHandle.Current.BoundingRectangle.Y;
             settings.RelativeY = y - (int)whereTheHandle.Current.BoundingRectangle.Y;
             
-            WriteVerbose(cmdlet, "relative X (the base is the control with the handle) = " + settings.RelativeX.ToString());            
-            WriteVerbose(cmdlet, "relative Y (the base is the control with the handle) = " + settings.RelativeY.ToString());
+//            WriteVerbose(cmdlet, "relative X (the base is the control with the handle) = " + settings.RelativeX.ToString());            
+//            WriteVerbose(cmdlet, "relative Y (the base is the control with the handle) = " + settings.RelativeY.ToString());
             
             // PostMessage's (click) third and fourth paramters (the third'll be reasigned later)
             IntPtr wParamDown = IntPtr.Zero;
@@ -249,7 +249,7 @@ namespace UIAutomation
                 lParamKeyUp = 
                     new IntPtr(((new IntPtr(0x0001)).ToInt32() & 0xFFFF) +
                                (((new IntPtr(uCtrlUp)).ToInt32() & 0xFFFF) << 16));
-                WriteVerbose(this, "control parameters for KeyDown/KeyUp have been prepared");
+//                WriteVerbose(this, "control parameters for KeyDown/KeyUp have been prepared");
             }
             if (settings.Shift) {
                 lParamKeyDown = 
@@ -258,7 +258,7 @@ namespace UIAutomation
                 lParamKeyUp = 
                     new IntPtr(((new IntPtr(0x0001)).ToInt32() & 0xFFFF) +
                                (((new IntPtr(uShiftUp)).ToInt32() & 0xFFFF) << 16));
-                WriteVerbose(this, "settings.Shift parameters for KeyDown/KeyUp have been prepared");
+//                WriteVerbose(this, "settings.Shift parameters for KeyDown/KeyUp have been prepared");
             }
             // PostMessage's (activate) third parameter
             uint ulAct = 0;
@@ -267,50 +267,50 @@ namespace UIAutomation
             uint mask = 0;
             if (settings.Ctrl) {
                 mask |= NativeMethods.MK_CONTROL;
-                WriteVerbose(this, "control parameters for ButtonDown/ButtonUp have been prepared");
+//                WriteVerbose(this, "control parameters for ButtonDown/ButtonUp have been prepared");
             }
             if (settings.Shift) {
                 mask |= NativeMethods.MK_SHIFT;
-                WriteVerbose(this, "settings.Shift parameters for ButtonDown/ButtonUp have been prepared");
+//                WriteVerbose(this, "settings.Shift parameters for ButtonDown/ButtonUp have been prepared");
             }
             
             if (settings.RightClick && !settings.DoubleClick) {
-                WriteVerbose(cmdlet, "right click");
+//                WriteVerbose(cmdlet, "right click");
                 uhAct = uDown = NativeMethods.WM_RBUTTONDOWN;
                 uUp = NativeMethods.WM_RBUTTONUP;
                 wParamDown = new IntPtr(NativeMethods.MK_RBUTTON | mask);
                 wParamUp = new IntPtr(mask);
                 ulAct = NativeMethods.MK_RBUTTON;
             } else if (settings.RightClick && settings.DoubleClick) {
-                WriteVerbose(cmdlet, "right double click");
+//                WriteVerbose(cmdlet, "right double click");
                 uhAct = uDown = NativeMethods.WM_RBUTTONDBLCLK;
                 uUp = NativeMethods.WM_RBUTTONUP;
                 wParamDown = new IntPtr(NativeMethods.MK_RBUTTON | mask);
                 wParamUp = new IntPtr(mask);
                 ulAct = NativeMethods.MK_RBUTTON;
             } else if (settings.MidClick && !settings.DoubleClick) {
-                WriteVerbose(cmdlet, "middle button click");
+//                WriteVerbose(cmdlet, "middle button click");
                 uhAct = uDown = NativeMethods.WM_MBUTTONDOWN;
                 uUp = NativeMethods.WM_MBUTTONUP;
                 wParamDown = new IntPtr(NativeMethods.MK_MBUTTON | mask);
                 wParamUp = new IntPtr(mask);
                 ulAct = NativeMethods.MK_MBUTTON;
             } else if (settings.MidClick && settings.DoubleClick) {
-                WriteVerbose(cmdlet, "middle button double click");
+//                WriteVerbose(cmdlet, "middle button double click");
                 uhAct = uDown = NativeMethods.WM_MBUTTONDBLCLK;
                 uUp = NativeMethods.WM_MBUTTONUP;
                 wParamDown = new IntPtr(NativeMethods.MK_MBUTTON | mask);
                 wParamUp = new IntPtr(mask);
                 ulAct = NativeMethods.MK_MBUTTON;
             } else if (settings.DoubleClick) {
-                WriteVerbose(cmdlet, "left double click");
+//                WriteVerbose(cmdlet, "left double click");
                 uhAct = uDown = NativeMethods.WM_LBUTTONDBLCLK;
                 uUp = NativeMethods.WM_LBUTTONUP;
                 wParamDown = new IntPtr(NativeMethods.MK_LBUTTON | mask);
                 wParamUp = new IntPtr(mask);
                 ulAct = NativeMethods.MK_LBUTTON;
             } else {
-                WriteVerbose(cmdlet, "left click");
+//                WriteVerbose(cmdlet, "left click");
                 uhAct = uDown = NativeMethods.WM_LBUTTONDOWN;
                 uUp = NativeMethods.WM_LBUTTONUP;
                 wParamDown = new IntPtr(NativeMethods.MK_LBUTTON | mask);
@@ -320,12 +320,12 @@ namespace UIAutomation
             
             IntPtr handle =
                     new IntPtr(whereTheHandle.Current.NativeWindowHandle);
-            WriteVerbose(cmdlet, 
-                         "the handle of the element the click will be performed on is " + 
-                         handle.ToString());
-            
-            WriteVerbose(cmdlet, "X = " + x.ToString());
-            WriteVerbose(cmdlet, "Y = " + y.ToString());
+//            WriteVerbose(cmdlet, 
+//                         "the handle of the element the click will be performed on is " + 
+//                         handle.ToString());
+//            
+//            WriteVerbose(cmdlet, "X = " + x.ToString());
+//            WriteVerbose(cmdlet, "Y = " + y.ToString());
             
             try {
                 whereTheHandle.SetFocus();
@@ -334,7 +334,7 @@ namespace UIAutomation
             
             bool setCursorPosResult = 
                 NativeMethods.SetCursorPos(x, y);
-            WriteVerbose(cmdlet, "SetCursorPos result = " + setCursorPosResult.ToString());
+//            WriteVerbose(cmdlet, "SetCursorPos result = " + setCursorPosResult.ToString());
             
             Thread.Sleep(Preferences.OnClickDelay);
             
@@ -353,19 +353,19 @@ namespace UIAutomation
                     bool res0 = 
                         NativeMethods.PostMessage1(handle, NativeMethods.WM_MOUSEACTIVATE, 
                                      mainWindow, lParam2);
-                    WriteVerbose(this, "WM_MOUSEACTIVATE is sent");
+//                    WriteVerbose(this, "WM_MOUSEACTIVATE is sent");
                 }
             }
             
             if (settings.Ctrl) {
                 // press the control key
                 NativeMethods.keybd_event((byte)NativeMethods.VK_LCONTROL, 0x45, NativeMethods.KEYEVENTF_EXTENDEDKEY | 0, 0);
-                WriteVerbose(this, " the control button has been pressed");
+//                WriteVerbose(this, " the Control button has been pressed");
             }
             if (settings.Shift) {
                 // press the settings.Shift key
                 NativeMethods.keybd_event((byte)NativeMethods.VK_LSHIFT, 0x45, NativeMethods.KEYEVENTF_EXTENDEDKEY | 0, 0);
-                WriteVerbose(this, " the settings.Shift button has been pressed");
+//                WriteVerbose(this, " the Shift button has been pressed");
             }
             
             // // 20120620 for Home Tab
@@ -393,27 +393,27 @@ namespace UIAutomation
                 if (settings.Ctrl) {
                     // release the control key
                     NativeMethods.keybd_event((byte)NativeMethods.VK_LCONTROL, 0x45, NativeMethods.KEYEVENTF_EXTENDEDKEY | NativeMethods.KEYEVENTF_KEYUP, 0);
-                    WriteVerbose(this, " the control button has been released");
+//                    WriteVerbose(this, " the Control button has been released");
                 }
                 if (settings.Shift) {
                     // release the settings.Shift key
                     NativeMethods.keybd_event((byte)NativeMethods.VK_LSHIFT, 0x45, NativeMethods.KEYEVENTF_EXTENDEDKEY | NativeMethods.KEYEVENTF_KEYUP, 0);
-                    WriteVerbose(this, " the settings.Shift button has been released");
+//                    WriteVerbose(this, " the Shift button has been released");
                 }
             }
             
-            WriteVerbose(cmdlet,
-                         // // 20120620 for Home Tab
-                         // 20130312
-                         "PostMessage " + uDown.ToString() + 
-                         //"SendMessage " + uDown.ToString() + 
-                         " result = " + res1.ToString());
-            WriteVerbose(cmdlet, 
-                         // // 20120620 for Home Tab
-                         // 20130312
-                         "PostMessage " + uUp.ToString() +
-                         //"SendMessage " + uUp.ToString() + 
-                         " result = " + res2.ToString());
+//            WriteVerbose(cmdlet,
+//                         // // 20120620 for Home Tab
+//                         // 20130312
+//                         "PostMessage " + uDown.ToString() + 
+//                         //"SendMessage " + uDown.ToString() + 
+//                         " result = " + res1.ToString());
+//            WriteVerbose(cmdlet, 
+//                         // // 20120620 for Home Tab
+//                         // 20130312
+//                         "PostMessage " + uUp.ToString() +
+//                         //"SendMessage " + uUp.ToString() + 
+//                         " result = " + res2.ToString());
             // if (!res1 && !res2) {
             if (res1 && res2) {
                 result = true;

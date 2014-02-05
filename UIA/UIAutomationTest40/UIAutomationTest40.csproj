@@ -127,6 +127,9 @@
     <Compile Include="..\UIAutomationTest\Commands\Common\InvokeUIAControlClickCommandTestFixture.cs">
       <Link>Commands\Common\InvokeUIAControlClickCommandTestFixture.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Common\InvokeUIAControlContextMenuCommandTestFixture.cs">
+      <Link>Commands\Common\InvokeUIAControlContextMenuCommandTestFixture.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomationTest\Commands\Common\MoveUIACursorCommandTestFixture.cs">
       <Link>Commands\Common\MoveUIACursorCommandTestFixture.cs</Link>
     </Compile>

@@ -224,6 +224,10 @@
     <Compile Include="FormsCollection\WinForms\WinFormsTripled.Designer.cs">
       <DependentUpon>WinFormsTripled.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormsCollection\WinForms\WinFormsWithMenus.cs" />
+    <Compile Include="FormsCollection\WinForms\WinFormsWithMenus.Designer.cs">
+      <DependentUpon>WinFormsWithMenus.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormsCollection\WinForms\WinFormsWizard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -321,6 +325,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormsCollection\WinForms\WinFormsOuter.resx">
       <DependentUpon>WinFormsOuter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsCollection\WinForms\WinFormsWithMenus.resx">
+      <DependentUpon>WinFormsWithMenus.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormsCollection\WinForms\WinFormsWizard.resx">
       <DependentUpon>WinFormsWizard.cs</DependentUpon>

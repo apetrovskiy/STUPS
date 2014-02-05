@@ -519,6 +519,7 @@ namespace UIAutomation
         }
         
         internal static IUiElement InvokeContextMenu(this IUiElement inputObject, HasControlInputCmdletBase cmdlet, int x, int y)
+        // internal static IUiElement InvokeContextMenu(this IUiElement inputObject, int x, int y)
         {
             IUiElement resultElement = null;
             try {
@@ -552,7 +553,31 @@ namespace UIAutomation
             // what are these x and y?
             // int x = Cursor.Position.X;
             // int y = Cursor.Position.Y;
-
+            
+            // 20140205
+            // TODO: ContextMenuSearcher
+            var contextMenuSearcher =
+                AutomationFactory.GetSearchImpl<ContextMenuSearcher>();
+            
+            var contextMenuSearcherData =
+                new ContextMenuSearcherData {
+                InputObject = inputObject,
+                ProcessId = inputObject.Current.ProcessId
+            };
+            
+            var elementsMenuRoot =
+                contextMenuSearcher.GetElements(
+                    contextMenuSearcherData,
+                    Preferences.Timeout);
+            
+            resultElement =
+                elementsMenuRoot.Where(element => null != element).First();
+            
+            
+            
+            return resultElement;
+            
+            /*
             // get the context menu window
             int processId = inputObject.Current.ProcessId;
             IUiEltCollection windowsByPid = null;
@@ -571,6 +596,22 @@ namespace UIAutomation
                                 new PropertyCondition(
                                     AutomationElement.ControlTypeProperty,
                                     ControlType.Menu)));
+                }
+                
+                // 20140205
+                if (null == windowsByPid || 0 == windowsByPid.Count) {
+                    
+                    windowsByPid =
+                        inputObject.FindAll(
+                            TreeScope.Children,
+                            new AndCondition(
+                                new PropertyCondition(
+                                    AutomationElement.ProcessIdProperty,
+                                    processId),
+                                new PropertyCondition(
+                                    AutomationElement.ControlTypeProperty,
+                                    ControlType.Menu)));
+                    
                 }
                 
                 if (windowsByPid != null && windowsByPid.Count <= 0)
@@ -604,11 +645,13 @@ namespace UIAutomation
             }	 while (!breakSearch);
             
             // 20140205
+            // wrong
             // windowsByPid.Dispose();
             // windowsByPid = null;
             
             // return the context menu window
             return resultElement;
+            */
         }
         
         public static bool GetIsValid(this IUiElement element)

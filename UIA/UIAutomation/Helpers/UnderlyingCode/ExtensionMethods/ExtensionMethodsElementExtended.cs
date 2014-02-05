@@ -90,7 +90,6 @@ namespace UIAutomation
                 cmdlet,
                 holder.GetParentElement(),
                 new ClickSettings() {
-                    // DoubleClickInterval = 50,
                     RelativeX = Preferences.ClickOnControlByCoordX,
                     RelativeY = Preferences.ClickOnControlByCoordY
                 });
@@ -106,7 +105,6 @@ namespace UIAutomation
                 cmdlet,
                 holder.GetParentElement(),
                 new ClickSettings() {
-                    // DoubleClickInterval = 50,
                     RelativeX = X,
                     RelativeY = Y
                 });
@@ -157,7 +155,6 @@ namespace UIAutomation
                 holder.GetParentElement(),
                 new ClickSettings() {
                     RightClick = true,
-                    // DoubleClickInterval = 50,
                     RelativeX = Preferences.ClickOnControlByCoordX,
                     RelativeY = Preferences.ClickOnControlByCoordY
                 });
@@ -174,7 +171,6 @@ namespace UIAutomation
                 holder.GetParentElement(),
                 new ClickSettings() {
                     Ctrl = true,
-                    // DoubleClickInterval = 50,
                     RelativeX = Preferences.ClickOnControlByCoordX,
                     RelativeY = Preferences.ClickOnControlByCoordY
                 });
@@ -191,7 +187,6 @@ namespace UIAutomation
                 holder.GetParentElement(),
                 new ClickSettings() {
                     Alt = true,
-                    // DoubleClickInterval = 50,
                     RelativeX = Preferences.ClickOnControlByCoordX,
                     RelativeY = Preferences.ClickOnControlByCoordY
                 });
@@ -208,7 +203,6 @@ namespace UIAutomation
                 holder.GetParentElement(),
                 new ClickSettings() {
                     Shift = true,
-                    // DoubleClickInterval = 50,
                     RelativeX = Preferences.ClickOnControlByCoordX,
                     RelativeY = Preferences.ClickOnControlByCoordY
                 });
@@ -233,6 +227,7 @@ namespace UIAutomation
             
             // return the context menu window
             return holder.GetParentElement().InvokeContextMenu(cmdlet, Preferences.ClickOnControlByCoordX, Preferences.ClickOnControlByCoordY);
+            // return holder.GetParentElement().InvokeContextMenu(Preferences.ClickOnControlByCoordX, Preferences.ClickOnControlByCoordY);
         }
         
         public static IUiElement PerformCoordinatedInvokeContextMenu(this IControlInputHolder holder, int X, int Y)
@@ -247,6 +242,7 @@ namespace UIAutomation
             
             // return the context menu window
             return holder.GetParentElement().InvokeContextMenu(cmdlet, X, Y);
+            // return holder.GetParentElement().InvokeContextMenu(X, Y);
         }
         #endregion IControlInputHolder
         #region IKeyboardInputHolder

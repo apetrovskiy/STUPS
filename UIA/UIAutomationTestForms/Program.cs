@@ -291,6 +291,10 @@ namespace UIAutomationTestForms
                     System.Windows.Forms.Application.Run(
                         new WinFormsOuter()); //(controls));
                     break;
+                case Forms.WinFormsWithMenus:
+                    System.Windows.Forms.Application.Run(
+                        new WinFormsWithMenus());
+                    break;
                 case Forms.WinFormsRich:
                     System.Windows.Forms.Application.Run(
                         new WinFormsRich()); //ctrlType, controlName, controlAutomationId, controlDelay));
@@ -489,6 +493,7 @@ namespace UIAutomationTestForms
         WinFormsRich = 31,
         WinFormsFull = 32,
         WinFormsWizard = 33,
+        WinFormsWithMenus = 34,
         
         
         WPFEmpty = 101,

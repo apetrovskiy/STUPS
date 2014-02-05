@@ -44,18 +44,23 @@ namespace UIAutomationUnitTests
             return resultList;
         }
         
-        public static List<IUiElement> GetResultList_ViaWildcards(GetControlCmdletBase cmdlet, IUiElement element, Condition condition)
+        // 20140205
+        // public static List<IUiElement> GetResultList_ViaWildcards(GetControlCmdletBase cmdlet, IUiElement element, Condition condition)
+        public static List<IUiElement> GetResultList_ViaWildcards(ControlSearcherData data, IUiElement element, Condition condition)
         {
+            // 20140205
+            /*
             var data =
                 new ControlSearcherData {
-                InputObject = cmdlet.InputObject,
+                // InputObject = cmdlet.InputObject,
                 Name = cmdlet.Name,
                 AutomationId = cmdlet.AutomationId,
                 Class = cmdlet.Class,
                 Value = cmdlet.Value,
-                ControlType = cmdlet.ControlType,
-                SearchCriteria = cmdlet.SearchCriteria
+                ControlType = cmdlet.ControlType //,
+                // SearchCriteria = cmdlet.SearchCriteria
             };
+            */
             
             List<IUiElement> resultList =
                 ControlSearcher.SearchByWildcardOrRegexViaUia(

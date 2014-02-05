@@ -553,19 +553,17 @@ namespace UIAutomationUnitTests
         {
             List<string> resultCollection = new List<string>();
             
-            if (null == controlTypes || 0 == controlTypes.Length) return resultCollection.ToArray();
-
-            resultCollection.AddRange(from controlType in controlTypes where null != controlType select controlType.ProgrammaticName.Substring(12));
-            /*
-            foreach (ControlType controlType in controlTypes) {
-                if (null != controlType) {
-                    resultCollection.Add(
-                        controlType.ProgrammaticName.Substring(12));
-                }
-            }
-            */
-
-            return resultCollection.ToArray();
+            // 20140205
+            // if (null == controlTypes || 0 == controlTypes.Length) return resultCollection.ToArray();
+            if (null == controlTypes || 0 == controlTypes.Length) return new string[] {};
+            
+            return controlTypes.Select(
+                ct =>
+                null != ct ? ct.ProgrammaticName.Substring(12) : string.Empty).ToArray();
+            // 20140205
+            // resultCollection.AddRange(from controlType in controlTypes where null != controlType select controlType.ProgrammaticName.Substring(12));
+            // 20140205
+            // return resultCollection.ToArray();
         }
         
         public static IUiEltCollection GetFakeCollection(IEnumerable<IUiElement> elements)

@@ -339,17 +339,24 @@ namespace UIAutomation
             List<IUiElement> resultCollection =
                 new List<IUiElement>();
             
+            // 20140205
+            data.SearchCriteria = data.SearchCriteria ?? new Hashtable[] {};
+            data.InputObject = data.InputObject ?? new IUiElement[] {};
+            data.ControlType = data.ControlType ?? new string[] {};
+            
             try {
                 
                 GetControlCollectionCmdletBase cmdlet1 =
                     new GetControlCollectionCmdletBase(
                         new ControlSearcherData {
-                            InputObject = data.InputObject ?? (new UiElement[]{ (UiElement)UiElement.RootElement }),
+                            // 20140205
+                            // InputObject = data.InputObject ?? (new UiElement[]{ (UiElement)UiElement.RootElement }),
                             Name = data.Name,
                             AutomationId = data.AutomationId,
                             Class = data.Class,
                             Value = data.Value,
-                            ControlType = null != data.ControlType && 0 < data.ControlType.Length ? data.ControlType : (new string[] {}),
+                            // 20140205
+                            // ControlType = null != data.ControlType && 0 < data.ControlType.Length ? data.ControlType : (new string[] {}),
                             CaseSensitive = caseSensitive
                         });
                 

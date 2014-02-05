@@ -54,7 +54,7 @@ namespace UIAutomationTestForms
         
         void MenuLevel12ToolStripMenuItemClick(object sender, EventArgs e)
         {
-            this.listBox1.Items.Add("MenuLevel1-2");
+            this.listBox1.Items.Add("WindowMenuLevel1-2");
         }
         
         void ListBox1SelectedIndexChanged(object sender, EventArgs e)
@@ -64,12 +64,27 @@ namespace UIAutomationTestForms
         
         void MenuLevel21ToolStripMenuItemClick(object sender, EventArgs e)
         {
-            this.listBox1.Items.Add("MenuLevel2-1");
+            this.listBox1.Items.Add("WindowMenuLevel2-1");
         }
         
         void MenuLevel22ToolStripMenuItemClick(object sender, EventArgs e)
         {
-            this.listBox1.Items.Add("MenuLevel2-2");
+            this.listBox1.Items.Add("WindowMenuLevel2-2");
+        }
+        
+        void ControlMenuLevel12ToolStripMenuItemClick(object sender, EventArgs e)
+        {
+            this.listBox1.Items.Add("ControlMenuLevel1-2");
+        }
+        
+        void ControlMenuLevel21ToolStripMenuItemClick(object sender, EventArgs e)
+        {
+            this.listBox1.Items.Add("ControlMenuLevel2-1");
+        }
+        
+        void ControlMenuLevel22ToolStripMenuItemClick(object sender, EventArgs e)
+        {
+            this.listBox1.Items.Add("ControlMenuLevel2-2");
         }
     }
 }

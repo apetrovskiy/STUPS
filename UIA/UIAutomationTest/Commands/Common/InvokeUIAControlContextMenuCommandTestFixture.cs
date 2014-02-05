@@ -28,9 +28,33 @@ namespace UIAutomationTest.Commands.Common
         [Category("Slow")]
         [Category("WinForms")]
         [Category("Control")]
-        public void Invoke_ControlContextMenu()
+        public void Invoke_ControlContextMenu_from_window()
         {
-            string expectedResult = "MenuLevel1-2";
+            string expectedResult = "WindowMenuLevel1-2";
+            MiddleLevelCode.StartProcessWithForm(
+                UIAutomationTestForms.Forms.WinFormsWithMenus, 
+                0);
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+                @"[string]$menuItemName = Get-UiaWindow -pn " + 
+                MiddleLevelCode.TestFormProcess +
+                " | Invoke-UiaControlContextMenu | Get-UiaMenuItem -Name '" + 
+                expectedResult + 
+                "' | Invoke-UiaMenuItemClick | Read-UiaControlName; " +
+                @"Get-UiaWindow -pn " + 
+                MiddleLevelCode.TestFormProcess +
+                " | Get-UiaList | Get-UiaListItem -Name '" +
+                expectedResult +
+                "' | Read-UiaControlName;",
+                expectedResult);
+        }
+        
+        [Test]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
+        public void Invoke_ControlContextMenu_from_window_coordinated()
+        {
+            string expectedResult = "WindowMenuLevel1-2";
             MiddleLevelCode.StartProcessWithForm(
                 UIAutomationTestForms.Forms.WinFormsWithMenus, 
                 0);
@@ -40,10 +64,61 @@ namespace UIAutomationTest.Commands.Common
                 " | Invoke-UiaControlContextMenu -X 50 -Y 50 | Get-UiaMenuItem -Name '" + 
                 expectedResult + 
                 "' | Invoke-UiaMenuItemClick | Read-UiaControlName; " +
-                @"$null = Get-UiaWindow -pn " + 
+                @"Get-UiaWindow -pn " + 
                 MiddleLevelCode.TestFormProcess +
-                // " | Get-UiaList | Get-UiaListItem -Name $menuItemName | Read-UiaControlName;",
-                " | Get-UiaList | Get-UiaListItem | Read-UiaControlName;",
+                " | Get-UiaList | Get-UiaListItem -Name '" +
+                expectedResult +
+                "' | Read-UiaControlName;",
+                expectedResult);
+        }
+        
+        [Test]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
+        public void Invoke_ControlContextMenu_from_control()
+        {
+            string expectedResult = "ControlMenuLevel1-2";
+            MiddleLevelCode.StartProcessWithForm(
+                UIAutomationTestForms.Forms.WinFormsWithMenus, 
+                0);
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+                @"[string]$menuItemName = Get-UiaWindow -pn " + 
+                MiddleLevelCode.TestFormProcess +
+                " | Get-UiaPane " +
+                " | Invoke-UiaControlContextMenu | Get-UiaMenuItem -Name '" + 
+                expectedResult + 
+                "' | Invoke-UiaMenuItemClick | Read-UiaControlName; " +
+                @"Get-UiaWindow -pn " + 
+                MiddleLevelCode.TestFormProcess +
+                " | Get-UiaList | Get-UiaListItem -Name '" +
+                expectedResult +
+                "' | Read-UiaControlName;",
+                expectedResult);
+        }
+        
+        [Test]
+        [Category("Slow")]
+        [Category("WinForms")]
+        [Category("Control")]
+        public void Invoke_ControlContextMenu_from_control_coordinated()
+        {
+            string expectedResult = "ControlMenuLevel1-2";
+            MiddleLevelCode.StartProcessWithForm(
+                UIAutomationTestForms.Forms.WinFormsWithMenus, 
+                0);
+            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+                @"[string]$menuItemName = Get-UiaWindow -pn " + 
+                MiddleLevelCode.TestFormProcess +
+                " | Get-UiaPane " +
+                " | Invoke-UiaControlContextMenu -X 20 -Y 20 | Get-UiaMenuItem -Name '" + 
+                expectedResult + 
+                "' | Invoke-UiaMenuItemClick | Read-UiaControlName; " +
+                @"Get-UiaWindow -pn " + 
+                MiddleLevelCode.TestFormProcess +
+                " | Get-UiaList | Get-UiaListItem -Name '" +
+                expectedResult +
+                "' | Read-UiaControlName;",
                 expectedResult);
         }
         

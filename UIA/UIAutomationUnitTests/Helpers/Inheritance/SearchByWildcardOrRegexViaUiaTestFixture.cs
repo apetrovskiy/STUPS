@@ -52,19 +52,44 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             int expectedNumberOfElements)
         {
             // Arrange
-            string controlTypeString = string.Empty;
-            if (null != controlType) {
-                controlTypeString = controlType.ProgrammaticName.Substring(12);
-            }
+            // 20140205
+//            string controlTypeString = string.Empty;
+//            if (null != controlType) {
+//                controlTypeString = controlType.ProgrammaticName.Substring(12);
+//            }
             
-            ControlType[] controlTypes =
-                new[] { controlType };
+            // 20140205
+//            ControlType[] controlTypes =
+//                new[] { controlType };
             
-            GetControlCmdletBase cmdlet =
-                FakeFactory.Get_GetControlCmdletBase(controlTypes, name, automationId, className, txtValue);
+            // 20140205
+//            GetControlCmdletBase cmdlet =
+//                FakeFactory.Get_GetControlCmdletBase(controlTypes, name, automationId, className, txtValue);
             
+            // 20140205
+            var data =
+                new ControlSearcherData {
+                // InputObject = new IUiElement[] {},
+                // ControlType = FakeFactory.ConvertControlTypeToStringArray(controlTypes),
+                ControlType = FakeFactory.ConvertControlTypeToStringArray(new[] { controlType }),
+                Name = name,
+                AutomationId = automationId,
+                Class = className,
+                Value = txtValue// ,
+                // SearchCriteria = new Hashtable[] {}
+            };
+            
+foreach (string cType in data.ControlType) {
+    Console.WriteLine("control type = {0}", cType);
+}
+Console.WriteLine("name = {0}", data.Name);
+Console.WriteLine("auid = {0}", data.AutomationId);
+Console.WriteLine("class = {0}", data.Class);
+Console.WriteLine("value = {0}", data.Value);
+            
+            // 20140205
+            /*
             Condition condition =
-                // cmdlet.GetWildcardSearchCondition(cmdlet);
                 ControlSearcher.GetWildcardSearchCondition(
                     new ControlSearcherData {
                         ControlType = FakeFactory.ConvertControlTypeToStringArray(controlTypes),
@@ -73,6 +98,10 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                         Class = className,
                         Value = txtValue
                     });
+            */
+            
+            Condition condition =
+                ControlSearcher.GetWildcardSearchCondition(data);
             
             IUiElement element =
                 FakeFactory.GetElement_ForFindAll(
@@ -80,7 +109,26 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                     condition);
             
             // Act
-            List<IUiElement> resultList = RealCodeCaller.GetResultList_ViaWildcards(cmdlet, element, condition);
+            /*
+            var data =
+                new ControlSearcherData {
+                InputObject = cmdlet.InputObject,
+                Name = cmdlet.Name,
+                AutomationId = cmdlet.AutomationId,
+                Class = cmdlet.Class,
+                Value = cmdlet.Value,
+                ControlType = cmdlet.ControlType,
+                SearchCriteria = cmdlet.SearchCriteria
+            };
+            */
+            
+            // 20140205
+            // List<IUiElement> resultList = RealCodeCaller.GetResultList_ViaWildcards(cmdlet, element, condition);
+            // data.InputObject = new IUiElement[] {};
+            // data.SearchCriteria = new Hashtable[] {};
+            List<IUiElement> resultList = RealCodeCaller.GetResultList_ViaWildcards(data, element, condition);
+            
+Console.WriteLine("TestParametersAgainstCollection: 0006");
             
             // Assert
             const WildcardOptions options = WildcardOptions.IgnoreCase;
@@ -367,6 +415,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             string className = string.Empty;
             string txtValue = string.Empty;
             ControlType controlType = null;
+            
             TestParametersAgainstCollection(
                 controlType,
                 name,
@@ -375,6 +424,8 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 txtValue,
                 new UiElement[] {},
                 0);
+                
+Console.WriteLine("Get0_byAutomationId: 0002");
         }
         
         [Test][Fact]

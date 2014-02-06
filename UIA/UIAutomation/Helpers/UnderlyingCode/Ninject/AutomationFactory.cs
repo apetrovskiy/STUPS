@@ -363,8 +363,8 @@ namespace UIAutomation
             } catch (Exception eFailedToIssueHolder) {
                 // TODO
 			    // write error to error object!!!
-			    Console.WriteLine("Holder");
-			    Console.WriteLine(eFailedToIssueHolder.Message);
+			    // Console.WriteLine("Holder");
+			    // Console.WriteLine(eFailedToIssueHolder.Message);
 			    return default(T);
             }
         }

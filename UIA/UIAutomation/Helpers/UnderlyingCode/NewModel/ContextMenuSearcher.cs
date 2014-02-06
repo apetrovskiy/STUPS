@@ -24,7 +24,6 @@ namespace UIAutomation
     {
         public override string TimeoutExpirationInformation { get; set; }
         
-        // internal int ProcessId { get; set; }
         private Condition conditionsForContextMenuSearch = null;
         
         public override void OnStartHook()
@@ -50,11 +49,14 @@ namespace UIAutomation
         
         public override List<IUiElement> SearchForElements(SearcherTemplateData searchData)
         {
+            #region search from the root
             ResultCollection.AddRange(
                 UiElement.RootElement.FindAll(
                     TreeScope.Children,
                     conditionsForContextMenuSearch).ToArray().ToList());
+            #endregion search from the root
             
+            #region search from the input
             if (null == ResultCollection || 0 == ResultCollection.Count) {
                 
                 ResultCollection.AddRange(
@@ -62,6 +64,19 @@ namespace UIAutomation
                         TreeScope.Children,
                         conditionsForContextMenuSearch).ToArray().ToList());
             }
+            #endregion search from the input
+            
+            #region search from the window
+            if (null == ResultCollection || 0 == ResultCollection.Count) {
+                if (null != CurrentData.CurrentWindow) {
+    
+                    ResultCollection.AddRange(
+                        CurrentData.CurrentWindow.FindAll(
+                            TreeScope.Children,
+                            conditionsForContextMenuSearch).ToArray().ToList());
+                }
+            }
+            #endregion search from the window
             
             return ResultCollection;
         }

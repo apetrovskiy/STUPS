@@ -69,27 +69,19 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             // 20140205
             var data =
                 new ControlSearcherData {
-                // InputObject = new IUiElement[] {},
                 // ControlType = FakeFactory.ConvertControlTypeToStringArray(controlTypes),
+                // ControlType = (null == controlType) ? new string[] {} : FakeFactory.ConvertControlTypeToStringArray(new[] { controlType }),
+                // ControlType = FakeFactory.ConvertControlTypeToStringArray((ControlType[])new[] { controlType }),
                 ControlType = FakeFactory.ConvertControlTypeToStringArray(new[] { controlType }),
-                // Name = name,
-                Name = (string.IsNullOrEmpty(name) ? string.Empty : name),
-                // AutomationId = automationId,
-                AutomationId = (string.IsNullOrEmpty(automationId) ? string.Empty : automationId),
-                // Class = className,
-                Class = (string.IsNullOrEmpty(className) ? string.Empty : className),
-                // Value = txtValue// ,
-                Value = (string.IsNullOrEmpty(txtValue) ? string.Empty : txtValue)
-                // SearchCriteria = new Hashtable[] {}
+                Name = name,
+                // Name = (string.IsNullOrEmpty(name) ? string.Empty : name),
+                AutomationId = automationId,
+                // AutomationId = (string.IsNullOrEmpty(automationId) ? string.Empty : automationId),
+                Class = className,
+                // Class = (string.IsNullOrEmpty(className) ? string.Empty : className),
+                Value = txtValue// ,
+                // Value = (string.IsNullOrEmpty(txtValue) ? string.Empty : txtValue)
             };
-            
-//foreach (string cType in data.ControlType) {
-//    Console.WriteLine("control type = {0}", cType);
-//}
-//Console.WriteLine("name = {0}", data.Name);
-//Console.WriteLine("auid = {0}", data.AutomationId);
-//Console.WriteLine("class = {0}", data.Class);
-//Console.WriteLine("value = {0}", data.Value);
             
             // 20140205
             /*
@@ -128,11 +120,11 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             
             // 20140205
             // List<IUiElement> resultList = RealCodeCaller.GetResultList_ViaWildcards(cmdlet, element, condition);
-            data.InputObject = new IUiElement[] {};
+            // data.InputObject = new IUiElement[] {};
+            // data.InputObject = new UiElement[] { (UiElement)CurrentData.CurrentWindow };
+            data.InputObject = new IUiElement[] { CurrentData.CurrentWindow };
             // data.SearchCriteria = new Hashtable[] {};
             List<IUiElement> resultList = RealCodeCaller.GetResultList_ViaWildcards(data, element, condition);
-            
-Console.WriteLine("TestParametersAgainstCollection: 0006");
             
             // Assert
             const WildcardOptions options = WildcardOptions.IgnoreCase;

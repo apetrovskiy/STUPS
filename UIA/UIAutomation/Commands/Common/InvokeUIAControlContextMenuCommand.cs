@@ -56,7 +56,9 @@ namespace UIAutomation.Commands
                 } catch {
                     WriteError(
                         this,
-                        "Couldn't click on this control",
+                        // 20140206
+                        // "Couldn't click on this control",
+                        "Failed to invoke context menu on this element",
                         "couldNotClick",
                         ErrorCategory.InvalidResult,
                         true);

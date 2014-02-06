@@ -118,6 +118,9 @@
     <Compile Include="..\UIAutomationUnitTests\Commands\Common\HideUIACurrentHighlighterCommandTestFixture.cs">
       <Link>Commands\Common\HideUIACurrentHighlighterCommandTestFixture.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Commands\Common\InvokeUIAControlContextMenuCommandTestFixture.cs">
+      <Link>Commands\Common\InvokeUIAControlContextMenuCommandTestFixture.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomationUnitTests\Commands\Container\NewUIAContainerCommandTestFixture.cs">
       <Link>Commands\Container\NewUIAContainerCommandTestFixture.cs</Link>
     </Compile>

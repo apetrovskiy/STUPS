@@ -72,20 +72,24 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 // InputObject = new IUiElement[] {},
                 // ControlType = FakeFactory.ConvertControlTypeToStringArray(controlTypes),
                 ControlType = FakeFactory.ConvertControlTypeToStringArray(new[] { controlType }),
-                Name = name,
-                AutomationId = automationId,
-                Class = className,
-                Value = txtValue// ,
+                // Name = name,
+                Name = (string.IsNullOrEmpty(name) ? string.Empty : name),
+                // AutomationId = automationId,
+                AutomationId = (string.IsNullOrEmpty(automationId) ? string.Empty : automationId),
+                // Class = className,
+                Class = (string.IsNullOrEmpty(className) ? string.Empty : className),
+                // Value = txtValue// ,
+                Value = (string.IsNullOrEmpty(txtValue) ? string.Empty : txtValue)
                 // SearchCriteria = new Hashtable[] {}
             };
             
-foreach (string cType in data.ControlType) {
-    Console.WriteLine("control type = {0}", cType);
-}
-Console.WriteLine("name = {0}", data.Name);
-Console.WriteLine("auid = {0}", data.AutomationId);
-Console.WriteLine("class = {0}", data.Class);
-Console.WriteLine("value = {0}", data.Value);
+//foreach (string cType in data.ControlType) {
+//    Console.WriteLine("control type = {0}", cType);
+//}
+//Console.WriteLine("name = {0}", data.Name);
+//Console.WriteLine("auid = {0}", data.AutomationId);
+//Console.WriteLine("class = {0}", data.Class);
+//Console.WriteLine("value = {0}", data.Value);
             
             // 20140205
             /*
@@ -124,7 +128,7 @@ Console.WriteLine("value = {0}", data.Value);
             
             // 20140205
             // List<IUiElement> resultList = RealCodeCaller.GetResultList_ViaWildcards(cmdlet, element, condition);
-            // data.InputObject = new IUiElement[] {};
+            data.InputObject = new IUiElement[] {};
             // data.SearchCriteria = new Hashtable[] {};
             List<IUiElement> resultList = RealCodeCaller.GetResultList_ViaWildcards(data, element, condition);
             
@@ -424,8 +428,6 @@ Console.WriteLine("TestParametersAgainstCollection: 0006");
                 txtValue,
                 new UiElement[] {},
                 0);
-                
-Console.WriteLine("Get0_byAutomationId: 0002");
         }
         
         [Test][Fact]

@@ -525,12 +525,13 @@ namespace UIAutomation
             try {
                 
                 // 20140116
-                if (x < 0) {
-                    x = Preferences.ClickOnControlByCoordX;
-                }
-                if (y < 0) {
-                    y = Preferences.ClickOnControlByCoordY;
-                }
+                // 20140205
+//                if (x < 0) {
+//                    x = Preferences.ClickOnControlByCoordX;
+//                }
+//                if (y < 0) {
+//                    y = Preferences.ClickOnControlByCoordY;
+//                }
                 
                 if (!cmdlet.ClickControl(
                         cmdlet,
@@ -540,13 +541,17 @@ namespace UIAutomation
                             // 20140116
                             // RelativeX = Preferences.ClickOnControlByCoordX,
                             // RelativeY = Preferences.ClickOnControlByCoordY
-                            RelativeX = x,
-                            RelativeY = y
+                            // 20140205
+                            // RelativeX = x,
+                            // RelativeY = y
+                            RelativeX = (x < 0 ? Preferences.ClickOnControlByCoordX : x),
+                            RelativeY = (y < 0 ? Preferences.ClickOnControlByCoordY : y)
                         })) {
                 }
             }
-            catch {
-                throw; // ??
+            catch (Exception eClickONControl) {
+                // throw; // ??
+                throw new Exception("failed to click on the control");
             }
             
             // 20140116
@@ -572,8 +577,6 @@ namespace UIAutomation
             
             resultElement =
                 elementsMenuRoot.Where(element => null != element).First();
-            
-            
             
             return resultElement;
             

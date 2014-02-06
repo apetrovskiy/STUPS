@@ -481,7 +481,8 @@ namespace UIAutomationUnitTests
                 AutomationFactory.GetUiElement(
                     elementBeforeProxy as IUiElement);
             
-            IUiEltCollection fullListOfElements = AutomationFactory.GetUiEltCollection(elements);
+            // 20140205
+//            IUiEltCollection fullListOfElements = AutomationFactory.GetUiEltCollection(elements);
             
             Condition[] condCollection = null;
             if (null != conditions as AndCondition) {
@@ -492,16 +493,24 @@ namespace UIAutomationUnitTests
                 condCollection = (conditions as OrCondition).GetConditions();
             }
             
+            // 20140205
             // emulates FindAll(TreeScope.Descendants, ...)
-            IUiEltCollection descendants = AutomationFactory.GetUiEltCollection();
-            foreach (IUiElement elt in fullListOfElements
-                .Cast<IUiElement>()
-                // 20130104
-                // .Where(elt => "expected" == elt.Tag))
-                .Where(elt => "expected" == elt.GetTag()))
-            {
-                descendants.SourceCollection.Add(elt);
-            }
+//            IUiEltCollection descendants = AutomationFactory.GetUiEltCollection();
+//            foreach (IUiElement elt in fullListOfElements
+//                .Cast<IUiElement>()
+//                // 20130104
+//                // .Where(elt => "expected" == elt.Tag))
+//                .Where(elt => "expected" == elt.GetTag()))
+//            {
+//                descendants.SourceCollection.Add(elt);
+//            }
+            
+            // 20140205
+            IUiEltCollection descendants =
+                AutomationFactory.GetUiEltCollection();
+            descendants.SourceCollection.AddRange(
+                AutomationFactory.GetUiEltCollection(elements)
+                .ToArray().Where(elt => "expected" == elt.GetTag()));
             
 //            element.FindAll(TreeScope.Descendants, Arg.Is<PropertyCondition>(x => (x as PropertyCondition).Value == ControlType.Button)).Returns<IEnumerable<IUiElement>>(descendants.ToArray().Select(elt => elt.Current.ControlType == ControlType.Button));
 //            element.FindAll(TreeScope.Descendants, Arg.Is<PropertyCondition>(x => (x as PropertyCondition).Value == ControlType.Calendar)).Returns<IEnumerable<IUiElement>>(descendants.ToArray().Select(elt => elt.Current.ControlType == ControlType.Calendar));
@@ -516,14 +525,21 @@ namespace UIAutomationUnitTests
             element.FindAll(TreeScope.Descendants, Arg.Any<Condition>()).Returns(descendants);
             
             // 20140105
+            // 20140205
             // emulates FindAll(TreeScope.Children, ...)
-            IUiEltCollection children = AutomationFactory.GetUiEltCollection();
-            foreach (IUiElement elt in fullListOfElements
-                .Cast<IUiElement>()
-                .Where(elt => "expected" == elt.GetTag()))
-            {
-                children.SourceCollection.Add(elt);
-            }
+//            IUiEltCollection children = AutomationFactory.GetUiEltCollection();
+//            foreach (IUiElement elt in fullListOfElements
+//                .Cast<IUiElement>()
+//                .Where(elt => "expected" == elt.GetTag()))
+//            {
+//                children.SourceCollection.Add(elt);
+//            }
+            
+            IUiEltCollection children =
+                AutomationFactory.GetUiEltCollection();
+            children.SourceCollection.AddRange(
+                AutomationFactory.GetUiEltCollection(elements)
+                .ToArray().Where(elt => "expected" == elt.GetTag()));
             
 //            element.FindAll(
 //                TreeScope.Children,

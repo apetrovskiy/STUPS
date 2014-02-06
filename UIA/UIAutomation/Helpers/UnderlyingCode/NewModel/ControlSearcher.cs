@@ -146,6 +146,8 @@ namespace UIAutomation
                                 SearchByWildcardOrRegexViaUia(
                                     inputObject,
                                     data,
+                                    // 20140206
+                                    // UiElement.RootElement,
                                     conditionsForWildCards,
                                     true));
                     }
@@ -161,6 +163,8 @@ namespace UIAutomation
                             SearchByWildcardOrRegexViaUia(
                                 inputObject,
                                 data,
+                                // 20140206
+                                // UiElement.RootElement,
                                 conditionsForWildCards,
                                 false));
                     }
@@ -333,6 +337,8 @@ namespace UIAutomation
         internal static List<IUiElement> SearchByWildcardOrRegexViaUia(
             IUiElement inputObject,
             ControlSearcherData data,
+            // 20140206
+            // IUiElement rootElement,
             Condition conditionsForWildCards,
             bool viaWildcardOrRegex)
         {
@@ -340,9 +346,9 @@ namespace UIAutomation
                 new List<IUiElement>();
             
             // 20140205
-            data.SearchCriteria = data.SearchCriteria ?? new Hashtable[] {};
-            data.InputObject = data.InputObject ?? new IUiElement[] {};
-            data.ControlType = data.ControlType ?? new string[] {};
+//            data.SearchCriteria = data.SearchCriteria ?? new Hashtable[] {};
+//            data.InputObject = data.InputObject ?? new IUiElement[] {};
+//            data.ControlType = data.ControlType ?? new string[] {};
             
             try {
                 
@@ -350,13 +356,16 @@ namespace UIAutomation
                     new GetControlCollectionCmdletBase(
                         new ControlSearcherData {
                             // 20140205
-                            // InputObject = data.InputObject ?? (new UiElement[]{ (UiElement)UiElement.RootElement }),
+                            // 20140206
+                            InputObject = data.InputObject ?? (new UiElement[]{ (UiElement)UiElement.RootElement }),
+                            // InputObject = data.InputObject ?? (new IUiElement[] { rootElement }),
+                            // InputObject = data.InputObject ?? (new UiElement[] { (UiElement)rootElement }),
                             Name = data.Name,
                             AutomationId = data.AutomationId,
                             Class = data.Class,
                             Value = data.Value,
                             // 20140205
-                            // ControlType = null != data.ControlType && 0 < data.ControlType.Length ? data.ControlType : (new string[] {}),
+                            ControlType = null != data.ControlType && 0 < data.ControlType.Length ? data.ControlType : (new string[] {}),
                             CaseSensitive = caseSensitive
                         });
                 

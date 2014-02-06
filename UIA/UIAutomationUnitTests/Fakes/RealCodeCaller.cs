@@ -66,6 +66,9 @@ namespace UIAutomationUnitTests
                 ControlSearcher.SearchByWildcardOrRegexViaUia(
                     element,
                     data,
+                    // 20140206
+                    // UiElement.RootElement,
+                    // element,
                     condition,
                     true);
             

@@ -47,20 +47,6 @@ Console.WriteLine("CreateWizard 00002");
 Console.WriteLine("CreateWizard 00003");
             command.Execute();
 Console.WriteLine("CreateWizard 00004");
-            /*
-Console.WriteLine("CreateWizard 00001");
-            UIAutomation.Commands.NewUiaWizardCommand cmdlet =
-                new UIAutomation.Commands.NewUiaWizardCommand();
-            cmdlet.Name = name;
-Console.WriteLine("CreateWizard 00002");
-            // the -StartAction parameter could not be $null
-            cmdlet.StartAction = new ScriptBlock[]{ };
-            UiaNewWizardCommand command =
-                new UiaNewWizardCommand(cmdlet);
-Console.WriteLine("CreateWizard 00003");
-            command.Execute();
-Console.WriteLine("CreateWizard 00004");
-            */
         }
         
         public static void AddWizardStep(string name, ScriptBlock[] forwardAction, ScriptBlock[] backwardAction)

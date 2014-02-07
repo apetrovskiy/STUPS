@@ -81,8 +81,10 @@ namespace UIAutomation
                 DateTime.Now;
             
             string previousStepName = string.Empty;
-
-            while (cmdlet.RunWizardGetWindowScriptBlocks(cmdlet, wizard, null)) {
+            
+            // 20140207
+            // while (cmdlet.RunWizardGetWindowScriptBlocks(cmdlet, wizard, null)) {
+            while (cmdlet.RunWizardGetWindowScriptBlocks(wizard, null)) {
                 
                 // 20131109
                 //if (null != (CurrentData.CurrentWindow as AutomationElement)) {
@@ -106,8 +108,15 @@ namespace UIAutomation
                     cmdlet.WriteInfo(cmdlet, "Getting the active step");
                     
                     // selector of steps' unique controls
-                    WizardStep currentStep =
-                        wizard.GetActiveStep();
+                    // 20140207
+                    // WizardStep currentStep =
+                    //     wizard.GetActiveStep();
+                    WizardStep currentStep = null;
+                    try {
+                        currentStep = wizard.GetActiveStep();
+                    } catch (Exception) {
+                        continue;
+                    }
                     
                     // 20130506
                     //WizardCollection.CurrentWizard = wizard;

@@ -524,33 +524,17 @@ namespace UIAutomation
             IUiElement resultElement = null;
             try {
                 
-                // 20140116
-                // 20140205
-//                if (x < 0) {
-//                    x = Preferences.ClickOnControlByCoordX;
-//                }
-//                if (y < 0) {
-//                    y = Preferences.ClickOnControlByCoordY;
-//                }
-                
                 if (!cmdlet.ClickControl(
                         cmdlet,
                         inputObject,
                         new ClickSettings() {
                             RightClick = true,
-                            // 20140116
-                            // RelativeX = Preferences.ClickOnControlByCoordX,
-                            // RelativeY = Preferences.ClickOnControlByCoordY
-                            // 20140205
-                            // RelativeX = x,
-                            // RelativeY = y
                             RelativeX = (x < 0 ? Preferences.ClickOnControlByCoordX : x),
                             RelativeY = (y < 0 ? Preferences.ClickOnControlByCoordY : y)
                         })) {
                 }
             }
             catch (Exception eClickONControl) {
-                // throw; // ??
                 throw new Exception("failed to click on the control");
             }
             
@@ -559,8 +543,6 @@ namespace UIAutomation
             // int x = Cursor.Position.X;
             // int y = Cursor.Position.Y;
             
-            // 20140205
-            // TODO: ContextMenuSearcher
             var contextMenuSearcher =
                 AutomationFactory.GetSearchImpl<ContextMenuSearcher>();
             
@@ -579,82 +561,6 @@ namespace UIAutomation
                 elementsMenuRoot.Where(element => null != element).First();
             
             return resultElement;
-            
-            /*
-            // get the context menu window
-            int processId = inputObject.Current.ProcessId;
-            IUiEltCollection windowsByPid = null;
-            DateTime startDate = DateTime.Now;
-            bool breakSearch = false;
-            do {
-                // getting all menus in this process
-                if (processId != 0) {
-                    windowsByPid =
-                        UiElement.RootElement.FindAll(
-                            TreeScope.Children,
-                            new AndCondition(
-                                new PropertyCondition(
-                                    AutomationElement.ProcessIdProperty,
-                                    processId),
-                                new PropertyCondition(
-                                    AutomationElement.ControlTypeProperty,
-                                    ControlType.Menu)));
-                }
-                
-                // 20140205
-                if (null == windowsByPid || 0 == windowsByPid.Count) {
-                    
-                    windowsByPid =
-                        inputObject.FindAll(
-                            TreeScope.Children,
-                            new AndCondition(
-                                new PropertyCondition(
-                                    AutomationElement.ProcessIdProperty,
-                                    processId),
-                                new PropertyCondition(
-                                    AutomationElement.ControlTypeProperty,
-                                    ControlType.Menu)));
-                    
-                }
-                
-                if (windowsByPid != null && windowsByPid.Count <= 0)
-                    continue;
-                
-                DateTime nowDate = DateTime.Now;
-                if ((nowDate - startDate).TotalSeconds > 3) {
-                    breakSearch = true;
-                    break;
-                }
-                
-                if (windowsByPid.Count == 0) {
-
-                    Thread.Sleep(200);
-                    continue;
-                }
-                
-                foreach (IUiElement element in windowsByPid) {
-
-                    try {
-                        resultElement = element;
-                        breakSearch = true;
-                        break;
-                        //                            }
-                    }
-                    catch {
-                    }
-
-                }
-                
-            }	 while (!breakSearch);
-            
-            // 20140205
-            // wrong
-            // windowsByPid.Dispose();
-            // windowsByPid = null;
-            
-            // return the context menu window
-            return resultElement;
-            */
         }
         
         public static bool GetIsValid(this IUiElement element)

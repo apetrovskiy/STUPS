@@ -87,10 +87,18 @@ namespace UIAutomation.Commands
 //                {
 //                    DirectionsDictionaries.Add(dictDirections);
 //                }
+                // 20140207
+                foreach (Dictionary<string, object> dictDirections in Directions.Select(directionHashtable => directionHashtable.ConvertHashtableToDictionary()))
+                {
+                    DirectionsDictionaries.Add(dictDirections);
+                }
+                /*
                 foreach (Dictionary<string, object> dictDirections in Directions.Select(x => x.ConvertHashtableToDictionary()))
                 {
                     DirectionsDictionaries.Add(dictDirections);
                 }
+                */
+                
                 /*
                 foreach (Dictionary<string, object> dictDirections in Directions.Select(directionsTable => ConvertHashtableToDictionary(directionsTable)))
                 {

@@ -872,21 +872,28 @@ namespace UIAutomation
 
         }
         
-        protected internal bool RunWizardGetWindowScriptBlocks(WizardCmdletBase cmdlet, Wizard wizard, object[] parameters)
+        // 20140207
+        // protected internal bool RunWizardGetWindowScriptBlocks(WizardCmdletBase cmdlet, Wizard wizard, object[] parameters)
+        protected internal bool RunWizardGetWindowScriptBlocks(Wizard wizard, object[] parameters)
         {
             bool result = false;
             
             // 20130508
             // temporary
             // profiling
-            cmdlet.WriteInfo(cmdlet, "running the GetWindowAction scriptblock");
-            cmdlet.WriteInfo(cmdlet, "parameters" + parameters);
+//            cmdlet.WriteInfo(cmdlet, "running the GetWindowAction scriptblock");
+//            cmdlet.WriteInfo(cmdlet, "parameters" + parameters);
+            // 20140207
+            this.WriteInfo(this, "running the GetWindowAction scriptblock");
+            this.WriteInfo(this, "parameters" + parameters);
             
             try {
                 runTwoScriptBlockCollections(
                     null,
                     wizard.GetWindowAction,
-                    cmdlet,
+                    // 20140207
+                    // cmdlet,
+                    this,
                     parameters);
                     
                 if (null != CurrentData.CurrentWindow) {
@@ -898,7 +905,9 @@ namespace UIAutomation
             // 20130508
             // temporary
             // profiling
-            cmdlet.WriteInfo(cmdlet, "the result of the GetWindowAction scriptblock run is " + result.ToString());
+            // 20140207
+//            cmdlet.WriteInfo(cmdlet, "the result of the GetWindowAction scriptblock run is " + result.ToString());
+            this.WriteInfo(this, "the result of the GetWindowAction scriptblock run is " + result.ToString());
             
             return result;
         }

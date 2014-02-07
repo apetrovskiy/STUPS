@@ -23,25 +23,15 @@ namespace UIAutomation
         {
             Class = string.Empty;
             Name = string.Empty;
-            // 20131128
-            // ControlType = string.Empty;
             AutomationId = string.Empty;
             Value = string.Empty;
             
             InputObject =
-                // 20131109
-                //new System.Windows.Automation.AutomationElement[] { CurrentData.CurrentWindow };
-                // 20140206
-                // new UiElement[] { (UiElement)CurrentData.CurrentWindow };
                 new IUiElement[] { CurrentData.CurrentWindow };
             
             // CacheRequest
             FromCache = Preferences.FromCache;
             
-            // 20130204
-//            this.Fake = true;
-            
-            // 20131122
             Regex = false;
         }
         #endregion Constructor

@@ -52,49 +52,14 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             int expectedNumberOfElements)
         {
             // Arrange
-            // 20140205
-//            string controlTypeString = string.Empty;
-//            if (null != controlType) {
-//                controlTypeString = controlType.ProgrammaticName.Substring(12);
-//            }
-            
-            // 20140205
-//            ControlType[] controlTypes =
-//                new[] { controlType };
-            
-            // 20140205
-//            GetControlCmdletBase cmdlet =
-//                FakeFactory.Get_GetControlCmdletBase(controlTypes, name, automationId, className, txtValue);
-            
-            // 20140205
             var data =
                 new ControlSearcherData {
-                // ControlType = FakeFactory.ConvertControlTypeToStringArray(controlTypes),
-                // ControlType = (null == controlType) ? new string[] {} : FakeFactory.ConvertControlTypeToStringArray(new[] { controlType }),
-                // ControlType = FakeFactory.ConvertControlTypeToStringArray((ControlType[])new[] { controlType }),
                 ControlType = FakeFactory.ConvertControlTypeToStringArray(new[] { controlType }),
                 Name = name,
-                // Name = (string.IsNullOrEmpty(name) ? string.Empty : name),
                 AutomationId = automationId,
-                // AutomationId = (string.IsNullOrEmpty(automationId) ? string.Empty : automationId),
                 Class = className,
-                // Class = (string.IsNullOrEmpty(className) ? string.Empty : className),
                 Value = txtValue// ,
-                // Value = (string.IsNullOrEmpty(txtValue) ? string.Empty : txtValue)
             };
-            
-            // 20140205
-            /*
-            Condition condition =
-                ControlSearcher.GetWildcardSearchCondition(
-                    new ControlSearcherData {
-                        ControlType = FakeFactory.ConvertControlTypeToStringArray(controlTypes),
-                        Name = name,
-                        AutomationId = automationId,
-                        Class = className,
-                        Value = txtValue
-                    });
-            */
             
             Condition condition =
                 ControlSearcher.GetWildcardSearchCondition(data);
@@ -105,25 +70,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                     condition);
             
             // Act
-            /*
-            var data =
-                new ControlSearcherData {
-                InputObject = cmdlet.InputObject,
-                Name = cmdlet.Name,
-                AutomationId = cmdlet.AutomationId,
-                Class = cmdlet.Class,
-                Value = cmdlet.Value,
-                ControlType = cmdlet.ControlType,
-                SearchCriteria = cmdlet.SearchCriteria
-            };
-            */
-            
-            // 20140205
-            // List<IUiElement> resultList = RealCodeCaller.GetResultList_ViaWildcards(cmdlet, element, condition);
-            // data.InputObject = new IUiElement[] {};
-            // data.InputObject = new UiElement[] { (UiElement)CurrentData.CurrentWindow };
             data.InputObject = new IUiElement[] { CurrentData.CurrentWindow };
-            // data.SearchCriteria = new Hashtable[] {};
             List<IUiElement> resultList = RealCodeCaller.GetResultList_ViaWildcards(data, element, condition);
             
             // Assert

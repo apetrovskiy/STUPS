@@ -294,24 +294,13 @@ namespace UIAutomationUnitTests
                 });
         }
         
-        // 20140128
-        // public static IFakeUiElement GetAutomationElementExpected(ControlType controlType, string name, string automationId, string className, string txtValue)
         public static IFakeUiElement GetAutomationElementExpected(ElementData data)
         {
             IValuePattern valuePattern = null;
             if (!string.IsNullOrEmpty(data.Current_Value)) {
                 valuePattern = FakeFactory.GetValuePattern(new PatternsData{ ValuePattern_Value = data.Current_Value });
             }
-            // return GetAutomationElement(controlType, name, automationId, className, new IBasePattern[] { valuePattern }, true);
             return GetAutomationElement(data, new IBasePattern[] { valuePattern }, true);
-            
-            /*
-            IValuePattern valuePattern = null;
-            if (!string.IsNullOrEmpty(txtValue)) {
-                valuePattern = FakeFactory.GetValuePattern(new PatternsData{ ValuePattern_Value = txtValue });
-            }
-            return GetAutomationElement(controlType, name, automationId, className, new IBasePattern[] { valuePattern }, true);
-            */
         }
         
         public static  IFakeUiElement GetAutomationElementNotExpected(ControlType controlType, string name, string automationId, string className, string txtValue)
@@ -327,24 +316,13 @@ namespace UIAutomationUnitTests
                 });
         }
         
-        // 20140128
-        // public static  IFakeUiElement GetAutomationElementNotExpected(ControlType controlType, string name, string automationId, string className, string txtValue)
         public static  IFakeUiElement GetAutomationElementNotExpected(ElementData data)
         {
             IValuePattern valuePattern = null;
             if (!string.IsNullOrEmpty(data.Current_Value)) {
                 valuePattern = FakeFactory.GetValuePattern(new PatternsData{ ValuePattern_Value = data.Current_Value });
             }
-            // return GetAutomationElement(controlType, name, automationId, className, new IBasePattern[] { valuePattern }, false);
             return GetAutomationElement(data, new IBasePattern[] { valuePattern }, false);
-            
-            /*
-            IValuePattern valuePattern = null;
-            if (!string.IsNullOrEmpty(txtValue)) {
-                valuePattern = FakeFactory.GetValuePattern(new PatternsData{ ValuePattern_Value = txtValue });
-            }
-            return GetAutomationElement(controlType, name, automationId, className, new IBasePattern[] { valuePattern }, false);
-            */
         }
         
         private static IFakeUiElement AddPatternAction<T>(AutomationPattern pattern, IEnumerable<IBasePattern> patterns, IFakeUiElement element) where T : IBasePattern
@@ -360,7 +338,6 @@ namespace UIAutomationUnitTests
             return element;
         }
         
-        // 20140128
         internal static IFakeUiElement GetAutomationElement(ControlType controlType, string name, string automationId, string className, IBasePattern[] patterns, bool expected)
         {
             var elementData = new ElementData {
@@ -374,8 +351,6 @@ namespace UIAutomationUnitTests
             return GetAutomationElement(elementData, patterns, expected);
         }
         
-        // 20140128
-        // internal static IFakeUiElement GetAutomationElement(ControlType controlType, string name, string automationId, string className, IBasePattern[] patterns, bool expected)
         internal static IFakeUiElement GetAutomationElement(ElementData data, IBasePattern[] patterns, bool expected)
         {
             IFakeUiElement element = Substitute.For<FakeUiElement>();
@@ -481,9 +456,6 @@ namespace UIAutomationUnitTests
                 AutomationFactory.GetUiElement(
                     elementBeforeProxy as IUiElement);
             
-            // 20140205
-//            IUiEltCollection fullListOfElements = AutomationFactory.GetUiEltCollection(elements);
-            
             Condition[] condCollection = null;
             if (null != conditions as AndCondition) {
                 condCollection = (conditions as AndCondition).GetConditions();
@@ -493,19 +465,6 @@ namespace UIAutomationUnitTests
                 condCollection = (conditions as OrCondition).GetConditions();
             }
             
-            // 20140205
-            // emulates FindAll(TreeScope.Descendants, ...)
-//            IUiEltCollection descendants = AutomationFactory.GetUiEltCollection();
-//            foreach (IUiElement elt in fullListOfElements
-//                .Cast<IUiElement>()
-//                // 20130104
-//                // .Where(elt => "expected" == elt.Tag))
-//                .Where(elt => "expected" == elt.GetTag()))
-//            {
-//                descendants.SourceCollection.Add(elt);
-//            }
-            
-            // 20140205
             IUiEltCollection descendants =
                 AutomationFactory.GetUiEltCollection();
             descendants.SourceCollection.AddRange(
@@ -523,17 +482,6 @@ namespace UIAutomationUnitTests
 //            element.FindAll(TreeScope.Descendants, Arg.Is<PropertyCondition>(x => (x as PropertyCondition).Value == ControlType.TreeItem)).Returns<IEnumerable<IUiElement>>(descendants.ToArray().Select(elt => elt.Current.ControlType == ControlType.TreeItem));
 //            element.FindAll(TreeScope.Descendants, Arg.Is<PropertyCondition>(x => (x as PropertyCondition).Value == ControlType.Window)).Returns<IEnumerable<IUiElement>>(descendants.ToArray().Select(elt => elt.Current.ControlType == ControlType.Window));
             element.FindAll(TreeScope.Descendants, Arg.Any<Condition>()).Returns(descendants);
-            
-            // 20140105
-            // 20140205
-            // emulates FindAll(TreeScope.Children, ...)
-//            IUiEltCollection children = AutomationFactory.GetUiEltCollection();
-//            foreach (IUiElement elt in fullListOfElements
-//                .Cast<IUiElement>()
-//                .Where(elt => "expected" == elt.GetTag()))
-//            {
-//                children.SourceCollection.Add(elt);
-//            }
             
             IUiEltCollection children =
                 AutomationFactory.GetUiEltCollection();
@@ -567,19 +515,13 @@ namespace UIAutomationUnitTests
         
         public static string[] ConvertControlTypeToStringArray(ControlType[] controlTypes)
         {
-            List<string> resultCollection = new List<string>();
+            // List<string> resultCollection = new List<string>();
             
-            // 20140205
-            // if (null == controlTypes || 0 == controlTypes.Length) return resultCollection.ToArray();
             if (null == controlTypes || 0 == controlTypes.Length) return new string[] {};
             
             return controlTypes.Select(
                 ct =>
                 null != ct ? ct.ProgrammaticName.Substring(12) : string.Empty).ToArray();
-            // 20140205
-            // resultCollection.AddRange(from controlType in controlTypes where null != controlType select controlType.ProgrammaticName.Substring(12));
-            // 20140205
-            // return resultCollection.ToArray();
         }
         
         public static IUiEltCollection GetFakeCollection(IEnumerable<IUiElement> elements)

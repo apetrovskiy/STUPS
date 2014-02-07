@@ -22,8 +22,6 @@ namespace UIAutomation
     {
         public Process[] InputObject { get; set; }
         public string[] Name { get; set; }
-//        public string AutomationId { get; set; }
-//        public string Class { get; set; }
         public int[] ProcessIds { get; set; }
         public string[] ProcessNames { get; set; }
         public Hashtable[] WithControl { get; set; }

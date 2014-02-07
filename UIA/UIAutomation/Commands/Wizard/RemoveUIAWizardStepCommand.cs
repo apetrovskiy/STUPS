@@ -18,9 +18,7 @@ namespace UIAutomation.Commands
     /// Description of RemoveUiaWizardStepCommand.
     /// </summary>
     [Cmdlet(VerbsCommon.Remove, "UiaWizardStep")]
-    
-    public class RemoveUiaWizardStepCommand : WizardStepCmdletBase //WizardConstructionCmdletBase
-    //internal class RemoveUiaWizardStepCommand : WizardCmdletBase
+    public class RemoveUiaWizardStepCommand : WizardStepCmdletBase
     {
         public RemoveUiaWizardStepCommand()
         {

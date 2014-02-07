@@ -12,7 +12,7 @@ namespace UIAutomation
     /// <summary>
     /// Description of ClickSettings.
     /// </summary>
-    public struct ClickSettings //: IEquatable<ClickSettings>
+    public struct ClickSettings
     {
         public bool RightClick { get; set; }
         public bool MidClick { get; set; }

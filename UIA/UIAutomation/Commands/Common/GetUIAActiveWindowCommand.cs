@@ -15,16 +15,13 @@ namespace UIAutomation.Commands
     /// Description of GetUiaActiveWindowCommand.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaActiveWindow")]
-    
     public class GetUiaActiveWindowCommand : HasScriptBlockCmdletBase
     {
         protected override void BeginProcessing()
         {
-            // 20131109
-            //AutomationElement element = 
             IUiElement element =
                 GetActiveWindow();
-            //UIAutomation.CurrentData.CurrentWindow = element;
+            
             CurrentData.CurrentWindow = element;
             WriteObject(this, element);
         }

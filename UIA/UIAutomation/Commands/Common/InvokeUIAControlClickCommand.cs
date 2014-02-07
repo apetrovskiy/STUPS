@@ -28,7 +28,6 @@ namespace UIAutomation.Commands
             Ctrl = false;
             DoubleClick = false;
             
-            
             X = -1000000;
             Y = -1000000;
         }
@@ -88,7 +87,7 @@ namespace UIAutomation.Commands
                     WriteObject(this, true);
                 }
                 
-            } // 20120823
+            }
         }
     }
 }

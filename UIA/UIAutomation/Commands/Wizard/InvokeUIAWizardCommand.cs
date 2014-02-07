@@ -23,97 +23,32 @@ namespace UIAutomation.Commands
     [Cmdlet(VerbsLifecycle.Invoke, "UiaWizard")]
     public class InvokeUiaWizardCommand : WizardRunCmdletBase
     {
-        public InvokeUiaWizardCommand()
-        {
-        }
-        
-        #region Parameters
-        #endregion Parameters
-        
         protected override void BeginProcessing()
         {
             if (null != Parameters && 0 < Parameters.Length)
             {
-                WriteVerbose(
-                    this,
-                    "converting -Parameters hashtables to dictionaries");
-
-                /*
-                foreach (Dictionary<string, object> dictParameters in this.Parameters.Select(parametersTable => this.ConvertHashtableToDictionary(parametersTable)))
-                {
-                    this.ParametersDictionaries.Add(dictParameters);
-                }
-                */
-//                foreach (Dictionary<string, object> dictParameters in Parameters.Select(ConvertHashtableToDictionary))
-//                {
-//                    ParametersDictionaries.Add(dictParameters);
-//                }
-                foreach (Dictionary<string, object> dictParameters in Parameters.Select(x => x.ConvertHashtableToDictionary()))
+//                WriteVerbose(
+//                    this,
+//                    "converting -Parameters hashtables to dictionaries");
+                
+                foreach (Dictionary<string, object> dictParameters in Parameters.Select(parameterHashtable => parameterHashtable.ConvertHashtableToDictionary()))
                 {
                     ParametersDictionaries.Add(dictParameters);
                 }
-                /*
-                foreach (Dictionary<string, object> dictParameters in Parameters.Select(parametersTable => ConvertHashtableToDictionary(parametersTable)))
-                {
-                    ParametersDictionaries.Add(dictParameters);
-                }
-                */
-                /*
-                foreach (Hashtable parametersTable in Parameters) {
-
-                    Dictionary<string, object> dictParameters =
-                        ConvertHashtableToDictionary(parametersTable);
-
-                    ParametersDictionaries.Add(dictParameters);
-                }
-                */
             }
 
             WriteInfo(this, "accepted " + ParametersDictionaries.Count.ToString() + " step parameters");
             
             if (null != Directions && 0 < Directions.Length)
             {
-                WriteVerbose(
-                    this,
-                    "converting -Directions hashtables to dictionaries");
-
-                /*
-                foreach (Dictionary<string, object> dictDirections in this.Directions.Select(directionsTable => this.ConvertHashtableToDictionary(directionsTable)))
-                {
-                    this.DirectionsDictionaries.Add(dictDirections);
-                }
-                */
-//                foreach (Dictionary<string, object> dictDirections in Directions.Select(ConvertHashtableToDictionary))
-//                {
-//                    DirectionsDictionaries.Add(dictDirections);
-//                }
-                // 20140207
+//                WriteVerbose(
+//                    this,
+//                    "converting -Directions hashtables to dictionaries");
+                
                 foreach (Dictionary<string, object> dictDirections in Directions.Select(directionHashtable => directionHashtable.ConvertHashtableToDictionary()))
                 {
                     DirectionsDictionaries.Add(dictDirections);
                 }
-                /*
-                foreach (Dictionary<string, object> dictDirections in Directions.Select(x => x.ConvertHashtableToDictionary()))
-                {
-                    DirectionsDictionaries.Add(dictDirections);
-                }
-                */
-                
-                /*
-                foreach (Dictionary<string, object> dictDirections in Directions.Select(directionsTable => ConvertHashtableToDictionary(directionsTable)))
-                {
-                    DirectionsDictionaries.Add(dictDirections);
-                }
-                */
-                /*
-                foreach (Hashtable directionsTable in Directions) {
-                    
-                    Dictionary<string, object> dictDirections =
-                        ConvertHashtableToDictionary(directionsTable);
-                    
-                    DirectionsDictionaries.Add(dictDirections);
-                }
-                */
             }
 
             WriteInfo(this, "accepted " + DirectionsDictionaries.Count.ToString() + " step directions");

@@ -18,7 +18,6 @@ namespace UIAutomation.Commands
     /// Description of NewUiaWizardCommand.
     /// </summary>
     [Cmdlet(VerbsCommon.New, "UiaWizard")]
-    
     public class NewUiaWizardCommand : WizardContainerCmdletBase
     {
         public NewUiaWizardCommand()

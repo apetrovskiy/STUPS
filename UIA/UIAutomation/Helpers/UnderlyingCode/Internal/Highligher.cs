@@ -54,7 +54,6 @@ namespace UIAutomation
             int intHandle,
             Highlighters control,
             Color? color)
-            // System.Nullable<System.Drawing.Color> color)
         {
 			disposeSides();
 			
@@ -111,7 +110,6 @@ namespace UIAutomation
             int intHandle,
             Highlighters control,
             Color? color)
-            // System.Nullable<System.Drawing.Color> color)
         {
             try {
                 if (height == 0 || width == 0) return;

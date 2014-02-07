@@ -18,10 +18,8 @@ namespace UIAutomation.Commands
     /// Description of StepUiaWizardCommand.
     /// </summary>
     [Cmdlet(VerbsCommon.Step, "UiaWizard")]
-    
     [Obsolete("This cmdlet is now obsolete. Wizard now support only automatic mode.")]
     public class StepUiaWizardCommand : WizardRunCmdletBase
-    //internal class StepUiaWizardCommand : WizardCmdletBase
     {
         public StepUiaWizardCommand()
         {

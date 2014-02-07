@@ -881,8 +881,6 @@ namespace UIAutomation
             // 20130508
             // temporary
             // profiling
-//            cmdlet.WriteInfo(cmdlet, "running the GetWindowAction scriptblock");
-//            cmdlet.WriteInfo(cmdlet, "parameters" + parameters);
             // 20140207
             this.WriteInfo(this, "running the GetWindowAction scriptblock");
             this.WriteInfo(this, "parameters" + parameters);
@@ -906,7 +904,6 @@ namespace UIAutomation
             // temporary
             // profiling
             // 20140207
-//            cmdlet.WriteInfo(cmdlet, "the result of the GetWindowAction scriptblock run is " + result.ToString());
             this.WriteInfo(this, "the result of the GetWindowAction scriptblock run is " + result.ToString());
             
             return result;

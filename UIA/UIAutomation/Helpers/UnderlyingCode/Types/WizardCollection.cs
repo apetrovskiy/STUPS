@@ -15,7 +15,6 @@ namespace UIAutomation
     /// <summary>
     /// Description of WizardCollection.
     /// </summary>
-    //internal static class WizardCollection
     public static class WizardCollection
     {
         static WizardCollection()

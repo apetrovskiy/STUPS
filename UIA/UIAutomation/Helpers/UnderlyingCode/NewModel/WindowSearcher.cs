@@ -1,5 +1,4 @@
-﻿using System.Data;
-/*
+﻿/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
  * Date: 1/15/2014
@@ -19,6 +18,8 @@ namespace UIAutomation
     using System.Management.Automation;
     using System.Text.RegularExpressions;
     using PSTestLib;
+    
+    using System.Data; // ?
     
     /// <summary>
     /// Description of WindowSeatcher.
@@ -211,8 +212,6 @@ namespace UIAutomation
             return aeWndCollectionViaWin32;
         }
         
-        #region uncommented
-        
         private List<IUiElement> GetWindowCollectionFromProcess(
             IEnumerable<Process> processes,
             bool first,
@@ -265,8 +264,6 @@ namespace UIAutomation
             
             return aeWndCollectionByProcId;
         }
-        
-        #endregion uncommented
         
         private List<IUiElement> GetWindowCollectionByName(
             IUiElement rootElement,
@@ -371,8 +368,6 @@ namespace UIAutomation
             return resultCollection;
         }
         
-        #region uncommented
-        
         private List<IUiElement> GetWindowCollectionByProcessName(
             IUiElement rootElement,
             IEnumerable<string> processNames,
@@ -410,8 +405,6 @@ namespace UIAutomation
             
             return aeWndCollectionByProcId;
         }
-        
-        #endregion uncommented
         
         internal List<IUiElement> GetWindowCollectionByPid(
             IUiElement rootElement,

@@ -74,21 +74,6 @@ namespace UIAutomation
         public WizardStep GetStep(string name)
         {
             return Steps.FirstOrDefault(step => String.Equals(name, step.Name, StringComparison.CurrentCultureIgnoreCase));
-            #region commented
-            // return this.Steps.FirstOrDefault(step => name.ToUpper() == step.Name.ToUpper());
-            /*
-            foreach (WizardStep step in this.Steps)
-            {
-
-                if (name.ToUpper() == step.Name.ToUpper())
-                {
-
-                    resultStep = step;
-                    break;
-                }
-            }
-            */
-            #endregion commented
         }
 
         public WizardStep GetActiveStep()
@@ -119,14 +104,7 @@ namespace UIAutomation
         	// moving the current step to the end of the step collection
         	try {
         	   int currentIndex = Steps.IndexOf(resultStep);
-        	   // 20140127
-        	   // try {
-        	   //     cmdletCtrl.WriteInfo(cmdletCtrl, "current index = " + currentIndex.ToString());
-        	   // }
-        	   // catch {
-        	   //     cmdletCtrl.WriteInfo(cmdletCtrl, "failed to show the current index");
-        	   // }
-        	   // 20130712
+        	   
         	   if (0 <= currentIndex && (Steps.Count - 1) != currentIndex) {
             	   Steps.Insert(Steps.Count, resultStep);
             	   // cmdletCtrl.WriteInfo(cmdletCtrl, "inserted after the last step");

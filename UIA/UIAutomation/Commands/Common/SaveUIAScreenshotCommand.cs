@@ -84,11 +84,6 @@ namespace UIAutomation.Commands
                 this,
                 Description,
                 save,
-                // 20140111
-                // Left,
-                // Top,
-                // Height,
-                // Width,
                 new ScreenshotRect {
                     Left = this.Left,
                     Top = this.Top,

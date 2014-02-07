@@ -25,12 +25,7 @@ namespace UIAutomation
         public EventCmdletBase()
         {
             InputObject =
-                // 20131109
-                //new System.Windows.Automation.AutomationElement[] { CurrentData.CurrentWindow };
                 new[] { CurrentData.CurrentWindow };
-                /*
-                new UiElement[] { (UiElement)CurrentData.CurrentWindow };
-                */
             AutomationEventType = null;
             AutomationProperty = null;
             AutomationEventHandler = null;
@@ -69,7 +64,7 @@ namespace UIAutomation
                                   AutomationEventType,
                                   AutomationProperty);
                 
-            } // 20120824
+            }
         }
     }
 }

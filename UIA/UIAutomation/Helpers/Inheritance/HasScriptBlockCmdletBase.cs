@@ -71,9 +71,7 @@ namespace UIAutomation
             try {
                 IntPtr hWnd = 
                     NativeMethods.GetForegroundWindow();
-//                WriteVerbose(this, 
-//                             "the handle to the active window is " + 
-//                             hWnd.ToInt32());
+                
                 if (hWnd == IntPtr.Zero) return result;
                 
                 result =

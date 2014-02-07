@@ -46,6 +46,6 @@ namespace UIAutomation.Commands
                 }
             }
             
-        } // 20120823
+        }
     }
 }

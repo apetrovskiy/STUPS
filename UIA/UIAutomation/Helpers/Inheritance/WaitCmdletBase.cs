@@ -49,15 +49,6 @@ namespace UIAutomation
                     string tempIsReport = string.Empty;
                     tempIsReport = isEnabledOrIsVisible ? _control.Current.IsEnabled.ToString() : _control.Current.IsOffscreen.ToString();
                     
-//                    WriteVerbose(this,
-//                                 "AutomationID: " + 
-//                                 _control.Current.AutomationId +
-//                                 ", title: " + 
-//                                 _control.Current.Name + 
-//                                 ", Enabled = " + 
-//                                 tempIsReport +
-//                                 ", seconds: " + 
-//                                 ((nowDate - StartDate).TotalSeconds).ToString());
                 } catch { }
                 if (!CheckAndPrepareInput(this))
                 {

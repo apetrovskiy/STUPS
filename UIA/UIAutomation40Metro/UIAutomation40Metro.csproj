@@ -927,12 +927,6 @@
     <Compile Include="..\UIAutomation\Helpers\UserSettings\Profile.cs">
       <Link>Helpers\UserSettings\Profile.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UserSettings\Testing.cs">
-      <Link>Helpers\UserSettings\Testing.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UserSettings\UserData.cs">
-      <Link>Helpers\UserSettings\UserData.cs</Link>
-    </Compile>
     <Compile Include="..\UIAutomation\Interface\Element\ISupportsConversion.cs">
       <Link>Interface\Element\ISupportsConversion.cs</Link>
     </Compile>

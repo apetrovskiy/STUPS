@@ -24,11 +24,6 @@ namespace UIAutomation
     /// </summary>
     public static class WizardHelper
     {
-//        static WizardHelper()
-//        {
-//        }
-        
-        //public static void CreateWizard(WizardContainerCmdletBase cmdlet)
         public static void CreateWizard(NewUiaWizardCommand cmdlet)
         {
             if (!cmdlet.ValidateWizardName(cmdlet.Name)) {
@@ -61,12 +56,9 @@ namespace UIAutomation
             cmdlet.WriteObject(cmdlet, wzd);
         }
         
-        // 20130320
-        //public static void AddWizardStep(WizardConstructionCmdletBase cmdlet)
         public static void AddWizardStep(WizardStepCmdletBase cmdlet)
         {
             if (null != cmdlet.InputObject && null != cmdlet.InputObject) {
-            // if (null != cmdlet.InputObject && cmdlet.InputObject is Wizard) {
                 
                 WizardStep probeTheSameStep = cmdlet.InputObject.GetStep(cmdlet.Name);
                 if (null != probeTheSameStep) {
@@ -90,19 +82,7 @@ namespace UIAutomation
                 };
                 // 20130319
                 //step.StepGetWindowAction = cmdlet.StepGetWindowAction;
-
-                /*
-                WizardStep step = new WizardStep(cmdlet.Name, cmdlet.Order);
-                step.SearchCriteria = cmdlet.SearchCriteria;
-                step.StepForwardAction = cmdlet.StepForwardAction;
-                step.StepBackwardAction = cmdlet.StepBackwardAction;
-                step.StepCancelAction = cmdlet.StepCancelAction;
-                // 20130319
-                //step.StepGetWindowAction = cmdlet.StepGetWindowAction;
-                step.Description = cmdlet.Description;
-                step.Parent = cmdlet.InputObject;
-                */
-
+                
                 cmdlet.WriteVerbose(cmdlet, "adding the step");
                 cmdlet.InputObject.Steps.Add(step);
                 
@@ -182,11 +162,7 @@ namespace UIAutomation
                 // temporary
                 cmdlet.WriteInfo(cmdlet, "running Wizard StartAction scriptblocks");
                 cmdlet.WriteInfo(cmdlet, "parameters: " + cmdlet.ConvertObjectArrayToString(wzd.StartActionParameters));
-
-                // 20130318
-                //cmdlet.RunWizardStartScriptBlocks(cmdlet, wzd);
-                // 20130325
-                //cmdlet.RunWizardStartScriptBlocks(cmdlet, wzd, null);
+                
                 cmdlet.RunWizardStartScriptBlocks(cmdlet, wzd, wzd.StartActionParameters);
                 
                 cmdlet.WriteVerbose(cmdlet, "running Wizard in the automated mode");
@@ -407,11 +383,9 @@ namespace UIAutomation
         
         public static void GetWizard(GetUiaWizardCommand cmdlet)
         {
-            //Wizard wzd = GetWizard(Name);
             Wizard wzd = cmdlet.GetWizard(cmdlet.Name);
             if (wzd != null) {
-
-                //WriteObject(this, wzd);
+                
                 cmdlet.WriteObject(cmdlet, wzd);
 
             } else {
@@ -428,46 +402,23 @@ namespace UIAutomation
         
         public static void RemoveWizardStep(RemoveUiaWizardStepCommand cmdlet)
         {
-            
-            //if (InputObject != null && InputObject is Wizard) {
             if (cmdlet.InputObject != null && null != cmdlet.InputObject) {
-            // if (cmdlet.InputObject != null && cmdlet.InputObject is Wizard) {
+                
                 WizardStep stepToRemove = null;
-                //foreach (WizardStep step in InputObject.Steps) {
+                
                 foreach (WizardStep step in cmdlet.InputObject.Steps.Where(step => step.Name == cmdlet.Name))
                 {
                     stepToRemove = step;
                 }
-
-                /*
-                foreach (WizardStep step in cmdlet.InputObject.Steps) {
-                    //if (step.Name == Name) {
-                    if (step.Name == cmdlet.Name) {
-                        stepToRemove = step;
-                    }
-                }
-                */
-                //InputObject.Steps.Remove(stepToRemove);
+                
                 cmdlet.InputObject.Steps.Remove(stepToRemove);
-                //if (PassThru) {
+                
                 if (cmdlet.PassThru) {
-                    //WriteObject(this, InputObject);
                     cmdlet.WriteObject(cmdlet, cmdlet.InputObject);
                 } else {
-                    //WriteObject(this, true);
                     cmdlet.WriteObject(cmdlet, true);
                 }
             } else {
-                //                ErrorRecord err =
-                //                    new ErrorRecord(
-                //                        new Exception("The wizard object you provided is not valid"),
-                //                        "WrongWizardObject",
-                //                        ErrorCategory.InvalidArgument,
-                //                        InputObject);
-                //                err.ErrorDetails =
-                //                    new ErrorDetails(
-                //                        "The wizard object you provided is not valid");
-                //                WriteError(this, err, true);
                 
                 cmdlet.WriteError(
                     cmdlet,
@@ -483,19 +434,18 @@ namespace UIAutomation
         public static void StepWizardStep(StepUiaWizardCommand cmdlet)
         {
             // getting the step the user ordered to run
-            //if (InputObject != null && InputObject is Wizard) {
             if (cmdlet.InputObject != null && null != cmdlet.InputObject) {
-            // if (cmdlet.InputObject != null && cmdlet.InputObject is Wizard) {
+                
                 WizardStep stepToRun = null;
-                //WriteVerbose(this, "searching for a step");
+                
                 cmdlet.WriteVerbose(cmdlet, "searching for a step");
-                //foreach (WizardStep step in InputObject.Steps) {
+                
                 foreach (WizardStep step in cmdlet.InputObject.Steps) {
-                    //WriteVerbose(this, "found step: " + step.Name);
+                    
                     cmdlet.WriteVerbose(cmdlet, "found step: " + step.Name);
-                    //if (step.Name == Name) {
+                    
                     if (step.Name != cmdlet.Name) continue;
-                    //WriteVerbose(this, "found the step we've been searching for");
+                    
                     cmdlet.WriteVerbose(cmdlet, "found the step we've been searching for");
                     stepToRun = step;
                     break;
@@ -531,7 +481,6 @@ namespace UIAutomation
                 
                 bool result = false;
                 do {
-                    //WriteVerbose(this, "checking controls' properties");
                     cmdlet.WriteVerbose(cmdlet, "checking controls' properties");
                     
                     // if there is no SearchCriteria, for example, there's at least one @{}
@@ -552,21 +501,15 @@ namespace UIAutomation
                     }
                     if (result) {
                         
-                        //WriteVerbose(this, "there are no SearchCriteria");
                         cmdlet.WriteVerbose(cmdlet, "there are no SearchCriteria");
-                        //WriteVerbose(this, "thus, control state is confirmed");
                         cmdlet.WriteVerbose(cmdlet, "thus, control state is confirmed");
-                        //WriteObject(this, true);
-                        //return;
                     } else {
-                        //WriteVerbose(this, "control state is not yet confirmed. Checking the timeout");
                         cmdlet.WriteVerbose(cmdlet, "control state is not yet confirmed. Checking the timeout");
-                        //SleepAndRunScriptBlocks(this);
                         cmdlet.SleepAndRunScriptBlocks(cmdlet);
                         // wait until timeout expires or the state will be confirmed as valid
                         DateTime nowDate =
                             DateTime.Now;
-                        //if ((nowDate - startDate).TotalSeconds > this.Timeout / 1000) {
+                        
                         if ((nowDate - cmdlet.StartDate).TotalSeconds > cmdlet.Timeout / 1000) {
                             //WriteObject(this, false);
                             //result = true;

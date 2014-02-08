@@ -78,7 +78,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                     condition);
             
             // Act
-            List<IUiElement> resultList = RealCodeCaller.GetResultList_ExactSearch(cmdlet, element, condition);
+            var resultList = RealCodeCaller.GetResultList_ExactSearch(element, condition, cmdlet.SearchCriteria);
             
             // Assert
             MbUnit.Framework.Assert.Count(expectedNumberOfElements, resultList);

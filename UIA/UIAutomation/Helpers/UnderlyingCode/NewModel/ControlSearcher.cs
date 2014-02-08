@@ -650,7 +650,7 @@ namespace UIAutomation
         internal static Condition GetWildcardSearchCondition(ControlSearcherData data)
         {
             Condition controlTypeCondition = Condition.TrueCondition;
-            if (null == data.ControlType || 0 >= data.ControlType.Length) return controlTypeCondition;
+            if (null == data.ControlType || 0 == data.ControlType.Length) return controlTypeCondition;
             controlTypeCondition =
                 GetControlTypeCondition(
                     data.ControlType);

@@ -179,11 +179,11 @@
     <Compile Include="..\UIAutomation\Commands\Banner\ShowUIABannerCommand.cs">
       <Link>Commands\Banner\ShowUIABannerCommand.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Commands\Cache\StartUIACacheRequestCommand.cs">
-      <Link>Commands\Cache\StartUIACacheRequestCommand.cs</Link>
+    <Compile Include="..\UIAutomation\Commands\Cache\StartUiaCachedModeCommand.cs">
+      <Link>Commands\Cache\StartUiaCachedModeCommand.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Commands\Cache\StopUIACacheRequestCommand.cs">
-      <Link>Commands\Cache\StopUIACacheRequestCommand.cs</Link>
+    <Compile Include="..\UIAutomation\Commands\Cache\StopUiaCachedModeCommand.cs">
+      <Link>Commands\Cache\StopUiaCachedModeCommand.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Commands\Common\ClearUIAControlTextCommand.cs">
       <Link>Commands\Common\ClearUIAControlTextCommand.cs</Link>

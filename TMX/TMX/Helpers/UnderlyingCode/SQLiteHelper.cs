@@ -227,8 +227,9 @@ namespace TMX
             string databaseName)
         {
             //IDatabase database = null;
-
-            if (null == TMX.SQLiteData.Databases || 0 >= TMX.SQLiteData.Databases.Count) return null; //database;
+            // 20140208
+            // if (null == TMX.SQLiteData.Databases || 0 >= TMX.SQLiteData.Databases.Count) return null; //database;
+            if (null == TMX.SQLiteData.Databases || 0 == TMX.SQLiteData.Databases.Count) return null; //database;
 
             return TMX.SQLiteData.Databases.FirstOrDefault(db => db.Name == databaseName);
 

@@ -16,14 +16,14 @@ namespace UIAutomation.Commands
     using System.Collections.Generic;
     
     /// <summary>
-    /// Description of StartUiaCacheRequestCommand.
+    /// Description of StartUiaCachedModeCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Start, "UiaCacheRequest")]
-    public class StartUiaCacheRequestCommand : CacheRequestCmdletBase
+    [Cmdlet(VerbsLifecycle.Start, "UiaCachedMode")]
+    public class StartUiaCachedModeCommand : CacheRequestCmdletBase
     {
-        public StartUiaCacheRequestCommand()
+        public StartUiaCachedModeCommand()
         {
-            List<string>  defaultPropertiesList =
+            Property =
                 new List<string>
                 {
                     "Name",
@@ -35,11 +35,9 @@ namespace UIAutomation.Commands
                     "ClickablePoint",
                     "IsEnabled",
                     "IsOffscreen"
-                };
+            }.ToArray();
             
-            Property = defaultPropertiesList.ToArray();
-            
-            List<string> defaultPatternsList =
+            Pattern =
                 new List<string>
                 {
                     "ExpandCollapsePattern",
@@ -50,9 +48,7 @@ namespace UIAutomation.Commands
                     "TextPattern",
                     "TogglePattern",
                     "ValuePattern"
-                };
-            
-            Pattern = defaultPatternsList.ToArray();
+                }.ToArray();
             
             Scope = "SUBTREE";
             
@@ -61,8 +57,18 @@ namespace UIAutomation.Commands
         
         #region Parameters
         [Parameter(Mandatory = false)]
-        [ValidateSet("Name", "AutomationId", "ClassName", "Class", "ControlType", "NativeWindowHandle", "BoundingRectangle", "Rectangle", "Bounding",
-                     "ClickablePoint", "Point", "Clickable", "IsEnabled", "Enabled", "IsOffScreen", "IsVisible", "Visible")]
+        [ValidateSet("Name", "AutomationId", "ClassName", "Class", "ControlType", "NativeWindowHandle", "BoundingRectangle", // "Rectangle", "Bounding",
+                     // "ClickablePoint", "Point", "Clickable", "IsEnabled", "Enabled", "IsOffScreen", "IsVisible", "Visible",
+                     "ClickablePoint", "IsEnabled", "Enabled", "IsOffScreen", "IsVisible", "Visible", "ProcessId",
+                     "DockPosition", "ExpandCollapseState", "Row", "Column", "RowSpan", "ColumnSpan", "ContainingGrid", "RowCount", "ColumnCount",
+                     "IsReadOnly", "Maximum", "Minimum", "LargeChange", "SmallChange", //)] //, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",
+//                     "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",
+//                     "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",
+//                     "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",
+//                     "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",
+//                     "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",
+//                     "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "")]
+                      "Value")]
         public string[] Property { get; set; }
         [Parameter(Mandatory = false)]
         [ValidateSet("Dock", "DockPattern", "Expand", "Collapse", "ExpandPattern", "CollapsePattern", "ExpandCollapsePattern",
@@ -72,7 +78,8 @@ namespace UIAutomation.Commands
                      "Toggle", "TogglePattern", "Transform", "TransformPattern", "Value", "ValuePattern", "Window", "WindowPattern")]
         public string[] Pattern { get; set; }
         [Parameter(Mandatory = false)]
-        [ValidateSet("Subtree", "Ancestors", "Children", "Descendants", "Element")]
+        // [ValidateSet("Subtree", "Ancestors", "Children", "Descendants", "Element")]
+        [ValidateSet("Subtree", "Children", "Descendants", "Element")]
         public string Scope { get; set; }
         [Parameter(Mandatory = false)]
         [ValidateSet("Raw", "Content", "Control")]
@@ -95,54 +102,11 @@ namespace UIAutomation.Commands
                 }
                 
                 CurrentData.CacheRequest = new CacheRequest {AutomationElementMode = AutomationElementMode.Full};
+                CurrentData.CacheRequest.TreeFilter = UiaHelper.GetTreeFilter(Filter);
+                CurrentData.CacheRequest.TreeScope = UiaHelper.GetTreeScope(Scope);
                 
-                switch (Filter.ToUpper()) {
-                    case "RAW":
-                        // 20140130
-                        // CurrentData.CacheRequest.TreeFilter = Automation.RawViewCondition;
-                        CurrentData.CacheRequest.TreeFilter = MyAutomation.RawViewCondition; 
-                        break;
-                    case "CONTENT":
-                        // 20140130
-                        // CurrentData.CacheRequest.TreeFilter = Automation.ContentViewCondition;
-                        CurrentData.CacheRequest.TreeFilter = MyAutomation.ContentViewCondition;
-                        break;
-                    case "CONTROL":
-                        // 20140130
-                        // CurrentData.CacheRequest.TreeFilter = Automation.ControlViewCondition;
-                        CurrentData.CacheRequest.TreeFilter = MyAutomation.ControlViewCondition;
-                        break;
-                    //default:
-                    //    CurrentData.CacheRequest.TreeFilter = Automation.RawViewCondition;
-                    //    break;
-                }
-                //CurrentData.CacheRequest.TreeFilter = Automation.RawViewCondition;
-                switch (Scope.ToUpper()) {
-                    case "SUBTREE":
-                        CurrentData.CacheRequest.TreeScope = TreeScope.Subtree;
-                        break;
-//                    case "ANCESTORS":
-//                        CurrentData.CacheRequest.TreeScope = TreeScope.Ancestors;
-//                        break;
-                    case "CHILDREN":
-                        CurrentData.CacheRequest.TreeScope = TreeScope.Children;
-                        break;
-                    case "DESCENDANTS":
-                        CurrentData.CacheRequest.TreeScope = TreeScope.Descendants;
-                        break;
-                    case "ELEMENT":
-                        CurrentData.CacheRequest.TreeScope = TreeScope.Element;
-                        break;
-//                    case "PARENT":
-//                        CurrentData.CacheRequest.TreeScope = TreeScope.Parent;
-//                        break;
-                    //default:
-                    //    CurrentData.CacheRequest.TreeScope = TreeScope.Descendants;
-                    //    break;
-                }
-                //CurrentData.CacheRequest.TreeScope = TreeScope.Subtree;
-                
-                if (Property.Length == 0) {
+                if (null == Property || 0 == Property.Length) {
+                    WriteVerbose(this, "no properties were provided");
                     CurrentData.CacheRequest.Add(AutomationElement.NameProperty);
                     CurrentData.CacheRequest.Add(AutomationElement.AutomationIdProperty);
                     CurrentData.CacheRequest.Add(AutomationElement.ClassNameProperty);
@@ -152,7 +116,16 @@ namespace UIAutomation.Commands
                     CurrentData.CacheRequest.Add(AutomationElement.ClickablePointProperty);
                     CurrentData.CacheRequest.Add(AutomationElement.IsEnabledProperty);
                     CurrentData.CacheRequest.Add(AutomationElement.IsOffscreenProperty);
+                    // 20140208
+                    CurrentData.CacheRequest.Add(ValuePattern.ValueProperty);
+                    CurrentData.CacheRequest.Add(ExpandCollapsePattern.ExpandCollapseStateProperty);
+                    CurrentData.CacheRequest.Add(SelectionItemPattern.IsSelectedProperty);
+                    CurrentData.CacheRequest.Add(SelectionItemPattern.SelectionContainerProperty);
+                    CurrentData.CacheRequest.Add(SelectionPattern.CanSelectMultipleProperty);
+                    CurrentData.CacheRequest.Add(SelectionPattern.IsSelectionRequiredProperty);
+                    CurrentData.CacheRequest.Add(SelectionPattern.SelectionProperty);
                 } else {
+                    WriteVerbose(this, "using properties that were provided");
                     foreach (string propertyName in Property)
                     {
                         switch (propertyName.ToUpper()) {
@@ -173,13 +146,13 @@ namespace UIAutomation.Commands
                                 CurrentData.CacheRequest.Add(AutomationElement.NativeWindowHandleProperty);
                                 break;
                             case "BOUNDINGRECTANGLE":
-                            case "RECTANGLE":
-                            case "BOUNDING":
+//                            case "RECTANGLE":
+//                            case "BOUNDING":
                                 CurrentData.CacheRequest.Add(AutomationElement.BoundingRectangleProperty);
                                 break;
                             case "CLICKABLEPOINT":
-                            case "POINT":
-                            case "CLICKABLE":
+//                            case "POINT":
+//                            case "CLICKABLE":
                                 CurrentData.CacheRequest.Add(AutomationElement.ClickablePointProperty);
                                 break;
                             case "ISENABLED":
@@ -190,6 +163,14 @@ namespace UIAutomation.Commands
                             case "ISVISIBLE":
                             case "VISIBLE":
                                 CurrentData.CacheRequest.Add(AutomationElement.IsOffscreenProperty);
+                                break;
+                            // 20140208
+                            case "PROCESSID":
+                                CurrentData.CacheRequest.Add(AutomationElement.ProcessIdProperty);
+                                break;
+                            case "VALUE":
+                                CurrentData.CacheRequest.Add(RangeValuePattern.ValueProperty);
+                                CurrentData.CacheRequest.Add(ValuePattern.ValueProperty);
                                 break;
 //                            default:
 //                                CurrentData.CacheRequest.Add(AutomationElement.NameProperty);
@@ -206,7 +187,8 @@ namespace UIAutomation.Commands
                     }
                 }
                 
-                if (Pattern.Length == 0) {
+                if (null == Pattern || 0 == Pattern.Length) {
+                    WriteVerbose(this, "no patterns were provided");
                     CurrentData.CacheRequest.Add(ExpandCollapsePattern.Pattern);
                     CurrentData.CacheRequest.Add(InvokePattern.Pattern);
                     CurrentData.CacheRequest.Add(ScrollItemPattern.Pattern);
@@ -216,6 +198,7 @@ namespace UIAutomation.Commands
                     CurrentData.CacheRequest.Add(TogglePattern.Pattern);
                     CurrentData.CacheRequest.Add(ValuePattern.Pattern);
                 } else {
+                    WriteVerbose(this, "using patterns that were provided");
                     foreach (string patternName in Pattern)
                     {
                         switch (patternName.ToUpper()) {
@@ -317,9 +300,11 @@ namespace UIAutomation.Commands
                         }
                     }
                 }
-
-                Preferences.FromCache = true;
-                CurrentData.CacheRequest.Push();
+                
+                // 20140208
+                // Preferences.FromCache = true;
+                Preferences.CacheRequestCalled = true;
+                // CurrentData.CacheRequest.Push();
                 //WriteObject(this, returnObject);
             }
             catch (Exception eCacheRequest) {

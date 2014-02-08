@@ -78,7 +78,9 @@ namespace TMX
         {
         	// run BeforeScenario scriptblocks
 			//if (null != testSuite) {
-            if (null == testSuite || null == testScenario || 0 >= testScenario.TestCases.Count) return;
+			// 20140208
+            // if (null == testSuite || null == testScenario || 0 >= testScenario.TestCases.Count) return;
+            if (null == testSuite || null == testScenario || 0 == testScenario.TestCases.Count) return;
             // if (null != testSuite && null != testScenario && 0 < testScenario.TestCases.Count) {
 
             cmdlet.runTwoScriptBlockCollections(

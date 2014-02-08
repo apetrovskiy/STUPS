@@ -56,17 +56,21 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                     collection,
                     null);
             
+            var windowSearcherData =
+                new WindowSearcherData {
+                ProcessIds = processIds.ToArray(),
+                Name = new[] { string.Empty },
+                AutomationId = automationId,
+                Class = className,
+                First = false,
+                Recurse = false
+            };
+            
             // Act
             List<IUiElement> resultList =
                 RealCodeCaller.GetResultList_GetWindowCollectionByPid(
                     rootElement,
-                    processIds,
-                    false,
-                    false,
-                    // new[] { string.Empty },
-                    names, //null,
-                    automationId, // string.Empty,
-                    className); // string.Empty);
+                    windowSearcherData);
             
             // Assert
             MbUnit.Framework.Assert.Count(expectedNumberOfElements, resultList);

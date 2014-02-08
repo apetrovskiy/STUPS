@@ -54,11 +54,12 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             // Arrange
             var data =
                 new ControlSearcherData {
+                InputObject = new IUiElement[] { CurrentData.CurrentWindow },
                 ControlType = FakeFactory.ConvertControlTypeToStringArray(new[] { controlType }),
                 Name = name,
                 AutomationId = automationId,
                 Class = className,
-                Value = txtValue// ,
+                Value = txtValue
             };
             
             Condition condition =
@@ -70,8 +71,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                     condition);
             
             // Act
-            data.InputObject = new IUiElement[] { CurrentData.CurrentWindow };
-            List<IUiElement> resultList = RealCodeCaller.GetResultList_ViaWildcards(data, element, condition);
+            var resultList = RealCodeCaller.GetResultList_ViaWildcards(element, condition, data);
             
             // Assert
             const WildcardOptions options = WildcardOptions.IgnoreCase;

@@ -91,6 +91,8 @@ namespace UIAutomation
             // CacheRequest
             //FromCache = true;
             FromCache = false;
+            // 20140208
+            CacheRequestCalled = false;
             
             // Test Case Management
             EveryCmdletAsTestResult = false;
@@ -351,6 +353,8 @@ namespace UIAutomation
         /// </summary>
         public static bool FromCache { get; set; }
         
+        // 20140208
+        internal static bool CacheRequestCalled { get; set; }
         
         // Test Case Management
         public static SwitchParameter EveryCmdletAsTestResult { get; set; }

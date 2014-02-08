@@ -49,7 +49,7 @@ namespace UIAutomation.Commands
                     (null == Name && null == AutomationId && null == Class) &&
                     null == ProcessId &&
                     null == InputObject) {
-
+                    
                     WriteVerbose(
                         this, 
                         "no processName, name, processid or process was supplied");
@@ -103,7 +103,6 @@ namespace UIAutomation.Commands
                         windowSearcherData,
                         Timeout);
                 
-                // 20140121
                 windowSearcherData = null;
             }
             catch {}

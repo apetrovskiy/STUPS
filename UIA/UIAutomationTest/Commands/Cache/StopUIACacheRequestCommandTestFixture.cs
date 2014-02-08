@@ -14,12 +14,12 @@ namespace UIAutomationTest.Commands.Cache
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of StopUiaCacheRequestCommandTestFixture.
+    /// Description of StopUiaCachedModeCommandTestFixture.
     /// </summary>
     [TestFixture] // [TestFixture(Description="1")]
-    public class StopUiaCacheRequestCommandTestFixture
+    public class StopUiaCachedModeCommandTestFixture
     {
-        public StopUiaCacheRequestCommandTestFixture()
+        public StopUiaCachedModeCommandTestFixture()
         {
         }
         

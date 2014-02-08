@@ -561,7 +561,7 @@ namespace UIAutomation
             Enabled = false;
             Label labelNumber =
         		new Label {AutoSize = true};
-            if (null == highlighterNumber || 0 >= highlighterNumber) {
+            if (null == highlighterNumber || 0 == highlighterNumber) {
                 highlighterNumber = 1;
             }
         	labelNumber.Text = highlighterNumber.ToString();

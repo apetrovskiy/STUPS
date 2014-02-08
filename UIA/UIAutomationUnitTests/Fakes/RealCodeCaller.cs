@@ -23,18 +23,14 @@ namespace UIAutomationUnitTests
     /// </summary>
     public static class RealCodeCaller
     {
-        public static List<IUiElement> GetResultList_ViaWildcards_Legacy(GetControlCmdletBase cmdlet, IUiElement element, Condition condition)
+        public static List<IUiElement> GetResultList_ViaWildcards_Legacy(IUiElement element, Condition condition, ControlSearcherData data)
         {
             GetControlCollectionCmdletBase cmdletDerived = new GetControlCollectionCmdletBase();
             
             List<IUiElement> resultList =
                 cmdletDerived.GetAutomationElementsWithFindAll(
                     element,
-                    cmdlet.Name,
-                    cmdlet.AutomationId,
-                    cmdlet.Class,
-                    cmdlet.Value,
-                    cmdlet.ControlType,
+                    data,
                     condition,
                     false,
                     false,
@@ -44,7 +40,7 @@ namespace UIAutomationUnitTests
             return resultList;
         }
         
-        public static List<IUiElement> GetResultList_ViaWildcards(ControlSearcherData data, IUiElement element, Condition condition)
+        public static List<IUiElement> GetResultList_ViaWildcards(IUiElement element, Condition condition, ControlSearcherData data)
         {
             List<IUiElement> resultList =
                 ControlSearcher.SearchByWildcardOrRegexViaUia(
@@ -59,33 +55,29 @@ namespace UIAutomationUnitTests
             return resultList;
         }
         
-        public static List<IUiElement> GetResultList_ExactSearch(GetControlCmdletBase cmdlet, IUiElement element, Condition conditions)
+        public static List<IUiElement> GetResultList_ExactSearch(IUiElement element, Condition conditions, Hashtable[] searchCriteria)
         {
-            cmdlet.ResultListOfControls =
+            var resultListOfControls =
                 ControlSearcher.SearchByExactConditionsViaUia(
                     element,
-                    cmdlet.SearchCriteria,
+                    searchCriteria,
                     conditions);
-            return cmdlet.ResultListOfControls;
+            return resultListOfControls;
         }
         
-        public static List<IUiElement> GetResultList_TextSearch(GetControlCmdletBase cmdlet, IUiElement element, Condition conditions)
+        public static List<IUiElement> GetResultList_TextSearch(IUiElement element, Condition conditions)
         {
-            cmdlet.ResultListOfControls =
+            var resultListOfControls =
                 ControlSearcher.SearchByContainsTextViaUia(element, conditions);
-            return cmdlet.ResultListOfControls;
+            return resultListOfControls;
         }
         
-        public static List<IUiElement> GetResultList_ReturnOnlyRightElements(GetControlCmdletBase cmdlet, IEnumerable<IUiElement> elements, bool useWildcardOrRegex)
+        public static List<IUiElement> GetResultList_ReturnOnlyRightElements(IEnumerable<IUiElement> elements, ControlSearcherData data, bool useWildcardOrRegex)
         {
             List<IUiElement> resultList =
                 WindowSearcher.ReturnOnlyRightElements(
                     elements,
-                    cmdlet.Name,
-                    cmdlet.AutomationId,
-                    cmdlet.Class,
-                    cmdlet.Value,
-                    cmdlet.ControlType,
+                    data,
                     false,
                     useWildcardOrRegex);
             
@@ -106,24 +98,14 @@ namespace UIAutomationUnitTests
         
         public static List<IUiElement> GetResultList_GetWindowCollectionByPid(
             IUiElement rootElement,
-            IEnumerable<int> processIds,
-            bool first,
-            bool recurse,
-            IEnumerable<string> names,
-            string automationId,
-            string className)
+            WindowSearcherData data)
         {
             var windowSearcher = new WindowSearcher();
             
             List<IUiElement> resultList =
                 windowSearcher.GetWindowCollectionByPid(
                     rootElement,
-                    processIds,
-                    first,
-                    recurse,
-                    names,
-                    automationId,
-                    className);
+                    data);
             
             return resultList;
                     

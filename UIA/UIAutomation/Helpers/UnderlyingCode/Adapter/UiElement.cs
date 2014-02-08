@@ -176,7 +176,9 @@ namespace UIAutomation
 		{
 			switch (_innerElementType) {
 				case InnerElementTypes.AutomationElementNet:
-					return _elementHolderNet.GetCurrentPattern(pattern);
+		            // 20140208
+					// return _elementHolderNet.GetCurrentPattern(pattern);
+					return Preferences.FromCache ? _elementHolderNet.GetCachedPattern(pattern) : _elementHolderNet.GetCurrentPattern(pattern);
 				default:
 //			    case InnerElementTypes.AutomationElementCom:
 //			        //
@@ -415,10 +417,6 @@ namespace UIAutomation
 			get {
 				switch (_innerElementType) {
 					case InnerElementTypes.AutomationElementNet:
-		                
-		                
-//System.Windows.Forms.MessageBox.Show("current:\r\n" + _elementHolderNet.Current.Name + "\r\n" + _elementHolderNet.Current.AutomationId + "\r\n" + _elementHolderNet.Current.ClassName + "\r\n" + _elementHolderNet.Current.ProcessId.ToString());
-		                
 						return AutomationFactory.GetUiElementInformation(Preferences.FromCache ? _elementHolderNet.Cached : _elementHolderNet.Current);
 //		            case InnerElementTypes.AutomationElementCom:
 //		                //

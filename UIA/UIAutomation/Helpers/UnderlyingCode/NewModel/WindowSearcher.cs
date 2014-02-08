@@ -29,6 +29,9 @@ namespace UIAutomation
         public override string TimeoutExpirationInformation { get; set; }
         internal bool wasFound = false;
         
+        // 20140208
+        private CacheRequest ClonedCacheRequest { get; set; }
+        
         public override void OnStartHook()
         {
         }
@@ -39,6 +42,25 @@ namespace UIAutomation
         
         public override List<IUiElement> SearchForElements(SearcherTemplateData searchData)
         {
+            
+            // 20140208
+            if (Preferences.CacheRequestCalled && null != CurrentData.CacheRequest) {
+                try {
+                    Preferences.FromCache = false;
+                    // CurrentData.CacheRequest.Pop();
+                    ClonedCacheRequest = null;
+                }
+                catch (Exception eeeee) {
+                    
+//Console.WriteLine("failed to stop the cache request");
+//Console.WriteLine(eeeee.Message);
+                }
+            } else {
+                if (null == CurrentData.CacheRequest) {
+//Console.WriteLine("cache request is null");
+                }
+            }
+            
             try {
                 
                 WindowSearcherData data = searchData as WindowSearcherData;
@@ -48,29 +70,29 @@ namespace UIAutomation
                 if (data.Win32) {
                     
                     if (null == ResultCollection || 0 == ResultCollection.Count) {
-                        ResultCollection = GetWindowCollectionViaWin32(data.First, data.Recurse, data.Name, data.AutomationId, data.Class);
+                        ResultCollection = GetWindowCollectionViaWin32(data);
                     }
                 } else if (null != data.InputObject && data.InputObject.Length > 0) {
                     
                     if (null == ResultCollection || 0 == ResultCollection.Count) {
-                        ResultCollection = GetWindowCollectionFromProcess(data.InputObject, data.First, data.Recurse, data.Name, data.AutomationId, data.Class);
+                        ResultCollection = GetWindowCollectionFromProcess(data);
                     }
                 } else if (null != data.ProcessIds && data.ProcessIds.Length > 0) {
                     
                     if (null == ResultCollection || 0 == ResultCollection.Count) {
-                        ResultCollection = GetWindowCollectionByPid(UiElement.RootElement, data.ProcessIds, data.First, data.Recurse, data.Name, data.AutomationId, data.Class);
+                        ResultCollection = GetWindowCollectionByPid(UiElement.RootElement, data);
                     }
                 } else if (null != data.ProcessNames && data.ProcessNames.Length > 0) {
                     
                     if (null == ResultCollection || 0 == ResultCollection.Count) {
-                        ResultCollection = GetWindowCollectionByProcessName(UiElement.RootElement, data.ProcessNames, data.First, data.Recurse, data.Name, data.AutomationId, data.Class);
+                        ResultCollection = GetWindowCollectionByProcessName(UiElement.RootElement, data);
                     }
                 } else if ((null != data.Name && data.Name.Length > 0) ||
                            !string.IsNullOrEmpty(data.AutomationId) ||
                            !string.IsNullOrEmpty(data.Class)) {
                     
                     if (null == ResultCollection || 0 == ResultCollection.Count) {
-                        ResultCollection = GetWindowCollectionByName(UiElement.RootElement, data.Name, data.AutomationId, data.Class, data.Recurse);
+                        ResultCollection = GetWindowCollectionByName(UiElement.RootElement, data);
                     }
                 }
                 
@@ -120,6 +142,27 @@ namespace UIAutomation
                 
                 ResultCollection.Clear();
                 ResultCollection = null;
+            }
+            
+            // 20140208
+            if (null != ResultCollection && 0 < ResultCollection.Count) {
+                if (Preferences.CacheRequestCalled && null != CurrentData.CacheRequest) {
+                    try {
+                        // CurrentData.CacheRequest.Push();
+                        // var cacheRequest = CurrentData.CacheRequest.Clone();
+                        ClonedCacheRequest = CurrentData.CacheRequest.Clone();
+                        ClonedCacheRequest.Push();
+                        Preferences.FromCache = true;
+                    } catch (Exception eeee) {
+                        Preferences.FromCache = false;
+//Console.WriteLine("failed to start cache request");
+//Console.WriteLine(eeee.Message);
+                    }
+                }
+            } else {
+                if (null == CurrentData.CacheRequest) {
+//Console.WriteLine("cache request is null");
+                }
             }
         }
 
@@ -196,29 +239,17 @@ namespace UIAutomation
         }
         
         private List<IUiElement> GetWindowCollectionViaWin32(
-            bool first,
-            bool recurse,
-            string[] name,
-            string automationId,
-            string className)
+            WindowSearcherData data)
         {
-            List<IUiElement> aeWndCollectionViaWin32 =
-                UiaHelper.EnumChildWindowsFromHandle(
-                    name,
-                    automationId,
-                    className,
-                    IntPtr.Zero);
-            
-            return aeWndCollectionViaWin32;
+            return UiaHelper.EnumChildWindowsFromHandle(
+                data.Name,
+                data.AutomationId,
+                data.Class,
+                IntPtr.Zero);
         }
         
         private List<IUiElement> GetWindowCollectionFromProcess(
-            IEnumerable<Process> processes,
-            bool first,
-            bool recurse,
-            ICollection<string> name,
-            string automationId,
-            string className)
+            WindowSearcherData data)
         {
             List<IUiElement> aeWndCollectionByProcId = new List<IUiElement>();
             List<IUiElement> tempCollection = null;
@@ -226,7 +257,7 @@ namespace UIAutomation
             List<int> processIdList =
                 new List<int>();
             
-            foreach (Process process in processes) {
+            foreach (Process process in data.InputObject) {
                 
                 try {
                     int processId = process.Id;
@@ -236,7 +267,16 @@ namespace UIAutomation
                     
                     int[] processIds = processIdList.ToArray();
                     
-                    tempCollection = GetWindowCollectionByPid(UiElement.RootElement, processIds, first, recurse, name, automationId, className);
+                    var windowSearcherData =
+                        new WindowSearcherData {
+                        ProcessIds = processIds,
+                        First = data.First,
+                        Recurse = data.Recurse,
+                        Name = data.Name,
+                        AutomationId = data.AutomationId,
+                        Class = data.Class
+                    };
+                    tempCollection = GetWindowCollectionByPid(UiElement.RootElement, windowSearcherData);
 
                     aeWndCollectionByProcId.AddRange(tempCollection);
                 }
@@ -267,22 +307,26 @@ namespace UIAutomation
         
         private List<IUiElement> GetWindowCollectionByName(
             IUiElement rootElement,
-            string[] windowNames,
-            string automationId,
-            string className,
-            bool recurse)
+            // 20140208
+            WindowSearcherData data)
+//            string[] windowNames,
+//            string automationId,
+//            string className,
+//            bool recurse)
         {
             List<IUiElement> windowCollectionByProperties =
                 new List<IUiElement>();
             List<IUiElement> resultCollection =
                 new List<IUiElement>();
             
-            if (null == windowNames) {
-                windowNames = new string[]{ string.Empty };
+            // if (null == windowNames) {
+            if (null == data.Name) {
+                // windowNames = new string[]{ string.Empty };
+                data.Name = new string[]{ string.Empty };
             }
             
             OrCondition conditionsSet = null;
-            if (recurse) {
+            if (data.Recurse) {
                 conditionsSet =
                     new OrCondition(
                         new PropertyCondition(
@@ -303,19 +347,25 @@ namespace UIAutomation
                             ControlType.Menu));
             }
             
-            foreach (string windowTitle in windowNames) {
+            // foreach (string windowTitle in windowNames) {
+            foreach (string windowTitle in data.Name) {
                 
                 IUiEltCollection windowCollection =
-                    rootElement.FindAll(recurse ? TreeScope.Descendants : TreeScope.Children, conditionsSet);
+                    rootElement.FindAll(data.Recurse ? TreeScope.Descendants : TreeScope.Children, conditionsSet);
+                
+                var controlSearcherData =
+                    new ControlSearcherData {
+                    Name = windowTitle,
+                    AutomationId = data.AutomationId,
+                    Class = data.Class,
+                    Value = string.Empty,
+                    ControlType = (new string[]{ "Window", "Pane", "Menu" })
+                };
                 
                 windowCollectionByProperties =
                     ReturnOnlyRightElements(
                         windowCollection,
-                        windowTitle,
-                        automationId,
-                        className,
-                        string.Empty,
-                        (new string[]{ "Window", "Pane", "Menu" }),
+                        controlSearcherData,
                         false,
                         true);
                     
@@ -370,17 +420,12 @@ namespace UIAutomation
         
         private List<IUiElement> GetWindowCollectionByProcessName(
             IUiElement rootElement,
-            IEnumerable<string> processNames,
-            bool first,
-            bool recurse,
-            ICollection<string> name,
-            string automationId,
-            string className)
+            WindowSearcherData data)
         {
             List<IUiElement> aeWndCollectionByProcId = new List<IUiElement>();
             List<int> processIdList = new List<int>();
             
-            foreach (string processName in processNames) {
+            foreach (string processName in data.ProcessNames) {
                 
                 try {
                     
@@ -395,7 +440,8 @@ namespace UIAutomation
             }
             
             int[] processIds = processIdList.ToArray();
-            aeWndCollectionByProcId = GetWindowCollectionByPid(rootElement, processIds, first, recurse, name, automationId, className);
+            data.ProcessIds = processIds;
+            aeWndCollectionByProcId = GetWindowCollectionByPid(rootElement, data);
             
             // 20140121
             //            if (null != processIdList) {
@@ -408,23 +454,18 @@ namespace UIAutomation
         
         internal List<IUiElement> GetWindowCollectionByPid(
             IUiElement rootElement,
-            IEnumerable<int> processIds,
-            bool first,
-            bool recurse,
-            IEnumerable<string> names,
-            string automationId,
-            string className)
+            WindowSearcherData data)
         {
             AndCondition conditionsForRecurseSearch = null;
             
             List<IUiElement> elementsByProcessId =
                 new List<IUiElement>();
             
-            if ((null != names && 0 < names.Count()) ||
-                !string.IsNullOrEmpty(automationId) ||
-                !string.IsNullOrEmpty(className)) {
+            if ((null != data.Name && 0 < data.Name.Count()) ||
+                !string.IsNullOrEmpty(data.AutomationId) ||
+                !string.IsNullOrEmpty(data.Class)) {
                 
-                recurse = true;
+                data.Recurse = true;
             }
             
             OrCondition conditionWindowPaneMenu =
@@ -439,7 +480,7 @@ namespace UIAutomation
                         AutomationElement.ControlTypeProperty,
                         ControlType.Menu));
             
-            foreach (int processId in processIds) {
+            foreach (int processId in data.ProcessIds) {
                 
                 AndCondition conditionsProcessId = null;
                 conditionsForRecurseSearch =
@@ -460,8 +501,8 @@ namespace UIAutomation
                 
                 try {
                     
-                    if (recurse) {
-                        if (first) {
+                    if (data.Recurse) {
+                        if (data.First) {
                             
                             IUiElement rootWindowElement =
                                 rootElement.FindFirst(
@@ -482,25 +523,12 @@ namespace UIAutomation
                             if (null != rootCollection && 0 < rootCollection.Count)
                             {
                                 elementsByProcessId.AddRange(rootCollection.Cast<IUiElement>());
-                                
-                                // 20140203-20140205
-//                                foreach (IUiElement singleElement in (
-//                                    from IUiElement rootWindowElement in rootCollection select rootWindowElement.FindAll(
-//                                        TreeScope.Descendants,
-//                                        conditionsForRecurseSearch)
-//                                    into tempCollection
-//                                    where null != tempCollection && 0 < tempCollection.Count
-//                                    select tempCollection)
-//                                    .SelectMany(tempCollection => rootCollection.Cast<IUiElement>()))
-//                                {
-//                                    elementsByProcessId.Add(singleElement);
-//                                }
                             }
                         }
                         
                     } else {
                         
-                        if (first) {
+                        if (data.First) {
                             
                             IUiElement tempElement =
                                 rootElement.FindFirst(
@@ -533,38 +561,48 @@ namespace UIAutomation
                 }
             }
             
-            if (!recurse ||
-                ((null == names || 0 >= names.Count()) && string.IsNullOrEmpty(automationId) &&
-                 string.IsNullOrEmpty(className))) return elementsByProcessId;
+            if (!data.Recurse ||
+                ((null == data.Name || 0 == data.Name.Count()) && string.IsNullOrEmpty(data.AutomationId) &&
+                 string.IsNullOrEmpty(data.Class))) return elementsByProcessId;
             
             List<IUiElement> resultList =
                 new List<IUiElement>();
             
-            if (null != names && 0 < names.Count()) {
-                foreach (string name in names) {
+            if (null != data.Name && 0 < data.Name.Count()) {
+                foreach (string name in data.Name) {
+                    
+                    var controlSearcherData =
+                        new ControlSearcherData {
+                        Name = name,
+                        AutomationId = data.AutomationId,
+                        Class = data.Class,
+                        Value = string.Empty,
+                        ControlType = new string[]{ "Window" } 
+                    };
                     
                     resultList.AddRange(
                         ReturnOnlyRightElements(
                             elementsByProcessId,
-                            name,
-                            automationId,
-                            className,
-                            string.Empty,
-                            new string[]{ "Window" },
+                            controlSearcherData,
                             false,
                             true));
                     
                 }
             } else {
                 
+                var controlSearcherData =
+                    new ControlSearcherData {
+                    Name = string.Empty,
+                    AutomationId = data.AutomationId,
+                    Class = data.Class,
+                    Value = string.Empty,
+                    ControlType = new string[]{ "Window" } 
+                };
+                
                 resultList.AddRange(
                     ReturnOnlyRightElements(
                         elementsByProcessId,
-                        string.Empty,
-                        automationId,
-                        className,
-                        string.Empty,
-                        new string[]{ "Window" },
+                        controlSearcherData,
                         false,
                         true));
             }
@@ -583,17 +621,15 @@ namespace UIAutomation
         
         internal static List<IUiElement> ReturnOnlyRightElements(
             IEnumerable inputCollection,
-            string name,
-            string automationId,
-            string className,
-            string textValue,
-            string[] controlType,
+            SearcherTemplateData searcherData,
             bool caseSensitive,
             bool viaWildcardOrRegex)
         {
+            ControlSearcherData data = searcherData as ControlSearcherData;
+            
             List<IUiElement> resultCollection = new List<IUiElement>();
             bool requiresValuePatternCheck =
-                !string.IsNullOrEmpty(textValue);
+                !string.IsNullOrEmpty(data.Value);
             
             if (null == inputCollection) { return resultCollection; }
             
@@ -613,25 +649,25 @@ namespace UIAutomation
             }
             
             if (viaWildcardOrRegex) {
-                name = string.IsNullOrEmpty(name) ? "*" : name;
-                automationId = string.IsNullOrEmpty(automationId) ? "*" : automationId;
-                className = string.IsNullOrEmpty(className) ? "*" : className;
-                textValue = string.IsNullOrEmpty(textValue) ? "*" : textValue;
+                data.Name = string.IsNullOrEmpty(data.Name) ? "*" : data.Name;
+                data.AutomationId = string.IsNullOrEmpty(data.AutomationId) ? "*" : data.AutomationId;
+                data.Class = string.IsNullOrEmpty(data.Class) ? "*" : data.Class;
+                data.Value = string.IsNullOrEmpty(data.Value) ? "*" : data.Value;
             } else {
-                name = string.IsNullOrEmpty(name) ? ".*" : name;
-                automationId = string.IsNullOrEmpty(automationId) ? ".*" : automationId;
-                className = string.IsNullOrEmpty(className) ? ".*" : className;
-                textValue = string.IsNullOrEmpty(textValue) ? ".*" : textValue;
+                data.Name = string.IsNullOrEmpty(data.Name) ? ".*" : data.Name;
+                data.AutomationId = string.IsNullOrEmpty(data.AutomationId) ? ".*" : data.AutomationId;
+                data.Class = string.IsNullOrEmpty(data.Class) ? ".*" : data.Class;
+                data.Value = string.IsNullOrEmpty(data.Value) ? ".*" : data.Value;
             }
             
             WildcardPattern wildcardName =
-                new WildcardPattern(name, options);
+                new WildcardPattern(data.Name, options);
             WildcardPattern wildcardAutomationId =
-                new WildcardPattern(automationId, options);
+                new WildcardPattern(data.AutomationId, options);
             WildcardPattern wildcardClass =
-                new WildcardPattern(className, options);
+                new WildcardPattern(data.Class, options);
             WildcardPattern wildcardValue =
-                new WildcardPattern(textValue, options);
+                new WildcardPattern(data.Value, options);
             
             List<IUiElement> inputList = inputCollection.Cast<IUiElement>().ToList();
             
@@ -650,9 +686,9 @@ namespace UIAutomation
                                          wildcardClass.IsMatch(item.Current.ClassName) &&
                                          // check whether a control has or hasn't ValuePattern
                                          (item.GetSupportedPatterns().AsQueryable<IBasePattern>().Any(pattern => null != pattern && null != (pattern as IValuePattern)) ?
-                                          item.CompareElementValueAndValueParameter(textValue, true, wildcardValue, regexOptions) :
+                                          item.CompareElementValueAndValueParameter(data.Value, true, wildcardValue, regexOptions) :
                                           // check whether the -Value parameter has or hasn't value
-                                          ("*" == textValue ? true : false)
+                                          ("*" == data.Value ? true : false)
                                          )
                                         )
                                )
@@ -661,14 +697,14 @@ namespace UIAutomation
                         
                         query = inputList
                             .Where<IUiElement>(
-                                item => (Regex.IsMatch(item.Current.Name, name, regexOptions) &&
-                                         Regex.IsMatch(item.Current.AutomationId, automationId, regexOptions) &&
-                                         Regex.IsMatch(item.Current.ClassName, className, regexOptions) &&
+                                item => (Regex.IsMatch(item.Current.Name, data.Name, regexOptions) &&
+                                         Regex.IsMatch(item.Current.AutomationId, data.AutomationId, regexOptions) &&
+                                         Regex.IsMatch(item.Current.ClassName, data.Class, regexOptions) &&
                                          // check whether a control has or hasn't ValuePattern
                                          (item.GetSupportedPatterns().AsQueryable<IBasePattern>().Any(p => null != p && null != (p as IValuePattern)) ?
-                                          item.CompareElementValueAndValueParameter(textValue, false, null, regexOptions) :
+                                          item.CompareElementValueAndValueParameter(data.Value, false, null, regexOptions) :
                                           // check whether the -Value parameter has or hasn't value
-                                          (".*" == textValue ? true : false)
+                                          (".*" == data.Value ? true : false)
                                          )
                                         )
                                )
@@ -689,9 +725,9 @@ namespace UIAutomation
                     } else {
                         query = inputList
                             .Where<IUiElement>(
-                                item => (Regex.IsMatch(item.Current.Name, name, regexOptions) &&
-                                         Regex.IsMatch(item.Current.AutomationId, automationId, regexOptions) &&
-                                         Regex.IsMatch(item.Current.ClassName, className, regexOptions)
+                                item => (Regex.IsMatch(item.Current.Name, data.Name, regexOptions) &&
+                                         Regex.IsMatch(item.Current.AutomationId, data.AutomationId, regexOptions) &&
+                                         Regex.IsMatch(item.Current.ClassName, data.Class, regexOptions)
                                         )
                                )
                             .ToList<IUiElement>();

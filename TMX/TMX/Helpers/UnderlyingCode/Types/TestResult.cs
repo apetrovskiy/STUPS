@@ -149,8 +149,10 @@ namespace TMX
             ITestResultDetail[] detailsList = null;
             
             cmdlet.WriteVerbose(cmdlet, "trying to enumerate details");
-
-            if (null == this.Details || 0 >= this.Details.Count) return detailsList;
+            
+            // 20140208
+            // if (null == this.Details || 0 >= this.Details.Count) return detailsList;
+            if (null == this.Details || 0 == this.Details.Count) return detailsList;
             // if (null != this.Details && 0 < this.Details.Count) {
 
             // 20130402
@@ -184,9 +186,7 @@ namespace TMX
 //                    
 //                    detailsList.Add(detail.Name);
 //                }
-
-            // 20130402
-            //return detailsList.ToArray();
+            
             return detailsList;
         }
         

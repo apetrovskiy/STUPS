@@ -59,37 +59,34 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             GetControlCmdletBase cmdlet =
                 FakeFactory.Get_GetControlCmdletBase(controlTypes, name, automationId, className, txtValue);
             
+            var data =
+                new ControlSearcherData {
+                ControlType = FakeFactory.ConvertControlTypeToStringArray(controlTypes),
+                Name = name,
+                AutomationId = automationId,
+                Class = className,
+                Value = txtValue
+            };
+            
             Condition condition;
             bool useWildcardOrRegex = true;
             switch (selector) {
                 case UIAutomationUnitTests.Helpers.Inheritance.UsualWildcardRegex.Wildcard:
                     condition =
                         ControlSearcher.GetWildcardSearchCondition(
-                            new ControlSearcherData {
-                                ControlType = FakeFactory.ConvertControlTypeToStringArray(controlTypes),
-                                Name = name,
-                                AutomationId = automationId,
-                                Class = className,
-                                Value = txtValue
-                            });
+                            data);
                     useWildcardOrRegex = true;
                     break;
                 case UIAutomationUnitTests.Helpers.Inheritance.UsualWildcardRegex.Regex:
                     condition =
                         ControlSearcher.GetWildcardSearchCondition(
-                            new ControlSearcherData {
-                                ControlType = FakeFactory.ConvertControlTypeToStringArray(controlTypes),
-                                Name = name,
-                                AutomationId = automationId,
-                                Class = className,
-                                Value = txtValue
-                            });
+                            data);
                     useWildcardOrRegex = false;
                     break;
             }
             
             // Act
-            List<IUiElement> resultList = RealCodeCaller.GetResultList_ReturnOnlyRightElements(cmdlet, collection.ToArray(), useWildcardOrRegex);
+            var resultList = RealCodeCaller.GetResultList_ReturnOnlyRightElements(collection.ToArray(), data, useWildcardOrRegex);
             
             // Assert
             MbUnit.Framework.Assert.Count(expectedNumberOfElements, resultList);
@@ -180,21 +177,26 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         }
         #endregion helpers
         
-        #region for starers
+        #region for starters
         [Test][Fact]
         public void NoResults_NullInput()
         {
             HasTimeoutCmdletBase cmdlet =
                 new HasTimeoutCmdletBase();
             
+            var controlSearcherData =
+                new ControlSearcherData {
+                Name = string.Empty,
+                AutomationId = string.Empty,
+                Class = string.Empty,
+                Value = string.Empty,
+                ControlType = new string[] {}
+            };
+            
             List<IUiElement> resultList =
                 WindowSearcher.ReturnOnlyRightElements(
                     null,
-                    string.Empty,
-                    string.Empty,
-                    string.Empty,
-                    string.Empty,
-                    new string[] {},
+                    controlSearcherData,
                     false,
                     true);
             
@@ -207,14 +209,19 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             HasTimeoutCmdletBase cmdlet =
                 new HasTimeoutCmdletBase();
             
+            var controlSearcherData =
+                new ControlSearcherData {
+                Name = string.Empty,
+                AutomationId = string.Empty,
+                Class = string.Empty,
+                Value = string.Empty,
+                ControlType = new string[] {}
+            };
+            
             List<IUiElement> resultList =
                 WindowSearcher.ReturnOnlyRightElements(
                     new UiElement[] {},
-                    string.Empty,
-                    string.Empty,
-                    string.Empty,
-                    string.Empty,
-                    new string[] {},
+                    controlSearcherData,
                     false,
                     true);
             
@@ -237,14 +244,19 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                     string.Empty,
                     string.Empty);
             
+            var controlSearcherData =
+                new ControlSearcherData {
+                Name = expectedName,
+                AutomationId = string.Empty,
+                Class = string.Empty,
+                Value = string.Empty,
+                ControlType = new string[] {}
+            };
+            
             List<IUiElement> resultList =
                 WindowSearcher.ReturnOnlyRightElements(
                     new[] { element },
-                    expectedName,
-                    string.Empty,
-                    string.Empty,
-                    string.Empty,
-                    new string[] {},
+                    controlSearcherData,
                     false,
                     true);
             
@@ -292,21 +304,25 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                     string.Empty,
                     string.Empty);
             
+            var controlSearcherData =
+                new ControlSearcherData {
+                Name = expectedName,
+                AutomationId = string.Empty,
+                Class = string.Empty,
+                Value = string.Empty
+            };
+            
             List<IUiElement> resultList =
                 WindowSearcher.ReturnOnlyRightElements(
                     new[] { element01, element02, element03, element04 },
-                    expectedName,
-                    string.Empty,
-                    string.Empty,
-                    string.Empty,
-                    new string[] {},
+                    controlSearcherData,
                     false,
                     true);
             
             MbUnit.Framework.Assert.AreEqual(3, resultList.Count);
             MbUnit.Framework.Assert.Exists(resultList, e => e.Current.Name == expectedName); // ??
         }
-        #endregion for starers
+        #endregion for starters
         
         #region Name
         [Test][Fact]

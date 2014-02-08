@@ -39,14 +39,6 @@ namespace UIAutomation.Commands
                     SearchCriteria,
                     Preferences.Timeout);
             WriteObject(this, result);
-
-            /*
-            if (result) {
-                this.WriteObject(this, true);
-            } else {
-                this.WriteObject(this, false);
-            }
-            */
         }
     }
 }

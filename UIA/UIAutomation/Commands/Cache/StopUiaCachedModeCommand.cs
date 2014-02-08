@@ -13,32 +13,24 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of StopUiaCacheRequestCommand.
+    /// Description of StopUiaCachedModeCommand.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Stop, "UiaCacheRequest")]
-    public class StopUiaCacheRequestCommand : CacheRequestCmdletBase
+    [Cmdlet(VerbsLifecycle.Stop, "UiaCachedMode")]
+    public class StopUiaCachedModeCommand : CacheRequestCmdletBase
     {
         protected override void BeginProcessing()
         {
             try {
-                CurrentData.CacheRequest.Pop();
+                // 20140208
+                // CurrentData.CacheRequest.Pop();
                 CurrentData.CacheRequest = null;
                 Preferences.FromCache = false;
+                // 20140208
+                Preferences.CacheRequestCalled = false;
                 WriteObject(this, true);
             }
             catch (Exception eCacheRequest) {
-                //ErrorRecord err = 
-                //    new ErrorRecord(
-                //        new Exception("Unable to stop cache request"),
-                //        "CacheRequestFailedToPop",
-                //        ErrorCategory.InvalidOperation,
-                //        null);
-                //err.ErrorDetails = 
-                //    new ErrorDetails(
-                //        "Failed to stop a cache request\r\n" +
-                //        eCacheRequest.Message);
-                //WriteError(this, err, true);
-
+                
                 WriteError(
                     this,
                     "Unable to stop cache request. " +

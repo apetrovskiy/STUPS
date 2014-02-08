@@ -19,12 +19,11 @@ namespace UIAutomation
     {
         public override void Intercept(IInvocation invocation)
         {
-            // invocation.Proceed();
             try {
                 invocation.Proceed();
             } catch (Exception eOnInvocation) {
                 Exception eNewException =
-                    new Exception("Method " + invocation.Method.Name + ": " + eOnInvocation.Message);
+                    new Exception("Class " + invocation.TargetType.Name + ", method " + invocation.Method.Name + ": " + eOnInvocation.Message);
                 throw eNewException;
             }
             

@@ -63,7 +63,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                     condition);
             
             // Act
-            List<IUiElement> resultList = RealCodeCaller.GetResultList_TextSearch(cmdlet, element, condition);
+            var resultList = RealCodeCaller.GetResultList_TextSearch(element, condition);
             
             // Assert
             MbUnit.Framework.Assert.Count(expectedNumberOfElements, resultList);

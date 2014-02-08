@@ -64,13 +64,6 @@ namespace UIAutomation
 //        [Parameter(Mandatory = false)]
 //        public SwitchParameter CaseSensitive { get; set; }
         #endregion Parameters
-
-//        protected override void BeginProcessing() {
-//            WriteVerbose(this, "ControlType = " + ControlType);
-//            WriteVerbose(this, "Class = " + Class);
-//            WriteVerbose(this, "Name = " + Name);
-//            WriteVerbose(this, "AutomationId = " + AutomationId);
-//        }
         
         protected void GetAutomationElementsViaWildcards_FindAll(
             IUiElement inputObject,
@@ -81,14 +74,19 @@ namespace UIAutomation
             bool viaWildcardOrRegex)
         {
             if (!CheckAndPrepareInput(this)) { return; }
-          
+            
+            var controlSearcherData =
+                new ControlSearcherData {
+                Name = this.Name,
+                AutomationId = this.AutomationId,
+                Class = this.Class,
+                Value = this.Value,
+                ControlType = this.ControlType
+            };
+            
             GetAutomationElementsWithFindAll(
                 inputObject,
-                Name,
-                AutomationId,
-                Class,
-                Value,
-                ControlType,
+                controlSearcherData,
                 conditions,
                 caseSensitive,
                 onlyOneResult,
@@ -109,14 +107,19 @@ namespace UIAutomation
             
             List<IUiElement> resultCollection = new List<IUiElement>(); // ? make it null ??
             
+            var controlSearcherData =
+                new ControlSearcherData {
+                Name = cmdlet.Name,
+                AutomationId = cmdlet.AutomationId,
+                Class = cmdlet.Class,
+                Value = cmdlet.Value,
+                ControlType = cmdlet.ControlType
+            };
+            
             resultCollection =
                 GetAutomationElementsWithFindAll(
                     inputObject,
-                    cmdlet.Name,
-                    cmdlet.AutomationId,
-                    cmdlet.Class,
-                    cmdlet.Value,
-                    cmdlet.ControlType,
+                    controlSearcherData,
                     conditions,
                     caseSensitive,
                     onlyOneResult,
@@ -289,11 +292,7 @@ namespace UIAutomation
         
         internal List<IUiElement> GetAutomationElementsWithFindAll(
             IUiElement element,
-            string name,
-            string automationId,
-            string className,
-            string textValue,
-            string[] controlType,
+            ControlSearcherData data,
             Condition conditions,
             bool caseSensitiveParam,
             bool onlyOneResult,
@@ -312,11 +311,7 @@ namespace UIAutomation
                 resultCollection =
                     WindowSearcher.ReturnOnlyRightElements(
                         results,
-                        name,
-                        automationId,
-                        className,
-                        textValue,
-                        controlType,
+                        data,
                         caseSensitiveParam,
                         viaWildcardOrRegex);
                 

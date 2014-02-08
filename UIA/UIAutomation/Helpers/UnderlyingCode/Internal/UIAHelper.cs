@@ -2824,14 +2824,19 @@ namespace UIAutomation
             
             foreach (string windowName in names) {
                 
+                var controlSearcherData =
+                    new ControlSearcherData {
+                    Name = windowName,
+                    AutomationId = automationId,
+                    Class = className,
+                    Value = string.Empty,
+                    ControlType = new string[]{ "Window" }
+                };
+                
                 resultElements.AddRange(
                     WindowSearcher.ReturnOnlyRightElements(
                         automationElements,
-                        windowName,
-                        automationId,
-                        className,
-                        string.Empty,
-                        new string[]{ "Window" },
+                        controlSearcherData,
                         false,
                         true));
             }
@@ -3143,6 +3148,38 @@ internal static List<IUiElement> EnumChildWindowsFromHandle(GetWindowCmdletBase 
             }
             
             return supportedTypes.ToArray();
+        }
+        
+        internal static System.Windows.Automation.Condition GetTreeFilter(string filter)
+        {
+            var myAutomation = AutomationFactory.GetMyAutomation();
+            
+            switch (filter.ToUpper()) {
+                case "RAW":
+                    return myAutomation.RawViewCondition; 
+                case "CONTENT":
+                    return myAutomation.ContentViewCondition;
+                case "CONTROL":
+                    return myAutomation.ControlViewCondition;
+                default:
+                    return myAutomation.RawViewCondition;
+            }
+        }
+        
+        internal static TreeScope GetTreeScope(string scope)
+        {
+            switch (scope.ToUpper()) {
+                case "SUBTREE":
+                    return TreeScope.Subtree;
+                case "CHILDREN":
+                    return TreeScope.Children;
+                case "DESCENDANTS":
+                    return TreeScope.Descendants;
+                case "ELEMENT":
+                    return TreeScope.Element;
+                default:
+                    return TreeScope.Descendants;
+            }
         }
     }
     

@@ -998,7 +998,6 @@ namespace UIAutomation
         
         protected internal DateTime StartDate { get; set; }
         protected IUiElement CurrentInputElement { get; set; }
-        protected internal List<IUiElement> ResultListOfControls;
         protected internal IUiElement OddRootElement { get; set; }
         
         /// <summary>

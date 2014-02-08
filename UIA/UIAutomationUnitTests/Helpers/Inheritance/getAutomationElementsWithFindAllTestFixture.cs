@@ -77,8 +77,17 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                     collection,
                     condition);
             
+            var controlSearcherData =
+                new ControlSearcherData {
+                // InputObject = new IUiElement[] { CurrentData.CurrentWindow };
+                Name = name,
+                AutomationId = automationId,
+                Class = className,
+                Value = txtValue
+            };
+            
             // Act
-            List<IUiElement> resultList = RealCodeCaller.GetResultList_ViaWildcards_Legacy(cmdlet, element, condition);
+            var resultList = RealCodeCaller.GetResultList_ViaWildcards_Legacy(element, condition, controlSearcherData);
             
             // Assert
             MbUnit.Framework.Assert.Count(expectedNumberOfElements, resultList);

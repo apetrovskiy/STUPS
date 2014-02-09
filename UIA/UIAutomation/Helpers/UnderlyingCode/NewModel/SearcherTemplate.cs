@@ -42,7 +42,9 @@ namespace UIAutomation
             
             if ((null == ResultCollection || 0 == ResultCollection.Count) &&
                 !((System.DateTime.Now - startTime).TotalSeconds > timeout/1000)) return true;
+            
             if (null == ResultCollection) {
+                
                 Wait = false;
                 TimeoutException eTimeoutException =
                     new TimeoutException(

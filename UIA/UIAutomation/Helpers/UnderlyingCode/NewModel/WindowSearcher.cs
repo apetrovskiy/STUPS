@@ -185,7 +185,7 @@ namespace UIAutomation
 
                     try {
 
-                        var controlSearch = AutomationFactory.GetSearchImpl<ControlSearcher>() as ControlSearcher;
+                        var controlSearch = AutomationFactory.GetSearcherImpl<ControlSearcher>() as ControlSearcher;
 
                         List<IUiElement> controlsList = controlSearch.GetElements(ControlSearcherData, 0);
 

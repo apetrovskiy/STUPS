@@ -40,12 +40,12 @@ namespace UIAutomation.Commands
             
             if (!CheckAndPrepareInput(this)) { return; }
             
-            var controlSearch =
-                AutomationFactory.GetSearchImpl<ControlSearcher>() as ControlSearcher;
+            var controlSearcher =
+                AutomationFactory.GetSearcherImpl<ControlSearcher>() as ControlSearcher;
             
             List<IUiElement> returnCollection =
-                controlSearch.GetElements(
-                    controlSearch.ConvertCmdletToControlSearcherData(this),
+                controlSearcher.GetElements(
+                    controlSearcher.ConvertCmdletToControlSearcherData(this),
                     Timeout);
             
             if (null != returnCollection && 0 < returnCollection.Count) {

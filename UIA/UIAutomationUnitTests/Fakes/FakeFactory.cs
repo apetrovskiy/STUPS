@@ -513,16 +513,17 @@ namespace UIAutomationUnitTests
             return element;
         }
         
-        public static string[] ConvertControlTypeToStringArray(ControlType[] controlTypes)
-        {
-            // List<string> resultCollection = new List<string>();
-            
-            if (null == controlTypes || 0 == controlTypes.Length) return new string[] {};
-            
-            return controlTypes.Select(
-                ct =>
-                null != ct ? ct.ProgrammaticName.Substring(12) : string.Empty).ToArray();
-        }
+        // 20140209
+//        public static string[] ConvertControlTypeToStringArray(ControlType[] controlTypes)
+//        {
+//            // List<string> resultCollection = new List<string>();
+//            
+//            if (null == controlTypes || 0 == controlTypes.Length) return new string[] {};
+//            
+//            return controlTypes.Select(
+//                ct =>
+//                null != ct ? ct.ProgrammaticName.Substring(12) : string.Empty).ToArray();
+//        }
         
         public static IUiEltCollection GetFakeCollection(IEnumerable<IUiElement> elements)
         {

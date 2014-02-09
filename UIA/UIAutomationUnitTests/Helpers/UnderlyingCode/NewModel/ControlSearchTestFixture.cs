@@ -84,14 +84,14 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
         
         private ControlSearcher PerformGetElements(GetControlCmdletBase cmdlet)
         {
-            var controlSearch =
-                AutomationFactory.GetSearchImpl<ControlSearcher>() as ControlSearcher;
+            var controlSearcher =
+                AutomationFactory.GetSearcherImpl<ControlSearcher>() as ControlSearcher;
             
-            controlSearch.GetElements(
-                controlSearch.ConvertCmdletToControlSearcherData(cmdlet),
+            controlSearcher.GetElements(
+                controlSearcher.ConvertCmdletToControlSearcherData(cmdlet),
                 0);
             
-            return controlSearch;
+            return controlSearcher;
         }
         #endregion helpers
         

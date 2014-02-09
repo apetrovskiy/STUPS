@@ -325,5 +325,25 @@ namespace UIAutomation
 //            return nativeCollection.Cast<IEnumerable<AutomationElement>>()
 //                .Except(excludeElements.Select<IUiElement, AutomationElement>(elt => elt.GetSourceElement()));
 //        }
+        
+        internal static string[] ConvertControlTypeToStringArray(this ControlType[] controlTypes)
+        {
+            // List<string> resultCollection = new List<string>();
+            
+            if (null == controlTypes || 0 == controlTypes.Length) return new string[] {};
+            
+            return controlTypes.Select(
+                ct =>
+                null != ct ? ct.ProgrammaticName.Substring(12) : string.Empty).ToArray();
+        }
+        
+        internal static string[] ConvertControlTypeToStringArray(this ControlType controlType)
+        {
+            // List<string> resultCollection = new List<string>();
+            
+            if (null == controlType) return new string[] {};
+            
+            return new string[] { controlType.ProgrammaticName.Substring(12) };
+        }
     }
 }

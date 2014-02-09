@@ -544,7 +544,7 @@ namespace UIAutomation
             // int y = Cursor.Position.Y;
             
             var contextMenuSearcher =
-                AutomationFactory.GetSearchImpl<ContextMenuSearcher>();
+                AutomationFactory.GetSearcherImpl<ContextMenuSearcher>();
             
             var contextMenuSearcherData =
                 new ContextMenuSearcherData {

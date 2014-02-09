@@ -79,7 +79,7 @@ namespace UIAutomation.Commands
             try {
                 
                 var windowSearcher =
-                    AutomationFactory.GetSearchImpl<WindowSearcher>();
+                    AutomationFactory.GetSearcherImpl<WindowSearcher>();
                 
                 var windowSearcherData =
                     new WindowSearcherData {

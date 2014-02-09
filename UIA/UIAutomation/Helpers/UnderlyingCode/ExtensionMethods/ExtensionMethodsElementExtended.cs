@@ -27,10 +27,8 @@ namespace UIAutomation
     /// </summary>
     public static class ExtensionMethodsElementExtended
     {
-        // 20140118
         internal static IInputSimulator InputSimulator { get; set; }
         
-        // 20140118
         static ExtensionMethodsElementExtended()
         {
             InputSimulator = AutomationFactory.GetInputSimulator();
@@ -38,6 +36,35 @@ namespace UIAutomation
         
         internal static IUiEltCollection PerformFindAll(this IExtendedModelHolder holder, ControlType controlType)
         {
+            try {
+                var controlSearcherData =
+                    new ControlSearcherData {
+                    ControlType = controlType.ConvertControlTypeToStringArray(),
+                    InputObject = new IUiElement[] { holder.GetParentElement() }
+                };
+                
+                var controlSearcher =
+                    AutomationFactory.GetSearcherImpl<ControlSearcher>();
+                
+                var result = controlSearcher.GetElements(
+                    controlSearcherData,
+                    Preferences.Timeout);
+                
+                var result2 = AutomationFactory.GetUiEltCollection(result);
+                
+                return result2;
+                
+                /*
+                return controlSearcher.GetElements(
+                    controlSearcherData,
+                    0) as IUiEltCollection;
+                */
+            } catch (Exception) {
+                return new UiEltCollection(true);
+                // throw;
+            }
+            // 20140209
+            /*
             try {
                 return (holder as UiExtendedModelHolder).GetParentElement()
                     .FindAll(
@@ -49,6 +76,7 @@ namespace UIAutomation
                 return new UiEltCollection(true);
                 // throw;
             }
+            */
         }
         
         // 20140127

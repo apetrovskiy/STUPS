@@ -41,15 +41,9 @@ namespace UIAutomation
             ControlSearcherData data = SearcherData as ControlSearcherData;
             
             #region conditions
-            // GetControlCmdletBase tempCmdlet =
-            // 20140121
-            // tempCmdlet =
-            //     new GetControlCmdletBase {ControlType = data.ControlType};
-
-            // bool notTextSearch = true;
             notTextSearch = true;
             if (!string.IsNullOrEmpty(data.ContainsText) && !data.Regex) {
-                // tempCmdlet.ContainsText = data.ContainsText;
+                
                 notTextSearch = false;
                 
                 conditionsForTextSearch =
@@ -60,13 +54,10 @@ namespace UIAutomation
                 
             } else {
                 
-                // conditionsForExactSearch = GetExactSearchCondition(cmdlet);
                 conditionsForExactSearch = GetExactSearchCondition(data);
                 
                 conditionsForWildCards =
-                    // GetWildcardSearchCondition(cmdlet);
                     GetWildcardSearchCondition(data);
-                
             }
             #endregion conditions
             

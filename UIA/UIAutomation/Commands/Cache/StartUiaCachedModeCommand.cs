@@ -101,7 +101,7 @@ namespace UIAutomation.Commands
                         true);
                 }
                 
-                CurrentData.CacheRequest = new CacheRequest {AutomationElementMode = AutomationElementMode.Full};
+                CurrentData.CacheRequest = new CacheRequest {AutomationElementMode = AutomationElementMode.None};
                 CurrentData.CacheRequest.TreeFilter = UiaHelper.GetTreeFilter(Filter);
                 CurrentData.CacheRequest.TreeScope = UiaHelper.GetTreeScope(Scope);
                 
@@ -116,6 +116,7 @@ namespace UIAutomation.Commands
                     CurrentData.CacheRequest.Add(AutomationElement.ClickablePointProperty);
                     CurrentData.CacheRequest.Add(AutomationElement.IsEnabledProperty);
                     CurrentData.CacheRequest.Add(AutomationElement.IsOffscreenProperty);
+                    CurrentData.CacheRequest.Add(AutomationElement.ProcessIdProperty);
                     // 20140208
                     CurrentData.CacheRequest.Add(ValuePattern.ValueProperty);
                     CurrentData.CacheRequest.Add(ExpandCollapsePattern.ExpandCollapseStateProperty);

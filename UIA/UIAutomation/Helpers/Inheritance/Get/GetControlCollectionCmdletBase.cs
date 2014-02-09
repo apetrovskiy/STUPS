@@ -590,7 +590,7 @@ namespace UIAutomation
                     // WriteVerbose(this, "selected TreeScope." + scope.ToString());
                     
                     var controlSearch =
-                        AutomationFactory.GetSearchImpl<ControlSearcher>() as ControlSearcher;
+                        AutomationFactory.GetSearcherImpl<ControlSearcher>() as ControlSearcher;
                     
                     Condition conditions =
                         ControlSearcher.GetWildcardSearchCondition(

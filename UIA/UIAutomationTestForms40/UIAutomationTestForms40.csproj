@@ -208,6 +208,18 @@
     <Compile Include="..\UIAutomationTestForms\FormsCollection\WinForms\WinFormsTripled.Designer.cs">
       <Link>FormsCollection\WinForms\WinFormsTripled.Designer.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomationTestForms\FormsCollection\WinForms\WinFormsWithGrid.cs">
+      <Link>FormsCollection\WinForms\WinFormsWithGrid.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTestForms\FormsCollection\WinForms\WinFormsWithGrid.Designer.cs">
+      <Link>FormsCollection\WinForms\WinFormsWithGrid.Designer.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTestForms\FormsCollection\WinForms\WinFormsWithLists.cs">
+      <Link>FormsCollection\WinForms\WinFormsWithLists.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTestForms\FormsCollection\WinForms\WinFormsWithLists.Designer.cs">
+      <Link>FormsCollection\WinForms\WinFormsWithLists.Designer.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomationTestForms\FormsCollection\WinForms\WinFormsWithMenus.cs">
       <Link>FormsCollection\WinForms\WinFormsWithMenus.cs</Link>
     </Compile>
@@ -293,6 +305,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="..\UIAutomationTestForms\FormsCollection\WinForms\WinFormsOuter.resx">
       <Link>FormsCollection\WinForms\WinFormsOuter.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\UIAutomationTestForms\FormsCollection\WinForms\WinFormsWithGrid.resx">
+      <Link>FormsCollection\WinForms\WinFormsWithGrid.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\UIAutomationTestForms\FormsCollection\WinForms\WinFormsWithLists.resx">
+      <Link>FormsCollection\WinForms\WinFormsWithLists.resx</Link>
     </EmbeddedResource>
     <EmbeddedResource Include="..\UIAutomationTestForms\FormsCollection\WinForms\WinFormsWithMenus.resx">
       <Link>FormsCollection\WinForms\WinFormsWithMenus.resx</Link>

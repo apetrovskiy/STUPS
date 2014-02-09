@@ -65,7 +65,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             Condition condition =
                 ControlSearcher.GetWildcardSearchCondition(
                     new ControlSearcherData {
-                        ControlType = FakeFactory.ConvertControlTypeToStringArray(controlTypes),
+                        // 20140209
+                        // ControlType = FakeFactory.ConvertControlTypeToStringArray(controlTypes),
+                        ControlType = controlTypes.ConvertControlTypeToStringArray(),
                         Name = name,
                         AutomationId = automationId,
                         Class = className,

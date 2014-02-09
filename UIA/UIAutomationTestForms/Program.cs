@@ -307,7 +307,14 @@ namespace UIAutomationTestForms
                     System.Windows.Forms.Application.Run(
                         new WinFormsWizard()); //ctrlType, controlName, controlAutomationId, controlDelay));
                     break;
-                    
+                case Forms.WinFormsWithGrid:
+                    System.Windows.Forms.Application.Run(
+                        new WinFormsWithGrid());
+                    break;
+                case Forms.WinFormsWithLists:
+                    System.Windows.Forms.Application.Run(
+                        new WinFormsWithLists());
+                    break;
                     
                 case Forms.WPFEmpty:
                     WPFEmpty frmWPFE = new WPFEmpty();
@@ -494,7 +501,8 @@ namespace UIAutomationTestForms
         WinFormsFull = 32,
         WinFormsWizard = 33,
         WinFormsWithMenus = 34,
-        
+        WinFormsWithGrid = 35,
+        WinFormsWithLists = 36,
         
         WPFEmpty = 101,
         WPFEmptyX2 = 102,

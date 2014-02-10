@@ -14,5 +14,10 @@ namespace UIAutomation
     /// </summary>
     public class UiKeyboardInputHolder : UiInputHolder, IKeyboardInputHolder
     {
+//        // 20140210
+//        public UiKeyboardInputHolder(int seconds) : base(seconds)
+//        {
+//            
+//        }
     }
 }

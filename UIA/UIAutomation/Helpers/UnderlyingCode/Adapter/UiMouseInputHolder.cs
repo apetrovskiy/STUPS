@@ -14,5 +14,10 @@ namespace UIAutomation
     /// </summary>
     public class UiMouseInputHolder : UiInputHolder, IMouseInputHolder
     {
+//        // 20140210
+//        public UiMouseInputHolder(int seconds) : base(seconds)
+//        {
+//            
+//        }
     }
 }

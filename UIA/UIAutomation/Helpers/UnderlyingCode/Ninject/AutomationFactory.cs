@@ -257,7 +257,9 @@ namespace UIAutomation
         #endregion Common objects
 		
 		#region IUiElement
+		// 20140210
 		internal static IExtendedModelHolder GetUiExtendedModelHolder(IUiElement parentElement, TreeScope scope)
+		// internal static IExtendedModelHolder GetUiExtendedModelHolder(IUiElement parentElement, TreeScope scope, int seconds)
 		{
 	        if (null == parentElement) {
 	            return null;
@@ -276,7 +278,12 @@ namespace UIAutomation
     			    // holder = childKernel.Get<IExtendedModelHolder>(new IParameter[] {});
     			    // holder = (parentElement as UiElement).ChildKernel.Get<IExtendedModelHolder>(new IParameter[] {});
     			    // childKernel.Dispose();
-    			    holder = ChildKernel.Get<IExtendedModelHolder>(new IParameter[] {});
+                
+                // 20140210
+                holder = ChildKernel.Get<IExtendedModelHolder>(new IParameter[] {});
+                // var paramSeconds = new ConstructorArgument("seconds", seconds);
+                // holder = ChildKernel.Get<IExtendedModelHolder>(paramSeconds);
+                
     			    // (parentElement as UiElement).ChildKernel.Dispose();
 //    			} else {
 //    			    holder = Kernel.Get<IExtendedModelHolder>(new IParameter[] {});

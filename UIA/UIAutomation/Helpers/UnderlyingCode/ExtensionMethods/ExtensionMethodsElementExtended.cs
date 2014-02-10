@@ -45,14 +45,20 @@ namespace UIAutomation
                 
                 var controlSearcher =
                     AutomationFactory.GetSearcherImpl<ControlSearcher>();
-                
+                /*
                 var result = controlSearcher.GetElements(
                     controlSearcherData,
-                    Preferences.Timeout);
+                    // Preferences.Timeout);
+                    holder.Seconds);
                 
                 var result2 = AutomationFactory.GetUiEltCollection(result);
                 
                 return result2;
+                */
+                return AutomationFactory.GetUiEltCollection(
+                    controlSearcher.GetElements(
+                        controlSearcherData,
+                        holder.Seconds));
                 
                 /*
                 return controlSearcher.GetElements(
@@ -93,9 +99,13 @@ namespace UIAutomation
             }
         }
         
+        // 20140210
         internal static IExtendedModelHolder GetExtendedModelHolder(this IUiElement element, TreeScope scope)
+        // internal static IExtendedModelHolder GetExtendedModelHolder(this IUiElement element, TreeScope scope, int seconds)
         {
+            // 20140210
             return AutomationFactory.GetUiExtendedModelHolder(element, scope);
+            // return AutomationFactory.GetUiExtendedModelHolder(element, scope, seconds);
         }
         
         internal static T GetHolder<T>(this IUiElement element)
@@ -104,11 +114,11 @@ namespace UIAutomation
         }
         
         #region IControlInputHolder
-        // internal static IControlInputHolder GetC(this IControlInputHolder holder)
-        internal static string GetC(this IControlInputHolder holder)
-        {
-            return "c"; // holder;
-        }
+//        // internal static IControlInputHolder GetC(this IControlInputHolder holder)
+//        internal static string GetC(this IControlInputHolder holder)
+//        {
+//            return "c"; // holder;
+//        }
         
         public static IUiElement PerformClick(this IControlInputHolder holder)
         {

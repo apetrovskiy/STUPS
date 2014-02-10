@@ -503,11 +503,19 @@ namespace UIAutomation
                         #region Extended
                         case "get_Descendants":
                             invocation.ReturnValue =
+                                // 20140210
                                 (invocation.Proxy as IUiElement).GetExtendedModelHolder(TreeScope.Descendants);
+                                // (invocation.Proxy as IUiElement).GetExtendedModelHolder(
+                                //     TreeScope.Descendants,
+                                //     (int)invocation.Arguments[0]);
                             break;
                         case "get_Children":
                             invocation.ReturnValue =
+                                // 20140210
                                 (invocation.Proxy as IUiElement).GetExtendedModelHolder(TreeScope.Children);
+                                // (invocation.Proxy as IUiElement).GetExtendedModelHolder(
+                                //     TreeScope.Children,
+                                //     (int)invocation.Arguments[0]);
                             break;
                         case "get_Buttons":
                             invocation.ReturnValue =

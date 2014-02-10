@@ -18,5 +18,7 @@ namespace UIAutomation
     {
         void SetScope(TreeScope scope);
         TreeScope GetScope();
+        // 20140210
+        int Seconds { get; set; }
     }
 }

@@ -29,6 +29,9 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             FakeFactory.Init();
             
             ExtensionMethodsElementExtended.InputSimulator = Substitute.For<IInputSimulator>();
+            
+            // 20140210
+            Preferences.Timeout = 10;
         }
         
         [SetUp]
@@ -37,11 +40,16 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             FakeFactory.Init();
             
             ExtensionMethodsElementExtended.InputSimulator = Substitute.For<IInputSimulator>();
+            
+            // 20140210
+            Preferences.Timeout = 10;
         }
         
         [TearDown]
         public void TearDown()
         {
+            // 20140210
+            Preferences.Timeout = 5000;
         }
         
         #region helpers

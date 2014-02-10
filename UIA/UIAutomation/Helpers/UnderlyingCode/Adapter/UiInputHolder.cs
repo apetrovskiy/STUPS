@@ -18,9 +18,14 @@ namespace UIAutomation
         
 //        public System.DateTime CreationTime { get; set; }
         
+        // 20140210
         public UiInputHolder()
+        // public UiInputHolder(int seconds)
         {
 //            CreationTime = System.DateTime.Now;
+            
+            // 20140210
+            // Seconds = seconds;
         }
         
         public void SetParentElement(IUiElement parentElement)

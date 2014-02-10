@@ -14,5 +14,10 @@ namespace UIAutomation
     /// </summary>
     public class UiTouchInputHolder : UiInputHolder, ITouchInputHolder
     {
+//        // 20140210
+//        public UiTouchInputHolder(int seconds) : base(seconds)
+//        {
+//            
+//        }
     }
 }

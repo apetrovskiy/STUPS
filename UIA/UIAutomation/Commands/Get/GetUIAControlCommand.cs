@@ -14,6 +14,8 @@ namespace UIAutomation.Commands
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
+    
+    using UIAutomation.Helpers.Commands;
 
     /// <summary>
     /// Description of GetUiaControl.
@@ -40,38 +42,42 @@ namespace UIAutomation.Commands
             
             if (!CheckAndPrepareInput(this)) { return; }
             
-            var controlSearcher =
-                AutomationFactory.GetSearcherImpl<ControlSearcher>() as ControlSearcher;
+//            var controlSearcher =
+//                AutomationFactory.GetSearcherImpl<ControlSearcher>() as ControlSearcher;
+//            
+//            List<IUiElement> returnCollection =
+//                controlSearcher.GetElements(
+//                    controlSearcher.ConvertCmdletToControlSearcherData(this),
+//                    Timeout);
+//            
+//            if (null != returnCollection && 0 < returnCollection.Count) {
+//
+//                WriteObject(this, returnCollection);
+//                
+//            } else {
+//                
+//                WriteError(
+//                    this,
+//                    "failed to get control in " + 
+//                    Timeout.ToString() +
+//                    " milliseconds by:" +
+//                    " title: '" +
+//                    Name +
+//                    "', automationId: '" + 
+//                    AutomationId + 
+//                    "', className: '" + 
+//                    Class +
+//                    "', value: '" +
+//                    Value +
+//                    "'.",
+//                    "ControlIsNull",
+//                    ErrorCategory.OperationTimeout,
+//                    true);
+//            }
             
-            List<IUiElement> returnCollection =
-                controlSearcher.GetElements(
-                    controlSearcher.ConvertCmdletToControlSearcherData(this),
-                    Timeout);
-            
-            if (null != returnCollection && 0 < returnCollection.Count) {
-
-                WriteObject(this, returnCollection);
-                
-            } else {
-                
-                WriteError(
-                    this,
-                    "failed to get control in " + 
-                    Timeout.ToString() +
-                    " milliseconds by:" +
-                    " title: '" +
-                    Name +
-                    "', automationId: '" + 
-                    AutomationId + 
-                    "', className: '" + 
-                    Class +
-                    "', value: '" +
-                    Value +
-                    "'.",
-                    "ControlIsNull",
-                    ErrorCategory.OperationTimeout,
-                    true);
-            }
+            var command =
+                new GetControlCommand(this);
+            command.Execute();
         }
     }
     

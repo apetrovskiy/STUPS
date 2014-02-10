@@ -290,6 +290,7 @@
     <Compile Include="Commands\Wizard\NewUIAWizardCommand.cs" />
     <Compile Include="Commands\Wizard\RemoveUIAWizardStepCommand.cs" />
     <Compile Include="Commands\Wizard\StepUIAWizardCommand.cs" />
+    <Compile Include="Helpers\Commands\Get\GetControlCommand.cs" />
     <Compile Include="Helpers\Inheritance\Get\GetFamilyCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\Wizard\WizardStepCmdletBase.cs" />
     <Compile Include="Helpers\UnderlyingCode\Adapter\UiaAutomation.cs" />
@@ -548,6 +549,7 @@
     <Folder Include="Commands\Win32" />
     <Folder Include="Commands\RDP" />
     <Folder Include="Commands\Sheridan" />
+    <Folder Include="Helpers\Commands\Get" />
     <Folder Include="Helpers\Commands\RDP" />
     <Folder Include="Helpers\UnderlyingCode\Adapter" />
     <Folder Include="Helpers\UnderlyingCode\ExtensionMethods" />

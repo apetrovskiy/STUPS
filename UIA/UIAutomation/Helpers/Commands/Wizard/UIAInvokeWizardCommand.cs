@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace UIAutomation
+namespace UIAutomation.Helpers.Commands
 {
     using System;
     using System.Management.Automation;

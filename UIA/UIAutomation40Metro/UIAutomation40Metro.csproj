@@ -567,6 +567,33 @@
     <Compile Include="..\UIAutomation\Commands\Wizard\StepUIAWizardCommand.cs">
       <Link>Commands\Wizard\StepUIAWizardCommand.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Container\UIANewContainerCommand.cs">
+      <Link>Helpers\Commands\Container\UIANewContainerCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\RDP\UIANewRemoteDesktopProtocolFileCommand.cs">
+      <Link>Helpers\Commands\RDP\UIANewRemoteDesktopProtocolFileCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\UIACommand.cs">
+      <Link>Helpers\Commands\UIACommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Wizard\UIAAddWizardStepCommand.cs">
+      <Link>Helpers\Commands\Wizard\UIAAddWizardStepCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Wizard\UIAGetWizardCommand.cs">
+      <Link>Helpers\Commands\Wizard\UIAGetWizardCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Wizard\UIAInvokeWizardCommand.cs">
+      <Link>Helpers\Commands\Wizard\UIAInvokeWizardCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Wizard\UIANewWizardCommand.cs">
+      <Link>Helpers\Commands\Wizard\UIANewWizardCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Wizard\UIARemoveWizardStepCommand.cs">
+      <Link>Helpers\Commands\Wizard\UIARemoveWizardStepCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Wizard\UIAStepWizardCommand.cs">
+      <Link>Helpers\Commands\Wizard\UIAStepWizardCommand.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Helpers\Inheritance\CacheRequestCmdletBase.cs">
       <Link>Helpers\Inheritance\CacheRequestCmdletBase.cs</Link>
     </Compile>
@@ -779,33 +806,6 @@
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Aspect\ParameterValidationAspect.cs">
       <Link>Helpers\UnderlyingCode\Aspect\ParameterValidationAspect.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Commands\Container\UIANewContainerCommand.cs">
-      <Link>Helpers\UnderlyingCode\Commands\Container\UIANewContainerCommand.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Commands\RDP\UIANewRemoteDesktopProtocolFileCommand.cs">
-      <Link>Helpers\UnderlyingCode\Commands\RDP\UIANewRemoteDesktopProtocolFileCommand.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Commands\UIACommand.cs">
-      <Link>Helpers\UnderlyingCode\Commands\UIACommand.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Commands\Wizard\UIAAddWizardStepCommand.cs">
-      <Link>Helpers\UnderlyingCode\Commands\Wizard\UIAAddWizardStepCommand.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Commands\Wizard\UIAGetWizardCommand.cs">
-      <Link>Helpers\UnderlyingCode\Commands\Wizard\UIAGetWizardCommand.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Commands\Wizard\UIAInvokeWizardCommand.cs">
-      <Link>Helpers\UnderlyingCode\Commands\Wizard\UIAInvokeWizardCommand.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Commands\Wizard\UIANewWizardCommand.cs">
-      <Link>Helpers\UnderlyingCode\Commands\Wizard\UIANewWizardCommand.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Commands\Wizard\UIARemoveWizardStepCommand.cs">
-      <Link>Helpers\UnderlyingCode\Commands\Wizard\UIARemoveWizardStepCommand.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Commands\Wizard\UIAStepWizardCommand.cs">
-      <Link>Helpers\UnderlyingCode\Commands\Wizard\UIAStepWizardCommand.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethods.cs">
       <Link>Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethods.cs</Link>
@@ -1166,17 +1166,11 @@
     <Folder Include="Commands\RDP" />
     <Folder Include="Commands\Sheridan" />
     <Folder Include="Commands\Win32" />
+    <Folder Include="Helpers\Commands" />
+    <Folder Include="Helpers\Commands\Container" />
+    <Folder Include="Helpers\Commands\Wizard" />
+    <Folder Include="Helpers\Commands\RDP" />
     <Folder Include="Helpers\UnderlyingCode\Aspect" />
-    <Folder Include="Helpers\UnderlyingCode\Commands" />
-    <Folder Include="Helpers\UnderlyingCode\Commands" />
-    <Folder Include="Helpers\UnderlyingCode\Commands\Container" />
-    <Folder Include="Helpers\UnderlyingCode\Commands\Container" />
-    <Folder Include="Helpers\UnderlyingCode\Commands\Container" />
-    <Folder Include="Helpers\UnderlyingCode\Commands\RDP" />
-    <Folder Include="Helpers\UnderlyingCode\Commands\Wizard" />
-    <Folder Include="Helpers\UnderlyingCode\Commands\RDP" />
-    <Folder Include="Helpers\UnderlyingCode\Commands\Wizard" />
-    <Folder Include="Helpers\UnderlyingCode\Commands\Wizard" />
     <Folder Include="Helpers\UnderlyingCode\Adapter" />
     <Folder Include="Helpers\UnderlyingCode\ExtensionMethods" />
     <Folder Include="Helpers\UnderlyingCode\ExtensionMethods" />

@@ -14,7 +14,6 @@ namespace UIAutomation.Commands
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
-    
     using UIAutomation.Helpers.Commands;
 
     /// <summary>
@@ -76,7 +75,7 @@ namespace UIAutomation.Commands
 //            }
             
             var command =
-                new GetControlCommand(this);
+                AutomationFactory.GetCommand<GetControlCommand>(this);
             command.Execute();
         }
     }

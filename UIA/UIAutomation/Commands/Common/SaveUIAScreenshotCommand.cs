@@ -12,12 +12,12 @@ using System.Drawing.Imaging;
 namespace UIAutomation.Commands
 {
     using System.Management.Automation;
+    using UIAutomation.Helpers.Commands;
     
     /// <summary>
     /// Description of SaveUiaScreenshotCommand.
     /// </summary>
     //[Cmdlet(VerbsData.Save, "UiaScreenshot")]
-    
     public class ScreenshotCmdletBase : GetControlCmdletBase //HasControlInputCmdletBase
     {
         #region Constructor

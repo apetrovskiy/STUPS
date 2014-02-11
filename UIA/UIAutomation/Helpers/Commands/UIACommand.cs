@@ -15,14 +15,18 @@ namespace UIAutomation
     /// <summary>
     /// Description of UiaCommand.
     /// </summary>
-    internal abstract class UiaCommand
+    // 20140211
+    // internal abstract class UiaCommand
+    public abstract class UiaCommand
     {
-        internal UiaCommand(CommonCmdletBase cmdlet)
+        // 20140211
+        // internal UiaCommand(CommonCmdletBase cmdlet)
+        public UiaCommand(CommonCmdletBase cmdlet)
         {
             Cmdlet = cmdlet;
         }
         
         internal CommonCmdletBase Cmdlet { get; set; }
-        internal abstract void Execute();
+        public abstract void Execute();
     }
 }

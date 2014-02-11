@@ -567,11 +567,59 @@
     <Compile Include="..\UIAutomation\Commands\Wizard\StepUIAWizardCommand.cs">
       <Link>Commands\Wizard\StepUIAWizardCommand.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Common\ClearControlTextCommand.cs">
+      <Link>Helpers\Commands\Common\ClearControlTextCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Common\GetActiveWindowCommand.cs">
+      <Link>Helpers\Commands\Common\GetActiveWindowCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Common\GetFocusCommand.cs">
+      <Link>Helpers\Commands\Common\GetFocusCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Common\HideCurrentHighlighterCommand.cs">
+      <Link>Helpers\Commands\Common\HideCurrentHighlighterCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Common\InvokeControlClickCommand.cs">
+      <Link>Helpers\Commands\Common\InvokeControlClickCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Common\InvokeControlContextMenuCommand.cs">
+      <Link>Helpers\Commands\Common\InvokeControlContextMenuCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Common\InvokeScriptCommand.cs">
+      <Link>Helpers\Commands\Common\InvokeScriptCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Common\MoveCursorCommand.cs">
+      <Link>Helpers\Commands\Common\MoveCursorCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Common\SaveScreenshotCommand.cs">
+      <Link>Helpers\Commands\Common\SaveScreenshotCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Common\SetControlKeysCommand.cs">
+      <Link>Helpers\Commands\Common\SetControlKeysCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Common\SetControlTextCommand.cs">
+      <Link>Helpers\Commands\Common\SetControlTextCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Common\SetFocusCommand.cs">
+      <Link>Helpers\Commands\Common\SetFocusCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Common\ShowDesktopCommand.cs">
+      <Link>Helpers\Commands\Common\ShowDesktopCommand.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Helpers\Commands\Container\UIANewContainerCommand.cs">
       <Link>Helpers\Commands\Container\UIANewContainerCommand.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\Commands\Get\GetControlCommand.cs">
       <Link>Helpers\Commands\Get\GetControlCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Get\GetDesktopCommand.cs">
+      <Link>Helpers\Commands\Get\GetDesktopCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Get\GetWindowCommand.cs">
+      <Link>Helpers\Commands\Get\GetWindowCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Get\TestControlStateCommand.cs">
+      <Link>Helpers\Commands\Get\TestControlStateCommand.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\Commands\RDP\UIANewRemoteDesktopProtocolFileCommand.cs">
       <Link>Helpers\Commands\RDP\UIANewRemoteDesktopProtocolFileCommand.cs</Link>
@@ -579,23 +627,23 @@
     <Compile Include="..\UIAutomation\Helpers\Commands\UIACommand.cs">
       <Link>Helpers\Commands\UIACommand.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\Commands\Wizard\UIAAddWizardStepCommand.cs">
-      <Link>Helpers\Commands\Wizard\UIAAddWizardStepCommand.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Wizard\AddWizardStepCommand.cs">
+      <Link>Helpers\Commands\Wizard\AddWizardStepCommand.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\Commands\Wizard\UIAGetWizardCommand.cs">
-      <Link>Helpers\Commands\Wizard\UIAGetWizardCommand.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Wizard\GetWizardCommand.cs">
+      <Link>Helpers\Commands\Wizard\GetWizardCommand.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\Commands\Wizard\UIAInvokeWizardCommand.cs">
-      <Link>Helpers\Commands\Wizard\UIAInvokeWizardCommand.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Wizard\InvokeWizardCommand.cs">
+      <Link>Helpers\Commands\Wizard\InvokeWizardCommand.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\Commands\Wizard\UIANewWizardCommand.cs">
-      <Link>Helpers\Commands\Wizard\UIANewWizardCommand.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Wizard\NewWizardCommand.cs">
+      <Link>Helpers\Commands\Wizard\NewWizardCommand.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\Commands\Wizard\UIARemoveWizardStepCommand.cs">
-      <Link>Helpers\Commands\Wizard\UIARemoveWizardStepCommand.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Wizard\RemoveWizardStepCommand.cs">
+      <Link>Helpers\Commands\Wizard\RemoveWizardStepCommand.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\Commands\Wizard\UIAStepWizardCommand.cs">
-      <Link>Helpers\Commands\Wizard\UIAStepWizardCommand.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Wizard\StepWizardCommand.cs">
+      <Link>Helpers\Commands\Wizard\StepWizardCommand.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\Inheritance\CacheRequestCmdletBase.cs">
       <Link>Helpers\Inheritance\CacheRequestCmdletBase.cs</Link>
@@ -797,6 +845,9 @@
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Aspect\ErrorHandlingAspect.cs">
       <Link>Helpers\UnderlyingCode\Aspect\ErrorHandlingAspect.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Aspect\HighlighterAspect.cs">
+      <Link>Helpers\UnderlyingCode\Aspect\HighlighterAspect.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Aspect\InputValidationAspect.cs">
       <Link>Helpers\UnderlyingCode\Aspect\InputValidationAspect.cs</Link>
@@ -1174,6 +1225,7 @@
     <Folder Include="Helpers\Commands\Container" />
     <Folder Include="Helpers\Commands\Container" />
     <Folder Include="Helpers\Commands\Get" />
+    <Folder Include="Helpers\Commands\Common" />
     <Folder Include="Helpers\Commands\RDP" />
     <Folder Include="Helpers\Commands\Wizard" />
     <Folder Include="Helpers\Commands\RDP" />

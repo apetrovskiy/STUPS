@@ -42,8 +42,8 @@ Console.WriteLine("CreateWizard 00001");
 Console.WriteLine("CreateWizard 00002");
             // the -StartAction parameter could not be $null
             cmdlet.StartAction = new ScriptBlock[]{ };
-            UiaNewWizardCommand command =
-                new UiaNewWizardCommand(cmdlet);
+            NewWizardCommand command =
+                new NewWizardCommand(cmdlet);
 Console.WriteLine("CreateWizard 00003");
             command.Execute();
 Console.WriteLine("CreateWizard 00004");
@@ -65,8 +65,8 @@ Console.WriteLine("AddWizardStep 00004");
         	cmdlet.StepForwardAction = forwardAction;
         	cmdlet.StepBackwardAction = backwardAction;
 Console.WriteLine("AddWizardStep 00005");
-        	UiaAddWizardStepCommand command =
-        	    new UiaAddWizardStepCommand(cmdlet);
+        	AddWizardStepCommand command =
+        	    new AddWizardStepCommand(cmdlet);
 Console.WriteLine("AddWizardStep 00006");
         	command.Execute();
 Console.WriteLine("AddWizardStep 00007");

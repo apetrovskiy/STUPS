@@ -13,22 +13,24 @@ namespace UIAutomation.Helpers.Commands
     using System.Management.Automation;
     using System.Collections;
     using System.Collections.Generic;
-    // using Commands;
-    
     using UIAutomation.Commands;
     
     /// <summary>
     /// Description of GetControlCommand.
     /// </summary>
-    internal class GetControlCommand : UiaCommand
+    // 20140211
+    // internal class GetControlCommand : UiaCommand
+    public class GetControlCommand : UiaCommand
     {
-        internal GetControlCommand(CommonCmdletBase cmdlet) : base (cmdlet)
+        // 20140211
+        // internal GetControlCommand(CommonCmdletBase cmdlet) : base (cmdlet)
+        public GetControlCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         
-        internal override void Execute()
+        public override void Execute()
         {
-            GetUiaControlCommand cmdlet =
+            var cmdlet =
                 (GetUiaControlCommand)Cmdlet;
             
             // WizardHelper.InvokeWizard(cmdlet);

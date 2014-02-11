@@ -13,6 +13,7 @@ namespace UIAutomation.Commands
     using System;
     using System.Management.Automation;
     using System.Windows.Automation;
+    using UIAutomation.Helpers.Commands;
 
     /// <summary>
     /// Description of TestUiaControlStateCommand.
@@ -33,12 +34,16 @@ namespace UIAutomation.Commands
         {
             if (!CheckAndPrepareInput(this)) { return; }
             
-            bool result = 
-                TestControlByPropertiesFromHashtable(
-                    InputObject,
-                    SearchCriteria,
-                    Preferences.Timeout);
-            WriteObject(this, result);
+//            bool result = 
+//                TestControlByPropertiesFromHashtable(
+//                    InputObject,
+//                    SearchCriteria,
+//                    Preferences.Timeout);
+//            WriteObject(this, result);
+            
+            var command =
+                AutomationFactory.GetCommand<TestControlStateCommand>(this);
+            command.Execute();
         }
     }
 }

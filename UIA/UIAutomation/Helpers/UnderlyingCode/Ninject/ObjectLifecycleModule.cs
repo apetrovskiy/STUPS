@@ -43,6 +43,8 @@ namespace UIAutomation
             
             // 20140130
             Bind<IAutomation>().To<UiaAutomation>().InSingletonScope();
+            
+            Bind<UiaCommand>().ToSelf().InSingletonScope();
             #endregion common objects
             
 //            #region IUiElement

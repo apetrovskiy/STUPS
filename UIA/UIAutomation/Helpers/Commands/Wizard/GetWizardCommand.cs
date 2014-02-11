@@ -16,13 +16,13 @@ namespace UIAutomation
     /// <summary>
     /// Description of UiaGetWizardCommand.
     /// </summary>
-    internal class UiaGetWizardCommand : UiaCommand
+    public class GetWizardCommand : UiaCommand
     {
-        internal UiaGetWizardCommand(CommonCmdletBase cmdlet) : base (cmdlet)
+        public GetWizardCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         
-        internal override void Execute()
+        public override void Execute()
         {
             GetUiaWizardCommand cmdlet =
                 (GetUiaWizardCommand)Cmdlet;

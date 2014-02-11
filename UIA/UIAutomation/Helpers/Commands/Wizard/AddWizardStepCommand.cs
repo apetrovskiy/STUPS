@@ -16,13 +16,13 @@ namespace UIAutomation
     /// <summary>
     /// Description of UiaAddWizardStepCommand.
     /// </summary>
-    internal class UiaAddWizardStepCommand : UiaCommand
+    public class AddWizardStepCommand : UiaCommand
     {
-        internal UiaAddWizardStepCommand(CommonCmdletBase cmdlet) : base (cmdlet)
+        public AddWizardStepCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         
-        internal override void Execute()
+        public override void Execute()
         {
             AddUiaWizardStepCommand cmdlet =
                 (AddUiaWizardStepCommand)Cmdlet;

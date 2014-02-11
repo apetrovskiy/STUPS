@@ -11,12 +11,12 @@ namespace UIAutomation.Commands
 {
     using System;
     using System.Management.Automation;
+    using UIAutomation.Helpers.Commands;
     
     /// <summary>
     /// Description of SetUiaFocusCommand.
     /// </summary>
     [Cmdlet(VerbsCommon.Set, "UiaFocus")]
-    
     public class SetUiaFocusCommand : HasControlInputCmdletBase
     {
         #region Parameters

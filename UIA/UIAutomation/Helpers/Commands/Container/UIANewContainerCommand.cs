@@ -11,11 +11,11 @@ using System;
 namespace UIAutomation.Helpers.UnderlyingCode.Commands.Container
 {
     /// <summary>
-    /// Description of UiaNewContainerCommand.
+    /// Description of NewContainerCommand.
     /// </summary>
-    public class UiaNewContainerCommand
+    public class NewContainerCommand
     {
-        public UiaNewContainerCommand()
+        public NewContainerCommand()
         {
         }
     }

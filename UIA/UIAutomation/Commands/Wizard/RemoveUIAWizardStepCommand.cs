@@ -35,8 +35,8 @@ namespace UIAutomation.Commands
         /// </summary>
         protected override void ProcessRecord()
         {
-            UiaRemoveWizardStepCommand command =
-                new UiaRemoveWizardStepCommand(this);
+            RemoveWizardStepCommand command =
+                new RemoveWizardStepCommand(this);
             command.Execute();
             
 //            if (InputObject != null && InputObject is Wizard) {

@@ -14,20 +14,20 @@ namespace UIAutomation
     using Commands;
     
     /// <summary>
-    /// Description of UiaStepWizardCommand.
+    /// Description of UiaRemoveWizardStepCommand.
     /// </summary>
-    internal class UiaStepWizardCommand : UiaCommand
+    public class RemoveWizardStepCommand : UiaCommand
     {
-        internal UiaStepWizardCommand(CommonCmdletBase cmdlet) : base (cmdlet)
+        public RemoveWizardStepCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         
-        internal override void Execute()
+        public override void Execute()
         {
-            StepUiaWizardCommand cmdlet =
-                (StepUiaWizardCommand)Cmdlet;
+            RemoveUiaWizardStepCommand cmdlet =
+                (RemoveUiaWizardStepCommand)Cmdlet;
             
-            WizardHelper.StepWizardStep(cmdlet);
+            WizardHelper.RemoveWizardStep(cmdlet);
         }
     }
 }

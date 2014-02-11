@@ -93,8 +93,8 @@ namespace UIAutomation.Commands
         
         protected override void BeginProcessing()
         {
-            UiaNewRemoteDesktopProtocolFileCommand command =
-                new UiaNewRemoteDesktopProtocolFileCommand(this);
+            NewRemoteDesktopProtocolFileCommand command =
+                new NewRemoteDesktopProtocolFileCommand(this);
             command.Execute();
             
 //            this.rDPProtocolFile +=

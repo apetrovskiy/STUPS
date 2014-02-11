@@ -10,6 +10,7 @@
 namespace UIAutomation.Commands
 {
     using System.Management.Automation;
+    using UIAutomation.Helpers.Commands;
     
     /// <summary>
     /// Description of GetUiaFocusCommand.

@@ -10,6 +10,7 @@
 namespace UIAutomation.Commands
 {
     using System.Management.Automation;
+    using UIAutomation.Helpers.Commands;
     
     /// <summary>
     /// Description of GetUiaActiveWindowCommand.
@@ -19,11 +20,15 @@ namespace UIAutomation.Commands
     {
         protected override void BeginProcessing()
         {
-            IUiElement element =
-                GetActiveWindow();
+//            IUiElement element =
+//                GetActiveWindow();
+//            
+//            CurrentData.CurrentWindow = element;
+//            WriteObject(this, element);
             
-            CurrentData.CurrentWindow = element;
-            WriteObject(this, element);
+            var command =
+                AutomationFactory.GetCommand<GetActiveWindowCommand>(this);
+            command.Execute();
         }
     }
 }

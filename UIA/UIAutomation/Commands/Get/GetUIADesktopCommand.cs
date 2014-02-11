@@ -12,6 +12,7 @@ namespace UIAutomation.Commands
     extern alias UIANET;
     using System.Management.Automation;
     using System.Windows.Automation;
+    using UIAutomation.Helpers.Commands;
     
     /// <summary>
     /// Description of GetUiaDesktopCommand.
@@ -22,10 +23,14 @@ namespace UIAutomation.Commands
     {
         protected override void BeginProcessing()
         {
-            CurrentData.CurrentWindow =
-                UiElement.RootElement;
+//            CurrentData.CurrentWindow =
+//                UiElement.RootElement;
+//            
+//            WriteObject(this, UiElement.RootElement);
             
-            WriteObject(this, UiElement.RootElement);
+            var command =
+                AutomationFactory.GetCommand<GetDesktopCommand>(this);
+            command.Execute();
         }
     }
 }

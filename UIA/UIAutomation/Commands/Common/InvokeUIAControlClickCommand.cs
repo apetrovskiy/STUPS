@@ -10,12 +10,12 @@
 namespace UIAutomation.Commands
 {
     using System.Management.Automation;
+    using UIAutomation.Helpers.Commands;
 
     /// <summary>
     /// Description of InvokeUiaControlClickCommand.
     /// </summary>
     [Cmdlet(VerbsLifecycle.Invoke, "UiaControlClick")]
-    
     public class InvokeUiaControlClickCommand : HasControlInputCmdletBase
     {
         #region Constructor
@@ -62,32 +62,36 @@ namespace UIAutomation.Commands
         {
             if (!CheckAndPrepareInput(this)) { return; }
             
-            foreach (IUiElement inputObject in InputObject) {
+//            foreach (IUiElement inputObject in InputObject) {
+//            
+//                ClickControl(
+//                    this,
+//                    inputObject,
+//                    new ClickSettings {
+//                        RightClick = this.RightClick,
+//                        MidClick = this.MidClick,
+//                        Alt = this.Alt,
+//                        Shift = this.Shift,
+//                        Ctrl = this.Ctrl,
+//                        // inSequence = this.ins
+//                        DoubleClick = this.DoubleClick,
+//                        DoubleClickInterval = this.DoubleClickInterval,
+//                        RelativeX = this.X,
+//                        RelativeY = this.Y
+//                    });
+//                
+//                if (PassThru) {
+//
+//                    WriteObject(this, inputObject);
+//                } else {
+//                    WriteObject(this, true);
+//                }
+//                
+//            }
             
-                ClickControl(
-                    this,
-                    inputObject,
-                    new ClickSettings {
-                        RightClick = this.RightClick,
-                        MidClick = this.MidClick,
-                        Alt = this.Alt,
-                        Shift = this.Shift,
-                        Ctrl = this.Ctrl,
-                        // inSequence = this.ins
-                        DoubleClick = this.DoubleClick,
-                        DoubleClickInterval = this.DoubleClickInterval,
-                        RelativeX = this.X,
-                        RelativeY = this.Y
-                    });
-                
-                if (PassThru) {
-
-                    WriteObject(this, inputObject);
-                } else {
-                    WriteObject(this, true);
-                }
-                
-            }
+            var command =
+                AutomationFactory.GetCommand<InvokeControlClickCommand>(this);
+            command.Execute();
         }
     }
 }

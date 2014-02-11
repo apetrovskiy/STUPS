@@ -26,8 +26,8 @@ namespace UIAutomation.Commands
         /// </summary>
         protected override void ProcessRecord()
         {
-            UiaAddWizardStepCommand command =
-                new UiaAddWizardStepCommand(this);
+            AddWizardStepCommand command =
+                new AddWizardStepCommand(this);
             command.Execute();
         }
         

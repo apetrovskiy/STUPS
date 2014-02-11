@@ -61,7 +61,7 @@ namespace UIAutomation
         /// <summary>
         /// This variable is used in 'negative result' cmdlets like Wait-UiaNoWindow
         /// </summary>
-        protected bool WaitNoWindow { get; set; }
+        protected internal bool WaitNoWindow { get; set; }
         
         protected override void StopProcessing()
         {

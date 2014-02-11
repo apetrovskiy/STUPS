@@ -13,12 +13,12 @@ using System.Windows.Forms;
 namespace UIAutomation.Commands
 {
     using System.Management.Automation;
+    using UIAutomation.Helpers.Commands;
 
     /// <summary>
     /// Description of MoveUiaCursorCommand.
     /// </summary>
     [Cmdlet(VerbsCommon.Move, "UiaCursor")]
-    
     public class MoveUiaCursorCommand : HasControlInputCmdletBase
     {
         #region Constructor
@@ -66,6 +66,10 @@ namespace UIAutomation.Commands
             } // 20120823
                 
             //return;
+            
+//            var command = 
+//                AutomationFactory.GetCommand<MoveCursorCommand>(this);
+//            command.Execute();
         }
     }
 }

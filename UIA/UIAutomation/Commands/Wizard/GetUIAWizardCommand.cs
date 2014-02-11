@@ -24,8 +24,8 @@ namespace UIAutomation.Commands
         
         protected override void BeginProcessing()
         {
-            UiaGetWizardCommand command =
-                new UiaGetWizardCommand(this);
+            GetWizardCommand command =
+                new GetWizardCommand(this);
             command.Execute();
             
 //            Wizard wzd = GetWizard(Name);

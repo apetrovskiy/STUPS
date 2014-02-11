@@ -49,8 +49,8 @@ namespace UIAutomation.Commands
         
         protected override void BeginProcessing()
         {
-            UiaNewWizardCommand command =
-                new UiaNewWizardCommand(this);
+            NewWizardCommand command =
+                new NewWizardCommand(this);
             command.Execute();
         }
         

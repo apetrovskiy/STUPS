@@ -65,7 +65,7 @@ namespace UIAutomation
         #endregion for script recording
         
         #region get active window
-        protected IUiElement GetActiveWindow()
+        protected internal IUiElement GetActiveWindow()
         {
             IUiElement result = null;
             try {

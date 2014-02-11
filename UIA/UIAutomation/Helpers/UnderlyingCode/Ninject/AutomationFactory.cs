@@ -170,12 +170,16 @@ namespace UIAutomation
             		    (UiElement)_generator.CreateClassProxy(
             		        typeof(UiElement),
             		        supportedAdditionalInterfaces,
-                            new MethodSelectorAspect(), new LoggingAspect(), new ErrorHandlingAspect(), new InputValidationAspect(), new ParameterValidationAspect());
+            		        // 20140211
+                            // new MethodSelectorAspect(), new LoggingAspect(), new ErrorHandlingAspect(), new InputValidationAspect(), new ParameterValidationAspect());
+                            new MethodSelectorAspect(), new ErrorHandlingAspect());
                 } else {
             		proxiedElement =
             		    (UiElement)_generator.CreateClassProxy(
             		        typeof(UiElement),
-                            new MethodSelectorAspect(), new LoggingAspect(), new ErrorHandlingAspect(), new InputValidationAspect(), new ParameterValidationAspect());
+            		        // 20140211
+                            // new MethodSelectorAspect(), new LoggingAspect(), new ErrorHandlingAspect(), new InputValidationAspect(), new ParameterValidationAspect());
+                            new MethodSelectorAspect(), new ErrorHandlingAspect());
                 }
             }
             catch (Exception eConvertation) {
@@ -200,6 +204,26 @@ namespace UIAutomation
                 // Console.WriteLine("ProxiedObject");
                 // Console.WriteLine(eProxying.Message);
                 // throw;
+            }
+            
+            return proxiedObject;
+        }
+        
+        internal static T ConvertToProxiedCommand<T>(T commandToConvert, CommonCmdletBase cmdlet)
+        {
+            T proxiedObject = default(T);
+            
+            try {
+                
+                proxiedObject =
+                    (T)_generator.CreateClassProxy(
+                        typeof(T),
+                        new[]{ cmdlet },
+                        new LoggingAspect(), new InputValidationAspect(), new ErrorHandlingAspect(), new HighlighterAspect());
+                
+            } catch (Exception eProxying) {
+                // Console.WriteLine("ProxiedObject");
+                // Console.WriteLine(eProxying.Message);
             }
             
             return proxiedObject;
@@ -764,6 +788,22 @@ namespace UIAutomation
         internal static IAutomation GetMyAutomation()
         {
             return Kernel.Get<IAutomation>();
+        }
+        
+        internal static T GetCommand<T>(CommonCmdletBase cmdlet)
+        {
+            try {
+                T newCommand = default(T);
+                var cmdletParam = new ConstructorArgument("cmdlet", cmdlet);
+                newCommand = Kernel.Get<T>(cmdletParam);
+                return ConvertToProxiedCommand<T>(newCommand, cmdlet);
+            } catch (Exception eCommand) {
+			    // TODO
+			    // write error to error object!!!
+			    // Console.WriteLine("Command 01");
+			    // Console.WriteLine(eCommand.Message);
+			    return default(T);
+            }
         }
     }
 }

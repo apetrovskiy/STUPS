@@ -16,13 +16,13 @@ namespace UIAutomation.Helpers.Commands
     /// <summary>
     /// Description of UiaInvokeWizardCommand.
     /// </summary>
-    internal class UiaInvokeWizardCommand : UiaCommand
+    public class InvokeWizardCommand : UiaCommand
     {
-        internal UiaInvokeWizardCommand(CommonCmdletBase cmdlet) : base (cmdlet)
+        public InvokeWizardCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         
-        internal override void Execute()
+        public override void Execute()
         {
             WizardRunCmdletBase cmdlet =
                 (WizardRunCmdletBase)Cmdlet;

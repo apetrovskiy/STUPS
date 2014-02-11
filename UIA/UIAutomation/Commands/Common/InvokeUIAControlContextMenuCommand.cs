@@ -11,17 +11,17 @@ namespace UIAutomation.Commands
 {
     extern alias UIANET;
     using System.Management.Automation;
+    using UIAutomation.Helpers.Commands;
     
     /// <summary>
-    /// Description of GetUiaControlContextMenuCommand.
+    /// Description of InvokeUiaControlContextMenuCommand.
     /// </summary>
     [Cmdlet(VerbsLifecycle.Invoke, "UiaControlContextMenu")]
-    
-    public class GetUiaControlContextMenuCommand : HasControlInputCmdletBase
+    public class InvokeUiaControlContextMenuCommand : HasControlInputCmdletBase
     {
         // TEMPORARY!
         // 20140116
-        public GetUiaControlContextMenuCommand()
+        public InvokeUiaControlContextMenuCommand()
         {
             X = Preferences.ClickOnControlByCoordX;
             Y = Preferences.ClickOnControlByCoordY;
@@ -43,22 +43,26 @@ namespace UIAutomation.Commands
         {
             if (!CheckAndPrepareInput(this)) { return; }
             
-            foreach (IUiElement inputObject in InputObject) {
-                
-                try {
-                    var resultElement = inputObject.InvokeContextMenu(this, X, Y);
-                    // return the context menu window
-                    WriteObject(this, resultElement);
-                } catch {
-                    WriteError(
-                        this,
-                        "Failed to invoke context menu on this element",
-                        "couldNotClick",
-                        ErrorCategory.InvalidResult,
-                        true);
-                }
-                
-            }
+//            foreach (IUiElement inputObject in InputObject) {
+//                
+//                try {
+//                    var resultElement = inputObject.InvokeContextMenu(this, X, Y);
+//                    // return the context menu window
+//                    WriteObject(this, resultElement);
+//                } catch {
+//                    WriteError(
+//                        this,
+//                        "Failed to invoke context menu on this element",
+//                        "couldNotClick",
+//                        ErrorCategory.InvalidResult,
+//                        true);
+//                }
+//                
+//            }
+            
+            var command =
+                AutomationFactory.GetCommand<InvokeControlContextMenuCommand>(this);
+            command.Execute();
         }
     }
 }

@@ -11,12 +11,12 @@ namespace UIAutomation.Commands
 {
     using System;
     using System.Management.Automation;
+    using UIAutomation.Helpers.Commands;
     
     /// <summary>
     /// Description of SetUiaControlTextCommand.
     /// </summary>
     [Cmdlet(VerbsCommon.Set, "UiaControlText")]
-    
     public class SetUiaControlTextCommand : HasControlInputCmdletBase
     {
         #region Parameters

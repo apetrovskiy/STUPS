@@ -43,8 +43,8 @@ namespace UIAutomation.Commands
         /// </summary>
         protected override void ProcessRecord()
         {
-            UiaStepWizardCommand command =
-                new UiaStepWizardCommand(this);
+            StepWizardCommand command =
+                new StepWizardCommand(this);
             command.Execute();
             
 //            // getting the step the user ordered to run

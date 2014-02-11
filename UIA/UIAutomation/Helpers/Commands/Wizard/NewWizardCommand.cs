@@ -16,13 +16,13 @@ namespace UIAutomation
     /// <summary>
     /// Description of UiaNewWizardCommand.
     /// </summary>
-    internal class UiaNewWizardCommand : UiaCommand
+    public class NewWizardCommand : UiaCommand
     {
-        internal UiaNewWizardCommand(CommonCmdletBase cmdlet) : base (cmdlet)
+        public NewWizardCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         
-        internal override void Execute()
+        public override void Execute()
         {
             NewUiaWizardCommand cmdlet =
                 (NewUiaWizardCommand)Cmdlet;

@@ -12,6 +12,7 @@ namespace UIAutomation.Commands
     using System;
     using System.Management.Automation;
     using System.Collections.Generic;
+    using UIAutomation.Helpers.Commands;
     
     /// <summary>
     /// Description of GetUiaWindow.
@@ -23,7 +24,7 @@ namespace UIAutomation.Commands
         #region Parameters
         #endregion Parameters
 
-        protected bool TestMode { get; set; }
+        protected internal bool TestMode { get; set; }
         
         protected override void BeginProcessing()
         {
@@ -39,161 +40,167 @@ namespace UIAutomation.Commands
         {
             CheckCmdletParameters();
             
-            try {
+//            try {
+//            
+//            List<IUiElement> returnedWindows = new List<IUiElement>();
+//            
+//            try {
+//
+//                if (null == ProcessName &&
+//                    (null == Name && null == AutomationId && null == Class) &&
+//                    null == ProcessId &&
+//                    null == InputObject) {
+//                    
+//                    WriteVerbose(
+//                        this, 
+//                        "no processName, name, processid or process was supplied");
+//                    
+//                    WriteError(
+//                        this,
+//                        "Neither ProcessName nor window Name are provided. Or ProcessId == 0",
+//                        "NoParametersInGetWindow",
+//                        ErrorCategory.InvalidArgument,
+//                        true);
+//                    
+//                } // describe
+//            } 
+//            catch (Exception eCheckParameters) {
+//                
+//                WriteVerbose(this, eCheckParameters.Message);
+//
+//                WriteError(
+//                    this,
+//                    "Unknown error in '" + CmdletName(this) + "' ProcessRecord",
+//                    "UnknownInGetWindow",
+//                    ErrorCategory.InvalidResult,
+//                    true);
+//                
+//            } // describe
+//            
+//            try {
+//                
+//                var windowSearcher =
+//                    AutomationFactory.GetSearcherImpl<WindowSearcher>();
+//                
+//                var windowSearcherData =
+//                    new WindowSearcherData {
+//                    Win32 = this.Win32,
+//                    InputObject = this.InputObject,
+//                    ProcessNames = this.ProcessName,
+//                    ProcessIds = this.ProcessId,
+//                    Name = this.Name,
+//                    AutomationId = this.AutomationId,
+//                    Class = this.Class,
+//                    WithControl = this.WithControl,
+//                    TestMode = this.TestMode,
+//                    SearchCriteria = this.SearchCriteria,
+//                    First = this.First,
+//                    Recurse = this.Recurse,
+//                    WaitNoWindow = this.WaitNoWindow
+//                };
+//                
+//                returnedWindows =
+//                    windowSearcher.GetElements(
+//                        windowSearcherData,
+//                        Timeout);
+//                
+//                windowSearcherData = null;
+//            }
+//            catch {}
+//            
+//            try {
+//                if (null != returnedWindows && returnedWindows.Count > 0) {
+//                    
+//                    if (TestMode) {
+//                        
+//                        WriteObject(this, !WaitNoWindow);
+//                        
+//                    } else {
+//                        
+//                        WriteObject(this, returnedWindows);
+//                    }
+//                    
+//                    // 20140121
+//                    returnedWindows.Clear();
+//                    returnedWindows = null;
+//                    
+//                } else {
+//                    
+//                    if (TestMode) {
+//                        
+//                        WriteObject(this, WaitNoWindow);
+//                        
+//                    } else {
+//                    
+//                        string name = string.Empty;
+//                        string procName = string.Empty;
+//                        string procId = string.Empty;
+//        
+//                        try{ 
+//                            foreach(string n in Name) { 
+//                                name += n; name += ","; 
+//                            }
+//                            name = name.Substring(0, name.Length - 1);
+//                        }
+//                        catch {}
+//        
+//                        try{ 
+//                            foreach(string s in ProcessName) { 
+//                                procName += s; procName += ","; 
+//                            }
+//                            procName = procName.Substring(0, procName.Length - 1);
+//                        }
+//                        catch {}
+//        
+//                        try {
+//                            foreach (int i in ProcessId) {
+//                                procId += i.ToString();
+//                                procId += ",";
+//                            }
+//                            procId = procId.Substring(0, procId.Length - 1);
+//                        }
+//                        catch {}
+//        
+//                        WriteError(
+//                            this,
+//                            "Failed to get window in " + 
+//                            Timeout.ToString() +
+//                            " milliseconds by:" +
+//                            " process name: '" +
+//                            procName +
+//                            "', process Id: " + 
+//                            procId + 
+//                            ", window title: '" + 
+//                            name +
+//                            "', automationId: '" +
+//                            AutomationId +
+//                            "', className: '" +
+//                            Class +
+//                            "'.",
+//                            "FailedToGetWindow",
+//                            ErrorCategory.InvalidResult,
+//                            true);
+//                    }
+//                }
+//            }
+//            catch (Exception eOuter) {
+//                WriteVerbose(
+//                    this,
+//                    eOuter.Message);
+//            }
+//            
+//            }
+//            catch (Exception eTheOutest) {
+//                WriteVerbose(
+//                    this,
+//                    eTheOutest.Message);
+//            }
             
-            List<IUiElement> returnedWindows = new List<IUiElement>();
-            
-            try {
-
-                if (null == ProcessName &&
-                    (null == Name && null == AutomationId && null == Class) &&
-                    null == ProcessId &&
-                    null == InputObject) {
-                    
-                    WriteVerbose(
-                        this, 
-                        "no processName, name, processid or process was supplied");
-                    
-                    WriteError(
-                        this,
-                        "Neither ProcessName nor window Name are provided. Or ProcessId == 0",
-                        "NoParametersInGetWindow",
-                        ErrorCategory.InvalidArgument,
-                        true);
-                    
-                } // describe
-            } 
-            catch (Exception eCheckParameters) {
-                
-                WriteVerbose(this, eCheckParameters.Message);
-
-                WriteError(
-                    this,
-                    "Unknown error in '" + CmdletName(this) + "' ProcessRecord",
-                    "UnknownInGetWindow",
-                    ErrorCategory.InvalidResult,
-                    true);
-                
-            } // describe
-            
-            try {
-                
-                var windowSearcher =
-                    AutomationFactory.GetSearcherImpl<WindowSearcher>();
-                
-                var windowSearcherData =
-                    new WindowSearcherData {
-                    Win32 = this.Win32,
-                    InputObject = this.InputObject,
-                    ProcessNames = this.ProcessName,
-                    ProcessIds = this.ProcessId,
-                    Name = this.Name,
-                    AutomationId = this.AutomationId,
-                    Class = this.Class,
-                    WithControl = this.WithControl,
-                    TestMode = this.TestMode,
-                    SearchCriteria = this.SearchCriteria,
-                    First = this.First,
-                    Recurse = this.Recurse,
-                    WaitNoWindow = this.WaitNoWindow
-                };
-                
-                returnedWindows =
-                    windowSearcher.GetElements(
-                        windowSearcherData,
-                        Timeout);
-                
-                windowSearcherData = null;
-            }
-            catch {}
-            
-            try {
-                if (null != returnedWindows && returnedWindows.Count > 0) {
-                    
-                    if (TestMode) {
-                        
-                        WriteObject(this, !WaitNoWindow);
-                        
-                    } else {
-                        
-                        WriteObject(this, returnedWindows);
-                    }
-                    
-                    // 20140121
-                    returnedWindows.Clear();
-                    returnedWindows = null;
-                    
-                } else {
-                    
-                    if (TestMode) {
-                        
-                        WriteObject(this, WaitNoWindow);
-                        
-                    } else {
-                    
-                        string name = string.Empty;
-                        string procName = string.Empty;
-                        string procId = string.Empty;
-        
-                        try{ 
-                            foreach(string n in Name) { 
-                                name += n; name += ","; 
-                            }
-                            name = name.Substring(0, name.Length - 1);
-                        }
-                        catch {}
-        
-                        try{ 
-                            foreach(string s in ProcessName) { 
-                                procName += s; procName += ","; 
-                            }
-                            procName = procName.Substring(0, procName.Length - 1);
-                        }
-                        catch {}
-        
-                        try {
-                            foreach (int i in ProcessId) {
-                                procId += i.ToString();
-                                procId += ",";
-                            }
-                            procId = procId.Substring(0, procId.Length - 1);
-                        }
-                        catch {}
-        
-                        WriteError(
-                            this,
-                            "Failed to get window in " + 
-                            Timeout.ToString() +
-                            " milliseconds by:" +
-                            " process name: '" +
-                            procName +
-                            "', process Id: " + 
-                            procId + 
-                            ", window title: '" + 
-                            name +
-                            "', automationId: '" +
-                            AutomationId +
-                            "', className: '" +
-                            Class +
-                            "'.",
-                            "FailedToGetWindow",
-                            ErrorCategory.InvalidResult,
-                            true);
-                    }
-                }
-            }
-            catch (Exception eOuter) {
-                WriteVerbose(
-                    this,
-                    eOuter.Message);
-            }
-            
-            }
-            catch (Exception eTheOutest) {
-                WriteVerbose(
-                    this,
-                    eTheOutest.Message);
-            }
+            // 20140211
+            // experimental !!!
+            var command =
+                AutomationFactory.GetCommand<GetWindowCommand>(this);
+            command.Execute();
         }
         
         protected override void EndProcessing()

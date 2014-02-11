@@ -14,6 +14,7 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
     using System.Windows.Automation;
     using System.Collections.Generic;
+    using UIAutomation.Helpers.Commands;
     
     /// <summary>
     /// Description of StartUiaCachedModeCommand.

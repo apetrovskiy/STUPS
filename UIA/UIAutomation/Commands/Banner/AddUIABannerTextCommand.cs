@@ -10,6 +10,7 @@
 namespace UIAutomation.Commands
 {
     using System.Management.Automation;
+    using UIAutomation.Helpers.Commands;
     
     /// <summary>
     /// Description of AddUiaBannerTextCommand.
@@ -26,7 +27,11 @@ namespace UIAutomation.Commands
         
         protected override void BeginProcessing()
         {
-            UiaHelper.AppendBanner(Message);
+//            UiaHelper.AppendBanner(Message);
+            
+            var command =
+                AutomationFactory.GetCommand<AddBannerTextCommand>(this);
+            command.Execute();
         }
     }
 }

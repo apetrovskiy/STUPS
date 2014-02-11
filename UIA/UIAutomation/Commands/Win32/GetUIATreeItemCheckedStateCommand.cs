@@ -17,8 +17,9 @@ namespace UIAutomation.Commands
     /// <summary>
     /// Description of GetUiaTreeItemCheckedStateCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "UiaTreeItemCheckedState")]
-    public class GetUiaTreeItemCheckedStateCommand : Win32CmdletBase //GetControlCmdletBase
+    // 20140210
+    // [Cmdlet(VerbsCommon.Get, "UiaTreeItemCheckedState")]
+    public class GetUiaTreeItemCheckedStateCommand : Win32CmdletBase
     {
         public GetUiaTreeItemCheckedStateCommand()
         {
@@ -47,9 +48,6 @@ namespace UIAutomation.Commands
         {
             if (!CheckAndPrepareInput(this)) { return; }
             
-            // 20120823
-            // 20131109
-            //foreach (AutomationElement inputObject in this.InputObject) {
             foreach (IUiElement inputObject in InputObject) {
             
 //                ClickControl(

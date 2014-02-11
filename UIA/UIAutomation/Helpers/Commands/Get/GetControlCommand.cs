@@ -18,12 +18,8 @@ namespace UIAutomation.Helpers.Commands
     /// <summary>
     /// Description of GetControlCommand.
     /// </summary>
-    // 20140211
-    // internal class GetControlCommand : UiaCommand
     public class GetControlCommand : UiaCommand
     {
-        // 20140211
-        // internal GetControlCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         public GetControlCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }

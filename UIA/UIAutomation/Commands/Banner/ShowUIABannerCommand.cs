@@ -10,6 +10,7 @@
 namespace UIAutomation.Commands
 {
     using System.Management.Automation;
+    using UIAutomation.Helpers.Commands;
     
     /// <summary>
     /// Description of ShowUiaBannerCommand.
@@ -26,7 +27,11 @@ namespace UIAutomation.Commands
         
         protected override void BeginProcessing()
         {
-            UiaHelper.ShowBanner(Message);
+            // UiaHelper.ShowBanner(Message);
+            
+            var command =
+                AutomationFactory.GetCommand<ShowBannerCommand>(this);
+            command.Execute();
         }
     }
 }

@@ -10,6 +10,7 @@
 namespace UIAutomation.Commands
 {
     using System.Management.Automation;
+    using UIAutomation.Helpers.Commands;
     
     /// <summary>
     /// Description of HideUiaBannerCommand.
@@ -19,7 +20,11 @@ namespace UIAutomation.Commands
     {
         protected override void BeginProcessing()
         {
-            UiaHelper.HideBanner();
+            // UiaHelper.HideBanner();
+            
+            var command =
+                AutomationFactory.GetCommand<HideBannerCommand>(this);
+            command.Execute();
         }
     }
 }

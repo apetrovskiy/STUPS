@@ -567,6 +567,15 @@
     <Compile Include="..\UIAutomation\Commands\Wizard\StepUIAWizardCommand.cs">
       <Link>Commands\Wizard\StepUIAWizardCommand.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Banner\AddBannerTextCommand.cs">
+      <Link>Helpers\Commands\Banner\AddBannerTextCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Banner\HideBannerCommand.cs">
+      <Link>Helpers\Commands\Banner\HideBannerCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Banner\ShowBannerCommand.cs">
+      <Link>Helpers\Commands\Banner\ShowBannerCommand.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Helpers\Commands\Common\ClearControlTextCommand.cs">
       <Link>Helpers\Commands\Common\ClearControlTextCommand.cs</Link>
     </Compile>
@@ -1222,10 +1231,15 @@
     <Folder Include="Commands\Win32" />
     <Folder Include="Helpers\Commands" />
     <Folder Include="Helpers\Commands" />
+    <Folder Include="Helpers\Commands\Common" />
     <Folder Include="Helpers\Commands\Container" />
     <Folder Include="Helpers\Commands\Container" />
     <Folder Include="Helpers\Commands\Get" />
     <Folder Include="Helpers\Commands\Common" />
+    <Folder Include="Helpers\Commands\Banner" />
+    <Folder Include="Helpers\Commands\Get" />
+    <Folder Include="Helpers\Commands\Cache" />
+    <Folder Include="Helpers\Commands\Event" />
     <Folder Include="Helpers\Commands\RDP" />
     <Folder Include="Helpers\Commands\Wizard" />
     <Folder Include="Helpers\Commands\RDP" />

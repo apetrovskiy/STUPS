@@ -287,6 +287,9 @@
     <Compile Include="..\UIAutomation\Commands\Event\RegisterUIAToolTipOpenedEventCommand.cs">
       <Link>Commands\Event\RegisterUIAToolTipOpenedEventCommand.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Commands\Event\RegisterUIAUnexpectedWindowCommand.cs">
+      <Link>Commands\Event\RegisterUIAUnexpectedWindowCommand.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Commands\Event\RegisterUIAWindowClosedEventCommand.cs">
       <Link>Commands\Event\RegisterUIAWindowClosedEventCommand.cs</Link>
     </Compile>
@@ -576,6 +579,12 @@
     <Compile Include="..\UIAutomation\Helpers\Commands\Banner\ShowBannerCommand.cs">
       <Link>Helpers\Commands\Banner\ShowBannerCommand.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Cache\StartCachedModeCommand.cs">
+      <Link>Helpers\Commands\Cache\StartCachedModeCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Cache\StopCachedModeCommand.cs">
+      <Link>Helpers\Commands\Cache\StopCachedModeCommand.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Helpers\Commands\Common\ClearControlTextCommand.cs">
       <Link>Helpers\Commands\Common\ClearControlTextCommand.cs</Link>
     </Compile>
@@ -617,6 +626,51 @@
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\Commands\Container\UIANewContainerCommand.cs">
       <Link>Helpers\Commands\Container\UIANewContainerCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Event\GetRegisteredEventCommand.cs">
+      <Link>Helpers\Commands\Event\GetRegisteredEventCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Event\RegisterFocusChangedEventCommand.cs">
+      <Link>Helpers\Commands\Event\RegisterFocusChangedEventCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Event\RegisterInvokedEventCommand.cs">
+      <Link>Helpers\Commands\Event\RegisterInvokedEventCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Event\RegisterMenuClosedEventCommand.cs">
+      <Link>Helpers\Commands\Event\RegisterMenuClosedEventCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Event\RegisterMenuOpenedEventCommand.cs">
+      <Link>Helpers\Commands\Event\RegisterMenuOpenedEventCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Event\RegisterPropertyChangedEventCommand.cs">
+      <Link>Helpers\Commands\Event\RegisterPropertyChangedEventCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Event\RegisterStructureChangedEventCommand.cs">
+      <Link>Helpers\Commands\Event\RegisterStructureChangedEventCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Event\RegisterTextChangedEventCommand.cs">
+      <Link>Helpers\Commands\Event\RegisterTextChangedEventCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Event\RegisterTextSelectionChangedEventCommand.cs">
+      <Link>Helpers\Commands\Event\RegisterTextSelectionChangedEventCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Event\RegisterToolTipClosedEventCommand.cs">
+      <Link>Helpers\Commands\Event\RegisterToolTipClosedEventCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Event\RegisterToolTipOpenedEventCommand.cs">
+      <Link>Helpers\Commands\Event\RegisterToolTipOpenedEventCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Event\RegisterUnexpectedWindowCommand.cs">
+      <Link>Helpers\Commands\Event\RegisterUnexpectedWindowCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Event\RegisterWindowClosedEventCommand.cs">
+      <Link>Helpers\Commands\Event\RegisterWindowClosedEventCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Event\RegisterWindowOpenedEventCommand.cs">
+      <Link>Helpers\Commands\Event\RegisterWindowOpenedEventCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Event\UnregisterEventCommand.cs">
+      <Link>Helpers\Commands\Event\UnregisterEventCommand.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\Commands\Get\GetControlCommand.cs">
       <Link>Helpers\Commands\Get\GetControlCommand.cs</Link>
@@ -869,6 +923,9 @@
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Aspect\ParameterValidationAspect.cs">
       <Link>Helpers\UnderlyingCode\Aspect\ParameterValidationAspect.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Aspect\TestResultAspect.cs">
+      <Link>Helpers\UnderlyingCode\Aspect\TestResultAspect.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethods.cs">
       <Link>Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethods.cs</Link>
@@ -1230,14 +1287,18 @@
     <Folder Include="Commands\Sheridan" />
     <Folder Include="Commands\Win32" />
     <Folder Include="Helpers\Commands" />
+    <Folder Include="Helpers\Commands\Banner" />
+    <Folder Include="Helpers\Commands\Cache" />
     <Folder Include="Helpers\Commands\Common" />
     <Folder Include="Helpers\Commands\Container" />
+    <Folder Include="Helpers\Commands\Event" />
     <Folder Include="Helpers\Commands\Get" />
     <Folder Include="Helpers\Commands\Common" />
     <Folder Include="Helpers\Commands\Get" />
     <Folder Include="Helpers\Commands\Banner" />
     <Folder Include="Helpers\Commands\Cache" />
     <Folder Include="Helpers\Commands\Event" />
+    <Folder Include="Helpers\Commands\Wait" />
     <Folder Include="Helpers\Commands\RDP" />
     <Folder Include="Helpers\Commands\Wizard" />
     <Folder Include="Helpers\UnderlyingCode\Aspect" />

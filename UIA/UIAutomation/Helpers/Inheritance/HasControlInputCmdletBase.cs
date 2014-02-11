@@ -1094,7 +1094,6 @@ try {
             IEnumerable<Hashtable> SearchCriteria,
             int timeout)
         {
-            
             bool result = false;
             foreach (Hashtable ht in SearchCriteria)
             {
@@ -1116,13 +1115,11 @@ try {
                 cmdlet.Timeout = timeout;
                 
                 if (null != inputElements && null != (inputElements as IUiElement[]) && inputElements.Any()) {
-                
                     cmdlet.InputObject = inputElements;
                 } else {
                     if (CurrentData.CurrentWindow == null) {
                         return result;
                     }
-                    
                     cmdlet.InputObject = new[]{ CurrentData.CurrentWindow };
                 }
                 
@@ -1137,7 +1134,6 @@ try {
                         cmdlet.Timeout);
                 
                 if (null == elementsToWorkWith) {
-
                     WriteVerbose(this, "couldn't get the control(s)");
                     return result;
                 } else {
@@ -1159,15 +1155,20 @@ try {
                                 UiaHelper.HighlightCheckedControl(elementToWorkWith);
                             }
                             
+                            // 20140211
+                            result = true;
                         } else { // 20130710
-                            return result;
+                            // 20140211
+                            // return result;
+                            // nothing to do
                         }
                     
                     } // 20120824
                 }
             }
             
-            result = true;
+            // 20140211
+            // result = true;
             
             return result;
         }

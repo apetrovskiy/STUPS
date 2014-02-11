@@ -370,6 +370,7 @@
     <Compile Include="Helpers\Commands\Wizard\InvokeWizardCommand.cs" />
     <Compile Include="Helpers\Commands\Wizard\RemoveWizardStepCommand.cs" />
     <Compile Include="Helpers\Commands\Wizard\StepWizardCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Aspect\TestResultAspect.cs" />
     <Compile Include="Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethods.cs" />
     <Compile Include="Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethodsCollection.cs" />
     <Compile Include="Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethodsElement.cs" />
@@ -591,6 +592,7 @@
     <Folder Include="Helpers\Commands\Banner" />
     <Folder Include="Helpers\Commands\Cache" />
     <Folder Include="Helpers\Commands\Event" />
+    <Folder Include="Helpers\Commands\Wait" />
     <Folder Include="Helpers\Commands\RDP" />
     <Folder Include="Helpers\UnderlyingCode\Adapter" />
     <Folder Include="Helpers\UnderlyingCode\ExtensionMethods" />

@@ -33,7 +33,7 @@ namespace UIAutomation.Helpers.Commands
                 cmdlet.TestControlByPropertiesFromHashtable(
                     cmdlet.InputObject,
                     cmdlet.SearchCriteria,
-                    Preferences.Timeout);
+                    0);
             cmdlet.WriteObject(cmdlet, result);
         }
     }

@@ -219,7 +219,7 @@ namespace UIAutomation
                     (T)_generator.CreateClassProxy(
                         typeof(T),
                         new[]{ cmdlet },
-                        new LoggingAspect(), new InputValidationAspect(), new ErrorHandlingAspect(), new HighlighterAspect());
+                        new LoggingAspect(), new InputValidationAspect(), new ErrorHandlingAspect(), new HighlighterAspect(), new TestResultAspect());
                 
             } catch (Exception eProxying) {
                 // Console.WriteLine("ProxiedObject");

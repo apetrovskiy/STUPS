@@ -1123,7 +1123,7 @@ try {
                     cmdlet.InputObject = new[]{ CurrentData.CurrentWindow };
                 }
                 
-                WriteVerbose(this, "getting the control");
+//                WriteVerbose(this, "getting the control");
                 
                 var controlSearcher =
                     AutomationFactory.GetSearcherImpl<ControlSearcher>() as ControlSearcher;
@@ -1133,18 +1133,23 @@ try {
                         controlSearcher.ConvertCmdletToControlSearcherData(cmdlet),
                         cmdlet.Timeout);
                 
-                if (null == elementsToWorkWith) {
-                    WriteVerbose(this, "couldn't get the control(s)");
+                // 20140212
+                // if (null == elementsToWorkWith) {
+                if (null == elementsToWorkWith || 0 == elementsToWorkWith.Count) {
+//                    WriteVerbose(this, "couldn't get the control(s)");
                     return result;
                 } else {
                     
+                    // 20140212
+                    bool theCurrentHashtableMatchesAtLeastOneElement = false;
+                    
                     foreach (IUiElement elementToWorkWith in elementsToWorkWith) {
                         
-                        WriteVerbose(this, "found the control:");
-                        try {WriteVerbose(this, "Name = " + elementToWorkWith.Current.Name); }catch {}
-                        try {WriteVerbose(this, "AutomationId = " + elementToWorkWith.Current.AutomationId); }catch {}
-                        try {WriteVerbose(this, "ClassName = " + elementToWorkWith.Current.ClassName); }catch {}
-                        try {WriteVerbose(this, "ControlType = " + elementToWorkWith.Current.ControlType.ProgrammaticName); }catch {}
+//                        WriteVerbose(this, "found the control:");
+//                        try {WriteVerbose(this, "Name = " + elementToWorkWith.Current.Name); }catch {}
+//                        try {WriteVerbose(this, "AutomationId = " + elementToWorkWith.Current.AutomationId); }catch {}
+//                        try {WriteVerbose(this, "ClassName = " + elementToWorkWith.Current.ClassName); }catch {}
+//                        try {WriteVerbose(this, "ControlType = " + elementToWorkWith.Current.ControlType.ProgrammaticName); }catch {}
                         
                         bool oneControlResult = 
                             elementToWorkWith.TestControlByPropertiesFromDictionary(dict);
@@ -1156,7 +1161,10 @@ try {
                             }
                             
                             // 20140211
-                            result = true;
+                            // 20140212
+                            theCurrentHashtableMatchesAtLeastOneElement = true;
+                            // result = true;
+                            break;
                         } else { // 20130710
                             // 20140211
                             // return result;
@@ -1164,11 +1172,14 @@ try {
                         }
                     
                     } // 20120824
+                    
+                    if (!theCurrentHashtableMatchesAtLeastOneElement) return result;
                 }
             }
             
             // 20140211
-            // result = true;
+            // 20140211
+            result = true;
             
             return result;
         }

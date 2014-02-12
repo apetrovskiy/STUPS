@@ -34,6 +34,7 @@ namespace UIAutomation.Helpers.Commands
                     cmdlet.InputObject,
                     cmdlet.SearchCriteria,
                     0);
+            
             cmdlet.WriteObject(cmdlet, result);
         }
     }

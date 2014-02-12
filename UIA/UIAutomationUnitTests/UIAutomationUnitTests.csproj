@@ -114,6 +114,7 @@
     <Compile Include="Commands\Common\InvokeUIAControlContextMenuCommandTestFixture.cs" />
     <Compile Include="Commands\Container\NewUIAContainerCommandTestFixture.cs" />
     <Compile Include="Commands\Get\GetUiaButtonCommandTestFixture.cs" />
+    <Compile Include="Commands\Get\TestUIAControlStateCommandTestFixture.cs" />
     <Compile Include="Commands\No\WaitUIANoWindowCommandTestFixture.cs" />
     <Compile Include="Commands\Pattern\InvokeUIAToggleStateSetCommandTestFixture.cs" />
     <Compile Include="Commands\Wait\WaitUIAWindowCommandTestFixture.cs" />

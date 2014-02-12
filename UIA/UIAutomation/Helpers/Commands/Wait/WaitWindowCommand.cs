@@ -1,8 +1,8 @@
 ﻿/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
- * Date: 2/11/2014
- * Time: 3:31 PM
+ * Date: 2/12/2014
+ * Time: 11:20 AM
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
@@ -16,20 +16,19 @@ namespace UIAutomation.Helpers.Commands
     using UIAutomation.Commands;
     
     /// <summary>
-    /// Description of HideBannerCommand.
+    /// Description of WaitWindowCommand.
     /// </summary>
-    public class HideBannerCommand : UiaCommand
+    public class WaitWindowCommand : UiaCommand
     {
-        public HideBannerCommand(CommonCmdletBase cmdlet) : base (cmdlet)
+        public WaitWindowCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
+            
         }
         
         public override void Execute()
         {
-//            var cmdlet =
-//                (AddUiaBannerTextCommand)Cmdlet;
             
-            UiaHelper.HideBanner();
         }
+        
     }
 }

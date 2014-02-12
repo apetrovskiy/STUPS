@@ -11,6 +11,7 @@ namespace UIAutomation.Commands
 {
     using System;
     using System.Management.Automation;
+    using UIAutomation.Helpers.Commands;
 
     /// <summary>
     /// Description of WaitUiaControlStateCommand.
@@ -19,10 +20,6 @@ namespace UIAutomation.Commands
     [OutputType(new[] { typeof(object) })]
     public class WaitUiaControlStateCommand : GetControlStateCmdletBase
     {
-        public WaitUiaControlStateCommand()
-        {
-        }
-        
         #region Parameters
         #endregion Parameters
         
@@ -40,42 +37,46 @@ namespace UIAutomation.Commands
         {
             if (!CheckAndPrepareInput(this)) { return; }
             
-            bool result = false;
-            do {
-                result = 
-                    TestControlByPropertiesFromHashtable(
-                        // 20130315
-                        InputObject,
-                        SearchCriteria,
-                        Timeout);
-                if (result) {
-                    WriteObject(this, true);
-                    return;
-                } else {
-                    SleepAndRunScriptBlocks(this);
-                    // wait until timeout expires or the state will be confirmed as valid
-                    DateTime nowDate = 
-                        DateTime.Now;
-                    if ((nowDate - StartDate).TotalSeconds > Timeout / 1000) {
-                        //WriteObject(this, false);
-                        result = true;
-                        //write
-                        //return;
-                    }
-                }
-            } while (!result);
-            //WriteObject(this, false);
-
-            // 20130316
-            // graceful fail
-            WriteObject(this, false);
+            var command =
+                AutomationFactory.GetCommand<WaitControlStateCommand>(this);
+            command.Execute();
             
-//            this.WriteError(
-//                this,
-//                "Timeout expired",
-//                "TimeoutExpired",
-//                ErrorCategory.OperationTimeout,
-//                true);
+//            bool result = false;
+//            do {
+//                result = 
+//                    TestControlByPropertiesFromHashtable(
+//                        // 20130315
+//                        InputObject,
+//                        SearchCriteria,
+//                        Timeout);
+//                if (result) {
+//                    WriteObject(this, true);
+//                    return;
+//                } else {
+//                    SleepAndRunScriptBlocks(this);
+//                    // wait until timeout expires or the state will be confirmed as valid
+//                    DateTime nowDate = 
+//                        DateTime.Now;
+//                    if ((nowDate - StartDate).TotalSeconds > Timeout / 1000) {
+//                        //WriteObject(this, false);
+//                        result = true;
+//                        //write
+//                        //return;
+//                    }
+//                }
+//            } while (!result);
+//            //WriteObject(this, false);
+//
+//            // 20130316
+//            // graceful fail
+//            WriteObject(this, false);
+//            
+////            this.WriteError(
+////                this,
+////                "Timeout expired",
+////                "TimeoutExpired",
+////                ErrorCategory.OperationTimeout,
+////                true);
         }
     }
 }

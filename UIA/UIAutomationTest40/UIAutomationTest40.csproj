@@ -247,6 +247,9 @@
     <Compile Include="..\UIAutomationTest\Commands\Get\Relatives\GetUIAControlRelativesTestFixture.cs">
       <Link>Commands\Get\Relatives\GetUIAControlRelativesTestFixture.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Get\TestUIAControlStateCommandTestFixture.cs">
+      <Link>Commands\Get\TestUIAControlStateCommandTestFixture.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomationTest\Commands\No\WaitUIANoWindowCommandTestFixture.cs">
       <Link>Commands\No\WaitUIANoWindowCommandTestFixture.cs</Link>
     </Compile>
@@ -354,6 +357,9 @@
     </Compile>
     <Compile Include="..\UIAutomationTest\Commands\Wait\WaitUIAControlIsVisibleCommandTestFixture.cs">
       <Link>Commands\Wait\WaitUIAControlIsVisibleCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Wait\WaitUIAControlStateCommandTestFixture.cs">
+      <Link>Commands\Wait\WaitUIAControlStateCommandTestFixture.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomationTest\Commands\Wait\WaitUIAWindowCommandTestFixture.cs">
       <Link>Commands\Wait\WaitUIAWindowCommandTestFixture.cs</Link>

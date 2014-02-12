@@ -13,6 +13,7 @@ namespace UIAutomationTest
     {
         Control_Delay0 = 0,
         Control_Delay2000 = 2000,
+        Control_Delay4000 = 4000,
         Control_Timeout0 = 0,
         Control_Timeout3000Delay500_Delay = 500,
         Control_Timeout3000Delay500_Timeout = 3000,

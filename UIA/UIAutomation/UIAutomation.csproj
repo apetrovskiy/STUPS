@@ -327,6 +327,11 @@
     <Compile Include="Helpers\Commands\Get\GetDesktopCommand.cs" />
     <Compile Include="Helpers\Commands\Get\GetWindowCommand.cs" />
     <Compile Include="Helpers\Commands\Get\TestControlStateCommand.cs" />
+    <Compile Include="Helpers\Commands\Wait\WaitControlIsEnabledCommand.cs" />
+    <Compile Include="Helpers\Commands\Wait\WaitControlIsVisibleCommand.cs" />
+    <Compile Include="Helpers\Commands\Wait\WaitControlStateCommand.cs" />
+    <Compile Include="Helpers\Commands\Wait\WaitEventRaisedCommand.cs" />
+    <Compile Include="Helpers\Commands\Wait\WaitWindowCommand.cs" />
     <Compile Include="Helpers\Inheritance\Get\GetFamilyCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\Wizard\WizardStepCmdletBase.cs" />
     <Compile Include="Helpers\UnderlyingCode\Adapter\UiaAutomation.cs" />

@@ -14,6 +14,7 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
     using System.Windows.Automation;
     using System.Xml.Serialization.Configuration;
+    using UIAutomation.Helpers.Commands;
 
     /// <summary>
     /// Description of WaitUiaControlIsEnabled.
@@ -33,7 +34,7 @@ namespace UIAutomation.Commands
         #endregion Parameters
 
         // 20120206 private System.DateTime startDate;
-        protected ControlType ControlType { get; set; }
+        protected internal ControlType ControlType { get; set; }
 
         protected override void BeginProcessing() {
 //            WriteVerbose(this, "Timeout " + Timeout.ToString());
@@ -57,63 +58,68 @@ namespace UIAutomation.Commands
         protected override void ProcessRecord() {
             if (!CheckAndPrepareInput(this)) { return; }
             
-            // 20120823
-            // 20131109
-            //foreach (AutomationElement inputObject in this.InputObject) {
-            foreach (IUiElement inputObject in InputObject) {
+            // 20140212
+            var command =
+                AutomationFactory.GetCommand<WaitControlIsEnabledCommand>(this);
+            command.Execute();
             
-            //System.Windows.Automation.AutomationElement _control = null;
-            
-            if (!Equals(ControlType, inputObject.Current.ControlType)) {
-                
-                WriteError(
-                    this,
-                    "Control is not of " +
-                     ControlType.ProgrammaticName +
-                     " type",
-                    "WrongControlType",
-                    ErrorCategory.InvalidArgument,
-                    true);
-                
-            }
-
-            /*
-            if (this.ControlType != inputObject.Current.ControlType) {
-                
-                this.WriteError(
-                    this,
-                    "Control is not of " +
-                     this.ControlType.ProgrammaticName +
-                     " type",
-                    "WrongControlType",
-                    ErrorCategory.InvalidArgument,
-                    true);
-                
-            }
-            */
-
-            // moved 20120620
-            //this.WaitIfCondition(_control, true);
-            // 20120823
-            //this.WaitIfCondition(this.InputObject, true);
-            // 20130128
-            //this.WaitIfCondition(inputObject, true);
-            try {
-                WaitIfCondition(inputObject, true);
-            }
-            catch (Exception eWaitIfCondition) {
-                WriteError(
-                    this,
-                    "Failed to get enabled control. " +
-                    eWaitIfCondition.Message,
-                    "FailedToGetEnabledControl",
-                    ErrorCategory.InvalidOperation,
-                    true);
-            }
-
-            WriteObject(this, inputObject);
-            
-            } // 20120823
+//            // 20120823
+//            // 20131109
+//            //foreach (AutomationElement inputObject in this.InputObject) {
+//            foreach (IUiElement inputObject in InputObject) {
+//            
+//            //System.Windows.Automation.AutomationElement _control = null;
+//            
+//            if (!Equals(ControlType, inputObject.Current.ControlType)) {
+//                
+//                WriteError(
+//                    this,
+//                    "Control is not of " +
+//                     ControlType.ProgrammaticName +
+//                     " type",
+//                    "WrongControlType",
+//                    ErrorCategory.InvalidArgument,
+//                    true);
+//                
+//            }
+//
+//            /*
+//            if (this.ControlType != inputObject.Current.ControlType) {
+//                
+//                this.WriteError(
+//                    this,
+//                    "Control is not of " +
+//                     this.ControlType.ProgrammaticName +
+//                     " type",
+//                    "WrongControlType",
+//                    ErrorCategory.InvalidArgument,
+//                    true);
+//                
+//            }
+//            */
+//
+//            // moved 20120620
+//            //this.WaitIfCondition(_control, true);
+//            // 20120823
+//            //this.WaitIfCondition(this.InputObject, true);
+//            // 20130128
+//            //this.WaitIfCondition(inputObject, true);
+//            try {
+//                WaitIfCondition(inputObject, true);
+//            }
+//            catch (Exception eWaitIfCondition) {
+//                WriteError(
+//                    this,
+//                    "Failed to get enabled control. " +
+//                    eWaitIfCondition.Message,
+//                    "FailedToGetEnabledControl",
+//                    ErrorCategory.InvalidOperation,
+//                    true);
+//            }
+//
+//            WriteObject(this, inputObject);
+//            
+//            } // 20120823
             
         }
         

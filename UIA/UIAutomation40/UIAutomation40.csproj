@@ -690,6 +690,21 @@
     <Compile Include="..\UIAutomation\Helpers\Commands\UIACommand.cs">
       <Link>Helpers\Commands\UIACommand.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Wait\WaitControlIsEnabledCommand.cs">
+      <Link>Helpers\Commands\Wait\WaitControlIsEnabledCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Wait\WaitControlIsVisibleCommand.cs">
+      <Link>Helpers\Commands\Wait\WaitControlIsVisibleCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Wait\WaitControlStateCommand.cs">
+      <Link>Helpers\Commands\Wait\WaitControlStateCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Wait\WaitEventRaisedCommand.cs">
+      <Link>Helpers\Commands\Wait\WaitEventRaisedCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Wait\WaitWindowCommand.cs">
+      <Link>Helpers\Commands\Wait\WaitWindowCommand.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Helpers\Commands\Wizard\AddWizardStepCommand.cs">
       <Link>Helpers\Commands\Wizard\AddWizardStepCommand.cs</Link>
     </Compile>

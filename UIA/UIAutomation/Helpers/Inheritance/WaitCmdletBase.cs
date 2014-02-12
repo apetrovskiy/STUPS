@@ -29,7 +29,7 @@ namespace UIAutomation
         #region Parameters
         #endregion Parameters
         
-        protected void WaitIfCondition(
+        protected internal void WaitIfCondition(
             IUiElement _control,
             bool isEnabledOrIsVisible)
         {

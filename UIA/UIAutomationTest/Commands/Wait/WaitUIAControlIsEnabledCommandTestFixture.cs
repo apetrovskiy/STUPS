@@ -10,13 +10,13 @@
 namespace UIAutomationTest.Commands.Wait
 {
     using System;
-    using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
+    using MbUnit.Framework;
     using System.Management.Automation;
     
     /// <summary>
     /// Description of WaitUiaControlIsEnabledCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Wait-UiaControlIsEnabledCommand test")]
+    [TestFixture]
     public class WaitUiaControlIsEnabledCommandTestFixture
     {
         [SetUp]
@@ -36,28 +36,7 @@ namespace UIAutomationTest.Commands.Wait
             MiddleLevelCode.StartProcessWithForm(
                 UIAutomationTestForms.Forms.WinFormsFull, 
                 0);
-            // 20130130
-//            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-//                @"if (-not (Get-UiaWindow -pn " +
-//                MiddleLevelCode.TestFormProcess +
-//                @" | Get-Uia" +
-//                controlType +
-//                " -" + propertyName + " '" +
-//                name +
-//                @"').IsEnabled) { " + 
-//                @"$null = Get-UiaWindow -pn " +
-//                MiddleLevelCode.TestFormProcess +
-//                @" | Get-UiaButton -Name Button2 | Invoke-UiaButtonClick; " +
-//                @"Get-UiaWindow -pn " +
-//                MiddleLevelCode.TestFormProcess +
-//                @" | Get-Uia" + 
-//                controlType +
-//                " -" + propertyName + " '" +
-//                name + 
-//                @"' | Wait-UIA" + 
-//                controlType +
-//                @"IsEnabled | Read-UiaControlIsEnabled; } ",
-//                expectedResult);
+            
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$null = Get-UiaWindow -pn " +
                 MiddleLevelCode.TestFormProcess +

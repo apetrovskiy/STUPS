@@ -10,13 +10,13 @@
 namespace UIAutomationTest.Commands.Wait
 {
     using System;
-    using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
+    using MbUnit.Framework;
     using System.Management.Automation;
     
     /// <summary>
     /// Description of WaitUiaControlIsVisibleCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Wait-UiaControlIsVisibleCommand test")]
+    [TestFixture]
     public class WaitUiaControlIsVisibleCommandTestFixture
     {
         [SetUp]
@@ -59,9 +59,10 @@ namespace UIAutomationTest.Commands.Wait
                 expectedResult);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [Test]
+        [Category("WinForms")]
+        [Category("Slow")]
+        [Category("Control")]
         public void WaitControlIsVisible_Text()
         {
             string name = "label2";
@@ -71,9 +72,10 @@ namespace UIAutomationTest.Commands.Wait
             checkIsVisible(name, controlType, propertyName, expectedResult);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [Test]
+        [Category("WinForms")]
+        [Category("Slow")]
+        [Category("Control")]
         public void WaitControlIsVisible_RadioButton()
         {
             string name = "radioButton2";
@@ -83,9 +85,10 @@ namespace UIAutomationTest.Commands.Wait
             checkIsVisible(name, controlType, propertyName, expectedResult);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [Test]
+        [Category("WinForms")]
+        [Category("Slow")]
+        [Category("Control")]
         public void WaitControlIsVisible_Spinner()
         {
             string name = "domainUpDown2";

@@ -15,6 +15,7 @@ namespace UIAutomation.Commands
     
     using System.Windows.Automation;
     using System.Collections;
+    using UIAutomation.Helpers.Commands;
     
     /// <summary>
     /// Description of WaitUiaWindowCommand.

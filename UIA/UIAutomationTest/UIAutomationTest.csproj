@@ -149,6 +149,7 @@
     <Compile Include="Commands\Get\NamedCommands\GetUIATreeViewCommandTestFixture.cs" />
     <Compile Include="Commands\Get\Parameterless\ParameterlessSearchTestFixture.cs" />
     <Compile Include="Commands\Get\Relatives\GetUIAControlRelativesTestFixture.cs" />
+    <Compile Include="Commands\Get\TestUIAControlStateCommandTestFixture.cs" />
     <Compile Include="Commands\No\WaitUIANoWindowCommandTestFixture.cs" />
     <Compile Include="Commands\Pattern\InvokeUIACollapsePatternCommandTestFixture.cs" />
     <Compile Include="Commands\Pattern\InvokeUIAExpandPatternCommandTestFixture.cs" />
@@ -185,6 +186,7 @@
     <Compile Include="Commands\Sheridan\InvokeUIAshTreeItemClickCommandTestFixture.cs" />
     <Compile Include="Commands\Transcript\StartUIATranscriptCommandTestFixture.cs" />
     <Compile Include="Commands\Transcript\StopUIATranscriptCommandTestFixture.cs" />
+    <Compile Include="Commands\Wait\WaitUIAControlStateCommandTestFixture.cs" />
     <Compile Include="Commands\Wait\WaitUIAWindowCommandTestFixture.cs" />
     <Compile Include="Commands\Wait\WaitUIAControlIsEnabledCommandTestFixture.cs" />
     <Compile Include="Commands\Wait\WaitUIAControlIsVisibleCommandTestFixture.cs" />

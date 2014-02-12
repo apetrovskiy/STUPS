@@ -40,6 +40,9 @@ namespace UIAutomation
         {
             bool result = false;
             
+            // 20140212
+            if (0 == timeout) return result;
+            
             if ((null == ResultCollection || 0 == ResultCollection.Count) &&
                 !((System.DateTime.Now - startTime).TotalSeconds > timeout/1000)) return true;
             

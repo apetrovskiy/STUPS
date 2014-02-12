@@ -13,6 +13,7 @@ namespace UIAutomation.Commands
     using System;
     using System.Management.Automation;
     using System.Windows.Automation;
+    using UIAutomation.Helpers.Commands;
     
     /// <summary>
     /// Description of WaitUiaControlIsVisibleCommand.
@@ -35,7 +36,7 @@ namespace UIAutomation.Commands
         #region Parameters
         #endregion Parameters
         
-        protected ControlType ControlType { get; set; }
+        protected internal ControlType ControlType { get; set; }
         
         // copy paste from the IsEnabled cmdlet
         protected override void BeginProcessing() {
@@ -60,48 +61,51 @@ namespace UIAutomation.Commands
         protected override void ProcessRecord() {
             if (!CheckAndPrepareInput(this)) { return; }
             
-            foreach (IUiElement inputObject in InputObject) {
+//            foreach (IUiElement inputObject in InputObject) {
+//            
+//            //System.Windows.Automation.AutomationElement _control = null;
+//            
+//            if (!Equals(ControlType, inputObject.Current.ControlType)) {
+//                
+//                WriteError(
+//                    this,
+//                    "Control is not of " +
+//                    ControlType.ProgrammaticName +
+//                    " type",
+//                    "WrongControlType",
+//                    ErrorCategory.InvalidArgument,
+//                    true);
+//            }
+//
+//            /*
+//            if (this.ControlType != inputObject.Current.ControlType) {
+//                
+//                this.WriteError(
+//                    this,
+//                    "Control is not of " +
+//                    this.ControlType.ProgrammaticName +
+//                    " type",
+//                    "WrongControlType",
+//                    ErrorCategory.InvalidArgument,
+//                    true);
+//            }
+//            */
+//
+//            //this.WaitIfCondition(_control, false);
+//            // 20120823
+//            //this.WaitIfCondition(this.InputObject, false);
+//            WaitIfCondition(inputObject, false);
+//           
+//            //WriteObject(this, _control);
+//            // 20130105
+//            //WriteObject(this, this.InputObject);
+//            WriteObject(this, inputObject);
+//            
+//            } // 20120823
             
-            //System.Windows.Automation.AutomationElement _control = null;
-            
-            if (!Equals(ControlType, inputObject.Current.ControlType)) {
-                
-                WriteError(
-                    this,
-                    "Control is not of " +
-                    ControlType.ProgrammaticName +
-                    " type",
-                    "WrongControlType",
-                    ErrorCategory.InvalidArgument,
-                    true);
-            }
-
-            /*
-            if (this.ControlType != inputObject.Current.ControlType) {
-                
-                this.WriteError(
-                    this,
-                    "Control is not of " +
-                    this.ControlType.ProgrammaticName +
-                    " type",
-                    "WrongControlType",
-                    ErrorCategory.InvalidArgument,
-                    true);
-            }
-            */
-
-            //this.WaitIfCondition(_control, false);
-            // 20120823
-            //this.WaitIfCondition(this.InputObject, false);
-            WaitIfCondition(inputObject, false);
-           
-            //WriteObject(this, _control);
-            // 20130105
-            //WriteObject(this, this.InputObject);
-            WriteObject(this, inputObject);
-            
-            } // 20120823
-            
+            var command =
+                AutomationFactory.GetCommand<WaitControlIsVisibleCommand>(this);
+            command.Execute();
         }
         
 //        protected override void StopProcessing()

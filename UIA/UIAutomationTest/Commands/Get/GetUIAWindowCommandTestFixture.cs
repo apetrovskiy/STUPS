@@ -16,7 +16,7 @@ namespace UIAutomationTest.Commands.Get
     /// <summary>
     /// Description of GetUiaWindowCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Get-UiaWindowCommand test")]
+    [TestFixture]
     public class GetUiaWindowCommandTestFixture
     {
         public System.Diagnostics.Process process;

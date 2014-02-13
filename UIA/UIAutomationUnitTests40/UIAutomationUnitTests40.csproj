@@ -124,11 +124,26 @@
     <Compile Include="..\UIAutomationUnitTests\Commands\Container\NewUIAContainerCommandTestFixture.cs">
       <Link>Commands\Container\NewUIAContainerCommandTestFixture.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Commands\Get\GetUiaButtonCommandTestFixture.cs">
+      <Link>Commands\Get\GetUiaButtonCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Commands\Get\TestUIAControlStateCommandTestFixture.cs">
+      <Link>Commands\Get\TestUIAControlStateCommandTestFixture.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomationUnitTests\Commands\No\WaitUIANoWindowCommandTestFixture.cs">
       <Link>Commands\No\WaitUIANoWindowCommandTestFixture.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomationUnitTests\Commands\Pattern\InvokeUIAToggleStateSetCommandTestFixture.cs">
       <Link>Commands\Pattern\InvokeUIAToggleStateSetCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Commands\Wait\WaitUIAControlIsEnabledCommandTestFixture.cs">
+      <Link>Commands\Wait\WaitUIAControlIsEnabledCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Commands\Wait\WaitUIAControlIsVisibleCommandTestFixture.cs">
+      <Link>Commands\Wait\WaitUIAControlIsVisibleCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Commands\Wait\WaitUIAControlStateCommandTestFixture.cs">
+      <Link>Commands\Wait\WaitUIAControlStateCommandTestFixture.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomationUnitTests\Commands\Wait\WaitUIAWindowCommandTestFixture.cs">
       <Link>Commands\Wait\WaitUIAWindowCommandTestFixture.cs</Link>

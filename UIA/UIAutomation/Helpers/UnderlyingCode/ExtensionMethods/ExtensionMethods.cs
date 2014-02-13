@@ -123,7 +123,6 @@ namespace UIAutomation
                         if ( !(new WildcardPattern(
                             keyValue,
                             options).IsMatch(element.Current.AcceleratorKey))) {
-                                // WriteVerbose(this, "ACCELERATORKEY failed");
                                 return result;
                         }
                         break;
@@ -131,7 +130,6 @@ namespace UIAutomation
                         if ( !(new WildcardPattern(
                             keyValue,
                             options).IsMatch(element.Current.AccessKey))) {
-                                // WriteVerbose(this, "ACCESSKEY failed");
                                 return result;
                         }
                         break;
@@ -139,7 +137,6 @@ namespace UIAutomation
                         if ( !(new WildcardPattern(
                             keyValue,
                             options).IsMatch(element.Current.AutomationId))) {
-                                // WriteVerbose(this, "AUTOMATIONID failed");
                                 return result;
                         }
                         break;
@@ -148,7 +145,6 @@ namespace UIAutomation
                         if ( !(new WildcardPattern(
                             keyValue,
                             options).IsMatch(element.Current.ClassName))) {
-                                // WriteVerbose(this, "CLASSNAME failed");
                                 return result;
                         }
                         break;
@@ -156,7 +152,6 @@ namespace UIAutomation
                         if ( !(new WildcardPattern(
                             keyValue,
                             options).IsMatch(element.Current.ControlType.ProgrammaticName.Substring(12)))) {
-                                // WriteVerbose(this, "CONTROLTYPE failed");
                                 return result;
                         }
                         break;
@@ -164,7 +159,6 @@ namespace UIAutomation
                         if ( !(new WildcardPattern(
                             keyValue,
                             options).IsMatch(element.Current.FrameworkId))) {
-                                // WriteVerbose(this, "FRAMEWORKID failed");
                                 return result;
                         }
                         break;
@@ -172,7 +166,6 @@ namespace UIAutomation
                         if ( !(new WildcardPattern(
                             keyValue,
                             options).IsMatch(element.Current.HasKeyboardFocus.ToString()))) {
-                                // WriteVerbose(this, "HASKEYBOARDFOCUS failed");
                                 return result;
                         }
                         break;
@@ -180,7 +173,6 @@ namespace UIAutomation
                         if ( !(new WildcardPattern(
                             keyValue,
                             options).IsMatch(element.Current.HelpText))) {
-                                // WriteVerbose(this, "HELPTEXT failed");
                                 return result;
                         }
                         break;
@@ -188,7 +180,6 @@ namespace UIAutomation
                         if ( !(new WildcardPattern(
                             keyValue,
                             options).IsMatch(element.Current.IsContentElement.ToString()))) {
-                                // WriteVerbose(this, "ISCONTENTELEMENT failed");
                                 return result;
                         }
                         break;
@@ -196,7 +187,6 @@ namespace UIAutomation
                         if ( !(new WildcardPattern(
                             keyValue,
                             options).IsMatch(element.Current.IsControlElement.ToString()))) {
-                                // WriteVerbose(this, "ISCONTROLELEMENT failed");
                                 return result;
                         }
                         break;
@@ -204,7 +194,6 @@ namespace UIAutomation
                         if ( !(new WildcardPattern(
                             keyValue,
                             options).IsMatch(element.Current.IsEnabled.ToString()))) {
-                                // WriteVerbose(this, "ISENABLED failed");
                                 return result;
                         }
                         break;
@@ -212,7 +201,6 @@ namespace UIAutomation
                         if ( !(new WildcardPattern(
                             keyValue,
                             options).IsMatch(element.Current.IsKeyboardFocusable.ToString()))) {
-                                // WriteVerbose(this, "ISKEYBOARDFOCUSABLE failed");
                                 return result;
                         }
                         break;
@@ -220,7 +208,6 @@ namespace UIAutomation
                         if ( !(new WildcardPattern(
                             keyValue,
                             options).IsMatch(element.Current.IsOffscreen.ToString()))) {
-                                // WriteVerbose(this, "ISOFFSCREEN failed");
                                 return result;
                         }
                         break;
@@ -228,7 +215,6 @@ namespace UIAutomation
                         if ( !(new WildcardPattern(
                             keyValue,
                             options).IsMatch(element.Current.IsPassword.ToString()))) {
-                                // WriteVerbose(this, "ISPASSWORD failed");
                                 return result;
                         }
                         break;
@@ -236,7 +222,6 @@ namespace UIAutomation
                         if ( !(new WildcardPattern(
                             keyValue,
                             options).IsMatch(element.Current.IsRequiredForForm.ToString()))) {
-                                // WriteVerbose(this, "ISREQUIREDFORFORM failed");
                                 return result;
                         }
                         break;
@@ -244,7 +229,6 @@ namespace UIAutomation
                         if ( !(new WildcardPattern(
                             keyValue,
                             options).IsMatch(element.Current.ItemStatus))) {
-                                // WriteVerbose(this, "ITEMSTATUS failed");
                                 return result;
                         }
                         break;
@@ -252,7 +236,6 @@ namespace UIAutomation
                         if ( !(new WildcardPattern(
                             keyValue,
                             options).IsMatch(element.Current.ItemType))) {
-                                // WriteVerbose(this, "ITEMTYPE failed");
                                 return result;
                         }
                         break;
@@ -260,7 +243,6 @@ namespace UIAutomation
                         if ( !(new WildcardPattern(
                             keyValue,
                             options).IsMatch(element.Current.LabeledBy.Current.Name))) {
-                                // WriteVerbose(this, "LABELEDBY failed");
                                 return result;
                         }
                         break;
@@ -268,7 +250,6 @@ namespace UIAutomation
                         if ( !(new WildcardPattern(
                             keyValue,
                             options).IsMatch(element.Current.LocalizedControlType))) {
-                                // WriteVerbose(this, "LOCALIZEDCONTROLTYPE failed");
                                 return result;
                         }
                         break;
@@ -276,7 +257,6 @@ namespace UIAutomation
                         if ( !(new WildcardPattern(
                             keyValue,
                             options).IsMatch(element.Current.Name))) {
-                                // WriteVerbose(this, "NAME failed");
                                 return result;
                         }
                         break;
@@ -284,7 +264,6 @@ namespace UIAutomation
                         if ( !(new WildcardPattern(
                             keyValue,
                             options).IsMatch(element.Current.NativeWindowHandle.ToString()))) {
-                                // WriteVerbose(this, "NATIVEWINDOWHANDLE failed");
                                 return result;
                         }
                         break;
@@ -292,7 +271,6 @@ namespace UIAutomation
                         if ( !(new WildcardPattern(
                             keyValue,
                             options).IsMatch(element.Current.Orientation.ToString()))) {
-                                // WriteVerbose(this, "ORIENTATION failed");
                                 return result;
                         }
                         break;
@@ -300,7 +278,6 @@ namespace UIAutomation
                         if ( !(new WildcardPattern(
                             keyValue,
                             options).IsMatch(element.Current.ProcessId.ToString()))) {
-                                // WriteVerbose(this, "PROCESSID failed");
                                 return result;
                         }
                         break;

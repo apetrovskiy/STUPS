@@ -424,15 +424,9 @@ namespace UIAutomation
             return result;
         }
         
-        // 20131109
-        //internal bool CheckControl(HasControlInputCmdletBase cmdlet)
         internal bool CheckAndPrepareInput(HasControlInputCmdletBase cmdlet)
         {
             bool result = false;
-            
-            // 20131109
-            //ICollection newInputCollection =
-            //    new UiEltCollection
             
             if (null == cmdlet.InputObject) {
                 
@@ -447,8 +441,6 @@ namespace UIAutomation
                 
             }
             
-            // 20131109
-            //foreach (AutomationElement inputObject in cmdlet.InputObject) {
             foreach (var inputObject in cmdlet.InputObject) {
                 
                 if (null == inputObject) {
@@ -465,14 +457,6 @@ namespace UIAutomation
                     
                     result = false;
                     
-                    // 20131109
-                    // experimental
-//                    cmdlet.WriteError(
-//                        cmdlet,
-//                        "The pipeline input is null",
-//                        "InputIsNull",
-//                        ErrorCategory.InvalidArgument,
-//                        true);
                     cmdlet.WriteError(
                         cmdlet,
                         "A part of the pipeline input is null",
@@ -1091,11 +1075,16 @@ try {
 
         protected internal bool TestControlByPropertiesFromHashtable(
             IUiElement[] inputElements,
-            IEnumerable<Hashtable> SearchCriteria,
+            IEnumerable<Hashtable> searchCriteria,
             int timeout)
         {
             bool result = false;
-            foreach (Hashtable ht in SearchCriteria)
+            
+            // 20140213
+            if (null == searchCriteria || 0 == searchCriteria.Count()) return result;
+            if (null == inputElements || 0 == inputElements.Length) return result;
+            
+            foreach (Hashtable ht in searchCriteria)
             {
                 Dictionary<string, object> dict =
                     ht.ConvertHashtableToDictionary();

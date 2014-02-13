@@ -2,12 +2,12 @@
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
  * Date: 2/13/2014
- * Time: 2:10 AM
+ * Time: 10:48 AM
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace UIAutomationUnitTests.Commands.Get
+namespace UIAutomationUnitTests.Commands.Wait
 {
     using System;
     using System.Collections;
@@ -21,12 +21,12 @@ namespace UIAutomationUnitTests.Commands.Get
     using UIAutomation.Helpers.Commands;
     
     /// <summary>
-    /// Description of TestUIAControlStateCommandTestFixture.
+    /// Description of WaitUIAControlStateCommandTestFixture.
     /// </summary>
     [MbUnit.Framework.TestFixture]
-    public class TestUIAControlStateCommandTestFixture
+    public class WaitUIAControlStateCommandTestFixture
     {
-        public TestUIAControlStateCommandTestFixture()
+        public WaitUIAControlStateCommandTestFixture()
         {
             FakeFactory.Init();
         }
@@ -63,13 +63,14 @@ namespace UIAutomationUnitTests.Commands.Get
                     condition);
             
             var cmdlet =
-                new TestUiaControlStateCommand {
+                new WaitUiaControlStateCommand {
                 SearchCriteria = inputData,
-                InputObject = new[] { element }
+                InputObject = new[] { element },
+                Timeout = 10
             };
             
             // Act
-            var command = new TestControlStateCommand(cmdlet);
+            var command = new WaitControlStateCommand(cmdlet);
             command.Execute();
             
             // Assert

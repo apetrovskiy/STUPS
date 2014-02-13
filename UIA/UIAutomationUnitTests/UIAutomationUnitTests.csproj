@@ -117,6 +117,9 @@
     <Compile Include="Commands\Get\TestUIAControlStateCommandTestFixture.cs" />
     <Compile Include="Commands\No\WaitUIANoWindowCommandTestFixture.cs" />
     <Compile Include="Commands\Pattern\InvokeUIAToggleStateSetCommandTestFixture.cs" />
+    <Compile Include="Commands\Wait\WaitUIAControlIsEnabledCommandTestFixture.cs" />
+    <Compile Include="Commands\Wait\WaitUIAControlIsVisibleCommandTestFixture.cs" />
+    <Compile Include="Commands\Wait\WaitUIAControlStateCommandTestFixture.cs" />
     <Compile Include="Commands\Wait\WaitUIAWindowCommandTestFixture.cs" />
     <Compile Include="Commands\Wizard\AddUIAWizardStepCommandTestFixture.cs" />
     <Compile Include="Commands\Wizard\NewUIAWizardCommandTestFixture.cs" />

@@ -684,6 +684,9 @@
     <Compile Include="..\UIAutomation\Helpers\Commands\Get\TestControlStateCommand.cs">
       <Link>Helpers\Commands\Get\TestControlStateCommand.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Pattern\PatternCommand.cs">
+      <Link>Helpers\Commands\Pattern\PatternCommand.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Helpers\Commands\RDP\UIANewRemoteDesktopProtocolFileCommand.cs">
       <Link>Helpers\Commands\RDP\UIANewRemoteDesktopProtocolFileCommand.cs</Link>
     </Compile>
@@ -1318,6 +1321,7 @@
     <Folder Include="Helpers\Commands\Get" />
     <Folder Include="Helpers\Commands\Cache" />
     <Folder Include="Helpers\Commands\Event" />
+    <Folder Include="Helpers\Commands\Pattern" />
     <Folder Include="Helpers\Commands\Pattern" />
     <Folder Include="Helpers\Commands\Wait" />
     <Folder Include="Helpers\Commands\RDP" />

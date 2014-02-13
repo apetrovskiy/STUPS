@@ -1,4 +1,5 @@
-﻿/*
+﻿using UIAutomation.Commands;
+/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
  * Date: 12/21/2013
@@ -14,6 +15,7 @@ namespace UIAutomation
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
+    using System.Management.Automation;
     using NLog;
     using NLog.Targets;
     using NLog.Config;
@@ -32,6 +34,7 @@ namespace UIAutomation
         {
             if (_alreadyInitialized) return;
             LogPath = logPath;
+            Preferences.LogPath = LogPath;
             Init();
         }
         
@@ -50,6 +53,7 @@ namespace UIAutomation
             set {
                 FileTarget myFileTarget = (FileTarget)LogManager.Configuration.FindTargetByName("file");
                 myFileTarget.FileName = value;
+                // Preferences.LogPath = value;
             }
         }
         
@@ -74,18 +78,80 @@ namespace UIAutomation
                      .GetProperties(BindingFlags.Public | BindingFlags.Instance)
                      .Where(p => p.GetCustomAttributes(typeof(MyAttribute), true).Length != 0)) {
                 
-                result += " -";
-                result += propertyInfo.Name;
-                result += " \"";
-                object tempResult = string.Empty;
-                try { tempResult = propertyInfo.GetValue(cmdlet, null) ?? string.Empty; } catch {}
-                result += tempResult.ToString();
-                result += "\"";
+                result += GetPropertyString(cmdlet, propertyInfo);
             }
             
             result = cmdlet.CmdletName(cmdlet) + result;
             
             return result;
+        }
+        
+        internal string GetPropertyString(CommonCmdletBase cmdlet, PropertyInfo propertyInfo)
+        {
+            string result = string.Empty;
+            
+            if (null == propertyInfo) return result;
+            
+            object tempResult = string.Empty;
+            try {
+                tempResult = propertyInfo.GetValue(cmdlet, null) ?? string.Empty;
+            } catch (Exception) {
+                
+                return string.Empty;
+            }
+            
+            if (string.IsNullOrEmpty(tempResult.ToString())) return result;
+            
+            result += " -";
+            result += propertyInfo.Name;
+            result += " ";
+            
+            switch (tempResult.GetType().Name) {
+                case "String":
+                    result += "\"";
+                    result += tempResult;
+                    result += "\"";
+                    return result;
+                case "String[]":
+                    string tempString = string.Empty;
+                    foreach (string singleElement in tempResult as IEnumerable) {
+                        tempString += ",";
+                        tempString += singleElement;
+                    }
+                    if (0 < tempString.Length) tempString = tempString.Substring(1);
+                    result += tempString;
+                    return result;
+                case "IUiElement":
+                    var convertCmdlet =
+                        new ConvertToUiaSearchCriteriaCommand {
+                        Full = true
+                    };
+                    result += convertCmdlet.ConvertElementToSearchCriteria((IUiElement)tempResult);
+                    return result;
+                case "IUiElement[]":
+                    var convertCmdlet2 =
+                        new ConvertToUiaSearchCriteriaCommand {
+                        Full = true
+                    };
+                    foreach (IUiElement element in tempResult as IUiElement[]) {
+                        result += convertCmdlet2.ConvertElementToSearchCriteria(element);
+                    }
+                    return result;
+                case "Int32":
+                    result += tempResult.ToString();
+                    return result;
+                case "SwitchParameter":
+                    bool tempBool = (SwitchParameter)tempResult;
+                    if (tempBool) {
+                        result += "$true";
+                    } else {
+                        result += "$false";
+                    }
+                    return result;
+                default:
+                    result += tempResult.ToString();
+                    return result;
+            }
         }
         
         

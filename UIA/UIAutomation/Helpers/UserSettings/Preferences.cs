@@ -311,7 +311,12 @@ namespace UIAutomation
         /// <summary>
         /// Path to the log file
         /// </summary>
-        public static string LogPath { get; set; }
+        // public static string LogPath { get; set; }
+        public static string LogPath
+        {
+            get { var logger = AutomationFactory.GetLogger(); return logger.LogPath; }
+            set { var logger = AutomationFactory.GetLogger(); logger.LogPath = value; }
+        }
         
         // 20130429
         public static bool AutoLog { get; set; }

@@ -19,6 +19,7 @@ namespace UIAutomation
     using System.Threading;
     using System.Windows.Forms;
     using UIAutomation.Commands;
+    using UIAutomation.Helpers.Commands;
 
     /// <summary>
     /// Description of PatternCmdletBase.
@@ -32,7 +33,7 @@ namespace UIAutomation
         #endregion Parameters
         
         #region Properties
-        protected string WhatToDo { get; set; }
+        protected internal string WhatToDo { get; set; }
         protected new PatternCmdletBase Child { get; set; }
         #endregion Properties
         
@@ -76,192 +77,197 @@ namespace UIAutomation
             IUiElement _control = null;
             */
             
-            foreach (IUiElement inputObject in InputObject) {
-                IUiElement control = null;
-                try {
-                    control =
-                        inputObject;
-                } catch (Exception eControlTypeException) {
-                    WriteVerbose(this, "PatternCmdletBase: Control is not an AutomationElement");
-                    WriteVerbose(this, "PatternCmdletBase: " + eControlTypeException.Message);
-                    WriteObject(this, false);
-                    return;
-                }
-                switch (WhatToDo)
-                {
-                    case "DockSet":
-                        CallDockPatternForSet(this, control, inputObject, ((InvokeUiaDockPatternSetCommand)this).DockPosition);
-                        break;
-                    case "DockGet":
-                        CallDockPatternForGet(this, control, inputObject);
-                        break;
-                    case "Expand":
-                        CallExpandPattern(this, control, inputObject);
-                        break;
-                    case "Collapse":
-                        CallCollapsePattern(this, control, inputObject);
-                        break;
-                    case "GridItem":
-                        CallGridItemPattern(this, control, inputObject);
-                        break;
-                        // not yet implemented
-                    case "Grid":
-                        CallGridPattern(this, control, inputObject);
-                        break;
-                    case "Invoke":
-                        CallInvokePattern(this, control, inputObject);
-                        break;
-                        // not yet implemented
-                        // case "MultipleView":
-                        // pattern =
-                        // (System.Windows.Automation.MultipleViewPattern)pt;
-                        // break;
-                    case "RangeValueGet":
-                        CallRangeValuePatternForGet(this, control, inputObject);
-                        break;
-                    case "RangeValueSet":
-                        CallRangeValuePatternForSet(this, control, inputObject);
-                        break;
-                    case "ScrollItem":
-                        CallScrollItemPattern(this, control, inputObject);
-                        break;
-                    case "Scroll":
-                        CallScrollPattern(this, control, inputObject);
-                        break;
-                    case "SelectionItem":
-                        CallSelectionItemPattern(this, control, inputObject);
-                        break;
-                    case "SelectionItemState":
-                        CallSelectionItemPatternForState(this, control, inputObject);
-                        break;
-                    case "SelectedItem": // return only elements that are selected
-                        CallSelectedItemPattern(this, control, inputObject);
-                        break;
-                    case "Selection":
-                        CallSelectionPattern(this, control, inputObject);
-                        break;
-                        // not yet implemented
-                    case "TableItem":
-                        CallTableItemPattern(this, control, inputObject);
-                        break;
-                        // not yet implemented
-                    case "Table":
-                        CallTablePattern(this, control, inputObject);
-                        // pattern =
-                        // (System.Windows.Automation.TablePattern)pt;
-                        break;
-                        // not yet implemented
-                        //case "Text":
-                    case "TextGet":
-                        // pattern =
-                        // (System.Windows.Automation.TextPattern)pt;
-                        // break;
-                        CallTextPatternForGet(this, control, inputObject);
-                        break;
-                    case "TextSet":
-                        CallTextPatternForSet(this, control, inputObject);
-                        break;
-                    case "Toggle":
-                        CallTogglePatternMethod(this, control, inputObject);
-                        break;
-                    case "ToggleStateGet":
-                        CallTogglePatternForGet(this, control, inputObject);
-                        break;
-                    case "ToggleStateSet":
-                        CallTogglePatternForSet(this, control, inputObject, ((InvokeUiaToggleStateSetCommand)this).On);
-                        break;
-                    case "TransformMove":
-                        CallTransformPatternForMove(this, control, inputObject);
-                        break;
-                    case "TransformResize":
-                        CallTransformPatternForResize(this, control, inputObject);
-                        break;
-                    case "TransformRotate":
-                        CallTransformPatternForRotate(this, control, inputObject);
-                        break;
-                    case "ValueGet":
-                        CallValuePatternForGet(this, control, inputObject);
-                        break;
-                    case "ValueSet":
-                        CallValuePatternForSet(this, control, inputObject);
-                        break;
-                    case "Window":
-                        CallWindowPattern(this, control, inputObject);
-                        break;
-                    case "Annotation":
-                        WriteVerbose(this, "Annotation");
-                        break;
-                    case "Drag":
-                        WriteVerbose(this, "Drag");
-                        break;
-                    case "DropTarget":
-                        WriteVerbose(this, "DropTarget");
-                        break;
-                    case "ItemContainer":
-                        WriteVerbose(this, "ItemContainer");
-                        break;
-                    case "LegacyIAccessible":
-                        WriteVerbose(this, "LegacyIAccessible");
-                        break;
-                    case "ObjectModel":
-                        WriteVerbose(this, "ObjectModel");
-                        break;
-                    case "Spreadsheet":
-                        WriteVerbose(this, "Spreadsheet");
-                        break;
-                    case "SpreadsheetItem":
-                        WriteVerbose(this, "SpreadsheetItem");
-                        break;
-                    case "Styles":
-                        WriteVerbose(this, "Styles");
-                        break;
-                    case "SynchronizedInput":
-                        WriteVerbose(this, "SynchronizedInput");
-                        break;
-                    case "TextChild":
-                        WriteVerbose(this, "TextChild");
-                        break;
-                    case "VirtualizedItem":
-                        WriteVerbose(this, "VirtualizedItem");
-                        break;
-                }
-                ////return;
-                
-                
-                // 2012/04/10
-                //            Annotation Control Pattern
-                //            Dock Control Pattern
-                //            Drag Control Pattern
-                //            DropTarget Control Pattern
-                //            ExpandCollapse Control Pattern
-                //            Grid Control Pattern
-                //            GridItem Control Pattern
-                //            Invoke Control Pattern
-                //            ItemContainer Control Pattern
-                //            LegacyIAccessible Control Pattern
-                //            MultipleView Control Pattern
-                //            ObjectModel Control Pattern
-                //            RangeValue Control Pattern
-                //            Scroll Control Pattern
-                //            ScrollItem Control Pattern
-                //            Selection Control Pattern
-                //            SelectionItem Control Pattern
-                //            Spreadsheet Control Pattern
-                //            SpreadsheetItem Control Pattern
-                //            Styles Control Pattern
-                //            SynchronizedInput Control Pattern
-                //            Table Control Pattern
-                //            TableItem Control Pattern
-                //            Text and TextRange Control Patterns
-                //            TextChild Control Pattern
-                //            Toggle Control Pattern
-                //            Transform Control Pattern
-                //            Value Control Pattern
-                //            VirtualizedItem Control Pattern
-                //            Window Control Pattern
-                
-                
-            } //20120824
+//            foreach (IUiElement inputObject in InputObject) {
+//                IUiElement control = null;
+//                try {
+//                    control =
+//                        inputObject;
+//                } catch (Exception eControlTypeException) {
+//                    WriteVerbose(this, "PatternCmdletBase: Control is not an AutomationElement");
+//                    WriteVerbose(this, "PatternCmdletBase: " + eControlTypeException.Message);
+//                    WriteObject(this, false);
+//                    return;
+//                }
+//                switch (WhatToDo)
+//                {
+//                    case "DockSet":
+//                        CallDockPatternForSet(this, control, inputObject, ((InvokeUiaDockPatternSetCommand)this).DockPosition);
+//                        break;
+//                    case "DockGet":
+//                        CallDockPatternForGet(this, control, inputObject);
+//                        break;
+//                    case "Expand":
+//                        CallExpandPattern(this, control, inputObject);
+//                        break;
+//                    case "Collapse":
+//                        CallCollapsePattern(this, control, inputObject);
+//                        break;
+//                    case "GridItem":
+//                        CallGridItemPattern(this, control, inputObject);
+//                        break;
+//                        // not yet implemented
+//                    case "Grid":
+//                        CallGridPattern(this, control, inputObject);
+//                        break;
+//                    case "Invoke":
+//                        CallInvokePattern(this, control, inputObject);
+//                        break;
+//                        // not yet implemented
+//                        // case "MultipleView":
+//                        // pattern =
+//                        // (System.Windows.Automation.MultipleViewPattern)pt;
+//                        // break;
+//                    case "RangeValueGet":
+//                        CallRangeValuePatternForGet(this, control, inputObject);
+//                        break;
+//                    case "RangeValueSet":
+//                        CallRangeValuePatternForSet(this, control, inputObject);
+//                        break;
+//                    case "ScrollItem":
+//                        CallScrollItemPattern(this, control, inputObject);
+//                        break;
+//                    case "Scroll":
+//                        CallScrollPattern(this, control, inputObject);
+//                        break;
+//                    case "SelectionItem":
+//                        CallSelectionItemPattern(this, control, inputObject);
+//                        break;
+//                    case "SelectionItemState":
+//                        CallSelectionItemPatternForState(this, control, inputObject);
+//                        break;
+//                    case "SelectedItem": // return only elements that are selected
+//                        CallSelectedItemPattern(this, control, inputObject);
+//                        break;
+//                    case "Selection":
+//                        CallSelectionPattern(this, control, inputObject);
+//                        break;
+//                        // not yet implemented
+//                    case "TableItem":
+//                        CallTableItemPattern(this, control, inputObject);
+//                        break;
+//                        // not yet implemented
+//                    case "Table":
+//                        CallTablePattern(this, control, inputObject);
+//                        // pattern =
+//                        // (System.Windows.Automation.TablePattern)pt;
+//                        break;
+//                        // not yet implemented
+//                        //case "Text":
+//                    case "TextGet":
+//                        // pattern =
+//                        // (System.Windows.Automation.TextPattern)pt;
+//                        // break;
+//                        CallTextPatternForGet(this, control, inputObject);
+//                        break;
+//                    case "TextSet":
+//                        CallTextPatternForSet(this, control, inputObject);
+//                        break;
+//                    case "Toggle":
+//                        CallTogglePatternMethod(this, control, inputObject);
+//                        break;
+//                    case "ToggleStateGet":
+//                        CallTogglePatternForGet(this, control, inputObject);
+//                        break;
+//                    case "ToggleStateSet":
+//                        CallTogglePatternForSet(this, control, inputObject, ((InvokeUiaToggleStateSetCommand)this).On);
+//                        break;
+//                    case "TransformMove":
+//                        CallTransformPatternForMove(this, control, inputObject);
+//                        break;
+//                    case "TransformResize":
+//                        CallTransformPatternForResize(this, control, inputObject);
+//                        break;
+//                    case "TransformRotate":
+//                        CallTransformPatternForRotate(this, control, inputObject);
+//                        break;
+//                    case "ValueGet":
+//                        CallValuePatternForGet(this, control, inputObject);
+//                        break;
+//                    case "ValueSet":
+//                        CallValuePatternForSet(this, control, inputObject);
+//                        break;
+//                    case "Window":
+//                        CallWindowPattern(this, control, inputObject);
+//                        break;
+//                    case "Annotation":
+//                        WriteVerbose(this, "Annotation");
+//                        break;
+//                    case "Drag":
+//                        WriteVerbose(this, "Drag");
+//                        break;
+//                    case "DropTarget":
+//                        WriteVerbose(this, "DropTarget");
+//                        break;
+//                    case "ItemContainer":
+//                        WriteVerbose(this, "ItemContainer");
+//                        break;
+//                    case "LegacyIAccessible":
+//                        WriteVerbose(this, "LegacyIAccessible");
+//                        break;
+//                    case "ObjectModel":
+//                        WriteVerbose(this, "ObjectModel");
+//                        break;
+//                    case "Spreadsheet":
+//                        WriteVerbose(this, "Spreadsheet");
+//                        break;
+//                    case "SpreadsheetItem":
+//                        WriteVerbose(this, "SpreadsheetItem");
+//                        break;
+//                    case "Styles":
+//                        WriteVerbose(this, "Styles");
+//                        break;
+//                    case "SynchronizedInput":
+//                        WriteVerbose(this, "SynchronizedInput");
+//                        break;
+//                    case "TextChild":
+//                        WriteVerbose(this, "TextChild");
+//                        break;
+//                    case "VirtualizedItem":
+//                        WriteVerbose(this, "VirtualizedItem");
+//                        break;
+//                }
+//                ////return;
+//                
+//                
+//                // 2012/04/10
+//                //            Annotation Control Pattern
+//                //            Dock Control Pattern
+//                //            Drag Control Pattern
+//                //            DropTarget Control Pattern
+//                //            ExpandCollapse Control Pattern
+//                //            Grid Control Pattern
+//                //            GridItem Control Pattern
+//                //            Invoke Control Pattern
+//                //            ItemContainer Control Pattern
+//                //            LegacyIAccessible Control Pattern
+//                //            MultipleView Control Pattern
+//                //            ObjectModel Control Pattern
+//                //            RangeValue Control Pattern
+//                //            Scroll Control Pattern
+//                //            ScrollItem Control Pattern
+//                //            Selection Control Pattern
+//                //            SelectionItem Control Pattern
+//                //            Spreadsheet Control Pattern
+//                //            SpreadsheetItem Control Pattern
+//                //            Styles Control Pattern
+//                //            SynchronizedInput Control Pattern
+//                //            Table Control Pattern
+//                //            TableItem Control Pattern
+//                //            Text and TextRange Control Patterns
+//                //            TextChild Control Pattern
+//                //            Toggle Control Pattern
+//                //            Transform Control Pattern
+//                //            Value Control Pattern
+//                //            VirtualizedItem Control Pattern
+//                //            Window Control Pattern
+//                
+//                
+//            } //20120824
+           
+           // 20140213
+           var command =
+               AutomationFactory.GetCommand<PatternCommand>(this);
+           command.Execute();
         }
         
         internal void CallDockPatternForGet(PatternCmdletBase cmdlet, IUiElement control, IUiElement inputObject)

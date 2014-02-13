@@ -67,7 +67,7 @@ namespace UIAutomation.Commands
             }
         }
 
-        protected string ConvertElementToSearchCriteria(IUiElement element)
+        protected internal string ConvertElementToSearchCriteria(IUiElement element)
         {
             string result = "@{";
             result += GetPropertyCompleteString(element, result, "Name");

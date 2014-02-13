@@ -327,7 +327,7 @@
     <Compile Include="Helpers\Commands\Get\GetDesktopCommand.cs" />
     <Compile Include="Helpers\Commands\Get\GetWindowCommand.cs" />
     <Compile Include="Helpers\Commands\Get\TestControlStateCommand.cs" />
-    <Compile Include="Helpers\Commands\Pattern\InvokeInvokePatternCommandTestFixture.cs" />
+    <Compile Include="Helpers\Commands\Pattern\PatternCommand.cs" />
     <Compile Include="Helpers\Commands\Wait\WaitControlIsEnabledCommand.cs" />
     <Compile Include="Helpers\Commands\Wait\WaitControlIsVisibleCommand.cs" />
     <Compile Include="Helpers\Commands\Wait\WaitControlStateCommand.cs" />

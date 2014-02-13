@@ -19,17 +19,19 @@ namespace UIAutomation
     {
         public override void Intercept(IInvocation invocation)
         {
-            try {
-                if (invocation.TargetType.IsSubclassOf(typeof(UiaCommand))) {
-                    var cmdlet =
-                        (invocation.InvocationTarget as UiaCommand).Cmdlet;
-                    var logger =
-                        AutomationFactory.GetLogger();
-                    logger.LogCmdlet(cmdlet);
+            if (Preferences.Log) {
+                try {
+                    if (invocation.TargetType.IsSubclassOf(typeof(UiaCommand))) {
+                        var cmdlet =
+                            (invocation.InvocationTarget as UiaCommand).Cmdlet;
+                        var logger =
+                            AutomationFactory.GetLogger();
+                        logger.LogCmdlet(cmdlet);
+                    }
                 }
-            }
-            catch (Exception eLoggingAspect) {
-                Console.WriteLine(eLoggingAspect.Message);
+                catch (Exception eLoggingAspect) {
+                    Console.WriteLine(eLoggingAspect.Message);
+                }
             }
             
             invocation.Proceed();

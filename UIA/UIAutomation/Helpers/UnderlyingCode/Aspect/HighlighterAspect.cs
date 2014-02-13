@@ -10,16 +10,38 @@
 namespace UIAutomation
 {
     using System;
+    using System.Management.Automation;
     using Castle.DynamicProxy;
     
     /// <summary>
-    /// Description of HighlighterAspect.
+    /// The HighlighterAspect is for commands that return objects of IUIElement or IUIEltCollection types.
     /// </summary>
     public class HighlighterAspect : AbstractInterceptor
     {
         public override void Intercept(IInvocation invocation)
         {
             invocation.Proceed();
+            
+            // if (invocation.TargetType.IsSubclassOf(typeof(UiaCommand)) && null != (invocation.ReturnValue as IUiElement)) { // taboo
+            if (invocation.TargetType.IsSubclassOf(typeof(UiaCommand))) {
+                
+                var cmdlet =
+                    (invocation.InvocationTarget as UiaCommand).Cmdlet;
+                
+                // this works
+//                if (null != cmdlet.MyInvocation.MyCommand.OutputType && 0 < cmdlet.MyInvocation.MyCommand.OutputType.Count) {
+//                    foreach (var element in cmdlet.MyInvocation.MyCommand.OutputType) {
+//                        Console.WriteLine(element.Name);
+//                    }
+//                }
+                
+                // this does not work
+//                if (cmdlet.MyInvocation.MyCommand.OutputType.Contains(new PSTypeName("UIAutomation.IUiElement[]"))) {
+//                
+//                    Console.WriteLine("HighlighterAspect: this is the right cmdlet");
+//                
+//                }
+            }
         }
     }
 }

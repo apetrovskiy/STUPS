@@ -327,6 +327,7 @@
     <Compile Include="Helpers\Commands\Get\GetDesktopCommand.cs" />
     <Compile Include="Helpers\Commands\Get\GetWindowCommand.cs" />
     <Compile Include="Helpers\Commands\Get\TestControlStateCommand.cs" />
+    <Compile Include="Helpers\Commands\Pattern\InvokeInvokePatternCommandTestFixture.cs" />
     <Compile Include="Helpers\Commands\Wait\WaitControlIsEnabledCommand.cs" />
     <Compile Include="Helpers\Commands\Wait\WaitControlIsVisibleCommand.cs" />
     <Compile Include="Helpers\Commands\Wait\WaitControlStateCommand.cs" />
@@ -376,6 +377,7 @@
     <Compile Include="Helpers\Commands\Wizard\RemoveWizardStepCommand.cs" />
     <Compile Include="Helpers\Commands\Wizard\StepWizardCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Aspect\TestResultAspect.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Attribute\MyAttribute.cs" />
     <Compile Include="Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethods.cs" />
     <Compile Include="Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethodsCollection.cs" />
     <Compile Include="Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethodsElement.cs" />
@@ -597,12 +599,14 @@
     <Folder Include="Helpers\Commands\Banner" />
     <Folder Include="Helpers\Commands\Cache" />
     <Folder Include="Helpers\Commands\Event" />
+    <Folder Include="Helpers\Commands\Pattern" />
     <Folder Include="Helpers\Commands\Wait" />
     <Folder Include="Helpers\Commands\RDP" />
     <Folder Include="Helpers\UnderlyingCode\Adapter" />
     <Folder Include="Helpers\UnderlyingCode\ExtensionMethods" />
     <Folder Include="Helpers\UnderlyingCode\Aspect" />
     <Folder Include="Helpers\UnderlyingCode\Internal" />
+    <Folder Include="Helpers\UnderlyingCode\Attribute" />
     <Folder Include="Helpers\UnderlyingCode\NewModel" />
     <Folder Include="Helpers\UnderlyingCode\Ninject" />
     <Folder Include="Helpers\UnderlyingCode\RDP" />

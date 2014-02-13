@@ -30,9 +30,9 @@ namespace UIAutomation.Commands
         #endregion Constructor
         
         #region Parameters
-        [Parameter(Mandatory = true)]
+        [My][Parameter(Mandatory = true)]
         public int X { get; set; }
-        [Parameter(Mandatory = true)]
+        [My][Parameter(Mandatory = true)]
         public int Y { get; set; }
         #endregion Parameters
         

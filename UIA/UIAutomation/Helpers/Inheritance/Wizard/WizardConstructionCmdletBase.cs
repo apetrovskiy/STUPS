@@ -17,7 +17,7 @@ namespace UIAutomation
     public class WizardConstructionCmdletBase : WizardCmdletBase
     {
         #region Parameters
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         public string Description { get; set; }
         #endregion Parameters
     }

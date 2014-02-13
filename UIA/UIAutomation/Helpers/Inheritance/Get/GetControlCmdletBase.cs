@@ -37,12 +37,12 @@ namespace UIAutomation
         #endregion Constructor
         
         #region Parameters
-        [Parameter(Mandatory = false,
+        [My][Parameter(Mandatory = false,
                    Position = 0,
                    ParameterSetName = "UiaSearch")]
         public virtual string ContainsText { get; set; }
         
-        [Parameter(Mandatory = false,
+        [My][Parameter(Mandatory = false,
                    ParameterSetName = "UiaWildCard")]
         [Parameter(Mandatory = false,
                    ParameterSetName = "Win32")]
@@ -51,7 +51,7 @@ namespace UIAutomation
         [Alias("Title")]
         public virtual string Name { get; set; }
         
-        [Parameter(Mandatory = false,
+        [My][Parameter(Mandatory = false,
                    ParameterSetName = "UiaWildCard")]
         [Parameter(Mandatory = false,
                    ParameterSetName = "Win32")]
@@ -59,7 +59,7 @@ namespace UIAutomation
                    ParameterSetName = "UiaClassic")]
         public virtual string Value { get; set; }
         
-        [Parameter(Mandatory = false,
+        [My][Parameter(Mandatory = false,
                    ParameterSetName = "UiaWildCard")]
         [Parameter(Mandatory = false,
                    ParameterSetName = "Win32")]
@@ -67,7 +67,7 @@ namespace UIAutomation
                    ParameterSetName = "UiaClassic")]
         public virtual string AutomationId { get; set; }
         
-        [Parameter(Mandatory = false,
+        [My][Parameter(Mandatory = false,
                    ParameterSetName = "UiaWildCard")]
         [Parameter(Mandatory = false,
                    ParameterSetName = "Win32")]
@@ -76,7 +76,7 @@ namespace UIAutomation
         [Alias("ClassName")]
         public virtual string Class { get; set; }
         
-        [Parameter(Mandatory = false,
+        [My][Parameter(Mandatory = false,
                    ParameterSetName = "UiaWildCard")]
         [Parameter(Mandatory = false,
                    ParameterSetName = "Win32")]
@@ -84,7 +84,7 @@ namespace UIAutomation
                    ParameterSetName = "UiaClassic")]
         public virtual string[] ControlType { get; set; }
         
-        [Parameter(Mandatory = false,
+        [My][Parameter(Mandatory = false,
                    ParameterSetName = "Win32")]
         [Parameter(Mandatory = false,
                    ParameterSetName = "UiaSearch")]
@@ -92,7 +92,7 @@ namespace UIAutomation
         
         [Parameter (Mandatory = false,
                    ParameterSetName = "UiaWildCard")]
-        [Parameter(Mandatory = false,
+        [My][Parameter(Mandatory = false,
                    ParameterSetName = "UiaClassic")]
         public virtual SwitchParameter FromCache { get; set; }
         
@@ -100,7 +100,7 @@ namespace UIAutomation
                    ParameterSetName = "UiaWildCard")]
         public SwitchParameter Regex { get; set; }
         
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         public SwitchParameter CaseSensitive { get; set; }
         
         // 20131203

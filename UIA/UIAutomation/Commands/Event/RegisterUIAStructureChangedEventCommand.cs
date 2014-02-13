@@ -56,17 +56,17 @@ namespace UIAutomation.Commands
         #endregion Constructor
         
         #region Parameters
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         public SwitchParameter ChildAdded {get; set; }
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         public SwitchParameter ChildRemoved {get; set; }
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         public SwitchParameter ChildrenInvalidated {get; set; }
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         public SwitchParameter ChildrenBulkAdded {get; set; }
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         public SwitchParameter ChildrenBulkRemoved {get; set; }
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         public SwitchParameter ChildrenReordered {get; set; }
         #endregion Parameters
     }

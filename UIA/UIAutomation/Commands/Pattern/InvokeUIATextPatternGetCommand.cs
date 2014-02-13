@@ -26,11 +26,11 @@ namespace UIAutomation.Commands
             TextLength = -1;
         }
         
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         internal new SwitchParameter PassThru { get; set; }
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         public int TextLength { get; set; }
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         public SwitchParameter VisibleArea { get; set; }
     }
     

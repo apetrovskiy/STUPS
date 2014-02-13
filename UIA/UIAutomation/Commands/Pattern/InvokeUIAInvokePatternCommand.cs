@@ -19,7 +19,6 @@ namespace UIAutomation.Commands
     [Cmdlet(VerbsLifecycle.Invoke, "UiaInvokePattern")]
     //[Cmdlet(VerbsLifecycle.Invoke, "UiaInvokePattern", DefaultParameterSetName = "UiaWildCard")]
     //[OutputType(typeof(bool))]
-    
     public class InvokeUiaInvokePatternCommand : PatternCmdletBase
     {
         public InvokeUiaInvokePatternCommand() { WhatToDo = "Invoke"; }
@@ -30,7 +29,6 @@ namespace UIAutomation.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Invoke, "UiaButtonClick")]
     //[OutputType(typeof(bool))]
-    
     public class InvokeUiaButtonClickCommand : InvokeUiaInvokePatternCommand
     { public InvokeUiaButtonClickCommand() { } }
     

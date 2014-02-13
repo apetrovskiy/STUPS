@@ -23,28 +23,28 @@ namespace UIAutomation.Commands
     {
         #region Parameters
         // 20140130
-        // [Parameter(Mandatory = false)]
-        [Parameter(Mandatory = false,
+        // [My][Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false,
                    ParameterSetName = "All")]
         public SwitchParameter All { get; set; }
         
         // 20140130
-        // [Parameter(Mandatory = false)]
-        [Parameter(Mandatory = false,
+        // [My][Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false,
                    ParameterSetName = "Selected")]
         public AutomationEventHandler EventHandler { get; set; }
         
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         internal new SwitchParameter PassThru { get; set; }
         // 20140130
-        // [Parameter(Mandatory = false)]
+        // [My][Parameter(Mandatory = false)]
         // 20131109
         //internal new System.Windows.Automation.AutomationElement InputObject { get; set; }
         // 20140130
         // internal new IUiElement InputObject { get; set; }
         
         // 20140130
-        [Parameter(Mandatory = false,
+        [My][Parameter(Mandatory = false,
                    ValueFromPipeline = true,
                    ParameterSetName = "Selected")]
         // public override IUiElement[] InputObject { get; set; }

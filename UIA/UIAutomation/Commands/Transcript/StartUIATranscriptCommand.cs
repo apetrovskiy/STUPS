@@ -33,9 +33,9 @@ namespace UIAutomation.Commands
         #endregion Constructor
         
         #region Parameters
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         public string LongRecordingFileName { get; set; }
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         public string ShortRecordingFileName { get; set; }
         #endregion Parameters
         

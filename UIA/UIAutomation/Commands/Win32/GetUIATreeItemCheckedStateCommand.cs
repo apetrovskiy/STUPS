@@ -26,7 +26,7 @@ namespace UIAutomation.Commands
         }
         
         #region Parameters
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         // 20131222
         // internal string AutomaitonId { get; set; }
         internal new string AutomationId { get; set; }
@@ -37,10 +37,10 @@ namespace UIAutomation.Commands
         internal new string AutomaitonId { get; set; }
         */
 
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         internal new string Class { get; set; }
         
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         internal new string Value { get; set; }
         #endregion Parameters
         

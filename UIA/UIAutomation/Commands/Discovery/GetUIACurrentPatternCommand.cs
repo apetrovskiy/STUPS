@@ -25,13 +25,13 @@ namespace UIAutomation.Commands
     {
         #region Parameters
         //[ValidateNotNullOrEmpty()]
-        //[Parameter(Mandatory = true, 
+        //[My][Parameter(Mandatory = true, 
         //    ValueFromPipeline = true, 
         //    HelpMessage = "This is usually the output from Get-UiaControl" )] 
         //// 20131014
         ////public System.Windows.Automation.AutomationElement Control { get; set; }
         //public System.Windows.Automation.AutomationElement[] InputObject { get; set; }
-        [Parameter(Mandatory = true)]
+        [My][Parameter(Mandatory = true)]
         public string Name { get; set; }
         #endregion Parameters
         

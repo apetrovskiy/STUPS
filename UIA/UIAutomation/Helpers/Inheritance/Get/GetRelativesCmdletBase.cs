@@ -17,7 +17,7 @@ namespace UIAutomation
     public class GetRelativesCmdletBase : GetControlCollectionCmdletBase
     {
         #region Parameters
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         internal new SwitchParameter CaseSensitive { get; set; }
         #endregion Parameters
     }

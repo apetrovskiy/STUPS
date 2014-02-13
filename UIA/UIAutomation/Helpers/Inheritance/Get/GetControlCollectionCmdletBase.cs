@@ -43,25 +43,25 @@ namespace UIAutomation
         }
         
         #region Parameters
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         internal new SwitchParameter Wait { get; set; }
         [Alias("Milliseconds")]
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         internal new int Timeout { get; set; }
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         internal new int Seconds {
             get { return Timeout / 1000; } 
             set{ Timeout = value * 1000; }
         }
         
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         public virtual new string[] ControlType { get; set; }
         
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         internal new SwitchParameter PassThru { get; set; }
         
         // 20130127
-//        [Parameter(Mandatory = false)]
+//        [My][Parameter(Mandatory = false)]
 //        public SwitchParameter CaseSensitive { get; set; }
         #endregion Parameters
         

@@ -148,11 +148,11 @@ namespace UIAutomation.Commands
 //        }
 //        
 //        #region Parameters
-//        [Parameter(Mandatory = false)]
+//        [My][Parameter(Mandatory = false)]
 //        public string[] Include { get; set; }
-//        [Parameter(Mandatory = false)]
+//        [My][Parameter(Mandatory = false)]
 //        public string[] Exclude { get; set; }
-//        [Parameter(Mandatory = false)]
+//        [My][Parameter(Mandatory = false)]
 //        public SwitchParameter Full { get; set; }
 //        #endregion Parameters
 //        

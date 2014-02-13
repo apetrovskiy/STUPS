@@ -21,11 +21,11 @@ namespace UIAutomation.Commands
     public class GetUiaRegisteredEventCommand : CommonCmdletBase //EventCmdletBase
     {
         #region Parameters
-//        [Parameter(Mandatory = false)] 
+//        [My][Parameter(Mandatory = false)] 
 //        internal new System.Windows.Automation.AutomationElement[] InputObject { get; set; }
-//        [Parameter(Mandatory = false)]
+//        [My][Parameter(Mandatory = false)]
 //        internal new SwitchParameter PassThru { get; set; }
-//        [Parameter(Mandatory = false)]
+//        [My][Parameter(Mandatory = false)]
 //        internal new ScriptBlock[] EventAction { get; set; }
         #endregion Parameters
         

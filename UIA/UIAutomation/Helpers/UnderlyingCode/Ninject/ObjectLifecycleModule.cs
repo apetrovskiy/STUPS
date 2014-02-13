@@ -32,19 +32,19 @@ namespace UIAutomation
                 .ToSelf()
                 .InSingletonScope();
             
-            // 20140125
             Bind<IChildKernel>().ToSelf().InSingletonScope();
-            // Bind<IChildKernel>().ToSelf().InThreadScope();
             
-            // 20140125
             Bind<WindowSearcher>().ToSelf().InScope(ctx => AutomationFactory.ScopeChangeFlag);
             Bind<ControlSearcher>().ToSelf().InScope(ctx => AutomationFactory.ScopeChangeFlag);
             Bind<ContextMenuSearcher>().ToSelf().InScope(ctx => AutomationFactory.ScopeChangeFlag);
             
-            // 20140130
             Bind<IAutomation>().To<UiaAutomation>().InSingletonScope();
             
             Bind<UiaCommand>().ToSelf().InSingletonScope();
+            
+            Bind<LogHelper>()
+                .ToSelf()
+                .InSingletonScope();
             #endregion common objects
             
 //            #region IUiElement

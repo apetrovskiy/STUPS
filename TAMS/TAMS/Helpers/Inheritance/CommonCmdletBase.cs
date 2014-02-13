@@ -56,57 +56,6 @@ namespace TAMS
             }
         }
         
-#region commented
-//        protected override bool WriteObjectMethod010CheckOutputObject(object outputObject)
-//        {
-//            bool result = false;
-//            
-//            
-//            
-//            return result;
-//        }
-//        
-//        protected override void WriteObjectMethod020Highlight(PSCmdletBase cmdlet, object outputObject)
-//        {
-//            
-//        }
-//        
-//        protected override void WriteObjectMethod030RunScriptBlocks(PSCmdletBase cmdlet, object outputObject)
-//        {
-//            
-//        }
-//        
-//        protected override void WriteObjectMethod040SetTestResult(PSCmdletBase cmdlet, object outputObject)
-//        {
-//            
-//        }
-//        
-//        protected override void WriteObjectMethod045OnSuccessScreenshot(PSCmdletBase cmdlet, object outputObject)
-//        {
-//            
-//        }
-//        
-//        protected override void WriteObjectMethod050OnSuccessDelay(PSCmdletBase cmdlet, object outputObject)
-//        {
-//            
-//        }
-//        
-//        protected override void WriteObjectMethod060OutputResult(PSCmdletBase cmdlet, object outputObject)
-//        {
-//            
-//        }
-//        
-//        protected override void WriteObjectMethod070Report(PSCmdletBase cmdlet, object outputObject)
-//        {
-//            
-//        }
-//        
-//        protected override void WriteObjectMethod080ReportFailure()
-//        {
-//            
-//        }
-#endregion commented
-        
         protected override bool CheckSingleObject(PSCmdletBase cmdlet, object outputObject) { return true; }
         protected override void BeforeWriteCollection(PSCmdletBase cmdlet, object[] outputObjectCollection) {}
         protected override void BeforeWriteCollection(PSCmdletBase cmdlet, System.Collections.Generic.List<object> outputObjectCollection) {}

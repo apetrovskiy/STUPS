@@ -57,7 +57,7 @@ namespace UIAutomation.Commands
         }
         
         #region Parameters
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         [ValidateSet("Name", "AutomationId", "ClassName", "Class", "ControlType", "NativeWindowHandle", "BoundingRectangle", // "Rectangle", "Bounding",
                      // "ClickablePoint", "Point", "Clickable", "IsEnabled", "Enabled", "IsOffScreen", "IsVisible", "Visible",
                      "ClickablePoint", "IsEnabled", "Enabled", "IsOffScreen", "IsVisible", "Visible", "ProcessId",
@@ -71,18 +71,18 @@ namespace UIAutomation.Commands
 //                     "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "")]
                       "Value")]
         public string[] Property { get; set; }
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         [ValidateSet("Dock", "DockPattern", "Expand", "Collapse", "ExpandPattern", "CollapsePattern", "ExpandCollapsePattern",
                      "GRIDITEM", "GRIDITEMPattern", "GRID", "GRIDPattern", "INVOKE", "INVOKEPattern", "MULTIPLEVIEW", "MULTIPLEVIEWPattern",
                      "RANGEVALUE", "RANGEVALUEPattern", "SCROLLITEM", "SCROLLITEMPattern", "SCROLL", "SCROLLPattern", "SELECTIONITEM", "SELECTIONITEMPattern",
                      "SELECTION", "SELECTIONPattern", "TABLEITEM", "TABLEITEMPattern", "TABLE", "TABLEPattern", "Text", "TextPattern",
                      "Toggle", "TogglePattern", "Transform", "TransformPattern", "Value", "ValuePattern", "Window", "WindowPattern")]
         public string[] Pattern { get; set; }
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         // [ValidateSet("Subtree", "Ancestors", "Children", "Descendants", "Element")]
         [ValidateSet("Subtree", "Children", "Descendants", "Element")]
         public string Scope { get; set; }
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         [ValidateSet("Raw", "Content", "Control")]
         public string Filter { get; set; }
         #endregion Parameters

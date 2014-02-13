@@ -36,25 +36,25 @@ namespace UIAutomation.Commands
         }
         
         #region Parameters
-        [Parameter(Mandatory=true)]
+        [My][Parameter(Mandatory=true)]
         public SwitchParameter Highlight { get; set; }
-        [Parameter(Mandatory=false)]
+        [My][Parameter(Mandatory=false)]
         public Color Color { get; set; }
-        [Parameter(Mandatory=false)]
+        [My][Parameter(Mandatory=false)]
         public int Border { get; set; }
         
-        [Parameter(Mandatory=true)]
+        [My][Parameter(Mandatory=true)]
         public SwitchParameter HighlightParent { get; set; }
-        [Parameter(Mandatory=false)]
+        [My][Parameter(Mandatory=false)]
         public Color ColorParent { get; set; }
-        [Parameter(Mandatory=false)]
+        [My][Parameter(Mandatory=false)]
         public int BorderParent { get; set; }
         
-//        [Parameter(Mandatory=true)]
+//        [My][Parameter(Mandatory=true)]
 //        public SwitchParameter HighlightFirstChild { get; set; }
-//        [Parameter(Mandatory=false)]
+//        [My][Parameter(Mandatory=false)]
 //        public System.Drawing.Color ColorFirstChild { get; set; }
-//        [Parameter(Mandatory=false)]
+//        [My][Parameter(Mandatory=false)]
 //        public int BorderFirstChild { get; set; }
         #endregion Parameters
         

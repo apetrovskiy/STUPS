@@ -19,7 +19,7 @@ namespace UIAutomation.Commands
     public class ShowUiaBannerCommand : CommonCmdletBase
     {
         #region Parameters
-        [Parameter(Mandatory = true,
+        [My][Parameter(Mandatory = true,
                    Position = 0)]
         [ValidateNotNullOrEmpty]
         public string Message { get; set; }

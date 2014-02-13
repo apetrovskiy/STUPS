@@ -28,9 +28,9 @@ namespace UIAutomation.Commands
             base.Child = this;
         }
         
-        [Parameter(Mandatory = true)]
+        [My][Parameter(Mandatory = true)]
         public double TransformMoveX { get; set; }
-        [Parameter(Mandatory = true)]
+        [My][Parameter(Mandatory = true)]
         public double TransformMoveY { get; set; }
         
     }

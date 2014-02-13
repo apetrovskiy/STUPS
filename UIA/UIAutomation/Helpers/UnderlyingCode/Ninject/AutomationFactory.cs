@@ -138,6 +138,9 @@ namespace UIAutomation
 		    // 20140130
 		    // temporary?
 		    
+		    // 20140213
+		    // GetLogger();
+		    var logger = GetLogger();
 		}
 		
 		public static void Reset()
@@ -803,6 +806,41 @@ namespace UIAutomation
 			    // Console.WriteLine("Command 01");
 			    // Console.WriteLine(eCommand.Message);
 			    return default(T);
+            }
+        }
+        
+        public static LogHelper GetLogger(string logPath)
+        {
+            try {
+                
+                // var loggerParam = new ConstructorArgument("logPath", logPath);
+                // return Kernel.Get<LogHelper>(loggerParam);
+                
+                var logger = Kernel.Get<LogHelper>();
+                logger.LogPath = logPath;
+                return logger;
+                
+            } catch (Exception eLogger) {
+                // TODO
+                // write error to error object!!!
+			    // Console.WriteLine("LogHelper 01");
+			    // Console.WriteLine(eLogger.Message);
+                return null;
+            }
+        }
+        
+        public static LogHelper GetLogger()
+        {
+            try {
+                
+                return Kernel.Get<LogHelper>();
+                
+            } catch (Exception eLogger) {
+                // TODO
+                // write error to error object!!!
+			    // Console.WriteLine("LogHelper 02");
+			    // Console.WriteLine(eLogger.Message);
+                return null;
             }
         }
     }

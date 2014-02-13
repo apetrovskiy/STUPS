@@ -10,7 +10,13 @@
 namespace UIAutomation
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+    using NLog;
+    using NLog.Targets;
+    using NLog.Config;
     using PSTestLib;
     
     /// <summary>
@@ -20,11 +26,129 @@ namespace UIAutomation
     {
         internal List<LogEntry> Entries = new List<LogEntry>();
         
+        private bool _alreadyInitialized;
+        
+        public LogHelper(string logPath)
+        {
+            if (_alreadyInitialized) return;
+            LogPath = logPath;
+            Init();
+        }
+        
+        public LogHelper()
+        {
+            if (_alreadyInitialized) return;
+            Init();
+        }
+        
+        public string LogPath
+        {
+            get {
+                FileTarget myFileTarget = (FileTarget)LogManager.Configuration.FindTargetByName("file");
+                return myFileTarget.FileName.ToString();
+            }
+            set {
+                FileTarget myFileTarget = (FileTarget)LogManager.Configuration.FindTargetByName("file");
+                myFileTarget.FileName = value;
+            }
+        }
+        
         public void Log(LogLevels level, string message)
         {
             // ?
             LogEntry entry = new LogEntry(level, message);
             Entries.Add(entry);
+        }
+        
+        public void LogCmdlet(CommonCmdletBase cmdlet)
+        {
+            Info(GetObjectPropertiesInfo(cmdlet));
+        }
+        
+        internal string GetObjectPropertiesInfo(CommonCmdletBase cmdlet)
+        {
+            string result = string.Empty;
+            
+            // http://stackoverflow.com/questions/2281972/how-to-get-a-list-of-properties-with-a-given-attribute
+            foreach (PropertyInfo propertyInfo in cmdlet.GetType()
+                     .GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                     .Where(p => p.GetCustomAttributes(typeof(MyAttribute), true).Length != 0)) {
+                
+                result += " -";
+                result += propertyInfo.Name;
+                result += " \"";
+                object tempResult = string.Empty;
+                try { tempResult = propertyInfo.GetValue(cmdlet, null) ?? string.Empty; } catch {}
+                result += tempResult.ToString();
+                result += "\"";
+            }
+            
+            result = cmdlet.CmdletName(cmdlet) + result;
+            
+            return result;
+        }
+        
+        
+        // ==============================================================================================
+        
+        public static NLog.Logger UiaLogger = null;
+        
+        internal void Init()
+        {
+            LoggingConfiguration config = new LoggingConfiguration();
+
+            FileTarget fileTarget = new FileTarget();
+            config.AddTarget("file", fileTarget);
+
+            fileTarget.FileName =
+                System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments) +
+                @"\UIA.log";
+            //fileTarget.Layout = "${date:format=HH\\:MM\\:ss}: ${message}";
+            //fileTarget.Layout = "[${date:format=DD/MM/YYYY HH\\:mm\\:ss}] [${}] ${message}";
+            //"${longdate}|${level:uppercase=true}|${logger}|${message}";
+            //fileTarget.Layout = "${longdate}|${level:uppercase=true}|${message}";
+            fileTarget.Layout = "[${longdate}] [${level:uppercase=true}] ${message}";
+            //fileTarget.Encoding = "iso-8859-2";
+            fileTarget.Encoding = System.Text.Encoding.Unicode;
+
+            LoggingRule rule = new LoggingRule("*", NLog.LogLevel.Info, fileTarget);
+            config.LoggingRules.Add(rule);
+
+            LogManager.Configuration = config;
+
+            UiaLogger = LogManager.GetLogger("UIA");
+            
+            _alreadyInitialized = true;
+        }
+        
+        public static void Fatal(string message)
+        {
+            UiaLogger.Fatal(message);
+        }
+        
+        public static void Error(string message)
+        {
+            UiaLogger.Error(message);
+        }
+        
+        public static void Warn(string message)
+        {
+            UiaLogger.Warn(message);
+        }
+        
+        public static void Info(string message)
+        {
+            UiaLogger.Info(message);
+        }
+        
+        public static void Debug(string message)
+        {
+            UiaLogger.Debug(message);
+        }
+        
+        public static void Trace(string message)
+        {
+            UiaLogger.Trace(message);
         }
     }
 }

@@ -23,23 +23,23 @@ namespace UIAutomation.Commands
         }
         
         #region Parameters
-        [Parameter(Mandatory = true)]
+        [My][Parameter(Mandatory = true)]
         [ValidateNotNullOrEmpty()]
         public string Path { get; set; }
         
-//        [Parameter(Mandatory = true)]
+//        [My][Parameter(Mandatory = true)]
 //        [ValidateNotNullOrEmpty()]
 //        public string Hostname { get; set; }
 //        
-//        [Parameter(Mandatory = true)]
+//        [My][Parameter(Mandatory = true)]
 //        [ValidateNotNullOrEmpty()]
 //        public string Domain { get; set; }
 //        
-//        [Parameter(Mandatory = true)]
+//        [My][Parameter(Mandatory = true)]
 //        [ValidateNotNullOrEmpty()]
 //        public string Username { get; set; }
 //        
-//        [Parameter(Mandatory = true)]
+//        [My][Parameter(Mandatory = true)]
 //        [ValidateNotNullOrEmpty()]
 //        public string Password { get; set; }
         #endregion Parameters

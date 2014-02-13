@@ -25,25 +25,25 @@ namespace UIAutomation.Commands
         }
         
         #region Parameters
-        [Parameter(Mandatory = true)]
+        [My][Parameter(Mandatory = true)]
         [ValidateNotNullOrEmpty]
         public ScriptBlock[] StartAction { get; set; }
         
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         public ScriptBlock[] StopAction { get; set; }
         
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         public ScriptBlock[] DefaultStepForwardAction { get; set; }
         
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         public ScriptBlock[] DefaultStepBackwardAction { get; set; }
         
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         public ScriptBlock[] DefaultStepCancelAction { get; set; }
         
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         public ScriptBlock[] GetWindowAction { get; set; }
-//        [Parameter(Mandatory = false)]
+//        [My][Parameter(Mandatory = false)]
 //        internal int Order { get; set; }
         #endregion Parameters
         

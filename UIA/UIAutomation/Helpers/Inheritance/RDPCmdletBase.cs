@@ -133,64 +133,64 @@ namespace UIAutomation
         // 1 domain:s:OUTCAST
         // 1 password 51:
         
-        [Parameter(Mandatory = true)]
+        [My][Parameter(Mandatory = true)]
         [ValidateNotNullOrEmpty]
         public string Domain { get; set; }
         
-        [Parameter(Mandatory = true)]
+        [My][Parameter(Mandatory = true)]
         [ValidateNotNullOrEmpty]
         public string Username { get; set; }
         
-        [Parameter(Mandatory = true)]
+        [My][Parameter(Mandatory = true)]
         public string Password { get; set; }
         
-        [Parameter(Mandatory = true)]
+        [My][Parameter(Mandatory = true)]
         [ValidateNotNullOrEmpty]
         public string Hostname { get; set; }
         
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         public SwitchParameter RemoteAppMode { get; set; }
         
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         public string RemoteAppProgram { get; set; }
         
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         public string RemoteAppCmdline { get; set; }
         
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         public string AlternateShell { get; set; }
         
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         public string ShellWorkingDir { get; set; }
         
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         public int DesktopHeight { get; set; }
         
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         public int DesktopWidth { get; set; }
         
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         public SwitchParameter SmartSizing { get; set; }
         
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         public bool DisableWallpaper { get; set; }
         
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         public bool DisableThemes { get; set; }
         
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         public bool Autoreconnection { get; set; }
         
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         public bool RedirectClipboard { get; set; }
         
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         public string DriveStoreRedirect { get; set; }
         
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         public int AuthenticationLevel { get; set; }
         
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         public string Template { get; set; }
         #endregion Parameters
         

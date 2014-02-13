@@ -32,42 +32,42 @@ namespace UIAutomation
         
         #region Parameters
         [Alias("Milliseconds")]
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         public int Timeout { get; set; }
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         public int Seconds {
             get { return Timeout / 1000; }
             set{ Timeout = value * 1000; }
         }
 
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         // 20130318
         //public ScriptBlock[] OnSleepAction { get; set; }
         public new ScriptBlock[] OnSleepAction { get; set; }
         
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         // 20130318
         //internal new Wizard InputObject { get; set; }
         public new Wizard InputObject { get; set; }
         
         // 20130322
-        //[Parameter(Mandatory = false)]
+        //[My][Parameter(Mandatory = false)]
         //public SwitchParameter Automatic { get; set; }
         
         // 20130322
-        //[Parameter(Mandatory = false)]
+        //[My][Parameter(Mandatory = false)]
         //public SwitchParameter ForwardDirection { get; set; }
         
         // 20130322
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         public Hashtable[] Directions { get; set; }
         
         // 20130318
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         public Hashtable[] Parameters { get; set; }
         
         // 20130321
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         public SwitchParameter Quiet { get; set; }
         #endregion Parameters
         

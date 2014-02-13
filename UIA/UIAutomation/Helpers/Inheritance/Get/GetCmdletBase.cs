@@ -19,20 +19,20 @@ namespace UIAutomation
     public class GetCmdletBase : HasTimeoutCmdletBase
     {
         #region Parameters
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         internal new SwitchParameter PassThru { get; set; }
         
-        [Parameter(Mandatory = false)]
-//        [Parameter(Mandatory = false,
+        [My][Parameter(Mandatory = false)]
+//        [My][Parameter(Mandatory = false,
 //                   ParameterSetName = "Win32")]
-//        [Parameter(Mandatory = false,
+//        [My][Parameter(Mandatory = false,
 //                   ParameterSetName = "UIAuto")]
-        //[Parameter(Mandatory = false,
+        //[My][Parameter(Mandatory = false,
         //           ParameterSetName = "Window")]
-        //[Parameter(Mandatory = false,
+        //[My][Parameter(Mandatory = false,
         //           ParameterSetName = "First")]
         // 20130228
-        //[Parameter(Mandatory = false,
+        //[My][Parameter(Mandatory = false,
         //           ParameterSetName = "SearchCriteria")]
         public Hashtable[] SearchCriteria { get; set; }
         #endregion Parameters

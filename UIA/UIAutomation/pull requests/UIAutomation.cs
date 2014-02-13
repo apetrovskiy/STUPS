@@ -25,7 +25,7 @@ namespace UIAutomation
         /// <summary>
         /// Parent object that is target for pattern
         /// </summary>
-        [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true)]
+        [My][Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true)]
         // 20131109
         //public AutomationElement InputObject { get; set; }
         public IUiElement InputObject { get; set; }
@@ -33,7 +33,7 @@ namespace UIAutomation
         /// <summary>
         /// Pattern name to be invoked
         /// </summary>
-        [Parameter(Mandatory = true, Position = 2)]
+        [My][Parameter(Mandatory = true, Position = 2)]
         [ValidateSet("Close", "Maximize", "Minimize", "Restore")]
         public string PatternName { get; set; }
 
@@ -93,7 +93,7 @@ namespace UIAutomation
         /// <summary>
         /// Window to be set to foreground
         /// </summary>
-        [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true)]
+        [My][Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true)]
         // 20131109
         //public AutomationElement InputObject { get; set; }
         public IUiElement InputObject { get; set; }
@@ -124,7 +124,7 @@ namespace UIAutomation
         /// <summary>
         /// DateTimePicker input object
         /// </summary>
-        [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true)]
+        [My][Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true)]
         // 20131109
         //public AutomationElement InputObject { get; set; }
         public IUiElement InputObject { get; set; }
@@ -132,7 +132,7 @@ namespace UIAutomation
         /// <summary>
         /// DateTime to bet set
         /// </summary>
-        [Parameter(Mandatory = true, Position = 2)]
+        [My][Parameter(Mandatory = true, Position = 2)]
         public DateTime Date { get; set; }
 
         const uint DTM_FIRST = 0x1000;

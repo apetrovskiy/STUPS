@@ -30,25 +30,25 @@ namespace UIAutomation.Commands
       }
         
         #region Parameters
-        [Parameter(Mandatory = true,
+        [My][Parameter(Mandatory = true,
                    ParameterSetName = "Percent")]
         [ValidateRange(-1, 100)]
         public int HorizontalPercent { get; set; }
-        [Parameter(Mandatory = true,
+        [My][Parameter(Mandatory = true,
                    ParameterSetName = "Percent")]
         [ValidateRange(-1, 100)]
         public int VerticalPercent { get; set; }
-                [Parameter(Mandatory = true,
+                [My][Parameter(Mandatory = true,
                    ParameterSetName = "Amount")]
         public int HorizontalAmount { get; set; }
-        [Parameter(Mandatory = true,
+        [My][Parameter(Mandatory = true,
                    ParameterSetName = "Amount")]
         public int VerticalAmount { get; set; }
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         public SwitchParameter Horizontal { get; set; }
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         public SwitchParameter Vertical { get; set; }
-//        [Parameter(Mandatory = false)]
+//        [My][Parameter(Mandatory = false)]
 //        public SwitchParameter Large { get; set; }
         #endregion Parameters
 

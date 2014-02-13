@@ -26,7 +26,7 @@ namespace UIAutomation.Commands
         }
         
         #region Parameters
-        [Parameter(Mandatory = true,
+        [My][Parameter(Mandatory = true,
                    Position = 0)]
         // 20130803
         //public bool On { get; set; }

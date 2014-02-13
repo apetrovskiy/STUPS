@@ -25,9 +25,9 @@ namespace UIAutomation.Commands
         }
         
         #region Parameters
-        [Parameter(Mandatory=true)]
+        [My][Parameter(Mandatory=true)]
         public SwitchParameter Log { get; set; }
-        [Parameter(Mandatory=false)]
+        [My][Parameter(Mandatory=false)]
         public string Path { get; set; }
         #endregion Parameters
         

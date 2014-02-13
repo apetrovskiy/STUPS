@@ -28,9 +28,9 @@ namespace UIAutomation.Commands
             base.Child = this;
         }
         
-        [Parameter(Mandatory = true)]
+        [My][Parameter(Mandatory = true)]
         public double TransformResizeWidth { get; set; }
-        [Parameter(Mandatory = true)]
+        [My][Parameter(Mandatory = true)]
         public double TransformResizeHeight { get; set; }
     }
     

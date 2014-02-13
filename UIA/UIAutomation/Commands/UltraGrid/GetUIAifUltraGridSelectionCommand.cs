@@ -24,7 +24,7 @@ namespace UIAutomation.Commands
         #endregion Constructor
         
         #region Parameters
-        [Parameter(Mandatory = true)]
+        [My][Parameter(Mandatory = true)]
         internal new string[] ItemName { get; set; }
         #endregion Parameters
         

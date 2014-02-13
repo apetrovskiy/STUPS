@@ -30,10 +30,10 @@ namespace UIAutomation.Commands
         #endregion Constructor
         
         #region Parameters
-        //[Parameter(Mandatory = false,
+        //[My][Parameter(Mandatory = false,
         //           Position = 0,
         //           ParameterSetName = "Screenshot")]
-        [Parameter(Mandatory = false,
+        [My][Parameter(Mandatory = false,
                    ParameterSetName = "NoFile")]
         // 20130702
         [Parameter(Mandatory = false,
@@ -41,27 +41,27 @@ namespace UIAutomation.Commands
         [AllowNull]
         [AllowEmptyString]
         public string Description { get; set; }
-        [Parameter(Mandatory = false)] //,
+        [My][Parameter(Mandatory = false)] //,
         //           ParameterSetName = "Screenshot")]
         public int Left {get; set; }
-        [Parameter(Mandatory = false)] //,
+        [My][Parameter(Mandatory = false)] //,
         //           ParameterSetName = "Screenshot")]
         public int Top {get; set; }
-        [Parameter(Mandatory = false)] //,
+        [My][Parameter(Mandatory = false)] //,
         //           ParameterSetName = "Screenshot")]
         public int Height {get; set; }
-        [Parameter(Mandatory = false)] //,
+        [My][Parameter(Mandatory = false)] //,
          //          ParameterSetName = "Screenshot")]
         public int Width {get; set; }
         
-        [Parameter(Mandatory = false,
+        [My][Parameter(Mandatory = false,
                    ParameterSetName = "File")]
         public string Path { get; set; }
-        [Parameter(Mandatory = false,
+        [My][Parameter(Mandatory = false,
                    ParameterSetName = "File")]
         public new string Name { get; set; }
         
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         public ImageFormat As { get; set; }
         #endregion Parameters
         
@@ -121,9 +121,9 @@ namespace UIAutomation.Commands
         #endregion Constructor
         
         #region Parameters
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         internal new string Path { get; set; }
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         internal new string Name { get; set; }
         #endregion Parameters
     }

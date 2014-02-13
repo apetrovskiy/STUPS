@@ -942,6 +942,9 @@
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Aspect\TestResultAspect.cs">
       <Link>Helpers\UnderlyingCode\Aspect\TestResultAspect.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Attribute\MyAttribute.cs">
+      <Link>Helpers\UnderlyingCode\Attribute\MyAttribute.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethods.cs">
       <Link>Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethods.cs</Link>
     </Compile>
@@ -1313,8 +1316,10 @@
     <Folder Include="Helpers\Commands\Banner" />
     <Folder Include="Helpers\Commands\Cache" />
     <Folder Include="Helpers\Commands\Event" />
+    <Folder Include="Helpers\Commands\Pattern" />
     <Folder Include="Helpers\Commands\Wait" />
     <Folder Include="Helpers\Commands\RDP" />
+    <Folder Include="Helpers\Commands\Wait" />
     <Folder Include="Helpers\Commands\Wizard" />
     <Folder Include="Helpers\UnderlyingCode\Aspect" />
     <Folder Include="Helpers\Commands" />
@@ -1333,6 +1338,7 @@
     <Folder Include="Helpers\UnderlyingCode\Aspect" />
     <Folder Include="Helpers\UnderlyingCode\Internal" />
     <Folder Include="Helpers\UnderlyingCode\Internal" />
+    <Folder Include="Helpers\UnderlyingCode\Attribute" />
     <Folder Include="Helpers\UnderlyingCode\NewModel" />
     <Folder Include="Helpers\UnderlyingCode\NewModel" />
     <Folder Include="Helpers\UnderlyingCode\Ninject" />

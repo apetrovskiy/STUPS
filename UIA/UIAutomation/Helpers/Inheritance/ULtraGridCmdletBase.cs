@@ -28,9 +28,9 @@ namespace UIAutomation
         }
         
         #region Parameters
-        [Parameter(Mandatory = true)]
+        [My][Parameter(Mandatory = true)]
         public string[] ItemName { get; set; }
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         public int Count { get; set; }
         #endregion Parameters
         

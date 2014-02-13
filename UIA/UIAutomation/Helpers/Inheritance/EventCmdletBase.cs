@@ -35,7 +35,7 @@ namespace UIAutomation
         #endregion Constructor
 
         #region Parameters
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         //public override SwitchParameter OnErrorScreenShot { get; set; }
         internal new SwitchParameter OnErrorScreenShot { get; set; }
         /*
@@ -43,7 +43,7 @@ namespace UIAutomation
         */
         // internal new SwitchParameter OnErrorScreenShot { get; set; }
 
-        [Parameter(Mandatory = false)]
+        [My][Parameter(Mandatory = false)]
         public Hashtable[] SearchCriteria { get; set; }
         #endregion Parameters
         

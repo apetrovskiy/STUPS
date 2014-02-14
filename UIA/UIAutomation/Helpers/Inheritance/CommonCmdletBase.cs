@@ -134,7 +134,7 @@ namespace UIAutomation
             //     text;
             // 
             // Logger.Info(reportString);
-            if (!string.IsNullOrEmpty(text)) {
+            if (!string.IsNullOrEmpty(text) && !string.IsNullOrEmpty(text.Trim())) {
                 string reportString =
                     CmdletSignature(cmdlet) +
                     text;

@@ -128,11 +128,20 @@ namespace UIAutomation
         
         protected internal void WriteInfo(CommonCmdletBase cmdlet, string text)
         {
-            string reportString =
-                CmdletSignature(cmdlet) +
-                text;
-            
-            Logger.Info(reportString);
+            // 20140214
+            // string reportString =
+            //     CmdletSignature(cmdlet) +
+            //     text;
+            // 
+            // Logger.Info(reportString);
+            if (!string.IsNullOrEmpty(text)) {
+                string reportString =
+                    CmdletSignature(cmdlet) +
+                    text;
+                Logger.Info(reportString);
+            } else {
+                Logger.Info(text);
+            }
         }
         
         protected internal void WriteWarn(CommonCmdletBase cmdlet, string text)

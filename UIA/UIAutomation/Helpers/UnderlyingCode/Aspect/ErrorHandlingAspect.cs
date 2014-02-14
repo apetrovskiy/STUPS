@@ -22,6 +22,27 @@ namespace UIAutomation
             try {
                 invocation.Proceed();
             } catch (Exception eOnInvocation) {
+                
+//                if (Preferences.Log) {
+//                    LogHelper.Error(eOnInvocation.Message);
+//                }
+                
+                if (Preferences.Log) {
+//                    try {
+                        if (invocation.TargetType.IsSubclassOf(typeof(UiaCommand))) {
+                            LogHelper.Error(eOnInvocation.Message);
+//                            var cmdlet =
+//                                (invocation.InvocationTarget as UiaCommand).Cmdlet;
+//                            var logger =
+//                                AutomationFactory.GetLogger();
+//                            logger.LogCmdlet(cmdlet);
+                        }
+//                    }
+//                    catch (Exception eLoggingAspect) {
+//                        // Console.WriteLine(eLoggingAspect.Message);
+//                    }
+                }
+                
                 Exception eNewException =
                     new Exception("Class " + invocation.TargetType.Name + ", method " + invocation.Method.Name + ": " + eOnInvocation.Message);
                 throw eNewException;

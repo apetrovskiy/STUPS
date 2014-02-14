@@ -30,8 +30,13 @@ namespace UIAutomation
             try {
                 if (!AlreadySelected) {
                     AlreadySelected = true;
+                    
+                    if (Preferences.Log) {
+                        LogMethodCall(invocation);
+                    }
+                    
                     switch (invocation.Method.Name) {
-                        #region DockPattern
+                            #region DockPattern
                         case "SetDockPosition":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).PerformSetDockPosition(
@@ -41,8 +46,8 @@ namespace UIAutomation
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).GetDockPosition();
                             break;
-                        #endregion DockPattern
-                        #region ExpandCollapsePattern
+                            #endregion DockPattern
+                            #region ExpandCollapsePattern
                         case "Expand":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).PerformExpand();
@@ -55,8 +60,8 @@ namespace UIAutomation
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).GetExpandCollapseState();
                             break;
-                        #endregion ExpandCollapsePattern
-                        #region GridItemPattern
+                            #endregion ExpandCollapsePattern
+                            #region GridItemPattern
                         case "get_GridRow":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).GetRowGridItemPattern();
@@ -77,8 +82,8 @@ namespace UIAutomation
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).GetContainingGridGridItemPattern();
                             break;
-                        #endregion GridItemPattern
-                        #region GridPattern
+                            #endregion GridItemPattern
+                            #region GridPattern
                         case "GetItem":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).PerformGetItem(
@@ -93,66 +98,66 @@ namespace UIAutomation
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).GetColumnCountGridPattern();
                             break;
-                        #endregion GridPattern
-                        #region InvokePattern
+                            #endregion GridPattern
+                            #region InvokePattern
                         case "Invoke":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).PerformInvoke();
                             break;
-//                        case "Click":
-//                            if (0 == invocation.Arguments.Length) {
-//                                invocation.ReturnValue =
-//                                    (invocation.Proxy as IUiElement).PerformClick();
-//                            } else {
-//                                invocation.ReturnValue =
-//                                    (invocation.Proxy as IUiElement).PerformCoordinatedClick(
-//                                        (int)invocation.Arguments[0],
-//                                        (int)invocation.Arguments[1]);
-//                            }
-//                            break;
-//                        case "DoubleClick":
-//                            if (0 == invocation.Arguments.Length) {
-//                                invocation.ReturnValue =
-//                                    (invocation.Proxy as IUiElement).PerformDoubleClick();
-//                            } else {
-//                                invocation.ReturnValue =
-//                                    (invocation.Proxy as IUiElement).PerformCoordinatedDoubleClick(
-//                                        (int)invocation.Arguments[0],
-//                                        (int)invocation.Arguments[1]);
-//                            }
-//                            break;
-//                        case "RightClick":
-//                            invocation.ReturnValue =
-//                                (invocation.Proxy as IUiElement).PerformRightClick();
-//                            break;
-//                        case "CtrlClick":
-//                            invocation.ReturnValue =
-//                                (invocation.Proxy as IUiElement).PerformCtrlClick();
-//                            break;
-//                        case "AltClick":
-//                            invocation.ReturnValue =
-//                                (invocation.Proxy as IUiElement).PerformAltClick();
-//                            break;
-//                        case "ShiftClick":
-//                            invocation.ReturnValue =
-//                                (invocation.Proxy as IUiElement).PerformShiftClick();
-//                            break;
-//                        case "InvokeContextMenu":
-//                            // 20140117
-//                            // invocation.ReturnValue =
-//                            //     (invocation.Proxy as IUiElement).PerformInvokeContextMenu();
-//                            if (0 == invocation.Arguments.Length) {
-//                                invocation.ReturnValue =
-//                                    (invocation.Proxy as IUiElement).PerformInvokeContextMenu();
-//                            } else {
-//                                invocation.ReturnValue =
-//                                    (invocation.Proxy as IUiElement).PerformCoordinatedInvokeContextMenu(
-//                                        (int)invocation.Arguments[0],
-//                                        (int)invocation.Arguments[1]);
-//                            }
-//                            break;
-                        #endregion InvokePattern
-                        #region RangeValuePattern
+                            //                        case "Click":
+                            //                            if (0 == invocation.Arguments.Length) {
+                            //                                invocation.ReturnValue =
+                            //                                    (invocation.Proxy as IUiElement).PerformClick();
+                            //                            } else {
+                            //                                invocation.ReturnValue =
+                            //                                    (invocation.Proxy as IUiElement).PerformCoordinatedClick(
+                            //                                        (int)invocation.Arguments[0],
+                            //                                        (int)invocation.Arguments[1]);
+                            //                            }
+                            //                            break;
+                            //                        case "DoubleClick":
+                            //                            if (0 == invocation.Arguments.Length) {
+                            //                                invocation.ReturnValue =
+                            //                                    (invocation.Proxy as IUiElement).PerformDoubleClick();
+                            //                            } else {
+                            //                                invocation.ReturnValue =
+                            //                                    (invocation.Proxy as IUiElement).PerformCoordinatedDoubleClick(
+                            //                                        (int)invocation.Arguments[0],
+                            //                                        (int)invocation.Arguments[1]);
+                            //                            }
+                            //                            break;
+                            //                        case "RightClick":
+                            //                            invocation.ReturnValue =
+                            //                                (invocation.Proxy as IUiElement).PerformRightClick();
+                            //                            break;
+                            //                        case "CtrlClick":
+                            //                            invocation.ReturnValue =
+                            //                                (invocation.Proxy as IUiElement).PerformCtrlClick();
+                            //                            break;
+                            //                        case "AltClick":
+                            //                            invocation.ReturnValue =
+                            //                                (invocation.Proxy as IUiElement).PerformAltClick();
+                            //                            break;
+                            //                        case "ShiftClick":
+                            //                            invocation.ReturnValue =
+                            //                                (invocation.Proxy as IUiElement).PerformShiftClick();
+                            //                            break;
+                            //                        case "InvokeContextMenu":
+                            //                            // 20140117
+                            //                            // invocation.ReturnValue =
+                            //                            //     (invocation.Proxy as IUiElement).PerformInvokeContextMenu();
+                            //                            if (0 == invocation.Arguments.Length) {
+                            //                                invocation.ReturnValue =
+                            //                                    (invocation.Proxy as IUiElement).PerformInvokeContextMenu();
+                            //                            } else {
+                            //                                invocation.ReturnValue =
+                            //                                    (invocation.Proxy as IUiElement).PerformCoordinatedInvokeContextMenu(
+                            //                                        (int)invocation.Arguments[0],
+                            //                                        (int)invocation.Arguments[1]);
+                            //                            }
+                            //                            break;
+                            #endregion InvokePattern
+                            #region RangeValuePattern
                         case "set_RangeValue":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).PerformSetValueRangeValuePattern(
@@ -182,14 +187,14 @@ namespace UIAutomation
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).GetSmallChange();
                             break;
-                        #endregion RangeValuePattern
-                        #region ScrollItemPattern
+                            #endregion RangeValuePattern
+                            #region ScrollItemPattern
                         case "ScrollIntoView":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).PerformScrollIntoView();
                             break;
-                        #endregion ScrollItemPattern
-                        #region ScrollPattern
+                            #endregion ScrollItemPattern
+                            #region ScrollPattern
                         case "SetScrollPercent": //(double horizontalPercent, double verticalPercent);
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).PerformSetScrollPercent(
@@ -236,8 +241,8 @@ namespace UIAutomation
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).GetVerticallyScrollable();
                             break;
-                        #endregion ScrollPattern
-                        #region SelectionItemPattern
+                            #endregion ScrollPattern
+                            #region SelectionItemPattern
                         case "Select":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).PerformSelect();
@@ -258,8 +263,8 @@ namespace UIAutomation
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).GetSelectionContainer();
                             break;
-                        #endregion SelectionItemPattern
-                        #region SelectionPattern
+                            #endregion SelectionItemPattern
+                            #region SelectionPattern
                         case "GetSelection":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).PerformGetSelectionSelectionPattern();
@@ -272,8 +277,8 @@ namespace UIAutomation
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).GetIsSelectionRequired();
                             break;
-                        #endregion SelectionPattern
-                        #region TableItemPattern
+                            #endregion SelectionPattern
+                            #region TableItemPattern
                         case "GetRowHeaderItems":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).PerformGetRowHeaderItems();
@@ -302,8 +307,8 @@ namespace UIAutomation
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).GetContainingGridTableItemPattern();
                             break;
-                        #endregion TableItemPattern
-                        #region TablePattern
+                            #endregion TableItemPattern
+                            #region TablePattern
                         case "GetRowHeaders":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).PerformGetRowHeaders();
@@ -324,8 +329,8 @@ namespace UIAutomation
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).GetRowOrColumnMajor();
                             break;
-                        #endregion TablePattern
-                        #region TextPattern
+                            #endregion TablePattern
+                            #region TextPattern
                         case "GetTextSelection":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).PerformGetSelectionTextPattern();
@@ -352,8 +357,8 @@ namespace UIAutomation
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).GetSupportedTextSelection();
                             break;
-                        #endregion TextPattern
-                        #region TogglePattern
+                            #endregion TextPattern
+                            #region TogglePattern
                         case "Toggle":
                             if (0 == invocation.Arguments.Length) {
                                 invocation.ReturnValue =
@@ -368,8 +373,8 @@ namespace UIAutomation
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).GetToggleState();
                             break;
-                        #endregion TogglePattern
-                        #region TransformPattern
+                            #endregion TogglePattern
+                            #region TransformPattern
                         case "Move":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).PerformMove(
@@ -399,8 +404,8 @@ namespace UIAutomation
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).GetCanRotate();
                             break;
-                        #endregion TransformPattern
-                        #region ValuePattern
+                            #endregion TransformPattern
+                            #region ValuePattern
                         case "get_Value":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).PerformGetValueValuePattern();
@@ -414,8 +419,8 @@ namespace UIAutomation
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).GetIsReadOnlyValuePattern();
                             break;
-                        #endregion ValuePattern
-                        #region WindowPattern
+                            #endregion ValuePattern
+                            #region WindowPattern
                         case "SetWindowVisualState": //(WindowVisualState state);
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).PerformSetWindowVisualState(
@@ -454,14 +459,14 @@ namespace UIAutomation
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).GetWindowVisualState();
                             break;
-                        #endregion WindowPattern
-                        #region Highlighter
+                            #endregion WindowPattern
+                            #region Highlighter
                         case "Highlight":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).PerformHighlight();
                             break;
-                        #endregion Highlighter
-                        #region Navigation
+                            #endregion Highlighter
+                            #region Navigation
                         case "NavigateToParent":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).PerformNavigateToParent();
@@ -482,40 +487,40 @@ namespace UIAutomation
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).PerformNavigateToPreviousSibling();
                             break;
-                        #endregion Navigation
-                        #region Export
+                            #endregion Navigation
+                            #region Export
                         case "ExportToCsv":
                             
                             break;
-                        #endregion Export
-                        #region Conversion
+                            #endregion Export
+                            #region Conversion
                         case "ConvertToSearchCriteria":
                             invocation.ReturnValue =
                                 (invocation as IUiElement).PerformConvertToSearchCriteria();
                             break;
-                        #endregion Conversion
-                        #region Refresh
+                            #endregion Conversion
+                            #region Refresh
                         case "Refresh":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).PerformRefresh();
                             break;
-                        #endregion Refresh
-                        #region Extended
+                            #endregion Refresh
+                            #region Extended
                         case "get_Descendants":
                             invocation.ReturnValue =
                                 // 20140210
                                 (invocation.Proxy as IUiElement).GetExtendedModelHolder(TreeScope.Descendants);
-                                // (invocation.Proxy as IUiElement).GetExtendedModelHolder(
-                                //     TreeScope.Descendants,
-                                //     (int)invocation.Arguments[0]);
+                            // (invocation.Proxy as IUiElement).GetExtendedModelHolder(
+                            //     TreeScope.Descendants,
+                            //     (int)invocation.Arguments[0]);
                             break;
                         case "get_Children":
                             invocation.ReturnValue =
                                 // 20140210
                                 (invocation.Proxy as IUiElement).GetExtendedModelHolder(TreeScope.Children);
-                                // (invocation.Proxy as IUiElement).GetExtendedModelHolder(
-                                //     TreeScope.Children,
-                                //     (int)invocation.Arguments[0]);
+                            // (invocation.Proxy as IUiElement).GetExtendedModelHolder(
+                            //     TreeScope.Children,
+                            //     (int)invocation.Arguments[0]);
                             break;
                         case "get_Buttons":
                             invocation.ReturnValue =
@@ -712,8 +717,8 @@ namespace UIAutomation
                                 (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
                                     ControlType.Window);
                             break;
-                        #endregion Extended
-                        #region ControlInput
+                            #endregion Extended
+                            #region ControlInput
                         case "get_Control":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).GetHolder<IControlInputHolder>();
@@ -767,8 +772,8 @@ namespace UIAutomation
                                         (int)invocation.Arguments[1]);
                             }
                             break;
-                        #endregion ControlInput
-                        #region KeyboardInput
+                            #endregion ControlInput
+                            #region KeyboardInput
                         case "get_Keyboard":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).GetHolder<IKeyboardInputHolder>();
@@ -784,11 +789,11 @@ namespace UIAutomation
                                     (invocation.Proxy as IKeyboardInputHolder).PerformKeyPressSingle(
                                         (VirtualKeyCode)invocation.Arguments[0]);
                             }
-//                            if (invocation.Arguments[0] is VirtualKeyCode[]) {
-//                                invocation.ReturnValue =
-//                                    (invocation.Proxy as IKeyboardInputHolder).PerformKeyPressMultiple(
-//                                        (IEnumerable<VirtualKeyCode>)invocation.Arguments[0]);
-//                            }
+                            //                            if (invocation.Arguments[0] is VirtualKeyCode[]) {
+                            //                                invocation.ReturnValue =
+                            //                                    (invocation.Proxy as IKeyboardInputHolder).PerformKeyPressMultiple(
+                            //                                        (IEnumerable<VirtualKeyCode>)invocation.Arguments[0]);
+                            //                            }
                             break;
                         case "KeyUp":
                             invocation.ReturnValue =
@@ -805,8 +810,8 @@ namespace UIAutomation
                                 (invocation.Proxy as IKeyboardInputHolder).PerformTypeChar(
                                     (char)invocation.Arguments[0]);
                             break;
-                        #endregion KeyboardInput
-                        #region MouseInput
+                            #endregion KeyboardInput
+                            #region MouseInput
                         case "get_Mouse":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).GetHolder<IMouseInputHolder>();
@@ -832,9 +837,9 @@ namespace UIAutomation
                             invocation.ReturnValue =
                                 (invocation.Proxy as IMouseInputHolder).PerformLeftButtonUp();
                             break;
-//        IUiElement MoveMouseBy(int pixelDeltaX, int pixelDeltaY);
-//        IUiElement MoveMouseTo(double absoluteX, double absoluteY);
-//        IUiElement MoveMouseToPositionOnVirtualDesktop(double absoluteX, double absoluteY);
+                            //        IUiElement MoveMouseBy(int pixelDeltaX, int pixelDeltaY);
+                            //        IUiElement MoveMouseTo(double absoluteX, double absoluteY);
+                            //        IUiElement MoveMouseToPositionOnVirtualDesktop(double absoluteX, double absoluteY);
                         case "RightButtonClick":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IMouseInputHolder).PerformRightButtonClick();
@@ -851,8 +856,8 @@ namespace UIAutomation
                             invocation.ReturnValue =
                                 (invocation.Proxy as IMouseInputHolder).PerformRightButtonUp();
                             break;
-//        IUiElement Sleep(int milliseconds);
-//        IUiElement Sleep(TimeSpan timeout);
+                            //        IUiElement Sleep(int milliseconds);
+                            //        IUiElement Sleep(TimeSpan timeout);
                         case "VerticalScroll":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IMouseInputHolder).PerformVerticalScroll(
@@ -878,10 +883,10 @@ namespace UIAutomation
                                 (invocation.Proxy as IMouseInputHolder).PerformXButtonUp(
                                     (int)invocation.Arguments[0]);
                             break;
-                        #endregion MouseInput
-                        #region TouchInput
-                        // 20140205
-                        /*
+                            #endregion MouseInput
+                            #region TouchInput
+                            // 20140205
+                            /*
                         case "get_Touch":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).GetHolder<ITouchInputHolder>();
@@ -890,16 +895,16 @@ namespace UIAutomation
                             invocation.ReturnValue =
                                 (invocation.Proxy as ITouchInputHolder).GetT();
                             break;
-                        */
-                        #endregion TouchInput
+                             */
+                            #endregion TouchInput
                         default:
                             invocation.Proceed();
-                        	break;
+                            break;
                     }
                     
-//                    if (null != (invocation.Proxy as IUiElement)) {
-//                        invocation..Method..ReturnType = invocation.Proxy.GetType();
-//                    }
+                    //                    if (null != (invocation.Proxy as IUiElement)) {
+                    //                        invocation..Method..ReturnType = invocation.Proxy.GetType();
+                    //                    }
                     
                     AlreadySelected = false;
                 } else {
@@ -912,6 +917,50 @@ namespace UIAutomation
             }
             catch {
                 AlreadySelected = false;
+            }
+        }
+
+        private void LogMethodCall(IInvocation invocation)
+        {
+            string methodName = invocation.Method.Name;
+            var excludeList = new List<string> {
+                "get_Current",
+                "get_Cached",
+                "GetSourceElement",
+                "SetSourceElement",
+                "FindAll",
+                "FindFirst",
+                "GetSupportedPatterns",
+                "GetCurrentPattern",
+                "get_CachedChildren",
+                "get_CachedParent",
+                "get_Control",
+                "get_Descendants",
+                "get_Children",
+                "get_Mouse",
+                "get_Keyboard"
+            };
+            
+            if (!excludeList.Contains(methodName)) {
+            
+                if (methodName.Contains("get_")) {
+                    methodName = methodName.Replace("get_", string.Empty);
+                } else if (methodName.Contains("set_")) {
+                    methodName = methodName.Replace("set_", string.Empty);
+                } else {
+                    methodName += "(";
+                    foreach (var argument in invocation.Arguments) {
+                        methodName += argument.ToString();
+                        methodName += ",";
+                    }
+                    if (methodName.Substring(methodName.Length - 1) == ",") {
+                        methodName = methodName.Substring(0, methodName.Length - 1);
+                    }
+                    methodName += ")";
+                }
+                if (!string.IsNullOrEmpty(methodName)) {
+                    LogHelper.Info(methodName);
+                }
             }
         }
     }

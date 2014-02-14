@@ -30,7 +30,7 @@ namespace UIAutomation
                     }
                 }
                 catch (Exception eLoggingAspect) {
-                    Console.WriteLine(eLoggingAspect.Message);
+                    // Console.WriteLine(eLoggingAspect.Message);
                 }
             }
             

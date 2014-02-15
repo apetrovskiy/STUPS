@@ -31,6 +31,13 @@ namespace UIAutomation
 //                        // throw
 //                    }
 //                }
+                
+                bool wrongInput = false;
+                if (wrongInput) {
+                    // log
+                    
+                    // return with output
+                }
             }
             
             invocation.Proceed();

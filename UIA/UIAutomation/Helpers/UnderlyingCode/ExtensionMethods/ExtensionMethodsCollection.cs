@@ -22,7 +22,9 @@ namespace UIAutomation
     /// </summary>
     public static class ExtensionMethodsCollection
     {
-        public static IEnumerable GetElementsByWildcard(this IUiEltCollection collection, string name, string automationId, string className, string txtValue, bool caseSensitive = false)
+    	// 20140215
+        // public static IEnumerable GetElementsByWildcard(this IUiEltCollection collection, string name, string automationId, string className, string txtValue, bool caseSensitive = false)
+        public static IEnumerable GetElementsByWildcard(this IUiEltCollection collection, string name, string automationId, string className, string txtValue, bool caseSensitive)
         {
             WildcardOptions options;
             if (caseSensitive) {
@@ -36,13 +38,13 @@ namespace UIAutomation
             
             List<IUiElement> list = collection.Cast<IUiElement>().ToList();
             
-            WildcardPattern wildcardName = 
+            var wildcardName = 
                 new WildcardPattern((string.IsNullOrEmpty(name) ? "*" : name), options);
-            WildcardPattern wildcardAutomationId = 
+            var wildcardAutomationId = 
                 new WildcardPattern((string.IsNullOrEmpty(automationId) ? "*" : automationId), options);
-            WildcardPattern wildcardClassName = 
+            var wildcardClassName = 
                 new WildcardPattern((string.IsNullOrEmpty(className) ? "*" : className), options);
-            WildcardPattern wildcardValue = 
+            var wildcardValue = 
                 new WildcardPattern((string.IsNullOrEmpty(txtValue) ? "*" : txtValue), options);
             
             var queryByBigFour = from collectionItem
@@ -75,7 +77,7 @@ namespace UIAutomation
         
         internal static List<IUiElement> GetFilteredElementsCollection(this List<IUiElement> elementCollection)
         {
-            List<IUiElement> resultCollection = new List<IUiElement>();
+            var resultCollection = new List<IUiElement>();
             
             
             

@@ -18,6 +18,7 @@ namespace UIAutomation
     using System.Linq;
     using System.Management.Automation;
     using PSTestLib;
+    using System.Runtime.CompilerServices;
     
     /// <summary>
     /// Description of ExtensionMethodsElementPatterns.

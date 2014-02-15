@@ -173,15 +173,11 @@ namespace UIAutomation
             		    (UiElement)_generator.CreateClassProxy(
             		        typeof(UiElement),
             		        supportedAdditionalInterfaces,
-            		        // 20140211
-                            // new MethodSelectorAspect(), new LoggingAspect(), new ErrorHandlingAspect(), new InputValidationAspect(), new ParameterValidationAspect());
                             new MethodSelectorAspect(), new ErrorHandlingAspect());
                 } else {
             		proxiedElement =
             		    (UiElement)_generator.CreateClassProxy(
             		        typeof(UiElement),
-            		        // 20140211
-                            // new MethodSelectorAspect(), new LoggingAspect(), new ErrorHandlingAspect(), new InputValidationAspect(), new ParameterValidationAspect());
                             new MethodSelectorAspect(), new ErrorHandlingAspect());
                 }
             }
@@ -203,10 +199,8 @@ namespace UIAutomation
                         new LoggingAspect(), new ErrorHandlingAspect());
                 
             } catch (Exception eProxying) {
-                
                 // Console.WriteLine("ProxiedObject");
                 // Console.WriteLine(eProxying.Message);
-                // throw;
             }
             
             return proxiedObject;
@@ -221,7 +215,7 @@ namespace UIAutomation
                 proxiedObject =
                     (T)_generator.CreateClassProxy(
                         typeof(T),
-                        new[]{ cmdlet },
+                        new CommonCmdletBase[]{ cmdlet },
                         new LoggingAspect(), new InputValidationAspect(), new ErrorHandlingAspect(), new HighlighterAspect(), new TestResultAspect());
                 
             } catch (Exception eProxying) {
@@ -316,7 +310,7 @@ namespace UIAutomation
 //    			    holder = Kernel.Get<IExtendedModelHolder>(new IParameter[] {});
 //    			}
     			
-    			IExtendedModelHolder proxiedHolder =
+    			var proxiedHolder =
     			    (IExtendedModelHolder)_generator.CreateClassProxy(
     			        typeof(UiExtendedModelHolder),
     			        new Type[] { typeof(IExtendedModel) },
@@ -384,7 +378,7 @@ namespace UIAutomation
                         break;
                 }
                 
-    			T proxiedHolder =
+    			var proxiedHolder =
     			    (T)_generator.CreateClassProxy(
     			        typeOfClass,
     			        new Type[] { wearedInterface },

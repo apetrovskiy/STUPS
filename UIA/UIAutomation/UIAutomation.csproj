@@ -123,6 +123,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Linq" />
     <Reference Include="System.Management.Automation" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Presentation">
@@ -599,6 +600,7 @@
     <Folder Include="Helpers\Commands\Banner" />
     <Folder Include="Helpers\Commands\Cache" />
     <Folder Include="Helpers\Commands\Event" />
+    <Folder Include="Helpers\Commands\Convert" />
     <Folder Include="Helpers\Commands\Pattern" />
     <Folder Include="Helpers\Commands\Wait" />
     <Folder Include="Helpers\Commands\RDP" />

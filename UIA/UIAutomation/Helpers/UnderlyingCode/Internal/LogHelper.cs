@@ -1,5 +1,4 @@
-﻿using UIAutomation.Commands;
-/*
+﻿/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
  * Date: 12/21/2013
@@ -20,6 +19,7 @@ namespace UIAutomation
     using NLog.Targets;
     using NLog.Config;
     using PSTestLib;
+    using UIAutomation.Commands;
     
     /// <summary>
     /// Description of LogHelper.
@@ -47,11 +47,11 @@ namespace UIAutomation
         public string LogPath
         {
             get {
-                FileTarget myFileTarget = (FileTarget)LogManager.Configuration.FindTargetByName("file");
+                var myFileTarget = (FileTarget)LogManager.Configuration.FindTargetByName("file");
                 return myFileTarget.FileName.ToString();
             }
             set {
-                FileTarget myFileTarget = (FileTarget)LogManager.Configuration.FindTargetByName("file");
+                var myFileTarget = (FileTarget)LogManager.Configuration.FindTargetByName("file");
                 myFileTarget.FileName = value;
                 // Preferences.LogPath = value;
             }
@@ -60,7 +60,7 @@ namespace UIAutomation
         public void Log(LogLevels level, string message)
         {
             // ?
-            LogEntry entry = new LogEntry(level, message);
+            var entry = new LogEntry(level, message);
             Entries.Add(entry);
         }
         
@@ -106,6 +106,8 @@ namespace UIAutomation
             result += propertyInfo.Name;
             result += " ";
             
+            string tempString = string.Empty;
+            
             switch (tempResult.GetType().Name) {
                 case "String":
                     result += "\"";
@@ -113,7 +115,7 @@ namespace UIAutomation
                     result += "\"";
                     return result;
                 case "String[]":
-                    string tempString = string.Empty;
+                    tempString = string.Empty;
                     foreach (string singleElement in tempResult as IEnumerable) {
                         tempString += ",";
                         tempString += singleElement;
@@ -126,7 +128,9 @@ namespace UIAutomation
                         new ConvertToUiaSearchCriteriaCommand {
                         Full = true
                     };
+                    // result += "\r\n\t";
                     result += convertCmdlet.ConvertElementToSearchCriteria((IUiElement)tempResult);
+                    // result += "\r\n\t";
                     return result;
                 case "IUiElement[]":
                     var convertCmdlet2 =
@@ -134,7 +138,9 @@ namespace UIAutomation
                         Full = true
                     };
                     foreach (IUiElement element in tempResult as IUiElement[]) {
+                        // result += "\r\n\t";
                         result += convertCmdlet2.ConvertElementToSearchCriteria(element);
+                        // result += "\r\n\t";
                     }
                     return result;
                 case "Int32":
@@ -142,11 +148,19 @@ namespace UIAutomation
                     return result;
                 case "SwitchParameter":
                     bool tempBool = (SwitchParameter)tempResult;
-                    if (tempBool) {
-                        result += "$true";
-                    } else {
-                        result += "$false";
+					result += tempBool ? "$true" : "$false";
+                    return result;
+                case "Hashtable":
+                    result += ConvertHashtableToString((Hashtable)tempResult);
+                    return result;
+                case "Hashtable[]":
+                    tempString = string.Empty;
+                    foreach (Hashtable hashtable in (tempResult as Hashtable[])) {
+                        tempString += ",";
+                        tempString += ConvertHashtableToString(hashtable);
                     }
+                    if (0 < tempString.Length) tempString = tempString.Substring(1);
+                    result += tempString;
                     return result;
                 default:
                     result += tempResult.ToString();
@@ -154,6 +168,33 @@ namespace UIAutomation
             }
         }
         
+        internal string ConvertHashtableToString(Hashtable hashtable)
+        {
+            string result = string.Empty;
+            
+            if (null == hashtable) return result;
+            if (0 == hashtable.Keys.Count) return "@{}";
+            
+            result += "@{";
+            foreach (string key in hashtable.Keys) {
+                result += key;
+                result += "=";
+                object value = hashtable[key];
+                if (value is string || value is int) {
+                    result += "\"";
+                    result += value.ToString();
+                    result += "\"";
+                }
+                if (value is Boolean) {
+                    if ((bool)value) result += "$true";
+                    if (!(bool)value) result += "$false";
+                }
+                result += ";";
+            }
+            result += "}";
+            
+            return result;
+        }
         
         // ==============================================================================================
         
@@ -161,9 +202,9 @@ namespace UIAutomation
         
         internal void Init()
         {
-            LoggingConfiguration config = new LoggingConfiguration();
+            var config = new LoggingConfiguration();
 
-            FileTarget fileTarget = new FileTarget();
+            var fileTarget = new FileTarget();
             config.AddTarget("file", fileTarget);
 
             fileTarget.FileName =
@@ -177,7 +218,7 @@ namespace UIAutomation
             //fileTarget.Encoding = "iso-8859-2";
             fileTarget.Encoding = System.Text.Encoding.Unicode;
 
-            LoggingRule rule = new LoggingRule("*", NLog.LogLevel.Info, fileTarget);
+            var rule = new LoggingRule("*", NLog.LogLevel.Info, fileTarget);
             config.LoggingRules.Add(rule);
 
             LogManager.Configuration = config;

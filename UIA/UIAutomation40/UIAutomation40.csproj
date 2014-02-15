@@ -1319,6 +1319,7 @@
     <Folder Include="Helpers\Commands\Banner" />
     <Folder Include="Helpers\Commands\Cache" />
     <Folder Include="Helpers\Commands\Event" />
+    <Folder Include="Helpers\Commands\Convert" />
     <Folder Include="Helpers\Commands\Pattern" />
     <Folder Include="Helpers\Commands\Pattern" />
     <Folder Include="Helpers\Commands\Wait" />

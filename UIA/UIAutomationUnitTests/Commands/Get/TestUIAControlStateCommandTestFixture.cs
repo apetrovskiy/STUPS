@@ -69,7 +69,8 @@ namespace UIAutomationUnitTests.Commands.Get
             };
             
             // Act
-            var command = new TestControlStateCommand(cmdlet);
+            // var command = new TestControlStateCommand(cmdlet);
+            var command = AutomationFactory.GetCommand<TestControlStateCommand>(cmdlet);
             command.Execute();
             
             // Assert
@@ -170,7 +171,7 @@ namespace UIAutomationUnitTests.Commands.Get
             string txtValue = string.Empty;
             ControlType controlType = ControlType.Button;
             
-            Hashtable ht =
+            var ht =
                 new Hashtable();
             ht.Add("controlType", "button");
             ht.Add("class", className);
@@ -191,7 +192,7 @@ namespace UIAutomationUnitTests.Commands.Get
             string txtValue = string.Empty;
             ControlType controlType = ControlType.Button;
             
-            Hashtable ht =
+            var ht =
                 new Hashtable();
             ht.Add("controlType", "button");
             ht.Add("class", className);
@@ -217,7 +218,7 @@ namespace UIAutomationUnitTests.Commands.Get
             string txtValue = string.Empty;
             ControlType controlType = ControlType.Button;
             
-            Hashtable ht =
+            var ht =
                 new Hashtable();
             ht.Add("controlType", "button");
             ht.Add("class", className);
@@ -243,11 +244,11 @@ namespace UIAutomationUnitTests.Commands.Get
             string txtValue = string.Empty;
             ControlType controlType = ControlType.Button;
             
-            Hashtable ht1 =
+            var ht1 =
                 new Hashtable();
             ht1.Add("controlType", "button");
             ht1.Add("class", className);
-            Hashtable ht2 =
+            var ht2 =
                 new Hashtable();
             ht2.Add("controlType", "headeritem");
             Hashtable[] inputData =
@@ -272,11 +273,11 @@ namespace UIAutomationUnitTests.Commands.Get
             string txtValue = string.Empty;
             ControlType controlType = ControlType.Button;
             
-            Hashtable ht1 =
+            var ht1 =
                 new Hashtable();
             ht1.Add("controlType", "button");
             ht1.Add("class", className);
-            Hashtable ht2 =
+            var ht2 =
                 new Hashtable();
             ht2.Add("controlType", "menu");
             Hashtable[] inputData =
@@ -301,22 +302,22 @@ namespace UIAutomationUnitTests.Commands.Get
             string txtValue = string.Empty;
             ControlType controlType = ControlType.Button;
             
-            Hashtable ht1 =
+            var ht1 =
                 new Hashtable();
             ht1.Add("controlType", "button");
             ht1.Add("class", className);
-            Hashtable ht2 =
+            var ht2 =
                 new Hashtable();
             ht2.Add("controlType", "headeritem");
-            Hashtable ht3 =
+            var ht3 =
                 new Hashtable();
             ht3.Add("controlType", "button");
             ht3.Add("class", "cl03");
-            Hashtable ht4 =
+            var ht4 =
                 new Hashtable();
             ht4.Add("controlType", "button");
             ht4.Add("class", className);
-            Hashtable ht5 =
+            var ht5 =
                 new Hashtable();
             ht5.Add("controlType", "headeritem");
             Hashtable[] inputData =
@@ -341,22 +342,22 @@ namespace UIAutomationUnitTests.Commands.Get
             string txtValue = string.Empty;
             ControlType controlType = ControlType.Button;
             
-            Hashtable ht1 =
+            var ht1 =
                 new Hashtable();
             ht1.Add("controlType", "button");
             ht1.Add("class", className);
-            Hashtable ht2 =
+            var ht2 =
                 new Hashtable();
             ht2.Add("controlType", "menu");
-            Hashtable ht3 =
+            var ht3 =
                 new Hashtable();
             ht3.Add("controlType", "button");
             ht3.Add("class", "cl03");
-            Hashtable ht4 =
+            var ht4 =
                 new Hashtable();
             ht4.Add("controlType", "button");
             ht4.Add("class", className);
-            Hashtable ht5 =
+            var ht5 =
                 new Hashtable();
             ht5.Add("controlType", "headeritem");
             Hashtable[] inputData =

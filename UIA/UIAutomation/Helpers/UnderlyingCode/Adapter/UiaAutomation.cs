@@ -19,26 +19,33 @@ namespace UIAutomation
 	// public static class Automation
 	public class UiaAutomation : IAutomation
 	{
+		// public static Condition RawViewCondition
+		// public static readonly Condition RawViewCondition
 		public Condition RawViewCondition
 		{
-		    get { return Condition.TrueCondition; }
+		    // get { return Condition.TrueCondition; }
+		    get { return Automation.RawViewCondition; }
 		}
+		// public static readonly Condition RawViewCondition = Condition.TrueCondition;
+		// public Condition RawViewCondition = Condition.TrueCondition;
 		
 		public Condition ControlViewCondition
 		{
-		    get { return new NotCondition(new PropertyCondition(AutomationElement.IsControlElementProperty, false)); }
+		    // get { return new NotCondition(new PropertyCondition(AutomationElement.IsControlElementProperty, false)); }
+		    get { return Automation.ControlViewCondition; }
 		}
 		
 		public Condition ContentViewCondition
 		{
-		    get { return new NotCondition(
-		              new OrCondition(
-		                  new Condition[] {
-		                      new PropertyCondition(AutomationElement.IsControlElementProperty, false),
-		                      new PropertyCondition(AutomationElement.IsContentElementProperty, false)
-		                                  }
-		                              )
-		              ); }
+//		    get { return new NotCondition(
+//		              new OrCondition(
+//		                  new Condition[] {
+//		                      new PropertyCondition(AutomationElement.IsControlElementProperty, false),
+//		                      new PropertyCondition(AutomationElement.IsContentElementProperty, false)
+//		                                  }
+//		                              )
+//		              ); }
+		    get { return Automation.ContentViewCondition; }
 		}
 		
 		public bool Compare(IUiElement el1, IUiElement el2)

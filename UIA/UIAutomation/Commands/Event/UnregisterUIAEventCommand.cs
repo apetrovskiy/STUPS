@@ -60,7 +60,7 @@ namespace UIAutomation.Commands
                     
                     // 20140130
                     // Automation.RemoveAllEventHandlers();
-                    MyAutomation.RemoveAllEventHandlers();
+                    UiaAutomation.RemoveAllEventHandlers();
 
                     // 20130109
                     if (null != CurrentData.Events) {
@@ -103,7 +103,7 @@ namespace UIAutomation.Commands
                             
                             // 20140130
                             // Automation.RemoveAutomationEventHandler(
-                            MyAutomation.RemoveAutomationEventHandler(
+                            UiaAutomation.RemoveAutomationEventHandler(
                                 null,
                                 // 20131109
                                 //this.InputObject,

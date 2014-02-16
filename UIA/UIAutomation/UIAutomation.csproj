@@ -309,6 +309,7 @@
     <Compile Include="Helpers\Commands\Common\SetControlTextCommand.cs" />
     <Compile Include="Helpers\Commands\Common\SetFocusCommand.cs" />
     <Compile Include="Helpers\Commands\Common\ShowDesktopCommand.cs" />
+    <Compile Include="Helpers\Commands\Event\EventCommand.cs" />
     <Compile Include="Helpers\Commands\Event\GetRegisteredEventCommand.cs" />
     <Compile Include="Helpers\Commands\Event\RegisterFocusChangedEventCommand.cs" />
     <Compile Include="Helpers\Commands\Event\RegisterInvokedEventCommand.cs" />

@@ -18,10 +18,8 @@ namespace UIAutomation.Commands
     /// Description of RegisterUiaWindowClosedEventCommand.
     /// </summary>
     [Cmdlet(VerbsLifecycle.Register, "UiaWindowClosedEvent")]
-    
     public class RegisterUiaWindowClosedEventCommand : EventCmdletBase
     {
-        #region Constructor
         public RegisterUiaWindowClosedEventCommand()
         {
             // base.AutomationEventType = 
@@ -30,6 +28,5 @@ namespace UIAutomation.Commands
             // base.AutomationEventHandler = OnUIAutomationEvent;
             AutomationEventHandler = OnUIAutomationEvent;
         }
-        #endregion Constructor
     }
 }

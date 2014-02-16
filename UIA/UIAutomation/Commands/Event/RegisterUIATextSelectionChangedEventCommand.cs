@@ -18,10 +18,8 @@ namespace UIAutomation.Commands
     /// Description of RegisterUiaTextSelectionChangedEventCommand.
     /// </summary>
     [Cmdlet(VerbsLifecycle.Register, "UiaTextSelectionChangedEvent")]
-    
     public class RegisterUiaTextSelectionChangedEventCommand : EventCmdletBase
     {
-        #region Constructor
         public RegisterUiaTextSelectionChangedEventCommand()
         {
             //base.AutomationEventType = 
@@ -30,6 +28,5 @@ namespace UIAutomation.Commands
             //base.AutomationEventHandler = OnUIAutomationEvent;
             AutomationEventHandler = OnUIAutomationEvent;
         }
-        #endregion Constructor
     }
 }

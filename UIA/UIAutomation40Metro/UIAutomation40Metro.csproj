@@ -627,6 +627,9 @@
     <Compile Include="..\UIAutomation\Helpers\Commands\Container\UIANewContainerCommand.cs">
       <Link>Helpers\Commands\Container\UIANewContainerCommand.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Event\EventCommand.cs">
+      <Link>Helpers\Commands\Event\EventCommand.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Helpers\Commands\Event\GetRegisteredEventCommand.cs">
       <Link>Helpers\Commands\Event\GetRegisteredEventCommand.cs</Link>
     </Compile>

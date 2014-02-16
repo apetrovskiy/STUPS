@@ -18,16 +18,13 @@ namespace UIAutomation.Commands
     /// Description of RegisterUiaWindowOpenedEventCommand.
     /// </summary>
     [Cmdlet(VerbsLifecycle.Register, "UiaWindowOpenedEvent")]
-    
     public class RegisterUiaWindowOpenedEventCommand : EventCmdletBase
     {
-        #region Constructor
         public RegisterUiaWindowOpenedEventCommand()
         {
             base.AutomationEventType = 
                 WindowPattern.WindowOpenedEvent;
             base.AutomationEventHandler = OnUIAutomationEvent;
         }
-        #endregion Constructor
     }
 }

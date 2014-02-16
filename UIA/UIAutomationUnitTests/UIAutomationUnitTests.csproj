@@ -113,6 +113,7 @@
     <Compile Include="Commands\Common\HideUIACurrentHighlighterCommandTestFixture.cs" />
     <Compile Include="Commands\Common\InvokeUIAControlContextMenuCommandTestFixture.cs" />
     <Compile Include="Commands\Container\NewUIAContainerCommandTestFixture.cs" />
+    <Compile Include="Commands\Event\EventCmdletBaseTestFixture.cs" />
     <Compile Include="Commands\Get\GetUiaButtonCommandTestFixture.cs" />
     <Compile Include="Commands\Get\TestUIAControlStateCommandTestFixture.cs" />
     <Compile Include="Commands\No\WaitUIANoWindowCommandTestFixture.cs" />

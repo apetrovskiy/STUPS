@@ -124,6 +124,9 @@
     <Compile Include="..\UIAutomationUnitTests\Commands\Container\NewUIAContainerCommandTestFixture.cs">
       <Link>Commands\Container\NewUIAContainerCommandTestFixture.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Commands\Event\EventCmdletBaseTestFixture.cs">
+      <Link>Commands\Event\EventCmdletBaseTestFixture.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomationUnitTests\Commands\Get\GetUiaButtonCommandTestFixture.cs">
       <Link>Commands\Get\GetUiaButtonCommandTestFixture.cs</Link>
     </Compile>

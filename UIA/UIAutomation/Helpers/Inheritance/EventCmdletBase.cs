@@ -14,6 +14,7 @@ namespace UIAutomation
     using System.Management.Automation;
     using System.Windows.Automation;
     using System.Collections;
+    using UIAutomation.Helpers.Commands;
 
     /// <summary>
     /// Description of HasScriptBlockCmdletBase.
@@ -57,14 +58,19 @@ namespace UIAutomation
         {
             if (InputObject == null) return;
             
-            foreach (IUiElement inputObject in InputObject) {
-                
-                SubscribeToEvents(this,
-                                  inputObject,
-                                  AutomationEventType,
-                                  AutomationProperty);
-                
-            }
+            // 20140216
+            var command =
+                AutomationFactory.GetCommand<EventCommand>(this);
+            command.Execute();
+            
+//            foreach (IUiElement inputObject in InputObject) {
+//                
+//                SubscribeToEvents(this,
+//                                  inputObject,
+//                                  AutomationEventType,
+//                                  AutomationProperty);
+//                
+//            }
         }
     }
 }

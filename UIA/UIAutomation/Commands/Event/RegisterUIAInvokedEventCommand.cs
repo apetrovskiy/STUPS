@@ -18,15 +18,12 @@ namespace UIAutomation.Commands
     /// Description of RegisterUiaInvokedEventCommand.
     /// </summary>
     [Cmdlet(VerbsLifecycle.Register, "UiaInvokedEvent")]
-    
     public class RegisterUiaInvokedEventCommand : EventCmdletBase
     {
-        #region Constructor
         public RegisterUiaInvokedEventCommand()
         {
             AutomationEventType = InvokePattern.InvokedEvent;
             AutomationEventHandler = OnUIAutomationEvent;
         }
-        #endregion Constructor
     }
 }

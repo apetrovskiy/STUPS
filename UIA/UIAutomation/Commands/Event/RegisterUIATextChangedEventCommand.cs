@@ -21,7 +21,6 @@ namespace UIAutomation.Commands
     
     public class RegisterUiaTextChangedEventCommand : EventCmdletBase
     {
-        #region Constructor
         public RegisterUiaTextChangedEventCommand()
         {
             // base.AutomationEventType = 
@@ -30,6 +29,5 @@ namespace UIAutomation.Commands
             // base.AutomationEventHandler = OnUIAutomationEvent;
             AutomationEventHandler = OnUIAutomationEvent;
         }
-        #endregion Constructor
     }
 }

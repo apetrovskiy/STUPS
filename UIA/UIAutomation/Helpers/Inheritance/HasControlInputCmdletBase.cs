@@ -122,8 +122,8 @@ namespace UIAutomation
         }
         
         #region Properties
-        protected AutomationEvent AutomationEventType { get; set; }
-        protected AutomationProperty AutomationProperty { get; set; }
+        protected internal AutomationEvent AutomationEventType { get; set; }
+        protected internal AutomationProperty AutomationProperty { get; set; }
         protected internal AutomationEventHandler AutomationEventHandler { get; set; }
         protected internal AutomationPropertyChangedEventHandler AutomationPropertyChangedEventHandler { get; set; }
         protected internal StructureChangedEventHandler StructureChangedEventHandler { get; set; }
@@ -532,8 +532,6 @@ namespace UIAutomation
         
         #region subscribe to events
         protected internal void SubscribeToEvents(HasControlInputCmdletBase cmdlet,
-                                                  // 20131109
-                                                  //AutomationElement inputObject,
                                                   IUiElement inputObject,
                                                   AutomationEvent eventType,
                                                   AutomationProperty prop)
@@ -543,13 +541,12 @@ namespace UIAutomation
             }
             
             try {
-
                 CacheRequest cacheRequest = new CacheRequest
                 {
                     AutomationElementMode = AutomationElementMode.Full,
                     // 20140130
                     // TreeFilter = Automation.RawViewCondition
-                    TreeFilter = MyAutomation.RawViewCondition
+                    TreeFilter = UiaAutomation.RawViewCondition
                 };
                 cacheRequest.Add(AutomationElement.NameProperty);
                 cacheRequest.Add(AutomationElement.AutomationIdProperty);
@@ -560,14 +557,14 @@ namespace UIAutomation
                 
                 // cacheRequest.Activate();
                 cacheRequest.Push();
-
+                
                 AutomationEventHandler uiaEventHandler;
                 switch (eventType.ProgrammaticName) {
                     case "InvokePatternIdentifiers.InvokedEvent":
                         WriteVerbose(cmdlet, "subscribing to the InvokedEvent handler");
                         // 20140130
                         // Automation.AddAutomationEventHandler(
-                        MyAutomation.AddAutomationEventHandler(
+                        UiaAutomation.AddAutomationEventHandler(
                             InvokePattern.InvokedEvent,
                             // 20131118
                             // property to method
@@ -586,7 +583,7 @@ namespace UIAutomation
                         WriteVerbose(cmdlet, "subscribing to the TextChangedEvent handler");
                         // 20140130
                         // Automation.AddAutomationEventHandler(
-                        MyAutomation.AddAutomationEventHandler(
+                        UiaAutomation.AddAutomationEventHandler(
                             TextPattern.TextChangedEvent,
                             // 20131118
                             // property to method
@@ -605,7 +602,7 @@ namespace UIAutomation
                         WriteVerbose(cmdlet, "subscribing to the TextSelectionChangedEvent handler");
                         // 20140130
                         // Automation.AddAutomationEventHandler(
-                        MyAutomation.AddAutomationEventHandler(
+                        UiaAutomation.AddAutomationEventHandler(
                             TextPattern.TextSelectionChangedEvent,
                             // 20131118
                             // property to method
@@ -624,7 +621,7 @@ namespace UIAutomation
                         WriteVerbose(cmdlet, "subscribing to the WindowOpenedEvent handler");
                         // 20140130
                         // Automation.AddAutomationEventHandler(
-                        MyAutomation.AddAutomationEventHandler(
+                        UiaAutomation.AddAutomationEventHandler(
                             WindowPattern.WindowOpenedEvent,
                             // 20131118
                             // property to method
@@ -645,7 +642,7 @@ namespace UIAutomation
                             AutomationPropertyChangedEventHandler uiaPropertyChangedEventHandler;
                             // 20140130
                             // Automation.AddAutomationPropertyChangedEventHandler(
-                            MyAutomation.AddAutomationPropertyChangedEventHandler(
+                            UiaAutomation.AddAutomationPropertyChangedEventHandler(
                                 // 20131118
                                 // property to method
                                 //inputObject.SourceElement,
@@ -667,7 +664,7 @@ namespace UIAutomation
                         StructureChangedEventHandler uiaStructureChangedEventHandler;
                         // 20140130
                         // Automation.AddStructureChangedEventHandler(
-                        MyAutomation.AddStructureChangedEventHandler(
+                        UiaAutomation.AddStructureChangedEventHandler(
                             // 20131118
                             // property to method
                             //inputObject.SourceElement,
@@ -686,7 +683,7 @@ namespace UIAutomation
                         WriteVerbose(cmdlet, "subscribing to the WindowClosedEvent handler");
                         // 20140130
                         // Automation.AddAutomationEventHandler(
-                        MyAutomation.AddAutomationEventHandler(
+                        UiaAutomation.AddAutomationEventHandler(
                             WindowPattern.WindowClosedEvent,
                             // 20131118
                             // property to method
@@ -705,7 +702,7 @@ namespace UIAutomation
                         WriteVerbose(cmdlet, "subscribing to the MenuClosedEvent handler");
                         // 20140130
                         // Automation.AddAutomationEventHandler(
-                        MyAutomation.AddAutomationEventHandler(
+                        UiaAutomation.AddAutomationEventHandler(
                             AutomationElement.MenuClosedEvent,
                             // 20131118
                             // property to method
@@ -724,7 +721,7 @@ namespace UIAutomation
                         WriteVerbose(cmdlet, "subscribing to the MenuOpenedEvent handler");
                         // 20140130
                         // Automation.AddAutomationEventHandler(
-                        MyAutomation.AddAutomationEventHandler(
+                        UiaAutomation.AddAutomationEventHandler(
                             AutomationElement.MenuOpenedEvent,
                             // 20131118
                             // property to method
@@ -743,7 +740,7 @@ namespace UIAutomation
                         WriteVerbose(cmdlet, "subscribing to the ToolTipClosedEvent handler");
                         // 20140130
                         // Automation.AddAutomationEventHandler(
-                        MyAutomation.AddAutomationEventHandler(
+                        UiaAutomation.AddAutomationEventHandler(
                             AutomationElement.ToolTipClosedEvent,
                             // 20131118
                             // property to method
@@ -762,7 +759,7 @@ namespace UIAutomation
                         WriteVerbose(cmdlet, "subscribing to the ToolTipOpenedEvent handler");
                         // 20140130
                         // Automation.AddAutomationEventHandler(
-                        MyAutomation.AddAutomationEventHandler(
+                        UiaAutomation.AddAutomationEventHandler(
                             AutomationElement.ToolTipOpenedEvent,
                             // 20131118
                             // property to method
@@ -782,7 +779,7 @@ namespace UIAutomation
                         AutomationFocusChangedEventHandler uiaFocusChangedEventHandler;
                         // 20140130
                         // Automation.AddAutomationFocusChangedEventHandler(
-                        MyAutomation.AddAutomationFocusChangedEventHandler(
+                        UiaAutomation.AddAutomationFocusChangedEventHandler(
                             uiaFocusChangedEventHandler = new AutomationFocusChangedEventHandler(cmdlet.AutomationEventHandler));
                         UiaHelper.WriteEventToCollection(cmdlet, uiaFocusChangedEventHandler);
                         if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaFocusChangedEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }

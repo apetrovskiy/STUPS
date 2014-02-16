@@ -33,7 +33,7 @@ namespace UIAutomation
             Banner = string.Empty;
             
             // 20140130
-            MyAutomation = AutomationFactory.GetMyAutomation();
+            UiaAutomation = AutomationFactory.GetMyAutomation();
         }
         #endregion Constructor
 
@@ -57,7 +57,7 @@ namespace UIAutomation
             new List<AutomationEvent>();
         
         // 20140130
-        protected internal IAutomation MyAutomation { get; set; }
+        protected internal IAutomation UiaAutomation { get; set; }
         
         #region for script recording
         public List<List<string>> Recording =

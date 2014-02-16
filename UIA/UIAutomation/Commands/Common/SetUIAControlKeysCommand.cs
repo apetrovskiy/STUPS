@@ -22,27 +22,27 @@ namespace UIAutomation.Commands
     public class SetUiaControlKeysCommand : HasControlInputCmdletBase
     {
         #region Parameters
-        [My][Parameter(Mandatory = true,
+        [UiaParameter][Parameter(Mandatory = true,
                    Position = 0)]
         [AllowEmptyString]
         public string Text { get; set; }
-//        [My][Parameter(Mandatory = false)]
+//        [UiaParameterNotUsed][Parameter(Mandatory = false)]
 //        public SwitchParameter RightClick { get; set; }
-//        [My][Parameter(Mandatory = false)]
+//        [UiaParameterNotUsed][Parameter(Mandatory = false)]
 //        public SwitchParameter MidClick { get; set; }
-//        [My][Parameter(Mandatory = false)]
+//        [UiaParameterNotUsed][Parameter(Mandatory = false)]
 //        public SwitchParameter Alt { get; set; }
-//        [My][Parameter(Mandatory = false)]
+//        [UiaParameterNotUsed][Parameter(Mandatory = false)]
 //        public SwitchParameter Shift { get; set; }
-//        [My][Parameter(Mandatory = false)]
+//        [UiaParameterNotUsed][Parameter(Mandatory = false)]
 //        public SwitchParameter Ctrl { get; set; }
-//        [My][Parameter(Mandatory = false)]
+//        [UiaParameterNotUsed][Parameter(Mandatory = false)]
 //        public SwitchParameter DoubleClick { get; set; }
-//        [My][Parameter(Mandatory = false)]
+//        [UiaParameterNotUsed][Parameter(Mandatory = false)]
 //        public int X { get; set; }
-//        [My][Parameter(Mandatory = false)]
+//        [UiaParameterNotUsed][Parameter(Mandatory = false)]
 //        public int Y { get; set; }
-//        [My][Parameter(Mandatory = false)]
+//        [UiaParameterNotUsed][Parameter(Mandatory = false)]
 //        public SwitchParameter Wait { get; set; }
         #endregion Parameters
         

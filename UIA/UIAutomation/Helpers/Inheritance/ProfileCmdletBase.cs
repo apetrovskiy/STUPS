@@ -17,7 +17,7 @@ namespace UIAutomation
     public class ProfileCmdletBase : CommonCmdletBase
     {
         #region Parameters
-        [My][Parameter(Mandatory = true,
+        [UiaParameter][Parameter(Mandatory = true,
                    ParameterSetName = "Name")]
         [ValidateNotNullOrEmpty]
         public string Name { get; set; }

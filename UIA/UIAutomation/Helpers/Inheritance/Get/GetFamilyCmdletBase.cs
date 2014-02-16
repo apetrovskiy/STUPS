@@ -17,7 +17,7 @@ namespace UIAutomation
     public class GetFamilyCmdletBase : GetRelativesCmdletBase
     {
         #region Parameters
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         internal new string[] ControlType { get; set; }
         #endregion Parameters
     }

@@ -27,11 +27,11 @@ namespace UIAutomation
         #endregion Constructor
 
         #region Parameters
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         public char Delimiter { get; set; }
         
         // temporary!!!
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         public SwitchParameter SelectedOnly { get; set; }
         #endregion Parameters
     }

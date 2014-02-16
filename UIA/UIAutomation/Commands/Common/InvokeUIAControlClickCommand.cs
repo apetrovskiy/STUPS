@@ -34,24 +34,24 @@ namespace UIAutomation.Commands
         #endregion Constructor
         
         #region Parameters
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         public SwitchParameter RightClick { get; set; }
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         public SwitchParameter MidClick { get; set; }
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         public SwitchParameter Alt { get; set; }
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         public SwitchParameter Shift { get; set; }
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         public SwitchParameter Ctrl { get; set; }
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         public SwitchParameter DoubleClick { get; set; }
         // 20131125
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         public int DoubleClickInterval { get; set; }
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         public int X { get; set; }
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         public int Y { get; set; }
         #endregion Parameters
         

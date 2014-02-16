@@ -36,18 +36,18 @@ namespace UIAutomation
         #endregion Constructor
 
         #region Parameters
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         internal new SwitchParameter PassThru { get; set; }
         
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         public SwitchParameter WriteCurrentPattern { get; set; }
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         public SwitchParameter NoClassInformation { get; set; }
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         public SwitchParameter NoEvents { get; set; }
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         public SwitchParameter NoScriptHeader { get; set; }
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         public SwitchParameter NoUI { get; set; }
         #endregion Parameters
         

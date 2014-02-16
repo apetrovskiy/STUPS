@@ -17,7 +17,7 @@ namespace UIAutomation
     public class ReadAndConvertCmdletBase : HasControlInputCmdletBase
     {
         #region Parameters
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         internal new SwitchParameter PassThru { get; set; }
         #endregion Parameters
     }

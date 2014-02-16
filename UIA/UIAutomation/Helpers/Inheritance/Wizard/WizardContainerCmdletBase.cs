@@ -21,7 +21,7 @@ namespace UIAutomation
         }
         
         #region Parameters
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         // 20130322
         //internal new Wizard InputObject { get; set; }
         public new Wizard InputObject { get; set; }
@@ -29,25 +29,25 @@ namespace UIAutomation
         
         
         
-//        [My][Parameter(Mandatory = true)]
+//        [UiaParameterNotUsed][Parameter(Mandatory = true)]
 //        [ValidateNotNullOrEmpty]
 //        public ScriptBlock[] StartAction { get; set; }
 //        // 20130317
-//        [My][Parameter(Mandatory = false)]
+//        [UiaParameterNotUsed][Parameter(Mandatory = false)]
 //        public ScriptBlock[] StopAction { get; set; }
 //        // 20130317
-//        [My][Parameter(Mandatory = false)]
+//        [UiaParameterNotUsed][Parameter(Mandatory = false)]
 //        public ScriptBlock[] DefaultStepForwardAction { get; set; }
 //        // 20130317
-//        [My][Parameter(Mandatory = false)]
+//        [UiaParameterNotUsed][Parameter(Mandatory = false)]
 //        public ScriptBlock[] DefaultStepBackwardAction { get; set; }
 //        // 20130317
-//        [My][Parameter(Mandatory = false)]
+//        [UiaParameterNotUsed][Parameter(Mandatory = false)]
 //        public ScriptBlock[] DefaultStepCancelAction { get; set; }
 //        // 20130317
-//        [My][Parameter(Mandatory = false)]
+//        [UiaParameterNotUsed][Parameter(Mandatory = false)]
 //        public ScriptBlock[] DefaultStepGetWindowAction { get; set; }
-//        [My][Parameter(Mandatory = false)]
+//        [UiaParameterNotUsed][Parameter(Mandatory = false)]
 //        internal int Order { get; set; }
         #endregion Parameters
     }

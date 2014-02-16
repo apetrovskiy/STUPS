@@ -25,16 +25,16 @@ namespace UIAutomation.Commands
         {
         }
         
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         //public new string[] ControlType { get; set; }
         public string[] ControlType { get; set; }
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         //public new string Name { get; set; }
         public string[] Name { get; set; }
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         //public new string AutomationId { get; set; }
         public string[] AutomationId { get; set; }
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         //public new string Name { get; set; }
         public string[] EventId { get; set; }
         

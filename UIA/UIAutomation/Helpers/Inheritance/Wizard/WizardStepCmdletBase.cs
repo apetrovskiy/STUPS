@@ -22,26 +22,26 @@ namespace UIAutomation
         }
         
         #region Parameters
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         //public System.Collections.Hashtable[] SearchCriteria { get; set; }
         public Hashtable[] SearchCriteria { get; set; }
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         public ScriptBlock[] StepForwardAction { get; set; }
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         public ScriptBlock[] StepBackwardAction { get; set; }
         // 20130317
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         public ScriptBlock[] StepCancelAction { get; set; }
         // 20130317
         // 20130319
-        //[My][Parameter(Mandatory = false)]
+        //[UiaParameterNotUsed][Parameter(Mandatory = false)]
         //public ScriptBlock[] StepGetWindowAction { get; set; }
         
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         public int Order { get; set; }
         
 //        // 20130318
-//        [My][Parameter(Mandatory = false)]
+//        [UiaParameterNotUsed][Parameter(Mandatory = false)]
 //        public string Description { get; set; }
         #endregion Parameters
     }

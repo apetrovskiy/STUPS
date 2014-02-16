@@ -24,9 +24,9 @@
 //        }
 //        
 //        #region Parameters
-////        [My][Parameter(Mandatory = false)]
+////        [UiaParameterNotUsed][Parameter(Mandatory = false)]
 ////        internal new AutomationElement InputObject { get; set; }
-//        [My][Parameter(Mandatory = false)]
+//        [UiaParameterNotUsed][Parameter(Mandatory = false)]
 //        internal new string[] ControlType { get; set; }
 //        #endregion Parameters
 //        

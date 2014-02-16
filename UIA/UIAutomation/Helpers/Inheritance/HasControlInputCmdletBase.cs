@@ -96,7 +96,7 @@ namespace UIAutomation
         
         #region Parameters
         [ValidateNotNullOrEmpty()]
-        [My][Parameter(Mandatory = false, 
+        [UiaParameter][Parameter(Mandatory = false, 
             ValueFromPipeline = true,
             HelpMessage = "This is usually the output from Get-UiaControl" )] 
         //public System.Windows.Automation.AutomationElement[] InputObject { get; set; }
@@ -109,10 +109,10 @@ namespace UIAutomation
         /*
         public UiElement[] InputObject { get; set; }
         */
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         public virtual SwitchParameter PassThru { get; set; }
         
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         public ScriptBlock[] EventAction { get; set; }
         #endregion Parameters
         

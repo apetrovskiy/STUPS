@@ -26,50 +26,50 @@ namespace UIAutomation.Commands
         #endregion Constructor
         
         #region Parameters
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         public string Key { get; set; }
         
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         public SwitchParameter Win { get; set; }
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         public SwitchParameter Enter { get; set; }
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         public SwitchParameter Ctrl { get; set; }
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         public SwitchParameter Shift { get; set; }
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         public SwitchParameter Alt { get; set; }
-//        [My][Parameter(Mandatory = false)]
+//        [UiaParameterNotUsed][Parameter(Mandatory = false)]
 //        public SwitchParameter Esc { get; set; }
         
         
-//        [My][Parameter(Mandatory = false)]
+//        [UiaParameterNotUsed][Parameter(Mandatory = false)]
 //        public SwitchParameter Del { get; set; }
-//        [My][Parameter(Mandatory = false)]
+//        [UiaParameterNotUsed][Parameter(Mandatory = false)]
 //        public SwitchParameter Win { get; set; }
-//        [My][Parameter(Mandatory = false)]
+//        [UiaParameterNotUsed][Parameter(Mandatory = false)]
 //        public SwitchParameter Win { get; set; }
-//        [My][Parameter(Mandatory = false)]
+//        [UiaParameterNotUsed][Parameter(Mandatory = false)]
 //        public SwitchParameter Win { get; set; }
-//        [My][Parameter(Mandatory = false)]
+//        [UiaParameterNotUsed][Parameter(Mandatory = false)]
 //        public SwitchParameter Win { get; set; }
-//        [My][Parameter(Mandatory = false)]
+//        [UiaParameterNotUsed][Parameter(Mandatory = false)]
 //        public SwitchParameter Win { get; set; }
-//        [My][Parameter(Mandatory = false)]
+//        [UiaParameterNotUsed][Parameter(Mandatory = false)]
 //        public SwitchParameter Win { get; set; }
-//        [My][Parameter(Mandatory = false)]
+//        [UiaParameterNotUsed][Parameter(Mandatory = false)]
 //        public SwitchParameter Win { get; set; }
-//        [My][Parameter(Mandatory = false)]
+//        [UiaParameterNotUsed][Parameter(Mandatory = false)]
 //        public SwitchParameter Win { get; set; }
-//        [My][Parameter(Mandatory = false)]
+//        [UiaParameterNotUsed][Parameter(Mandatory = false)]
 //        public SwitchParameter Win { get; set; }
-//        [My][Parameter(Mandatory = false)]
+//        [UiaParameterNotUsed][Parameter(Mandatory = false)]
 //        public SwitchParameter Win { get; set; }
-//        [My][Parameter(Mandatory = false)]
+//        [UiaParameterNotUsed][Parameter(Mandatory = false)]
 //        public SwitchParameter Win { get; set; }
-//        [My][Parameter(Mandatory = false)]
+//        [UiaParameterNotUsed][Parameter(Mandatory = false)]
 //        public SwitchParameter Win { get; set; }
-//        [My][Parameter(Mandatory = false)]
+//        [UiaParameterNotUsed][Parameter(Mandatory = false)]
 //        public SwitchParameter Win { get; set; }
         #endregion Parameters
         

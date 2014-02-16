@@ -17,7 +17,7 @@ namespace UIAutomation
     public class SheridanCmdletBase : HasControlInputCmdletBase
     {
         #region Parameters
-        [My][Parameter(Mandatory = true,
+        [UiaParameter][Parameter(Mandatory = true,
                    Position = 0)]
         public string Name { get; set; }
         #endregion Parameters

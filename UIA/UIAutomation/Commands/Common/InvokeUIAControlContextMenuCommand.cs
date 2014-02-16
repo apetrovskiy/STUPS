@@ -30,9 +30,9 @@ namespace UIAutomation.Commands
         // TEMPORARY!
         // 20140116
         #region Parameters
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         public int X { get; set; }
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         public int Y { get; set; }
         #endregion Parameters
         

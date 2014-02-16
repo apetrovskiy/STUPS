@@ -18,13 +18,13 @@ namespace UIAutomation
     public class WizardCmdletBase : HasControlInputCmdletBase //HasScriptBlockCmdletBase ////?
     {
         #region Parameters
-        [My][Parameter(Mandatory = true)]
+        [UiaParameter][Parameter(Mandatory = true)]
         [ValidateNotNullOrEmpty]
         public string Name { get; set; }
-        [My][Parameter(Mandatory = true,
+        [UiaParameter][Parameter(Mandatory = true,
                    ValueFromPipeline = true)]
         public new Wizard InputObject { get; set; }
-// [My][Parameter(Mandatory = false)]
+// [UiaParameterNotUsed][Parameter(Mandatory = false)]
 // public int Order { get; set; }
         #endregion Parameters
         

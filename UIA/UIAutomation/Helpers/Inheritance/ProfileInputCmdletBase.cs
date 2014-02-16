@@ -17,7 +17,7 @@ namespace UIAutomation
     public class ProfileInputCmdletBase : ProfileCmdletBase
     {
         #region Parameters
-        [My][Parameter(Mandatory = true,
+        [UiaParameter][Parameter(Mandatory = true,
                    ParameterSetName = "Input",
                    ValueFromPipeline = true,
                    Position = 0)]

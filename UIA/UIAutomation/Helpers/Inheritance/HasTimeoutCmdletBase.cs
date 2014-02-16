@@ -40,20 +40,20 @@ namespace UIAutomation
         #endregion Constructor
 
         #region Parameters
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         internal SwitchParameter Wait { get; set; }
         
         [Alias("Milliseconds")]
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         public int Timeout { get; set; }
         
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         public int Seconds {
             get { return Timeout / 1000; }
             set{ Timeout = value * 1000; }
         }
         
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         public SwitchParameter IsCritical { get; set; }
         #endregion Parameters
         

@@ -18,7 +18,7 @@ namespace UIAutomation.Commands
 	public class ShowUiaExecutionPlanCommand : ExecutionPlanCmdletBase
 	{
 		#region Parameters
-		[My][Parameter(Mandatory = false)]
+		[UiaParameter][Parameter(Mandatory = false)]
 		public int MaxControlsHighlighted { get; set; }
 		#endregion Parameters
 		

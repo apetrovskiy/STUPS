@@ -25,10 +25,10 @@ namespace UIAutomation.Commands
         // 20130507
         // 20130508
         [Obsolete("This parameter does nothing and serves only for the compatibility purpose")]
-        [My][Parameter(Mandatory = false,
+        [UiaParameter][Parameter(Mandatory = false,
                    Position = 0)]
         public string[] ItemName { get; set; }
-//        [My][Parameter(Mandatory = true,
+//        [UiaParameterNotUsed][Parameter(Mandatory = true,
 //                   // 20130105
 //                   Position = 0)]
 //        public string[] ItemName { get; set; }

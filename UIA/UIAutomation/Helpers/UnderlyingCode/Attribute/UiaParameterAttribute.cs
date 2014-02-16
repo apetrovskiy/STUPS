@@ -15,9 +15,9 @@ namespace UIAutomation
     /// Description of MyAttribute.
     /// </summary>
     [System.AttributeUsage(System.AttributeTargets.Property)]
-    public class MyAttribute : System.Attribute
+    public class UiaParameterAttribute : System.Attribute
     {
-        public MyAttribute()
+        public UiaParameterAttribute()
         {
         }
     }

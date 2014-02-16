@@ -20,7 +20,7 @@ namespace UIAutomation.Commands
     internal class InvokeUiaScriptCommand : HasTimeoutCmdletBase
     {
         #region Parameters
-        [My][Parameter(Mandatory = true)]
+        [UiaParameter][Parameter(Mandatory = true)]
         public ScriptBlock[] ScriptBlock { get; set; }
         #endregion Parameters
         

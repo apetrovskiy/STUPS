@@ -24,7 +24,7 @@ namespace UIAutomation.Commands
         #endregion Constructor
         
         #region Parameters
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         public int First { get; set; }
         #endregion Parameters
         

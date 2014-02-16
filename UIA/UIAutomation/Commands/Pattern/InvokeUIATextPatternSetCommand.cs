@@ -28,7 +28,7 @@ namespace UIAutomation.Commands
         }
         
         #region Parameters
-        [My][Parameter(Mandatory = true,
+        [UiaParameter][Parameter(Mandatory = true,
                    Position = 0)]
         [AllowEmptyString]
         public string Text { get; set; }

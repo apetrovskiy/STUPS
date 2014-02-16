@@ -30,7 +30,7 @@ namespace UIAutomation.Commands
             PassThru = false;
         }
         
-        [My][Parameter(Mandatory = true)]
+        [UiaParameter][Parameter(Mandatory = true)]
         public int Value { get; set; }
         [Parameter]
         internal new SwitchParameter PassThru {get; set; }

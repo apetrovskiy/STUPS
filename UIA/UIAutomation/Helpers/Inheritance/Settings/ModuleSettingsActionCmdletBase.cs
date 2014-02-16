@@ -21,9 +21,9 @@ namespace UIAutomation
 //        }
         
         #region Parameters
-        [My][Parameter(Mandatory=false)]
+        [UiaParameter][Parameter(Mandatory=false)]
         public ScriptBlock[] Action { get; set; }
-        [My][Parameter(Mandatory=false)]
+        [UiaParameter][Parameter(Mandatory=false)]
         public int Delay { get; set; }
         #endregion Parameters
     }

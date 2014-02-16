@@ -21,13 +21,13 @@ namespace UIAutomation.Commands
     public class GetUiaControlFromHandleCommand : DiscoveryCmdletBase
     {
         #region Parameters
-//        [My][Parameter(Mandatory = true,
+//        [UiaParameterNotUsed][Parameter(Mandatory = true,
 //                   ValueFromPipeline = true)]
 //        [Alias("Handle")]
 //        public new int InputObject { get; set; }
         [ValidateNotNullOrEmpty]
         [Alias ("Handle")]
-        [My][Parameter(Mandatory = false, 
+        [UiaParameter][Parameter(Mandatory = false, 
             ValueFromPipeline = true, 
             Position = 0)] 
         // 20120824

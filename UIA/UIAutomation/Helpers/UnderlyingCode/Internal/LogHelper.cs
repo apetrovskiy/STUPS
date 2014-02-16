@@ -76,7 +76,7 @@ namespace UIAutomation
             // http://stackoverflow.com/questions/2281972/how-to-get-a-list-of-properties-with-a-given-attribute
             foreach (PropertyInfo propertyInfo in cmdlet.GetType()
                      .GetProperties(BindingFlags.Public | BindingFlags.Instance)
-                     .Where(p => p.GetCustomAttributes(typeof(MyAttribute), true).Length != 0)) {
+                     .Where(p => p.GetCustomAttributes(typeof(UiaParameterAttribute), true).Length != 0)) {
                 
                 result += GetPropertyString(cmdlet, propertyInfo);
             }

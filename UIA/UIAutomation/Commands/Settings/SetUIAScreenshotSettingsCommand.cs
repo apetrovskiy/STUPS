@@ -25,9 +25,9 @@ namespace UIAutomation.Commands
         }
             
         #region Parameters
-        [My][Parameter(Mandatory=true)]
+        [UiaParameter][Parameter(Mandatory=true)]
         public SwitchParameter Screenshot { get; set; }
-        [My][Parameter(Mandatory=false)]
+        [UiaParameter][Parameter(Mandatory=false)]
         public string ScreenshotFolder { get; set; }
         #endregion Parameters
         

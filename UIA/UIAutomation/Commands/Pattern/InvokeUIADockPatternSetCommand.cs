@@ -25,7 +25,7 @@ namespace UIAutomation.Commands
         public InvokeUiaDockPatternSetCommand() { WhatToDo = "DockSet"; }
         
         #region Parameters
-        [My][Parameter(Mandatory = true,
+        [UiaParameter][Parameter(Mandatory = true,
                    Position = 0)]
         [ValidateNotNullOrEmpty()]
         // 20140102

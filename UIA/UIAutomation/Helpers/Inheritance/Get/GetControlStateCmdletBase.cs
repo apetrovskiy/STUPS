@@ -22,25 +22,25 @@ namespace UIAutomation
 //        }
         
         #region Parameters
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         internal new string Class { get; set; }
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         internal new string Name { get; set; }
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         internal new string ControlType { get; set; }
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         internal new string AutomationId { get; set; }
         // 20130130
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         internal new string Value { get; set; }
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         internal new string ContainsText { get; set; }
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         internal new SwitchParameter Win32 { get; set; }
         
         // 20130130
-        //[My][Parameter(Mandatory = true)]
-        [My][Parameter(Mandatory = true,
+        //[UiaParameterNotUsed][Parameter(Mandatory = true)]
+        [UiaParameter][Parameter(Mandatory = true,
                    Position = 0,
                    ParameterSetName = "Search")]
         [ValidateNotNullOrEmpty]

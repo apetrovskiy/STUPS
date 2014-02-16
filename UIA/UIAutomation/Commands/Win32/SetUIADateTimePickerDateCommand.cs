@@ -37,7 +37,7 @@
 //        /// <summary>
 //        /// DateTimePicker input object
 //        /// </summary>
-//        [My][Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true)]
+//        [UiaParameterNotUsed][Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true)]
 //        //public AutomationElement InputObject
 //        public new AutomationElement InputObject { get; set; }
 //        //{
@@ -48,7 +48,7 @@
 //        /// <summary>
 //        /// DateTime to bet set
 //        /// </summary>
-//        [My][Parameter(Mandatory = true, Position = 2)]
+//        [UiaParameterNotUsed][Parameter(Mandatory = true, Position = 2)]
 //        //public DateTime Date
 //        public DateTime Date { get; set; }
 //        //{

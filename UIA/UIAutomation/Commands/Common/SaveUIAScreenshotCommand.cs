@@ -30,10 +30,10 @@ namespace UIAutomation.Commands
         #endregion Constructor
         
         #region Parameters
-        //[My][Parameter(Mandatory = false,
+        //[UiaParameterNotUsed][Parameter(Mandatory = false,
         //           Position = 0,
         //           ParameterSetName = "Screenshot")]
-        [My][Parameter(Mandatory = false,
+        [UiaParameter][Parameter(Mandatory = false,
                    ParameterSetName = "NoFile")]
         // 20130702
         [Parameter(Mandatory = false,
@@ -41,27 +41,27 @@ namespace UIAutomation.Commands
         [AllowNull]
         [AllowEmptyString]
         public string Description { get; set; }
-        [My][Parameter(Mandatory = false)] //,
+        [UiaParameter][Parameter(Mandatory = false)] //,
         //           ParameterSetName = "Screenshot")]
         public int Left {get; set; }
-        [My][Parameter(Mandatory = false)] //,
+        [UiaParameter][Parameter(Mandatory = false)] //,
         //           ParameterSetName = "Screenshot")]
         public int Top {get; set; }
-        [My][Parameter(Mandatory = false)] //,
+        [UiaParameter][Parameter(Mandatory = false)] //,
         //           ParameterSetName = "Screenshot")]
         public int Height {get; set; }
-        [My][Parameter(Mandatory = false)] //,
+        [UiaParameter][Parameter(Mandatory = false)] //,
          //          ParameterSetName = "Screenshot")]
         public int Width {get; set; }
         
-        [My][Parameter(Mandatory = false,
+        [UiaParameter][Parameter(Mandatory = false,
                    ParameterSetName = "File")]
         public string Path { get; set; }
-        [My][Parameter(Mandatory = false,
+        [UiaParameter][Parameter(Mandatory = false,
                    ParameterSetName = "File")]
         public new string Name { get; set; }
         
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         public ImageFormat As { get; set; }
         #endregion Parameters
         
@@ -121,9 +121,9 @@ namespace UIAutomation.Commands
         #endregion Constructor
         
         #region Parameters
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         internal new string Path { get; set; }
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         internal new string Name { get; set; }
         #endregion Parameters
     }

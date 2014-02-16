@@ -945,8 +945,8 @@
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Aspect\TestResultAspect.cs">
       <Link>Helpers\UnderlyingCode\Aspect\TestResultAspect.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Attribute\MyAttribute.cs">
-      <Link>Helpers\UnderlyingCode\Attribute\MyAttribute.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Attribute\UiaParameterAttribute.cs">
+      <Link>Helpers\UnderlyingCode\Attribute\UiaParameterAttribute.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethods.cs">
       <Link>Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethods.cs</Link>
@@ -1332,6 +1332,7 @@
     <Folder Include="Helpers\Commands\Wizard" />
     <Folder Include="Helpers\UnderlyingCode\Aspect" />
     <Folder Include="Helpers\UnderlyingCode\Adapter" />
+    <Folder Include="Helpers\UnderlyingCode\Attribute" />
     <Folder Include="Helpers\UnderlyingCode\ExtensionMethods" />
     <Folder Include="Helpers\UnderlyingCode\ExtensionMethods" />
     <Folder Include="Helpers\UnderlyingCode\Aspect" />

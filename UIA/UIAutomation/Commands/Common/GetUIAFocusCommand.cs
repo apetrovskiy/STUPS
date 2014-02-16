@@ -19,7 +19,7 @@ namespace UIAutomation.Commands
     public class GetUiaFocusCommand : HasControlInputCmdletBase
     {
         #region Parameters
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         // 20131109
         //internal new AutomationElement InputObject { get; set; }
         // 20131130

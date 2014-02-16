@@ -38,14 +38,14 @@ namespace UIAutomation
         #endregion Constructor
 
         #region Parameters
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         public SwitchParameter Highlight { get; set; }
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         public SwitchParameter HighlightParent { get; set; }
-//        [My][Parameter(Mandatory = false)]
+//        [UiaParameterNotUsed][Parameter(Mandatory = false)]
 //        public SwitchParameter HighlightFirstChild { get; set; }
         // 20130322
-        [My][Parameter(Mandatory = false)]
+        [UiaParameter][Parameter(Mandatory = false)]
         public string Banner { get; set; }
         #endregion Parameters
         

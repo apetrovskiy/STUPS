@@ -27,7 +27,7 @@ namespace UIAutomation.Commands
             base.Child = this;
         }
         
-        [My][Parameter(Mandatory = true)]
+        [UiaParameter][Parameter(Mandatory = true)]
         public double TransformRotateDegrees { get; set; }
     }
     

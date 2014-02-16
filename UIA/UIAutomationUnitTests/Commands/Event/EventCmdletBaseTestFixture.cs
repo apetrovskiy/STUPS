@@ -72,36 +72,55 @@ namespace UIAutomationUnitTests.Commands.Event
                     case "RegisterUiaInvokedEventCommand":
                         automation.Received(1).AddAutomationEventHandler(
                             InvokePattern.InvokedEvent,
-                            (element as IUiElement),
+                            Arg.Any<IUiElement>(),
                             TreeScope.Element,
                             new AutomationEventHandler(cmdlet.AutomationEventHandler));
                         break;
                     case "RegisterUiaMenuClosedEventCommand":
                         automation.Received(1).AddAutomationEventHandler(
                             AutomationElement.MenuClosedEvent,
-                            (element as IUiElement),
+                            Arg.Any<IUiElement>(),
                             TreeScope.Subtree,
                             new AutomationEventHandler(cmdlet.AutomationEventHandler));
                         break;
                     case "RegisterUiaMenuOpenedEventCommand":
                         automation.Received(1).AddAutomationEventHandler(
                             AutomationElement.MenuOpenedEvent,
-                            (element as IUiElement),
+                            Arg.Any<IUiElement>(),
                             TreeScope.Subtree,
                             new AutomationEventHandler(cmdlet.AutomationEventHandler));
                         break;
-                        
+                    case "RegisterUiaStructureChangedEventCommand":
+                        automation.Received(1).AddStructureChangedEventHandler(
+                            Arg.Any<IUiElement>(),
+                            TreeScope.Subtree,
+                            new StructureChangedEventHandler(cmdlet.StructureChangedEventHandler));
+                        break;
+                    case "RegisterUiaTextChangedEventCommand":
+                        automation.Received(1).AddAutomationEventHandler(
+                            TextPattern.TextChangedEvent,
+                            Arg.Any<IUiElement>(),
+                            TreeScope.Element,
+                            new AutomationEventHandler(cmdlet.AutomationEventHandler));
+                        break;
+                    case "RegisterUiaTextSelectionChangedEventCommand":
+                        automation.Received(1).AddAutomationEventHandler(
+                            TextPattern.TextSelectionChangedEvent,
+                            Arg.Any<IUiElement>(),
+                            TreeScope.Element,
+                            new AutomationEventHandler(cmdlet.AutomationEventHandler));
+                        break;
                     case "RegisterUiaToolTipClosedEventCommand":
                         automation.Received(1).AddAutomationEventHandler(
                             AutomationElement.ToolTipClosedEvent,
-                            (element as IUiElement),
+                            Arg.Any<IUiElement>(),
                             TreeScope.Subtree,
                             new AutomationEventHandler(cmdlet.AutomationEventHandler));
                         break;
                     case "RegisterUiaToolTipOpenedEventCommand":
                         automation.Received(1).AddAutomationEventHandler(
                             AutomationElement.ToolTipOpenedEvent,
-                            (element as IUiElement),
+                            Arg.Any<IUiElement>(),
                             TreeScope.Subtree,
                             new AutomationEventHandler(cmdlet.AutomationEventHandler));
                         break;
@@ -109,14 +128,14 @@ namespace UIAutomationUnitTests.Commands.Event
                     case "RegisterUiaWindowClosedEventCommand":
                         automation.Received(1).AddAutomationEventHandler(
                             WindowPattern.WindowClosedEvent,
-                            (element as IUiElement),
+                            Arg.Any<IUiElement>(),
                             TreeScope.Subtree,
                             new AutomationEventHandler(cmdlet.AutomationEventHandler));
                         break;
                     case "RegisterUiaWindowOpenedEventCommand":
                         automation.Received(1).AddAutomationEventHandler(
                             WindowPattern.WindowOpenedEvent,
-                            (element as IUiElement),
+                            Arg.Any<IUiElement>(),
                             TreeScope.Subtree,
                             new AutomationEventHandler(cmdlet.AutomationEventHandler));
                         break;
@@ -178,6 +197,49 @@ namespace UIAutomationUnitTests.Commands.Event
                 FakeFactory.GetAutomationElementExpected(ControlType.Window, string.Empty, string.Empty, string.Empty, string.Empty);
             var cmdlet =
                 new RegisterUiaMenuOpenedEventCommand {
+                InputObject = new IUiElement[] { element }
+            };
+            TestEvent(
+                cmdlet);
+        }
+        
+        [Test][Fact]
+        public void StructureChangedEvent()
+        {
+            // Arrange
+            var element =
+                FakeFactory.GetAutomationElementExpected(ControlType.Window, string.Empty, string.Empty, string.Empty, string.Empty);
+            var cmdlet =
+                new RegisterUiaStructureChangedEventCommand {
+                InputObject = new IUiElement[] { element }
+            };
+            TestEvent(
+                cmdlet);
+        }
+        
+        
+        [Test][Fact]
+        public void TextChangedEvent()
+        {
+            // Arrange
+            var element =
+                FakeFactory.GetAutomationElementExpected(ControlType.Window, string.Empty, string.Empty, string.Empty, string.Empty);
+            var cmdlet =
+                new RegisterUiaTextChangedEventCommand {
+                InputObject = new IUiElement[] { element }
+            };
+            TestEvent(
+                cmdlet);
+        }
+        
+        [Test][Fact]
+        public void TextSelectionChangedEvent()
+        {
+            // Arrange
+            var element =
+                FakeFactory.GetAutomationElementExpected(ControlType.Window, string.Empty, string.Empty, string.Empty, string.Empty);
+            var cmdlet =
+                new RegisterUiaTextSelectionChangedEventCommand {
                 InputObject = new IUiElement[] { element }
             };
             TestEvent(

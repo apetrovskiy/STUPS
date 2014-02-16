@@ -21,20 +21,13 @@ namespace UIAutomation.Commands
     
     public class RegisterUiaPropertyChangedEventCommand : EventCmdletBase
     {
-        #region Constructor
         public RegisterUiaPropertyChangedEventCommand()
         {
-//            base.AutomationEventType = 
-//                AutomationElement.AutomationPropertyChangedEvent;
             AutomationEventType = 
                 AutomationElement.AutomationPropertyChangedEvent;
-            // base.AutomationEventHandler = OnUIAutomationPropertyChangedEvent;
-//            base.AutomationPropertyChangedEventHandler = 
-//                OnUIAutomationPropertyChangedEvent;
             AutomationPropertyChangedEventHandler = 
                 OnUIAutomationPropertyChangedEvent;
         }
-        #endregion Constructor
     }
     
     

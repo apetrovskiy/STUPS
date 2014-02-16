@@ -22,10 +22,8 @@ namespace UIAutomation.Commands
     {
         public RegisterUiaTextSelectionChangedEventCommand()
         {
-            //base.AutomationEventType = 
             AutomationEventType = 
                 TextPattern.TextSelectionChangedEvent;
-            //base.AutomationEventHandler = OnUIAutomationEvent;
             AutomationEventHandler = OnUIAutomationEvent;
         }
     }

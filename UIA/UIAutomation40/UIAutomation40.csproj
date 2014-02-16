@@ -633,44 +633,8 @@
     <Compile Include="..\UIAutomation\Helpers\Commands\Event\GetRegisteredEventCommand.cs">
       <Link>Helpers\Commands\Event\GetRegisteredEventCommand.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\Commands\Event\RegisterFocusChangedEventCommand.cs">
-      <Link>Helpers\Commands\Event\RegisterFocusChangedEventCommand.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Helpers\Commands\Event\RegisterInvokedEventCommand.cs">
-      <Link>Helpers\Commands\Event\RegisterInvokedEventCommand.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Helpers\Commands\Event\RegisterMenuClosedEventCommand.cs">
-      <Link>Helpers\Commands\Event\RegisterMenuClosedEventCommand.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Helpers\Commands\Event\RegisterMenuOpenedEventCommand.cs">
-      <Link>Helpers\Commands\Event\RegisterMenuOpenedEventCommand.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Helpers\Commands\Event\RegisterPropertyChangedEventCommand.cs">
-      <Link>Helpers\Commands\Event\RegisterPropertyChangedEventCommand.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Helpers\Commands\Event\RegisterStructureChangedEventCommand.cs">
-      <Link>Helpers\Commands\Event\RegisterStructureChangedEventCommand.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Helpers\Commands\Event\RegisterTextChangedEventCommand.cs">
-      <Link>Helpers\Commands\Event\RegisterTextChangedEventCommand.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Helpers\Commands\Event\RegisterTextSelectionChangedEventCommand.cs">
-      <Link>Helpers\Commands\Event\RegisterTextSelectionChangedEventCommand.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Helpers\Commands\Event\RegisterToolTipClosedEventCommand.cs">
-      <Link>Helpers\Commands\Event\RegisterToolTipClosedEventCommand.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Helpers\Commands\Event\RegisterToolTipOpenedEventCommand.cs">
-      <Link>Helpers\Commands\Event\RegisterToolTipOpenedEventCommand.cs</Link>
-    </Compile>
     <Compile Include="..\UIAutomation\Helpers\Commands\Event\RegisterUnexpectedWindowCommand.cs">
       <Link>Helpers\Commands\Event\RegisterUnexpectedWindowCommand.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Helpers\Commands\Event\RegisterWindowClosedEventCommand.cs">
-      <Link>Helpers\Commands\Event\RegisterWindowClosedEventCommand.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Helpers\Commands\Event\RegisterWindowOpenedEventCommand.cs">
-      <Link>Helpers\Commands\Event\RegisterWindowOpenedEventCommand.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\Commands\Event\UnregisterEventCommand.cs">
       <Link>Helpers\Commands\Event\UnregisterEventCommand.cs</Link>

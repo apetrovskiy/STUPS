@@ -32,35 +32,5 @@ namespace UIAutomation.Helpers.Commands
             
             
         }
-        
-//        protected override void BeginProcessing()
-//        {
-//            try {
-//
-//                foreach (object handler in CurrentData.Events) {
-//
-//                    WriteObject(
-//                        this,
-//                        handler);
-//
-//                }
-//            }
-//            catch (Exception eEnumEventhandlers) {
-//                WriteError(
-//                    this,
-//                    "Unable to enumerate event handlers. " +
-//                    eEnumEventhandlers.Message,
-//                    "UnableEnumerateEventHandlers",
-//                    ErrorCategory.InvalidOperation,
-//                    true);
-//            }
-//        }
-//        
-//        /// <summary>
-//        /// This is a placeholder to prevent its base counterpart from being run.
-//        /// </summary>
-//        protected override void ProcessRecord()
-//        {
-//        }
     }
 }

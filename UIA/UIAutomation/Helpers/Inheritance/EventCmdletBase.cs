@@ -58,19 +58,9 @@ namespace UIAutomation
         {
             if (InputObject == null) return;
             
-            // 20140216
             var command =
                 AutomationFactory.GetCommand<EventCommand>(this);
             command.Execute();
-            
-//            foreach (IUiElement inputObject in InputObject) {
-//                
-//                SubscribeToEvents(this,
-//                                  inputObject,
-//                                  AutomationEventType,
-//                                  AutomationProperty);
-//                
-//            }
         }
     }
 }

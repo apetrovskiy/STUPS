@@ -59,7 +59,6 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Adapter
             Xunit.Assert.Equal(0, element.GetSupportedPatterns().Count());
         }
         
-        // 20140213
         [Test][Fact]
         public void OnePattern()
         {
@@ -78,7 +77,6 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Adapter
             // Xunit.Assert.Contains<IBasePattern>(AutomationFactory.GetPatternAdapter<IValuePattern>(AutomationFactory.GetUiElement(), null) as IBasePattern, element.GetSupportedPatterns());
         }
         
-        // 20140213
         [Test][Fact]
         public void ThreePatterns()
         {

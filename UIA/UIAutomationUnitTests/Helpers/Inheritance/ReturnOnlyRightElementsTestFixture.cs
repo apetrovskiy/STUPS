@@ -61,8 +61,6 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             
             var data =
                 new ControlSearcherData {
-                // 20140209
-                // ControlType = FakeFactory.ConvertControlTypeToStringArray(controlTypes),
                 ControlType = controlTypes.ConvertControlTypeToStringArray(),
                 Name = name,
                 AutomationId = automationId,

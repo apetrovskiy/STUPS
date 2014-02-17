@@ -69,7 +69,6 @@ namespace UIAutomationUnitTests.Commands.Get
             };
             
             // Act
-            // var command = new TestControlStateCommand(cmdlet);
             var command = AutomationFactory.GetCommand<TestControlStateCommand>(cmdlet);
             command.Execute();
             

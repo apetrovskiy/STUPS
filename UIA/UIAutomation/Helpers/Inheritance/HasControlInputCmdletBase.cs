@@ -123,7 +123,9 @@ namespace UIAutomation
         
         #region Properties
         protected internal AutomationEvent AutomationEventType { get; set; }
-        protected internal AutomationProperty AutomationProperty { get; set; }
+        // 20140217
+        // protected internal AutomationProperty AutomationProperty { get; set; }
+        protected internal AutomationProperty[] AutomationProperty { get; set; }
         protected internal AutomationEventHandler AutomationEventHandler { get; set; }
         protected internal AutomationPropertyChangedEventHandler AutomationPropertyChangedEventHandler { get; set; }
         protected internal StructureChangedEventHandler StructureChangedEventHandler { get; set; }
@@ -534,7 +536,9 @@ namespace UIAutomation
         protected internal void SubscribeToEvents(HasControlInputCmdletBase cmdlet,
                                                   IUiElement inputObject,
                                                   AutomationEvent eventType,
-                                                  AutomationProperty prop)
+                                                  // 20140217
+                                                  // AutomationProperty prop)
+                                                  AutomationProperty[] properties)
         {
             if (null == CurrentData.Events) {
                 CurrentData.InitializeEventCollection();
@@ -637,7 +641,7 @@ namespace UIAutomation
                         if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "AutomationElementIdentifiers.AutomationPropertyChangedEvent":
-                        if (prop != null) {
+                        if (properties != null) {
                             WriteVerbose(cmdlet, "subscribing to the AutomationPropertyChangedEvent handler");
                             AutomationPropertyChangedEventHandler uiaPropertyChangedEventHandler;
                             // 20140130
@@ -654,7 +658,7 @@ namespace UIAutomation
                                 TreeScope.Subtree,
                                 uiaPropertyChangedEventHandler = 
                                     new AutomationPropertyChangedEventHandler(cmdlet.AutomationPropertyChangedEventHandler),
-                                prop);
+                                properties);
                             UiaHelper.WriteEventToCollection(cmdlet, uiaPropertyChangedEventHandler);
                             if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaPropertyChangedEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         }
@@ -822,7 +826,9 @@ namespace UIAutomation
         protected void OnUIAutomationPropertyChangedEvent(object src, AutomationPropertyChangedEventArgs e)
         {
             if (!checkNotNull(src, e)) return;
-            if (AutomationProperty == e.Property) {
+            // 20140217
+            // if (AutomationProperty == e.Property) {
+            if (AutomationProperty.Contains(e.Property)) {
                 
                 
 try {

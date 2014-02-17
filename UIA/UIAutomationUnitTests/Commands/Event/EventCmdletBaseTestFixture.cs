@@ -50,7 +50,8 @@ namespace UIAutomationUnitTests.Commands.Event
         
         #region helpers
         private void TestEvent(
-            EventCmdletBase cmdlet)
+            EventCmdletBase cmdlet,
+            params AutomationProperty[] properties)
         {
             // Arrange
             IAutomation automation = Substitute.For<IAutomation>();
@@ -89,6 +90,15 @@ namespace UIAutomationUnitTests.Commands.Event
                             Arg.Any<IUiElement>(),
                             TreeScope.Subtree,
                             new AutomationEventHandler(cmdlet.AutomationEventHandler));
+                        break;
+                    case "RegisterUiaPropertyChangedEventCommand":
+                        automation.Received(1).AddAutomationPropertyChangedEventHandler(
+                            Arg.Any<IUiElement>(),
+                            TreeScope.Subtree,
+                            new AutomationPropertyChangedEventHandler(cmdlet.AutomationPropertyChangedEventHandler),
+                            cmdlet.AutomationProperty);
+                        MbUnit.Framework.Assert.AreEqual<AutomationProperty[]>(properties, cmdlet.AutomationProperty);
+                        Xunit.Assert.Equal<AutomationProperty[]>(properties, cmdlet.AutomationProperty);
                         break;
                     case "RegisterUiaStructureChangedEventCommand":
                         automation.Received(1).AddStructureChangedEventHandler(
@@ -204,6 +214,22 @@ namespace UIAutomationUnitTests.Commands.Event
         }
         
         [Test][Fact]
+        public void PropertyChangedEvent()
+        {
+            // Arrange
+            var element =
+                FakeFactory.GetAutomationElementExpected(ControlType.Window, string.Empty, string.Empty, string.Empty, string.Empty);
+            var cmdlet =
+                new RegisterUiaGridRowCountChangedEventCommand {
+                InputObject = new IUiElement[] { element } // ,
+                // AutomationProperty = 
+            };
+            TestEvent(
+                cmdlet,
+                GridPattern.RowCountProperty);
+        }
+        
+        [Test][Fact]
         public void StructureChangedEvent()
         {
             // Arrange
@@ -216,7 +242,6 @@ namespace UIAutomationUnitTests.Commands.Event
             TestEvent(
                 cmdlet);
         }
-        
         
         [Test][Fact]
         public void TextChangedEvent()

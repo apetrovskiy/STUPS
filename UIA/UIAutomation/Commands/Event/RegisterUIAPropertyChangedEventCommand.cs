@@ -30,20 +30,19 @@ namespace UIAutomation.Commands
         }
     }
     
-    
-    
     /// <summary>
     /// Description of RegisterUiaGridRowCountChangedEventCommand.
     /// </summary>
     [Cmdlet(VerbsLifecycle.Register, "UiaGridRowCountChangedEvent")]
-    
     public class RegisterUiaGridRowCountChangedEventCommand : RegisterUiaPropertyChangedEventCommand
     {
         #region Constructor
         public RegisterUiaGridRowCountChangedEventCommand()
         {
-            base.AutomationProperty = 
-                GridPattern.RowCountProperty;
+            // 20140217
+            // base.AutomationProperty = 
+            //     GridPattern.RowCountProperty;
+            AutomationProperty = new[] { GridPattern.RowCountProperty };
             /*
             base.AutomationProperty = 
                 TablePattern.RowCountProperty;
@@ -56,14 +55,15 @@ namespace UIAutomation.Commands
     /// Description of RegisterUiaGridColumnCountChangedEventCommand.
     /// </summary>
     [Cmdlet(VerbsLifecycle.Register, "UiaGridColumnCountChangedEvent")]
-    
     public class RegisterUiaGridColumnCountChangedEventCommand : RegisterUiaPropertyChangedEventCommand
     {
         #region Constructor
         public RegisterUiaGridColumnCountChangedEventCommand()
         {
-            base.AutomationProperty = 
-                GridPattern.ColumnCountProperty;
+            // 20140217
+            // base.AutomationProperty = 
+            //     GridPattern.ColumnCountProperty;
+            AutomationProperty = new[] { GridPattern.ColumnCountProperty };
             /*
             base.AutomationProperty = 
                 TablePattern.ColumnCountProperty;
@@ -76,14 +76,15 @@ namespace UIAutomation.Commands
     /// Description of RegisterUiaRangeValueChangedEventCommand.
     /// </summary>
     [Cmdlet(VerbsLifecycle.Register, "UiaRangeValueChangedEvent")]
-    
     public class RegisterUiaRangeValueChangedEventCommand : RegisterUiaPropertyChangedEventCommand
     {
         #region Constructor
         public RegisterUiaRangeValueChangedEventCommand()
         {
-            base.AutomationProperty = 
-                RangeValuePattern.ValueProperty;
+            // 20140217
+            // base.AutomationProperty = 
+            //     RangeValuePattern.ValueProperty;
+            AutomationProperty = new[] { RangeValuePattern.ValueProperty };
         }
         #endregion Constructor
     }
@@ -92,14 +93,15 @@ namespace UIAutomation.Commands
     /// Description of RegisterUiaTableRowCountChangedEventCommand.
     /// </summary>
     [Cmdlet(VerbsLifecycle.Register, "UiaTableRowCountChangedEvent")]
-    
     public class RegisterUiaTableRowCountChangedEventCommand : RegisterUiaPropertyChangedEventCommand
     {
         #region Constructor
         public RegisterUiaTableRowCountChangedEventCommand()
         {
-            base.AutomationProperty = 
-                GridPattern.RowCountProperty;
+            // 20140217
+            // base.AutomationProperty = 
+            //     GridPattern.RowCountProperty;
+            AutomationProperty = new[] { TablePattern.RowCountProperty };
             /*
             base.AutomationProperty = 
                 TablePattern.RowCountProperty;
@@ -112,14 +114,15 @@ namespace UIAutomation.Commands
     /// Description of RegisterUiaTableColumnCountChangedEventCommand.
     /// </summary>
     [Cmdlet(VerbsLifecycle.Register, "UiaTableColumnCountChangedEvent")]
-    
     public class RegisterUiaTableColumnCountChangedEventCommand : RegisterUiaPropertyChangedEventCommand
     {
         #region Constructor
         public RegisterUiaTableColumnCountChangedEventCommand()
         {
-            base.AutomationProperty = 
-                GridPattern.ColumnCountProperty;
+            // 20140217
+            // base.AutomationProperty = 
+            //     GridPattern.ColumnCountProperty;
+            AutomationProperty = new[] { TablePattern.ColumnCountProperty };
             /*
             base.AutomationProperty = 
                 TablePattern.ColumnCountProperty;
@@ -132,14 +135,15 @@ namespace UIAutomation.Commands
     /// Description of RegisterUiaToggleStateChangedEventCommand.
     /// </summary>
     [Cmdlet(VerbsLifecycle.Register, "UiaToggleStateChangedEvent")]
-    
     public class RegisterUiaToggleStateChangedEventCommand : RegisterUiaPropertyChangedEventCommand
     {
         #region Constructor
         public RegisterUiaToggleStateChangedEventCommand()
         {
-            base.AutomationProperty = 
-                TogglePattern.ToggleStateProperty;
+            // 20140217
+            // base.AutomationProperty = 
+            //     TogglePattern.ToggleStateProperty;
+            AutomationProperty = new[] { TogglePattern.ToggleStateProperty };
         }
         #endregion Constructor
     }
@@ -148,14 +152,15 @@ namespace UIAutomation.Commands
     /// Description of RegisterUiaValueChangedEventCommand.
     /// </summary>
     [Cmdlet(VerbsLifecycle.Register, "UiaValueChangedEvent")]
-    
     public class RegisterUiaValueChangedEventCommand : RegisterUiaPropertyChangedEventCommand
     {
         #region Constructor
         public RegisterUiaValueChangedEventCommand()
         {
-            base.AutomationProperty = 
-                ValuePattern.ValueProperty;
+            // 20140217
+            // base.AutomationProperty = 
+            //     ValuePattern.ValueProperty;
+            AutomationProperty = new[] { ValuePattern.ValueProperty };
         }
         #endregion Constructor
     }

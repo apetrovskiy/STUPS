@@ -305,8 +305,6 @@ namespace UIAutomation
         
         internal static string[] ConvertControlTypeToStringArray(this ControlType[] controlTypes)
         {
-            // List<string> resultCollection = new List<string>();
-            
             if (null == controlTypes || 0 == controlTypes.Length) return new string[] {};
             
             return controlTypes.Select(
@@ -316,8 +314,6 @@ namespace UIAutomation
         
         internal static string[] ConvertControlTypeToStringArray(this ControlType controlType)
         {
-            // List<string> resultCollection = new List<string>();
-            
             if (null == controlType) return new string[] {};
             
             return new string[] { controlType.ProgrammaticName.Substring(12) };

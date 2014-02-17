@@ -34,13 +34,6 @@ namespace UIAutomation.Commands
         {
             if (!CheckAndPrepareInput(this)) { return; }
             
-//            bool result = 
-//                TestControlByPropertiesFromHashtable(
-//                    InputObject,
-//                    SearchCriteria,
-//                    Preferences.Timeout);
-//            WriteObject(this, result);
-            
             var command =
                 AutomationFactory.GetCommand<TestControlStateCommand>(this);
             command.Execute();

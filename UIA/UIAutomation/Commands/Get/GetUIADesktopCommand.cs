@@ -23,11 +23,6 @@ namespace UIAutomation.Commands
     {
         protected override void BeginProcessing()
         {
-//            CurrentData.CurrentWindow =
-//                UiElement.RootElement;
-//            
-//            WriteObject(this, UiElement.RootElement);
-            
             var command =
                 AutomationFactory.GetCommand<GetDesktopCommand>(this);
             command.Execute();

@@ -30,7 +30,6 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             
             ExtensionMethodsElementExtended.InputSimulator = Substitute.For<IInputSimulator>();
             
-            // 20140210
             Preferences.Timeout = 10;
         }
         
@@ -41,14 +40,12 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             
             ExtensionMethodsElementExtended.InputSimulator = Substitute.For<IInputSimulator>();
             
-            // 20140210
             Preferences.Timeout = 10;
         }
         
         [TearDown]
         public void TearDown()
         {
-            // 20140210
             Preferences.Timeout = 5000;
         }
         

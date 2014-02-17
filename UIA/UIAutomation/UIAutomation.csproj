@@ -584,6 +584,7 @@
     <Folder Include="Commands\Win32" />
     <Folder Include="Commands\RDP" />
     <Folder Include="Commands\Sheridan" />
+    <Folder Include="Helpers\Commands\Convert" />
     <Folder Include="Helpers\Commands\Get" />
     <Folder Include="Helpers\Commands\Common" />
     <Folder Include="Helpers\Commands\Banner" />

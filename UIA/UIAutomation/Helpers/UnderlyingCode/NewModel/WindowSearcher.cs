@@ -251,6 +251,14 @@ namespace UIAutomation
         private List<IUiElement> GetWindowCollectionFromProcess(
             WindowSearcherData data)
         {
+            data.ProcessIds = (from process in data.InputObject where null != process && 0 != process.Id select process.Id).ToList().ToArray();
+            return GetWindowCollectionByPid(UiElement.RootElement, data);
+        }
+        
+        /*
+        private List<IUiElement> GetWindowCollectionFromProcess(
+            WindowSearcherData data)
+        {
             List<IUiElement> aeWndCollectionByProcId = new List<IUiElement>();
             List<IUiElement> tempCollection = null;
             
@@ -304,24 +312,18 @@ namespace UIAutomation
             
             return aeWndCollectionByProcId;
         }
+        */
         
         private List<IUiElement> GetWindowCollectionByName(
             IUiElement rootElement,
-            // 20140208
             WindowSearcherData data)
-//            string[] windowNames,
-//            string automationId,
-//            string className,
-//            bool recurse)
         {
             List<IUiElement> windowCollectionByProperties =
                 new List<IUiElement>();
             List<IUiElement> resultCollection =
                 new List<IUiElement>();
             
-            // if (null == windowNames) {
             if (null == data.Name) {
-                // windowNames = new string[]{ string.Empty };
                 data.Name = new string[]{ string.Empty };
             }
             
@@ -347,7 +349,6 @@ namespace UIAutomation
                             ControlType.Menu));
             }
             
-            // foreach (string windowTitle in windowNames) {
             foreach (string windowTitle in data.Name) {
                 
                 IUiEltCollection windowCollection =
@@ -422,6 +423,15 @@ namespace UIAutomation
             IUiElement rootElement,
             WindowSearcherData data)
         {
+            data.InputObject = data.ProcessNames.SelectMany(processName => Process.GetProcessesByName(processName)).ToList().ToArray();
+            return GetWindowCollectionFromProcess(data);
+        }
+        
+        /*
+        private List<IUiElement> GetWindowCollectionByProcessName(
+            IUiElement rootElement,
+            WindowSearcherData data)
+        {
             List<IUiElement> aeWndCollectionByProcId = new List<IUiElement>();
             List<int> processIdList = new List<int>();
             
@@ -451,6 +461,7 @@ namespace UIAutomation
             
             return aeWndCollectionByProcId;
         }
+        */
         
         internal List<IUiElement> GetWindowCollectionByPid(
             IUiElement rootElement,
@@ -625,9 +636,11 @@ namespace UIAutomation
             bool caseSensitive,
             bool viaWildcardOrRegex)
         {
-            ControlSearcherData data = searcherData as ControlSearcherData;
+            // ControlSearcherData data = searcherData as ControlSearcherData;
+            var data = searcherData as ControlSearcherData;
             
-            List<IUiElement> resultCollection = new List<IUiElement>();
+            // List<IUiElement> resultCollection = new List<IUiElement>();
+            var resultCollection = new List<IUiElement>();
             bool requiresValuePatternCheck =
                 !string.IsNullOrEmpty(data.Value);
             
@@ -660,6 +673,15 @@ namespace UIAutomation
                 data.Value = string.IsNullOrEmpty(data.Value) ? ".*" : data.Value;
             }
             
+            var wildcardName =
+                new WildcardPattern(data.Name, options);
+            var wildcardAutomationId =
+                new WildcardPattern(data.AutomationId, options);
+            var wildcardClass =
+                new WildcardPattern(data.Class, options);
+            var wildcardValue =
+                new WildcardPattern(data.Value, options);
+            /*
             WildcardPattern wildcardName =
                 new WildcardPattern(data.Name, options);
             WildcardPattern wildcardAutomationId =
@@ -668,6 +690,7 @@ namespace UIAutomation
                 new WildcardPattern(data.Class, options);
             WildcardPattern wildcardValue =
                 new WildcardPattern(data.Value, options);
+            */
             
             List<IUiElement> inputList = inputCollection.Cast<IUiElement>().ToList();
             

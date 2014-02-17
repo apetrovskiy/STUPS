@@ -537,20 +537,6 @@ namespace UIAutomationUnitTests
         {
             var automation = Substitute.For<IAutomation>();
             
-            // automation.AddAutomationEventHandler
-            // automation.AddAutomationFocusChangedEventHandler
-            // automation.AddAutomationPropertyChangedEventHandler
-            // automation.AddStructureChangedEventHandler
-            // automation.Compare
-            // automation.Compare
-            // automation.PatternName(pattern).Returns(pattern.GetType().Name.Substring(3));
-            // automation.PropertyName(property).Returns(...)
-            // automation.RemoveAllEventHandlers()
-            // automation.RemoveAutomationEventHandler
-            // automation.RemoveAutomationFocusChangedEventHandler
-            // automation.RemoveAutomationPropertyChangedEventHandler
-            // automation.RemoveStructureChangedEventHandler
-            
             return automation;
         }
     }

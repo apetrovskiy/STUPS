@@ -178,8 +178,6 @@ namespace UIAutomation.Helpers.Commands
                         cmdlet.WriteVerbose(cmdlet, "VirtualizedItem");
                         break;
                 }
-                ////return;
-                
                 
                 // 2012/04/10
                 //            Annotation Control Pattern
@@ -212,7 +210,6 @@ namespace UIAutomation.Helpers.Commands
                 //            Value Control Pattern
                 //            VirtualizedItem Control Pattern
                 //            Window Control Pattern
-                
                 
             } //20120824
         }

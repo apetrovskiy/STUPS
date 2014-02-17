@@ -978,6 +978,12 @@
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\ContextMenuSearcherData.cs">
       <Link>Helpers\UnderlyingCode\NewModel\ContextMenuSearcherData.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\ControlFromWin32Gateway.cs">
+      <Link>Helpers\UnderlyingCode\NewModel\ControlFromWin32Gateway.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\ControlGateway.cs">
+      <Link>Helpers\UnderlyingCode\NewModel\ControlGateway.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\ControlSearcher.cs">
       <Link>Helpers\UnderlyingCode\NewModel\ControlSearcher.cs</Link>
     </Compile>
@@ -989,6 +995,9 @@
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\SearcherTemplateData.cs">
       <Link>Helpers\UnderlyingCode\NewModel\SearcherTemplateData.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\SingleControlSearcherData.cs">
+      <Link>Helpers\UnderlyingCode\NewModel\SingleControlSearcherData.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\TimeoutManager.cs">
       <Link>Helpers\UnderlyingCode\NewModel\TimeoutManager.cs</Link>

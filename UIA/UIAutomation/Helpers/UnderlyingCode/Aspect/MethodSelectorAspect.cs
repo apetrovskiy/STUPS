@@ -936,6 +936,8 @@ namespace UIAutomation
                 "FindFirst",
                 "GetSupportedPatterns",
                 "GetCurrentPattern",
+                "Equals",
+                "GetPatternPropertyValue",
                 "get_CachedChildren",
                 "get_CachedParent",
                 "get_Control",

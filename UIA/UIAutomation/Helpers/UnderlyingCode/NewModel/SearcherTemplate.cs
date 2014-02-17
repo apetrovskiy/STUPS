@@ -10,7 +10,7 @@
 namespace UIAutomation
 {
     using System;
-    using System.Collections;
+    // using System.Collections;
     using System.Collections.Generic;
     
     /// <summary>
@@ -32,7 +32,9 @@ namespace UIAutomation
         
         public virtual void OnSleepHook()
         {
-            TimeoutManager timeoutManager = new TimeoutManager(Timeout);
+            // 20140218
+            var timeoutManager = new TimeoutManager(Timeout);
+            // TimeoutManager timeoutManager = new TimeoutManager(Timeout);
             System.Threading.Thread.Sleep(timeoutManager.CalculateAdaptiveDelay());
         }
         
@@ -43,15 +45,26 @@ namespace UIAutomation
             // 20140212
             if (0 == timeout) return result;
             
+            // 20140218
+            if ((null == ResultCollection || 0 == ResultCollection.Count) &&
+                (System.DateTime.Now - startTime).TotalSeconds <= timeout / 1000) return true;
+            /*
             if ((null == ResultCollection || 0 == ResultCollection.Count) &&
                 !((System.DateTime.Now - startTime).TotalSeconds > timeout/1000)) return true;
+            */
             
             if (null == ResultCollection) {
                 
                 Wait = false;
+                // 20140218
+                var eTimeoutException =
+                    new TimeoutException(
+                        TimeoutExpirationInformation);
+                /*
                 TimeoutException eTimeoutException =
                     new TimeoutException(
                         TimeoutExpirationInformation);
+                */
                 throw(eTimeoutException);
             } else {
                 // no action currently

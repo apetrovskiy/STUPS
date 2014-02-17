@@ -393,10 +393,13 @@
     <Compile Include="Helpers\UnderlyingCode\Internal\WizardHelper.cs" />
     <Compile Include="Helpers\UnderlyingCode\NewModel\ContextMenuSearcher.cs" />
     <Compile Include="Helpers\UnderlyingCode\NewModel\ContextMenuSearcherData.cs" />
+    <Compile Include="Helpers\UnderlyingCode\NewModel\ControlFromWin32Gateway.cs" />
+    <Compile Include="Helpers\UnderlyingCode\NewModel\ControlGateway.cs" />
     <Compile Include="Helpers\UnderlyingCode\NewModel\ControlSearcher.cs" />
     <Compile Include="Helpers\UnderlyingCode\NewModel\ControlSearcherData.cs" />
     <Compile Include="Helpers\UnderlyingCode\NewModel\SearcherTemplate.cs" />
     <Compile Include="Helpers\UnderlyingCode\NewModel\SearcherTemplateData.cs" />
+    <Compile Include="Helpers\UnderlyingCode\NewModel\SingleControlSearcherData.cs" />
     <Compile Include="Helpers\UnderlyingCode\NewModel\TimeoutManager.cs" />
     <Compile Include="Helpers\UnderlyingCode\NewModel\WindowSearcher.cs" />
     <Compile Include="Helpers\UnderlyingCode\NewModel\WindowSearcherData.cs" />

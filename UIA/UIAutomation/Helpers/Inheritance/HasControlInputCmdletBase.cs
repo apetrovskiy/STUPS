@@ -159,16 +159,10 @@ namespace UIAutomation
             
             IUiElement whereToClick = 
                 element;
-//            WriteVerbose(cmdlet, 
-//                         "where the click will be performed: " +
-//                         element.Current.Name);
             IUiElement whereTheHandle = 
                 whereToClick;
             
             if (whereToClick.Current.NativeWindowHandle == 0) {
-            
-//                WriteVerbose(cmdlet, "The handle of this control equals to zero");
-//                WriteVerbose(cmdlet, "trying to use one of its ancestors");
                 
                 whereTheHandle =
                     whereToClick.GetAncestorWithHandle();
@@ -195,11 +189,6 @@ namespace UIAutomation
                 }
             }
             
-//            WriteVerbose(cmdlet, 
-//                         "the element the click will be performed on has rectangle: " + 
-//                         whereToClick.Current.BoundingRectangle.ToString());
-            
-            
             int x = 0;
             int y = 0;
             // these x and y are window-related coordinates
@@ -221,13 +210,8 @@ namespace UIAutomation
             uint uUp = 0;
             
             // these relative coordinates for SendMessage/PostMessage
-            // int settings.RelativeX = x - (int)whereTheHandle.Current.BoundingRectangle.X;
             settings.RelativeX = x - (int)whereTheHandle.Current.BoundingRectangle.X;
-            // int settings.RelativeY = y - (int)whereTheHandle.Current.BoundingRectangle.Y;
             settings.RelativeY = y - (int)whereTheHandle.Current.BoundingRectangle.Y;
-            
-//            WriteVerbose(cmdlet, "relative X (the base is the control with the handle) = " + settings.RelativeX.ToString());            
-//            WriteVerbose(cmdlet, "relative Y (the base is the control with the handle) = " + settings.RelativeY.ToString());
             
             // PostMessage's (click) third and fourth paramters (the third'll be reasigned later)
             IntPtr wParamDown = IntPtr.Zero;
@@ -251,7 +235,6 @@ namespace UIAutomation
                 lParamKeyUp = 
                     new IntPtr(((new IntPtr(0x0001)).ToInt32() & 0xFFFF) +
                                (((new IntPtr(uCtrlUp)).ToInt32() & 0xFFFF) << 16));
-//                WriteVerbose(this, "control parameters for KeyDown/KeyUp have been prepared");
             }
             if (settings.Shift) {
                 lParamKeyDown = 
@@ -260,7 +243,6 @@ namespace UIAutomation
                 lParamKeyUp = 
                     new IntPtr(((new IntPtr(0x0001)).ToInt32() & 0xFFFF) +
                                (((new IntPtr(uShiftUp)).ToInt32() & 0xFFFF) << 16));
-//                WriteVerbose(this, "settings.Shift parameters for KeyDown/KeyUp have been prepared");
             }
             // PostMessage's (activate) third parameter
             uint ulAct = 0;
@@ -269,50 +251,42 @@ namespace UIAutomation
             uint mask = 0;
             if (settings.Ctrl) {
                 mask |= NativeMethods.MK_CONTROL;
-//                WriteVerbose(this, "control parameters for ButtonDown/ButtonUp have been prepared");
             }
             if (settings.Shift) {
                 mask |= NativeMethods.MK_SHIFT;
-//                WriteVerbose(this, "settings.Shift parameters for ButtonDown/ButtonUp have been prepared");
             }
             
             if (settings.RightClick && !settings.DoubleClick) {
-//                WriteVerbose(cmdlet, "right click");
                 uhAct = uDown = NativeMethods.WM_RBUTTONDOWN;
                 uUp = NativeMethods.WM_RBUTTONUP;
                 wParamDown = new IntPtr(NativeMethods.MK_RBUTTON | mask);
                 wParamUp = new IntPtr(mask);
                 ulAct = NativeMethods.MK_RBUTTON;
             } else if (settings.RightClick && settings.DoubleClick) {
-//                WriteVerbose(cmdlet, "right double click");
                 uhAct = uDown = NativeMethods.WM_RBUTTONDBLCLK;
                 uUp = NativeMethods.WM_RBUTTONUP;
                 wParamDown = new IntPtr(NativeMethods.MK_RBUTTON | mask);
                 wParamUp = new IntPtr(mask);
                 ulAct = NativeMethods.MK_RBUTTON;
             } else if (settings.MidClick && !settings.DoubleClick) {
-//                WriteVerbose(cmdlet, "middle button click");
                 uhAct = uDown = NativeMethods.WM_MBUTTONDOWN;
                 uUp = NativeMethods.WM_MBUTTONUP;
                 wParamDown = new IntPtr(NativeMethods.MK_MBUTTON | mask);
                 wParamUp = new IntPtr(mask);
                 ulAct = NativeMethods.MK_MBUTTON;
             } else if (settings.MidClick && settings.DoubleClick) {
-//                WriteVerbose(cmdlet, "middle button double click");
                 uhAct = uDown = NativeMethods.WM_MBUTTONDBLCLK;
                 uUp = NativeMethods.WM_MBUTTONUP;
                 wParamDown = new IntPtr(NativeMethods.MK_MBUTTON | mask);
                 wParamUp = new IntPtr(mask);
                 ulAct = NativeMethods.MK_MBUTTON;
             } else if (settings.DoubleClick) {
-//                WriteVerbose(cmdlet, "left double click");
                 uhAct = uDown = NativeMethods.WM_LBUTTONDBLCLK;
                 uUp = NativeMethods.WM_LBUTTONUP;
                 wParamDown = new IntPtr(NativeMethods.MK_LBUTTON | mask);
                 wParamUp = new IntPtr(mask);
                 ulAct = NativeMethods.MK_LBUTTON;
             } else {
-//                WriteVerbose(cmdlet, "left click");
                 uhAct = uDown = NativeMethods.WM_LBUTTONDOWN;
                 uUp = NativeMethods.WM_LBUTTONUP;
                 wParamDown = new IntPtr(NativeMethods.MK_LBUTTON | mask);
@@ -322,12 +296,6 @@ namespace UIAutomation
             
             IntPtr handle =
                     new IntPtr(whereTheHandle.Current.NativeWindowHandle);
-//            WriteVerbose(cmdlet, 
-//                         "the handle of the element the click will be performed on is " + 
-//                         handle.ToString());
-//            
-//            WriteVerbose(cmdlet, "X = " + x.ToString());
-//            WriteVerbose(cmdlet, "Y = " + y.ToString());
             
             try {
                 whereTheHandle.SetFocus();
@@ -536,8 +504,6 @@ namespace UIAutomation
         protected internal void SubscribeToEvents(HasControlInputCmdletBase cmdlet,
                                                   IUiElement inputObject,
                                                   AutomationEvent eventType,
-                                                  // 20140217
-                                                  // AutomationProperty prop)
                                                   AutomationProperty[] properties)
         {
             if (null == CurrentData.Events) {
@@ -565,37 +531,17 @@ namespace UIAutomation
                 AutomationEventHandler uiaEventHandler;
                 switch (eventType.ProgrammaticName) {
                     case "InvokePatternIdentifiers.InvokedEvent":
-                        WriteVerbose(cmdlet, "subscribing to the InvokedEvent handler");
-                        // 20140130
-                        // Automation.AddAutomationEventHandler(
                         UiaAutomation.AddAutomationEventHandler(
                             InvokePattern.InvokedEvent,
-                            // 20131118
-                            // property to method
-                            //inputObject.SourceElement,
-                            // 20140102
-                            // inputObject.GetSourceElement(),
-                            // 20140130
-                            // inputObject.GetSourceElement() as AutomationElement,
                             inputObject,
-                            TreeScope.Element, // TreeScope.Subtree, // TreeScope.Element,
+                            TreeScope.Element,
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
                         UiaHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
                         if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "TextPatternIdentifiers.TextChangedEvent":
-                        WriteVerbose(cmdlet, "subscribing to the TextChangedEvent handler");
-                        // 20140130
-                        // Automation.AddAutomationEventHandler(
                         UiaAutomation.AddAutomationEventHandler(
                             TextPattern.TextChangedEvent,
-                            // 20131118
-                            // property to method
-                            //inputObject.SourceElement,
-                            // 20140102
-                            // inputObject.GetSourceElement(),
-                            // 20140130
-                            // inputObject.GetSourceElement() as AutomationElement,
                             inputObject,
                             TreeScope.Element,
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
@@ -603,18 +549,8 @@ namespace UIAutomation
                         if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "TextPatternIdentifiers.TextSelectionChangedEvent":
-                        WriteVerbose(cmdlet, "subscribing to the TextSelectionChangedEvent handler");
-                        // 20140130
-                        // Automation.AddAutomationEventHandler(
                         UiaAutomation.AddAutomationEventHandler(
                             TextPattern.TextSelectionChangedEvent,
-                            // 20131118
-                            // property to method
-                            //inputObject.SourceElement,
-                            // 20140102
-                            // inputObject.GetSourceElement(),
-                            // 20140130
-                            // inputObject.GetSourceElement() as AutomationElement,
                             inputObject,
                             TreeScope.Element,
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
@@ -622,18 +558,8 @@ namespace UIAutomation
                         if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "WindowPatternIdentifiers.WindowOpenedProperty":
-                        WriteVerbose(cmdlet, "subscribing to the WindowOpenedEvent handler");
-                        // 20140130
-                        // Automation.AddAutomationEventHandler(
                         UiaAutomation.AddAutomationEventHandler(
                             WindowPattern.WindowOpenedEvent,
-                            // 20131118
-                            // property to method
-                            //inputObject.SourceElement,
-                            // 20140102
-                            // inputObject.GetSourceElement(),
-                            // 20140130
-                            // inputObject.GetSourceElement() as AutomationElement,
                             inputObject,
                             TreeScope.Subtree,
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
@@ -642,18 +568,8 @@ namespace UIAutomation
                         break;
                     case "AutomationElementIdentifiers.AutomationPropertyChangedEvent":
                         if (properties != null) {
-                            WriteVerbose(cmdlet, "subscribing to the AutomationPropertyChangedEvent handler");
                             AutomationPropertyChangedEventHandler uiaPropertyChangedEventHandler;
-                            // 20140130
-                            // Automation.AddAutomationPropertyChangedEventHandler(
                             UiaAutomation.AddAutomationPropertyChangedEventHandler(
-                                // 20131118
-                                // property to method
-                                //inputObject.SourceElement,
-                                // 20140102
-                                // inputObject.GetSourceElement(),
-                                // 20140130
-                                // inputObject.GetSourceElement() as AutomationElement,
                                 inputObject,
                                 TreeScope.Subtree,
                                 uiaPropertyChangedEventHandler = 
@@ -664,18 +580,8 @@ namespace UIAutomation
                         }
                         break;
                     case "AutomationElementIdentifiers.StructureChangedEvent":
-                        WriteVerbose(cmdlet, "subscribing to the StructureChangedEvent handler");
                         StructureChangedEventHandler uiaStructureChangedEventHandler;
-                        // 20140130
-                        // Automation.AddStructureChangedEventHandler(
                         UiaAutomation.AddStructureChangedEventHandler(
-                            // 20131118
-                            // property to method
-                            //inputObject.SourceElement,
-                            // 20140102
-                            // inputObject.GetSourceElement(),
-                            // 20140130
-                            // inputObject.GetSourceElement() as AutomationElement,
                             inputObject,
                             TreeScope.Subtree,
                             uiaStructureChangedEventHandler = 
@@ -684,18 +590,8 @@ namespace UIAutomation
                         if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaStructureChangedEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "WindowPatternIdentifiers.WindowClosedProperty":
-                        WriteVerbose(cmdlet, "subscribing to the WindowClosedEvent handler");
-                        // 20140130
-                        // Automation.AddAutomationEventHandler(
                         UiaAutomation.AddAutomationEventHandler(
                             WindowPattern.WindowClosedEvent,
-                            // 20131118
-                            // property to method
-                            //inputObject.SourceElement,
-                            // 20140102
-                            // inputObject.GetSourceElement(),
-                            // 20140130
-                            // inputObject.GetSourceElement() as AutomationElement,
                             inputObject,
                             TreeScope.Subtree,
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
@@ -703,18 +599,8 @@ namespace UIAutomation
                         if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "AutomationElementIdentifiers.MenuClosedEvent":
-                        WriteVerbose(cmdlet, "subscribing to the MenuClosedEvent handler");
-                        // 20140130
-                        // Automation.AddAutomationEventHandler(
                         UiaAutomation.AddAutomationEventHandler(
                             AutomationElement.MenuClosedEvent,
-                            // 20131118
-                            // property to method
-                            //inputObject.SourceElement,
-                            // 20140102
-                            // inputObject.GetSourceElement(),
-                            // 20140130
-                            // inputObject.GetSourceElement() as AutomationElement,
                             inputObject,
                             TreeScope.Subtree,
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
@@ -722,18 +608,8 @@ namespace UIAutomation
                         if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "AutomationElementIdentifiers.MenuOpenedEvent":
-                        WriteVerbose(cmdlet, "subscribing to the MenuOpenedEvent handler");
-                        // 20140130
-                        // Automation.AddAutomationEventHandler(
                         UiaAutomation.AddAutomationEventHandler(
                             AutomationElement.MenuOpenedEvent,
-                            // 20131118
-                            // property to method
-                            //inputObject.SourceElement,
-                            // 20140102
-                            // inputObject.GetSourceElement(),
-                            // 20140130
-                            // inputObject.GetSourceElement() as AutomationElement,
                             inputObject,
                             TreeScope.Subtree,
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
@@ -741,18 +617,8 @@ namespace UIAutomation
                         if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "AutomationElementIdentifiers.ToolTipClosedEvent":
-                        WriteVerbose(cmdlet, "subscribing to the ToolTipClosedEvent handler");
-                        // 20140130
-                        // Automation.AddAutomationEventHandler(
                         UiaAutomation.AddAutomationEventHandler(
                             AutomationElement.ToolTipClosedEvent,
-                            // 20131118
-                            // property to method
-                            //inputObject.SourceElement,
-                            // 20140102
-                            // inputObject.GetSourceElement(),
-                            // 20140130
-                            // inputObject.GetSourceElement() as AutomationElement,
                             inputObject,
                             TreeScope.Subtree,
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
@@ -760,18 +626,8 @@ namespace UIAutomation
                         if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "AutomationElementIdentifiers.ToolTipOpenedEvent":
-                        WriteVerbose(cmdlet, "subscribing to the ToolTipOpenedEvent handler");
-                        // 20140130
-                        // Automation.AddAutomationEventHandler(
                         UiaAutomation.AddAutomationEventHandler(
                             AutomationElement.ToolTipOpenedEvent,
-                            // 20131118
-                            // property to method
-                            //inputObject.SourceElement,
-                            // 20140102
-                            // inputObject.GetSourceElement(),
-                            // 20140130
-                            // inputObject.GetSourceElement() as AutomationElement,
                             inputObject,
                             TreeScope.Subtree,
                             uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
@@ -779,10 +635,7 @@ namespace UIAutomation
                         if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "AutomationElementIdentifiers.AutomationFocusChangedEvent":
-                        WriteVerbose(cmdlet, "subscribing to the AutomationFocusChangedEvent handler");
                         AutomationFocusChangedEventHandler uiaFocusChangedEventHandler;
-                        // 20140130
-                        // Automation.AddAutomationFocusChangedEventHandler(
                         UiaAutomation.AddAutomationFocusChangedEventHandler(
                             uiaFocusChangedEventHandler = new AutomationFocusChangedEventHandler(cmdlet.AutomationEventHandler));
                         UiaHelper.WriteEventToCollection(cmdlet, uiaFocusChangedEventHandler);
@@ -794,7 +647,6 @@ namespace UIAutomation
                                      eventType.ProgrammaticName);
                         break;
                 }
-                WriteVerbose(cmdlet, "on the object " + inputObject.Current.Name);
                 cacheRequest.Pop();
                 
             } 

@@ -91,15 +91,33 @@ namespace UIAutomationUnitTests.Commands.Event
                             TreeScope.Subtree,
                             new AutomationEventHandler(cmdlet.AutomationEventHandler));
                         break;
-                    case "RegisterUiaPropertyChangedEventCommand":
-                        automation.Received(1).AddAutomationPropertyChangedEventHandler(
-                            Arg.Any<IUiElement>(),
-                            TreeScope.Subtree,
-                            new AutomationPropertyChangedEventHandler(cmdlet.AutomationPropertyChangedEventHandler),
-                            cmdlet.AutomationProperty);
-                        MbUnit.Framework.Assert.AreEqual<AutomationProperty[]>(properties, cmdlet.AutomationProperty);
-                        Xunit.Assert.Equal<AutomationProperty[]>(properties, cmdlet.AutomationProperty);
-                        break;
+//                    case "RegisterUiaPropertyChangedEventCommand":
+//                    case "RegisterUiaGridRowCountChangedEventCommand":
+//                    case "RegisterUiaGridColumnCountChangedEventCommand":
+//                    case "RegisterUiaRangeValueChangedEventCommand":
+//                    case "RegisterUiaTableColumnCountChangedEventCommand":
+//                    case "RegisterUiaTableRowCountChangedEventCommand":
+//                    case "RegisterUiaValueChangedEventCommand":
+//                        automation.Received(1).AddAutomationPropertyChangedEventHandler(
+//                            Arg.Any<IUiElement>(),
+//                            TreeScope.Subtree,
+//                            new AutomationPropertyChangedEventHandler(cmdlet.AutomationPropertyChangedEventHandler),
+//                            cmdlet.AutomationProperty);
+////if (null == properties) {
+////    Console.WriteLine("null == properties");
+////} else {
+////    Console.WriteLine("null != properties");
+////    Console.WriteLine(properties.All(p => { Console.WriteLine("expected: {0}", p.ProgrammaticName); return true; } ));
+////}
+////if (null == cmdlet.AutomationProperty) {
+////    Console.WriteLine("null == cmdlet.AutomationProperty");
+////} else {
+////    Console.WriteLine("null != cmdlet.AutomationProperty");
+////    Console.WriteLine(cmdlet.AutomationProperty.All(p => { Console.WriteLine("actual: {0}", p.ProgrammaticName); return true; } ));
+////}
+//                        MbUnit.Framework.Assert.AreEqual<AutomationProperty[]>(properties, cmdlet.AutomationProperty);
+//                        Xunit.Assert.Equal<AutomationProperty[]>(properties, cmdlet.AutomationProperty);
+//                        break;
                     case "RegisterUiaStructureChangedEventCommand":
                         automation.Received(1).AddStructureChangedEventHandler(
                             Arg.Any<IUiElement>(),
@@ -150,7 +168,13 @@ namespace UIAutomationUnitTests.Commands.Event
                             new AutomationEventHandler(cmdlet.AutomationEventHandler));
                         break;
                     default:
-                        
+                        automation.Received(1).AddAutomationPropertyChangedEventHandler(
+                            Arg.Any<IUiElement>(),
+                            TreeScope.Subtree,
+                            new AutomationPropertyChangedEventHandler(cmdlet.AutomationPropertyChangedEventHandler),
+                            cmdlet.AutomationProperty);
+                        MbUnit.Framework.Assert.AreEqual<AutomationProperty[]>(properties, cmdlet.AutomationProperty);
+                        Xunit.Assert.Equal<AutomationProperty[]>(properties, cmdlet.AutomationProperty);
                     	break;
                 }
             }
@@ -214,7 +238,22 @@ namespace UIAutomationUnitTests.Commands.Event
         }
         
         [Test][Fact]
-        public void PropertyChangedEvent()
+        public void PropertyChangedEvent_GridPattern_ColumnCountProperty()
+        {
+            // Arrange
+            var element =
+                FakeFactory.GetAutomationElementExpected(ControlType.Window, string.Empty, string.Empty, string.Empty, string.Empty);
+            var cmdlet =
+                new RegisterUiaGridColumnCountChangedEventCommand {
+                InputObject = new IUiElement[] { element } // ,
+            };
+            TestEvent(
+                cmdlet,
+                GridPattern.ColumnCountProperty);
+        }
+        
+        [Test][Fact]
+        public void PropertyChangedEvent_GridPattern_RowCountProperty()
         {
             // Arrange
             var element =
@@ -222,11 +261,70 @@ namespace UIAutomationUnitTests.Commands.Event
             var cmdlet =
                 new RegisterUiaGridRowCountChangedEventCommand {
                 InputObject = new IUiElement[] { element } // ,
-                // AutomationProperty = 
             };
             TestEvent(
                 cmdlet,
                 GridPattern.RowCountProperty);
+        }
+        
+        [Test][Fact]
+        public void PropertyChangedEvent_RangeValuePattern_ValueProperty()
+        {
+            // Arrange
+            var element =
+                FakeFactory.GetAutomationElementExpected(ControlType.Window, string.Empty, string.Empty, string.Empty, string.Empty);
+            var cmdlet =
+                new RegisterUiaRangeValueChangedEventCommand {
+                InputObject = new IUiElement[] { element } // ,
+            };
+            TestEvent(
+                cmdlet,
+                RangeValuePattern.ValueProperty);
+        }
+        
+        [Test][Fact]
+        public void PropertyChangedEvent_TablePattern_ColumnCountProperty()
+        {
+            // Arrange
+            var element =
+                FakeFactory.GetAutomationElementExpected(ControlType.Window, string.Empty, string.Empty, string.Empty, string.Empty);
+            var cmdlet =
+                new RegisterUiaTableColumnCountChangedEventCommand {
+                InputObject = new IUiElement[] { element } // ,
+            };
+            TestEvent(
+                cmdlet,
+                TablePattern.ColumnCountProperty);
+        }
+        
+        [Test][Fact]
+        public void PropertyChangedEvent_TablePattern_RowCountProperty()
+        {
+            // Arrange
+            var element =
+                FakeFactory.GetAutomationElementExpected(ControlType.Window, string.Empty, string.Empty, string.Empty, string.Empty);
+            var cmdlet =
+                new RegisterUiaTableRowCountChangedEventCommand {
+                InputObject = new IUiElement[] { element } // ,
+            };
+            TestEvent(
+                cmdlet,
+                TablePattern.RowCountProperty);
+        }
+        
+        [Test][Fact]
+        public void PropertyChangedEvent_ValuePattern_ValueProperty()
+        {
+            // Arrange
+            var element =
+                FakeFactory.GetAutomationElementExpected(ControlType.Window, string.Empty, string.Empty, string.Empty, string.Empty);
+            var cmdlet =
+                new RegisterUiaValueChangedEventCommand {
+                InputObject = new IUiElement[] { element } // ,
+            };
+            TestEvent(
+                cmdlet,
+                ValuePattern.ValueProperty);
         }
         
         [Test][Fact]

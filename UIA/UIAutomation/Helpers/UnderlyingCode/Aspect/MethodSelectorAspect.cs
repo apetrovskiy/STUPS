@@ -923,6 +923,10 @@ namespace UIAutomation
         private void LogMethodCall(IInvocation invocation)
         {
             string methodName = invocation.Method.Name;
+            
+            // 20140217
+            if (string.IsNullOrEmpty(methodName)) return;
+            
             var excludeList = new List<string> {
                 "get_Current",
                 "get_Cached",
@@ -956,6 +960,11 @@ namespace UIAutomation
                     if (methodName.Substring(methodName.Length - 1) == ",") {
                         methodName = methodName.Substring(0, methodName.Length - 1);
                     }
+                    /*
+                    if (methodName.Substring(methodName.Length - 1) == ",") {
+                        methodName = methodName.Substring(0, methodName.Length - 1);
+                    }
+                    */
                     methodName += ")";
                 }
                 if (!string.IsNullOrEmpty(methodName)) {

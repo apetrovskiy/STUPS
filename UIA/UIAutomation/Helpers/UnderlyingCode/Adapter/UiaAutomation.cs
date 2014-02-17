@@ -17,6 +17,7 @@ namespace UIAutomation
 	/// Description of UiaAutomation.
 	/// </summary>
 	// public static class Automation
+	[UiaSpecialBinding]
 	public class UiaAutomation : IAutomation
 	{
 		// public static Condition RawViewCondition

@@ -24,6 +24,7 @@ namespace UIAutomation
     /// <summary>
     /// Description of LogHelper.
     /// </summary>
+    [UiaSpecialBinding]
     public class LogHelper
     {
         internal List<LogEntry> Entries = new List<LogEntry>();

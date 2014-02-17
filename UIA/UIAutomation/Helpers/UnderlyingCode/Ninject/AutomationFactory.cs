@@ -782,6 +782,14 @@ namespace UIAutomation
             return ConvertToProxiedObject<T>(newObject) as SearcherTemplate;
         }
         
+        // 20140217
+        internal static T GetObject<T>()
+        {
+            // var newObject = Kernel.Get<T>(new IParameter[] {});
+            // return ConvertToProxiedObject<T>(newObject) as SearcherTemplate;
+            return Kernel.Get<T>(new IParameter[] {});
+        }
+        
         internal static IAutomation GetMyAutomation()
         {
             return Kernel.Get<IAutomation>();

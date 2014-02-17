@@ -13,6 +13,7 @@ namespace UIAutomation.Helpers.Commands
     using System.Management.Automation;
     using System.Collections;
     using System.Collections.Generic;
+	using System.Windows.Media.Imaging;
     using UIAutomation.Commands;
     
     /// <summary>
@@ -71,22 +72,37 @@ namespace UIAutomation.Helpers.Commands
                 var windowSearcher =
                     AutomationFactory.GetSearcherImpl<WindowSearcher>();
                 
-                var windowSearcherData =
-                    new WindowSearcherData {
-                    Win32 = cmdlet.Win32,
-                    InputObject = cmdlet.InputObject,
-                    ProcessNames = cmdlet.ProcessName,
-                    ProcessIds = cmdlet.ProcessId,
-                    Name = cmdlet.Name,
-                    AutomationId = cmdlet.AutomationId,
-                    Class = cmdlet.Class,
-                    WithControl = cmdlet.WithControl,
-                    TestMode = cmdlet.TestMode,
-                    SearchCriteria = cmdlet.SearchCriteria,
-                    First = cmdlet.First,
-                    Recurse = cmdlet.Recurse,
-                    WaitNoWindow = cmdlet.WaitNoWindow
-                };
+//                var windowSearcherData =
+//                    new WindowSearcherData {
+//                    Win32 = cmdlet.Win32,
+//                    InputObject = cmdlet.InputObject,
+//                    ProcessNames = cmdlet.ProcessName,
+//                    ProcessIds = cmdlet.ProcessId,
+//                    Name = cmdlet.Name,
+//                    AutomationId = cmdlet.AutomationId,
+//                    Class = cmdlet.Class,
+//                    WithControl = cmdlet.WithControl,
+//                    TestMode = cmdlet.TestMode,
+//                    SearchCriteria = cmdlet.SearchCriteria,
+//                    First = cmdlet.First,
+//                    Recurse = cmdlet.Recurse,
+//                    WaitNoWindow = cmdlet.WaitNoWindow
+//                };
+                
+                var windowSearcherData = AutomationFactory.GetObject<WindowSearcherData>();
+                windowSearcherData.Win32 = cmdlet.Win32;
+                windowSearcherData.InputObject = cmdlet.InputObject;
+                windowSearcherData.ProcessNames = cmdlet.ProcessName;
+                windowSearcherData.ProcessIds = cmdlet.ProcessId;
+                windowSearcherData.Name = cmdlet.Name;
+                windowSearcherData.AutomationId = cmdlet.AutomationId;
+                windowSearcherData.Class = cmdlet.Class;
+                windowSearcherData.WithControl = cmdlet.WithControl;
+                windowSearcherData.TestMode = cmdlet.TestMode;
+                windowSearcherData.SearchCriteria = cmdlet.SearchCriteria;
+                windowSearcherData.First = cmdlet.First;
+                windowSearcherData.Recurse = cmdlet.Recurse;
+                windowSearcherData.WaitNoWindow = cmdlet.WaitNoWindow;
                 
                 returnedWindows =
                     windowSearcher.GetElements(

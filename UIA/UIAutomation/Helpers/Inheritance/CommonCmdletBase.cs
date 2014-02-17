@@ -404,17 +404,13 @@ namespace UIAutomation
             WriteVerbose(this, "outputting the result object");
             if (cmdlet == null) return;
             try {
-                // 20131216
-                IUiElement element = outputObject as IUiElement;
-                // IUiElement element = (outputObject as IUiElementProxy).__target.
-                // IUiElement element = outputObject.__ as IUiElement;
+                var element = outputObject as IUiElement;
+                // IUiElement element = outputObject as IUiElement;
                 WriteVerbose(this, "getting the element again to ensure that it still exists");
                 if (!(cmdlet is WizardCmdletBase) &&
                     (null != element)) {
                     
                     WriteVerbose(this, "returning the object");
-                    // 20131218
-                    // WriteObject(outputObject);
                     WriteObject((IUiElement)outputObject);
                 } else if ((cmdlet is WizardCmdletBase)) {
                     WriteVerbose(this, "returning the wizard or step");
@@ -451,7 +447,8 @@ namespace UIAutomation
                 case "IUiElement":
                     try {
                         
-                        IUiElement ae = outputObject as IUiElement;
+                        var ae = outputObject as IUiElement;
+                        // IUiElement ae = outputObject as IUiElement;
                         if (null != ae) {
                                 
                             reportString +=
@@ -625,10 +622,17 @@ namespace UIAutomation
         {
             if (cmdlet == null) return;
             // run scriptblocks
+			var hasScriptBlockCmdletBase = cmdlet as HasScriptBlockCmdletBase;
+            if (hasScriptBlockCmdletBase != null) {
+
+				RunOnErrorScriptBlocks(hasScriptBlockCmdletBase, null);
+            }
+            /*
             if (cmdlet is HasScriptBlockCmdletBase) {
 
                 RunOnErrorScriptBlocks(((HasScriptBlockCmdletBase)cmdlet), null);
             }
+            */
         }
 
         protected override void WriteErrorMethod020SetTestResult(PSCmdletBase cmdlet, ErrorRecord errorRecord)
@@ -737,11 +741,6 @@ namespace UIAutomation
                 elementToTakeScreenShot,
                 CmdletName(cmdlet),
                 true,
-                // 20140111
-                // 0,
-                // 0,
-                // 0,
-                // 0,
                 new ScreenshotRect(),
                 string.Empty,
                 Preferences.OnErrorScreenShotFormat);
@@ -786,8 +785,12 @@ namespace UIAutomation
         #region Invoke-UiaScript
         protected internal void RunEventScriptBlocks(HasControlInputCmdletBase cmdlet)
         {
+            var blocks =
+                new List<ScriptBlock>();
+            /*
             List<ScriptBlock> blocks =
                 new List<ScriptBlock>();
+            */
             WriteVerbose(cmdlet,
                               blocks.Count.ToString() +
                               " events to fire");
@@ -881,8 +884,6 @@ namespace UIAutomation
 
         }
         
-        // 20140207
-        // protected internal bool RunWizardGetWindowScriptBlocks(WizardCmdletBase cmdlet, Wizard wizard, object[] parameters)
         protected internal bool RunWizardGetWindowScriptBlocks(Wizard wizard, object[] parameters)
         {
             bool result = false;
@@ -898,14 +899,15 @@ namespace UIAutomation
                 runTwoScriptBlockCollections(
                     null,
                     wizard.GetWindowAction,
-                    // 20140207
-                    // cmdlet,
                     this,
                     parameters);
                     
+				result |= null != CurrentData.CurrentWindow;
+                /*
                 if (null != CurrentData.CurrentWindow) {
                     result = true;
                 }
+                */
             }
             catch {}
             

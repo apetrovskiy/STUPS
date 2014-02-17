@@ -216,9 +216,15 @@ namespace UIAutomation
             // PostMessage's (click) third and fourth paramters (the third'll be reasigned later)
             IntPtr wParamDown = IntPtr.Zero;
             IntPtr wParamUp = IntPtr.Zero;
+            var lParam =
+                new IntPtr(((new IntPtr(settings.RelativeX)).ToInt32() & 0xFFFF) +
+                           (((new IntPtr(settings.RelativeY)).ToInt32() & 0xFFFF) << 16));
+            
+            /*
             IntPtr lParam = 
                 new IntPtr(((new IntPtr(settings.RelativeX)).ToInt32() & 0xFFFF) +
                            (((new IntPtr(settings.RelativeY)).ToInt32() & 0xFFFF) << 16));
+            */
             
             // PostMessage's (keydown/keyup) fourth parameter
             const uint uCtrlDown = 0x401D;
@@ -294,8 +300,11 @@ namespace UIAutomation
                 ulAct = NativeMethods.MK_LBUTTON;
             }
             
+            var handle = new IntPtr(whereTheHandle.Current.NativeWindowHandle);
+            /*
             IntPtr handle =
                     new IntPtr(whereTheHandle.Current.NativeWindowHandle);
+            */
             
             try {
                 whereTheHandle.SetFocus();
@@ -317,9 +326,14 @@ namespace UIAutomation
                     windowProcess.MainWindowHandle;
                 if (mainWindow != IntPtr.Zero) {
                     
+                    var lParam2 = 
+                        new IntPtr(((new IntPtr(ulAct)).ToInt32() & 0xFFFF) +
+                                   (((new IntPtr(uhAct)).ToInt32() & 0xFFFF) << 16));
+                    /*
                     IntPtr lParam2 = 
                         new IntPtr(((new IntPtr(ulAct)).ToInt32() & 0xFFFF) +
                                    (((new IntPtr(uhAct)).ToInt32() & 0xFFFF) << 16));
+                    */
                     bool res0 = 
                         NativeMethods.PostMessage1(handle, NativeMethods.WM_MOUSEACTIVATE, 
                                      mainWindow, lParam2);
@@ -511,7 +525,8 @@ namespace UIAutomation
             }
             
             try {
-                CacheRequest cacheRequest = new CacheRequest
+                var cacheRequest = new CacheRequest
+                // CacheRequest cacheRequest = new CacheRequest
                 {
                     AutomationElementMode = AutomationElementMode.Full,
                     // 20140130
@@ -944,8 +959,11 @@ try {
                 Dictionary<string, object> dict =
                     ht.ConvertHashtableToDictionary();
                 
+                var cmdlet = new GetControlCmdletBase();
+                /*
                 GetControlCmdletBase cmdlet = 
                     new GetControlCmdletBase();
+                */
                 
                 try { cmdlet.Class = dict["CLASS"].ToString(); } catch {}
                 try { cmdlet.AutomationId = dict["AUTOMATIONID"].ToString(); } catch {}

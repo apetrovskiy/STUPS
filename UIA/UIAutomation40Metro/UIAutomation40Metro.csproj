@@ -92,6 +92,9 @@
     <Reference Include="Ninject.Extensions.ChildKernel">
       <HintPath>..\..\packages\Ninject.Extensions.ChildKernel.3.0.0.5\lib\net40\Ninject.Extensions.ChildKernel.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject.Extensions.Conventions">
+      <HintPath>..\..\packages\Ninject.Extensions.Conventions.3.0.0.11\lib\net40\Ninject.Extensions.Conventions.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject.Extensions.NamedScope">
       <HintPath>..\..\packages\Ninject.Extensions.NamedScope.3.0.0.5\lib\net40\Ninject.Extensions.NamedScope.dll</HintPath>
     </Reference>
@@ -914,6 +917,9 @@
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Attribute\UiaParameterAttribute.cs">
       <Link>Helpers\UnderlyingCode\Attribute\UiaParameterAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Attribute\UiaSpecialBindingAttribute.cs">
+      <Link>Helpers\UnderlyingCode\Attribute\UiaSpecialBindingAttribute.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethods.cs">
       <Link>Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethods.cs</Link>

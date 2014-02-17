@@ -20,6 +20,7 @@ namespace UIAutomation
     /// <summary>
     /// Description of ControlSearcher.
     /// </summary>
+    [UiaSpecialBinding]
     public class ControlSearcher : SearcherTemplate
     {
         public override string TimeoutExpirationInformation { get; set; }

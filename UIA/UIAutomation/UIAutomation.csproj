@@ -112,6 +112,9 @@
     <Reference Include="Ninject.Extensions.ChildKernel">
       <HintPath>..\..\packages\Ninject.Extensions.ChildKernel.3.0.0.5\lib\net35\Ninject.Extensions.ChildKernel.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject.Extensions.Conventions">
+      <HintPath>..\..\packages\Ninject.Extensions.Conventions.3.0.0.11\lib\net35\Ninject.Extensions.Conventions.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject.Extensions.NamedScope">
       <HintPath>..\..\packages\Ninject.Extensions.NamedScope.3.0.0.5\lib\net35\Ninject.Extensions.NamedScope.dll</HintPath>
     </Reference>
@@ -368,6 +371,7 @@
     <Compile Include="Helpers\Commands\Wizard\StepWizardCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Aspect\TestResultAspect.cs" />
     <Compile Include="Helpers\UnderlyingCode\Attribute\UiaParameterAttribute.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Attribute\UiaSpecialBindingAttribute.cs" />
     <Compile Include="Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethods.cs" />
     <Compile Include="Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethodsCollection.cs" />
     <Compile Include="Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethodsElement.cs" />

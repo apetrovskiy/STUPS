@@ -24,6 +24,7 @@ namespace UIAutomation
     /// <summary>
     /// Description of WindowSeatcher.
     /// </summary>
+    [UiaSpecialBinding]
     public class WindowSearcher : SearcherTemplate
     {
         public override string TimeoutExpirationInformation { get; set; }
@@ -63,7 +64,8 @@ namespace UIAutomation
             
             try {
                 
-                WindowSearcherData data = searchData as WindowSearcherData;
+                var data = searchData as WindowSearcherData;
+                // WindowSearcherData data = searchData as WindowSearcherData;
                 
                 AutomationFactory.InitializeChildKernel();
                 
@@ -111,30 +113,40 @@ namespace UIAutomation
         }
         
         public override void AfterSearchHook()
-        {
-            // filtering result window collection by SearchCriteria
-            if (null != ResultCollection && 0 < ResultCollection.Count) {
+		{
+			// filtering result window collection by SearchCriteria
+			if (null != ResultCollection && 0 < ResultCollection.Count) {
                 
-                if (null != (SearcherData as WindowSearcherData).SearchCriteria && 0 < (SearcherData as WindowSearcherData).SearchCriteria.Length) {
+				if (null != (SearcherData as WindowSearcherData).SearchCriteria && 0 < (SearcherData as WindowSearcherData).SearchCriteria.Length) {
                     
-                    ResultCollection =
+					ResultCollection =
                         ResultCollection.GetFilteredElementsCollection();
-                }
-            }
+				}
+			}
             
-            // filtering result window collection by having a control(s) with properties as from WithControl
-            if (null != ResultCollection && 0 < ResultCollection.Count) {
+			// filtering result window collection by having a control(s) with properties as from WithControl
+			if (null != ResultCollection && 0 < ResultCollection.Count) {
                 
-                if (null != (SearcherData as WindowSearcherData).WithControl && 0 < (SearcherData as WindowSearcherData).WithControl.Length) {
+				if (null != (SearcherData as WindowSearcherData).WithControl && 0 < (SearcherData as WindowSearcherData).WithControl.Length) {
                     
-                    FilterResultCollectionByWithControlParameter();
-                }
-            }
+					FilterResultCollectionByWithControlParameter();
+				}
+			}
             
+			Wait &= !(SearcherData as WindowSearcherData).WaitNoWindow || !wasFound || (null != ResultCollection && 0 != ResultCollection.Count);
+            
+			/*
             if ((SearcherData as WindowSearcherData).WaitNoWindow && wasFound && (null == ResultCollection || 0 == ResultCollection.Count)) {
                 
                 Wait = false;
             }
+            */
+            
+//			if (!(SearcherData as WindowSearcherData).WaitNoWindow || wasFound || null == ResultCollection || 0 == ResultCollection.Count)
+//				return;
+//			wasFound = true;
+//			ResultCollection.Clear();
+//			ResultCollection = null;
             
             if ((SearcherData as WindowSearcherData).WaitNoWindow && !wasFound && null != ResultCollection && 0 != ResultCollection.Count) {
 
@@ -144,31 +156,31 @@ namespace UIAutomation
                 ResultCollection = null;
             }
             
-            // 20140208
-            if (null != ResultCollection && 0 < ResultCollection.Count) {
-                if (Preferences.CacheRequestCalled && null != CurrentData.CacheRequest) {
-                    try {
-                        // CurrentData.CacheRequest.Push();
-                        // var cacheRequest = CurrentData.CacheRequest.Clone();
-                        ClonedCacheRequest = CurrentData.CacheRequest.Clone();
-                        ClonedCacheRequest.Push();
-                        Preferences.FromCache = true;
-                    } catch (Exception eeee) {
-                        Preferences.FromCache = false;
+			// 20140208
+			if (null != ResultCollection && 0 < ResultCollection.Count) {
+				if (Preferences.CacheRequestCalled && null != CurrentData.CacheRequest) {
+					try {
+						// CurrentData.CacheRequest.Push();
+						// var cacheRequest = CurrentData.CacheRequest.Clone();
+						ClonedCacheRequest = CurrentData.CacheRequest.Clone();
+						ClonedCacheRequest.Push();
+						Preferences.FromCache = true;
+					} catch (Exception eeee) {
+						Preferences.FromCache = false;
 //Console.WriteLine("failed to start cache request");
 //Console.WriteLine(eeee.Message);
-                    }
-                }
-            } else {
-                if (null == CurrentData.CacheRequest) {
+					}
+				}
+			} else {
+				if (null == CurrentData.CacheRequest) {
 //Console.WriteLine("cache request is null");
-                }
-            }
-        }
+				}
+			}
+		}
 
         internal void FilterResultCollectionByWithControlParameter()
         {
-            List<IUiElement> filteredWindows = new List<IUiElement>();
+            var filteredWindows = new List<IUiElement>();
             bool exitInnerCycle = false;
 
             foreach (IUiElement window in ResultCollection) {
@@ -189,6 +201,16 @@ namespace UIAutomation
 
                         List<IUiElement> controlsList = controlSearch.GetElements(ControlSearcherData, 0);
 
+						if (null == controlsList || 0 == controlsList.Count) {
+							exitInnerCycle = true;
+							addToResultCollection = false;
+							continue;
+						} else {
+							addToResultCollection = true;
+							break;
+						}
+                        
+                        /*
                         if (null != controlsList && 0 < controlsList.Count) {
 
                             addToResultCollection = true;
@@ -200,6 +222,7 @@ namespace UIAutomation
                             addToResultCollection = false;
                             continue;
                         }
+                        */
 
 
                     } catch (Exception eWindowIsGone) {
@@ -255,73 +278,20 @@ namespace UIAutomation
             return GetWindowCollectionByPid(UiElement.RootElement, data);
         }
         
-        /*
-        private List<IUiElement> GetWindowCollectionFromProcess(
-            WindowSearcherData data)
-        {
-            List<IUiElement> aeWndCollectionByProcId = new List<IUiElement>();
-            List<IUiElement> tempCollection = null;
-            
-            List<int> processIdList =
-                new List<int>();
-            
-            foreach (Process process in data.InputObject) {
-                
-                try {
-                    int processId = process.Id;
-                    if (0 != processId) {
-                        processIdList.Add(processId);
-                    }
-                    
-                    int[] processIds = processIdList.ToArray();
-                    
-                    var windowSearcherData =
-                        new WindowSearcherData {
-                        ProcessIds = processIds,
-                        First = data.First,
-                        Recurse = data.Recurse,
-                        Name = data.Name,
-                        AutomationId = data.AutomationId,
-                        Class = data.Class
-                    };
-                    tempCollection = GetWindowCollectionByPid(UiElement.RootElement, windowSearcherData);
-
-                    aeWndCollectionByProcId.AddRange(tempCollection);
-                }
-                catch (Exception tempException) {
-                    continue;
-                }
-                
-            }
-            
-            if (null != tempCollection) {
-                // 20140131
-                // 20140201
-//                if (0 < tempCollection.Count) {
-//                    foreach (IUiElement element in tempCollection) {
-//                        element.Dispose();
-//                    }
-//                }
-                tempCollection.Clear();
-                tempCollection = null;
-            }
-            if (null != processIdList) {
-                processIdList.Clear();
-                processIdList = null;
-            }
-            
-            return aeWndCollectionByProcId;
-        }
-        */
-        
         private List<IUiElement> GetWindowCollectionByName(
             IUiElement rootElement,
             WindowSearcherData data)
         {
+            var windowCollectionByProperties =
+                new List<IUiElement>();
+            var resultCollection =
+                new List<IUiElement>();
+            /*
             List<IUiElement> windowCollectionByProperties =
                 new List<IUiElement>();
             List<IUiElement> resultCollection =
                 new List<IUiElement>();
+            */
             
             if (null == data.Name) {
                 data.Name = new string[]{ string.Empty };
@@ -427,50 +397,18 @@ namespace UIAutomation
             return GetWindowCollectionFromProcess(data);
         }
         
-        /*
-        private List<IUiElement> GetWindowCollectionByProcessName(
-            IUiElement rootElement,
-            WindowSearcherData data)
-        {
-            List<IUiElement> aeWndCollectionByProcId = new List<IUiElement>();
-            List<int> processIdList = new List<int>();
-            
-            foreach (string processName in data.ProcessNames) {
-                
-                try {
-                    
-                    Process[] processes =
-                        Process.GetProcessesByName(processName);
-                    processIdList.AddRange(processes.Select(process => process.Id));
-                }
-                catch {
-                    continue;
-                }
-                
-            }
-            
-            int[] processIds = processIdList.ToArray();
-            data.ProcessIds = processIds;
-            aeWndCollectionByProcId = GetWindowCollectionByPid(rootElement, data);
-            
-            // 20140121
-            //            if (null != processIdList) {
-            //                processIdList.Clear();
-            //                processIdList = null;
-            //            }
-            
-            return aeWndCollectionByProcId;
-        }
-        */
-        
         internal List<IUiElement> GetWindowCollectionByPid(
             IUiElement rootElement,
             WindowSearcherData data)
         {
             AndCondition conditionsForRecurseSearch = null;
             
+            var elementsByProcessId =
+                new List<IUiElement>();
+            /*
             List<IUiElement> elementsByProcessId =
                 new List<IUiElement>();
+            */
             
             if ((null != data.Name && 0 < data.Name.Count()) ||
                 !string.IsNullOrEmpty(data.AutomationId) ||
@@ -479,7 +417,8 @@ namespace UIAutomation
                 data.Recurse = true;
             }
             
-            OrCondition conditionWindowPaneMenu =
+            var conditionWindowPaneMenu =
+            // OrCondition conditionWindowPaneMenu =
                 new OrCondition(
                     new PropertyCondition(
                         AutomationElement.ControlTypeProperty,
@@ -493,7 +432,7 @@ namespace UIAutomation
             
             foreach (int processId in data.ProcessIds) {
                 
-                AndCondition conditionsProcessId = null;
+                // AndCondition conditionsProcessId = null;
                 conditionsForRecurseSearch =
                     new AndCondition(
                         new PropertyCondition(
@@ -503,7 +442,8 @@ namespace UIAutomation
                             AutomationElement.ControlTypeProperty,
                             ControlType.Window));
                     
-                conditionsProcessId =
+                // conditionsProcessId =
+                var conditionsProcessId =
                     new AndCondition(
                         new PropertyCondition(
                             AutomationElement.ProcessIdProperty,
@@ -576,8 +516,12 @@ namespace UIAutomation
                 ((null == data.Name || 0 == data.Name.Count()) && string.IsNullOrEmpty(data.AutomationId) &&
                  string.IsNullOrEmpty(data.Class))) return elementsByProcessId;
             
+            var resultList =
+                new List<IUiElement>();
+            /*
             List<IUiElement> resultList =
                 new List<IUiElement>();
+            */
             
             if (null != data.Name && 0 < data.Name.Count()) {
                 foreach (string name in data.Name) {
@@ -639,7 +583,6 @@ namespace UIAutomation
             // ControlSearcherData data = searcherData as ControlSearcherData;
             var data = searcherData as ControlSearcherData;
             
-            // List<IUiElement> resultCollection = new List<IUiElement>();
             var resultCollection = new List<IUiElement>();
             bool requiresValuePatternCheck =
                 !string.IsNullOrEmpty(data.Value);
@@ -681,18 +624,9 @@ namespace UIAutomation
                 new WildcardPattern(data.Class, options);
             var wildcardValue =
                 new WildcardPattern(data.Value, options);
-            /*
-            WildcardPattern wildcardName =
-                new WildcardPattern(data.Name, options);
-            WildcardPattern wildcardAutomationId =
-                new WildcardPattern(data.AutomationId, options);
-            WildcardPattern wildcardClass =
-                new WildcardPattern(data.Class, options);
-            WildcardPattern wildcardValue =
-                new WildcardPattern(data.Value, options);
-            */
             
-            List<IUiElement> inputList = inputCollection.Cast<IUiElement>().ToList();
+            var inputList = inputCollection.Cast<IUiElement>().ToList();
+            // List<IUiElement> inputList = inputCollection.Cast<IUiElement>().ToList();
             
             try {
                 

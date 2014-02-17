@@ -20,6 +20,7 @@ namespace UIAutomation
     /// <summary>
     /// Description of ContextMenuSearcher.
     /// </summary>
+    [UiaSpecialBinding]
     public class ContextMenuSearcher : SearcherTemplate
     {
         public override string TimeoutExpirationInformation { get; set; }

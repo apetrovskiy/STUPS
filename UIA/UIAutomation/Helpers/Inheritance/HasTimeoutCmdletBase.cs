@@ -86,7 +86,8 @@ namespace UIAutomation
                     !((nowDate - StartDate).TotalSeconds > Timeout/1000)) return;
                 if (null == aeWindowList) {
                     Wait = false;
-                    Exception eReturn =
+                    var eReturn =
+                    // Exception eReturn =
                         new Exception(
                             CmdletName(this) + ": timeout expired for process: " +
                             cmdlet.ProcessName + ", title: " + cmdlet.Name);
@@ -94,9 +95,12 @@ namespace UIAutomation
                 } // else{ // OK
                 // }
                     
+				Wait &= cmdlet.WaitNoWindow;
+                /*
                 if (!cmdlet.WaitNoWindow) {
                     Wait = false;
                 }
+                */
                 // break;
                 
             } catch (Exception eEvaluatingWindowOrMeasuringTimeout) {

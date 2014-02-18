@@ -18,15 +18,15 @@ namespace UIAutomation
     /// <summary>
     /// Description of SingleControlSearcherData.
     /// </summary>
-    public class SingleControlSearcherData : SearcherTemplateData
+    public class SingleControlSearcherData : ControlSearcherTemplateData
     {
         public IUiElement InputObject { get; set; }
-        public string ContainsText { get; set; }
-        public string Name { get; set; }
-        public string Value { get; set; }
-        public string[] ControlType { get; set; }
-        public Hashtable[] SearchCriteria { get; set; } 
-        public bool Regex { get; set; }
-        public bool CaseSensitive { get; set; }
+//        public string ContainsText { get; set; }
+//        public string Name { get; set; }
+//        public string Value { get; set; }
+//        public string[] ControlType { get; set; }
+//        // public Hashtable[] SearchCriteria { get; set; } 
+//        public bool Regex { get; set; }
+//        public bool CaseSensitive { get; set; }
     }
 }

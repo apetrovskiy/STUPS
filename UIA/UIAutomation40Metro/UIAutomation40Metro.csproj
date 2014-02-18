@@ -990,6 +990,12 @@
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\ControlSearcherData.cs">
       <Link>Helpers\UnderlyingCode\NewModel\ControlSearcherData.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\ControlSearcherTemplateData.cs">
+      <Link>Helpers\UnderlyingCode\NewModel\ControlSearcherTemplateData.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\HandleCollector.cs">
+      <Link>Helpers\UnderlyingCode\NewModel\HandleCollector.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\SearcherTemplate.cs">
       <Link>Helpers\UnderlyingCode\NewModel\SearcherTemplate.cs</Link>
     </Compile>

@@ -18,19 +18,19 @@ namespace UIAutomation
     /// <summary>
     /// Description of ControlSearcherData.
     /// </summary>
-    public class ControlSearcherData : SearcherTemplateData
+    public class ControlSearcherData : ControlSearcherTemplateData
     {
         public IUiElement[] InputObject { get; set; }
-        public string ContainsText { get; set; }
-        public string Name { get; set; }
-        public string Value { get; set; }
-        public string[] ControlType { get; set; }
-        public Hashtable[] SearchCriteria { get; set; } 
-        // public bool First { get; set; }
-        public bool Regex { get; set; }
-        // public bool TestMode { get; set; }
-        public bool CaseSensitive { get; set; }
-        public bool Win32 { get; set; }
-        // public bool WaitNoWindow { get; set; }
+//        public string ContainsText { get; set; }
+//        public string Name { get; set; }
+//        public string Value { get; set; }
+//        public string[] ControlType { get; set; }
+//        // public Hashtable[] SearchCriteria { get; set; } 
+//        // public bool First { get; set; }
+//        public bool Regex { get; set; }
+//        // public bool TestMode { get; set; }
+//        public bool CaseSensitive { get; set; }
+//        // public bool Win32 { get; set; }
+//        // public bool WaitNoWindow { get; set; }
     }
 }

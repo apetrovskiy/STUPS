@@ -18,9 +18,11 @@ namespace UIAutomation
     public abstract class ControlGateway
     {
     	// public SingleControlSearcherData SearchData { get; set; }
-    	public virtual SearcherTemplateData SearchData { get; set; }
+    	// public virtual SearcherTemplateData SearchData { get; set; }
+    	public virtual ControlSearcherTemplateData SearchData { get; set; }
     	
-        public virtual List<IUiElement> GetElements(SearcherTemplateData data)
+        // public virtual List<IUiElement> GetElements(SearcherTemplateData data)
+        public virtual List<IUiElement> GetElements(ControlSearcherTemplateData data)
         {
             return new List<IUiElement>();
         }

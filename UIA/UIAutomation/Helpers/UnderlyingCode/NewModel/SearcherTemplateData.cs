@@ -10,6 +10,8 @@
 namespace UIAutomation
 {
     using System;
+    using System.Collections;
+    // using System.Collections.Generic;
     
     /// <summary>
     /// Description of SearcherTemplateData.
@@ -18,5 +20,8 @@ namespace UIAutomation
     {
         public string AutomationId { get; set; }
         public string Class { get; set; }
+        // 20140218
+        public bool Win32 { get; set; }
+        public Hashtable[] SearchCriteria { get; set; }
     }
 }

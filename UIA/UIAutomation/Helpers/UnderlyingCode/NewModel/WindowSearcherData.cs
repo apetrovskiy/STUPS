@@ -25,11 +25,11 @@ namespace UIAutomation
         public int[] ProcessIds { get; set; }
         public string[] ProcessNames { get; set; }
         public Hashtable[] WithControl { get; set; }
-        public Hashtable[] SearchCriteria { get; set; } 
+        // public Hashtable[] SearchCriteria { get; set; } 
         public bool First { get; set; }
         public bool Recurse { get; set; }
         public bool TestMode { get; set; }
-        public bool Win32 { get; set; }
+        // public bool Win32 { get; set; }
         public bool WaitNoWindow { get; set; }
     }
 }

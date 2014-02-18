@@ -33,7 +33,8 @@ namespace UIAutomation
     [UiaSpecialBinding]
     public class ControlFromWin32Gateway : ControlGateway
     {
-        public override List<IUiElement> GetElements(SearcherTemplateData data)
+        // public override List<IUiElement> GetElements(SearcherTemplateData data)
+        public override List<IUiElement> GetElements(ControlSearcherTemplateData data)
         {
             var resultCollection = new List<IUiElement>();
             // 20140218
@@ -41,7 +42,7 @@ namespace UIAutomation
             
             var controlSearcherData = data as SingleControlSearcherData; 
             
-            if (null == controlSearcherData.InputObject) { return resultCollection; }
+            // if (null == controlSearcherData.InputObject) { return resultCollection; } // this was a stopper
             
             // ??
             // controlTitle = string.IsNullOrEmpty(controlTitle) ? "*" : controlTitle;

@@ -224,6 +224,7 @@ namespace UIAutomation
         {
             var resultList =
                 new List<IUiElement>();
+//Console.WriteLine("SearchByTextViaWin32 001");
             // 20140218
             // var controlFrom32Gateway = AutomationFactory.GetObject<ControlFromWin32Gateway>();
             // var data = new SingleControlSearcherData { InputObject = inputObject, Name = containsText, Value = string.Empty };
@@ -240,30 +241,41 @@ namespace UIAutomation
 //} else {
 //    Console.WriteLine("null != gateway.SearchData");
 //}
-//var tempResult = gateway.GetElements(gateway.SearchData);
-//if (null == tempResult) {
-//    Console.WriteLine("null == tempResult");
-//} else {
-//    Console.WriteLine("null != tempResult");
-//    if (0 == tempResult.Count) {
-//        Console.WriteLine("0 == tempResult.Count");
+// if (null == gateway.SearchData.
+//try {
+//    var tempResult = gateway.GetElements(gateway.SearchData);
+//    if (null == tempResult) {
+//        Console.WriteLine("null == tempResult");
 //    } else {
-//        Console.WriteLine("0 != tempResult.Count");
-//        foreach (var elt1 in tempResult) {
-//            Console.WriteLine(elt1.ToString());
+//        Console.WriteLine("null != tempResult");
+//        if (0 == tempResult.Count) {
+//            Console.WriteLine("0 == tempResult.Count");
+//        } else {
+//            Console.WriteLine("0 != tempResult.Count");
+//            foreach (var elt1 in tempResult) {
+//                Console.WriteLine(elt1.ToString());
+//            }
 //        }
 //    }
 //}
+//catch (Exception eeee) {
+//    Console.WriteLine(eeee.Message);
+//}
+
+
             foreach (IUiElement elementToChoose in gateway.GetElements(gateway.SearchData)) {
                 
+//Console.WriteLine("SearchByTextViaWin32 002");
                 // 20140218
                 // if (null != controlTypeNames && 0 < controlTypeNames.Length) {
                 if (null != (gateway.SearchData as SingleControlSearcherData).ControlType && 0 < (gateway.SearchData as SingleControlSearcherData).ControlType.Length) {
                     
+//Console.WriteLine("SearchByTextViaWin32 003");
                     // 20140218
                     // foreach (string controlTypeName in controlTypeNames) {
                     foreach (string controlTypeName in (gateway.SearchData as SingleControlSearcherData).ControlType) {
                         
+//Console.WriteLine("SearchByTextViaWin32 004");
                         if (!String.Equals(elementToChoose.Current.ControlType.ProgrammaticName.Substring(12), controlTypeName, StringComparison.CurrentCultureIgnoreCase)) {
                             continue;
                         } else {

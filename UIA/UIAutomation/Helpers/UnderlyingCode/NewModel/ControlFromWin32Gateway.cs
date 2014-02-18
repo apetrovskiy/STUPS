@@ -37,10 +37,19 @@ namespace UIAutomation
         public override List<IUiElement> GetElements(ControlSearcherTemplateData data)
         {
             var resultCollection = new List<IUiElement>();
-            // 20140218
-            SearchData = data;
             
-            var controlSearcherData = data as SingleControlSearcherData; 
+            // 20140219
+            var controlSearcherData = data as SingleControlSearcherData;
+            
+            if (null == controlSearcherData) {
+                controlSearcherData = SearchData as SingleControlSearcherData;
+            } else {
+                SearchData = data;
+            }
+//            // 20140218
+//            SearchData = data;
+//            
+//            var controlSearcherData = data as SingleControlSearcherData; 
             
             // if (null == controlSearcherData.InputObject) { return resultCollection; } // this was a stopper
             

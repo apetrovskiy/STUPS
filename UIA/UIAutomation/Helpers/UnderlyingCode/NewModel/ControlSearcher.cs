@@ -263,17 +263,20 @@ namespace UIAutomation
 //}
 
 
-            foreach (IUiElement elementToChoose in gateway.GetElements(gateway.SearchData)) {
+            // foreach (IUiElement elementToChoose in gateway.GetElements(gateway.SearchData)) {
+            foreach (IUiElement elementToChoose in gateway.GetElements(null)) {
                 
 //Console.WriteLine("SearchByTextViaWin32 002");
                 // 20140218
                 // if (null != controlTypeNames && 0 < controlTypeNames.Length) {
-                if (null != (gateway.SearchData as SingleControlSearcherData).ControlType && 0 < (gateway.SearchData as SingleControlSearcherData).ControlType.Length) {
+                // if (null != (gateway.SearchData as SingleControlSearcherData).ControlType && 0 < (gateway.SearchData as SingleControlSearcherData).ControlType.Length) {
+                if (null != gateway.SearchData.ControlType && 0 < gateway.SearchData.ControlType.Length) {
                     
 //Console.WriteLine("SearchByTextViaWin32 003");
                     // 20140218
                     // foreach (string controlTypeName in controlTypeNames) {
-                    foreach (string controlTypeName in (gateway.SearchData as SingleControlSearcherData).ControlType) {
+                    // foreach (string controlTypeName in (gateway.SearchData as SingleControlSearcherData).ControlType) {
+                    foreach (string controlTypeName in gateway.SearchData.ControlType) {
                         
 //Console.WriteLine("SearchByTextViaWin32 004");
                         if (!String.Equals(elementToChoose.Current.ControlType.ProgrammaticName.Substring(12), controlTypeName, StringComparison.CurrentCultureIgnoreCase)) {

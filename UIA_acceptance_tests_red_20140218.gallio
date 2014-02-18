@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<testProject xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.gallio.org/">
+  <testPackage shadowCopy="false" debug="false">
+    <files>
+      <file>UIA\UIAutomationTest\bin\Release35\UIAutomationTest.dll</file>
+    </files>
+    <hintDirectories />
+    <excludedFrameworkIds />
+    <properties />
+  </testPackage>
+  <testFilters>
+    <testFilter filterName="AutoSave" filterExpr="((Id: 698a3531fa259679 or Id: 6fd25077532057f4 or Id: 98f0299f1582e9e3 or Id: 780a12b0895a45a7 or Id: 987e352470b5dd9 or Id: 8b0ca28f92bab099 or Id: 316b30c1ba1538ee) or (Id: 2ca4600a5d906409 or Id: 62a6c826a22c8781))" />
+    <testFilter filterName="LastRun" filterExpr="((Id: 698a3531fa259679 or Id: 6fd25077532057f4 or Id: 98f0299f1582e9e3 or Id: 780a12b0895a45a7 or Id: 987e352470b5dd9 or Id: 8b0ca28f92bab099 or Id: 316b30c1ba1538ee) or (Id: 2ca4600a5d906409 or Id: 62a6c826a22c8781) or (Id: 6155093f28656419 or Id: b648fe4c01a9676b))" />
+  </testFilters>
+  <extensionSpecifications />
+  <reportDirectory>..\..\..\Program Files\Gallio\bin\Reports</reportDirectory>
+  <reportNameFormat>test-report-{0}-{1}</reportNameFormat>
+</testProject>

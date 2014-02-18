@@ -14,9 +14,11 @@ namespace UIAutomationUnitTests
     
     using System.Collections;
     using System.Collections.Generic;
+	using UIAutomationUnitTests.Helpers.Inheritance;
     // using System.Collections.ObjectModel;
     using UIAutomation;
     using System.Windows.Automation;
+    using System.Linq;
     
     /// <summary>
     /// Description of RealCodeCaller.
@@ -46,9 +48,6 @@ namespace UIAutomationUnitTests
                 ControlSearcher.SearchByWildcardOrRegexViaUia(
                     element,
                     data,
-                    // 20140206
-                    // UiElement.RootElement,
-                    // element,
                     condition,
                     true);
             
@@ -70,6 +69,17 @@ namespace UIAutomationUnitTests
             var resultListOfControls =
                 ControlSearcher.SearchByContainsTextViaUia(element, conditions);
             return resultListOfControls;
+        }
+        
+        public static List<IUiElement> SearchByTextViaWin32(
+        	IUiElement inputObject,
+            string containsText,
+            string[] controlTypeNames,
+            IEnumerable<IUiElement> collection)
+        {
+        	var singleControlSearcherData = new SingleControlSearcherData { Name = containsText, ControlType = controlTypeNames };
+        	var gateway = FakeFactory.GetWin32Gateway(collection, singleControlSearcherData);
+        	return ControlSearcher.SearchByTextViaWin32(inputObject, gateway).ToList();
         }
         
         public static List<IUiElement> GetResultList_ReturnOnlyRightElements(IEnumerable<IUiElement> elements, ControlSearcherData data, bool useWildcardOrRegex)

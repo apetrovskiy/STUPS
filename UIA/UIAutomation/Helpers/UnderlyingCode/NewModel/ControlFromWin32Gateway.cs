@@ -1,6 +1,6 @@
 ﻿/*
  * Created by SharpDevelop.
- * User: Alexander
+ * User: Alexander Petrovskiy
  * Date: 2/18/2014
  * Time: 12:38 AM
  * 
@@ -35,17 +35,13 @@ namespace UIAutomation
     {
         public override List<IUiElement> GetElements(SearcherTemplateData data)
         {
-            // 20140218
             var resultCollection = new List<IUiElement>();
-            // List<IUiElement> resultCollection = new List<IUiElement>();
+            // 20140218
+            SearchData = data;
             
             var controlSearcherData = data as SingleControlSearcherData; 
             
-            // cmdlet.WriteVerbose(cmdlet, "checking the container control");
-            
-            // if (null == containerElement) { return resultCollection; }
             if (null == controlSearcherData.InputObject) { return resultCollection; }
-            // cmdlet.WriteVerbose(cmdlet, "checking the Name parameter");
             
             // ??
             // controlTitle = string.IsNullOrEmpty(controlTitle) ? "*" : controlTitle;
@@ -53,42 +49,39 @@ namespace UIAutomation
             
             try {
                 
-                List<IntPtr> handlesCollection =
-                    // containerElement.GetControlByNameViaWin32Recursively(
-                    controlSearcherData.InputObject.GetControlByNameViaWin32Recursively(
-                        //controlTitle,
+                var handleCollector = new HandleCollector();
+                
+                var handlesCollection =
+                    handleCollector.CollectRecursively(
+                        controlSearcherData.InputObject,
                         controlSearcherData.Name,
                         1);
+                
+                // 20140218
+                /*
+                List<IntPtr> handlesCollection =
+                    controlSearcherData.InputObject.GetControlByNameViaWin32Recursively(
+                        controlSearcherData.Name,
+                        1);
+                */
                 
                 const WildcardOptions options =
                     WildcardOptions.IgnoreCase |
                     WildcardOptions.Compiled;
                 
-                // 20140218
                 var wildcardName =
-                    // new WildcardPattern(controlTitle, options);
                     new WildcardPattern(controlSearcherData.Name, options);
                 var wildcardValue =
                     new WildcardPattern(controlSearcherData.Value, options);
-                /*
-                WildcardPattern wildcardName =
-                    new WildcardPattern(controlTitle, options);
-                WildcardPattern wildcardValue =
-                    new WildcardPattern(controlValue, options);
-                */
                 
                 if (null == handlesCollection || 0 == handlesCollection.Count) return resultCollection;
-                // cmdlet.WriteVerbose(cmdlet, "handles.Count = " + handlesCollection.Count.ToString());
                 
                 foreach (IntPtr controlHandle in handlesCollection) {
                     try {
-                        // cmdlet.WriteVerbose(cmdlet, "checking a handle");
                         if (IntPtr.Zero == controlHandle) continue;
-                        // cmdlet.WriteVerbose(cmdlet, "the handle is not null");
                         
                         IUiElement tempElement =
                             UiElement.FromHandle(controlHandle);
-                        // cmdlet.WriteVerbose(cmdlet, "adding the handle to the collection");
                         
                         if (tempElement.IsMatchWildcardPattern(resultCollection, wildcardName, tempElement.Current.Name)) continue;
                         if (tempElement.IsMatchWildcardPattern(resultCollection, wildcardName, tempElement.Current.AutomationId)) continue;

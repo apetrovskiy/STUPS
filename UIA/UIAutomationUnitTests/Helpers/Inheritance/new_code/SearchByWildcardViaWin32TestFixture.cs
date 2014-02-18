@@ -15,7 +15,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
     using System.Collections.ObjectModel;
     using System.Windows.Automation;
     using UIAutomation;
-    using MbUnit.Framework;// using Xunit;
+    using MbUnit.Framework;using Xunit;
     using System.Linq;
     
     /// <summary>
@@ -24,6 +24,11 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
     [MbUnit.Framework.TestFixture]
     public class SearchByWildcardViaWin32TestFixture
     {
+    	public SearchByWildcardViaWin32TestFixture()
+    	{
+    		FakeFactory.Init();
+    	}
+    	
         [SetUp]
         public void SetUp()
         {

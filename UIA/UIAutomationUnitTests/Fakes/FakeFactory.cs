@@ -10,7 +10,10 @@
 
 namespace UIAutomationUnitTests
 {
-    // using System;
+    using System;
+    
+    
+    
     using System.Windows.Automation;
     using UIAutomation;
     using NSubstitute;
@@ -345,7 +348,9 @@ namespace UIAutomationUnitTests
                 Current_Name = name,
                 Current_AutomationId = automationId,
                 Current_ClassName = className,
-                Current_ProcessId = 333
+                Current_ProcessId = 333,
+                // 20140218
+                Current_NativeWindowHandle = 1234567
             };
             
             return GetAutomationElement(elementData, patterns, expected);
@@ -538,6 +543,15 @@ namespace UIAutomationUnitTests
             var automation = Substitute.For<IAutomation>();
             
             return automation;
+        }
+        
+        internal static ControlFromWin32Gateway GetWin32Gateway(IEnumerable<IUiElement> collection, SingleControlSearcherData data)
+        {
+            ControlFromWin32Gateway gateway = Substitute.For<ControlFromWin32Gateway>();
+            gateway.GetElements(Arg.Any<SingleControlSearcherData>()).Returns(collection.ToList()); //.Where(element => "expected" == element.GetTag()).ToList());
+            var data1 = data as SearcherTemplateData;
+            gateway.SearchData.Returns(data1);
+            return gateway;
         }
     }
     

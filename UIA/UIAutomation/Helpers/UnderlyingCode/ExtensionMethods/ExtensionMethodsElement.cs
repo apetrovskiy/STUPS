@@ -37,8 +37,6 @@ namespace UIAutomation
                     System.Windows.Automation.Condition.TrueCondition);
             
             try {
-                // 20140102
-                // result = AutomationFactory.GetUiElement(walker.GetParent(element.GetSourceElement()));
                 result = AutomationFactory.GetUiElement(walker.GetParent(element.GetSourceElement() as AutomationElement));
             }
             catch {}
@@ -294,32 +292,27 @@ namespace UIAutomation
             IValuePattern pattern,
             ref bool hasName)
         {
-            // cmdlet.WriteVerbose(cmdlet, "getting " + propertyName);
             string tempString = string.Empty;
             try {
                 
                 switch (propertyName) {
                     case "Name":
-                        // if (0 < element.Current.Name.Length) {
                         if (!string.IsNullOrEmpty(element.Current.Name)) {
                             tempString = element.Current.Name;
                             hasName = true;
                         }
                         break;
                     case "AutomationId":
-                        // if (0 < element.Current.AutomationId.Length) {
                         if (!string.IsNullOrEmpty(element.Current.AutomationId)) {
                             tempString = element.Current.AutomationId;
                         }
                         break;
                     case "Class":
-                        // if (0 < element.Current.ClassName.Length) {
                         if (!string.IsNullOrEmpty(element.Current.ClassName)) {
                             tempString = element.Current.ClassName;
                         }
                         break;
                     case "Value":
-                        // if (!string.IsNullOrEmpty(pattern.Current.Value)) {
                         try {
                             if (!string.IsNullOrEmpty(pattern.Current.Value)) {
                                 tempString = pattern.Current.Value;
@@ -340,26 +333,22 @@ namespace UIAutomation
             } catch {
                 switch (propertyName) {
                     case "Name":
-                        // if (0 < element.Cached.Name.Length) {
                         if (!string.IsNullOrEmpty(element.Cached.Name)) {
                             tempString = element.Cached.Name;
                             hasName = true;
                         }
                         break;
                     case "AutomationId":
-                        // if (0 < element.Cached.AutomationId.Length) {
                         if (!string.IsNullOrEmpty(element.Cached.AutomationId)) {
                             tempString = element.Cached.AutomationId;
                         }
                         break;
                     case "Class":
-                        // if (0 < element.Cached.ClassName.Length) {
                         if (!string.IsNullOrEmpty(element.Cached.ClassName)) {
                             tempString = element.Cached.ClassName;
                         }
                         break;
                     case "Value":
-                        // if (!string.IsNullOrEmpty(pattern.Cached.Value)) {
                         try {
                             if (!string.IsNullOrEmpty(pattern.Cached.Value)) {
                                 tempString = pattern.Cached.Value;
@@ -391,130 +380,41 @@ namespace UIAutomation
                 return tempString;
             }
         }
-        
-//        internal static List<IUiElement> GetControlByNameViaWin32(
+        // 20140218
+//        internal static List<IntPtr> GetControlByNameViaWin32Recursively(
 //            this IUiElement containerElement,
-//            string controlTitle,
-//            string controlValue)
+//            string name,
+//            int level)
 //        {
-            
-//            // 20140218
-//            var resultCollection = new List<IUiElement>();
-//            // List<IUiElement> resultCollection = new List<IUiElement>();
+//            var resultHandle = IntPtr.Zero;
+//            var controlHandle = IntPtr.Zero;
+//            var controlHandles = new List<IntPtr>();
+//            var tempControlHandles = new List<IntPtr>();
+//            var containerHandle = new IntPtr(containerElement.Current.NativeWindowHandle);
 //            
-//            // cmdlet.WriteVerbose(cmdlet, "checking the container control");
-//
-//            if (null == containerElement) { return resultCollection; }
-//            // cmdlet.WriteVerbose(cmdlet, "checking the Name parameter");
+//            if (containerHandle == IntPtr.Zero) return controlHandles;
 //            
-//            // ??
-//            // controlTitle = string.IsNullOrEmpty(controlTitle) ? "*" : controlTitle;
-//            // controlValue = string.IsNullOrEmpty(controlValue) ? "*" : controlValue;
+//            // search at this level
+//            do {
+//                // using null instead of name
+//                controlHandle =
+//                    NativeMethods.FindWindowEx(containerHandle, controlHandle, null, null);
+//                
+//                if (controlHandle == IntPtr.Zero) continue;
+//                controlHandles.Add(controlHandle);
+//                
+//                tempControlHandles =
+//                    UiElement.FromHandle(controlHandle).GetControlByNameViaWin32Recursively(
+//                        name,
+//                        level + 1);
+//                
+//                if (null == tempControlHandles || 0 == tempControlHandles.Count) continue;
+//                controlHandles.AddRange(tempControlHandles);
+//                
+//            } while (controlHandle != IntPtr.Zero);
 //            
-//            try {
-//                
-//                List<IntPtr> handlesCollection =
-//                    containerElement.GetControlByNameViaWin32Recursively(
-//                        controlTitle,
-//                        1);
-//                
-//                const WildcardOptions options =
-//                    WildcardOptions.IgnoreCase |
-//                    WildcardOptions.Compiled;
-//                
-//                // 20140218
-//                var wildcardName =
-//                    new WildcardPattern(controlTitle, options);
-//                var wildcardValue =
-//                    new WildcardPattern(controlValue, options);
-//                /*
-//                WildcardPattern wildcardName =
-//                    new WildcardPattern(controlTitle, options);
-//                WildcardPattern wildcardValue =
-//                    new WildcardPattern(controlValue, options);
-//                */
-//                
-//                if (null == handlesCollection || 0 == handlesCollection.Count) return resultCollection;
-//                // cmdlet.WriteVerbose(cmdlet, "handles.Count = " + handlesCollection.Count.ToString());
-//                
-//                foreach (IntPtr controlHandle in handlesCollection) {
-//                    try {
-//                        // cmdlet.WriteVerbose(cmdlet, "checking a handle");
-//                        if (IntPtr.Zero == controlHandle) continue;
-//                        // cmdlet.WriteVerbose(cmdlet, "the handle is not null");
-//                        
-//                        IUiElement tempElement =
-//                            UiElement.FromHandle(controlHandle);
-//                        // cmdlet.WriteVerbose(cmdlet, "adding the handle to the collection");
-//                        
-//                        if (tempElement.IsMatchWildcardPattern(resultCollection, wildcardName, tempElement.Current.Name)) continue;
-//                        if (tempElement.IsMatchWildcardPattern(resultCollection, wildcardName, tempElement.Current.AutomationId)) continue;
-//                        if (tempElement.IsMatchWildcardPattern(resultCollection, wildcardName, tempElement.Current.ClassName)) continue;
-//                        try {
-//                            string elementValue =
-//                                tempElement.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern).Current.Value;
-//                            if (tempElement.IsMatchWildcardPattern(resultCollection, wildcardName, elementValue)) continue;
-//                            if (tempElement.IsMatchWildcardPattern(resultCollection, wildcardValue, elementValue)) continue;
-//                        }
-//                        catch { //(Exception eValuePattern) {
-//                        }
-//                    }
-//                    catch (Exception eGetAutomationElementFromHandle) {
-//                        // cmdlet.WriteVerbose(cmdlet, eGetAutomationElementFromHandle.Message);
-//                    }
-//                }
-//                return resultCollection;
-//            } catch (Exception eWin32Control) {
-//                // cmdlet.WriteVerbose(cmdlet, "UiaHelper.GetControlByName() failed");
-//                // cmdlet.WriteVerbose(cmdlet, eWin32Control.Message);
-//                return resultCollection;
-//            }
-
+//            return controlHandles;
 //        }
-        
-        internal static List<IntPtr> GetControlByNameViaWin32Recursively(
-            this IUiElement containerElement,
-            string name,
-            int level)
-        {
-            // 20140218
-            var resultHandle = IntPtr.Zero;
-            var controlHandle = IntPtr.Zero;
-            // IntPtr resultHandle = IntPtr.Zero;
-            // IntPtr controlHandle = IntPtr.Zero;
-            
-            // 20140218
-            var controlHandles = new List<IntPtr>();
-            var tempControlHandles = new List<IntPtr>();
-            // List<IntPtr> controlHandles = new List<IntPtr>();
-            // List<IntPtr> tempControlHandles = new List<IntPtr>();
-            
-            // 20140218
-            var containerHandle = new IntPtr(containerElement.Current.NativeWindowHandle);
-            // IntPtr containerHandle = new IntPtr(containerElement.Current.NativeWindowHandle);
-            if (containerHandle == IntPtr.Zero) return controlHandles;
-            
-            // search at this level
-            do {
-                // using null instead of name
-                controlHandle =
-                    NativeMethods.FindWindowEx(containerHandle, controlHandle, null, null);
-                
-                if (controlHandle == IntPtr.Zero) continue;
-                controlHandles.Add(controlHandle);
-                
-                tempControlHandles =
-                    UiElement.FromHandle(controlHandle).GetControlByNameViaWin32Recursively(
-                        name,
-                        level + 1);
-                
-                if (null == tempControlHandles || 0 == tempControlHandles.Count) continue;
-                controlHandles.AddRange(tempControlHandles);
-                
-            } while (controlHandle != IntPtr.Zero);
-            
-            return controlHandles;
-        }
         
         internal static bool IsMatchWildcardPattern(
             this IUiElement elementInput,
@@ -625,87 +525,6 @@ namespace UIAutomation
             return resultString;
         }
         
-        // 20140111
-        // experimental
-//        public static void GetScreenshotOfAutomationElement(
-//            // PSCmdletBase cmdlet,
-//            // IUiElement element,
-//            this IUiElement element,
-//            string description,
-//            bool save,
-//            int Left,
-//            int Top,
-//            int Height,
-//            int Width,
-//            string path,
-//            ImageFormat format)
-//        {
-//            
-//            // cmdlet.WriteVerbose(cmdlet, "hiding highlighter if it's been used");
-//            
-//            try {
-//                
-//            if (Preferences.HideHighlighterOnScreenShotTaking &&
-//                ! Preferences.ShowExecutionPlan) {
-//                
-//                HideHighlighters();
-//            }
-//            
-//            // cmdlet.WriteVerbose(cmdlet, "calculating the size");
-//            int absoluteX = 0;
-//            int absoluteY = 0;
-//            int absoluteWidth =
-//                Screen.PrimaryScreen.Bounds.Width;
-//            int absoluteHeight =
-//                Screen.PrimaryScreen.Bounds.Height;
-//            
-//            if (null == element) {
-//                if (Left > 0) { absoluteX = Left; }
-//                if (Top > 0) { absoluteY = Top; }
-//                if (Height > 0) { absoluteHeight = Height; }
-//                if (Width > 0) { absoluteWidth = Width; }
-//            }
-//            // cmdlet.WriteVerbose(cmdlet, "X = " + absoluteX.ToString());
-//            // cmdlet.WriteVerbose(cmdlet, "Y = " + absoluteY.ToString());
-//            // cmdlet.WriteVerbose(cmdlet, "Height = " + absoluteHeight.ToString());
-//            // cmdlet.WriteVerbose(cmdlet, "Width = " + absoluteWidth.ToString());
-//
-//            if (null != element && 0 < (int)element.Current.ProcessId) {
-//                absoluteX = (int)element.Current.BoundingRectangle.X + Left;
-//                absoluteY = (int)element.Current.BoundingRectangle.Y + Top;
-//                absoluteHeight = (int)element.Current.BoundingRectangle.Height + Height;
-//                absoluteWidth = (int)element.Current.BoundingRectangle.Width + Width;
-//            }
-//            
-//            if (0 == Height) {Height = Screen.PrimaryScreen.Bounds.Height; }
-//            if (0 == Width) {Width = Screen.PrimaryScreen.Bounds.Width; }
-//
-//            if (element != null && (int)element.Current.ProcessId > 0) {
-//                
-//                try {
-//                    
-//                    element.SetFocus();
-//                }
-//                catch {
-//                    // ??
-//
-//                }
-//            }
-//            
-//            GetScreenshotOfSquare(
-//                cmdlet,
-//                description,
-//                save,
-//                absoluteX,
-//                absoluteY,
-//                absoluteHeight,
-//                absoluteWidth,
-//                path,
-//                format);
-//            }
-//            catch {}
-//        }
-        
         /// <summary>
         /// Checks that the -Value parameter matches the value ValuePattern of the element returns
         /// </summary>
@@ -728,9 +547,6 @@ namespace UIAutomation
             string realValue = string.Empty;
             try {
                 realValue =
-                    // 20131208
-                    // (item.GetCurrentPattern(ValuePattern.Pattern) as IValuePattern).Current.Value;
-                    // (item.GetCurrentPattern<IValuePattern, ValuePattern>(ValuePattern.Pattern) as IValuePattern).Current.Value;
                     (element.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern)).Current.Value;
             }
             catch { //(Exception eGetCurrentPattern) {

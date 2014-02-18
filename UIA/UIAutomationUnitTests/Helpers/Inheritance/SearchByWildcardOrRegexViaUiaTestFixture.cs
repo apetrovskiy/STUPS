@@ -10,9 +10,9 @@
 namespace UIAutomationUnitTests.Helpers.Inheritance
 {
     using System;
-    using System.Collections;
+    // using System.Collections;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
+    // using System.Collections.ObjectModel;
     using System.Windows.Automation;
     using UIAutomation;
     using MbUnit.Framework;using Xunit;
@@ -55,8 +55,6 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             var data =
                 new ControlSearcherData {
                 InputObject = new IUiElement[] { CurrentData.CurrentWindow },
-                // 20140209
-                // ControlType = FakeFactory.ConvertControlTypeToStringArray(new[] { controlType }),
                 ControlType = (new[] { controlType }).ConvertControlTypeToStringArray(),
                 Name = name,
                 AutomationId = automationId,
@@ -77,10 +75,17 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             
             // Assert
             const WildcardOptions options = WildcardOptions.IgnoreCase;
+            // 20140218
+            var namePattern = new WildcardPattern(name, options);
+            var automationIdPattern = new WildcardPattern(automationId, options);
+            var classNamePattern = new WildcardPattern(className, options);
+            var txtValuePattern = new WildcardPattern(txtValue, options);
+            /*
             WildcardPattern namePattern = new WildcardPattern(name, options);
             WildcardPattern automationIdPattern = new WildcardPattern(automationId, options);
             WildcardPattern classNamePattern = new WildcardPattern(className, options);
             WildcardPattern txtValuePattern = new WildcardPattern(txtValue, options);
+            */
             MbUnit.Framework.Assert.Count(expectedNumberOfElements, resultList);
             Xunit.Assert.Equal(expectedNumberOfElements, resultList.Count);
             
@@ -107,14 +112,19 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                     .Cast<IUiElement>()
                     .ToList<IUiElement>(), x =>
                     {
-                        IValuePattern valuePattern = x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern;
+                    	// 20140218
+                        var valuePattern = x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern;
+                        // IValuePattern valuePattern = x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern;
                         return valuePattern != null && txtValuePattern.IsMatch(valuePattern.Current.Value);
                     });
                 
             resultList.All(
                 x => {
-                         IValuePattern valuePattern = x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern;
-                         return valuePattern != null && txtValuePattern.IsMatch(valuePattern.Current.Value);
+            			
+						// 20140218
+                        var valuePattern = x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern;
+                        // IValuePattern valuePattern = x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern;
+                        return valuePattern != null && txtValuePattern.IsMatch(valuePattern.Current.Value);
                 });
             /*
             if (!string.IsNullOrEmpty(txtValue)) {

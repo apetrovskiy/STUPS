@@ -20,7 +20,7 @@ namespace UIAutomation
     /// </summary>
     public class SingleControlSearcherData : ControlSearcherTemplateData
     {
-        public IUiElement InputObject { get; set; }
+        public new IUiElement InputObject { get; set; }
 //        public string ContainsText { get; set; }
 //        public string Name { get; set; }
 //        public string Value { get; set; }

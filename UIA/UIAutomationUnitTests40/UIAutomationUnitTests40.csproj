@@ -163,6 +163,9 @@
     <Compile Include="..\UIAutomationUnitTests\Fakes\FakeFactory.cs">
       <Link>Fakes\FakeFactory.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Fakes\FakeSourcePattern.cs">
+      <Link>Fakes\FakeSourcePattern.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomationUnitTests\Fakes\FakeUiElement.cs">
       <Link>Fakes\FakeUiElement.cs</Link>
     </Compile>
@@ -183,6 +186,9 @@
     </Compile>
     <Compile Include="..\UIAutomationUnitTests\Helpers\Inheritance\Legacy\CommonCmdletBaseTestFixture.cs">
       <Link>Helpers\Inheritance\Legacy\CommonCmdletBaseTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\Inheritance\new_code\ControlFromWin32ProviderTestFixture.cs">
+      <Link>Helpers\Inheritance\new_code\ControlFromWin32ProviderTestFixture.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomationUnitTests\Helpers\Inheritance\new_code\GetControlTestFixture.cs">
       <Link>Helpers\Inheritance\new_code\GetControlTestFixture.cs</Link>

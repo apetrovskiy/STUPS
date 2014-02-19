@@ -47,10 +47,11 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             string containsText,
             string[] controlTypeNames,
             IEnumerable<IUiElement> collection,
+            IEnumerable<int> handles,
             int expectedNumberOfElements)
         {
             // Act
-            var resultList = RealCodeCaller.SearchByTextViaWin32(FakeFactory.GetAutomationElementNotExpected(null, string.Empty, string.Empty, string.Empty, string.Empty), containsText, controlTypeNames, collection);
+            var resultList = RealCodeCaller.SearchByTextViaWin32(FakeFactory.GetAutomationElementNotExpected(null, string.Empty, string.Empty, string.Empty, string.Empty), containsText, controlTypeNames, collection, handles);
             
             // Assert
             MbUnit.Framework.Assert.Count(expectedNumberOfElements, resultList);
@@ -67,6 +68,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 containsText,
                 null,
                 new UiElement[] {},
+                new int[] {},
                 0);
         }
         
@@ -78,10 +80,11 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 containsText,
                 null,
                 new IUiElement[] {
-                    FakeFactory.GetAutomationElementExpected(ControlType.Button, "other name", string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElementExpected(ControlType.Custom, "second name", string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElementExpected(ControlType.CheckBox, "third name", string.Empty, string.Empty, string.Empty)
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, "other name", string.Empty, string.Empty, string.Empty, 10),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Custom, "second name", string.Empty, string.Empty, string.Empty, 20),
+                    FakeFactory.GetAutomationElementExpected(ControlType.CheckBox, "third name", string.Empty, string.Empty, string.Empty, 30)
                 },
+                new int[] { 10, 20, 30 },
                 3);
         }
         
@@ -93,10 +96,11 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 containsText,
                 null,
                 new IUiElement[] {
-                    FakeFactory.GetAutomationElementExpected(ControlType.Tab, "other name", string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElementExpected(ControlType.Image, "name matches", string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElementExpected(ControlType.Button, "third name", string.Empty, string.Empty, string.Empty)
+                    FakeFactory.GetAutomationElementExpected(ControlType.Tab, "other name", string.Empty, string.Empty, string.Empty, 10),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Image, "name matches", string.Empty, string.Empty, string.Empty, 20),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, "third name", string.Empty, string.Empty, string.Empty, 30)
                 },
+                new int[] { 10, 20, 30 },
                 3);
         }
         
@@ -108,10 +112,11 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 containsText,
                 null,
                 new IUiElement[] {
-                    FakeFactory.GetAutomationElementExpected(ControlType.Button, "name matches", string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElementExpected(ControlType.Custom, "Name matches", string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElementExpected(ControlType.Hyperlink, "name matcheZ", string.Empty, string.Empty, string.Empty)
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, "name matches", string.Empty, string.Empty, string.Empty, 10),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Custom, "Name matches", string.Empty, string.Empty, string.Empty, 20),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Hyperlink, "name matcheZ", string.Empty, string.Empty, string.Empty, 30)
                 },
+                new int[] { 10, 20, 30 },
                 3);
         }
         #endregion Name
@@ -126,6 +131,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 containsText,
                 controlType.ConvertControlTypeToStringArray(),
                 new UiElement[] {},
+                new int[] {},
                 0);
         }
         
@@ -138,11 +144,12 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 containsText,
                 controlType.ConvertControlTypeToStringArray(),
                 new IUiElement[] {
-                    FakeFactory.GetAutomationElementExpected(controlType, "other name", string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElementExpected(controlType, "second name", string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElementExpected(controlType, "third name", string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElementNotExpected(ControlType.DataGrid, containsText, string.Empty, string.Empty, string.Empty)
+                    FakeFactory.GetAutomationElementExpected(controlType, "other name", string.Empty, string.Empty, string.Empty, 10),
+                    FakeFactory.GetAutomationElementExpected(controlType, "second name", string.Empty, string.Empty, string.Empty, 20),
+                    FakeFactory.GetAutomationElementExpected(controlType, "third name", string.Empty, string.Empty, string.Empty, 30),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.DataGrid, containsText, string.Empty, string.Empty, string.Empty, 40)
                 },
+                new int[] { 10, 20, 30, 40 },
                 3);
         }
         
@@ -155,11 +162,12 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 containsText,
                 controlType.ConvertControlTypeToStringArray(),
                 new IUiElement[] {
-                    FakeFactory.GetAutomationElementExpected(controlType, "other name", string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElementExpected(controlType, "name matches", string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElementExpected(controlType, "third name", string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElementNotExpected(ControlType.Group, containsText, string.Empty, string.Empty, string.Empty)
+                    FakeFactory.GetAutomationElementExpected(controlType, "other name", string.Empty, string.Empty, string.Empty, 10),
+                    FakeFactory.GetAutomationElementExpected(controlType, "name matches", string.Empty, string.Empty, string.Empty, 20),
+                    FakeFactory.GetAutomationElementExpected(controlType, "third name", string.Empty, string.Empty, string.Empty, 30),
+                    FakeFactory.GetAutomationElementNotExpected(ControlType.Group, containsText, string.Empty, string.Empty, string.Empty, 40)
                 },
+                new int[] { 10, 20, 30, 40 },
                 3);
         }
         
@@ -172,10 +180,11 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 containsText,
                 controlType.ConvertControlTypeToStringArray(),
                 new IUiElement[] {
-                    FakeFactory.GetAutomationElementExpected(controlType, "name matches", string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElementExpected(controlType, "NNName matches", string.Empty, string.Empty, string.Empty),
-                    FakeFactory.GetAutomationElementExpected(controlType, "name matcheZ", string.Empty, string.Empty, string.Empty)
+                    FakeFactory.GetAutomationElementExpected(controlType, "name matches", string.Empty, string.Empty, string.Empty, 10),
+                    FakeFactory.GetAutomationElementExpected(controlType, "NNName matches", string.Empty, string.Empty, string.Empty, 20),
+                    FakeFactory.GetAutomationElementExpected(controlType, "name matcheZ", string.Empty, string.Empty, string.Empty, 30)
                 },
+                new int[] { 10, 20, 30 },
                 3);
         }
         #endregion ControlType + Name

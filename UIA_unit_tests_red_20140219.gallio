@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<testProject xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.gallio.org/">
+  <testPackage shadowCopy="false" debug="false">
+    <files>
+      <file>UIA\UIAutomationUnitTests\bin\Release35\UIAutomationUnitTests.dll</file>
+      <file>UIA\UIAutomationUnitTests40\bin\Release35\UIAutomationUnitTests40.dll</file>
+    </files>
+    <hintDirectories />
+    <excludedFrameworkIds />
+    <properties />
+  </testPackage>
+  <testFilters>
+    <testFilter filterName="AutoSave" filterExpr="(Id: 1330861ddd78ca6 or Id: 62b41e07c8fc01d4 or Id: 53e0c4c25fa2d0ce)" />
+    <testFilter filterName="LastRun" filterExpr="(Id: 1330861ddd78ca6 or Id: 62b41e07c8fc01d4 or Id: 53e0c4c25fa2d0ce)" />
+  </testFilters>
+  <extensionSpecifications />
+  <reportDirectory>..\..\..\Users\Alexander\AppData\Roaming\Gallio\Icarus\Reports</reportDirectory>
+  <reportNameFormat>test-report-{0}-{1}</reportNameFormat>
+</testProject>

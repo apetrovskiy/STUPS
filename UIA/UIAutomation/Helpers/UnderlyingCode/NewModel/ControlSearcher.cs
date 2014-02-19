@@ -114,8 +114,8 @@ namespace UIAutomation
                     if (!notTextSearch && data.Win32) {
                         
                         UsedSearchType = UsedSearchType.Control_TextSearchWin32;
-                        var win32Gateway = AutomationFactory.GetObject<ControlFromWin32Gateway>();
-                        win32Gateway.SearchData = data;
+                        var controlFromWin32Provider = AutomationFactory.GetObject<ControlFromWin32Provider>();
+                        controlFromWin32Provider.SearchData = data;
                         
                         // 20140219
                         var handleCollector = AutomationFactory.GetObject<HandleCollector>();
@@ -123,12 +123,8 @@ namespace UIAutomation
                         ResultCollection.AddRange(
                             SearchByTextViaWin32(
                                 inputObject,
-                                // 20140219
-                                // win32Gateway));
-                                win32Gateway,
+                                controlFromWin32Provider,
                                 handleCollector));
-                                // data.ContainsText,
-                                // data.ControlType));
                     }
                 }
                 #endregion text search Win32
@@ -233,7 +229,7 @@ namespace UIAutomation
         
         internal static IEnumerable<IUiElement> SearchByTextViaWin32(
             IUiElement inputObject,
-            ControlFromWin32Gateway gateway,
+        ControlFromWin32Provider gateway,
             // 20140219
             HandleCollector handleCollector)
         {
@@ -478,7 +474,7 @@ namespace UIAutomation
             
             if (!string.IsNullOrEmpty(data.Name) || !string.IsNullOrEmpty(data.Value)) {
                 
-                var controlFrom32Gateway = AutomationFactory.GetObject<ControlFromWin32Gateway>();
+                var controlFrom32Gateway = AutomationFactory.GetObject<ControlFromWin32Provider>();
                 var singleControlSearcherData = new SingleControlSearcherData { InputObject = inputObject, Name = data.Name, Value = data.Value };
                 // 20140219
                 // tempListWin32.AddRange(controlFrom32Gateway.GetElements(singleControlSearcherData));

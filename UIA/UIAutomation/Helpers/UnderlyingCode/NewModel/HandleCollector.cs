@@ -26,9 +26,9 @@ namespace UIAutomation
     /// <summary>
     /// Description of HandleCollector.
     /// </summary>
-    public class HandleCollector
+    public class HandleCollector : IHandleCollector
     {
-        public List<IntPtr> CollectRecursively(
+        public virtual List<IntPtr> CollectRecursively(
             IUiElement containerElement,
             string name,
             int level)
@@ -50,6 +50,7 @@ namespace UIAutomation
                 if (controlHandle == IntPtr.Zero) continue;
                 controlHandles.Add(controlHandle);
                 
+                #region commented
                 // 20140218
                 /*
                 tempControlHandles =
@@ -57,6 +58,7 @@ namespace UIAutomation
                         name,
                         level + 1);
                 */
+                #endregion commented
                 
                 tempControlHandles =
                     CollectRecursively(
@@ -70,6 +72,11 @@ namespace UIAutomation
             } while (controlHandle != IntPtr.Zero);
             
             return controlHandles;
+        }
+        
+        public virtual List<IUiElement> GetElementsFromHandles(List<IntPtr> pointers)
+        {
+            return (from pointer in pointers where IntPtr.Zero != pointer select UiElement.FromHandle(pointer)).ToList();
         }
     }
 }

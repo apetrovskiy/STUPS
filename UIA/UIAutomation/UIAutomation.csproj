@@ -393,8 +393,8 @@
     <Compile Include="Helpers\UnderlyingCode\Internal\WizardHelper.cs" />
     <Compile Include="Helpers\UnderlyingCode\NewModel\ContextMenuSearcher.cs" />
     <Compile Include="Helpers\UnderlyingCode\NewModel\ContextMenuSearcherData.cs" />
-    <Compile Include="Helpers\UnderlyingCode\NewModel\ControlFromWin32Gateway.cs" />
-    <Compile Include="Helpers\UnderlyingCode\NewModel\ControlGateway.cs" />
+    <Compile Include="Helpers\UnderlyingCode\NewModel\ControlFromWin32Provider.cs" />
+    <Compile Include="Helpers\UnderlyingCode\NewModel\ControlProvider.cs" />
     <Compile Include="Helpers\UnderlyingCode\NewModel\ControlSearcher.cs" />
     <Compile Include="Helpers\UnderlyingCode\NewModel\ControlSearcherData.cs" />
     <Compile Include="Helpers\UnderlyingCode\NewModel\ControlSearcherTemplateData.cs" />
@@ -482,6 +482,7 @@
     <Compile Include="Interface\Element\ISupportsTransformPattern.cs" />
     <Compile Include="Interface\Element\ISupportsValuePattern.cs" />
     <Compile Include="Interface\Element\ISupportsWindowPattern.cs" />
+    <Compile Include="Interface\Helper\IHandleCollector.cs" />
     <Compile Include="Interface\Holder\IControlInput.cs" />
     <Compile Include="Interface\Holder\IControlInputHolder.cs" />
     <Compile Include="Interface\Holder\IExtendedModel.cs" />
@@ -619,6 +620,7 @@
     <Folder Include="Interface" />
     <Folder Include="Interface\Holder" />
     <Folder Include="Interface\Element" />
+    <Folder Include="Interface\Helper" />
     <Folder Include="Interface\Pattern" />
     <Folder Include="pull requests" />
   </ItemGroup>

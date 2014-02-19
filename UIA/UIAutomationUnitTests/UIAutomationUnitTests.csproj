@@ -126,6 +126,7 @@
     <Compile Include="Commands\Wizard\NewUIAWizardCommandTestFixture.cs" />
     <Compile Include="Fakes\ElementData.cs" />
     <Compile Include="Fakes\FakeFactory.cs" />
+    <Compile Include="Fakes\FakeSourcePattern.cs" />
     <Compile Include="Fakes\FakeUiElement.cs" />
     <Compile Include="Fakes\IFakeUiElement.cs" />
     <Compile Include="Fakes\PatternsData.cs" />
@@ -133,7 +134,7 @@
     <Compile Include="Helpers\Inheritance\GetAutomationElementsWithFindAllTestFixture.cs" />
     <Compile Include="Helpers\Inheritance\GetWindowCollectionByPidTestFixture.cs" />
     <Compile Include="Helpers\Inheritance\Legacy\CommonCmdletBaseTestFixture.cs" />
-    <Compile Include="Helpers\Inheritance\new_code\ControlFromWin32GatewayTestFixture.cs" />
+    <Compile Include="Helpers\Inheritance\new_code\ControlFromWin32ProviderTestFixture.cs" />
     <Compile Include="Helpers\Inheritance\new_code\GetControlTestFixture.cs" />
     <Compile Include="Helpers\Inheritance\new_code\SearchByTextViaWin32TestFixture.cs" />
     <Compile Include="Helpers\Inheritance\new_code\SearchByWildcardViaWin32TestFixture.cs" />

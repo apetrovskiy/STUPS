@@ -978,11 +978,11 @@
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\ContextMenuSearcherData.cs">
       <Link>Helpers\UnderlyingCode\NewModel\ContextMenuSearcherData.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\ControlFromWin32Gateway.cs">
-      <Link>Helpers\UnderlyingCode\NewModel\ControlFromWin32Gateway.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\ControlFromWin32Provider.cs">
+      <Link>Helpers\UnderlyingCode\NewModel\ControlFromWin32Provider.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\ControlGateway.cs">
-      <Link>Helpers\UnderlyingCode\NewModel\ControlGateway.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\ControlProvider.cs">
+      <Link>Helpers\UnderlyingCode\NewModel\ControlProvider.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\ControlSearcher.cs">
       <Link>Helpers\UnderlyingCode\NewModel\ControlSearcher.cs</Link>
@@ -1124,6 +1124,9 @@
     </Compile>
     <Compile Include="..\UIAutomation\Interface\Element\ISupportsWindowPattern.cs">
       <Link>Interface\Element\ISupportsWindowPattern.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\Helper\IHandleCollector.cs">
+      <Link>Interface\Helper\IHandleCollector.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Interface\Holder\IControlInput.cs">
       <Link>Interface\Holder\IControlInput.cs</Link>
@@ -1345,6 +1348,7 @@
     <Folder Include="Interface\Element" />
     <Folder Include="Interface\Holder" />
     <Folder Include="Interface\Holder" />
+    <Folder Include="Interface\Helper" />
     <Folder Include="Interface\Pattern" />
     <Folder Include="Interface\Pattern" />
   </ItemGroup>

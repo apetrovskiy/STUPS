@@ -318,5 +318,39 @@ namespace UIAutomation
             
             return new string[] { controlType.ProgrammaticName.Substring(12) };
         }
+        
+        internal static SingleControlSearcherData ConvertControlSearcherDataToSingleControlSearcherData(this ControlSearcherData data)
+        {
+            return new SingleControlSearcherData {
+                InputObject = (null == data.InputObject ? null : (null == data.InputObject[0] ? null : data.InputObject[0])),
+                Name = data.Name,
+                AutomationId = data.AutomationId,
+                Class = data.Class,
+                Value = data.Value,
+                ControlType = data.ControlType,
+                ContainsText = data.ContainsText,
+                Win32 = data.Win32,
+                CaseSensitive = data.CaseSensitive,
+                Regex = data.Regex,
+                SearchCriteria = data.SearchCriteria
+            };
+        }
+        
+        internal static SingleControlSearcherData ConvertControlSearcherTemplateDataToSingleControlSearcherData(this ControlSearcherTemplateData data)
+        {
+            return new SingleControlSearcherData {
+                InputObject = (null == data.InputObject ? null : (null == data.InputObject[0] ? null : data.InputObject[0])),
+                Name = data.Name,
+                AutomationId = data.AutomationId,
+                Class = data.Class,
+                Value = data.Value,
+                ControlType = data.ControlType,
+                ContainsText = data.ContainsText,
+                Win32 = data.Win32,
+                CaseSensitive = data.CaseSensitive,
+                Regex = data.Regex,
+                SearchCriteria = data.SearchCriteria
+            };
+        }
     }
 }

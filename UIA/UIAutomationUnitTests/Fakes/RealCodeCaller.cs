@@ -75,15 +75,17 @@ namespace UIAutomationUnitTests
         	IUiElement inputObject,
             string containsText,
             string[] controlTypeNames,
-            IEnumerable<IUiElement> collection)
+            IEnumerable<IUiElement> collection,
+            IEnumerable<int> handles)
         {
         	var singleControlSearcherData = new SingleControlSearcherData { Name = containsText, ControlType = controlTypeNames };
-        	var gateway = FakeFactory.GetWin32Gateway(collection, singleControlSearcherData);
-        	// 20140219
-        	// return ControlSearcher.SearchByTextViaWin32(inputObject, gateway).ToList();
-        	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        	// return ControlSearcher.SearchByTextViaWin32(inputObject, gateway, FakeFactory.GetHandleCollector(inputObject, null)).ToList();
-        	return ControlSearcher.SearchByTextViaWin32(inputObject, gateway, FakeFactory.GetHandleCollector(inputObject)).ToList();
+        	var controlProvider = FakeFactory.GetControlFromWin32Provider(collection, singleControlSearcherData);
+        	
+        	if (null == collection || 0 == collection.Count()) {
+        	    return ControlSearcher.SearchByTextViaWin32(inputObject, controlProvider, FakeFactory.GetHandleCollector(inputObject, new int[] {}, collection.ToArray())).ToList();
+        	} else {
+        	    return ControlSearcher.SearchByTextViaWin32(inputObject, controlProvider, FakeFactory.GetHandleCollector(inputObject, new int[] {}, collection.ToArray())).ToList();
+        	}
         }
         
         public static List<IUiElement> GetResultList_ReturnOnlyRightElements(IEnumerable<IUiElement> elements, ControlSearcherData data, bool useWildcardOrRegex)
@@ -125,51 +127,53 @@ namespace UIAutomationUnitTests
                     
         }
         
-        public static List<IUiElement> Win32Gateway_GetElements_NullInput(
+        public static List<IUiElement> Win32Gateway_GetElements_WithControlSearcherDataInput(
             IUiElement rootElement,
+            IUiElement[] elements,
+            IEnumerable<int> handles,
             string searchString)
         {
-            var gateway = new ControlFromWin32Gateway();
-            var controlSearcherData = new ControlSearcherData {
+            var controlProvider = new ControlFromWin32Provider();
+            var controlSearcherData = new ControlSearcherTemplateData {
                 ContainsText = searchString,
                 Name = searchString,
-                Win32 = true
+                Win32 = true,
+                InputObject = new IUiElement[] { rootElement }
             };
-            gateway.SearchData = controlSearcherData;
+            controlProvider.SearchData = controlSearcherData;
             
-            // var handleCollector = new HandleCollector();
-            // var handleCollector = FakeFactory.GetHandleCollector(rootElement, null); // !!!!!!!!!!!!!!!!!!
-            var handleCollector = FakeFactory.GetHandleCollector(rootElement);
+            var handleCollector = FakeFactory.GetHandleCollector(rootElement, handles, elements);
             
             List<IUiElement> resultList =
-                gateway.GetElements(
+                controlProvider.GetElements(
                     handleCollector,
-                    null);
+                    controlSearcherData);
             
             return resultList;
                     
         }
         
-        public static List<IUiElement> Win32Gateway_GetElements_WithInput(
+        public static List<IUiElement> Win32Gateway_GetElements_NullControlSearcherDataInput(
             IUiElement rootElement,
+            IUiElement[] elements,
+            IEnumerable<int> handles,
             string searchString)
         {
-            var gateway = new ControlFromWin32Gateway();
-            var controlSearcherData = new ControlSearcherData {
+            var controlProvider = new ControlFromWin32Provider();
+            var controlSearcherData = new ControlSearcherTemplateData {
                 ContainsText = searchString,
                 Name = searchString,
-                Win32 = true
+                Win32 = true,
+                InputObject = new IUiElement[] { rootElement }
             };
-            gateway.SearchData = controlSearcherData;
+            controlProvider.SearchData = controlSearcherData;
             
-            // var handleCollector = new HandleCollector();
-            // var handleCollector = FakeFactory.GetHandleCollector(rootElement, null); // !!!!!!!!!!!!!!!!!!
-            var handleCollector = FakeFactory.GetHandleCollector(rootElement);
+            var handleCollector = FakeFactory.GetHandleCollector(rootElement, handles, elements);
             
             List<IUiElement> resultList =
-                gateway.GetElements(
+                controlProvider.GetElements(
                     handleCollector,
-                    controlSearcherData);
+                    null);
             
             return resultList;
                     

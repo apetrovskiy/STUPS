@@ -284,7 +284,13 @@ namespace UIAutomationUnitTests
         }
         #endregion patterns
         
+        // 20140219
         public static IFakeUiElement GetAutomationElementExpected(ControlType controlType, string name, string automationId, string className, string txtValue)
+        {
+            return GetAutomationElementExpected(controlType, name, automationId, className, txtValue, 0);
+        }
+        
+        public static IFakeUiElement GetAutomationElementExpected(ControlType controlType, string name, string automationId, string className, string txtValue, int handle)
         {
             return GetAutomationElementExpected(
                 new ElementData {
@@ -293,7 +299,8 @@ namespace UIAutomationUnitTests
                     Current_AutomationId = automationId,
                     Current_ClassName = className,
                     Current_Value = txtValue,
-                    Current_ProcessId = 333
+                    Current_ProcessId = 333,
+                    Current_NativeWindowHandle = handle
                 });
         }
         
@@ -306,7 +313,13 @@ namespace UIAutomationUnitTests
             return GetAutomationElement(data, new IBasePattern[] { valuePattern }, true);
         }
         
+        // 20140219
         public static  IFakeUiElement GetAutomationElementNotExpected(ControlType controlType, string name, string automationId, string className, string txtValue)
+        {
+            return GetAutomationElementNotExpected(controlType, name, automationId, className, txtValue, 0);
+        }
+        
+        public static  IFakeUiElement GetAutomationElementNotExpected(ControlType controlType, string name, string automationId, string className, string txtValue, int handle)
         {
             return GetAutomationElementNotExpected(
                 new ElementData {
@@ -315,7 +328,8 @@ namespace UIAutomationUnitTests
                     Current_AutomationId = automationId,
                     Current_ClassName = className,
                     Current_Value = txtValue,
-                    Current_ProcessId = 333
+                    Current_ProcessId = 333,
+                    Current_NativeWindowHandle = handle
                 });
         }
         
@@ -341,17 +355,26 @@ namespace UIAutomationUnitTests
             return element;
         }
         
+        // 20140219
         internal static IFakeUiElement GetAutomationElement(ControlType controlType, string name, string automationId, string className, IBasePattern[] patterns, bool expected)
+        {
+            return GetAutomationElement(controlType, name, automationId, className, 0, patterns, expected);
+        }
+        
+        internal static IFakeUiElement GetAutomationElement(ControlType controlType, string name, string automationId, string className, int handle, IBasePattern[] patterns, bool expected)
         {
             var elementData = new ElementData {
                 Current_ControlType = controlType,
                 Current_Name = name,
                 Current_AutomationId = automationId,
                 Current_ClassName = className,
-                Current_ProcessId = 333,
+                Current_ProcessId = 333
                 // 20140218
-                Current_NativeWindowHandle = 1234567
+                // 20140219
+                //Current_NativeWindowHandle = 1234567
             };
+            
+            if (0 != handle) elementData.Current_NativeWindowHandle = handle;
             
             return GetAutomationElement(elementData, patterns, expected);
         }
@@ -367,6 +390,7 @@ namespace UIAutomationUnitTests
             element.Current.Name.Returns(!string.IsNullOrEmpty(data.Current_Name) ? data.Current_Name : string.Empty);
             element.Current.AutomationId.Returns(!string.IsNullOrEmpty(data.Current_AutomationId) ? data.Current_AutomationId : string.Empty);
             element.Current.ClassName.Returns(!string.IsNullOrEmpty(data.Current_ClassName) ? data.Current_ClassName : string.Empty);
+            element.Current.NativeWindowHandle.Returns(data.Current_NativeWindowHandle);
             element.Patterns.AddRange(patterns);
             element.GetSupportedPatterns().Returns(element.Patterns.ToArray());
             
@@ -545,40 +569,34 @@ namespace UIAutomationUnitTests
             return automation;
         }
         
-        internal static ControlFromWin32Gateway GetWin32Gateway(IEnumerable<IUiElement> collection, SingleControlSearcherData data)
+        internal static ControlFromWin32Provider GetControlFromWin32Provider(IEnumerable<IUiElement> collection, SingleControlSearcherData data)
         {
-            ControlFromWin32Gateway gateway = Substitute.For<ControlFromWin32Gateway>();
-            // 20140219
-            // gateway.GetElements(Arg.Any<SingleControlSearcherData>()).Returns(collection.ToList()); //.Where(element => "expected" == element.GetTag()).ToList());
-            gateway.GetElements(Arg.Any<HandleCollector>(), Arg.Any<SingleControlSearcherData>()).Returns(collection.ToList());
+            ControlFromWin32Provider controlProvider = Substitute.For<ControlFromWin32Provider>();
+            controlProvider.GetElements(Arg.Any<HandleCollector>(), Arg.Any<SingleControlSearcherData>()).Returns(collection.ToList<IUiElement>());
             var data1 = data as SearcherTemplateData;
-            gateway.SearchData.Returns(data1);
-            return gateway;
+            controlProvider.SearchData.Returns(data1);
+            return controlProvider;
         }
         
-        // internal static HandleCollector GetHandleCollector(IUiElement element, IEnumerable<IntPtr> handleCollection)
-        internal static HandleCollector GetHandleCollector(IUiElement element)
+        internal static HandleCollector GetHandleCollector(IUiElement element, IEnumerable<int> handles, IUiElement[] collection)
         {
             var handleCollector = Substitute.For<HandleCollector>();
             var handleCollection =
                 new List<IntPtr>();
-            handleCollection.Add(new IntPtr(1));
-            handleCollection.Add(new IntPtr(2));
-            handleCollection.Add(new IntPtr(3));
-            handleCollection.Add(new IntPtr(4));
-            handleCollection.Add(new IntPtr(333));
+            handles.All(h => { handleCollection.Add(new IntPtr(h)); return true; });
             
             handleCollector.CollectRecursively(
-                element,
+                Arg.Any<IUiElement>(),
                 Arg.Any<string>(),
                 1).Returns(handleCollection);
             
+            if (null == collection || 0 == collection.Length) {
+                handleCollector.GetElementsFromHandles(Arg.Any<List<IntPtr>>()).Returns(new List<IUiElement>());
+            } else {
+                handleCollector.GetElementsFromHandles(handleCollection).Returns(collection.ToList<IUiElement>());
+            }
+            
             return handleCollector;
         }
-    }
-    
-    public class FakeSourcePattern
-    {
-        public static AutomationPattern Pattern { get; set; }
     }
 }

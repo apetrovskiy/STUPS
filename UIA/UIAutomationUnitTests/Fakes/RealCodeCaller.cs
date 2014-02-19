@@ -79,7 +79,11 @@ namespace UIAutomationUnitTests
         {
         	var singleControlSearcherData = new SingleControlSearcherData { Name = containsText, ControlType = controlTypeNames };
         	var gateway = FakeFactory.GetWin32Gateway(collection, singleControlSearcherData);
-        	return ControlSearcher.SearchByTextViaWin32(inputObject, gateway).ToList();
+        	// 20140219
+        	// return ControlSearcher.SearchByTextViaWin32(inputObject, gateway).ToList();
+        	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        	// return ControlSearcher.SearchByTextViaWin32(inputObject, gateway, FakeFactory.GetHandleCollector(inputObject, null)).ToList();
+        	return ControlSearcher.SearchByTextViaWin32(inputObject, gateway, FakeFactory.GetHandleCollector(inputObject)).ToList();
         }
         
         public static List<IUiElement> GetResultList_ReturnOnlyRightElements(IEnumerable<IUiElement> elements, ControlSearcherData data, bool useWildcardOrRegex)
@@ -116,6 +120,56 @@ namespace UIAutomationUnitTests
                 windowSearcher.GetWindowCollectionByPid(
                     rootElement,
                     data);
+            
+            return resultList;
+                    
+        }
+        
+        public static List<IUiElement> Win32Gateway_GetElements_NullInput(
+            IUiElement rootElement,
+            string searchString)
+        {
+            var gateway = new ControlFromWin32Gateway();
+            var controlSearcherData = new ControlSearcherData {
+                ContainsText = searchString,
+                Name = searchString,
+                Win32 = true
+            };
+            gateway.SearchData = controlSearcherData;
+            
+            // var handleCollector = new HandleCollector();
+            // var handleCollector = FakeFactory.GetHandleCollector(rootElement, null); // !!!!!!!!!!!!!!!!!!
+            var handleCollector = FakeFactory.GetHandleCollector(rootElement);
+            
+            List<IUiElement> resultList =
+                gateway.GetElements(
+                    handleCollector,
+                    null);
+            
+            return resultList;
+                    
+        }
+        
+        public static List<IUiElement> Win32Gateway_GetElements_WithInput(
+            IUiElement rootElement,
+            string searchString)
+        {
+            var gateway = new ControlFromWin32Gateway();
+            var controlSearcherData = new ControlSearcherData {
+                ContainsText = searchString,
+                Name = searchString,
+                Win32 = true
+            };
+            gateway.SearchData = controlSearcherData;
+            
+            // var handleCollector = new HandleCollector();
+            // var handleCollector = FakeFactory.GetHandleCollector(rootElement, null); // !!!!!!!!!!!!!!!!!!
+            var handleCollector = FakeFactory.GetHandleCollector(rootElement);
+            
+            List<IUiElement> resultList =
+                gateway.GetElements(
+                    handleCollector,
+                    controlSearcherData);
             
             return resultList;
                     

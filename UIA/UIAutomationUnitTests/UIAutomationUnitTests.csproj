@@ -133,6 +133,7 @@
     <Compile Include="Helpers\Inheritance\GetAutomationElementsWithFindAllTestFixture.cs" />
     <Compile Include="Helpers\Inheritance\GetWindowCollectionByPidTestFixture.cs" />
     <Compile Include="Helpers\Inheritance\Legacy\CommonCmdletBaseTestFixture.cs" />
+    <Compile Include="Helpers\Inheritance\new_code\ControlFromWin32GatewayTestFixture.cs" />
     <Compile Include="Helpers\Inheritance\new_code\GetControlTestFixture.cs" />
     <Compile Include="Helpers\Inheritance\new_code\SearchByTextViaWin32TestFixture.cs" />
     <Compile Include="Helpers\Inheritance\new_code\SearchByWildcardViaWin32TestFixture.cs" />

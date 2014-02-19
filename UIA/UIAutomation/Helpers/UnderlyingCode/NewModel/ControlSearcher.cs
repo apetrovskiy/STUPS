@@ -117,10 +117,16 @@ namespace UIAutomation
                         var win32Gateway = AutomationFactory.GetObject<ControlFromWin32Gateway>();
                         win32Gateway.SearchData = data;
                         
+                        // 20140219
+                        var handleCollector = AutomationFactory.GetObject<HandleCollector>();
+                        
                         ResultCollection.AddRange(
                             SearchByTextViaWin32(
                                 inputObject,
-                                win32Gateway));
+                                // 20140219
+                                // win32Gateway));
+                                win32Gateway,
+                                handleCollector));
                                 // data.ContainsText,
                                 // data.ControlType));
                     }
@@ -178,10 +184,17 @@ namespace UIAutomation
                     if (!Preferences.DisableWin32Search && data.Win32) {
                         
                         UsedSearchType = UsedSearchType.Control_Win32Search;
+                        
+                        // 20140219
+                        var handleCollector = AutomationFactory.GetObject<HandleCollector>();
+                        
                         ResultCollection.AddRange(
                             SearchByWildcardViaWin32(
                                 inputObject,
-                                data));
+                                // 20140219
+                                // data));
+                                data,
+                                handleCollector));
                         
                     }
                 } // FindWindowEx
@@ -220,7 +233,9 @@ namespace UIAutomation
         
         internal static IEnumerable<IUiElement> SearchByTextViaWin32(
             IUiElement inputObject,
-            ControlFromWin32Gateway gateway)
+            ControlFromWin32Gateway gateway,
+            // 20140219
+            HandleCollector handleCollector)
         {
             var resultList =
                 new List<IUiElement>();
@@ -264,7 +279,9 @@ namespace UIAutomation
 
 
             // foreach (IUiElement elementToChoose in gateway.GetElements(gateway.SearchData)) {
-            foreach (IUiElement elementToChoose in gateway.GetElements(null)) {
+            // 20140219
+            // foreach (IUiElement elementToChoose in gateway.GetElements(null)) {
+            foreach (IUiElement elementToChoose in gateway.GetElements(handleCollector, null)) {
                 
 //Console.WriteLine("SearchByTextViaWin32 002");
                 // 20140218
@@ -453,7 +470,9 @@ namespace UIAutomation
         
         internal IEnumerable<IUiElement> SearchByWildcardViaWin32(
             IUiElement inputObject,
-            ControlSearcherData data)
+            ControlSearcherData data,
+            // 20140219
+            HandleCollector handleCollector)
         {
             var tempListWin32 = new List<IUiElement>();
             
@@ -461,7 +480,9 @@ namespace UIAutomation
                 
                 var controlFrom32Gateway = AutomationFactory.GetObject<ControlFromWin32Gateway>();
                 var singleControlSearcherData = new SingleControlSearcherData { InputObject = inputObject, Name = data.Name, Value = data.Value };
-                tempListWin32.AddRange(controlFrom32Gateway.GetElements(singleControlSearcherData));
+                // 20140219
+                // tempListWin32.AddRange(controlFrom32Gateway.GetElements(singleControlSearcherData));
+                tempListWin32.AddRange(controlFrom32Gateway.GetElements(handleCollector, singleControlSearcherData));
             }
             
             var resultList = new List<IUiElement>();

@@ -548,10 +548,32 @@ namespace UIAutomationUnitTests
         internal static ControlFromWin32Gateway GetWin32Gateway(IEnumerable<IUiElement> collection, SingleControlSearcherData data)
         {
             ControlFromWin32Gateway gateway = Substitute.For<ControlFromWin32Gateway>();
-            gateway.GetElements(Arg.Any<SingleControlSearcherData>()).Returns(collection.ToList()); //.Where(element => "expected" == element.GetTag()).ToList());
+            // 20140219
+            // gateway.GetElements(Arg.Any<SingleControlSearcherData>()).Returns(collection.ToList()); //.Where(element => "expected" == element.GetTag()).ToList());
+            gateway.GetElements(Arg.Any<HandleCollector>(), Arg.Any<SingleControlSearcherData>()).Returns(collection.ToList());
             var data1 = data as SearcherTemplateData;
             gateway.SearchData.Returns(data1);
             return gateway;
+        }
+        
+        // internal static HandleCollector GetHandleCollector(IUiElement element, IEnumerable<IntPtr> handleCollection)
+        internal static HandleCollector GetHandleCollector(IUiElement element)
+        {
+            var handleCollector = Substitute.For<HandleCollector>();
+            var handleCollection =
+                new List<IntPtr>();
+            handleCollection.Add(new IntPtr(1));
+            handleCollection.Add(new IntPtr(2));
+            handleCollection.Add(new IntPtr(3));
+            handleCollection.Add(new IntPtr(4));
+            handleCollection.Add(new IntPtr(333));
+            
+            handleCollector.CollectRecursively(
+                element,
+                Arg.Any<string>(),
+                1).Returns(handleCollection);
+            
+            return handleCollector;
         }
     }
     

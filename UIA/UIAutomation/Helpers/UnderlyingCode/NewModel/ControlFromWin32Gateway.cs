@@ -34,7 +34,7 @@ namespace UIAutomation
     public class ControlFromWin32Gateway : ControlGateway
     {
         // public override List<IUiElement> GetElements(SearcherTemplateData data)
-        public override List<IUiElement> GetElements(ControlSearcherTemplateData data)
+        public override List<IUiElement> GetElements(HandleCollector handleCollector, ControlSearcherTemplateData data)
         {
             var resultCollection = new List<IUiElement>();
             
@@ -59,7 +59,9 @@ namespace UIAutomation
             
             try {
                 
-                var handleCollector = new HandleCollector();
+                // 20140219
+                // var handleCollector = new HandleCollector();
+                // var handleCollector = AutomationFactory.GetObject<HandleCollector>();
                 
                 var handlesCollection =
                     handleCollector.CollectRecursively(

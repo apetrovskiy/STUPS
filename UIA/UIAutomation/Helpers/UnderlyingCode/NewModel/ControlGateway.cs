@@ -22,7 +22,8 @@ namespace UIAutomation
     	public virtual ControlSearcherTemplateData SearchData { get; set; }
     	
         // public virtual List<IUiElement> GetElements(SearcherTemplateData data)
-        public virtual List<IUiElement> GetElements(ControlSearcherTemplateData data)
+        // public virtual List<IUiElement> GetElements(ControlSearcherTemplateData data)
+        public virtual List<IUiElement> GetElements(HandleCollector handleCollector, ControlSearcherTemplateData data)
         {
             return new List<IUiElement>();
         }

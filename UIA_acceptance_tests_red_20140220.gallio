@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<testProject xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.gallio.org/">
+  <testPackage shadowCopy="false" debug="false">
+    <files>
+      <file>TMX\TMXUnitTests\bin\Release35\TMXUnitTests.dll</file>
+      <file>TMX\TLAddinUnitTests\bin\Release35\TLAddinUnitTests.dll</file>
+      <file>TMX\BDDAddinUnitTests\bin\Release35\BDDAddinUnitTests.dll</file>
+      <file>TMX\TMXTest\bin\Release35\TMXTest.dll</file>
+      <file>UIA\UIAutomationUnitTests\bin\Release35\UIAutomationUnitTests.dll</file>
+      <file>UIA\UIAutomationTest\bin\Release35\UIAutomationTest.dll</file>
+      <file>SePSX\SePSXUnitTests\bin\Release35\SePSXUnitTests.dll</file>
+      <file>SePSX\SePSXTest\bin\Release35\SePSXTest.dll</file>
+      <file>UIA\UIAutomationUnitTests40\bin\Release35\UIAutomationUnitTests40.dll</file>
+      <file>UIA\UIAutomationTest40\bin\Release35\UIAutomationTest40.dll</file>
+    </files>
+    <hintDirectories />
+    <excludedFrameworkIds />
+    <properties />
+  </testPackage>
+  <testFilters>
+    <testFilter filterName="AutoSave" filterExpr="(((Id: 698a3531fa259679 or Id: 6fd25077532057f4 or Id: 98f0299f1582e9e3 or Id: 780a12b0895a45a7 or Id: 987e352470b5dd9 or Id: 8b0ca28f92bab099 or Id: 316b30c1ba1538ee) or (Id: 2ca4600a5d906409 or Id: 62a6c826a22c8781 or Id: 2e224c5876b42266 or Id: 2adc5925c8aa0f6f or Id: 37a523e377ac41c7 or Id: f7b47caa4b834d41 or Id: fd872e3ba151d71c)) or Id: 61f541f615c3b07b)" />
+    <testFilter filterName="LastRun" filterExpr="(Id: 78642c3f683c1468 or Id: b5501325800ba4e9 or Id: ad6a0056aa8f3a17 or Id: 47bab07e4e9a4067 or Id: fbb04ebee03362c9 or Id: cf19c01288df0393 or Id: 6caa7c0740d12401 or Id: 60f9b6b51bfa07cc)" />
+  </testFilters>
+  <extensionSpecifications />
+  <reportDirectory>..\..\..\Program Files\Gallio\bin\Reports</reportDirectory>
+  <reportNameFormat>test-report-{0}-{1}</reportNameFormat>
+</testProject>

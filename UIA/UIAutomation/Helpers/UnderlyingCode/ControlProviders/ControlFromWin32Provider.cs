@@ -16,16 +16,9 @@ namespace UIAutomation
     extern alias UIANET;
     using System;
     using System.Windows.Automation;
-    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
     using System.Management.Automation;
-    using PSTestLib;
-    
-    using System.Globalization;
-    using System.Threading;
-    using System.Windows.Forms;
-    using System.Text.RegularExpressions;
     
     /// <summary>
     /// Description of ControlFromWin32Gateway.
@@ -47,6 +40,11 @@ namespace UIAutomation
                 
             }
             if (null == controlSearcherData) return resultCollection;
+            
+            // 20140224
+            if (!string.IsNullOrEmpty(controlSearcherData.ContainsText)) {
+                controlSearcherData.Name = controlSearcherData.Value = controlSearcherData.ContainsText;
+            }
             
             try {
                 return FilterElements(handleCollector, controlSearcherData);

@@ -1,5 +1,4 @@
-﻿using System;
-/*
+﻿/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
  * Date: 12/3/2013
@@ -8,26 +7,21 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-// namespace UIAutomationUnitTests.Helpers.Inheritance
 namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
 {
-    // using System;
-    // using System.Collections;
+    using System;
     using System.Collections.Generic;
-    // using System.Collections.ObjectModel;
     using System.Windows.Automation;
     using UIAutomation;
     using MbUnit.Framework;using Xunit;
-    // using System.Linq;
-    using System.Management.Automation;
     
     /// <summary>
     /// Description of SearchByContainsTextViaWin32TestFixture.
     /// </summary>
     [MbUnit.Framework.TestFixture]
-    public class SearchByContainsTextViaWin32TestFixture
+    public class SearchByContainsTextViaWin32TestFixture_less_useful
     {
-    	public SearchByContainsTextViaWin32TestFixture()
+    	public SearchByContainsTextViaWin32TestFixture_less_useful()
     	{
     		FakeFactory.Init();
     	}

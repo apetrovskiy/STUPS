@@ -222,13 +222,14 @@ namespace UIAutomation
         
         internal static IEnumerable<IUiElement> SearchByContainsTextViaWin32(
             IUiElement inputObject,
-        ControlFromWin32Provider controlProvider,
+            ControlFromWin32Provider controlProvider,
             HandleCollector handleCollector)
         {
             var resultList =
                 new List<IUiElement>();
             
-            controlProvider.SearchData.Name = controlProvider.SearchData.Value = controlProvider.SearchData.ContainsText;
+            // 20140224
+            // controlProvider.SearchData.Name = controlProvider.SearchData.Value = controlProvider.SearchData.ContainsText;
             
             foreach (IUiElement elementToChoose in controlProvider.GetElements(handleCollector, null)) {
                 

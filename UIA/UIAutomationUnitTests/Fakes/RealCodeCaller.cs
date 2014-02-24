@@ -27,7 +27,8 @@ namespace UIAutomationUnitTests
     {
         public static List<IUiElement> GetResultList_ViaWildcards_Legacy(IUiElement element, Condition condition, ControlSearcherData data)
         {
-            GetControlCollectionCmdletBase cmdletDerived = new GetControlCollectionCmdletBase();
+            // GetControlCollectionCmdletBase cmdletDerived = new GetControlCollectionCmdletBase();
+            var cmdletDerived = new GetControlCollectionCmdletBase();
             
             List<IUiElement> resultList =
                 cmdletDerived.GetAutomationElementsWithFindAll(
@@ -124,7 +125,6 @@ namespace UIAutomationUnitTests
                     data);
             
             return resultList;
-                    
         }
         
         public static List<IUiElement> Win32Gateway_GetElements_WithControlSearcherDataInput(
@@ -150,7 +150,6 @@ namespace UIAutomationUnitTests
                     controlSearcherData);
             
             return resultList;
-                    
         }
         
         public static List<IUiElement> Win32Gateway_GetElements_NullControlSearcherDataInput(
@@ -176,7 +175,6 @@ namespace UIAutomationUnitTests
                     null);
             
             return resultList;
-                    
         }
     }
 }

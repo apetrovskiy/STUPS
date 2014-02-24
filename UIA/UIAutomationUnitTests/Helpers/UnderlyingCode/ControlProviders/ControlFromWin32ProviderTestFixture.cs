@@ -12,6 +12,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.ControlProviders
 {
     // using System;
     // using System.Collections;
+	using System;
     using System.Collections.Generic;
     // using System.Collections.ObjectModel;
     using System.Windows.Automation;
@@ -50,12 +51,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.ControlProviders
             IEnumerable<int> handles,
             int expectedNumberOfElements)
         {
-            // Arrange
-//            IUiElement rootElement =
-//                FakeFactory.GetElement_ForFindAll(
-            
             // Act
-            // var resultList = RealCodeCaller.Win32Gateway_GetElements_NullInput(
             var resultList = RealCodeCaller.Win32Gateway_GetElements_WithControlSearcherDataInput(
                 FakeFactory.GetAutomationElement(ControlType.Button, string.Empty, string.Empty, string.Empty, new IBasePattern[] {}, true),
                 collection.ToArray(),
@@ -150,7 +146,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.ControlProviders
         }
         
         [Test][Fact]
-        public void Get0of4_byControlTypeName()
+        public void Get1of4_byControlTypeName()
         {
             // Arrange
             const string containsText = "*ame??atche*";
@@ -169,7 +165,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.ControlProviders
         }
         
         [Test][Fact]
-        public void Get1of4_byControlTypeName()
+        public void Get2of4_byControlTypeName()
         {
             // Arrange
             const string containsText = "*ame??atche*";
@@ -205,5 +201,164 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.ControlProviders
                 3);
         }
         #endregion ControlType + Name
+        
+        #region AutomationId
+        [Test][Fact]
+        public void Get0of3_byAutomationId()
+        {
+            // Arrange
+            const string containsText = "*aaa!!bbb*";
+            TestParametersAgainstCollection(
+                containsText,
+                null,
+                new IUiElement[] {
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, "other name", string.Empty, string.Empty, string.Empty, 15),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Custom, "second name", "wrong", string.Empty, string.Empty, 30),
+                    FakeFactory.GetAutomationElementExpected(ControlType.CheckBox, "third name", string.Empty, string.Empty, string.Empty, 45)
+                },
+                new int[] { 15, 30, 45 },
+                0);
+        }
+        
+        [Test][Fact]
+        public void Get1of3_byAutomationId()
+        {
+            // Arrange
+            const string containsText = "*auto*id*";
+            TestParametersAgainstCollection(
+                containsText,
+                null,
+                new IUiElement[] {
+                    FakeFactory.GetAutomationElementExpected(ControlType.Tab, "other name", "automationId", string.Empty, string.Empty, 15),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Image, "name matches", string.Empty, string.Empty, string.Empty, 30),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, "third name", string.Empty, string.Empty, string.Empty, 45)
+                },
+                new int[] { 15, 30, 45 },
+                1);
+        }
+        
+        [Test][Fact]
+        public void Get3of3_byAutomationId()
+        {
+            // Arrange
+            const string containsText = "*au??id*";
+            TestParametersAgainstCollection(
+                containsText,
+                null,
+                new IUiElement[] {
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, "name matches", "mauxyidz", string.Empty, string.Empty, 15),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Custom, "Name matches", "AU23id", string.Empty, string.Empty, 30),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Hyperlink, "name matcheZ", "au..ID", string.Empty, string.Empty, 45)
+                },
+                new int[] { 15, 30, 45 },
+                3);
+        }
+        #endregion AutomationId
+        
+        #region ClassName
+        [Test][Fact]
+        public void Get0of3_byClassName()
+        {
+            // Arrange
+            const string containsText = "*aaa!!bbb*";
+            TestParametersAgainstCollection(
+                containsText,
+                null,
+                new IUiElement[] {
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, "other name", string.Empty, string.Empty, string.Empty, 15),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Custom, "second name", "wrong", "nope", string.Empty, 30),
+                    FakeFactory.GetAutomationElementExpected(ControlType.CheckBox, "third name", string.Empty, string.Empty, string.Empty, 45)
+                },
+                new int[] { 15, 30, 45 },
+                0);
+        }
+        
+        [Test][Fact]
+        public void Get1of3_byClassName()
+        {
+            // Arrange
+            const string containsText = "*class*";
+            TestParametersAgainstCollection(
+                containsText,
+                null,
+                new IUiElement[] {
+                    FakeFactory.GetAutomationElementExpected(ControlType.Tab, "other name", "automationId", string.Empty, string.Empty, 15),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Image, "name matches", string.Empty, string.Empty, string.Empty, 30),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, "third name", string.Empty, "className", string.Empty, 45)
+                },
+                new int[] { 15, 30, 45 },
+                1);
+        }
+        
+        [Test][Fact]
+        public void Get3of3_byClassName()
+        {
+            // Arrange
+            const string containsText = "*cl*na*";
+            TestParametersAgainstCollection(
+                containsText,
+                null,
+                new IUiElement[] {
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, "name matches", "mauxyidz", "classname", string.Empty, 15),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Custom, "Name matches", "AU23id", "class name", string.Empty, 30),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Hyperlink, "name matcheZ", "au..ID", "clockname", string.Empty, 45)
+                },
+                new int[] { 15, 30, 45 },
+                3);
+        }
+        #endregion ClassName
+        
+        #region Value
+        [Test][Fact]
+        public void Get0of3_byValue()
+        {
+            // Arrange
+            const string containsText = "*aaa!!bbb*";
+            TestParametersAgainstCollection(
+                containsText,
+                null,
+                new IUiElement[] {
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, "other name", string.Empty, string.Empty, string.Empty, 15),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Custom, "second name", "wrong", "nope", "wrongval", 30),
+                    FakeFactory.GetAutomationElementExpected(ControlType.CheckBox, "third name", string.Empty, string.Empty, string.Empty, 45)
+                },
+                new int[] { 15, 30, 45 },
+                0);
+        }
+        
+        [Test][Fact]
+        public void Get1of3_byValue()
+        {
+            // Arrange
+            const string containsText = "*valu*";
+            TestParametersAgainstCollection(
+                containsText,
+                null,
+                new IUiElement[] {
+                    FakeFactory.GetAutomationElementExpected(ControlType.Tab, "other name", "automationId", string.Empty, "value", 15),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Image, "name matches", string.Empty, string.Empty, string.Empty, 30),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, "third name", string.Empty, "className", string.Empty, 45)
+                },
+                new int[] { 15, 30, 45 },
+                1);
+        }
+        
+        [Test][Fact]
+        public void Get3of3_byValue()
+        {
+            // Arrange
+            const string containsText = "*va*lue*";
+            TestParametersAgainstCollection(
+                containsText,
+                null,
+                new IUiElement[] {
+                    FakeFactory.GetAutomationElementExpected(ControlType.Button, "name matches", "mauxyidz", "classname", "my value", 15),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Custom, "Name matches", "AU23id", "class name", "the value", 30),
+                    FakeFactory.GetAutomationElementExpected(ControlType.Hyperlink, "name matcheZ", "au..ID", "clockname", "value", 45)
+                },
+                new int[] { 15, 30, 45 },
+                3);
+        }
+        #endregion Value
     }
 }

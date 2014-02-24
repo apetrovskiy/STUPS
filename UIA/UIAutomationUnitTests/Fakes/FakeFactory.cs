@@ -571,7 +571,8 @@ namespace UIAutomationUnitTests
         
         internal static ControlFromWin32Provider GetControlFromWin32Provider(IEnumerable<IUiElement> collection, SingleControlSearcherData data)
         {
-            ControlFromWin32Provider controlProvider = Substitute.For<ControlFromWin32Provider>();
+            // ControlFromWin32Provider controlProvider = Substitute.For<ControlFromWin32Provider>();
+            var controlProvider = Substitute.For<ControlFromWin32Provider>();
             controlProvider.GetElements(Arg.Any<HandleCollector>(), Arg.Any<SingleControlSearcherData>()).Returns(collection.ToList<IUiElement>());
             var data1 = data as SearcherTemplateData;
             controlProvider.SearchData.Returns(data1);

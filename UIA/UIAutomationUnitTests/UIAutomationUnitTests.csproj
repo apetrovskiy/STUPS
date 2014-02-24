@@ -134,14 +134,9 @@
     <Compile Include="Helpers\Inheritance\GetAutomationElementsWithFindAllTestFixture.cs" />
     <Compile Include="Helpers\Inheritance\GetWindowCollectionByPidTestFixture.cs" />
     <Compile Include="Helpers\Inheritance\Legacy\CommonCmdletBaseTestFixture.cs" />
-    <Compile Include="Helpers\Inheritance\new_code\ControlFromWin32ProviderTestFixture.cs" />
     <Compile Include="Helpers\Inheritance\new_code\GetControlTestFixture.cs" />
-    <Compile Include="Helpers\Inheritance\new_code\SearchByTextViaWin32TestFixture.cs" />
     <Compile Include="Helpers\Inheritance\new_code\SearchByWildcardViaWin32TestFixture.cs" />
     <Compile Include="Helpers\Inheritance\ReturnOnlyRightElementsTestFixture.cs" />
-    <Compile Include="Helpers\Inheritance\SearchByContainsTextViaUiaTextFixture.cs" />
-    <Compile Include="Helpers\Inheritance\SearchByExactConditionsViaUiaTestFixture.cs" />
-    <Compile Include="Helpers\Inheritance\SearchByWildcardOrRegexViaUiaTestFixture.cs" />
     <Compile Include="Helpers\ObjectModelViaPS\CommonPatternsTestFixture.cs" />
     <Compile Include="Helpers\ObjectModelViaPS\ISupportsDockPatternTestFixture.cs" />
     <Compile Include="Helpers\ObjectModelViaPS\ISupportsExpandCollapseTestFixture.cs" />
@@ -185,10 +180,15 @@
     <Compile Include="Helpers\ObjectModel\NoPatternsTestFixture.cs" />
     <Compile Include="Helpers\ObjectModel\ObjectModelParametersTestFixture.cs" />
     <Compile Include="Helpers\UnderlyingCode\Adapter\GetSupportedPatternsTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\ControlProviders\ControlFromWin32ProviderTestFixture.cs" />
     <Compile Include="Helpers\UnderlyingCode\elementOfPossibleControlTypeTestFixture.cs" />
     <Compile Include="Helpers\UnderlyingCode\getControlConditionsTestFixture.cs" />
     <Compile Include="Helpers\UnderlyingCode\NewModel\ControlSearchTestFixture.cs" />
     <Compile Include="Helpers\UnderlyingCode\NewModel\TimeoutManagerTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Searchers\SearchByContainsTextViaUiaTextFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Searchers\SearchByExactConditionsViaUiaTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Searchers\SearchByTextViaWin32TestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Searchers\SearchByWildcardOrRegexViaUiaTestFixture.cs" />
     <Compile Include="Helpers\UnderlyingCode\Types\IsStepActiveTestFixture.cs" />
     <Compile Include="Helpers\UnitTestingHelper.cs" />
   </ItemGroup>
@@ -230,6 +230,8 @@
     <Folder Include="Helpers\UnderlyingCode" />
     <Folder Include="Fakes" />
     <Folder Include="Helpers\UnderlyingCode\Adapter" />
+    <Folder Include="Helpers\UnderlyingCode\ControlProviders" />
+    <Folder Include="Helpers\UnderlyingCode\Searchers" />
     <Folder Include="Helpers\UnderlyingCode\Types" />
     <Folder Include="Helpers\UnderlyingCode\NewModel" />
     <Folder Include="Ninject" />

@@ -71,7 +71,7 @@ namespace UIAutomationUnitTests
             return resultListOfControls;
         }
         
-        public static List<IUiElement> SearchByTextViaWin32(
+        public static List<IUiElement> SearchByContainsTextViaWin32(
         	IUiElement inputObject,
             string containsText,
             string[] controlTypeNames,
@@ -82,9 +82,9 @@ namespace UIAutomationUnitTests
         	var controlProvider = FakeFactory.GetControlFromWin32Provider(collection, singleControlSearcherData);
         	
         	if (null == collection || 0 == collection.Count()) {
-        	    return ControlSearcher.SearchByTextViaWin32(inputObject, controlProvider, FakeFactory.GetHandleCollector(inputObject, new int[] {}, collection.ToArray())).ToList();
+        	    return ControlSearcher.SearchByContainsTextViaWin32(inputObject, controlProvider, FakeFactory.GetHandleCollector(inputObject, new int[] {}, collection.ToArray())).ToList();
         	} else {
-        	    return ControlSearcher.SearchByTextViaWin32(inputObject, controlProvider, FakeFactory.GetHandleCollector(inputObject, new int[] {}, collection.ToArray())).ToList();
+        	    return ControlSearcher.SearchByContainsTextViaWin32(inputObject, controlProvider, FakeFactory.GetHandleCollector(inputObject, new int[] {}, collection.ToArray())).ToList();
         	}
         }
         

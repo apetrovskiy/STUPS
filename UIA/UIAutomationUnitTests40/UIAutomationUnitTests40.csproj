@@ -187,29 +187,14 @@
     <Compile Include="..\UIAutomationUnitTests\Helpers\Inheritance\Legacy\CommonCmdletBaseTestFixture.cs">
       <Link>Helpers\Inheritance\Legacy\CommonCmdletBaseTestFixture.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomationUnitTests\Helpers\Inheritance\new_code\ControlFromWin32ProviderTestFixture.cs">
-      <Link>Helpers\Inheritance\new_code\ControlFromWin32ProviderTestFixture.cs</Link>
-    </Compile>
     <Compile Include="..\UIAutomationUnitTests\Helpers\Inheritance\new_code\GetControlTestFixture.cs">
       <Link>Helpers\Inheritance\new_code\GetControlTestFixture.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomationUnitTests\Helpers\Inheritance\new_code\SearchByTextViaWin32TestFixture.cs">
-      <Link>Helpers\Inheritance\new_code\SearchByTextViaWin32TestFixture.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomationUnitTests\Helpers\Inheritance\new_code\SearchByWildcardViaWin32TestFixture.cs">
       <Link>Helpers\Inheritance\new_code\SearchByWildcardViaWin32TestFixture.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomationUnitTests\Helpers\Inheritance\ReturnOnlyRightElementsTestFixture.cs">
       <Link>Helpers\Inheritance\ReturnOnlyRightElementsTestFixture.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomationUnitTests\Helpers\Inheritance\SearchByContainsTextViaUiaTextFixture.cs">
-      <Link>Helpers\Inheritance\SearchByContainsTextViaUiaTextFixture.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomationUnitTests\Helpers\Inheritance\SearchByExactConditionsViaUiaTestFixture.cs">
-      <Link>Helpers\Inheritance\SearchByExactConditionsViaUiaTestFixture.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomationUnitTests\Helpers\Inheritance\SearchByWildcardOrRegexViaUiaTestFixture.cs">
-      <Link>Helpers\Inheritance\SearchByWildcardOrRegexViaUiaTestFixture.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomationUnitTests\Helpers\ObjectModelViaPS\CommonPatternsTestFixture.cs">
       <Link>Helpers\ObjectModelViaPS\CommonPatternsTestFixture.cs</Link>
@@ -340,6 +325,9 @@
     <Compile Include="..\UIAutomationUnitTests\Helpers\UnderlyingCode\Adapter\GetSupportedPatternsTestFixture.cs">
       <Link>Helpers\UnderlyingCode\Adapter\GetSupportedPatternsTestFixture.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\UnderlyingCode\ControlProviders\ControlFromWin32ProviderTestFixture.cs">
+      <Link>Helpers\UnderlyingCode\ControlProviders\ControlFromWin32ProviderTestFixture.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomationUnitTests\Helpers\UnderlyingCode\elementOfPossibleControlTypeTestFixture.cs">
       <Link>Helpers\UnderlyingCode\elementOfPossibleControlTypeTestFixture.cs</Link>
     </Compile>
@@ -351,6 +339,18 @@
     </Compile>
     <Compile Include="..\UIAutomationUnitTests\Helpers\UnderlyingCode\NewModel\TimeoutManagerTestFixture.cs">
       <Link>Helpers\UnderlyingCode\NewModel\TimeoutManagerTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\UnderlyingCode\Searchers\SearchByContainsTextViaUiaTextFixture.cs">
+      <Link>Helpers\UnderlyingCode\Searchers\SearchByContainsTextViaUiaTextFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\UnderlyingCode\Searchers\SearchByExactConditionsViaUiaTestFixture.cs">
+      <Link>Helpers\UnderlyingCode\Searchers\SearchByExactConditionsViaUiaTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\UnderlyingCode\Searchers\SearchByTextViaWin32TestFixture.cs">
+      <Link>Helpers\UnderlyingCode\Searchers\SearchByTextViaWin32TestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationUnitTests\Helpers\UnderlyingCode\Searchers\SearchByWildcardOrRegexViaUiaTestFixture.cs">
+      <Link>Helpers\UnderlyingCode\Searchers\SearchByWildcardOrRegexViaUiaTestFixture.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomationUnitTests\Helpers\UnderlyingCode\Types\IsStepActiveTestFixture.cs">
       <Link>Helpers\UnderlyingCode\Types\IsStepActiveTestFixture.cs</Link>
@@ -401,6 +401,8 @@
     <Folder Include="Helpers\UnderlyingCode" />
     <Folder Include="Helpers\UnderlyingCode" />
     <Folder Include="Helpers\UnderlyingCode\Adapter" />
+    <Folder Include="Helpers\UnderlyingCode\ControlProviders" />
+    <Folder Include="Helpers\UnderlyingCode\Searchers" />
     <Folder Include="Helpers\UnderlyingCode\Types" />
     <Folder Include="Helpers\UnderlyingCode\NewModel" />
     <Folder Include="Ninject" />

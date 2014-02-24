@@ -804,122 +804,131 @@
     <Compile Include="..\UIAutomation\Helpers\Inheritance\Wizard\WizardStepCmdletBase.cs">
       <Link>Helpers\Inheritance\Wizard\WizardStepCmdletBase.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\Enums.cs">
-      <Link>Helpers\UnderlyingCode\Adapter\Enums.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapters\Enums.cs">
+      <Link>Helpers\UnderlyingCode\Adapters\Enums.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\SourcePatternEmulator.cs">
-      <Link>Helpers\UnderlyingCode\Adapter\SourcePatternEmulator.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapters\SourcePatternEmulator.cs">
+      <Link>Helpers\UnderlyingCode\Adapters\SourcePatternEmulator.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\UiaAutomation.cs">
-      <Link>Helpers\UnderlyingCode\Adapter\UiaAutomation.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapters\UiaAutomation.cs">
+      <Link>Helpers\UnderlyingCode\Adapters\UiaAutomation.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\UiaDockPattern.cs">
-      <Link>Helpers\UnderlyingCode\Adapter\UiaDockPattern.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapters\UiaDockPattern.cs">
+      <Link>Helpers\UnderlyingCode\Adapters\UiaDockPattern.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\UiaExpandCollapsePattern.cs">
-      <Link>Helpers\UnderlyingCode\Adapter\UiaExpandCollapsePattern.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapters\UiaExpandCollapsePattern.cs">
+      <Link>Helpers\UnderlyingCode\Adapters\UiaExpandCollapsePattern.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\UiaGridItemPattern.cs">
-      <Link>Helpers\UnderlyingCode\Adapter\UiaGridItemPattern.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapters\UiaGridItemPattern.cs">
+      <Link>Helpers\UnderlyingCode\Adapters\UiaGridItemPattern.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\UiaGridPattern.cs">
-      <Link>Helpers\UnderlyingCode\Adapter\UiaGridPattern.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapters\UiaGridPattern.cs">
+      <Link>Helpers\UnderlyingCode\Adapters\UiaGridPattern.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\UiaInvokePattern.cs">
-      <Link>Helpers\UnderlyingCode\Adapter\UiaInvokePattern.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapters\UiaInvokePattern.cs">
+      <Link>Helpers\UnderlyingCode\Adapters\UiaInvokePattern.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\UiaRangeValuePattern.cs">
-      <Link>Helpers\UnderlyingCode\Adapter\UiaRangeValuePattern.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapters\UiaRangeValuePattern.cs">
+      <Link>Helpers\UnderlyingCode\Adapters\UiaRangeValuePattern.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\UiaScrollItemPattern.cs">
-      <Link>Helpers\UnderlyingCode\Adapter\UiaScrollItemPattern.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapters\UiaScrollItemPattern.cs">
+      <Link>Helpers\UnderlyingCode\Adapters\UiaScrollItemPattern.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\UiaScrollPattern.cs">
-      <Link>Helpers\UnderlyingCode\Adapter\UiaScrollPattern.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapters\UiaScrollPattern.cs">
+      <Link>Helpers\UnderlyingCode\Adapters\UiaScrollPattern.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\UiaSelectionItemPattern.cs">
-      <Link>Helpers\UnderlyingCode\Adapter\UiaSelectionItemPattern.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapters\UiaSelectionItemPattern.cs">
+      <Link>Helpers\UnderlyingCode\Adapters\UiaSelectionItemPattern.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\UiaSelectionPattern.cs">
-      <Link>Helpers\UnderlyingCode\Adapter\UiaSelectionPattern.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapters\UiaSelectionPattern.cs">
+      <Link>Helpers\UnderlyingCode\Adapters\UiaSelectionPattern.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\UiaTableItemPattern.cs">
-      <Link>Helpers\UnderlyingCode\Adapter\UiaTableItemPattern.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapters\UiaTableItemPattern.cs">
+      <Link>Helpers\UnderlyingCode\Adapters\UiaTableItemPattern.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\UiaTablePattern.cs">
-      <Link>Helpers\UnderlyingCode\Adapter\UiaTablePattern.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapters\UiaTablePattern.cs">
+      <Link>Helpers\UnderlyingCode\Adapters\UiaTablePattern.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\UiaTextPattern.cs">
-      <Link>Helpers\UnderlyingCode\Adapter\UiaTextPattern.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapters\UiaTextPattern.cs">
+      <Link>Helpers\UnderlyingCode\Adapters\UiaTextPattern.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\UiaTogglePattern.cs">
-      <Link>Helpers\UnderlyingCode\Adapter\UiaTogglePattern.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapters\UiaTogglePattern.cs">
+      <Link>Helpers\UnderlyingCode\Adapters\UiaTogglePattern.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\UiaTransformPattern.cs">
-      <Link>Helpers\UnderlyingCode\Adapter\UiaTransformPattern.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapters\UiaTransformPattern.cs">
+      <Link>Helpers\UnderlyingCode\Adapters\UiaTransformPattern.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\UiaValuePattern.cs">
-      <Link>Helpers\UnderlyingCode\Adapter\UiaValuePattern.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapters\UiaValuePattern.cs">
+      <Link>Helpers\UnderlyingCode\Adapters\UiaValuePattern.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\UiaWindowPattern.cs">
-      <Link>Helpers\UnderlyingCode\Adapter\UiaWindowPattern.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapters\UiaWindowPattern.cs">
+      <Link>Helpers\UnderlyingCode\Adapters\UiaWindowPattern.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\UiControlInputHolder.cs">
-      <Link>Helpers\UnderlyingCode\Adapter\UiControlInputHolder.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapters\UiControlInputHolder.cs">
+      <Link>Helpers\UnderlyingCode\Adapters\UiControlInputHolder.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\UiElement.cs">
-      <Link>Helpers\UnderlyingCode\Adapter\UiElement.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapters\UiElement.cs">
+      <Link>Helpers\UnderlyingCode\Adapters\UiElement.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\UiElementInformation.cs">
-      <Link>Helpers\UnderlyingCode\Adapter\UiElementInformation.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapters\UiElementInformation.cs">
+      <Link>Helpers\UnderlyingCode\Adapters\UiElementInformation.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\UiEltCollection.cs">
-      <Link>Helpers\UnderlyingCode\Adapter\UiEltCollection.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapters\UiEltCollection.cs">
+      <Link>Helpers\UnderlyingCode\Adapters\UiEltCollection.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\UiExtendedModelHolder.cs">
-      <Link>Helpers\UnderlyingCode\Adapter\UiExtendedModelHolder.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapters\UiExtendedModelHolder.cs">
+      <Link>Helpers\UnderlyingCode\Adapters\UiExtendedModelHolder.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\UiInputHolder.cs">
-      <Link>Helpers\UnderlyingCode\Adapter\UiInputHolder.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapters\UiInputHolder.cs">
+      <Link>Helpers\UnderlyingCode\Adapters\UiInputHolder.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\UiKeyboardInputHolder.cs">
-      <Link>Helpers\UnderlyingCode\Adapter\UiKeyboardInputHolder.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapters\UiKeyboardInputHolder.cs">
+      <Link>Helpers\UnderlyingCode\Adapters\UiKeyboardInputHolder.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\UiMouseInputHolder.cs">
-      <Link>Helpers\UnderlyingCode\Adapter\UiMouseInputHolder.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapters\UiMouseInputHolder.cs">
+      <Link>Helpers\UnderlyingCode\Adapters\UiMouseInputHolder.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapter\UiTouchInputHolder.cs">
-      <Link>Helpers\UnderlyingCode\Adapter\UiTouchInputHolder.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Adapters\UiTouchInputHolder.cs">
+      <Link>Helpers\UnderlyingCode\Adapters\UiTouchInputHolder.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Aspect\AbstractInterceptor.cs">
-      <Link>Helpers\UnderlyingCode\Aspect\AbstractInterceptor.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Aspects\AbstractInterceptor.cs">
+      <Link>Helpers\UnderlyingCode\Aspects\AbstractInterceptor.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Aspect\ErrorHandlingAspect.cs">
-      <Link>Helpers\UnderlyingCode\Aspect\ErrorHandlingAspect.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Aspects\ErrorHandlingAspect.cs">
+      <Link>Helpers\UnderlyingCode\Aspects\ErrorHandlingAspect.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Aspect\HighlighterAspect.cs">
-      <Link>Helpers\UnderlyingCode\Aspect\HighlighterAspect.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Aspects\HighlighterAspect.cs">
+      <Link>Helpers\UnderlyingCode\Aspects\HighlighterAspect.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Aspect\InputValidationAspect.cs">
-      <Link>Helpers\UnderlyingCode\Aspect\InputValidationAspect.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Aspects\InputValidationAspect.cs">
+      <Link>Helpers\UnderlyingCode\Aspects\InputValidationAspect.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Aspect\LoggingAspect.cs">
-      <Link>Helpers\UnderlyingCode\Aspect\LoggingAspect.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Aspects\LoggingAspect.cs">
+      <Link>Helpers\UnderlyingCode\Aspects\LoggingAspect.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Aspect\MethodSelectorAspect.cs">
-      <Link>Helpers\UnderlyingCode\Aspect\MethodSelectorAspect.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Aspects\MethodSelectorAspect.cs">
+      <Link>Helpers\UnderlyingCode\Aspects\MethodSelectorAspect.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Aspect\ParameterValidationAspect.cs">
-      <Link>Helpers\UnderlyingCode\Aspect\ParameterValidationAspect.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Aspects\ParameterValidationAspect.cs">
+      <Link>Helpers\UnderlyingCode\Aspects\ParameterValidationAspect.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Aspect\TestResultAspect.cs">
-      <Link>Helpers\UnderlyingCode\Aspect\TestResultAspect.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Aspects\TestResultAspect.cs">
+      <Link>Helpers\UnderlyingCode\Aspects\TestResultAspect.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Attribute\UiaParameterAttribute.cs">
-      <Link>Helpers\UnderlyingCode\Attribute\UiaParameterAttribute.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Attributes\UiaParameterAttribute.cs">
+      <Link>Helpers\UnderlyingCode\Attributes\UiaParameterAttribute.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Attribute\UiaSpecialBindingAttribute.cs">
-      <Link>Helpers\UnderlyingCode\Attribute\UiaSpecialBindingAttribute.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Attributes\UiaSpecialBindingAttribute.cs">
+      <Link>Helpers\UnderlyingCode\Attributes\UiaSpecialBindingAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\ControlProviders\ControlFromUiaProvider.cs">
+      <Link>Helpers\UnderlyingCode\ControlProviders\ControlFromUiaProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\ControlProviders\ControlFromWin32Provider.cs">
+      <Link>Helpers\UnderlyingCode\ControlProviders\ControlFromWin32Provider.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\ControlProviders\ControlProvider.cs">
+      <Link>Helpers\UnderlyingCode\ControlProviders\ControlProvider.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethods.cs">
       <Link>Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethods.cs</Link>
@@ -972,20 +981,8 @@
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Internal\WizardHelper.cs">
       <Link>Helpers\UnderlyingCode\Internal\WizardHelper.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\ContextMenuSearcher.cs">
-      <Link>Helpers\UnderlyingCode\NewModel\ContextMenuSearcher.cs</Link>
-    </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\ContextMenuSearcherData.cs">
       <Link>Helpers\UnderlyingCode\NewModel\ContextMenuSearcherData.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\ControlFromWin32Provider.cs">
-      <Link>Helpers\UnderlyingCode\NewModel\ControlFromWin32Provider.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\ControlProvider.cs">
-      <Link>Helpers\UnderlyingCode\NewModel\ControlProvider.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\ControlSearcher.cs">
-      <Link>Helpers\UnderlyingCode\NewModel\ControlSearcher.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\ControlSearcherData.cs">
       <Link>Helpers\UnderlyingCode\NewModel\ControlSearcherData.cs</Link>
@@ -996,9 +993,6 @@
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\HandleCollector.cs">
       <Link>Helpers\UnderlyingCode\NewModel\HandleCollector.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\SearcherTemplate.cs">
-      <Link>Helpers\UnderlyingCode\NewModel\SearcherTemplate.cs</Link>
-    </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\SearcherTemplateData.cs">
       <Link>Helpers\UnderlyingCode\NewModel\SearcherTemplateData.cs</Link>
     </Compile>
@@ -1007,9 +1001,6 @@
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\TimeoutManager.cs">
       <Link>Helpers\UnderlyingCode\NewModel\TimeoutManager.cs</Link>
-    </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\WindowSearcher.cs">
-      <Link>Helpers\UnderlyingCode\NewModel\WindowSearcher.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\NewModel\WindowSearcherData.cs">
       <Link>Helpers\UnderlyingCode\NewModel\WindowSearcherData.cs</Link>
@@ -1028,6 +1019,18 @@
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\RDP\DataProtector.cs">
       <Link>Helpers\UnderlyingCode\RDP\DataProtector.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Searchers\ContextMenuSearcher.cs">
+      <Link>Helpers\UnderlyingCode\Searchers\ContextMenuSearcher.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Searchers\ControlSearcher.cs">
+      <Link>Helpers\UnderlyingCode\Searchers\ControlSearcher.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Searchers\SearcherTemplate.cs">
+      <Link>Helpers\UnderlyingCode\Searchers\SearcherTemplate.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Searchers\WindowSearcher.cs">
+      <Link>Helpers\UnderlyingCode\Searchers\WindowSearcher.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Types\ClickSettings.cs">
       <Link>Helpers\UnderlyingCode\Types\ClickSettings.cs</Link>
@@ -1317,7 +1320,7 @@
     <Folder Include="Helpers\Commands\RDP" />
     <Folder Include="Helpers\Commands\Wait" />
     <Folder Include="Helpers\Commands\Wizard" />
-    <Folder Include="Helpers\UnderlyingCode\Aspect" />
+    <Folder Include="Helpers\UnderlyingCode\Aspects" />
     <Folder Include="Helpers\Commands" />
     <Folder Include="Helpers\Commands" />
     <Folder Include="Helpers\Commands\Container" />
@@ -1328,14 +1331,16 @@
     <Folder Include="Helpers\Commands\RDP" />
     <Folder Include="Helpers\Commands\Wizard" />
     <Folder Include="Helpers\Commands\Wizard" />
-    <Folder Include="Helpers\UnderlyingCode\Adapter" />
-    <Folder Include="Helpers\UnderlyingCode\Attribute" />
+    <Folder Include="Helpers\UnderlyingCode\Adapters" />
+    <Folder Include="Helpers\UnderlyingCode\Attributes" />
     <Folder Include="Helpers\UnderlyingCode\ExtensionMethods" />
     <Folder Include="Helpers\UnderlyingCode\ExtensionMethods" />
-    <Folder Include="Helpers\UnderlyingCode\Aspect" />
+    <Folder Include="Helpers\UnderlyingCode\Aspects" />
     <Folder Include="Helpers\UnderlyingCode\Internal" />
     <Folder Include="Helpers\UnderlyingCode\Internal" />
-    <Folder Include="Helpers\UnderlyingCode\Attribute" />
+    <Folder Include="Helpers\UnderlyingCode\Attributes" />
+    <Folder Include="Helpers\UnderlyingCode\ControlProviders" />
+    <Folder Include="Helpers\UnderlyingCode\Searchers" />
     <Folder Include="Helpers\UnderlyingCode\NewModel" />
     <Folder Include="Helpers\UnderlyingCode\NewModel" />
     <Folder Include="Helpers\UnderlyingCode\Ninject" />

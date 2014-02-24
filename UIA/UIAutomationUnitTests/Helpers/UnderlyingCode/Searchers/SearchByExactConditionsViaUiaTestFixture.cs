@@ -7,7 +7,8 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace UIAutomationUnitTests.Helpers.Inheritance
+// namespace UIAutomationUnitTests.Helpers.Inheritance
+namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
 {
     using System;
     using System.Collections;

@@ -29,8 +29,6 @@ namespace UIAutomation.Helpers.Commands
             var cmdlet =
                 (GetUiaControlCommand)Cmdlet;
             
-            // WizardHelper.InvokeWizard(cmdlet);
-            
             var controlSearcher =
                 AutomationFactory.GetSearcherImpl<ControlSearcher>() as ControlSearcher;
             

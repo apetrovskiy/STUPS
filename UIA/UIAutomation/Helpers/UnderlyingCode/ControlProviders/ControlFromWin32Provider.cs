@@ -37,22 +37,20 @@ namespace UIAutomation
         {
             var resultCollection = new List<IUiElement>();
             
-            var controlSearcherData = data.ConvertControlSearcherTemplateDataToSingleControlSearcherData();
+            SingleControlSearcherData controlSearcherData = null;
+            if (null != data) {
+                controlSearcherData = data.ConvertControlSearcherTemplateDataToSingleControlSearcherData();
+                SearchData = data;
+            }
             if (null == controlSearcherData) {
                 controlSearcherData = SearchData.ConvertControlSearcherTemplateDataToSingleControlSearcherData();
-            } else {
-                SearchData = data;
+                
             }
             if (null == controlSearcherData) return resultCollection;
             
-            
-            // ??
-            // controlTitle = string.IsNullOrEmpty(controlTitle) ? "*" : controlTitle;
-            // controlValue = string.IsNullOrEmpty(controlValue) ? "*" : controlValue;
-            
             try {
                 return FilterElements(handleCollector, controlSearcherData);
-            } catch { //(Exception eWin32Control) {
+            } catch (Exception eWin32Control) {
                 return resultCollection;
             }
         }
@@ -64,7 +62,7 @@ namespace UIAutomation
             const WildcardOptions options = WildcardOptions.IgnoreCase | WildcardOptions.Compiled;
             var wildcardName = new WildcardPattern(controlSearcherData.Name ?? "*", options);
             var wildcardValue = new WildcardPattern(controlSearcherData.Value ?? "*", options);
-
+            
             foreach (IUiElement element in handleCollector.GetElementsFromHandles(handleCollector.CollectRecursively(controlSearcherData.InputObject, controlSearcherData.Name, 1))) {
                 if (element.IsMatchWildcardPattern(resultCollection, wildcardName, element.Current.Name))
                     continue;
@@ -72,14 +70,14 @@ namespace UIAutomation
                     continue;
                 if (element.IsMatchWildcardPattern(resultCollection, wildcardName, element.Current.ClassName))
                     continue;
-                // try {
+                try {
                     string elementValue = element.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern).Current.Value;
                     if (element.IsMatchWildcardPattern(resultCollection, wildcardName, elementValue))
                         continue;
                     if (element.IsMatchWildcardPattern(resultCollection, wildcardValue, elementValue))
                         continue;
-                // } catch {
-                // }
+                } catch {
+                }
             }
             
             return resultCollection;

@@ -8,7 +8,8 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace UIAutomationUnitTests.Helpers.Inheritance
+// namespace UIAutomationUnitTests.Helpers.Inheritance
+namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
 {
     // using System;
     // using System.Collections;
@@ -21,12 +22,12 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of SearchByTextViaWin32TestFixture.
+    /// Description of SearchByContainsTextViaWin32TestFixture.
     /// </summary>
     [MbUnit.Framework.TestFixture]
-    public class SearchByTextViaWin32TestFixture
+    public class SearchByContainsTextViaWin32TestFixture
     {
-    	public SearchByTextViaWin32TestFixture()
+    	public SearchByContainsTextViaWin32TestFixture()
     	{
     		FakeFactory.Init();
     	}
@@ -51,7 +52,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             int expectedNumberOfElements)
         {
             // Act
-            var resultList = RealCodeCaller.SearchByTextViaWin32(FakeFactory.GetAutomationElementNotExpected(null, string.Empty, string.Empty, string.Empty, string.Empty), containsText, controlTypeNames, collection, handles);
+            var resultList = RealCodeCaller.SearchByContainsTextViaWin32(FakeFactory.GetAutomationElementNotExpected(null, string.Empty, string.Empty, string.Empty, string.Empty), containsText, controlTypeNames, collection, handles);
             
             // Assert
             MbUnit.Framework.Assert.Count(expectedNumberOfElements, resultList);

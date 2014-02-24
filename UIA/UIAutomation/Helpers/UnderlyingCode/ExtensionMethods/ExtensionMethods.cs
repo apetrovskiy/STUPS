@@ -339,7 +339,27 @@ namespace UIAutomation
         internal static SingleControlSearcherData ConvertControlSearcherTemplateDataToSingleControlSearcherData(this ControlSearcherTemplateData data)
         {
             return new SingleControlSearcherData {
-                InputObject = (null == data.InputObject ? null : (null == data.InputObject[0] ? null : data.InputObject[0])),
+                // InputObject = (null == data.InputObject ? null : (null == data.InputObject[0] ? null : data.InputObject[0])),
+                InputObject = (null == data.InputObject ? null : (data.InputObject[0] ?? null)),
+                Name = data.Name,
+                AutomationId = data.AutomationId,
+                Class = data.Class,
+                Value = data.Value,
+                ControlType = data.ControlType,
+                ContainsText = data.ContainsText,
+                Win32 = data.Win32,
+                CaseSensitive = data.CaseSensitive,
+                Regex = data.Regex,
+                SearchCriteria = data.SearchCriteria
+            };
+        }
+        
+        internal static ControlSearcherTemplateData ConvertSingleControlSearcherDataToControlSearcherTemplateData(this SingleControlSearcherData data)
+        {
+            return new ControlSearcherTemplateData {
+                // InputObject = (null == data.InputObject ? null : (null == data.InputObject[0] ? null : data.InputObject[0])),
+                // InputObject = (null == data.InputObject ? null : (data.InputObject[0] ?? null)),
+                InputObject = new IUiElement[] { data.InputObject },
                 Name = data.Name,
                 AutomationId = data.AutomationId,
                 Class = data.Class,

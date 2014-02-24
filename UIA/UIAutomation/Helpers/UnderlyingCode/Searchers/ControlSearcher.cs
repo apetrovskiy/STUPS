@@ -72,14 +72,12 @@ namespace UIAutomation
         
         public override List<IUiElement> SearchForElements(SearcherTemplateData searchData)
         {
-            // 20140218
             if (null == ResultCollection) return new List<IUiElement>();
             if (null == searchData) return ResultCollection;
             
             var data = searchData as ControlSearcherData;
             
-            // 20140218
-            if (null ==data) return ResultCollection;
+            if (null == data) return ResultCollection;
             if (null == data.InputObject) return ResultCollection;
             
             foreach (IUiElement inputObject in data.InputObject) {
@@ -117,11 +115,10 @@ namespace UIAutomation
                         var controlFromWin32Provider = AutomationFactory.GetObject<ControlFromWin32Provider>();
                         controlFromWin32Provider.SearchData = data;
                         
-                        // 20140219
                         var handleCollector = AutomationFactory.GetObject<HandleCollector>();
                         
                         ResultCollection.AddRange(
-                            SearchByTextViaWin32(
+                            SearchByContainsTextViaWin32(
                                 inputObject,
                                 controlFromWin32Provider,
                                 handleCollector));
@@ -180,15 +177,11 @@ namespace UIAutomation
                     if (!Preferences.DisableWin32Search && data.Win32) {
                         
                         UsedSearchType = UsedSearchType.Control_Win32Search;
-                        
-                        // 20140219
                         var handleCollector = AutomationFactory.GetObject<HandleCollector>();
                         
                         ResultCollection.AddRange(
                             SearchByWildcardViaWin32(
                                 inputObject,
-                                // 20140219
-                                // data));
                                 data,
                                 handleCollector));
                         
@@ -227,71 +220,22 @@ namespace UIAutomation
             return textSearchCollection.Cast<IUiElement>().ToList();
         }
         
-        internal static IEnumerable<IUiElement> SearchByTextViaWin32(
+        internal static IEnumerable<IUiElement> SearchByContainsTextViaWin32(
             IUiElement inputObject,
-        ControlFromWin32Provider gateway,
-            // 20140219
+        ControlFromWin32Provider controlProvider,
             HandleCollector handleCollector)
         {
             var resultList =
                 new List<IUiElement>();
-//Console.WriteLine("SearchByTextViaWin32 001");
-            // 20140218
-            // var controlFrom32Gateway = AutomationFactory.GetObject<ControlFromWin32Gateway>();
-            // var data = new SingleControlSearcherData { InputObject = inputObject, Name = containsText, Value = string.Empty };
-            // 20140218
-            // foreach (IUiElement elementToChoose in controlFrom32Gateway.GetElements(data)) {
-//Console.WriteLine("original SearchByTextViaWin32 001");
-//if (null == gateway) {
-//    Console.WriteLine("null == gateway");
-//} else {
-//    Console.WriteLine("null != gateway");
-//}
-//if (null == gateway.SearchData) {
-//    Console.WriteLine("null == gateway.SearchData");
-//} else {
-//    Console.WriteLine("null != gateway.SearchData");
-//}
-// if (null == gateway.SearchData.
-//try {
-//    var tempResult = gateway.GetElements(gateway.SearchData);
-//    if (null == tempResult) {
-//        Console.WriteLine("null == tempResult");
-//    } else {
-//        Console.WriteLine("null != tempResult");
-//        if (0 == tempResult.Count) {
-//            Console.WriteLine("0 == tempResult.Count");
-//        } else {
-//            Console.WriteLine("0 != tempResult.Count");
-//            foreach (var elt1 in tempResult) {
-//                Console.WriteLine(elt1.ToString());
-//            }
-//        }
-//    }
-//}
-//catch (Exception eeee) {
-//    Console.WriteLine(eeee.Message);
-//}
-
-
-            // foreach (IUiElement elementToChoose in gateway.GetElements(gateway.SearchData)) {
-            // 20140219
-            // foreach (IUiElement elementToChoose in gateway.GetElements(null)) {
-            foreach (IUiElement elementToChoose in gateway.GetElements(handleCollector, null)) {
+            
+            controlProvider.SearchData.Name = controlProvider.SearchData.Value = controlProvider.SearchData.ContainsText;
+            
+            foreach (IUiElement elementToChoose in controlProvider.GetElements(handleCollector, null)) {
                 
-//Console.WriteLine("SearchByTextViaWin32 002");
-                // 20140218
-                // if (null != controlTypeNames && 0 < controlTypeNames.Length) {
-                // if (null != (gateway.SearchData as SingleControlSearcherData).ControlType && 0 < (gateway.SearchData as SingleControlSearcherData).ControlType.Length) {
-                if (null != gateway.SearchData.ControlType && 0 < gateway.SearchData.ControlType.Length) {
+                if (null != controlProvider.SearchData.ControlType && 0 < controlProvider.SearchData.ControlType.Length) {
                     
-//Console.WriteLine("SearchByTextViaWin32 003");
-                    // 20140218
-                    // foreach (string controlTypeName in controlTypeNames) {
-                    // foreach (string controlTypeName in (gateway.SearchData as SingleControlSearcherData).ControlType) {
-                    foreach (string controlTypeName in gateway.SearchData.ControlType) {
+                    foreach (string controlTypeName in controlProvider.SearchData.ControlType) {
                         
-//Console.WriteLine("SearchByTextViaWin32 004");
                         if (!String.Equals(elementToChoose.Current.ControlType.ProgrammaticName.Substring(12), controlTypeName, StringComparison.CurrentCultureIgnoreCase)) {
                             continue;
                         } else {
@@ -474,11 +418,20 @@ namespace UIAutomation
             
             if (!string.IsNullOrEmpty(data.Name) || !string.IsNullOrEmpty(data.Value)) {
                 
-                var controlFrom32Gateway = AutomationFactory.GetObject<ControlFromWin32Provider>();
-                var singleControlSearcherData = new SingleControlSearcherData { InputObject = inputObject, Name = data.Name, Value = data.Value };
-                // 20140219
-                // tempListWin32.AddRange(controlFrom32Gateway.GetElements(singleControlSearcherData));
-                tempListWin32.AddRange(controlFrom32Gateway.GetElements(handleCollector, singleControlSearcherData));
+                var controlFrom32Provider = AutomationFactory.GetObject<ControlFromWin32Provider>();
+                
+                var singleControlSearcherData = new SingleControlSearcherData {
+                    InputObject = inputObject,
+                    Name = data.Name,
+                    Value = data.Value,
+                    AutomationId = data.AutomationId,
+                    Class = data.Class
+                };
+                
+                tempListWin32.AddRange(
+                    controlFrom32Provider.GetElements(
+                        handleCollector,
+                        singleControlSearcherData.ConvertSingleControlSearcherDataToControlSearcherTemplateData()));
             }
             
             var resultList = new List<IUiElement>();

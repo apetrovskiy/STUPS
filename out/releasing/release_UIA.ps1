@@ -32,91 +32,52 @@ New-Item -Path "$($pathToProjectRoot)\out\$($DirName)\" -Name "JavaAccessSupport
 # Java Access Support
 Copy-Item -Path "$($pathToProjectRoot)\UIA\InstallJavaSupport.ps1" -Destination "$($pathToProjectRoot)\out\$($DirName)\JavaAccessSupport"
 
-# Version .NET 3.5
-Start-Process -FilePath $pathToSignTool -ArgumentList @("sign", "/f", "$($pathToCertificate)", "/t", "$($pathToTimeStamp)", "/p", "$($Password)", "$($pathToProjectRoot)\UIA\UIAutomationSpy\bin\Release35\UIAutomation.dll") -NoNewWindow -Wait;
-Start-Process -FilePath $pathToSignTool -ArgumentList @("sign", "/f", "$($pathToCertificate)", "/t", "$($pathToTimeStamp)", "/p", "$($Password)", "$($pathToProjectRoot)\UIA\UIAutomationSpy\bin\Release35\TMX.dll") -NoNewWindow -Wait;
-Start-Process -FilePath $pathToSignTool -ArgumentList @("sign", "/f", "$($pathToCertificate)", "/t", "$($pathToTimeStamp)", "/p", "$($Password)", "$($pathToProjectRoot)\UIA\UIAutomationSpy\bin\Release35\UIAutomationSpy.exe") -NoNewWindow -Wait;
-Start-Process -FilePath $pathToSignTool -ArgumentList @("sign", "/f", "$($pathToCertificate)", "/t", "$($pathToTimeStamp)", "/p", "$($Password)", "$($pathToProjectRoot)\UIA\UIAutomationAliases\bin\Release35\UIAutomationAliases.dll") -NoNewWindow -Wait;
-Start-Process -FilePath $pathToSignTool -ArgumentList @("sign", "/f", "$($pathToCertificate)", "/t", "$($pathToTimeStamp)", "/p", "$($Password)", "$($pathToProjectRoot)\UIA\UIARunner\bin\Release35\UIARunner.exe") -NoNewWindow -Wait;
-Start-Process -FilePath $pathToSignTool -ArgumentList @("sign", "/f", "$($pathToCertificate)", "/t", "$($pathToTimeStamp)", "/p", "$($Password)", "$($pathToProjectRoot)\UIA\UIARunner\bin\Release35\PSRunner.dll") -NoNewWindow -Wait;
-Start-Process -FilePath $pathToSignTool -ArgumentList @("sign", "/f", "$($pathToCertificate)", "/t", "$($pathToTimeStamp)", "/p", "$($Password)", "$($pathToProjectRoot)\UIA\UIARunner\bin\Release35\PSTestRunner.dll") -NoNewWindow -Wait;
-Start-Process -FilePath $pathToSignTool -ArgumentList @("sign", "/f", "$($pathToCertificate)", "/t", "$($pathToTimeStamp)", "/p", "$($Password)", "$($pathToProjectRoot)\UIA\UIARunner\bin\Release35\PSTestLibrary.dll") -NoNewWindow -Wait;
-#Start-Process -FilePath  $pathToSignTool -ArgumentList @("sign" /f $pathToCertificate /t $pathToTimeStamp /p $Password B:\samples\bgshell-21772\NET40\BgShell\bin\Release\*.*)
+function Run-FrameworkSet
+{
+    param(
+          [string]$FolderSuffix,
+          [string]$OutputFolderName
+          )
+    
+    Start-Process -FilePath $pathToSignTool -ArgumentList @("sign", "/f", "$($pathToCertificate)", "/t", "$($pathToTimeStamp)", "/p", "$($Password)", "$($pathToProjectRoot)\UIA\UIAutomationSpy$($FolderSuffix)\bin\Release35\UIAutomation.dll") -NoNewWindow -Wait;
+    Start-Process -FilePath $pathToSignTool -ArgumentList @("sign", "/f", "$($pathToCertificate)", "/t", "$($pathToTimeStamp)", "/p", "$($Password)", "$($pathToProjectRoot)\UIA\UIAutomationSpy$($FolderSuffix)\bin\Release35\TMX.dll") -NoNewWindow -Wait;
+    Start-Process -FilePath $pathToSignTool -ArgumentList @("sign", "/f", "$($pathToCertificate)", "/t", "$($pathToTimeStamp)", "/p", "$($Password)", "$($pathToProjectRoot)\UIA\UIAutomationSpy$($FolderSuffix)\bin\Release35\UIAutomationSpy.exe") -NoNewWindow -Wait;
+    if ([string]::IsNullOrEmpty($FolderSuffix)) {
+        Start-Process -FilePath $pathToSignTool -ArgumentList @("sign", "/f", "$($pathToCertificate)", "/t", "$($pathToTimeStamp)", "/p", "$($Password)", "$($pathToProjectRoot)\UIA\UIAutomationAliases$($FolderSuffix)\bin\Release35\UIAutomationAliases.dll") -NoNewWindow -Wait;
+    }
+    Start-Process -FilePath $pathToSignTool -ArgumentList @("sign", "/f", "$($pathToCertificate)", "/t", "$($pathToTimeStamp)", "/p", "$($Password)", "$($pathToProjectRoot)\UIA\UIARunner$($FolderSuffix)\bin\Release35\UIARunner.exe") -NoNewWindow -Wait;
+    Start-Process -FilePath $pathToSignTool -ArgumentList @("sign", "/f", "$($pathToCertificate)", "/t", "$($pathToTimeStamp)", "/p", "$($Password)", "$($pathToProjectRoot)\UIA\UIARunner$($FolderSuffix)\bin\Release35\PSRunner.dll") -NoNewWindow -Wait;
+    Start-Process -FilePath $pathToSignTool -ArgumentList @("sign", "/f", "$($pathToCertificate)", "/t", "$($pathToTimeStamp)", "/p", "$($Password)", "$($pathToProjectRoot)\UIA\UIARunner$($FolderSuffix)\bin\Release35\PSTestRunner.dll") -NoNewWindow -Wait;
+    Start-Process -FilePath $pathToSignTool -ArgumentList @("sign", "/f", "$($pathToCertificate)", "/t", "$($pathToTimeStamp)", "/p", "$($Password)", "$($pathToProjectRoot)\UIA\UIARunner$($FolderSuffix)\bin\Release35\PSTestLibrary.dll") -NoNewWindow -Wait;
+    if ("Metro" -eq $OutputFolderName) {
+        Start-Process -FilePath $pathToSignTool -ArgumentList @("sign", "/f", "$($pathToCertificate)", "/t", "$($pathToTimeStamp)", "/p", "$($Password)", "$($pathToProjectRoot)\UIA\bgshell-21772\NET40\BgShell\bin\Release\*.*") -NoNewWindow -Wait;
+    }
 
-Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomationSpy\bin\Release35\UIAutomation.dll" -Destination "$($pathToProjectRoot)\out\$($DirName)\35"
-Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomationSpy\bin\Release35\TMX.dll" -Destination "$($pathToProjectRoot)\out\$($DirName)\35"
-Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomation\bin\Release35\*hibe*" -Destination "$($pathToProjectRoot)\out\$($DirName)\35"
-Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomation\bin\Release35\*log*" -Destination "$($pathToProjectRoot)\out\$($DirName)\35"
-Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomation\bin\Release35\*iesi*" -Destination "$($pathToProjectRoot)\out\$($DirName)\35"
-Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomation\bin\Release35\*castle*" -Destination "$($pathToProjectRoot)\out\$($DirName)\35"
-Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomation\bin\Release35\*access*" -Destination "$($pathToProjectRoot)\out\$($DirName)\35"
-Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomation\bin\Release35\*ninj*" -Destination "$($pathToProjectRoot)\out\$($DirName)\35"
-Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomation\bin\Release35\*input*" -Destination "$($pathToProjectRoot)\out\$($DirName)\35"
-Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomationSpy\bin\Release35\UIAutomationSpy.*" -Destination "$($pathToProjectRoot)\out\$($DirName)\35"
-Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomationAliases\bin\Release35\UIAutomationAliases.dll" -Destination "$($pathToProjectRoot)\out\$($DirName)\35"
-Copy-Item -Path "$($pathToProjectRoot)\UIA\UIARunner\bin\Release35\UIARunner.*" -Destination "$($pathToProjectRoot)\out\$($DirName)\35"
-Copy-Item -Path "$($pathToProjectRoot)\UIA\UIARunner\bin\Release35\PSRunner.dll" -Destination "$($pathToProjectRoot)\out\$($DirName)\35"
-Copy-Item -Path "$($pathToProjectRoot)\UIA\UIARunner\bin\Release35\PSTestRunner.dll" -Destination "$($pathToProjectRoot)\out\$($DirName)\35"
-Copy-Item -Path "$($pathToProjectRoot)\UIA\UIARunner\bin\Release35\PSTestLibrary.dll" -Destination "$($pathToProjectRoot)\out\$($DirName)\35"
-# Copy-Item -Path B:\samples\bgshell-21772\NET40\BgShell\bin\Release\*.*" "$($pathToProjectRoot)\out\$($DirName)\35\*.*"
+    Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomationSpy$($FolderSuffix)\bin\Release35\UIAutomation.dll" -Destination "$($pathToProjectRoot)\out\$($DirName)\$($OutputFolderName)"
+    Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomationSpy$($FolderSuffix)\bin\Release35\TMX.dll" -Destination "$($pathToProjectRoot)\out\$($DirName)\$($OutputFolderName)"
+    Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomation$($FolderSuffix)\bin\Release35\*hibe*" -Destination "$($pathToProjectRoot)\out\$($DirName)\$($OutputFolderName)"
+    Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomation$($FolderSuffix)\bin\Release35\*log*" -Destination "$($pathToProjectRoot)\out\$($DirName)\$($OutputFolderName)"
+    Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomation$($FolderSuffix)\bin\Release35\*iesi*" -Destination "$($pathToProjectRoot)\out\$($DirName)\$($OutputFolderName)"
+    Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomation$($FolderSuffix)\bin\Release35\*castle*" -Destination "$($pathToProjectRoot)\out\$($DirName)\$($OutputFolderName)"
+    Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomation$($FolderSuffix)\bin\Release35\*access*" -Destination "$($pathToProjectRoot)\out\$($DirName)\$($OutputFolderName)"
+    Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomation$($FolderSuffix)\bin\Release35\*ninj*" -Destination "$($pathToProjectRoot)\out\$($DirName)\$($OutputFolderName)"
+    Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomation$($FolderSuffix)\bin\Release35\*input*" -Destination "$($pathToProjectRoot)\out\$($DirName)\$($OutputFolderName)"
+    Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomationSpy$($FolderSuffix)\bin\Release35\UIAutomationSpy.*" -Destination "$($pathToProjectRoot)\out\$($DirName)\$($OutputFolderName)"
+    if ([string]::IsNullOrEmpty($FolderSuffix)) {
+        Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomationAliases$($FolderSuffix)\bin\Release35\UIAutomationAliases.dll" -Destination "$($pathToProjectRoot)\out\$($DirName)\$($OutputFolderName)"
+    }
+    Copy-Item -Path "$($pathToProjectRoot)\UIA\UIARunner$($FolderSuffix)\bin\Release35\UIARunner.*" -Destination "$($pathToProjectRoot)\out\$($DirName)\$($OutputFolderName)"
+    Copy-Item -Path "$($pathToProjectRoot)\UIA\UIARunner$($FolderSuffix)\bin\Release35\PSRunner.dll" -Destination "$($pathToProjectRoot)\out\$($DirName)\$($OutputFolderName)"
+    Copy-Item -Path "$($pathToProjectRoot)\UIA\UIARunner$($FolderSuffix)\bin\Release35\PSTestRunner.dll" -Destination "$($pathToProjectRoot)\out\$($DirName)\$($OutputFolderName)"
+    Copy-Item -Path "$($pathToProjectRoot)\UIA\UIARunner$($FolderSuffix)\bin\Release35\PSTestLibrary.dll" -Destination "$($pathToProjectRoot)\out\$($DirName)\$($OutputFolderName)"
+    if ("Metro" -eq $OutputFolderName) {
+        Copy-Item -Path "$($pathToProjectRoot)\UIA\bgshell-21772\NET40\BgShell\bin\Release\*.*" -Destination "$($pathToProjectRoot)\out\$($DirName)\$($OutputFolderName)"
+    }
+}
 
-# Version .NET 4.0
-Start-Process -FilePath $pathToSignTool -ArgumentList @("sign", "/f", "$($pathToCertificate)", "/t", "$($pathToTimeStamp)", "/p", "$($Password)", "$($pathToProjectRoot)\UIA\UIAutomationSpy40\bin\Release35\UIAutomation.dll") -NoNewWindow -Wait;
-Start-Process -FilePath $pathToSignTool -ArgumentList @("sign", "/f", "$($pathToCertificate)", "/t", "$($pathToTimeStamp)", "/p", "$($Password)", "$($pathToProjectRoot)\UIA\UIAutomationSpy40\bin\Release35\TMX.dll") -NoNewWindow -Wait;
-Start-Process -FilePath $pathToSignTool -ArgumentList @("sign", "/f", "$($pathToCertificate)", "/t", "$($pathToTimeStamp)", "/p", "$($Password)", "$($pathToProjectRoot)\UIA\UIAutomationSpy40\bin\Release35\UIAutomationSpy.exe") -NoNewWindow -Wait;
-#Start-Process -FilePath  $pathToSignTool -ArgumentList @("sign", "/f", "$($pathToCertificate)", "/t", "$($pathToTimeStamp)", "/p", "$($Password)", "$($pathToProjectRoot)\UIA\UIAutomationAliases\bin\Release35\UIAutomationAliases.dll") -NoNewWindow -Wait;
-Start-Process -FilePath $pathToSignTool -ArgumentList @("sign", "/f", "$($pathToCertificate)", "/t", "$($pathToTimeStamp)", "/p", "$($Password)", "$($pathToProjectRoot)\UIA\UIARunner40\bin\Release35\UIARunner.exe") -NoNewWindow -Wait;
-Start-Process -FilePath $pathToSignTool -ArgumentList @("sign", "/f", "$($pathToCertificate)", "/t", "$($pathToTimeStamp)", "/p", "$($Password)", "$($pathToProjectRoot)\UIA\UIARunner40\bin\Release35\PSRunner.dll") -NoNewWindow -Wait;
-Start-Process -FilePath $pathToSignTool -ArgumentList @("sign", "/f", "$($pathToCertificate)", "/t", "$($pathToTimeStamp)", "/p", "$($Password)", "$($pathToProjectRoot)\UIA\UIARunner40\bin\Release35\PSTestRunner.dll") -NoNewWindow -Wait;
-Start-Process -FilePath $pathToSignTool -ArgumentList @("sign", "/f", "$($pathToCertificate)", "/t", "$($pathToTimeStamp)", "/p", "$($Password)", "$($pathToProjectRoot)\UIA\UIARunner40\bin\Release35\PSTestLibrary.dll") -NoNewWindow -Wait;
-#Start-Process -FilePath  $pathToSignTool -ArgumentList @("sign" /f $pathToCertificate /t $pathToTimeStamp /p $Password B:\samples\bgshell-21772\NET40\BgShell\bin\Release\*.*) -NoNewWindow -Wait;
-
-Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomationSpy40\bin\Release35\UIAutomation.dll" -Destination "$($pathToProjectRoot)\out\$($DirName)\40"
-Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomationSpy40\bin\Release35\TMX.dll" -Destination "$($pathToProjectRoot)\out\$($DirName)\40"
-Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomation40\bin\Release35\*hibe*" -Destination "$($pathToProjectRoot)\out\$($DirName)\40"
-Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomation40\bin\Release35\*log*" -Destination "$($pathToProjectRoot)\out\$($DirName)\40"
-Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomation40\bin\Release35\*iesi*" -Destination "$($pathToProjectRoot)\out\$($DirName)\40"
-Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomation40\bin\Release35\*castle*" -Destination "$($pathToProjectRoot)\out\$($DirName)\40"
-Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomation40\bin\Release35\*access*" -Destination "$($pathToProjectRoot)\out\$($DirName)\40"
-Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomation40\bin\Release35\*ninj*" -Destination "$($pathToProjectRoot)\out\$($DirName)\40"
-Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomation40\bin\Release35\*input*" -Destination "$($pathToProjectRoot)\out\$($DirName)\40"
-Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomationSpy40\bin\Release35\UIAutomationSpy.*" -Destination "$($pathToProjectRoot)\out\$($DirName)\40"
-# Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomationAliases\bin\Release35\UIAutomationAliases.dll" -Destination "$($pathToProjectRoot)\out\$($DirName)\40"
-Copy-Item -Path "$($pathToProjectRoot)\UIA\UIARunner40\bin\Release35\UIARunner.*" -Destination "$($pathToProjectRoot)\out\$($DirName)\40"
-Copy-Item -Path "$($pathToProjectRoot)\UIA\UIARunner40\bin\Release35\PSRunner.dll" -Destination "$($pathToProjectRoot)\out\$($DirName)\40"
-Copy-Item -Path "$($pathToProjectRoot)\UIA\UIARunner40\bin\Release35\PSTestRunner.dll" -Destination "$($pathToProjectRoot)\out\$($DirName)\40"
-Copy-Item -Path "$($pathToProjectRoot)\UIA\UIARunner40\bin\Release35\PSTestLibrary.dll" -Destination "$($pathToProjectRoot)\out\$($DirName)\40"
-# Copy-Item -Path B:\samples\bgshell-21772\NET40\BgShell\bin\Release\*.* -Destination "$($pathToProjectRoot)\out\$($DirName)\40\*.*"
-
-# Version .NET for Metro UI
-#Start-Process -FilePath $pathToSignTool -ArgumentList @("sign", "/f", "$($pathToCertificate)", "/t", "$($pathToTimeStamp)", "/p", "$($Password)", "$($pathToProjectRoot)\UIA\UIAutomationSpy40Metro\bin\Release35\UIAutomation.dll") -NoNewWindow -Wait;
-#Start-Process -FilePath $pathToSignTool -ArgumentList @("sign", "/f", "$($pathToCertificate)", "/t", "$($pathToTimeStamp)", "/p", "$($Password)", "$($pathToProjectRoot)\UIA\UIAutomationSpy40Metro\bin\Release35\TMX.dll") -NoNewWindow -Wait;
-#Start-Process -FilePath $pathToSignTool -ArgumentList @("sign", "/f", "$($pathToCertificate)", "/t", "$($pathToTimeStamp)", "/p", "$($Password)", "$($pathToProjectRoot)\UIA\UIAutomationSpy40Metro\bin\Release35\UIAutomationSpy.exe") -NoNewWindow -Wait;
-Start-Process -FilePath $pathToSignTool -ArgumentList @("sign", "/f", "$($pathToCertificate)", "/t", "$($pathToTimeStamp)", "/p", "$($Password)", "$($pathToProjectRoot)\UIA\UIAutomationSpy40Metro\bin\Release35\*.*") -NoNewWindow -Wait;
-#Start-Process -FilePath  $pathToSignTool -ArgumentList @("sign", "/f", "$($pathToCertificate)", "/t", "$($pathToTimeStamp)", "/p", "$($Password)", "$($pathToProjectRoot)\UIA\UIAutomationAliases\bin\Release35\UIAutomationAliases.dll") -NoNewWindow -Wait;
-#Start-Process -FilePath $pathToSignTool -ArgumentList @("sign", "/f", "$($pathToCertificate)", "/t", "$($pathToTimeStamp)", "/p", "$($Password)", "$($pathToProjectRoot)\UIA\UIARunner40Metro\bin\Release35\UIARunner.exe") -NoNewWindow -Wait;
-Start-Process -FilePath $pathToSignTool -ArgumentList @("sign", "/f", "$($pathToCertificate)", "/t", "$($pathToTimeStamp)", "/p", "$($Password)", "$($pathToProjectRoot)\UIA\UIARunner40Metro\bin\Release35\*.*") -NoNewWindow -Wait;
-#Start-Process -FilePath $pathToSignTool -ArgumentList @("sign", "/f", "$($pathToCertificate)", "/t", "$($pathToTimeStamp)", "/p", "$($Password)", "$($pathToProjectRoot)\UIA\UIARunner40Metro\bin\Release35\PSRunner.dll") -NoNewWindow -Wait;
-#Start-Process -FilePath $pathToSignTool -ArgumentList @("sign", "/f", "$($pathToCertificate)", "/t", "$($pathToTimeStamp)", "/p", "$($Password)", "$($pathToProjectRoot)\UIA\UIARunner40Metro\bin\Release35\PSTestRunner.dll") -NoNewWindow -Wait;
-#Start-Process -FilePath $pathToSignTool -ArgumentList @("sign", "/f", "$($pathToCertificate)", "/t", "$($pathToTimeStamp)", "/p", "$($Password)", "$($pathToProjectRoot)\UIA\UIARunner40Metro\bin\Release35\PSTestLibrary.dll") -NoNewWindow -Wait;
-Start-Process -FilePath $pathToSignTool -ArgumentList @("sign", "/f", "$($pathToCertificate)", "/t", "$($pathToTimeStamp)", "/p", "$($Password)", "$($pathToProjectRoot)\UIA\bgshell-21772\NET40\BgShell\bin\Release\*.*") -NoNewWindow -Wait;
-
-Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomationSpy40Metro\bin\Release35\UIAutomation.dll" -Destination "$($pathToProjectRoot)\out\$($DirName)\Metro"
-Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomationSpy40Metro\bin\Release35\TMX.dll" -Destination "$($pathToProjectRoot)\out\$($DirName)\Metro"
-Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomation40Metro\bin\Release35\*hibe*" -Destination "$($pathToProjectRoot)\out\$($DirName)\Metro"
-Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomation40Metro\bin\Release35\*log*" -Destination "$($pathToProjectRoot)\out\$($DirName)\Metro"
-Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomation40Metro\bin\Release35\*iesi*" -Destination "$($pathToProjectRoot)\out\$($DirName)\Metro"
-Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomation40Metro\bin\Release35\*castle*" -Destination "$($pathToProjectRoot)\out\$($DirName)\Metro"
-Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomation40Metro\bin\Release35\*access*" -Destination "$($pathToProjectRoot)\out\$($DirName)\Metro"
-Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomation40Metro\bin\Release35\*ninj*" -Destination "$($pathToProjectRoot)\out\$($DirName)\Metro"
-Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomation40Metro\bin\Release35\*input*" -Destination "$($pathToProjectRoot)\out\$($DirName)\Metro"
-Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomationSpy40Metro\bin\Release35\UIAutomationSpy.*" -Destination "$($pathToProjectRoot)\out\$($DirName)\Metro"
-# Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomationAliases\bin\Release35\UIAutomationAliases.dll" -Destination "$($pathToProjectRoot)\out\$($DirName)\Metro
-Copy-Item -Path "$($pathToProjectRoot)\UIA\UIARunner40Metro\bin\Release35\UIARunner.*" -Destination "$($pathToProjectRoot)\out\$($DirName)\Metro"
-Copy-Item -Path "$($pathToProjectRoot)\UIA\UIARunner40Metro\bin\Release35\PSRunner.dll" -Destination "$($pathToProjectRoot)\out\$($DirName)\Metro"
-Copy-Item -Path "$($pathToProjectRoot)\UIA\UIARunner40Metro\bin\Release35\PSTestRunner.dll" -Destination "$($pathToProjectRoot)\out\$($DirName)\Metro"
-Copy-Item -Path "$($pathToProjectRoot)\UIA\UIARunner40Metro\bin\Release35\PSTestLibrary.dll" -Destination "$($pathToProjectRoot)\out\$($DirName)\Metro"
-Copy-Item -Path "$($pathToProjectRoot)\UIA\bgshell-21772\NET40\BgShell\bin\Release\*.*" -Destination "$($pathToProjectRoot)\out\$($DirName)\Metro"
+Run-FrameworkSet '' '35';
+Run-FrameworkSet '40' '40';
+Run-FrameworkSet '40Metro' 'Metro';
 
 Copy-Item -Path "$($pathToProjectRoot)\certificate\SoftwareTestingUsingPowerShell.cer" -Destination "$($pathToProjectRoot)\out\$($DirName)\Metro"
 

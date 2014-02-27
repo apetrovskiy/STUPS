@@ -21,6 +21,11 @@ namespace UIAutomationUnitTests.Commands.Get
     [MbUnit.Framework.TestFixture]
     public class GetUiaButtonCommandTestFixture
     {
+        public GetUiaButtonCommandTestFixture()
+        {
+            FakeFactory.Init();
+        }
+        
         [SetUp]
         public void SetUp()
         {

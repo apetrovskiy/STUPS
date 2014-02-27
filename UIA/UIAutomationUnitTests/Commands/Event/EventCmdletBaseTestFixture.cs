@@ -38,6 +38,9 @@ namespace UIAutomationUnitTests.Commands.Event
         public void SetUp()
         {
             FakeFactory.Init();
+            // 20140227
+            UIAutomation.Preferences.UseElementsPatternObjectModel = false;
+            UIAutomation.Preferences.UseElementsSearchObjectModel = false;
         }
         
         [TearDown]

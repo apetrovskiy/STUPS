@@ -29,6 +29,9 @@ namespace UIAutomationUnitTests.Commands.Wizard
         public void SetUp()
         {
             UnitTestingHelper.PrepareUnitTestDataStore();
+            
+            // 20140227
+            AutomationFactory.InitUnitTests();
         }
         
         [TearDown]

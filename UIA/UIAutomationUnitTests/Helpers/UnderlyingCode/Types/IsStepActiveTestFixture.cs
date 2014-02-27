@@ -19,6 +19,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
     /// <summary>
     /// Description of IsStepActiveTestFixture.
     /// </summary>
+    [MbUnit.Framework.TestFixture]
     public class IsStepActiveTestFixture
     {
         public IsStepActiveTestFixture()

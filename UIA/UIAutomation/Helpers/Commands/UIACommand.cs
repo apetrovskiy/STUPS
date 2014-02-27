@@ -15,8 +15,6 @@ namespace UIAutomation
     /// <summary>
     /// Description of UiaCommand.
     /// </summary>
-    // 20140211
-    // internal abstract class UiaCommand
     [UiaSpecialBinding]
     public abstract class UiaCommand
     {

@@ -372,6 +372,7 @@
     <Compile Include="Helpers\UnderlyingCode\Aspects\TestResultAspect.cs" />
     <Compile Include="Helpers\UnderlyingCode\Attributes\UiaParameterAttribute.cs" />
     <Compile Include="Helpers\UnderlyingCode\Attributes\UiaSpecialBindingAttribute.cs" />
+    <Compile Include="Helpers\UnderlyingCode\ControlProviders\ControlFromUiaComProvider.cs" />
     <Compile Include="Helpers\UnderlyingCode\ControlProviders\ControlFromUiaProvider.cs" />
     <Compile Include="Helpers\UnderlyingCode\ControlProviders\ControlFromWin32Provider.cs" />
     <Compile Include="Helpers\UnderlyingCode\ControlProviders\ControlProvider.cs" />

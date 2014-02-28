@@ -1,8 +1,8 @@
 ﻿/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
- * Date: 2/23/2014
- * Time: 6:53 PM
+ * Date: 2/28/2014
+ * Time: 1:10 PM
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
@@ -16,26 +16,18 @@ namespace UIAutomation
     extern alias UIANET;
     using System;
     using System.Windows.Automation;
-    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
     using System.Management.Automation;
-    using PSTestLib;
-    
-    using System.Globalization;
-    using System.Threading;
-    using System.Windows.Forms;
-    using System.Text.RegularExpressions;
     
     /// <summary>
-    /// Description of ControlFromUiaProvider.
+    /// Description of ControlFromUiaComProvider.
     /// </summary>
-    // [UiaSpecialBinding]
-//    public class ControlFromUiaProvider : ControlProvider
+//    [UiaSpecialBinding]
+//    public class ControlFromUiaComProvider : ControlProvider
 //    {
-//        public override List<IUiElement> GetElements(HandleCollector handleCollector, ControlSearcherTemplateData data)
+//        public ControlFromUiaComProvider()
 //        {
-//            
 //        }
 //    }
 }

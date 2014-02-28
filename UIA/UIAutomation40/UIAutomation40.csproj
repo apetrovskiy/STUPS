@@ -921,6 +921,9 @@
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Attributes\UiaSpecialBindingAttribute.cs">
       <Link>Helpers\UnderlyingCode\Attributes\UiaSpecialBindingAttribute.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\ControlProviders\ControlFromUiaComProvider.cs">
+      <Link>Helpers\UnderlyingCode\ControlProviders\ControlFromUiaComProvider.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\ControlProviders\ControlFromUiaProvider.cs">
       <Link>Helpers\UnderlyingCode\ControlProviders\ControlFromUiaProvider.cs</Link>
     </Compile>

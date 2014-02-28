@@ -27,7 +27,6 @@ namespace UIAutomationUnitTests
     {
         public static List<IUiElement> GetResultList_ViaWildcards_Legacy(IUiElement element, Condition condition, ControlSearcherData data)
         {
-            // GetControlCollectionCmdletBase cmdletDerived = new GetControlCollectionCmdletBase();
             var cmdletDerived = new GetControlCollectionCmdletBase();
             
             List<IUiElement> resultList =

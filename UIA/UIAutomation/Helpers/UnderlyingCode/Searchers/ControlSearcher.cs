@@ -115,13 +115,17 @@ namespace UIAutomation
                         var controlFromWin32Provider = AutomationFactory.GetObject<ControlFromWin32Provider>();
                         controlFromWin32Provider.SearchData = data;
                         
-                        var handleCollector = AutomationFactory.GetObject<HandleCollector>();
+                        // 20140228
+                        // var handleCollector = AutomationFactory.GetObject<HandleCollector>();
+                        controlFromWin32Provider.HandleCollector = AutomationFactory.GetObject<HandleCollector>();
                         
                         ResultCollection.AddRange(
                             SearchByContainsTextViaWin32(
                                 inputObject,
-                                controlFromWin32Provider,
-                                handleCollector));
+                                // 20140228
+                                // controlFromWin32Provider,
+                                // handleCollector));
+                                controlFromWin32Provider));
                     }
                 }
                 #endregion text search Win32
@@ -222,8 +226,10 @@ namespace UIAutomation
         
         internal static IEnumerable<IUiElement> SearchByContainsTextViaWin32(
             IUiElement inputObject,
-            ControlFromWin32Provider controlProvider,
-            HandleCollector handleCollector)
+            // 20140228
+            // ControlFromWin32Provider controlProvider,
+            // HandleCollector handleCollector)
+            ControlFromWin32Provider controlProvider)
         {
             var resultList =
                 new List<IUiElement>();
@@ -231,7 +237,9 @@ namespace UIAutomation
             // 20140224
             // controlProvider.SearchData.Name = controlProvider.SearchData.Value = controlProvider.SearchData.ContainsText;
             
-            foreach (IUiElement elementToChoose in controlProvider.GetElements(handleCollector, null)) {
+            // 20140228
+            // foreach (IUiElement elementToChoose in controlProvider.GetElements(handleCollector, null)) {
+            foreach (IUiElement elementToChoose in controlProvider.GetElements(null)) {
                 
                 if (null != controlProvider.SearchData.ControlType && 0 < controlProvider.SearchData.ControlType.Length) {
                     
@@ -429,9 +437,13 @@ namespace UIAutomation
                     Class = data.Class
                 };
                 
+                // 20140228
+                controlFrom32Provider.HandleCollector = handleCollector;
+                
                 tempListWin32.AddRange(
                     controlFrom32Provider.GetElements(
-                        handleCollector,
+                        // 20140228
+                        // handleCollector,
                         singleControlSearcherData.ConvertSingleControlSearcherDataToControlSearcherTemplateData()));
             }
             

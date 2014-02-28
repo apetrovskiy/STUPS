@@ -15,27 +15,27 @@ namespace UIAutomation
 //
     extern alias UIANET;
     using System;
-    using System.Windows.Automation;
-    using System.Collections;
+//    using System.Windows.Automation;
+//    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Management.Automation;
-    using PSTestLib;
+//    using System.Management.Automation;
+//    using PSTestLib;
     
-    using System.Globalization;
-    using System.Threading;
-    using System.Windows.Forms;
-    using System.Text.RegularExpressions;
+//    using System.Globalization;
+//    using System.Threading;
+//    using System.Windows.Forms;
+//    using System.Text.RegularExpressions;
     
     /// <summary>
     /// Description of ControlFromUiaProvider.
     /// </summary>
-    // [UiaSpecialBinding]
-//    public class ControlFromUiaProvider : ControlProvider
-//    {
-//        public override List<IUiElement> GetElements(HandleCollector handleCollector, ControlSearcherTemplateData data)
-//        {
-//            
-//        }
-//    }
+    [UiaSpecialBinding]
+    public class ControlFromUiaProvider : ControlProvider
+    {
+        public override List<IUiElement> GetElements(ControlSearcherTemplateData data)
+        {
+            return new List<IUiElement>();
+        }
+    }
 }

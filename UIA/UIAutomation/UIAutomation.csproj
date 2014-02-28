@@ -359,6 +359,7 @@
     <Compile Include="Helpers\UnderlyingCode\Adapters\UiTouchInputHolder.cs" />
     <Compile Include="Helpers\UnderlyingCode\Aspects\AbstractInterceptor.cs" />
     <Compile Include="Helpers\UnderlyingCode\Aspects\ErrorHandlingAspect.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Aspects\FaultInjectionAspect.cs" />
     <Compile Include="Helpers\UnderlyingCode\Aspects\HighlighterAspect.cs" />
     <Compile Include="Helpers\UnderlyingCode\Aspects\InputValidationAspect.cs" />
     <Compile Include="Helpers\UnderlyingCode\Aspects\LoggingAspect.cs" />

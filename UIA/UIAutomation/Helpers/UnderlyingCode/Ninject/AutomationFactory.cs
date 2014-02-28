@@ -196,7 +196,9 @@ namespace UIAutomation
                 proxiedObject =
                     (T)_generator.CreateClassProxy(
                         typeof(T),
-                        new LoggingAspect(), new ErrorHandlingAspect());
+                        // 20140228
+                        // new LoggingAspect(), new ErrorHandlingAspect());
+                        new LoggingAspect(), new ErrorHandlingAspect(), new FaultInjectionAspect());
                 
             } catch (Exception eProxying) {
                 // Console.WriteLine("ProxiedObject");
@@ -216,7 +218,9 @@ namespace UIAutomation
                     (T)_generator.CreateClassProxy(
                         typeof(T),
                         new CommonCmdletBase[]{ cmdlet },
-                        new LoggingAspect(), new InputValidationAspect(), new ErrorHandlingAspect(), new HighlighterAspect(), new TestResultAspect());
+                        // 20140228
+                        // new LoggingAspect(), new InputValidationAspect(), new ErrorHandlingAspect(), new HighlighterAspect(), new TestResultAspect());
+                        new LoggingAspect(), new InputValidationAspect(), new ErrorHandlingAspect(), new HighlighterAspect(), new TestResultAspect(), new FaultInjectionAspect());
                 
             } catch (Exception eProxying) {
                 // Console.WriteLine("ProxiedObject");
@@ -423,6 +427,27 @@ namespace UIAutomation
 		
 		public static IUiElement GetUiElement(object element)
 		{
+            if (null != (element as AutomationElement)) {
+		        return GetUiElement(element as AutomationElement);
+            } else if (null != (element as IUiElement)) {
+		        return GetUiElement(element as IUiElement);
+		    } else {
+		        return GetUiElement();
+		    }
+            /*
+			var automationElement = element as AutomationElement;
+			if (automationElement != null) {
+				return GetUiElement(automationElement);
+			} else {
+				var iUiElement = element as IUiElement;
+				if (iUiElement != null) {
+					return GetUiElement(iUiElement);
+				} else {
+					return GetUiElement();
+				}
+			}
+		    */
+            /*
 		    if (element is AutomationElement) {
 		        return GetUiElement(element as AutomationElement);
 		    } else if (element is IUiElement) {
@@ -430,7 +455,7 @@ namespace UIAutomation
 		    } else {
 		        return GetUiElement();
 		    }
-		    
+            */
 		}
 		
 //		public static IUiElement GetUiElementViaChildKernel(AutomationElement element, IChildKernel childKernel)

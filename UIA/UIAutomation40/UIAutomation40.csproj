@@ -897,6 +897,9 @@
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Aspects\ErrorHandlingAspect.cs">
       <Link>Helpers\UnderlyingCode\Aspects\ErrorHandlingAspect.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Aspects\FaultInjectionAspect.cs">
+      <Link>Helpers\UnderlyingCode\Aspects\FaultInjectionAspect.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Aspects\HighlighterAspect.cs">
       <Link>Helpers\UnderlyingCode\Aspects\HighlighterAspect.cs</Link>
     </Compile>

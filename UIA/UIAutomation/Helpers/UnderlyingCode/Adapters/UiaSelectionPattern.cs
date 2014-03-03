@@ -13,8 +13,8 @@ namespace UIAutomation
 	using System;
 	using System.Windows.Automation;
 	using System.Linq;
-	using System.Collections;
-	using System.Collections.Generic;
+//	using System.Collections;
+//	using System.Collections.Generic;
 
 	public class UiaSelectionPattern : ISelectionPattern
 	{
@@ -57,7 +57,9 @@ namespace UIAutomation
             
 			public IUiElement[] GetSelection()
 			{
-				AutomationElement[] nativeElements = (AutomationElement[])this._selectionPattern.GetParentElement().GetPatternPropertyValue(SelectionPattern.SelectionProperty, this._useCache);
+                // 20140302
+				// AutomationElement[] nativeElements = (AutomationElement[])this._selectionPattern.GetParentElement().GetPatternPropertyValue(SelectionPattern.SelectionProperty, this._useCache);
+                var nativeElements = (AutomationElement[])this._selectionPattern.GetParentElement().GetPatternPropertyValue(SelectionPattern.SelectionProperty, this._useCache);
                 IUiEltCollection tempCollection = AutomationFactory.GetUiEltCollection(nativeElements);
 				if (null == tempCollection || 0 == tempCollection.Count) {
 				    return new UiElement[] {};

@@ -1,5 +1,4 @@
-﻿using PSTestLib;
-/*
+﻿/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
  * Date: 08.12.2011
@@ -24,6 +23,7 @@ namespace UIAutomation
     using System.Diagnostics.CodeAnalysis;
     using System.Threading;
     using UIAutomation.Commands;
+    using PSTestLib;
 
     #region declarations
         [StructLayout(LayoutKind.Sequential)]
@@ -489,10 +489,6 @@ namespace UIAutomation
                     // (some part of AutomationElement, as an example)
                 } catch (Exception eControlTypeException) {
                     
-                    // 20131203
-                    // WriteDebug(cmdlet, "[checking the input] Control is not an AutomationElement");
-                    // WriteDebug(cmdlet, "[checking the input] " + eControlTypeException.Message);
-                    
                     if (PassThru) {
                         
                         // 20131109
@@ -950,7 +946,6 @@ try {
         {
             bool result = false;
             
-            // 20140213
             if (null == searchCriteria || 0 == searchCriteria.Count()) return result;
             if (null == inputElements || 0 == inputElements.Length) return result;
             
@@ -960,10 +955,6 @@ try {
                     ht.ConvertHashtableToDictionary();
                 
                 var cmdlet = new GetControlCmdletBase();
-                /*
-                GetControlCmdletBase cmdlet = 
-                    new GetControlCmdletBase();
-                */
                 
                 try { cmdlet.Class = dict["CLASS"].ToString(); } catch {}
                 try { cmdlet.AutomationId = dict["AUTOMATIONID"].ToString(); } catch {}
@@ -985,8 +976,6 @@ try {
                     cmdlet.InputObject = new[]{ CurrentData.CurrentWindow };
                 }
                 
-//                WriteVerbose(this, "getting the control");
-                
                 var controlSearcher =
                     AutomationFactory.GetSearcherImpl<ControlSearcher>() as ControlSearcher;
                 
@@ -1007,12 +996,6 @@ try {
                     
                     foreach (IUiElement elementToWorkWith in elementsToWorkWith) {
                         
-//                        WriteVerbose(this, "found the control:");
-//                        try {WriteVerbose(this, "Name = " + elementToWorkWith.Current.Name); }catch {}
-//                        try {WriteVerbose(this, "AutomationId = " + elementToWorkWith.Current.AutomationId); }catch {}
-//                        try {WriteVerbose(this, "ClassName = " + elementToWorkWith.Current.ClassName); }catch {}
-//                        try {WriteVerbose(this, "ControlType = " + elementToWorkWith.Current.ControlType.ProgrammaticName); }catch {}
-                        
                         bool oneControlResult = 
                             elementToWorkWith.TestControlByPropertiesFromDictionary(dict);
                         
@@ -1022,8 +1005,6 @@ try {
                                 UiaHelper.HighlightCheckedControl(elementToWorkWith);
                             }
                             
-                            // 20140211
-                            // 20140212
                             theCurrentHashtableMatchesAtLeastOneElement = true;
                             // result = true;
                             break;

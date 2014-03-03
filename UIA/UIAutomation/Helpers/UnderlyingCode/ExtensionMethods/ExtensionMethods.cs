@@ -314,15 +314,24 @@ namespace UIAutomation
         
         internal static string[] ConvertControlTypeToStringArray(this ControlType controlType)
         {
+			return null == controlType ? new string[] {
+
+			} : new string[] {
+				controlType.ProgrammaticName.Substring(12)
+			};
+            /*
             if (null == controlType) return new string[] {};
-            
             return new string[] { controlType.ProgrammaticName.Substring(12) };
+            */
+            
         }
         
         internal static SingleControlSearcherData ConvertControlSearcherDataToSingleControlSearcherData(this ControlSearcherData data)
         {
             return new SingleControlSearcherData {
-                InputObject = (null == data.InputObject ? null : (null == data.InputObject[0] ? null : data.InputObject[0])),
+                // 20140302
+                // InputObject = (null == data.InputObject ? null : (null == data.InputObject[0] ? null : data.InputObject[0])),
+                InputObject = (null == data.InputObject ? null : (data.InputObject[0] ?? null)),
                 Name = data.Name,
                 AutomationId = data.AutomationId,
                 Class = data.Class,

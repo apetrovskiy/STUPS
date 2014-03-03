@@ -10,12 +10,12 @@
 namespace UIAutomation
 {
     using System;
-    using System.Collections;
+//    using System.Collections;
     using System.Collections.Generic;
     using System.Windows.Automation;
-    using System.Management.Automation;
+//    using System.Management.Automation;
     using System.Linq;
-    using PSTestLib;
+//    using PSTestLib;
     
     /// <summary>
     /// Description of ContextMenuSearcher.
@@ -29,7 +29,9 @@ namespace UIAutomation
         
         public override void OnStartHook()
         {
-            ContextMenuSearcherData data = SearcherData as ContextMenuSearcherData;
+            // 20140302
+            // ContextMenuSearcherData data = SearcherData as ContextMenuSearcherData;
+            var data = SearcherData as ContextMenuSearcherData;
             
             conditionsForContextMenuSearch =
                 new AndCondition(

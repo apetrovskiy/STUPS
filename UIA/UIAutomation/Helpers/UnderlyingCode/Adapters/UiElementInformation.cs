@@ -19,7 +19,6 @@ namespace UIAutomation
     {
     	//private AutomationElement _el;
     	//private bool _useCache;
-    	
     	private AutomationElement.AutomationElementInformation _infoHolder;
     	//
     	[Inject]

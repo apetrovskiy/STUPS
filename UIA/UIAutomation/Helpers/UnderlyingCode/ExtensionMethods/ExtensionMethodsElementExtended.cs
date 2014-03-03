@@ -13,13 +13,13 @@ namespace UIAutomation
     extern alias UIANET;
     using System;
     using System.Windows.Automation;
-    using System.Windows.Automation.Text;
-    using System.Collections;
-    using System.Collections.Generic;
+//    using System.Windows.Automation.Text;
+//    using System.Collections;
+//    using System.Collections.Generic;
     using System.Linq;
-    using System.Management.Automation;
+//    using System.Management.Automation;
     using System.Windows.Forms;
-    using PSTestLib;
+//    using PSTestLib;
     using WindowsInput;
     
     /// <summary>
@@ -122,8 +122,12 @@ namespace UIAutomation
         
         public static IUiElement PerformClick(this IControlInputHolder holder)
         {
+            var cmdlet =
+                new HasControlInputCmdletBase();
+            /*
             HasControlInputCmdletBase cmdlet =
                 new HasControlInputCmdletBase();
+            */
             cmdlet.ClickControl(
                 cmdlet,
                 holder.GetParentElement(),
@@ -137,8 +141,12 @@ namespace UIAutomation
         
         public static IUiElement PerformCoordinatedClick(this IControlInputHolder holder, int X, int Y)
         {
+            var cmdlet =
+                new HasControlInputCmdletBase();
+            /*
             HasControlInputCmdletBase cmdlet =
                 new HasControlInputCmdletBase();
+            */
             cmdlet.ClickControl(
                 cmdlet,
                 holder.GetParentElement(),
@@ -152,8 +160,12 @@ namespace UIAutomation
         
         public static IUiElement PerformDoubleClick(this IControlInputHolder holder)
         {
+            var cmdlet =
+                new HasControlInputCmdletBase();
+            /*
             HasControlInputCmdletBase cmdlet =
                 new HasControlInputCmdletBase();
+            */
             cmdlet.ClickControl(
                 cmdlet,
                 holder.GetParentElement(),
@@ -169,8 +181,12 @@ namespace UIAutomation
         
         public static IUiElement PerformCoordinatedDoubleClick(this IControlInputHolder holder, int X, int Y)
         {
+            var cmdlet =
+                new HasControlInputCmdletBase();
+            /*
             HasControlInputCmdletBase cmdlet =
                 new HasControlInputCmdletBase();
+            */
             cmdlet.ClickControl(
                 cmdlet,
                 holder.GetParentElement(),
@@ -186,8 +202,12 @@ namespace UIAutomation
         
         public static IUiElement PerformRightClick(this IControlInputHolder holder)
         {
+            var cmdlet =
+                new HasControlInputCmdletBase();
+            /*
             HasControlInputCmdletBase cmdlet =
                 new HasControlInputCmdletBase();
+            */
             cmdlet.ClickControl(
                 cmdlet,
                 holder.GetParentElement(),
@@ -202,8 +222,12 @@ namespace UIAutomation
         
         public static IUiElement PerformCtrlClick(this IControlInputHolder holder)
         {
+            var cmdlet =
+                new HasControlInputCmdletBase();
+            /*
             HasControlInputCmdletBase cmdlet =
                 new HasControlInputCmdletBase();
+            */
             cmdlet.ClickControl(
                 cmdlet,
                 holder.GetParentElement(),
@@ -218,8 +242,12 @@ namespace UIAutomation
         
         public static IUiElement PerformAltClick(this IControlInputHolder holder)
         {
+            var cmdlet =
+                new HasControlInputCmdletBase();
+            /*
             HasControlInputCmdletBase cmdlet =
                 new HasControlInputCmdletBase();
+            */
             cmdlet.ClickControl(
                 cmdlet,
                 holder.GetParentElement(),
@@ -234,8 +262,12 @@ namespace UIAutomation
         
         public static IUiElement PerformShiftClick(this IControlInputHolder holder)
         {
+            var cmdlet =
+                new HasControlInputCmdletBase();
+            /*
             HasControlInputCmdletBase cmdlet =
                 new HasControlInputCmdletBase();
+            */
             cmdlet.ClickControl(
                 cmdlet,
                 holder.GetParentElement(),
@@ -255,8 +287,12 @@ namespace UIAutomation
         /// <returns></returns>
         public static IUiElement PerformInvokeContextMenu(this IControlInputHolder holder)
         {
+            var cmdlet =
+                new HasControlInputCmdletBase();
+            /*
             HasControlInputCmdletBase cmdlet =
                 new HasControlInputCmdletBase();
+            */
             
             // 20131226
             // element.InvokeContextMenu(cmdlet);
@@ -270,8 +306,12 @@ namespace UIAutomation
         
         public static IUiElement PerformCoordinatedInvokeContextMenu(this IControlInputHolder holder, int X, int Y)
         {
+            var cmdlet =
+                new HasControlInputCmdletBase();
+            /*
             HasControlInputCmdletBase cmdlet =
                 new HasControlInputCmdletBase();
+            */
             
             // 20131226
             // element.InvokeContextMenu(cmdlet);

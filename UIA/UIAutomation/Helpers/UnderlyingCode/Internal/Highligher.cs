@@ -198,6 +198,17 @@ namespace UIAutomation
             double Y,
             int intHandle)
         {
+            var p = new NativeMethods.CursorPoint {X = (int) X, Y = (int) Y};
+            if (intHandle == 0) return p;
+            try { // Windows Vista or higher only
+                var handle = 
+                    new IntPtr(intHandle);
+                NativeMethods.PhysicalToLogicalPoint(handle, ref p);
+            } 
+            catch {
+            }
+            
+            /*
             NativeMethods.CursorPoint p = new NativeMethods.CursorPoint {X = (int) X, Y = (int) Y};
             if (intHandle == 0) return p;
             try { // Windows Vista or higher only
@@ -207,6 +218,7 @@ namespace UIAutomation
             } 
             catch {
             }
+            */
 
             /*
             if (intHandle != 0) {
@@ -559,8 +571,12 @@ namespace UIAutomation
             Height = (int)height;
             AutoSize = true;
             Enabled = false;
+            var labelNumber =
+        		new Label {AutoSize = true};
+            /*
             Label labelNumber =
         		new Label {AutoSize = true};
+            */
             if (null == highlighterNumber || 0 == highlighterNumber) {
                 highlighterNumber = 1;
             }
@@ -578,7 +594,10 @@ namespace UIAutomation
             
             if (Preferences.ShowInfoToolTip) {
                 // tooltip
+                var tooltip = new ToolTip {Active = true, ShowAlways = true, IsBalloon = true};
+                /*
                 ToolTip tooltip = new ToolTip {Active = true, ShowAlways = true, IsBalloon = true};
+                */
                 tooltip.Show(tooltipText, this);
             }
             

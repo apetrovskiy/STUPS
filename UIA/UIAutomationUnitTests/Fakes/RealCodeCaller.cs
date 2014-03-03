@@ -11,14 +11,11 @@ namespace UIAutomationUnitTests
 {
     using System;
     
-    
     using System.Collections;
     using System.Collections.Generic;
-	using UIAutomationUnitTests.Helpers.Inheritance;
-    // using System.Collections.ObjectModel;
-    using UIAutomation;
     using System.Windows.Automation;
     using System.Linq;
+    using UIAutomation;
     
     /// <summary>
     /// Description of RealCodeCaller.
@@ -81,16 +78,8 @@ namespace UIAutomationUnitTests
         	var singleControlSearcherData = new SingleControlSearcherData { Name = containsText, ControlType = controlTypeNames };
         	var controlProvider = FakeFactory.GetControlFromWin32Provider(collection, singleControlSearcherData);
         	
-        	// 20140228
         	controlProvider.HandleCollector = FakeFactory.GetHandleCollector(inputObject, new int[] {}, collection.ToArray());
         	return ControlSearcher.SearchByContainsTextViaWin32(inputObject, controlProvider).ToList();
-        	
-        	// 20140228
-        	// if (null == collection || 0 == collection.Count()) {
-        	//     return ControlSearcher.SearchByContainsTextViaWin32(inputObject, controlProvider, FakeFactory.GetHandleCollector(inputObject, new int[] {}, collection.ToArray())).ToList();
-        	// } else {
-        	//     return ControlSearcher.SearchByContainsTextViaWin32(inputObject, controlProvider, FakeFactory.GetHandleCollector(inputObject, new int[] {}, collection.ToArray())).ToList();
-        	// }
         }
         
         public static List<IUiElement> GetResultList_ReturnOnlyRightElements(IEnumerable<IUiElement> elements, ControlSearcherData data, bool useWildcardOrRegex)
@@ -147,14 +136,10 @@ namespace UIAutomationUnitTests
             controlProvider.SearchData = controlSearcherData;
             
             var handleCollector = FakeFactory.GetHandleCollector(rootElement, handles, elements);
-            
-            // 20140228
             controlProvider.HandleCollector = handleCollector;
             
             List<IUiElement> resultList =
                 controlProvider.GetElements(
-                    // 20140228
-                    // handleCollector,
                     controlSearcherData);
             
             return resultList;
@@ -176,14 +161,10 @@ namespace UIAutomationUnitTests
             controlProvider.SearchData = controlSearcherData;
             
             var handleCollector = FakeFactory.GetHandleCollector(rootElement, handles, elements);
-            
-            // 20140228
             controlProvider.HandleCollector = handleCollector;
             
             List<IUiElement> resultList =
                 controlProvider.GetElements(
-                    // 20140228
-                    // handleCollector,
                     null);
             
             return resultList;

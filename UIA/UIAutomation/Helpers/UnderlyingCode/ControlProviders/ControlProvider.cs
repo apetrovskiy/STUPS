@@ -9,7 +9,7 @@
 
 namespace UIAutomation
 {
-    using System.Collections;
+    // using System.Collections;
     using System.Collections.Generic;
     
     /// <summary>
@@ -17,15 +17,8 @@ namespace UIAutomation
     /// </summary>
     public abstract class ControlProvider
     {
-    	// public SingleControlSearcherData SearchData { get; set; }
-    	// public virtual SearcherTemplateData SearchData { get; set; }
     	public virtual ControlSearcherTemplateData SearchData { get; set; }
-    	
-        // public virtual List<IUiElement> GetElements(SearcherTemplateData data)
-        // public virtual List<IUiElement> GetElements(ControlSearcherTemplateData data)
         
-        // 20140228
-        // public virtual List<IUiElement> GetElements(HandleCollector handleCollector, ControlSearcherTemplateData data)
         public virtual List<IUiElement> GetElements(ControlSearcherTemplateData data)
         {
             return new List<IUiElement>();

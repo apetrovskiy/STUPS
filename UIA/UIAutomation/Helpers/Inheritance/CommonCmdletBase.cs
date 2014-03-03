@@ -70,7 +70,9 @@ namespace UIAutomation
         {
             #region close the log
             try {
-                Global.CloseLogFile();
+                // 20140303
+                // Global.CloseLogFile();
+                // CloseLogFile();
             } catch { }
             #endregion close the log
         }
@@ -128,12 +130,6 @@ namespace UIAutomation
         
         protected internal void WriteInfo(CommonCmdletBase cmdlet, string text)
         {
-            // 20140214
-            // string reportString =
-            //     CmdletSignature(cmdlet) +
-            //     text;
-            // 
-            // Logger.Info(reportString);
             if (!string.IsNullOrEmpty(text) && !string.IsNullOrEmpty(text.Trim())) {
                 string reportString =
                     CmdletSignature(cmdlet) +
@@ -348,11 +344,6 @@ namespace UIAutomation
                     (outputObject as IUiElement),
                     CmdletName(cmdlet),
                     true,
-                    // 20140111
-                    // 0,
-                    // 0,
-                    // 0,
-                    // 0,
                     new ScreenshotRect(),
                     string.Empty,
                     Preferences.OnSuccessScreenShotFormat);

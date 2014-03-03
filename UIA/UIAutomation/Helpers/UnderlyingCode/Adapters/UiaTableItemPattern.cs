@@ -11,8 +11,8 @@ namespace UIAutomation
 {
 	extern alias UIANET;
 	using System;
-	using System.Collections;
-	using System.Collections.Generic;
+//	using System.Collections;
+//	using System.Collections.Generic;
 	using System.Linq;
 	using System.Windows.Automation;
 
@@ -81,7 +81,9 @@ namespace UIAutomation
 			public IUiElement[] GetRowHeaderItems()
 			{
 				// return (AutomationElement[])this._el.GetPatternPropertyValue(TableItemPattern.RowHeaderItemsProperty, this._useCache);
-                AutomationElement[] nativeElements = (AutomationElement[])this._tableItemPattern.GetParentElement().GetPatternPropertyValue(TableItemPattern.RowHeaderItemsProperty, this._useCache);
+                // 20140302
+                // AutomationElement[] nativeElements = (AutomationElement[])this._tableItemPattern.GetParentElement().GetPatternPropertyValue(TableItemPattern.RowHeaderItemsProperty, this._useCache);
+                var nativeElements = (AutomationElement[])this._tableItemPattern.GetParentElement().GetPatternPropertyValue(TableItemPattern.RowHeaderItemsProperty, this._useCache);
                 IUiEltCollection tempCollection = AutomationFactory.GetUiEltCollection(nativeElements);
 				if (null == tempCollection || 0 == tempCollection.Count) {
 				    return new UiElement[] {};
@@ -93,7 +95,9 @@ namespace UIAutomation
 			public IUiElement[] GetColumnHeaderItems()
 			{
 				// return (AutomationElement[])this._el.GetPatternPropertyValue(TableItemPattern.ColumnHeaderItemsProperty, this._useCache);
-				AutomationElement[] nativeElements = (AutomationElement[])this._tableItemPattern.GetParentElement().GetPatternPropertyValue(TableItemPattern.ColumnHeaderItemsProperty, this._useCache);
+                // 20140302
+				// AutomationElement[] nativeElements = (AutomationElement[])this._tableItemPattern.GetParentElement().GetPatternPropertyValue(TableItemPattern.ColumnHeaderItemsProperty, this._useCache);
+                var nativeElements = (AutomationElement[])this._tableItemPattern.GetParentElement().GetPatternPropertyValue(TableItemPattern.ColumnHeaderItemsProperty, this._useCache);
                 IUiEltCollection tempCollection = AutomationFactory.GetUiEltCollection(nativeElements);
 				if (null == tempCollection || 0 == tempCollection.Count) {
 				    return new UiElement[] {};

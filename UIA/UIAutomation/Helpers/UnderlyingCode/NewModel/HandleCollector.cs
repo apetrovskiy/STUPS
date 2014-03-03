@@ -11,17 +11,17 @@ namespace UIAutomation
 {
     extern alias UIANET;
     using System;
-    using System.Windows.Automation;
-    using System.Collections;
+//    using System.Windows.Automation;
+//    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Management.Automation;
-    using PSTestLib;
+//    using System.Management.Automation;
+//    using PSTestLib;
     
-    using System.Globalization;
-    using System.Threading;
-    using System.Windows.Forms;
-    using System.Text.RegularExpressions;
+//    using System.Globalization;
+//    using System.Threading;
+//    using System.Windows.Forms;
+//    using System.Text.RegularExpressions;
     
     /// <summary>
     /// Description of HandleCollector.
@@ -49,16 +49,6 @@ namespace UIAutomation
                 
                 if (controlHandle == IntPtr.Zero) continue;
                 controlHandles.Add(controlHandle);
-                
-                #region commented
-                // 20140218
-                /*
-                tempControlHandles =
-                    UiElement.FromHandle(controlHandle).GetControlByNameViaWin32Recursively(
-                        name,
-                        level + 1);
-                */
-                #endregion commented
                 
                 tempControlHandles =
                     CollectRecursively(

@@ -46,7 +46,8 @@ namespace UIAutomation
             
             if (null == ResultCollection) {
                 
-                Wait = false;
+                // 20140302
+                // Wait = false;
                 
                 var eTimeoutException =
                     new TimeoutException(

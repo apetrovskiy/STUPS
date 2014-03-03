@@ -7,19 +7,14 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-// namespace UIAutomationUnitTests.Helpers.Inheritance
 namespace UIAutomationUnitTests.Helpers.UnderlyingCode.ControlProviders
 {
-    // using System;
-    // using System.Collections;
 	using System;
     using System.Collections.Generic;
-    // using System.Collections.ObjectModel;
     using System.Windows.Automation;
-    using UIAutomation;
-    using MbUnit.Framework;using Xunit;
     using System.Linq;
-    using System.Management.Automation;
+    using MbUnit.Framework;using Xunit;
+    using UIAutomation;
     
     /// <summary>
     /// Description of ControlFromWin32ProviderTestFixture.

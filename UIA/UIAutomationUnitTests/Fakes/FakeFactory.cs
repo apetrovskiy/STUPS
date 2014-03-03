@@ -1,5 +1,4 @@
-﻿// using System.Runtime.InteropServices.ComTypes;
-/*
+﻿/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
  * Date: 11/20/2013
@@ -12,15 +11,11 @@ namespace UIAutomationUnitTests
 {
     using System;
     
-    
-    
     using System.Windows.Automation;
-    using UIAutomation;
-    using NSubstitute;
     using System.Linq;
-    // using System.Linq.Expressions;
-    // using System.Collections;
     using System.Collections.Generic;
+    using NSubstitute;
+    using UIAutomation;
     
     /// <summary>
     /// Description of FakeFactory.
@@ -261,7 +256,8 @@ namespace UIAutomationUnitTests
             IValuePatternInformation valuePatternInformation = Substitute.For<IValuePatternInformation>();
             valuePatternInformation.Value.Returns(data.ValuePattern_Value);
             valuePattern.Current.Returns(valuePatternInformation);
-            FakeSourcePattern sourcePattern = new FakeSourcePattern();
+            // FakeSourcePattern sourcePattern = new FakeSourcePattern();
+            var sourcePattern = new FakeSourcePattern();
             FakeSourcePattern.Pattern = ValuePattern.Pattern;
             valuePattern.SetSourcePattern(sourcePattern);
             return valuePattern;
@@ -284,7 +280,6 @@ namespace UIAutomationUnitTests
         }
         #endregion patterns
         
-        // 20140219
         public static IFakeUiElement GetAutomationElementExpected(ControlType controlType, string name, string automationId, string className, string txtValue)
         {
             return GetAutomationElementExpected(controlType, name, automationId, className, txtValue, 0);
@@ -313,7 +308,6 @@ namespace UIAutomationUnitTests
             return GetAutomationElement(data, new IBasePattern[] { valuePattern }, true);
         }
         
-        // 20140219
         public static  IFakeUiElement GetAutomationElementNotExpected(ControlType controlType, string name, string automationId, string className, string txtValue)
         {
             return GetAutomationElementNotExpected(controlType, name, automationId, className, txtValue, 0);
@@ -355,7 +349,6 @@ namespace UIAutomationUnitTests
             return element;
         }
         
-        // 20140219
         internal static IFakeUiElement GetAutomationElement(ControlType controlType, string name, string automationId, string className, IBasePattern[] patterns, bool expected)
         {
             return GetAutomationElement(controlType, name, automationId, className, 0, patterns, expected);
@@ -369,8 +362,6 @@ namespace UIAutomationUnitTests
                 Current_AutomationId = automationId,
                 Current_ClassName = className,
                 Current_ProcessId = 333
-                // 20140218
-                // 20140219
                 //Current_NativeWindowHandle = 1234567
             };
             
@@ -542,18 +533,6 @@ namespace UIAutomationUnitTests
             return element;
         }
         
-        // 20140209
-//        public static string[] ConvertControlTypeToStringArray(ControlType[] controlTypes)
-//        {
-//            // List<string> resultCollection = new List<string>();
-//            
-//            if (null == controlTypes || 0 == controlTypes.Length) return new string[] {};
-//            
-//            return controlTypes.Select(
-//                ct =>
-//                null != ct ? ct.ProgrammaticName.Substring(12) : string.Empty).ToArray();
-//        }
-        
         public static IUiEltCollection GetFakeCollection(IEnumerable<IUiElement> elements)
         {
             var collection = Substitute.For<IUiEltCollection>();
@@ -572,8 +551,6 @@ namespace UIAutomationUnitTests
         internal static ControlFromWin32Provider GetControlFromWin32Provider(IEnumerable<IUiElement> collection, SingleControlSearcherData data)
         {
             var controlProvider = Substitute.For<ControlFromWin32Provider>();
-            // 20140228
-            // controlProvider.GetElements(Arg.Any<HandleCollector>(), Arg.Any<SingleControlSearcherData>()).Returns(collection.ToList<IUiElement>());
             controlProvider.GetElements(Arg.Any<SingleControlSearcherData>()).Returns(collection.ToList<IUiElement>());
             var data1 = data as SearcherTemplateData;
             controlProvider.SearchData.Returns(data1);

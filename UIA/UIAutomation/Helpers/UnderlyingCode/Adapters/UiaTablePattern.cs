@@ -69,7 +69,9 @@ namespace UIAutomation
 			public IUiElement[] GetRowHeaders()
 			{
 				// return (AutomationElement[])this._el.GetPatternPropertyValue(TablePattern.RowHeadersProperty, this._useCache);
-				AutomationElement[] nativeElements = (AutomationElement[])this._tablePattern.GetParentElement().GetPatternPropertyValue(TablePattern.RowHeadersProperty, this._useCache);
+                // 20140302
+				// AutomationElement[] nativeElements = (AutomationElement[])this._tablePattern.GetParentElement().GetPatternPropertyValue(TablePattern.RowHeadersProperty, this._useCache);
+                var nativeElements = (AutomationElement[])this._tablePattern.GetParentElement().GetPatternPropertyValue(TablePattern.RowHeadersProperty, this._useCache);
                 IUiEltCollection tempCollection = AutomationFactory.GetUiEltCollection(nativeElements);
 				if (null == tempCollection || 0 == tempCollection.Count) {
 				    return new UiElement[] {};
@@ -81,7 +83,9 @@ namespace UIAutomation
 			public IUiElement[] GetColumnHeaders()
 			{
 				// return (AutomationElement[])this._el.GetPatternPropertyValue(TablePattern.ColumnHeadersProperty, this._useCache);
-                AutomationElement[] nativeElements = (AutomationElement[])this._tablePattern.GetParentElement().GetPatternPropertyValue(TablePattern.ColumnHeadersProperty, this._useCache);
+                // 20140302
+                // AutomationElement[] nativeElements = (AutomationElement[])this._tablePattern.GetParentElement().GetPatternPropertyValue(TablePattern.ColumnHeadersProperty, this._useCache);
+                var nativeElements = (AutomationElement[])this._tablePattern.GetParentElement().GetPatternPropertyValue(TablePattern.ColumnHeadersProperty, this._useCache);
 				IUiEltCollection tempCollection = AutomationFactory.GetUiEltCollection(nativeElements);
                 if (null == tempCollection || 0 == tempCollection.Count) {
 				    return new UiElement[] {};

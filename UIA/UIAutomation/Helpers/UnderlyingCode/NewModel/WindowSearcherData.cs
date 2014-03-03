@@ -11,9 +11,9 @@ namespace UIAutomation
 {
     using System;
     using System.Collections;
-    using System.Collections.Generic;
+//    using System.Collections.Generic;
     using System.Diagnostics;
-    using PSTestLib;
+//    using PSTestLib;
     
     /// <summary>
     /// Description of WindowSearcherData.

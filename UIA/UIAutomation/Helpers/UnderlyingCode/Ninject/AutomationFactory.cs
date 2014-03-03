@@ -16,13 +16,15 @@ namespace UIAutomation
     using Ninject.Parameters;
     using Ninject.Extensions.ChildKernel;
     using System.Windows.Automation;
-    using System.Management.Automation;
+//    using System.Management.Automation;
     using System.Collections;
-    using System.Collections.Generic;
+//    using System.Collections.Generic;
     using PSTestLib;
     using Castle.DynamicProxy;
     using System.Linq;
     using WindowsInput;
+    
+    using NLog;
     
     /// <summary>
     /// Description of AutomationFactory.
@@ -140,7 +142,9 @@ namespace UIAutomation
 		    
 		    // 20140213
 		    // GetLogger();
-		    var logger = GetLogger();
+            // 20140303
+		    // var logger = GetLogger();
+            var logger = GetLogHelper(string.Empty);
 		}
 		
 		public static void Reset()
@@ -836,7 +840,8 @@ namespace UIAutomation
             }
         }
         
-        public static LogHelper GetLogger(string logPath)
+        // public static LogHelper GetLogger(string logPath)
+        internal static LogHelper GetLogHelper(string logPath)
         {
             try {
                 
@@ -844,7 +849,11 @@ namespace UIAutomation
                 // return Kernel.Get<LogHelper>(loggerParam);
                 
                 var logger = Kernel.Get<LogHelper>();
-                logger.LogPath = logPath;
+                // 20140303
+                // logger.LogPath = logPath;
+                if (!string.IsNullOrEmpty(logPath)) {
+                    logger.LogPath = logPath;
+                }
                 return logger;
                 
             } catch (Exception eLogger) {
@@ -856,19 +865,25 @@ namespace UIAutomation
             }
         }
         
-        public static LogHelper GetLogger()
+        public static Logger GetLogger(string logPath)
         {
-            try {
-                
-                return Kernel.Get<LogHelper>();
-                
-            } catch (Exception eLogger) {
-                // TODO
-                // write error to error object!!!
-			    // Console.WriteLine("LogHelper 02");
-			    // Console.WriteLine(eLogger.Message);
-                return null;
-            }
+            var logHelper = AutomationFactory.GetLogHelper(logPath);
+            return logHelper.UiaLogger;
         }
+        
+//        public static LogHelper GetLogger()
+//        {
+//            try {
+//                
+//                return Kernel.Get<LogHelper>();
+//                
+//            } catch (Exception eLogger) {
+//                // TODO
+//                // write error to error object!!!
+//			    // Console.WriteLine("LogHelper 02");
+//			    // Console.WriteLine(eLogger.Message);
+//                return null;
+//            }
+//        }
     }
 }

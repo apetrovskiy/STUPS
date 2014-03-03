@@ -9,6 +9,7 @@
 
 namespace UIAutomation
 {
+    extern alias UIANET;
     using System.Windows.Automation;
     
     /// <summary>
@@ -73,7 +74,7 @@ namespace UIAutomation
         
         public static TranscriptCmdletBase CreateTranscriptingCmdlet()
         {
-            TranscriptCmdletBase cmdlet = 
+            var cmdlet = 
                 new TranscriptCmdletBase
                 {
                     NoClassInformation = false,
@@ -85,7 +86,7 @@ namespace UIAutomation
                     HighlightParent = true,
                     PassThru = false
                 };
-
+            
             Preferences.TranscriptInterval = 500;
             return cmdlet;
         }

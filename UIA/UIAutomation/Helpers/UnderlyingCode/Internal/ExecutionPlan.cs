@@ -129,7 +129,8 @@ namespace UIAutomation
                 CommonCmdletBase.HighlighterGeneration++;
             }
 				
-		    Highlighter highlighter = new Highlighter(
+		    // Highlighter highlighter = new Highlighter(
+            var highlighter = new Highlighter(
 		        elementToHighlight.Current.BoundingRectangle.Height,
 		        elementToHighlight.Current.BoundingRectangle.Width,
 		        elementToHighlight.Current.BoundingRectangle.X,

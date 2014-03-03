@@ -58,7 +58,9 @@ namespace UIAutomation
             }
         }
         
-        public void Log(LogLevels level, string message)
+        // 20140303
+        // public void Log(LogLevels level, string message)
+        public void WriteLog(LogLevels level, string message)
         {
             // ?
             var entry = new LogEntry(level, message);
@@ -199,7 +201,10 @@ namespace UIAutomation
         
         // ==============================================================================================
         
-        public static NLog.Logger UiaLogger = null;
+        // 20140303
+        // public static NLog.Logger UiaLogger = null;
+        // public static Logger UiaLogger { get; set; }
+        public Logger UiaLogger { get; set; }
         
         internal void Init()
         {
@@ -229,32 +234,44 @@ namespace UIAutomation
             _alreadyInitialized = true;
         }
         
-        public static void Fatal(string message)
+        // 20140303
+        // public static void Fatal(string message)
+        public void Fatal(string message)
         {
             UiaLogger.Fatal(message);
         }
         
-        public static void Error(string message)
+        // 20140303
+        // public static void Error(string message)
+        public void Error(string message)
         {
             UiaLogger.Error(message);
         }
         
-        public static void Warn(string message)
+        // 20140303
+        // public static void Warn(string message)
+        public void Warn(string message)
         {
             UiaLogger.Warn(message);
         }
         
-        public static void Info(string message)
+        // 20140303
+        // public static void Info(string message)
+        public void Info(string message)
         {
             UiaLogger.Info(message);
         }
         
-        public static void Debug(string message)
+        // 20140303
+        // public static void Debug(string message)
+        public void Debug(string message)
         {
             UiaLogger.Debug(message);
         }
         
-        public static void Trace(string message)
+        // 20140303
+        // public static void Trace(string message)
+        public void Trace(string message)
         {
             UiaLogger.Trace(message);
         }

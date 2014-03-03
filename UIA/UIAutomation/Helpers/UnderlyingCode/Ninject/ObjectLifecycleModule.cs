@@ -13,15 +13,15 @@ namespace UIAutomation
     using System;
     using System.Collections;
     using System.Windows.Automation;
-    using Ninject;
+//    using Ninject;
     using Ninject.Modules;
-    using Ninject.Extensions.NamedScope;
+//    using Ninject.Extensions.NamedScope;
     using Ninject.Extensions.ChildKernel;
     // 20140217
     using Ninject.Extensions.Conventions;
-    using Ninject.Extensions.Conventions.BindingBuilder;
-    using Ninject.Extensions.Conventions.BindingGenerators;
-    using Ninject.Extensions.Conventions.Syntax;
+//    using Ninject.Extensions.Conventions.BindingBuilder;
+//    using Ninject.Extensions.Conventions.BindingGenerators;
+//    using Ninject.Extensions.Conventions.Syntax;
     using Castle.DynamicProxy;
     using WindowsInput;
     

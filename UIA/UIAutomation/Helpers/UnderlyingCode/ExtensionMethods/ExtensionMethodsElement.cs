@@ -32,9 +32,14 @@ namespace UIAutomation
         {
             IUiElement result = null;
             
+            var walker =
+                new TreeWalker(
+                    System.Windows.Automation.Condition.TrueCondition);
+            /*
             TreeWalker walker =
                 new TreeWalker(
                     System.Windows.Automation.Condition.TrueCondition);
+            */
             
             try {
                 result = AutomationFactory.GetUiElement(walker.GetParent(element.GetSourceElement() as AutomationElement));
@@ -51,9 +56,15 @@ namespace UIAutomation
         /// <returns></returns>
         internal static IUiElement GetAncestorWithHandle(this IUiElement element)
         {
+            var walker =
+                new TreeWalker(
+                    System.Windows.Automation.Condition.TrueCondition);
+            
+            /*
             TreeWalker walker =
                 new TreeWalker(
                     System.Windows.Automation.Condition.TrueCondition);
+            */
             
             try {
                 
@@ -89,29 +100,32 @@ namespace UIAutomation
         /// <returns></returns>
         internal static IUiElement[] GetParentOrAncestor(this IUiElement element, TreeScope scope)
         {
+            var walker =
+                new TreeWalker(
+                    System.Windows.Automation.Condition.TrueCondition);
+            
+            var ancestors =
+                new List<IUiElement>();
+            
+            /*
             TreeWalker walker =
                 new TreeWalker(
                     System.Windows.Automation.Condition.TrueCondition);
             
             List<IUiElement> ancestors =
                 new List<IUiElement>();
+            */
             
             try {
                 
-                // 20140102
-                // IUiElement testParent = AutomationFactory.GetUiElement(walker.GetParent(element.GetSourceElement()));
                 IUiElement testParent = AutomationFactory.GetUiElement(walker.GetParent(element.GetSourceElement() as AutomationElement));
                     
                 if (scope == TreeScope.Parent || scope == TreeScope.Ancestors) {
                     
-                    // 20131226
-                    // if (testParent != UiElement.RootElement) {
                     if (testParent.Current != UiElement.RootElement.Current) {
                         ancestors.Add(testParent);
                     }
                     
-                    // 20131226
-                    // if (testParent == UiElement.RootElement ||
                     if ((testParent.Equals(UiElement.RootElement) && testParent.Current.Equals(UiElement.RootElement.Current)) ||
                         scope == TreeScope.Parent) {
                         return ancestors.ToArray();
@@ -119,19 +133,12 @@ namespace UIAutomation
                 }
                 while (testParent != null &&
                        (int)testParent.Current.ProcessId > 0 &&
-                       // 20131226
-                       // testParent != UiElement.RootElement) {
                        !testParent.Current.Equals(UiElement.RootElement.Current)) {
                     
                     testParent =
-                        // 20140102
-                        // AutomationFactory.GetUiElement(walker.GetParent(testParent.GetSourceElement()));
                         AutomationFactory.GetUiElement(walker.GetParent(testParent.GetSourceElement() as AutomationElement));
                     if (testParent != null &&
                         (int)testParent.Current.ProcessId > 0 &&
-                        // 20131226
-                        // testParent != UiElement.RootElement) {
-                        // !testParent.Equals(UiElement.RootElement)) {
                         !testParent.Current.Equals(UiElement.RootElement.Current)) {
                         
                         ancestors.Add(testParent);
@@ -154,9 +161,15 @@ namespace UIAutomation
         /// <param name="element"></param>
         internal static void CollectAncestors(this IUiElement element, TranscriptCmdletBase cmdlet, ref string errorMessage, ref bool errorOccured)
         {
+            var walker =
+                new TreeWalker(
+                    System.Windows.Automation.Condition.TrueCondition);
+            
+            /*
             TreeWalker walker =
                 new TreeWalker(
                     System.Windows.Automation.Condition.TrueCondition);
+            */
             
             try
             {
@@ -474,8 +487,12 @@ namespace UIAutomation
                     contextMenuSearcherData,
                     Preferences.Timeout);
             
+			resultElement =
+                elementsMenuRoot.First(element => null != element);
+            /*
             resultElement =
                 elementsMenuRoot.Where(element => null != element).First();
+            */
             
             return resultElement;
         }
@@ -487,7 +504,9 @@ namespace UIAutomation
             if (null == element.GetSourceElement()) return false;
             
             try {
-                AutomationElement elementNet = element.GetSourceElement() as AutomationElement;
+                // 20140302
+                // AutomationElement elementNet = element.GetSourceElement() as AutomationElement;
+                var elementNet = element.GetSourceElement() as AutomationElement;
                 if (null != elementNet) {
                     try {
                         var testVariable = elementNet.Current.Name;
@@ -496,7 +515,9 @@ namespace UIAutomation
                         // throw;
                     }
                     // if (null == elementNet.Cached) return false;
-                    if (null == elementNet.Current.ProcessId || 0 == elementNet.Current.ProcessId) return false;
+                    // 20140302
+                    // if (null == elementNet.Current.ProcessId || 0 == elementNet.Current.ProcessId) return false;
+                    if (0 == elementNet.Current.ProcessId) return false;
                 }
             }
             catch {}

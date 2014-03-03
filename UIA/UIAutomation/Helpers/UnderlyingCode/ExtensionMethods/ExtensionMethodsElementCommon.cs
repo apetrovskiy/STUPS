@@ -12,12 +12,12 @@ namespace UIAutomation
     extern alias UIANET;
     using System;
     using System.Windows.Automation;
-    using System.Windows.Automation.Text;
+//    using System.Windows.Automation.Text;
     using System.Collections;
-    using System.Collections.Generic;
+//    using System.Collections.Generic;
     using System.Linq;
-    using System.Management.Automation;
-    using PSTestLib;
+//    using System.Management.Automation;
+//    using PSTestLib;
     
     /// <summary>
     /// Description of ExtensionMethodsElementCommon.
@@ -29,7 +29,10 @@ namespace UIAutomation
 		{
 			IUiElement result = null;
 
-			TreeWalker walker = new TreeWalker(System.Windows.Automation.Condition.TrueCondition);
+			var walker = new TreeWalker(System.Windows.Automation.Condition.TrueCondition);
+            /*
+            TreeWalker walker = new TreeWalker(System.Windows.Automation.Condition.TrueCondition);
+            */
 
 			try {
 				result = AutomationFactory.GetUiElement(walker.GetParent(element.GetSourceElement() as AutomationElement));
@@ -43,7 +46,10 @@ namespace UIAutomation
 		{
 			IUiElement result = null;
 
-			TreeWalker walker = new TreeWalker(System.Windows.Automation.Condition.TrueCondition);
+			var walker = new TreeWalker(System.Windows.Automation.Condition.TrueCondition);
+            /*
+            TreeWalker walker = new TreeWalker(System.Windows.Automation.Condition.TrueCondition);
+            */
 
 			try {
 				result = AutomationFactory.GetUiElement(walker.GetFirstChild(element.GetSourceElement() as AutomationElement));
@@ -71,7 +77,11 @@ namespace UIAutomation
 		{
 			IUiElement result = null;
 
-			TreeWalker walker = new TreeWalker(System.Windows.Automation.Condition.TrueCondition);
+			var walker = new TreeWalker(System.Windows.Automation.Condition.TrueCondition);
+            
+            /*
+            TreeWalker walker = new TreeWalker(System.Windows.Automation.Condition.TrueCondition);
+            */
 
 			try {
 				result = AutomationFactory.GetUiElement(walker.GetNextSibling(element.GetSourceElement() as AutomationElement));
@@ -85,9 +95,13 @@ namespace UIAutomation
 		{
 			IUiElement result = null;
 
-			TreeWalker walker = new TreeWalker(System.Windows.Automation.Condition.TrueCondition);
-
+			var walker = new TreeWalker(System.Windows.Automation.Condition.TrueCondition);
+            /*
+            TreeWalker walker = new TreeWalker(System.Windows.Automation.Condition.TrueCondition);
+            */
+            
 			try {
+                
 				result = AutomationFactory.GetUiElement(walker.GetPreviousSibling(element.GetSourceElement() as AutomationElement));
 			} catch {
 			}

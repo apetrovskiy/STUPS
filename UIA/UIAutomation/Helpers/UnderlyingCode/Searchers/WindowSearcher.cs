@@ -17,9 +17,9 @@ namespace UIAutomation
     using System.Linq;
     using System.Management.Automation;
     using System.Text.RegularExpressions;
-    using PSTestLib;
-    
-    using System.Data; // ?
+//    using PSTestLib;
+//    
+//    using System.Data; // ?
     
     /// <summary>
     /// Description of WindowSeatcher.
@@ -181,7 +181,9 @@ namespace UIAutomation
         internal void FilterResultCollectionByWithControlParameter()
         {
             var filteredWindows = new List<IUiElement>();
-            bool exitInnerCycle = false;
+            // 20140302
+            // bool exitInnerCycle = false;
+            bool exitInnerCycle;
 
             foreach (IUiElement window in ResultCollection) {
 

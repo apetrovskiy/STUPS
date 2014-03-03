@@ -9,6 +9,7 @@
 
 namespace UIAutomation
 {
+    extern alias UIANET;
     using System;
     using System.Collections;
     using System.Collections.Generic;
@@ -226,19 +227,11 @@ namespace UIAutomation
         
         internal static IEnumerable<IUiElement> SearchByContainsTextViaWin32(
             IUiElement inputObject,
-            // 20140228
-            // ControlFromWin32Provider controlProvider,
-            // HandleCollector handleCollector)
             ControlFromWin32Provider controlProvider)
         {
             var resultList =
                 new List<IUiElement>();
             
-            // 20140224
-            // controlProvider.SearchData.Name = controlProvider.SearchData.Value = controlProvider.SearchData.ContainsText;
-            
-            // 20140228
-            // foreach (IUiElement elementToChoose in controlProvider.GetElements(handleCollector, null)) {
             foreach (IUiElement elementToChoose in controlProvider.GetElements(null)) {
                 
                 if (null != controlProvider.SearchData.ControlType && 0 < controlProvider.SearchData.ControlType.Length) {
@@ -420,7 +413,6 @@ namespace UIAutomation
         internal IEnumerable<IUiElement> SearchByWildcardViaWin32(
             IUiElement inputObject,
             ControlSearcherData data,
-            // 20140219
             HandleCollector handleCollector)
         {
             var tempListWin32 = new List<IUiElement>();
@@ -437,13 +429,10 @@ namespace UIAutomation
                     Class = data.Class
                 };
                 
-                // 20140228
                 controlFrom32Provider.HandleCollector = handleCollector;
                 
                 tempListWin32.AddRange(
                     controlFrom32Provider.GetElements(
-                        // 20140228
-                        // handleCollector,
                         singleControlSearcherData.ConvertSingleControlSearcherDataToControlSearcherTemplateData()));
             }
             
@@ -524,17 +513,17 @@ namespace UIAutomation
         }
         
         #region condition methods
-        internal static AndCondition GetAndCondition(List<PropertyCondition> propertyCollection)
+        internal static UIANET::System.Windows.Automation.AndCondition GetAndCondition(List<PropertyCondition> propertyCollection)
         {
             if (null == propertyCollection) return null;
-            var resultCondition = new AndCondition(propertyCollection.ToArray());
+            var resultCondition = new UIANET::System.Windows.Automation.AndCondition(propertyCollection.ToArray());
             return resultCondition;
         }
         
-        internal static OrCondition GetOrCondition(List<PropertyCondition> propertyCollection)
+        internal static UIANET::System.Windows.Automation.OrCondition GetOrCondition(List<PropertyCondition> propertyCollection)
         {
             if (null == propertyCollection) return null;
-            var resultCondition = new OrCondition(propertyCollection.ToArray());
+            var resultCondition = new UIANET::System.Windows.Automation.OrCondition(propertyCollection.ToArray());
             return resultCondition;
         }
         
@@ -543,18 +532,24 @@ namespace UIAutomation
             if (null == controlTypeNames) return Condition.TrueCondition;
             
             List<PropertyCondition> controlTypeCollection =
-                controlTypeNames.Select(controlTypeName => new PropertyCondition(AutomationElement.ControlTypeProperty, UiaHelper.GetControlTypeByTypeName(controlTypeName))).ToList();
+                // 20140302
+                // controlTypeNames.Select(controlTypeName => new PropertyCondition(AutomationElement.ControlTypeProperty, UiaHelper.GetControlTypeByTypeName(controlTypeName))).ToList();
+                controlTypeNames.Select(controlTypeName => new PropertyCondition(AutomationElement.ControlTypeProperty, UiaHelper.GetControlTypeByTypeName(controlTypeName))).ToList<PropertyCondition>();
 
             // return 1 == controlTypeCollection.Count ? controlTypeCollection[0] : GetOrCondition(controlTypeCollection);
             
             // 20140218
 			// return 1 == controlTypeCollection.Count ? controlTypeCollection[0] : GetOrCondition(controlTypeCollection);
             
+			// 20140302
+			return 1 == controlTypeCollection.Count ? (Condition)controlTypeCollection[0] : (Condition)GetOrCondition(controlTypeCollection);
+            /*
             if (1 == controlTypeCollection.Count) {
                 return controlTypeCollection[0];
             } else {
                 return GetOrCondition(controlTypeCollection);
             }
+            */
         }
         
         internal static Condition GetTextSearchCondition(string searchString, string[] controlTypeNames, bool caseSensitive1)

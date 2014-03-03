@@ -9,8 +9,10 @@
 
 namespace UIAutomation
 {
+    extern alias UIANET;
     using System;
     using System.Reflection;
+	using System.Runtime.Remoting.Lifetime;
     using System.Windows.Automation;
     using System.Collections;
     using System.Collections.Generic;
@@ -959,7 +961,9 @@ namespace UIAutomation
                         methodName += argument.ToString();
                         methodName += ",";
                     }
-                    if (methodName.Substring(methodName.Length - 1) == ",") {
+                    // 20140302
+                    // if (methodName.Substring(methodName.Length - 1) == ",") {
+                    if (!string.IsNullOrEmpty(methodName) && methodName.Substring(methodName.Length - 1) == ",") {
                         methodName = methodName.Substring(0, methodName.Length - 1);
                     }
                     /*
@@ -970,7 +974,8 @@ namespace UIAutomation
                     methodName += ")";
                 }
                 if (!string.IsNullOrEmpty(methodName)) {
-                    LogHelper.Info(methodName);
+                    // LogHelper.Info(methodName);
+                    AutomationFactory.GetLogHelper(string.Empty).Info(methodName);
                 }
             }
         }

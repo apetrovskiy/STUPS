@@ -46,8 +46,12 @@ namespace UIAutomation
                     const WildcardOptions options = WildcardOptions.IgnoreCase |
                                                     WildcardOptions.Compiled;
                     
+                    var wildcardInfoString = 
+                        new WildcardPattern(infoString, options);
+                    /*
                     WildcardPattern wildcardInfoString = 
                         new WildcardPattern(infoString, options);
+                    */
                     
                     var queryByStringData = from collectionItem
                         in this._collectionHolder //.ToArray()

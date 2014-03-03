@@ -9,23 +9,14 @@
 
 namespace UIAutomation
 {
-    //    using System.Collections;
-    //    using System.Collections.Generic;
-    //    using System.Management.Automation;
-//
     extern alias UIANET;
     using System;
-//    using System.Windows.Automation;
+    using System.Windows.Automation;
 //    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
 //    using System.Management.Automation;
 //    using PSTestLib;
-    
-//    using System.Globalization;
-//    using System.Threading;
-//    using System.Windows.Forms;
-//    using System.Text.RegularExpressions;
     
     /// <summary>
     /// Description of ControlFromUiaProvider.
@@ -33,6 +24,9 @@ namespace UIAutomation
     [UiaSpecialBinding]
     public class ControlFromUiaProvider : ControlProvider
     {
+        public Condition Condition { get; set; }
+        public TreeScope TreeScope { get; set; }
+        
         public override List<IUiElement> GetElements(ControlSearcherTemplateData data)
         {
             return new List<IUiElement>();

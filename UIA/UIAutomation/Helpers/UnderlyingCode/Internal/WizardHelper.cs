@@ -41,7 +41,8 @@ namespace UIAutomation
             }
             
             cmdlet.WriteVerbose(cmdlet, "wizard name validated");
-            Wizard wzd = new Wizard(cmdlet.Name);
+            // Wizard wzd = new Wizard(cmdlet.Name);
+            var wzd = new Wizard(cmdlet.Name);
             cmdlet.WriteVerbose(cmdlet, "wizard object created");
             wzd.StartAction = cmdlet.StartAction;
             wzd.StopAction = cmdlet.StopAction;
@@ -71,7 +72,8 @@ namespace UIAutomation
                         true);
                 }
                 
-                WizardStep step = new WizardStep(cmdlet.Name, cmdlet.Order)
+                // WizardStep step = new WizardStep(cmdlet.Name, cmdlet.Order)
+                var step = new WizardStep(cmdlet.Name, cmdlet.Order)
                 {
                     SearchCriteria = cmdlet.SearchCriteria,
                     StepForwardAction = cmdlet.StepForwardAction,

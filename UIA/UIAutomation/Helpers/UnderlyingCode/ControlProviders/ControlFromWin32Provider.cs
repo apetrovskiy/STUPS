@@ -9,10 +9,6 @@
 
 namespace UIAutomation
 {
-    //    using System.Collections;
-    //    using System.Collections.Generic;
-    //    using System.Management.Automation;
-//
     extern alias UIANET;
     using System;
     using System.Windows.Automation;
@@ -26,11 +22,8 @@ namespace UIAutomation
     [UiaSpecialBinding]
     public class ControlFromWin32Provider : ControlProvider
     {
-        // 20140228
         public HandleCollector HandleCollector { get; set; }
         
-        // 20140228
-        // public override List<IUiElement> GetElements(HandleCollector handleCollector, ControlSearcherTemplateData data)
         public override List<IUiElement> GetElements(ControlSearcherTemplateData data)
         {
             var resultCollection = new List<IUiElement>();
@@ -46,22 +39,17 @@ namespace UIAutomation
             }
             if (null == controlSearcherData) return resultCollection;
             
-            // 20140224
             if (!string.IsNullOrEmpty(controlSearcherData.ContainsText)) {
                 controlSearcherData.Name = controlSearcherData.Value = controlSearcherData.ContainsText;
             }
             
             try {
-                // 20140228
-                // return FilterElements(handleCollector, controlSearcherData);
                 return FilterElements(controlSearcherData);
             } catch (Exception eWin32Control) {
                 return resultCollection;
             }
         }
         
-        // 20140228
-        // internal List<IUiElement> FilterElements(HandleCollector handleCollector, SingleControlSearcherData controlSearcherData)
         internal List<IUiElement> FilterElements(SingleControlSearcherData controlSearcherData)
         {
             var resultCollection = new List<IUiElement>();
@@ -70,8 +58,6 @@ namespace UIAutomation
             var wildcardName = new WildcardPattern(controlSearcherData.Name ?? "*", options);
             var wildcardValue = new WildcardPattern(controlSearcherData.Value ?? "*", options);
             
-            // 20140228
-            // foreach (IUiElement element in handleCollector.GetElementsFromHandles(handleCollector.CollectRecursively(controlSearcherData.InputObject, controlSearcherData.Name, 1))) {
             foreach (IUiElement element in HandleCollector.GetElementsFromHandles(HandleCollector.CollectRecursively(controlSearcherData.InputObject, controlSearcherData.Name, 1))) {
                 if (element.IsMatchWildcardPattern(resultCollection, wildcardName, element.Current.Name))
                     continue;

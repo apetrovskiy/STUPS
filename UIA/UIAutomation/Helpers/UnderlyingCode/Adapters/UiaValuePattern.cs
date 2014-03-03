@@ -63,8 +63,11 @@ namespace UIAutomation
 			}
 			public bool IsReadOnly {
 				get {
-				    if (null == this._valuePattern) return true;
+					return null == this._valuePattern || (bool)this._valuePattern.GetParentElement().GetPatternPropertyValue(ValuePattern.IsReadOnlyProperty, this._useCache);
+                    /*
+                    if (null == this._valuePattern) return true;
 				    return (bool)this._valuePattern.GetParentElement().GetPatternPropertyValue(ValuePattern.IsReadOnlyProperty, this._useCache);
+                    */
 				}
 			}
 		}

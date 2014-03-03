@@ -58,8 +58,6 @@ namespace UIAutomation
             }
         }
         
-        // 20140303
-        // public void Log(LogLevels level, string message)
         public void WriteLog(LogLevels level, string message)
         {
             // ?
@@ -234,43 +232,38 @@ namespace UIAutomation
             _alreadyInitialized = true;
         }
         
-        // 20140303
-        // public static void Fatal(string message)
         public void Fatal(string message)
         {
             UiaLogger.Fatal(message);
         }
         
-        // 20140303
-        // public static void Error(string message)
         public void Error(string message)
         {
             UiaLogger.Error(message);
         }
         
-        // 20140303
-        // public static void Warn(string message)
         public void Warn(string message)
         {
             UiaLogger.Warn(message);
         }
         
-        // 20140303
-        // public static void Info(string message)
         public void Info(string message)
         {
             UiaLogger.Info(message);
         }
         
-        // 20140303
-        // public static void Debug(string message)
+        //
+        public void Log(string message)
+        {
+            UiaLogger.Info(message);
+        }
+        //
+        
         public void Debug(string message)
         {
             UiaLogger.Debug(message);
         }
         
-        // 20140303
-        // public static void Trace(string message)
         public void Trace(string message)
         {
             UiaLogger.Trace(message);

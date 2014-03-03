@@ -23,15 +23,10 @@ namespace UIAutomation
                 invocation.Proceed();
             } catch (Exception eOnInvocation) {
                 
-//                if (Preferences.Log) {
-//                    LogHelper.Error(eOnInvocation.Message);
-//                }
-                
                 if (Preferences.Log) {
 //                    try {
                         if (invocation.TargetType.IsSubclassOf(typeof(UiaCommand))) {
-                            //20140303 
-                            // LogHelper.Error(eOnInvocation.Message);
+                            
                             AutomationFactory.GetLogHelper(string.Empty).Error(eOnInvocation.Message);
 //                            var cmdlet =
 //                                (invocation.InvocationTarget as UiaCommand).Cmdlet;
@@ -45,7 +40,6 @@ namespace UIAutomation
 //                    }
                 }
                 
-                // Exception eNewException =
                 var eNewException =
                     new Exception("Class " + invocation.TargetType.Name + ", method " + invocation.Method.Name + ": " + eOnInvocation.Message);
                 throw eNewException;

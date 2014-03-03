@@ -41,7 +41,6 @@ namespace UIAutomation
             }
             
             cmdlet.WriteVerbose(cmdlet, "wizard name validated");
-            // Wizard wzd = new Wizard(cmdlet.Name);
             var wzd = new Wizard(cmdlet.Name);
             cmdlet.WriteVerbose(cmdlet, "wizard object created");
             wzd.StartAction = cmdlet.StartAction;

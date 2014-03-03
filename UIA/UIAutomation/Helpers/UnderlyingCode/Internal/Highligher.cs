@@ -462,10 +462,8 @@ namespace UIAutomation
             double height, 
             Highlighters control,
             Color? color)
-            // System.Nullable<System.Drawing.Color> color)
         {
             TopMost = true;
-            //this.FormBorderStyle = FormBorderStyle.None;
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Visible = false;
             Opacity = 0.5;
@@ -595,9 +593,6 @@ namespace UIAutomation
             if (Preferences.ShowInfoToolTip) {
                 // tooltip
                 var tooltip = new ToolTip {Active = true, ShowAlways = true, IsBalloon = true};
-                /*
-                ToolTip tooltip = new ToolTip {Active = true, ShowAlways = true, IsBalloon = true};
-                */
                 tooltip.Show(tooltipText, this);
             }
             

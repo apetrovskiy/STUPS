@@ -25,8 +25,6 @@ namespace UIAutomation
                         var cmdlet =
                             (invocation.InvocationTarget as UiaCommand).Cmdlet;
                         var logger =
-                            // 20140303
-                            // AutomationFactory.GetLogger();
                             AutomationFactory.GetLogHelper(string.Empty);
                         logger.LogCmdlet(cmdlet);
                     }

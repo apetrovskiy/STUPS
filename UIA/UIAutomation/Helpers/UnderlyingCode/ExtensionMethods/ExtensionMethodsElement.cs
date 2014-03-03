@@ -393,41 +393,6 @@ namespace UIAutomation
                 return tempString;
             }
         }
-        // 20140218
-//        internal static List<IntPtr> GetControlByNameViaWin32Recursively(
-//            this IUiElement containerElement,
-//            string name,
-//            int level)
-//        {
-//            var resultHandle = IntPtr.Zero;
-//            var controlHandle = IntPtr.Zero;
-//            var controlHandles = new List<IntPtr>();
-//            var tempControlHandles = new List<IntPtr>();
-//            var containerHandle = new IntPtr(containerElement.Current.NativeWindowHandle);
-//            
-//            if (containerHandle == IntPtr.Zero) return controlHandles;
-//            
-//            // search at this level
-//            do {
-//                // using null instead of name
-//                controlHandle =
-//                    NativeMethods.FindWindowEx(containerHandle, controlHandle, null, null);
-//                
-//                if (controlHandle == IntPtr.Zero) continue;
-//                controlHandles.Add(controlHandle);
-//                
-//                tempControlHandles =
-//                    UiElement.FromHandle(controlHandle).GetControlByNameViaWin32Recursively(
-//                        name,
-//                        level + 1);
-//                
-//                if (null == tempControlHandles || 0 == tempControlHandles.Count) continue;
-//                controlHandles.AddRange(tempControlHandles);
-//                
-//            } while (controlHandle != IntPtr.Zero);
-//            
-//            return controlHandles;
-//        }
         
         internal static bool IsMatchWildcardPattern(
             this IUiElement elementInput,
@@ -489,10 +454,6 @@ namespace UIAutomation
             
 			resultElement =
                 elementsMenuRoot.First(element => null != element);
-            /*
-            resultElement =
-                elementsMenuRoot.Where(element => null != element).First();
-            */
             
             return resultElement;
         }
@@ -504,8 +465,6 @@ namespace UIAutomation
             if (null == element.GetSourceElement()) return false;
             
             try {
-                // 20140302
-                // AutomationElement elementNet = element.GetSourceElement() as AutomationElement;
                 var elementNet = element.GetSourceElement() as AutomationElement;
                 if (null != elementNet) {
                     try {
@@ -514,9 +473,7 @@ namespace UIAutomation
                         return false;
                         // throw;
                     }
-                    // if (null == elementNet.Cached) return false;
-                    // 20140302
-                    // if (null == elementNet.Current.ProcessId || 0 == elementNet.Current.ProcessId) return false;
+                    
                     if (0 == elementNet.Current.ProcessId) return false;
                 }
             }

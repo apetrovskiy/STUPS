@@ -29,8 +29,6 @@ namespace UIAutomation
         
         public override void OnStartHook()
         {
-            // 20140302
-            // ContextMenuSearcherData data = SearcherData as ContextMenuSearcherData;
             var data = SearcherData as ContextMenuSearcherData;
             
             conditionsForContextMenuSearch =

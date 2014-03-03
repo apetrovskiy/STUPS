@@ -135,15 +135,6 @@ namespace UIAutomation
             
 			Wait &= !(SearcherData as WindowSearcherData).WaitNoWindow || !wasFound || (null != ResultCollection && 0 != ResultCollection.Count);
             
-			/*
-            if ((SearcherData as WindowSearcherData).WaitNoWindow && wasFound && (null == ResultCollection || 0 == ResultCollection.Count)) {
-                
-                Wait = false;
-            }
-            */
-            
-//			if (!(SearcherData as WindowSearcherData).WaitNoWindow || wasFound || null == ResultCollection || 0 == ResultCollection.Count)
-//				return;
 //			wasFound = true;
 //			ResultCollection.Clear();
 //			ResultCollection = null;
@@ -156,7 +147,6 @@ namespace UIAutomation
                 ResultCollection = null;
             }
             
-			// 20140208
 			if (null != ResultCollection && 0 < ResultCollection.Count) {
 				if (Preferences.CacheRequestCalled && null != CurrentData.CacheRequest) {
 					try {
@@ -181,8 +171,6 @@ namespace UIAutomation
         internal void FilterResultCollectionByWithControlParameter()
         {
             var filteredWindows = new List<IUiElement>();
-            // 20140302
-            // bool exitInnerCycle = false;
             bool exitInnerCycle;
 
             foreach (IUiElement window in ResultCollection) {
@@ -212,21 +200,6 @@ namespace UIAutomation
 							break;
 						}
                         
-                        /*
-                        if (null != controlsList && 0 < controlsList.Count) {
-
-                            addToResultCollection = true;
-                            break;
-
-                        } else {
-
-                            exitInnerCycle = true;
-                            addToResultCollection = false;
-                            continue;
-                        }
-                        */
-
-
                     } catch (Exception eWindowIsGone) {
 
                         // forcing to a next loop
@@ -288,12 +261,6 @@ namespace UIAutomation
                 new List<IUiElement>();
             var resultCollection =
                 new List<IUiElement>();
-            /*
-            List<IUiElement> windowCollectionByProperties =
-                new List<IUiElement>();
-            List<IUiElement> resultCollection =
-                new List<IUiElement>();
-            */
             
             if (null == data.Name) {
                 data.Name = new string[]{ string.Empty };

@@ -811,7 +811,6 @@ namespace UIAutomation
             return ConvertToProxiedObject<T>(newObject) as SearcherTemplate;
         }
         
-        // 20140217
         internal static T GetObject<T>()
         {
             // var newObject = Kernel.Get<T>(new IParameter[] {});
@@ -840,17 +839,11 @@ namespace UIAutomation
             }
         }
         
-        // public static LogHelper GetLogger(string logPath)
         internal static LogHelper GetLogHelper(string logPath)
         {
             try {
                 
-                // var loggerParam = new ConstructorArgument("logPath", logPath);
-                // return Kernel.Get<LogHelper>(loggerParam);
-                
                 var logger = Kernel.Get<LogHelper>();
-                // 20140303
-                // logger.LogPath = logPath;
                 if (!string.IsNullOrEmpty(logPath)) {
                     logger.LogPath = logPath;
                 }
@@ -870,20 +863,5 @@ namespace UIAutomation
             var logHelper = AutomationFactory.GetLogHelper(logPath);
             return logHelper.UiaLogger;
         }
-        
-//        public static LogHelper GetLogger()
-//        {
-//            try {
-//                
-//                return Kernel.Get<LogHelper>();
-//                
-//            } catch (Exception eLogger) {
-//                // TODO
-//                // write error to error object!!!
-//			    // Console.WriteLine("LogHelper 02");
-//			    // Console.WriteLine(eLogger.Message);
-//                return null;
-//            }
-//        }
     }
 }

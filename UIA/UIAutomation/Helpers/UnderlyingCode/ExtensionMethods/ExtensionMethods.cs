@@ -16,6 +16,7 @@ namespace UIAutomation
     using System.Collections.Generic;
     using System.Linq;
     using System.Management.Automation;
+    using NLog;
     
     /// <summary>
     /// Description of ExtensionsMethods.
@@ -319,18 +320,11 @@ namespace UIAutomation
 			} : new string[] {
 				controlType.ProgrammaticName.Substring(12)
 			};
-            /*
-            if (null == controlType) return new string[] {};
-            return new string[] { controlType.ProgrammaticName.Substring(12) };
-            */
-            
         }
         
         internal static SingleControlSearcherData ConvertControlSearcherDataToSingleControlSearcherData(this ControlSearcherData data)
         {
             return new SingleControlSearcherData {
-                // 20140302
-                // InputObject = (null == data.InputObject ? null : (null == data.InputObject[0] ? null : data.InputObject[0])),
                 InputObject = (null == data.InputObject ? null : (data.InputObject[0] ?? null)),
                 Name = data.Name,
                 AutomationId = data.AutomationId,
@@ -348,7 +342,6 @@ namespace UIAutomation
         internal static SingleControlSearcherData ConvertControlSearcherTemplateDataToSingleControlSearcherData(this ControlSearcherTemplateData data)
         {
             return new SingleControlSearcherData {
-                // InputObject = (null == data.InputObject ? null : (null == data.InputObject[0] ? null : data.InputObject[0])),
                 InputObject = (null == data.InputObject ? null : (data.InputObject[0] ?? null)),
                 Name = data.Name,
                 AutomationId = data.AutomationId,
@@ -366,8 +359,6 @@ namespace UIAutomation
         internal static ControlSearcherTemplateData ConvertSingleControlSearcherDataToControlSearcherTemplateData(this SingleControlSearcherData data)
         {
             return new ControlSearcherTemplateData {
-                // InputObject = (null == data.InputObject ? null : (null == data.InputObject[0] ? null : data.InputObject[0])),
-                // InputObject = (null == data.InputObject ? null : (data.InputObject[0] ?? null)),
                 InputObject = new IUiElement[] { data.InputObject },
                 Name = data.Name,
                 AutomationId = data.AutomationId,
@@ -380,6 +371,11 @@ namespace UIAutomation
                 Regex = data.Regex,
                 SearchCriteria = data.SearchCriteria
             };
+        }
+        
+        public static void Log(this NLog.Logger logger, string message)
+        {
+            logger.Info(message);
         }
     }
 }

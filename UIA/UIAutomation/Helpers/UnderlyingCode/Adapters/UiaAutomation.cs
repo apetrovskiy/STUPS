@@ -21,15 +21,10 @@ namespace UIAutomation
 	[UiaSpecialBinding]
 	public class UiaAutomation : IAutomation
 	{
-		// public static Condition RawViewCondition
-		// public static readonly Condition RawViewCondition
 		public Condition RawViewCondition
 		{
-		    // get { return Condition.TrueCondition; }
 		    get { return Automation.RawViewCondition; }
 		}
-		// public static readonly Condition RawViewCondition = Condition.TrueCondition;
-		// public Condition RawViewCondition = Condition.TrueCondition;
 		
 		public Condition ControlViewCondition
 		{

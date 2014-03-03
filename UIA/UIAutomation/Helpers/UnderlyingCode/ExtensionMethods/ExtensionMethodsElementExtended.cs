@@ -143,10 +143,7 @@ namespace UIAutomation
         {
             var cmdlet =
                 new HasControlInputCmdletBase();
-            /*
-            HasControlInputCmdletBase cmdlet =
-                new HasControlInputCmdletBase();
-            */
+            
             cmdlet.ClickControl(
                 cmdlet,
                 holder.GetParentElement(),
@@ -162,10 +159,7 @@ namespace UIAutomation
         {
             var cmdlet =
                 new HasControlInputCmdletBase();
-            /*
-            HasControlInputCmdletBase cmdlet =
-                new HasControlInputCmdletBase();
-            */
+            
             cmdlet.ClickControl(
                 cmdlet,
                 holder.GetParentElement(),
@@ -183,10 +177,7 @@ namespace UIAutomation
         {
             var cmdlet =
                 new HasControlInputCmdletBase();
-            /*
-            HasControlInputCmdletBase cmdlet =
-                new HasControlInputCmdletBase();
-            */
+            
             cmdlet.ClickControl(
                 cmdlet,
                 holder.GetParentElement(),
@@ -204,10 +195,7 @@ namespace UIAutomation
         {
             var cmdlet =
                 new HasControlInputCmdletBase();
-            /*
-            HasControlInputCmdletBase cmdlet =
-                new HasControlInputCmdletBase();
-            */
+            
             cmdlet.ClickControl(
                 cmdlet,
                 holder.GetParentElement(),
@@ -224,10 +212,7 @@ namespace UIAutomation
         {
             var cmdlet =
                 new HasControlInputCmdletBase();
-            /*
-            HasControlInputCmdletBase cmdlet =
-                new HasControlInputCmdletBase();
-            */
+            
             cmdlet.ClickControl(
                 cmdlet,
                 holder.GetParentElement(),
@@ -244,10 +229,7 @@ namespace UIAutomation
         {
             var cmdlet =
                 new HasControlInputCmdletBase();
-            /*
-            HasControlInputCmdletBase cmdlet =
-                new HasControlInputCmdletBase();
-            */
+            
             cmdlet.ClickControl(
                 cmdlet,
                 holder.GetParentElement(),
@@ -264,10 +246,7 @@ namespace UIAutomation
         {
             var cmdlet =
                 new HasControlInputCmdletBase();
-            /*
-            HasControlInputCmdletBase cmdlet =
-                new HasControlInputCmdletBase();
-            */
+            
             cmdlet.ClickControl(
                 cmdlet,
                 holder.GetParentElement(),
@@ -289,38 +268,18 @@ namespace UIAutomation
         {
             var cmdlet =
                 new HasControlInputCmdletBase();
-            /*
-            HasControlInputCmdletBase cmdlet =
-                new HasControlInputCmdletBase();
-            */
-            
-            // 20131226
-            // element.InvokeContextMenu(cmdlet);
-            
-            // return element;
             
             // return the context menu window
             return holder.GetParentElement().InvokeContextMenu(cmdlet, Preferences.ClickOnControlByCoordX, Preferences.ClickOnControlByCoordY);
-            // return holder.GetParentElement().InvokeContextMenu(Preferences.ClickOnControlByCoordX, Preferences.ClickOnControlByCoordY);
         }
         
         public static IUiElement PerformCoordinatedInvokeContextMenu(this IControlInputHolder holder, int X, int Y)
         {
             var cmdlet =
                 new HasControlInputCmdletBase();
-            /*
-            HasControlInputCmdletBase cmdlet =
-                new HasControlInputCmdletBase();
-            */
-            
-            // 20131226
-            // element.InvokeContextMenu(cmdlet);
-            
-            // return element;
             
             // return the context menu window
             return holder.GetParentElement().InvokeContextMenu(cmdlet, X, Y);
-            // return holder.GetParentElement().InvokeContextMenu(X, Y);
         }
         #endregion IControlInputHolder
         #region IKeyboardInputHolder

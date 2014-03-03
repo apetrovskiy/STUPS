@@ -926,7 +926,6 @@ namespace UIAutomation
         {
             string methodName = invocation.Method.Name;
             
-            // 20140217
             if (string.IsNullOrEmpty(methodName)) return;
             
             var excludeList = new List<string> {
@@ -961,20 +960,12 @@ namespace UIAutomation
                         methodName += argument.ToString();
                         methodName += ",";
                     }
-                    // 20140302
-                    // if (methodName.Substring(methodName.Length - 1) == ",") {
                     if (!string.IsNullOrEmpty(methodName) && methodName.Substring(methodName.Length - 1) == ",") {
                         methodName = methodName.Substring(0, methodName.Length - 1);
                     }
-                    /*
-                    if (methodName.Substring(methodName.Length - 1) == ",") {
-                        methodName = methodName.Substring(0, methodName.Length - 1);
-                    }
-                    */
                     methodName += ")";
                 }
                 if (!string.IsNullOrEmpty(methodName)) {
-                    // LogHelper.Info(methodName);
                     AutomationFactory.GetLogHelper(string.Empty).Info(methodName);
                 }
             }

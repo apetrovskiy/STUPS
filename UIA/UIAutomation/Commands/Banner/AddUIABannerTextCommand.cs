@@ -19,7 +19,8 @@ namespace UIAutomation.Commands
     public class AddUiaBannerTextCommand : CommonCmdletBase
     {
         #region Parameters
-        [UiaParameter][Parameter(Mandatory = true,
+        [UiaParameter]
+        [Parameter(Mandatory = true,
                    Position = 0)]
         [ValidateNotNullOrEmpty]
         public string Message { get; set; }

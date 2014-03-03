@@ -35,8 +35,12 @@ namespace UIAutomation.Commands
                         true);
                 }
                 
+                var handle =
+                    new IntPtr(inputObject.Current.NativeWindowHandle);
+                /*
                 IntPtr handle =
                     new IntPtr(inputObject.Current.NativeWindowHandle);
+                */
                 
                 NativeMethods.SendMessage3(handle, NativeMethods.WM_SETTEXT, IntPtr.Zero, "");
                 

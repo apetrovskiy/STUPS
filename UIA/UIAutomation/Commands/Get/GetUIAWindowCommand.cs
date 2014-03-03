@@ -11,7 +11,7 @@ namespace UIAutomation.Commands
 {
     using System;
     using System.Management.Automation;
-    using System.Collections.Generic;
+//    using System.Collections.Generic;
     using UIAutomation.Helpers.Commands;
     
     /// <summary>

@@ -17,6 +17,7 @@ namespace UIAutomation
     using System.Collections;
     using System.Collections.Generic;
     using Castle.DynamicProxy;
+    using NLog;
     using WindowsInput;
     using WindowsInput.Native;
     
@@ -899,6 +900,13 @@ namespace UIAutomation
                             break;
                              */
                             #endregion TouchInput
+//                            #region Logger
+//                        case "Log":
+////                            (invocation.Proxy as NLog.Logger).PerformLog(
+////                                (string)invocation.Arguments[0]);
+//                            (invocation.Proxy as NLog.Logger).Info((string)invocation.Arguments[0]);
+//                            break;
+//                            #endregion Logger
                         default:
                             invocation.Proceed();
                             break;
@@ -945,7 +953,14 @@ namespace UIAutomation
                 "get_Descendants",
                 "get_Children",
                 "get_Mouse",
-                "get_Keyboard"
+                "get_Keyboard",
+                "OnStartHook",
+                "BeforeSearchHook",
+                // "SearchForElements(UIAutomation.WindowSearcherData)
+                "SearchForElements",
+                "AfterSearchHook",
+                "OnFailureHook",
+                "OnSuccessHook"
             };
             
             if (!excludeList.Contains(methodName)) {

@@ -202,11 +202,13 @@ namespace UIAutomation
                         typeof(T),
                         // 20140228
                         // new LoggingAspect(), new ErrorHandlingAspect());
-                        new LoggingAspect(), new ErrorHandlingAspect(), new FaultInjectionAspect());
+                        // 20140304
+                        // new LoggingAspect(), new ErrorHandlingAspect(), new FaultInjectionAspect());
+                        new LoggingAspect(), new ErrorHandlingAspect(), new FaultInjectionAspect(), new MethodSelectorAspect());
                 
             } catch (Exception eProxying) {
-                // Console.WriteLine("ProxiedObject");
-                // Console.WriteLine(eProxying.Message);
+                Console.WriteLine("ProxiedObject");
+                Console.WriteLine(eProxying.Message);
             }
             
             return proxiedObject;
@@ -861,7 +863,9 @@ namespace UIAutomation
         public static Logger GetLogger(string logPath)
         {
             var logHelper = AutomationFactory.GetLogHelper(logPath);
+            // 20140304
             return logHelper.UiaLogger;
+            // return ConvertToProxiedObject<Logger>(logHelper.UiaLogger);
         }
     }
 }

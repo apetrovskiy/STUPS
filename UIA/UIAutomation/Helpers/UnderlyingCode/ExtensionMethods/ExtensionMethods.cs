@@ -373,9 +373,9 @@ namespace UIAutomation
             };
         }
         
-        public static void Log(this NLog.Logger logger, string message)
-        {
-            logger.Info(message);
-        }
+//        public static void PerformLog(this NLog.Logger logger, string message)
+//        {
+//            logger.Info(message);
+//        }
     }
 }

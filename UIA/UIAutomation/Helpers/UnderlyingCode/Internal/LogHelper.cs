@@ -45,7 +45,7 @@ namespace UIAutomation
             Init();
         }
         
-        public string LogPath
+        public virtual string LogPath
         {
             get {
                 var myFileTarget = (FileTarget)LogManager.Configuration.FindTargetByName("file");
@@ -58,19 +58,19 @@ namespace UIAutomation
             }
         }
         
-        public void WriteLog(LogLevels level, string message)
+        public virtual void WriteLog(LogLevels level, string message)
         {
             // ?
             var entry = new LogEntry(level, message);
             Entries.Add(entry);
         }
         
-        public void LogCmdlet(CommonCmdletBase cmdlet)
+        public virtual void LogCmdlet(CommonCmdletBase cmdlet)
         {
             Info(GetObjectPropertiesInfo(cmdlet));
         }
         
-        internal string GetObjectPropertiesInfo(CommonCmdletBase cmdlet)
+        internal virtual string GetObjectPropertiesInfo(CommonCmdletBase cmdlet)
         {
             string result = string.Empty;
             
@@ -87,7 +87,7 @@ namespace UIAutomation
             return result;
         }
         
-        internal string GetPropertyString(CommonCmdletBase cmdlet, PropertyInfo propertyInfo)
+        internal virtual string GetPropertyString(CommonCmdletBase cmdlet, PropertyInfo propertyInfo)
         {
             string result = string.Empty;
             
@@ -169,7 +169,7 @@ namespace UIAutomation
             }
         }
         
-        internal string ConvertHashtableToString(Hashtable hashtable)
+        internal virtual string ConvertHashtableToString(Hashtable hashtable)
         {
             string result = string.Empty;
             
@@ -204,7 +204,7 @@ namespace UIAutomation
         // public static Logger UiaLogger { get; set; }
         public Logger UiaLogger { get; set; }
         
-        internal void Init()
+        internal virtual void Init()
         {
             var config = new LoggingConfiguration();
 
@@ -232,39 +232,32 @@ namespace UIAutomation
             _alreadyInitialized = true;
         }
         
-        public void Fatal(string message)
+        public virtual void Fatal(string message)
         {
             UiaLogger.Fatal(message);
         }
         
-        public void Error(string message)
+        public virtual void Error(string message)
         {
             UiaLogger.Error(message);
         }
         
-        public void Warn(string message)
+        public virtual void Warn(string message)
         {
             UiaLogger.Warn(message);
         }
         
-        public void Info(string message)
+        public virtual void Info(string message)
         {
             UiaLogger.Info(message);
         }
         
-        //
-        public void Log(string message)
-        {
-            UiaLogger.Info(message);
-        }
-        //
-        
-        public void Debug(string message)
+        public virtual void Debug(string message)
         {
             UiaLogger.Debug(message);
         }
         
-        public void Trace(string message)
+        public virtual void Trace(string message)
         {
             UiaLogger.Trace(message);
         }

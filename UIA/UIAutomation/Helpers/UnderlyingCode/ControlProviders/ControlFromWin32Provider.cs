@@ -20,7 +20,7 @@ namespace UIAutomation
     /// Description of ControlFromWin32Gateway.
     /// </summary>
     [UiaSpecialBinding]
-    public class ControlFromWin32Provider : ControlProvider
+    public class ControlFromWin32Provider : ControlProviderTemplate
     {
         public HandleCollector HandleCollector { get; set; }
         

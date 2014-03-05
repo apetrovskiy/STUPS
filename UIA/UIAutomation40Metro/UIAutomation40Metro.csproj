@@ -630,6 +630,9 @@
     <Compile Include="..\UIAutomation\Helpers\Commands\Container\UIANewContainerCommand.cs">
       <Link>Helpers\Commands\Container\UIANewContainerCommand.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Helpers\Commands\Convert\ConvertToSearchCriteriaCommand.cs">
+      <Link>Helpers\Commands\Convert\ConvertToSearchCriteriaCommand.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Helpers\Commands\Event\EventCommand.cs">
       <Link>Helpers\Commands\Event\EventCommand.cs</Link>
     </Compile>
@@ -933,8 +936,17 @@
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\ControlProviders\ControlFromWin32Provider.cs">
       <Link>Helpers\UnderlyingCode\ControlProviders\ControlFromWin32Provider.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\ControlProviders\ControlProvider.cs">
-      <Link>Helpers\UnderlyingCode\ControlProviders\ControlProvider.cs</Link>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\ControlProviders\ControlProviderTemplate.cs">
+      <Link>Helpers\UnderlyingCode\ControlProviders\ControlProviderTemplate.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Converters\ConverterTemplate.cs">
+      <Link>Helpers\UnderlyingCode\Converters\ConverterTemplate.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Converters\ElementToSearchCriteriaConverter.cs">
+      <Link>Helpers\UnderlyingCode\Converters\ElementToSearchCriteriaConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Converters\SearchCriteriaToElementConverter.cs">
+      <Link>Helpers\UnderlyingCode\Converters\SearchCriteriaToElementConverter.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethods.cs">
       <Link>Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethods.cs</Link>
@@ -1340,6 +1352,7 @@
     <Folder Include="Helpers\UnderlyingCode\Internal" />
     <Folder Include="Helpers\UnderlyingCode\Attributes" />
     <Folder Include="Helpers\UnderlyingCode\ControlProviders" />
+    <Folder Include="Helpers\UnderlyingCode\Converters" />
     <Folder Include="Helpers\UnderlyingCode\Searchers" />
     <Folder Include="Helpers\UnderlyingCode\NewModel" />
     <Folder Include="Helpers\UnderlyingCode\NewModel" />

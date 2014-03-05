@@ -115,17 +115,11 @@ namespace UIAutomation
                         UsedSearchType = UsedSearchType.Control_TextSearchWin32;
                         var controlFromWin32Provider = AutomationFactory.GetObject<ControlFromWin32Provider>();
                         controlFromWin32Provider.SearchData = data;
-                        
-                        // 20140228
-                        // var handleCollector = AutomationFactory.GetObject<HandleCollector>();
                         controlFromWin32Provider.HandleCollector = AutomationFactory.GetObject<HandleCollector>();
                         
                         ResultCollection.AddRange(
                             SearchByContainsTextViaWin32(
                                 inputObject,
-                                // 20140228
-                                // controlFromWin32Provider,
-                                // handleCollector));
                                 controlFromWin32Provider));
                     }
                 }
@@ -260,50 +254,26 @@ namespace UIAutomation
             Hashtable[] searchCriteria,
             Condition conditions)
         {
-            #region the -First story
-            // 20120824
-            //aeCtrl =
-            // 20120921
-            #region -First
-            //                                    if (cmdlet.First) {
-            //                                        AutomationElement tempFirstElement =
-            //                                            inputObject.FindFirst(
-            //                                                System.Windows.Automation.TreeScope.Descendants,
-            //                                                conditions);
-            //                                        if (null != tempFirstElement) {
-            //                                            if (null == cmdlet.SearchCriteria || 0 == cmdlet.SearchCriteria.Length) {
-            //                                                aeCtrl.Add(tempFirstElement);
-            //                                            } else {
-            //                                                if (testControlWithAllSearchCriteria(
-            //                                                    cmdlet,
-            //                                                    cmdlet.SearchCriteria,
-            //                                                    tempFirstElement)) {
-            //                                                    aeCtrl.Add(tempFirstElement);
-            //                                                }
-            //                                            }
-            //                                        }
-            //                                    } else {
-            #endregion -First
-            // 20120823
-            //cmdlet.InputObject.FindFirst(System.Windows.Automation.TreeScope.Descendants,
-
-            // 20120824
-            // 20120917
-            #region -First
-            //                                    }
-            #endregion -First
-            //else if (UIAutomation.CurrentData.LastResult
-            #endregion the -First story
+            // 20140304
+//            var listOfColllectedResults =
+//                new List<IUiElement>();
             
-            var listOfColllectedResults =
-                new List<IUiElement>();
+            // if (conditions == null) return listOfColllectedResults;
+            if (conditions == null) return new List<IUiElement>();
             
-            if (conditions == null) return listOfColllectedResults;
-            
-            if (inputObject == null || (int) inputObject.Current.ProcessId <= 0) return listOfColllectedResults;
+            // if (inputObject == null || (int) inputObject.Current.ProcessId <= 0) return listOfColllectedResults;
+            if (inputObject == null || (int) inputObject.Current.ProcessId <= 0) return new List<IUiElement>();
             
             IUiEltCollection tempCollection = inputObject.FindAll(TreeScope.Descendants, conditions);
             
+            // 20140304
+            if (null == searchCriteria || 0 == searchCriteria.Length) {
+                return tempCollection.ToArray().ToList<IUiElement>();
+            }
+            
+            return tempCollection.ToArray().Where(element => TestControlWithAllSearchCriteria(searchCriteria, element)).ToList<IUiElement>();
+            
+            /*
             foreach (IUiElement tempElement in tempCollection) {
                 
                 if (null == searchCriteria || 0 == searchCriteria.Length) {
@@ -317,14 +287,16 @@ namespace UIAutomation
                     listOfColllectedResults.Add(tempElement);
                 }
             }
+            */
             
-            if (null != tempCollection) {
-                // 20140121
-                // tempCollection.Dispose(); // taboo?
-                tempCollection = null;
-            }
-            
-            return listOfColllectedResults;
+            // 20140304
+//            if (null != tempCollection) {
+//                // 20140121
+//                // tempCollection.Dispose(); // taboo?
+//                tempCollection = null;
+//            }
+//            
+//            return listOfColllectedResults;
         }
         
         internal static List<IUiElement> SearchByWildcardOrRegexViaUia(

@@ -312,6 +312,7 @@
     <Compile Include="Helpers\Commands\Common\SetControlTextCommand.cs" />
     <Compile Include="Helpers\Commands\Common\SetFocusCommand.cs" />
     <Compile Include="Helpers\Commands\Common\ShowDesktopCommand.cs" />
+    <Compile Include="Helpers\Commands\Convert\ConvertToSearchCriteriaCommand.cs" />
     <Compile Include="Helpers\Commands\Event\EventCommand.cs" />
     <Compile Include="Helpers\Commands\Event\GetRegisteredEventCommand.cs" />
     <Compile Include="Helpers\Commands\Event\RegisterUnexpectedWindowCommand.cs" />
@@ -376,7 +377,10 @@
     <Compile Include="Helpers\UnderlyingCode\ControlProviders\ControlFromUiaComProvider.cs" />
     <Compile Include="Helpers\UnderlyingCode\ControlProviders\ControlFromUiaProvider.cs" />
     <Compile Include="Helpers\UnderlyingCode\ControlProviders\ControlFromWin32Provider.cs" />
-    <Compile Include="Helpers\UnderlyingCode\ControlProviders\ControlProvider.cs" />
+    <Compile Include="Helpers\UnderlyingCode\ControlProviders\ControlProviderTemplate.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Converters\ConverterTemplate.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Converters\ElementToSearchCriteriaConverter.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Converters\SearchCriteriaToElementConverter.cs" />
     <Compile Include="Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethods.cs" />
     <Compile Include="Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethodsCollection.cs" />
     <Compile Include="Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethodsElement.cs" />
@@ -613,6 +617,7 @@
     <Folder Include="Helpers\UnderlyingCode\Internal" />
     <Folder Include="Helpers\UnderlyingCode\Attributes" />
     <Folder Include="Helpers\UnderlyingCode\ControlProviders" />
+    <Folder Include="Helpers\UnderlyingCode\Converters" />
     <Folder Include="Helpers\UnderlyingCode\Searchers" />
     <Folder Include="Helpers\UnderlyingCode\NewModel" />
     <Folder Include="Helpers\UnderlyingCode\Ninject" />

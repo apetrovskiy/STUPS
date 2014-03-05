@@ -15,7 +15,7 @@ namespace UIAutomation
     /// <summary>
     /// Description of ControlGateway.
     /// </summary>
-    public abstract class ControlProvider
+    public abstract class ControlProviderTemplate
     {
     	public virtual ControlSearcherTemplateData SearchData { get; set; }
         

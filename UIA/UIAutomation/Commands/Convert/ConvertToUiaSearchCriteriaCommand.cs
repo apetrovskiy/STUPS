@@ -12,10 +12,11 @@ namespace UIAutomation.Commands
     extern alias UIANET;
     using System;
     using System.Management.Automation;
-    using System.Windows.Automation;
-    using System.Collections;
+//    using System.Windows.Automation;
+//    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
+    using UIAutomation.Helpers.Commands;
     
     /// <summary>
     /// Description of ConvertToUiaSearchCriteriaCommand.
@@ -25,6 +26,16 @@ namespace UIAutomation.Commands
     {
         public ConvertToUiaSearchCriteriaCommand()
         {
+            var defaultExcludeList =
+                new List<string> {"LabeledBy", "NativeWindowHandle", "ProcessId"};
+            Exclude = defaultExcludeList.ToArray();
+            
+            var defaultIncludeList =
+                new List<string> {"Name", "AutomationId", "ControlType"};
+            Include = defaultIncludeList.ToArray();
+            Full = false;
+            
+            /*
             List<string> defaultExcludeList =
                 new List<string> {"LabeledBy", "NativeWindowHandle", "ProcessId"};
             Exclude = defaultExcludeList.ToArray();
@@ -33,6 +44,7 @@ namespace UIAutomation.Commands
                 new List<string> {"Name", "AutomationId", "ControlType"};
             Include = defaultIncludeList.ToArray();
             Full = false;
+            */
         }
         
         #region Parameters
@@ -55,13 +67,17 @@ namespace UIAutomation.Commands
                 Exclude = new string[] {};
             }
             
-            foreach (string strInclude in Include) {
-                WriteVerbose(this, "include: " + strInclude);
-            }
-            foreach (string strExclude in Exclude) {
-                WriteVerbose(this, "exclude: " + strExclude);
-            }
+            // 20140305
+//            var command = AutomationFactory.GetCommand<ConvertToSearchCriteriaCommand>(this);
+//            command.Execute();
             
+//            foreach (string strInclude in Include) {
+//                WriteVerbose(this, "include: " + strInclude);
+//            }
+//            foreach (string strExclude in Exclude) {
+//                WriteVerbose(this, "exclude: " + strExclude);
+//            }
+//            
             foreach (IUiElement element in InputObject) {
                 WriteObject(this, ConvertElementToSearchCriteria(element));
             }
@@ -125,28 +141,6 @@ namespace UIAutomation.Commands
         
         private string PropertyToString(object propertyValue)
         {
-            #region commented
-//            string result = "\"\"";
-//            string tempResult =
-//                propertyValue.ToString();
-//            if (tempResult.ToUpper() == "TRUE") {
-//                tempResult = "$true";
-//            }
-//            if (tempResult.ToUpper() == "FALSE") {
-//                tempResult = "$false";
-//            }
-//            if (tempResult != "$true" && tempResult != "$false" && tempResult != string.Empty) {
-//                tempResult =
-//                    "\"" +
-//                    tempResult +
-//                    "\"";
-//            }
-//            if (tempResult != null && tempResult.Length > 0) {
-//                result = tempResult;
-//            }
-//            return result;
-            #endregion commented
-            
             switch (propertyValue.ToString().ToUpper()) {
                 case "TRUE":
                     return "$true";

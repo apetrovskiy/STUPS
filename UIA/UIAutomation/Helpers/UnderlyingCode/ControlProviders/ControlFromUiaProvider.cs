@@ -22,7 +22,7 @@ namespace UIAutomation
     /// Description of ControlFromUiaProvider.
     /// </summary>
     [UiaSpecialBinding]
-    public class ControlFromUiaProvider : ControlProvider
+    public class ControlFromUiaProvider : ControlProviderTemplate
     {
         public Condition Condition { get; set; }
         public TreeScope TreeScope { get; set; }

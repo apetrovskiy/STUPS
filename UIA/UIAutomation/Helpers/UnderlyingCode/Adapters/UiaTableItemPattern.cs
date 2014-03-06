@@ -9,22 +9,22 @@
 
 namespace UIAutomation
 {
-	extern alias UIANET;
+	extern alias UIANET;using System.Windows.Automation;
 	using System;
 //	using System.Collections;
 //	using System.Collections.Generic;
 	using System.Linq;
-	using System.Windows.Automation;
+	using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
 
 	/// <summary>
 	/// Description of TableItemPatternAdapterNet.
 	/// </summary>
 	public class UiaTableItemPattern : ITableItemPattern
 	{
-		private System.Windows.Automation.TableItemPattern _tableItemPattern;
+		private classic.TableItemPattern _tableItemPattern;
 		private IUiElement _element;
 
-		public UiaTableItemPattern(IUiElement element, TableItemPattern tableItemPattern)
+		public UiaTableItemPattern(IUiElement element, classic.TableItemPattern tableItemPattern)
 		{
 			this._tableItemPattern = tableItemPattern;
 			this._element = element;
@@ -108,12 +108,12 @@ namespace UIAutomation
 	        
 		}
 		
-		public static readonly AutomationPattern Pattern = TableItemPatternIdentifiers.Pattern;
+		public static readonly classic.AutomationPattern Pattern = TableItemPatternIdentifiers.Pattern;
         /*
         public static new readonly AutomationPattern Pattern = TableItemPatternIdentifiers.Pattern;
         */
-        public static readonly AutomationProperty RowHeaderItemsProperty = TableItemPatternIdentifiers.RowHeaderItemsProperty;
-		public static readonly AutomationProperty ColumnHeaderItemsProperty = TableItemPatternIdentifiers.ColumnHeaderItemsProperty;
+        public static readonly classic.AutomationProperty RowHeaderItemsProperty = TableItemPatternIdentifiers.RowHeaderItemsProperty;
+		public static readonly classic.AutomationProperty ColumnHeaderItemsProperty = TableItemPatternIdentifiers.ColumnHeaderItemsProperty;
 		
 		// private SafePatternHandle _hPattern;
 		

@@ -9,10 +9,10 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;
+    extern alias UIANET;using System.Windows.Automation;
     using System;
     using System.Collections;
-    using System.Windows.Automation;
+    using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
 //    using Ninject;
     using Ninject.Modules;
 //    using Ninject.Extensions.NamedScope;

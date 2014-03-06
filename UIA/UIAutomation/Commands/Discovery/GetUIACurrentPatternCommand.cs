@@ -9,11 +9,11 @@
 
 namespace UIAutomation.Commands
 {
-    extern alias UIANET;
+    extern alias UIANET;using System.Windows.Automation;
     using System.Management.Automation;
     
     using System.Linq;
-    using System.Windows.Automation;
+    using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
 
     /// <summary>
     /// Description of GetUiaCurrentPatternCommand.

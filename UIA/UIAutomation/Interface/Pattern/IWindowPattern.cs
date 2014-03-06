@@ -9,12 +9,12 @@
 
 namespace UIAutomation
 {
-	extern alias UIANET;
-	using System.Windows.Automation;
+	extern alias UIANET;using System.Windows.Automation;
+	using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
 
 	public interface IWindowPattern : IBasePattern
 	{
-		void SetWindowVisualState(WindowVisualState state);
+		void SetWindowVisualState(classic.WindowVisualState state);
 		void Close();
 		bool WaitForInputIdle(int milliseconds);
 		IWindowPatternInformation Cached { get; }

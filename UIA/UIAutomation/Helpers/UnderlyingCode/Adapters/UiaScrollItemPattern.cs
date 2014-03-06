@@ -9,22 +9,22 @@
 
 namespace UIAutomation
 {
-	extern alias UIANET;
+	extern alias UIANET;using System.Windows.Automation;
 	using System;
-	using System.Windows.Automation;
+	using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
 
 	/// <summary>
 	/// Description of ScrollItemPatternAdapter.
 	/// </summary>
 	public class UiaScrollItemPattern : IScrollItemPattern
 	{
-		public static readonly AutomationPattern Pattern = ScrollItemPatternIdentifiers.Pattern;
+		public static readonly classic.AutomationPattern Pattern = ScrollItemPatternIdentifiers.Pattern;
 		// private SafePatternHandle _hPattern;
 		
-		private System.Windows.Automation.ScrollItemPattern _scrollItemPattern;
+		private classic.ScrollItemPattern _scrollItemPattern;
 		private IUiElement _element;
 		
-		public UiaScrollItemPattern(IUiElement element, ScrollItemPattern scrollItemPattern)
+		public UiaScrollItemPattern(IUiElement element, classic.ScrollItemPattern scrollItemPattern)
 		{
 			this._scrollItemPattern = scrollItemPattern;
 			this._element = element;

@@ -9,12 +9,13 @@
 
 namespace UIAutomation
 {
-	extern alias UIANET;
-	using System.Windows.Automation;
+	extern alias UIANET;using System.Windows.Automation;
+	using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
+	
 	public interface ISupportsDockPattern
 	{
-		void SetDockPosition(DockPosition dockPosition);
-		DockPosition DockPosition { get; }
+		void SetDockPosition(classic.DockPosition dockPosition);
+		classic.DockPosition DockPosition { get; }
 	}
 }
 

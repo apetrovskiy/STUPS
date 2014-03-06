@@ -9,12 +9,12 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;
+    extern alias UIANET;using System.Windows.Automation;
     using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.Management.Automation;
-    using System.Windows.Automation;
+    using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
     using System.Linq;
     using System.Threading;
     using UIAutomation.Commands;

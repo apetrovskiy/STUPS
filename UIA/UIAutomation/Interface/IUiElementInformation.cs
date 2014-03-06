@@ -9,13 +9,13 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;
+    extern alias UIANET;using System.Windows.Automation;
 	using System.Windows;
-	using System.Windows.Automation;
+	using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
 	
 	public interface IUiElementInformation
 	{
-		ControlType ControlType { get; }
+		classic.ControlType ControlType { get; }
 		string LocalizedControlType { get; }
 		string Name { get; }
 		string AcceleratorKey { get; }
@@ -27,7 +27,7 @@ namespace UIAutomation
 		string HelpText { get; }
 		bool IsControlElement { get; }
 		bool IsContentElement { get; }
-		AutomationElement LabeledBy { get; }
+		classic.AutomationElement LabeledBy { get; }
 		string AutomationId { get; }
 		string ItemType { get; }
 		bool IsPassword { get; }
@@ -35,7 +35,7 @@ namespace UIAutomation
 		int NativeWindowHandle { get; }
 		int ProcessId { get; }
 		bool IsOffscreen { get; }
-		OrientationType Orientation { get; }
+		classic.OrientationType Orientation { get; }
 		string FrameworkId { get; }
 		bool IsRequiredForForm { get; }
 		string ItemStatus { get; }

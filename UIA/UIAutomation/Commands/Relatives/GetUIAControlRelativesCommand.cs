@@ -9,9 +9,9 @@
 
 namespace UIAutomation.Commands
 {
-    extern alias UIANET;
+    extern alias UIANET;using System.Windows.Automation;
     using System.Management.Automation;
-    using System.Windows.Automation;
+    using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
 
 //    /// <summary>
 //    /// Description of GetUiaControlChildrenCommand.
@@ -41,7 +41,7 @@ namespace UIAutomation.Commands
 //        /// </summary>
 //        protected override void ProcessRecord()
 //        {
-//            GetAutomationElements(TreeScope.Descendants);
+//            GetAutomationElements(classic.TreeScope.Descendants);
 //        }
 //    }
 //    

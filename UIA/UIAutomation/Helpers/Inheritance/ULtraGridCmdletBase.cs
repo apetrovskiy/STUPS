@@ -9,10 +9,10 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;
+    extern alias UIANET;using System.Windows.Automation;
     using System;
     using System.Management.Automation;
-    using System.Windows.Automation;
+    using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
     
     using System.Linq;
     using System.Collections.Generic;
@@ -56,13 +56,13 @@ namespace UIAutomation
                     //AutomationElementCollection tableItems = 
                     IUiEltCollection tableItems =
                         inputObject.FindAll(
-                            TreeScope.Children,
+                            classic.TreeScope.Children,
                                      new PropertyCondition(
                                          AutomationElement.ControlTypeProperty,
                                          ControlType.Custom));
                 
 //                foreach (AutomationElementCollection tableItems in ((IAutomationElementCollection)this.InputObject).Select(inputObject => inputObject.FindAll(
-//                    TreeScope.Children,
+//                    classic.TreeScope.Children,
 //                    new PropertyCondition(
 //                        AutomationElement.ControlTypeProperty,
 //                        ControlType.Custom))))
@@ -224,7 +224,7 @@ namespace UIAutomation
                 
                 AutomationElementCollection tableItems = 
                     inputObject.FindAll(
-                        TreeScope.Children,
+                        classic.TreeScope.Children,
                                  new PropertyCondition(
                                      AutomationElement.ControlTypeProperty,
                                      ControlType.Custom));

@@ -9,10 +9,11 @@
 
 namespace UIAutomation
 {
+    extern alias UIANET;using System.Windows.Automation;
     using System;
 //    using System.Collections;
     using System.Collections.Generic;
-    using System.Windows.Automation;
+    using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
 //    using System.Management.Automation;
     using System.Linq;
 //    using PSTestLib;
@@ -25,7 +26,7 @@ namespace UIAutomation
     {
         public override string TimeoutExpirationInformation { get; set; }
         
-        private Condition conditionsForContextMenuSearch = null;
+        private classic.Condition conditionsForContextMenuSearch = null;
         
         public override void OnStartHook()
         {
@@ -53,7 +54,7 @@ namespace UIAutomation
             #region search from the root
             ResultCollection.AddRange(
                 UiElement.RootElement.FindAll(
-                    TreeScope.Children,
+                    classic.TreeScope.Children,
                     conditionsForContextMenuSearch).ToArray().ToList());
             #endregion search from the root
             
@@ -62,7 +63,7 @@ namespace UIAutomation
                 
                 ResultCollection.AddRange(
                     (searchData as ContextMenuSearcherData).InputObject.FindAll(
-                        TreeScope.Children,
+                        classic.TreeScope.Children,
                         conditionsForContextMenuSearch).ToArray().ToList());
             }
             #endregion search from the input
@@ -73,7 +74,7 @@ namespace UIAutomation
     
                     ResultCollection.AddRange(
                         CurrentData.CurrentWindow.FindAll(
-                            TreeScope.Children,
+                            classic.TreeScope.Children,
                             conditionsForContextMenuSearch).ToArray().ToList());
                 }
             }

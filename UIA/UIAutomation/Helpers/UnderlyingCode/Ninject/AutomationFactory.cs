@@ -9,13 +9,13 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;
+    extern alias UIANET;using System.Windows.Automation;
     using System;
     using Ninject;
     using Ninject.Modules;
     using Ninject.Parameters;
     using Ninject.Extensions.ChildKernel;
-    using System.Windows.Automation;
+    using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
 //    using System.Management.Automation;
     using System.Collections;
 //    using System.Collections.Generic;
@@ -289,7 +289,7 @@ namespace UIAutomation
 		
 		#region IUiElement
 		// 20140210
-		internal static IExtendedModelHolder GetUiExtendedModelHolder(IUiElement parentElement, TreeScope scope)
+		internal static IExtendedModelHolder GetUiExtendedModelHolder(IUiElement parentElement, classic.TreeScope scope)
 		// internal static IExtendedModelHolder GetUiExtendedModelHolder(IUiElement parentElement, TreeScope scope, int seconds)
 		{
 	        if (null == parentElement) {
@@ -500,7 +500,7 @@ namespace UIAutomation
 //			}
 //		}
 		
-		public static IUiElement GetUiElement(AutomationElement element)
+		public static IUiElement GetUiElement(classic.AutomationElement element)
 		{
 	        if (null == element) {
 	            return null;
@@ -626,7 +626,7 @@ namespace UIAutomation
 			}
 		}
 		
-		internal static IUiElementInformation GetUiElementInformation(AutomationElement.AutomationElementInformation information)
+		internal static IUiElementInformation GetUiElementInformation(classic.AutomationElement.AutomationElementInformation information)
 		{
 			try {
     			var singleInfo = new ConstructorArgument("information", information);
@@ -674,7 +674,7 @@ namespace UIAutomation
 //			}
 //		}
 		
-		internal static IUiEltCollection GetUiEltCollection(AutomationElementCollection elements)
+		internal static IUiEltCollection GetUiEltCollection(classic.AutomationElementCollection elements)
 		{
 	        if (null == elements) {
 	            return null;

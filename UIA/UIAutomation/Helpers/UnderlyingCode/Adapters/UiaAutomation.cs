@@ -9,10 +9,10 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;
+    extern alias UIANET;using System.Windows.Automation;
     using System;
     
-    using System.Windows.Automation;
+    using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
     
 	/// <summary>
 	/// Description of UiaAutomation.
@@ -21,18 +21,18 @@ namespace UIAutomation
 	[UiaSpecialBinding]
 	public class UiaAutomation : IAutomation
 	{
-		public Condition RawViewCondition
+		public classic.Condition RawViewCondition
 		{
 		    get { return Automation.RawViewCondition; }
 		}
 		
-		public Condition ControlViewCondition
+		public classic.Condition ControlViewCondition
 		{
 		    // get { return new NotCondition(new PropertyCondition(AutomationElement.IsControlElementProperty, false)); }
 		    get { return Automation.ControlViewCondition; }
 		}
 		
-		public Condition ContentViewCondition
+		public classic.Condition ContentViewCondition
 		{
 //		    get { return new NotCondition(
 //		              new OrCondition(
@@ -55,7 +55,7 @@ namespace UIAutomation
 			return Automation.Compare(runtimeId1, runtimeId2);
 		}
 		
-		public string PropertyName(AutomationProperty property)
+		public string PropertyName(classic.AutomationProperty property)
 		{
 			return Automation.PropertyName(property);
 		}
@@ -65,7 +65,7 @@ namespace UIAutomation
 		    return Automation.PatternName(pattern.GetSourcePattern() as AutomationPattern);
 		}
 		
-		public void AddAutomationEventHandler(AutomationEvent eventId, IUiElement element, TreeScope scope, AutomationEventHandler eventHandler)
+		public void AddAutomationEventHandler(classic.AutomationEvent eventId, IUiElement element, classic.TreeScope scope, classic.AutomationEventHandler eventHandler)
 		{
 			Automation.AddAutomationEventHandler(
 			    eventId,
@@ -74,7 +74,7 @@ namespace UIAutomation
 			    eventHandler);
 		}
 		
-		public void RemoveAutomationEventHandler(AutomationEvent eventId, IUiElement element, AutomationEventHandler eventHandler)
+		public void RemoveAutomationEventHandler(classic.AutomationEvent eventId, IUiElement element, classic.AutomationEventHandler eventHandler)
 		{
 			Automation.RemoveAutomationEventHandler(
 			    eventId,
@@ -82,7 +82,7 @@ namespace UIAutomation
 			    eventHandler);
 		}
 		
-		public void AddAutomationPropertyChangedEventHandler(IUiElement element, TreeScope scope, AutomationPropertyChangedEventHandler eventHandler, params AutomationProperty[] properties)
+		public void AddAutomationPropertyChangedEventHandler(IUiElement element, classic.TreeScope scope, classic.AutomationPropertyChangedEventHandler eventHandler, params classic.AutomationProperty[] properties)
 		{
 			Automation.AddAutomationPropertyChangedEventHandler(
 		        element.GetSourceElement() as AutomationElement,
@@ -91,14 +91,14 @@ namespace UIAutomation
 			    properties);
 		}
 		
-		public void RemoveAutomationPropertyChangedEventHandler(IUiElement element, AutomationPropertyChangedEventHandler eventHandler)
+		public void RemoveAutomationPropertyChangedEventHandler(IUiElement element, classic.AutomationPropertyChangedEventHandler eventHandler)
 		{
 			Automation.RemoveAutomationPropertyChangedEventHandler(
 		        element.GetSourceElement() as AutomationElement,
 			    eventHandler);
 		}
 		
-		public void AddStructureChangedEventHandler(IUiElement element, TreeScope scope, StructureChangedEventHandler eventHandler)
+		public void AddStructureChangedEventHandler(IUiElement element, classic.TreeScope scope, classic.StructureChangedEventHandler eventHandler)
 		{
 			Automation.AddStructureChangedEventHandler(
 		        element.GetSourceElement() as AutomationElement,
@@ -106,20 +106,20 @@ namespace UIAutomation
 			    eventHandler);
 		}
 		
-		public void RemoveStructureChangedEventHandler(IUiElement element, StructureChangedEventHandler eventHandler)
+		public void RemoveStructureChangedEventHandler(IUiElement element, classic.StructureChangedEventHandler eventHandler)
 		{
 			Automation.RemoveStructureChangedEventHandler(
 		        element.GetSourceElement() as AutomationElement,
 			    eventHandler);
 		}
 		
-		public void AddAutomationFocusChangedEventHandler(AutomationFocusChangedEventHandler eventHandler)
+		public void AddAutomationFocusChangedEventHandler(classic.AutomationFocusChangedEventHandler eventHandler)
 		{
 			Automation.AddAutomationFocusChangedEventHandler(
 			    eventHandler);
 		}
 		
-		public void RemoveAutomationFocusChangedEventHandler(AutomationFocusChangedEventHandler eventHandler)
+		public void RemoveAutomationFocusChangedEventHandler(classic.AutomationFocusChangedEventHandler eventHandler)
 		{
 			Automation.RemoveAutomationFocusChangedEventHandler(
 			    eventHandler);

@@ -9,9 +9,9 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;
+    extern alias UIANET;using System.Windows.Automation;
     using System;
-    using System.Windows.Automation;
+    using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
@@ -98,7 +98,7 @@ namespace UIAutomation
         /// <param name="element"></param>
         /// <param name="scope"></param>
         /// <returns></returns>
-        internal static IUiElement[] GetParentOrAncestor(this IUiElement element, TreeScope scope)
+        internal static IUiElement[] GetParentOrAncestor(this IUiElement element, classic.TreeScope scope)
         {
             var walker =
                 new TreeWalker(

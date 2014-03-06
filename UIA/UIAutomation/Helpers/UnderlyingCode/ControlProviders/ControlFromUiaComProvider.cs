@@ -9,9 +9,9 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;
+    extern alias UIANET;using System.Windows.Automation;
     using System;
-    using System.Windows.Automation;
+    using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
     using System.Collections.Generic;
     using System.Linq;
     // using System.Management.Automation;
@@ -22,8 +22,8 @@ namespace UIAutomation
     [UiaSpecialBinding]
     public class ControlFromUiaComProvider : ControlProviderTemplate
     {
-        public Condition Condition { get; set; }
-        public TreeScope TreeScope { get; set; }
+        public classic.Condition Condition { get; set; }
+        public classic.TreeScope TreeScope { get; set; }
         
         public override List<IUiElement> GetElements(ControlSearcherTemplateData data)
         {

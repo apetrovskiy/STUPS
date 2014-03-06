@@ -9,19 +9,19 @@
 
 namespace UIAutomation
 {
-	extern alias UIANET;
+	extern alias UIANET;using System.Windows.Automation;
 	using System;
-	using System.Windows.Automation;
+	using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
 	using System.Linq;
 //	using System.Collections;
 //	using System.Collections.Generic;
 
 	public class UiaSelectionPattern : ISelectionPattern
 	{
-	    private System.Windows.Automation.SelectionPattern _selectionPattern;
+	    private classic.SelectionPattern _selectionPattern;
 		private IUiElement _element;
 		
-		public UiaSelectionPattern(IUiElement element, SelectionPattern selectionPattern)
+		public UiaSelectionPattern(IUiElement element, classic.SelectionPattern selectionPattern)
 		{
 			this._selectionPattern = selectionPattern;
 			this._element = element;
@@ -68,11 +68,11 @@ namespace UIAutomation
 				}
 			}
 		}
-		public static readonly AutomationPattern Pattern = SelectionPatternIdentifiers.Pattern;
-		public static readonly AutomationProperty SelectionProperty = SelectionPatternIdentifiers.SelectionProperty;
-		public static readonly AutomationProperty CanSelectMultipleProperty = SelectionPatternIdentifiers.CanSelectMultipleProperty;
-		public static readonly AutomationProperty IsSelectionRequiredProperty = SelectionPatternIdentifiers.IsSelectionRequiredProperty;
-		public static readonly AutomationEvent InvalidatedEvent = SelectionPatternIdentifiers.InvalidatedEvent;
+		public static readonly classic.AutomationPattern Pattern = SelectionPatternIdentifiers.Pattern;
+		public static readonly classic.AutomationProperty SelectionProperty = SelectionPatternIdentifiers.SelectionProperty;
+		public static readonly classic.AutomationProperty CanSelectMultipleProperty = SelectionPatternIdentifiers.CanSelectMultipleProperty;
+		public static readonly classic.AutomationProperty IsSelectionRequiredProperty = SelectionPatternIdentifiers.IsSelectionRequiredProperty;
+		public static readonly classic.AutomationEvent InvalidatedEvent = SelectionPatternIdentifiers.InvalidatedEvent;
         
 		public virtual ISelectionPatternInformation Cached {
 			get {

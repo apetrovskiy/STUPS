@@ -10,9 +10,9 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;
+    extern alias UIANET;using System.Windows.Automation;
     using System;
-    using System.Windows.Automation;
+    using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
 //    using System.Windows.Automation.Text;
 //    using System.Collections;
 //    using System.Collections.Generic;
@@ -34,7 +34,7 @@ namespace UIAutomation
             InputSimulator = AutomationFactory.GetInputSimulator();
         }
         
-        internal static IUiEltCollection PerformFindAll(this IExtendedModelHolder holder, ControlType controlType)
+        internal static IUiEltCollection PerformFindAll(this IExtendedModelHolder holder, classic.ControlType controlType)
         {
             try {
                 var controlSearcherData =
@@ -100,7 +100,7 @@ namespace UIAutomation
         }
         
         // 20140210
-        internal static IExtendedModelHolder GetExtendedModelHolder(this IUiElement element, TreeScope scope)
+        internal static IExtendedModelHolder GetExtendedModelHolder(this IUiElement element, classic.TreeScope scope)
         // internal static IExtendedModelHolder GetExtendedModelHolder(this IUiElement element, TreeScope scope, int seconds)
         {
             // 20140210

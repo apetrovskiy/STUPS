@@ -9,15 +9,15 @@
 
 namespace UIAutomation
 {
-	extern alias UIANET;
-	using System.Windows.Automation;
+	extern alias UIANET;using System.Windows.Automation;
+	using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
 
 	public interface IScrollPattern : IBasePattern
 	{
 		void SetScrollPercent(double horizontalPercent, double verticalPercent);
-		void Scroll(ScrollAmount horizontalAmount, ScrollAmount verticalAmount);
-		void ScrollHorizontal(ScrollAmount amount);
-		void ScrollVertical(ScrollAmount amount);
+		void Scroll(classic.ScrollAmount horizontalAmount, classic.ScrollAmount verticalAmount);
+		void ScrollHorizontal(classic.ScrollAmount amount);
+		void ScrollVertical(classic.ScrollAmount amount);
 		IScrollPatternInformation Cached { get; }
 		IScrollPatternInformation Current { get; }
 	}

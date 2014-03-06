@@ -9,10 +9,10 @@
 
 namespace UIAutomation.Commands
 {
-    extern alias UIANET;
+    extern alias UIANET;using System.Windows.Automation;
     using System;
     using System.Management.Automation;
-    using System.Windows.Automation;
+    using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
     using System.Xml.Serialization.Configuration;
     using UIAutomation.Helpers.Commands;
 
@@ -34,7 +34,7 @@ namespace UIAutomation.Commands
         #endregion Parameters
 
         // 20120206 private System.DateTime startDate;
-        protected internal ControlType ControlType { get; set; }
+        protected internal classic.ControlType ControlType { get; set; }
 
         protected override void BeginProcessing() {
 //            WriteVerbose(this, "Timeout " + Timeout.ToString());

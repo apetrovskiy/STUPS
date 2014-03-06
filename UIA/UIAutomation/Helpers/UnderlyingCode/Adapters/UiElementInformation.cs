@@ -9,26 +9,26 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;
+    extern alias UIANET;using System.Windows.Automation;
 	using System;
 	using System.Windows;
-	using System.Windows.Automation;
+	using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
 	using Ninject;
     
     public struct UiElementInformation : IUiElementInformation
     {
     	//private AutomationElement _el;
     	//private bool _useCache;
-    	private AutomationElement.AutomationElementInformation _infoHolder;
+    	private classic.AutomationElement.AutomationElementInformation _infoHolder;
     	//
     	[Inject]
-    	public UiElementInformation(AutomationElement.AutomationElementInformation information)
+    	public UiElementInformation(classic.AutomationElement.AutomationElementInformation information)
     	{
     	    _infoHolder = information;
     	}
     	//
     	
-    	public ControlType ControlType
+    	public classic.ControlType ControlType
     	{
     	   get { return _infoHolder.ControlType; }
     	}
@@ -76,7 +76,7 @@ namespace UIAutomation
     	{
     	    get { return _infoHolder.IsContentElement; }
     	}
-    	public AutomationElement LabeledBy
+    	public classic.AutomationElement LabeledBy
     	{
     	    get { return _infoHolder.LabeledBy; }
     	}
@@ -108,7 +108,7 @@ namespace UIAutomation
     	{
     	    get { return _infoHolder.IsOffscreen; }
     	}
-    	public OrientationType Orientation
+    	public classic.OrientationType Orientation
     	{
     	    get { return _infoHolder.Orientation; }
     	}
@@ -125,7 +125,7 @@ namespace UIAutomation
     	    get { return _infoHolder.ItemStatus; }
     	}
     	
-    	public AutomationElement.AutomationElementInformation SourceInformation
+    	public classic.AutomationElement.AutomationElementInformation SourceInformation
     	{
     	    get { return _infoHolder; }
     	    set { _infoHolder = value; }

@@ -9,14 +9,14 @@
 
 namespace UIAutomation
 {
-	extern alias UIANET;
+	extern alias UIANET;using System.Windows.Automation;
 	using System;
 	using System.Collections;
 	
 //	using System.Collections.Generic;
 	
 	using System.ComponentModel;
-	using System.Windows.Automation;
+	using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
 	using System.Windows;
 
 	public interface IUiElement : IDisposable
@@ -24,21 +24,21 @@ namespace UIAutomation
 		bool Equals(object obj);
 		int GetHashCode();
 		int[] GetRuntimeId();
-		object GetCurrentPropertyValue(AutomationProperty property);
-		object GetCurrentPropertyValue(AutomationProperty property, bool ignoreDefaultValue);
-		TN GetCurrentPattern<TN>(AutomationPattern pattern) where TN : IBasePattern;
-		object GetCurrentPattern(AutomationPattern pattern);
-		bool TryGetCurrentPattern(AutomationPattern pattern, out object patternObject);
-		object GetCachedPropertyValue(AutomationProperty property);
-		object GetCachedPropertyValue(AutomationProperty property, bool ignoreDefaultValue);
-		object GetCachedPattern(AutomationPattern pattern);
-		bool TryGetCachedPattern(AutomationPattern pattern, out object patternObject);
-		AutomationElement GetUpdatedCache(CacheRequest request);
-		IUiElement FindFirst(TreeScope scope, System.Windows.Automation.Condition condition);
-		IUiEltCollection FindAll(TreeScope scope, System.Windows.Automation.Condition condition);
+		object GetCurrentPropertyValue(classic.AutomationProperty property);
+		object GetCurrentPropertyValue(classic.AutomationProperty property, bool ignoreDefaultValue);
+		TN GetCurrentPattern<TN>(classic.AutomationPattern pattern) where TN : IBasePattern;
+		object GetCurrentPattern(classic.AutomationPattern pattern);
+		bool TryGetCurrentPattern(classic.AutomationPattern pattern, out object patternObject);
+		object GetCachedPropertyValue(classic.AutomationProperty property);
+		object GetCachedPropertyValue(classic.AutomationProperty property, bool ignoreDefaultValue);
+		object GetCachedPattern(classic.AutomationPattern pattern);
+		bool TryGetCachedPattern(classic.AutomationPattern pattern, out object patternObject);
+		classic.AutomationElement GetUpdatedCache(classic.CacheRequest request);
+		IUiElement FindFirst(classic.TreeScope scope, classic.Condition condition);
+		IUiEltCollection FindAll(classic.TreeScope scope, classic.Condition condition);
 		// 20140203
 //		IUiEltCollection FindAll(TreeScope scope, System.Windows.Automation.Condition condition, IEnumerable<IUiElement> excludeElements);
-		AutomationProperty[] GetSupportedProperties();
+		classic.AutomationProperty[] GetSupportedProperties();
 		IBasePattern[] GetSupportedPatterns();
 		void SetFocus();
 		bool TryGetClickablePoint(out Point pt);
@@ -55,6 +55,6 @@ namespace UIAutomation
 		bool IsValid();
 		
 		// internal methods
-		object GetPatternPropertyValue(AutomationProperty property, bool useCache);
+		object GetPatternPropertyValue(classic.AutomationProperty property, bool useCache);
 	}
 }

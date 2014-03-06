@@ -9,10 +9,10 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;
+    extern alias UIANET;using System.Windows.Automation;
     using System;
     using System.Management.Automation;
-    using System.Windows.Automation;
+    using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
     
     using System.Collections;
     
@@ -67,7 +67,7 @@ namespace UIAutomation
         
         protected void GetAutomationElementsViaWildcards_FindAll(
             IUiElement inputObject,
-            AndCondition conditions,
+            classic.AndCondition conditions,
             bool caseSensitive,
             bool onlyOneResult,
             bool onlyTopLevel,
@@ -97,7 +97,7 @@ namespace UIAutomation
         internal List<IUiElement> GetAutomationElementsViaWildcards_FindAll(
             ControlSearcherData data,
             IUiElement inputObject,
-            Condition conditions,
+            classic.Condition conditions,
             bool caseSensitive,
             bool onlyOneResult,
             bool onlyTopLevel,
@@ -237,7 +237,7 @@ namespace UIAutomation
         internal List<IUiElement> GetAutomationElementsWithFindAll(
             IUiElement element,
             ControlSearcherData data,
-            Condition conditions,
+            classic.Condition conditions,
             bool caseSensitiveParam,
             bool onlyOneResult,
             bool onlyTopLevel,
@@ -249,7 +249,7 @@ namespace UIAutomation
                 
                 IUiEltCollection results =
                     element.FindAll(
-                        TreeScope.Descendants,
+                        classic.TreeScope.Descendants,
                         conditions);
                 
                 resultCollection =
@@ -507,7 +507,7 @@ namespace UIAutomation
             WriteObject(this, sibling);
         }
         
-        protected void GetAutomationElements(TreeScope scope)
+        protected void GetAutomationElements(classic.TreeScope scope)
         {
             if (!CheckAndPrepareInput(this)) { return; }
             
@@ -516,8 +516,8 @@ namespace UIAutomation
                 var searchResults = 
                     new List<IUiElement>();
                 
-                if (scope == TreeScope.Children ||
-                    scope == TreeScope.Descendants) {
+                if (scope == classic.TreeScope.Children ||
+                    scope == classic.TreeScope.Descendants) {
                     // WriteVerbose(this, "selected TreeScope." + scope.ToString());
                     
                     var controlSearch =

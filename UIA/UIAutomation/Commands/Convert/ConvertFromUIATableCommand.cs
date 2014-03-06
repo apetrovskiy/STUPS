@@ -11,10 +11,10 @@ using System.Collections.Generic;
 
 namespace UIAutomation.Commands
 {
-    extern alias UIANET;
+    extern alias UIANET;using System.Windows.Automation;
     using System;
     using System.Management.Automation;
-    using System.Windows.Automation;
+    using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
     using System.Linq;
 
     /// <summary>

@@ -10,16 +10,17 @@
 
 namespace UIAutomation
 {
-	extern alias UIANET;
+	extern alias UIANET;using System.Windows.Automation;
 	using System;
-	using System.Windows.Automation;
+	using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
 
 	public class UiaExpandCollapsePattern : IExpandCollapsePattern
 	{
-		private System.Windows.Automation.ExpandCollapsePattern _expandCollapsePattern;
+		// private System.Windows.Automation.ExpandCollapsePattern _expandCollapsePattern;
+		private classic.ExpandCollapsePattern _expandCollapsePattern;
 		private IUiElement _element;
 		
-		public UiaExpandCollapsePattern(IUiElement element, ExpandCollapsePattern expandCollapsePattern)
+		public UiaExpandCollapsePattern(IUiElement element, classic.ExpandCollapsePattern expandCollapsePattern)
 		{
 			this._expandCollapsePattern = expandCollapsePattern;
 			this._element = element;
@@ -31,7 +32,7 @@ namespace UIAutomation
 		    this._element = element;
 		}
 		
-		public UiaExpandCollapsePattern(ExpandCollapsePattern ExpandCollapsePattern)
+		public UiaExpandCollapsePattern(classic.ExpandCollapsePattern ExpandCollapsePattern)
 		{
 		    this._expandCollapsePattern = ExpandCollapsePattern;
 		}
@@ -47,12 +48,12 @@ namespace UIAutomation
 			    this._useCache = useCache;
 			}
 			
-			public ExpandCollapseState ExpandCollapseState {
+			public classic.ExpandCollapseState ExpandCollapseState {
 				get { return (ExpandCollapseState)this._expandCollapsePattern.GetParentElement().GetPatternPropertyValue(ExpandCollapsePattern.ExpandCollapseStateProperty, this._useCache); }
 			}
 		}
-		public static readonly AutomationPattern Pattern = ExpandCollapsePatternIdentifiers.Pattern;
-		public static readonly AutomationProperty ExpandCollapseStateProperty = ExpandCollapsePatternIdentifiers.ExpandCollapseStateProperty;
+		public static readonly classic.AutomationPattern Pattern = ExpandCollapsePatternIdentifiers.Pattern;
+		public static readonly classic.AutomationProperty ExpandCollapseStateProperty = ExpandCollapsePatternIdentifiers.ExpandCollapseStateProperty;
         
 		public virtual IExpandCollapsePatternInformation Cached {
 			get {

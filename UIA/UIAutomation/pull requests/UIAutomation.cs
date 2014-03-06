@@ -2,13 +2,13 @@
 //namespace AVG.Automation.Cmdlets
 namespace UIAutomation
 {
-    extern alias UIANET;
+    extern alias UIANET;using System.Windows.Automation;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
     using System.Management.Automation;
-    using System.Windows.Automation;
+    using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
     using System.Text.RegularExpressions;
     using System.Runtime.InteropServices;
     using System.Collections;
@@ -41,13 +41,13 @@ namespace UIAutomation
         {
             base.ProcessRecord();
 
-            if (InputObject.Current.ControlType == ControlType.Window)
+            if (InputObject.Current.ControlType == classic.ControlType.Window)
             {
                 // 20131208
                 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 // WindowPattern windowPattern = InputObject.GetCurrentPattern(WindowPattern.Pattern) as WindowPattern;
                 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                IWindowPattern windowPattern = InputObject.GetCurrentPattern<IWindowPattern>(WindowPattern.Pattern);
+                IWindowPattern windowPattern = InputObject.GetCurrentPattern<IWindowPattern>(classic.WindowPattern.Pattern);
 
                 try
                 {
@@ -58,15 +58,15 @@ namespace UIAutomation
                             break;
 
                         case "maximize":
-                            windowPattern.SetWindowVisualState(WindowVisualState.Maximized);
+                            windowPattern.SetWindowVisualState(classic.WindowVisualState.Maximized);
                             break;
 
                         case "minimize":
-                            windowPattern.SetWindowVisualState(WindowVisualState.Minimized);
+                            windowPattern.SetWindowVisualState(classic.WindowVisualState.Minimized);
                             break;
 
                         case "restore":
-                            windowPattern.SetWindowVisualState(WindowVisualState.Normal);
+                            windowPattern.SetWindowVisualState(classic.WindowVisualState.Normal);
                             break;
                     }
                 }

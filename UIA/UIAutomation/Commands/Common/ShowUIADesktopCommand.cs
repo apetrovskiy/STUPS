@@ -9,10 +9,10 @@
 
 namespace UIAutomation.Commands.Common
 {
-    extern alias UIANET;
+    extern alias UIANET;using System.Windows.Automation;
     using System;
     using System.Management.Automation;
-    using System.Windows.Automation;
+    using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
     using UIAutomation.Helpers.Commands;
     
     /// <summary>
@@ -26,7 +26,7 @@ namespace UIAutomation.Commands.Common
             try{
                 var showDesktopButton =
                     UiElement.RootElement.FindFirst(
-                        TreeScope.Children,
+                        classic.TreeScope.Children,
                         new PropertyCondition(
                             AutomationElement.ClassNameProperty,
                             "TrayShowDesktopButtonWClass"));

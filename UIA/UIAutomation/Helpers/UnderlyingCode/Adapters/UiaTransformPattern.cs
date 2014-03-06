@@ -9,19 +9,19 @@
 
 namespace UIAutomation
 {
-	extern alias UIANET;
+	extern alias UIANET;using System.Windows.Automation;
 	using System;
-	using System.Windows.Automation;
+	using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
 
 	/// <summary>
 	/// Description of TransformPatternAdapterNet.
 	/// </summary>
 	public class UiaTransformPattern : ITransformPattern
 	{
-		private System.Windows.Automation.TransformPattern _transformPattern;
+		private classic.TransformPattern _transformPattern;
 		private IUiElement _element;
 
-		public UiaTransformPattern(IUiElement element, TransformPattern transformPattern)
+		public UiaTransformPattern(IUiElement element, classic.TransformPattern transformPattern)
 		{
 			this._transformPattern = transformPattern;
 			this._element = element;
@@ -65,10 +65,10 @@ namespace UIAutomation
 //				this._useCache = useCache;
 //			}
 		}
-		public static readonly AutomationPattern Pattern = TransformPatternIdentifiers.Pattern;
-		public static readonly AutomationProperty CanMoveProperty = TransformPatternIdentifiers.CanMoveProperty;
-		public static readonly AutomationProperty CanResizeProperty = TransformPatternIdentifiers.CanResizeProperty;
-		public static readonly AutomationProperty CanRotateProperty = TransformPatternIdentifiers.CanRotateProperty;
+		public static readonly classic.AutomationPattern Pattern = TransformPatternIdentifiers.Pattern;
+		public static readonly classic.AutomationProperty CanMoveProperty = TransformPatternIdentifiers.CanMoveProperty;
+		public static readonly classic.AutomationProperty CanResizeProperty = TransformPatternIdentifiers.CanResizeProperty;
+		public static readonly classic.AutomationProperty CanRotateProperty = TransformPatternIdentifiers.CanRotateProperty;
 		// private SafePatternHandle _hPattern;
 		// private bool _cached;
 		

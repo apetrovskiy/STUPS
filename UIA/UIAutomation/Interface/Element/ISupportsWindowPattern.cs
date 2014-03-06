@@ -9,18 +9,19 @@
 
 namespace UIAutomation
 {
-	extern alias UIANET;
-	using System.Windows.Automation;
+	extern alias UIANET;using System.Windows.Automation;
+	using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
+	
 	public interface ISupportsWindowPattern
 	{
-		IUiElement SetWindowVisualState(WindowVisualState state);
+		IUiElement SetWindowVisualState(classic.WindowVisualState state);
 		void Close();
 		bool WaitForInputIdle(int milliseconds);
 		bool CanMaximize { get; }
 		bool CanMinimize { get; }
 		bool IsModal { get; }
 		bool IsTopmost { get; }
-		WindowInteractionState WindowInteractionState { get; set; } // ?
-		WindowVisualState WindowVisualState { get; set; } // ?
+		classic.WindowInteractionState WindowInteractionState { get; set; } // ?
+		classic.WindowVisualState WindowVisualState { get; set; } // ?
 	}
 }

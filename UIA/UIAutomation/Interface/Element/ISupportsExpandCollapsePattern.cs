@@ -9,12 +9,13 @@
 
 namespace UIAutomation
 {
-	extern alias UIANET;
-	using System.Windows.Automation;
+	extern alias UIANET;using System.Windows.Automation;
+	using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
+	
 	public interface ISupportsExpandCollapsePattern
 	{
 		IUiElement Expand();
 		IUiElement Collapse();
-		ExpandCollapseState ExpandCollapseState { get; }
+		classic.ExpandCollapseState ExpandCollapseState { get; }
 	}
 }

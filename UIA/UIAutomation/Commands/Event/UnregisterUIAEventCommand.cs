@@ -9,9 +9,9 @@
 
 namespace UIAutomation.Commands
 {
-    extern alias UIANET;
+    extern alias UIANET;using System.Windows.Automation;
     using System.Management.Automation;
-    using System.Windows.Automation;
+    using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
     using UIAutomation.Helpers.Commands;
 
     /// <summary>
@@ -28,7 +28,7 @@ namespace UIAutomation.Commands
         
         [UiaParameter][Parameter(Mandatory = false,
                    ParameterSetName = "Selected")]
-        public AutomationEventHandler EventHandler { get; set; }
+        public classic.AutomationEventHandler EventHandler { get; set; }
         
         [UiaParameter][Parameter(Mandatory = false)]
         internal new SwitchParameter PassThru { get; set; }

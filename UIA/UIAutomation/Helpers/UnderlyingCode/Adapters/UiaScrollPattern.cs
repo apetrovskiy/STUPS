@@ -9,19 +9,19 @@
 
 namespace UIAutomation
 {
-	extern alias UIANET;
+	extern alias UIANET;using System.Windows.Automation;
 	using System;
-	using System.Windows.Automation;
+	using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
 
 	/// <summary>
 	/// Description of ScrollPatternAdapter.
 	/// </summary>
 	public class UiaScrollPattern : IScrollPattern
 	{
-		private System.Windows.Automation.ScrollPattern _scrollPattern;
+		private classic.ScrollPattern _scrollPattern;
 		private IUiElement _element;
 
-		public UiaScrollPattern(IUiElement element, ScrollPattern scrollPattern)
+		public UiaScrollPattern(IUiElement element, classic.ScrollPattern scrollPattern)
 		{
 			this._scrollPattern = scrollPattern;
 			this._element = element;
@@ -78,13 +78,13 @@ namespace UIAutomation
 //			}
 		}
 		public const double NoScroll = -1.0;
-		public static readonly AutomationPattern Pattern = ScrollPatternIdentifiers.Pattern;
-		public static readonly AutomationProperty HorizontalScrollPercentProperty = ScrollPatternIdentifiers.HorizontalScrollPercentProperty;
-		public static readonly AutomationProperty HorizontalViewSizeProperty = ScrollPatternIdentifiers.HorizontalViewSizeProperty;
-		public static readonly AutomationProperty VerticalScrollPercentProperty = ScrollPatternIdentifiers.VerticalScrollPercentProperty;
-		public static readonly AutomationProperty VerticalViewSizeProperty = ScrollPatternIdentifiers.VerticalViewSizeProperty;
-		public static readonly AutomationProperty HorizontallyScrollableProperty = ScrollPatternIdentifiers.HorizontallyScrollableProperty;
-		public static readonly AutomationProperty VerticallyScrollableProperty = ScrollPatternIdentifiers.VerticallyScrollableProperty;
+		public static readonly classic.AutomationPattern Pattern = ScrollPatternIdentifiers.Pattern;
+		public static readonly classic.AutomationProperty HorizontalScrollPercentProperty = ScrollPatternIdentifiers.HorizontalScrollPercentProperty;
+		public static readonly classic.AutomationProperty HorizontalViewSizeProperty = ScrollPatternIdentifiers.HorizontalViewSizeProperty;
+		public static readonly classic.AutomationProperty VerticalScrollPercentProperty = ScrollPatternIdentifiers.VerticalScrollPercentProperty;
+		public static readonly classic.AutomationProperty VerticalViewSizeProperty = ScrollPatternIdentifiers.VerticalViewSizeProperty;
+		public static readonly classic.AutomationProperty HorizontallyScrollableProperty = ScrollPatternIdentifiers.HorizontallyScrollableProperty;
+		public static readonly classic.AutomationProperty VerticallyScrollableProperty = ScrollPatternIdentifiers.VerticallyScrollableProperty;
 		// private SafePatternHandle _hPattern;
 		// private bool _cached;
 		
@@ -113,17 +113,17 @@ namespace UIAutomation
 			// UiaCoreApi.ScrollPattern_SetScrollPercent(this._hPattern, horizontalPercent, verticalPercent);
 			this._scrollPattern.SetScrollPercent(horizontalPercent, verticalPercent);
 		}
-		public virtual void Scroll(ScrollAmount horizontalAmount, ScrollAmount verticalAmount)
+		public virtual void Scroll(classic.ScrollAmount horizontalAmount, classic.ScrollAmount verticalAmount)
 		{
 			// UiaCoreApi.ScrollPattern_Scroll(this._hPattern, horizontalAmount, verticalAmount);
 			this._scrollPattern.Scroll(horizontalAmount, verticalAmount);
 		}
-		public virtual void ScrollHorizontal(ScrollAmount amount)
+		public virtual void ScrollHorizontal(classic.ScrollAmount amount)
 		{
 			// UiaCoreApi.ScrollPattern_Scroll(this._hPattern, amount, ScrollAmount.NoAmount);
 			this._scrollPattern.ScrollHorizontal(amount);
 		}
-		public virtual void ScrollVertical(ScrollAmount amount)
+		public virtual void ScrollVertical(classic.ScrollAmount amount)
 		{
 			// UiaCoreApi.ScrollPattern_Scroll(this._hPattern, ScrollAmount.NoAmount, amount);
 			this._scrollPattern.ScrollVertical(amount);

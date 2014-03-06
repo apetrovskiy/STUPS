@@ -9,11 +9,11 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;
+    extern alias UIANET;using System.Windows.Automation;
     using System;
     using System.Reflection;
 	using System.Runtime.Remoting.Lifetime;
-    using System.Windows.Automation;
+    using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
     using System.Collections;
     using System.Collections.Generic;
     using Castle.DynamicProxy;
@@ -512,9 +512,9 @@ namespace UIAutomation
                         case "get_Descendants":
                             invocation.ReturnValue =
                                 // 20140210
-                                (invocation.Proxy as IUiElement).GetExtendedModelHolder(TreeScope.Descendants);
+                                (invocation.Proxy as IUiElement).GetExtendedModelHolder(classic.TreeScope.Descendants);
                             // (invocation.Proxy as IUiElement).GetExtendedModelHolder(
-                            //     TreeScope.Descendants,
+                            //     classic.TreeScope.Descendants,
                             //     (int)invocation.Arguments[0]);
                             break;
                         case "get_Children":
@@ -522,7 +522,7 @@ namespace UIAutomation
                                 // 20140210
                                 (invocation.Proxy as IUiElement).GetExtendedModelHolder(TreeScope.Children);
                             // (invocation.Proxy as IUiElement).GetExtendedModelHolder(
-                            //     TreeScope.Children,
+                            //     classic.TreeScope.Children,
                             //     (int)invocation.Arguments[0]);
                             break;
                         case "get_Buttons":

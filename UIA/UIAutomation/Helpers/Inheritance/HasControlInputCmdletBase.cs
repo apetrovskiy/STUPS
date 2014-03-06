@@ -9,10 +9,10 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;
+    extern alias UIANET;using System.Windows.Automation;
     using System;
     using System.Management.Automation;
-    using System.Windows.Automation;
+    using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
     using System.Runtime.InteropServices;
     
     using System.Collections;
@@ -122,13 +122,13 @@ namespace UIAutomation
         }
         
         #region Properties
-        protected internal AutomationEvent AutomationEventType { get; set; }
+        protected internal classic.AutomationEvent AutomationEventType { get; set; }
         // 20140217
         // protected internal AutomationProperty AutomationProperty { get; set; }
-        protected internal AutomationProperty[] AutomationProperty { get; set; }
-        protected internal AutomationEventHandler AutomationEventHandler { get; set; }
-        protected internal AutomationPropertyChangedEventHandler AutomationPropertyChangedEventHandler { get; set; }
-        protected internal StructureChangedEventHandler StructureChangedEventHandler { get; set; }
+        protected internal classic.AutomationProperty[] AutomationProperty { get; set; }
+        protected internal classic.AutomationEventHandler AutomationEventHandler { get; set; }
+        protected internal classic.AutomationPropertyChangedEventHandler AutomationPropertyChangedEventHandler { get; set; }
+        protected internal classic.StructureChangedEventHandler StructureChangedEventHandler { get; set; }
         protected RegisterUiaStructureChangedEventCommand Child { get; set; }
         #endregion Properties
         
@@ -513,8 +513,8 @@ namespace UIAutomation
         #region subscribe to events
         protected internal void SubscribeToEvents(HasControlInputCmdletBase cmdlet,
                                                   IUiElement inputObject,
-                                                  AutomationEvent eventType,
-                                                  AutomationProperty[] properties)
+                                                  classic.AutomationEvent eventType,
+                                                  classic.AutomationProperty[] properties)
         {
             if (null == CurrentData.Events) {
                 CurrentData.InitializeEventCollection();
@@ -675,7 +675,7 @@ namespace UIAutomation
         #endregion subscribe to events
     
         #region OnUIAutomationEvent
-        protected void OnUIAutomationEvent(object src, AutomationEventArgs e)
+        protected void OnUIAutomationEvent(object src, classic.AutomationEventArgs e)
         {
             if (!checkNotNull(src, e)) return;
             RunEventScriptBlocks(this);
@@ -686,7 +686,7 @@ namespace UIAutomation
         #endregion OnUIAutomationEvent
         
         #region OnUIAutomationPropertyChangedEvent
-        protected void OnUIAutomationPropertyChangedEvent(object src, AutomationPropertyChangedEventArgs e)
+        protected void OnUIAutomationPropertyChangedEvent(object src, classic.AutomationPropertyChangedEventArgs e)
         {
             if (!checkNotNull(src, e)) return;
             // 20140217
@@ -708,7 +708,7 @@ try {
         #endregion OnUIAutomationPropertyChangedEvent
         
         #region OnUIStructureChangedEvent
-        protected void OnUIStructureChangedEvent(object src, StructureChangedEventArgs e)
+        protected void OnUIStructureChangedEvent(object src, classic.StructureChangedEventArgs e)
         {
             if (!checkNotNull(src, e)) return;
 
@@ -728,7 +728,7 @@ try {
         #endregion OnUIStructureChangedEvent
         
         #region OnUIWindowClosedEvent
-        protected void OnUIWindowClosedEvent(object src, WindowClosedEventArgs e)
+        protected void OnUIWindowClosedEvent(object src, classic.WindowClosedEventArgs e)
         {
             if (!checkNotNull(src, e)) return;
             RunEventScriptBlocks(this);
@@ -741,7 +741,7 @@ try {
         #region Event handling for recording
         protected internal void OnUIRecordingAutomationEvent(
             object src,
-            AutomationEventArgs e)
+            classic.AutomationEventArgs e)
         {
             try { // experimental
             
@@ -907,7 +907,7 @@ try {
         
         #region checker event handler inputs
         [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "check")]
-        protected bool checkNotNull(object objectToTest, AutomationEventArgs e)
+        protected bool checkNotNull(object objectToTest, classic.AutomationEventArgs e)
         {
             // 20131109
             //AutomationElement sourceElement;

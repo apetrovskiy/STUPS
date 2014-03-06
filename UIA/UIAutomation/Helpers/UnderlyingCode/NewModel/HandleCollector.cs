@@ -9,7 +9,7 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;
+    extern alias UIANET;using System.Windows.Automation;
     using System;
 //    using System.Windows.Automation;
 //    using System.Collections;

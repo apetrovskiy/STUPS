@@ -138,7 +138,7 @@ namespace UIAutomation.Helpers.Commands
 //                
 //                if (null == Pattern || 0 == Pattern.Length) {
 //                    WriteVerbose(this, "no patterns were provided");
-//                    CurrentData.CacheRequest.Add(ExpandCollapsePattern.Pattern);
+//                    CurrentData.CacheRequest.Add(classic.ExpandCollapsePattern.Pattern);
 //                    CurrentData.CacheRequest.Add(InvokePattern.Pattern);
 //                    CurrentData.CacheRequest.Add(ScrollItemPattern.Pattern);
 //                    CurrentData.CacheRequest.Add(SelectionItemPattern.Pattern);
@@ -153,22 +153,22 @@ namespace UIAutomation.Helpers.Commands
 //                        switch (patternName.ToUpper()) {
 //                            case "DOCK":
 //                            case "DOCKPATTERN":
-//                                CurrentData.CacheRequest.Add(DockPattern.Pattern);
+//                                CurrentData.CacheRequest.Add(classic.DockPattern.Pattern);
 //                                break;
 //                            case "EXPAND":
 //                            case "COLLAPSE":
 //                            case "EXPANDPATTERN":
 //                            case "COLLAPSEPATTERN":
 //                            case "EXPANDCOLLAPSEPATTERN":
-//                                CurrentData.CacheRequest.Add(ExpandCollapsePattern.Pattern);
+//                                CurrentData.CacheRequest.Add(classic.ExpandCollapsePattern.Pattern);
 //                                break;
 //                            case "GRIDITEM":
 //                            case "GRIDITEMPATTERN":
-//                                CurrentData.CacheRequest.Add(GridItemPattern.Pattern);
+//                                CurrentData.CacheRequest.Add(classic.GridItemPattern.Pattern);
 //                                break;
 //                            case "GRID":
 //                            case "GRIDPATTERN":
-//                                CurrentData.CacheRequest.Add(GridPattern.Pattern);
+//                                CurrentData.CacheRequest.Add(classic.GridPattern.Pattern);
 //                                break;
 //                            case "INVOKE":
 //                            case "INVOKEPATTERN":
@@ -227,10 +227,10 @@ namespace UIAutomation.Helpers.Commands
 //                                CurrentData.CacheRequest.Add(WindowPattern.Pattern);
 //                                break;
 ////                            default:
-////                                CurrentData.CacheRequest.Add(DockPattern.Pattern);
-////                                CurrentData.CacheRequest.Add(ExpandCollapsePattern.Pattern);
-////                                CurrentData.CacheRequest.Add(GridItemPattern.Pattern);
-////                                CurrentData.CacheRequest.Add(GridPattern.Pattern);
+////                                CurrentData.CacheRequest.Add(classic.DockPattern.Pattern);
+////                                CurrentData.CacheRequest.Add(classic.ExpandCollapsePattern.Pattern);
+////                                CurrentData.CacheRequest.Add(classic.GridItemPattern.Pattern);
+////                                CurrentData.CacheRequest.Add(classic.GridPattern.Pattern);
 ////                                CurrentData.CacheRequest.Add(InvokePattern.Pattern);
 ////                                CurrentData.CacheRequest.Add(MultipleViewPattern.Pattern);
 ////                                CurrentData.CacheRequest.Add(RangeValuePattern.Pattern);

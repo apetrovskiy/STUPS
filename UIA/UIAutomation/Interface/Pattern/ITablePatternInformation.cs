@@ -9,8 +9,8 @@
 
 namespace UIAutomation
 {
-	extern alias UIANET;
-	using System.Windows.Automation;
+	extern alias UIANET;using System.Windows.Automation;
+	using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
 	
 	public interface ITablePatternInformation
 	{
@@ -18,7 +18,7 @@ namespace UIAutomation
 		IUiElement[] GetColumnHeaders();
 		int RowCount { get; }
 		int ColumnCount { get; }
-		RowOrColumnMajor RowOrColumnMajor { get; }
+		classic.RowOrColumnMajor RowOrColumnMajor { get; }
 	}
 }
 

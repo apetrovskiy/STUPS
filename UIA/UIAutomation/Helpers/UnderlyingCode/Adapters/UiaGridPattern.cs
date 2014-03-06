@@ -9,19 +9,19 @@
 
 namespace UIAutomation
 {
-	extern alias UIANET;
+	extern alias UIANET;using System.Windows.Automation;
 	using System;
-	using System.Windows.Automation;
+	using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
 
 	/// <summary>
 	/// Description of GridPatternAdapterNet.
 	/// </summary>
 	public class UiaGridPattern : IGridPattern
 	{
-		private System.Windows.Automation.GridPattern _gridPattern;
+		private classic.GridPattern _gridPattern;
 		private IUiElement _element;
 
-		public UiaGridPattern(IUiElement element, GridPattern gridPattern)
+		public UiaGridPattern(IUiElement element, classic.GridPattern gridPattern)
 		{
 			this._gridPattern = gridPattern;
 			this._element = element;
@@ -61,9 +61,9 @@ namespace UIAutomation
 //				this._useCache = useCache;
 //			}
 		}
-		public static readonly AutomationPattern Pattern = GridPatternIdentifiers.Pattern;
-		public static readonly AutomationProperty RowCountProperty = GridPatternIdentifiers.RowCountProperty;
-		public static readonly AutomationProperty ColumnCountProperty = GridPatternIdentifiers.ColumnCountProperty;
+		public static readonly classic.AutomationPattern Pattern = GridPatternIdentifiers.Pattern;
+		public static readonly classic.AutomationProperty RowCountProperty = GridPatternIdentifiers.RowCountProperty;
+		public static readonly classic.AutomationProperty ColumnCountProperty = GridPatternIdentifiers.ColumnCountProperty;
 		// internal SafePatternHandle _hPattern;
 		// internal bool _cached;
 		

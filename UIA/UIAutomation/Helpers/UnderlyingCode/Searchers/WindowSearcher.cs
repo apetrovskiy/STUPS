@@ -9,11 +9,12 @@
 
 namespace UIAutomation
 {
+    extern alias UIANET;using System.Windows.Automation;
     using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.Diagnostics;
-    using System.Windows.Automation;
+    using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
     using System.Linq;
     using System.Management.Automation;
     using System.Text.RegularExpressions;
@@ -31,7 +32,7 @@ namespace UIAutomation
         internal bool wasFound = false;
         
         // 20140208
-        private CacheRequest ClonedCacheRequest { get; set; }
+        private classic.CacheRequest ClonedCacheRequest { get; set; }
         
         public override void OnStartHook()
         {
@@ -291,7 +292,7 @@ namespace UIAutomation
             foreach (string windowTitle in data.Name) {
                 
                 IUiEltCollection windowCollection =
-                    rootElement.FindAll(data.Recurse ? TreeScope.Descendants : TreeScope.Children, conditionsSet);
+                    rootElement.FindAll(data.Recurse ? classic.TreeScope.Descendants : classic.TreeScope.Children, conditionsSet);
                 
                 var controlSearcherData =
                     new ControlSearcherData {
@@ -370,7 +371,7 @@ namespace UIAutomation
             IUiElement rootElement,
             WindowSearcherData data)
         {
-            AndCondition conditionsForRecurseSearch = null;
+            classic.AndCondition conditionsForRecurseSearch = null;
             
             var elementsByProcessId =
                 new List<IUiElement>();
@@ -388,34 +389,34 @@ namespace UIAutomation
             
             var conditionWindowPaneMenu =
             // OrCondition conditionWindowPaneMenu =
-                new OrCondition(
-                    new PropertyCondition(
-                        AutomationElement.ControlTypeProperty,
-                        ControlType.Window),
-                    new PropertyCondition(
-                        AutomationElement.ControlTypeProperty,
-                        ControlType.Pane),
-                    new PropertyCondition(
-                        AutomationElement.ControlTypeProperty,
-                        ControlType.Menu));
+                new classic.OrCondition(
+                    new classic.PropertyCondition(
+                        classic.AutomationElement.ControlTypeProperty,
+                        classic.ControlType.Window),
+                    new classic.PropertyCondition(
+                        classic.AutomationElement.ControlTypeProperty,
+                        classic.ControlType.Pane),
+                    new classic.PropertyCondition(
+                        classic.AutomationElement.ControlTypeProperty,
+                        classic.ControlType.Menu));
             
             foreach (int processId in data.ProcessIds) {
                 
                 // AndCondition conditionsProcessId = null;
                 conditionsForRecurseSearch =
-                    new AndCondition(
-                        new PropertyCondition(
-                            AutomationElement.ProcessIdProperty,
+                    new classic.AndCondition(
+                        new classic.PropertyCondition(
+                            classic.AutomationElement.ProcessIdProperty,
                             processId),
-                        new PropertyCondition(
-                            AutomationElement.ControlTypeProperty,
-                            ControlType.Window));
+                        new classic.PropertyCondition(
+                            classic.AutomationElement.ControlTypeProperty,
+                            classic.ControlType.Window));
                     
                 // conditionsProcessId =
                 var conditionsProcessId =
-                    new AndCondition(
-                        new PropertyCondition(
-                            AutomationElement.ProcessIdProperty,
+                    new classic.AndCondition(
+                        new classic.PropertyCondition(
+                            classic.AutomationElement.ProcessIdProperty,
                             processId),
                         conditionWindowPaneMenu);
                 
@@ -426,7 +427,7 @@ namespace UIAutomation
                             
                             IUiElement rootWindowElement =
                                 rootElement.FindFirst(
-                                    TreeScope.Children,
+                                    classic.TreeScope.Children,
                                     conditionsProcessId);
                             
                             if (null != rootWindowElement) {
@@ -437,7 +438,7 @@ namespace UIAutomation
                             
                             IUiEltCollection rootCollection =
                                 rootElement.FindAll(
-                                    TreeScope.Children,
+                                    classic.TreeScope.Children,
                                     conditionsProcessId);
                             
                             if (null != rootCollection && 0 < rootCollection.Count)
@@ -452,7 +453,7 @@ namespace UIAutomation
                             
                             IUiElement tempElement =
                                 rootElement.FindFirst(
-                                    TreeScope.Children,
+                                    classic.TreeScope.Children,
                                     conditionsProcessId);
                             
                             if (null != tempElement) {
@@ -463,7 +464,7 @@ namespace UIAutomation
                             
                             IUiEltCollection tempCollection =
                                 rootElement.FindAll(
-                                    TreeScope.Children,
+                                    classic.TreeScope.Children,
                                     conditionsProcessId);
                             
                             if (null != tempCollection && 0 < tempCollection.Count) {

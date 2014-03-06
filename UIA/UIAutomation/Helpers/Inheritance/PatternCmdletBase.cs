@@ -9,11 +9,12 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;
+    extern alias UIANET;using System.Windows.Automation;
     using System;
     using System.Management.Automation;
-    using System.Windows.Automation;
-    using System.Windows.Automation.Text;
+    using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
+    // using System.Windows.Automation.Text;
+    // using classic.Text = UIANET::System.Windows.Automation.Text;
     using System.Collections;
     using System.Linq;
     using System.Threading;
@@ -94,9 +95,9 @@ namespace UIAutomation
 //            //dockPattern.Current.DockPosition
 //            try {
 //                // 20131208
-//                // DockPattern dockPattern = control.GetCurrentPattern(DockPattern.Pattern) as DockPattern;
-//                // DockPattern dockPattern = control.GetCurrentPattern<IDockPattern, DockPattern>(DockPattern.Pattern) as DockPattern;
-//                IDockPattern dockPattern = control.GetCurrentPattern<IDockPattern>(DockPattern.Pattern);
+//                // DockPattern dockPattern = control.GetCurrentPattern(classic.DockPattern.Pattern) as DockPattern;
+//                // DockPattern dockPattern = control.GetCurrentPattern<IDockPattern, DockPattern>(classic.DockPattern.Pattern) as DockPattern;
+//                IDockPattern dockPattern = control.GetCurrentPattern<IDockPattern>(classic.DockPattern.Pattern);
 //                if (null != dockPattern) {
 //                    WriteObject(this, dockPattern.Current.DockPosition);
 //                } else {
@@ -109,12 +110,12 @@ namespace UIAutomation
 //            }
         }
         
-        internal void CallDockPatternForSet(PatternCmdletBase cmdlet, IUiElement control, IUiElement inputObject, DockPosition position)
+        internal void CallDockPatternForSet(PatternCmdletBase cmdlet, IUiElement control, IUiElement inputObject, classic.DockPosition position)
         {
 //            try {
 //                // 20131208
-//                // DockPattern dockPattern = control.GetCurrentPattern(DockPattern.Pattern) as DockPattern;
-//                // DockPattern dockPattern = control.GetCurrentPattern<IDockPattern, DockPattern>(DockPattern.Pattern) as DockPattern;
+//                // DockPattern dockPattern = control.GetCurrentPattern(classic.DockPattern.Pattern) as DockPattern;
+//                // DockPattern dockPattern = control.GetCurrentPattern<IDockPattern, DockPattern>(classic.DockPattern.Pattern) as DockPattern;
                 // 20140102
             try {
                 control.PerformSetDockPosition(position);
@@ -127,7 +128,7 @@ namespace UIAutomation
             catch {
                 WriteObject(this, false);
             }
-//                IDockPattern dockPattern = control.GetCurrentPattern<IDockPattern>(DockPattern.Pattern);
+//                IDockPattern dockPattern = control.GetCurrentPattern<IDockPattern>(classic.DockPattern.Pattern);
 //                if (null != dockPattern) {
 //                    dockPattern.SetDockPosition(position);
 //                    
@@ -514,8 +515,8 @@ namespace UIAutomation
                     int textLength = ((InvokeUiaTextPatternGetCommand)this).TextLength;
                     if (((InvokeUiaTextPatternGetCommand)this).VisibleArea)
                     {
-                        TextPatternRange[] textRanges = textPatternGet.GetVisibleRanges();
-                        foreach (TextPatternRange tpr in textRanges)
+                        classic.Text.TextPatternRange[] textRanges = textPatternGet.GetVisibleRanges();
+                        foreach (classic.Text.TextPatternRange tpr in textRanges)
                         {
                             WriteObject(this, tpr);
                         }
@@ -912,7 +913,7 @@ namespace UIAutomation
         //gridPattern.GetItem
 
         // GridPattern gridPattern =
-        // _control.GetCurrentPattern(GridPattern.Pattern)
+        // _control.GetCurrentPattern(classic.GridPattern.Pattern)
         // as GridPattern;
         // if (gridPattern != null)
         // {
@@ -930,9 +931,9 @@ namespace UIAutomation
         {
             try {
                 // 20131208
-                // GridPattern gridPattern = control.GetCurrentPattern(GridPattern.Pattern) as GridPattern;
-                // GridPattern gridPattern = control.GetCurrentPattern<IGridPattern, GridPattern>(GridPattern.Pattern) as GridPattern;
-                IGridPattern gridPattern = control.GetCurrentPattern<IGridPattern>(GridPattern.Pattern);
+                // GridPattern gridPattern = control.GetCurrentPattern(classic.GridPattern.Pattern) as GridPattern;
+                // GridPattern gridPattern = control.GetCurrentPattern<IGridPattern, GridPattern>(classic.GridPattern.Pattern) as GridPattern;
+                IGridPattern gridPattern = control.GetCurrentPattern<IGridPattern>(classic.GridPattern.Pattern);
                 if (gridPattern != null) {
                 }
             } catch (Exception eGridPatternException) {
@@ -943,7 +944,7 @@ namespace UIAutomation
 
         // not yet implemented
         // GridItemPattern giPattern =
-        // _control.GetCurrentPattern(GridItemPattern.Pattern)
+        // _control.GetCurrentPattern(classic.GridItemPattern.Pattern)
         // as GridItemPattern;
         // 
         // giPattern.Current.
@@ -951,9 +952,9 @@ namespace UIAutomation
         {
             try {
                 // 20131208
-                // GridItemPattern gridItemPattern = control.GetCurrentPattern(GridItemPattern.Pattern) as GridItemPattern;
-                // GridItemPattern gridItemPattern = control.GetCurrentPattern<IGridItemPattern, GridItemPattern>(GridItemPattern.Pattern) as GridItemPattern;
-                IGridItemPattern gridItemPattern = control.GetCurrentPattern<IGridItemPattern>(GridItemPattern.Pattern);
+                // GridItemPattern gridItemPattern = control.GetCurrentPattern(classic.GridItemPattern.Pattern) as GridItemPattern;
+                // GridItemPattern gridItemPattern = control.GetCurrentPattern<IGridItemPattern, GridItemPattern>(classic.GridItemPattern.Pattern) as GridItemPattern;
+                IGridItemPattern gridItemPattern = control.GetCurrentPattern<IGridItemPattern>(classic.GridItemPattern.Pattern);
                 if (gridItemPattern != null) {
                     //gridItemPattern.Current.
                 }
@@ -977,7 +978,7 @@ namespace UIAutomation
 //            try {
 //                // IExpandCollapsePattern collapsePattern = control.GetExpandCollapsePattern();
 //                // IExpandCollapsePattern collapsePattern = control.GetCurrentPattern<IExpandCollapsePattern, ExpandCollapsePattern>();
-//                IExpandCollapsePattern collapsePattern = control.GetCurrentPattern<IExpandCollapsePattern>(ExpandCollapsePattern.Pattern);
+//                IExpandCollapsePattern collapsePattern = control.GetCurrentPattern<IExpandCollapsePattern>(classic.ExpandCollapsePattern.Pattern);
 //                if (collapsePattern != null) {
 //                    collapsePattern.Collapse();
 //                    
@@ -1010,7 +1011,7 @@ namespace UIAutomation
 //            try {
 //                // IExpandCollapsePattern expandPattern = control.GetExpandCollapsePattern();
 //                // IExpandCollapsePattern expandPattern = control.GetCurrentPattern<IExpandCollapsePattern, ExpandCollapsePattern>();
-//                IExpandCollapsePattern expandPattern = control.GetCurrentPattern<IExpandCollapsePattern>(ExpandCollapsePattern.Pattern);
+//                IExpandCollapsePattern expandPattern = control.GetCurrentPattern<IExpandCollapsePattern>(classic.ExpandCollapsePattern.Pattern);
 //                if (expandPattern != null) {
 //                    expandPattern.Expand();
 //                    

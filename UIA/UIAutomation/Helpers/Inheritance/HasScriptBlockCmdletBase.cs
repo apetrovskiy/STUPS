@@ -9,10 +9,10 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;
+    extern alias UIANET;using System.Windows.Automation;
     using System;
     using System.Management.Automation;
-    using System.Windows.Automation;
+    using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
     using System.Collections;
     using System.Collections.Generic;
 
@@ -51,9 +51,9 @@ namespace UIAutomation
         
         protected internal IUiElement ElementToSubscribe;
         // list of all subscribed events
-        protected internal readonly List<AutomationEventHandler> SubscribedEvents =
+        protected internal readonly List<classic.AutomationEventHandler> SubscribedEvents =
             new List<AutomationEventHandler>();
-        protected internal readonly List<AutomationEvent> SubscribedEventsIds =
+        protected internal readonly List<classic.AutomationEvent> SubscribedEventsIds =
             new List<AutomationEvent>();
         
         // 20140130

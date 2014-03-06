@@ -9,10 +9,10 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;
+    extern alias UIANET;using System.Windows.Automation;
     using System;
     using System.IO;
-    using System.Windows.Automation;
+    using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
     using System.Drawing;
     using System.Windows;
     using System.Windows.Forms;
@@ -649,10 +649,10 @@ namespace UIAutomation
                 cacheRequest.Add(AutomationElement.ClassNameProperty);
                 cacheRequest.Add(AutomationElement.ControlTypeProperty);
                 cacheRequest.Add(AutomationElement.ProcessIdProperty);
-                cacheRequest.Add(DockPattern.Pattern);
-                cacheRequest.Add(ExpandCollapsePattern.Pattern);
-                cacheRequest.Add(GridItemPattern.Pattern);
-                cacheRequest.Add(GridPattern.Pattern);
+                cacheRequest.Add(classic.DockPattern.Pattern);
+                cacheRequest.Add(classic.ExpandCollapsePattern.Pattern);
+                cacheRequest.Add(classic.GridItemPattern.Pattern);
+                cacheRequest.Add(classic.GridPattern.Pattern);
                 cacheRequest.Add(InvokePattern.Pattern);
                 //                try {
                 //                    cacheRequest.Add(ItemContainerPattern.Pattern);
@@ -1615,7 +1615,7 @@ namespace UIAutomation
         /// </summary>
         /// <param name="patternName"></param>
         /// <returns></returns>
-        internal static AutomationPattern GetPatternByName(string patternName)
+        internal static classic.AutomationPattern GetPatternByName(string patternName)
         {
             AutomationPattern result = null;
             // normalize name
@@ -1693,7 +1693,7 @@ namespace UIAutomation
         /// <returns></returns>
         internal static object GetCurrentPattern(
             ref IUiElement element,
-            AutomationPattern patternType)
+            classic.AutomationPattern patternType)
         {
             object result =
                 null;
@@ -1782,7 +1782,7 @@ namespace UIAutomation
         /// </summary>
         /// <param name="controlType"></param>
         /// <returns></returns>
-        public static ControlType
+        public static classic.ControlType
             GetControlTypeByTypeName(string controlType)
         {
             string controlTypeInUpperCase = controlType.ToUpper();
@@ -1854,7 +1854,7 @@ namespace UIAutomation
         {
             IUiEltCollection headerItems =
                 element.FindAll(
-                    TreeScope.Descendants,
+                    classic.TreeScope.Descendants,
                     new PropertyCondition(
                         AutomationElement.ControlTypeProperty,
                         ControlType.HeaderItem));
@@ -1931,7 +1931,7 @@ namespace UIAutomation
         {
             IUiEltCollection headerItems =
                 element.FindAll(
-                    TreeScope.Descendants,
+                    classic.TreeScope.Descendants,
                     new PropertyCondition(
                         AutomationElement.ControlTypeProperty,
                         ControlType.Header));
@@ -2771,7 +2771,7 @@ namespace UIAutomation
             return supportedTypes.ToArray();
         }
         
-        internal static System.Windows.Automation.Condition GetTreeFilter(string filter)
+        internal static classic.Condition GetTreeFilter(string filter)
         {
             var myAutomation = AutomationFactory.GetMyAutomation();
             
@@ -2787,19 +2787,19 @@ namespace UIAutomation
             }
         }
         
-        internal static TreeScope GetTreeScope(string scope)
+        internal static classic.TreeScope GetTreeScope(string scope)
         {
             switch (scope.ToUpper()) {
                 case "SUBTREE":
                     return TreeScope.Subtree;
                 case "CHILDREN":
-                    return TreeScope.Children;
+                    return classic.TreeScope.Children;
                 case "DESCENDANTS":
-                    return TreeScope.Descendants;
+                    return classic.TreeScope.Descendants;
                 case "ELEMENT":
                     return TreeScope.Element;
                 default:
-                    return TreeScope.Descendants;
+                    return classic.TreeScope.Descendants;
             }
         }
     }

@@ -9,11 +9,11 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;
+    extern alias UIANET;using System.Windows.Automation;
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Windows.Automation;
+    using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
     using System.Linq;
     using Ninject;
     using System.Management.Automation;
@@ -82,7 +82,7 @@ namespace UIAutomation
 			get { return false; }
 		}
         
-		public UiEltCollection(AutomationElementCollection elements)
+		public UiEltCollection(classic.AutomationElementCollection elements)
 		{
 		    foreach (AutomationElement element in elements.Cast<AutomationElement>().Where(element => null != element))
 		    {

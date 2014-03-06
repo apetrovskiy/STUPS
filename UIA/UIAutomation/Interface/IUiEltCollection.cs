@@ -9,11 +9,11 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;
+    extern alias UIANET;using System.Windows.Automation;
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Windows.Automation;
+    using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
     
     public interface IUiEltCollection : ICollection, IEnumerable, IDisposable
 	{

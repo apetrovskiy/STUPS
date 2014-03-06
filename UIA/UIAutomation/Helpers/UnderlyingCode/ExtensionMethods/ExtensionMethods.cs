@@ -9,9 +9,9 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;
+    extern alias UIANET;using System.Windows.Automation;
     using System;
-    using System.Windows.Automation;
+    using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
@@ -30,7 +30,7 @@ namespace UIAutomation
             return resultCollection;
         }
         
-        public static IBasePattern[] ConvertAutomationPatternToBasePattern(this AutomationPattern[] patterns, IUiElement element)
+        public static IBasePattern[] ConvertAutomationPatternToBasePattern(this classic.AutomationPattern[] patterns, IUiElement element)
         {
             var resultList =
                 new List<IBasePattern>();
@@ -304,7 +304,7 @@ namespace UIAutomation
 //                .Except(excludeElements.Select<IUiElement, AutomationElement>(elt => elt.GetSourceElement()));
 //        }
         
-        internal static string[] ConvertControlTypeToStringArray(this ControlType[] controlTypes)
+        internal static string[] ConvertControlTypeToStringArray(this classic.ControlType[] controlTypes)
         {
             if (null == controlTypes || 0 == controlTypes.Length) return new string[] {};
             
@@ -313,7 +313,7 @@ namespace UIAutomation
                 null != ct ? ct.ProgrammaticName.Substring(12) : string.Empty).ToArray();
         }
         
-        internal static string[] ConvertControlTypeToStringArray(this ControlType controlType)
+        internal static string[] ConvertControlTypeToStringArray(this classic.ControlType controlType)
         {
 			return null == controlType ? new string[] {
 

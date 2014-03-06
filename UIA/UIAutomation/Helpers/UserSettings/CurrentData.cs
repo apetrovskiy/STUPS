@@ -9,9 +9,9 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;
+    extern alias UIANET;using System.Windows.Automation;
     using System;
-    using System.Windows.Automation;
+    using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
@@ -61,7 +61,7 @@ public static List<object> Events { get; set; } // temporary ??
         //internal static bool LastEventInfoAdded { get; set; }
         public static bool LastEventInfoAdded { get; set; }
         
-        public static CacheRequest CacheRequest = null;
+        public static classic.CacheRequest CacheRequest = null;
         
         internal static void InitializeData()
         {
@@ -95,7 +95,7 @@ public static List<object> Events { get; set; } // temporary ??
             try {
                 // 20140130
                 // TODO:
-                Automation.RemoveAllEventHandlers();
+                classic.Automation.RemoveAllEventHandlers();
                 Events.Clear();
             }
             catch {

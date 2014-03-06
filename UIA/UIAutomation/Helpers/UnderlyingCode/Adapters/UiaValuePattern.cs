@@ -9,20 +9,20 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;
+    extern alias UIANET;using System.Windows.Automation;
 	using System;
-	using System.Windows.Automation;
+	using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
     
 	/// <summary>
 	/// Description of ValuePatternAdapter.
 	/// </summary>
 	public class UiaValuePattern :  IValuePattern //IValuePatternAdapter
 	{
-		private System.Windows.Automation.ValuePattern _valuePattern;
+		private classic.ValuePattern _valuePattern;
 		private IUiElement _element;
 		private object _patternEmulator;
 		
-		public UiaValuePattern(IUiElement element, ValuePattern valuePattern)
+		public UiaValuePattern(IUiElement element, classic.ValuePattern valuePattern)
 		{
 			this._valuePattern = valuePattern;
 			this._element = element;
@@ -35,7 +35,7 @@ namespace UIAutomation
 		    this._patternEmulator = new SourcePatternEmulator(new object());
 		}
 		
-		public UiaValuePattern(ValuePattern valuePattern)
+		public UiaValuePattern(classic.ValuePattern valuePattern)
 		{
 		    this._valuePattern = valuePattern;
 		}
@@ -71,9 +71,9 @@ namespace UIAutomation
 				}
 			}
 		}
-		public static readonly AutomationPattern Pattern = ValuePatternIdentifiers.Pattern;
-		public static readonly AutomationProperty ValueProperty = ValuePatternIdentifiers.ValueProperty;
-		public static readonly AutomationProperty IsReadOnlyProperty = ValuePatternIdentifiers.IsReadOnlyProperty;
+		public static readonly classic.AutomationPattern Pattern = ValuePatternIdentifiers.Pattern;
+		public static readonly classic.AutomationProperty ValueProperty = ValuePatternIdentifiers.ValueProperty;
+		public static readonly classic.AutomationProperty IsReadOnlyProperty = ValuePatternIdentifiers.IsReadOnlyProperty;
 		
 		public virtual IValuePatternInformation Cached {
 			get {

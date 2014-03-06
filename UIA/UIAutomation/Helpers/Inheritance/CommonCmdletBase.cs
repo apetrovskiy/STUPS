@@ -9,14 +9,14 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;
+    extern alias UIANET;using System.Windows.Automation;
     using System;
     using System.Management.Automation;
     using System.Collections;
     using System.Collections.ObjectModel;
     using System.Threading;
     using System.Management.Automation.Runspaces;
-    using System.Windows.Automation;
+    using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
     using System.Collections.Generic;
     using System.Text.RegularExpressions;
     using System.Linq;
@@ -975,9 +975,9 @@ namespace UIAutomation
         //protected override void SaveEventInput(
         protected override void SaveEventInput(
             // 20131109
-            AutomationElement src,
+            classic.AutomationElement src,
             //IUiElement src,
-            AutomationEventArgs e,
+            classic.AutomationEventArgs e,
             string programmaticName,
             bool infoAdded)
         {

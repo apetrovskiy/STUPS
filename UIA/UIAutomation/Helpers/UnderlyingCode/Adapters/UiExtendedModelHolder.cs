@@ -9,7 +9,8 @@
 
 namespace UIAutomation
 {
-    using System.Windows.Automation;
+    extern alias UIANET;using System.Windows.Automation;
+    using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
     
     /// <summary>
     /// Description of UiExtendedModelHolder.
@@ -17,7 +18,7 @@ namespace UIAutomation
     public class UiExtendedModelHolder : IExtendedModelHolder
     {
         private IUiElement _parentElement;
-        private TreeScope _scope;
+        private classic.TreeScope _scope;
         
         // 20140210
         public int Seconds { get; set; }
@@ -41,12 +42,12 @@ namespace UIAutomation
             return _parentElement;
         }
         
-        public void SetScope(TreeScope scope)
+        public void SetScope(classic.TreeScope scope)
         {
             _scope = scope;
         }
         
-        public TreeScope GetScope()
+        public classic.TreeScope GetScope()
         {
             return _scope;
         }

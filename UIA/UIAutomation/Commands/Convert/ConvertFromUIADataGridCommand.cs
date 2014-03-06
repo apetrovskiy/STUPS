@@ -11,10 +11,10 @@ using System.Collections.Generic;
 
 namespace UIAutomation.Commands
 {
-    extern alias UIANET;
+    extern alias UIANET;using System.Windows.Automation;
     using System;
     using System.Management.Automation;
-    using System.Windows.Automation;
+    using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
     using System.Linq;
 
     /// <summary>
@@ -56,9 +56,9 @@ namespace UIAutomation.Commands
                 try {
                     gridPattern =
                         // 20131208
-                        // inputObject.GetCurrentPattern(GridPattern.Pattern)
-                        // inputObject.GetCurrentPattern<IGridPattern, GridPattern>(GridPattern.Pattern)
-                        inputObject.GetCurrentPattern<IGridPattern>(GridPattern.Pattern);
+                        // inputObject.GetCurrentPattern(classic.GridPattern.Pattern)
+                        // inputObject.GetCurrentPattern<IGridPattern, GridPattern>(classic.GridPattern.Pattern)
+                        inputObject.GetCurrentPattern<IGridPattern>(classic.GridPattern.Pattern);
                         // as GridPattern;
                     
                 

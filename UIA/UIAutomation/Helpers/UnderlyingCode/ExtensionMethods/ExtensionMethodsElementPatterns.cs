@@ -9,10 +9,10 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;
+    extern alias UIANET;using System.Windows.Automation;
     using System;
-    using System.Windows.Automation;
-    using System.Windows.Automation.Text;
+    using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
+    // using System.Windows.Automation.Text;
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
@@ -27,10 +27,10 @@ namespace UIAutomation
     {
         #region Patterns
         #region DockPattern
-        public static IUiElement PerformSetDockPosition(this IUiElement element, DockPosition dockPosition)
+        public static IUiElement PerformSetDockPosition(this IUiElement element, classic.DockPosition dockPosition)
         {
 //            try {
-                element.GetCurrentPattern<IDockPattern>(DockPattern.Pattern).SetDockPosition(dockPosition);
+                element.GetCurrentPattern<IDockPattern>(classic.DockPattern.Pattern).SetDockPosition(dockPosition);
 //            } catch (Exception eExtensionMethod) {
 //                // 
 //                // throw;
@@ -38,10 +38,10 @@ namespace UIAutomation
             return element;
         }
         
-        public static DockPosition GetDockPosition(this IUiElement element)
+        public static classic.DockPosition GetDockPosition(this IUiElement element)
         {
             try {
-                return element.GetCurrentPattern<IDockPattern>(DockPattern.Pattern).Current.DockPosition;
+                return element.GetCurrentPattern<IDockPattern>(classic.DockPattern.Pattern).Current.DockPosition;
             } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
@@ -53,7 +53,7 @@ namespace UIAutomation
         public static IUiElement PerformExpand(this IUiElement element)
         {
 //            try {
-                element.GetCurrentPattern<IExpandCollapsePattern>(ExpandCollapsePattern.Pattern).Expand();
+                element.GetCurrentPattern<IExpandCollapsePattern>(classic.ExpandCollapsePattern.Pattern).Expand();
 //            } catch (Exception eExtensionMethod) {
 //                // 
 //                // throw;
@@ -64,7 +64,7 @@ namespace UIAutomation
         public static IUiElement PerformCollapse(this IUiElement element)
         {
 //            try {
-                element.GetCurrentPattern<IExpandCollapsePattern>(ExpandCollapsePattern.Pattern).Collapse();
+                element.GetCurrentPattern<IExpandCollapsePattern>(classic.ExpandCollapsePattern.Pattern).Collapse();
 //            } catch (Exception eExtensionMethod) {
 //                // 
 //                // throw;
@@ -72,10 +72,10 @@ namespace UIAutomation
             return element;
         }
         
-        public static ExpandCollapseState GetExpandCollapseState(this IUiElement element)
+        public static classic.ExpandCollapseState GetExpandCollapseState(this IUiElement element)
         {
             try {
-                return element.GetCurrentPattern<IExpandCollapsePattern>(ExpandCollapsePattern.Pattern).Current.ExpandCollapseState;
+                return element.GetCurrentPattern<IExpandCollapsePattern>(classic.ExpandCollapsePattern.Pattern).Current.ExpandCollapseState;
             } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
@@ -87,7 +87,7 @@ namespace UIAutomation
         public static int GetRowGridItemPattern(this IUiElement element)
         {
             try {
-                return element.GetCurrentPattern<IGridItemPattern>(GridItemPattern.Pattern).Current.Row;
+                return element.GetCurrentPattern<IGridItemPattern>(classic.GridItemPattern.Pattern).Current.Row;
             } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
@@ -98,7 +98,7 @@ namespace UIAutomation
         public static int GetColumnGridItemPattern(this IUiElement element)
         {
             try {
-                return element.GetCurrentPattern<IGridItemPattern>(GridItemPattern.Pattern).Current.Column;
+                return element.GetCurrentPattern<IGridItemPattern>(classic.GridItemPattern.Pattern).Current.Column;
             } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
@@ -110,7 +110,7 @@ namespace UIAutomation
         public static int GetRowSpanGridItemPattern(this IUiElement element)
         {
             try {
-                return element.GetCurrentPattern<IGridItemPattern>(GridItemPattern.Pattern).Current.RowSpan;
+                return element.GetCurrentPattern<IGridItemPattern>(classic.GridItemPattern.Pattern).Current.RowSpan;
             } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
@@ -121,7 +121,7 @@ namespace UIAutomation
         public static int GetColumnSpanGridItemPattern(this IUiElement element)
         {
             try {
-                return element.GetCurrentPattern<IGridItemPattern>(GridItemPattern.Pattern).Current.ColumnSpan;
+                return element.GetCurrentPattern<IGridItemPattern>(classic.GridItemPattern.Pattern).Current.ColumnSpan;
             } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
@@ -133,8 +133,8 @@ namespace UIAutomation
         {
             try {
                 // 20140102
-                // return AutomationFactory.GetUiElement(element.GetCurrentPattern<IGridItemPattern>(GridItemPattern.Pattern).Current.ContainingGrid.GetSourceElement());
-                return AutomationFactory.GetUiElement(element.GetCurrentPattern<IGridItemPattern>(GridItemPattern.Pattern).Current.ContainingGrid.GetSourceElement() as AutomationElement);
+                // return AutomationFactory.GetUiElement(element.GetCurrentPattern<IGridItemPattern>(classic.GridItemPattern.Pattern).Current.ContainingGrid.GetSourceElement());
+                return AutomationFactory.GetUiElement(element.GetCurrentPattern<IGridItemPattern>(classic.GridItemPattern.Pattern).Current.ContainingGrid.GetSourceElement() as AutomationElement);
                 
             } catch (Exception eExtensionMethod) {
                 // 
@@ -147,12 +147,12 @@ namespace UIAutomation
         public static IUiElement PerformGetItem(this IUiElement element, int row, int column)
         {
             try {
-                // return element.GetCurrentPattern<IGridPattern>(GridPattern.Pattern).GetItem(row, column);
-                return AutomationFactory.GetUiElement(element.GetCurrentPattern<IGridPattern>(GridPattern.Pattern).GetItem(row, column).GetSourceElement());
+                // return element.GetCurrentPattern<IGridPattern>(classic.GridPattern.Pattern).GetItem(row, column);
+                return AutomationFactory.GetUiElement(element.GetCurrentPattern<IGridPattern>(classic.GridPattern.Pattern).GetItem(row, column).GetSourceElement());
                 
                 // 20140102
-                // IUiElement eltInExtMethod = AutomationFactory.GetUiElement(element.GetCurrentPattern<IGridPattern>(GridPattern.Pattern).GetItem(row, column).GetSourceElement());
-                // IUiElement eltInExtMethod = AutomationFactory.GetUiElement(element.GetCurrentPattern<IGridPattern>(GridPattern.Pattern).GetItem(row, column).GetSourceElement()); // as AutomationElement);
+                // IUiElement eltInExtMethod = AutomationFactory.GetUiElement(element.GetCurrentPattern<IGridPattern>(classic.GridPattern.Pattern).GetItem(row, column).GetSourceElement());
+                // IUiElement eltInExtMethod = AutomationFactory.GetUiElement(element.GetCurrentPattern<IGridPattern>(classic.GridPattern.Pattern).GetItem(row, column).GetSourceElement()); // as AutomationElement);
                 
                 // return eltInExtMethod;
                 
@@ -166,7 +166,7 @@ namespace UIAutomation
         public static int GetRowCountGridPattern(this IUiElement element)
         {
             try {
-                return element.GetCurrentPattern<IGridPattern>(GridPattern.Pattern).Current.RowCount;
+                return element.GetCurrentPattern<IGridPattern>(classic.GridPattern.Pattern).Current.RowCount;
             } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
@@ -177,7 +177,7 @@ namespace UIAutomation
         public static int GetColumnCountGridPattern(this IUiElement element)
         {
             try {
-                return element.GetCurrentPattern<IGridPattern>(GridPattern.Pattern).Current.ColumnCount;
+                return element.GetCurrentPattern<IGridPattern>(classic.GridPattern.Pattern).Current.ColumnCount;
             } catch (Exception eExtensionMethod) {
                 // 
                 // throw;
@@ -468,7 +468,7 @@ namespace UIAutomation
             return element;
         }
         
-        public static IUiElement PerformScroll(this IUiElement element, ScrollAmount horizontalAmount, ScrollAmount verticalAmount)
+        public static IUiElement PerformScroll(this IUiElement element, classic.ScrollAmount horizontalAmount, classic.ScrollAmount verticalAmount)
         {
             try {
                 element.GetCurrentPattern<IScrollPattern>(ScrollPattern.Pattern).Scroll(horizontalAmount, verticalAmount);
@@ -479,7 +479,7 @@ namespace UIAutomation
             return element;
         }
         
-        public static IUiElement PerformScrollHorizontal(this IUiElement element, ScrollAmount amount)
+        public static IUiElement PerformScrollHorizontal(this IUiElement element, classic.ScrollAmount amount)
         {
             try {
                 element.GetCurrentPattern<IScrollPattern>(ScrollPattern.Pattern).ScrollHorizontal(amount);
@@ -490,7 +490,7 @@ namespace UIAutomation
             return element;
         }
         
-        public static IUiElement PerformScrollVertical(this IUiElement element, ScrollAmount amount)
+        public static IUiElement PerformScrollVertical(this IUiElement element, classic.ScrollAmount amount)
         {
             try {
                 element.GetCurrentPattern<IScrollPattern>(ScrollPattern.Pattern).ScrollVertical(amount);
@@ -787,7 +787,7 @@ namespace UIAutomation
             return 0;
 		}
 		
-		public static RowOrColumnMajor GetRowOrColumnMajor(this IUiElement element)
+		public static classic.RowOrColumnMajor GetRowOrColumnMajor(this IUiElement element)
 		{
 		    try {
 		        return element.GetCurrentPattern<ITablePattern>(TablePattern.Pattern).Current.RowOrColumnMajor;
@@ -799,7 +799,7 @@ namespace UIAutomation
 		}
         #endregion TablePattern
         #region TextPattern
-        public static TextPatternRange[] PerformGetSelectionTextPattern(this IUiElement element)
+        public static classic.Text.TextPatternRange[] PerformGetSelectionTextPattern(this IUiElement element)
         {
             try {
                 return element.GetCurrentPattern<ITextPattern>(TextPattern.Pattern).GetSelection();
@@ -807,10 +807,10 @@ namespace UIAutomation
                 // 
                 // throw;
             }
-            return new TextPatternRange[] {};
+            return new classic.Text.TextPatternRange[] {};
         }
         
-		public static TextPatternRange[] PerformGetVisibleRanges(this IUiElement element)
+		public static classic.Text.TextPatternRange[] PerformGetVisibleRanges(this IUiElement element)
 		{
 		    try {
 		        return element.GetCurrentPattern<ITextPattern>(TextPattern.Pattern).GetVisibleRanges();
@@ -818,10 +818,10 @@ namespace UIAutomation
                 // 
                 // throw;
             }
-            return new TextPatternRange[] {};
+            return new classic.Text.TextPatternRange[] {};
 		}
 		
-		public static TextPatternRange PerformRangeFromChild(this IUiElement element, IUiElement childElement)
+		public static classic.Text.TextPatternRange PerformRangeFromChild(this IUiElement element, IUiElement childElement)
 		{
 		    try {
 		        return element.GetCurrentPattern<ITextPattern>(TextPattern.Pattern).RangeFromChild(childElement);
@@ -833,7 +833,7 @@ namespace UIAutomation
 		    return null;
 		}
 		
-		public static TextPatternRange PerformRangeFromPoint(this IUiElement element, System.Windows.Point screenLocation)
+		public static classic.Text.TextPatternRange PerformRangeFromPoint(this IUiElement element, System.Windows.Point screenLocation)
 		{
 		    try {
 		        return element.GetCurrentPattern<ITextPattern>(TextPattern.Pattern).RangeFromPoint(screenLocation);
@@ -844,7 +844,7 @@ namespace UIAutomation
 		    return null;
 		}
 		
-		public static TextPatternRange GetDocumentRange(this IUiElement element)
+		public static classic.Text.TextPatternRange GetDocumentRange(this IUiElement element)
 		{
 		    try {
 		        return element.GetCurrentPattern<ITextPattern>(TextPattern.Pattern).DocumentRange;
@@ -855,7 +855,7 @@ namespace UIAutomation
 		    return null;
 		}
 		
-		public static SupportedTextSelection GetSupportedTextSelection(this IUiElement element)
+		public static classic.SupportedTextSelection GetSupportedTextSelection(this IUiElement element)
 		{
 		    try {
 		        return element.GetCurrentPattern<ITextPattern>(TextPattern.Pattern).SupportedTextSelection;
@@ -894,7 +894,7 @@ namespace UIAutomation
             return element;
         }
         
-        public static ToggleState GetToggleState(this IUiElement element)
+        public static classic.ToggleState GetToggleState(this IUiElement element)
         {
             try {
                 return element.GetCurrentPattern<ITogglePattern>(TogglePattern.Pattern).Current.ToggleState;
@@ -1007,7 +1007,7 @@ namespace UIAutomation
         }
         #endregion ValuePattern
         #region WindowPattern
-        public static IUiElement PerformSetWindowVisualState(this IUiElement element, WindowVisualState state)
+        public static IUiElement PerformSetWindowVisualState(this IUiElement element, classic.WindowVisualState state)
         {
             try {
                 element.GetCurrentPattern<IWindowPattern>(WindowPattern.Pattern).SetWindowVisualState(state);
@@ -1084,7 +1084,7 @@ namespace UIAutomation
 		    return false;
 		}
 		
-		public static WindowInteractionState GetWindowInteractionState(this IUiElement element)
+		public static classic.WindowInteractionState GetWindowInteractionState(this IUiElement element)
 		{
 		    try {
 		        return element.GetCurrentPattern<IWindowPattern>(WindowPattern.Pattern).Current.WindowInteractionState;
@@ -1095,7 +1095,7 @@ namespace UIAutomation
 		    return WindowInteractionState.NotResponding;
 		}
 		
-		public static WindowVisualState GetWindowVisualState(this IUiElement element)
+		public static classic.WindowVisualState GetWindowVisualState(this IUiElement element)
 		{
 		    try {
 		        return element.GetCurrentPattern<IWindowPattern>(WindowPattern.Pattern).Current.WindowVisualState;

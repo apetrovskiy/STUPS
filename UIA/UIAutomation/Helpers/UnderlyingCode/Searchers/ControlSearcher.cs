@@ -9,11 +9,11 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;
+    extern alias UIANET;using System.Windows.Automation;
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Windows.Automation;
+    using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
     using System.Management.Automation;
     using System.Linq;
     using PSTestLib;
@@ -26,9 +26,9 @@ namespace UIAutomation
     {
         public override string TimeoutExpirationInformation { get; set; }
         
-        private Condition conditionsForExactSearch = null;
-        private Condition conditionsForWildCards = null;
-        private Condition conditionsForTextSearch = null;
+        private classic.Condition conditionsForExactSearch = null;
+        private classic.Condition conditionsForWildCards = null;
+        private classic.Condition conditionsForTextSearch = null;
         
         private bool notTextSearch;
         
@@ -213,9 +213,9 @@ namespace UIAutomation
         
         internal static List<IUiElement> SearchByContainsTextViaUia(
             IUiElement inputObject,
-            Condition conditionsForTextSearch)
+            classic.Condition conditionsForTextSearch)
         {
-            IUiEltCollection textSearchCollection = inputObject.FindAll(TreeScope.Descendants, conditionsForTextSearch);
+            IUiEltCollection textSearchCollection = inputObject.FindAll(classic.TreeScope.Descendants, conditionsForTextSearch);
             return textSearchCollection.Cast<IUiElement>().ToList();
         }
         
@@ -252,7 +252,7 @@ namespace UIAutomation
         internal static List<IUiElement> SearchByExactConditionsViaUia(
             IUiElement inputObject,
             Hashtable[] searchCriteria,
-            Condition conditions)
+            classic.Condition conditions)
         {
             // 20140304
 //            var listOfColllectedResults =
@@ -264,7 +264,7 @@ namespace UIAutomation
             // if (inputObject == null || (int) inputObject.Current.ProcessId <= 0) return listOfColllectedResults;
             if (inputObject == null || (int) inputObject.Current.ProcessId <= 0) return new List<IUiElement>();
             
-            IUiEltCollection tempCollection = inputObject.FindAll(TreeScope.Descendants, conditions);
+            IUiEltCollection tempCollection = inputObject.FindAll(classic.TreeScope.Descendants, conditions);
             
             // 20140304
             if (null == searchCriteria || 0 == searchCriteria.Length) {
@@ -302,7 +302,7 @@ namespace UIAutomation
         internal static List<IUiElement> SearchByWildcardOrRegexViaUia(
             IUiElement inputObject,
             ControlSearcherData data,
-            Condition conditionsForWildCards,
+            classic.Condition conditionsForWildCards,
             bool viaWildcardOrRegex)
         {
             var resultCollection =
@@ -469,7 +469,7 @@ namespace UIAutomation
             return result;
         }
         
-        public Condition[] GetControlsConditions(ControlSearcherData data)
+        public classic.Condition[] GetControlsConditions(ControlSearcherData data)
         {
             var conditions = new List<Condition>();
             
@@ -485,21 +485,21 @@ namespace UIAutomation
         }
         
         #region condition methods
-        internal static UIANET::System.Windows.Automation.AndCondition GetAndCondition(List<PropertyCondition> propertyCollection)
+        internal static UIANET::System.Windows.Automation.AndCondition GetAndCondition(List<classic.PropertyCondition> propertyCollection)
         {
             if (null == propertyCollection) return null;
             var resultCondition = new UIANET::System.Windows.Automation.AndCondition(propertyCollection.ToArray());
             return resultCondition;
         }
         
-        internal static UIANET::System.Windows.Automation.OrCondition GetOrCondition(List<PropertyCondition> propertyCollection)
+        internal static UIANET::System.Windows.Automation.OrCondition GetOrCondition(List<classic.PropertyCondition> propertyCollection)
         {
             if (null == propertyCollection) return null;
             var resultCondition = new UIANET::System.Windows.Automation.OrCondition(propertyCollection.ToArray());
             return resultCondition;
         }
         
-        internal static Condition GetControlTypeCondition(IEnumerable<string> controlTypeNames)
+        internal static classic.Condition GetControlTypeCondition(IEnumerable<string> controlTypeNames)
         {
             if (null == controlTypeNames) return Condition.TrueCondition;
             
@@ -524,7 +524,7 @@ namespace UIAutomation
             */
         }
         
-        internal static Condition GetTextSearchCondition(string searchString, string[] controlTypeNames, bool caseSensitive1)
+        internal static classic.Condition GetTextSearchCondition(string searchString, string[] controlTypeNames, bool caseSensitive1)
         {
             if (string.IsNullOrEmpty(searchString)) return null;
             
@@ -567,7 +567,7 @@ namespace UIAutomation
             return resultCondition;
         }
         
-        internal static Condition GetExactSearchCondition(ControlSearcherData data)
+        internal static classic.Condition GetExactSearchCondition(ControlSearcherData data)
         {
             PropertyConditionFlags flags =
                 data.CaseSensitive ? PropertyConditionFlags.None : PropertyConditionFlags.IgnoreCase;
@@ -623,7 +623,7 @@ namespace UIAutomation
             }
         }
         
-        internal static Condition GetWildcardSearchCondition(ControlSearcherData data)
+        internal static classic.Condition GetWildcardSearchCondition(ControlSearcherData data)
         {
             Condition controlTypeCondition = Condition.TrueCondition;
             if (null == data.ControlType || 0 == data.ControlType.Length) return controlTypeCondition;

@@ -9,19 +9,19 @@
 
 namespace UIAutomation
 {
-	extern alias UIANET;
+	extern alias UIANET;using System.Windows.Automation;
 	using System;
-	using System.Windows.Automation;
+	using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
 
 	/// <summary>
 	/// Description of GridItemPatternAdapterNet.
 	/// </summary>
 	public class UiaGridItemPattern : IGridItemPattern
 	{
-		private System.Windows.Automation.GridItemPattern _gridItemPattern;
+		private classic.GridItemPattern _gridItemPattern;
 		private IUiElement _element;
 
-		public UiaGridItemPattern(IUiElement element, GridItemPattern gridItemPattern)
+		public UiaGridItemPattern(IUiElement element, classic.GridItemPattern gridItemPattern)
 		{
 			this._gridItemPattern = gridItemPattern;
 			this._element = element;
@@ -74,12 +74,12 @@ namespace UIAutomation
 //				this._useCache = useCache;
 //			}
 		}
-		public static readonly AutomationPattern Pattern = GridItemPatternIdentifiers.Pattern;
-		public static readonly AutomationProperty RowProperty = GridItemPatternIdentifiers.RowProperty;
-		public static readonly AutomationProperty ColumnProperty = GridItemPatternIdentifiers.ColumnProperty;
-		public static readonly AutomationProperty RowSpanProperty = GridItemPatternIdentifiers.RowSpanProperty;
-		public static readonly AutomationProperty ColumnSpanProperty = GridItemPatternIdentifiers.ColumnSpanProperty;
-		public static readonly AutomationProperty ContainingGridProperty = GridItemPatternIdentifiers.ContainingGridProperty;
+		public static readonly classic.AutomationPattern Pattern = GridItemPatternIdentifiers.Pattern;
+		public static readonly classic.AutomationProperty RowProperty = GridItemPatternIdentifiers.RowProperty;
+		public static readonly classic.AutomationProperty ColumnProperty = GridItemPatternIdentifiers.ColumnProperty;
+		public static readonly classic.AutomationProperty RowSpanProperty = GridItemPatternIdentifiers.RowSpanProperty;
+		public static readonly classic.AutomationProperty ColumnSpanProperty = GridItemPatternIdentifiers.ColumnSpanProperty;
+		public static readonly classic.AutomationProperty ContainingGridProperty = GridItemPatternIdentifiers.ContainingGridProperty;
 		// private SafePatternHandle _hPattern;
 		// internal bool _cached;
 		

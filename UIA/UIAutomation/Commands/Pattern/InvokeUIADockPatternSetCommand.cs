@@ -9,10 +9,10 @@
 
 namespace UIAutomation.Commands
 {
-    extern alias UIANET;
+    extern alias UIANET;using System.Windows.Automation;
     using System;
     using System.Management.Automation;
-    using System.Windows.Automation;
+    using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
 
     /// <summary>
     /// Description of InvokeUiaDockPatternSetCommand.
@@ -30,7 +30,7 @@ namespace UIAutomation.Commands
         [ValidateNotNullOrEmpty()]
         // 20140102
         // [ValidateSet("Bottom", "Left", "Right", "Top", "Fill", "None")]
-        public DockPosition DockPosition { get; set; }
+        public classic.DockPosition DockPosition { get; set; }
         #endregion Parameters
     }
     

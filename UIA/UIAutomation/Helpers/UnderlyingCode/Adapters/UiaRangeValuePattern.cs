@@ -9,19 +9,19 @@
 
 namespace UIAutomation
 {
-	extern alias UIANET;
+	extern alias UIANET;using System.Windows.Automation;
 	using System;
-	using System.Windows.Automation;
+	using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
 
 	/// <summary>
 	/// Description of RangeValuePatternAdapterNet.
 	/// </summary>
 	public class UiaRangeValuePattern : IRangeValuePattern
 	{
-		private System.Windows.Automation.RangeValuePattern _rangeValuePattern;
+		private classic.RangeValuePattern _rangeValuePattern;
 		private IUiElement _element;
 
-		public UiaRangeValuePattern(IUiElement element, RangeValuePattern rangeValuePattern)
+		public UiaRangeValuePattern(IUiElement element, classic.RangeValuePattern rangeValuePattern)
 		{
 			this._rangeValuePattern = rangeValuePattern;
 			this._element = element;
@@ -152,13 +152,13 @@ namespace UIAutomation
 //				this._useCache = useCache;
 //			}
 		}
-		public static readonly AutomationPattern Pattern = RangeValuePatternIdentifiers.Pattern;
-		public static readonly AutomationProperty ValueProperty = RangeValuePatternIdentifiers.ValueProperty;
-		public static readonly AutomationProperty IsReadOnlyProperty = RangeValuePatternIdentifiers.IsReadOnlyProperty;
-		public static readonly AutomationProperty MinimumProperty = RangeValuePatternIdentifiers.MinimumProperty;
-		public static readonly AutomationProperty MaximumProperty = RangeValuePatternIdentifiers.MaximumProperty;
-		public static readonly AutomationProperty LargeChangeProperty = RangeValuePatternIdentifiers.LargeChangeProperty;
-		public static readonly AutomationProperty SmallChangeProperty = RangeValuePatternIdentifiers.SmallChangeProperty;
+		public static readonly classic.AutomationPattern Pattern = RangeValuePatternIdentifiers.Pattern;
+		public static readonly classic.AutomationProperty ValueProperty = RangeValuePatternIdentifiers.ValueProperty;
+		public static readonly classic.AutomationProperty IsReadOnlyProperty = RangeValuePatternIdentifiers.IsReadOnlyProperty;
+		public static readonly classic.AutomationProperty MinimumProperty = RangeValuePatternIdentifiers.MinimumProperty;
+		public static readonly classic.AutomationProperty MaximumProperty = RangeValuePatternIdentifiers.MaximumProperty;
+		public static readonly classic.AutomationProperty LargeChangeProperty = RangeValuePatternIdentifiers.LargeChangeProperty;
+		public static readonly classic.AutomationProperty SmallChangeProperty = RangeValuePatternIdentifiers.SmallChangeProperty;
 		// private SafePatternHandle _hPattern;
 		// private bool _cached;
 		

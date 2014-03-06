@@ -9,16 +9,16 @@
 
 namespace UIAutomation
 {
-	extern alias UIANET;
+	extern alias UIANET;using System.Windows.Automation;
 	using System;
-	using System.Windows.Automation;
+	using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
 
 	public class UiaSelectionItemPattern : ISelectionItemPattern
 	{
-	    private System.Windows.Automation.SelectionItemPattern _selectionItemPattern;
+	    private classic.SelectionItemPattern _selectionItemPattern;
 		private IUiElement _element;
 		
-		public UiaSelectionItemPattern(IUiElement element, SelectionItemPattern selectionItemPattern)
+		public UiaSelectionItemPattern(IUiElement element, classic.SelectionItemPattern selectionItemPattern)
 		{
 			this._selectionItemPattern = selectionItemPattern;
 			this._element = element;
@@ -53,12 +53,12 @@ namespace UIAutomation
 			    }
 			}
 		}
-		public static readonly AutomationPattern Pattern = SelectionItemPatternIdentifiers.Pattern;
-		public static readonly AutomationProperty IsSelectedProperty = SelectionItemPatternIdentifiers.IsSelectedProperty;
-		public static readonly AutomationProperty SelectionContainerProperty = SelectionItemPatternIdentifiers.SelectionContainerProperty;
-		public static readonly AutomationEvent ElementAddedToSelectionEvent = SelectionItemPatternIdentifiers.ElementAddedToSelectionEvent;
-		public static readonly AutomationEvent ElementRemovedFromSelectionEvent = SelectionItemPatternIdentifiers.ElementRemovedFromSelectionEvent;
-		public static readonly AutomationEvent ElementSelectedEvent = SelectionItemPatternIdentifiers.ElementSelectedEvent;
+		public static readonly classic.AutomationPattern Pattern = SelectionItemPatternIdentifiers.Pattern;
+		public static readonly classic.AutomationProperty IsSelectedProperty = SelectionItemPatternIdentifiers.IsSelectedProperty;
+		public static readonly classic.AutomationProperty SelectionContainerProperty = SelectionItemPatternIdentifiers.SelectionContainerProperty;
+		public static readonly classic.AutomationEvent ElementAddedToSelectionEvent = SelectionItemPatternIdentifiers.ElementAddedToSelectionEvent;
+		public static readonly classic.AutomationEvent ElementRemovedFromSelectionEvent = SelectionItemPatternIdentifiers.ElementRemovedFromSelectionEvent;
+		public static readonly classic.AutomationEvent ElementSelectedEvent = SelectionItemPatternIdentifiers.ElementSelectedEvent;
         
 		public virtual ISelectionItemPatternInformation Cached {
 			get {

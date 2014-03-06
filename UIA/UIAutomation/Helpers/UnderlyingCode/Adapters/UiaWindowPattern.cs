@@ -9,19 +9,19 @@
 
 namespace UIAutomation
 {
-	extern alias UIANET;
+	extern alias UIANET;using System.Windows.Automation;
 	using System;
-	using System.Windows.Automation;
+	using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
 
 	/// <summary>
 	/// Description of WindowPatternAdapter.
 	/// </summary>
 	public class UiaWindowPattern : IWindowPattern
 	{
-		private System.Windows.Automation.WindowPattern _windowPattern;
+		private classic.WindowPattern _windowPattern;
 		private IUiElement _element;
 
-		public UiaWindowPattern(IUiElement element, WindowPattern windowPattern)
+		public UiaWindowPattern(IUiElement element, classic.WindowPattern windowPattern)
 		{
 			this._windowPattern = windowPattern;
 			this._element = element;
@@ -58,11 +58,11 @@ namespace UIAutomation
 				// get { return (bool)this._el.GetPatternPropertyValue(WindowPattern.IsModalProperty, this._useCache); }
 				get { return (bool)this._windowPattern.GetParentElement().GetPatternPropertyValue(WindowPattern.IsModalProperty, this._useCache); }
 			}
-			public WindowVisualState WindowVisualState {
+			public classic.WindowVisualState WindowVisualState {
 				// get { return (WindowVisualState)this._el.GetPatternPropertyValue(WindowPattern.WindowVisualStateProperty, this._useCache); }
 				get { return (WindowVisualState)this._windowPattern.GetParentElement().GetPatternPropertyValue(WindowPattern.WindowVisualStateProperty, this._useCache); }
 			}
-			public WindowInteractionState WindowInteractionState {
+			public classic.WindowInteractionState WindowInteractionState {
 				// get { return (WindowInteractionState)this._el.GetPatternPropertyValue(WindowPattern.WindowInteractionStateProperty, this._useCache); }
 				get { return (WindowInteractionState)this._windowPattern.GetParentElement().GetPatternPropertyValue(WindowPattern.WindowInteractionStateProperty, this._useCache); }
 			}
@@ -76,15 +76,15 @@ namespace UIAutomation
 //				this._useCache = useCache;
 //			}
 		}
-		public static readonly AutomationPattern Pattern = WindowPatternIdentifiers.Pattern;
-		public static readonly AutomationProperty CanMaximizeProperty = WindowPatternIdentifiers.CanMaximizeProperty;
-		public static readonly AutomationProperty CanMinimizeProperty = WindowPatternIdentifiers.CanMinimizeProperty;
-		public static readonly AutomationProperty IsModalProperty = WindowPatternIdentifiers.IsModalProperty;
-		public static readonly AutomationProperty WindowVisualStateProperty = WindowPatternIdentifiers.WindowVisualStateProperty;
-		public static readonly AutomationProperty WindowInteractionStateProperty = WindowPatternIdentifiers.WindowInteractionStateProperty;
-		public static readonly AutomationProperty IsTopmostProperty = WindowPatternIdentifiers.IsTopmostProperty;
-		public static readonly AutomationEvent WindowOpenedEvent = WindowPatternIdentifiers.WindowOpenedEvent;
-		public static readonly AutomationEvent WindowClosedEvent = WindowPatternIdentifiers.WindowClosedEvent;
+		public static readonly classic.AutomationPattern Pattern = WindowPatternIdentifiers.Pattern;
+		public static readonly classic.AutomationProperty CanMaximizeProperty = WindowPatternIdentifiers.CanMaximizeProperty;
+		public static readonly classic.AutomationProperty CanMinimizeProperty = WindowPatternIdentifiers.CanMinimizeProperty;
+		public static readonly classic.AutomationProperty IsModalProperty = WindowPatternIdentifiers.IsModalProperty;
+		public static readonly classic.AutomationProperty WindowVisualStateProperty = WindowPatternIdentifiers.WindowVisualStateProperty;
+		public static readonly classic.AutomationProperty WindowInteractionStateProperty = WindowPatternIdentifiers.WindowInteractionStateProperty;
+		public static readonly classic.AutomationProperty IsTopmostProperty = WindowPatternIdentifiers.IsTopmostProperty;
+		public static readonly classic.AutomationEvent WindowOpenedEvent = WindowPatternIdentifiers.WindowOpenedEvent;
+		public static readonly classic.AutomationEvent WindowClosedEvent = WindowPatternIdentifiers.WindowClosedEvent;
 		// private SafePatternHandle _hPattern;
 		// private bool _cached;
 		
@@ -108,7 +108,7 @@ namespace UIAutomation
 //			this._hPattern = hPattern;
 //			this._cached = cached;
 //		}
-		public virtual void SetWindowVisualState(WindowVisualState state)
+		public virtual void SetWindowVisualState(classic.WindowVisualState state)
 		{
 			// UiaCoreApi.WindowPattern_SetWindowVisualState(this._hPattern, state);
 			this._windowPattern.SetWindowVisualState(state);

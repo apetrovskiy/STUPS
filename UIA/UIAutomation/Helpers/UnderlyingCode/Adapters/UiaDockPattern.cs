@@ -9,19 +9,20 @@
 
 namespace UIAutomation
 {
-	extern alias UIANET;
+	extern alias UIANET;using System.Windows.Automation;
 	using System;
-	using System.Windows.Automation;
+	using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
 
 	/// <summary>
 	/// Description of DockPatternAdapterNet.
 	/// </summary>
 	public class UiaDockPattern : IDockPattern
 	{
-		private System.Windows.Automation.DockPattern _dockPattern;
+		// private System.Windows.Automation.DockPattern _dockPattern;
+		private classic.DockPattern _dockPattern;
 		private IUiElement _element;
 
-		public UiaDockPattern(IUiElement element, DockPattern dockPattern)
+		public UiaDockPattern(IUiElement element, classic.DockPattern dockPattern)
 		{
 			this._dockPattern = dockPattern;
 			this._element = element;
@@ -33,7 +34,7 @@ namespace UIAutomation
 			this._element = element;
 		}
 		
-		public UiaDockPattern(DockPattern DockPattern)
+		public UiaDockPattern(classic.DockPattern DockPattern)
 		{
 		    this._dockPattern = DockPattern;
 		}
@@ -52,7 +53,7 @@ namespace UIAutomation
 				this._useCache = useCache;
 			}
 			
-			public DockPosition DockPosition {
+			public classic.DockPosition DockPosition {
 				// get { return (DockPosition)this._el.GetPatternPropertyValue(DockPattern.DockPositionProperty, this._useCache); }
 				get { return (DockPosition)this._dockPattern.GetParentElement().GetPatternPropertyValue(DockPattern.DockPositionProperty, this._useCache); }
 			}
@@ -62,8 +63,8 @@ namespace UIAutomation
 //				this._useCache = useCache;
 //			}
 		}
-		public static readonly AutomationPattern Pattern = DockPatternIdentifiers.Pattern;
-		public static readonly AutomationProperty DockPositionProperty = DockPatternIdentifiers.DockPositionProperty;
+		public static readonly classic.AutomationPattern Pattern = DockPatternIdentifiers.Pattern;
+		public static readonly classic.AutomationProperty DockPositionProperty = DockPatternIdentifiers.DockPositionProperty;
 		// private SafePatternHandle _hPattern;
 		// private bool _cached;
 		
@@ -87,7 +88,7 @@ namespace UIAutomation
 //			this._hPattern = hPattern;
 //			this._cached = cached;
 //		}
-		public virtual void SetDockPosition(DockPosition dockPosition)
+		public virtual void SetDockPosition(classic.DockPosition dockPosition)
 		{
 			// UiaCoreApi.DockPattern_SetDockPosition(this._hPattern, dockPosition);
 			this._dockPattern.SetDockPosition(dockPosition);

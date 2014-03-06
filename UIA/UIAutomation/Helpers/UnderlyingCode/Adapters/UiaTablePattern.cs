@@ -9,9 +9,9 @@
 
 namespace UIAutomation
 {
-	extern alias UIANET;
+	extern alias UIANET;using System.Windows.Automation;
 	using System;
-	using System.Windows.Automation;
+	using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
 	using System.Linq;
 
 	/// <summary>
@@ -19,10 +19,10 @@ namespace UIAutomation
 	/// </summary>
 	public class UiaTablePattern : ITablePattern
 	{
-		private System.Windows.Automation.TablePattern _tablePattern;
+		private classic.TablePattern _tablePattern;
 		private IUiElement _element;
 
-		public UiaTablePattern(IUiElement element, TablePattern tablePattern)
+		public UiaTablePattern(IUiElement element, classic.TablePattern tablePattern)
 		{
 			this._tablePattern = tablePattern;
 			this._element = element;
@@ -56,7 +56,7 @@ namespace UIAutomation
 				// get { return (int)this._el.GetPatternPropertyValue(GridPattern.ColumnCountProperty, this._useCache); }
 				get { return (int)this._tablePattern.GetParentElement().GetPatternPropertyValue(GridPattern.ColumnCountProperty, this._useCache); }
 			}
-			public RowOrColumnMajor RowOrColumnMajor {
+			public classic.RowOrColumnMajor RowOrColumnMajor {
 				// get { return (RowOrColumnMajor)this._el.GetPatternPropertyValue(TablePattern.RowOrColumnMajorProperty, this._useCache); }
 				get { return (RowOrColumnMajor)this._tablePattern.GetParentElement().GetPatternPropertyValue(TablePattern.RowOrColumnMajorProperty, this._useCache); }
 			}
@@ -94,13 +94,13 @@ namespace UIAutomation
 				}
 			}
 		}
-		public static readonly AutomationPattern Pattern = TablePatternIdentifiers.Pattern;
+		public static readonly classic.AutomationPattern Pattern = TablePatternIdentifiers.Pattern;
         /*
         public static new readonly AutomationPattern Pattern = TablePatternIdentifiers.Pattern;
         */
-        public static readonly AutomationProperty RowHeadersProperty = TablePatternIdentifiers.RowHeadersProperty;
-		public static readonly AutomationProperty ColumnHeadersProperty = TablePatternIdentifiers.ColumnHeadersProperty;
-		public static readonly AutomationProperty RowOrColumnMajorProperty = TablePatternIdentifiers.RowOrColumnMajorProperty;
+        public static readonly classic.AutomationProperty RowHeadersProperty = TablePatternIdentifiers.RowHeadersProperty;
+		public static readonly classic.AutomationProperty ColumnHeadersProperty = TablePatternIdentifiers.ColumnHeadersProperty;
+		public static readonly classic.AutomationProperty RowOrColumnMajorProperty = TablePatternIdentifiers.RowOrColumnMajorProperty;
 		
 		public virtual ITablePatternInformation Cached {
 			get {
